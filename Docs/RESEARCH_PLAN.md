@@ -70,6 +70,10 @@ Expected output:
 - A clear agent workflow standard.
 - Short, reliable command-line hooks for project tasks.
 
+Current status:
+- `Docs/CODEX_EDITOR_STANDARD.md` captures the compact Codex/editor workflow baseline.
+- `AGENTS.md` and `Docs/UNITY_AUTOMATION.md` already define the working surface for repo context and command-line automation.
+
 ## Priority 5: Core Game Architecture Topics
 
 Goal:
