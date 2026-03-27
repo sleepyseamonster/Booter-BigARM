@@ -51,6 +51,7 @@ Unity's sorting docs are clear that Sorting Layer and Order in Layer are the pri
 
 - Put camera tuning values in data, not hard-coded constants.
 - Keep the camera able to change mode later, such as exploration, combat, interior, or event focus.
+- Keep the follow rig able to expand from one target to a target group later, instead of hardwiring all framing to a single actor.
 - Keep movement and camera baselines permissive enough to support future traversal mechanics.
 - Keep the player motor interface narrow so future traversal types can swap body behavior, camera framing, or input response without reworking the full controller.
 
