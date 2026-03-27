@@ -10,17 +10,20 @@ This document captures the current Unity project state so future changes can be 
 
 ## Current Files Of Interest
 
-- `Assets/Scenes/SampleScene.unity`
-- `Assets/Settings/UniversalRP.asset`
-- `Assets/Settings/Renderer2D.asset`
-- `Assets/InputSystem_Actions.inputactions`
-- `Assets/DefaultVolumeProfile.asset`
+- `Assets/_Project/Scenes/SampleScene.unity`
+- `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset`
+- `Assets/_Project/Settings/Rendering/URP/Renderer2D.asset`
+- `Assets/_Project/Settings/Input/InputSystem_Actions.inputactions`
+- `Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset`
+- `Assets/_Project/Settings/Rendering/URP/UniversalRenderPipelineGlobalSettings.asset`
 
 ## Current Folder State
 
-- `Assets/Scenes/`
-- `Assets/Settings/`
-- `Assets/Settings/Scenes/`
+- `Assets/_Project/Scenes/`
+- `Assets/_Project/Settings/Input/`
+- `Assets/_Project/Settings/Profiles/`
+- `Assets/_Project/Settings/Rendering/URP/`
+- `Assets/_Project/Settings/Templates/`
 
 ## Notes For Future Work
 

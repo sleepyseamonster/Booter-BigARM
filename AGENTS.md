@@ -47,8 +47,8 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 
 - Editor version: `6000.4.0f1`
 - Pipeline: URP
-- Starting scene: `Assets/Scenes/SampleScene.unity`
-- Current settings assets: `Assets/Settings/UniversalRP.asset` and `Assets/Settings/Renderer2D.asset`
+- Starting scene: `Assets/_Project/Scenes/SampleScene.unity`
+- Current settings assets: `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset` and `Assets/_Project/Settings/Rendering/URP/Renderer2D.asset`
 
 ## Canonical World Reference
 

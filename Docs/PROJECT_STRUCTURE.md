@@ -22,6 +22,11 @@ Assets/_Project/
     Runtime/
     Editor/
   Settings/
+    Input/
+    Profiles/
+    Rendering/
+      URP/
+    Templates/
   Tests/
   UI/
   VFX/
@@ -37,6 +42,10 @@ Assets/_Project/
 - `Scripts/Runtime/` - gameplay code that must compile into the player.
 - `Scripts/Editor/` - Unity editor tooling, build automation, validation, and import helpers.
 - `Settings/` - project-specific ScriptableObjects, renderer configs, and other shared settings assets.
+- `Settings/Input/` - input action assets and other input-related configuration.
+- `Settings/Profiles/` - volume profiles and other profile-style shared assets.
+- `Settings/Rendering/URP/` - URP assets, renderer data, and render pipeline globals.
+- `Settings/Templates/` - scene templates and reusable scene bootstrap assets.
 - `Tests/` - test scenes, test fixtures, and test support assets.
 - `UI/` - UI sprites, prefabs, layouts, and supporting assets.
 - `VFX/` - visual effect assets and supporting content.

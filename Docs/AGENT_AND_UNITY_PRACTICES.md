@@ -53,8 +53,8 @@ Source:
 
 Source:
 - [Set up the 2D Renderer asset in URP](https://docs.unity3d.com/kr/6000.0/Manual/urp/Setup.html)
-- [`Assets/Settings/UniversalRP.asset`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Assets/Settings/UniversalRP.asset)
-- [`Assets/Settings/Renderer2D.asset`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Assets/Settings/Renderer2D.asset)
+- [`Assets/_Project/Settings/Rendering/URP/UniversalRP.asset`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Assets/_Project/Settings/Rendering/URP/UniversalRP.asset)
+- [`Assets/_Project/Settings/Rendering/URP/Renderer2D.asset`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Assets/_Project/Settings/Rendering/URP/Renderer2D.asset)
 
 ### 6. Use command line for repeatable automation
 
