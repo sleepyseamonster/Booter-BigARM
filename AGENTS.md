@@ -73,6 +73,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Use [Docs/CODEX_EDITOR_STANDARD.md](./Docs/CODEX_EDITOR_STANDARD.md) as the compact standard for Codex and editor workflow.
 - Use [Docs/INPUT_ARCHITECTURE_STANDARD.md](./Docs/INPUT_ARCHITECTURE_STANDARD.md) as the baseline for player input and UI navigation.
 - Use [Docs/MOVEMENT_CAMERA_STANDARD.md](./Docs/MOVEMENT_CAMERA_STANDARD.md) as the baseline for top-down movement and camera behavior.
+- Use [Docs/WORLD_SYSTEMS_STANDARD.md](./Docs/WORLD_SYSTEMS_STANDARD.md) as the baseline for procedural generation, chunking, and save/load architecture.
 
 ## Default Workflow
 

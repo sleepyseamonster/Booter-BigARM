@@ -92,7 +92,8 @@ Expected output:
 Current status:
 - `Docs/INPUT_ARCHITECTURE_STANDARD.md` now captures the input baseline for this project.
 - `Docs/MOVEMENT_CAMERA_STANDARD.md` captures the current movement and camera baseline.
-- The remaining Priority 5 work is save/load and procedural generation.
+- `Docs/WORLD_SYSTEMS_STANDARD.md` captures the current procedural generation and save/load baseline.
+- The remaining Priority 5 work is refinement, validation, and implementation planning for these systems.
 
 ## Research Rules
 

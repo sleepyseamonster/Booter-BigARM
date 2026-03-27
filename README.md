@@ -44,3 +44,5 @@ Unity 6 2D top-down game project.
 - Read [Docs/CODEX_EDITOR_STANDARD.md](./Docs/CODEX_EDITOR_STANDARD.md) for Codex and editor workflow.
 - Read [Docs/INPUT_ARCHITECTURE_STANDARD.md](./Docs/INPUT_ARCHITECTURE_STANDARD.md) for the gamepad-first input baseline.
 - Read [Docs/MOVEMENT_CAMERA_STANDARD.md](./Docs/MOVEMENT_CAMERA_STANDARD.md) for the top-down movement and camera baseline.
+- Read [Docs/WORLD_SYSTEMS_STANDARD.md](./Docs/WORLD_SYSTEMS_STANDARD.md) for the procedural generation and save/load baseline.
+- Read [Docs/WORLD_SYSTEMS_STANDARD.md](./Docs/WORLD_SYSTEMS_STANDARD.md) for the procedural generation and save/load baseline.
