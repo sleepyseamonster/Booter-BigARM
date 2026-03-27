@@ -1,0 +1,30 @@
+# Unity generated folders
+Library/
+Temp/
+Logs/
+UserSettings/
+Obj/
+obj/
+
+# Unity generated project files
+*.csproj
+*.sln
+*.slnx
+*.unityproj
+*.Booproj
+*.pidb
+*.suo
+*.user
+*.userprefs
+
+# Build outputs
+Build/
+Builds/
+build/
+builds/
+
+# OS junk
+.DS_Store
+
+# Rider / Visual Studio generated state
+.vs/
