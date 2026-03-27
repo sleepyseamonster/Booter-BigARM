@@ -34,6 +34,10 @@ Expected output:
 - A project-specific 2D URP checklist.
 - Clear settings conventions for scenes, lights, and render assets.
 
+Current status:
+- The project already uses URP and the 2D Renderer assets.
+- `Docs/URP_2D_STANDARD.md` captures the compact rendering baseline for this repo.
+
 ## Priority 3: Project Structure And Naming
 
 Goal:

@@ -69,6 +69,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Use [Docs/PROJECT_STRUCTURE.md](./Docs/PROJECT_STRUCTURE.md) as the target layout for `Assets/_Project/`.
 - Use [Docs/UNITY_PROJECT_STANDARDS.md](./Docs/UNITY_PROJECT_STANDARDS.md) as the compact Unity naming and organization standard.
 - Use [Docs/RESEARCH_PLAN.md](./Docs/RESEARCH_PLAN.md) as the prioritized roadmap for future research.
+- Use [Docs/URP_2D_STANDARD.md](./Docs/URP_2D_STANDARD.md) as the compact standard for the project's 2D render pipeline.
 
 ## Default Workflow
 

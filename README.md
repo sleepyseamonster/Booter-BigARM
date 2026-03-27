@@ -40,3 +40,4 @@ Unity 6 2D top-down game project.
 - Read [Docs/PROJECT_STRUCTURE.md](./Docs/PROJECT_STRUCTURE.md) for the target `Assets/_Project/` layout.
 - Read [Docs/UNITY_PROJECT_STANDARDS.md](./Docs/UNITY_PROJECT_STANDARDS.md) for naming and organization conventions.
 - Read [Docs/RESEARCH_PLAN.md](./Docs/RESEARCH_PLAN.md) for the prioritized research roadmap.
+- Read [Docs/URP_2D_STANDARD.md](./Docs/URP_2D_STANDARD.md) for the 2D URP rendering baseline.
