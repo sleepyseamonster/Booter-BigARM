@@ -28,6 +28,8 @@ Assets/_Project/
       URP/
     Templates/
   Tests/
+    Runtime/
+    Editor/
   UI/
   VFX/
 ```
@@ -47,6 +49,8 @@ Assets/_Project/
 - `Settings/Rendering/URP/` - URP assets, renderer data, and render pipeline globals.
 - `Settings/Templates/` - scene templates and reusable scene bootstrap assets.
 - `Tests/` - test scenes, test fixtures, and test support assets.
+- `Tests/Runtime/` - runtime tests and fixtures.
+- `Tests/Editor/` - editor tests and fixtures.
 - `UI/` - UI sprites, prefabs, layouts, and supporting assets.
 - `VFX/` - visual effect assets and supporting content.
 
@@ -54,6 +58,7 @@ Assets/_Project/
 
 - Create new runtime code under `Scripts/Runtime/` unless the task is explicitly editor-only.
 - Create new editor automation under `Scripts/Editor/` and keep it in an Editor-only asmdef.
+- If tests become real, mirror the runtime/editor split under `Tests/Runtime/` and `Tests/Editor/`.
 - Keep scenes minimal and purpose-driven.
 - Keep reusable gameplay objects in prefabs, not scene-only copies.
 - Keep imported source art separate from optimized runtime art when practical.

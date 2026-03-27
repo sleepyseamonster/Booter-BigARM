@@ -57,6 +57,13 @@ Assets/_Project/
 - Keep editor code in an Editor-only asmdef.
 - Add test assemblies when test code becomes real.
 
+## Assembly Naming
+
+- Use `BooterBigArm.Runtime.asmdef` for runtime code.
+- Use `BooterBigArm.Editor.asmdef` for editor code.
+- Use `BooterBigArm.Runtime.Tests.asmdef` and `BooterBigArm.Editor.Tests.asmdef` for test assemblies when they exist.
+- Keep assembly names consistent with folder purpose and avoid inventing unrelated names.
+
 ## Asset Handling
 
 - Move assets in Unity rather than by hand whenever possible.

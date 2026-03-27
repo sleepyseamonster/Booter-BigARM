@@ -52,6 +52,10 @@ Expected output:
 - A small, opinionated structure standard.
 - Naming rules that prevent churn and ambiguity.
 
+Current status:
+- `Docs/PROJECT_STRUCTURE.md` and `Docs/UNITY_PROJECT_STANDARDS.md` already define the repo's folder and naming baseline.
+- The remaining work here is to keep those standards aligned with new gameplay systems and test assemblies as the codebase grows.
+
 ## Priority 4: Codex And Editor Integration
 
 Goal:
