@@ -90,6 +90,7 @@ Expected output:
 - Data and runtime boundaries that avoid redesign later.
 
 Current status:
+- `Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md` captures the current baseline for input, movement, procedural generation, and save/load.
 - `Docs/INPUT_ARCHITECTURE_STANDARD.md` now captures the input baseline for this project.
 - `Docs/MOVEMENT_CAMERA_STANDARD.md` captures the current movement and camera baseline.
 - `Docs/WORLD_SYSTEMS_STANDARD.md` captures the current procedural generation and save/load baseline.
