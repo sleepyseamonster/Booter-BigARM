@@ -16,6 +16,10 @@ Expected output:
 - A stable automation pattern for builds and validation.
 - Minimal editor entry points that are safe to call from CLI.
 
+Current status:
+- The project already has a CLI build bridge in `Assets/_Project/Scripts/Editor/BuildAutomation.cs`.
+- `Docs/UNITY_AUTOMATION.md` documents the current command-line workflow and now reflects explicit build-target validation.
+
 ## Priority 2: 2D URP Pipeline For Top-Down Games
 
 Goal:
@@ -79,4 +83,3 @@ Expected output:
 - Favor primary sources first, then project-specific inference.
 - Turn research into a short repo doc only when it changes how the project should be built.
 - Avoid expanding the plan unless the new topic will directly reduce rework or risk.
-

@@ -34,8 +34,13 @@ The repo should expose static editor methods under an Editor-only assembly so Un
 "/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/MacOS/Unity" \
   -projectPath "/Users/worldbuilder/Desktop/Booter & BigARM" \
   -batchmode -nographics -quit \
-  -executeMethod BooterBigArm.Editor.BuildAutomation.BuildFromCli
+  -executeMethod BooterBigArm.Editor.BuildAutomation.BuildFromCli \
+  -buildTarget StandaloneOSX \
+  -buildOutput "/Users/worldbuilder/Desktop/Booter & BigARM/Builds/StandaloneOSX/BooterBigArm.app"
 ```
+
+`-buildTarget` is optional. If omitted, the build script uses the current active build target in the editor.
+When it is present, the build script expects the active build target to already match the requested target.
 
 ## Current State
 

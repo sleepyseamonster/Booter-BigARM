@@ -10,6 +10,7 @@ namespace BooterBigArm.Editor
     public static class BuildAutomation
     {
         private const string DefaultBuildName = "BooterBigArm";
+        private const string BuildTargetArg = "-buildTarget";
 
         [MenuItem("Booter & BigARM/Build/Build Active Target")]
         public static void BuildActiveTargetMenu()
@@ -30,7 +31,9 @@ namespace BooterBigArm.Editor
 
         public static void BuildPlayer()
         {
-            var buildTarget = EditorUserBuildSettings.activeBuildTarget;
+            var args = Environment.GetCommandLineArgs();
+            var buildTarget = ResolveBuildTarget(args);
+            ValidateBuildTarget(buildTarget);
             var scenes = EditorBuildSettings.scenes
                 .Where(scene => scene.enabled)
                 .Select(scene => scene.path)
@@ -41,7 +44,6 @@ namespace BooterBigArm.Editor
                 throw new InvalidOperationException("No enabled scenes found in Build Settings.");
             }
 
-            var args = Environment.GetCommandLineArgs();
             var outputPath = GetArgumentValue(args, "-buildOutput");
             if (string.IsNullOrWhiteSpace(outputPath))
             {
@@ -100,6 +102,34 @@ namespace BooterBigArm.Editor
             }
 
             return string.Empty;
+        }
+
+        private static BuildTarget ResolveBuildTarget(string[] args)
+        {
+            var targetArgument = GetArgumentValue(args, BuildTargetArg);
+            if (string.IsNullOrWhiteSpace(targetArgument))
+            {
+                return EditorUserBuildSettings.activeBuildTarget;
+            }
+
+            if (Enum.TryParse(targetArgument, true, out BuildTarget parsedTarget))
+            {
+                return parsedTarget;
+            }
+
+            throw new ArgumentException($"Invalid build target '{targetArgument}'.");
+        }
+
+        private static void ValidateBuildTarget(BuildTarget buildTarget)
+        {
+            if (EditorUserBuildSettings.activeBuildTarget == buildTarget)
+            {
+                return;
+            }
+
+            throw new InvalidOperationException(
+                $"Active build target is '{EditorUserBuildSettings.activeBuildTarget}', but the command line requested '{buildTarget}'. " +
+                $"Launch Unity with -buildTarget {buildTarget} before invoking the build method.");
         }
 
         private static bool HasFlag(string[] args, string key)
