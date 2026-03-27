@@ -163,7 +163,15 @@ namespace BooterBigArm.Editor
             camera.backgroundColor = new Color(0.07f, 0.09f, 0.12f);
 
             cameraObject.AddComponent<AudioListener>();
-            cameraObject.AddComponent<UnityEngine.U2D.PixelPerfectCamera>();
+            var pixelPerfectCamera = cameraObject.AddComponent<UnityEngine.U2D.PixelPerfectCamera>();
+            pixelPerfectCamera.assetsPPU = 100;
+            pixelPerfectCamera.refResolutionX = 480;
+            pixelPerfectCamera.refResolutionY = 270;
+            pixelPerfectCamera.upscaleRT = false;
+            pixelPerfectCamera.pixelSnapping = false;
+            pixelPerfectCamera.cropFrameX = false;
+            pixelPerfectCamera.cropFrameY = false;
+            pixelPerfectCamera.stretchFill = false;
 
             var additionalData = cameraObject.AddComponent<UniversalAdditionalCameraData>();
             additionalData.renderShadows = true;
