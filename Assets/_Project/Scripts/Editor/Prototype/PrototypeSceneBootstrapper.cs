@@ -181,12 +181,12 @@ namespace BooterBigArm.Editor
             positionComposer.DeadZoneDepth = 0f;
             positionComposer.CenterOnActivate = true;
             positionComposer.TargetOffset = Vector3.zero;
-            positionComposer.Damping = new Vector3(0.25f, 0.25f, 0.1f);
+            positionComposer.Damping = Vector3.zero;
             positionComposer.Lookahead = new LookaheadSettings
             {
                 Enabled = true,
-                Time = 0.22f,
-                Smoothing = 6f,
+                Time = 0.18f,
+                Smoothing = 2f,
                 IgnoreY = false
             };
             cinemachineCameraObject.AddComponent<Unity.Cinemachine.CinemachinePixelPerfect>();
@@ -466,32 +466,28 @@ namespace BooterBigArm.Editor
             switch (pattern)
             {
                 case GroundOverlayPattern.PebblesSmall:
-                    DrawPebblePatch(texture, tint, rng, 6, 6, 25, 25, 4);
+                    DrawPebbleTile(texture, tint, rng, 2, 0);
                     break;
                 case GroundOverlayPattern.PebblesPatch:
-                    DrawPebblePatch(texture, tint, rng, 5, 5, 26, 26, 3);
+                    DrawPebbleTile(texture, tint, rng, 2, 1);
                     break;
                 case GroundOverlayPattern.PebblesMixed:
-                    DrawPebblePatch(texture, tint, rng, 4, 6, 25, 24, 4);
-                    DrawPebbleCluster(texture, tint, 17, 18, 4, rng);
+                    DrawPebbleTile(texture, tint, rng, 3, 0);
                     break;
                 case GroundOverlayPattern.PebblesSparse:
-                    DrawPebbleCluster(texture, tint, 11, 11, 2, rng);
-                    DrawPebbleCluster(texture, tint, 22, 21, 3, rng);
+                    DrawPebbleTile(texture, tint, rng, 1, 1);
                     break;
                 case GroundOverlayPattern.RocksSmall:
-                    DrawRockPatch(texture, tint, rng, 7, 7, 24, 24, 5);
+                    DrawRockTile(texture, tint, rng, 3, 0);
                     break;
                 case GroundOverlayPattern.RocksPatch:
-                    DrawRockPatch(texture, tint, rng, 5, 5, 26, 26, 4);
+                    DrawRockTile(texture, tint, rng, 3, 1);
                     break;
                 case GroundOverlayPattern.RocksMixed:
-                    DrawRockPatch(texture, tint, rng, 6, 6, 25, 24, 4);
-                    DrawRockCluster(texture, tint, 18, 16, 5, rng);
+                    DrawRockTile(texture, tint, rng, 4, 0);
                     break;
                 case GroundOverlayPattern.RocksSparse:
-                    DrawRockCluster(texture, tint, 12, 10, 2, rng);
-                    DrawRockCluster(texture, tint, 22, 22, 3, rng);
+                    DrawRockTile(texture, tint, rng, 2, 1);
                     break;
                 case GroundOverlayPattern.SmoothPatchA:
                     DrawSmoothPatch(texture, tint, rng, 6, 6, 25, 25, 4);
@@ -511,55 +507,42 @@ namespace BooterBigArm.Editor
             return texture;
         }
 
-        private static void DrawPebblePatch(Texture2D texture, Color32 tint, System.Random rng, int minX, int minY, int maxX, int maxY, int step)
+        private static void DrawPebbleTile(Texture2D texture, Color32 tint, System.Random rng, int radius, int variantBias)
         {
-            for (var y = minY; y <= maxY; y += step)
-            {
-                for (var x = minX; x <= maxX; x += step)
-                {
-                    DrawPebbleCluster(texture, tint, x, y, Mathf.Max(1, step - 1), rng);
-                }
-            }
-        }
+            var centerX = 16 + rng.Next(-1 - variantBias, 2 + variantBias);
+            var centerY = 16 + rng.Next(-1, 2);
+            var highlight = Blend(tint, new Color32(223, 216, 200, tint.a), 0.25f);
+            var shadow = Blend(tint, new Color32(74, 63, 52, tint.a), 0.35f);
 
-        private static void DrawPebbleCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius, System.Random rng)
-        {
-            for (var y = -radius; y <= radius; y++)
+            for (var y = -radius - 1; y <= radius + 1; y++)
             {
-                for (var x = -radius; x <= radius; x++)
+                for (var x = -radius - 1; x <= radius + 1; x++)
                 {
-                    var distance = Mathf.Abs(x) + Mathf.Abs(y);
-                    if (distance > radius + 1)
+                    var distance = Mathf.Sqrt(x * x + y * y);
+                    if (distance > radius + 0.35f)
                     {
                         continue;
                     }
 
-                    if (NextSignedNoise(rng) < -0.35f)
-                    {
-                        continue;
-                    }
-
-                    Put(texture, centerX + x, centerY + y, tint);
+                    var baseColor = Blend(shadow, tint, Mathf.InverseLerp(radius + 0.35f, 0f, distance));
+                    Put(texture, centerX + x, centerY + y, baseColor);
                 }
             }
+
+            Put(texture, centerX, centerY, highlight);
+            Put(texture, centerX + 1, centerY, highlight);
         }
 
-        private static void DrawRockPatch(Texture2D texture, Color32 tint, System.Random rng, int minX, int minY, int maxX, int maxY, int step)
+        private static void DrawRockTile(Texture2D texture, Color32 tint, System.Random rng, int radius, int variantBias)
         {
-            for (var y = minY; y <= maxY; y += step)
-            {
-                for (var x = minX; x <= maxX; x += step)
-                {
-                    DrawRockCluster(texture, tint, x, y, Mathf.Max(2, step - 1), rng);
-                }
-            }
-        }
+            var centerX = 16 + rng.Next(-1 - variantBias, 2 + variantBias);
+            var centerY = 16 + rng.Next(-1, 2);
+            var highlight = Blend(tint, new Color32(232, 230, 226, tint.a), 0.2f);
+            var shadow = Blend(tint, new Color32(54, 52, 50, tint.a), 0.45f);
 
-        private static void DrawRockCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius, System.Random rng)
-        {
-            for (var y = -radius; y <= radius; y++)
+            for (var y = -radius - 1; y <= radius + 1; y++)
             {
-                for (var x = -radius; x <= radius; x++)
+                for (var x = -radius - 1; x <= radius + 1; x++)
                 {
                     var chebyshev = Mathf.Max(Mathf.Abs(x), Mathf.Abs(y));
                     if (chebyshev > radius)
@@ -567,14 +550,18 @@ namespace BooterBigArm.Editor
                         continue;
                     }
 
-                    if (chebyshev == radius && ((x + y) & 1) == 1 && NextSignedNoise(rng) < 0.15f)
+                    if (chebyshev == radius && ((x + y + variantBias) & 1) == 1 && NextSignedNoise(rng) < 0.4f)
                     {
                         continue;
                     }
 
-                    Put(texture, centerX + x, centerY + y, tint);
+                    var falloff = Mathf.InverseLerp(radius + 0.5f, 0f, chebyshev);
+                    var baseColor = Blend(shadow, tint, falloff);
+                    Put(texture, centerX + x, centerY + y, baseColor);
                 }
             }
+
+            Put(texture, centerX, centerY, highlight);
         }
 
         private static void DrawSmoothPatch(Texture2D texture, Color32 tint, System.Random rng, int minX, int minY, int maxX, int maxY, int step)

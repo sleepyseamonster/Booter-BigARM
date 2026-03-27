@@ -391,35 +391,28 @@ namespace BooterBigArm.Runtime
             switch (pattern)
             {
                 case DetailPattern.PebblesSmall:
-                    DrawPebbleCluster(texture, tint, 10, 10, 3);
-                    DrawPebbleCluster(texture, tint, 18, 14, 2);
-                    DrawPebbleCluster(texture, tint, 22, 22, 4);
+                    DrawPebbleTile(texture, tint, new System.Random(GetSeed(tint, pattern)), 2, 0);
                     break;
                 case DetailPattern.PebblesPatch:
-                    DrawPebblePatch(texture, tint, 6, 7, 24, 23, 3);
+                    DrawPebbleTile(texture, tint, new System.Random(GetSeed(tint, pattern)), 2, 1);
                     break;
                 case DetailPattern.PebblesMixed:
-                    DrawPebblePatch(texture, tint, 5, 6, 26, 25, 4);
-                    DrawPebbleCluster(texture, tint, 14, 20, 5);
+                    DrawPebbleTile(texture, tint, new System.Random(GetSeed(tint, pattern)), 3, 0);
                     break;
                 case DetailPattern.PebblesSparse:
-                    DrawPebbleCluster(texture, tint, 10, 11, 2);
-                    DrawPebbleCluster(texture, tint, 22, 18, 3);
+                    DrawPebbleTile(texture, tint, new System.Random(GetSeed(tint, pattern)), 1, 1);
                     break;
                 case DetailPattern.RocksSmall:
-                    DrawRockCluster(texture, tint, 11, 12, 4);
-                    DrawRockCluster(texture, tint, 21, 20, 3);
+                    DrawRockTile(texture, tint, new System.Random(GetSeed(tint, pattern)), 3, 0);
                     break;
                 case DetailPattern.RocksPatch:
-                    DrawRockPatch(texture, tint, 6, 7, 24, 24, 4);
+                    DrawRockTile(texture, tint, new System.Random(GetSeed(tint, pattern)), 3, 1);
                     break;
                 case DetailPattern.RocksMixed:
-                    DrawRockPatch(texture, tint, 5, 6, 25, 23, 3);
-                    DrawRockCluster(texture, tint, 19, 15, 5);
+                    DrawRockTile(texture, tint, new System.Random(GetSeed(tint, pattern)), 4, 0);
                     break;
                 case DetailPattern.RocksSparse:
-                    DrawRockCluster(texture, tint, 12, 10, 2);
-                    DrawRockCluster(texture, tint, 22, 24, 3);
+                    DrawRockTile(texture, tint, new System.Random(GetSeed(tint, pattern)), 2, 1);
                     break;
                 case DetailPattern.SmoothPatchA:
                     DrawSmoothPatch(texture, tint, 5, 6, 25, 24, 4);
@@ -439,50 +432,42 @@ namespace BooterBigArm.Runtime
             return Sprite.Create(texture, new Rect(0f, 0f, 32f, 32f), new Vector2(0.5f, 0.5f), 32f);
         }
 
-        private static void DrawPebblePatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        private static void DrawPebbleTile(Texture2D texture, Color32 tint, System.Random rng, int radius, int variantBias)
         {
-            for (var y = minY; y <= maxY; y += step)
-            {
-                for (var x = minX; x <= maxX; x += step)
-                {
-                    DrawPebbleCluster(texture, tint, x, y, Mathf.Max(1, step - 1));
-                }
-            }
-        }
+            var centerX = 16 + rng.Next(-1 - variantBias, 2 + variantBias);
+            var centerY = 16 + rng.Next(-1, 2);
+            var highlight = Blend(tint, new Color32(223, 216, 200, tint.a), 0.25f);
+            var shadow = Blend(tint, new Color32(74, 63, 52, tint.a), 0.35f);
 
-        private static void DrawPebbleCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius)
-        {
-            for (var y = -radius; y <= radius; y++)
+            for (var y = -radius - 1; y <= radius + 1; y++)
             {
-                for (var x = -radius; x <= radius; x++)
+                for (var x = -radius - 1; x <= radius + 1; x++)
                 {
-                    var distance = Mathf.Abs(x) + Mathf.Abs(y);
-                    if (distance > radius + 1)
+                    var distance = Mathf.Sqrt(x * x + y * y);
+                    if (distance > radius + 0.35f)
                     {
                         continue;
                     }
 
-                    Put(texture, centerX + x, centerY + y, tint);
+                    var baseColor = Blend(shadow, tint, Mathf.InverseLerp(radius + 0.35f, 0f, distance));
+                    Put(texture, centerX + x, centerY + y, baseColor);
                 }
             }
+
+            Put(texture, centerX, centerY, highlight);
+            Put(texture, centerX + 1, centerY, highlight);
         }
 
-        private static void DrawRockPatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        private static void DrawRockTile(Texture2D texture, Color32 tint, System.Random rng, int radius, int variantBias)
         {
-            for (var y = minY; y <= maxY; y += step)
-            {
-                for (var x = minX; x <= maxX; x += step)
-                {
-                    DrawRockCluster(texture, tint, x, y, Mathf.Max(2, step - 1));
-                }
-            }
-        }
+            var centerX = 16 + rng.Next(-1 - variantBias, 2 + variantBias);
+            var centerY = 16 + rng.Next(-1, 2);
+            var highlight = Blend(tint, new Color32(232, 230, 226, tint.a), 0.2f);
+            var shadow = Blend(tint, new Color32(54, 52, 50, tint.a), 0.45f);
 
-        private static void DrawRockCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius)
-        {
-            for (var y = -radius; y <= radius; y++)
+            for (var y = -radius - 1; y <= radius + 1; y++)
             {
-                for (var x = -radius; x <= radius; x++)
+                for (var x = -radius - 1; x <= radius + 1; x++)
                 {
                     var chebyshev = Mathf.Max(Mathf.Abs(x), Mathf.Abs(y));
                     if (chebyshev > radius)
@@ -490,14 +475,18 @@ namespace BooterBigArm.Runtime
                         continue;
                     }
 
-                    if (chebyshev == radius && ((x + y) & 1) == 1)
+                    if (chebyshev == radius && ((x + y + variantBias) & 1) == 1 && NextSignedNoise(rng) < 0.4f)
                     {
                         continue;
                     }
 
-                    Put(texture, centerX + x, centerY + y, tint);
+                    var falloff = Mathf.InverseLerp(radius + 0.5f, 0f, chebyshev);
+                    var baseColor = Blend(shadow, tint, falloff);
+                    Put(texture, centerX + x, centerY + y, baseColor);
                 }
             }
+
+            Put(texture, centerX, centerY, highlight);
         }
 
         private static void DrawSmoothPatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
@@ -521,6 +510,49 @@ namespace BooterBigArm.Runtime
             }
 
             texture.SetPixel(x, y, color);
+        }
+
+        private static int GetSeed(Color32 a, Color32 b, Color32 c, DetailPattern pattern)
+        {
+            unchecked
+            {
+                return a.r
+                    | (a.g << 8)
+                    | (a.b << 16)
+                    | (b.r << 1)
+                    | (b.g << 9)
+                    | (b.b << 17)
+                    | (c.r << 2)
+                    | (c.g << 10)
+                    | (c.b << 18)
+                    | (((int)pattern) << 24);
+            }
+        }
+
+        private static int GetSeed(Color32 tint, DetailPattern pattern)
+        {
+            unchecked
+            {
+                return tint.r
+                    | (tint.g << 8)
+                    | (tint.b << 16)
+                    | (((int)pattern) << 24);
+            }
+        }
+
+        private static float NextSignedNoise(System.Random rng)
+        {
+            return (float)(rng.NextDouble() * 2.0 - 1.0);
+        }
+
+        private static Color32 Blend(Color32 a, Color32 b, float t)
+        {
+            t = Mathf.Clamp01(t);
+            return new Color32(
+                (byte)Mathf.RoundToInt(Mathf.Lerp(a.r, b.r, t)),
+                (byte)Mathf.RoundToInt(Mathf.Lerp(a.g, b.g, t)),
+                (byte)Mathf.RoundToInt(Mathf.Lerp(a.b, b.b, t)),
+                (byte)Mathf.RoundToInt(Mathf.Lerp(a.a, b.a, t)));
         }
 
         private void EnsureChunkBuffers()
@@ -675,7 +707,7 @@ namespace BooterBigArm.Runtime
                 {
                     var worldX = chunkCoord.x * chunkSize + localX;
                     var worldY = chunkCoord.y * chunkSize + localY;
-                    pebbleChunkTileBuffer[index++] = SelectLayerTile(runtimePebbleTiles, worldX, worldY, seed + 17, 0.9f, 12, 0.08f);
+                    pebbleChunkTileBuffer[index++] = SelectSparseLayerTile(runtimePebbleTiles, worldX, worldY, seed + 17, 0.991f);
                 }
             }
         }
@@ -694,7 +726,7 @@ namespace BooterBigArm.Runtime
                 {
                     var worldX = chunkCoord.x * chunkSize + localX;
                     var worldY = chunkCoord.y * chunkSize + localY;
-                    rockChunkTileBuffer[index++] = SelectLayerTile(runtimeRockTiles, worldX, worldY, seed + 43, 0.88f, 8, 0.14f);
+                    rockChunkTileBuffer[index++] = SelectSparseLayerTile(runtimeRockTiles, worldX, worldY, seed + 43, 0.996f);
                 }
             }
         }
@@ -794,6 +826,28 @@ namespace BooterBigArm.Runtime
 
             var variant = Mathf.FloorToInt(variantNoise * tiles.Length);
             variant = Mathf.Clamp(variant, 0, tiles.Length - 1);
+            return tiles[variant];
+        }
+
+        private TileBase SelectSparseLayerTile(TileBase[] tiles, int worldX, int worldY, int noiseSeed, float presenceThreshold)
+        {
+            if (tiles == null || tiles.Length == 0)
+            {
+                return null;
+            }
+
+            var noise = Hash01(noiseSeed, worldX, worldY);
+            if (noise < presenceThreshold)
+            {
+                return null;
+            }
+
+            if (tiles.Length == 1)
+            {
+                return tiles[0];
+            }
+
+            var variant = GetVariantIndex(noiseSeed + 11, worldX, worldY, tiles.Length);
             return tiles[variant];
         }
 
