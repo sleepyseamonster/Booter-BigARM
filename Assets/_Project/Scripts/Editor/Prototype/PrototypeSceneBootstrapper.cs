@@ -408,34 +408,39 @@ namespace BooterBigArm.Editor
                 wrapMode = TextureWrapMode.Clamp
             };
 
-            var rng = new System.Random(GetSeed(fill, highlight, border, pattern));
+            var seed = GetSeed(fill, highlight, border, pattern);
+            var contrast = pattern switch
+            {
+                GroundPattern.Square => 0.30f,
+                GroundPattern.CrossHatch => 0.24f,
+                GroundPattern.Diamond => 0.28f,
+                GroundPattern.Ring => 0.22f,
+                GroundPattern.Dots => 0.18f,
+                _ => 0.24f
+            };
+            var grainStrength = pattern switch
+            {
+                GroundPattern.Square => 0.08f,
+                GroundPattern.CrossHatch => 0.10f,
+                GroundPattern.Diamond => 0.08f,
+                GroundPattern.Ring => 0.10f,
+                GroundPattern.Dots => 0.12f,
+                _ => 0.08f
+            };
+
             for (var y = 0; y < 32; y++)
             {
                 for (var x = 0; x < 32; x++)
                 {
-                    var color = fill;
-                    var localNoise = NextSignedNoise(rng);
-                    var broadNoise = NextSignedNoise(rng);
-                    var centerWeight = Mathf.Clamp01(1f - Vector2.Distance(new Vector2(x, y), new Vector2(15.5f, 15.5f)) / 16f);
-                    var tintAmount = 0.5f + centerWeight * 0.35f + localNoise * 0.15f;
+                    var low = TileableValueNoise(seed, x, y, 4);
+                    var mid = TileableValueNoise(seed + 17, x, y, 8);
+                    var fine = TileableValueNoise(seed + 41, x, y, 16);
+                    var grain = TileableValueNoise(seed + 73, x, y, 32);
 
-                    switch (pattern)
+                    var color = Blend(fill, highlight, 0.5f + low * contrast + mid * 0.12f + fine * 0.05f);
+                    if (grain > 0.52f)
                     {
-                        case GroundPattern.Square:
-                            color = Blend(fill, highlight, tintAmount * 0.45f + broadNoise * 0.1f);
-                            break;
-                        case GroundPattern.CrossHatch:
-                            color = ((x + y) & 3) < 2 ? Blend(fill, highlight, 0.28f + localNoise * 0.1f) : Blend(fill, border, 0.15f + broadNoise * 0.08f);
-                            break;
-                        case GroundPattern.Diamond:
-                            color = Blend(fill, highlight, 0.35f + Mathf.Abs(localNoise) * 0.18f);
-                            break;
-                        case GroundPattern.Ring:
-                            color = Blend(fill, border, 0.2f + broadNoise * 0.12f);
-                            break;
-                        case GroundPattern.Dots:
-                            color = Blend(fill, highlight, 0.22f + localNoise * 0.08f);
-                            break;
+                        color = Blend(color, border, (grain - 0.52f) * grainStrength);
                     }
 
                     texture.SetPixel(x, y, color);
@@ -624,6 +629,58 @@ namespace BooterBigArm.Editor
         private static float NextSignedNoise(System.Random rng)
         {
             return (float)(rng.NextDouble() * 2.0 - 1.0);
+        }
+
+        private static float Hash01(int worldSeed, int x, int y)
+        {
+            unchecked
+            {
+                var hash = (uint)worldSeed;
+                hash ^= (uint)(x * 374761393);
+                hash = (hash << 13) ^ hash;
+                hash ^= (uint)(y * 668265263);
+                hash *= 1274126177u;
+                hash ^= hash >> 16;
+                return (hash & 0x00FFFFFFu) / 16777215f;
+            }
+        }
+
+        private static float TileableValueNoise(int seed, int x, int y, int cellsPerAxis)
+        {
+            cellsPerAxis = Mathf.Max(1, cellsPerAxis);
+
+            var fx = (x / 32f) * cellsPerAxis;
+            var fy = (y / 32f) * cellsPerAxis;
+            var x0 = Mathf.FloorToInt(fx);
+            var y0 = Mathf.FloorToInt(fy);
+            var tx = SmoothStep01(fx - x0);
+            var ty = SmoothStep01(fy - y0);
+
+            x0 = RepeatInt(x0, cellsPerAxis);
+            y0 = RepeatInt(y0, cellsPerAxis);
+            var x1 = RepeatInt(x0 + 1, cellsPerAxis);
+            var y1 = RepeatInt(y0 + 1, cellsPerAxis);
+
+            var n00 = Hash01(seed, x0, y0);
+            var n10 = Hash01(seed, x1, y0);
+            var n01 = Hash01(seed, x0, y1);
+            var n11 = Hash01(seed, x1, y1);
+
+            var nx0 = Mathf.Lerp(n00, n10, tx);
+            var nx1 = Mathf.Lerp(n01, n11, tx);
+            return Mathf.Lerp(nx0, nx1, ty) * 2f - 1f;
+        }
+
+        private static float SmoothStep01(float t)
+        {
+            t = Mathf.Clamp01(t);
+            return t * t * (3f - 2f * t);
+        }
+
+        private static int RepeatInt(int value, int modulus)
+        {
+            var result = value % modulus;
+            return result < 0 ? result + modulus : result;
         }
 
         private static Color32 Blend(Color32 a, Color32 b, float t)
