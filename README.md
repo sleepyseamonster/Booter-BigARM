@@ -42,3 +42,5 @@ Unity 6 2D top-down game project.
 - Read [Docs/RESEARCH_PLAN.md](./Docs/RESEARCH_PLAN.md) for the prioritized research roadmap.
 - Read [Docs/URP_2D_STANDARD.md](./Docs/URP_2D_STANDARD.md) for the 2D URP rendering baseline.
 - Read [Docs/CODEX_EDITOR_STANDARD.md](./Docs/CODEX_EDITOR_STANDARD.md) for Codex and editor workflow.
+- Read [Docs/INPUT_ARCHITECTURE_STANDARD.md](./Docs/INPUT_ARCHITECTURE_STANDARD.md) for the gamepad-first input baseline.
+- Read [Docs/MOVEMENT_CAMERA_STANDARD.md](./Docs/MOVEMENT_CAMERA_STANDARD.md) for the top-down movement and camera baseline.
