@@ -67,6 +67,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 
 - Use [Docs/AGENT_AND_UNITY_PRACTICES.md](./Docs/AGENT_AND_UNITY_PRACTICES.md) as the combined living summary for Codex workflow and Unity project practices.
 - Use [Docs/PROJECT_STRUCTURE.md](./Docs/PROJECT_STRUCTURE.md) as the target layout for `Assets/_Project/`.
+- Use [Docs/UNITY_PROJECT_STANDARDS.md](./Docs/UNITY_PROJECT_STANDARDS.md) as the compact Unity naming and organization standard.
 
 ## Default Workflow
 

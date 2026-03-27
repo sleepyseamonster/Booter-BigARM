@@ -38,3 +38,4 @@ Unity 6 2D top-down game project.
 - Read [Docs/UNITY_AUTOMATION.md](./Docs/UNITY_AUTOMATION.md) for the current command-line and editor-control path.
 - Read [Docs/AGENT_AND_UNITY_PRACTICES.md](./Docs/AGENT_AND_UNITY_PRACTICES.md) for the combined Codex + Unity working rules.
 - Read [Docs/PROJECT_STRUCTURE.md](./Docs/PROJECT_STRUCTURE.md) for the target `Assets/_Project/` layout.
+- Read [Docs/UNITY_PROJECT_STANDARDS.md](./Docs/UNITY_PROJECT_STANDARDS.md) for naming and organization conventions.
