@@ -185,8 +185,8 @@ namespace BooterBigArm.Editor
             positionComposer.Lookahead = new LookaheadSettings
             {
                 Enabled = true,
-                Time = 0.18f,
-                Smoothing = 2f,
+                Time = 0.08f,
+                Smoothing = 8f,
                 IgnoreY = false
             };
             cinemachineCameraObject.AddComponent<Unity.Cinemachine.CinemachinePixelPerfect>();

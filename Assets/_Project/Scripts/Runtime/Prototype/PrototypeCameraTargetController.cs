@@ -9,6 +9,10 @@ namespace BooterBigArm.Runtime
         [SerializeField] private PlayerInputAdapter inputAdapter;
         [SerializeField] private float deadZone = 0.18f;
         [SerializeField] private float maxRadius = 6f;
+        [SerializeField] private float stickFollowSpeed = 4f;
+        [SerializeField] private float returnSpeed = 28f;
+
+        private Vector2 currentOffset;
 
         public void SetPlayer(Transform playerTransform)
         {
@@ -29,16 +33,21 @@ namespace BooterBigArm.Runtime
 
             var lookInput = inputAdapter != null ? inputAdapter.LookValue : Vector2.zero;
             var lookMagnitude = lookInput.magnitude;
-            var offset = Vector2.zero;
 
             if (lookMagnitude > deadZone)
             {
                 var normalizedLook = lookInput / Mathf.Max(lookMagnitude, 0.0001f);
                 var intensity = Mathf.InverseLerp(deadZone, 1f, lookMagnitude);
-                offset = Vector2.ClampMagnitude(normalizedLook * (maxRadius * intensity), maxRadius);
+                var desiredOffset = Vector2.ClampMagnitude(normalizedLook * (maxRadius * intensity), maxRadius);
+                var t = 1f - Mathf.Exp(-stickFollowSpeed * Time.deltaTime);
+                currentOffset = Vector2.Lerp(currentOffset, desiredOffset, t);
+            }
+            else
+            {
+                currentOffset = Vector2.MoveTowards(currentOffset, Vector2.zero, returnSpeed * Time.deltaTime);
             }
 
-            transform.position = player.position + new Vector3(offset.x, offset.y, 0f);
+            transform.position = player.position + new Vector3(currentOffset.x, currentOffset.y, 0f);
         }
     }
 }
