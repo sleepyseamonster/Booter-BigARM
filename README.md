@@ -40,6 +40,7 @@ Unity 6 2D top-down game project.
 - Read [Docs/PROJECT_STRUCTURE.md](./Docs/PROJECT_STRUCTURE.md) for the target `Assets/_Project/` layout.
 - Read [Docs/UNITY_PROJECT_STANDARDS.md](./Docs/UNITY_PROJECT_STANDARDS.md) for naming and organization conventions.
 - Read [Docs/GIT_BATCHING_STANDARD.md](./Docs/GIT_BATCHING_STANDARD.md) for how to group commits and ignore Unity noise.
+- Read [Docs/IMPLEMENTATION_SEQUENCE.md](./Docs/IMPLEMENTATION_SEQUENCE.md) for the first-pass order of gameplay seams.
 - Read [Docs/RESEARCH_PLAN.md](./Docs/RESEARCH_PLAN.md) for the prioritized research roadmap.
 - Read [Docs/URP_2D_STANDARD.md](./Docs/URP_2D_STANDARD.md) for the 2D URP rendering baseline.
 - Read [Docs/CODEX_EDITOR_STANDARD.md](./Docs/CODEX_EDITOR_STANDARD.md) for Codex and editor workflow.

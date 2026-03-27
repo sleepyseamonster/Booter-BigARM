@@ -43,6 +43,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Keep project notes in `Docs/`, not inside `Assets/`, unless the asset must be imported by Unity.
 - Keep runtime code under `Assets/_Project/Scripts/Runtime/` and editor-only code under `Assets/_Project/Scripts/Editor/`.
 - Keep editor-only automation in asmdef-isolated editor assemblies.
+- Keep runtime gameplay code inside `BooterBigArm.Runtime` unless a feature needs a new assembly boundary.
 
 ## Current Project Snapshot
 
@@ -70,6 +71,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Use [Docs/PROJECT_STRUCTURE.md](./Docs/PROJECT_STRUCTURE.md) as the target layout for `Assets/_Project/`.
 - Use [Docs/UNITY_PROJECT_STANDARDS.md](./Docs/UNITY_PROJECT_STANDARDS.md) as the compact Unity naming and organization standard.
 - Use [Docs/GIT_BATCHING_STANDARD.md](./Docs/GIT_BATCHING_STANDARD.md) as the standard for grouping commits and ignoring Unity noise.
+- Use [Docs/IMPLEMENTATION_SEQUENCE.md](./Docs/IMPLEMENTATION_SEQUENCE.md) as the first-pass order for gameplay seams.
 - Use [Docs/RESEARCH_PLAN.md](./Docs/RESEARCH_PLAN.md) as the prioritized roadmap for future research.
 - Use [Docs/URP_2D_STANDARD.md](./Docs/URP_2D_STANDARD.md) as the compact standard for the project's 2D render pipeline.
 - Use [Docs/CODEX_EDITOR_STANDARD.md](./Docs/CODEX_EDITOR_STANDARD.md) as the compact standard for Codex and editor workflow.
