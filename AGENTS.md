@@ -9,6 +9,7 @@ This file defines the operating rules for work inside this Unity repository.
 - Most production work should happen under `Assets/`.
 - Prefer small, verifiable changes over broad refactors.
 - Use [Docs/AGENT_AND_UNITY_PRACTICES.md](./Docs/AGENT_AND_UNITY_PRACTICES.md) as the combined working reference for Codex workflow and Unity project practices.
+- Treat baselines as provisional guidance, not lock-in; preserve room to evolve movement, input, procgen, camera, and save/load as the game design matures.
 
 ## Non-Negotiables
 

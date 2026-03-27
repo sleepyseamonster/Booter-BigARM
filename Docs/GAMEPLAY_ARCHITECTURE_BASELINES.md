@@ -98,4 +98,4 @@ These systems are baselines, not fixed endpoints.
 - Keep new mechanics data-driven whenever possible.
 - Update the architecture docs when a system's ownership model changes.
 - If a mechanic forces a major departure from these baselines, write down why before changing code.
-
+- Do not treat any baseline here as a final implementation commitment unless the design has actually stabilized.
