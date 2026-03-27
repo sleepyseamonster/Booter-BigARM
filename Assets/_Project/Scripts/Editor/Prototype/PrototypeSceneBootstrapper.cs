@@ -20,8 +20,10 @@ namespace BooterBigArm.Editor
         private const string PrototypeScenePath = "Assets/_Project/Scenes/PrototypeScene.unity";
         private const string PrototypeArtFolder = "Assets/_Project/Art/Prototype";
         private const string PlayerSpritePath = "Assets/_Project/Art/Prototype/PrototypeSquare.png";
-        private const string GroundBaseFolder = "Assets/_Project/Art/Prototype/Ground/Base";
-        private const string GroundOverlayFolder = "Assets/_Project/Art/Prototype/Ground/Overlay";
+        private const string GroundSandFolder = "Assets/_Project/Art/Prototype/Ground/Sand";
+        private const string GroundPebbleFolder = "Assets/_Project/Art/Prototype/Ground/Pebbles";
+        private const string GroundRockFolder = "Assets/_Project/Art/Prototype/Ground/Rocks";
+        private const string GroundSmoothFolder = "Assets/_Project/Art/Prototype/Ground/Smooth";
         private const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
         private const string VolumeProfilePath = "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset";
 
@@ -41,14 +43,16 @@ namespace BooterBigArm.Editor
             }
 
             var playerSprite = EnsurePlayerSpriteAsset();
-            var groundSprites = EnsureGroundBaseSprites();
-            var groundOverlaySprites = EnsureGroundOverlaySprites();
+            var sandSprites = EnsureSandSprites();
+            var pebbleSprites = EnsurePebbleSprites();
+            var rockSprites = EnsureRockSprites();
+            var smoothSprites = EnsureSmoothSprites();
 
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             scene.name = "PrototypeScene";
 
             var player = CreatePlayer(inputActions, playerSprite);
-            var world = CreateWorld(player.transform, groundSprites, groundOverlaySprites);
+            var world = CreateWorld(player.transform, sandSprites, pebbleSprites, rockSprites, smoothSprites);
             CreateCamera(player.transform);
             CreateLighting();
             CreateVolume(volumeProfile);
@@ -87,37 +91,48 @@ namespace BooterBigArm.Editor
             return player;
         }
 
-        private static PrototypeWorldGenerator CreateWorld(Transform player, Sprite[] groundSprites, Sprite[] overlaySprites)
+        private static PrototypeWorldGenerator CreateWorld(
+            Transform player,
+            Sprite[] sandSprites,
+            Sprite[] pebbleSprites,
+            Sprite[] rockSprites,
+            Sprite[] smoothSprites)
         {
             var worldRoot = new GameObject("World");
 
             var grid = worldRoot.AddComponent<Grid>();
             grid.cellSize = Vector3.one;
 
-            var groundTilemapObject = new GameObject("Ground Tilemap");
-            groundTilemapObject.transform.SetParent(worldRoot.transform, false);
+            var sandTilemap = CreateTilemapLayer(worldRoot.transform, "Sand Tilemap", 0);
+            var pebbleTilemap = CreateTilemapLayer(worldRoot.transform, "Pebble Tilemap", 1);
+            var rockTilemap = CreateTilemapLayer(worldRoot.transform, "Rock Tilemap", 2);
+            var smoothTilemap = CreateTilemapLayer(worldRoot.transform, "Smooth Tilemap", 3);
 
-            groundTilemapObject.AddComponent<Tilemap>();
-            var tilemapRenderer = groundTilemapObject.AddComponent<TilemapRenderer>();
-            tilemapRenderer.sortingOrder = 0;
-
-            var detailTilemapObject = new GameObject("Ground Detail Tilemap");
-            detailTilemapObject.transform.SetParent(worldRoot.transform, false);
-
-            var detailTilemap = detailTilemapObject.AddComponent<Tilemap>();
-            var detailTilemapRenderer = detailTilemapObject.AddComponent<TilemapRenderer>();
-            detailTilemapRenderer.sortingOrder = 1;
-
-            var generator = groundTilemapObject.AddComponent<PrototypeWorldGenerator>();
+            var generator = sandTilemap.gameObject.AddComponent<PrototypeWorldGenerator>();
             SetObjectReference(generator, "target", player);
-            SetObjectArray(generator, "tileSprites", groundSprites);
-            SetObjectReference(generator, "overlayTilemap", detailTilemap);
-            SetObjectArray(generator, "overlayTileSprites", overlaySprites);
+            SetObjectArray(generator, "tileSprites", sandSprites);
+            SetObjectReference(generator, "pebbleTilemap", pebbleTilemap);
+            SetObjectArray(generator, "pebbleTileSprites", pebbleSprites);
+            SetObjectReference(generator, "rockTilemap", rockTilemap);
+            SetObjectArray(generator, "rockTileSprites", rockSprites);
+            SetObjectReference(generator, "smoothTilemap", smoothTilemap);
+            SetObjectArray(generator, "smoothTileSprites", smoothSprites);
             SetInt(generator, "seed", 4829);
             SetInt(generator, "chunkSize", 16);
             SetInt(generator, "chunkRadius", 4);
 
             return generator;
+        }
+
+        private static Tilemap CreateTilemapLayer(Transform parent, string name, int sortingOrder)
+        {
+            var layerObject = new GameObject(name);
+            layerObject.transform.SetParent(parent, false);
+
+            layerObject.AddComponent<Tilemap>();
+            var renderer = layerObject.AddComponent<TilemapRenderer>();
+            renderer.sortingOrder = sortingOrder;
+            return layerObject.GetComponent<Tilemap>();
         }
 
         private static void CreateCamera(Transform target)
@@ -207,20 +222,20 @@ namespace BooterBigArm.Editor
             return AssetDatabase.LoadAssetAtPath<Sprite>(PlayerSpritePath);
         }
 
-        private static Sprite[] EnsureGroundBaseSprites()
+        private static Sprite[] EnsureSandSprites()
         {
             var definitions = new[]
             {
-                new GroundSpriteDefinition("GroundSand.png", new Color32(199, 171, 101, 255), new Color32(234, 210, 151, 255), new Color32(122, 95, 44, 255), GroundPattern.CrossHatch),
-                new GroundSpriteDefinition("GroundGrass.png", new Color32(88, 148, 74, 255), new Color32(146, 198, 103, 255), new Color32(58, 94, 48, 255), GroundPattern.Diamond),
-                new GroundSpriteDefinition("GroundStone.png", new Color32(121, 124, 131, 255), new Color32(177, 181, 188, 255), new Color32(67, 69, 74, 255), GroundPattern.Ring),
-                new GroundSpriteDefinition("GroundMire.png", new Color32(76, 118, 93, 255), new Color32(125, 160, 111, 255), new Color32(38, 60, 45, 255), GroundPattern.Dots)
+                new GroundSpriteDefinition("SandRustA.png", new Color32(173, 136, 86, 255), new Color32(197, 160, 106, 255), new Color32(112, 79, 39, 255), GroundPattern.CrossHatch),
+                new GroundSpriteDefinition("SandRustB.png", new Color32(179, 141, 88, 255), new Color32(202, 166, 111, 255), new Color32(116, 83, 43, 255), GroundPattern.Diamond),
+                new GroundSpriteDefinition("SandRustC.png", new Color32(169, 132, 82, 255), new Color32(194, 155, 100, 255), new Color32(106, 75, 36, 255), GroundPattern.Ring),
+                new GroundSpriteDefinition("SandRustD.png", new Color32(181, 145, 92, 255), new Color32(206, 170, 114, 255), new Color32(119, 85, 45, 255), GroundPattern.Dots)
             };
 
             var sprites = new List<Sprite>(definitions.Length);
             foreach (var definition in definitions)
             {
-                var spritePath = Path.Combine(PrototypeArtFolder, definition.FileName);
+                var spritePath = Path.Combine(GroundSandFolder, definition.FileName);
                 EnsureSpriteAsset(spritePath, definition.BaseColor, definition.HighlightColor, definition.BorderColor, definition.Pattern);
                 sprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
             }
@@ -228,20 +243,62 @@ namespace BooterBigArm.Editor
             return sprites.ToArray();
         }
 
-        private static Sprite[] EnsureGroundOverlaySprites()
+        private static Sprite[] EnsurePebbleSprites()
         {
             var definitions = new[]
             {
-                new GroundOverlayDefinition("GroundOverlaySpeckles.png", new Color32(25, 24, 17, 150), GroundOverlayPattern.Speckles),
-                new GroundOverlayDefinition("GroundOverlayCracks.png", new Color32(58, 43, 20, 140), GroundOverlayPattern.Cracks),
-                new GroundOverlayDefinition("GroundOverlayTufts.png", new Color32(20, 42, 21, 135), GroundOverlayPattern.Tufts),
-                new GroundOverlayDefinition("GroundOverlayFlecks.png", new Color32(54, 45, 36, 120), GroundOverlayPattern.Flecks)
+                new GroundOverlayDefinition("PebblePatchA.png", new Color32(118, 102, 77, 235), GroundOverlayPattern.PebblesSmall),
+                new GroundOverlayDefinition("PebblePatchB.png", new Color32(126, 109, 85, 235), GroundOverlayPattern.PebblesPatch),
+                new GroundOverlayDefinition("PebblePatchC.png", new Color32(109, 95, 72, 235), GroundOverlayPattern.PebblesMixed),
+                new GroundOverlayDefinition("PebblePatchD.png", new Color32(98, 86, 66, 235), GroundOverlayPattern.PebblesSparse)
             };
 
             var sprites = new List<Sprite>(definitions.Length);
             foreach (var definition in definitions)
             {
-                var spritePath = Path.Combine(GroundOverlayFolder, definition.FileName);
+                var spritePath = Path.Combine(GroundPebbleFolder, definition.FileName);
+                EnsureSpriteAsset(spritePath, definition.TintColor, definition.Pattern);
+                sprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
+            }
+
+            return sprites.ToArray();
+        }
+
+        private static Sprite[] EnsureRockSprites()
+        {
+            var definitions = new[]
+            {
+                new GroundOverlayDefinition("RockPatchA.png", new Color32(105, 103, 99, 240), GroundOverlayPattern.RocksSmall),
+                new GroundOverlayDefinition("RockPatchB.png", new Color32(117, 114, 109, 240), GroundOverlayPattern.RocksPatch),
+                new GroundOverlayDefinition("RockPatchC.png", new Color32(127, 123, 118, 235), GroundOverlayPattern.RocksMixed),
+                new GroundOverlayDefinition("RockPatchD.png", new Color32(91, 89, 85, 240), GroundOverlayPattern.RocksSparse)
+            };
+
+            var sprites = new List<Sprite>(definitions.Length);
+            foreach (var definition in definitions)
+            {
+                var spritePath = Path.Combine(GroundRockFolder, definition.FileName);
+                EnsureSpriteAsset(spritePath, definition.TintColor, definition.Pattern);
+                sprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
+            }
+
+            return sprites.ToArray();
+        }
+
+        private static Sprite[] EnsureSmoothSprites()
+        {
+            var definitions = new[]
+            {
+                new GroundOverlayDefinition("SmoothSandA.png", new Color32(225, 200, 143, 140), GroundOverlayPattern.SmoothPatchA),
+                new GroundOverlayDefinition("SmoothSandB.png", new Color32(233, 208, 149, 135), GroundOverlayPattern.SmoothPatchB),
+                new GroundOverlayDefinition("SmoothSandC.png", new Color32(217, 191, 134, 140), GroundOverlayPattern.SmoothPatchC),
+                new GroundOverlayDefinition("SmoothSandD.png", new Color32(228, 203, 145, 135), GroundOverlayPattern.SmoothPatchD)
+            };
+
+            var sprites = new List<Sprite>(definitions.Length);
+            foreach (var definition in definitions)
+            {
+                var spritePath = Path.Combine(GroundSmoothFolder, definition.FileName);
                 EnsureSpriteAsset(spritePath, definition.TintColor, definition.Pattern);
                 sprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
             }
@@ -420,52 +477,135 @@ namespace BooterBigArm.Editor
 
             switch (pattern)
             {
-                case GroundOverlayPattern.Speckles:
-                    for (var y = 4; y < 28; y += 3)
-                    {
-                        for (var x = 4; x < 28; x += 3)
-                        {
-                            if (((x + y) & 1) == 0)
-                            {
-                                texture.SetPixel(x, y, tint);
-                            }
-                        }
-                    }
+                case GroundOverlayPattern.PebblesSmall:
+                    DrawPebblePatch(texture, tint, 7, 7, 24, 24, 4);
                     break;
-                case GroundOverlayPattern.Cracks:
-                    for (var i = 4; i < 28; i++)
-                    {
-                        texture.SetPixel(i, 10 + (i / 4), tint);
-                        texture.SetPixel(31 - i, 21 - (i / 4), tint);
-                    }
+                case GroundOverlayPattern.PebblesPatch:
+                    DrawPebblePatch(texture, tint, 5, 5, 26, 26, 3);
                     break;
-                case GroundOverlayPattern.Tufts:
-                    for (var i = 0; i < 6; i++)
-                    {
-                        var baseX = 5 + i * 4;
-                        texture.SetPixel(baseX, 20, tint);
-                        texture.SetPixel(baseX + 1, 19, tint);
-                        texture.SetPixel(baseX + 1, 18, tint);
-                        texture.SetPixel(baseX + 2, 19, tint);
-                    }
+                case GroundOverlayPattern.PebblesMixed:
+                    DrawPebblePatch(texture, tint, 4, 6, 25, 24, 4);
+                    DrawPebbleCluster(texture, tint, 17, 18, 4);
                     break;
-                case GroundOverlayPattern.Flecks:
-                    for (var y = 6; y < 26; y += 4)
-                    {
-                        for (var x = 6; x < 26; x += 4)
-                        {
-                            texture.SetPixel(x, y, tint);
-                            if ((x + y) % 8 == 0)
-                            {
-                                texture.SetPixel(x + 1, y, tint);
-                            }
-                        }
-                    }
+                case GroundOverlayPattern.PebblesSparse:
+                    DrawPebbleCluster(texture, tint, 11, 11, 2);
+                    DrawPebbleCluster(texture, tint, 22, 21, 3);
+                    break;
+                case GroundOverlayPattern.RocksSmall:
+                    DrawRockPatch(texture, tint, 7, 7, 24, 24, 5);
+                    break;
+                case GroundOverlayPattern.RocksPatch:
+                    DrawRockPatch(texture, tint, 5, 5, 26, 26, 4);
+                    break;
+                case GroundOverlayPattern.RocksMixed:
+                    DrawRockPatch(texture, tint, 6, 6, 25, 24, 4);
+                    DrawRockCluster(texture, tint, 18, 16, 5);
+                    break;
+                case GroundOverlayPattern.RocksSparse:
+                    DrawRockCluster(texture, tint, 12, 10, 2);
+                    DrawRockCluster(texture, tint, 22, 22, 3);
+                    break;
+                case GroundOverlayPattern.SmoothPatchA:
+                    DrawSmoothPatch(texture, tint, 6, 6, 25, 25, 4);
+                    break;
+                case GroundOverlayPattern.SmoothPatchB:
+                    DrawSmoothPatch(texture, tint, 5, 7, 26, 24, 3);
+                    break;
+                case GroundOverlayPattern.SmoothPatchC:
+                    DrawSmoothPatch(texture, tint, 7, 5, 24, 26, 4);
+                    break;
+                case GroundOverlayPattern.SmoothPatchD:
+                    DrawSmoothPatch(texture, tint, 6, 6, 23, 24, 5);
                     break;
             }
 
             texture.Apply(false, false);
             return texture;
+        }
+
+        private static void DrawPebblePatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        {
+            for (var y = minY; y <= maxY; y += step)
+            {
+                for (var x = minX; x <= maxX; x += step)
+                {
+                    DrawPebbleCluster(texture, tint, x, y, Mathf.Max(1, step - 1));
+                }
+            }
+        }
+
+        private static void DrawPebbleCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius)
+        {
+            for (var y = -radius; y <= radius; y++)
+            {
+                for (var x = -radius; x <= radius; x++)
+                {
+                    var distance = Mathf.Abs(x) + Mathf.Abs(y);
+                    if (distance > radius + 1)
+                    {
+                        continue;
+                    }
+
+                    Put(texture, centerX + x, centerY + y, tint);
+                }
+            }
+        }
+
+        private static void DrawRockPatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        {
+            for (var y = minY; y <= maxY; y += step)
+            {
+                for (var x = minX; x <= maxX; x += step)
+                {
+                    DrawRockCluster(texture, tint, x, y, Mathf.Max(2, step - 1));
+                }
+            }
+        }
+
+        private static void DrawRockCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius)
+        {
+            for (var y = -radius; y <= radius; y++)
+            {
+                for (var x = -radius; x <= radius; x++)
+                {
+                    var chebyshev = Mathf.Max(Mathf.Abs(x), Mathf.Abs(y));
+                    if (chebyshev > radius)
+                    {
+                        continue;
+                    }
+
+                    if (chebyshev == radius && ((x + y) & 1) == 1)
+                    {
+                        continue;
+                    }
+
+                    Put(texture, centerX + x, centerY + y, tint);
+                }
+            }
+        }
+
+        private static void DrawSmoothPatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        {
+            for (var y = minY; y <= maxY; y += step)
+            {
+                for (var x = minX; x <= maxX; x += step)
+                {
+                    Put(texture, x, y, tint);
+                    Put(texture, x + 1, y, tint);
+                    Put(texture, x, y + 1, tint);
+                    Put(texture, x + 1, y + 1, tint);
+                }
+            }
+        }
+
+        private static void Put(Texture2D texture, int x, int y, Color32 color)
+        {
+            if (x < 0 || x >= 32 || y < 0 || y >= 32)
+            {
+                return;
+            }
+
+            texture.SetPixel(x, y, color);
         }
 
         private static void UpdateBuildSettings()
@@ -549,10 +689,18 @@ namespace BooterBigArm.Editor
 
         private enum GroundOverlayPattern
         {
-            Speckles,
-            Cracks,
-            Tufts,
-            Flecks
+            PebblesSmall,
+            PebblesPatch,
+            PebblesMixed,
+            PebblesSparse,
+            RocksSmall,
+            RocksPatch,
+            RocksMixed,
+            RocksSparse,
+            SmoothPatchA,
+            SmoothPatchB,
+            SmoothPatchC,
+            SmoothPatchD
         }
 
         private readonly struct GroundSpriteDefinition

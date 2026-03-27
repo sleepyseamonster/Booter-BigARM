@@ -10,8 +10,12 @@ namespace BooterBigArm.Runtime
     {
         [SerializeField] private Transform target;
         [SerializeField] private Sprite[] tileSprites;
-        [SerializeField] private Tilemap overlayTilemap;
-        [SerializeField] private Sprite[] overlayTileSprites;
+        [SerializeField] private Tilemap pebbleTilemap;
+        [SerializeField] private Sprite[] pebbleTileSprites;
+        [SerializeField] private Tilemap rockTilemap;
+        [SerializeField] private Sprite[] rockTileSprites;
+        [SerializeField] private Tilemap smoothTilemap;
+        [SerializeField] private Sprite[] smoothTileSprites;
         [SerializeField] private int seed = 12345;
         [SerializeField] private int chunkSize = 16;
         [SerializeField] private int chunkRadius = 4;
@@ -23,11 +27,17 @@ namespace BooterBigArm.Runtime
         private readonly HashSet<Vector2Int> queuedChunks = new HashSet<Vector2Int>();
         private Tilemap tilemap;
         private TileBase[] runtimeTiles;
-        private TileBase[] runtimeOverlayTiles;
+        private TileBase[] runtimePebbleTiles;
+        private TileBase[] runtimeRockTiles;
+        private TileBase[] runtimeSmoothTiles;
         private TileBase[] emptyChunkTiles;
-        private TileBase[] emptyOverlayChunkTiles;
         private TileBase[] chunkTileBuffer;
-        private TileBase[] overlayChunkTileBuffer;
+        private TileBase[] pebbleChunkTileBuffer;
+        private TileBase[] rockChunkTileBuffer;
+        private TileBase[] smoothChunkTileBuffer;
+        private TileBase[] emptyPebbleChunkTiles;
+        private TileBase[] emptyRockChunkTiles;
+        private TileBase[] emptySmoothChunkTiles;
         private Vector2Int currentCenterChunk;
 
         public int Seed => seed;
@@ -52,9 +62,17 @@ namespace BooterBigArm.Runtime
             chunkOperationQueue.Clear();
             queuedChunks.Clear();
             tilemap.ClearAllTiles();
-            if (overlayTilemap != null)
+            if (pebbleTilemap != null)
             {
-                overlayTilemap.ClearAllTiles();
+                pebbleTilemap.ClearAllTiles();
+            }
+            if (rockTilemap != null)
+            {
+                rockTilemap.ClearAllTiles();
+            }
+            if (smoothTilemap != null)
+            {
+                smoothTilemap.ClearAllTiles();
             }
             RefreshChunkTargets(true);
         }
@@ -150,7 +168,18 @@ namespace BooterBigArm.Runtime
 
         private void EnsureRuntimeTiles()
         {
-            if (runtimeTiles != null && runtimeOverlayTiles != null && tileSprites != null && overlayTileSprites != null && runtimeTiles.Length == tileSprites.Length && runtimeOverlayTiles.Length == overlayTileSprites.Length)
+            if (runtimeTiles != null &&
+                runtimePebbleTiles != null &&
+                runtimeRockTiles != null &&
+                runtimeSmoothTiles != null &&
+                tileSprites != null &&
+                pebbleTileSprites != null &&
+                rockTileSprites != null &&
+                smoothTileSprites != null &&
+                runtimeTiles.Length == tileSprites.Length &&
+                runtimePebbleTiles.Length == pebbleTileSprites.Length &&
+                runtimeRockTiles.Length == rockTileSprites.Length &&
+                runtimeSmoothTiles.Length == smoothTileSprites.Length)
             {
                 return;
             }
@@ -180,42 +209,49 @@ namespace BooterBigArm.Runtime
                 }
             }
 
-            if (overlayTileSprites == null || overlayTileSprites.Length == 0)
-            {
-                runtimeOverlayTiles = CreateFallbackOverlayTiles();
-            }
-            else
-            {
-                runtimeOverlayTiles = new TileBase[overlayTileSprites.Length];
-                for (var i = 0; i < overlayTileSprites.Length; i++)
-                {
-                    var sprite = overlayTileSprites[i];
-                    if (sprite == null)
-                    {
-                        continue;
-                    }
-
-                    var tile = ScriptableObject.CreateInstance<Tile>();
-                    tile.sprite = sprite;
-                    tile.color = Color.white;
-                    tile.flags = TileFlags.None;
-                    tile.name = $"PrototypeRuntimeOverlayTile_{i}";
-                    tile.hideFlags = HideFlags.HideAndDontSave;
-                    runtimeOverlayTiles[i] = tile;
-                }
-            }
+            runtimePebbleTiles = BuildRuntimeTiles(pebbleTileSprites, CreateFallbackPebbleTiles, "PrototypeRuntimePebbleTile");
+            runtimeRockTiles = BuildRuntimeTiles(rockTileSprites, CreateFallbackRockTiles, "PrototypeRuntimeRockTile");
+            runtimeSmoothTiles = BuildRuntimeTiles(smoothTileSprites, CreateFallbackSmoothTiles, "PrototypeRuntimeSmoothTile");
 
             EnsureChunkBuffers();
+        }
+
+        private static TileBase[] BuildRuntimeTiles(Sprite[] sprites, System.Func<TileBase[]> fallbackFactory, string tileNamePrefix)
+        {
+            if (sprites == null || sprites.Length == 0)
+            {
+                return fallbackFactory();
+            }
+
+            var runtimeTiles = new TileBase[sprites.Length];
+            for (var i = 0; i < sprites.Length; i++)
+            {
+                var sprite = sprites[i];
+                if (sprite == null)
+                {
+                    continue;
+                }
+
+                var tile = ScriptableObject.CreateInstance<Tile>();
+                tile.sprite = sprite;
+                tile.color = Color.white;
+                tile.flags = TileFlags.None;
+                tile.name = $"{tileNamePrefix}_{i}";
+                tile.hideFlags = HideFlags.HideAndDontSave;
+                runtimeTiles[i] = tile;
+            }
+
+            return runtimeTiles;
         }
 
         private TileBase[] CreateFallbackBaseTiles()
         {
             var sprites = new[]
             {
-                CreateSolidSprite(new Color32(201, 173, 102, 255)),
-                CreateSolidSprite(new Color32(96, 151, 78, 255)),
-                CreateSolidSprite(new Color32(122, 126, 133, 255)),
-                CreateSolidSprite(new Color32(88, 126, 98, 255))
+                CreateSolidSprite(new Color32(173, 136, 86, 255)),
+                CreateSolidSprite(new Color32(179, 141, 88, 255)),
+                CreateSolidSprite(new Color32(169, 132, 82, 255)),
+                CreateSolidSprite(new Color32(181, 145, 92, 255))
             };
 
             var tiles = new TileBase[sprites.Length];
@@ -234,14 +270,14 @@ namespace BooterBigArm.Runtime
             return tiles;
         }
 
-        private TileBase[] CreateFallbackOverlayTiles()
+        private TileBase[] CreateFallbackPebbleTiles()
         {
             var sprites = new[]
             {
-                CreateDetailSprite(new Color32(32, 28, 18, 120), DetailPattern.Speckles),
-                CreateDetailSprite(new Color32(57, 41, 18, 110), DetailPattern.Cracks),
-                CreateDetailSprite(new Color32(18, 36, 20, 110), DetailPattern.Tufts),
-                CreateDetailSprite(new Color32(52, 43, 34, 100), DetailPattern.Flecks)
+                CreateDetailSprite(new Color32(92, 78, 60, 230), DetailPattern.PebblesSmall),
+                CreateDetailSprite(new Color32(103, 87, 69, 230), DetailPattern.PebblesPatch),
+                CreateDetailSprite(new Color32(117, 101, 78, 220), DetailPattern.PebblesMixed),
+                CreateDetailSprite(new Color32(86, 74, 57, 230), DetailPattern.PebblesSparse)
             };
 
             var tiles = new TileBase[sprites.Length];
@@ -252,7 +288,59 @@ namespace BooterBigArm.Runtime
                 tile.sprite = sprite;
                 tile.color = Color.white;
                 tile.flags = TileFlags.None;
-                tile.name = $"PrototypeFallbackOverlayTile_{i}";
+                tile.name = $"PrototypeFallbackPebbleTile_{i}";
+                tile.hideFlags = HideFlags.HideAndDontSave;
+                tiles[i] = tile;
+            }
+
+            return tiles;
+        }
+
+        private TileBase[] CreateFallbackRockTiles()
+        {
+            var sprites = new[]
+            {
+                CreateDetailSprite(new Color32(102, 99, 94, 235), DetailPattern.RocksSmall),
+                CreateDetailSprite(new Color32(116, 113, 107, 235), DetailPattern.RocksPatch),
+                CreateDetailSprite(new Color32(128, 124, 117, 225), DetailPattern.RocksMixed),
+                CreateDetailSprite(new Color32(90, 87, 83, 235), DetailPattern.RocksSparse)
+            };
+
+            var tiles = new TileBase[sprites.Length];
+            for (var i = 0; i < sprites.Length; i++)
+            {
+                var sprite = sprites[i];
+                var tile = ScriptableObject.CreateInstance<Tile>();
+                tile.sprite = sprite;
+                tile.color = Color.white;
+                tile.flags = TileFlags.None;
+                tile.name = $"PrototypeFallbackRockTile_{i}";
+                tile.hideFlags = HideFlags.HideAndDontSave;
+                tiles[i] = tile;
+            }
+
+            return tiles;
+        }
+
+        private TileBase[] CreateFallbackSmoothTiles()
+        {
+            var sprites = new[]
+            {
+                CreateDetailSprite(new Color32(221, 194, 138, 145), DetailPattern.SmoothPatchA),
+                CreateDetailSprite(new Color32(232, 205, 147, 140), DetailPattern.SmoothPatchB),
+                CreateDetailSprite(new Color32(214, 188, 130, 145), DetailPattern.SmoothPatchC),
+                CreateDetailSprite(new Color32(225, 199, 141, 140), DetailPattern.SmoothPatchD)
+            };
+
+            var tiles = new TileBase[sprites.Length];
+            for (var i = 0; i < sprites.Length; i++)
+            {
+                var sprite = sprites[i];
+                var tile = ScriptableObject.CreateInstance<Tile>();
+                tile.sprite = sprite;
+                tile.color = Color.white;
+                tile.flags = TileFlags.None;
+                tile.name = $"PrototypeFallbackSmoothTile_{i}";
                 tile.hideFlags = HideFlags.HideAndDontSave;
                 tiles[i] = tile;
             }
@@ -298,52 +386,137 @@ namespace BooterBigArm.Runtime
 
             switch (pattern)
             {
-                case DetailPattern.Speckles:
-                    for (var y = 4; y < 28; y += 3)
-                    {
-                        for (var x = 4; x < 28; x += 3)
-                        {
-                            if (((x + y) & 1) == 0)
-                            {
-                                texture.SetPixel(x, y, tint);
-                            }
-                        }
-                    }
+                case DetailPattern.PebblesSmall:
+                    DrawPebbleCluster(texture, tint, 10, 10, 3);
+                    DrawPebbleCluster(texture, tint, 18, 14, 2);
+                    DrawPebbleCluster(texture, tint, 22, 22, 4);
                     break;
-                case DetailPattern.Cracks:
-                    for (var i = 5; i < 27; i++)
-                    {
-                        texture.SetPixel(i, i / 2 + 4, tint);
-                        texture.SetPixel(31 - i, i / 2 + 5, tint);
-                    }
+                case DetailPattern.PebblesPatch:
+                    DrawPebblePatch(texture, tint, 6, 7, 24, 23, 3);
                     break;
-                case DetailPattern.Tufts:
-                    for (var i = 0; i < 6; i++)
-                    {
-                        var baseX = 6 + i * 4;
-                        texture.SetPixel(baseX, 18, tint);
-                        texture.SetPixel(baseX + 1, 17, tint);
-                        texture.SetPixel(baseX + 1, 16, tint);
-                        texture.SetPixel(baseX + 2, 17, tint);
-                    }
+                case DetailPattern.PebblesMixed:
+                    DrawPebblePatch(texture, tint, 5, 6, 26, 25, 4);
+                    DrawPebbleCluster(texture, tint, 14, 20, 5);
                     break;
-                case DetailPattern.Flecks:
-                    for (var y = 6; y < 26; y += 4)
-                    {
-                        for (var x = 6; x < 26; x += 4)
-                        {
-                            texture.SetPixel(x, y, tint);
-                            if ((x + y) % 8 == 0)
-                            {
-                                texture.SetPixel(x + 1, y, tint);
-                            }
-                        }
-                    }
+                case DetailPattern.PebblesSparse:
+                    DrawPebbleCluster(texture, tint, 10, 11, 2);
+                    DrawPebbleCluster(texture, tint, 22, 18, 3);
+                    break;
+                case DetailPattern.RocksSmall:
+                    DrawRockCluster(texture, tint, 11, 12, 4);
+                    DrawRockCluster(texture, tint, 21, 20, 3);
+                    break;
+                case DetailPattern.RocksPatch:
+                    DrawRockPatch(texture, tint, 6, 7, 24, 24, 4);
+                    break;
+                case DetailPattern.RocksMixed:
+                    DrawRockPatch(texture, tint, 5, 6, 25, 23, 3);
+                    DrawRockCluster(texture, tint, 19, 15, 5);
+                    break;
+                case DetailPattern.RocksSparse:
+                    DrawRockCluster(texture, tint, 12, 10, 2);
+                    DrawRockCluster(texture, tint, 22, 24, 3);
+                    break;
+                case DetailPattern.SmoothPatchA:
+                    DrawSmoothPatch(texture, tint, 5, 6, 25, 24, 4);
+                    break;
+                case DetailPattern.SmoothPatchB:
+                    DrawSmoothPatch(texture, tint, 6, 5, 26, 25, 3);
+                    break;
+                case DetailPattern.SmoothPatchC:
+                    DrawSmoothPatch(texture, tint, 4, 7, 24, 24, 5);
+                    break;
+                case DetailPattern.SmoothPatchD:
+                    DrawSmoothPatch(texture, tint, 7, 6, 25, 23, 4);
                     break;
             }
 
             texture.Apply(false, false);
             return Sprite.Create(texture, new Rect(0f, 0f, 32f, 32f), new Vector2(0.5f, 0.5f), 32f);
+        }
+
+        private static void DrawPebblePatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        {
+            for (var y = minY; y <= maxY; y += step)
+            {
+                for (var x = minX; x <= maxX; x += step)
+                {
+                    DrawPebbleCluster(texture, tint, x, y, Mathf.Max(1, step - 1));
+                }
+            }
+        }
+
+        private static void DrawPebbleCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius)
+        {
+            for (var y = -radius; y <= radius; y++)
+            {
+                for (var x = -radius; x <= radius; x++)
+                {
+                    var distance = Mathf.Abs(x) + Mathf.Abs(y);
+                    if (distance > radius + 1)
+                    {
+                        continue;
+                    }
+
+                    Put(texture, centerX + x, centerY + y, tint);
+                }
+            }
+        }
+
+        private static void DrawRockPatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        {
+            for (var y = minY; y <= maxY; y += step)
+            {
+                for (var x = minX; x <= maxX; x += step)
+                {
+                    DrawRockCluster(texture, tint, x, y, Mathf.Max(2, step - 1));
+                }
+            }
+        }
+
+        private static void DrawRockCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius)
+        {
+            for (var y = -radius; y <= radius; y++)
+            {
+                for (var x = -radius; x <= radius; x++)
+                {
+                    var chebyshev = Mathf.Max(Mathf.Abs(x), Mathf.Abs(y));
+                    if (chebyshev > radius)
+                    {
+                        continue;
+                    }
+
+                    if (chebyshev == radius && ((x + y) & 1) == 1)
+                    {
+                        continue;
+                    }
+
+                    Put(texture, centerX + x, centerY + y, tint);
+                }
+            }
+        }
+
+        private static void DrawSmoothPatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        {
+            for (var y = minY; y <= maxY; y += step)
+            {
+                for (var x = minX; x <= maxX; x += step)
+                {
+                    Put(texture, x, y, tint);
+                    Put(texture, x + 1, y, tint);
+                    Put(texture, x, y + 1, tint);
+                }
+            }
+        }
+
+        private static void Put(Texture2D texture, int x, int y, Color32 color)
+        {
+            if (x < 0 || x >= 32 || y < 0 || y >= 32)
+            {
+                return;
+            }
+
+            texture.SetPixel(x, y, color);
         }
 
         private void EnsureChunkBuffers()
@@ -355,9 +528,13 @@ namespace BooterBigArm.Runtime
             }
 
             chunkTileBuffer = new TileBase[tileCount];
-            overlayChunkTileBuffer = new TileBase[tileCount];
+            pebbleChunkTileBuffer = new TileBase[tileCount];
+            rockChunkTileBuffer = new TileBase[tileCount];
+            smoothChunkTileBuffer = new TileBase[tileCount];
             emptyChunkTiles = new TileBase[tileCount];
-            emptyOverlayChunkTiles = new TileBase[tileCount];
+            emptyPebbleChunkTiles = new TileBase[tileCount];
+            emptyRockChunkTiles = new TileBase[tileCount];
+            emptySmoothChunkTiles = new TileBase[tileCount];
         }
 
         private void QueueChunkOperation(Vector2Int chunkCoord)
@@ -404,10 +581,20 @@ namespace BooterBigArm.Runtime
             var bounds = GetChunkBounds(chunkCoord);
             FillChunkBuffer(chunkCoord);
             tilemap.SetTilesBlock(bounds, chunkTileBuffer);
-            if (overlayTilemap != null)
+            FillPebbleChunkBuffer(chunkCoord);
+            FillRockChunkBuffer(chunkCoord);
+            FillSmoothChunkBuffer(chunkCoord);
+            if (pebbleTilemap != null)
             {
-                FillOverlayChunkBuffer(chunkCoord);
-                overlayTilemap.SetTilesBlock(bounds, overlayChunkTileBuffer);
+                pebbleTilemap.SetTilesBlock(bounds, pebbleChunkTileBuffer);
+            }
+            if (rockTilemap != null)
+            {
+                rockTilemap.SetTilesBlock(bounds, rockChunkTileBuffer);
+            }
+            if (smoothTilemap != null)
+            {
+                smoothTilemap.SetTilesBlock(bounds, smoothChunkTileBuffer);
             }
             visibleChunks.Add(chunkCoord);
         }
@@ -418,9 +605,17 @@ namespace BooterBigArm.Runtime
 
             var bounds = GetChunkBounds(chunkCoord);
             tilemap.SetTilesBlock(bounds, emptyChunkTiles);
-            if (overlayTilemap != null)
+            if (pebbleTilemap != null)
             {
-                overlayTilemap.SetTilesBlock(bounds, emptyOverlayChunkTiles);
+                pebbleTilemap.SetTilesBlock(bounds, emptyPebbleChunkTiles);
+            }
+            if (rockTilemap != null)
+            {
+                rockTilemap.SetTilesBlock(bounds, emptyRockChunkTiles);
+            }
+            if (smoothTilemap != null)
+            {
+                smoothTilemap.SetTilesBlock(bounds, emptySmoothChunkTiles);
             }
             visibleChunks.Remove(chunkCoord);
         }
@@ -450,7 +645,7 @@ namespace BooterBigArm.Runtime
             }
         }
 
-        private void FillOverlayChunkBuffer(Vector2Int chunkCoord)
+        private void FillPebbleChunkBuffer(Vector2Int chunkCoord)
         {
             var index = 0;
             for (var localY = 0; localY < chunkSize; localY++)
@@ -459,7 +654,35 @@ namespace BooterBigArm.Runtime
                 {
                     var worldX = chunkCoord.x * chunkSize + localX;
                     var worldY = chunkCoord.y * chunkSize + localY;
-                    overlayChunkTileBuffer[index++] = SelectOverlayTile(worldX, worldY);
+                    pebbleChunkTileBuffer[index++] = SelectLayerTile(runtimePebbleTiles, worldX, worldY, seed + 17, 0.55f, 8, 0.2f);
+                }
+            }
+        }
+
+        private void FillRockChunkBuffer(Vector2Int chunkCoord)
+        {
+            var index = 0;
+            for (var localY = 0; localY < chunkSize; localY++)
+            {
+                for (var localX = 0; localX < chunkSize; localX++)
+                {
+                    var worldX = chunkCoord.x * chunkSize + localX;
+                    var worldY = chunkCoord.y * chunkSize + localY;
+                    rockChunkTileBuffer[index++] = SelectLayerTile(runtimeRockTiles, worldX, worldY, seed + 43, 0.78f, 12, 0.16f);
+                }
+            }
+        }
+
+        private void FillSmoothChunkBuffer(Vector2Int chunkCoord)
+        {
+            var index = 0;
+            for (var localY = 0; localY < chunkSize; localY++)
+            {
+                for (var localX = 0; localX < chunkSize; localX++)
+                {
+                    var worldX = chunkCoord.x * chunkSize + localX;
+                    var worldY = chunkCoord.y * chunkSize + localY;
+                    smoothChunkTileBuffer[index++] = SelectLayerTile(runtimeSmoothTiles, worldX, worldY, seed + 71, 0.84f, 10, 0.18f);
                 }
             }
         }
@@ -490,23 +713,33 @@ namespace BooterBigArm.Runtime
             return runtimeTiles[variant];
         }
 
-        private TileBase SelectOverlayTile(int worldX, int worldY)
+        private TileBase SelectLayerTile(TileBase[] tiles, int worldX, int worldY, int noiseSeed, float presenceThreshold, int regionScale, float detailChance)
         {
-            if (runtimeOverlayTiles == null || runtimeOverlayTiles.Length == 0)
+            if (tiles == null || tiles.Length == 0)
             {
                 return null;
             }
 
-            var noise = Hash01(seed + 97, worldX, worldY);
-            if (noise < 0.48f)
+            var noise = Hash01(noiseSeed, worldX / Mathf.Max(1, regionScale), worldY / Mathf.Max(1, regionScale));
+            if (noise < presenceThreshold)
             {
                 return null;
             }
 
-            var variantNoise = Hash01(seed + 101, worldX / 2, worldY / 2);
-            var variant = Mathf.FloorToInt(variantNoise * runtimeOverlayTiles.Length);
-            variant = Mathf.Clamp(variant, 0, runtimeOverlayTiles.Length - 1);
-            return runtimeOverlayTiles[variant];
+            if (tiles.Length == 1)
+            {
+                return tiles[0];
+            }
+
+            var variantNoise = Hash01(noiseSeed + 5, worldX, worldY);
+            if (variantNoise < detailChance)
+            {
+                variantNoise = Mathf.Repeat(variantNoise * 1.73f + 0.19f, 1f);
+            }
+
+            var variant = Mathf.FloorToInt(variantNoise * tiles.Length);
+            variant = Mathf.Clamp(variant, 0, tiles.Length - 1);
+            return tiles[variant];
         }
 
         private Vector2Int WorldToChunk(Vector3 worldPosition)
@@ -532,10 +765,18 @@ namespace BooterBigArm.Runtime
 
         private enum DetailPattern
         {
-            Speckles,
-            Cracks,
-            Tufts,
-            Flecks
+            PebblesSmall,
+            PebblesPatch,
+            PebblesMixed,
+            PebblesSparse,
+            RocksSmall,
+            RocksPatch,
+            RocksMixed,
+            RocksSparse,
+            SmoothPatchA,
+            SmoothPatchB,
+            SmoothPatchC,
+            SmoothPatchD
         }
     }
 }

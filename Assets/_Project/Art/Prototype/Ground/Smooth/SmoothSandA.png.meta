@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: aef565a81d9884978981c4e7e62435da
+guid: 67d7e30b172354b1dae269ff6ce94609
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1717669621288255774
-    second: GroundOverlaySpeckles_0
+      213: 1400523456328652537
+    second: SmoothSandA_0
+  - first:
+      213: 975500898791241791
+    second: SmoothSandA_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GroundOverlaySpeckles_0
+      name: SmoothSandA_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 3
+        y: 15
+        width: 26
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ee32ad749c9928e0800000000000000
-      internalID: -1717669621288255774
+      spriteID: 9f6521ac9a8af6310800000000000000
+      internalID: 1400523456328652537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmoothSandA_1
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 3
+        width: 23
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f38b68626eca98d00800000000000000
+      internalID: 975500898791241791
       vertices: []
       indices: 
       edges: []
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GroundOverlaySpeckles_0: -1717669621288255774
+      SmoothSandA_0: 1400523456328652537
+      SmoothSandA_1: 975500898791241791
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

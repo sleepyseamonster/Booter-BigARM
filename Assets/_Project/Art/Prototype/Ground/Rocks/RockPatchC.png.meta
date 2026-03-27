@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 4e85a2ebdcb0c419496174d8fb46123d
+guid: f725e24b574cd42c4acdb468664129dc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1814726755238667583
-    second: GroundOverlayCracks_0
+      213: -2396012757558951269
+    second: RockPatchC_0
   - first:
-      213: -4028808914699498301
-    second: GroundOverlayCracks_1
+      213: 6528807519641786059
+    second: RockPatchC_1
+  - first:
+      213: -6304583051282562571
+    second: RockPatchC_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GroundOverlayCracks_0
+      name: RockPatchC_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 15
-        width: 26
-        height: 8
+        x: 2
+        y: 13
+        width: 13
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +134,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f35e56a7e543f2910800000000000000
-      internalID: 1814726755238667583
+      spriteID: b9205647717afbed0800000000000000
+      internalID: -2396012757558951269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GroundOverlayCracks_1
+      name: RockPatchC_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 9
-        width: 26
-        height: 9
+        x: 8
+        y: 2
+        width: 13
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +156,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ccc86b33abc618c0800000000000000
-      internalID: -4028808914699498301
+      spriteID: bc6d52719dbfa9a50800000000000000
+      internalID: 6528807519641786059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockPatchC_2
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 14
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f1ca533e1f9188a0800000000000000
+      internalID: -6304583051282562571
       vertices: []
       indices: 
       edges: []
@@ -173,8 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GroundOverlayCracks_0: 1814726755238667583
-      GroundOverlayCracks_1: -4028808914699498301
+      RockPatchC_0: -2396012757558951269
+      RockPatchC_1: 6528807519641786059
+      RockPatchC_2: -6304583051282562571
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
