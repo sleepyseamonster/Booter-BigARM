@@ -176,7 +176,19 @@ namespace BooterBigArm.Editor
 
             var cinemachineCamera = cinemachineCameraObject.AddComponent<CinemachineCamera>();
             cinemachineCamera.Follow = target;
-            cinemachineCameraObject.AddComponent<CinemachineFollow>();
+            var positionComposer = cinemachineCameraObject.AddComponent<CinemachinePositionComposer>();
+            positionComposer.CameraDistance = 10f;
+            positionComposer.DeadZoneDepth = 0f;
+            positionComposer.CenterOnActivate = true;
+            positionComposer.TargetOffset = Vector3.zero;
+            positionComposer.Damping = new Vector3(0.25f, 0.25f, 0.1f);
+            positionComposer.Lookahead = new LookaheadSettings
+            {
+                Enabled = true,
+                Time = 0.22f,
+                Smoothing = 6f,
+                IgnoreY = false
+            };
             cinemachineCameraObject.AddComponent<Unity.Cinemachine.CinemachinePixelPerfect>();
         }
 

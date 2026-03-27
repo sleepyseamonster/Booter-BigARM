@@ -10,7 +10,7 @@ namespace BooterBigArm.Runtime
         [SerializeField] private float moveSpeed = 7f;
         [SerializeField] private float returnSpeed = 24f;
         [SerializeField] private float deadZone = 0.18f;
-        [SerializeField] private float maxRadius = 4f;
+        [SerializeField] private float maxRadius = 6f;
 
         private Vector2 offset;
 
