@@ -1,7 +1,15 @@
 {
   "name": "BooterBigArm.Editor",
   "rootNamespace": "BooterBigArm.Editor",
-  "references": [],
+  "references": [
+    "BooterBigArm.Runtime",
+    "Unity.Cinemachine",
+    "Unity.InputSystem",
+    "Unity.2D.PixelPerfect",
+    "Unity.RenderPipelines.Core.Runtime",
+    "Unity.RenderPipelines.Universal.Runtime",
+    "Unity.RenderPipelines.Universal.2D.Runtime"
+  ],
   "includePlatforms": [
     "Editor"
   ],

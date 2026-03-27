@@ -92,3 +92,9 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 8. Run only tests or checks that are directly relevant to the change.
 9. If the workspace is a git repository and the change is in a good state, commit the work after verification; do not commit broken changes.
 10. If the workspace is not a git repository, explicitly report that commit was not possible.
+
+## Sub-Agents
+
+- Sub-agents may be used whenever they help move the task forward.
+- Close sub-agents when their work is no longer needed.
+- Keep delegated work scoped so it does not conflict with local edits or other active work.

@@ -29,6 +29,8 @@ Unity's sorting docs state that `Sorting Layer` and `Order in Layer` are the mai
 - Keep the top-down camera setup simple and readable.
 - Treat sorting layers and sorting groups as the primary way to express depth and overlap.
 - Use camera sorting settings only when a specific visual need requires it.
+- Keep the render path compatible with pixel-perfect presentation on a 32px art scale.
+- Favor crisp sprite edges over subpixel softness in the base look.
 
 This is partly an inference from Unity's sorting behavior: in 2D, renderer order is driven first by sorting layer and order, then by camera distance and other tie-breakers. For a top-down game, explicit sorting rules are safer than depending on distance alone.
 
@@ -49,4 +51,4 @@ Unity's 2D lighting documentation covers light types, sprite preparation, tilema
 2. Use sorting layers and sorting groups before special camera logic.
 3. Keep lighting purposeful and readable.
 4. Keep render assets in the project-owned URP settings folder.
-
+5. Keep post-processing restrained enough that the pixel art remains sharp.

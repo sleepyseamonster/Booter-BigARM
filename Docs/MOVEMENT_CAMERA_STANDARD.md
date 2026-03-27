@@ -2,6 +2,13 @@
 
 This is the baseline for a gamepad-optimized top-down 2D character and camera setup. It keeps movement responsive, readable, and flexible enough for future mechanics like dashes, knockback, mounts, vehicles, or status effects.
 
+## Pixel Scale Baseline
+
+- Treat the world as a 32px art scale.
+- Author tiles and most world-facing sprites to align cleanly to that grid.
+- Use a consistent pixels-per-unit convention that preserves the 32px baseline instead of mixing sprite scales ad hoc.
+- Keep the camera and follow motion compatible with pixel-perfect rendering so the scene stays crisp.
+
 ## Core Movement Rule
 
 - Use a `Rigidbody2D`-backed movement motor as the authoritative body for any object that collides or interacts with the world.
@@ -32,6 +39,8 @@ Unity's Rigidbody2D docs are explicit that moving collider-bearing bodies by Tra
 - Default the top-down camera to orthographic.
 - Keep the camera follow and framing logic separate from the player movement code.
 - Use camera data and camera state changes for tuning, not hard-coded movement coupling.
+- Use a pixel-perfect camera path for the prototype and future gameplay scenes so follow motion snaps cleanly to the render grid.
+- Prefer smoothing that respects the pixel grid over raw fractional camera movement.
 
 Unity's Cinemachine docs state that the 2D setup works with an orthographic camera and that the virtual camera drives the Unity camera. See:
 - [Cinemachine 2D graphics](https://docs.unity3d.com/ja/Packages/com.unity.cinemachine%402.6/manual/Cinemachine2D.html)
@@ -62,3 +71,4 @@ Unity's sorting docs are clear that Sorting Layer and Order in Layer are the pri
 3. Camera is orthographic by default.
 4. Cinemachine or an equivalent camera rig handles follow and framing.
 5. Sorting layers and sorting groups enforce readability.
+6. Pixel-perfect rendering is part of the baseline, not an optional polish pass.
