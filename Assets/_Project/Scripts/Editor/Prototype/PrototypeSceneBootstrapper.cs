@@ -52,8 +52,9 @@ namespace BooterBigArm.Editor
             scene.name = "PrototypeScene";
 
             var player = CreatePlayer(inputActions, playerSprite);
+            var cameraTarget = CreateCameraTarget(player);
             var world = CreateWorld(player.transform, sandSprites, pebbleSprites, rockSprites, smoothSprites);
-            CreateCamera(player.transform);
+            CreateCamera(cameraTarget);
             CreateLighting();
             CreateVolume(volumeProfile);
             CreateDebugOverlay(player.GetComponent<PlayerMotor2D>(), world);
@@ -89,6 +90,20 @@ namespace BooterBigArm.Editor
 
             player.AddComponent<PlayerMotor2D>();
             return player;
+        }
+
+        private static Transform CreateCameraTarget(GameObject player)
+        {
+            var cameraTargetObject = new GameObject("Camera Target");
+            cameraTargetObject.transform.SetParent(player.transform, false);
+            cameraTargetObject.transform.localPosition = Vector3.zero;
+
+            var inputAdapter = player.GetComponent<PlayerInputAdapter>();
+            var controller = cameraTargetObject.AddComponent<PrototypeCameraTargetController>();
+            SetObjectReference(controller, "player", player.transform);
+            SetObjectReference(controller, "inputAdapter", inputAdapter);
+
+            return cameraTargetObject.transform;
         }
 
         private static PrototypeWorldGenerator CreateWorld(
@@ -328,12 +343,9 @@ namespace BooterBigArm.Editor
                 Directory.CreateDirectory(folderPath);
             }
 
-            if (!File.Exists(assetPath))
-            {
-                var texture = CreateTileTexture(fill, highlight, border, pattern);
-                File.WriteAllBytes(assetPath, texture.EncodeToPNG());
-                Object.DestroyImmediate(texture);
-            }
+            var texture = CreateTileTexture(fill, highlight, border, pattern);
+            File.WriteAllBytes(assetPath, texture.EncodeToPNG());
+            Object.DestroyImmediate(texture);
 
             AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceSynchronousImport);
 
@@ -359,12 +371,9 @@ namespace BooterBigArm.Editor
                 Directory.CreateDirectory(folderPath);
             }
 
-            if (!File.Exists(assetPath))
-            {
-                var texture = CreateOverlayTexture(tint, pattern);
-                File.WriteAllBytes(assetPath, texture.EncodeToPNG());
-                Object.DestroyImmediate(texture);
-            }
+            var texture = CreateOverlayTexture(tint, pattern);
+            File.WriteAllBytes(assetPath, texture.EncodeToPNG());
+            Object.DestroyImmediate(texture);
 
             AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceSynchronousImport);
 
@@ -387,67 +396,33 @@ namespace BooterBigArm.Editor
                 wrapMode = TextureWrapMode.Clamp
             };
 
+            var rng = new System.Random(GetSeed(fill, highlight, border, pattern));
             for (var y = 0; y < 32; y++)
             {
                 for (var x = 0; x < 32; x++)
                 {
-                    var color = border;
-                    var localX = x - 16;
-                    var localY = y - 16;
-                    var distance = Mathf.Sqrt(localX * localX + localY * localY);
-                    var ringBand = distance > 7f && distance < 10.5f;
+                    var color = fill;
+                    var localNoise = NextSignedNoise(rng);
+                    var broadNoise = NextSignedNoise(rng);
+                    var centerWeight = Mathf.Clamp01(1f - Vector2.Distance(new Vector2(x, y), new Vector2(15.5f, 15.5f)) / 16f);
+                    var tintAmount = 0.5f + centerWeight * 0.35f + localNoise * 0.15f;
 
                     switch (pattern)
                     {
                         case GroundPattern.Square:
-                            if (x > 3 && x < 28 && y > 3 && y < 28)
-                            {
-                                color = fill;
-                            }
-
-                            if (x > 8 && x < 23 && y > 8 && y < 23)
-                            {
-                                color = highlight;
-                            }
+                            color = Blend(fill, highlight, tintAmount * 0.45f + broadNoise * 0.1f);
                             break;
                         case GroundPattern.CrossHatch:
-                            if (x > 2 && x < 29 && y > 2 && y < 29)
-                            {
-                                color = ((x + y) & 3) < 2 ? fill : highlight;
-                            }
+                            color = ((x + y) & 3) < 2 ? Blend(fill, highlight, 0.28f + localNoise * 0.1f) : Blend(fill, border, 0.15f + broadNoise * 0.08f);
                             break;
                         case GroundPattern.Diamond:
-                            if (Mathf.Abs(localX) + Mathf.Abs(localY) < 16)
-                            {
-                                color = fill;
-                            }
-
-                            if (Mathf.Abs(localX) + Mathf.Abs(localY) < 8)
-                            {
-                                color = highlight;
-                            }
+                            color = Blend(fill, highlight, 0.35f + Mathf.Abs(localNoise) * 0.18f);
                             break;
                         case GroundPattern.Ring:
-                            if (distance < 12f)
-                            {
-                                color = fill;
-                            }
-
-                            if (ringBand)
-                            {
-                                color = highlight;
-                            }
+                            color = Blend(fill, border, 0.2f + broadNoise * 0.12f);
                             break;
                         case GroundPattern.Dots:
-                            if (x > 3 && x < 28 && y > 3 && y < 28)
-                            {
-                                color = fill;
-                            }
-
-                            if (((x / 4) + (y / 4)) % 2 == 0 && x > 6 && x < 26 && y > 6 && y < 26)
-                            {
-                                color = highlight;
-                            }
+                            color = Blend(fill, highlight, 0.22f + localNoise * 0.08f);
                             break;
                     }
 
@@ -467,9 +442,10 @@ namespace BooterBigArm.Editor
                 wrapMode = TextureWrapMode.Clamp
             };
 
-            for (var y = 0; y < 32; y++)
+            var rng = new System.Random(GetSeed(tint, pattern));
+            for (var y = 1; y < 31; y++)
             {
-                for (var x = 0; x < 32; x++)
+                for (var x = 1; x < 31; x++)
                 {
                     texture.SetPixel(x, y, new Color32(0, 0, 0, 0));
                 }
@@ -478,44 +454,44 @@ namespace BooterBigArm.Editor
             switch (pattern)
             {
                 case GroundOverlayPattern.PebblesSmall:
-                    DrawPebblePatch(texture, tint, 7, 7, 24, 24, 4);
+                    DrawPebblePatch(texture, tint, rng, 6, 6, 25, 25, 4);
                     break;
                 case GroundOverlayPattern.PebblesPatch:
-                    DrawPebblePatch(texture, tint, 5, 5, 26, 26, 3);
+                    DrawPebblePatch(texture, tint, rng, 5, 5, 26, 26, 3);
                     break;
                 case GroundOverlayPattern.PebblesMixed:
-                    DrawPebblePatch(texture, tint, 4, 6, 25, 24, 4);
-                    DrawPebbleCluster(texture, tint, 17, 18, 4);
+                    DrawPebblePatch(texture, tint, rng, 4, 6, 25, 24, 4);
+                    DrawPebbleCluster(texture, tint, 17, 18, 4, rng);
                     break;
                 case GroundOverlayPattern.PebblesSparse:
-                    DrawPebbleCluster(texture, tint, 11, 11, 2);
-                    DrawPebbleCluster(texture, tint, 22, 21, 3);
+                    DrawPebbleCluster(texture, tint, 11, 11, 2, rng);
+                    DrawPebbleCluster(texture, tint, 22, 21, 3, rng);
                     break;
                 case GroundOverlayPattern.RocksSmall:
-                    DrawRockPatch(texture, tint, 7, 7, 24, 24, 5);
+                    DrawRockPatch(texture, tint, rng, 7, 7, 24, 24, 5);
                     break;
                 case GroundOverlayPattern.RocksPatch:
-                    DrawRockPatch(texture, tint, 5, 5, 26, 26, 4);
+                    DrawRockPatch(texture, tint, rng, 5, 5, 26, 26, 4);
                     break;
                 case GroundOverlayPattern.RocksMixed:
-                    DrawRockPatch(texture, tint, 6, 6, 25, 24, 4);
-                    DrawRockCluster(texture, tint, 18, 16, 5);
+                    DrawRockPatch(texture, tint, rng, 6, 6, 25, 24, 4);
+                    DrawRockCluster(texture, tint, 18, 16, 5, rng);
                     break;
                 case GroundOverlayPattern.RocksSparse:
-                    DrawRockCluster(texture, tint, 12, 10, 2);
-                    DrawRockCluster(texture, tint, 22, 22, 3);
+                    DrawRockCluster(texture, tint, 12, 10, 2, rng);
+                    DrawRockCluster(texture, tint, 22, 22, 3, rng);
                     break;
                 case GroundOverlayPattern.SmoothPatchA:
-                    DrawSmoothPatch(texture, tint, 6, 6, 25, 25, 4);
+                    DrawSmoothPatch(texture, tint, rng, 6, 6, 25, 25, 4);
                     break;
                 case GroundOverlayPattern.SmoothPatchB:
-                    DrawSmoothPatch(texture, tint, 5, 7, 26, 24, 3);
+                    DrawSmoothPatch(texture, tint, rng, 5, 7, 26, 24, 3);
                     break;
                 case GroundOverlayPattern.SmoothPatchC:
-                    DrawSmoothPatch(texture, tint, 7, 5, 24, 26, 4);
+                    DrawSmoothPatch(texture, tint, rng, 7, 5, 24, 26, 4);
                     break;
                 case GroundOverlayPattern.SmoothPatchD:
-                    DrawSmoothPatch(texture, tint, 6, 6, 23, 24, 5);
+                    DrawSmoothPatch(texture, tint, rng, 6, 6, 23, 24, 5);
                     break;
             }
 
@@ -523,18 +499,18 @@ namespace BooterBigArm.Editor
             return texture;
         }
 
-        private static void DrawPebblePatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        private static void DrawPebblePatch(Texture2D texture, Color32 tint, System.Random rng, int minX, int minY, int maxX, int maxY, int step)
         {
             for (var y = minY; y <= maxY; y += step)
             {
                 for (var x = minX; x <= maxX; x += step)
                 {
-                    DrawPebbleCluster(texture, tint, x, y, Mathf.Max(1, step - 1));
+                    DrawPebbleCluster(texture, tint, x, y, Mathf.Max(1, step - 1), rng);
                 }
             }
         }
 
-        private static void DrawPebbleCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius)
+        private static void DrawPebbleCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius, System.Random rng)
         {
             for (var y = -radius; y <= radius; y++)
             {
@@ -546,23 +522,28 @@ namespace BooterBigArm.Editor
                         continue;
                     }
 
+                    if (NextSignedNoise(rng) < -0.35f)
+                    {
+                        continue;
+                    }
+
                     Put(texture, centerX + x, centerY + y, tint);
                 }
             }
         }
 
-        private static void DrawRockPatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        private static void DrawRockPatch(Texture2D texture, Color32 tint, System.Random rng, int minX, int minY, int maxX, int maxY, int step)
         {
             for (var y = minY; y <= maxY; y += step)
             {
                 for (var x = minX; x <= maxX; x += step)
                 {
-                    DrawRockCluster(texture, tint, x, y, Mathf.Max(2, step - 1));
+                    DrawRockCluster(texture, tint, x, y, Mathf.Max(2, step - 1), rng);
                 }
             }
         }
 
-        private static void DrawRockCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius)
+        private static void DrawRockCluster(Texture2D texture, Color32 tint, int centerX, int centerY, int radius, System.Random rng)
         {
             for (var y = -radius; y <= radius; y++)
             {
@@ -574,7 +555,7 @@ namespace BooterBigArm.Editor
                         continue;
                     }
 
-                    if (chebyshev == radius && ((x + y) & 1) == 1)
+                    if (chebyshev == radius && ((x + y) & 1) == 1 && NextSignedNoise(rng) < 0.15f)
                     {
                         continue;
                     }
@@ -584,12 +565,17 @@ namespace BooterBigArm.Editor
             }
         }
 
-        private static void DrawSmoothPatch(Texture2D texture, Color32 tint, int minX, int minY, int maxX, int maxY, int step)
+        private static void DrawSmoothPatch(Texture2D texture, Color32 tint, System.Random rng, int minX, int minY, int maxX, int maxY, int step)
         {
             for (var y = minY; y <= maxY; y += step)
             {
                 for (var x = minX; x <= maxX; x += step)
                 {
+                    if (NextSignedNoise(rng) < -0.2f)
+                    {
+                        continue;
+                    }
+
                     Put(texture, x, y, tint);
                     Put(texture, x + 1, y, tint);
                     Put(texture, x, y + 1, tint);
@@ -606,6 +592,49 @@ namespace BooterBigArm.Editor
             }
 
             texture.SetPixel(x, y, color);
+        }
+
+        private static int GetSeed(Color32 a, Color32 b, Color32 c, GroundPattern pattern)
+        {
+            unchecked
+            {
+                return a.r
+                    | (a.g << 8)
+                    | (a.b << 16)
+                    | (b.r << 1)
+                    | (b.g << 9)
+                    | (b.b << 17)
+                    | (c.r << 2)
+                    | (c.g << 10)
+                    | (c.b << 18)
+                    | (((int)pattern) << 24);
+            }
+        }
+
+        private static int GetSeed(Color32 a, GroundOverlayPattern pattern)
+        {
+            unchecked
+            {
+                return a.r
+                    | (a.g << 8)
+                    | (a.b << 16)
+                    | (((int)pattern) << 24);
+            }
+        }
+
+        private static float NextSignedNoise(System.Random rng)
+        {
+            return (float)(rng.NextDouble() * 2.0 - 1.0);
+        }
+
+        private static Color32 Blend(Color32 a, Color32 b, float t)
+        {
+            t = Mathf.Clamp01(t);
+            return new Color32(
+                (byte)Mathf.RoundToInt(Mathf.Lerp(a.r, b.r, t)),
+                (byte)Mathf.RoundToInt(Mathf.Lerp(a.g, b.g, t)),
+                (byte)Mathf.RoundToInt(Mathf.Lerp(a.b, b.b, t)),
+                (byte)Mathf.RoundToInt(Mathf.Lerp(a.a, b.a, t)));
         }
 
         private static void UpdateBuildSettings()

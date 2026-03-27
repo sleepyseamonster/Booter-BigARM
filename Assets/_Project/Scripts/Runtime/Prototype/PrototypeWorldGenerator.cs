@@ -38,6 +38,10 @@ namespace BooterBigArm.Runtime
         private TileBase[] emptyPebbleChunkTiles;
         private TileBase[] emptyRockChunkTiles;
         private TileBase[] emptySmoothChunkTiles;
+        private Matrix4x4[] chunkTransformBuffer;
+        private Matrix4x4[] pebbleChunkTransformBuffer;
+        private Matrix4x4[] rockChunkTransformBuffer;
+        private Matrix4x4[] smoothChunkTransformBuffer;
         private Vector2Int currentCenterChunk;
 
         public int Seed => seed;
@@ -535,6 +539,10 @@ namespace BooterBigArm.Runtime
             emptyPebbleChunkTiles = new TileBase[tileCount];
             emptyRockChunkTiles = new TileBase[tileCount];
             emptySmoothChunkTiles = new TileBase[tileCount];
+            chunkTransformBuffer = new Matrix4x4[tileCount];
+            pebbleChunkTransformBuffer = new Matrix4x4[tileCount];
+            rockChunkTransformBuffer = new Matrix4x4[tileCount];
+            smoothChunkTransformBuffer = new Matrix4x4[tileCount];
         }
 
         private void QueueChunkOperation(Vector2Int chunkCoord)
@@ -580,21 +588,29 @@ namespace BooterBigArm.Runtime
 
             var bounds = GetChunkBounds(chunkCoord);
             FillChunkBuffer(chunkCoord);
+            FillChunkTransforms(chunkCoord);
             tilemap.SetTilesBlock(bounds, chunkTileBuffer);
+            ApplyChunkTransforms(tilemap, bounds, chunkTransformBuffer);
             FillPebbleChunkBuffer(chunkCoord);
+            FillPebbleChunkTransforms(chunkCoord);
             FillRockChunkBuffer(chunkCoord);
+            FillRockChunkTransforms(chunkCoord);
             FillSmoothChunkBuffer(chunkCoord);
+            FillSmoothChunkTransforms(chunkCoord);
             if (pebbleTilemap != null)
             {
                 pebbleTilemap.SetTilesBlock(bounds, pebbleChunkTileBuffer);
+                ApplyChunkTransforms(pebbleTilemap, bounds, pebbleChunkTransformBuffer);
             }
             if (rockTilemap != null)
             {
                 rockTilemap.SetTilesBlock(bounds, rockChunkTileBuffer);
+                ApplyChunkTransforms(rockTilemap, bounds, rockChunkTransformBuffer);
             }
             if (smoothTilemap != null)
             {
                 smoothTilemap.SetTilesBlock(bounds, smoothChunkTileBuffer);
+                ApplyChunkTransforms(smoothTilemap, bounds, smoothChunkTransformBuffer);
             }
             visibleChunks.Add(chunkCoord);
         }
@@ -645,6 +661,11 @@ namespace BooterBigArm.Runtime
             }
         }
 
+        private void FillChunkTransforms(Vector2Int chunkCoord)
+        {
+            FillRotationBuffer(chunkCoord, seed, chunkTransformBuffer);
+        }
+
         private void FillPebbleChunkBuffer(Vector2Int chunkCoord)
         {
             var index = 0;
@@ -654,9 +675,14 @@ namespace BooterBigArm.Runtime
                 {
                     var worldX = chunkCoord.x * chunkSize + localX;
                     var worldY = chunkCoord.y * chunkSize + localY;
-                    pebbleChunkTileBuffer[index++] = SelectLayerTile(runtimePebbleTiles, worldX, worldY, seed + 17, 0.55f, 8, 0.2f);
+                    pebbleChunkTileBuffer[index++] = SelectLayerTile(runtimePebbleTiles, worldX, worldY, seed + 17, 0.9f, 12, 0.08f);
                 }
             }
+        }
+
+        private void FillPebbleChunkTransforms(Vector2Int chunkCoord)
+        {
+            FillRotationBuffer(chunkCoord, seed + 17, pebbleChunkTransformBuffer);
         }
 
         private void FillRockChunkBuffer(Vector2Int chunkCoord)
@@ -668,9 +694,14 @@ namespace BooterBigArm.Runtime
                 {
                     var worldX = chunkCoord.x * chunkSize + localX;
                     var worldY = chunkCoord.y * chunkSize + localY;
-                    rockChunkTileBuffer[index++] = SelectLayerTile(runtimeRockTiles, worldX, worldY, seed + 43, 0.78f, 12, 0.16f);
+                    rockChunkTileBuffer[index++] = SelectLayerTile(runtimeRockTiles, worldX, worldY, seed + 43, 0.88f, 8, 0.14f);
                 }
             }
+        }
+
+        private void FillRockChunkTransforms(Vector2Int chunkCoord)
+        {
+            FillRotationBuffer(chunkCoord, seed + 43, rockChunkTransformBuffer);
         }
 
         private void FillSmoothChunkBuffer(Vector2Int chunkCoord)
@@ -687,6 +718,30 @@ namespace BooterBigArm.Runtime
             }
         }
 
+        private void FillSmoothChunkTransforms(Vector2Int chunkCoord)
+        {
+            FillRotationBuffer(chunkCoord, seed + 71, smoothChunkTransformBuffer);
+        }
+
+        private void FillRotationBuffer(Vector2Int chunkCoord, int noiseSeed, Matrix4x4[] buffer)
+        {
+            if (buffer == null)
+            {
+                return;
+            }
+
+            var index = 0;
+            for (var localY = 0; localY < chunkSize; localY++)
+            {
+                for (var localX = 0; localX < chunkSize; localX++)
+                {
+                    var worldX = chunkCoord.x * chunkSize + localX;
+                    var worldY = chunkCoord.y * chunkSize + localY;
+                    buffer[index++] = CreateRotationMatrix(noiseSeed, worldX, worldY);
+                }
+            }
+        }
+
         private TileBase SelectTile(int worldX, int worldY)
         {
             if (runtimeTiles == null || runtimeTiles.Length == 0)
@@ -699,15 +754,15 @@ namespace BooterBigArm.Runtime
                 return runtimeTiles[0];
             }
 
-            var regionNoise = Hash01(seed, worldX / 4, worldY / 4);
-            var detailNoise = Hash01(seed + 53, worldX, worldY);
+            var variant = GetVariantIndex(seed, worldX, worldY, runtimeTiles.Length);
+            var leftVariant = GetVariantIndex(seed, worldX - 1, worldY, runtimeTiles.Length);
+            var upVariant = GetVariantIndex(seed, worldX, worldY - 1, runtimeTiles.Length);
 
-            var variant = Mathf.FloorToInt(regionNoise * runtimeTiles.Length);
-            variant = Mathf.Clamp(variant, 0, runtimeTiles.Length - 1);
-
-            if (detailNoise < 0.12f && runtimeTiles.Length > 1)
+            var attempts = 0;
+            while ((variant == leftVariant || variant == upVariant) && attempts < runtimeTiles.Length)
             {
                 variant = (variant + 1) % runtimeTiles.Length;
+                attempts++;
             }
 
             return runtimeTiles[variant];
@@ -760,6 +815,49 @@ namespace BooterBigArm.Runtime
                 hash *= 1274126177u;
                 hash ^= hash >> 16;
                 return (hash & 0x00FFFFFFu) / 16777215f;
+            }
+        }
+
+        private static int GetVariantIndex(int noiseSeed, int worldX, int worldY, int variantCount)
+        {
+            if (variantCount <= 1)
+            {
+                return 0;
+            }
+
+            var value = Hash01(noiseSeed, worldX, worldY) * variantCount;
+            var variant = Mathf.FloorToInt(value);
+            return Mathf.Clamp(variant, 0, variantCount - 1);
+        }
+
+        private static Matrix4x4 CreateRotationMatrix(int noiseSeed, int worldX, int worldY)
+        {
+            var rotationIndex = Mathf.FloorToInt(Hash01(noiseSeed + 97, worldX, worldY) * 4f);
+            rotationIndex = Mathf.Clamp(rotationIndex, 0, 3);
+            if (rotationIndex == 0)
+            {
+                return Matrix4x4.identity;
+            }
+
+            return Matrix4x4.Rotate(Quaternion.Euler(0f, 0f, rotationIndex * 90f));
+        }
+
+        private static void ApplyChunkTransforms(Tilemap targetTilemap, BoundsInt bounds, Matrix4x4[] transforms)
+        {
+            if (targetTilemap == null || transforms == null)
+            {
+                return;
+            }
+
+            var index = 0;
+            for (var y = 0; y < bounds.size.y; y++)
+            {
+                for (var x = 0; x < bounds.size.x; x++)
+                {
+                    targetTilemap.SetTransformMatrix(
+                        new Vector3Int(bounds.xMin + x, bounds.yMin + y, 0),
+                        transforms[index++]);
+                }
             }
         }
 
