@@ -13,7 +13,7 @@ namespace BooterBigArm.Runtime
         [SerializeField] private GameObject propPrefab;
         [SerializeField] private GameObject[] propPrefabs;
         [SerializeField] private Transform propParent;
-        [SerializeField, Range(0f, 1f)] private float propSpawnChance = 0.05f;
+        [SerializeField, Range(0f, 1f)] private float propSpawnChance = 0.12f;
         [SerializeField] private Tilemap pebbleTilemap;
         [SerializeField] private Sprite[] pebbleTileSprites;
         [SerializeField] private Tilemap rockTilemap;

@@ -151,7 +151,7 @@ namespace BooterBigArm.Editor
             SetObjectArray(generator, "tileSprites", sandSprites);
             SetObjectArray(generator, "propPrefabs", tallPropPrefabs);
             SetObjectReference(generator, "propParent", propRoot.transform);
-            SetFloat(generator, "propSpawnChance", 0.035f);
+            SetFloat(generator, "propSpawnChance", 0.12f);
             SetObjectReference(generator, "pebbleTilemap", pebbleTilemap);
             SetObjectArray(generator, "pebbleTileSprites", pebbleSprites);
             SetObjectReference(generator, "rockTilemap", rockTilemap);
