@@ -741,7 +741,7 @@ namespace BooterBigArm.Runtime
             System.Array.Clear(sandOverlayChunkTileBuffer, 0, sandOverlayChunkTileBuffer.Length);
 
             var chunkNoise = Hash01(seed + 191, chunkCoord.x, chunkCoord.y);
-            if (chunkNoise > 0.32f || runtimeSandOverlayTiles == null || runtimeSandOverlayTiles.Length == 0)
+            if (chunkNoise > 0.58f || runtimeSandOverlayTiles == null || runtimeSandOverlayTiles.Length == 0)
             {
                 return;
             }

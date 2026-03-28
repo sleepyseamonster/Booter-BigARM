@@ -157,7 +157,7 @@ namespace BooterBigArm.Editor
             var sandOverlayGrid = CreateGrid(worldRoot.transform, "Sand Overlay Grid", new Vector3(4f, 4f, 1f));
 
             var sandTilemap = CreateTilemapLayer(sandGrid.transform, "Sand Tilemap", 0);
-            var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 1);
+            var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 10);
             var pebbleTilemap = CreateTilemapLayer(groundGrid.transform, "Pebble Tilemap", 2);
             var rockTilemap = CreateTilemapLayer(groundGrid.transform, "Rock Tilemap", 3);
             var smoothTilemap = CreateTilemapLayer(groundGrid.transform, "Smooth Tilemap", 4);
