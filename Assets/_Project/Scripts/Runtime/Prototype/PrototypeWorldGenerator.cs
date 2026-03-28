@@ -895,18 +895,33 @@ namespace BooterBigArm.Runtime
                 return runtimeTiles[0];
             }
 
-            var variant = GetVariantIndex(seed, worldX, worldY, runtimeTiles.Length);
-            var leftVariant = GetVariantIndex(seed, worldX - 1, worldY, runtimeTiles.Length);
-            var upVariant = GetVariantIndex(seed, worldX, worldY - 1, runtimeTiles.Length);
-
-            var attempts = 0;
-            while ((variant == leftVariant || variant == upVariant) && attempts < runtimeTiles.Length)
+            var baseTile = runtimeTiles[0];
+            if (baseTile == null)
             {
-                variant = (variant + 1) % runtimeTiles.Length;
-                attempts++;
+                for (var i = 1; i < runtimeTiles.Length; i++)
+                {
+                    if (runtimeTiles[i] != null)
+                    {
+                        return runtimeTiles[i];
+                    }
+                }
+
+                return null;
             }
 
-            return runtimeTiles[variant];
+            const float accentChance = 0.06f;
+            if (Hash01(seed + 101, worldX, worldY) >= accentChance)
+            {
+                return baseTile;
+            }
+
+            var accentIndex = 1 + GetVariantIndex(seed + 103, worldX, worldY, runtimeTiles.Length - 1);
+            if (accentIndex < 0 || accentIndex >= runtimeTiles.Length || runtimeTiles[accentIndex] == null)
+            {
+                return baseTile;
+            }
+
+            return runtimeTiles[accentIndex];
         }
 
         private TileBase SelectLayerTile(TileBase[] tiles, int worldX, int worldY, int noiseSeed, float presenceThreshold, int regionScale, float detailChance)
