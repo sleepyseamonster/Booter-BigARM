@@ -909,7 +909,7 @@ namespace BooterBigArm.Runtime
                 return null;
             }
 
-            const float accentChance = 0.06f;
+            const float accentChance = 0.24f;
             if (Hash01(seed + 101, worldX, worldY) >= accentChance)
             {
                 return baseTile;
