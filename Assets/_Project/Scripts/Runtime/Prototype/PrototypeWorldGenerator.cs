@@ -15,6 +15,8 @@ namespace BooterBigArm.Runtime
         [SerializeField] private Transform propParent;
         [SerializeField, Range(0f, 1f)] private float propSpawnChance = 0.12f;
         [SerializeField] private PrototypeWorldSettings worldSettings;
+        [SerializeField] private Tilemap ruleGroundTilemap;
+        [SerializeField] private Sprite[] ruleGroundSprites;
         [SerializeField] private Tilemap pebbleTilemap;
         [SerializeField] private Sprite[] pebbleTileSprites;
         [SerializeField] private Tilemap rockTilemap;
@@ -39,12 +41,15 @@ namespace BooterBigArm.Runtime
         private TileBase[] runtimeRockTiles;
         private TileBase[] runtimeSmoothTiles;
         private TileBase[] runtimeSandOverlayTiles;
+        private RuleTile runtimeRuleGroundTile;
+        private TileBase[] ruleGroundChunkTiles;
         private TileBase[] emptyChunkTiles;
         private TileBase[] chunkTileBuffer;
         private TileBase[] sandOverlayChunkTileBuffer;
         private TileBase[] pebbleChunkTileBuffer;
         private TileBase[] rockChunkTileBuffer;
         private TileBase[] smoothChunkTileBuffer;
+        private TileBase[] emptyRuleGroundChunkTiles;
         private TileBase[] emptySandOverlayChunkTiles;
         private TileBase[] emptyPebbleChunkTiles;
         private TileBase[] emptyRockChunkTiles;
@@ -79,6 +84,10 @@ namespace BooterBigArm.Runtime
             queuedChunks.Clear();
             ClearSpawnedProps();
             tilemap.ClearAllTiles();
+            if (ruleGroundTilemap != null)
+            {
+                ruleGroundTilemap.ClearAllTiles();
+            }
             if (pebbleTilemap != null)
             {
                 pebbleTilemap.ClearAllTiles();
@@ -197,11 +206,15 @@ namespace BooterBigArm.Runtime
                 runtimePebbleTiles != null &&
                 runtimeRockTiles != null &&
                 runtimeSmoothTiles != null &&
+                runtimeRuleGroundTile != null &&
                 tileSprites != null &&
+                ruleGroundSprites != null &&
                 pebbleTileSprites != null &&
                 rockTileSprites != null &&
                 smoothTileSprites != null &&
                 runtimeTiles.Length == tileSprites.Length &&
+                runtimeRuleGroundTile != null &&
+                ruleGroundSprites.Length > 0 &&
                 runtimePebbleTiles.Length == pebbleTileSprites.Length &&
                 runtimeRockTiles.Length == rockTileSprites.Length &&
                 runtimeSmoothTiles.Length == smoothTileSprites.Length)
@@ -238,6 +251,7 @@ namespace BooterBigArm.Runtime
             runtimeRockTiles = BuildRuntimeTiles(rockTileSprites, CreateFallbackRockTiles, "PrototypeRuntimeRockTile");
             runtimeSmoothTiles = BuildRuntimeTiles(smoothTileSprites, CreateFallbackSmoothTiles, "PrototypeRuntimeSmoothTile");
             runtimeSandOverlayTiles = BuildRuntimeTiles(sandOverlayTileSprites, CreateFallbackSandOverlayTiles, "PrototypeRuntimeSandOverlayTile");
+            runtimeRuleGroundTile = BuildRuntimeRuleGroundTile(ruleGroundSprites);
 
             EnsureChunkBuffers();
         }
@@ -586,11 +600,13 @@ namespace BooterBigArm.Runtime
             }
 
             chunkTileBuffer = new TileBase[tileCount];
+            ruleGroundChunkTiles = new TileBase[tileCount];
             sandOverlayChunkTileBuffer = new TileBase[tileCount];
             pebbleChunkTileBuffer = new TileBase[tileCount];
             rockChunkTileBuffer = new TileBase[tileCount];
             smoothChunkTileBuffer = new TileBase[tileCount];
             emptyChunkTiles = new TileBase[tileCount];
+            emptyRuleGroundChunkTiles = new TileBase[tileCount];
             emptySandOverlayChunkTiles = new TileBase[tileCount];
             emptyPebbleChunkTiles = new TileBase[tileCount];
             emptyRockChunkTiles = new TileBase[tileCount];
@@ -644,6 +660,11 @@ namespace BooterBigArm.Runtime
             EnsureChunkBuffers();
 
             var bounds = GetChunkBounds(chunkCoord);
+            FillRuleGroundChunkBuffer();
+            if (ruleGroundTilemap != null)
+            {
+                ruleGroundTilemap.SetTilesBlock(bounds, ruleGroundChunkTiles);
+            }
             FillChunkBuffer(chunkCoord);
             FillChunkTransforms(chunkCoord);
             tilemap.SetTilesBlock(bounds, chunkTileBuffer);
@@ -685,6 +706,10 @@ namespace BooterBigArm.Runtime
             EnsureChunkBuffers();
 
             var bounds = GetChunkBounds(chunkCoord);
+            if (ruleGroundTilemap != null)
+            {
+                ruleGroundTilemap.SetTilesBlock(bounds, emptyRuleGroundChunkTiles);
+            }
             tilemap.SetTilesBlock(bounds, emptyChunkTiles);
             if (sandOverlayTilemap != null)
             {
@@ -729,6 +754,88 @@ namespace BooterBigArm.Runtime
                     chunkTileBuffer[index++] = SelectTile(worldX, worldY);
                 }
             }
+        }
+
+        private void FillRuleGroundChunkBuffer()
+        {
+            if (runtimeRuleGroundTile == null)
+            {
+                System.Array.Clear(ruleGroundChunkTiles, 0, ruleGroundChunkTiles.Length);
+                return;
+            }
+
+            for (var i = 0; i < ruleGroundChunkTiles.Length; i++)
+            {
+                ruleGroundChunkTiles[i] = runtimeRuleGroundTile;
+            }
+        }
+
+        private static RuleTile BuildRuntimeRuleGroundTile(Sprite[] sprites)
+        {
+            if (sprites == null || sprites.Length < 16)
+            {
+                return null;
+            }
+
+            var ruleTile = ScriptableObject.CreateInstance<RuleTile>();
+            ruleTile.name = "RuntimeRuleGroundTile";
+            ruleTile.m_DefaultSprite = sprites[15];
+            ruleTile.m_DefaultGameObject = null;
+            ruleTile.m_DefaultColliderType = Tile.ColliderType.None;
+            ruleTile.m_TilingRules = BuildRuntimeRuleGroundRules(sprites);
+            ruleTile.UpdateNeighborPositions();
+            ruleTile.hideFlags = HideFlags.HideAndDontSave;
+            return ruleTile;
+        }
+
+        private static List<RuleTile.TilingRule> BuildRuntimeRuleGroundRules(IReadOnlyList<Sprite> sprites)
+        {
+            var orderedMasks = new[] { 15, 7, 11, 13, 14, 3, 5, 9, 6, 10, 12, 1, 2, 4, 8, 0 };
+            var rules = new List<RuleTile.TilingRule>(orderedMasks.Length);
+
+            foreach (var mask in orderedMasks)
+            {
+                rules.Add(CreateRuntimeRuleGroundRule(sprites[mask], mask));
+            }
+
+            return rules;
+        }
+
+        private static RuleTile.TilingRule CreateRuntimeRuleGroundRule(Sprite sprite, int mask)
+        {
+            var rule = new RuleTile.TilingRule
+            {
+                m_Output = RuleTile.TilingRuleOutput.OutputSprite.Single,
+                m_ColliderType = Tile.ColliderType.None,
+                m_RuleTransform = RuleTile.TilingRuleOutput.Transform.Fixed,
+                m_Sprites = new[] { sprite }
+            };
+
+            rule.m_NeighborPositions = new List<Vector3Int>
+            {
+                new(-1, 1, 0),
+                new(0, 1, 0),
+                new(1, 1, 0),
+                new(-1, 0, 0),
+                new(1, 0, 0),
+                new(-1, -1, 0),
+                new(0, -1, 0),
+                new(1, -1, 0)
+            };
+
+            rule.m_Neighbors = new List<int>
+            {
+                0,
+                (mask & 1) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                0,
+                (mask & 8) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                (mask & 2) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                0,
+                (mask & 4) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                0
+            };
+
+            return rule;
         }
 
         private void FillChunkTransforms(Vector2Int chunkCoord)

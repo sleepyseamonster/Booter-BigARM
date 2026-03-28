@@ -24,6 +24,8 @@ namespace BooterBigArm.Editor
         private const string ShadowSpritePath = "Assets/_Project/Art/Prototype/Shadows/PrototypeShadow.png";
         private const string TallPropSpritePath = "Assets/_Project/Art/Prototype/Props/TallPropPlaceholder.png";
         private const string TallPropPrefabPath = "Assets/_Project/Prefabs/Prototype/TallPropPlaceholder.prefab";
+        private const string RuleGroundFolder = "Assets/_Project/Art/Prototype/Ground/RuleGround";
+        private const string RuleGroundRuleTilePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/RuleGroundRuleTile.asset";
         private const string TallPropWidePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropWide64x64.prefab";
         private const string TallPropTallPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTall64x96.prefab";
         private const string TallPropSquarePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSquare32x32.prefab";
@@ -59,6 +61,8 @@ namespace BooterBigArm.Editor
             var shadowSprite = EnsureShadowSpriteAsset();
             var tallPropSprite = EnsureTallPropSpriteAsset();
             var tallPropPrefabs = EnsureTallPropPrefabs(tallPropSprite, shadowSprite);
+            var ruleGroundSprites = EnsureRuleGroundSprites();
+            EnsureRuleGroundRuleTileAsset(ruleGroundSprites);
             var sandSprites = EnsureSandSprites();
             var sandOverlaySprites = EnsureSandOverlaySprites();
             var pebbleSprites = EnsurePebbleSprites();
@@ -73,6 +77,7 @@ namespace BooterBigArm.Editor
             var world = CreateWorld(
                 player.transform,
                 tallPropPrefabs,
+                ruleGroundSprites,
                 sandSprites,
                 sandOverlaySprites,
                 pebbleSprites,
@@ -140,6 +145,7 @@ namespace BooterBigArm.Editor
         private static PrototypeWorldGenerator CreateWorld(
             Transform player,
             GameObject[] tallPropPrefabs,
+            Sprite[] ruleGroundSprites,
             Sprite[] sandSprites,
             Sprite[] sandOverlaySprites,
             Sprite[] pebbleSprites,
@@ -152,10 +158,12 @@ namespace BooterBigArm.Editor
             var propRoot = new GameObject("Tall Props");
             propRoot.transform.SetParent(worldRoot.transform, false);
 
+            var ruleGroundGrid = CreateGrid(worldRoot.transform, "Rule Ground Grid", Vector3.one);
             var groundGrid = CreateGrid(worldRoot.transform, "Ground Grid", Vector3.one);
             var sandGrid = CreateGrid(worldRoot.transform, "Sand Grid", new Vector3(2f, 2f, 1f));
             var sandOverlayGrid = CreateGrid(worldRoot.transform, "Sand Overlay Grid", new Vector3(4f, 4f, 1f));
 
+            var ruleGroundTilemap = CreateTilemapLayer(ruleGroundGrid.transform, "Rule Ground Tilemap", -1);
             var sandTilemap = CreateTilemapLayer(sandGrid.transform, "Sand Tilemap", 0);
             var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 10);
             var pebbleTilemap = CreateTilemapLayer(groundGrid.transform, "Pebble Tilemap", 2);
@@ -165,6 +173,8 @@ namespace BooterBigArm.Editor
             var generator = sandTilemap.gameObject.AddComponent<PrototypeWorldGenerator>();
             SetObjectReference(generator, "target", player);
             SetObjectReference(generator, "worldSettings", worldSettings);
+            SetObjectReference(generator, "ruleGroundTilemap", ruleGroundTilemap);
+            SetObjectArray(generator, "ruleGroundSprites", ruleGroundSprites);
             SetObjectArray(generator, "tileSprites", sandSprites);
             SetObjectReference(generator, "sandOverlayTilemap", sandOverlayTilemap);
             SetObjectArray(generator, "sandOverlayTileSprites", sandOverlaySprites);
@@ -515,6 +525,104 @@ namespace BooterBigArm.Editor
             }
 
             return Array.Empty<Sprite>();
+        }
+
+        private static RuleTile EnsureRuleGroundRuleTileAsset(Sprite[] sprites)
+        {
+            if (sprites.Length < 16)
+            {
+                throw new System.InvalidOperationException(
+                    $"Expected 16 rule-ground sprites, found {sprites.Length}.");
+            }
+
+            var folderPath = Path.GetDirectoryName(RuleGroundRuleTilePath);
+            if (!string.IsNullOrEmpty(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            var ruleTile = AssetDatabase.LoadAssetAtPath<RuleTile>(RuleGroundRuleTilePath);
+            if (ruleTile == null)
+            {
+                ruleTile = ScriptableObject.CreateInstance<RuleTile>();
+                AssetDatabase.CreateAsset(ruleTile, RuleGroundRuleTilePath);
+            }
+
+            ruleTile.name = "RuleGroundRuleTile";
+            ruleTile.m_DefaultSprite = sprites[15];
+            ruleTile.m_DefaultGameObject = null;
+            ruleTile.m_DefaultColliderType = Tile.ColliderType.None;
+            ruleTile.m_TilingRules = BuildRuleGroundRules(sprites);
+            ruleTile.UpdateNeighborPositions();
+
+            EditorUtility.SetDirty(ruleTile);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.ImportAsset(RuleGroundRuleTilePath, ImportAssetOptions.ForceSynchronousImport);
+            return AssetDatabase.LoadAssetAtPath<RuleTile>(RuleGroundRuleTilePath);
+        }
+
+        private static Sprite[] EnsureRuleGroundSprites()
+        {
+            var sprites = new List<Sprite>(16);
+            for (var mask = 0; mask < 16; mask++)
+            {
+                var spritePath = Path.Combine(RuleGroundFolder, $"RuleGround{mask:D2}.png");
+                EnsureSpriteAsset(spritePath, CreateRuleGroundTexture(mask), false);
+                sprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
+            }
+
+            return sprites.ToArray();
+        }
+
+        private static List<RuleTile.TilingRule> BuildRuleGroundRules(IReadOnlyList<Sprite> sprites)
+        {
+            var orderedMasks = new[] { 15, 7, 11, 13, 14, 3, 5, 9, 6, 10, 12, 1, 2, 4, 8, 0 };
+            var rules = new List<RuleTile.TilingRule>(orderedMasks.Length);
+
+            foreach (var mask in orderedMasks)
+            {
+                var rule = CreateRuleGroundRule(sprites[mask], mask);
+                rules.Add(rule);
+            }
+
+            return rules;
+        }
+
+        private static RuleTile.TilingRule CreateRuleGroundRule(Sprite sprite, int mask)
+        {
+            var rule = new RuleTile.TilingRule
+            {
+                m_Output = RuleTile.TilingRuleOutput.OutputSprite.Single,
+                m_ColliderType = Tile.ColliderType.None,
+                m_RuleTransform = RuleTile.TilingRuleOutput.Transform.Fixed,
+                m_Sprites = new[] { sprite }
+            };
+
+            rule.m_NeighborPositions = new List<Vector3Int>
+            {
+                new(-1, 1, 0),
+                new(0, 1, 0),
+                new(1, 1, 0),
+                new(-1, 0, 0),
+                new(1, 0, 0),
+                new(-1, -1, 0),
+                new(0, -1, 0),
+                new(1, -1, 0)
+            };
+
+            rule.m_Neighbors = new List<int>
+            {
+                0,
+                (mask & 1) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                0,
+                (mask & 8) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                (mask & 2) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                0,
+                (mask & 4) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                0
+            };
+
+            return rule;
         }
 
         private static Sprite[] LoadPsdSprites(string path, string spritePrefix)
@@ -958,6 +1066,150 @@ namespace BooterBigArm.Editor
 
             texture.Apply(false, false);
             return texture;
+        }
+
+        private static Texture2D CreateRuleGroundTexture(int mask)
+        {
+            const int size = 32;
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+
+            var seed = 0x5F4B19 + mask * 173;
+            var baseColor = new Color32(172, 138, 86, 255);
+            var highlightColor = new Color32(196, 166, 111, 255);
+            var shadowColor = new Color32(112, 82, 48, 255);
+            var gritColor = new Color32(139, 112, 73, 255);
+            var rng = new System.Random(seed);
+
+            for (var y = 0; y < size; y++)
+            {
+                for (var x = 0; x < size; x++)
+                {
+                    var low = TileableValueNoise(seed, x, y, 4);
+                    var mid = TileableValueNoise(seed + 17, x, y, 8);
+                    var fine = TileableValueNoise(seed + 41, x, y, 16);
+                    var color = Blend(baseColor, highlightColor, 0.45f + low * 0.16f + mid * 0.08f + fine * 0.04f);
+
+                    if (fine > 0.1f)
+                    {
+                        color = Blend(color, gritColor, (fine - 0.1f) * 0.14f);
+                    }
+
+                    texture.SetPixel(x, y, color);
+                }
+            }
+
+            ApplyRuleGroundEdge(texture, mask, 1, shadowColor, highlightColor);
+            ApplyRuleGroundEdge(texture, mask, 2, shadowColor, highlightColor);
+            ApplyRuleGroundEdge(texture, mask, 4, shadowColor, highlightColor);
+            ApplyRuleGroundEdge(texture, mask, 8, shadowColor, highlightColor);
+            SprinkleRuleGroundSpecks(texture, rng, highlightColor, shadowColor);
+
+            texture.Apply(false, false);
+            return texture;
+        }
+
+        private static void ApplyRuleGroundEdge(Texture2D texture, int mask, int bit, Color32 shadowColor, Color32 highlightColor)
+        {
+            var connected = (mask & bit) != 0;
+            switch (bit)
+            {
+                case 1:
+                {
+                    for (var y = 0; y < 4; y++)
+                    {
+                        for (var x = 0; x < 32; x++)
+                        {
+                            var t = connected ? 0.08f : 0.38f;
+                            var color = Blend(texture.GetPixel(x, y), connected ? highlightColor : shadowColor, t);
+                            texture.SetPixel(x, y, color);
+                        }
+                    }
+                    break;
+                }
+                case 2:
+                {
+                    for (var x = 28; x < 32; x++)
+                    {
+                        for (var y = 0; y < 32; y++)
+                        {
+                            var t = connected ? 0.08f : 0.38f;
+                            var color = Blend(texture.GetPixel(x, y), connected ? highlightColor : shadowColor, t);
+                            texture.SetPixel(x, y, color);
+                        }
+                    }
+                    break;
+                }
+                case 4:
+                {
+                    for (var y = 28; y < 32; y++)
+                    {
+                        for (var x = 0; x < 32; x++)
+                        {
+                            var t = connected ? 0.08f : 0.38f;
+                            var color = Blend(texture.GetPixel(x, y), connected ? shadowColor : shadowColor, t);
+                            texture.SetPixel(x, y, color);
+                        }
+                    }
+                    break;
+                }
+                case 8:
+                {
+                    for (var x = 0; x < 4; x++)
+                    {
+                        for (var y = 0; y < 32; y++)
+                        {
+                            var t = connected ? 0.08f : 0.38f;
+                            var color = Blend(texture.GetPixel(x, y), connected ? highlightColor : shadowColor, t);
+                            texture.SetPixel(x, y, color);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+        private static void SprinkleRuleGroundSpecks(Texture2D texture, System.Random rng, Color32 highlightColor, Color32 shadowColor)
+        {
+            for (var i = 0; i < 10; i++)
+            {
+                var x = rng.Next(3, 29);
+                var y = rng.Next(3, 29);
+                var color = (i & 1) == 0 ? highlightColor : shadowColor;
+                texture.SetPixel(x, y, color);
+
+                if (rng.NextDouble() > 0.55)
+                {
+                    texture.SetPixel(x + Mathf.Clamp(rng.Next(-1, 2), -1, 1), y, color);
+                }
+            }
+        }
+
+        private static void EnsureSpriteAsset(string assetPath, Texture2D texture, bool alphaIsTransparency)
+        {
+            var folderPath = Path.GetDirectoryName(assetPath);
+            if (!string.IsNullOrEmpty(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            File.WriteAllBytes(assetPath, texture.EncodeToPNG());
+            UnityEngine.Object.DestroyImmediate(texture);
+
+            AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceSynchronousImport);
+
+            var importer = (TextureImporter)AssetImporter.GetAtPath(assetPath);
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Single;
+            importer.spritePixelsPerUnit = 32f;
+            importer.filterMode = FilterMode.Point;
+            importer.mipmapEnabled = false;
+            importer.textureCompression = TextureImporterCompression.Uncompressed;
+            importer.alphaIsTransparency = alphaIsTransparency;
+            importer.SaveAndReimport();
         }
 
         private static void DrawPebbleTile(Texture2D texture, Color32 tint, System.Random rng, int radius, int variantBias)
