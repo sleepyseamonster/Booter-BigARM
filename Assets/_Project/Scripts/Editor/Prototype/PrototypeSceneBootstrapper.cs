@@ -266,8 +266,13 @@ namespace BooterBigArm.Editor
             AssetDatabase.ImportAsset(PlayerSpritePath, ImportAssetOptions.ForceSynchronousImport);
 
             var importer = (TextureImporter)AssetImporter.GetAtPath(PlayerSpritePath);
+            var settings = new TextureImporterSettings();
+            importer.ReadTextureSettings(settings);
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;
+            settings.spriteAlignment = (int)SpriteAlignment.Custom;
+            settings.spritePivot = new Vector2(0.5f, 0f);
+            importer.SetTextureSettings(settings);
             importer.spritePixelsPerUnit = 32f;
             importer.filterMode = FilterMode.Point;
             importer.mipmapEnabled = false;
