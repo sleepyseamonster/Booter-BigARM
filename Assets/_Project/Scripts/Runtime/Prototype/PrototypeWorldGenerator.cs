@@ -738,16 +738,18 @@ namespace BooterBigArm.Runtime
 
         private void FillSandOverlayChunkBuffer(Vector2Int chunkCoord)
         {
-            var index = 0;
-            for (var localY = 0; localY < chunkSize; localY++)
+            System.Array.Clear(sandOverlayChunkTileBuffer, 0, sandOverlayChunkTileBuffer.Length);
+
+            var chunkNoise = Hash01(seed + 191, chunkCoord.x, chunkCoord.y);
+            if (chunkNoise > 0.32f || runtimeSandOverlayTiles == null || runtimeSandOverlayTiles.Length == 0)
             {
-                for (var localX = 0; localX < chunkSize; localX++)
-                {
-                    var worldX = chunkCoord.x * chunkSize + localX;
-                    var worldY = chunkCoord.y * chunkSize + localY;
-                    sandOverlayChunkTileBuffer[index++] = SelectSparseLayerTile(runtimeSandOverlayTiles, worldX, worldY, seed + 191, 0.972f);
-                }
+                return;
             }
+
+            var localX = GetSparsePropLocalCell(seed + 193, chunkCoord.x, chunkCoord.y);
+            var localY = GetSparsePropLocalCell(seed + 197, chunkCoord.x, chunkCoord.y);
+            var index = localY * chunkSize + localX;
+            sandOverlayChunkTileBuffer[index] = SelectDominantTile(runtimeSandOverlayTiles, chunkCoord.x * chunkSize + localX, chunkCoord.y * chunkSize + localY, seed + 191, 0.75f);
         }
 
         private void FillSandOverlayChunkTransforms(Vector2Int chunkCoord)

@@ -152,14 +152,15 @@ namespace BooterBigArm.Editor
             var propRoot = new GameObject("Tall Props");
             propRoot.transform.SetParent(worldRoot.transform, false);
 
-            var grid = worldRoot.AddComponent<Grid>();
-            grid.cellSize = Vector3.one;
+            var groundGrid = CreateGrid(worldRoot.transform, "Ground Grid");
+            var sandGrid = CreateGrid(worldRoot.transform, "Sand Grid");
+            var sandOverlayGrid = CreateGrid(worldRoot.transform, "Sand Overlay Grid");
 
-            var sandTilemap = CreateTilemapLayer(worldRoot.transform, "Sand Tilemap", 0);
-            var sandOverlayTilemap = CreateTilemapLayer(worldRoot.transform, "Sand Overlay Tilemap", 1);
-            var pebbleTilemap = CreateTilemapLayer(worldRoot.transform, "Pebble Tilemap", 2);
-            var rockTilemap = CreateTilemapLayer(worldRoot.transform, "Rock Tilemap", 3);
-            var smoothTilemap = CreateTilemapLayer(worldRoot.transform, "Smooth Tilemap", 4);
+            var sandTilemap = CreateTilemapLayer(sandGrid.transform, "Sand Tilemap", 0);
+            var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 1);
+            var pebbleTilemap = CreateTilemapLayer(groundGrid.transform, "Pebble Tilemap", 2);
+            var rockTilemap = CreateTilemapLayer(groundGrid.transform, "Rock Tilemap", 3);
+            var smoothTilemap = CreateTilemapLayer(groundGrid.transform, "Smooth Tilemap", 4);
 
             var generator = sandTilemap.gameObject.AddComponent<PrototypeWorldGenerator>();
             SetObjectReference(generator, "target", player);
@@ -181,6 +182,16 @@ namespace BooterBigArm.Editor
             SetInt(generator, "chunkRadius", 4);
 
             return generator;
+        }
+
+        private static Grid CreateGrid(Transform parent, string name)
+        {
+            var gridObject = new GameObject(name);
+            gridObject.transform.SetParent(parent, false);
+
+            var grid = gridObject.AddComponent<Grid>();
+            grid.cellSize = Vector3.one;
+            return grid;
         }
 
         private static Tilemap CreateTilemapLayer(Transform parent, string name, int sortingOrder)
