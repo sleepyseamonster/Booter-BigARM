@@ -14,6 +14,7 @@ namespace BooterBigArm.Runtime
         [SerializeField] private GameObject[] propPrefabs;
         [SerializeField] private Transform propParent;
         [SerializeField, Range(0f, 1f)] private float propSpawnChance = 0.12f;
+        [SerializeField] private PrototypeWorldSettings worldSettings;
         [SerializeField] private Tilemap pebbleTilemap;
         [SerializeField] private Sprite[] pebbleTileSprites;
         [SerializeField] private Tilemap rockTilemap;
@@ -90,6 +91,10 @@ namespace BooterBigArm.Runtime
         private void Awake()
         {
             tilemap = GetComponent<Tilemap>();
+            if (worldSettings == null)
+            {
+                worldSettings = GetComponentInParent<PrototypeWorldSettings>();
+            }
             chunkSize = Mathf.Max(1, chunkSize);
             chunkRadius = Mathf.Max(0, chunkRadius);
             chunkOperationsPerFrame = Mathf.Max(1, chunkOperationsPerFrame);
@@ -777,7 +782,7 @@ namespace BooterBigArm.Runtime
             }
 
             var chunkNoise = Hash01(seed + 109, chunkCoord.x, chunkCoord.y);
-            if (chunkNoise > propSpawnChance)
+            if (chunkNoise > GetPropSpawnChance())
             {
                 return;
             }
@@ -813,6 +818,16 @@ namespace BooterBigArm.Runtime
             }
 
             return propPrefab;
+        }
+
+        public float GetPropSpawnChance()
+        {
+            if (worldSettings != null)
+            {
+                return Mathf.Clamp01(worldSettings.PropSpawnChance);
+            }
+
+            return propSpawnChance;
         }
 
         private void DespawnChunkProps(Vector2Int chunkCoord)

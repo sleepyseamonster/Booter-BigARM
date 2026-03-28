@@ -135,6 +135,8 @@ namespace BooterBigArm.Editor
             Sprite[] smoothSprites)
         {
             var worldRoot = new GameObject("World");
+            var worldSettings = worldRoot.AddComponent<PrototypeWorldSettings>();
+            SetFloat(worldSettings, "propSpawnChance", 0.12f);
             var propRoot = new GameObject("Tall Props");
             propRoot.transform.SetParent(worldRoot.transform, false);
 
@@ -148,6 +150,7 @@ namespace BooterBigArm.Editor
 
             var generator = sandTilemap.gameObject.AddComponent<PrototypeWorldGenerator>();
             SetObjectReference(generator, "target", player);
+            SetObjectReference(generator, "worldSettings", worldSettings);
             SetObjectArray(generator, "tileSprites", sandSprites);
             SetObjectArray(generator, "propPrefabs", tallPropPrefabs);
             SetObjectReference(generator, "propParent", propRoot.transform);
