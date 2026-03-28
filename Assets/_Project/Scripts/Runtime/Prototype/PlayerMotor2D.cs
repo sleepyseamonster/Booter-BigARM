@@ -6,7 +6,8 @@ namespace BooterBigArm.Runtime
     [RequireComponent(typeof(Rigidbody2D))]
     public sealed class PlayerMotor2D : MonoBehaviour
     {
-        [SerializeField] private float moveSpeed = 6f;
+        [SerializeField] private float walkSpeed = 5.4f;
+        [SerializeField] private float sprintSpeed = 7.2f;
         [SerializeField] private float acceleration = 28f;
         [SerializeField] private float deceleration = 34f;
 
@@ -34,7 +35,8 @@ namespace BooterBigArm.Runtime
                 input.Normalize();
             }
 
-            var desiredVelocity = input * moveSpeed;
+            var maxSpeed = inputAdapter != null && inputAdapter.SprintHeld ? sprintSpeed : walkSpeed;
+            var desiredVelocity = input * maxSpeed;
             var response = desiredVelocity.sqrMagnitude > currentVelocity.sqrMagnitude ? acceleration : deceleration;
             currentVelocity = Vector2.MoveTowards(currentVelocity, desiredVelocity, response * Time.fixedDeltaTime);
 

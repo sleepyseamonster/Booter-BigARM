@@ -10,13 +10,16 @@ namespace BooterBigArm.Runtime
         [SerializeField] private string actionMapName = "Player";
         [SerializeField] private string moveActionName = "Move";
         [SerializeField] private string lookActionName = "Look";
+        [SerializeField] private string sprintActionName = "Sprint";
 
         private InputActionMap actionMap;
         private InputAction moveAction;
         private InputAction lookAction;
+        private InputAction sprintAction;
 
         public Vector2 MoveValue { get; private set; }
         public Vector2 LookValue { get; private set; }
+        public bool SprintHeld { get; private set; }
 
         public void SetInputActions(InputActionAsset actions)
         {
@@ -62,10 +65,22 @@ namespace BooterBigArm.Runtime
                 return;
             }
 
+            sprintAction = actionMap.FindAction(sprintActionName, false);
+            if (sprintAction == null)
+            {
+                Debug.LogError(
+                    $"{nameof(PlayerInputAdapter)} on {name} could not find action '{sprintActionName}'.",
+                    this);
+                enabled = false;
+                return;
+            }
+
             moveAction.performed += HandleMove;
             moveAction.canceled += HandleMove;
             lookAction.performed += HandleLook;
             lookAction.canceled += HandleLook;
+            sprintAction.performed += HandleSprint;
+            sprintAction.canceled += HandleSprint;
             actionMap.Enable();
         }
 
@@ -83,6 +98,12 @@ namespace BooterBigArm.Runtime
                 lookAction.canceled -= HandleLook;
             }
 
+            if (sprintAction != null)
+            {
+                sprintAction.performed -= HandleSprint;
+                sprintAction.canceled -= HandleSprint;
+            }
+
             if (actionMap != null)
             {
                 actionMap.Disable();
@@ -90,6 +111,7 @@ namespace BooterBigArm.Runtime
 
             MoveValue = Vector2.zero;
             LookValue = Vector2.zero;
+            SprintHeld = false;
         }
 
         private void HandleMove(InputAction.CallbackContext context)
@@ -100,6 +122,11 @@ namespace BooterBigArm.Runtime
         private void HandleLook(InputAction.CallbackContext context)
         {
             LookValue = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
+        }
+
+        private void HandleSprint(InputAction.CallbackContext context)
+        {
+            SprintHeld = context.ReadValueAsButton();
         }
     }
 }
