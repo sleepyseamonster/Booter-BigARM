@@ -30,6 +30,11 @@ namespace BooterBigArm.Runtime
         [SerializeField] private int chunkRadius = 4;
         [SerializeField] private int chunkOperationsPerFrame = 4;
 
+        private const float RuleGroundClusterChunkChance = 0.18f;
+        private const int RuleGroundClusterMinTiles = 20;
+        private const int RuleGroundClusterMaxTiles = 30;
+        private const int RuleGroundClusterPadding = 2;
+
         private readonly HashSet<Vector2Int> visibleChunks = new HashSet<Vector2Int>();
         private readonly HashSet<Vector2Int> requiredChunks = new HashSet<Vector2Int>();
         private readonly Queue<Vector2Int> chunkOperationQueue = new Queue<Vector2Int>();
@@ -660,7 +665,7 @@ namespace BooterBigArm.Runtime
             EnsureChunkBuffers();
 
             var bounds = GetChunkBounds(chunkCoord);
-            FillRuleGroundChunkBuffer();
+            FillRuleGroundChunkBuffer(chunkCoord);
             if (ruleGroundTilemap != null)
             {
                 ruleGroundTilemap.SetTilesBlock(bounds, ruleGroundChunkTiles);
@@ -756,7 +761,7 @@ namespace BooterBigArm.Runtime
             }
         }
 
-        private void FillRuleGroundChunkBuffer()
+        private void FillRuleGroundChunkBuffer(Vector2Int chunkCoord)
         {
             if (runtimeRuleGroundTile == null)
             {
@@ -764,10 +769,97 @@ namespace BooterBigArm.Runtime
                 return;
             }
 
-            for (var i = 0; i < ruleGroundChunkTiles.Length; i++)
+            System.Array.Clear(ruleGroundChunkTiles, 0, ruleGroundChunkTiles.Length);
+
+            var chunkNoise = Hash01(seed + 211, chunkCoord.x, chunkCoord.y);
+            if (chunkNoise > RuleGroundClusterChunkChance)
             {
-                ruleGroundChunkTiles[i] = runtimeRuleGroundTile;
+                return;
             }
+
+            var clusterSize = Mathf.Clamp(
+                RuleGroundClusterMinTiles + Mathf.FloorToInt(Hash01(seed + 213, chunkCoord.x, chunkCoord.y) * (RuleGroundClusterMaxTiles - RuleGroundClusterMinTiles + 1)),
+                RuleGroundClusterMinTiles,
+                RuleGroundClusterMaxTiles);
+
+            var clusterCenterX = GetClusterCenterCell(chunkCoord.x, seed + 215);
+            var clusterCenterY = GetClusterCenterCell(chunkCoord.y, seed + 217);
+            var clusterCells = BuildRuleGroundClusterCells(chunkCoord, clusterCenterX, clusterCenterY, clusterSize);
+
+            foreach (var cellIndex in clusterCells)
+            {
+                ruleGroundChunkTiles[cellIndex] = runtimeRuleGroundTile;
+            }
+        }
+
+        private int GetClusterCenterCell(int chunkCoord, int noiseSeed)
+        {
+            if (chunkSize <= 1)
+            {
+                return 0;
+            }
+
+            var minCell = Mathf.Clamp(RuleGroundClusterPadding, 0, chunkSize - 1);
+            var maxCell = Mathf.Clamp(chunkSize - RuleGroundClusterPadding - 1, minCell, chunkSize - 1);
+            if (minCell >= maxCell)
+            {
+                return Mathf.Clamp(chunkSize / 2, 0, chunkSize - 1);
+            }
+
+            var range = maxCell - minCell + 1;
+            var value = Hash01(noiseSeed, chunkCoord, seed);
+            return minCell + Mathf.FloorToInt(value * range);
+        }
+
+        private HashSet<int> BuildRuleGroundClusterCells(Vector2Int chunkCoord, int centerX, int centerY, int clusterSize)
+        {
+            var occupied = new HashSet<int>();
+            var frontier = new List<int>();
+
+            var centerIndex = centerY * chunkSize + centerX;
+            occupied.Add(centerIndex);
+            frontier.Add(centerIndex);
+
+            var attempts = 0;
+            var maxAttempts = clusterSize * 24;
+            while (occupied.Count < clusterSize && attempts < maxAttempts && frontier.Count > 0)
+            {
+                attempts++;
+
+                var sourceIndex = frontier[GetVariantIndex(seed + 219 + attempts, chunkCoord.x, chunkCoord.y, frontier.Count)];
+                var sourceX = sourceIndex % chunkSize;
+                var sourceY = sourceIndex / chunkSize;
+                var direction = GetVariantIndex(seed + 223 + attempts, chunkCoord.x, chunkCoord.y, 4);
+                var offset = direction switch
+                {
+                    0 => new Vector2Int(0, 1),
+                    1 => new Vector2Int(1, 0),
+                    2 => new Vector2Int(0, -1),
+                    _ => new Vector2Int(-1, 0)
+                };
+
+                var candidateX = sourceX + offset.x;
+                var candidateY = sourceY + offset.y;
+                if (candidateX < RuleGroundClusterPadding || candidateX >= chunkSize - RuleGroundClusterPadding)
+                {
+                    continue;
+                }
+
+                if (candidateY < RuleGroundClusterPadding || candidateY >= chunkSize - RuleGroundClusterPadding)
+                {
+                    continue;
+                }
+
+                var candidateIndex = candidateY * chunkSize + candidateX;
+                if (!occupied.Add(candidateIndex))
+                {
+                    continue;
+                }
+
+                frontier.Add(candidateIndex);
+            }
+
+            return occupied;
         }
 
         private static RuleTile BuildRuntimeRuleGroundTile(Sprite[] sprites)
@@ -859,7 +951,7 @@ namespace BooterBigArm.Runtime
                 {
                     var worldX = chunkCoord.x * chunkSize + localX;
                     var worldY = chunkCoord.y * chunkSize + localY;
-                    sandOverlayChunkTileBuffer[index++] = SelectSparseLayerTile(runtimeSandOverlayTiles, worldX, worldY, seed + 191, 0.79f);
+                    sandOverlayChunkTileBuffer[index++] = SelectSparseLayerTile(runtimeSandOverlayTiles, worldX, worldY, seed + 191, 0.84f);
                 }
             }
         }

@@ -1,6 +1,6 @@
 # RuleGround RuleTile Sheet
 
-- Tile size: 32x32
+- Tile size: 16x16
 - Layout: 4x4, row-major by mask value
 - Source sprites: `Assets/_Project/Art/Prototype/Ground/RuleGround/RuleGround00.png` through `RuleGround15.png`
 

@@ -39,8 +39,9 @@ namespace BooterBigArm.Editor
         private const string GroundSmoothFolder = "Assets/_Project/Art/Prototype/Ground/Smooth";
         private const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
         private const string VolumeProfilePath = "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset";
-        private const int ShadowSortingOrder = 4;
-        private const int ActorSortingOrder = 5;
+        private const int RuleGroundTextureSize = 16;
+        private const int ShadowSortingOrder = 6;
+        private const int ActorSortingOrder = 7;
 
         [MenuItem("Booter & BigARM/Prototype/Build Prototype Scene")]
         public static void BuildPrototypeScene()
@@ -158,14 +159,14 @@ namespace BooterBigArm.Editor
             var propRoot = new GameObject("Tall Props");
             propRoot.transform.SetParent(worldRoot.transform, false);
 
-            var ruleGroundGrid = CreateGrid(worldRoot.transform, "Rule Ground Grid", Vector3.one);
+            var ruleGroundGrid = CreateGrid(worldRoot.transform, "Rule Ground Grid", new Vector3(0.5f, 0.5f, 1f));
             var groundGrid = CreateGrid(worldRoot.transform, "Ground Grid", Vector3.one);
             var sandGrid = CreateGrid(worldRoot.transform, "Sand Grid", new Vector3(2f, 2f, 1f));
             var sandOverlayGrid = CreateGrid(worldRoot.transform, "Sand Overlay Grid", new Vector3(4f, 4f, 1f));
 
-            var ruleGroundTilemap = CreateTilemapLayer(ruleGroundGrid.transform, "Rule Ground Tilemap", -1);
+            var ruleGroundTilemap = CreateTilemapLayer(ruleGroundGrid.transform, "Rule Ground Tilemap", 5);
             var sandTilemap = CreateTilemapLayer(sandGrid.transform, "Sand Tilemap", 0);
-            var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 10);
+            var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 1);
             var pebbleTilemap = CreateTilemapLayer(groundGrid.transform, "Pebble Tilemap", 2);
             var rockTilemap = CreateTilemapLayer(groundGrid.transform, "Rock Tilemap", 3);
             var smoothTilemap = CreateTilemapLayer(groundGrid.transform, "Smooth Tilemap", 4);
@@ -1070,7 +1071,7 @@ namespace BooterBigArm.Editor
 
         private static Texture2D CreateRuleGroundTexture(int mask)
         {
-            const int size = 32;
+            var size = RuleGroundTextureSize;
             var texture = new Texture2D(size, size, TextureFormat.RGBA32, false)
             {
                 filterMode = FilterMode.Point,
@@ -1088,9 +1089,9 @@ namespace BooterBigArm.Editor
             {
                 for (var x = 0; x < size; x++)
                 {
-                    var low = TileableValueNoise(seed, x, y, 4);
-                    var mid = TileableValueNoise(seed + 17, x, y, 8);
-                    var fine = TileableValueNoise(seed + 41, x, y, 16);
+                    var low = TileableValueNoise(seed, x, y, size, 2);
+                    var mid = TileableValueNoise(seed + 17, x, y, size, 4);
+                    var fine = TileableValueNoise(seed + 41, x, y, size, 8);
                     var color = Blend(baseColor, highlightColor, 0.45f + low * 0.16f + mid * 0.08f + fine * 0.04f);
 
                     if (fine > 0.1f)
@@ -1114,14 +1115,18 @@ namespace BooterBigArm.Editor
 
         private static void ApplyRuleGroundEdge(Texture2D texture, int mask, int bit, Color32 shadowColor, Color32 highlightColor)
         {
+            var size = texture.width;
+            var edgeSize = Mathf.Max(1, size / 8);
+            var max = size - 1;
+            var inner = Mathf.Max(0, size - edgeSize);
             var connected = (mask & bit) != 0;
             switch (bit)
             {
                 case 1:
                 {
-                    for (var y = 0; y < 4; y++)
+                    for (var y = 0; y < edgeSize; y++)
                     {
-                        for (var x = 0; x < 32; x++)
+                        for (var x = 0; x < size; x++)
                         {
                             var t = connected ? 0.08f : 0.38f;
                             var color = Blend(texture.GetPixel(x, y), connected ? highlightColor : shadowColor, t);
@@ -1132,9 +1137,9 @@ namespace BooterBigArm.Editor
                 }
                 case 2:
                 {
-                    for (var x = 28; x < 32; x++)
+                    for (var x = inner; x <= max; x++)
                     {
-                        for (var y = 0; y < 32; y++)
+                        for (var y = 0; y < size; y++)
                         {
                             var t = connected ? 0.08f : 0.38f;
                             var color = Blend(texture.GetPixel(x, y), connected ? highlightColor : shadowColor, t);
@@ -1145,9 +1150,9 @@ namespace BooterBigArm.Editor
                 }
                 case 4:
                 {
-                    for (var y = 28; y < 32; y++)
+                    for (var y = inner; y <= max; y++)
                     {
-                        for (var x = 0; x < 32; x++)
+                        for (var x = 0; x < size; x++)
                         {
                             var t = connected ? 0.08f : 0.38f;
                             var color = Blend(texture.GetPixel(x, y), connected ? shadowColor : shadowColor, t);
@@ -1158,9 +1163,9 @@ namespace BooterBigArm.Editor
                 }
                 case 8:
                 {
-                    for (var x = 0; x < 4; x++)
+                    for (var x = 0; x < edgeSize; x++)
                     {
-                        for (var y = 0; y < 32; y++)
+                        for (var y = 0; y < size; y++)
                         {
                             var t = connected ? 0.08f : 0.38f;
                             var color = Blend(texture.GetPixel(x, y), connected ? highlightColor : shadowColor, t);
@@ -1174,10 +1179,13 @@ namespace BooterBigArm.Editor
 
         private static void SprinkleRuleGroundSpecks(Texture2D texture, System.Random rng, Color32 highlightColor, Color32 shadowColor)
         {
-            for (var i = 0; i < 10; i++)
+            var size = texture.width;
+            var min = Mathf.Min(2, size - 2);
+            var max = Mathf.Max(min + 1, size - 2);
+            for (var i = 0; i < 6; i++)
             {
-                var x = rng.Next(3, 29);
-                var y = rng.Next(3, 29);
+                var x = rng.Next(min, max);
+                var y = rng.Next(min, max);
                 var color = (i & 1) == 0 ? highlightColor : shadowColor;
                 texture.SetPixel(x, y, color);
 
@@ -1290,7 +1298,7 @@ namespace BooterBigArm.Editor
 
         private static void Put(Texture2D texture, int x, int y, Color32 color)
         {
-            if (x < 0 || x >= 32 || y < 0 || y >= 32)
+            if (x < 0 || x >= texture.width || y < 0 || y >= texture.height)
             {
                 return;
             }
@@ -1347,10 +1355,16 @@ namespace BooterBigArm.Editor
 
         private static float TileableValueNoise(int seed, int x, int y, int cellsPerAxis)
         {
-            cellsPerAxis = Mathf.Max(1, cellsPerAxis);
+            return TileableValueNoise(seed, x, y, 32, cellsPerAxis);
+        }
 
-            var fx = (x / 32f) * cellsPerAxis;
-            var fy = (y / 32f) * cellsPerAxis;
+        private static float TileableValueNoise(int seed, int x, int y, int tileSize, int cellsPerAxis)
+        {
+            cellsPerAxis = Mathf.Max(1, cellsPerAxis);
+            tileSize = Mathf.Max(1, tileSize);
+
+            var fx = (x / (float)tileSize) * cellsPerAxis;
+            var fy = (y / (float)tileSize) * cellsPerAxis;
             var x0 = Mathf.FloorToInt(fx);
             var y0 = Mathf.FloorToInt(fy);
             var tx = SmoothStep01(fx - x0);
