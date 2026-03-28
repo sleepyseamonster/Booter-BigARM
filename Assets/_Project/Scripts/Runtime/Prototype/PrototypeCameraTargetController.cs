@@ -8,7 +8,7 @@ namespace BooterBigArm.Runtime
         [SerializeField] private Transform player;
         [SerializeField] private PlayerInputAdapter inputAdapter;
         [SerializeField] private float deadZone = 0.18f;
-        [SerializeField] private float maxRadius = 6f;
+        [SerializeField] private float maxRadius = 10f;
         [SerializeField] private float stickFollowSpeed = 4f;
         [SerializeField] private float returnSpeed = 28f;
 

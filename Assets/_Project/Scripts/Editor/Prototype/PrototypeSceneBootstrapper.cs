@@ -165,8 +165,8 @@ namespace BooterBigArm.Editor
             cameraObject.AddComponent<AudioListener>();
             var pixelPerfectCamera = cameraObject.AddComponent<UnityEngine.U2D.PixelPerfectCamera>();
             pixelPerfectCamera.assetsPPU = 100;
-            pixelPerfectCamera.refResolutionX = 480;
-            pixelPerfectCamera.refResolutionY = 270;
+            pixelPerfectCamera.refResolutionX = 640;
+            pixelPerfectCamera.refResolutionY = 360;
             pixelPerfectCamera.upscaleRT = false;
             pixelPerfectCamera.pixelSnapping = false;
             pixelPerfectCamera.cropFrameX = false;

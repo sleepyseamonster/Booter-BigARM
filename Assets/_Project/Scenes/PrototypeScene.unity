@@ -707,7 +707,7 @@ MonoBehaviour:
   player: {fileID: 189156493}
   inputAdapter: {fileID: 189156494}
   deadZone: 0.18
-  maxRadius: 6
+  maxRadius: 10
   stickFollowSpeed: 4
   returnSpeed: 28
 --- !u!1 &550229632
@@ -1375,8 +1375,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.PixelPerfect::UnityEngine.U2D.PixelPerfectCamera
   m_AssetsPPU: 100
-  m_RefResolutionX: 480
-  m_RefResolutionY: 270
+  m_RefResolutionX: 640
+  m_RefResolutionY: 360
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
