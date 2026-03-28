@@ -745,7 +745,7 @@ namespace BooterBigArm.Runtime
                 {
                     var worldX = chunkCoord.x * chunkSize + localX;
                     var worldY = chunkCoord.y * chunkSize + localY;
-                    sandOverlayChunkTileBuffer[index++] = SelectDominantTile(runtimeSandOverlayTiles, worldX, worldY, seed + 191, 0.16f);
+                    sandOverlayChunkTileBuffer[index++] = SelectSparseLayerTile(runtimeSandOverlayTiles, worldX, worldY, seed + 191, 0.972f);
                 }
             }
         }
