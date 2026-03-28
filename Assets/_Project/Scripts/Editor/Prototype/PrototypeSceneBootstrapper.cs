@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace BooterBigArm.Editor
         private const string TallPropTinyPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTiny16x16.prefab";
         private const string TallPropSlimPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSlim16x32.prefab";
         private const string GroundSandFolder = "Assets/_Project/Art/Prototype/Ground/Sand";
+        private const string GroundSandPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand.psd";
         private const string GroundPebbleFolder = "Assets/_Project/Art/Prototype/Ground/Pebbles";
         private const string GroundRockFolder = "Assets/_Project/Art/Prototype/Ground/Rocks";
         private const string GroundSmoothFolder = "Assets/_Project/Art/Prototype/Ground/Smooth";
@@ -266,7 +268,7 @@ namespace BooterBigArm.Editor
 
             var texture = CreatePrototypeTexture();
             File.WriteAllBytes(PlayerSpritePath, texture.EncodeToPNG());
-            Object.DestroyImmediate(texture);
+            UnityEngine.Object.DestroyImmediate(texture);
 
             AssetDatabase.ImportAsset(PlayerSpritePath, ImportAssetOptions.ForceSynchronousImport);
 
@@ -298,7 +300,7 @@ namespace BooterBigArm.Editor
 
             var texture = CreateShadowTexture();
             File.WriteAllBytes(ShadowSpritePath, texture.EncodeToPNG());
-            Object.DestroyImmediate(texture);
+            UnityEngine.Object.DestroyImmediate(texture);
 
             AssetDatabase.ImportAsset(ShadowSpritePath, ImportAssetOptions.ForceSynchronousImport);
 
@@ -330,7 +332,7 @@ namespace BooterBigArm.Editor
 
             var texture = CreateTallPropTexture();
             File.WriteAllBytes(TallPropSpritePath, texture.EncodeToPNG());
-            Object.DestroyImmediate(texture);
+            UnityEngine.Object.DestroyImmediate(texture);
 
             AssetDatabase.ImportAsset(TallPropSpritePath, ImportAssetOptions.ForceSynchronousImport);
 
@@ -441,7 +443,7 @@ namespace BooterBigArm.Editor
             CreateShadowChild(prop.transform, shadowSprite, definition.ShadowLocalPosition, definition.ShadowLocalScale);
 
             var prefabAsset = PrefabUtility.SaveAsPrefabAsset(prop, definition.PrefabPath);
-            Object.DestroyImmediate(prop);
+            UnityEngine.Object.DestroyImmediate(prop);
 
             if (prefabAsset == null)
             {
@@ -454,6 +456,19 @@ namespace BooterBigArm.Editor
 
         private static Sprite[] EnsureSandSprites()
         {
+            var sprites = AssetDatabase
+                .LoadAllAssetRepresentationsAtPath(GroundSandPsdPath)
+                .OfType<Sprite>()
+                .Where(sprite => sprite.name.StartsWith("tilemap_sand", System.StringComparison.OrdinalIgnoreCase))
+                .OrderBy(GetSandSpriteSortKey)
+                .ThenBy(sprite => sprite.name, StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+
+            if (sprites.Length > 0)
+            {
+                return sprites;
+            }
+
             var definitions = new[]
             {
                 new GroundSpriteDefinition("SandRustA.png", new Color32(173, 136, 86, 255), new Color32(197, 160, 106, 255), new Color32(112, 79, 39, 255), GroundPattern.CrossHatch),
@@ -462,15 +477,38 @@ namespace BooterBigArm.Editor
                 new GroundSpriteDefinition("SandRustD.png", new Color32(181, 145, 92, 255), new Color32(206, 170, 114, 255), new Color32(119, 85, 45, 255), GroundPattern.Dots)
             };
 
-            var sprites = new List<Sprite>(definitions.Length);
+            var fallbackSprites = new List<Sprite>(definitions.Length);
             foreach (var definition in definitions)
             {
                 var spritePath = Path.Combine(GroundSandFolder, definition.FileName);
                 EnsureSpriteAsset(spritePath, definition.BaseColor, definition.HighlightColor, definition.BorderColor, definition.Pattern);
-                sprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
+                fallbackSprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
             }
 
-            return sprites.ToArray();
+            return fallbackSprites.ToArray();
+        }
+
+        private static int GetSandSpriteSortKey(Sprite sprite)
+        {
+            if (sprite == null || string.IsNullOrEmpty(sprite.name))
+            {
+                return int.MaxValue;
+            }
+
+            var name = sprite.name;
+            var end = name.Length - 1;
+            while (end >= 0 && char.IsDigit(name[end]))
+            {
+                end--;
+            }
+
+            if (end < name.Length - 1 &&
+                int.TryParse(name[(end + 1)..], out var index))
+            {
+                return index;
+            }
+
+            return int.MaxValue;
         }
 
         private static Sprite[] EnsurePebbleSprites()
@@ -727,7 +765,7 @@ namespace BooterBigArm.Editor
 
             var texture = CreateTileTexture(fill, highlight, border, pattern);
             File.WriteAllBytes(assetPath, texture.EncodeToPNG());
-            Object.DestroyImmediate(texture);
+            UnityEngine.Object.DestroyImmediate(texture);
 
             AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceSynchronousImport);
 
@@ -755,7 +793,7 @@ namespace BooterBigArm.Editor
 
             var texture = CreateOverlayTexture(tint, pattern);
             File.WriteAllBytes(assetPath, texture.EncodeToPNG());
-            Object.DestroyImmediate(texture);
+            UnityEngine.Object.DestroyImmediate(texture);
 
             AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceSynchronousImport);
 
@@ -1081,8 +1119,8 @@ namespace BooterBigArm.Editor
             EditorBuildSettings.scenes = scenes;
         }
 
-        private static void SetObjectReference<T>(Object target, string fieldName, T value)
-            where T : Object
+        private static void SetObjectReference<T>(UnityEngine.Object target, string fieldName, T value)
+            where T : UnityEngine.Object
         {
             var serializedObject = new SerializedObject(target);
             var property = serializedObject.FindProperty(fieldName);
@@ -1097,8 +1135,8 @@ namespace BooterBigArm.Editor
             EditorUtility.SetDirty(target);
         }
 
-        private static void SetObjectArray<T>(Object target, string fieldName, T[] values)
-            where T : Object
+        private static void SetObjectArray<T>(UnityEngine.Object target, string fieldName, T[] values)
+            where T : UnityEngine.Object
         {
             var serializedObject = new SerializedObject(target);
             var property = serializedObject.FindProperty(fieldName);
@@ -1118,7 +1156,7 @@ namespace BooterBigArm.Editor
             EditorUtility.SetDirty(target);
         }
 
-        private static void SetInt(Object target, string fieldName, int value)
+        private static void SetInt(UnityEngine.Object target, string fieldName, int value)
         {
             var serializedObject = new SerializedObject(target);
             var property = serializedObject.FindProperty(fieldName);
@@ -1133,7 +1171,7 @@ namespace BooterBigArm.Editor
             EditorUtility.SetDirty(target);
         }
 
-        private static void SetFloat(Object target, string fieldName, float value)
+        private static void SetFloat(UnityEngine.Object target, string fieldName, float value)
         {
             var serializedObject = new SerializedObject(target);
             var property = serializedObject.FindProperty(fieldName);
@@ -1148,7 +1186,7 @@ namespace BooterBigArm.Editor
             EditorUtility.SetDirty(target);
         }
 
-        private static void SetSpriteSortPoint(Object target, SpriteSortPoint value)
+        private static void SetSpriteSortPoint(UnityEngine.Object target, SpriteSortPoint value)
         {
             var serializedObject = new SerializedObject(target);
             var property = serializedObject.FindProperty("m_SpriteSortPoint");
