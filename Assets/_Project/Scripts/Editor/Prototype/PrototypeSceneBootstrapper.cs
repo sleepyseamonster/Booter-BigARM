@@ -152,9 +152,9 @@ namespace BooterBigArm.Editor
             var propRoot = new GameObject("Tall Props");
             propRoot.transform.SetParent(worldRoot.transform, false);
 
-            var groundGrid = CreateGrid(worldRoot.transform, "Ground Grid");
-            var sandGrid = CreateGrid(worldRoot.transform, "Sand Grid");
-            var sandOverlayGrid = CreateGrid(worldRoot.transform, "Sand Overlay Grid");
+            var groundGrid = CreateGrid(worldRoot.transform, "Ground Grid", Vector3.one);
+            var sandGrid = CreateGrid(worldRoot.transform, "Sand Grid", new Vector3(2f, 2f, 1f));
+            var sandOverlayGrid = CreateGrid(worldRoot.transform, "Sand Overlay Grid", new Vector3(4f, 4f, 1f));
 
             var sandTilemap = CreateTilemapLayer(sandGrid.transform, "Sand Tilemap", 0);
             var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 1);
@@ -184,13 +184,13 @@ namespace BooterBigArm.Editor
             return generator;
         }
 
-        private static Grid CreateGrid(Transform parent, string name)
+        private static Grid CreateGrid(Transform parent, string name, Vector3 cellSize)
         {
             var gridObject = new GameObject(name);
             gridObject.transform.SetParent(parent, false);
 
             var grid = gridObject.AddComponent<Grid>();
-            grid.cellSize = Vector3.one;
+            grid.cellSize = cellSize;
             return grid;
         }
 
