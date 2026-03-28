@@ -10,6 +10,10 @@ namespace BooterBigArm.Runtime
     {
         [SerializeField] private Transform target;
         [SerializeField] private Sprite[] tileSprites;
+        [SerializeField] private GameObject propPrefab;
+        [SerializeField] private GameObject[] propPrefabs;
+        [SerializeField] private Transform propParent;
+        [SerializeField, Range(0f, 1f)] private float propSpawnChance = 0.05f;
         [SerializeField] private Tilemap pebbleTilemap;
         [SerializeField] private Sprite[] pebbleTileSprites;
         [SerializeField] private Tilemap rockTilemap;
@@ -25,6 +29,7 @@ namespace BooterBigArm.Runtime
         private readonly HashSet<Vector2Int> requiredChunks = new HashSet<Vector2Int>();
         private readonly Queue<Vector2Int> chunkOperationQueue = new Queue<Vector2Int>();
         private readonly HashSet<Vector2Int> queuedChunks = new HashSet<Vector2Int>();
+        private readonly Dictionary<Vector2Int, List<GameObject>> spawnedPropsByChunk = new Dictionary<Vector2Int, List<GameObject>>();
         private Tilemap tilemap;
         private TileBase[] runtimeTiles;
         private TileBase[] runtimePebbleTiles;
@@ -65,6 +70,7 @@ namespace BooterBigArm.Runtime
             requiredChunks.Clear();
             chunkOperationQueue.Clear();
             queuedChunks.Clear();
+            ClearSpawnedProps();
             tilemap.ClearAllTiles();
             if (pebbleTilemap != null)
             {
@@ -644,6 +650,7 @@ namespace BooterBigArm.Runtime
                 smoothTilemap.SetTilesBlock(bounds, smoothChunkTileBuffer);
                 ApplyChunkTransforms(smoothTilemap, bounds, smoothChunkTransformBuffer);
             }
+            SpawnChunkProps(chunkCoord);
             visibleChunks.Add(chunkCoord);
         }
 
@@ -665,6 +672,7 @@ namespace BooterBigArm.Runtime
             {
                 smoothTilemap.SetTilesBlock(bounds, emptySmoothChunkTiles);
             }
+            DespawnChunkProps(chunkCoord);
             visibleChunks.Remove(chunkCoord);
         }
 
@@ -753,6 +761,92 @@ namespace BooterBigArm.Runtime
         private void FillSmoothChunkTransforms(Vector2Int chunkCoord)
         {
             FillRotationBuffer(chunkCoord, seed + 71, smoothChunkTransformBuffer);
+        }
+
+        private void SpawnChunkProps(Vector2Int chunkCoord)
+        {
+            var prefab = SelectSparsePropPrefab(chunkCoord);
+            if (prefab == null || propParent == null)
+            {
+                return;
+            }
+
+            if (spawnedPropsByChunk.ContainsKey(chunkCoord))
+            {
+                return;
+            }
+
+            var chunkNoise = Hash01(seed + 109, chunkCoord.x, chunkCoord.y);
+            if (chunkNoise > propSpawnChance)
+            {
+                return;
+            }
+
+            var localX = GetSparsePropLocalCell(seed + 113, chunkCoord.x, chunkCoord.y);
+            var localY = GetSparsePropLocalCell(seed + 127, chunkCoord.x, chunkCoord.y);
+            var worldX = chunkCoord.x * chunkSize + localX + 0.5f;
+            var worldY = chunkCoord.y * chunkSize + localY + 0.5f;
+            var instance = Instantiate(prefab, new Vector3(worldX, worldY, 0f), Quaternion.identity, propParent);
+            instance.name = $"{prefab.name} ({chunkCoord.x}, {chunkCoord.y})";
+
+            spawnedPropsByChunk[chunkCoord] = new List<GameObject> { instance };
+        }
+
+        private GameObject SelectSparsePropPrefab(Vector2Int chunkCoord)
+        {
+            if (propPrefabs != null && propPrefabs.Length > 0)
+            {
+                var variantIndex = GetVariantIndex(seed + 167, chunkCoord.x, chunkCoord.y, propPrefabs.Length);
+                var selected = propPrefabs[variantIndex];
+                if (selected != null)
+                {
+                    return selected;
+                }
+
+                for (var i = 0; i < propPrefabs.Length; i++)
+                {
+                    if (propPrefabs[i] != null)
+                    {
+                        return propPrefabs[i];
+                    }
+                }
+            }
+
+            return propPrefab;
+        }
+
+        private void DespawnChunkProps(Vector2Int chunkCoord)
+        {
+            if (!spawnedPropsByChunk.TryGetValue(chunkCoord, out var instances))
+            {
+                return;
+            }
+
+            for (var i = 0; i < instances.Count; i++)
+            {
+                if (instances[i] != null)
+                {
+                    Destroy(instances[i]);
+                }
+            }
+
+            spawnedPropsByChunk.Remove(chunkCoord);
+        }
+
+        private void ClearSpawnedProps()
+        {
+            foreach (var instances in spawnedPropsByChunk.Values)
+            {
+                for (var i = 0; i < instances.Count; i++)
+                {
+                    if (instances[i] != null)
+                    {
+                        Destroy(instances[i]);
+                    }
+                }
+            }
+
+            spawnedPropsByChunk.Clear();
         }
 
         private void FillRotationBuffer(Vector2Int chunkCoord, int noiseSeed, Matrix4x4[] buffer)
@@ -882,6 +976,21 @@ namespace BooterBigArm.Runtime
             var value = Hash01(noiseSeed, worldX, worldY) * variantCount;
             var variant = Mathf.FloorToInt(value);
             return Mathf.Clamp(variant, 0, variantCount - 1);
+        }
+
+        private int GetSparsePropLocalCell(int noiseSeed, int chunkX, int chunkY)
+        {
+            if (chunkSize <= 2)
+            {
+                return 0;
+            }
+
+            var value = Hash01(noiseSeed, chunkX, chunkY);
+            var minCell = 1;
+            var maxCell = chunkSize - 2;
+            var span = Mathf.Max(1, maxCell - minCell + 1);
+            var cell = minCell + Mathf.FloorToInt(value * span);
+            return Mathf.Clamp(cell, minCell, maxCell);
         }
 
         private static Matrix4x4 CreateRotationMatrix(int noiseSeed, int worldX, int worldY)

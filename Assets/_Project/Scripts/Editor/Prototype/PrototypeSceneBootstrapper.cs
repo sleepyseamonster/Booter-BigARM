@@ -20,15 +20,22 @@ namespace BooterBigArm.Editor
         private const string PrototypeScenePath = "Assets/_Project/Scenes/PrototypeScene.unity";
         private const string PrototypeArtFolder = "Assets/_Project/Art/Prototype";
         private const string PlayerSpritePath = "Assets/_Project/Art/Prototype/PrototypeSquare.png";
+        private const string ShadowSpritePath = "Assets/_Project/Art/Prototype/Shadows/PrototypeShadow.png";
         private const string TallPropSpritePath = "Assets/_Project/Art/Prototype/Props/TallPropPlaceholder.png";
         private const string TallPropPrefabPath = "Assets/_Project/Prefabs/Prototype/TallPropPlaceholder.prefab";
+        private const string TallPropWidePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropWide64x64.prefab";
+        private const string TallPropTallPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTall64x96.prefab";
+        private const string TallPropSquarePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSquare32x32.prefab";
+        private const string TallPropTinyPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTiny16x16.prefab";
+        private const string TallPropSlimPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSlim16x32.prefab";
         private const string GroundSandFolder = "Assets/_Project/Art/Prototype/Ground/Sand";
         private const string GroundPebbleFolder = "Assets/_Project/Art/Prototype/Ground/Pebbles";
         private const string GroundRockFolder = "Assets/_Project/Art/Prototype/Ground/Rocks";
         private const string GroundSmoothFolder = "Assets/_Project/Art/Prototype/Ground/Smooth";
         private const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
         private const string VolumeProfilePath = "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset";
-        private const int ActorSortingOrder = 4;
+        private const int ShadowSortingOrder = 4;
+        private const int ActorSortingOrder = 5;
 
         [MenuItem("Booter & BigARM/Prototype/Build Prototype Scene")]
         public static void BuildPrototypeScene()
@@ -46,8 +53,9 @@ namespace BooterBigArm.Editor
             }
 
             var playerSprite = EnsurePlayerSpriteAsset();
+            var shadowSprite = EnsureShadowSpriteAsset();
             var tallPropSprite = EnsureTallPropSpriteAsset();
-            var tallPropPrefab = EnsureTallPropPrefab(tallPropSprite);
+            var tallPropPrefabs = EnsureTallPropPrefabs(tallPropSprite, shadowSprite);
             var sandSprites = EnsureSandSprites();
             var pebbleSprites = EnsurePebbleSprites();
             var rockSprites = EnsureRockSprites();
@@ -56,10 +64,9 @@ namespace BooterBigArm.Editor
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             scene.name = "PrototypeScene";
 
-            var player = CreatePlayer(inputActions, playerSprite);
-            CreateTallPropTestInstance(tallPropPrefab);
+            var player = CreatePlayer(inputActions, playerSprite, shadowSprite);
             var cameraTarget = CreateCameraTarget(player);
-            var world = CreateWorld(player.transform, sandSprites, pebbleSprites, rockSprites, smoothSprites);
+            var world = CreateWorld(player.transform, tallPropPrefabs, sandSprites, pebbleSprites, rockSprites, smoothSprites);
             CreateCamera(cameraTarget);
             CreateLighting();
             CreateVolume(volumeProfile);
@@ -72,7 +79,7 @@ namespace BooterBigArm.Editor
             EditorSceneManager.OpenScene(PrototypeScenePath);
         }
 
-        private static GameObject CreatePlayer(InputActionAsset inputActions, Sprite prototypeSprite)
+        private static GameObject CreatePlayer(InputActionAsset inputActions, Sprite prototypeSprite, Sprite shadowSprite)
         {
             var player = new GameObject("Player");
             player.transform.position = Vector3.zero;
@@ -91,6 +98,8 @@ namespace BooterBigArm.Editor
 
             var collider = player.AddComponent<BoxCollider2D>();
             collider.size = new Vector2(0.8f, 0.8f);
+
+            CreateShadowChild(player.transform, shadowSprite, new Vector2(0.24f, -0.08f), new Vector2(1.0f, 0.28f));
 
             var inputAdapter = player.AddComponent<PlayerInputAdapter>();
             SetObjectReference(inputAdapter, "inputActions", inputActions);
@@ -119,12 +128,15 @@ namespace BooterBigArm.Editor
 
         private static PrototypeWorldGenerator CreateWorld(
             Transform player,
+            GameObject[] tallPropPrefabs,
             Sprite[] sandSprites,
             Sprite[] pebbleSprites,
             Sprite[] rockSprites,
             Sprite[] smoothSprites)
         {
             var worldRoot = new GameObject("World");
+            var propRoot = new GameObject("Tall Props");
+            propRoot.transform.SetParent(worldRoot.transform, false);
 
             var grid = worldRoot.AddComponent<Grid>();
             grid.cellSize = Vector3.one;
@@ -137,6 +149,9 @@ namespace BooterBigArm.Editor
             var generator = sandTilemap.gameObject.AddComponent<PrototypeWorldGenerator>();
             SetObjectReference(generator, "target", player);
             SetObjectArray(generator, "tileSprites", sandSprites);
+            SetObjectArray(generator, "propPrefabs", tallPropPrefabs);
+            SetObjectReference(generator, "propParent", propRoot.transform);
+            SetFloat(generator, "propSpawnChance", 0.035f);
             SetObjectReference(generator, "pebbleTilemap", pebbleTilemap);
             SetObjectArray(generator, "pebbleTileSprites", pebbleSprites);
             SetObjectReference(generator, "rockTilemap", rockTilemap);
@@ -159,19 +174,6 @@ namespace BooterBigArm.Editor
             var renderer = layerObject.AddComponent<TilemapRenderer>();
             renderer.sortingOrder = sortingOrder;
             return layerObject.GetComponent<Tilemap>();
-        }
-
-        private static void CreateTallPropTestInstance(GameObject prefab)
-        {
-            var propInstance = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
-            if (propInstance == null)
-            {
-                throw new System.InvalidOperationException(
-                    $"Unable to instantiate prefab '{prefab.name}'.");
-            }
-
-            propInstance.name = "Tall Prop Placeholder";
-            propInstance.transform.position = new Vector3(3f, 0f, 0f);
         }
 
         private static void CreateCamera(Transform target)
@@ -283,6 +285,38 @@ namespace BooterBigArm.Editor
             return AssetDatabase.LoadAssetAtPath<Sprite>(PlayerSpritePath);
         }
 
+        private static Sprite EnsureShadowSpriteAsset()
+        {
+            var folderPath = Path.GetDirectoryName(ShadowSpritePath);
+            if (!string.IsNullOrEmpty(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            var texture = CreateShadowTexture();
+            File.WriteAllBytes(ShadowSpritePath, texture.EncodeToPNG());
+            Object.DestroyImmediate(texture);
+
+            AssetDatabase.ImportAsset(ShadowSpritePath, ImportAssetOptions.ForceSynchronousImport);
+
+            var importer = (TextureImporter)AssetImporter.GetAtPath(ShadowSpritePath);
+            var settings = new TextureImporterSettings();
+            importer.ReadTextureSettings(settings);
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Single;
+            settings.spriteAlignment = (int)SpriteAlignment.Center;
+            settings.spritePivot = new Vector2(0.5f, 0.5f);
+            importer.SetTextureSettings(settings);
+            importer.spritePixelsPerUnit = 32f;
+            importer.filterMode = FilterMode.Point;
+            importer.mipmapEnabled = false;
+            importer.textureCompression = TextureImporterCompression.Uncompressed;
+            importer.alphaIsTransparency = true;
+            importer.SaveAndReimport();
+
+            return AssetDatabase.LoadAssetAtPath<Sprite>(ShadowSpritePath);
+        }
+
         private static Sprite EnsureTallPropSpriteAsset()
         {
             var folderPath = Path.GetDirectoryName(TallPropSpritePath);
@@ -305,16 +339,6 @@ namespace BooterBigArm.Editor
             settings.spriteAlignment = (int)SpriteAlignment.Custom;
             settings.spritePivot = new Vector2(0.5f, 0f);
             importer.SetTextureSettings(settings);
-            importer.spritesheet = new[]
-            {
-                new SpriteMetaData
-                {
-                    name = Path.GetFileNameWithoutExtension(TallPropSpritePath),
-                    rect = new Rect(0f, 0f, 32f, 64f),
-                    alignment = (int)SpriteAlignment.Custom,
-                    pivot = new Vector2(0.5f, 0f)
-                }
-            };
             importer.spritePixelsPerUnit = 32f;
             importer.filterMode = FilterMode.Point;
             importer.mipmapEnabled = false;
@@ -325,34 +349,104 @@ namespace BooterBigArm.Editor
             return AssetDatabase.LoadAssetAtPath<Sprite>(TallPropSpritePath);
         }
 
-        private static GameObject EnsureTallPropPrefab(Sprite tallPropSprite)
+        private static GameObject[] EnsureTallPropPrefabs(Sprite tallPropSprite, Sprite shadowSprite)
         {
-            var folderPath = Path.GetDirectoryName(TallPropPrefabPath);
+            var definitions = new[]
+            {
+                new TallPropPrefabDefinition(
+                    TallPropPrefabPath,
+                    "Tall Prop Placeholder",
+                    new Vector2(1f, 1f),
+                    new Vector2(1f, 1f),
+                    new Vector2(0f, 0.5f),
+                    new Vector2(0.32f, -0.07f),
+                    new Vector2(1.25f, 0.28f)),
+                new TallPropPrefabDefinition(
+                    TallPropWidePrefabPath,
+                    "Tall Prop Wide",
+                    new Vector2(2f, 1f),
+                    new Vector2(1f, 2f),
+                    new Vector2(0f, 1f),
+                    new Vector2(0.52f, -0.08f),
+                    new Vector2(1.9f, 0.38f)),
+                new TallPropPrefabDefinition(
+                    TallPropTallPrefabPath,
+                    "Tall Prop Tall",
+                    new Vector2(2f, 3f),
+                    new Vector2(2f, 2f),
+                    new Vector2(0f, 1f),
+                    new Vector2(0.64f, -0.10f),
+                    new Vector2(2.45f, 0.56f)),
+                new TallPropPrefabDefinition(
+                    TallPropSquarePrefabPath,
+                    "Tall Prop Square",
+                    new Vector2(1f, 0.5f),
+                    new Vector2(1f, 1f),
+                    new Vector2(0f, 0.5f),
+                    new Vector2(0.24f, -0.06f),
+                    new Vector2(0.92f, 0.26f)),
+                new TallPropPrefabDefinition(
+                    TallPropTinyPrefabPath,
+                    "Tall Prop Tiny",
+                    new Vector2(0.5f, 0.25f),
+                    new Vector2(0.5f, 0.5f),
+                    new Vector2(0f, 0.25f),
+                    new Vector2(0.16f, -0.04f),
+                    new Vector2(0.62f, 0.16f)),
+                new TallPropPrefabDefinition(
+                    TallPropSlimPrefabPath,
+                    "Tall Prop Slim",
+                    new Vector2(0.5f, 0.5f),
+                    new Vector2(0.5f, 1f),
+                    new Vector2(0f, 0.5f),
+                    new Vector2(0.20f, -0.05f),
+                    new Vector2(0.72f, 0.22f))
+            };
+
+            var prefabs = new List<GameObject>(definitions.Length);
+            foreach (var definition in definitions)
+            {
+                prefabs.Add(EnsureTallPropPrefab(definition, tallPropSprite, shadowSprite));
+            }
+
+            return prefabs.ToArray();
+        }
+
+        private static GameObject EnsureTallPropPrefab(TallPropPrefabDefinition definition, Sprite tallPropSprite, Sprite shadowSprite)
+        {
+            var folderPath = Path.GetDirectoryName(definition.PrefabPath);
             if (!string.IsNullOrEmpty(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
 
-            var prop = new GameObject("Tall Prop Placeholder");
-            var spriteRenderer = prop.AddComponent<SpriteRenderer>();
+            var prop = new GameObject(definition.Name);
+            var collider = prop.AddComponent<BoxCollider2D>();
+            collider.size = definition.ColliderSize;
+            collider.offset = definition.ColliderOffset;
+
+            var visual = new GameObject("Visual");
+            visual.transform.SetParent(prop.transform, false);
+            visual.transform.localPosition = Vector3.zero;
+            visual.transform.localScale = new Vector3(definition.VisualScale.x, definition.VisualScale.y, 1f);
+
+            var spriteRenderer = visual.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = tallPropSprite;
             spriteRenderer.sortingOrder = ActorSortingOrder;
             SetSpriteSortPoint(spriteRenderer, SpriteSortPoint.Pivot);
 
-            var collider = prop.AddComponent<BoxCollider2D>();
-            collider.size = new Vector2(1f, 1f);
-            collider.offset = new Vector2(0f, 0.5f);
+            CreateShadowChild(prop.transform, shadowSprite, definition.ShadowLocalPosition, definition.ShadowLocalScale);
 
-            var prefabAsset = PrefabUtility.SaveAsPrefabAsset(prop, TallPropPrefabPath);
+            var prefabAsset = PrefabUtility.SaveAsPrefabAsset(prop, definition.PrefabPath);
             Object.DestroyImmediate(prop);
 
             if (prefabAsset == null)
             {
                 throw new System.InvalidOperationException(
-                    $"Unable to save prefab asset at '{TallPropPrefabPath}'.");
+                    $"Unable to save prefab asset at '{definition.PrefabPath}'.");
             }
 
-            return AssetDatabase.LoadAssetAtPath<GameObject>(TallPropPrefabPath);
+            return AssetDatabase.LoadAssetAtPath<GameObject>(definition.PrefabPath);
         }
 
         private static Sprite[] EnsureSandSprites()
@@ -557,6 +651,62 @@ namespace BooterBigArm.Editor
 
             texture.Apply(false, false);
             return texture;
+        }
+
+        private static Texture2D CreateShadowTexture()
+        {
+            const int width = 64;
+            const int height = 16;
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+
+            var transparent = new Color32(0, 0, 0, 0);
+            var shadow = new Color32(52, 42, 28, 180);
+            var core = new Color32(38, 31, 22, 210);
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var nx = x / (width - 1f);
+                    var ny = Mathf.Abs((y - (height - 1) * 0.5f) / ((height - 1) * 0.5f));
+                    var body = 1f - Mathf.Clamp01(ny * ny * 1.5f);
+                    var trail = 1f - Mathf.Clamp01((nx - 0.08f) / 0.92f);
+                    var rootFade = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((x - 2f) / 8f));
+                    var alpha = body * Mathf.Max(trail, 0.08f) * Mathf.Lerp(0.25f, 1f, rootFade);
+
+                    if (alpha <= 0.01f)
+                    {
+                        texture.SetPixel(x, y, transparent);
+                        continue;
+                    }
+
+                    var color = Blend(shadow, core, Mathf.Clamp01((1f - nx) * 0.7f));
+                    color.a = (byte)Mathf.RoundToInt(255f * alpha);
+                    texture.SetPixel(x, y, color);
+                }
+            }
+
+            texture.Apply(false, false);
+            return texture;
+        }
+
+        private static void CreateShadowChild(Transform parent, Sprite shadowSprite, Vector2 localPosition, Vector2 localScale)
+        {
+            var shadowObject = new GameObject("Shadow");
+            shadowObject.transform.SetParent(parent, false);
+            shadowObject.transform.localPosition = new Vector3(localPosition.x, localPosition.y, 0f);
+            shadowObject.transform.localScale = new Vector3(localScale.x, localScale.y, 1f);
+
+            var spriteRenderer = shadowObject.AddComponent<SpriteRenderer>();
+            spriteRenderer.sprite = shadowSprite;
+            spriteRenderer.sortingOrder = ShadowSortingOrder;
+            spriteRenderer.color = Color.white;
+            SetSpriteSortPoint(spriteRenderer, SpriteSortPoint.Pivot);
         }
 
         private static void EnsureSpriteAsset(
@@ -1065,6 +1215,35 @@ namespace BooterBigArm.Editor
             public string FileName { get; }
             public Color32 TintColor { get; }
             public GroundOverlayPattern Pattern { get; }
+        }
+
+        private readonly struct TallPropPrefabDefinition
+        {
+            public TallPropPrefabDefinition(
+                string prefabPath,
+                string name,
+                Vector2 visualScale,
+                Vector2 colliderSize,
+                Vector2 colliderOffset,
+                Vector2 shadowLocalPosition,
+                Vector2 shadowLocalScale)
+            {
+                PrefabPath = prefabPath;
+                Name = name;
+                VisualScale = visualScale;
+                ColliderSize = colliderSize;
+                ColliderOffset = colliderOffset;
+                ShadowLocalPosition = shadowLocalPosition;
+                ShadowLocalScale = shadowLocalScale;
+            }
+
+            public string PrefabPath { get; }
+            public string Name { get; }
+            public Vector2 VisualScale { get; }
+            public Vector2 ColliderSize { get; }
+            public Vector2 ColliderOffset { get; }
+            public Vector2 ShadowLocalPosition { get; }
+            public Vector2 ShadowLocalScale { get; }
         }
     }
 }
