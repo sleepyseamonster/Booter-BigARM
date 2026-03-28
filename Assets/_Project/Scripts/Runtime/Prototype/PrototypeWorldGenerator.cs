@@ -21,6 +21,8 @@ namespace BooterBigArm.Runtime
         [SerializeField] private Sprite[] rockTileSprites;
         [SerializeField] private Tilemap smoothTilemap;
         [SerializeField] private Sprite[] smoothTileSprites;
+        [SerializeField] private Tilemap sandOverlayTilemap;
+        [SerializeField] private Sprite[] sandOverlayTileSprites;
         [SerializeField] private int seed = 12345;
         [SerializeField] private int chunkSize = 16;
         [SerializeField] private int chunkRadius = 4;
@@ -36,15 +38,19 @@ namespace BooterBigArm.Runtime
         private TileBase[] runtimePebbleTiles;
         private TileBase[] runtimeRockTiles;
         private TileBase[] runtimeSmoothTiles;
+        private TileBase[] runtimeSandOverlayTiles;
         private TileBase[] emptyChunkTiles;
         private TileBase[] chunkTileBuffer;
+        private TileBase[] sandOverlayChunkTileBuffer;
         private TileBase[] pebbleChunkTileBuffer;
         private TileBase[] rockChunkTileBuffer;
         private TileBase[] smoothChunkTileBuffer;
+        private TileBase[] emptySandOverlayChunkTiles;
         private TileBase[] emptyPebbleChunkTiles;
         private TileBase[] emptyRockChunkTiles;
         private TileBase[] emptySmoothChunkTiles;
         private Matrix4x4[] chunkTransformBuffer;
+        private Matrix4x4[] sandOverlayChunkTransformBuffer;
         private Matrix4x4[] pebbleChunkTransformBuffer;
         private Matrix4x4[] rockChunkTransformBuffer;
         private Matrix4x4[] smoothChunkTransformBuffer;
@@ -76,6 +82,10 @@ namespace BooterBigArm.Runtime
             if (pebbleTilemap != null)
             {
                 pebbleTilemap.ClearAllTiles();
+            }
+            if (sandOverlayTilemap != null)
+            {
+                sandOverlayTilemap.ClearAllTiles();
             }
             if (rockTilemap != null)
             {
@@ -227,6 +237,7 @@ namespace BooterBigArm.Runtime
             runtimePebbleTiles = BuildRuntimeTiles(pebbleTileSprites, CreateFallbackPebbleTiles, "PrototypeRuntimePebbleTile");
             runtimeRockTiles = BuildRuntimeTiles(rockTileSprites, CreateFallbackRockTiles, "PrototypeRuntimeRockTile");
             runtimeSmoothTiles = BuildRuntimeTiles(smoothTileSprites, CreateFallbackSmoothTiles, "PrototypeRuntimeSmoothTile");
+            runtimeSandOverlayTiles = BuildRuntimeTiles(sandOverlayTileSprites, CreateFallbackSandOverlayTiles, "PrototypeRuntimeSandOverlayTile");
 
             EnsureChunkBuffers();
         }
@@ -575,14 +586,17 @@ namespace BooterBigArm.Runtime
             }
 
             chunkTileBuffer = new TileBase[tileCount];
+            sandOverlayChunkTileBuffer = new TileBase[tileCount];
             pebbleChunkTileBuffer = new TileBase[tileCount];
             rockChunkTileBuffer = new TileBase[tileCount];
             smoothChunkTileBuffer = new TileBase[tileCount];
             emptyChunkTiles = new TileBase[tileCount];
+            emptySandOverlayChunkTiles = new TileBase[tileCount];
             emptyPebbleChunkTiles = new TileBase[tileCount];
             emptyRockChunkTiles = new TileBase[tileCount];
             emptySmoothChunkTiles = new TileBase[tileCount];
             chunkTransformBuffer = new Matrix4x4[tileCount];
+            sandOverlayChunkTransformBuffer = new Matrix4x4[tileCount];
             pebbleChunkTransformBuffer = new Matrix4x4[tileCount];
             rockChunkTransformBuffer = new Matrix4x4[tileCount];
             smoothChunkTransformBuffer = new Matrix4x4[tileCount];
@@ -634,6 +648,13 @@ namespace BooterBigArm.Runtime
             FillChunkTransforms(chunkCoord);
             tilemap.SetTilesBlock(bounds, chunkTileBuffer);
             ApplyChunkTransforms(tilemap, bounds, chunkTransformBuffer);
+            FillSandOverlayChunkBuffer(chunkCoord);
+            FillSandOverlayChunkTransforms(chunkCoord);
+            if (sandOverlayTilemap != null)
+            {
+                sandOverlayTilemap.SetTilesBlock(bounds, sandOverlayChunkTileBuffer);
+                ApplyChunkTransforms(sandOverlayTilemap, bounds, sandOverlayChunkTransformBuffer);
+            }
             FillPebbleChunkBuffer(chunkCoord);
             FillPebbleChunkTransforms(chunkCoord);
             FillRockChunkBuffer(chunkCoord);
@@ -665,6 +686,10 @@ namespace BooterBigArm.Runtime
 
             var bounds = GetChunkBounds(chunkCoord);
             tilemap.SetTilesBlock(bounds, emptyChunkTiles);
+            if (sandOverlayTilemap != null)
+            {
+                sandOverlayTilemap.SetTilesBlock(bounds, emptySandOverlayChunkTiles);
+            }
             if (pebbleTilemap != null)
             {
                 pebbleTilemap.SetTilesBlock(bounds, emptyPebbleChunkTiles);
@@ -709,6 +734,25 @@ namespace BooterBigArm.Runtime
         private void FillChunkTransforms(Vector2Int chunkCoord)
         {
             FillRotationBuffer(chunkCoord, seed, chunkTransformBuffer);
+        }
+
+        private void FillSandOverlayChunkBuffer(Vector2Int chunkCoord)
+        {
+            var index = 0;
+            for (var localY = 0; localY < chunkSize; localY++)
+            {
+                for (var localX = 0; localX < chunkSize; localX++)
+                {
+                    var worldX = chunkCoord.x * chunkSize + localX;
+                    var worldY = chunkCoord.y * chunkSize + localY;
+                    sandOverlayChunkTileBuffer[index++] = SelectDominantTile(runtimeSandOverlayTiles, worldX, worldY, seed + 191, 0.16f);
+                }
+            }
+        }
+
+        private void FillSandOverlayChunkTransforms(Vector2Int chunkCoord)
+        {
+            FillRotationBuffer(chunkCoord, seed + 191, sandOverlayChunkTransformBuffer);
         }
 
         private void FillPebbleChunkBuffer(Vector2Int chunkCoord)
@@ -883,45 +927,49 @@ namespace BooterBigArm.Runtime
             }
         }
 
-        private TileBase SelectTile(int worldX, int worldY)
+        private TileBase SelectDominantTile(TileBase[] tiles, int worldX, int worldY, int noiseSeed, float accentChance)
         {
-            if (runtimeTiles == null || runtimeTiles.Length == 0)
+            if (tiles == null || tiles.Length == 0)
             {
                 return null;
             }
 
-            if (runtimeTiles.Length == 1)
+            if (tiles.Length == 1)
             {
-                return runtimeTiles[0];
+                return tiles[0];
             }
 
-            var baseTile = runtimeTiles[0];
+            var baseTile = tiles[0];
             if (baseTile == null)
             {
-                for (var i = 1; i < runtimeTiles.Length; i++)
+                for (var i = 1; i < tiles.Length; i++)
                 {
-                    if (runtimeTiles[i] != null)
+                    if (tiles[i] != null)
                     {
-                        return runtimeTiles[i];
+                        return tiles[i];
                     }
                 }
 
                 return null;
             }
 
-            const float accentChance = 0.24f;
-            if (Hash01(seed + 101, worldX, worldY) >= accentChance)
+            if (Hash01(noiseSeed + 101, worldX, worldY) >= accentChance)
             {
                 return baseTile;
             }
 
-            var accentIndex = 1 + GetVariantIndex(seed + 103, worldX, worldY, runtimeTiles.Length - 1);
-            if (accentIndex < 0 || accentIndex >= runtimeTiles.Length || runtimeTiles[accentIndex] == null)
+            var accentIndex = 1 + GetVariantIndex(noiseSeed + 103, worldX, worldY, tiles.Length - 1);
+            if (accentIndex < 0 || accentIndex >= tiles.Length || tiles[accentIndex] == null)
             {
                 return baseTile;
             }
 
-            return runtimeTiles[accentIndex];
+            return tiles[accentIndex];
+        }
+
+        private TileBase SelectTile(int worldX, int worldY)
+        {
+            return SelectDominantTile(runtimeTiles, worldX, worldY, seed, 0.24f);
         }
 
         private TileBase SelectLayerTile(TileBase[] tiles, int worldX, int worldY, int noiseSeed, float presenceThreshold, int regionScale, float detailChance)
@@ -1033,6 +1081,32 @@ namespace BooterBigArm.Runtime
             }
 
             return Matrix4x4.Rotate(Quaternion.Euler(0f, 0f, rotationIndex * 90f));
+        }
+
+        private TileBase[] CreateFallbackSandOverlayTiles()
+        {
+            var sprites = new[]
+            {
+                CreateDetailSprite(new Color32(217, 190, 132, 145), DetailPattern.SmoothPatchA),
+                CreateDetailSprite(new Color32(227, 200, 142, 140), DetailPattern.SmoothPatchB),
+                CreateDetailSprite(new Color32(209, 183, 126, 145), DetailPattern.SmoothPatchC),
+                CreateDetailSprite(new Color32(221, 194, 136, 140), DetailPattern.SmoothPatchD)
+            };
+
+            var tiles = new TileBase[sprites.Length];
+            for (var i = 0; i < sprites.Length; i++)
+            {
+                var sprite = sprites[i];
+                var tile = ScriptableObject.CreateInstance<Tile>();
+                tile.sprite = sprite;
+                tile.color = Color.white;
+                tile.flags = TileFlags.None;
+                tile.name = $"PrototypeFallbackSandOverlayTile_{i}";
+                tile.hideFlags = HideFlags.HideAndDontSave;
+                tiles[i] = tile;
+            }
+
+            return tiles;
         }
 
         private static void ApplyChunkTransforms(Tilemap targetTilemap, BoundsInt bounds, Matrix4x4[] transforms)

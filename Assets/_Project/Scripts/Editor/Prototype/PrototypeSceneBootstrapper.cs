@@ -31,6 +31,7 @@ namespace BooterBigArm.Editor
         private const string TallPropSlimPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSlim16x32.prefab";
         private const string GroundSandFolder = "Assets/_Project/Art/Prototype/Ground/Sand";
         private const string GroundSandPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand.psd";
+        private const string GroundSandOverlayPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand_overlay_128.psd";
         private const string GroundPebbleFolder = "Assets/_Project/Art/Prototype/Ground/Pebbles";
         private const string GroundRockFolder = "Assets/_Project/Art/Prototype/Ground/Rocks";
         private const string GroundSmoothFolder = "Assets/_Project/Art/Prototype/Ground/Smooth";
@@ -59,6 +60,7 @@ namespace BooterBigArm.Editor
             var tallPropSprite = EnsureTallPropSpriteAsset();
             var tallPropPrefabs = EnsureTallPropPrefabs(tallPropSprite, shadowSprite);
             var sandSprites = EnsureSandSprites();
+            var sandOverlaySprites = EnsureSandOverlaySprites();
             var pebbleSprites = EnsurePebbleSprites();
             var rockSprites = EnsureRockSprites();
             var smoothSprites = EnsureSmoothSprites();
@@ -68,7 +70,14 @@ namespace BooterBigArm.Editor
 
             var player = CreatePlayer(inputActions, playerSprite, shadowSprite);
             var cameraTarget = CreateCameraTarget(player);
-            var world = CreateWorld(player.transform, tallPropPrefabs, sandSprites, pebbleSprites, rockSprites, smoothSprites);
+            var world = CreateWorld(
+                player.transform,
+                tallPropPrefabs,
+                sandSprites,
+                sandOverlaySprites,
+                pebbleSprites,
+                rockSprites,
+                smoothSprites);
             CreateCamera(cameraTarget);
             CreateLighting();
             CreateVolume(volumeProfile);
@@ -132,6 +141,7 @@ namespace BooterBigArm.Editor
             Transform player,
             GameObject[] tallPropPrefabs,
             Sprite[] sandSprites,
+            Sprite[] sandOverlaySprites,
             Sprite[] pebbleSprites,
             Sprite[] rockSprites,
             Sprite[] smoothSprites)
@@ -145,20 +155,18 @@ namespace BooterBigArm.Editor
             var grid = worldRoot.AddComponent<Grid>();
             grid.cellSize = Vector3.one;
 
-            var sandGridObject = new GameObject("Sand Grid");
-            sandGridObject.transform.SetParent(worldRoot.transform, false);
-            var sandGrid = sandGridObject.AddComponent<Grid>();
-            sandGrid.cellSize = new Vector3(2f, 2f, 1f);
-
-            var sandTilemap = CreateTilemapLayer(sandGridObject.transform, "Sand Tilemap", 0);
-            var pebbleTilemap = CreateTilemapLayer(worldRoot.transform, "Pebble Tilemap", 1);
-            var rockTilemap = CreateTilemapLayer(worldRoot.transform, "Rock Tilemap", 2);
-            var smoothTilemap = CreateTilemapLayer(worldRoot.transform, "Smooth Tilemap", 3);
+            var sandTilemap = CreateTilemapLayer(worldRoot.transform, "Sand Tilemap", 0);
+            var sandOverlayTilemap = CreateTilemapLayer(worldRoot.transform, "Sand Overlay Tilemap", 1);
+            var pebbleTilemap = CreateTilemapLayer(worldRoot.transform, "Pebble Tilemap", 2);
+            var rockTilemap = CreateTilemapLayer(worldRoot.transform, "Rock Tilemap", 3);
+            var smoothTilemap = CreateTilemapLayer(worldRoot.transform, "Smooth Tilemap", 4);
 
             var generator = sandTilemap.gameObject.AddComponent<PrototypeWorldGenerator>();
             SetObjectReference(generator, "target", player);
             SetObjectReference(generator, "worldSettings", worldSettings);
             SetObjectArray(generator, "tileSprites", sandSprites);
+            SetObjectReference(generator, "sandOverlayTilemap", sandOverlayTilemap);
+            SetObjectArray(generator, "sandOverlayTileSprites", sandOverlaySprites);
             SetObjectArray(generator, "propPrefabs", tallPropPrefabs);
             SetObjectReference(generator, "propParent", propRoot.transform);
             SetFloat(generator, "propSpawnChance", 0.12f);
@@ -461,13 +469,7 @@ namespace BooterBigArm.Editor
 
         private static Sprite[] EnsureSandSprites()
         {
-            var sprites = AssetDatabase
-                .LoadAllAssetRepresentationsAtPath(GroundSandPsdPath)
-                .OfType<Sprite>()
-                .Where(sprite => sprite.name.StartsWith("tilemap_sand", System.StringComparison.OrdinalIgnoreCase))
-                .OrderBy(GetSandSpriteSortKey)
-                .ThenBy(sprite => sprite.name, StringComparer.OrdinalIgnoreCase)
-                .ToArray();
+            var sprites = LoadPsdSprites(GroundSandPsdPath, "tilemap_sand");
 
             if (sprites.Length > 0)
             {
@@ -493,7 +495,29 @@ namespace BooterBigArm.Editor
             return fallbackSprites.ToArray();
         }
 
-        private static int GetSandSpriteSortKey(Sprite sprite)
+        private static Sprite[] EnsureSandOverlaySprites()
+        {
+            var sprites = LoadPsdSprites(GroundSandOverlayPsdPath, "tilemap_sand_overlay_128");
+            if (sprites.Length > 0)
+            {
+                return sprites;
+            }
+
+            return Array.Empty<Sprite>();
+        }
+
+        private static Sprite[] LoadPsdSprites(string path, string spritePrefix)
+        {
+            return AssetDatabase
+                .LoadAllAssetRepresentationsAtPath(path)
+                .OfType<Sprite>()
+                .Where(sprite => sprite.name.StartsWith(spritePrefix, StringComparison.OrdinalIgnoreCase))
+                .OrderBy(GetSpriteSortKey)
+                .ThenBy(sprite => sprite.name, StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+        }
+
+        private static int GetSpriteSortKey(Sprite sprite)
         {
             if (sprite == null || string.IsNullOrEmpty(sprite.name))
             {
