@@ -26,6 +26,7 @@ namespace BooterBigArm.Editor
         private const string TallPropPrefabPath = "Assets/_Project/Prefabs/Prototype/TallPropPlaceholder.prefab";
         private const string RuleGroundFolder = "Assets/_Project/Art/Prototype/Ground/RuleGround";
         private const string RuleGroundRuleTilePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/RuleGroundRuleTile.asset";
+        private const string RuleGroundTemplatePsdPath = "Assets/_Project/Art/Prototype/Ground/RuleGround/rule_tile_template_16px.psd";
         private const string TallPropWidePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropWide64x64.prefab";
         private const string TallPropTallPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTall64x96.prefab";
         private const string TallPropSquarePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSquare32x32.prefab";
@@ -564,15 +565,21 @@ namespace BooterBigArm.Editor
 
         private static Sprite[] EnsureRuleGroundSprites()
         {
-            var sprites = new List<Sprite>(16);
+            var sprites = LoadPsdSprites(RuleGroundTemplatePsdPath, "rule_tile_template_16px");
+            if (sprites.Length > 0)
+            {
+                return sprites;
+            }
+
+            var fallbackSprites = new List<Sprite>(16);
             for (var mask = 0; mask < 16; mask++)
             {
                 var spritePath = Path.Combine(RuleGroundFolder, $"RuleGround{mask:D2}.png");
                 EnsureSpriteAsset(spritePath, CreateRuleGroundTexture(mask), false);
-                sprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
+                fallbackSprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
             }
 
-            return sprites.ToArray();
+            return fallbackSprites.ToArray();
         }
 
         private static List<RuleTile.TilingRule> BuildRuleGroundRules(IReadOnlyList<Sprite> sprites)
