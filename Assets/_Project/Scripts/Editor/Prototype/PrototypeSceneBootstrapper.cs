@@ -145,7 +145,12 @@ namespace BooterBigArm.Editor
             var grid = worldRoot.AddComponent<Grid>();
             grid.cellSize = Vector3.one;
 
-            var sandTilemap = CreateTilemapLayer(worldRoot.transform, "Sand Tilemap", 0);
+            var sandGridObject = new GameObject("Sand Grid");
+            sandGridObject.transform.SetParent(worldRoot.transform, false);
+            var sandGrid = sandGridObject.AddComponent<Grid>();
+            sandGrid.cellSize = new Vector3(2f, 2f, 1f);
+
+            var sandTilemap = CreateTilemapLayer(sandGridObject.transform, "Sand Tilemap", 0);
             var pebbleTilemap = CreateTilemapLayer(worldRoot.transform, "Pebble Tilemap", 1);
             var rockTilemap = CreateTilemapLayer(worldRoot.transform, "Rock Tilemap", 2);
             var smoothTilemap = CreateTilemapLayer(worldRoot.transform, "Smooth Tilemap", 3);
