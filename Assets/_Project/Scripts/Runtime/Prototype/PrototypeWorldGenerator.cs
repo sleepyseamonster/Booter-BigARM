@@ -669,6 +669,7 @@ namespace BooterBigArm.Runtime
             if (ruleGroundTilemap != null)
             {
                 ruleGroundTilemap.SetTilesBlock(bounds, ruleGroundChunkTiles);
+                ruleGroundTilemap.RefreshAllTiles();
             }
             FillChunkBuffer(chunkCoord);
             FillChunkTransforms(chunkCoord);
@@ -714,6 +715,7 @@ namespace BooterBigArm.Runtime
             if (ruleGroundTilemap != null)
             {
                 ruleGroundTilemap.SetTilesBlock(bounds, emptyRuleGroundChunkTiles);
+                ruleGroundTilemap.RefreshAllTiles();
             }
             tilemap.SetTilesBlock(bounds, emptyChunkTiles);
             if (sandOverlayTilemap != null)
