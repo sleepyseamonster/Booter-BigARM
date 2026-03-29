@@ -64,6 +64,8 @@ namespace BooterBigArm.Runtime
                 GUILayout.Label($"Seed: {worldGenerator.Seed}");
                 GUILayout.Label($"Chunk: {worldGenerator.CurrentCenterChunk.x}, {worldGenerator.CurrentCenterChunk.y}");
                 GUILayout.Label($"Loaded chunks: {worldGenerator.VisibleChunkCount}");
+                GUILayout.Label($"Pending loads: {worldGenerator.PendingLoadChunkCount}");
+                GUILayout.Label($"Pending unloads: {worldGenerator.PendingUnloadChunkCount}");
             }
 
             GUILayout.Label("F5: next seed");

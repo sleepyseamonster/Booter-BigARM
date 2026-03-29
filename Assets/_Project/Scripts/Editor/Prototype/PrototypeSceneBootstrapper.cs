@@ -25,7 +25,7 @@ namespace BooterBigArm.Editor
         private const string TallPropSpritePath = "Assets/_Project/Art/Prototype/Props/TallPropPlaceholder.png";
         private const string TallPropPrefabPath = "Assets/_Project/Prefabs/Prototype/TallPropPlaceholder.prefab";
         private const string RuleGroundFolder = "Assets/_Project/Art/Prototype/Ground/RuleGround";
-        private const string RuleGroundRuleTilePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/RuleGroundRuleTile.asset";
+        private const string SandPatchRuleTilePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/Sand Patch.asset";
         private const string TallPropWidePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropWide64x64.prefab";
         private const string TallPropTallPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTall64x96.prefab";
         private const string TallPropSquarePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSquare32x32.prefab";
@@ -62,7 +62,7 @@ namespace BooterBigArm.Editor
             var shadowSprite = EnsureShadowSpriteAsset();
             var tallPropSprite = EnsureTallPropSpriteAsset();
             var tallPropPrefabs = EnsureTallPropPrefabs(tallPropSprite, shadowSprite);
-            var ruleGroundRuleTile = LoadRuleGroundRuleTileAsset();
+            var sandPatchRuleTile = LoadSandPatchRuleTileAsset();
             var sandSprites = EnsureSandSprites();
             var sandOverlaySprites = EnsureSandOverlaySprites();
             var pebbleSprites = EnsurePebbleSprites();
@@ -77,7 +77,7 @@ namespace BooterBigArm.Editor
             var world = CreateWorld(
                 player.transform,
                 tallPropPrefabs,
-                ruleGroundRuleTile,
+                sandPatchRuleTile,
                 sandSprites,
                 sandOverlaySprites,
                 pebbleSprites,
@@ -145,7 +145,7 @@ namespace BooterBigArm.Editor
         private static PrototypeWorldGenerator CreateWorld(
             Transform player,
             GameObject[] tallPropPrefabs,
-            RuleTile ruleGroundTile,
+            RuleTile sandPatchRuleTile,
             Sprite[] sandSprites,
             Sprite[] sandOverlaySprites,
             Sprite[] pebbleSprites,
@@ -158,12 +158,12 @@ namespace BooterBigArm.Editor
             var propRoot = new GameObject("Tall Props");
             propRoot.transform.SetParent(worldRoot.transform, false);
 
-            var ruleGroundGrid = CreateGrid(worldRoot.transform, "Rule Ground Grid", new Vector3(0.5f, 0.5f, 1f));
+            var sandPatchGrid = CreateGrid(worldRoot.transform, "Sand Patch Grid", new Vector3(0.5f, 0.5f, 1f));
             var groundGrid = CreateGrid(worldRoot.transform, "Ground Grid", Vector3.one);
             var sandGrid = CreateGrid(worldRoot.transform, "Sand Grid", new Vector3(2f, 2f, 1f));
             var sandOverlayGrid = CreateGrid(worldRoot.transform, "Sand Overlay Grid", new Vector3(4f, 4f, 1f));
 
-            var ruleGroundTilemap = CreateTilemapLayer(ruleGroundGrid.transform, "Rule Ground Tilemap", 5);
+            var sandPatchTilemap = CreateTilemapLayer(sandPatchGrid.transform, "Sand Patch Tilemap", 5);
             var sandTilemap = CreateTilemapLayer(sandGrid.transform, "Sand Tilemap", 0);
             var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 1);
             var pebbleTilemap = CreateTilemapLayer(groundGrid.transform, "Pebble Tilemap", 2);
@@ -173,8 +173,8 @@ namespace BooterBigArm.Editor
             var generator = sandTilemap.gameObject.AddComponent<PrototypeWorldGenerator>();
             SetObjectReference(generator, "target", player);
             SetObjectReference(generator, "worldSettings", worldSettings);
-            SetObjectReference(generator, "ruleGroundTilemap", ruleGroundTilemap);
-            SetObjectReference(generator, "ruleGroundTile", ruleGroundTile);
+            SetObjectReference(generator, "ruleGroundTilemap", sandPatchTilemap);
+            SetObjectReference(generator, "ruleGroundTile", sandPatchRuleTile);
             SetObjectArray(generator, "tileSprites", sandSprites);
             SetObjectReference(generator, "sandOverlayTilemap", sandOverlayTilemap);
             SetObjectArray(generator, "sandOverlayTileSprites", sandOverlaySprites);
@@ -212,7 +212,18 @@ namespace BooterBigArm.Editor
             layerObject.AddComponent<Tilemap>();
             var renderer = layerObject.AddComponent<TilemapRenderer>();
             renderer.sortingOrder = sortingOrder;
+            EnableAutomaticChunkCullingBounds(renderer);
             return layerObject.GetComponent<Tilemap>();
+        }
+
+        private static void EnableAutomaticChunkCullingBounds(TilemapRenderer renderer)
+        {
+            if (renderer == null)
+            {
+                return;
+            }
+
+            renderer.detectChunkCullingBounds = TilemapRenderer.DetectChunkCullingBounds.Auto;
         }
 
         private static void CreateCamera(Transform target)
@@ -527,22 +538,22 @@ namespace BooterBigArm.Editor
             return Array.Empty<Sprite>();
         }
 
-        private static RuleTile LoadRuleGroundRuleTileAsset()
+        private static RuleTile LoadSandPatchRuleTileAsset()
         {
-            var folderPath = Path.GetDirectoryName(RuleGroundRuleTilePath);
+            var folderPath = Path.GetDirectoryName(SandPatchRuleTilePath);
             if (!string.IsNullOrEmpty(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
 
-            var ruleTile = AssetDatabase.LoadAssetAtPath<RuleTile>(RuleGroundRuleTilePath);
+            var ruleTile = AssetDatabase.LoadAssetAtPath<RuleTile>(SandPatchRuleTilePath);
             if (ruleTile == null)
             {
                 throw new System.InvalidOperationException(
-                    $"Missing rule-ground tile asset at '{RuleGroundRuleTilePath}'.");
+                    $"Missing sand patch rule tile asset at '{SandPatchRuleTilePath}'.");
             }
 
-            return AssetDatabase.LoadAssetAtPath<RuleTile>(RuleGroundRuleTilePath);
+            return AssetDatabase.LoadAssetAtPath<RuleTile>(SandPatchRuleTilePath);
         }
 
         private static Sprite[] LoadPsdSprites(string path, string spritePrefix)
