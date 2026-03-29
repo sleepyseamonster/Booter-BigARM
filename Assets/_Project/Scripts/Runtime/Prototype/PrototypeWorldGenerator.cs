@@ -33,7 +33,6 @@ namespace BooterBigArm.Runtime
         private const float RuleGroundClusterChunkChance = 0.18f;
         private const int RuleGroundClusterMinTiles = 20;
         private const int RuleGroundClusterMaxTiles = 30;
-        private const int RuleGroundClusterPadding = 0;
 
         private readonly HashSet<Vector2Int> visibleChunks = new HashSet<Vector2Int>();
         private readonly HashSet<Vector2Int> requiredChunks = new HashSet<Vector2Int>();
@@ -781,90 +780,11 @@ namespace BooterBigArm.Runtime
                 RuleGroundClusterMinTiles + Mathf.FloorToInt(Hash01(seed + 213, chunkCoord.x, chunkCoord.y) * (RuleGroundClusterMaxTiles - RuleGroundClusterMinTiles + 1)),
                 RuleGroundClusterMinTiles,
                 RuleGroundClusterMaxTiles);
-
-            var clusterCenterX = GetClusterCenterCell(chunkCoord.x, seed + 215);
-            var clusterCenterY = GetClusterCenterCell(chunkCoord.y, seed + 217);
-            var clusterCells = BuildRuleGroundClusterCells(chunkCoord, clusterCenterX, clusterCenterY, clusterSize);
-
-            foreach (var cellIndex in clusterCells)
+            var cellsToFill = Mathf.Min(clusterSize, ruleGroundChunkTiles.Length);
+            for (var i = 0; i < cellsToFill; i++)
             {
-                ruleGroundChunkTiles[cellIndex] = runtimeRuleGroundTile;
+                ruleGroundChunkTiles[i] = runtimeRuleGroundTile;
             }
-        }
-
-        private int GetClusterCenterCell(int chunkCoord, int noiseSeed)
-        {
-            if (chunkSize <= 1)
-            {
-                return 0;
-            }
-
-            var minCell = Mathf.Clamp(RuleGroundClusterPadding, 0, chunkSize - 1);
-            var maxCell = Mathf.Clamp(chunkSize - RuleGroundClusterPadding - 1, minCell, chunkSize - 1);
-            if (minCell >= maxCell)
-            {
-                return Mathf.Clamp(chunkSize / 2, 0, chunkSize - 1);
-            }
-
-            var range = maxCell - minCell + 1;
-            var value = Hash01(noiseSeed, chunkCoord, seed);
-            return minCell + Mathf.FloorToInt(value * range);
-        }
-
-        private HashSet<int> BuildRuleGroundClusterCells(Vector2Int chunkCoord, int centerX, int centerY, int clusterSize)
-        {
-            var occupied = new HashSet<int>();
-            var frontier = new List<int>();
-            var rng = new System.Random(ComposeSeed(seed + 219, chunkCoord.x, chunkCoord.y, 17));
-
-            var centerIndex = centerY * chunkSize + centerX;
-            occupied.Add(centerIndex);
-            frontier.Add(centerIndex);
-
-            var attempts = 0;
-            var maxAttempts = clusterSize * 24;
-            while (occupied.Count < clusterSize && attempts < maxAttempts && frontier.Count > 0)
-            {
-                attempts++;
-
-                var sourceIndex = frontier[rng.Next(frontier.Count)];
-                var sourceX = sourceIndex % chunkSize;
-                var sourceY = sourceIndex / chunkSize;
-                var direction = rng.Next(8);
-                var offset = direction switch
-                {
-                    0 => new Vector2Int(0, 1),
-                    1 => new Vector2Int(1, 1),
-                    2 => new Vector2Int(1, 0),
-                    3 => new Vector2Int(1, -1),
-                    4 => new Vector2Int(0, -1),
-                    5 => new Vector2Int(-1, -1),
-                    6 => new Vector2Int(-1, 0),
-                    _ => new Vector2Int(-1, 1)
-                };
-
-                var candidateX = sourceX + offset.x;
-                var candidateY = sourceY + offset.y;
-                if (candidateX < RuleGroundClusterPadding || candidateX >= chunkSize - RuleGroundClusterPadding)
-                {
-                    continue;
-                }
-
-                if (candidateY < RuleGroundClusterPadding || candidateY >= chunkSize - RuleGroundClusterPadding)
-                {
-                    continue;
-                }
-
-                var candidateIndex = candidateY * chunkSize + candidateX;
-                if (!occupied.Add(candidateIndex))
-                {
-                    continue;
-                }
-
-                frontier.Add(candidateIndex);
-            }
-
-            return occupied;
         }
 
         private void FillChunkTransforms(Vector2Int chunkCoord)
@@ -1197,19 +1117,6 @@ namespace BooterBigArm.Runtime
             var value = Hash01(noiseSeed, worldX, worldY) * variantCount;
             var variant = Mathf.FloorToInt(value);
             return Mathf.Clamp(variant, 0, variantCount - 1);
-        }
-
-        private static int ComposeSeed(int a, int b, int c, int d)
-        {
-            unchecked
-            {
-                var hash = 17;
-                hash = hash * 31 + a;
-                hash = hash * 31 + b;
-                hash = hash * 31 + c;
-                hash = hash * 31 + d;
-                return hash;
-            }
         }
 
         private int GetSparsePropLocalCell(int noiseSeed, int chunkX, int chunkY)
