@@ -531,10 +531,10 @@ namespace BooterBigArm.Editor
 
         private static RuleTile EnsureRuleGroundRuleTileAsset(Sprite[] sprites)
         {
-            if (sprites.Length < 54)
+            if (sprites.Length < RuleGroundMasks.CanonicalMasks.Length)
             {
                 throw new System.InvalidOperationException(
-                    $"Expected 54 rule-ground sprites, found {sprites.Length}.");
+                    $"Expected at least {RuleGroundMasks.CanonicalMasks.Length} rule-ground sprites, found {sprites.Length}.");
             }
 
             var folderPath = Path.GetDirectoryName(RuleGroundRuleTilePath);
@@ -551,7 +551,7 @@ namespace BooterBigArm.Editor
             }
 
             ruleTile.name = "RuleGroundRuleTile";
-            ruleTile.m_DefaultSprite = sprites[sprites.Length - 1];
+            ruleTile.m_DefaultSprite = sprites[0];
             ruleTile.m_DefaultGameObject = null;
             ruleTile.m_DefaultColliderType = Tile.ColliderType.None;
             ruleTile.m_TilingRules = BuildRuleGroundRules(sprites);
@@ -571,10 +571,11 @@ namespace BooterBigArm.Editor
                 return sprites;
             }
 
-            var fallbackSprites = new List<Sprite>(16);
-            for (var mask = 0; mask < 16; mask++)
+            var fallbackSprites = new List<Sprite>(RuleGroundMasks.CanonicalMasks.Length);
+            for (var i = 0; i < RuleGroundMasks.CanonicalMasks.Length; i++)
             {
-                var spritePath = Path.Combine(RuleGroundFolder, $"RuleGround{mask:D2}.png");
+                var mask = RuleGroundMasks.CanonicalMasks[i];
+                var spritePath = Path.Combine(RuleGroundFolder, $"RuleGround{i:D2}.png");
                 EnsureSpriteAsset(spritePath, CreateRuleGroundTexture(mask), false);
                 fallbackSprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
             }
@@ -584,16 +585,19 @@ namespace BooterBigArm.Editor
 
         private static List<RuleTile.TilingRule> BuildRuleGroundRules(IReadOnlyList<Sprite> sprites)
         {
-            var orderedMasks = new int[54];
-            for (var i = 0; i < orderedMasks.Length; i++)
+            var orderedMasks = RuleGroundMasks.CanonicalMasks;
+            if (sprites.Count < orderedMasks.Length)
             {
-                orderedMasks[i] = i;
+                throw new System.InvalidOperationException(
+                    $"Expected at least {orderedMasks.Length} rule-ground sprites, found {sprites.Count}.");
             }
+
             var rules = new List<RuleTile.TilingRule>(orderedMasks.Length);
 
-            foreach (var mask in orderedMasks)
+            for (var i = 0; i < orderedMasks.Length; i++)
             {
-                var rule = CreateRuleGroundRule(sprites[mask], mask);
+                var mask = orderedMasks[i];
+                var rule = CreateRuleGroundRule(sprites[i], mask);
                 rules.Add(rule);
             }
 

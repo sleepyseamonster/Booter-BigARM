@@ -219,7 +219,7 @@ namespace BooterBigArm.Runtime
                 smoothTileSprites != null &&
                 runtimeTiles.Length == tileSprites.Length &&
                 runtimeRuleGroundTile != null &&
-                ruleGroundSprites.Length > 0 &&
+                ruleGroundSprites.Length >= RuleGroundMasks.CanonicalMasks.Length &&
                 runtimePebbleTiles.Length == pebbleTileSprites.Length &&
                 runtimeRockTiles.Length == rockTileSprites.Length &&
                 runtimeSmoothTiles.Length == smoothTileSprites.Length)
@@ -864,14 +864,14 @@ namespace BooterBigArm.Runtime
 
         private static RuleTile BuildRuntimeRuleGroundTile(Sprite[] sprites)
         {
-            if (sprites == null || sprites.Length < 54)
+            if (sprites == null || sprites.Length < RuleGroundMasks.CanonicalMasks.Length)
             {
                 return null;
             }
 
             var ruleTile = ScriptableObject.CreateInstance<RuleTile>();
             ruleTile.name = "RuntimeRuleGroundTile";
-            ruleTile.m_DefaultSprite = sprites[sprites.Length - 1];
+            ruleTile.m_DefaultSprite = sprites[0];
             ruleTile.m_DefaultGameObject = null;
             ruleTile.m_DefaultColliderType = Tile.ColliderType.None;
             ruleTile.m_TilingRules = BuildRuntimeRuleGroundRules(sprites);
@@ -882,16 +882,17 @@ namespace BooterBigArm.Runtime
 
         private static List<RuleTile.TilingRule> BuildRuntimeRuleGroundRules(IReadOnlyList<Sprite> sprites)
         {
-            var orderedMasks = new int[54];
+            var orderedMasks = RuleGroundMasks.CanonicalMasks;
+            if (sprites.Count < orderedMasks.Length)
+            {
+                throw new System.InvalidOperationException(
+                    $"Expected at least {orderedMasks.Length} rule-ground sprites, found {sprites.Count}.");
+            }
+
+            var rules = new List<RuleTile.TilingRule>(orderedMasks.Length);
             for (var i = 0; i < orderedMasks.Length; i++)
             {
-                orderedMasks[i] = i;
-            }
-            var rules = new List<RuleTile.TilingRule>(orderedMasks.Length);
-
-            foreach (var mask in orderedMasks)
-            {
-                rules.Add(CreateRuntimeRuleGroundRule(sprites[mask], mask));
+                rules.Add(CreateRuntimeRuleGroundRule(sprites[i], orderedMasks[i]));
             }
 
             return rules;
