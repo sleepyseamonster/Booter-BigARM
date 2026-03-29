@@ -531,10 +531,10 @@ namespace BooterBigArm.Editor
 
         private static RuleTile EnsureRuleGroundRuleTileAsset(Sprite[] sprites)
         {
-            if (sprites.Length < 16)
+            if (sprites.Length < 54)
             {
                 throw new System.InvalidOperationException(
-                    $"Expected 16 rule-ground sprites, found {sprites.Length}.");
+                    $"Expected 54 rule-ground sprites, found {sprites.Length}.");
             }
 
             var folderPath = Path.GetDirectoryName(RuleGroundRuleTilePath);
@@ -551,7 +551,7 @@ namespace BooterBigArm.Editor
             }
 
             ruleTile.name = "RuleGroundRuleTile";
-            ruleTile.m_DefaultSprite = sprites[15];
+            ruleTile.m_DefaultSprite = sprites[sprites.Length - 1];
             ruleTile.m_DefaultGameObject = null;
             ruleTile.m_DefaultColliderType = Tile.ColliderType.None;
             ruleTile.m_TilingRules = BuildRuleGroundRules(sprites);
@@ -584,7 +584,11 @@ namespace BooterBigArm.Editor
 
         private static List<RuleTile.TilingRule> BuildRuleGroundRules(IReadOnlyList<Sprite> sprites)
         {
-            var orderedMasks = new[] { 15, 7, 11, 13, 14, 3, 5, 9, 6, 10, 12, 1, 2, 4, 8, 0 };
+            var orderedMasks = new int[54];
+            for (var i = 0; i < orderedMasks.Length; i++)
+            {
+                orderedMasks[i] = i;
+            }
             var rules = new List<RuleTile.TilingRule>(orderedMasks.Length);
 
             foreach (var mask in orderedMasks)
@@ -620,14 +624,14 @@ namespace BooterBigArm.Editor
 
             rule.m_Neighbors = new List<int>
             {
-                0,
                 (mask & 1) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                0,
-                (mask & 8) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
                 (mask & 2) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                0,
                 (mask & 4) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                0
+                (mask & 8) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                (mask & 16) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                (mask & 32) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                (mask & 64) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
+                (mask & 128) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis
             };
 
             return rule;
