@@ -16,6 +16,7 @@ namespace BooterBigArm.Runtime
         [SerializeField, Range(0f, 1f)] private float propSpawnChance = 0.12f;
         [SerializeField] private PrototypeWorldSettings worldSettings;
         [SerializeField] private Tilemap ruleGroundTilemap;
+        [SerializeField] private RuleTile ruleGroundTile;
         [SerializeField] private Sprite[] ruleGroundSprites;
         [SerializeField] private Tilemap pebbleTilemap;
         [SerializeField] private Sprite[] pebbleTileSprites;
@@ -212,14 +213,13 @@ namespace BooterBigArm.Runtime
                 runtimeRockTiles != null &&
                 runtimeSmoothTiles != null &&
                 runtimeRuleGroundTile != null &&
+                ruleGroundTile != null &&
                 tileSprites != null &&
                 ruleGroundSprites != null &&
                 pebbleTileSprites != null &&
                 rockTileSprites != null &&
                 smoothTileSprites != null &&
                 runtimeTiles.Length == tileSprites.Length &&
-                runtimeRuleGroundTile != null &&
-                ruleGroundSprites.Length >= RuleGroundMasks.CanonicalMasks.Length &&
                 runtimePebbleTiles.Length == pebbleTileSprites.Length &&
                 runtimeRockTiles.Length == rockTileSprites.Length &&
                 runtimeSmoothTiles.Length == smoothTileSprites.Length)
@@ -256,7 +256,7 @@ namespace BooterBigArm.Runtime
             runtimeRockTiles = BuildRuntimeTiles(rockTileSprites, CreateFallbackRockTiles, "PrototypeRuntimeRockTile");
             runtimeSmoothTiles = BuildRuntimeTiles(smoothTileSprites, CreateFallbackSmoothTiles, "PrototypeRuntimeSmoothTile");
             runtimeSandOverlayTiles = BuildRuntimeTiles(sandOverlayTileSprites, CreateFallbackSandOverlayTiles, "PrototypeRuntimeSandOverlayTile");
-            runtimeRuleGroundTile = BuildRuntimeRuleGroundTile(ruleGroundSprites);
+            runtimeRuleGroundTile = ruleGroundTile != null ? ruleGroundTile : BuildRuntimeRuleGroundTile(ruleGroundSprites);
 
             EnsureChunkBuffers();
         }

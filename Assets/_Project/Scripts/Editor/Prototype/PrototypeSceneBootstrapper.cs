@@ -26,7 +26,6 @@ namespace BooterBigArm.Editor
         private const string TallPropPrefabPath = "Assets/_Project/Prefabs/Prototype/TallPropPlaceholder.prefab";
         private const string RuleGroundFolder = "Assets/_Project/Art/Prototype/Ground/RuleGround";
         private const string RuleGroundRuleTilePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/RuleGroundRuleTile.asset";
-        private const string RuleGroundTemplatePsdPath = "Assets/_Project/Art/Prototype/Ground/RuleGround/rule_tile_template_16px.psd";
         private const string TallPropWidePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropWide64x64.prefab";
         private const string TallPropTallPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTall64x96.prefab";
         private const string TallPropSquarePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSquare32x32.prefab";
@@ -63,8 +62,7 @@ namespace BooterBigArm.Editor
             var shadowSprite = EnsureShadowSpriteAsset();
             var tallPropSprite = EnsureTallPropSpriteAsset();
             var tallPropPrefabs = EnsureTallPropPrefabs(tallPropSprite, shadowSprite);
-            var ruleGroundSprites = EnsureRuleGroundSprites();
-            EnsureRuleGroundRuleTileAsset(ruleGroundSprites);
+            var ruleGroundRuleTile = LoadRuleGroundRuleTileAsset();
             var sandSprites = EnsureSandSprites();
             var sandOverlaySprites = EnsureSandOverlaySprites();
             var pebbleSprites = EnsurePebbleSprites();
@@ -79,7 +77,7 @@ namespace BooterBigArm.Editor
             var world = CreateWorld(
                 player.transform,
                 tallPropPrefabs,
-                ruleGroundSprites,
+                ruleGroundRuleTile,
                 sandSprites,
                 sandOverlaySprites,
                 pebbleSprites,
@@ -147,7 +145,7 @@ namespace BooterBigArm.Editor
         private static PrototypeWorldGenerator CreateWorld(
             Transform player,
             GameObject[] tallPropPrefabs,
-            Sprite[] ruleGroundSprites,
+            RuleTile ruleGroundTile,
             Sprite[] sandSprites,
             Sprite[] sandOverlaySprites,
             Sprite[] pebbleSprites,
@@ -176,7 +174,7 @@ namespace BooterBigArm.Editor
             SetObjectReference(generator, "target", player);
             SetObjectReference(generator, "worldSettings", worldSettings);
             SetObjectReference(generator, "ruleGroundTilemap", ruleGroundTilemap);
-            SetObjectArray(generator, "ruleGroundSprites", ruleGroundSprites);
+            SetObjectReference(generator, "ruleGroundTile", ruleGroundTile);
             SetObjectArray(generator, "tileSprites", sandSprites);
             SetObjectReference(generator, "sandOverlayTilemap", sandOverlayTilemap);
             SetObjectArray(generator, "sandOverlayTileSprites", sandOverlaySprites);
@@ -529,14 +527,8 @@ namespace BooterBigArm.Editor
             return Array.Empty<Sprite>();
         }
 
-        private static RuleTile EnsureRuleGroundRuleTileAsset(Sprite[] sprites)
+        private static RuleTile LoadRuleGroundRuleTileAsset()
         {
-            if (sprites.Length < RuleGroundMasks.CanonicalMasks.Length)
-            {
-                throw new System.InvalidOperationException(
-                    $"Expected at least {RuleGroundMasks.CanonicalMasks.Length} rule-ground sprites, found {sprites.Length}.");
-            }
-
             var folderPath = Path.GetDirectoryName(RuleGroundRuleTilePath);
             if (!string.IsNullOrEmpty(folderPath))
             {
@@ -546,99 +538,11 @@ namespace BooterBigArm.Editor
             var ruleTile = AssetDatabase.LoadAssetAtPath<RuleTile>(RuleGroundRuleTilePath);
             if (ruleTile == null)
             {
-                ruleTile = ScriptableObject.CreateInstance<RuleTile>();
-                AssetDatabase.CreateAsset(ruleTile, RuleGroundRuleTilePath);
-            }
-
-            ruleTile.name = "RuleGroundRuleTile";
-            ruleTile.m_DefaultSprite = sprites[0];
-            ruleTile.m_DefaultGameObject = null;
-            ruleTile.m_DefaultColliderType = Tile.ColliderType.None;
-            ruleTile.m_TilingRules = BuildRuleGroundRules(sprites);
-            ruleTile.UpdateNeighborPositions();
-
-            EditorUtility.SetDirty(ruleTile);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.ImportAsset(RuleGroundRuleTilePath, ImportAssetOptions.ForceSynchronousImport);
-            return AssetDatabase.LoadAssetAtPath<RuleTile>(RuleGroundRuleTilePath);
-        }
-
-        private static Sprite[] EnsureRuleGroundSprites()
-        {
-            var sprites = LoadPsdSprites(RuleGroundTemplatePsdPath, "rule_tile_template_16px");
-            if (sprites.Length > 0)
-            {
-                return sprites;
-            }
-
-            var fallbackSprites = new List<Sprite>(RuleGroundMasks.CanonicalMasks.Length);
-            for (var i = 0; i < RuleGroundMasks.CanonicalMasks.Length; i++)
-            {
-                var mask = RuleGroundMasks.CanonicalMasks[i];
-                var spritePath = Path.Combine(RuleGroundFolder, $"RuleGround{i:D2}.png");
-                EnsureSpriteAsset(spritePath, CreateRuleGroundTexture(mask), false);
-                fallbackSprites.Add(AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
-            }
-
-            return fallbackSprites.ToArray();
-        }
-
-        private static List<RuleTile.TilingRule> BuildRuleGroundRules(IReadOnlyList<Sprite> sprites)
-        {
-            var orderedMasks = RuleGroundMasks.CanonicalMasks;
-            if (sprites.Count < orderedMasks.Length)
-            {
                 throw new System.InvalidOperationException(
-                    $"Expected at least {orderedMasks.Length} rule-ground sprites, found {sprites.Count}.");
+                    $"Missing rule-ground tile asset at '{RuleGroundRuleTilePath}'.");
             }
 
-            var rules = new List<RuleTile.TilingRule>(orderedMasks.Length);
-
-            for (var i = 0; i < orderedMasks.Length; i++)
-            {
-                var mask = orderedMasks[i];
-                var rule = CreateRuleGroundRule(sprites[i], mask);
-                rules.Add(rule);
-            }
-
-            return rules;
-        }
-
-        private static RuleTile.TilingRule CreateRuleGroundRule(Sprite sprite, int mask)
-        {
-            var rule = new RuleTile.TilingRule
-            {
-                m_Output = RuleTile.TilingRuleOutput.OutputSprite.Single,
-                m_ColliderType = Tile.ColliderType.None,
-                m_RuleTransform = RuleTile.TilingRuleOutput.Transform.Fixed,
-                m_Sprites = new[] { sprite }
-            };
-
-            rule.m_NeighborPositions = new List<Vector3Int>
-            {
-                new(-1, 1, 0),
-                new(0, 1, 0),
-                new(1, 1, 0),
-                new(-1, 0, 0),
-                new(1, 0, 0),
-                new(-1, -1, 0),
-                new(0, -1, 0),
-                new(1, -1, 0)
-            };
-
-            rule.m_Neighbors = new List<int>
-            {
-                (mask & 1) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 2) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 4) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 8) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 16) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 32) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 64) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 128) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis
-            };
-
-            return rule;
+            return AssetDatabase.LoadAssetAtPath<RuleTile>(RuleGroundRuleTilePath);
         }
 
         private static Sprite[] LoadPsdSprites(string path, string spritePrefix)
