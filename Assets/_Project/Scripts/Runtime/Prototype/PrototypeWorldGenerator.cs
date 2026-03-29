@@ -17,7 +17,6 @@ namespace BooterBigArm.Runtime
         [SerializeField] private PrototypeWorldSettings worldSettings;
         [SerializeField] private Tilemap ruleGroundTilemap;
         [SerializeField] private RuleTile ruleGroundTile;
-        [SerializeField] private Sprite[] ruleGroundSprites;
         [SerializeField] private Tilemap pebbleTilemap;
         [SerializeField] private Sprite[] pebbleTileSprites;
         [SerializeField] private Tilemap rockTilemap;
@@ -34,7 +33,7 @@ namespace BooterBigArm.Runtime
         private const float RuleGroundClusterChunkChance = 0.18f;
         private const int RuleGroundClusterMinTiles = 20;
         private const int RuleGroundClusterMaxTiles = 30;
-        private const int RuleGroundClusterPadding = 2;
+        private const int RuleGroundClusterPadding = 0;
 
         private readonly HashSet<Vector2Int> visibleChunks = new HashSet<Vector2Int>();
         private readonly HashSet<Vector2Int> requiredChunks = new HashSet<Vector2Int>();
@@ -215,7 +214,6 @@ namespace BooterBigArm.Runtime
                 runtimeRuleGroundTile != null &&
                 ruleGroundTile != null &&
                 tileSprites != null &&
-                ruleGroundSprites != null &&
                 pebbleTileSprites != null &&
                 rockTileSprites != null &&
                 smoothTileSprites != null &&
@@ -256,7 +254,7 @@ namespace BooterBigArm.Runtime
             runtimeRockTiles = BuildRuntimeTiles(rockTileSprites, CreateFallbackRockTiles, "PrototypeRuntimeRockTile");
             runtimeSmoothTiles = BuildRuntimeTiles(smoothTileSprites, CreateFallbackSmoothTiles, "PrototypeRuntimeSmoothTile");
             runtimeSandOverlayTiles = BuildRuntimeTiles(sandOverlayTileSprites, CreateFallbackSandOverlayTiles, "PrototypeRuntimeSandOverlayTile");
-            runtimeRuleGroundTile = ruleGroundTile != null ? ruleGroundTile : BuildRuntimeRuleGroundTile(ruleGroundSprites);
+            runtimeRuleGroundTile = ruleGroundTile;
 
             EnsureChunkBuffers();
         }
@@ -817,6 +815,7 @@ namespace BooterBigArm.Runtime
         {
             var occupied = new HashSet<int>();
             var frontier = new List<int>();
+            var rng = new System.Random(ComposeSeed(seed + 219, chunkCoord.x, chunkCoord.y, 17));
 
             var centerIndex = centerY * chunkSize + centerX;
             occupied.Add(centerIndex);
@@ -828,16 +827,20 @@ namespace BooterBigArm.Runtime
             {
                 attempts++;
 
-                var sourceIndex = frontier[GetVariantIndex(seed + 219 + attempts, chunkCoord.x, chunkCoord.y, frontier.Count)];
+                var sourceIndex = frontier[rng.Next(frontier.Count)];
                 var sourceX = sourceIndex % chunkSize;
                 var sourceY = sourceIndex / chunkSize;
-                var direction = GetVariantIndex(seed + 223 + attempts, chunkCoord.x, chunkCoord.y, 4);
+                var direction = rng.Next(8);
                 var offset = direction switch
                 {
                     0 => new Vector2Int(0, 1),
-                    1 => new Vector2Int(1, 0),
-                    2 => new Vector2Int(0, -1),
-                    _ => new Vector2Int(-1, 0)
+                    1 => new Vector2Int(1, 1),
+                    2 => new Vector2Int(1, 0),
+                    3 => new Vector2Int(1, -1),
+                    4 => new Vector2Int(0, -1),
+                    5 => new Vector2Int(-1, -1),
+                    6 => new Vector2Int(-1, 0),
+                    _ => new Vector2Int(-1, 1)
                 };
 
                 var candidateX = sourceX + offset.x;
@@ -862,79 +865,6 @@ namespace BooterBigArm.Runtime
             }
 
             return occupied;
-        }
-
-        private static RuleTile BuildRuntimeRuleGroundTile(Sprite[] sprites)
-        {
-            if (sprites == null || sprites.Length < RuleGroundMasks.CanonicalMasks.Length)
-            {
-                return null;
-            }
-
-            var ruleTile = ScriptableObject.CreateInstance<RuleTile>();
-            ruleTile.name = "RuntimeRuleGroundTile";
-            ruleTile.m_DefaultSprite = sprites[0];
-            ruleTile.m_DefaultGameObject = null;
-            ruleTile.m_DefaultColliderType = Tile.ColliderType.None;
-            ruleTile.m_TilingRules = BuildRuntimeRuleGroundRules(sprites);
-            ruleTile.UpdateNeighborPositions();
-            ruleTile.hideFlags = HideFlags.HideAndDontSave;
-            return ruleTile;
-        }
-
-        private static List<RuleTile.TilingRule> BuildRuntimeRuleGroundRules(IReadOnlyList<Sprite> sprites)
-        {
-            var orderedMasks = RuleGroundMasks.CanonicalMasks;
-            if (sprites.Count < orderedMasks.Length)
-            {
-                throw new System.InvalidOperationException(
-                    $"Expected at least {orderedMasks.Length} rule-ground sprites, found {sprites.Count}.");
-            }
-
-            var rules = new List<RuleTile.TilingRule>(orderedMasks.Length);
-            for (var i = 0; i < orderedMasks.Length; i++)
-            {
-                rules.Add(CreateRuntimeRuleGroundRule(sprites[i], orderedMasks[i]));
-            }
-
-            return rules;
-        }
-
-        private static RuleTile.TilingRule CreateRuntimeRuleGroundRule(Sprite sprite, int mask)
-        {
-            var rule = new RuleTile.TilingRule
-            {
-                m_Output = RuleTile.TilingRuleOutput.OutputSprite.Single,
-                m_ColliderType = Tile.ColliderType.None,
-                m_RuleTransform = RuleTile.TilingRuleOutput.Transform.Fixed,
-                m_Sprites = new[] { sprite }
-            };
-
-            rule.m_NeighborPositions = new List<Vector3Int>
-            {
-                new(-1, 1, 0),
-                new(0, 1, 0),
-                new(1, 1, 0),
-                new(-1, 0, 0),
-                new(1, 0, 0),
-                new(-1, -1, 0),
-                new(0, -1, 0),
-                new(1, -1, 0)
-            };
-
-            rule.m_Neighbors = new List<int>
-            {
-                (mask & 1) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 2) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 4) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 8) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 16) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 32) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 64) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis,
-                (mask & 128) != 0 ? RuleTile.TilingRuleOutput.Neighbor.This : RuleTile.TilingRuleOutput.Neighbor.NotThis
-            };
-
-            return rule;
         }
 
         private void FillChunkTransforms(Vector2Int chunkCoord)
@@ -1267,6 +1197,19 @@ namespace BooterBigArm.Runtime
             var value = Hash01(noiseSeed, worldX, worldY) * variantCount;
             var variant = Mathf.FloorToInt(value);
             return Mathf.Clamp(variant, 0, variantCount - 1);
+        }
+
+        private static int ComposeSeed(int a, int b, int c, int d)
+        {
+            unchecked
+            {
+                var hash = 17;
+                hash = hash * 31 + a;
+                hash = hash * 31 + b;
+                hash = hash * 31 + c;
+                hash = hash * 31 + d;
+                return hash;
+            }
         }
 
         private int GetSparsePropLocalCell(int noiseSeed, int chunkX, int chunkY)
