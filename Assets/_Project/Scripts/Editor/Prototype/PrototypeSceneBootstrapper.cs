@@ -31,6 +31,11 @@ namespace BooterBigArm.Editor
         private const string TallPropSquarePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSquare32x32.prefab";
         private const string TallPropTinyPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTiny16x16.prefab";
         private const string TallPropSlimPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSlim16x32.prefab";
+        private const string BoulderPrefabPath = "Assets/_Project/Prefabs/boulder_32 _1.prefab";
+        private const string BoulderPrefabAltPath = "Assets/_Project/Prefabs/prefab_boulder_32 _1.prefab";
+        private const string PrototypePropCatalogPath = "Assets/_Project/Settings/World/PrototypeWorldPropCatalog.asset";
+        private const string GreaterWastelandBiomeId = "Greater Wasteland";
+        private const string ReefBiomeId = "The Reef";
         private const string GroundSandFolder = "Assets/_Project/Art/Prototype/Ground/Sand";
         private const string GroundSandPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand.psd";
         private const string GroundSandOverlayPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand_overlay_128.psd";
@@ -62,6 +67,7 @@ namespace BooterBigArm.Editor
             var shadowSprite = EnsureShadowSpriteAsset();
             var tallPropSprite = EnsureTallPropSpriteAsset();
             var tallPropPrefabs = EnsureTallPropPrefabs(tallPropSprite, shadowSprite);
+            var propCatalog = EnsurePrototypePropCatalog();
             var sandPatchRuleTile = LoadSandPatchRuleTileAsset();
             var sandSprites = EnsureSandSprites();
             var sandOverlaySprites = EnsureSandOverlaySprites();
@@ -77,6 +83,7 @@ namespace BooterBigArm.Editor
             var world = CreateWorld(
                 player.transform,
                 tallPropPrefabs,
+                propCatalog,
                 sandPatchRuleTile,
                 sandSprites,
                 sandOverlaySprites,
@@ -93,6 +100,40 @@ namespace BooterBigArm.Editor
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             EditorSceneManager.OpenScene(PrototypeScenePath);
+        }
+
+        [MenuItem("Booter & BigARM/Prototype/Repair Prototype Prop Setup")]
+        public static void RepairPrototypePropSetup()
+        {
+            var scene = EditorSceneManager.OpenScene(PrototypeScenePath, OpenSceneMode.Single);
+            var catalog = EnsurePrototypePropCatalog();
+            var boulderPrefabs = LoadBoulderPrefabs();
+
+            var worldSettings = UnityEngine.Object.FindFirstObjectByType<PrototypeWorldSettings>();
+            if (worldSettings == null)
+            {
+                throw new InvalidOperationException(
+                    $"Unable to find {nameof(PrototypeWorldSettings)} in '{PrototypeScenePath}'.");
+            }
+
+            SetObjectReference(worldSettings, "propCatalog", catalog);
+
+            var generator = UnityEngine.Object.FindFirstObjectByType<PrototypeWorldGenerator>();
+            if (generator == null)
+            {
+                throw new InvalidOperationException(
+                    $"Unable to find {nameof(PrototypeWorldGenerator)} in '{PrototypeScenePath}'.");
+            }
+
+            for (var i = 0; i < boulderPrefabs.Length; i++)
+            {
+                EnsurePrefabInObjectArray(generator, "propPrefabs", boulderPrefabs[i]);
+            }
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
 
         private static GameObject CreatePlayer(InputActionAsset inputActions, Sprite prototypeSprite, Sprite shadowSprite)
@@ -145,6 +186,7 @@ namespace BooterBigArm.Editor
         private static PrototypeWorldGenerator CreateWorld(
             Transform player,
             GameObject[] tallPropPrefabs,
+            PrototypeWorldPropCatalog propCatalog,
             RuleTile sandPatchRuleTile,
             Sprite[] sandSprites,
             Sprite[] sandOverlaySprites,
@@ -155,6 +197,7 @@ namespace BooterBigArm.Editor
             var worldRoot = new GameObject("World");
             var worldSettings = worldRoot.AddComponent<PrototypeWorldSettings>();
             SetFloat(worldSettings, "propSpawnChance", 0.12f);
+            SetObjectReference(worldSettings, "propCatalog", propCatalog);
             var propRoot = new GameObject("Tall Props");
             propRoot.transform.SetParent(worldRoot.transform, false);
 
@@ -237,6 +280,8 @@ namespace BooterBigArm.Editor
             camera.orthographicSize = 5f;
             camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = new Color(0.07f, 0.09f, 0.12f);
+            camera.transparencySortMode = TransparencySortMode.CustomAxis;
+            camera.transparencySortAxis = new Vector3(0f, 1f, 0f);
 
             cameraObject.AddComponent<AudioListener>();
             var pixelPerfectCamera = cameraObject.AddComponent<UnityEngine.U2D.PixelPerfectCamera>();
@@ -459,7 +504,101 @@ namespace BooterBigArm.Editor
                 prefabs.Add(EnsureTallPropPrefab(definition, tallPropSprite, shadowSprite));
             }
 
+            var boulderPrefabs = LoadBoulderPrefabs();
+            for (var i = 0; i < boulderPrefabs.Length; i++)
+            {
+                if (boulderPrefabs[i] != null)
+                {
+                    prefabs.Add(boulderPrefabs[i]);
+                }
+            }
+
             return prefabs.ToArray();
+        }
+
+        private static PrototypeWorldPropCatalog EnsurePrototypePropCatalog()
+        {
+            var folderPath = Path.GetDirectoryName(PrototypePropCatalogPath);
+            if (!string.IsNullOrEmpty(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            var catalog = AssetDatabase.LoadAssetAtPath<PrototypeWorldPropCatalog>(PrototypePropCatalogPath);
+            if (catalog == null)
+            {
+                catalog = ScriptableObject.CreateInstance<PrototypeWorldPropCatalog>();
+                AssetDatabase.CreateAsset(catalog, PrototypePropCatalogPath);
+            }
+
+            var serializedObject = new SerializedObject(catalog);
+            var entriesProperty = serializedObject.FindProperty("entries");
+            var biomeGroupsProperty = serializedObject.FindProperty("biomeGroups");
+            entriesProperty.ClearArray();
+            biomeGroupsProperty.ClearArray();
+
+            var greaterWastelandEntriesProperty = AddBiomeGroup(biomeGroupsProperty, GreaterWastelandBiomeId);
+            AddCatalogEntry(greaterWastelandEntriesProperty, "boulder_32_a", BoulderPrefabPath, PrototypeWorldPropCategory.Boulders, PrototypeWorldPropSizeClass.Px32, 4.5f, 5f);
+            AddCatalogEntry(greaterWastelandEntriesProperty, "boulder_32_b", BoulderPrefabAltPath, PrototypeWorldPropCategory.Boulders, PrototypeWorldPropSizeClass.Px32, 4.5f, 5f);
+            AddCatalogEntry(greaterWastelandEntriesProperty, "tall_prop_wide", TallPropWidePrefabPath, PrototypeWorldPropCategory.BuildingClutter, PrototypeWorldPropSizeClass.Px64, 1f, 1f);
+            AddCatalogEntry(greaterWastelandEntriesProperty, "tall_prop_tall", TallPropTallPrefabPath, PrototypeWorldPropCategory.BuildingClutter, PrototypeWorldPropSizeClass.Px96, 0.8f, 1f);
+            AddCatalogEntry(greaterWastelandEntriesProperty, "tall_prop_square", TallPropSquarePrefabPath, PrototypeWorldPropCategory.BuildingClutter, PrototypeWorldPropSizeClass.Px32, 1f, 1f);
+            AddCatalogEntry(greaterWastelandEntriesProperty, "tall_prop_tiny", TallPropTinyPrefabPath, PrototypeWorldPropCategory.BuildingClutter, PrototypeWorldPropSizeClass.Px16, 0.9f, 1f);
+            AddCatalogEntry(greaterWastelandEntriesProperty, "tall_prop_slim", TallPropSlimPrefabPath, PrototypeWorldPropCategory.BuildingClutter, PrototypeWorldPropSizeClass.Px16, 0.9f, 1f);
+
+            AddBiomeGroup(biomeGroupsProperty, ReefBiomeId);
+
+            serializedObject.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(catalog);
+            AssetDatabase.SaveAssets();
+            return catalog;
+        }
+
+        private static GameObject[] LoadBoulderPrefabs()
+        {
+            return new[]
+            {
+                AssetDatabase.LoadAssetAtPath<GameObject>(BoulderPrefabPath),
+                AssetDatabase.LoadAssetAtPath<GameObject>(BoulderPrefabAltPath)
+            };
+        }
+
+        private static void AddCatalogEntry(
+            SerializedProperty entriesProperty,
+            string id,
+            string prefabPath,
+            PrototypeWorldPropCategory category,
+            PrototypeWorldPropSizeClass sizeClass,
+            float weight,
+            float spawnChanceMultiplier)
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+            if (prefab == null)
+            {
+                return;
+            }
+
+            var index = entriesProperty.arraySize;
+            entriesProperty.InsertArrayElementAtIndex(index);
+            var entry = entriesProperty.GetArrayElementAtIndex(index);
+            entry.FindPropertyRelative("id").stringValue = id;
+            entry.FindPropertyRelative("prefab").objectReferenceValue = prefab;
+            entry.FindPropertyRelative("category").enumValueIndex = (int)category;
+            entry.FindPropertyRelative("sizeClass").enumValueIndex = (int)sizeClass;
+            entry.FindPropertyRelative("weight").floatValue = weight;
+            entry.FindPropertyRelative("spawnChanceMultiplier").floatValue = spawnChanceMultiplier;
+            entry.FindPropertyRelative("enabled").boolValue = true;
+        }
+
+        private static SerializedProperty AddBiomeGroup(SerializedProperty biomeGroupsProperty, string biomeId)
+        {
+            var index = biomeGroupsProperty.arraySize;
+            biomeGroupsProperty.InsertArrayElementAtIndex(index);
+            var group = biomeGroupsProperty.GetArrayElementAtIndex(index);
+            group.FindPropertyRelative("biomeId").stringValue = biomeId;
+            var entriesProperty = group.FindPropertyRelative("entries");
+            entriesProperty.ClearArray();
+            return entriesProperty;
         }
 
         private static GameObject EnsureTallPropPrefab(TallPropPrefabDefinition definition, Sprite tallPropSprite, Sprite shadowSprite)
@@ -1403,6 +1542,37 @@ namespace BooterBigArm.Editor
             }
 
             property.intValue = value;
+            serializedObject.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(target);
+        }
+
+        private static void EnsurePrefabInObjectArray<T>(UnityEngine.Object target, string fieldName, T value)
+            where T : UnityEngine.Object
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            var serializedObject = new SerializedObject(target);
+            var property = serializedObject.FindProperty(fieldName);
+            if (property == null || !property.isArray)
+            {
+                throw new InvalidOperationException(
+                    $"Unable to find serialized array field '{fieldName}' on {target.name}.");
+            }
+
+            for (var i = 0; i < property.arraySize; i++)
+            {
+                if (property.GetArrayElementAtIndex(i).objectReferenceValue == value)
+                {
+                    return;
+                }
+            }
+
+            var index = property.arraySize;
+            property.InsertArrayElementAtIndex(index);
+            property.GetArrayElementAtIndex(index).objectReferenceValue = value;
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(target);
         }

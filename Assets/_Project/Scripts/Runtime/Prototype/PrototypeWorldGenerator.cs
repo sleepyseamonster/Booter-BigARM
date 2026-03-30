@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 
 namespace BooterBigArm.Runtime
@@ -48,6 +49,7 @@ namespace BooterBigArm.Runtime
         private readonly HashSet<Vector2Int> queuedLoadChunks = new HashSet<Vector2Int>();
         private readonly HashSet<Vector2Int> queuedUnloadChunks = new HashSet<Vector2Int>();
         private readonly Dictionary<Vector2Int, List<GameObject>> spawnedPropsByChunk = new Dictionary<Vector2Int, List<GameObject>>();
+        private readonly Dictionary<Vector2Int, TileBase[]> ruleGroundChunkCache = new Dictionary<Vector2Int, TileBase[]>();
         private Tilemap tilemap;
         private TileBase[] runtimeTiles;
         private TileBase[] runtimePebbleTiles;
@@ -99,6 +101,7 @@ namespace BooterBigArm.Runtime
             chunkUnloadQueue.Clear();
             queuedLoadChunks.Clear();
             queuedUnloadChunks.Clear();
+            ruleGroundChunkCache.Clear();
             ClearSpawnedProps();
             tilemap.ClearAllTiles();
             if (ruleGroundTilemap != null)
@@ -732,7 +735,7 @@ namespace BooterBigArm.Runtime
             if (ruleGroundTilemap != null)
             {
                 ruleGroundTilemap.SetTilesBlock(ruleGroundBounds, ruleGroundChunkTiles);
-                ruleGroundTilemap.RefreshAllTiles();
+                RefreshRuleGroundBounds(ruleGroundBounds);
             }
             FillChunkBuffer(chunkCoord);
             FillChunkTransforms(chunkCoord);
@@ -783,7 +786,7 @@ namespace BooterBigArm.Runtime
             if (ruleGroundTilemap != null)
             {
                 ruleGroundTilemap.SetTilesBlock(ruleGroundBounds, emptyRuleGroundChunkTiles);
-                ruleGroundTilemap.RefreshAllTiles();
+                RefreshRuleGroundBounds(ruleGroundBounds);
             }
             tilemap.SetTilesBlock(sandBounds, emptyChunkTiles);
             if (sandOverlayTilemap != null)
@@ -825,7 +828,37 @@ namespace BooterBigArm.Runtime
 
         private void FillRuleGroundChunkBuffer(Vector2Int chunkCoord)
         {
-            FillTileBuffer(ruleGroundTilemap, chunkCoord, ruleGroundChunkTiles, SelectRuleGroundTile);
+            if (ruleGroundChunkTiles == null)
+            {
+                return;
+            }
+
+            if (!ruleGroundChunkCache.TryGetValue(chunkCoord, out var cachedChunkTiles) || cachedChunkTiles.Length != ruleGroundChunkTiles.Length)
+            {
+                FillTileBuffer(ruleGroundTilemap, chunkCoord, ruleGroundChunkTiles, SelectRuleGroundTile);
+                cachedChunkTiles = new TileBase[ruleGroundChunkTiles.Length];
+                System.Array.Copy(ruleGroundChunkTiles, cachedChunkTiles, ruleGroundChunkTiles.Length);
+                ruleGroundChunkCache[chunkCoord] = cachedChunkTiles;
+                return;
+            }
+
+            System.Array.Copy(cachedChunkTiles, ruleGroundChunkTiles, ruleGroundChunkTiles.Length);
+        }
+
+        private void RefreshRuleGroundBounds(BoundsInt bounds)
+        {
+            if (ruleGroundTilemap == null)
+            {
+                return;
+            }
+
+            for (var y = bounds.yMin - 1; y <= bounds.yMax; y++)
+            {
+                for (var x = bounds.xMin - 1; x <= bounds.xMax; x++)
+                {
+                    ruleGroundTilemap.RefreshTile(new Vector3Int(x, y, 0));
+                }
+            }
         }
 
         private void FillChunkTransforms(Vector2Int chunkCoord)
@@ -899,7 +932,8 @@ namespace BooterBigArm.Runtime
 
         private void SpawnChunkProps(Vector2Int chunkCoord)
         {
-            var prefab = SelectSparsePropPrefab(chunkCoord);
+            var definition = SelectSparsePropDefinition(chunkCoord);
+            var prefab = definition != null ? definition.Prefab : SelectSparsePropPrefab(chunkCoord);
             if (prefab == null || propParent == null)
             {
                 return;
@@ -911,7 +945,10 @@ namespace BooterBigArm.Runtime
             }
 
             var chunkNoise = Hash01(seed + 109, chunkCoord.x, chunkCoord.y);
-            if (chunkNoise > GetPropSpawnChance())
+            var spawnChance = definition != null
+                ? GetPropSpawnChance() * definition.SpawnChanceMultiplier
+                : GetPropSpawnChance();
+            if (chunkNoise > spawnChance)
             {
                 return;
             }
@@ -922,8 +959,155 @@ namespace BooterBigArm.Runtime
             var worldY = chunkCoord.y * chunkSize + localY + 0.5f;
             var instance = Instantiate(prefab, new Vector3(worldX, worldY, 0f), Quaternion.identity, propParent);
             instance.name = $"{prefab.name} ({chunkCoord.x}, {chunkCoord.y})";
+            EnsureSortingGroup(instance);
 
             spawnedPropsByChunk[chunkCoord] = new List<GameObject> { instance };
+        }
+
+        private PrototypeWorldPropDefinition SelectSparsePropDefinition(Vector2Int chunkCoord)
+        {
+            var catalog = worldSettings != null ? worldSettings.PropCatalog : null;
+            if (catalog == null)
+            {
+                return null;
+            }
+
+            var totalWeight = 0f;
+            AccumulateCatalogWeights(catalog.Entries, ref totalWeight);
+            if (catalog.BiomeGroups != null)
+            {
+                for (var i = 0; i < catalog.BiomeGroups.Count; i++)
+                {
+                    var group = catalog.BiomeGroups[i];
+                    if (group == null)
+                    {
+                        continue;
+                    }
+
+                    AccumulateCatalogWeights(group.Entries, ref totalWeight);
+                }
+            }
+
+            if (totalWeight <= 0f)
+            {
+                return null;
+            }
+
+            var pick = Hash01(seed + 167, chunkCoord.x, chunkCoord.y) * totalWeight;
+            if (TryPickCatalogEntry(catalog.Entries, ref pick, out var selectedEntry))
+            {
+                return selectedEntry;
+            }
+
+            if (catalog.BiomeGroups != null)
+            {
+                for (var i = 0; i < catalog.BiomeGroups.Count; i++)
+                {
+                    var group = catalog.BiomeGroups[i];
+                    if (group == null)
+                    {
+                        continue;
+                    }
+
+                    if (TryPickCatalogEntry(group.Entries, ref pick, out selectedEntry))
+                    {
+                        return selectedEntry;
+                    }
+                }
+            }
+
+            if (TryGetLastValidCatalogEntry(catalog.Entries, out selectedEntry))
+            {
+                return selectedEntry;
+            }
+
+            if (catalog.BiomeGroups != null)
+            {
+                for (var i = catalog.BiomeGroups.Count - 1; i >= 0; i--)
+                {
+                    var group = catalog.BiomeGroups[i];
+                    if (group == null)
+                    {
+                        continue;
+                    }
+
+                    if (TryGetLastValidCatalogEntry(group.Entries, out selectedEntry))
+                    {
+                        return selectedEntry;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private static void AccumulateCatalogWeights(IReadOnlyList<PrototypeWorldPropDefinition> entries, ref float totalWeight)
+        {
+            if (entries == null)
+            {
+                return;
+            }
+
+            for (var i = 0; i < entries.Count; i++)
+            {
+                var entry = entries[i];
+                if (entry == null || !entry.IsValid)
+                {
+                    continue;
+                }
+
+                totalWeight += entry.Weight;
+            }
+        }
+
+        private static bool TryPickCatalogEntry(
+            IReadOnlyList<PrototypeWorldPropDefinition> entries,
+            ref float pick,
+            out PrototypeWorldPropDefinition selectedEntry)
+        {
+            if (entries != null)
+            {
+                for (var i = 0; i < entries.Count; i++)
+                {
+                    var entry = entries[i];
+                    if (entry == null || !entry.IsValid)
+                    {
+                        continue;
+                    }
+
+                    if (pick <= entry.Weight)
+                    {
+                        selectedEntry = entry;
+                        return true;
+                    }
+
+                    pick -= entry.Weight;
+                }
+            }
+
+            selectedEntry = null;
+            return false;
+        }
+
+        private static bool TryGetLastValidCatalogEntry(
+            IReadOnlyList<PrototypeWorldPropDefinition> entries,
+            out PrototypeWorldPropDefinition selectedEntry)
+        {
+            if (entries != null)
+            {
+                for (var i = entries.Count - 1; i >= 0; i--)
+                {
+                    var entry = entries[i];
+                    if (entry != null && entry.IsValid)
+                    {
+                        selectedEntry = entry;
+                        return true;
+                    }
+                }
+            }
+
+            selectedEntry = null;
+            return false;
         }
 
         private GameObject SelectSparsePropPrefab(Vector2Int chunkCoord)
@@ -991,6 +1175,35 @@ namespace BooterBigArm.Runtime
             }
 
             spawnedPropsByChunk.Clear();
+        }
+
+        private static void EnsureSortingGroup(GameObject instance)
+        {
+            if (instance == null)
+            {
+                return;
+            }
+
+            var renderers = instance.GetComponentsInChildren<SpriteRenderer>();
+            if (renderers == null || renderers.Length == 0)
+            {
+                return;
+            }
+
+            var legacySorter = instance.GetComponent<PrototypeSpriteDepthSorter>();
+            if (legacySorter != null)
+            {
+                Destroy(legacySorter);
+            }
+
+            var sortingGroup = instance.GetComponent<SortingGroup>();
+            if (sortingGroup == null)
+            {
+                sortingGroup = instance.AddComponent<SortingGroup>();
+            }
+
+            sortingGroup.sortingLayerID = 0;
+            sortingGroup.sortingOrder = 100;
         }
 
         private void FillRotationBuffer(Tilemap targetTilemap, Vector2Int chunkCoord, int noiseSeed, Matrix4x4[] buffer)

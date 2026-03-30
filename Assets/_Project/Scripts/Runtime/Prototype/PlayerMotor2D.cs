@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace BooterBigArm.Runtime
 {
@@ -21,6 +22,7 @@ namespace BooterBigArm.Runtime
         {
             body = GetComponent<Rigidbody2D>();
             inputAdapter = GetComponent<PlayerInputAdapter>();
+            EnsureSortingGroup();
 
             body.gravityScale = 0f;
             body.freezeRotation = true;
@@ -41,6 +43,24 @@ namespace BooterBigArm.Runtime
             currentVelocity = Vector2.MoveTowards(currentVelocity, desiredVelocity, response * Time.fixedDeltaTime);
 
             body.MovePosition(body.position + currentVelocity * Time.fixedDeltaTime);
+        }
+
+        private void EnsureSortingGroup()
+        {
+            var legacySorter = GetComponent<PrototypeSpriteDepthSorter>();
+            if (legacySorter != null)
+            {
+                Destroy(legacySorter);
+            }
+
+            var sortingGroup = GetComponent<SortingGroup>();
+            if (sortingGroup == null)
+            {
+                sortingGroup = gameObject.AddComponent<SortingGroup>();
+            }
+
+            sortingGroup.sortingLayerID = 0;
+            sortingGroup.sortingOrder = 100;
         }
     }
 }

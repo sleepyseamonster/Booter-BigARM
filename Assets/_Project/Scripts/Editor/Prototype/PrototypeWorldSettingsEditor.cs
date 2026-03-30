@@ -8,10 +8,12 @@ namespace BooterBigArm.Editor
     public sealed class PrototypeWorldSettingsEditor : UnityEditor.Editor
     {
         private SerializedProperty propSpawnChanceProperty;
+        private SerializedProperty propCatalogProperty;
 
         private void OnEnable()
         {
             propSpawnChanceProperty = serializedObject.FindProperty("propSpawnChance");
+            propCatalogProperty = serializedObject.FindProperty("propCatalog");
         }
 
         public override void OnInspectorGUI()
@@ -27,6 +29,11 @@ namespace BooterBigArm.Editor
                 propSpawnChanceProperty.floatValue,
                 0f,
                 0.5f);
+
+            EditorGUILayout.Space(6f);
+            EditorGUILayout.PropertyField(
+                propCatalogProperty,
+                new GUIContent("Prop Catalog", "Authoring catalog for categorized world prop spawning."));
 
             EditorGUILayout.Space(4f);
             using (new EditorGUILayout.HorizontalScope())

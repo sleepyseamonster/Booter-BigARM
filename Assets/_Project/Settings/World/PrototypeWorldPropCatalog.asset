@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd45b472c47d84dfca02ab746ae344d5, type: 3}
+  m_Name: PrototypeWorldPropCatalog
+  m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeWorldPropCatalog
+  entries: []
+  biomeGroups:
+  - biomeId: Greater Wasteland
+    entries:
+    - id: boulder_32_a
+      prefab: {fileID: 3547653410403581502, guid: d36e7465a06604153b528bdcfcb9868b, type: 3}
+      category: 0
+      sizeClass: 1
+      weight: 4.5
+      spawnChanceMultiplier: 5
+      enabled: 1
+    - id: boulder_32_b
+      prefab: {fileID: 5753609474069985127, guid: 5ff27b980a10e484397bb36e171988c1, type: 3}
+      category: 0
+      sizeClass: 1
+      weight: 4.5
+      spawnChanceMultiplier: 5
+      enabled: 1
+    - id: tall_prop_wide
+      prefab: {fileID: 7161280840678100360, guid: 8897f6d3a08c1432e881bd715bd8d9ac, type: 3}
+      category: 2
+      sizeClass: 2
+      weight: 1
+      spawnChanceMultiplier: 1
+      enabled: 1
+    - id: tall_prop_tall
+      prefab: {fileID: 2096874242581160549, guid: 5e47ed2e1502141b1a38c3cc02bd00ce, type: 3}
+      category: 2
+      sizeClass: 3
+      weight: 0.8
+      spawnChanceMultiplier: 1
+      enabled: 1
+    - id: tall_prop_square
+      prefab: {fileID: 6367744672131517931, guid: 0a0e393421cf5485dab7f6f45c7567e4, type: 3}
+      category: 2
+      sizeClass: 1
+      weight: 1
+      spawnChanceMultiplier: 1
+      enabled: 1
+    - id: tall_prop_tiny
+      prefab: {fileID: 1974990340803457231, guid: 3bd8cd5e59298491481516f70433db50, type: 3}
+      category: 2
+      sizeClass: 0
+      weight: 0.9
+      spawnChanceMultiplier: 1
+      enabled: 1
+    - id: tall_prop_slim
+      prefab: {fileID: 5829777480262746779, guid: 316152162681c4b71a9366facdefec23, type: 3}
+      category: 2
+      sizeClass: 0
+      weight: 0.9
+      spawnChanceMultiplier: 1
+      enabled: 1
+  - biomeId: The Reef
+    entries: []
