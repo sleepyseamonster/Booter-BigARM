@@ -35,6 +35,7 @@ namespace BooterBigArm.Editor
         private const string PrototypePropCatalogPath = "Assets/_Project/Settings/World/PrototypeWorldPropCatalog.asset";
         private const string GreaterWastelandBiomeId = "Greater Wasteland";
         private const string ReefBiomeId = "The Reef";
+        private const string SandOverlayGridName = "Sand Overlay Grid";
         private const string SandOverlayOffsetGridName = "Sand Overlay Offset Grid";
         private const string SandOverlayOffsetTilemapName = "Sand Overlay Offset Tilemap";
         private const string GroundSandFolder = "Assets/_Project/Art/Prototype/Ground/Sand";
@@ -132,6 +133,17 @@ namespace BooterBigArm.Editor
                 EnsurePrefabInObjectArray(generator, "propPrefabs", boulderPrefabs[i]);
             }
 
+            var sandOverlayGrid = generator.transform.parent != null ? generator.transform.parent.parent?.Find(SandOverlayGridName) : null;
+            if (sandOverlayGrid != null)
+            {
+                sandOverlayGrid.localPosition = new Vector3(0.5f, 0.5f, 0f);
+                var sandOverlayGridComponent = sandOverlayGrid.GetComponent<Grid>();
+                if (sandOverlayGridComponent != null)
+                {
+                    sandOverlayGridComponent.cellSize = new Vector3(4f, 4f, 1f);
+                }
+            }
+
             var sandOverlayOffsetTilemap = EnsureOffsetSandOverlayTilemap(generator);
             SetObjectReference(generator, "sandOverlayOffsetTilemap", sandOverlayOffsetTilemap);
             SetObjectArray(generator, "sandOverlayTileSprites", sandOverlaySprites);
@@ -211,8 +223,8 @@ namespace BooterBigArm.Editor
             var sandPatchGrid = CreateGrid(worldRoot.transform, "Sand Patch Grid", new Vector3(0.5f, 0.5f, 1f));
             var groundGrid = CreateGrid(worldRoot.transform, "Ground Grid", Vector3.one);
             var sandGrid = CreateGrid(worldRoot.transform, "Sand Grid", new Vector3(2f, 2f, 1f));
-            var sandOverlayGrid = CreateGrid(worldRoot.transform, "Sand Overlay Grid", new Vector3(4f, 4f, 1f));
-            var sandOverlayOffsetGrid = CreateGrid(worldRoot.transform, SandOverlayOffsetGridName, new Vector3(4f, 4f, 1f), new Vector3(0.5f, 0.5f, 0f));
+            var sandOverlayGrid = CreateGrid(worldRoot.transform, SandOverlayGridName, new Vector3(4f, 4f, 1f), new Vector3(0.5f, 0.5f, 0f));
+            var sandOverlayOffsetGrid = CreateGrid(worldRoot.transform, SandOverlayOffsetGridName, new Vector3(4f, 4f, 1f), new Vector3(1f, 1f, 0f));
 
             var sandPatchTilemap = CreateTilemapLayer(sandPatchGrid.transform, "Sand Patch Tilemap", 5);
             var sandTilemap = CreateTilemapLayer(sandGrid.transform, "Sand Tilemap", 0);
@@ -288,7 +300,7 @@ namespace BooterBigArm.Editor
             Grid grid;
             if (gridTransform == null)
             {
-                grid = CreateGrid(worldRoot, SandOverlayOffsetGridName, new Vector3(4f, 4f, 1f), new Vector3(0.5f, 0.5f, 0f));
+                grid = CreateGrid(worldRoot, SandOverlayOffsetGridName, new Vector3(4f, 4f, 1f), new Vector3(1f, 1f, 0f));
             }
             else
             {
@@ -299,7 +311,7 @@ namespace BooterBigArm.Editor
                 }
 
                 grid.cellSize = new Vector3(4f, 4f, 1f);
-                gridTransform.localPosition = new Vector3(0.5f, 0.5f, 0f);
+                gridTransform.localPosition = new Vector3(1f, 1f, 0f);
             }
 
             var tilemapTransform = grid.transform.Find(SandOverlayOffsetTilemapName);
