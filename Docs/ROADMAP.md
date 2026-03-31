@@ -162,3 +162,4 @@ Exit criteria:
 - The research plan is not a separate lane; it informs the order and quality bar for the phases above.
 - The early game should stay simple until the survival traversal slice is fun on its own.
 - Do not expand combat, crafting breadth, or biome count before the foundation and loop are working.
+- The current prototype HUDs are intentionally immediate-mode; see [PROTOTYPE_UI_PLAN.md](./PROTOTYPE_UI_PLAN.md) for the later Canvas-based GUI pass.
