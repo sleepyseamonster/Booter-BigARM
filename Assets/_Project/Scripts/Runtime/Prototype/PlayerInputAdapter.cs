@@ -7,7 +7,7 @@ namespace BooterBigArm.Runtime
     public sealed class PlayerInputAdapter : MonoBehaviour
     {
         [SerializeField] private InputActionAsset inputActions;
-        [SerializeField] private string actionMapName = "Player";
+        [SerializeField] private string actionMapName = "Gameplay";
         [SerializeField] private string moveActionName = "Move";
         [SerializeField] private string lookActionName = "Look";
         [SerializeField] private string sprintActionName = "Sprint";

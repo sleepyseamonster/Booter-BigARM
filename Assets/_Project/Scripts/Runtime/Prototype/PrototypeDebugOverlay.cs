@@ -32,7 +32,7 @@ namespace BooterBigArm.Runtime
         private void OnGUI()
         {
             const int width = 360;
-            const int height = 220;
+            const int height = 180;
 
             GUILayout.BeginArea(new Rect(12f, 12f, width, height), GUI.skin.box);
             GUILayout.Label("Prototype");
@@ -58,32 +58,7 @@ namespace BooterBigArm.Runtime
             {
                 GUILayout.Label($"Save: {saveLoadController.CurrentSavePath}");
                 GUILayout.Label(saveLoadController.LastStatusMessage);
-
-                using (new GUILayout.HorizontalScope())
-                {
-                    if (GUILayout.Button("Save") && saveLoadController != null)
-                    {
-                        saveLoadController.SaveCurrentState();
-                    }
-
-                    if (GUILayout.Button("Load") && saveLoadController != null)
-                    {
-                        saveLoadController.LoadLatestState();
-                    }
-                }
-
-                using (new GUILayout.HorizontalScope())
-                {
-                    if (GUILayout.Button("Rebuild") && saveLoadController != null)
-                    {
-                        saveLoadController.RebuildCurrentWorld();
-                    }
-
-                    if (GUILayout.Button("Next Seed") && saveLoadController != null)
-                    {
-                        saveLoadController.AdvanceWorldSeed();
-                    }
-                }
+                GUILayout.Label("System: Save / Load / Rebuild / Next Seed");
             }
 
             GUILayout.EndArea();

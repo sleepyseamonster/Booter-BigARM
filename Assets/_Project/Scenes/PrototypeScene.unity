@@ -167,10 +167,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d22b99a5b777144038b3d515c66dd282, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PlayerInputAdapter
   inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  actionMapName: Player
+  actionMapName: Gameplay
   moveActionName: Move
   lookActionName: Look
   sprintActionName: Sprint
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa6a106b1d40c42798c8bee680d2929b, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PlayerMotor2D
   walkSpeed: 5.4
   sprintSpeed: 7.2
@@ -2102,6 +2102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeDebugOverlay
   playerMotor: {fileID: 11683953}
   worldGenerator: {fileID: 1115640649}
+  saveLoadController: {fileID: 900000002}
 --- !u!4 &1807342142
 Transform:
   m_ObjectHideFlags: 0
@@ -2117,6 +2118,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &900000000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900000001}
+  - component: {fileID: 900000002}
+  - component: {fileID: 900000003}
+  m_Layer: 0
+  m_Name: Prototype Session
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900000001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92b1ce354d62decee3405b49bf8b835, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeSaveLoadController
+  playerMotor: {fileID: 11683953}
+  worldGenerator: {fileID: 1115640649}
+  savePath:
+--- !u!114 &900000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900000000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2980eac5a62962ebf66f9738c7c274, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeSystemInputAdapter
+  inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  actionMapName: System
+  saveActionName: Save
+  loadActionName: Load
+  rebuildActionName: Rebuild
+  nextSeedActionName: NextSeed
+  saveLoadController: {fileID: 900000002}
 --- !u!1 &1837076610
 GameObject:
   m_ObjectHideFlags: 0
@@ -2774,3 +2842,4 @@ SceneRoots:
   - {fileID: 4501431624919776598}
   - {fileID: 1617796235709130230}
   - {fileID: 6527961765321329613}
+  - {fileID: 900000000}

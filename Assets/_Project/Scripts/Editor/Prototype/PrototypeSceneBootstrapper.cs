@@ -92,7 +92,10 @@ namespace BooterBigArm.Editor
                 pebbleSprites,
                 rockSprites,
                 smoothSprites);
-            var saveLoadController = CreateSaveLoadController(player.GetComponent<PlayerMotor2D>(), world);
+            var saveLoadController = CreateSessionSystems(
+                inputActions,
+                player.GetComponent<PlayerMotor2D>(),
+                world);
             CreateCamera(cameraTarget);
             CreateLighting();
             CreateVolume(volumeProfile);
@@ -203,12 +206,18 @@ namespace BooterBigArm.Editor
             return cameraTargetObject.transform;
         }
 
-        private static PrototypeSaveLoadController CreateSaveLoadController(PlayerMotor2D playerMotor, PrototypeWorldGenerator worldGenerator)
+        private static PrototypeSaveLoadController CreateSessionSystems(
+            InputActionAsset inputActions,
+            PlayerMotor2D playerMotor,
+            PrototypeWorldGenerator worldGenerator)
         {
             var controllerObject = new GameObject("Prototype Session");
             var controller = controllerObject.AddComponent<PrototypeSaveLoadController>();
             SetObjectReference(controller, "playerMotor", playerMotor);
             SetObjectReference(controller, "worldGenerator", worldGenerator);
+            var systemInput = controllerObject.AddComponent<PrototypeSystemInputAdapter>();
+            SetObjectReference(systemInput, "inputActions", inputActions);
+            SetObjectReference(systemInput, "saveLoadController", controller);
             return controller;
         }
 
