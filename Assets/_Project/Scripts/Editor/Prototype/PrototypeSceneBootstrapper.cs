@@ -133,7 +133,7 @@ namespace BooterBigArm.Editor
             var boulderPrefabs = LoadBoulderPrefabs();
             var sandOverlaySprites = EnsureSandOverlaySprites();
 
-            var worldSettings = UnityEngine.Object.FindFirstObjectByType<PrototypeWorldSettings>();
+            var worldSettings = UnityEngine.Object.FindAnyObjectByType<PrototypeWorldSettings>();
             if (worldSettings == null)
             {
                 throw new InvalidOperationException(
@@ -142,7 +142,7 @@ namespace BooterBigArm.Editor
 
             SetObjectReference(worldSettings, "propCatalog", catalog);
 
-            var generator = UnityEngine.Object.FindFirstObjectByType<PrototypeWorldGenerator>();
+            var generator = UnityEngine.Object.FindAnyObjectByType<PrototypeWorldGenerator>();
             if (generator == null)
             {
                 throw new InvalidOperationException(
