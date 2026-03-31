@@ -7,6 +7,7 @@ namespace BooterBigArm.Runtime
     {
         [SerializeField] private PlayerMotor2D playerMotor;
         [SerializeField] private Transform homeAnchor;
+        [SerializeField] private Vector3 homeAnchorPosition;
         [SerializeField, Min(1f)] private float maxAlgaeReserve = 100f;
         [SerializeField, Min(0f)] private float algaeReserve = 100f;
         [SerializeField, Min(0f)] private float travelDrainPerSecond = 0.9f;
@@ -18,13 +19,17 @@ namespace BooterBigArm.Runtime
 
         public float AlgaeReserve => algaeReserve;
         public float MaxAlgaeReserve => maxAlgaeReserve;
-        public bool IsAtHome => homeAnchor != null && Vector3.Distance(transform.position, homeAnchor.position) <= safeZoneRadius;
+        public bool IsAtHome => Vector3.Distance(transform.position, GetHomeAnchorPosition()) <= safeZoneRadius;
         public float MovementMultiplier => Mathf.Lerp(lowReserveSpeedFloor, 1f, Mathf.Clamp01(algaeReserve / Mathf.Max(1f, maxAlgaeReserve)));
 
         public void Configure(PlayerMotor2D motor, Transform anchor)
         {
             playerMotor = motor;
             homeAnchor = anchor;
+            if (anchor != null)
+            {
+                homeAnchorPosition = anchor.position;
+            }
         }
 
         public void SetAlgaeReserve(float reserve)
@@ -55,6 +60,7 @@ namespace BooterBigArm.Runtime
             }
 
             algaeReserve = Mathf.Clamp(algaeReserve, 0f, maxAlgaeReserve);
+            CacheHomeAnchorPosition();
         }
 
         private void Update()
@@ -83,6 +89,35 @@ namespace BooterBigArm.Runtime
             }
 
             algaeReserve = Mathf.Clamp(algaeReserve, 0f, maxAlgaeReserve);
+        }
+
+        private void OnValidate()
+        {
+            CacheHomeAnchorPosition();
+        }
+
+        private void CacheHomeAnchorPosition()
+        {
+            homeAnchorPosition = GetHomeAnchorPosition();
+        }
+
+        private Vector3 GetHomeAnchorPosition()
+        {
+            if (homeAnchor == null)
+            {
+                return homeAnchorPosition;
+            }
+
+            try
+            {
+                homeAnchorPosition = homeAnchor.position;
+            }
+            catch (MissingReferenceException)
+            {
+                homeAnchor = null;
+            }
+
+            return homeAnchorPosition;
         }
     }
 }
