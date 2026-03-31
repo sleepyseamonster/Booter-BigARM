@@ -9,6 +9,8 @@ namespace BooterBigArm.Runtime
     [RequireComponent(typeof(Tilemap))]
     public sealed class PrototypeWorldGenerator : MonoBehaviour
     {
+        public const int GenerationVersion = 1;
+
         [SerializeField] private Transform target;
         [SerializeField] private Sprite[] tileSprites;
         [SerializeField] private GameObject propPrefab;
@@ -87,6 +89,11 @@ namespace BooterBigArm.Runtime
         public int VisibleChunkCount => visibleChunks.Count;
         public int PendingLoadChunkCount => chunkLoadQueue.Count;
         public int PendingUnloadChunkCount => chunkUnloadQueue.Count;
+
+        public PrototypeWorldIdentity GetWorldIdentity()
+        {
+            return PrototypeWorldIdentity.Create(seed, GenerationVersion, currentCenterChunk);
+        }
 
         public void Configure(Transform worldTarget, Sprite squareSprite, int worldSeed, int worldChunkSize, int worldChunkRadius)
         {

@@ -18,6 +18,23 @@ namespace BooterBigArm.Runtime
 
         public Vector2 Velocity => currentVelocity;
 
+        public void Teleport(Vector2 position)
+        {
+            if (body == null)
+            {
+                body = GetComponent<Rigidbody2D>();
+            }
+
+            currentVelocity = Vector2.zero;
+            if (body != null)
+            {
+                body.velocity = Vector2.zero;
+                body.position = position;
+            }
+
+            transform.position = position;
+        }
+
         private void Awake()
         {
             body = GetComponent<Rigidbody2D>();

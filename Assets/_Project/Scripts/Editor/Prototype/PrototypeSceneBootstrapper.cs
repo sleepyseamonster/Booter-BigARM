@@ -92,10 +92,11 @@ namespace BooterBigArm.Editor
                 pebbleSprites,
                 rockSprites,
                 smoothSprites);
+            var saveLoadController = CreateSaveLoadController(player.GetComponent<PlayerMotor2D>(), world);
             CreateCamera(cameraTarget);
             CreateLighting();
             CreateVolume(volumeProfile);
-            CreateDebugOverlay(player.GetComponent<PlayerMotor2D>(), world);
+            CreateDebugOverlay(player.GetComponent<PlayerMotor2D>(), world, saveLoadController);
 
             EditorSceneManager.SaveScene(scene, PrototypeScenePath);
             UpdateBuildSettings();
@@ -200,6 +201,15 @@ namespace BooterBigArm.Editor
             SetObjectReference(controller, "inputAdapter", inputAdapter);
 
             return cameraTargetObject.transform;
+        }
+
+        private static PrototypeSaveLoadController CreateSaveLoadController(PlayerMotor2D playerMotor, PrototypeWorldGenerator worldGenerator)
+        {
+            var controllerObject = new GameObject("Prototype Session");
+            var controller = controllerObject.AddComponent<PrototypeSaveLoadController>();
+            SetObjectReference(controller, "playerMotor", playerMotor);
+            SetObjectReference(controller, "worldGenerator", worldGenerator);
+            return controller;
         }
 
         private static PrototypeWorldGenerator CreateWorld(
@@ -415,12 +425,16 @@ namespace BooterBigArm.Editor
             volume.sharedProfile = profile;
         }
 
-        private static void CreateDebugOverlay(PlayerMotor2D motor, PrototypeWorldGenerator generator)
+        private static void CreateDebugOverlay(
+            PlayerMotor2D motor,
+            PrototypeWorldGenerator generator,
+            PrototypeSaveLoadController saveLoadController)
         {
             var overlayObject = new GameObject("Debug Overlay");
             var overlay = overlayObject.AddComponent<PrototypeDebugOverlay>();
             SetObjectReference(overlay, "playerMotor", motor);
             SetObjectReference(overlay, "worldGenerator", generator);
+            SetObjectReference(overlay, "saveLoadController", saveLoadController);
         }
 
         private static Sprite EnsurePlayerSpriteAsset()

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace BooterBigArm.Runtime
 {
@@ -8,13 +7,15 @@ namespace BooterBigArm.Runtime
     {
         [SerializeField] private PlayerMotor2D playerMotor;
         [SerializeField] private PrototypeWorldGenerator worldGenerator;
+        [SerializeField] private PrototypeSaveLoadController saveLoadController;
 
         private float smoothedFps;
 
-        public void Configure(PlayerMotor2D motor, PrototypeWorldGenerator generator)
+        public void Configure(PlayerMotor2D motor, PrototypeWorldGenerator generator, PrototypeSaveLoadController controller)
         {
             playerMotor = motor;
             worldGenerator = generator;
+            saveLoadController = controller;
         }
 
         private void Awake()
@@ -26,27 +27,12 @@ namespace BooterBigArm.Runtime
         {
             var currentFps = Time.unscaledDeltaTime > 0f ? 1f / Time.unscaledDeltaTime : 0f;
             smoothedFps = Mathf.Lerp(smoothedFps, currentFps, Time.unscaledDeltaTime * 6f);
-
-            if (Keyboard.current == null)
-            {
-                return;
-            }
-
-            if (Keyboard.current.f5Key.wasPressedThisFrame && worldGenerator != null)
-            {
-                worldGenerator.ResetWorld(worldGenerator.Seed + 1);
-            }
-
-            if (Keyboard.current.rKey.wasPressedThisFrame && worldGenerator != null)
-            {
-                worldGenerator.ResetWorld(worldGenerator.Seed);
-            }
         }
 
         private void OnGUI()
         {
-            const int width = 320;
-            const int height = 150;
+            const int width = 360;
+            const int height = 220;
 
             GUILayout.BeginArea(new Rect(12f, 12f, width, height), GUI.skin.box);
             GUILayout.Label("Prototype");
@@ -68,8 +54,38 @@ namespace BooterBigArm.Runtime
                 GUILayout.Label($"Pending unloads: {worldGenerator.PendingUnloadChunkCount}");
             }
 
-            GUILayout.Label("F5: next seed");
-            GUILayout.Label("R: rebuild current seed");
+            if (saveLoadController != null)
+            {
+                GUILayout.Label($"Save: {saveLoadController.CurrentSavePath}");
+                GUILayout.Label(saveLoadController.LastStatusMessage);
+
+                using (new GUILayout.HorizontalScope())
+                {
+                    if (GUILayout.Button("Save") && saveLoadController != null)
+                    {
+                        saveLoadController.SaveCurrentState();
+                    }
+
+                    if (GUILayout.Button("Load") && saveLoadController != null)
+                    {
+                        saveLoadController.LoadLatestState();
+                    }
+                }
+
+                using (new GUILayout.HorizontalScope())
+                {
+                    if (GUILayout.Button("Rebuild") && saveLoadController != null)
+                    {
+                        saveLoadController.RebuildCurrentWorld();
+                    }
+
+                    if (GUILayout.Button("Next Seed") && saveLoadController != null)
+                    {
+                        saveLoadController.AdvanceWorldSeed();
+                    }
+                }
+            }
+
             GUILayout.EndArea();
         }
     }

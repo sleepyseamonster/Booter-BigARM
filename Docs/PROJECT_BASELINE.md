@@ -11,6 +11,8 @@ This document captures the current Unity project state so future changes can be 
 ## Current Files Of Interest
 
 - `Assets/_Project/Scenes/SampleScene.unity`
+- `Assets/_Project/Scripts/Runtime/Prototype/`
+- `Assets/_Project/Scripts/Editor/Prototype/`
 - `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset`
 - `Assets/_Project/Settings/Rendering/URP/Renderer2D.asset`
 - `Assets/_Project/Settings/Input/InputSystem_Actions.inputactions`
@@ -20,6 +22,8 @@ This document captures the current Unity project state so future changes can be 
 ## Current Folder State
 
 - `Assets/_Project/Scenes/`
+- `Assets/_Project/Scripts/Runtime/Prototype/`
+- `Assets/_Project/Scripts/Editor/Prototype/`
 - `Assets/_Project/Settings/Input/`
 - `Assets/_Project/Settings/Profiles/`
 - `Assets/_Project/Settings/Rendering/URP/`
