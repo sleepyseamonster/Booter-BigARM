@@ -14,9 +14,11 @@ namespace BooterBigArm.Runtime
 
         private Rigidbody2D body;
         private PlayerInputAdapter inputAdapter;
+        private PrototypeSurvivalState survivalState;
         private Vector2 currentVelocity;
 
         public Vector2 Velocity => currentVelocity;
+        public bool SprintHeld => inputAdapter != null && inputAdapter.SprintHeld;
 
         public void Teleport(Vector2 position)
         {
@@ -28,7 +30,7 @@ namespace BooterBigArm.Runtime
             currentVelocity = Vector2.zero;
             if (body != null)
             {
-                body.velocity = Vector2.zero;
+                body.linearVelocity = Vector2.zero;
                 body.position = position;
             }
 
@@ -39,6 +41,7 @@ namespace BooterBigArm.Runtime
         {
             body = GetComponent<Rigidbody2D>();
             inputAdapter = GetComponent<PlayerInputAdapter>();
+            survivalState = GetComponent<PrototypeSurvivalState>();
             EnsureSortingGroup();
 
             body.gravityScale = 0f;
@@ -55,6 +58,11 @@ namespace BooterBigArm.Runtime
             }
 
             var maxSpeed = inputAdapter != null && inputAdapter.SprintHeld ? sprintSpeed : walkSpeed;
+            if (survivalState != null)
+            {
+                maxSpeed *= survivalState.MovementMultiplier;
+            }
+
             var desiredVelocity = input * maxSpeed;
             var response = desiredVelocity.sqrMagnitude > currentVelocity.sqrMagnitude ? acceleration : deceleration;
             currentVelocity = Vector2.MoveTowards(currentVelocity, desiredVelocity, response * Time.fixedDeltaTime);

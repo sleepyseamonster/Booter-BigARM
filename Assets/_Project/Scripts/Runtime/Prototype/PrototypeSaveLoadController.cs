@@ -7,6 +7,7 @@ namespace BooterBigArm.Runtime
     {
         [SerializeField] private PlayerMotor2D playerMotor;
         [SerializeField] private PrototypeWorldGenerator worldGenerator;
+        [SerializeField] private PrototypeSurvivalState survivalState;
         [SerializeField] private string savePath;
 
         public string LastStatusMessage { get; private set; } = "Ready.";
@@ -101,7 +102,10 @@ namespace BooterBigArm.Runtime
             var playerState = playerMotor != null
                 ? PrototypePlayerSaveData.FromPosition(playerMotor.transform.position)
                 : PrototypePlayerSaveData.FromPosition(Vector3.zero);
-            saveData = PrototypeSaveData.Create(worldIdentity, playerState);
+            var survivalData = survivalState != null
+                ? survivalState.CaptureSaveData()
+                : PrototypeSurvivalSaveData.FromReserve(100f);
+            saveData = PrototypeSaveData.Create(worldIdentity, playerState, survivalData);
             return true;
         }
 
@@ -115,6 +119,11 @@ namespace BooterBigArm.Runtime
             if (playerMotor != null)
             {
                 playerMotor.Teleport(saveData.Player.Position);
+            }
+
+            if (survivalState != null)
+            {
+                survivalState.ApplySaveData(saveData.Survival);
             }
 
             if (worldGenerator != null)

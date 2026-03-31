@@ -80,7 +80,8 @@ namespace BooterBigArm.Editor
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             scene.name = "PrototypeScene";
 
-            var player = CreatePlayer(inputActions, playerSprite, shadowSprite);
+            var homeAnchor = CreateHomeAnchor(playerSprite);
+            var player = CreatePlayer(inputActions, playerSprite, shadowSprite, homeAnchor);
             var cameraTarget = CreateCameraTarget(player);
             var world = CreateWorld(
                 player.transform,
@@ -95,11 +96,13 @@ namespace BooterBigArm.Editor
             var saveLoadController = CreateSessionSystems(
                 inputActions,
                 player.GetComponent<PlayerMotor2D>(),
-                world);
+                world,
+                player.GetComponent<PrototypeSurvivalState>());
             CreateCamera(cameraTarget);
             CreateLighting();
             CreateVolume(volumeProfile);
             CreateDebugOverlay(player.GetComponent<PlayerMotor2D>(), world, saveLoadController);
+            CreateSurvivalHud(player.GetComponent<PrototypeSurvivalState>());
 
             EditorSceneManager.SaveScene(scene, PrototypeScenePath);
             UpdateBuildSettings();
@@ -159,7 +162,11 @@ namespace BooterBigArm.Editor
             AssetDatabase.Refresh();
         }
 
-        private static GameObject CreatePlayer(InputActionAsset inputActions, Sprite prototypeSprite, Sprite shadowSprite)
+        private static GameObject CreatePlayer(
+            InputActionAsset inputActions,
+            Sprite prototypeSprite,
+            Sprite shadowSprite,
+            Transform homeAnchor)
         {
             var player = new GameObject("Player");
             player.transform.position = Vector3.zero;
@@ -189,6 +196,18 @@ namespace BooterBigArm.Editor
             SetFloat(motor, "sprintSpeed", 7.2f);
             SetFloat(motor, "acceleration", 28f);
             SetFloat(motor, "deceleration", 34f);
+
+            var survivalState = player.AddComponent<PrototypeSurvivalState>();
+            SetObjectReference(survivalState, "playerMotor", motor);
+            SetObjectReference(survivalState, "homeAnchor", homeAnchor);
+            SetFloat(survivalState, "maxAlgaeReserve", 100f);
+            SetFloat(survivalState, "algaeReserve", 100f);
+            SetFloat(survivalState, "travelDrainPerSecond", 0.9f);
+            SetFloat(survivalState, "sprintDrainPerSecond", 1.4f);
+            SetFloat(survivalState, "homeRegenPerSecond", 4f);
+            SetFloat(survivalState, "idleRegenPerSecond", 0.4f);
+            SetFloat(survivalState, "safeZoneRadius", 8f);
+            SetFloat(survivalState, "lowReserveSpeedFloor", 0.72f);
             return player;
         }
 
@@ -209,12 +228,14 @@ namespace BooterBigArm.Editor
         private static PrototypeSaveLoadController CreateSessionSystems(
             InputActionAsset inputActions,
             PlayerMotor2D playerMotor,
-            PrototypeWorldGenerator worldGenerator)
+            PrototypeWorldGenerator worldGenerator,
+            PrototypeSurvivalState survivalState)
         {
             var controllerObject = new GameObject("Prototype Session");
             var controller = controllerObject.AddComponent<PrototypeSaveLoadController>();
             SetObjectReference(controller, "playerMotor", playerMotor);
             SetObjectReference(controller, "worldGenerator", worldGenerator);
+            SetObjectReference(controller, "survivalState", survivalState);
             var systemInput = controllerObject.AddComponent<PrototypeSystemInputAdapter>();
             SetObjectReference(systemInput, "inputActions", inputActions);
             SetObjectReference(systemInput, "saveLoadController", controller);
@@ -444,6 +465,27 @@ namespace BooterBigArm.Editor
             SetObjectReference(overlay, "playerMotor", motor);
             SetObjectReference(overlay, "worldGenerator", generator);
             SetObjectReference(overlay, "saveLoadController", saveLoadController);
+        }
+
+        private static void CreateSurvivalHud(PrototypeSurvivalState survivalState)
+        {
+            var hudObject = new GameObject("Survival HUD");
+            var hud = hudObject.AddComponent<PrototypeSurvivalHud>();
+            SetObjectReference(hud, "survivalState", survivalState);
+        }
+
+        private static Transform CreateHomeAnchor(Sprite prototypeSprite)
+        {
+            var homeObject = new GameObject("Home Anchor");
+            homeObject.transform.position = Vector3.zero;
+
+            var spriteRenderer = homeObject.AddComponent<SpriteRenderer>();
+            spriteRenderer.sprite = prototypeSprite;
+            spriteRenderer.color = new Color(0.42f, 0.81f, 0.94f, 1f);
+            spriteRenderer.sortingOrder = 4;
+            homeObject.transform.localScale = new Vector3(1.4f, 1.4f, 1f);
+
+            return homeObject.transform;
         }
 
         private static Sprite EnsurePlayerSpriteAsset()
