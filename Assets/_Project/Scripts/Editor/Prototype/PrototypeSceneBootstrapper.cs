@@ -601,7 +601,7 @@ namespace BooterBigArm.Editor
             Color color,
             int uses,
             float respawnDelay,
-            PrototypeHarvestYield[] yields,
+            PrototypeHarvestYieldEntry[] yields,
             Sprite sprite)
         {
             var node = new GameObject(name);
