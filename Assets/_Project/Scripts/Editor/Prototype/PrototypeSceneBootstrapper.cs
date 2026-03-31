@@ -35,6 +35,8 @@ namespace BooterBigArm.Editor
         private const string PrototypePropCatalogPath = "Assets/_Project/Settings/World/PrototypeWorldPropCatalog.asset";
         private const string GreaterWastelandBiomeId = "Greater Wasteland";
         private const string ReefBiomeId = "The Reef";
+        private const string SandOverlayOffsetGridName = "Sand Overlay Offset Grid";
+        private const string SandOverlayOffsetTilemapName = "Sand Overlay Offset Tilemap";
         private const string GroundSandFolder = "Assets/_Project/Art/Prototype/Ground/Sand";
         private const string GroundSandPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand.psd";
         private const string GroundSandOverlayPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand_overlay_128.psd";
@@ -130,7 +132,10 @@ namespace BooterBigArm.Editor
                 EnsurePrefabInObjectArray(generator, "propPrefabs", boulderPrefabs[i]);
             }
 
+            var sandOverlayOffsetTilemap = EnsureOffsetSandOverlayTilemap(generator);
+            SetObjectReference(generator, "sandOverlayOffsetTilemap", sandOverlayOffsetTilemap);
             SetObjectArray(generator, "sandOverlayTileSprites", sandOverlaySprites);
+            SetObjectArray(generator, "sandOverlayOffsetTileSprites", sandOverlaySprites);
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
@@ -207,10 +212,12 @@ namespace BooterBigArm.Editor
             var groundGrid = CreateGrid(worldRoot.transform, "Ground Grid", Vector3.one);
             var sandGrid = CreateGrid(worldRoot.transform, "Sand Grid", new Vector3(2f, 2f, 1f));
             var sandOverlayGrid = CreateGrid(worldRoot.transform, "Sand Overlay Grid", new Vector3(4f, 4f, 1f));
+            var sandOverlayOffsetGrid = CreateGrid(worldRoot.transform, SandOverlayOffsetGridName, new Vector3(4f, 4f, 1f), new Vector3(0.5f, 0.5f, 0f));
 
             var sandPatchTilemap = CreateTilemapLayer(sandPatchGrid.transform, "Sand Patch Tilemap", 5);
             var sandTilemap = CreateTilemapLayer(sandGrid.transform, "Sand Tilemap", 0);
             var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 1);
+            var sandOverlayOffsetTilemap = CreateTilemapLayer(sandOverlayOffsetGrid.transform, SandOverlayOffsetTilemapName, 1);
             var pebbleTilemap = CreateTilemapLayer(groundGrid.transform, "Pebble Tilemap", 2);
             var rockTilemap = CreateTilemapLayer(groundGrid.transform, "Rock Tilemap", 3);
             var smoothTilemap = CreateTilemapLayer(groundGrid.transform, "Smooth Tilemap", 4);
@@ -223,6 +230,8 @@ namespace BooterBigArm.Editor
             SetObjectArray(generator, "tileSprites", sandSprites);
             SetObjectReference(generator, "sandOverlayTilemap", sandOverlayTilemap);
             SetObjectArray(generator, "sandOverlayTileSprites", sandOverlaySprites);
+            SetObjectReference(generator, "sandOverlayOffsetTilemap", sandOverlayOffsetTilemap);
+            SetObjectArray(generator, "sandOverlayOffsetTileSprites", sandOverlaySprites);
             SetObjectArray(generator, "propPrefabs", tallPropPrefabs);
             SetObjectReference(generator, "propParent", propRoot.transform);
             SetFloat(generator, "propSpawnChance", 0.12f);
@@ -239,10 +248,11 @@ namespace BooterBigArm.Editor
             return generator;
         }
 
-        private static Grid CreateGrid(Transform parent, string name, Vector3 cellSize)
+        private static Grid CreateGrid(Transform parent, string name, Vector3 cellSize, Vector3? localPosition = null)
         {
             var gridObject = new GameObject(name);
             gridObject.transform.SetParent(parent, false);
+            gridObject.transform.localPosition = localPosition ?? Vector3.zero;
 
             var grid = gridObject.AddComponent<Grid>();
             grid.cellSize = cellSize;
@@ -259,6 +269,57 @@ namespace BooterBigArm.Editor
             renderer.sortingOrder = sortingOrder;
             EnableAutomaticChunkCullingBounds(renderer);
             return layerObject.GetComponent<Tilemap>();
+        }
+
+        private static Tilemap EnsureOffsetSandOverlayTilemap(PrototypeWorldGenerator generator)
+        {
+            if (generator == null)
+            {
+                return null;
+            }
+
+            var worldRoot = generator.transform.parent != null ? generator.transform.parent.parent : null;
+            if (worldRoot == null)
+            {
+                return null;
+            }
+
+            var gridTransform = worldRoot.Find(SandOverlayOffsetGridName);
+            Grid grid;
+            if (gridTransform == null)
+            {
+                grid = CreateGrid(worldRoot, SandOverlayOffsetGridName, new Vector3(4f, 4f, 1f), new Vector3(0.5f, 0.5f, 0f));
+            }
+            else
+            {
+                grid = gridTransform.GetComponent<Grid>();
+                if (grid == null)
+                {
+                    grid = gridTransform.gameObject.AddComponent<Grid>();
+                }
+
+                grid.cellSize = new Vector3(4f, 4f, 1f);
+                gridTransform.localPosition = new Vector3(0.5f, 0.5f, 0f);
+            }
+
+            var tilemapTransform = grid.transform.Find(SandOverlayOffsetTilemapName);
+            if (tilemapTransform != null)
+            {
+                var existingTilemap = tilemapTransform.GetComponent<Tilemap>();
+                if (existingTilemap != null)
+                {
+                    var existingRenderer = tilemapTransform.GetComponent<TilemapRenderer>();
+                    if (existingRenderer != null)
+                    {
+                        existingRenderer.sortingOrder = 1;
+                        EnableAutomaticChunkCullingBounds(existingRenderer);
+                    }
+
+                    return existingTilemap;
+                }
+            }
+
+            return CreateTilemapLayer(grid.transform, SandOverlayOffsetTilemapName, 1);
         }
 
         private static void EnableAutomaticChunkCullingBounds(TilemapRenderer renderer)

@@ -26,6 +26,8 @@ namespace BooterBigArm.Runtime
         [SerializeField] private Sprite[] smoothTileSprites;
         [SerializeField] private Tilemap sandOverlayTilemap;
         [SerializeField] private Sprite[] sandOverlayTileSprites;
+        [SerializeField] private Tilemap sandOverlayOffsetTilemap;
+        [SerializeField] private Sprite[] sandOverlayOffsetTileSprites;
         [SerializeField, Min(4f)] private float sandPatchRegionSizeWorld = 18f;
         [SerializeField, Min(1f)] private float sandPatchMinRadiusWorld = 4f;
         [SerializeField, Min(1f)] private float sandPatchMaxRadiusWorld = 9f;
@@ -56,21 +58,25 @@ namespace BooterBigArm.Runtime
         private TileBase[] runtimeRockTiles;
         private TileBase[] runtimeSmoothTiles;
         private TileBase[] runtimeSandOverlayTiles;
+        private TileBase[] runtimeSandOverlayOffsetTiles;
         private RuleTile runtimeRuleGroundTile;
         private TileBase[] ruleGroundChunkTiles;
         private TileBase[] emptyChunkTiles;
         private TileBase[] chunkTileBuffer;
         private TileBase[] sandOverlayChunkTileBuffer;
+        private TileBase[] sandOverlayOffsetChunkTileBuffer;
         private TileBase[] pebbleChunkTileBuffer;
         private TileBase[] rockChunkTileBuffer;
         private TileBase[] smoothChunkTileBuffer;
         private TileBase[] emptyRuleGroundChunkTiles;
         private TileBase[] emptySandOverlayChunkTiles;
+        private TileBase[] emptySandOverlayOffsetChunkTiles;
         private TileBase[] emptyPebbleChunkTiles;
         private TileBase[] emptyRockChunkTiles;
         private TileBase[] emptySmoothChunkTiles;
         private Matrix4x4[] chunkTransformBuffer;
         private Matrix4x4[] sandOverlayChunkTransformBuffer;
+        private Matrix4x4[] sandOverlayOffsetChunkTransformBuffer;
         private Matrix4x4[] pebbleChunkTransformBuffer;
         private Matrix4x4[] rockChunkTransformBuffer;
         private Matrix4x4[] smoothChunkTransformBuffer;
@@ -115,6 +121,10 @@ namespace BooterBigArm.Runtime
             if (sandOverlayTilemap != null)
             {
                 sandOverlayTilemap.ClearAllTiles();
+            }
+            if (sandOverlayOffsetTilemap != null)
+            {
+                sandOverlayOffsetTilemap.ClearAllTiles();
             }
             if (rockTilemap != null)
             {
@@ -228,20 +238,32 @@ namespace BooterBigArm.Runtime
 
         private void EnsureRuntimeTiles()
         {
+            var sandOverlayOffsetSpriteCount =
+                sandOverlayOffsetTileSprites != null && sandOverlayOffsetTileSprites.Length > 0
+                    ? sandOverlayOffsetTileSprites.Length
+                    : sandOverlayTileSprites != null
+                        ? sandOverlayTileSprites.Length
+                        : 0;
+
             if (runtimeTiles != null &&
                 runtimePebbleTiles != null &&
                 runtimeRockTiles != null &&
                 runtimeSmoothTiles != null &&
+                runtimeSandOverlayTiles != null &&
+                runtimeSandOverlayOffsetTiles != null &&
                 runtimeRuleGroundTile != null &&
                 ruleGroundTile != null &&
                 tileSprites != null &&
                 pebbleTileSprites != null &&
                 rockTileSprites != null &&
                 smoothTileSprites != null &&
+                sandOverlayTileSprites != null &&
                 runtimeTiles.Length == tileSprites.Length &&
                 runtimePebbleTiles.Length == pebbleTileSprites.Length &&
                 runtimeRockTiles.Length == rockTileSprites.Length &&
-                runtimeSmoothTiles.Length == smoothTileSprites.Length)
+                runtimeSmoothTiles.Length == smoothTileSprites.Length &&
+                runtimeSandOverlayTiles.Length == sandOverlayTileSprites.Length &&
+                runtimeSandOverlayOffsetTiles.Length == sandOverlayOffsetSpriteCount)
             {
                 return;
             }
@@ -275,6 +297,12 @@ namespace BooterBigArm.Runtime
             runtimeRockTiles = BuildRuntimeTiles(rockTileSprites, CreateFallbackRockTiles, "PrototypeRuntimeRockTile");
             runtimeSmoothTiles = BuildRuntimeTiles(smoothTileSprites, CreateFallbackSmoothTiles, "PrototypeRuntimeSmoothTile");
             runtimeSandOverlayTiles = BuildRuntimeTiles(sandOverlayTileSprites, CreateFallbackSandOverlayTiles, "PrototypeRuntimeSandOverlayTile");
+            runtimeSandOverlayOffsetTiles = BuildRuntimeTiles(
+                sandOverlayOffsetTileSprites != null && sandOverlayOffsetTileSprites.Length > 0
+                    ? sandOverlayOffsetTileSprites
+                    : sandOverlayTileSprites,
+                CreateFallbackSandOverlayTiles,
+                "PrototypeRuntimeSandOverlayOffsetTile");
             runtimeRuleGroundTile = ruleGroundTile;
 
             EnsureChunkBuffers();
@@ -620,6 +648,7 @@ namespace BooterBigArm.Runtime
             EnsureTileBuffer(ref chunkTileBuffer, GetChunkTileCount(tilemap));
             EnsureTileBuffer(ref ruleGroundChunkTiles, GetChunkTileCount(ruleGroundTilemap));
             EnsureTileBuffer(ref sandOverlayChunkTileBuffer, GetChunkTileCount(sandOverlayTilemap));
+            EnsureTileBuffer(ref sandOverlayOffsetChunkTileBuffer, GetChunkTileCount(sandOverlayOffsetTilemap));
             EnsureTileBuffer(ref pebbleChunkTileBuffer, GetChunkTileCount(pebbleTilemap));
             EnsureTileBuffer(ref rockChunkTileBuffer, GetChunkTileCount(rockTilemap));
             EnsureTileBuffer(ref smoothChunkTileBuffer, GetChunkTileCount(smoothTilemap));
@@ -627,12 +656,14 @@ namespace BooterBigArm.Runtime
             EnsureTileBuffer(ref emptyChunkTiles, chunkTileBuffer != null ? chunkTileBuffer.Length : 0);
             EnsureTileBuffer(ref emptyRuleGroundChunkTiles, ruleGroundChunkTiles != null ? ruleGroundChunkTiles.Length : 0);
             EnsureTileBuffer(ref emptySandOverlayChunkTiles, sandOverlayChunkTileBuffer != null ? sandOverlayChunkTileBuffer.Length : 0);
+            EnsureTileBuffer(ref emptySandOverlayOffsetChunkTiles, sandOverlayOffsetChunkTileBuffer != null ? sandOverlayOffsetChunkTileBuffer.Length : 0);
             EnsureTileBuffer(ref emptyPebbleChunkTiles, pebbleChunkTileBuffer != null ? pebbleChunkTileBuffer.Length : 0);
             EnsureTileBuffer(ref emptyRockChunkTiles, rockChunkTileBuffer != null ? rockChunkTileBuffer.Length : 0);
             EnsureTileBuffer(ref emptySmoothChunkTiles, smoothChunkTileBuffer != null ? smoothChunkTileBuffer.Length : 0);
 
             EnsureTransformBuffer(ref chunkTransformBuffer, chunkTileBuffer != null ? chunkTileBuffer.Length : 0);
             EnsureTransformBuffer(ref sandOverlayChunkTransformBuffer, sandOverlayChunkTileBuffer != null ? sandOverlayChunkTileBuffer.Length : 0);
+            EnsureTransformBuffer(ref sandOverlayOffsetChunkTransformBuffer, sandOverlayOffsetChunkTileBuffer != null ? sandOverlayOffsetChunkTileBuffer.Length : 0);
             EnsureTransformBuffer(ref pebbleChunkTransformBuffer, pebbleChunkTileBuffer != null ? pebbleChunkTileBuffer.Length : 0);
             EnsureTransformBuffer(ref rockChunkTransformBuffer, rockChunkTileBuffer != null ? rockChunkTileBuffer.Length : 0);
             EnsureTransformBuffer(ref smoothChunkTransformBuffer, smoothChunkTileBuffer != null ? smoothChunkTileBuffer.Length : 0);
@@ -728,6 +759,7 @@ namespace BooterBigArm.Runtime
             var sandBounds = GetChunkBounds(tilemap, chunkCoord);
             var ruleGroundBounds = GetChunkBounds(ruleGroundTilemap, chunkCoord);
             var sandOverlayBounds = GetChunkBounds(sandOverlayTilemap, chunkCoord);
+            var sandOverlayOffsetBounds = GetChunkBounds(sandOverlayOffsetTilemap, chunkCoord);
             var pebbleBounds = GetChunkBounds(pebbleTilemap, chunkCoord);
             var rockBounds = GetChunkBounds(rockTilemap, chunkCoord);
             var smoothBounds = GetChunkBounds(smoothTilemap, chunkCoord);
@@ -747,6 +779,13 @@ namespace BooterBigArm.Runtime
             {
                 sandOverlayTilemap.SetTilesBlock(sandOverlayBounds, sandOverlayChunkTileBuffer);
                 ApplyChunkTransforms(sandOverlayTilemap, sandOverlayBounds, sandOverlayChunkTransformBuffer);
+            }
+            FillSandOverlayOffsetChunkBuffer(chunkCoord);
+            FillSandOverlayOffsetChunkTransforms(chunkCoord);
+            if (sandOverlayOffsetTilemap != null)
+            {
+                sandOverlayOffsetTilemap.SetTilesBlock(sandOverlayOffsetBounds, sandOverlayOffsetChunkTileBuffer);
+                ApplyChunkTransforms(sandOverlayOffsetTilemap, sandOverlayOffsetBounds, sandOverlayOffsetChunkTransformBuffer);
             }
             FillPebbleChunkBuffer(chunkCoord);
             FillPebbleChunkTransforms(chunkCoord);
@@ -780,6 +819,7 @@ namespace BooterBigArm.Runtime
             var sandBounds = GetChunkBounds(tilemap, chunkCoord);
             var ruleGroundBounds = GetChunkBounds(ruleGroundTilemap, chunkCoord);
             var sandOverlayBounds = GetChunkBounds(sandOverlayTilemap, chunkCoord);
+            var sandOverlayOffsetBounds = GetChunkBounds(sandOverlayOffsetTilemap, chunkCoord);
             var pebbleBounds = GetChunkBounds(pebbleTilemap, chunkCoord);
             var rockBounds = GetChunkBounds(rockTilemap, chunkCoord);
             var smoothBounds = GetChunkBounds(smoothTilemap, chunkCoord);
@@ -792,6 +832,10 @@ namespace BooterBigArm.Runtime
             if (sandOverlayTilemap != null)
             {
                 sandOverlayTilemap.SetTilesBlock(sandOverlayBounds, emptySandOverlayChunkTiles);
+            }
+            if (sandOverlayOffsetTilemap != null)
+            {
+                sandOverlayOffsetTilemap.SetTilesBlock(sandOverlayOffsetBounds, emptySandOverlayOffsetChunkTiles);
             }
             if (pebbleTilemap != null)
             {
@@ -885,6 +929,27 @@ namespace BooterBigArm.Runtime
         private void FillSandOverlayChunkTransforms(Vector2Int chunkCoord)
         {
             FillRotationBuffer(sandOverlayTilemap, chunkCoord, seed + 191, sandOverlayChunkTransformBuffer);
+        }
+
+        private void FillSandOverlayOffsetChunkBuffer(Vector2Int chunkCoord)
+        {
+            System.Array.Clear(sandOverlayOffsetChunkTileBuffer, 0, sandOverlayOffsetChunkTileBuffer.Length);
+
+            if (runtimeSandOverlayOffsetTiles == null || runtimeSandOverlayOffsetTiles.Length == 0)
+            {
+                return;
+            }
+
+            FillTileBuffer(
+                sandOverlayOffsetTilemap,
+                chunkCoord,
+                sandOverlayOffsetChunkTileBuffer,
+                (worldX, worldY) => SelectSparseLayerTile(runtimeSandOverlayOffsetTiles, worldX, worldY, seed + 223, 0.84f));
+        }
+
+        private void FillSandOverlayOffsetChunkTransforms(Vector2Int chunkCoord)
+        {
+            FillRotationBuffer(sandOverlayOffsetTilemap, chunkCoord, seed + 223, sandOverlayOffsetChunkTransformBuffer);
         }
 
         private void FillPebbleChunkBuffer(Vector2Int chunkCoord)
@@ -1373,6 +1438,7 @@ namespace BooterBigArm.Runtime
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(tilemap));
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(ruleGroundTilemap));
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(sandOverlayTilemap));
+            minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(sandOverlayOffsetTilemap));
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(pebbleTilemap));
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(rockTilemap));
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(smoothTilemap));
@@ -1591,6 +1657,7 @@ namespace BooterBigArm.Runtime
             EnableAutomaticChunkCullingBounds(tilemap);
             EnableAutomaticChunkCullingBounds(ruleGroundTilemap);
             EnableAutomaticChunkCullingBounds(sandOverlayTilemap);
+            EnableAutomaticChunkCullingBounds(sandOverlayOffsetTilemap);
             EnableAutomaticChunkCullingBounds(pebbleTilemap);
             EnableAutomaticChunkCullingBounds(rockTilemap);
             EnableAutomaticChunkCullingBounds(smoothTilemap);
