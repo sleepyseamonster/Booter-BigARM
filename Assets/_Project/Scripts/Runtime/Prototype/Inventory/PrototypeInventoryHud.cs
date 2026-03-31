@@ -7,7 +7,7 @@ namespace BooterBigArm.Runtime
     {
         [SerializeField] private PrototypeInventory inventory;
         [SerializeField] private PrototypeHarvestInteractor harvestInteractor;
-        [SerializeField, Min(1)] private int maxSlotLines = 8;
+        [SerializeField, Min(1)] private int maxSummaryLines = 8;
 
         private void Awake()
         {
@@ -35,20 +35,21 @@ namespace BooterBigArm.Runtime
             GUILayout.BeginArea(new Rect(12f, 210f, width, height), GUI.skin.box);
             GUILayout.Label("Inventory");
 
-            GUILayout.Label($"Resource stacks: {inventory.SlotsUsed}");
+            var summaries = inventory.GetItemSummaries();
+            GUILayout.Label($"Resource types: {summaries.Length}");
             GUILayout.Label("Resources stack to 99 and do not count against carry.");
 
             var shown = 0;
-            for (var i = 0; i < inventory.SlotCapacity && shown < maxSlotLines; i++)
+            for (var i = 0; i < summaries.Length && shown < maxSummaryLines; i++)
             {
-                if (!inventory.TryGetSlot(i, out var slot) || slot.IsEmpty)
+                var summary = summaries[i];
+                if (string.IsNullOrWhiteSpace(summary.ItemId) || summary.TotalCount <= 0)
                 {
                     continue;
                 }
 
-                var itemLabel = slot.ItemId;
-                inventory.TryGetItemDisplayName(slot.ItemId, out itemLabel);
-                GUILayout.Label($"[{i:00}] {itemLabel} x{slot.Count}");
+                var stackLabel = summary.StackCount > 1 ? $" ({summary.StackCount} stacks)" : string.Empty;
+                GUILayout.Label($"{summary.DisplayName} x{summary.TotalCount}{stackLabel}");
                 shown++;
             }
 

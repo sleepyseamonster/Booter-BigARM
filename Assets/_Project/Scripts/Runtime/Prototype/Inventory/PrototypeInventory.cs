@@ -254,6 +254,55 @@ namespace BooterBigArm.Runtime
             return false;
         }
 
+        public PrototypeInventoryItemSummary[] GetItemSummaries()
+        {
+            EnsureSlotCapacity();
+            if (slots.Count == 0)
+            {
+                return Array.Empty<PrototypeInventoryItemSummary>();
+            }
+
+            var order = new List<string>();
+            var summaries = new Dictionary<string, PrototypeInventoryItemSummary>(StringComparer.Ordinal);
+
+            for (var i = 0; i < slots.Count; i++)
+            {
+                var slot = slots[i];
+                if (slot.IsEmpty)
+                {
+                    continue;
+                }
+
+                if (!summaries.TryGetValue(slot.ItemId, out var summary))
+                {
+                    order.Add(slot.ItemId);
+                    summary = new PrototypeInventoryItemSummary
+                    {
+                        ItemId = slot.ItemId,
+                        DisplayName = slot.ItemId,
+                        MaxStack = GetStackLimit(slot.ItemId)
+                    };
+
+                    if (TryGetItemDisplayName(slot.ItemId, out var displayName))
+                    {
+                        summary.DisplayName = displayName;
+                    }
+                }
+
+                summary.TotalCount += slot.Count;
+                summary.StackCount++;
+                summaries[slot.ItemId] = summary;
+            }
+
+            var result = new PrototypeInventoryItemSummary[order.Count];
+            for (var i = 0; i < order.Count; i++)
+            {
+                result[i] = summaries[order[i]];
+            }
+
+            return result;
+        }
+
         public void ClearAll()
         {
             EnsureSlotCapacity();
