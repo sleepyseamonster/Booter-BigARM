@@ -8,6 +8,7 @@ namespace BooterBigArm.Runtime
         [SerializeField] private PlayerMotor2D playerMotor;
         [SerializeField] private PrototypeWorldGenerator worldGenerator;
         [SerializeField] private PrototypeSurvivalState survivalState;
+        [SerializeField] private PrototypeInventory inventoryState;
         [SerializeField] private string savePath;
 
         public string LastStatusMessage { get; private set; } = "Ready.";
@@ -105,7 +106,11 @@ namespace BooterBigArm.Runtime
             var survivalData = survivalState != null
                 ? survivalState.CaptureSaveData()
                 : PrototypeSurvivalSaveData.FromReserve(100f);
-            saveData = PrototypeSaveData.Create(worldIdentity, playerState, survivalData);
+            var inventoryData = inventoryState != null
+                ? inventoryState.CaptureSaveData()
+                : PrototypeInventorySaveData.FromSnapshot(0, System.Array.Empty<PrototypeInventorySlot>());
+            var harvestNodes = CaptureHarvestNodeStates();
+            saveData = PrototypeSaveData.Create(worldIdentity, playerState, survivalData, inventoryData, harvestNodes);
             return true;
         }
 
@@ -126,10 +131,77 @@ namespace BooterBigArm.Runtime
                 survivalState.ApplySaveData(saveData.Survival);
             }
 
+            if (inventoryState != null)
+            {
+                inventoryState.ApplySaveData(saveData.Inventory);
+            }
+
             if (worldGenerator != null)
             {
                 var seed = saveData.WorldIdentity != null ? saveData.WorldIdentity.Seed : worldGenerator.Seed;
                 worldGenerator.ResetWorld(seed);
+            }
+
+            ApplyHarvestNodeStates(saveData.HarvestNodes);
+        }
+
+        private PrototypeHarvestNodeSaveData[] CaptureHarvestNodeStates()
+        {
+            var nodes = FindObjectsByType<PrototypeHarvestNode>(FindObjectsSortMode.None);
+            if (nodes == null || nodes.Length == 0)
+            {
+                return System.Array.Empty<PrototypeHarvestNodeSaveData>();
+            }
+
+            var snapshot = new System.Collections.Generic.List<PrototypeHarvestNodeSaveData>(nodes.Length);
+            for (var i = 0; i < nodes.Length; i++)
+            {
+                if (nodes[i] == null)
+                {
+                    continue;
+                }
+
+                snapshot.Add(nodes[i].CaptureSaveData());
+            }
+
+            return snapshot.Count > 0 ? snapshot.ToArray() : System.Array.Empty<PrototypeHarvestNodeSaveData>();
+        }
+
+        private void ApplyHarvestNodeStates(PrototypeHarvestNodeSaveData[] nodeStates)
+        {
+            if (nodeStates == null || nodeStates.Length == 0)
+            {
+                return;
+            }
+
+            var nodes = FindObjectsByType<PrototypeHarvestNode>(FindObjectsSortMode.None);
+            if (nodes == null || nodes.Length == 0)
+            {
+                return;
+            }
+
+            for (var i = 0; i < nodeStates.Length; i++)
+            {
+                var state = nodeStates[i];
+                if (state == null || string.IsNullOrWhiteSpace(state.NodeId))
+                {
+                    continue;
+                }
+
+                for (var j = 0; j < nodes.Length; j++)
+                {
+                    var node = nodes[j];
+                    if (node == null)
+                    {
+                        continue;
+                    }
+
+                    if (string.Equals(node.NodeId, state.NodeId, System.StringComparison.Ordinal))
+                    {
+                        node.ApplySaveData(state);
+                        break;
+                    }
+                }
             }
         }
     }

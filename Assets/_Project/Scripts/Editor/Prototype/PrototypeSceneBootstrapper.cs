@@ -32,6 +32,15 @@ namespace BooterBigArm.Editor
         private const string TallPropTinyPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTiny16x16.prefab";
         private const string TallPropSlimPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSlim16x32.prefab";
         private const string BoulderPrefabFolder = "Assets/_Project/Prefabs";
+        private const string ItemSettingsFolder = "Assets/_Project/Settings/Items";
+        private const string ItemDefsFolder = "Assets/_Project/Settings/Items/Defs";
+        private const string ItemDatabasePath = "Assets/_Project/Settings/Items/PrototypeItemDatabase.asset";
+        private const string ItemScrapMetalPath = "Assets/_Project/Settings/Items/Defs/ItemDef_ScrapMetal.asset";
+        private const string ItemFiberBundlePath = "Assets/_Project/Settings/Items/Defs/ItemDef_FiberBundle.asset";
+        private const string ItemAlgaeChunkPath = "Assets/_Project/Settings/Items/Defs/ItemDef_AlgaeChunk.asset";
+        private const string ItemStonePath = "Assets/_Project/Settings/Items/Defs/ItemDef_Stone.asset";
+        private const string ItemOreChunkPath = "Assets/_Project/Settings/Items/Defs/ItemDef_OreChunk.asset";
+        private const string ItemBrokenCircuitPath = "Assets/_Project/Settings/Items/Defs/ItemDef_BrokenCircuit.asset";
         private const string PrototypePropCatalogPath = "Assets/_Project/Settings/World/PrototypeWorldPropCatalog.asset";
         private const string GreaterWastelandBiomeId = "Greater Wasteland";
         private const string ReefBiomeId = "The Reef";
@@ -70,6 +79,7 @@ namespace BooterBigArm.Editor
             var tallPropSprite = EnsureTallPropSpriteAsset();
             var tallPropPrefabs = EnsureTallPropPrefabs(tallPropSprite, shadowSprite);
             var propCatalog = EnsurePrototypePropCatalog();
+            var itemDatabase = EnsurePrototypeItemDatabase();
             var sandPatchRuleTile = LoadSandPatchRuleTileAsset();
             var sandSprites = EnsureSandSprites();
             var sandOverlaySprites = EnsureSandOverlaySprites();
@@ -81,10 +91,11 @@ namespace BooterBigArm.Editor
             scene.name = "PrototypeScene";
 
             var homeAnchor = CreateHomeAnchor(playerSprite);
-            var player = CreatePlayer(inputActions, playerSprite, shadowSprite, homeAnchor);
+            var player = CreatePlayer(inputActions, itemDatabase, playerSprite, shadowSprite, homeAnchor);
             var cameraTarget = CreateCameraTarget(player);
             var world = CreateWorld(
                 player.transform,
+                playerSprite,
                 tallPropPrefabs,
                 propCatalog,
                 sandPatchRuleTile,
@@ -97,12 +108,15 @@ namespace BooterBigArm.Editor
                 inputActions,
                 player.GetComponent<PlayerMotor2D>(),
                 world,
-                player.GetComponent<PrototypeSurvivalState>());
+                player.GetComponent<PrototypeSurvivalState>(),
+                player.GetComponent<PrototypeInventory>());
             CreateCamera(cameraTarget);
             CreateLighting();
             CreateVolume(volumeProfile);
             CreateDebugOverlay(player.GetComponent<PlayerMotor2D>(), world, saveLoadController);
             CreateSurvivalHud(player.GetComponent<PrototypeSurvivalState>());
+            CreateInventoryHud(player.GetComponent<PrototypeInventory>());
+            CreateHarvestPromptHud(player.GetComponent<PrototypeHarvestInteractor>());
 
             EditorSceneManager.SaveScene(scene, PrototypeScenePath);
             UpdateBuildSettings();
@@ -164,6 +178,7 @@ namespace BooterBigArm.Editor
 
         private static GameObject CreatePlayer(
             InputActionAsset inputActions,
+            PrototypeItemDatabase itemDatabase,
             Sprite prototypeSprite,
             Sprite shadowSprite,
             Transform homeAnchor)
@@ -197,6 +212,11 @@ namespace BooterBigArm.Editor
             SetFloat(motor, "acceleration", 28f);
             SetFloat(motor, "deceleration", 34f);
 
+            var inventory = player.AddComponent<PrototypeInventory>();
+            SetObjectReference(inventory, "itemDatabase", itemDatabase);
+            SetInt(inventory, "slotCapacity", 10);
+            SetFloat(inventory, "maxCarryMass", 28f);
+
             var survivalState = player.AddComponent<PrototypeSurvivalState>();
             SetObjectReference(survivalState, "playerMotor", motor);
             SetObjectReference(survivalState, "homeAnchor", homeAnchor);
@@ -208,6 +228,10 @@ namespace BooterBigArm.Editor
             SetFloat(survivalState, "idleRegenPerSecond", 0.4f);
             SetFloat(survivalState, "safeZoneRadius", 8f);
             SetFloat(survivalState, "lowReserveSpeedFloor", 0.72f);
+
+            var interactor = player.AddComponent<PrototypeHarvestInteractor>();
+            SetObjectReference(interactor, "inputActions", inputActions);
+            SetFloat(interactor, "searchRadius", 1.75f);
             return player;
         }
 
@@ -229,13 +253,15 @@ namespace BooterBigArm.Editor
             InputActionAsset inputActions,
             PlayerMotor2D playerMotor,
             PrototypeWorldGenerator worldGenerator,
-            PrototypeSurvivalState survivalState)
+            PrototypeSurvivalState survivalState,
+            PrototypeInventory inventoryState)
         {
             var controllerObject = new GameObject("Prototype Session");
             var controller = controllerObject.AddComponent<PrototypeSaveLoadController>();
             SetObjectReference(controller, "playerMotor", playerMotor);
             SetObjectReference(controller, "worldGenerator", worldGenerator);
             SetObjectReference(controller, "survivalState", survivalState);
+            SetObjectReference(controller, "inventoryState", inventoryState);
             var systemInput = controllerObject.AddComponent<PrototypeSystemInputAdapter>();
             SetObjectReference(systemInput, "inputActions", inputActions);
             SetObjectReference(systemInput, "saveLoadController", controller);
@@ -244,6 +270,7 @@ namespace BooterBigArm.Editor
 
         private static PrototypeWorldGenerator CreateWorld(
             Transform player,
+            Sprite harvestSprite,
             GameObject[] tallPropPrefabs,
             PrototypeWorldPropCatalog propCatalog,
             RuleTile sandPatchRuleTile,
@@ -296,6 +323,8 @@ namespace BooterBigArm.Editor
             SetInt(generator, "seed", 4829);
             SetInt(generator, "chunkSize", 16);
             SetInt(generator, "chunkRadius", 4);
+
+            CreateHarvestNodes(worldRoot.transform, harvestSprite);
 
             return generator;
         }
@@ -474,6 +503,20 @@ namespace BooterBigArm.Editor
             SetObjectReference(hud, "survivalState", survivalState);
         }
 
+        private static void CreateInventoryHud(PrototypeInventory inventory)
+        {
+            var hudObject = new GameObject("Inventory HUD");
+            var hud = hudObject.AddComponent<PrototypeInventoryHud>();
+            SetObjectReference(hud, "inventory", inventory);
+        }
+
+        private static void CreateHarvestPromptHud(PrototypeHarvestInteractor interactor)
+        {
+            var hudObject = new GameObject("Harvest Prompt HUD");
+            var hud = hudObject.AddComponent<PrototypeHarvestPromptHud>();
+            SetObjectReference(hud, "interactor", interactor);
+        }
+
         private static Transform CreateHomeAnchor(Sprite prototypeSprite)
         {
             var homeObject = new GameObject("Home Anchor");
@@ -486,6 +529,157 @@ namespace BooterBigArm.Editor
             homeObject.transform.localScale = new Vector3(1.4f, 1.4f, 1f);
 
             return homeObject.transform;
+        }
+
+        private static void CreateHarvestNodes(Transform worldRoot, Sprite nodeSprite)
+        {
+            if (worldRoot == null || nodeSprite == null)
+            {
+                return;
+            }
+
+            CreateHarvestNode(
+                worldRoot,
+                "Salvage Node",
+                "node.salvage_start",
+                PrototypeHarvestNodeKind.Salvage,
+                new Vector3(4f, 1.5f, 0f),
+                new Color(0.72f, 0.64f, 0.48f),
+                1,
+                0f,
+                new[]
+                {
+                    CreateHarvestYieldEntry("scrap_metal", 1, 3, 1f, 1),
+                    CreateHarvestYieldEntry("broken_circuit", 1, 1, 1f, 1)
+                },
+                nodeSprite);
+
+            CreateHarvestNode(
+                worldRoot,
+                "Mining Node",
+                "node.mining_start",
+                PrototypeHarvestNodeKind.Mining,
+                new Vector3(-5.5f, -1.0f, 0f),
+                new Color(0.55f, 0.58f, 0.66f),
+                2,
+                0f,
+                new[]
+                {
+                    CreateHarvestYieldEntry("stone", 3, 5, 1f, 1),
+                    CreateHarvestYieldEntry("ore_chunk", 1, 3, 1f, 1)
+                },
+                nodeSprite);
+
+            CreateHarvestNode(
+                worldRoot,
+                "Gathering Node",
+                "node.gathering_start",
+                PrototypeHarvestNodeKind.Gathering,
+                new Vector3(7f, -3.5f, 0f),
+                new Color(0.38f, 0.78f, 0.44f),
+                3,
+                0f,
+                new[]
+                {
+                    CreateHarvestYieldEntry("fiber_bundle", 2, 4, 1f, 1),
+                    CreateHarvestYieldEntry("algae_chunk", 1, 2, 1f, 1)
+                },
+                nodeSprite);
+        }
+
+        private static PrototypeHarvestYieldEntry CreateHarvestYieldEntry(string itemId, int minAmount, int maxAmount, float chance, int rolls)
+        {
+            return PrototypeHarvestYieldEntry.Create(itemId, minAmount, maxAmount, chance, rolls);
+        }
+
+        private static GameObject CreateHarvestNode(
+            Transform parent,
+            string name,
+            string nodeId,
+            PrototypeHarvestNodeKind kind,
+            Vector3 localPosition,
+            Color color,
+            int uses,
+            float respawnDelay,
+            PrototypeHarvestYield[] yields,
+            Sprite sprite)
+        {
+            var node = new GameObject(name);
+            node.transform.SetParent(parent, false);
+            node.transform.localPosition = localPosition;
+
+            var spriteRenderer = node.AddComponent<SpriteRenderer>();
+            spriteRenderer.sprite = sprite;
+            spriteRenderer.color = color;
+            spriteRenderer.sortingOrder = 5;
+
+            var collider = node.AddComponent<CircleCollider2D>();
+            collider.isTrigger = true;
+            collider.radius = 0.85f;
+
+            var harvestNode = node.AddComponent<PrototypeHarvestNode>();
+            harvestNode.Configure(nodeId, name, kind, 0.75f, false, string.Empty, uses, respawnDelay, yields?.ToList());
+
+            return node;
+        }
+
+        private static PrototypeItemDatabase EnsurePrototypeItemDatabase()
+        {
+            Directory.CreateDirectory(ItemSettingsFolder);
+            Directory.CreateDirectory(ItemDefsFolder);
+
+            var itemDatabase = AssetDatabase.LoadAssetAtPath<PrototypeItemDatabase>(ItemDatabasePath);
+            var scrapMetal = EnsureItemDef(ItemScrapMetalPath, "scrap_metal", "Scrap Metal", PrototypeItemCategory.Salvage, 50, 0.4f);
+            var fiberBundle = EnsureItemDef(ItemFiberBundlePath, "fiber_bundle", "Fiber Bundle", PrototypeItemCategory.Biomass, 50, 0.15f);
+            var algaeChunk = EnsureItemDef(ItemAlgaeChunkPath, "algae_chunk", "Algae Chunk", PrototypeItemCategory.Biomass, 50, 0.2f);
+            var stone = EnsureItemDef(ItemStonePath, "stone", "Stone", PrototypeItemCategory.Mineral, 40, 1.0f);
+            var oreChunk = EnsureItemDef(ItemOreChunkPath, "ore_chunk", "Ore Chunk", PrototypeItemCategory.Mineral, 20, 1.35f);
+            var brokenCircuit = EnsureItemDef(ItemBrokenCircuitPath, "broken_circuit", "Broken Circuit", PrototypeItemCategory.Salvage, 20, 0.1f);
+
+            if (itemDatabase == null)
+            {
+                itemDatabase = ScriptableObject.CreateInstance<PrototypeItemDatabase>();
+                AssetDatabase.CreateAsset(itemDatabase, ItemDatabasePath);
+            }
+
+            var serializedDatabase = new SerializedObject(itemDatabase);
+            var itemsProperty = serializedDatabase.FindProperty("items");
+            itemsProperty.arraySize = 6;
+            itemsProperty.GetArrayElementAtIndex(0).objectReferenceValue = scrapMetal;
+            itemsProperty.GetArrayElementAtIndex(1).objectReferenceValue = fiberBundle;
+            itemsProperty.GetArrayElementAtIndex(2).objectReferenceValue = algaeChunk;
+            itemsProperty.GetArrayElementAtIndex(3).objectReferenceValue = stone;
+            itemsProperty.GetArrayElementAtIndex(4).objectReferenceValue = oreChunk;
+            itemsProperty.GetArrayElementAtIndex(5).objectReferenceValue = brokenCircuit;
+            serializedDatabase.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(itemDatabase);
+            return itemDatabase;
+        }
+
+        private static PrototypeItemDef EnsureItemDef(
+            string path,
+            string itemId,
+            string displayName,
+            PrototypeItemCategory category,
+            int maxStack,
+            float massPerUnit)
+        {
+            var item = AssetDatabase.LoadAssetAtPath<PrototypeItemDef>(path);
+            if (item == null)
+            {
+                item = ScriptableObject.CreateInstance<PrototypeItemDef>();
+                AssetDatabase.CreateAsset(item, path);
+            }
+
+            var serializedItem = new SerializedObject(item);
+            serializedItem.FindProperty("itemId").stringValue = itemId;
+            serializedItem.FindProperty("displayName").stringValue = displayName;
+            serializedItem.FindProperty("category").enumValueIndex = (int)category;
+            serializedItem.FindProperty("maxStack").intValue = maxStack;
+            serializedItem.FindProperty("massPerUnit").floatValue = massPerUnit;
+            serializedItem.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(item);
+            return item;
         }
 
         private static Sprite EnsurePlayerSpriteAsset()

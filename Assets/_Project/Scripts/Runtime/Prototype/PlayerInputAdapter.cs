@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,15 +12,18 @@ namespace BooterBigArm.Runtime
         [SerializeField] private string moveActionName = "Move";
         [SerializeField] private string lookActionName = "Look";
         [SerializeField] private string sprintActionName = "Sprint";
+        [SerializeField] private string interactActionName = "Interact";
 
         private InputActionMap actionMap;
         private InputAction moveAction;
         private InputAction lookAction;
         private InputAction sprintAction;
+        private InputAction interactAction;
 
         public Vector2 MoveValue { get; private set; }
         public Vector2 LookValue { get; private set; }
         public bool SprintHeld { get; private set; }
+        public event Action InteractPressed;
 
         public void SetInputActions(InputActionAsset actions)
         {
@@ -30,48 +34,52 @@ namespace BooterBigArm.Runtime
         {
             if (inputActions == null)
             {
-                Debug.LogError($"{nameof(PlayerInputAdapter)} on {name} has no input actions asset assigned.", this);
-                enabled = false;
+                Debug.LogWarning($"{nameof(PlayerInputAdapter)} on {name} has no input actions asset assigned yet.", this);
                 return;
             }
 
             actionMap = inputActions.FindActionMap(actionMapName, false);
             if (actionMap == null)
             {
-                Debug.LogError(
+                Debug.LogWarning(
                     $"{nameof(PlayerInputAdapter)} on {name} could not find action map '{actionMapName}'.",
                     this);
-                enabled = false;
                 return;
             }
 
             moveAction = actionMap.FindAction(moveActionName, false);
             if (moveAction == null)
             {
-                Debug.LogError(
+                Debug.LogWarning(
                     $"{nameof(PlayerInputAdapter)} on {name} could not find action '{moveActionName}'.",
                     this);
-                enabled = false;
                 return;
             }
 
             lookAction = actionMap.FindAction(lookActionName, false);
             if (lookAction == null)
             {
-                Debug.LogError(
+                Debug.LogWarning(
                     $"{nameof(PlayerInputAdapter)} on {name} could not find action '{lookActionName}'.",
                     this);
-                enabled = false;
                 return;
             }
 
             sprintAction = actionMap.FindAction(sprintActionName, false);
             if (sprintAction == null)
             {
-                Debug.LogError(
+                Debug.LogWarning(
                     $"{nameof(PlayerInputAdapter)} on {name} could not find action '{sprintActionName}'.",
                     this);
-                enabled = false;
+                return;
+            }
+
+            interactAction = actionMap.FindAction(interactActionName, false);
+            if (interactAction == null)
+            {
+                Debug.LogWarning(
+                    $"{nameof(PlayerInputAdapter)} on {name} could not find action '{interactActionName}'.",
+                    this);
                 return;
             }
 
@@ -81,6 +89,7 @@ namespace BooterBigArm.Runtime
             lookAction.canceled += HandleLook;
             sprintAction.performed += HandleSprint;
             sprintAction.canceled += HandleSprint;
+            interactAction.performed += HandleInteract;
             actionMap.Enable();
         }
 
@@ -102,6 +111,11 @@ namespace BooterBigArm.Runtime
             {
                 sprintAction.performed -= HandleSprint;
                 sprintAction.canceled -= HandleSprint;
+            }
+
+            if (interactAction != null)
+            {
+                interactAction.performed -= HandleInteract;
             }
 
             if (actionMap != null)
@@ -127,6 +141,16 @@ namespace BooterBigArm.Runtime
         private void HandleSprint(InputAction.CallbackContext context)
         {
             SprintHeld = context.ReadValueAsButton();
+        }
+
+        private void HandleInteract(InputAction.CallbackContext context)
+        {
+            if (context.phase != InputActionPhase.Performed)
+            {
+                return;
+            }
+
+            InteractPressed?.Invoke();
         }
     }
 }

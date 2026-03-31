@@ -30,18 +30,16 @@ namespace BooterBigArm.Runtime
         {
             if (inputActions == null)
             {
-                Debug.LogError($"{nameof(PrototypeSystemInputAdapter)} on {name} has no input actions asset assigned.", this);
-                enabled = false;
+                Debug.LogWarning($"{nameof(PrototypeSystemInputAdapter)} on {name} has no input actions asset assigned yet.", this);
                 return;
             }
 
             actionMap = inputActions.FindActionMap(actionMapName, false);
             if (actionMap == null)
             {
-                Debug.LogError(
+                Debug.LogWarning(
                     $"{nameof(PrototypeSystemInputAdapter)} on {name} could not find action map '{actionMapName}'.",
                     this);
-                enabled = false;
                 return;
             }
 
@@ -52,10 +50,9 @@ namespace BooterBigArm.Runtime
 
             if (saveAction == null || loadAction == null || rebuildAction == null || nextSeedAction == null)
             {
-                Debug.LogError(
+                Debug.LogWarning(
                     $"{nameof(PrototypeSystemInputAdapter)} on {name} is missing one or more system actions.",
                     this);
-                enabled = false;
                 return;
             }
 
