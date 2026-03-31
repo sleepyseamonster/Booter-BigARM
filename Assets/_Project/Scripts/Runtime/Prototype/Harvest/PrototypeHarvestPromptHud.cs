@@ -15,7 +15,7 @@ namespace BooterBigArm.Runtime
         {
             if (interactor == null)
             {
-                interactor = FindFirstObjectByType<PrototypeHarvestInteractor>();
+                interactor = FindAnyObjectByType<PrototypeHarvestInteractor>();
             }
         }
 

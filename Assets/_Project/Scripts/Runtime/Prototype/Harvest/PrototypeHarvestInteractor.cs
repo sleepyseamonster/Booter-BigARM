@@ -12,7 +12,6 @@ namespace BooterBigArm.Runtime
         [SerializeField, Min(0.25f)] private float interactRadius = 1.2f;
         [SerializeField] private LayerMask nodeMask = ~0;
 
-        private readonly Collider2D[] overlapBuffer = new Collider2D[16];
         private InputActionMap actionMap;
         private InputAction interactAction;
         private bool enabledActionMapForSelf;
@@ -25,6 +24,7 @@ namespace BooterBigArm.Runtime
         private bool waitingForRelease;
 
         public PrototypeHarvestNode CurrentTarget => currentTarget;
+        public PrototypeHarvestNode CurrentNode => currentTarget;
         public float CurrentProgress01 => currentTarget == null ? 0f : Mathf.Clamp01(heldSeconds / currentTarget.HarvestSeconds);
         public string LastMessage { get; private set; } = string.Empty;
 
@@ -149,12 +149,12 @@ namespace BooterBigArm.Runtime
 
         private void AcquireTarget()
         {
-            var count = Physics2D.OverlapCircleNonAlloc(transform.position, interactRadius, overlapBuffer, nodeMask);
+            var hits = Physics2D.OverlapCircleAll(transform.position, interactRadius, nodeMask);
             PrototypeHarvestNode best = null;
             var bestDistSq = float.PositiveInfinity;
-            for (var i = 0; i < count; i++)
+            for (var i = 0; i < hits.Length; i++)
             {
-                var col = overlapBuffer[i];
+                var col = hits[i];
                 if (col == null)
                 {
                     continue;

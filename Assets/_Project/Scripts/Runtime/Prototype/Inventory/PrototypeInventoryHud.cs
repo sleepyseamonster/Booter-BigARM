@@ -13,12 +13,12 @@ namespace BooterBigArm.Runtime
         {
             if (inventory == null)
             {
-                inventory = FindFirstObjectByType<PrototypeInventory>();
+                inventory = FindAnyObjectByType<PrototypeInventory>();
             }
 
             if (harvestInteractor == null)
             {
-                harvestInteractor = FindFirstObjectByType<PrototypeHarvestInteractor>();
+                harvestInteractor = FindAnyObjectByType<PrototypeHarvestInteractor>();
             }
         }
 

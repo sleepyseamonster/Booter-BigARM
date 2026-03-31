@@ -147,7 +147,7 @@ namespace BooterBigArm.Runtime
 
         private PrototypeHarvestNodeSaveData[] CaptureHarvestNodeStates()
         {
-            var nodes = FindObjectsByType<PrototypeHarvestNode>(FindObjectsSortMode.None);
+            var nodes = FindObjectsByType<PrototypeHarvestNode>(FindObjectsInactive.Exclude);
             if (nodes == null || nodes.Length == 0)
             {
                 return System.Array.Empty<PrototypeHarvestNodeSaveData>();
@@ -174,7 +174,7 @@ namespace BooterBigArm.Runtime
                 return;
             }
 
-            var nodes = FindObjectsByType<PrototypeHarvestNode>(FindObjectsSortMode.None);
+            var nodes = FindObjectsByType<PrototypeHarvestNode>(FindObjectsInactive.Exclude);
             if (nodes == null || nodes.Length == 0)
             {
                 return;
