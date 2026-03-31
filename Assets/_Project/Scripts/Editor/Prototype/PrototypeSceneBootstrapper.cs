@@ -41,6 +41,10 @@ namespace BooterBigArm.Editor
         private const string ItemStonePath = "Assets/_Project/Settings/Items/Defs/ItemDef_Stone.asset";
         private const string ItemOreChunkPath = "Assets/_Project/Settings/Items/Defs/ItemDef_OreChunk.asset";
         private const string ItemBrokenCircuitPath = "Assets/_Project/Settings/Items/Defs/ItemDef_BrokenCircuit.asset";
+        private const string ItemIronstonePath = "Assets/_Project/Settings/Items/Defs/ItemDef_Ironstone.asset";
+        private const string IronstoneArtFolder = "Assets/_Project/Art/Prototype/Ironstone";
+        private const string IronstoneNodeSpritePath = "Assets/_Project/Art/Prototype/Ironstone/IronstoneOutcrop.png";
+        private const string IronstoneDropSpritePath = "Assets/_Project/Art/Prototype/Ironstone/IronstoneChunk.png";
         private const string PrototypePropCatalogPath = "Assets/_Project/Settings/World/PrototypeWorldPropCatalog.asset";
         private const string GreaterWastelandBiomeId = "Greater Wasteland";
         private const string ReefBiomeId = "The Reef";
@@ -80,6 +84,8 @@ namespace BooterBigArm.Editor
             var tallPropPrefabs = EnsureTallPropPrefabs(tallPropSprite, shadowSprite);
             var propCatalog = EnsurePrototypePropCatalog();
             var itemDatabase = EnsurePrototypeItemDatabase();
+            var ironstoneNodeSprite = EnsureIronstoneNodeSpriteAsset();
+            var ironstoneDropSprite = EnsureIronstoneDropSpriteAsset();
             var sandPatchRuleTile = LoadSandPatchRuleTileAsset();
             var sandSprites = EnsureSandSprites();
             var sandOverlaySprites = EnsureSandOverlaySprites();
@@ -103,7 +109,9 @@ namespace BooterBigArm.Editor
                 sandOverlaySprites,
                 pebbleSprites,
                 rockSprites,
-                smoothSprites);
+                smoothSprites,
+                ironstoneNodeSprite,
+                ironstoneDropSprite);
             var saveLoadController = CreateSessionSystems(
                 inputActions,
                 player.GetComponent<PlayerMotor2D>(),
@@ -278,7 +286,9 @@ namespace BooterBigArm.Editor
             Sprite[] sandOverlaySprites,
             Sprite[] pebbleSprites,
             Sprite[] rockSprites,
-            Sprite[] smoothSprites)
+            Sprite[] smoothSprites,
+            Sprite ironstoneNodeSprite,
+            Sprite ironstoneDropSprite)
         {
             var worldRoot = new GameObject("World");
             var worldSettings = worldRoot.AddComponent<PrototypeWorldSettings>();
@@ -324,7 +334,7 @@ namespace BooterBigArm.Editor
             SetInt(generator, "chunkSize", 16);
             SetInt(generator, "chunkRadius", 4);
 
-            CreateHarvestNodes(worldRoot.transform, harvestSprite);
+            CreateHarvestNodes(worldRoot.transform, harvestSprite, ironstoneNodeSprite, ironstoneDropSprite);
 
             return generator;
         }
@@ -531,7 +541,7 @@ namespace BooterBigArm.Editor
             return homeObject.transform;
         }
 
-        private static void CreateHarvestNodes(Transform worldRoot, Sprite nodeSprite)
+        private static void CreateHarvestNodes(Transform worldRoot, Sprite nodeSprite, Sprite ironstoneNodeSprite, Sprite ironstoneDropSprite)
         {
             if (worldRoot == null || nodeSprite == null)
             {
@@ -552,23 +562,24 @@ namespace BooterBigArm.Editor
                     CreateHarvestYieldEntry("scrap_metal", 1, 3, 1f, 1),
                     CreateHarvestYieldEntry("broken_circuit", 1, 1, 1f, 1)
                 },
+                nodeSprite,
                 nodeSprite);
 
             CreateHarvestNode(
                 worldRoot,
-                "Mining Node",
-                "node.mining_start",
+                "Ironstone Outcrop",
+                "node.ironstone_outcrop",
                 PrototypeHarvestNodeKind.Mining,
                 new Vector3(-5.5f, -1.0f, 0f),
-                new Color(0.55f, 0.58f, 0.66f),
-                2,
+                new Color(0.61f, 0.38f, 0.28f),
+                6,
                 0f,
                 new[]
                 {
-                    CreateHarvestYieldEntry("stone", 3, 5, 1f, 1),
-                    CreateHarvestYieldEntry("ore_chunk", 1, 3, 1f, 1)
+                    CreateHarvestYieldEntry("ironstone", 1, 2, 1f, 1)
                 },
-                nodeSprite);
+                ironstoneNodeSprite ?? nodeSprite,
+                ironstoneDropSprite ?? nodeSprite);
 
             CreateHarvestNode(
                 worldRoot,
@@ -584,6 +595,7 @@ namespace BooterBigArm.Editor
                     CreateHarvestYieldEntry("fiber_bundle", 2, 4, 1f, 1),
                     CreateHarvestYieldEntry("algae_chunk", 1, 2, 1f, 1)
                 },
+                nodeSprite,
                 nodeSprite);
         }
 
@@ -602,7 +614,8 @@ namespace BooterBigArm.Editor
             int uses,
             float respawnDelay,
             PrototypeHarvestYieldEntry[] yields,
-            Sprite sprite)
+            Sprite sprite,
+            Sprite dropSprite)
         {
             var node = new GameObject(name);
             node.transform.SetParent(parent, false);
@@ -618,7 +631,7 @@ namespace BooterBigArm.Editor
             collider.radius = 0.85f;
 
             var harvestNode = node.AddComponent<PrototypeHarvestNode>();
-            harvestNode.Configure(nodeId, name, kind, 0.75f, false, string.Empty, uses, respawnDelay, yields?.ToList());
+            harvestNode.Configure(nodeId, name, kind, 0.75f, false, string.Empty, uses, respawnDelay, yields?.ToList(), dropSprite);
 
             return node;
         }
@@ -635,6 +648,7 @@ namespace BooterBigArm.Editor
             var stone = EnsureItemDef(ItemStonePath, "stone", "Stone", PrototypeItemCategory.Mineral, 40, 1.0f);
             var oreChunk = EnsureItemDef(ItemOreChunkPath, "ore_chunk", "Ore Chunk", PrototypeItemCategory.Mineral, 20, 1.35f);
             var brokenCircuit = EnsureItemDef(ItemBrokenCircuitPath, "broken_circuit", "Broken Circuit", PrototypeItemCategory.Salvage, 20, 0.1f);
+            var ironstone = EnsureItemDef(ItemIronstonePath, "ironstone", "Ironstone", PrototypeItemCategory.Mineral, 40, 1.25f);
 
             if (itemDatabase == null)
             {
@@ -644,13 +658,14 @@ namespace BooterBigArm.Editor
 
             var serializedDatabase = new SerializedObject(itemDatabase);
             var itemsProperty = serializedDatabase.FindProperty("items");
-            itemsProperty.arraySize = 6;
+            itemsProperty.arraySize = 7;
             itemsProperty.GetArrayElementAtIndex(0).objectReferenceValue = scrapMetal;
             itemsProperty.GetArrayElementAtIndex(1).objectReferenceValue = fiberBundle;
             itemsProperty.GetArrayElementAtIndex(2).objectReferenceValue = algaeChunk;
             itemsProperty.GetArrayElementAtIndex(3).objectReferenceValue = stone;
             itemsProperty.GetArrayElementAtIndex(4).objectReferenceValue = oreChunk;
             itemsProperty.GetArrayElementAtIndex(5).objectReferenceValue = brokenCircuit;
+            itemsProperty.GetArrayElementAtIndex(6).objectReferenceValue = ironstone;
             serializedDatabase.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(itemDatabase);
             return itemDatabase;
@@ -776,6 +791,20 @@ namespace BooterBigArm.Editor
             importer.SaveAndReimport();
 
             return AssetDatabase.LoadAssetAtPath<Sprite>(TallPropSpritePath);
+        }
+
+        private static Sprite EnsureIronstoneNodeSpriteAsset()
+        {
+            Directory.CreateDirectory(IronstoneArtFolder);
+            EnsureSpriteAsset(IronstoneNodeSpritePath, CreateIronstoneNodeTexture(), true);
+            return AssetDatabase.LoadAssetAtPath<Sprite>(IronstoneNodeSpritePath);
+        }
+
+        private static Sprite EnsureIronstoneDropSpriteAsset()
+        {
+            Directory.CreateDirectory(IronstoneArtFolder);
+            EnsureSpriteAsset(IronstoneDropSpritePath, CreateIronstoneDropTexture(), true);
+            return AssetDatabase.LoadAssetAtPath<Sprite>(IronstoneDropSpritePath);
         }
 
         private static GameObject[] EnsureTallPropPrefabs(Sprite tallPropSprite, Sprite shadowSprite)
@@ -1213,6 +1242,146 @@ namespace BooterBigArm.Editor
                     texture.SetPixel(x, y, color);
                 }
             }
+
+            texture.Apply(false, false);
+            return texture;
+        }
+
+        private static Texture2D CreateIronstoneNodeTexture()
+        {
+            const int width = 32;
+            const int height = 32;
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+
+            var transparent = new Color32(0, 0, 0, 0);
+            var outline = new Color32(41, 29, 24, 255);
+            var body = new Color32(83, 54, 42, 255);
+            var bodyDark = new Color32(60, 39, 32, 255);
+            var bodyLight = new Color32(132, 90, 63, 255);
+            var rust = new Color32(160, 94, 56, 255);
+            var iron = new Color32(185, 167, 150, 255);
+            var shadow = new Color32(31, 22, 18, 255);
+            var seed = 0x4A13B7;
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var nx = (x - 15.5f) / 12.4f;
+                    var ny = (y - 16.0f) / 11.4f;
+                    var radial = Mathf.Sqrt(nx * nx + ny * ny);
+                    var wobble = TileableValueNoise(seed, x, y, 8);
+                    var outlineBand = 0.12f + wobble * 0.05f;
+                    var outerShape = 1f + wobble * 0.13f + (y > 20 ? 0.03f : 0f);
+
+                    if (radial > outerShape)
+                    {
+                        texture.SetPixel(x, y, transparent);
+                        continue;
+                    }
+
+                    var color = Blend(body, bodyLight, Mathf.Clamp01(0.15f + (1f - radial) * 0.55f + wobble * 0.12f));
+                    if (radial > outerShape - outlineBand)
+                    {
+                        color = outline;
+                    }
+                    else if (x < 13 && y > 18)
+                    {
+                        color = Blend(color, bodyDark, 0.42f);
+                    }
+                    else if (x > 20 && y < 11)
+                    {
+                        color = Blend(color, rust, 0.36f);
+                    }
+                    else if (wobble > 0.78f)
+                    {
+                        color = Blend(color, iron, 0.4f);
+                    }
+
+                    if (radial < 0.62f && wobble > 0.88f)
+                    {
+                        color = iron;
+                    }
+
+                    texture.SetPixel(x, y, color);
+                }
+            }
+
+            DrawLine(texture, new Color32(140, 100, 78, 255), 8, 19, 23, 10);
+            DrawLine(texture, new Color32(119, 78, 57, 255), 6, 24, 19, 17);
+            DrawLine(texture, new Color32(198, 176, 156, 255), 12, 13, 18, 8);
+            SprinkleTexture(texture, seed ^ 0x1F3, 7, 7, 25, 24, iron, rust, shadow);
+
+            texture.Apply(false, false);
+            return texture;
+        }
+
+        private static Texture2D CreateIronstoneDropTexture()
+        {
+            const int width = 16;
+            const int height = 16;
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+
+            var transparent = new Color32(0, 0, 0, 0);
+            var outline = new Color32(45, 33, 26, 255);
+            var body = new Color32(97, 64, 48, 255);
+            var bodyDark = new Color32(68, 44, 35, 255);
+            var bodyLight = new Color32(149, 103, 76, 255);
+            var iron = new Color32(186, 170, 156, 255);
+            var rust = new Color32(166, 98, 56, 255);
+            var seed = 0x6B2D19;
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var nx = (x - 7.5f) / 5.2f;
+                    var ny = (y - 8.0f) / 4.8f;
+                    var radial = Mathf.Sqrt(nx * nx + ny * ny);
+                    var wobble = TileableValueNoise(seed, x, y, 4);
+                    var outerShape = 1f + wobble * 0.11f;
+
+                    if (radial > outerShape)
+                    {
+                        texture.SetPixel(x, y, transparent);
+                        continue;
+                    }
+
+                    var color = Blend(body, bodyLight, Mathf.Clamp01(0.18f + (1f - radial) * 0.58f + wobble * 0.12f));
+                    if (radial > outerShape - 0.12f)
+                    {
+                        color = outline;
+                    }
+                    else if (x < 6)
+                    {
+                        color = Blend(color, bodyDark, 0.4f);
+                    }
+                    else if (x > 9 && y < 7)
+                    {
+                        color = Blend(color, rust, 0.33f);
+                    }
+                    else if (wobble > 0.8f)
+                    {
+                        color = Blend(color, iron, 0.45f);
+                    }
+
+                    texture.SetPixel(x, y, color);
+                }
+            }
+
+            DrawLine(texture, new Color32(203, 186, 168, 255), 5, 7, 11, 4);
+            DrawLine(texture, new Color32(138, 102, 76, 255), 4, 11, 10, 9);
+            SprinkleTexture(texture, seed ^ 0x77, 4, 4, 11, 11, iron, rust, bodyDark);
 
             texture.Apply(false, false);
             return texture;
@@ -1733,6 +1902,68 @@ namespace BooterBigArm.Editor
                     Put(texture, x + 1, y, tint);
                     Put(texture, x, y + 1, tint);
                     Put(texture, x + 1, y + 1, tint);
+                }
+            }
+        }
+
+        private static void DrawLine(Texture2D texture, Color32 color, int x0, int y0, int x1, int y1)
+        {
+            var dx = Mathf.Abs(x1 - x0);
+            var sx = x0 < x1 ? 1 : -1;
+            var dy = -Mathf.Abs(y1 - y0);
+            var sy = y0 < y1 ? 1 : -1;
+            var err = dx + dy;
+
+            while (true)
+            {
+                Put(texture, x0, y0, color);
+                if (x0 == x1 && y0 == y1)
+                {
+                    break;
+                }
+
+                var twiceErr = 2 * err;
+                if (twiceErr >= dy)
+                {
+                    err += dy;
+                    x0 += sx;
+                }
+
+                if (twiceErr <= dx)
+                {
+                    err += dx;
+                    y0 += sy;
+                }
+            }
+        }
+
+        private static void SprinkleTexture(
+            Texture2D texture,
+            int seed,
+            int minX,
+            int minY,
+            int maxX,
+            int maxY,
+            Color32 primary,
+            Color32 secondary,
+            Color32 tertiary)
+        {
+            var rng = new System.Random(seed);
+            for (var i = 0; i < 7; i++)
+            {
+                var x = rng.Next(minX, maxX + 1);
+                var y = rng.Next(minY, maxY + 1);
+                var color = (i % 3) switch
+                {
+                    0 => primary,
+                    1 => secondary,
+                    _ => tertiary
+                };
+                Put(texture, x, y, color);
+
+                if (rng.NextDouble() > 0.55)
+                {
+                    Put(texture, x + rng.Next(-1, 2), y, color);
                 }
             }
         }

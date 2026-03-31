@@ -126,23 +126,16 @@ namespace BooterBigArm.Runtime
                 return;
             }
 
-            if (itemReceiver == null)
-            {
-                LastMessage = "No inventory receiver.";
-                heldSeconds = 0f;
-                waitingForRelease = !currentTarget.RepeatWhileHeld;
-                return;
-            }
-
             if (!currentTarget.TryHarvest(itemReceiver, equippedTool))
             {
-                LastMessage = "Inventory full.";
+                LastMessage = "Unable to harvest.";
                 heldSeconds = 0f;
                 waitingForRelease = !currentTarget.RepeatWhileHeld;
                 return;
             }
 
-            LastMessage = $"Harvested {currentTarget.DisplayName}.";
+            var verb = currentTarget.Kind == PrototypeHarvestNodeKind.Mining ? "Mined" : "Harvested";
+            LastMessage = $"{verb} {currentTarget.DisplayName}.";
             heldSeconds = 0f;
             waitingForRelease = !currentTarget.RepeatWhileHeld;
         }

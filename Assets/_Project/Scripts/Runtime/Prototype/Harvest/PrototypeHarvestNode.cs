@@ -24,6 +24,7 @@ namespace BooterBigArm.Runtime
 
         [Header("Yield")]
         [SerializeField] private List<PrototypeHarvestYieldEntry> yields = new List<PrototypeHarvestYieldEntry>();
+        [SerializeField] private Sprite pickupSprite;
 
         private int usesRemaining;
         private float respawnTimer;
@@ -49,7 +50,8 @@ namespace BooterBigArm.Runtime
             string toolId,
             int uses,
             float respawn,
-            List<PrototypeHarvestYieldEntry> nodeYields)
+            List<PrototypeHarvestYieldEntry> nodeYields,
+            Sprite dropSprite)
         {
             nodeId = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString("N") : id;
             displayName = string.IsNullOrWhiteSpace(name) ? "Salvage" : name;
@@ -60,6 +62,7 @@ namespace BooterBigArm.Runtime
             maxUses = Mathf.Max(1, uses);
             respawnSeconds = Mathf.Max(0f, respawn);
             yields = nodeYields ?? new List<PrototypeHarvestYieldEntry>();
+            pickupSprite = dropSprite;
             usesRemaining = maxUses;
             respawnTimer = 0f;
         }
@@ -107,7 +110,7 @@ namespace BooterBigArm.Runtime
 
         public bool TryHarvest(IPrototypeItemReceiver receiver, string equippedToolId)
         {
-            if (receiver == null || !CanHarvest(equippedToolId))
+            if (!CanHarvest(equippedToolId))
             {
                 return false;
             }
@@ -119,12 +122,7 @@ namespace BooterBigArm.Runtime
                 return true;
             }
 
-            // Treat inventory insertion as atomic so we don't consume the node on overflow.
-            if (!receiver.TryAddItems(rolledItems.ToArray()))
-            {
-                return false;
-            }
-
+            SpawnDrops(rolledItems);
             ConsumeUse();
             return true;
         }
@@ -218,6 +216,35 @@ namespace BooterBigArm.Runtime
             if (respawnSeconds > 0f)
             {
                 respawnTimer = respawnSeconds;
+            }
+        }
+
+        private void SpawnDrops(List<PrototypeItemAmount> items)
+        {
+            if (items == null || items.Count == 0)
+            {
+                return;
+            }
+
+            var dropTexture = pickupSprite != null ? pickupSprite : spriteRenderer != null ? spriteRenderer.sprite : null;
+            var rng = new System.Random(GetStableRollSeed() ^ 0x51A7BEEF);
+            for (var i = 0; i < items.Count; i++)
+            {
+                var item = items[i];
+                if (item.Amount <= 0 || string.IsNullOrWhiteSpace(item.ItemId))
+                {
+                    continue;
+                }
+
+                var drop = new GameObject($"{DisplayName} Drop");
+                drop.transform.SetParent(transform.parent, true);
+
+                var offsetX = (float)(rng.NextDouble() - 0.5) * 0.45f;
+                var offsetY = 0.15f + (float)rng.NextDouble() * 0.2f;
+                drop.transform.position = transform.position + new Vector3(offsetX, offsetY, 0f);
+
+                var pickup = drop.AddComponent<PrototypeWorldItemPickup>();
+                pickup.Configure(item.ItemId, item.Amount, dropTexture);
             }
         }
 
