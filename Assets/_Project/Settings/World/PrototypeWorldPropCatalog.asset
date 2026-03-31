@@ -38,6 +38,13 @@ MonoBehaviour:
       spawnChanceMultiplier: 5
       enabled: 1
     - id: boulder_32_4
+      prefab: {fileID: 2635336781865207689, guid: ad12381e07f6f48ff8605e2348c3cff5, type: 3}
+      category: 0
+      sizeClass: 1
+      weight: 4.5
+      spawnChanceMultiplier: 5
+      enabled: 1
+    - id: boulder_32_5
       prefab: {fileID: 902072379069702361, guid: cbeb679ddd22843328d865ac22a0c516, type: 3}
       category: 0
       sizeClass: 1

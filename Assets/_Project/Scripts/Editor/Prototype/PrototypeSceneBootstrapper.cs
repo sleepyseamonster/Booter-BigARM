@@ -239,7 +239,7 @@ namespace BooterBigArm.Editor
 
             var interactor = player.AddComponent<PrototypeHarvestInteractor>();
             SetObjectReference(interactor, "inputActions", inputActions);
-            SetFloat(interactor, "searchRadius", 1.75f);
+            SetFloat(interactor, "interactRadius", 1.75f);
             return player;
         }
 
@@ -562,6 +562,7 @@ namespace BooterBigArm.Editor
                     CreateHarvestYieldEntry("scrap_metal", 1, 3, 1f, 1),
                     CreateHarvestYieldEntry("broken_circuit", 1, 1, 1f, 1)
                 },
+                false,
                 nodeSprite,
                 nodeSprite);
 
@@ -578,6 +579,7 @@ namespace BooterBigArm.Editor
                 {
                     CreateHarvestYieldEntry("ironstone", 1, 2, 1f, 1)
                 },
+                true,
                 ironstoneNodeSprite ?? nodeSprite,
                 ironstoneDropSprite ?? nodeSprite);
 
@@ -595,6 +597,7 @@ namespace BooterBigArm.Editor
                     CreateHarvestYieldEntry("fiber_bundle", 2, 4, 1f, 1),
                     CreateHarvestYieldEntry("algae_chunk", 1, 2, 1f, 1)
                 },
+                false,
                 nodeSprite,
                 nodeSprite);
         }
@@ -614,6 +617,7 @@ namespace BooterBigArm.Editor
             int uses,
             float respawnDelay,
             PrototypeHarvestYieldEntry[] yields,
+            bool repeatWhileHeld,
             Sprite sprite,
             Sprite dropSprite)
         {
@@ -631,7 +635,7 @@ namespace BooterBigArm.Editor
             collider.radius = 0.85f;
 
             var harvestNode = node.AddComponent<PrototypeHarvestNode>();
-            harvestNode.Configure(nodeId, name, kind, 0.75f, false, string.Empty, uses, respawnDelay, yields?.ToList(), dropSprite);
+            harvestNode.Configure(nodeId, name, kind, 0.75f, repeatWhileHeld, string.Empty, uses, respawnDelay, yields?.ToList(), dropSprite);
 
             return node;
         }
