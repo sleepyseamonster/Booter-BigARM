@@ -45,6 +45,9 @@ namespace BooterBigArm.Editor
         private const string IronstoneArtFolder = "Assets/_Project/Art/Prototype/Ironstone";
         private const string IronstoneNodeSpritePath = "Assets/_Project/Art/Prototype/Ironstone/IronstoneOutcrop.png";
         private const string IronstoneDropSpritePath = "Assets/_Project/Art/Prototype/Ironstone/IronstoneChunk.png";
+        private const string MetalScrapArtFolder = "Assets/_Project/Art/Prototype/MetalScrap";
+        private const string MetalScrapNodeSpritePath = "Assets/_Project/Art/Prototype/MetalScrap/MetalScrapHeap.png";
+        private const string MetalScrapDropSpritePath = "Assets/_Project/Art/Prototype/MetalScrap/MetalScrapChunk.png";
         private const string PrototypePropCatalogPath = "Assets/_Project/Settings/World/PrototypeWorldPropCatalog.asset";
         private const string GreaterWastelandBiomeId = "Greater Wasteland";
         private const string ReefBiomeId = "The Reef";
@@ -84,6 +87,8 @@ namespace BooterBigArm.Editor
             var tallPropPrefabs = EnsureTallPropPrefabs(tallPropSprite, shadowSprite);
             var propCatalog = EnsurePrototypePropCatalog();
             var itemDatabase = EnsurePrototypeItemDatabase();
+            var metalScrapNodeSprite = EnsureMetalScrapNodeSpriteAsset();
+            var metalScrapDropSprite = EnsureMetalScrapDropSpriteAsset();
             var ironstoneNodeSprite = EnsureIronstoneNodeSpriteAsset();
             var ironstoneDropSprite = EnsureIronstoneDropSpriteAsset();
             var sandPatchRuleTile = LoadSandPatchRuleTileAsset();
@@ -110,6 +115,8 @@ namespace BooterBigArm.Editor
                 pebbleSprites,
                 rockSprites,
                 smoothSprites,
+                metalScrapNodeSprite,
+                metalScrapDropSprite,
                 ironstoneNodeSprite,
                 ironstoneDropSprite);
             var saveLoadController = CreateSessionSystems(
@@ -287,6 +294,8 @@ namespace BooterBigArm.Editor
             Sprite[] pebbleSprites,
             Sprite[] rockSprites,
             Sprite[] smoothSprites,
+            Sprite metalScrapNodeSprite,
+            Sprite metalScrapDropSprite,
             Sprite ironstoneNodeSprite,
             Sprite ironstoneDropSprite)
         {
@@ -334,7 +343,7 @@ namespace BooterBigArm.Editor
             SetInt(generator, "chunkSize", 16);
             SetInt(generator, "chunkRadius", 4);
 
-            CreateHarvestNodes(worldRoot.transform, harvestSprite, ironstoneNodeSprite, ironstoneDropSprite);
+            CreateHarvestNodes(worldRoot.transform, harvestSprite, metalScrapNodeSprite, metalScrapDropSprite, ironstoneNodeSprite, ironstoneDropSprite);
 
             return generator;
         }
@@ -541,7 +550,13 @@ namespace BooterBigArm.Editor
             return homeObject.transform;
         }
 
-        private static void CreateHarvestNodes(Transform worldRoot, Sprite nodeSprite, Sprite ironstoneNodeSprite, Sprite ironstoneDropSprite)
+        private static void CreateHarvestNodes(
+            Transform worldRoot,
+            Sprite nodeSprite,
+            Sprite metalScrapNodeSprite,
+            Sprite metalScrapDropSprite,
+            Sprite ironstoneNodeSprite,
+            Sprite ironstoneDropSprite)
         {
             if (worldRoot == null || nodeSprite == null)
             {
@@ -565,6 +580,23 @@ namespace BooterBigArm.Editor
                 false,
                 nodeSprite,
                 nodeSprite);
+
+            CreateHarvestNode(
+                worldRoot,
+                "Metal Scrap Heap",
+                "node.metal_scrap_heap",
+                PrototypeHarvestNodeKind.Salvage,
+                new Vector3(6.8f, 2.6f, 0f),
+                new Color(0.66f, 0.48f, 0.34f),
+                5,
+                0f,
+                new[]
+                {
+                    CreateHarvestYieldEntry("scrap_metal", 1, 4, 1f, 1)
+                },
+                true,
+                metalScrapNodeSprite ?? nodeSprite,
+                metalScrapDropSprite ?? nodeSprite);
 
             CreateHarvestNode(
                 worldRoot,
@@ -811,6 +843,20 @@ namespace BooterBigArm.Editor
             Directory.CreateDirectory(IronstoneArtFolder);
             EnsureSpriteAsset(IronstoneDropSpritePath, CreateIronstoneDropTexture(), true);
             return AssetDatabase.LoadAssetAtPath<Sprite>(IronstoneDropSpritePath);
+        }
+
+        private static Sprite EnsureMetalScrapNodeSpriteAsset()
+        {
+            Directory.CreateDirectory(MetalScrapArtFolder);
+            EnsureSpriteAsset(MetalScrapNodeSpritePath, CreateMetalScrapNodeTexture(), true);
+            return AssetDatabase.LoadAssetAtPath<Sprite>(MetalScrapNodeSpritePath);
+        }
+
+        private static Sprite EnsureMetalScrapDropSpriteAsset()
+        {
+            Directory.CreateDirectory(MetalScrapArtFolder);
+            EnsureSpriteAsset(MetalScrapDropSpritePath, CreateMetalScrapDropTexture(), true);
+            return AssetDatabase.LoadAssetAtPath<Sprite>(MetalScrapDropSpritePath);
         }
 
         private static GameObject[] EnsureTallPropPrefabs(Sprite tallPropSprite, Sprite shadowSprite)
@@ -1388,6 +1434,144 @@ namespace BooterBigArm.Editor
             DrawLine(texture, new Color32(203, 186, 168, 255), 5, 7, 11, 4);
             DrawLine(texture, new Color32(138, 102, 76, 255), 4, 11, 10, 9);
             SprinkleTexture(texture, seed ^ 0x77, 4, 4, 11, 11, iron, rust, bodyDark);
+
+            texture.Apply(false, false);
+            return texture;
+        }
+
+        private static Texture2D CreateMetalScrapNodeTexture()
+        {
+            const int width = 32;
+            const int height = 32;
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+
+            var transparent = new Color32(0, 0, 0, 0);
+            var outline = new Color32(36, 35, 34, 255);
+            var rustDark = new Color32(63, 46, 36, 255);
+            var rust = new Color32(127, 77, 47, 255);
+            var rustLight = new Color32(176, 118, 66, 255);
+            var steel = new Color32(145, 153, 160, 255);
+            var steelLight = new Color32(198, 205, 210, 255);
+            var soot = new Color32(47, 39, 35, 255);
+            var seed = 0x781A3D;
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var cx = (x - 15.2f) / 12.0f;
+                    var cy = (y - 15.5f) / 10.8f;
+                    var radial = Mathf.Sqrt(cx * cx + cy * cy);
+                    var wobble = TileableValueNoise(seed, x, y, 6);
+                    var outerShape = 1f + wobble * 0.16f;
+
+                    if (radial > outerShape)
+                    {
+                        texture.SetPixel(x, y, transparent);
+                        continue;
+                    }
+
+                    var color = Blend(rustDark, rustLight, Mathf.Clamp01(0.18f + (1f - radial) * 0.55f + wobble * 0.12f));
+                    if (radial > outerShape - 0.12f)
+                    {
+                        color = outline;
+                    }
+                    else if (x < 12 && y > 18)
+                    {
+                        color = Blend(color, soot, 0.38f);
+                    }
+                    else if (x > 18 && y < 12)
+                    {
+                        color = Blend(color, steel, 0.46f);
+                    }
+                    else if (wobble > 0.76f)
+                    {
+                        color = Blend(color, steelLight, 0.42f);
+                    }
+
+                    if (radial < 0.72f && wobble > 0.86f)
+                    {
+                        color = steelLight;
+                    }
+
+                    texture.SetPixel(x, y, color);
+                }
+            }
+
+            DrawLine(texture, new Color32(186, 111, 62, 255), 8, 18, 24, 11);
+            DrawLine(texture, new Color32(94, 78, 72, 255), 10, 7, 23, 21);
+            DrawLine(texture, new Color32(208, 196, 184, 255), 11, 13, 18, 8);
+            SprinkleTexture(texture, seed ^ 0x241, 6, 6, 25, 25, steelLight, rust, soot);
+
+            texture.Apply(false, false);
+            return texture;
+        }
+
+        private static Texture2D CreateMetalScrapDropTexture()
+        {
+            const int width = 16;
+            const int height = 16;
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+
+            var transparent = new Color32(0, 0, 0, 0);
+            var outline = new Color32(39, 37, 35, 255);
+            var steel = new Color32(145, 151, 157, 255);
+            var steelLight = new Color32(205, 209, 213, 255);
+            var rust = new Color32(144, 88, 52, 255);
+            var rustDark = new Color32(79, 55, 42, 255);
+            var seed = 0x8A25C1;
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var cx = (x - 7.5f) / 5.6f;
+                    var cy = (y - 7.8f) / 5.0f;
+                    var radial = Mathf.Sqrt(cx * cx + cy * cy);
+                    var wobble = TileableValueNoise(seed, x, y, 4);
+                    var outerShape = 1f + wobble * 0.12f;
+
+                    if (radial > outerShape)
+                    {
+                        texture.SetPixel(x, y, transparent);
+                        continue;
+                    }
+
+                    var color = Blend(rustDark, steel, Mathf.Clamp01(0.2f + (1f - radial) * 0.5f + wobble * 0.15f));
+                    if (radial > outerShape - 0.12f)
+                    {
+                        color = outline;
+                    }
+                    else if (x < 6)
+                    {
+                        color = Blend(color, rustDark, 0.34f);
+                    }
+                    else if (x > 9 && y < 7)
+                    {
+                        color = Blend(color, rust, 0.36f);
+                    }
+                    else if (wobble > 0.78f)
+                    {
+                        color = Blend(color, steelLight, 0.38f);
+                    }
+
+                    texture.SetPixel(x, y, color);
+                }
+            }
+
+            DrawLine(texture, new Color32(169, 131, 97, 255), 4, 10, 11, 5);
+            DrawLine(texture, new Color32(95, 84, 77, 255), 3, 4, 13, 10);
+            SprinkleTexture(texture, seed ^ 0x114, 3, 3, 12, 12, steelLight, rust, rustDark);
 
             texture.Apply(false, false);
             return texture;
