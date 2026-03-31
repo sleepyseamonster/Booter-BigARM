@@ -16,15 +16,29 @@ MonoBehaviour:
   biomeGroups:
   - biomeId: Greater Wasteland
     entries:
-    - id: boulder_32_a
+    - id: boulder_32_1
       prefab: {fileID: 3547653410403581502, guid: d36e7465a06604153b528bdcfcb9868b, type: 3}
       category: 0
       sizeClass: 1
       weight: 4.5
       spawnChanceMultiplier: 5
       enabled: 1
-    - id: boulder_32_b
+    - id: boulder_32_2
       prefab: {fileID: 5753609474069985127, guid: 5ff27b980a10e484397bb36e171988c1, type: 3}
+      category: 0
+      sizeClass: 1
+      weight: 4.5
+      spawnChanceMultiplier: 5
+      enabled: 1
+    - id: boulder_32_3
+      prefab: {fileID: 7385912621636740434, guid: 6e32064c74ff94c229cddfe1297c9254, type: 3}
+      category: 0
+      sizeClass: 1
+      weight: 4.5
+      spawnChanceMultiplier: 5
+      enabled: 1
+    - id: boulder_32_4
+      prefab: {fileID: 2635336781865207689, guid: ad12381e07f6f48ff8605e2348c3cff5, type: 3}
       category: 0
       sizeClass: 1
       weight: 4.5

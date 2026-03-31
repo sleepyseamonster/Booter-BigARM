@@ -31,8 +31,7 @@ namespace BooterBigArm.Editor
         private const string TallPropSquarePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSquare32x32.prefab";
         private const string TallPropTinyPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTiny16x16.prefab";
         private const string TallPropSlimPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSlim16x32.prefab";
-        private const string BoulderPrefabPath = "Assets/_Project/Prefabs/boulder_32 _1.prefab";
-        private const string BoulderPrefabAltPath = "Assets/_Project/Prefabs/prefab_boulder_32 _1.prefab";
+        private const string BoulderPrefabFolder = "Assets/_Project/Prefabs";
         private const string PrototypePropCatalogPath = "Assets/_Project/Settings/World/PrototypeWorldPropCatalog.asset";
         private const string GreaterWastelandBiomeId = "Greater Wasteland";
         private const string ReefBiomeId = "The Reef";
@@ -108,6 +107,7 @@ namespace BooterBigArm.Editor
             var scene = EditorSceneManager.OpenScene(PrototypeScenePath, OpenSceneMode.Single);
             var catalog = EnsurePrototypePropCatalog();
             var boulderPrefabs = LoadBoulderPrefabs();
+            var sandOverlaySprites = EnsureSandOverlaySprites();
 
             var worldSettings = UnityEngine.Object.FindFirstObjectByType<PrototypeWorldSettings>();
             if (worldSettings == null)
@@ -129,6 +129,8 @@ namespace BooterBigArm.Editor
             {
                 EnsurePrefabInObjectArray(generator, "propPrefabs", boulderPrefabs[i]);
             }
+
+            SetObjectArray(generator, "sandOverlayTileSprites", sandOverlaySprites);
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
@@ -538,8 +540,18 @@ namespace BooterBigArm.Editor
             biomeGroupsProperty.ClearArray();
 
             var greaterWastelandEntriesProperty = AddBiomeGroup(biomeGroupsProperty, GreaterWastelandBiomeId);
-            AddCatalogEntry(greaterWastelandEntriesProperty, "boulder_32_a", BoulderPrefabPath, PrototypeWorldPropCategory.Boulders, PrototypeWorldPropSizeClass.Px32, 4.5f, 5f);
-            AddCatalogEntry(greaterWastelandEntriesProperty, "boulder_32_b", BoulderPrefabAltPath, PrototypeWorldPropCategory.Boulders, PrototypeWorldPropSizeClass.Px32, 4.5f, 5f);
+            var boulderPrefabPaths = FindBoulderPrefabPaths();
+            for (var i = 0; i < boulderPrefabPaths.Count; i++)
+            {
+                AddCatalogEntry(
+                    greaterWastelandEntriesProperty,
+                    $"boulder_32_{i + 1}",
+                    boulderPrefabPaths[i],
+                    PrototypeWorldPropCategory.Boulders,
+                    PrototypeWorldPropSizeClass.Px32,
+                    4.5f,
+                    5f);
+            }
             AddCatalogEntry(greaterWastelandEntriesProperty, "tall_prop_wide", TallPropWidePrefabPath, PrototypeWorldPropCategory.BuildingClutter, PrototypeWorldPropSizeClass.Px64, 1f, 1f);
             AddCatalogEntry(greaterWastelandEntriesProperty, "tall_prop_tall", TallPropTallPrefabPath, PrototypeWorldPropCategory.BuildingClutter, PrototypeWorldPropSizeClass.Px96, 0.8f, 1f);
             AddCatalogEntry(greaterWastelandEntriesProperty, "tall_prop_square", TallPropSquarePrefabPath, PrototypeWorldPropCategory.BuildingClutter, PrototypeWorldPropSizeClass.Px32, 1f, 1f);
@@ -556,11 +568,39 @@ namespace BooterBigArm.Editor
 
         private static GameObject[] LoadBoulderPrefabs()
         {
-            return new[]
+            var prefabPaths = FindBoulderPrefabPaths();
+            var prefabs = new GameObject[prefabPaths.Count];
+            for (var i = 0; i < prefabPaths.Count; i++)
             {
-                AssetDatabase.LoadAssetAtPath<GameObject>(BoulderPrefabPath),
-                AssetDatabase.LoadAssetAtPath<GameObject>(BoulderPrefabAltPath)
-            };
+                prefabs[i] = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPaths[i]);
+            }
+
+            return prefabs;
+        }
+
+        private static List<string> FindBoulderPrefabPaths()
+        {
+            var guids = AssetDatabase.FindAssets("t:GameObject", new[] { BoulderPrefabFolder });
+            var paths = new List<string>(guids.Length);
+            for (var i = 0; i < guids.Length; i++)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                var fileName = Path.GetFileNameWithoutExtension(path);
+                if (string.IsNullOrEmpty(fileName))
+                {
+                    continue;
+                }
+
+                if (!fileName.Contains("boulder_32", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                paths.Add(path);
+            }
+
+            paths.Sort(StringComparer.OrdinalIgnoreCase);
+            return paths;
         }
 
         private static void AddCatalogEntry(
