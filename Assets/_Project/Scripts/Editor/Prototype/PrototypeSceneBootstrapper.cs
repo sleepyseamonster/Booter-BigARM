@@ -646,13 +646,13 @@ namespace BooterBigArm.Editor
             Directory.CreateDirectory(ItemDefsFolder);
 
             var itemDatabase = AssetDatabase.LoadAssetAtPath<PrototypeItemDatabase>(ItemDatabasePath);
-            var scrapMetal = EnsureItemDef(ItemScrapMetalPath, "scrap_metal", "Scrap Metal", PrototypeItemCategory.Salvage, 50, 0.4f);
-            var fiberBundle = EnsureItemDef(ItemFiberBundlePath, "fiber_bundle", "Fiber Bundle", PrototypeItemCategory.Biomass, 50, 0.15f);
-            var algaeChunk = EnsureItemDef(ItemAlgaeChunkPath, "algae_chunk", "Algae Chunk", PrototypeItemCategory.Biomass, 50, 0.2f);
-            var stone = EnsureItemDef(ItemStonePath, "stone", "Stone", PrototypeItemCategory.Mineral, 40, 1.0f);
-            var oreChunk = EnsureItemDef(ItemOreChunkPath, "ore_chunk", "Ore Chunk", PrototypeItemCategory.Mineral, 20, 1.35f);
-            var brokenCircuit = EnsureItemDef(ItemBrokenCircuitPath, "broken_circuit", "Broken Circuit", PrototypeItemCategory.Salvage, 20, 0.1f);
-            var ironstone = EnsureItemDef(ItemIronstonePath, "ironstone", "Ironstone", PrototypeItemCategory.Mineral, 40, 1.25f);
+            var scrapMetal = EnsureItemDef(ItemScrapMetalPath, "scrap_metal", "Scrap Metal", PrototypeItemCategory.Salvage, 99, 0.4f, false);
+            var fiberBundle = EnsureItemDef(ItemFiberBundlePath, "fiber_bundle", "Fiber Bundle", PrototypeItemCategory.Biomass, 99, 0.15f, false);
+            var algaeChunk = EnsureItemDef(ItemAlgaeChunkPath, "algae_chunk", "Algae Chunk", PrototypeItemCategory.Biomass, 99, 0.2f, false);
+            var stone = EnsureItemDef(ItemStonePath, "stone", "Stone", PrototypeItemCategory.Mineral, 99, 1.0f, false);
+            var oreChunk = EnsureItemDef(ItemOreChunkPath, "ore_chunk", "Ore Chunk", PrototypeItemCategory.Mineral, 99, 1.35f, false);
+            var brokenCircuit = EnsureItemDef(ItemBrokenCircuitPath, "broken_circuit", "Broken Circuit", PrototypeItemCategory.Salvage, 99, 0.1f, false);
+            var ironstone = EnsureItemDef(ItemIronstonePath, "ironstone", "Ironstone", PrototypeItemCategory.Mineral, 99, 1.25f, false);
 
             if (itemDatabase == null)
             {
@@ -681,7 +681,8 @@ namespace BooterBigArm.Editor
             string displayName,
             PrototypeItemCategory category,
             int maxStack,
-            float massPerUnit)
+            float massPerUnit,
+            bool countsAgainstCarry)
         {
             var item = AssetDatabase.LoadAssetAtPath<PrototypeItemDef>(path);
             if (item == null)
@@ -696,6 +697,7 @@ namespace BooterBigArm.Editor
             serializedItem.FindProperty("category").enumValueIndex = (int)category;
             serializedItem.FindProperty("maxStack").intValue = maxStack;
             serializedItem.FindProperty("massPerUnit").floatValue = massPerUnit;
+            serializedItem.FindProperty("countsAgainstCarry").boolValue = countsAgainstCarry;
             serializedItem.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(item);
             return item;

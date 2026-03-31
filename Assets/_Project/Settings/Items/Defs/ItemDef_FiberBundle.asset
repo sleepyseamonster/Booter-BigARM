@@ -15,5 +15,6 @@ MonoBehaviour:
   itemId: fiber_bundle
   displayName: Fiber Bundle
   category: 3
-  maxStack: 50
+  maxStack: 99
   massPerUnit: 0.15
+  countsAgainstCarry: 0

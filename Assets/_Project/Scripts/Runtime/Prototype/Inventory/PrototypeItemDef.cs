@@ -10,12 +10,14 @@ namespace BooterBigArm.Runtime
         [SerializeField] private PrototypeItemCategory category = PrototypeItemCategory.Unknown;
         [SerializeField, Min(1)] private int maxStack = 99;
         [SerializeField, Min(0f)] private float massPerUnit = 0.1f;
+        [SerializeField] private bool countsAgainstCarry;
 
         public string ItemId => itemId;
         public string DisplayName => displayName;
         public PrototypeItemCategory Category => category;
         public int MaxStack => Mathf.Max(1, maxStack);
         public float MassPerUnit => Mathf.Max(0f, massPerUnit);
+        public bool CountsAgainstCarry => countsAgainstCarry;
 
         private void OnValidate()
         {

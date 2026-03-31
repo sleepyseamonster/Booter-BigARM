@@ -15,5 +15,6 @@ MonoBehaviour:
   itemId: ore_chunk
   displayName: Ore Chunk
   category: 2
-  maxStack: 20
+  maxStack: 99
   massPerUnit: 1.35
+  countsAgainstCarry: 0

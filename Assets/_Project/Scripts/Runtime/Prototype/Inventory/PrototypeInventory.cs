@@ -12,7 +12,7 @@ namespace BooterBigArm.Runtime
         [SerializeField, Min(0f)] private float maxCarryMass = 0f;
         [SerializeField] private List<PrototypeInventorySlot> slots = new List<PrototypeInventorySlot>();
 
-        public int SlotCapacity => Mathf.Max(1, slotCapacity);
+        public int SlotCapacity => Mathf.Max(Mathf.Max(1, slotCapacity), slots != null ? slots.Count : 0);
         public float MaxCarryMass => Mathf.Max(0f, maxCarryMass);
 
         public int SlotsUsed
@@ -47,7 +47,7 @@ namespace BooterBigArm.Runtime
                         continue;
                     }
 
-                    if (TryGetItemDef(slot.ItemId, out var itemDef))
+                    if (TryGetItemDef(slot.ItemId, out var itemDef) && itemDef.CountsAgainstCarry)
                     {
                         total += itemDef.MassPerUnit * slot.Count;
                     }
@@ -79,31 +79,12 @@ namespace BooterBigArm.Runtime
 
             EnsureSlotCapacity();
 
-            var stackLimit = GetStackLimit(itemId);
             var massPerUnit = GetMassPerUnit(itemId);
-            var freeSpaceInExistingStacks = 0;
-            var emptySlots = 0;
+            var countsAgainstCarry = CountsAgainstCarry(itemId);
 
-            for (var i = 0; i < slots.Count; i++)
+            if (!countsAgainstCarry)
             {
-                var slot = slots[i];
-                if (slot.IsEmpty)
-                {
-                    emptySlots++;
-                    continue;
-                }
-
-                if (slot.ItemId == itemId)
-                {
-                    freeSpaceInExistingStacks += Mathf.Max(0, stackLimit - slot.Count);
-                }
-            }
-
-            var remaining = Mathf.Max(0, count - freeSpaceInExistingStacks);
-            var slotsNeeded = remaining <= 0 ? 0 : Mathf.CeilToInt(remaining / (float)stackLimit);
-            if (slotsNeeded > emptySlots)
-            {
-                return false;
+                return true;
             }
 
             if (maxCarryMass > 0f && massPerUnit > 0f)
@@ -221,7 +202,7 @@ namespace BooterBigArm.Runtime
         public PrototypeInventorySaveData CaptureSaveData()
         {
             EnsureSlotCapacity();
-            return PrototypeInventorySaveData.FromSnapshot(slotCapacity, slots.ToArray());
+            return PrototypeInventorySaveData.FromSnapshot(SlotCapacity, slots.ToArray());
         }
 
         public void ApplySaveData(PrototypeInventorySaveData saveData)
@@ -308,11 +289,6 @@ namespace BooterBigArm.Runtime
             {
                 slots.Add(PrototypeInventorySlot.Empty());
             }
-
-            while (slots.Count > slotCapacity)
-            {
-                slots.RemoveAt(slots.Count - 1);
-            }
         }
 
         private bool TryGetItemDef(string itemId, out PrototypeItemDef itemDef)
@@ -346,6 +322,16 @@ namespace BooterBigArm.Runtime
             return 0f;
         }
 
+        private bool CountsAgainstCarry(string itemId)
+        {
+            if (TryGetItemDef(itemId, out var itemDef))
+            {
+                return itemDef.CountsAgainstCarry;
+            }
+
+            return false;
+        }
+
         private bool TryAddInternal(string itemId, int count, out int accepted, bool notify)
         {
             accepted = 0;
@@ -359,6 +345,7 @@ namespace BooterBigArm.Runtime
             var remaining = count;
             var stackLimit = GetStackLimit(itemId);
             var massPerUnit = GetMassPerUnit(itemId);
+            var countsAgainstCarry = CountsAgainstCarry(itemId);
             var currentMass = CurrentCarryMass;
 
             // Fill existing stacks first.
@@ -377,7 +364,7 @@ namespace BooterBigArm.Runtime
                 }
 
                 var addNow = Mathf.Min(space, remaining);
-                addNow = ApplyMassLimit(addNow, massPerUnit, ref currentMass);
+                addNow = ApplyMassLimit(addNow, massPerUnit, countsAgainstCarry, ref currentMass);
                 if (addNow <= 0)
                 {
                     continue;
@@ -388,9 +375,14 @@ namespace BooterBigArm.Runtime
                 remaining -= addNow;
             }
 
-            // Then allocate new slots.
-            for (var i = 0; i < slots.Count && remaining > 0; i++)
+            // Then allocate new slots, growing the container as needed for resource stacks.
+            for (var i = 0; remaining > 0; i++)
             {
+                if (i >= slots.Count)
+                {
+                    slots.Add(PrototypeInventorySlot.Empty());
+                }
+
                 var slot = slots[i];
                 if (!slot.IsEmpty)
                 {
@@ -398,7 +390,7 @@ namespace BooterBigArm.Runtime
                 }
 
                 var addNow = Mathf.Min(stackLimit, remaining);
-                addNow = ApplyMassLimit(addNow, massPerUnit, ref currentMass);
+                addNow = ApplyMassLimit(addNow, massPerUnit, countsAgainstCarry, ref currentMass);
                 if (addNow <= 0)
                 {
                     continue;
@@ -417,14 +409,14 @@ namespace BooterBigArm.Runtime
             return accepted > 0;
         }
 
-        private int ApplyMassLimit(int desiredAddCount, float massPerUnit, ref float currentMass)
+        private int ApplyMassLimit(int desiredAddCount, float massPerUnit, bool countsAgainstCarry, ref float currentMass)
         {
             if (desiredAddCount <= 0)
             {
                 return 0;
             }
 
-            if (maxCarryMass <= 0f || massPerUnit <= 0f)
+            if (!countsAgainstCarry || maxCarryMass <= 0f || massPerUnit <= 0f)
             {
                 return desiredAddCount;
             }

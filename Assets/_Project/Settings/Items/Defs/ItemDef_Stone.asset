@@ -15,5 +15,6 @@ MonoBehaviour:
   itemId: stone
   displayName: Stone
   category: 2
-  maxStack: 40
+  maxStack: 99
   massPerUnit: 1
+  countsAgainstCarry: 0

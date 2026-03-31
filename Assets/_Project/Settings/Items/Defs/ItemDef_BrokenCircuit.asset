@@ -15,5 +15,6 @@ MonoBehaviour:
   itemId: broken_circuit
   displayName: Broken Circuit
   category: 1
-  maxStack: 20
+  maxStack: 99
   massPerUnit: 0.1
+  countsAgainstCarry: 0

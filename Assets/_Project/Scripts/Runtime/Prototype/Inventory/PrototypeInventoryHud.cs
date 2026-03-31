@@ -35,11 +35,8 @@ namespace BooterBigArm.Runtime
             GUILayout.BeginArea(new Rect(12f, 210f, width, height), GUI.skin.box);
             GUILayout.Label("Inventory");
 
-            var mass = inventory.CurrentCarryMass;
-            var cap = inventory.MaxCarryMass;
-            var massLabel = cap > 0f ? $"{mass:0.0}/{cap:0.0}" : $"{mass:0.0}";
-            GUILayout.Label($"Slots: {inventory.SlotsUsed}/{inventory.SlotCapacity}  Mass: {massLabel}");
-            GUILayout.Label($"Burden: {(inventory.BurdenFraction * 100f):0}%");
+            GUILayout.Label($"Resource stacks: {inventory.SlotsUsed}");
+            GUILayout.Label("Resources stack to 99 and do not count against carry.");
 
             var shown = 0;
             for (var i = 0; i < inventory.SlotCapacity && shown < maxSlotLines; i++)
