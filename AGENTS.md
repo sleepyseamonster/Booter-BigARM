@@ -73,6 +73,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Use [Docs/GIT_BATCHING_STANDARD.md](./Docs/GIT_BATCHING_STANDARD.md) as the standard for grouping commits and ignoring Unity noise.
 - Use [Docs/IMPLEMENTATION_SEQUENCE.md](./Docs/IMPLEMENTATION_SEQUENCE.md) as the first-pass order for gameplay seams.
 - Use [Docs/RESEARCH_PLAN.md](./Docs/RESEARCH_PLAN.md) as the prioritized roadmap for future research.
+- Use [Docs/ART_ANIMATION_STARTER.md](./Docs/ART_ANIMATION_STARTER.md) as the first-pass workflow for production art and sprite animation.
 - Use [Docs/URP_2D_STANDARD.md](./Docs/URP_2D_STANDARD.md) as the compact standard for the project's 2D render pipeline.
 - Use [Docs/CODEX_EDITOR_STANDARD.md](./Docs/CODEX_EDITOR_STANDARD.md) as the compact standard for Codex and editor workflow.
 - Use [Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md](./Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md) as the baseline for input, movement, procedural generation, and save/load architecture.
