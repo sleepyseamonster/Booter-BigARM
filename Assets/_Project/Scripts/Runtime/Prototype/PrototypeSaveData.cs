@@ -12,6 +12,7 @@ namespace BooterBigArm.Runtime
         [SerializeField] private PrototypeSurvivalSaveData survival = PrototypeSurvivalSaveData.FromReserve(100f);
         [SerializeField] private PrototypeInventorySaveData inventory = PrototypeInventorySaveData.FromSnapshot(0, Array.Empty<PrototypeInventorySlot>());
         [SerializeField] private PrototypeHarvestNodeSaveData[] harvestNodes = Array.Empty<PrototypeHarvestNodeSaveData>();
+        [SerializeField] private PrototypeDustCanisterSaveData dustCanister = PrototypeDustCanisterSaveData.Create(false, Vector3.zero, 0f);
 
         public int Version => version;
         public PrototypeWorldIdentity WorldIdentity => worldIdentity;
@@ -19,13 +20,15 @@ namespace BooterBigArm.Runtime
         public PrototypeSurvivalSaveData Survival => survival;
         public PrototypeInventorySaveData Inventory => inventory;
         public PrototypeHarvestNodeSaveData[] HarvestNodes => harvestNodes;
+        public PrototypeDustCanisterSaveData DustCanister => dustCanister;
 
         public static PrototypeSaveData Create(
             PrototypeWorldIdentity worldIdentity,
             PrototypePlayerSaveData player,
             PrototypeSurvivalSaveData survival,
             PrototypeInventorySaveData inventory = null,
-            PrototypeHarvestNodeSaveData[] harvestNodes = null)
+            PrototypeHarvestNodeSaveData[] harvestNodes = null,
+            PrototypeDustCanisterSaveData dustCanister = null)
         {
             return new PrototypeSaveData
             {
@@ -34,7 +37,8 @@ namespace BooterBigArm.Runtime
                 player = player ?? PrototypePlayerSaveData.FromPosition(Vector3.zero),
                 survival = survival ?? PrototypeSurvivalSaveData.FromReserve(100f),
                 inventory = inventory ?? PrototypeInventorySaveData.FromSnapshot(0, Array.Empty<PrototypeInventorySlot>()),
-                harvestNodes = harvestNodes ?? Array.Empty<PrototypeHarvestNodeSaveData>()
+                harvestNodes = harvestNodes ?? Array.Empty<PrototypeHarvestNodeSaveData>(),
+                dustCanister = dustCanister ?? PrototypeDustCanisterSaveData.Create(false, Vector3.zero, 0f)
             };
         }
     }

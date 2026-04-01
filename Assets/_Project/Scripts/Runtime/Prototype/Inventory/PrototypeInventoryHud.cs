@@ -7,6 +7,7 @@ namespace BooterBigArm.Runtime
     {
         [SerializeField] private PrototypeInventory inventory;
         [SerializeField] private PrototypeHarvestInteractor harvestInteractor;
+        [SerializeField] private PrototypeDustCanisterController dustCanisterController;
         [SerializeField, Min(1)] private int maxSummaryLines = 8;
 
         private void Awake()
@@ -19,6 +20,11 @@ namespace BooterBigArm.Runtime
             if (harvestInteractor == null)
             {
                 harvestInteractor = FindAnyObjectByType<PrototypeHarvestInteractor>();
+            }
+
+            if (dustCanisterController == null)
+            {
+                dustCanisterController = FindAnyObjectByType<PrototypeDustCanisterController>();
             }
         }
 
@@ -36,8 +42,8 @@ namespace BooterBigArm.Runtime
             GUILayout.Label("Inventory");
 
             var summaries = inventory.GetItemSummaries();
-            GUILayout.Label($"Resource types: {summaries.Length}");
-            GUILayout.Label("Resources stack to 99 and do not count against carry.");
+            GUILayout.Label($"Item types: {summaries.Length}");
+            GUILayout.Label("Resources stack to 99. Tools use normal carry.");
 
             var shown = 0;
             for (var i = 0; i < summaries.Length && shown < maxSummaryLines; i++)
@@ -72,6 +78,26 @@ namespace BooterBigArm.Runtime
                 }
 
                 GUILayout.Label(harvestInteractor.LastMessage);
+            }
+
+            if (dustCanisterController != null)
+            {
+                GUILayout.Space(6f);
+                GUILayout.Label("Dust Canister");
+                GUILayout.Label("D-pad down deploys. East picks up.");
+                if (dustCanisterController.ActiveCanister != null)
+                {
+                    GUILayout.Label($"Deployed: {dustCanisterController.ActiveCanister.StoredDust:0}/{dustCanisterController.ActiveCanister.MaxDust:0} dust");
+                }
+                else
+                {
+                    GUILayout.Label("In inventory");
+                }
+
+                if (!string.IsNullOrWhiteSpace(dustCanisterController.LastStatusMessage))
+                {
+                    GUILayout.Label(dustCanisterController.LastStatusMessage);
+                }
             }
 
             GUILayout.EndArea();

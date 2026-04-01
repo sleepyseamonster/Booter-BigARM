@@ -42,12 +42,17 @@ namespace BooterBigArm.Editor
         private const string ItemOreChunkPath = "Assets/_Project/Settings/Items/Defs/ItemDef_OreChunk.asset";
         private const string ItemBrokenCircuitPath = "Assets/_Project/Settings/Items/Defs/ItemDef_BrokenCircuit.asset";
         private const string ItemIronstonePath = "Assets/_Project/Settings/Items/Defs/ItemDef_Ironstone.asset";
+        private const string ItemDustCanisterPath = "Assets/_Project/Settings/Items/Defs/ItemDef_DustCanister.asset";
+        private const string ItemDustPath = "Assets/_Project/Settings/Items/Defs/ItemDef_Dust.asset";
         private const string IronstoneArtFolder = "Assets/_Project/Art/Prototype/Ironstone";
         private const string IronstoneNodeSpritePath = "Assets/_Project/Art/Prototype/Ironstone/IronstoneOutcrop.png";
         private const string IronstoneDropSpritePath = "Assets/_Project/Art/Prototype/Ironstone/IronstoneChunk.png";
         private const string MetalScrapArtFolder = "Assets/_Project/Art/Prototype/MetalScrap";
         private const string MetalScrapNodeSpritePath = "Assets/_Project/Art/Prototype/MetalScrap/MetalScrapHeap.png";
         private const string MetalScrapDropSpritePath = "Assets/_Project/Art/Prototype/MetalScrap/MetalScrapChunk.png";
+        private const string DustArtFolder = "Assets/_Project/Art/Prototype/Dust";
+        private const string DustCanisterSpritePath = "Assets/_Project/Art/Prototype/Dust/DustCanister.png";
+        private const string DustResourceSpritePath = "Assets/_Project/Art/Prototype/Dust/DustResource.png";
         private const string PrototypePropCatalogPath = "Assets/_Project/Settings/World/PrototypeWorldPropCatalog.asset";
         private const string GreaterWastelandBiomeId = "Greater Wasteland";
         private const string ReefBiomeId = "The Reef";
@@ -87,6 +92,8 @@ namespace BooterBigArm.Editor
             var tallPropPrefabs = EnsureTallPropPrefabs(tallPropSprite, shadowSprite);
             var propCatalog = EnsurePrototypePropCatalog();
             var itemDatabase = EnsurePrototypeItemDatabase();
+            var dustCanisterSprite = EnsureDustCanisterSpriteAsset();
+            var dustResourceSprite = EnsureDustResourceSpriteAsset();
             var metalScrapNodeSprite = EnsureMetalScrapNodeSpriteAsset();
             var metalScrapDropSprite = EnsureMetalScrapDropSpriteAsset();
             var ironstoneNodeSprite = EnsureIronstoneNodeSpriteAsset();
@@ -102,7 +109,14 @@ namespace BooterBigArm.Editor
             scene.name = "PrototypeScene";
 
             var homeAnchor = CreateHomeAnchor(playerSprite);
-            var player = CreatePlayer(inputActions, itemDatabase, playerSprite, shadowSprite, homeAnchor);
+            var player = CreatePlayer(
+                inputActions,
+                itemDatabase,
+                playerSprite,
+                shadowSprite,
+                homeAnchor,
+                dustCanisterSprite,
+                dustResourceSprite);
             var cameraTarget = CreateCameraTarget(player);
             var world = CreateWorld(
                 player.transform,
@@ -124,7 +138,8 @@ namespace BooterBigArm.Editor
                 player.GetComponent<PlayerMotor2D>(),
                 world,
                 player.GetComponent<PrototypeSurvivalState>(),
-                player.GetComponent<PrototypeInventory>());
+                player.GetComponent<PrototypeInventory>(),
+                player.GetComponent<PrototypeDustCanisterController>());
             CreateCamera(cameraTarget);
             CreateLighting();
             CreateVolume(volumeProfile);
@@ -196,7 +211,9 @@ namespace BooterBigArm.Editor
             PrototypeItemDatabase itemDatabase,
             Sprite prototypeSprite,
             Sprite shadowSprite,
-            Transform homeAnchor)
+            Transform homeAnchor,
+            Sprite dustCanisterSprite,
+            Sprite dustResourceSprite)
         {
             var player = new GameObject("Player");
             player.transform.position = Vector3.zero;
@@ -231,6 +248,10 @@ namespace BooterBigArm.Editor
             SetObjectReference(inventory, "itemDatabase", itemDatabase);
             SetInt(inventory, "slotCapacity", 10);
             SetFloat(inventory, "maxCarryMass", 28f);
+            if (!inventory.TryAdd("dust_canister", 1, out var acceptedCanisters) || acceptedCanisters < 1)
+            {
+                throw new InvalidOperationException("Unable to seed the starting dust canister.");
+            }
 
             var survivalState = player.AddComponent<PrototypeSurvivalState>();
             SetObjectReference(survivalState, "playerMotor", motor);
@@ -247,6 +268,15 @@ namespace BooterBigArm.Editor
             var interactor = player.AddComponent<PrototypeHarvestInteractor>();
             SetObjectReference(interactor, "inputActions", inputActions);
             SetFloat(interactor, "interactRadius", 1.75f);
+
+            var dustCanisterController = player.AddComponent<PrototypeDustCanisterController>();
+            SetObjectReference(dustCanisterController, "inputAdapter", inputAdapter);
+            SetObjectReference(dustCanisterController, "inventory", inventory);
+            SetObjectReference(dustCanisterController, "canisterSprite", dustCanisterSprite);
+            SetObjectReference(dustCanisterController, "dustSprite", dustResourceSprite);
+            dustCanisterController.Configure(inputAdapter, inventory, dustCanisterSprite, dustResourceSprite);
+            SetFloat(dustCanisterController, "deployDistance", 0.8f);
+            SetFloat(dustCanisterController, "pickupDistance", 1.1f);
             return player;
         }
 
@@ -269,7 +299,8 @@ namespace BooterBigArm.Editor
             PlayerMotor2D playerMotor,
             PrototypeWorldGenerator worldGenerator,
             PrototypeSurvivalState survivalState,
-            PrototypeInventory inventoryState)
+            PrototypeInventory inventoryState,
+            PrototypeDustCanisterController dustCanisterController)
         {
             var controllerObject = new GameObject("Prototype Session");
             var controller = controllerObject.AddComponent<PrototypeSaveLoadController>();
@@ -277,6 +308,7 @@ namespace BooterBigArm.Editor
             SetObjectReference(controller, "worldGenerator", worldGenerator);
             SetObjectReference(controller, "survivalState", survivalState);
             SetObjectReference(controller, "inventoryState", inventoryState);
+            SetObjectReference(controller, "dustCanisterController", dustCanisterController);
             var systemInput = controllerObject.AddComponent<PrototypeSystemInputAdapter>();
             SetObjectReference(systemInput, "inputActions", inputActions);
             SetObjectReference(systemInput, "saveLoadController", controller);
@@ -685,6 +717,8 @@ namespace BooterBigArm.Editor
             var oreChunk = EnsureItemDef(ItemOreChunkPath, "ore_chunk", "Ore Chunk", PrototypeItemCategory.Mineral, 99, 1.35f, false);
             var brokenCircuit = EnsureItemDef(ItemBrokenCircuitPath, "broken_circuit", "Broken Circuit", PrototypeItemCategory.Salvage, 99, 0.1f, false);
             var ironstone = EnsureItemDef(ItemIronstonePath, "ironstone", "Ironstone", PrototypeItemCategory.Mineral, 99, 1.25f, false);
+            var dustCanister = EnsureItemDef(ItemDustCanisterPath, "dust_canister", "Dust Canister", PrototypeItemCategory.Tool, 1, 0.8f, true);
+            var dust = EnsureItemDef(ItemDustPath, "dust", "Dust", PrototypeItemCategory.Mineral, 99, 0.03f, false);
 
             if (itemDatabase == null)
             {
@@ -694,7 +728,7 @@ namespace BooterBigArm.Editor
 
             var serializedDatabase = new SerializedObject(itemDatabase);
             var itemsProperty = serializedDatabase.FindProperty("items");
-            itemsProperty.arraySize = 7;
+            itemsProperty.arraySize = 9;
             itemsProperty.GetArrayElementAtIndex(0).objectReferenceValue = scrapMetal;
             itemsProperty.GetArrayElementAtIndex(1).objectReferenceValue = fiberBundle;
             itemsProperty.GetArrayElementAtIndex(2).objectReferenceValue = algaeChunk;
@@ -702,6 +736,8 @@ namespace BooterBigArm.Editor
             itemsProperty.GetArrayElementAtIndex(4).objectReferenceValue = oreChunk;
             itemsProperty.GetArrayElementAtIndex(5).objectReferenceValue = brokenCircuit;
             itemsProperty.GetArrayElementAtIndex(6).objectReferenceValue = ironstone;
+            itemsProperty.GetArrayElementAtIndex(7).objectReferenceValue = dustCanister;
+            itemsProperty.GetArrayElementAtIndex(8).objectReferenceValue = dust;
             serializedDatabase.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(itemDatabase);
             return itemDatabase;
@@ -857,6 +893,20 @@ namespace BooterBigArm.Editor
             Directory.CreateDirectory(MetalScrapArtFolder);
             EnsureSpriteAsset(MetalScrapDropSpritePath, CreateMetalScrapDropTexture(), true);
             return AssetDatabase.LoadAssetAtPath<Sprite>(MetalScrapDropSpritePath);
+        }
+
+        private static Sprite EnsureDustCanisterSpriteAsset()
+        {
+            Directory.CreateDirectory(DustArtFolder);
+            EnsureSpriteAsset(DustCanisterSpritePath, CreateDustCanisterTexture(), true);
+            return AssetDatabase.LoadAssetAtPath<Sprite>(DustCanisterSpritePath);
+        }
+
+        private static Sprite EnsureDustResourceSpriteAsset()
+        {
+            Directory.CreateDirectory(DustArtFolder);
+            EnsureSpriteAsset(DustResourceSpritePath, CreateDustResourceTexture(), true);
+            return AssetDatabase.LoadAssetAtPath<Sprite>(DustResourceSpritePath);
         }
 
         private static GameObject[] EnsureTallPropPrefabs(Sprite tallPropSprite, Sprite shadowSprite)
@@ -1294,6 +1344,128 @@ namespace BooterBigArm.Editor
                     texture.SetPixel(x, y, color);
                 }
             }
+
+            texture.Apply(false, false);
+            return texture;
+        }
+
+        private static Texture2D CreateDustCanisterTexture()
+        {
+            const int width = 24;
+            const int height = 32;
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+
+            var transparent = new Color32(0, 0, 0, 0);
+            var rim = new Color32(54, 63, 68, 255);
+            var metal = new Color32(111, 128, 139, 255);
+            var metalLight = new Color32(164, 181, 190, 255);
+            var glass = new Color32(0, 0, 0, 0);
+            var glassEdge = new Color32(156, 191, 202, 110);
+            var topCap = new Color32(77, 87, 93, 255);
+            var baseCap = new Color32(70, 79, 85, 255);
+            var dustTint = new Color32(235, 205, 112, 140);
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var color = transparent;
+                    var outer = x >= 2 && x <= width - 3 && y >= 2 && y <= height - 3;
+                    var glassBand = x >= 8 && x <= 15 && y >= 7 && y <= 24;
+                    var topZone = y >= 24 && x >= 5 && x <= 18;
+                    var baseZone = y <= 6 && x >= 5 && x <= 18;
+
+                    if (!outer)
+                    {
+                        texture.SetPixel(x, y, transparent);
+                        continue;
+                    }
+
+                    if (glassBand)
+                    {
+                        color = glass;
+                    }
+                    else
+                    {
+                        var onEdge = x == 2 || x == width - 3 || y == 2 || y == height - 3;
+                        color = Blend(metal, metalLight, Mathf.Clamp01((x - 2) / 18f));
+
+                        if (onEdge)
+                        {
+                            color = rim;
+                        }
+                        else if (topZone)
+                        {
+                            color = topCap;
+                        }
+                        else if (baseZone)
+                        {
+                            color = baseCap;
+                        }
+                        else if (x <= 5 || x >= 18)
+                        {
+                            color = Blend(rim, metal, 0.45f);
+                        }
+                    }
+
+                    if (glassBand && (x == 8 || x == 15 || y == 7 || y == 24))
+                    {
+                        color = glassEdge;
+                    }
+
+                    if (glassBand && y >= 18)
+                    {
+                        color = Blend(dustTint, metalLight, 0.12f);
+                    }
+
+                    texture.SetPixel(x, y, color);
+                }
+            }
+
+            DrawLine(texture, new Color32(197, 219, 228, 120), 9, 11, 14, 11);
+            DrawLine(texture, new Color32(197, 219, 228, 90), 9, 14, 14, 14);
+            DrawLine(texture, new Color32(197, 219, 228, 70), 9, 17, 14, 17);
+            SprinkleTexture(texture, 0xBEEFC0, 9, 8, 14, 23, dustTint, glassEdge, rim);
+
+            texture.Apply(false, false);
+            return texture;
+        }
+
+        private static Texture2D CreateDustResourceTexture()
+        {
+            const int width = 16;
+            const int height = 16;
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
+
+            var transparent = new Color32(0, 0, 0, 0);
+            var dustDark = new Color32(97, 81, 44, 255);
+            var dust = new Color32(203, 175, 90, 255);
+            var dustLight = new Color32(239, 214, 134, 255);
+            var dustSoft = new Color32(221, 193, 120, 190);
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    texture.SetPixel(x, y, transparent);
+                }
+            }
+
+            DrawBlob(texture, 5, 6, 3, dust, dustLight, dustDark);
+            DrawBlob(texture, 9, 7, 4, dustSoft, dustLight, dustDark);
+            DrawBlob(texture, 7, 10, 3, dust, dustSoft, dustDark);
+            DrawBlob(texture, 11, 11, 2, dustLight, dust, dustDark);
+            SprinkleTexture(texture, 0xD5A51, 4, 4, 12, 12, dustLight, dust, dustDark);
 
             texture.Apply(false, false);
             return texture;
@@ -2094,6 +2266,32 @@ namespace BooterBigArm.Editor
                     Put(texture, x + 1, y + 1, tint);
                 }
             }
+        }
+
+        private static void DrawBlob(Texture2D texture, int centerX, int centerY, int radius, Color32 fill, Color32 highlight, Color32 shadow)
+        {
+            for (var y = -radius - 1; y <= radius + 1; y++)
+            {
+                for (var x = -radius - 1; x <= radius + 1; x++)
+                {
+                    var distance = Mathf.Sqrt((x * x) + (y * y));
+                    if (distance > radius + 0.4f)
+                    {
+                        continue;
+                    }
+
+                    var falloff = Mathf.InverseLerp(radius + 0.4f, 0f, distance);
+                    var color = Blend(shadow, fill, falloff);
+                    if (distance < radius * 0.55f)
+                    {
+                        color = Blend(color, highlight, 0.45f);
+                    }
+
+                    Put(texture, centerX + x, centerY + y, color);
+                }
+            }
+
+            Put(texture, centerX, centerY, highlight);
         }
 
         private static void DrawLine(Texture2D texture, Color32 color, int x0, int y0, int x1, int y1)

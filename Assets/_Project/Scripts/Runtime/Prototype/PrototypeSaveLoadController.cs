@@ -9,6 +9,7 @@ namespace BooterBigArm.Runtime
         [SerializeField] private PrototypeWorldGenerator worldGenerator;
         [SerializeField] private PrototypeSurvivalState survivalState;
         [SerializeField] private PrototypeInventory inventoryState;
+        [SerializeField] private PrototypeDustCanisterController dustCanisterController;
         [SerializeField] private string savePath;
 
         public string LastStatusMessage { get; private set; } = "Ready.";
@@ -110,7 +111,10 @@ namespace BooterBigArm.Runtime
                 ? inventoryState.CaptureSaveData()
                 : PrototypeInventorySaveData.FromSnapshot(0, System.Array.Empty<PrototypeInventorySlot>());
             var harvestNodes = CaptureHarvestNodeStates();
-            saveData = PrototypeSaveData.Create(worldIdentity, playerState, survivalData, inventoryData, harvestNodes);
+            var dustCanister = dustCanisterController != null
+                ? dustCanisterController.CaptureSaveData()
+                : PrototypeDustCanisterSaveData.Create(false, Vector3.zero, 0f);
+            saveData = PrototypeSaveData.Create(worldIdentity, playerState, survivalData, inventoryData, harvestNodes, dustCanister);
             return true;
         }
 
@@ -136,10 +140,22 @@ namespace BooterBigArm.Runtime
                 inventoryState.ApplySaveData(saveData.Inventory);
             }
 
+            if (saveData.Version < 4 &&
+                inventoryState != null &&
+                !inventoryState.Has("dust_canister"))
+            {
+                inventoryState.TryAdd("dust_canister", 1, out _);
+            }
+
             if (worldGenerator != null)
             {
                 var seed = saveData.WorldIdentity != null ? saveData.WorldIdentity.Seed : worldGenerator.Seed;
                 worldGenerator.ResetWorld(seed);
+            }
+
+            if (dustCanisterController != null)
+            {
+                dustCanisterController.ApplySaveData(saveData.DustCanister);
             }
 
             ApplyHarvestNodeStates(saveData.HarvestNodes);

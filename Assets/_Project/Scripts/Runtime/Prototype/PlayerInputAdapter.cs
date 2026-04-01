@@ -13,17 +13,24 @@ namespace BooterBigArm.Runtime
         [SerializeField] private string lookActionName = "Look";
         [SerializeField] private string sprintActionName = "Sprint";
         [SerializeField] private string interactActionName = "Interact";
+        [SerializeField] private string deployCanisterActionName = "DeployCanister";
+        [SerializeField] private string pickupCanisterActionName = "PickupCanister";
 
         private InputActionMap actionMap;
         private InputAction moveAction;
         private InputAction lookAction;
         private InputAction sprintAction;
         private InputAction interactAction;
+        private InputAction deployCanisterAction;
+        private InputAction pickupCanisterAction;
 
         public Vector2 MoveValue { get; private set; }
         public Vector2 LookValue { get; private set; }
+        public Vector2 FacingValue { get; private set; } = Vector2.up;
         public bool SprintHeld { get; private set; }
         public event Action InteractPressed;
+        public event Action DeployCanisterPressed;
+        public event Action PickupCanisterPressed;
 
         public void SetInputActions(InputActionAsset actions)
         {
@@ -83,6 +90,24 @@ namespace BooterBigArm.Runtime
                 return;
             }
 
+            deployCanisterAction = actionMap.FindAction(deployCanisterActionName, false);
+            if (deployCanisterAction == null)
+            {
+                Debug.LogWarning(
+                    $"{nameof(PlayerInputAdapter)} on {name} could not find action '{deployCanisterActionName}'.",
+                    this);
+                return;
+            }
+
+            pickupCanisterAction = actionMap.FindAction(pickupCanisterActionName, false);
+            if (pickupCanisterAction == null)
+            {
+                Debug.LogWarning(
+                    $"{nameof(PlayerInputAdapter)} on {name} could not find action '{pickupCanisterActionName}'.",
+                    this);
+                return;
+            }
+
             moveAction.performed += HandleMove;
             moveAction.canceled += HandleMove;
             lookAction.performed += HandleLook;
@@ -90,6 +115,8 @@ namespace BooterBigArm.Runtime
             sprintAction.performed += HandleSprint;
             sprintAction.canceled += HandleSprint;
             interactAction.performed += HandleInteract;
+            deployCanisterAction.performed += HandleDeployCanister;
+            pickupCanisterAction.performed += HandlePickupCanister;
             actionMap.Enable();
         }
 
@@ -118,6 +145,16 @@ namespace BooterBigArm.Runtime
                 interactAction.performed -= HandleInteract;
             }
 
+            if (deployCanisterAction != null)
+            {
+                deployCanisterAction.performed -= HandleDeployCanister;
+            }
+
+            if (pickupCanisterAction != null)
+            {
+                pickupCanisterAction.performed -= HandlePickupCanister;
+            }
+
             if (actionMap != null)
             {
                 actionMap.Disable();
@@ -125,17 +162,20 @@ namespace BooterBigArm.Runtime
 
             MoveValue = Vector2.zero;
             LookValue = Vector2.zero;
+            FacingValue = Vector2.up;
             SprintHeld = false;
         }
 
         private void HandleMove(InputAction.CallbackContext context)
         {
             MoveValue = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
+            UpdateFacing(MoveValue);
         }
 
         private void HandleLook(InputAction.CallbackContext context)
         {
             LookValue = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
+            UpdateFacing(LookValue);
         }
 
         private void HandleSprint(InputAction.CallbackContext context)
@@ -151,6 +191,36 @@ namespace BooterBigArm.Runtime
             }
 
             InteractPressed?.Invoke();
+        }
+
+        private void HandleDeployCanister(InputAction.CallbackContext context)
+        {
+            if (context.phase != InputActionPhase.Performed)
+            {
+                return;
+            }
+
+            DeployCanisterPressed?.Invoke();
+        }
+
+        private void HandlePickupCanister(InputAction.CallbackContext context)
+        {
+            if (context.phase != InputActionPhase.Performed)
+            {
+                return;
+            }
+
+            PickupCanisterPressed?.Invoke();
+        }
+
+        private void UpdateFacing(Vector2 direction)
+        {
+            if (direction.sqrMagnitude <= 0.0001f)
+            {
+                return;
+            }
+
+            FacingValue = direction.normalized;
         }
     }
 }
