@@ -9,6 +9,8 @@ namespace BooterBigArm.Runtime
         [SerializeField] private PrototypeWorldGenerator worldGenerator;
         [SerializeField] private PrototypeSurvivalState survivalState;
         [SerializeField] private PrototypeInventory inventoryState;
+        [SerializeField] private PrototypeInventory bigArmStorageInventory;
+        [SerializeField] private PrototypeBigArmAiController bigArmController;
         [SerializeField] private PrototypeDustCanisterController dustCanisterController;
         [SerializeField] private string savePath;
 
@@ -104,17 +106,31 @@ namespace BooterBigArm.Runtime
             var playerState = playerMotor != null
                 ? PrototypePlayerSaveData.FromPosition(playerMotor.transform.position)
                 : PrototypePlayerSaveData.FromPosition(Vector3.zero);
+            var bigArmState = bigArmController != null
+                ? bigArmController.CaptureSaveData()
+                : PrototypeBigArmSaveData.FromPosition(Vector3.zero);
             var survivalData = survivalState != null
                 ? survivalState.CaptureSaveData()
                 : PrototypeSurvivalSaveData.FromReserve(100f);
             var inventoryData = inventoryState != null
                 ? inventoryState.CaptureSaveData()
                 : PrototypeInventorySaveData.FromSnapshot(0, System.Array.Empty<PrototypeInventorySlot>());
+            var bigArmStorageData = bigArmStorageInventory != null
+                ? bigArmStorageInventory.CaptureSaveData()
+                : PrototypeInventorySaveData.FromSnapshot(0, System.Array.Empty<PrototypeInventorySlot>());
             var harvestNodes = CaptureHarvestNodeStates();
             var dustCanister = dustCanisterController != null
                 ? dustCanisterController.CaptureSaveData()
                 : PrototypeDustCanisterSaveData.Create(false, Vector3.zero, 0f);
-            saveData = PrototypeSaveData.Create(worldIdentity, playerState, survivalData, inventoryData, harvestNodes, dustCanister);
+            saveData = PrototypeSaveData.Create(
+                worldIdentity,
+                playerState,
+                bigArmState,
+                survivalData,
+                inventoryData,
+                bigArmStorageData,
+                harvestNodes,
+                dustCanister);
             return true;
         }
 
@@ -138,6 +154,16 @@ namespace BooterBigArm.Runtime
             if (inventoryState != null)
             {
                 inventoryState.ApplySaveData(saveData.Inventory);
+            }
+
+            if (bigArmStorageInventory != null)
+            {
+                bigArmStorageInventory.ApplySaveData(saveData.BigArmStorage);
+            }
+
+            if (bigArmController != null)
+            {
+                bigArmController.ApplySaveData(saveData.BigArm);
             }
 
             if (saveData.Version < 4 &&

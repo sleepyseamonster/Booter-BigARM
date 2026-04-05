@@ -42,6 +42,42 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "c52a0d4c-3d7f-4e48-98e9-16be3c4f7c99",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RecallBigArm",
+                    "type": "Button",
+                    "id": "d6b4f3d2-0dc7-4a32-9d0d-2f4f5a9a6f62",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ScoutBigArm",
+                    "type": "Button",
+                    "id": "2b2a9c89-0f8c-47d8-8c17-9ff6cf7e12a4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PingBigArmDanger",
+                    "type": "Button",
+                    "id": "3b74c3c3-2a4e-4cb5-b6b0-6bc6f3a9f0a8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "DeployCanister",
                     "type": "Button",
                     "id": "7f0a3c75-3d03-4d6b-bb31-0c9bcb76f2e3",
@@ -269,7 +305,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Attack",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -456,7 +492,84 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Interact",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f0a844a-cc56-4f30-8e25-42cfca2dd824",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f7ca0aa0-62d5-4fd4-90f3-7b10f614d7ae",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "RecallBigArm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c4f7a8f-8f1d-4f7a-91a7-5d8bfa8a7d4d",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RecallBigArm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e88bca1c-61c8-42f0-8f5d-6db3b8dc8f8a",
+                    "path": "<Keyboard>/f2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ScoutBigArm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f48f8e85-9b73-4e44-a9c4-1e6e0d5f7f54",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ScoutBigArm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f8d9c0c-5fbe-4f9e-bd74-7c7f1fd5d4d0",
+                    "path": "<Keyboard>/f3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PingBigArmDanger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8d56b8d-8f9c-4b9b-9d48-8d6b7d2f0f7a",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "PingBigArmDanger",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

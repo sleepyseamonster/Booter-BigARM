@@ -5,10 +5,39 @@ namespace BooterBigArm.Runtime
     [DisallowMultipleComponent]
     public sealed class PrototypeInventoryHud : MonoBehaviour
     {
+        [SerializeField] private string title = "Inventory";
         [SerializeField] private PrototypeInventory inventory;
-        [SerializeField] private PrototypeHarvestInteractor harvestInteractor;
-        [SerializeField] private PrototypeDustCanisterController dustCanisterController;
-        [SerializeField, Min(1)] private int maxSummaryLines = 8;
+        [SerializeField] private PrototypeInventory transferTarget;
+        [SerializeField] private string transferButtonLabel = "Transfer";
+        [SerializeField] private Vector2 panelPosition = new Vector2(12f, 210f);
+        [SerializeField] private Vector2 panelSize = new Vector2(360f, 320f);
+        [SerializeField] private Vector2 scrollPosition;
+        [SerializeField] private bool isVisible;
+
+        private string lastTransferMessage = string.Empty;
+
+        public bool IsVisible => isVisible;
+
+        public void Configure(
+            string hudTitle,
+            PrototypeInventory sourceInventory,
+            PrototypeInventory targetInventory,
+            string buttonLabel,
+            Vector2 position,
+            Vector2 size)
+        {
+            title = string.IsNullOrWhiteSpace(hudTitle) ? "Inventory" : hudTitle;
+            inventory = sourceInventory;
+            transferTarget = targetInventory;
+            transferButtonLabel = string.IsNullOrWhiteSpace(buttonLabel) ? "Transfer" : buttonLabel;
+            panelPosition = position;
+            panelSize = size;
+        }
+
+        public void SetVisible(bool visible)
+        {
+            isVisible = visible;
+        }
 
         private void Awake()
         {
@@ -16,90 +45,76 @@ namespace BooterBigArm.Runtime
             {
                 inventory = FindAnyObjectByType<PrototypeInventory>();
             }
-
-            if (harvestInteractor == null)
-            {
-                harvestInteractor = FindAnyObjectByType<PrototypeHarvestInteractor>();
-            }
-
-            if (dustCanisterController == null)
-            {
-                dustCanisterController = FindAnyObjectByType<PrototypeDustCanisterController>();
-            }
         }
 
         private void OnGUI()
         {
-            if (inventory == null)
+            if (!isVisible || inventory == null)
             {
                 return;
             }
 
-            const int width = 360;
-            const int height = 320;
-
-            GUILayout.BeginArea(new Rect(12f, 210f, width, height), GUI.skin.box);
-            GUILayout.Label("Inventory");
-
-            var summaries = inventory.GetItemSummaries();
-            GUILayout.Label($"Item types: {summaries.Length}");
-            GUILayout.Label("Resources stack to 99. Tools use normal carry.");
-
-            var shown = 0;
-            for (var i = 0; i < summaries.Length && shown < maxSummaryLines; i++)
+            var rect = new Rect(panelPosition.x, panelPosition.y, panelSize.x, panelSize.y);
+            GUILayout.BeginArea(rect, GUI.skin.box);
+            GUILayout.Label(title);
+            GUILayout.Label($"Slots: {inventory.SlotsUsed}/{inventory.SlotCapacity}");
+            if (inventory.MaxCarryMass > 0f)
             {
-                var summary = summaries[i];
-                if (string.IsNullOrWhiteSpace(summary.ItemId) || summary.TotalCount <= 0)
-                {
-                    continue;
-                }
-
-                var stackLabel = summary.StackCount > 1 ? $" ({summary.StackCount} stacks)" : string.Empty;
-                GUILayout.Label($"{summary.DisplayName} x{summary.TotalCount}{stackLabel}");
-                shown++;
+                GUILayout.Label($"Carry: {inventory.CurrentCarryMass:0.0}/{inventory.MaxCarryMass:0.0}");
+                GUILayout.Label($"Load: {inventory.BurdenFraction:0.00}");
+            }
+            else
+            {
+                GUILayout.Label("Storage: unlimited");
             }
 
-            if (shown == 0)
+            if (!string.IsNullOrWhiteSpace(lastTransferMessage))
+            {
+                GUILayout.Label(lastTransferMessage);
+            }
+
+            var summaries = inventory.GetItemSummaries();
+            var scrollHeight = Mathf.Max(110f, panelSize.y - 112f);
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Height(scrollHeight));
+            if (summaries.Length == 0)
             {
                 GUILayout.Label("(empty)");
             }
-
-            if (harvestInteractor != null)
+            else
             {
-                GUILayout.Space(6f);
-                GUILayout.Label("Harvest");
-                if (harvestInteractor.CurrentNode != null)
+                for (var i = 0; i < summaries.Length; i++)
                 {
-                    GUILayout.Label($"{harvestInteractor.CurrentNode.DisplayName} ({harvestInteractor.CurrentNode.Kind})");
-                }
-                else
-                {
-                    GUILayout.Label("No node in range");
-                }
+                    var summary = summaries[i];
+                    if (string.IsNullOrWhiteSpace(summary.ItemId) || summary.TotalCount <= 0)
+                    {
+                        continue;
+                    }
 
-                GUILayout.Label(harvestInteractor.LastMessage);
-            }
+                    GUILayout.BeginHorizontal();
+                    var stackSuffix = summary.StackCount > 1 ? $" ({summary.StackCount} stacks)" : string.Empty;
+                    GUILayout.Label($"{summary.DisplayName} x{summary.TotalCount}{stackSuffix}");
 
-            if (dustCanisterController != null)
-            {
-                GUILayout.Space(6f);
-                GUILayout.Label("Dust Canister");
-                GUILayout.Label("D-pad down deploys. East picks up.");
-                if (dustCanisterController.ActiveCanister != null)
-                {
-                    GUILayout.Label($"Deployed: {dustCanisterController.ActiveCanister.StoredDust:0}/{dustCanisterController.ActiveCanister.MaxDust:0} dust");
-                }
-                else
-                {
-                    GUILayout.Label("In inventory");
-                }
+                    if (transferTarget != null && !ReferenceEquals(transferTarget, inventory))
+                    {
+                        var canTransfer = GUILayout.Button(transferButtonLabel, GUILayout.Width(94f));
+                        if (canTransfer)
+                        {
+                            if (inventory.TryTransferItemTo(transferTarget, summary.ItemId, summary.TotalCount, out var moved) && moved > 0)
+                            {
+                                lastTransferMessage = $"{transferButtonLabel} {moved} {summary.DisplayName}.";
+                            }
+                            else
+                            {
+                                lastTransferMessage = $"Unable to {transferButtonLabel.ToLowerInvariant()} {summary.DisplayName}.";
+                            }
+                        }
+                    }
 
-                if (!string.IsNullOrWhiteSpace(dustCanisterController.LastStatusMessage))
-                {
-                    GUILayout.Label(dustCanisterController.LastStatusMessage);
+                    GUILayout.EndHorizontal();
                 }
             }
 
+            GUILayout.EndScrollView();
             GUILayout.EndArea();
         }
     }

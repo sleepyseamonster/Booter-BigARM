@@ -108,7 +108,7 @@ namespace BooterBigArm.Editor
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             scene.name = "PrototypeScene";
 
-            var homeAnchor = CreateHomeAnchor(playerSprite);
+            var homeAnchor = CreateBigArm(playerSprite, itemDatabase, out var bigArmStorageInventory, out var bigArmController);
             var player = CreatePlayer(
                 inputActions,
                 itemDatabase,
@@ -139,13 +139,30 @@ namespace BooterBigArm.Editor
                 world,
                 player.GetComponent<PrototypeSurvivalState>(),
                 player.GetComponent<PrototypeInventory>(),
+                bigArmStorageInventory,
+                bigArmController,
                 player.GetComponent<PrototypeDustCanisterController>());
+            SetObjectReference(bigArmController, "playerMotor", player.GetComponent<PlayerMotor2D>());
             CreateCamera(cameraTarget);
             CreateLighting();
             CreateVolume(volumeProfile);
             CreateDebugOverlay(player.GetComponent<PlayerMotor2D>(), world, saveLoadController);
             CreateSurvivalHud(player.GetComponent<PrototypeSurvivalState>());
-            CreateInventoryHud(player.GetComponent<PrototypeInventory>());
+            var backpackHud = CreateInventoryHud(
+                "Backpack",
+                player.GetComponent<PrototypeInventory>(),
+                bigArmStorageInventory,
+                new Vector2(804f, 12f),
+                new Vector2(360f, 320f),
+                "Store");
+            var bigArmHud = CreateInventoryHud(
+                "BigARM Storage",
+                bigArmStorageInventory,
+                player.GetComponent<PrototypeInventory>(),
+                new Vector2(804f, 12f),
+                new Vector2(360f, 320f),
+                "Take");
+            CreateInventoryUiController(inputActions, backpackHud, bigArmHud);
             CreateHarvestPromptHud(player.GetComponent<PrototypeHarvestInteractor>());
 
             EditorSceneManager.SaveScene(scene, PrototypeScenePath);
@@ -300,6 +317,8 @@ namespace BooterBigArm.Editor
             PrototypeWorldGenerator worldGenerator,
             PrototypeSurvivalState survivalState,
             PrototypeInventory inventoryState,
+            PrototypeInventory bigArmStorageInventory,
+            PrototypeBigArmAiController bigArmController,
             PrototypeDustCanisterController dustCanisterController)
         {
             var controllerObject = new GameObject("Prototype Session");
@@ -308,10 +327,20 @@ namespace BooterBigArm.Editor
             SetObjectReference(controller, "worldGenerator", worldGenerator);
             SetObjectReference(controller, "survivalState", survivalState);
             SetObjectReference(controller, "inventoryState", inventoryState);
+            SetObjectReference(controller, "bigArmStorageInventory", bigArmStorageInventory);
+            SetObjectReference(controller, "bigArmController", bigArmController);
             SetObjectReference(controller, "dustCanisterController", dustCanisterController);
             var systemInput = controllerObject.AddComponent<PrototypeSystemInputAdapter>();
             SetObjectReference(systemInput, "inputActions", inputActions);
             SetObjectReference(systemInput, "saveLoadController", controller);
+            var bigArmCommandAdapter = controllerObject.AddComponent<PrototypeBigArmCommandAdapter>();
+            var threatSignalObject = new GameObject("BigARM Threat Signal");
+            threatSignalObject.SetActive(false);
+            var threatSignal = threatSignalObject.AddComponent<PrototypeBigArmThreatSignal>();
+            SetObjectReference(bigArmCommandAdapter, "inputActions", inputActions);
+            SetObjectReference(bigArmCommandAdapter, "bigArmController", bigArmController);
+            SetObjectReference(bigArmCommandAdapter, "playerMotor", playerMotor);
+            SetObjectReference(bigArmCommandAdapter, "threatSignal", threatSignal);
             return controller;
         }
 
@@ -554,11 +583,31 @@ namespace BooterBigArm.Editor
             SetObjectReference(hud, "survivalState", survivalState);
         }
 
-        private static void CreateInventoryHud(PrototypeInventory inventory)
+        private static PrototypeInventoryHud CreateInventoryHud(
+            string title,
+            PrototypeInventory inventory,
+            PrototypeInventory transferTarget,
+            Vector2 panelPosition,
+            Vector2 panelSize,
+            string transferButtonLabel)
         {
-            var hudObject = new GameObject("Inventory HUD");
+            var hudObject = new GameObject($"{title} HUD");
             var hud = hudObject.AddComponent<PrototypeInventoryHud>();
-            SetObjectReference(hud, "inventory", inventory);
+            hud.Configure(title, inventory, transferTarget, transferButtonLabel, panelPosition, panelSize);
+            return hud;
+        }
+
+        private static void CreateInventoryUiController(
+            InputActionAsset inputActions,
+            PrototypeInventoryHud backpackHud,
+            PrototypeInventoryHud bigArmHud)
+        {
+            var controllerObject = new GameObject("Inventory UI Controller");
+            var controller = controllerObject.AddComponent<PrototypeInventoryUiController>();
+            SetObjectReference(controller, "inputActions", inputActions);
+            SetObjectReference(controller, "backpackHud", backpackHud);
+            SetObjectReference(controller, "bigArmHud", bigArmHud);
+            SetFloat(controller, "holdThresholdSeconds", 0.35f);
         }
 
         private static void CreateHarvestPromptHud(PrototypeHarvestInteractor interactor)
@@ -568,18 +617,47 @@ namespace BooterBigArm.Editor
             SetObjectReference(hud, "interactor", interactor);
         }
 
-        private static Transform CreateHomeAnchor(Sprite prototypeSprite)
+        private static Transform CreateBigArm(
+            Sprite prototypeSprite,
+            PrototypeItemDatabase itemDatabase,
+            out PrototypeInventory storageInventory,
+            out PrototypeBigArmAiController aiController)
         {
-            var homeObject = new GameObject("Home Anchor");
-            homeObject.transform.position = Vector3.zero;
+            var bigArmObject = new GameObject("BigARM");
+            bigArmObject.transform.position = Vector3.zero;
 
-            var spriteRenderer = homeObject.AddComponent<SpriteRenderer>();
+            var spriteRenderer = bigArmObject.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = prototypeSprite;
             spriteRenderer.color = new Color(0.42f, 0.81f, 0.94f, 1f);
             spriteRenderer.sortingOrder = 4;
-            homeObject.transform.localScale = new Vector3(1.4f, 1.4f, 1f);
+            bigArmObject.transform.localScale = new Vector3(1.4f, 1.4f, 1f);
 
-            return homeObject.transform;
+            var rigidbody = bigArmObject.AddComponent<Rigidbody2D>();
+            rigidbody.gravityScale = 0f;
+            rigidbody.freezeRotation = true;
+            rigidbody.bodyType = RigidbodyType2D.Kinematic;
+            rigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+            var collider = bigArmObject.AddComponent<CircleCollider2D>();
+            collider.radius = 0.55f;
+
+            aiController = bigArmObject.AddComponent<PrototypeBigArmAiController>();
+            storageInventory = bigArmObject.AddComponent<PrototypeInventory>();
+            SetObjectReference(storageInventory, "itemDatabase", itemDatabase);
+            SetInt(storageInventory, "slotCapacity", 24);
+            SetFloat(storageInventory, "maxCarryMass", 0f);
+            SetObjectReference(aiController, "storageInventory", storageInventory);
+            SetObjectReference(aiController, "homeAnchor", bigArmObject.transform);
+            SetFloat(aiController, "moveSpeed", 2.8f);
+            SetFloat(aiController, "waypointTolerance", 0.2f);
+            SetFloat(aiController, "harvestRange", 1.45f);
+            SetFloat(aiController, "repathInterval", 0.35f);
+            SetFloat(aiController, "cellSize", 0.85f);
+            SetInt(aiController, "searchRadiusCells", 28);
+            SetFloat(aiController, "returnHomeSlotFraction", 0.7f);
+            SetFloat(aiController, "followPlayerDistance", 8f);
+            SetFloat(aiController, "taskSearchRadius", 70f);
+            return bigArmObject.transform;
         }
 
         private static void CreateHarvestNodes(

@@ -6,6 +6,7 @@ namespace BooterBigArm.Runtime
     public sealed class PrototypeSurvivalHud : MonoBehaviour
     {
         [SerializeField] private PrototypeSurvivalState survivalState;
+        [SerializeField] private Vector2 panelPosition = new Vector2(12f, 660f);
 
         public void Configure(PrototypeSurvivalState state)
         {
@@ -22,7 +23,7 @@ namespace BooterBigArm.Runtime
             const int width = 240;
             const int height = 96;
 
-            GUILayout.BeginArea(new Rect(12f, 240f, width, height), GUI.skin.box);
+            GUILayout.BeginArea(new Rect(panelPosition.x, panelPosition.y, width, height), GUI.skin.box);
             GUILayout.Label("Survival");
             GUILayout.Label($"Algae: {survivalState.AlgaeReserve:0}/{survivalState.MaxAlgaeReserve:0}");
             GUILayout.Label(survivalState.IsAtHome ? "Status: Home" : "Status: Away");

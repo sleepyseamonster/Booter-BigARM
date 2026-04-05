@@ -122,6 +122,12 @@ namespace BooterBigArm.Runtime
                 return true;
             }
 
+            if (receiver != null && receiver.TryAddItems(rolledItems.ToArray()))
+            {
+                ConsumeUse();
+                return true;
+            }
+
             SpawnDrops(rolledItems);
             ConsumeUse();
             return true;

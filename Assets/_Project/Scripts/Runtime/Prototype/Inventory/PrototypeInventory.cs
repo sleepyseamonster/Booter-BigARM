@@ -12,6 +12,7 @@ namespace BooterBigArm.Runtime
         [SerializeField, Min(0f)] private float maxCarryMass = 0f;
         [SerializeField] private List<PrototypeInventorySlot> slots = new List<PrototypeInventorySlot>();
 
+        public PrototypeItemDatabase ItemDatabase => itemDatabase;
         public int SlotCapacity => Mathf.Max(Mathf.Max(1, slotCapacity), slots != null ? slots.Count : 0);
         public float MaxCarryMass => Mathf.Max(0f, maxCarryMass);
 
@@ -128,6 +129,27 @@ namespace BooterBigArm.Runtime
             return false;
         }
 
+        public int GetItemCount(string itemId)
+        {
+            if (string.IsNullOrWhiteSpace(itemId))
+            {
+                return 0;
+            }
+
+            EnsureSlotCapacity();
+            var total = 0;
+            for (var i = 0; i < slots.Count; i++)
+            {
+                var slot = slots[i];
+                if (!slot.IsEmpty && slot.ItemId == itemId)
+                {
+                    total += slot.Count;
+                }
+            }
+
+            return total;
+        }
+
         public bool TryAdd(string itemId, int count, out int accepted)
         {
             return TryAddInternal(itemId, count, out accepted, true);
@@ -197,6 +219,62 @@ namespace BooterBigArm.Runtime
             }
 
             return removed > 0;
+        }
+
+        public bool TryTransferItemTo(PrototypeInventory destination, string itemId, int count, out int transferred)
+        {
+            transferred = 0;
+            if (destination == null || ReferenceEquals(destination, this) || string.IsNullOrWhiteSpace(itemId) || count <= 0)
+            {
+                return false;
+            }
+
+            var available = GetItemCount(itemId);
+            if (available <= 0)
+            {
+                return false;
+            }
+
+            var desired = Mathf.Min(count, available);
+            if (!destination.TryAdd(itemId, desired, out var accepted) || accepted <= 0)
+            {
+                return false;
+            }
+
+            if (!TryRemove(itemId, accepted, out transferred) || transferred <= 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool TryTransferAllTo(PrototypeInventory destination, out int transferred)
+        {
+            transferred = 0;
+            if (destination == null || ReferenceEquals(destination, this))
+            {
+                return false;
+            }
+
+            var summaries = GetItemSummaries();
+            var movedAny = false;
+            for (var i = 0; i < summaries.Length; i++)
+            {
+                var summary = summaries[i];
+                if (summary.TotalCount <= 0 || string.IsNullOrWhiteSpace(summary.ItemId))
+                {
+                    continue;
+                }
+
+                if (TryTransferItemTo(destination, summary.ItemId, summary.TotalCount, out var moved) && moved > 0)
+                {
+                    transferred += moved;
+                    movedAny = true;
+                }
+            }
+
+            return movedAny;
         }
 
         public PrototypeInventorySaveData CaptureSaveData()

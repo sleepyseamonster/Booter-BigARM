@@ -646,6 +646,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeSurvivalHud
   survivalState: {fileID: 695105562}
+  panelPosition: {x: 12, y: 660}
 --- !u!4 &517084383
 Transform:
   m_ObjectHideFlags: 0
@@ -672,7 +673,7 @@ GameObject:
   - component: {fileID: 616618068}
   - component: {fileID: 616618067}
   m_Layer: 0
-  m_Name: Inventory HUD
+  m_Name: Backpack HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,10 +691,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400c06ee6a1f4ae689c80b8f7789f8b2, type: 3}
   m_Name:
   m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeInventoryHud
+  title: Backpack
   inventory: {fileID: 695105561}
-  harvestInteractor: {fileID: 0}
-  dustCanisterController: {fileID: 0}
-  maxSummaryLines: 8
+  transferTarget: {fileID: 729993050}
+  transferButtonLabel: Store
+  panelPosition: {x: 804, y: 12}
+  panelSize: {x: 360, y: 320}
+  scrollPosition: {x: 0, y: 0}
+  isVisible: 0
 --- !u!4 &616618068
 Transform:
   m_ObjectHideFlags: 0
@@ -701,6 +706,108 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616618066}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &616618069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616618071}
+  - component: {fileID: 616618070}
+  m_Layer: 0
+  m_Name: BigARM Storage HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &616618070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616618069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400c06ee6a1f4ae689c80b8f7789f8b2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeInventoryHud
+  title: BigARM Storage
+  inventory: {fileID: 729993050}
+  transferTarget: {fileID: 695105561}
+  transferButtonLabel: Take
+  panelPosition: {x: 804, y: 12}
+  panelSize: {x: 360, y: 320}
+  scrollPosition: {x: 0, y: 0}
+  isVisible: 0
+--- !u!4 &616618071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616618069}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &616618072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616618074}
+  - component: {fileID: 616618073}
+  m_Layer: 0
+  m_Name: Inventory UI Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &616618073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616618072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0eb4323e96249e896e30eba63037225, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeInventoryUiController
+  inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  actionMapName: Gameplay
+  inventoryActionName: OpenInventory
+  holdThresholdSeconds: 0.35
+  backpackHud: {fileID: 616618067}
+  bigArmHud: {fileID: 616618070}
+--- !u!4 &616618074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616618072}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1080,8 +1187,12 @@ GameObject:
   m_Component:
   - component: {fileID: 729993048}
   - component: {fileID: 729993049}
+  - component: {fileID: 729993050}
+  - component: {fileID: 729993051}
+  - component: {fileID: 729993052}
+  - component: {fileID: 729993053}
   m_Layer: 0
-  m_Name: Home Anchor
+  m_Name: BigARM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,6 +1272,113 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &729993050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729993047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ce9eec6705459aaa734922af7e5bd5, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeInventory
+  itemDatabase: {fileID: 11400000, guid: d808b815e949d4ebb81ad7c64da53b3d, type: 2}
+  slotCapacity: 24
+  maxCarryMass: 0
+  slots:
+  - itemId:
+    count: 0
+  - itemId:
+    count: 0
+--- !u!50 &729993051
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729993047}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &729993052
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729993047}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.55
+--- !u!114 &729993053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729993047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3b6b9ce8c144c2b0d3f6fb3a1fb2c7, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeBigArmAiController
+  playerMotor: {fileID: 695105563}
+  storageInventory: {fileID: 729993050}
+  homeAnchor: {fileID: 729993048}
+  moveSpeed: 2.8
+  waypointTolerance: 0.2
+  harvestRange: 1.45
+  repathInterval: 0.35
+  cellSize: 0.85
+  searchRadiusCells: 28
+  returnHomeSlotFraction: 0.7
+  followPlayerDistance: 8
+  taskSearchRadius: 70
 --- !u!1 &789637175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,6 +1510,7 @@ GameObject:
   - component: {fileID: 987689392}
   - component: {fileID: 987689390}
   - component: {fileID: 987689391}
+  - component: {fileID: 987689393}
   m_Layer: 0
   m_Name: Prototype Session
   m_TagString: Untagged
@@ -1315,6 +1534,8 @@ MonoBehaviour:
   worldGenerator: {fileID: 1673955798}
   survivalState: {fileID: 695105562}
   inventoryState: {fileID: 695105561}
+  bigArmStorageInventory: {fileID: 729993050}
+  bigArmController: {fileID: 729993053}
   dustCanisterController: {fileID: 695105564}
   savePath:
 --- !u!114 &987689391
@@ -1336,6 +1557,26 @@ MonoBehaviour:
   rebuildActionName: Rebuild
   nextSeedActionName: NextSeed
   saveLoadController: {fileID: 987689390}
+--- !u!114 &987689393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987689389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8b2e7f5a4f4d5f9b6b36c1d6ef82f1, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeBigArmCommandAdapter
+  inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  actionMapName: Gameplay
+  recallActionName: RecallBigArm
+  scoutActionName: ScoutBigArm
+  dangerPingActionName: PingBigArmDanger
+  bigArmController: {fileID: 729993053}
+  playerMotor: {fileID: 695105563}
+  threatSignal: {fileID: 987689395}
 --- !u!4 &987689392
 Transform:
   m_ObjectHideFlags: 0
@@ -1343,6 +1584,50 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987689389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &987689394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 987689396}
+  - component: {fileID: 987689395}
+  m_Layer: 0
+  m_Name: BigARM Threat Signal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &987689395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987689394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdc5f5f2ed4489f9e3f4af3b9b7f3d6, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.Runtime::BooterBigArm.Runtime.PrototypeBigArmThreatSignal
+--- !u!4 &987689396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987689394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
