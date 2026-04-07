@@ -6,6 +6,20 @@ It is not a source of truth.
 
 Treat it as a technical reference that can inform later planning and implementation. Canonical constraints still live in [AGENTS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/AGENTS.md), [AGENT_AND_UNITY_PRACTICES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/AGENT_AND_UNITY_PRACTICES.md), and [WORLD_SYSTEMS_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_SYSTEMS_STANDARD.md).
 
+Related docs:
+
+- Canonical world systems baseline: [WORLD_SYSTEMS_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_SYSTEMS_STANDARD.md)
+- Canonical world tone and setting: [WORLD_BASIS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_BASIS.md)
+- Provisional world sketch and terrain notes: [WORLD_GEN_REFERENCE_NOTES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_GEN_REFERENCE_NOTES.md)
+- External research summary: [WORLD_GEN_RESEARCH_SUMMARY.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_GEN_RESEARCH_SUMMARY.md)
+
+## Status
+
+- Status: provisional technical reference
+- Confidence: grounded in current discussion, not a final implementation spec
+- Intended use: guide later Unity experiments and architecture choices
+- Not for: treating any current prototype seam as final architecture
+
 ## Purpose
 
 - Capture the Unity-facing technical themes from the design discussion.

@@ -95,6 +95,7 @@ Current status:
 - `Docs/MOVEMENT_CAMERA_STANDARD.md` captures the current movement and camera baseline.
 - `Docs/WORLD_SYSTEMS_STANDARD.md` captures the current procedural generation and save/load baseline.
 - `Docs/IMPLEMENTATION_SEQUENCE.md` captures the first-pass order for turning those baselines into runtime seams.
+- `Docs/WORLD_GEN_RESEARCH_SUMMARY.md` now captures external reference research around tilemap procgen, hybrid authored/procedural worlds, and Unity-specific caveats.
 - The remaining Priority 5 work is refinement, validation, and implementation planning for these systems.
 
 ## Research Rules

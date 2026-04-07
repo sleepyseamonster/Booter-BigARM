@@ -6,6 +6,20 @@ It is not a source of truth.
 
 If this document conflicts with [WORLD_BASIS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_BASIS.md), [WORLD_SYSTEMS_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_SYSTEMS_STANDARD.md), or later implementation decisions, treat this file as disposable working context.
 
+Related docs:
+
+- Canonical world tone and rules: [WORLD_BASIS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_BASIS.md)
+- Canonical world systems baseline: [WORLD_SYSTEMS_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_SYSTEMS_STANDARD.md)
+- Unity-facing reference for this topic: [UNITY_TILEMAP_PROCGEN_REFERENCE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/UNITY_TILEMAP_PROCGEN_REFERENCE.md)
+- External research summary: [WORLD_GEN_RESEARCH_SUMMARY.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_GEN_RESEARCH_SUMMARY.md)
+
+## Status
+
+- Status: provisional reference
+- Confidence: mixed exploratory notes, not validated design
+- Intended use: brainstorming, later synthesis, implementation planning
+- Not for: canon lock-in, exact gameplay promises, or final procedural rules
+
 ## Purpose
 
 - Preserve useful world-generation thinking from early discussion.
