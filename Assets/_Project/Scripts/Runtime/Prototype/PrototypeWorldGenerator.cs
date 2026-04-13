@@ -20,6 +20,8 @@ namespace BooterBigArm.Runtime
         [SerializeField] private PrototypeWorldSettings worldSettings;
         [SerializeField] private Tilemap ruleGroundTilemap;
         [SerializeField] private RuleTile ruleGroundTile;
+        [SerializeField] private Tilemap featureRuleGroundTilemap;
+        [SerializeField] private RuleTile featureRuleGroundTile;
         [SerializeField] private Tilemap pebbleTilemap;
         [SerializeField] private Sprite[] pebbleTileSprites;
         [SerializeField] private Tilemap rockTilemap;
@@ -41,6 +43,17 @@ namespace BooterBigArm.Runtime
         [SerializeField, Range(0f, 1f)] private float sandPatchInteriorCutout = 0.3f;
         [SerializeField, Range(0f, 1f)] private float sandPatchRibbonBias = 0.38f;
         [SerializeField, Min(1f)] private float sandPatchRibbonScaleWorld = 4f;
+        [SerializeField, Min(4f)] private float featureRuleGroundRegionSizeWorld = 28f;
+        [SerializeField, Min(1f)] private float featureRuleGroundMinRadiusWorld = 8f;
+        [SerializeField, Min(1f)] private float featureRuleGroundMaxRadiusWorld = 16f;
+        [SerializeField, Range(0f, 1f)] private float featureRuleGroundRegionChance = 0.42f;
+        [SerializeField, Range(0f, 1.5f)] private float featureRuleGroundEdgeNoise = 0.28f;
+        [SerializeField, Range(0f, 1f)] private float featureRuleGroundWobbleStrength = 0.24f;
+        [SerializeField, Min(1f)] private float featureRuleGroundWobbleScaleWorld = 4f;
+        [SerializeField, Range(0f, 1f)] private float featureRuleGroundErosion = 0.08f;
+        [SerializeField, Range(0f, 1f)] private float featureRuleGroundInteriorCutout = 0.16f;
+        [SerializeField, Range(0f, 1f)] private float featureRuleGroundRibbonBias = 0.24f;
+        [SerializeField, Min(1f)] private float featureRuleGroundRibbonScaleWorld = 7f;
         [SerializeField] private int seed = 12345;
         [SerializeField] private int chunkSize = 16;
         [SerializeField] private int chunkRadius = 4;
@@ -54,6 +67,7 @@ namespace BooterBigArm.Runtime
         private readonly HashSet<Vector2Int> queuedUnloadChunks = new HashSet<Vector2Int>();
         private readonly Dictionary<Vector2Int, List<GameObject>> spawnedPropsByChunk = new Dictionary<Vector2Int, List<GameObject>>();
         private readonly Dictionary<Vector2Int, TileBase[]> ruleGroundChunkCache = new Dictionary<Vector2Int, TileBase[]>();
+        private readonly Dictionary<Vector2Int, TileBase[]> featureRuleGroundChunkCache = new Dictionary<Vector2Int, TileBase[]>();
         private Tilemap tilemap;
         private TileBase[] runtimeTiles;
         private TileBase[] runtimePebbleTiles;
@@ -62,7 +76,9 @@ namespace BooterBigArm.Runtime
         private TileBase[] runtimeSandOverlayTiles;
         private TileBase[] runtimeSandOverlayOffsetTiles;
         private RuleTile runtimeRuleGroundTile;
+        private RuleTile runtimeFeatureRuleGroundTile;
         private TileBase[] ruleGroundChunkTiles;
+        private TileBase[] featureRuleGroundChunkTiles;
         private TileBase[] emptyChunkTiles;
         private TileBase[] chunkTileBuffer;
         private TileBase[] sandOverlayChunkTileBuffer;
@@ -71,6 +87,7 @@ namespace BooterBigArm.Runtime
         private TileBase[] rockChunkTileBuffer;
         private TileBase[] smoothChunkTileBuffer;
         private TileBase[] emptyRuleGroundChunkTiles;
+        private TileBase[] emptyFeatureRuleGroundChunkTiles;
         private TileBase[] emptySandOverlayChunkTiles;
         private TileBase[] emptySandOverlayOffsetChunkTiles;
         private TileBase[] emptyPebbleChunkTiles;
@@ -115,11 +132,16 @@ namespace BooterBigArm.Runtime
             queuedLoadChunks.Clear();
             queuedUnloadChunks.Clear();
             ruleGroundChunkCache.Clear();
+            featureRuleGroundChunkCache.Clear();
             ClearSpawnedProps();
             tilemap.ClearAllTiles();
             if (ruleGroundTilemap != null)
             {
                 ruleGroundTilemap.ClearAllTiles();
+            }
+            if (featureRuleGroundTilemap != null)
+            {
+                featureRuleGroundTilemap.ClearAllTiles();
             }
             if (pebbleTilemap != null)
             {
@@ -266,8 +288,8 @@ namespace BooterBigArm.Runtime
                 runtimeSmoothTiles != null &&
                 runtimeSandOverlayTiles != null &&
                 runtimeSandOverlayOffsetTiles != null &&
-                runtimeRuleGroundTile != null &&
-                ruleGroundTile != null &&
+                runtimeRuleGroundTile == ruleGroundTile &&
+                runtimeFeatureRuleGroundTile == featureRuleGroundTile &&
                 tileSprites != null &&
                 pebbleTileSprites != null &&
                 rockTileSprites != null &&
@@ -319,6 +341,7 @@ namespace BooterBigArm.Runtime
                 CreateFallbackSandOverlayTiles,
                 "PrototypeRuntimeSandOverlayOffsetTile");
             runtimeRuleGroundTile = ruleGroundTile;
+            runtimeFeatureRuleGroundTile = featureRuleGroundTile;
 
             EnsureChunkBuffers();
         }
@@ -662,6 +685,7 @@ namespace BooterBigArm.Runtime
         {
             EnsureTileBuffer(ref chunkTileBuffer, GetChunkTileCount(tilemap));
             EnsureTileBuffer(ref ruleGroundChunkTiles, GetChunkTileCount(ruleGroundTilemap));
+            EnsureTileBuffer(ref featureRuleGroundChunkTiles, GetChunkTileCount(featureRuleGroundTilemap));
             EnsureTileBuffer(ref sandOverlayChunkTileBuffer, GetChunkTileCount(sandOverlayTilemap));
             EnsureTileBuffer(ref sandOverlayOffsetChunkTileBuffer, GetChunkTileCount(sandOverlayOffsetTilemap));
             EnsureTileBuffer(ref pebbleChunkTileBuffer, GetChunkTileCount(pebbleTilemap));
@@ -670,6 +694,7 @@ namespace BooterBigArm.Runtime
 
             EnsureTileBuffer(ref emptyChunkTiles, chunkTileBuffer != null ? chunkTileBuffer.Length : 0);
             EnsureTileBuffer(ref emptyRuleGroundChunkTiles, ruleGroundChunkTiles != null ? ruleGroundChunkTiles.Length : 0);
+            EnsureTileBuffer(ref emptyFeatureRuleGroundChunkTiles, featureRuleGroundChunkTiles != null ? featureRuleGroundChunkTiles.Length : 0);
             EnsureTileBuffer(ref emptySandOverlayChunkTiles, sandOverlayChunkTileBuffer != null ? sandOverlayChunkTileBuffer.Length : 0);
             EnsureTileBuffer(ref emptySandOverlayOffsetChunkTiles, sandOverlayOffsetChunkTileBuffer != null ? sandOverlayOffsetChunkTileBuffer.Length : 0);
             EnsureTileBuffer(ref emptyPebbleChunkTiles, pebbleChunkTileBuffer != null ? pebbleChunkTileBuffer.Length : 0);
@@ -773,6 +798,7 @@ namespace BooterBigArm.Runtime
 
             var sandBounds = GetChunkBounds(tilemap, chunkCoord);
             var ruleGroundBounds = GetChunkBounds(ruleGroundTilemap, chunkCoord);
+            var featureRuleGroundBounds = GetChunkBounds(featureRuleGroundTilemap, chunkCoord);
             var sandOverlayBounds = GetChunkBounds(sandOverlayTilemap, chunkCoord);
             var sandOverlayOffsetBounds = GetChunkBounds(sandOverlayOffsetTilemap, chunkCoord);
             var pebbleBounds = GetChunkBounds(pebbleTilemap, chunkCoord);
@@ -783,6 +809,12 @@ namespace BooterBigArm.Runtime
             {
                 ruleGroundTilemap.SetTilesBlock(ruleGroundBounds, ruleGroundChunkTiles);
                 RefreshRuleGroundBounds(ruleGroundBounds);
+            }
+            FillFeatureRuleGroundChunkBuffer(chunkCoord);
+            if (featureRuleGroundTilemap != null)
+            {
+                featureRuleGroundTilemap.SetTilesBlock(featureRuleGroundBounds, featureRuleGroundChunkTiles);
+                RefreshFeatureRuleGroundBounds(featureRuleGroundBounds);
             }
             FillChunkBuffer(chunkCoord);
             FillChunkTransforms(chunkCoord);
@@ -833,6 +865,7 @@ namespace BooterBigArm.Runtime
 
             var sandBounds = GetChunkBounds(tilemap, chunkCoord);
             var ruleGroundBounds = GetChunkBounds(ruleGroundTilemap, chunkCoord);
+            var featureRuleGroundBounds = GetChunkBounds(featureRuleGroundTilemap, chunkCoord);
             var sandOverlayBounds = GetChunkBounds(sandOverlayTilemap, chunkCoord);
             var sandOverlayOffsetBounds = GetChunkBounds(sandOverlayOffsetTilemap, chunkCoord);
             var pebbleBounds = GetChunkBounds(pebbleTilemap, chunkCoord);
@@ -842,6 +875,11 @@ namespace BooterBigArm.Runtime
             {
                 ruleGroundTilemap.SetTilesBlock(ruleGroundBounds, emptyRuleGroundChunkTiles);
                 RefreshRuleGroundBounds(ruleGroundBounds);
+            }
+            if (featureRuleGroundTilemap != null)
+            {
+                featureRuleGroundTilemap.SetTilesBlock(featureRuleGroundBounds, emptyFeatureRuleGroundChunkTiles);
+                RefreshFeatureRuleGroundBounds(featureRuleGroundBounds);
             }
             tilemap.SetTilesBlock(sandBounds, emptyChunkTiles);
             if (sandOverlayTilemap != null)
@@ -904,9 +942,39 @@ namespace BooterBigArm.Runtime
             System.Array.Copy(cachedChunkTiles, ruleGroundChunkTiles, ruleGroundChunkTiles.Length);
         }
 
+        private void FillFeatureRuleGroundChunkBuffer(Vector2Int chunkCoord)
+        {
+            if (featureRuleGroundChunkTiles == null)
+            {
+                return;
+            }
+
+            if (!featureRuleGroundChunkCache.TryGetValue(chunkCoord, out var cachedChunkTiles) ||
+                cachedChunkTiles.Length != featureRuleGroundChunkTiles.Length)
+            {
+                FillTileBuffer(featureRuleGroundTilemap, chunkCoord, featureRuleGroundChunkTiles, SelectFeatureRuleGroundTile);
+                cachedChunkTiles = new TileBase[featureRuleGroundChunkTiles.Length];
+                System.Array.Copy(featureRuleGroundChunkTiles, cachedChunkTiles, featureRuleGroundChunkTiles.Length);
+                featureRuleGroundChunkCache[chunkCoord] = cachedChunkTiles;
+                return;
+            }
+
+            System.Array.Copy(cachedChunkTiles, featureRuleGroundChunkTiles, featureRuleGroundChunkTiles.Length);
+        }
+
         private void RefreshRuleGroundBounds(BoundsInt bounds)
         {
-            if (ruleGroundTilemap == null)
+            RefreshRuleGroundBounds(ruleGroundTilemap, bounds);
+        }
+
+        private void RefreshFeatureRuleGroundBounds(BoundsInt bounds)
+        {
+            RefreshRuleGroundBounds(featureRuleGroundTilemap, bounds);
+        }
+
+        private static void RefreshRuleGroundBounds(Tilemap targetTilemap, BoundsInt bounds)
+        {
+            if (targetTilemap == null)
             {
                 return;
             }
@@ -915,7 +983,7 @@ namespace BooterBigArm.Runtime
             {
                 for (var x = bounds.xMin - 1; x <= bounds.xMax; x++)
                 {
-                    ruleGroundTilemap.RefreshTile(new Vector3Int(x, y, 0));
+                    targetTilemap.RefreshTile(new Vector3Int(x, y, 0));
                 }
             }
         }
@@ -1334,14 +1402,76 @@ namespace BooterBigArm.Runtime
             return IsInsideSandPatch(worldX, worldY) ? runtimeRuleGroundTile : null;
         }
 
+        private TileBase SelectFeatureRuleGroundTile(int worldX, int worldY)
+        {
+            if (runtimeFeatureRuleGroundTile == null)
+            {
+                return null;
+            }
+
+            return IsInsideFeatureRuleGroundPatch(worldX, worldY) ? runtimeFeatureRuleGroundTile : null;
+        }
+
         private bool IsInsideSandPatch(int worldX, int worldY)
         {
-            var regionSize = Mathf.Max(1, ScaleWorldUnitsToSample(sandPatchRegionSizeWorld));
-            var minRadius = Mathf.Max(1f, ScaleWorldUnitsToSample(sandPatchMinRadiusWorld));
-            var maxRadius = Mathf.Max(minRadius, ScaleWorldUnitsToSample(sandPatchMaxRadiusWorld));
-            var wobbleScale = Mathf.Max(1, ScaleWorldUnitsToSample(sandPatchWobbleScaleWorld));
-            var ribbonScale = Mathf.Max(1, ScaleWorldUnitsToSample(sandPatchRibbonScaleWorld));
-            var localErosion = Hash01(seed + 257, worldX / wobbleScale, worldY / wobbleScale);
+            return IsInsidePatch(
+                worldX,
+                worldY,
+                seed,
+                sandPatchRegionSizeWorld,
+                sandPatchMinRadiusWorld,
+                sandPatchMaxRadiusWorld,
+                sandPatchRegionChance,
+                sandPatchEdgeNoise,
+                sandPatchWobbleStrength,
+                sandPatchWobbleScaleWorld,
+                sandPatchErosion,
+                sandPatchInteriorCutout,
+                sandPatchRibbonBias,
+                sandPatchRibbonScaleWorld);
+        }
+
+        private bool IsInsideFeatureRuleGroundPatch(int worldX, int worldY)
+        {
+            return IsInsidePatch(
+                worldX,
+                worldY,
+                seed + 2003,
+                featureRuleGroundRegionSizeWorld,
+                featureRuleGroundMinRadiusWorld,
+                featureRuleGroundMaxRadiusWorld,
+                featureRuleGroundRegionChance,
+                featureRuleGroundEdgeNoise,
+                featureRuleGroundWobbleStrength,
+                featureRuleGroundWobbleScaleWorld,
+                featureRuleGroundErosion,
+                featureRuleGroundInteriorCutout,
+                featureRuleGroundRibbonBias,
+                featureRuleGroundRibbonScaleWorld);
+        }
+
+        private bool IsInsidePatch(
+            int worldX,
+            int worldY,
+            int patchSeed,
+            float regionSizeWorld,
+            float minRadiusWorld,
+            float maxRadiusWorld,
+            float regionChance,
+            float edgeNoise,
+            float wobbleStrength,
+            float wobbleScaleWorld,
+            float erosion,
+            float interiorCutout,
+            float ribbonBias,
+            float ribbonScaleWorld)
+        {
+            var regionSize = Mathf.Max(1, ScaleWorldUnitsToSample(regionSizeWorld));
+            var minRadius = Mathf.Max(1f, ScaleWorldUnitsToSample(minRadiusWorld));
+            var maxRadius = Mathf.Max(minRadius, ScaleWorldUnitsToSample(maxRadiusWorld));
+            var wobbleScale = Mathf.Max(1, ScaleWorldUnitsToSample(wobbleScaleWorld));
+            var ribbonScale = Mathf.Max(1, ScaleWorldUnitsToSample(ribbonScaleWorld));
+            var localErosion = Hash01(patchSeed + 257, worldX / wobbleScale, worldY / wobbleScale);
             var regionX = Mathf.FloorToInt((float)worldX / regionSize);
             var regionY = Mathf.FloorToInt((float)worldY / regionSize);
             var bestCoverage = float.MinValue;
@@ -1352,38 +1482,38 @@ namespace BooterBigArm.Runtime
                 {
                     var candidateRegionX = regionX + offsetX;
                     var candidateRegionY = regionY + offsetY;
-                    if (Hash01(seed + 211, candidateRegionX, candidateRegionY) > sandPatchRegionChance)
+                    if (Hash01(patchSeed + 211, candidateRegionX, candidateRegionY) > regionChance)
                     {
                         continue;
                     }
 
-                    var centerX = (candidateRegionX * regionSize) + (Hash01(seed + 223, candidateRegionX, candidateRegionY) * regionSize);
-                    var centerY = (candidateRegionY * regionSize) + (Hash01(seed + 227, candidateRegionX, candidateRegionY) * regionSize);
-                    var radiusX = Mathf.Lerp(minRadius, maxRadius, Hash01(seed + 229, candidateRegionX, candidateRegionY));
-                    var radiusY = Mathf.Lerp(minRadius, maxRadius, Hash01(seed + 233, candidateRegionX, candidateRegionY));
+                    var centerX = (candidateRegionX * regionSize) + (Hash01(patchSeed + 223, candidateRegionX, candidateRegionY) * regionSize);
+                    var centerY = (candidateRegionY * regionSize) + (Hash01(patchSeed + 227, candidateRegionX, candidateRegionY) * regionSize);
+                    var radiusX = Mathf.Lerp(minRadius, maxRadius, Hash01(patchSeed + 229, candidateRegionX, candidateRegionY));
+                    var radiusY = Mathf.Lerp(minRadius, maxRadius, Hash01(patchSeed + 233, candidateRegionX, candidateRegionY));
 
-                    var warpedWorldX = worldX + ((Hash01(seed + 241, worldX / wobbleScale, worldY / wobbleScale) - 0.5f) * radiusX * sandPatchWobbleStrength);
-                    var warpedWorldY = worldY + ((Hash01(seed + 251, worldX / wobbleScale, worldY / wobbleScale) - 0.5f) * radiusY * sandPatchWobbleStrength);
+                    var warpedWorldX = worldX + ((Hash01(patchSeed + 241, worldX / wobbleScale, worldY / wobbleScale) - 0.5f) * radiusX * wobbleStrength);
+                    var warpedWorldY = worldY + ((Hash01(patchSeed + 251, worldX / wobbleScale, worldY / wobbleScale) - 0.5f) * radiusY * wobbleStrength);
                     var dx = (warpedWorldX - centerX) / Mathf.Max(1f, radiusX);
                     var dy = (warpedWorldY - centerY) / Mathf.Max(1f, radiusY);
-                    var edgeThreshold = 1f + ((Hash01(seed + 239, worldX, worldY) - 0.5f) * sandPatchEdgeNoise);
+                    var edgeThreshold = 1f + ((Hash01(patchSeed + 239, worldX, worldY) - 0.5f) * edgeNoise);
                     var coreDistance = (dx * dx) + (dy * dy);
-                    var ribbonNoise = Mathf.Abs((Hash01(seed + 259, worldX / ribbonScale, worldY / ribbonScale) * 2f) - 1f);
-                    var ribbonPreference = Mathf.Lerp(1f, ribbonNoise, sandPatchRibbonBias);
+                    var ribbonNoise = Mathf.Abs((Hash01(patchSeed + 259, worldX / ribbonScale, worldY / ribbonScale) * 2f) - 1f);
+                    var ribbonPreference = Mathf.Lerp(1f, ribbonNoise, ribbonBias);
                     if (coreDistance <= edgeThreshold)
                     {
                         var edgeScore = 1f - Mathf.Clamp01(coreDistance / Mathf.Max(0.001f, edgeThreshold));
                         bestCoverage = Mathf.Max(bestCoverage, edgeScore * ribbonPreference);
                     }
 
-                    if (Hash01(seed + 263, candidateRegionX, candidateRegionY) > 0.58f)
+                    if (Hash01(patchSeed + 263, candidateRegionX, candidateRegionY) > 0.58f)
                     {
-                        var lobeCenterX = centerX + ((Hash01(seed + 269, candidateRegionX, candidateRegionY) - 0.5f) * radiusX * 1.1f);
-                        var lobeCenterY = centerY + ((Hash01(seed + 271, candidateRegionX, candidateRegionY) - 0.5f) * radiusY * 1.1f);
-                        var lobeRadius = Mathf.Lerp(minRadius * 0.28f, maxRadius * 0.52f, Hash01(seed + 277, candidateRegionX, candidateRegionY));
+                        var lobeCenterX = centerX + ((Hash01(patchSeed + 269, candidateRegionX, candidateRegionY) - 0.5f) * radiusX * 1.1f);
+                        var lobeCenterY = centerY + ((Hash01(patchSeed + 271, candidateRegionX, candidateRegionY) - 0.5f) * radiusY * 1.1f);
+                        var lobeRadius = Mathf.Lerp(minRadius * 0.28f, maxRadius * 0.52f, Hash01(patchSeed + 277, candidateRegionX, candidateRegionY));
                         var lobeDx = (warpedWorldX - lobeCenterX) / Mathf.Max(1f, lobeRadius);
                         var lobeDy = (warpedWorldY - lobeCenterY) / Mathf.Max(1f, lobeRadius);
-                        var lobeThreshold = 1f + ((Hash01(seed + 281, worldX, worldY) - 0.5f) * sandPatchEdgeNoise * 1.2f);
+                        var lobeThreshold = 1f + ((Hash01(patchSeed + 281, worldX, worldY) - 0.5f) * edgeNoise * 1.2f);
                         var lobeDistance = (lobeDx * lobeDx) + (lobeDy * lobeDy);
                         if (lobeDistance <= lobeThreshold)
                         {
@@ -1399,17 +1529,17 @@ namespace BooterBigArm.Runtime
                 return false;
             }
 
-            var cutoutNoise = Hash01(seed + 283, worldX / ribbonScale, worldY / ribbonScale);
-            var interiorThreshold = Mathf.Lerp(0.08f, 0.72f, sandPatchInteriorCutout);
+            var cutoutNoise = Hash01(patchSeed + 283, worldX / ribbonScale, worldY / ribbonScale);
+            var interiorThreshold = Mathf.Lerp(0.08f, 0.72f, interiorCutout);
             if (bestCoverage > interiorThreshold)
             {
-                var interiorCarve = Hash01(seed + 293, worldX / ribbonScale, worldY / ribbonScale);
-                var carveChance = Mathf.Lerp(0.12f, 0.68f, sandPatchInteriorCutout);
-                return localErosion >= sandPatchErosion && interiorCarve >= carveChance;
+                var interiorCarve = Hash01(patchSeed + 293, worldX / ribbonScale, worldY / ribbonScale);
+                var carveChance = Mathf.Lerp(0.12f, 0.68f, interiorCutout);
+                return localErosion >= erosion && interiorCarve >= carveChance;
             }
 
             var edgeAdmission = Mathf.Lerp(0.16f, 0.82f, bestCoverage);
-            return localErosion >= sandPatchErosion * 0.65f && cutoutNoise <= edgeAdmission;
+            return localErosion >= erosion * 0.65f && cutoutNoise <= edgeAdmission;
         }
 
         private void GetLayerSamplePosition(Tilemap targetTilemap, Vector2Int chunkCoord, int localX, int localY, out int worldX, out int worldY)
@@ -1452,6 +1582,7 @@ namespace BooterBigArm.Runtime
             var minCellSize = 1f;
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(tilemap));
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(ruleGroundTilemap));
+            minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(featureRuleGroundTilemap));
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(sandOverlayTilemap));
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(sandOverlayOffsetTilemap));
             minCellSize = Mathf.Min(minCellSize, GetTilemapCellWorldSize(pebbleTilemap));
@@ -1671,6 +1802,7 @@ namespace BooterBigArm.Runtime
         {
             EnableAutomaticChunkCullingBounds(tilemap);
             EnableAutomaticChunkCullingBounds(ruleGroundTilemap);
+            EnableAutomaticChunkCullingBounds(featureRuleGroundTilemap);
             EnableAutomaticChunkCullingBounds(sandOverlayTilemap);
             EnableAutomaticChunkCullingBounds(sandOverlayOffsetTilemap);
             EnableAutomaticChunkCullingBounds(pebbleTilemap);

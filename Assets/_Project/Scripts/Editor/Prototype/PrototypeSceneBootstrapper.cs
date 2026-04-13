@@ -26,6 +26,10 @@ namespace BooterBigArm.Editor
         private const string TallPropPrefabPath = "Assets/_Project/Prefabs/Prototype/TallPropPlaceholder.prefab";
         private const string RuleGroundFolder = "Assets/_Project/Art/Prototype/Ground/RuleGround";
         private const string SandPatchRuleTilePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/Sand Patch.asset";
+        private const string RuleGroundTemplateTexturePath = "Assets/_Project/Art/Prototype/Ground/Sand/rule_tile_template_16px.psd";
+        private const string RuleGroundTemplateRuleTilePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/RuleGroundRuleTile.asset";
+        private const string FeatureRuleGroundTexturePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/F27B229E-26CF-45A6-9CEA-70C635608356.png";
+        private const string FeatureRuleGroundTileAssetPath = "Assets/_Project/Art/Prototype/Ground/RuleGround/F27B229E-26CF-45A6-9CEA-70C635608356.asset";
         private const string TallPropWidePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropWide64x64.prefab";
         private const string TallPropTallPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTall64x96.prefab";
         private const string TallPropSquarePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSquare32x32.prefab";
@@ -59,6 +63,8 @@ namespace BooterBigArm.Editor
         private const string SandOverlayGridName = "Sand Overlay Grid";
         private const string SandOverlayOffsetGridName = "Sand Overlay Offset Grid";
         private const string SandOverlayOffsetTilemapName = "Sand Overlay Offset Tilemap";
+        private const string FeatureRuleGroundGridName = "Feature Rule Ground Grid";
+        private const string FeatureRuleGroundTilemapName = "Feature Rule Ground Tilemap";
         private const string GroundSandFolder = "Assets/_Project/Art/Prototype/Ground/Sand";
         private const string GroundSandPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand.psd";
         private const string GroundSandOverlayPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand_overlay_128.psd";
@@ -68,6 +74,8 @@ namespace BooterBigArm.Editor
         private const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
         private const string VolumeProfilePath = "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset";
         private const int RuleGroundTextureSize = 16;
+        private const int FeatureRuleGroundSortingOrder = 5;
+        private const float FeatureRuleGroundPixelsPerUnit = 32f;
         private const int ShadowSortingOrder = 6;
         private const int ActorSortingOrder = 7;
 
@@ -99,6 +107,7 @@ namespace BooterBigArm.Editor
             var ironstoneNodeSprite = EnsureIronstoneNodeSpriteAsset();
             var ironstoneDropSprite = EnsureIronstoneDropSpriteAsset();
             var sandPatchRuleTile = LoadSandPatchRuleTileAsset();
+            var featureRuleGroundTile = LoadFeatureRuleGroundTileAsset();
             var sandSprites = EnsureSandSprites();
             var sandOverlaySprites = EnsureSandOverlaySprites();
             var pebbleSprites = EnsurePebbleSprites();
@@ -124,6 +133,7 @@ namespace BooterBigArm.Editor
                 tallPropPrefabs,
                 propCatalog,
                 sandPatchRuleTile,
+                featureRuleGroundTile,
                 sandSprites,
                 sandOverlaySprites,
                 pebbleSprites,
@@ -220,9 +230,46 @@ namespace BooterBigArm.Editor
             }
 
             var sandOverlayOffsetTilemap = EnsureOffsetSandOverlayTilemap(generator);
+            var sandPatchRuleTile = LoadSandPatchRuleTileAsset();
+            var featureRuleGroundTilemap = EnsureFeatureRuleGroundTilemap(generator);
+            var featureRuleGroundTile = LoadFeatureRuleGroundTileAsset();
+            SetObjectReference(generator, "ruleGroundTile", sandPatchRuleTile);
             SetObjectReference(generator, "sandOverlayOffsetTilemap", sandOverlayOffsetTilemap);
             SetObjectArray(generator, "sandOverlayTileSprites", sandOverlaySprites);
             SetObjectArray(generator, "sandOverlayOffsetTileSprites", sandOverlaySprites);
+            SetObjectReference(generator, "featureRuleGroundTilemap", featureRuleGroundTilemap);
+            SetObjectReference(generator, "featureRuleGroundTile", featureRuleGroundTile);
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+
+        [MenuItem("Booter & BigARM/Prototype/Repair Prototype Ground Layers")]
+        public static void RepairPrototypeGroundLayers()
+        {
+            var scene = EditorSceneManager.OpenScene(PrototypeScenePath, OpenSceneMode.Single);
+            var generator = UnityEngine.Object.FindAnyObjectByType<PrototypeWorldGenerator>();
+            if (generator == null)
+            {
+                throw new InvalidOperationException(
+                    $"Unable to find {nameof(PrototypeWorldGenerator)} in '{PrototypeScenePath}'.");
+            }
+
+            var worldRoot = generator.transform.parent != null ? generator.transform.parent.parent : null;
+            if (worldRoot != null)
+            {
+                SetGridActive(worldRoot, "Sand Patch Grid", false);
+                SetGridActive(worldRoot, "Ground Grid", false);
+            }
+
+            var sandPatchRuleTile = LoadSandPatchRuleTileAsset();
+            var featureRuleGroundTilemap = EnsureFeatureRuleGroundTilemap(generator);
+            var featureRuleGroundTile = LoadFeatureRuleGroundTileAsset();
+            SetObjectReference(generator, "ruleGroundTile", sandPatchRuleTile);
+            SetObjectReference(generator, "featureRuleGroundTilemap", featureRuleGroundTilemap);
+            SetObjectReference(generator, "featureRuleGroundTile", featureRuleGroundTile);
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
@@ -357,6 +404,7 @@ namespace BooterBigArm.Editor
             GameObject[] tallPropPrefabs,
             PrototypeWorldPropCatalog propCatalog,
             RuleTile sandPatchRuleTile,
+            RuleTile featureRuleGroundTile,
             Sprite[] sandSprites,
             Sprite[] sandOverlaySprites,
             Sprite[] pebbleSprites,
@@ -375,6 +423,7 @@ namespace BooterBigArm.Editor
             propRoot.transform.SetParent(worldRoot.transform, false);
 
             var sandPatchGrid = CreateGrid(worldRoot.transform, "Sand Patch Grid", new Vector3(0.5f, 0.5f, 1f));
+            var featureRuleGroundGrid = CreateGrid(worldRoot.transform, FeatureRuleGroundGridName, Vector3.one, new Vector3(0f, 0f, -1f));
             var groundGrid = CreateGrid(worldRoot.transform, "Ground Grid", Vector3.one);
             var sandGrid = CreateGrid(worldRoot.transform, "Sand Grid", new Vector3(2f, 2f, 1f));
             var sandOverlayGrid = CreateGrid(worldRoot.transform, SandOverlayGridName, new Vector3(4f, 4f, 1f), new Vector3(0.5f, 0.5f, 0f));
@@ -385,6 +434,7 @@ namespace BooterBigArm.Editor
             groundGrid.gameObject.SetActive(false);
 
             var sandPatchTilemap = CreateTilemapLayer(sandPatchGrid.transform, "Sand Patch Tilemap", 5);
+            var featureRuleGroundTilemap = CreateTilemapLayer(featureRuleGroundGrid.transform, FeatureRuleGroundTilemapName, FeatureRuleGroundSortingOrder);
             var sandTilemap = CreateTilemapLayer(sandGrid.transform, "Sand Tilemap", 0);
             var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 1);
             var sandOverlayOffsetTilemap = CreateTilemapLayer(sandOverlayOffsetGrid.transform, SandOverlayOffsetTilemapName, 1);
@@ -397,6 +447,8 @@ namespace BooterBigArm.Editor
             SetObjectReference(generator, "worldSettings", worldSettings);
             SetObjectReference(generator, "ruleGroundTilemap", sandPatchTilemap);
             SetObjectReference(generator, "ruleGroundTile", sandPatchRuleTile);
+            SetObjectReference(generator, "featureRuleGroundTilemap", featureRuleGroundTilemap);
+            SetObjectReference(generator, "featureRuleGroundTile", featureRuleGroundTile);
             SetObjectArray(generator, "tileSprites", sandSprites);
             SetObjectReference(generator, "sandOverlayTilemap", sandOverlayTilemap);
             SetObjectArray(generator, "sandOverlayTileSprites", sandOverlaySprites);
@@ -506,6 +558,59 @@ namespace BooterBigArm.Editor
             }
 
             return CreateTilemapLayer(grid.transform, SandOverlayOffsetTilemapName, 1);
+        }
+
+        private static Tilemap EnsureFeatureRuleGroundTilemap(PrototypeWorldGenerator generator)
+        {
+            if (generator == null)
+            {
+                return null;
+            }
+
+            var worldRoot = generator.transform.parent != null ? generator.transform.parent.parent : null;
+            if (worldRoot == null)
+            {
+                return null;
+            }
+
+            var gridTransform = worldRoot.Find(FeatureRuleGroundGridName);
+            Grid grid;
+            if (gridTransform == null)
+            {
+                grid = CreateGrid(worldRoot, FeatureRuleGroundGridName, Vector3.one, new Vector3(0f, 0f, -1f));
+            }
+            else
+            {
+                grid = gridTransform.GetComponent<Grid>();
+                if (grid == null)
+                {
+                    grid = gridTransform.gameObject.AddComponent<Grid>();
+                }
+
+                grid.cellSize = Vector3.one;
+                gridTransform.localPosition = new Vector3(0f, 0f, -1f);
+            }
+
+            grid.gameObject.SetActive(true);
+
+            var tilemapTransform = grid.transform.Find(FeatureRuleGroundTilemapName);
+            if (tilemapTransform != null)
+            {
+                var existingTilemap = tilemapTransform.GetComponent<Tilemap>();
+                if (existingTilemap != null)
+                {
+                    var existingRenderer = tilemapTransform.GetComponent<TilemapRenderer>();
+                    if (existingRenderer != null)
+                    {
+                        existingRenderer.sortingOrder = FeatureRuleGroundSortingOrder;
+                        EnableAutomaticChunkCullingBounds(existingRenderer);
+                    }
+
+                    return existingTilemap;
+                }
+            }
+
+            return CreateTilemapLayer(grid.transform, FeatureRuleGroundTilemapName, FeatureRuleGroundSortingOrder);
         }
 
         private static void EnableAutomaticChunkCullingBounds(TilemapRenderer renderer)
@@ -1299,6 +1404,153 @@ namespace BooterBigArm.Editor
             }
 
             return AssetDatabase.LoadAssetAtPath<RuleTile>(SandPatchRuleTilePath);
+        }
+
+        private static RuleTile LoadFeatureRuleGroundTileAsset()
+        {
+            var folderPath = Path.GetDirectoryName(FeatureRuleGroundTileAssetPath);
+            if (!string.IsNullOrEmpty(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            var existingRuleTile = AssetDatabase.LoadAssetAtPath<RuleTile>(FeatureRuleGroundTileAssetPath);
+            var sourceTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(FeatureRuleGroundTexturePath);
+            if (sourceTexture == null)
+            {
+                if (existingRuleTile == null)
+                {
+                    Debug.LogWarning(
+                        $"Feature rule-ground source texture is missing at '{FeatureRuleGroundTexturePath}'. " +
+                        "The dedicated 32x32 layer will stay wired but empty until that asset is present.");
+                }
+
+                return existingRuleTile;
+            }
+
+            var templateRuleTile = AssetDatabase.LoadAssetAtPath<RuleTile>(RuleGroundTemplateRuleTilePath);
+            var templateTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(RuleGroundTemplateTexturePath);
+            if (templateRuleTile == null || templateTexture == null)
+            {
+                throw new InvalidOperationException(
+                    $"Missing rule-ground template assets at '{RuleGroundTemplateRuleTilePath}' or '{RuleGroundTemplateTexturePath}'.");
+            }
+
+            EnsureRuleGroundSpriteSheetImport(sourceTexture, templateTexture);
+            AssetDatabase.ImportAsset(FeatureRuleGroundTexturePath, ImportAssetOptions.ForceSynchronousImport);
+
+            var ruleTile = existingRuleTile;
+            if (ruleTile == null)
+            {
+                ruleTile = ScriptableObject.CreateInstance<RuleTile>();
+                ruleTile.name = Path.GetFileNameWithoutExtension(FeatureRuleGroundTileAssetPath);
+                AssetDatabase.CreateAsset(ruleTile, FeatureRuleGroundTileAssetPath);
+            }
+
+            CopyRuleTileFromTemplate(templateRuleTile, ruleTile);
+
+            EditorUtility.SetDirty(ruleTile);
+            AssetDatabase.SaveAssets();
+            return AssetDatabase.LoadAssetAtPath<RuleTile>(FeatureRuleGroundTileAssetPath);
+        }
+
+        private static void EnsureRuleGroundSpriteSheetImport(Texture2D sourceTexture, Texture2D templateTexture)
+        {
+            if (sourceTexture == null || templateTexture == null)
+            {
+                return;
+            }
+
+            var importer = AssetImporter.GetAtPath(FeatureRuleGroundTexturePath) as TextureImporter;
+            if (importer == null)
+            {
+                return;
+            }
+
+            var templateSprites = AssetDatabase
+                .LoadAllAssetRepresentationsAtPath(RuleGroundTemplateTexturePath)
+                .OfType<Sprite>()
+                .OrderBy(sprite => sprite.rect.y)
+                .ThenBy(sprite => sprite.rect.x)
+                .ToArray();
+            if (templateSprites.Length == 0)
+            {
+                return;
+            }
+
+            var scaleX = sourceTexture.width / Mathf.Max(1f, templateTexture.width);
+            var scaleY = sourceTexture.height / Mathf.Max(1f, templateTexture.height);
+            var spriteSheet = new SpriteMetaData[templateSprites.Length];
+            for (var i = 0; i < templateSprites.Length; i++)
+            {
+                var templateSprite = templateSprites[i];
+                var rect = templateSprite.rect;
+                spriteSheet[i] = new SpriteMetaData
+                {
+                    name = templateSprite.name,
+                    alignment = (int)SpriteAlignment.Center,
+                    pivot = new Vector2(0.5f, 0.5f),
+                    rect = new Rect(
+                        rect.x * scaleX,
+                        rect.y * scaleY,
+                        rect.width * scaleX,
+                        rect.height * scaleY)
+                };
+            }
+
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Multiple;
+            importer.spritePixelsPerUnit = FeatureRuleGroundPixelsPerUnit;
+            importer.filterMode = FilterMode.Point;
+            importer.mipmapEnabled = false;
+            importer.textureCompression = TextureImporterCompression.Uncompressed;
+            importer.alphaIsTransparency = true;
+            importer.wrapMode = TextureWrapMode.Clamp;
+#pragma warning disable 0618
+            importer.spritesheet = spriteSheet;
+#pragma warning restore 0618
+            importer.SaveAndReimport();
+        }
+
+        private static void CopyRuleTileFromTemplate(RuleTile templateRuleTile, RuleTile targetRuleTile)
+        {
+            if (templateRuleTile == null || targetRuleTile == null)
+            {
+                return;
+            }
+
+            var sourceSprites = AssetDatabase
+                .LoadAllAssetRepresentationsAtPath(FeatureRuleGroundTexturePath)
+                .OfType<Sprite>()
+                .ToDictionary(sprite => sprite.name, sprite => sprite, StringComparer.Ordinal);
+
+            targetRuleTile.m_DefaultSprite = ResolveTemplateSprite(templateRuleTile.m_DefaultSprite, sourceSprites);
+            targetRuleTile.m_DefaultGameObject = templateRuleTile.m_DefaultGameObject;
+            targetRuleTile.m_DefaultColliderType = templateRuleTile.m_DefaultColliderType;
+            targetRuleTile.m_TilingRules = new List<RuleTile.TilingRule>(templateRuleTile.m_TilingRules.Count);
+
+            foreach (var templateRule in templateRuleTile.m_TilingRules)
+            {
+                var copiedRule = templateRule.Clone();
+                for (var i = 0; i < copiedRule.m_Sprites.Length; i++)
+                {
+                    copiedRule.m_Sprites[i] = ResolveTemplateSprite(
+                        i < templateRule.m_Sprites.Length ? templateRule.m_Sprites[i] : null,
+                        sourceSprites);
+                }
+
+                targetRuleTile.m_TilingRules.Add(copiedRule);
+            }
+        }
+
+        private static Sprite ResolveTemplateSprite(Sprite templateSprite, Dictionary<string, Sprite> sourceSprites)
+        {
+            if (templateSprite == null || sourceSprites == null)
+            {
+                return null;
+            }
+
+            return sourceSprites.TryGetValue(templateSprite.name, out var mappedSprite) ? mappedSprite : null;
         }
 
         private static Sprite[] LoadPsdSprites(string path, string spritePrefix)
