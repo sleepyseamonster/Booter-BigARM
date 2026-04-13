@@ -26,10 +26,8 @@ namespace BooterBigArm.Editor
         private const string TallPropPrefabPath = "Assets/_Project/Prefabs/Prototype/TallPropPlaceholder.prefab";
         private const string RuleGroundFolder = "Assets/_Project/Art/Prototype/Ground/RuleGround";
         private const string SandPatchRuleTilePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/Sand Patch.asset";
-        private const string RuleGroundTemplateTexturePath = "Assets/_Project/Art/Prototype/Ground/Sand/rule_tile_template_16px.psd";
-        private const string RuleGroundTemplateRuleTilePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/RuleGroundRuleTile.asset";
-        private const string FeatureRuleGroundTexturePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/F27B229E-26CF-45A6-9CEA-70C635608356.png";
-        private const string FeatureRuleGroundTileAssetPath = "Assets/_Project/Art/Prototype/Ground/RuleGround/F27B229E-26CF-45A6-9CEA-70C635608356.asset";
+        private const string FeatureRuleGroundTexturePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/rocky.png";
+        private const string FeatureRuleGroundTileAssetPath = "Assets/_Project/Art/Prototype/Ground/RuleGround/rocky.asset";
         private const string TallPropWidePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropWide64x64.prefab";
         private const string TallPropTallPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTall64x96.prefab";
         private const string TallPropSquarePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSquare32x32.prefab";
@@ -75,9 +73,19 @@ namespace BooterBigArm.Editor
         private const string VolumeProfilePath = "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset";
         private const int RuleGroundTextureSize = 16;
         private const int FeatureRuleGroundSortingOrder = 5;
-        private const float FeatureRuleGroundPixelsPerUnit = 32f;
         private const int ShadowSortingOrder = 6;
         private const int ActorSortingOrder = 7;
+        private static readonly Vector3Int[] FeatureRuleGroundNeighborPositions =
+        {
+            new Vector3Int(-1, 1, 0),
+            new Vector3Int(0, 1, 0),
+            new Vector3Int(1, 1, 0),
+            new Vector3Int(-1, 0, 0),
+            new Vector3Int(1, 0, 0),
+            new Vector3Int(-1, -1, 0),
+            new Vector3Int(0, -1, 0),
+            new Vector3Int(1, -1, 0)
+        };
 
         [MenuItem("Booter & BigARM/Prototype/Build Prototype Scene")]
         public static void BuildPrototypeScene()
@@ -1428,16 +1436,14 @@ namespace BooterBigArm.Editor
                 return existingRuleTile;
             }
 
-            var templateRuleTile = AssetDatabase.LoadAssetAtPath<RuleTile>(RuleGroundTemplateRuleTilePath);
-            var templateTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(RuleGroundTemplateTexturePath);
-            if (templateRuleTile == null || templateTexture == null)
+            var sourceSprites = LoadFeatureRuleGroundSprites();
+            var requiredSpriteCount = RuleGroundMasks.CanonicalMasks.Length;
+            if (sourceSprites.Length < requiredSpriteCount)
             {
                 throw new InvalidOperationException(
-                    $"Missing rule-ground template assets at '{RuleGroundTemplateRuleTilePath}' or '{RuleGroundTemplateTexturePath}'.");
+                    $"Feature rule-ground texture '{FeatureRuleGroundTexturePath}' must provide at least {requiredSpriteCount} sprites named " +
+                    $"'rocky_0' through 'rocky_{requiredSpriteCount - 1}'. Found {sourceSprites.Length}.");
             }
-
-            EnsureRuleGroundSpriteSheetImport(sourceTexture, templateTexture);
-            AssetDatabase.ImportAsset(FeatureRuleGroundTexturePath, ImportAssetOptions.ForceSynchronousImport);
 
             var ruleTile = existingRuleTile;
             if (ruleTile == null)
@@ -1447,110 +1453,69 @@ namespace BooterBigArm.Editor
                 AssetDatabase.CreateAsset(ruleTile, FeatureRuleGroundTileAssetPath);
             }
 
-            CopyRuleTileFromTemplate(templateRuleTile, ruleTile);
+            PopulateFeatureRuleGroundRuleTile(ruleTile, sourceSprites);
 
             EditorUtility.SetDirty(ruleTile);
             AssetDatabase.SaveAssets();
             return AssetDatabase.LoadAssetAtPath<RuleTile>(FeatureRuleGroundTileAssetPath);
         }
 
-        private static void EnsureRuleGroundSpriteSheetImport(Texture2D sourceTexture, Texture2D templateTexture)
+        private static void PopulateFeatureRuleGroundRuleTile(RuleTile ruleTile, Sprite[] sourceSprites)
         {
-            if (sourceTexture == null || templateTexture == null)
+            if (ruleTile == null || sourceSprites == null)
             {
                 return;
             }
 
-            var importer = AssetImporter.GetAtPath(FeatureRuleGroundTexturePath) as TextureImporter;
-            if (importer == null)
-            {
-                return;
-            }
+            var ruleCount = RuleGroundMasks.CanonicalMasks.Length;
+            ruleTile.m_DefaultSprite = sourceSprites.Length > ruleCount ? sourceSprites[ruleCount] : sourceSprites[0];
+            ruleTile.m_DefaultGameObject = null;
+            ruleTile.m_DefaultColliderType = Tile.ColliderType.None;
+            ruleTile.m_TilingRules = new List<RuleTile.TilingRule>(ruleCount);
 
-            var templateSprites = AssetDatabase
-                .LoadAllAssetRepresentationsAtPath(RuleGroundTemplateTexturePath)
-                .OfType<Sprite>()
-                .OrderBy(sprite => sprite.rect.y)
-                .ThenBy(sprite => sprite.rect.x)
-                .ToArray();
-            if (templateSprites.Length == 0)
+            for (var i = 0; i < ruleCount; i++)
             {
-                return;
+                ruleTile.m_TilingRules.Add(CreateFeatureRuleGroundTilingRule(RuleGroundMasks.CanonicalMasks[i], sourceSprites[i]));
             }
-
-            var scaleX = sourceTexture.width / Mathf.Max(1f, templateTexture.width);
-            var scaleY = sourceTexture.height / Mathf.Max(1f, templateTexture.height);
-            var spriteSheet = new SpriteMetaData[templateSprites.Length];
-            for (var i = 0; i < templateSprites.Length; i++)
-            {
-                var templateSprite = templateSprites[i];
-                var rect = templateSprite.rect;
-                spriteSheet[i] = new SpriteMetaData
-                {
-                    name = templateSprite.name,
-                    alignment = (int)SpriteAlignment.Center,
-                    pivot = new Vector2(0.5f, 0.5f),
-                    rect = new Rect(
-                        rect.x * scaleX,
-                        rect.y * scaleY,
-                        rect.width * scaleX,
-                        rect.height * scaleY)
-                };
-            }
-
-            importer.textureType = TextureImporterType.Sprite;
-            importer.spriteImportMode = SpriteImportMode.Multiple;
-            importer.spritePixelsPerUnit = FeatureRuleGroundPixelsPerUnit;
-            importer.filterMode = FilterMode.Point;
-            importer.mipmapEnabled = false;
-            importer.textureCompression = TextureImporterCompression.Uncompressed;
-            importer.alphaIsTransparency = true;
-            importer.wrapMode = TextureWrapMode.Clamp;
-#pragma warning disable 0618
-            importer.spritesheet = spriteSheet;
-#pragma warning restore 0618
-            importer.SaveAndReimport();
         }
 
-        private static void CopyRuleTileFromTemplate(RuleTile templateRuleTile, RuleTile targetRuleTile)
+        private static RuleTile.TilingRule CreateFeatureRuleGroundTilingRule(int mask, Sprite sprite)
         {
-            if (templateRuleTile == null || targetRuleTile == null)
+            var neighbors = new List<int>(FeatureRuleGroundNeighborPositions.Length);
+            for (var bit = 0; bit < FeatureRuleGroundNeighborPositions.Length; bit++)
             {
-                return;
+                var neighbor = (mask & (1 << bit)) != 0
+                    ? RuleTile.TilingRuleOutput.Neighbor.This
+                    : RuleTile.TilingRuleOutput.Neighbor.NotThis;
+                neighbors.Add(neighbor);
             }
 
-            var sourceSprites = AssetDatabase
+            return new RuleTile.TilingRule
+            {
+                m_Id = mask,
+                m_Sprites = new[] { sprite },
+                m_GameObject = null,
+                m_MinAnimationSpeed = 1f,
+                m_MaxAnimationSpeed = 1f,
+                m_PerlinScale = 0.5f,
+                m_Output = RuleTile.TilingRuleOutput.OutputSprite.Single,
+                m_ColliderType = Tile.ColliderType.None,
+                m_RandomTransform = RuleTile.TilingRuleOutput.Transform.Fixed,
+                m_Neighbors = neighbors,
+                m_NeighborPositions = new List<Vector3Int>(FeatureRuleGroundNeighborPositions),
+                m_RuleTransform = RuleTile.TilingRuleOutput.Transform.Fixed
+            };
+        }
+
+        private static Sprite[] LoadFeatureRuleGroundSprites()
+        {
+            return AssetDatabase
                 .LoadAllAssetRepresentationsAtPath(FeatureRuleGroundTexturePath)
                 .OfType<Sprite>()
-                .ToDictionary(sprite => sprite.name, sprite => sprite, StringComparer.Ordinal);
-
-            targetRuleTile.m_DefaultSprite = ResolveTemplateSprite(templateRuleTile.m_DefaultSprite, sourceSprites);
-            targetRuleTile.m_DefaultGameObject = templateRuleTile.m_DefaultGameObject;
-            targetRuleTile.m_DefaultColliderType = templateRuleTile.m_DefaultColliderType;
-            targetRuleTile.m_TilingRules = new List<RuleTile.TilingRule>(templateRuleTile.m_TilingRules.Count);
-
-            foreach (var templateRule in templateRuleTile.m_TilingRules)
-            {
-                var copiedRule = templateRule.Clone();
-                for (var i = 0; i < copiedRule.m_Sprites.Length; i++)
-                {
-                    copiedRule.m_Sprites[i] = ResolveTemplateSprite(
-                        i < templateRule.m_Sprites.Length ? templateRule.m_Sprites[i] : null,
-                        sourceSprites);
-                }
-
-                targetRuleTile.m_TilingRules.Add(copiedRule);
-            }
-        }
-
-        private static Sprite ResolveTemplateSprite(Sprite templateSprite, Dictionary<string, Sprite> sourceSprites)
-        {
-            if (templateSprite == null || sourceSprites == null)
-            {
-                return null;
-            }
-
-            return sourceSprites.TryGetValue(templateSprite.name, out var mappedSprite) ? mappedSprite : null;
+                .Where(sprite => sprite.name.StartsWith("rocky_", StringComparison.OrdinalIgnoreCase))
+                .OrderBy(GetSpriteSortKey)
+                .ThenBy(sprite => sprite.name, StringComparer.OrdinalIgnoreCase)
+                .ToArray();
         }
 
         private static Sprite[] LoadPsdSprites(string path, string spritePrefix)
