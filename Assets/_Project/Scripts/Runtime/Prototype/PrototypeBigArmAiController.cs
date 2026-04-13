@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BooterBigArm.Runtime
@@ -23,11 +22,12 @@ namespace BooterBigArm.Runtime
         [SerializeField] private PrototypeInventory storageInventory;
         [SerializeField] private Transform homeAnchor;
         [SerializeField, Min(0.5f)] private float moveSpeed = 2.8f;
+        [SerializeField, Min(0.1f)] private float acceleration = 18f;
+        [SerializeField, Min(0.1f)] private float deceleration = 24f;
+        [SerializeField, Min(0.1f)] private float slowdownDistance = 1f;
+        [SerializeField, Min(0.1f)] private float destinationUpdateThreshold = 0.2f;
         [SerializeField, Min(0.1f)] private float waypointTolerance = 0.2f;
         [SerializeField, Min(0.1f)] private float harvestRange = 1.45f;
-        [SerializeField, Min(0.1f)] private float repathInterval = 0.35f;
-        [SerializeField, Min(0.5f)] private float cellSize = 0.85f;
-        [SerializeField, Min(4)] private int searchRadiusCells = 28;
         [SerializeField, Range(0.1f, 0.95f)] private float returnHomeSlotFraction = 0.7f;
         [SerializeField, Min(2f)] private float followPlayerDistance = 8f;
         [SerializeField, Min(4f)] private float taskSearchRadius = 70f;
@@ -36,14 +36,11 @@ namespace BooterBigArm.Runtime
         [SerializeField, Min(1f)] private float autoScoutInterval = 18f;
         [SerializeField, Min(1f)] private float hiddenAwayDuration = 6f;
         [SerializeField, Min(0.5f)] private float scoutAdvanceDistance = 10f;
-        [SerializeField] private LayerMask obstacleMask = ~0;
 
         private Rigidbody2D body;
         private SpriteRenderer spriteRenderer;
         private Collider2D bodyCollider;
-        private readonly List<Vector2> path = new List<Vector2>(32);
-        private int pathIndex;
-        private float repathTimer;
+        private Vector2 currentVelocity;
         private float taskPauseTimer;
         private float autoScoutTimer;
         private float hiddenAwayTimer;
@@ -76,6 +73,8 @@ namespace BooterBigArm.Runtime
             {
                 RevealFromHiddenAway("Recalled by Booter.");
             }
+
+            SetTask(BigArmTask.FollowPlayer, GetFollowDestination(), null, "Following Booter");
         }
 
         public void RequestScout()
@@ -132,7 +131,6 @@ namespace BooterBigArm.Runtime
                 taskPauseTimer -= Time.deltaTime;
             }
 
-            repathTimer -= Time.deltaTime;
             if (!isHiddenAway)
             {
                 autoScoutTimer -= Time.deltaTime;
@@ -158,7 +156,6 @@ namespace BooterBigArm.Runtime
                 hiddenAwayTimer -= Time.deltaTime;
                 CurrentTaskLabel = "Away";
                 CurrentStatusMessage = "BigARM is away.";
-                currentDestination = homeAnchor != null ? homeAnchor.position : transform.position;
                 if (hiddenAwayTimer <= 0f)
                 {
                     RevealFromHiddenAway("Returning to Booter.");
@@ -191,7 +188,9 @@ namespace BooterBigArm.Runtime
             {
                 CurrentTaskLabel = "Protecting Booter";
                 CurrentStatusMessage = "Staying close to Booter.";
-                currentDestination = GetProtectDestination(playerMotor != null ? playerMotor.transform.position : transform.position);
+                ApplyDestination(
+                    GetProtectDestination(playerMotor != null ? playerMotor.transform.position : transform.position),
+                    false);
             }
             else if (recallRequested)
             {
@@ -215,44 +214,23 @@ namespace BooterBigArm.Runtime
             {
                 HandleMissionTask();
             }
-
-            if (!isHiddenAway && repathTimer <= 0f && taskPauseTimer <= 0f)
-            {
-                RebuildPath();
-                repathTimer = repathInterval;
-            }
         }
 
         private void FixedUpdate()
         {
-            if (body == null || taskPauseTimer > 0f || isHiddenAway)
+            if (body == null || isHiddenAway)
             {
+                currentVelocity = Vector2.zero;
                 return;
             }
 
-            if (path.Count == 0)
+            if (taskPauseTimer > 0f)
             {
-                MoveTowards(currentDestination);
+                currentVelocity = Vector2.MoveTowards(currentVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
                 return;
             }
 
-            var target = pathIndex < path.Count ? path[pathIndex] : currentDestination;
-            var distance = Vector2.Distance(body.position, target);
-            if (distance <= waypointTolerance)
-            {
-                pathIndex++;
-                if (pathIndex >= path.Count)
-                {
-                    path.Clear();
-                    pathIndex = 0;
-                    MoveTowards(currentDestination);
-                    return;
-                }
-
-                target = path[pathIndex];
-            }
-
-            MoveTowards(target);
+            MoveTowards(currentDestination);
         }
 
         private void HandleMissionTask()
@@ -281,7 +259,7 @@ namespace BooterBigArm.Runtime
                 ? $"Harvest {activeNode.DisplayName}"
                 : $"Scout {activeNode.DisplayName}";
             CurrentStatusMessage = $"Moving to {activeNode.DisplayName}.";
-            currentDestination = activeNode.transform.position;
+            ApplyDestination(activeNode.transform.position, false);
 
             var nodeDistance = Vector2.Distance(transform.position, activeNode.transform.position);
             if (nodeDistance > harvestRange || taskPauseTimer > 0f)
@@ -295,6 +273,7 @@ namespace BooterBigArm.Runtime
             }
 
             CurrentStatusMessage = $"Harvested {activeNode.DisplayName}.";
+            currentVelocity = Vector2.zero;
             taskPauseTimer = 0.35f;
             if (ShouldReturnHome())
             {
@@ -318,19 +297,28 @@ namespace BooterBigArm.Runtime
 
         private void SetTask(BigArmTask task, Vector2 destination, PrototypeHarvestNode node, string label)
         {
-            if (currentTask == task && node == activeNode && Vector2.Distance(currentDestination, destination) < 0.05f)
+            var taskChanged = currentTask != task || node != activeNode;
+            currentTask = task;
+            activeNode = node;
+            CurrentTaskLabel = label;
+            CurrentStatusMessage = label;
+
+            ApplyDestination(destination, taskChanged);
+        }
+
+        private void ApplyDestination(Vector2 destination, bool forceRetarget)
+        {
+            if (!forceRetarget && Vector2.Distance(currentDestination, destination) < destinationUpdateThreshold)
             {
                 return;
             }
 
-            currentTask = task;
-            activeNode = node;
             currentDestination = destination;
-            CurrentTaskLabel = label;
-            CurrentStatusMessage = label;
-            path.Clear();
-            pathIndex = 0;
-            repathTimer = 0f;
+
+            if (forceRetarget)
+            {
+                currentVelocity = Vector2.zero;
+            }
         }
 
         private void EnterHiddenAwayState(string statusMessage, float duration)
@@ -340,8 +328,6 @@ namespace BooterBigArm.Runtime
             hiddenAwayTimer = Mathf.Max(0f, duration);
             isHiddenAway = true;
             SetHiddenState(true);
-            path.Clear();
-            pathIndex = 0;
             CurrentTaskLabel = "Away";
             CurrentStatusMessage = string.IsNullOrWhiteSpace(statusMessage) ? "BigARM is away." : statusMessage;
             currentDestination = homeAnchor != null ? (Vector2)homeAnchor.position : (Vector2)transform.position;
@@ -371,6 +357,11 @@ namespace BooterBigArm.Runtime
             if (body != null)
             {
                 body.simulated = !hidden;
+            }
+
+            if (hidden)
+            {
+                currentVelocity = Vector2.zero;
             }
         }
 
@@ -543,221 +534,6 @@ namespace BooterBigArm.Runtime
             SetTask(BigArmTask.Scout, GetScoutDestination(), null, "Scouting ahead");
         }
 
-        private void RebuildPath()
-        {
-            if (currentTask == BigArmTask.Idle && Vector2.Distance(transform.position, currentDestination) <= waypointTolerance)
-            {
-                path.Clear();
-                pathIndex = 0;
-                return;
-            }
-
-            var start = (Vector2)transform.position;
-            var destination = currentDestination;
-            if (TryBuildPath(start, destination, out var newPath))
-            {
-                path.Clear();
-                path.AddRange(newPath);
-                pathIndex = 0;
-            }
-            else
-            {
-                path.Clear();
-                pathIndex = 0;
-            }
-        }
-
-        private bool TryBuildPath(Vector2 start, Vector2 destination, out List<Vector2> result)
-        {
-            result = new List<Vector2>(32);
-            var startCell = WorldToCell(start);
-            var goalCell = WorldToCell(destination);
-            var resolvedGoal = FindWalkableCellNear(goalCell, destination);
-            if (resolvedGoal == null)
-            {
-                return false;
-            }
-
-            var open = new List<Vector2Int> { startCell };
-            var cameFrom = new Dictionary<Vector2Int, Vector2Int>();
-            var gScore = new Dictionary<Vector2Int, int> { [startCell] = 0 };
-            var fScore = new Dictionary<Vector2Int, int> { [startCell] = Heuristic(startCell, resolvedGoal.Value) };
-            var closed = new HashSet<Vector2Int>();
-            var safetyBudget = Mathf.Max(64, searchRadiusCells * searchRadiusCells * 4);
-
-            while (open.Count > 0 && safetyBudget-- > 0)
-            {
-                var currentIndex = GetLowestScoreIndex(open, fScore);
-                var current = open[currentIndex];
-                if (current == resolvedGoal.Value)
-                {
-                    result = ReconstructPath(cameFrom, current, startCell);
-                    return true;
-                }
-
-                open.RemoveAt(currentIndex);
-                closed.Add(current);
-
-                var neighbors = GetNeighbors(current);
-                for (var i = 0; i < neighbors.Length; i++)
-                {
-                    var neighbor = neighbors[i];
-                    if (closed.Contains(neighbor) || IsCellBlocked(neighbor, destination))
-                    {
-                        continue;
-                    }
-
-                    var tentativeG = gScore[current] + 1;
-                    if (gScore.TryGetValue(neighbor, out var knownG) && tentativeG >= knownG)
-                    {
-                        continue;
-                    }
-
-                    cameFrom[neighbor] = current;
-                    gScore[neighbor] = tentativeG;
-                    fScore[neighbor] = tentativeG + Heuristic(neighbor, resolvedGoal.Value);
-                    if (!open.Contains(neighbor))
-                    {
-                        open.Add(neighbor);
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        private Vector2Int[] GetNeighbors(Vector2Int cell)
-        {
-            return new[]
-            {
-                new Vector2Int(cell.x + 1, cell.y),
-                new Vector2Int(cell.x - 1, cell.y),
-                new Vector2Int(cell.x, cell.y + 1),
-                new Vector2Int(cell.x, cell.y - 1)
-            };
-        }
-
-        private Vector2Int? FindWalkableCellNear(Vector2Int cell, Vector2 goal)
-        {
-            if (!IsCellBlocked(cell, goal))
-            {
-                return cell;
-            }
-
-            for (var radius = 1; radius <= searchRadiusCells; radius++)
-            {
-                for (var y = -radius; y <= radius; y++)
-                {
-                    for (var x = -radius; x <= radius; x++)
-                    {
-                        if (Mathf.Abs(x) != radius && Mathf.Abs(y) != radius)
-                        {
-                            continue;
-                        }
-
-                        var candidate = new Vector2Int(cell.x + x, cell.y + y);
-                        if (!IsCellBlocked(candidate, goal))
-                        {
-                            return candidate;
-                        }
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        private bool IsCellBlocked(Vector2Int cell, Vector2 goal)
-        {
-            var center = CellToWorld(cell);
-            var size = new Vector2(cellSize * 0.8f, cellSize * 0.8f);
-            var colliders = Physics2D.OverlapBoxAll(center, size, 0f, obstacleMask);
-            for (var i = 0; i < colliders.Length; i++)
-            {
-                var collider = colliders[i];
-                if (collider == null || collider.isTrigger)
-                {
-                    continue;
-                }
-
-                if (collider.transform == transform || collider.transform.IsChildOf(transform))
-                {
-                    continue;
-                }
-
-                if (playerMotor != null && (collider.transform == playerMotor.transform || collider.transform.IsChildOf(playerMotor.transform)))
-                {
-                    continue;
-                }
-
-                if (activeNode != null && (collider.transform == activeNode.transform || collider.transform.IsChildOf(activeNode.transform)))
-                {
-                    continue;
-                }
-
-                var goalDistance = Vector2.Distance(center, goal);
-                if (goalDistance <= cellSize * 0.6f)
-                {
-                    continue;
-                }
-
-                return true;
-            }
-
-            return false;
-        }
-
-        private int GetLowestScoreIndex(List<Vector2Int> open, Dictionary<Vector2Int, int> fScore)
-        {
-            var bestIndex = 0;
-            var bestScore = int.MaxValue;
-            for (var i = 0; i < open.Count; i++)
-            {
-                var candidate = open[i];
-                var score = fScore.TryGetValue(candidate, out var value) ? value : int.MaxValue;
-                if (score < bestScore)
-                {
-                    bestScore = score;
-                    bestIndex = i;
-                }
-            }
-
-            return bestIndex;
-        }
-
-        private int Heuristic(Vector2Int a, Vector2Int b)
-        {
-            return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
-        }
-
-        private List<Vector2> ReconstructPath(Dictionary<Vector2Int, Vector2Int> cameFrom, Vector2Int current, Vector2Int start)
-        {
-            var reversed = new List<Vector2>(32) { CellToWorld(current) };
-            while (cameFrom.TryGetValue(current, out var previous))
-            {
-                current = previous;
-                reversed.Add(CellToWorld(current));
-                if (current == start)
-                {
-                    break;
-                }
-            }
-
-            reversed.Reverse();
-            return reversed;
-        }
-
-        private Vector2Int WorldToCell(Vector2 position)
-        {
-            var size = Mathf.Max(0.1f, cellSize);
-            return new Vector2Int(Mathf.RoundToInt(position.x / size), Mathf.RoundToInt(position.y / size));
-        }
-
-        private Vector2 CellToWorld(Vector2Int cell)
-        {
-            return new Vector2(cell.x * cellSize, cell.y * cellSize);
-        }
-
         private void MoveTowards(Vector2 target)
         {
             if (body == null)
@@ -768,17 +544,27 @@ namespace BooterBigArm.Runtime
             var current = body.position;
             var direction = target - current;
             var distance = direction.magnitude;
-            if (distance <= 0.0001f)
+            var desiredVelocity = Vector2.zero;
+            if (distance > 0.0001f)
             {
-                return;
+                var desiredSpeed = moveSpeed;
+                var arrivalSlowdownDistance = Mathf.Max(slowdownDistance, waypointTolerance);
+                if (distance < arrivalSlowdownDistance)
+                {
+                    desiredSpeed *= distance / arrivalSlowdownDistance;
+                }
+
+                desiredVelocity = direction / distance * desiredSpeed;
             }
 
-            var step = Mathf.Min(moveSpeed * Time.fixedDeltaTime, distance);
-            body.MovePosition(current + direction.normalized * step);
+            var response = desiredVelocity.sqrMagnitude > currentVelocity.sqrMagnitude ? acceleration : deceleration;
+            currentVelocity = Vector2.MoveTowards(currentVelocity, desiredVelocity, response * Time.fixedDeltaTime);
+            body.MovePosition(current + currentVelocity * Time.fixedDeltaTime);
         }
 
         private void Teleport(Vector2 position)
         {
+            currentVelocity = Vector2.zero;
             if (body != null)
             {
                 body.position = position;
@@ -786,8 +572,6 @@ namespace BooterBigArm.Runtime
             }
 
             transform.position = position;
-            path.Clear();
-            pathIndex = 0;
             currentDestination = position;
         }
     }

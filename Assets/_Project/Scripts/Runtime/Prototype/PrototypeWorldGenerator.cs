@@ -154,6 +154,14 @@ namespace BooterBigArm.Runtime
                 worldSettings = GetComponentInParent<PrototypeWorldSettings>();
             }
 
+            if (worldSettings != null && worldSettings.PropCatalog == null)
+            {
+                Debug.LogWarning(
+                    $"{nameof(PrototypeWorldGenerator)} on {name} has no prop catalog assigned in {nameof(PrototypeWorldSettings)}. " +
+                    "Sparse prop spawning will fall back to the inspector prop array, which reduces boulder bias.",
+                    this);
+            }
+
             ConfigureTilemapRenderers();
             chunkSize = Mathf.Max(1, chunkSize);
             chunkRadius = Mathf.Max(0, chunkRadius);

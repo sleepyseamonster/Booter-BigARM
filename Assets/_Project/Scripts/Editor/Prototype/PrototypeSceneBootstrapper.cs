@@ -201,6 +201,13 @@ namespace BooterBigArm.Editor
                 EnsurePrefabInObjectArray(generator, "propPrefabs", boulderPrefabs[i]);
             }
 
+            var worldRoot = generator.transform.parent != null ? generator.transform.parent.parent : null;
+            if (worldRoot != null)
+            {
+                SetGridActive(worldRoot, "Sand Patch Grid", false);
+                SetGridActive(worldRoot, "Ground Grid", false);
+            }
+
             var sandOverlayGrid = generator.transform.parent != null ? generator.transform.parent.parent?.Find(SandOverlayGridName) : null;
             if (sandOverlayGrid != null)
             {
@@ -373,6 +380,10 @@ namespace BooterBigArm.Editor
             var sandOverlayGrid = CreateGrid(worldRoot.transform, SandOverlayGridName, new Vector3(4f, 4f, 1f), new Vector3(0.5f, 0.5f, 0f));
             var sandOverlayOffsetGrid = CreateGrid(worldRoot.transform, SandOverlayOffsetGridName, new Vector3(4f, 4f, 1f), new Vector3(1f, 1f, 0f));
 
+            // Keep the legacy patch and ground grids disabled unless a task explicitly asks for them.
+            sandPatchGrid.gameObject.SetActive(false);
+            groundGrid.gameObject.SetActive(false);
+
             var sandPatchTilemap = CreateTilemapLayer(sandPatchGrid.transform, "Sand Patch Tilemap", 5);
             var sandTilemap = CreateTilemapLayer(sandGrid.transform, "Sand Tilemap", 0);
             var sandOverlayTilemap = CreateTilemapLayer(sandOverlayGrid.transform, "Sand Overlay Tilemap", 1);
@@ -418,6 +429,20 @@ namespace BooterBigArm.Editor
             var grid = gridObject.AddComponent<Grid>();
             grid.cellSize = cellSize;
             return grid;
+        }
+
+        private static void SetGridActive(Transform worldRoot, string gridName, bool active)
+        {
+            if (worldRoot == null)
+            {
+                return;
+            }
+
+            var gridTransform = worldRoot.Find(gridName);
+            if (gridTransform != null)
+            {
+                gridTransform.gameObject.SetActive(active);
+            }
         }
 
         private static Tilemap CreateTilemapLayer(Transform parent, string name, int sortingOrder)

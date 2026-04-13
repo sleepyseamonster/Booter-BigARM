@@ -51,6 +51,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Pipeline: URP
 - Starting scene: `Assets/_Project/Scenes/SampleScene.unity`
 - Current settings assets: `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset` and `Assets/_Project/Settings/Rendering/URP/Renderer2D.asset`
+- In `Assets/_Project/Scenes/PrototypeScene.unity`, keep `Sand Patch Grid` and `Ground Grid` disabled in the hierarchy unless explicitly requested. Do not re-enable them during scene repair or bootstrap work.
 
 ## Canonical World Reference
 
