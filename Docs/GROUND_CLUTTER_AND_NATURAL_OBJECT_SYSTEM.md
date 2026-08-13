@@ -20,7 +20,7 @@ The Broken World has no plant life or open water. Natural clutter is therefore g
 1. `Obstacle`: sparse readable rocks with shared procedural meshes, simple box colliders, and realtime shadows. Obstacles remain rendered for the full lifetime of their off-camera-generated chunk so a screen-size cutoff cannot make them pop into view.
 2. `Scatter`: small non-colliding stones combined into one mesh per chunk so the chunk remains the culling and lifetime boundary.
 3. `GroundDetail`: dense chips and flakes combined into one mesh per chunk, with no colliders and no realtime shadow casting.
-4. `FineGrayCluster`: very small cool-gray grit and shale specks using an independent, stronger cluster mask, a separate shared material, no colliders, and no realtime shadow casting.
+4. `FineGrayCluster`: very small neutral-gray grit and shale specks using an independent, stronger cluster mask, a separate shared material, no colliders, and no realtime shadow casting.
 
 The default gray layer targets 118 candidates per 18-meter chunk. Its higher-frequency mask and `0.95` cluster strength form visible local patches without changing the seed streams or placement of the original three layers.
 

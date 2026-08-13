@@ -95,7 +95,11 @@ namespace BooterBigArm.Tests
             Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.Scatter), Is.True);
             Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.Obstacle), Is.True);
             Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.FineGrayCluster), Is.True);
-            Assert.That(LoadSettings().FineGrayClutterMaterial, Is.Not.Null);
+            var grayMaterial = LoadSettings().FineGrayClutterMaterial;
+            Assert.That(grayMaterial, Is.Not.Null);
+            var grayColor = grayMaterial.GetColor("_BaseColor");
+            Assert.That(grayColor.r, Is.EqualTo(grayColor.g).Within(0.0001f));
+            Assert.That(grayColor.g, Is.EqualTo(grayColor.b).Within(0.0001f));
             Assert.That(
                 catalog.Definitions.Select(definition => definition.StableId).Distinct().Count(),
                 Is.EqualTo(catalog.Definitions.Count));

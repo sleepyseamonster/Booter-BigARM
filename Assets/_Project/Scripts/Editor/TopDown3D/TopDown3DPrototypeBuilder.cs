@@ -237,7 +237,7 @@ namespace BooterBigArm.Editor
 
         private static Material EnsureFineGrayClutterMaterial()
         {
-            var material = EnsureMaterial("FineGray_Clutter", new Color(0.235f, 0.245f, 0.255f));
+            var material = EnsureMaterial("FineGray_Clutter", new Color(0.36f, 0.36f, 0.36f));
             if (!Mathf.Approximately(material.GetFloat("_Smoothness"), 0.12f))
             {
                 material.SetFloat("_Smoothness", 0.12f);
