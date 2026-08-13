@@ -27,7 +27,7 @@ namespace BooterBigArm.TopDown3D
 
         [Header("Cycle")]
         [SerializeField] private bool cycleEnabled = true;
-        [SerializeField, Min(MinimumCycleDurationSeconds)] private float cycleDurationSeconds = 600f;
+        [SerializeField, Min(MinimumCycleDurationSeconds)] private float cycleDurationSeconds = 1200f;
         [SerializeField, Range(0f, 1f)] private float cycle01 = 0.12f;
 
         [Header("Sun Path")]
