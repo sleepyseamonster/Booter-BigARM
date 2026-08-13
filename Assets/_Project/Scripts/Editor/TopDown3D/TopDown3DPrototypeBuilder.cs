@@ -38,11 +38,12 @@ namespace BooterBigArm.Editor
         public const float TerrainBaseMetersPerTile = 3f;
         public const float TerrainSweptSandMetersPerTile = 4f;
         public const float TerrainGravelMetersPerTile = 2.25f;
-        public const float TerrainRockyMetersPerTile = 3.5f;
+        public const float TerrainRockyMetersPerTile = 4.75f;
         public const float TerrainPatchFrequency = 0.035f;
         public const float TerrainSweptSandThreshold = 0.64f;
         public const float TerrainGravelThreshold = 0.66f;
-        public const float TerrainRockyThreshold = 0.68f;
+        public const float TerrainRockyThreshold = 0.62f;
+        public const float TerrainRockyStrength = 0.96f;
         public const float TerrainPatchBlendWidth = 0.11f;
         public const float TerrainSmoothness = 0.18f;
         public const float RockMetersPerTile = 0.85f;
@@ -206,6 +207,7 @@ namespace BooterBigArm.Editor
             changed |= SetFloatIfNeeded(material, "_SweptSandThreshold", TerrainSweptSandThreshold);
             changed |= SetFloatIfNeeded(material, "_GravelThreshold", TerrainGravelThreshold);
             changed |= SetFloatIfNeeded(material, "_RockyThreshold", TerrainRockyThreshold);
+            changed |= SetFloatIfNeeded(material, "_RockyStrength", TerrainRockyStrength);
             changed |= SetFloatIfNeeded(material, "_BlendWidth", TerrainPatchBlendWidth);
             changed |= SetFloatIfNeeded(material, "_Smoothness", TerrainSmoothness);
 
