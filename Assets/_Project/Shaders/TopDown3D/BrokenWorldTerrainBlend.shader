@@ -5,16 +5,20 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
         [MainTexture] _BaseMap("Rust Sand Dirt", 2D) = "white" {}
         _SweptSandMap("Swept Beige Sand", 2D) = "white" {}
         _GravelMap("Iron Gravel", 2D) = "white" {}
+        _RockyMap("Mixed Gray Earth Rock", 2D) = "white" {}
         [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
         _BaseMetersPerTile("Base Meters Per Tile", Float) = 3
         _SweptSandMetersPerTile("Swept Sand Meters Per Tile", Float) = 4
         _GravelMetersPerTile("Gravel Meters Per Tile", Float) = 2.25
+        _RockyMetersPerTile("Rocky Meters Per Tile", Float) = 3.5
         _PatchFrequency("Patch Frequency", Float) = 0.035
         _SweptSandThreshold("Swept Sand Threshold", Range(0, 1)) = 0.64
         _GravelThreshold("Gravel Threshold", Range(0, 1)) = 0.66
+        _RockyThreshold("Rocky Threshold", Range(0, 1)) = 0.68
         _BlendWidth("Patch Edge Softness", Range(0.01, 0.3)) = 0.11
         _SweptSandStrength("Swept Sand Strength", Range(0, 1)) = 0.9
         _GravelStrength("Gravel Strength", Range(0, 1)) = 0.92
+        _RockyStrength("Rocky Strength", Range(0, 1)) = 0.9
         _Smoothness("Smoothness", Range(0, 1)) = 0.18
         [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
@@ -62,6 +66,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
             SAMPLER(sampler_SweptSandMap);
             TEXTURE2D(_GravelMap);
             SAMPLER(sampler_GravelMap);
+            TEXTURE2D(_RockyMap);
+            SAMPLER(sampler_RockyMap);
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseMap_ST;
@@ -69,12 +75,15 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float _BaseMetersPerTile;
                 float _SweptSandMetersPerTile;
                 float _GravelMetersPerTile;
+                float _RockyMetersPerTile;
                 float _PatchFrequency;
                 float _SweptSandThreshold;
                 float _GravelThreshold;
+                float _RockyThreshold;
                 float _BlendWidth;
                 float _SweptSandStrength;
                 float _GravelStrength;
+                float _RockyStrength;
                 float _Smoothness;
                 float _Cutoff;
                 float _Surface;
@@ -177,6 +186,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float baseMeters = max(_BaseMetersPerTile, 0.01);
                 float sweptMeters = max(_SweptSandMetersPerTile, 0.01);
                 float gravelMeters = max(_GravelMetersPerTile, 0.01);
+                float rockyMeters = max(_RockyMetersPerTile, 0.01);
                 half3 baseAlbedo = SampleAntiTiled(
                     groundPosition / baseMeters,
                     groundPosition,
@@ -192,12 +202,19 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     groundPosition,
                     3.0,
                     TEXTURE2D_ARGS(_GravelMap, sampler_GravelMap));
+                half3 rockyAlbedo = SampleAntiTiled(
+                    groundPosition / rockyMeters,
+                    groundPosition,
+                    4.0,
+                    TEXTURE2D_ARGS(_RockyMap, sampler_RockyMap));
 
                 float2 patchPosition = groundPosition * _PatchFrequency;
                 float sweptNoise = FractalNoise(patchPosition + float2(13.1, -7.9));
                 float gravelNoise = FractalNoise(patchPosition * 0.87 + float2(-31.7, 19.4));
+                float rockyNoise = FractalNoise(patchPosition * 0.72 + float2(47.3, 28.6));
                 float slope = saturate(1.0 - normalWS.y);
                 gravelNoise += slope * 0.18;
+                rockyNoise += slope * 0.10;
 
                 float sweptMask = smoothstep(
                     _SweptSandThreshold,
@@ -208,9 +225,15 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     _GravelThreshold + _BlendWidth,
                     gravelNoise) * _GravelStrength;
                 gravelMask *= 1.0 - sweptMask;
+                float rockyMask = smoothstep(
+                    _RockyThreshold,
+                    _RockyThreshold + _BlendWidth,
+                    rockyNoise) * _RockyStrength;
+                rockyMask *= 1.0 - saturate(sweptMask + gravelMask);
 
                 half3 albedo = lerp(baseAlbedo, sweptAlbedo, sweptMask);
                 albedo = lerp(albedo, gravelAlbedo, gravelMask);
+                albedo = lerp(albedo, rockyAlbedo, rockyMask);
                 float macroVariation = lerp(0.94, 1.04, FractalNoise(groundPosition * 0.008 + 4.0));
                 albedo *= _BaseColor.rgb * macroVariation;
 
@@ -218,7 +241,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 surfaceData.albedo = albedo;
                 surfaceData.specular = half3(0.2, 0.2, 0.2);
                 surfaceData.metallic = 0.0;
-                surfaceData.smoothness = lerp(_Smoothness, 0.11, gravelMask);
+                surfaceData.smoothness = lerp(_Smoothness, 0.10, max(gravelMask, rockyMask));
                 surfaceData.normalTS = half3(0.0, 0.0, 1.0);
                 surfaceData.emission = 0.0;
                 surfaceData.occlusion = 1.0;

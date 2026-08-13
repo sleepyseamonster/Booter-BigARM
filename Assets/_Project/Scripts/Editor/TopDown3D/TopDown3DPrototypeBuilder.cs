@@ -28,12 +28,16 @@ namespace BooterBigArm.Editor
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSweptSandAlbedo.png";
         public const string TerrainGravelAlbedoPath =
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelAlbedo.png";
+        public const string TerrainRockyAlbedoPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyAlbedo.png";
         public const float TerrainBaseMetersPerTile = 3f;
         public const float TerrainSweptSandMetersPerTile = 4f;
         public const float TerrainGravelMetersPerTile = 2.25f;
+        public const float TerrainRockyMetersPerTile = 3.5f;
         public const float TerrainPatchFrequency = 0.035f;
         public const float TerrainSweptSandThreshold = 0.64f;
         public const float TerrainGravelThreshold = 0.66f;
+        public const float TerrainRockyThreshold = 0.68f;
         public const float TerrainPatchBlendWidth = 0.11f;
         public const float TerrainSmoothness = 0.18f;
 
@@ -169,7 +173,9 @@ namespace BooterBigArm.Editor
             var baseAlbedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainAlbedoPath);
             var sweptSandAlbedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainSweptSandAlbedoPath);
             var gravelAlbedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainGravelAlbedoPath);
-            if (shader == null || baseAlbedo == null || sweptSandAlbedo == null || gravelAlbedo == null)
+            var rockyAlbedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyAlbedoPath);
+            if (shader == null || baseAlbedo == null || sweptSandAlbedo == null || gravelAlbedo == null
+                || rockyAlbedo == null)
             {
                 throw new InvalidOperationException("The layered terrain shader or one of its albedo textures is missing.");
             }
@@ -184,12 +190,15 @@ namespace BooterBigArm.Editor
             changed |= SetTextureIfNeeded(material, "_BaseMap", baseAlbedo);
             changed |= SetTextureIfNeeded(material, "_SweptSandMap", sweptSandAlbedo);
             changed |= SetTextureIfNeeded(material, "_GravelMap", gravelAlbedo);
+            changed |= SetTextureIfNeeded(material, "_RockyMap", rockyAlbedo);
             changed |= SetFloatIfNeeded(material, "_BaseMetersPerTile", TerrainBaseMetersPerTile);
             changed |= SetFloatIfNeeded(material, "_SweptSandMetersPerTile", TerrainSweptSandMetersPerTile);
             changed |= SetFloatIfNeeded(material, "_GravelMetersPerTile", TerrainGravelMetersPerTile);
+            changed |= SetFloatIfNeeded(material, "_RockyMetersPerTile", TerrainRockyMetersPerTile);
             changed |= SetFloatIfNeeded(material, "_PatchFrequency", TerrainPatchFrequency);
             changed |= SetFloatIfNeeded(material, "_SweptSandThreshold", TerrainSweptSandThreshold);
             changed |= SetFloatIfNeeded(material, "_GravelThreshold", TerrainGravelThreshold);
+            changed |= SetFloatIfNeeded(material, "_RockyThreshold", TerrainRockyThreshold);
             changed |= SetFloatIfNeeded(material, "_BlendWidth", TerrainPatchBlendWidth);
             changed |= SetFloatIfNeeded(material, "_Smoothness", TerrainSmoothness);
 

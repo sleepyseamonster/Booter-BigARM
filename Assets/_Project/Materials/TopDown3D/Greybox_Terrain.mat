@@ -50,6 +50,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 354db7cf45544c04949e454b51dbc722, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RockyMap:
+        m_Texture: {fileID: 2800000, guid: 0dedf1b44a434bc49327c0e9c859ef8b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -124,6 +128,9 @@ Material:
     - _GravelMetersPerTile: 2.25
     - _GravelStrength: 0.92
     - _GravelThreshold: 0.66
+    - _RockyMetersPerTile: 3.5
+    - _RockyStrength: 0.9
+    - _RockyThreshold: 0.68
     - _GlossMapScale: 0
     - _Glossiness: 0.18
     - _GlossyReflections: 0

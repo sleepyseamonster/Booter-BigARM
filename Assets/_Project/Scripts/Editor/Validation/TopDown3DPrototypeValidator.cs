@@ -45,6 +45,7 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainSweptSandAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainGravelAlbedoPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainRockyAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainMaterialPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.FineGrayClutterMaterialPath, errors);
             ValidateTerrainMaterial(errors);
@@ -128,7 +129,9 @@ namespace BooterBigArm.Editor
             var sweptSand = AssetDatabase.LoadAssetAtPath<Texture2D>(
                 TopDown3DPrototypeBuilder.TerrainSweptSandAlbedoPath);
             var gravel = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.TerrainGravelAlbedoPath);
-            if (material == null || shader == null || baseAlbedo == null || sweptSand == null || gravel == null)
+            var rocky = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.TerrainRockyAlbedoPath);
+            if (material == null || shader == null || baseAlbedo == null || sweptSand == null || gravel == null
+                || rocky == null)
             {
                 return;
             }
@@ -151,6 +154,11 @@ namespace BooterBigArm.Editor
             if (material.GetTexture("_GravelMap") != gravel)
             {
                 errors.Add("TopDown3D terrain material must use the sparse gravel albedo texture.");
+            }
+
+            if (material.GetTexture("_RockyMap") != rocky)
+            {
+                errors.Add("TopDown3D terrain material must use the sparse mixed rocky albedo texture.");
             }
         }
 
