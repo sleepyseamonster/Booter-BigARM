@@ -12,6 +12,16 @@ This is the consolidated working roadmap for the prototype. It combines the curr
 - Minimal UI should still communicate critical state clearly.
 - BigARM is part of the world simulation, not a menu abstraction.
 
+## Current Program Priority
+
+The accepted planning direction is a top-down, isometric-style 2.5D presentation using 3D runtime assets. Gottspan owns the conversion program under the user's creative and product authority.
+
+- [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md) is the canonical conversion master plan, system migration matrix, decision register, work breakdown, and acceptance checklist.
+- The current phase is audit and planning only. No renderer, scene, package, settings, asset, or gameplay conversion has been implemented yet.
+- Preserve the existing 2D prototype as a reference and recovery point until the 2.5D vertical slice and later cutover candidate are explicitly accepted.
+- Do not expand the 2D presentation path except for preservation or separately prioritized fixes that remain valuable during conversion.
+- The gameplay phases below remain desired game outcomes. Their implementation should proceed on the accepted 2.5D foundation rather than deepening soon-to-be-replaced 2D presentation systems.
+
 ## Workstreams
 
 1. `Core Runtime`
@@ -149,13 +159,15 @@ Exit criteria:
 
 ## Order Of Operations
 
-1. Phase 1.
-2. Phase 2.
-3. Phase 3.
-4. Phase 4.
-5. Phase 5.
-6. Phase 6.
-7. Phase 7.
+1. Complete conversion planning decisions and the protected isometric technical spike through CP-06.
+2. If the spike is accepted, establish shared runtime/validation seams and finite-area loop parity through CP-09.
+3. Prove deterministic 3D world generation, streaming, and BigARM navigation through CP-12.
+4. Build the representative asset pipeline, then integrate production content through CP-15.
+5. Harden the exact candidate through CP-16.
+6. Perform CP-17 cutover only with fresh user acceptance.
+7. Perform CP-18 legacy retirement only with separate destructive authority.
+
+The original Phase 1–7 gameplay order remains the feature-development order inside that conversion sequence. Conversion work must not be used as an excuse to expand combat, crafting breadth, biome count, or other adjacent systems before the survival traversal slice works.
 
 ## Notes
 

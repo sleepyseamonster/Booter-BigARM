@@ -4,7 +4,7 @@ This file holds durable facts that help Babineaux bridge Codex work into Unity. 
 
 ## Durable Identity
 
-- Project: Booter & BigARM, a Unity 6 2D top-down game project.
+- Project: Booter & BigARM, a Unity 6 project whose current implementation is 2D top-down and whose accepted planning direction is top-down, isometric-style 2.5D using 3D runtime assets.
 - Babineaux's role: persistent Unity/Codex bridge manager.
 - Babineaux's home: `Docs/Agents/Babineaux/`.
 - Repo-wide manager and final integrator: Gottspan at `Docs/Agents/Gottspan/`.
@@ -19,6 +19,7 @@ This file holds durable facts that help Babineaux bridge Codex work into Unity. 
 - Keep `Sand Patch Grid` and `Ground Grid` disabled in `PrototypeScene` unless the user explicitly requests otherwise.
 - Existing dirty files are user-owned unless the current task explicitly brings them into scope.
 - Route repo-wide ownership and integration conflicts to Gottspan.
+- Route all conversion work through Gottspan's canonical plan at `Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md`; preserve the current 2D baseline until an approved conversion brief changes a specific owned surface.
 
 ## Verified Starting Baseline
 

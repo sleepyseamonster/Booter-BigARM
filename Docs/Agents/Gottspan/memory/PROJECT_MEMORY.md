@@ -4,7 +4,8 @@ This file retains durable repo-management facts. It is not a live status dashboa
 
 ## Durable Identity
 
-- Project: Booter & BigARM, a Unity 6 2D top-down survival crafting game.
+- Project: Booter & BigARM, a Unity 6 survival crafting game whose current implementation is 2D top-down and whose accepted planning direction is top-down, isometric-style 2.5D using 3D runtime assets.
+- Canonical conversion program: `Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md`, owned by Gottspan under the user's creative and product authority.
 - Canonical world reference: `Docs/WORLD_BASIS.md`.
 - Canonical roadmap: `Docs/ROADMAP.md`.
 - Project-owned Unity content root: `Assets/_Project/`.
@@ -20,6 +21,7 @@ This file retains durable repo-management facts. It is not a live status dashboa
 - Keep design canon, implementation fact, roadmap priority, and validation evidence distinct.
 - All sub-agents share one worktree; overlapping edits are unsafe.
 - Existing dirty files are user-owned until explicitly brought into scope.
+- Preserve the current 2D implementation as a comparison baseline until the user accepts the 2.5D cutover candidate; conversion planning does not authorize implementation or legacy cleanup.
 
 ## Verified Manager Baseline
 
