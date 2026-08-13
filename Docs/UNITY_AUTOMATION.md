@@ -54,8 +54,8 @@ When it is present, the build script expects the active build target to already 
 
 - Player-build automation exists at `BooterBigArm.Editor.BuildAutomation.BuildFromCli`.
 - `PrototypeSceneBootstrapper` exposes prototype scene build and repair commands. These commands write scene/project content and must not be used as non-mutating validation.
-- There is not yet a dedicated non-mutating project-validation entry point.
-- The Unity Test Framework package is installed, but the repo does not yet contain committed test source files or test assemblies.
+- The protected conversion lane has a non-mutating validator at `BooterBigArm.Editor.ConversionBaselineValidator.ValidateFromCli` and a matching Unity menu command.
+- The Unity Test Framework package is installed, and focused conversion EditMode tests exist in `BooterBigArm.Editor.Tests`. Use the Unity menu command `Booter & BigARM/Validation/Run Conversion EditMode Tests` while the GUI owns the project.
 - VS Code attach/debugging is already configured in [`.vscode/launch.json`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/.vscode/launch.json).
 
 ## Safety Gate

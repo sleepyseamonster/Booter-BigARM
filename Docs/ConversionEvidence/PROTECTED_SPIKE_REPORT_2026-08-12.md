@@ -5,6 +5,8 @@
 **Unity version:** `6000.4.0f1`
 **Result:** Technical spike implemented and evidence-ready; stopped at the CP-06 user acceptance gate
 
+> **Second-pass audit correction:** The conversion direction and legacy-preservation result remain valid, but the lane is amber rather than ready for CP-06 acceptance. The re-audit found an unsafe rebuild flow for unrelated dirty scenes, a null component in the committed Volume profile, an unsupported kinematic-velocity write during BigARM recall, a renderer-validation blind spot, and a missing 2D visual baseline. Track closure in `../3D_CONVERSION_START_READINESS.md` before CP-07.
+
 ## Outcome
 
 The existing Unity project can support a parallel 3D, top-down isometric-style presentation without restarting the project or damaging the current 2D prototype.

@@ -34,6 +34,8 @@ These should be treated as the source of truth unless they are intentionally rev
 
 - [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md)
   The canonical audit, ownership contract, migration matrix, architecture target, work breakdown, decision gates, asset requirements, and risks for the top-down isometric-style 2.5D conversion.
+- [3D_CONVERSION_START_READINESS.md](./3D_CONVERSION_START_READINESS.md)
+  The live Level A and Level B inventory for closing the protected-spike blockers, accepting CP-06, preparing CP-07, and later authorizing production 3D asset work.
 - [ISOMETRIC_DIRECTION_BRIEF.md](./ISOMETRIC_DIRECTION_BRIEF.md)
   The approved working visual, camera, interaction, input, greybox, preservation, and acceptance contract for the protected conversion spike.
 

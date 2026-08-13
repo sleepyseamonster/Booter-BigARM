@@ -9,7 +9,9 @@ Last reconciled: 2026-08-12 by Gottspan through the protected isometric technica
 - The user has selected a top-down, isometric-style 2.5D direction using 3D runtime assets.
 - Gottspan owns the conversion program under the user's creative and product authority.
 - CP-01 through CP-05 have produced a protected parallel technical spike. The program is stopped at CP-06 for user acceptance before shared-system conversion.
+- The second-pass audit rates the lane **Amber**: preserve the spike, close the readiness defects and missing evidence, then repeat CP-06 review before CP-07.
 - The canonical program plan is [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md).
+- The current start-readiness inventory is [3D_CONVERSION_START_READINESS.md](./3D_CONVERSION_START_READINESS.md).
 - The current evidence packet is [ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md](./ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md).
 - The existing 2D prototype remains the working implementation and protected comparison baseline.
 
@@ -23,16 +25,16 @@ Last reconciled: 2026-08-12 by Gottspan through the protected isometric technica
 | Save/load | Versioned schema, DTOs, service, controller, player/survival/inventory/BigARM state exist. | Structural evidence only; round-trip and migration behavior need automated tests. |
 | Survival economy | Survival state, inventory, harvesting, pickups, item definitions, and dust canister exist. | Prototype implementation exists; balance and loop quality need playtests. |
 | BigARM | Command adapter, threat signal, AI controller, save data, and capability documentation exist. | Prototype implementation exists; companion behavior and recovery-loop value need playtests. |
-| Tooling | Build CLI, prototype bootstrap/repair, protected lab builder, non-mutating conversion validator, and focused EditMode suite exist. | Conversion baseline validation passes; 8 focused tests pass. The lab intentionally remains outside Build Settings. |
+| Tooling | Build CLI, prototype bootstrap/repair, protected lab builder, non-mutating conversion validator, and focused EditMode suite exist. | Baseline validation passes and 8 tests report pass, but the second-pass audit found a hidden kinematic warning and renderer-validation blind spot. The lab intentionally remains outside Build Settings. |
 
 ## Management Gates
 
-- Review the CP-06 evidence and choose proceed, revise, or stop before CP-07 shared runtime seams.
+- Close the Level A readiness blockers, review the corrected CP-06 evidence, and choose proceed, revise, or stop before CP-07 shared runtime seams.
 - Keep the implemented spike bounded to its parallel renderer/scene/motor/camera/interaction/BigARM experiment until that decision.
 - Do not install navigation or asset-format packages, source production assets, alter Build Settings, or retire legacy content merely because the conversion plan exists.
 - Treat current architecture and gameplay systems as prototype seams, not finished design.
 - Reconcile roadmap wording against implementation before selecting a new large feature; implemented code does not mean a phase's exit criteria are met.
-- Establish a non-mutating Unity validation entry point and focused tests when the next implementation task needs reliable regression proof.
+- Repair and extend the existing non-mutating validator and focused tests as the readiness inventory and later conversion seams require.
 - Use [PLAYTEST_LOG.md](./PLAYTEST_LOG.md) to test movement feel, survival pressure, world readability, and BigARM's value before expanding breadth.
 - Keep active dirty-file ownership in the current task brief or handoff, not in this durable status page.
 

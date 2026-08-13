@@ -2,6 +2,8 @@
 
 This is the canonical audit, execution plan, and gated checklist for moving Booter & BigARM from its current top-down 2D pixel-art prototype to a top-down, isometric-style 2.5D game rendered with 3D environments, characters, props, lighting, and effects. `Docs/ROADMAP.md` remains the overall gameplay roadmap; this document owns the conversion program and its acceptance gates.
 
+Use [`3D_CONVERSION_START_READINESS.md`](./3D_CONVERSION_START_READINESS.md) as the live Level A/Level B inventory for closing the current CP-06 blockers, preparing the CP-07 task contract, and later authorizing production 3D asset work.
+
 The intended direction is **top-down, isometric-style 2.5D**: the runtime world is made from 3D assets and uses 3D rendering and collision, while a fixed or tightly constrained isometric-style camera and primarily planar traversal preserve readability. Screen-space UI can remain 2D. This does not imply a free-orbit third-person camera or unrestricted vertical traversal.
 
 ## Status And Authority
@@ -15,6 +17,7 @@ The intended direction is **top-down, isometric-style 2.5D**: the runtime world 
 - Implementation authority: CP-01 through CP-05 protected-spike work is authorized; CP-06 remains a user acceptance gate before shared-system conversion.
 - Final conversion status: not yet accepted as a destructive cutover.
 - Program state: CP-00 through CP-03 are complete. CP-04 and CP-05 are implemented and evidence-ready; the program is intentionally stopped at CP-06 for the user's proceed, revise, or stop decision.
+- Second-pass readiness state: Amber. The spike remains useful, but the defects and missing proof in `3D_CONVERSION_START_READINESS.md` must close before CP-06 can be accepted.
 - The current 2D prototype remains the working implementation until a separate 3D vertical slice passes its acceptance gate.
 - No asset purchase, package installation, destructive asset removal, broad project-setting change, or release is authorized by this plan.
 
@@ -147,7 +150,7 @@ The existing prototype prefabs are sprite-based resource, boulder, and tall-prop
 - `PrototypeSceneBootstrapper` creates 2D rigidbodies, 2D colliders, sprites, grids, tilemaps, an orthographic pixel-perfect camera, 2D lighting, and 2D renderer-dependent scene content.
 - Its full scene-build command replaces `PrototypeScene.unity` and rewrites Build Settings to enable only `PrototypeScene` and `SampleScene`; it must never be used as a conversion-scene builder or harmless repair/validation step.
 - Current bootstrap/repair operations mutate project content and are not safe substitutes for validation.
-- There is no committed non-mutating Unity validation entry point.
+- CP-00 began without a non-mutating Unity validation entry point. CP-02 added `ConversionBaselineValidator`; the second-pass audit found that its camera-to-renderer relationship check still needs hardening before CP-07.
 - `BuildAutomation` is dimension-neutral and reusable, but its enabled-scene behavior makes Build Settings a controlled cutover surface.
 
 ### Art and asset readiness
@@ -217,9 +220,9 @@ The following are substantially reusable, although names or references may still
 
 ### Validation finding
 
-- The Unity Test Framework package exists, but there are no committed runtime or editor test sources or test assemblies.
-- Interactive movement feel, camera readability, scale, and BigARM behavior currently lack repeatable 3D proof.
-- Conversion work should establish targeted tests and a non-mutating validation command before the old implementation is retired.
+- The Unity Test Framework package and a focused conversion Editor test assembly now exist. There is not yet a dedicated runtime/PlayMode conversion suite.
+- The current eight-test suite covers movement-basis math, baseline structure, direct harvest yield, and direct BigARM recall positioning; it does not yet cover the complete runtime interaction matrix.
+- The second-pass audit found that the green suite does not fail on the unsupported kinematic-velocity warning produced by direct BigARM recall. Repair the behavior and warning policy before CP-07.
 
 ### Isometric-style implications
 
@@ -452,7 +455,7 @@ Exit proof: a short accepted direction brief with no unresolved choice that woul
 
 ### Gate 1 — Protected technical spike
 
-- [x] Capture the preserved 2D baseline commit, scene list, renderer default, relevant screenshots, and known unverified behavior before Unity writes begin.
+- [ ] Capture the preserved 2D baseline commit, scene list, renderer default, relevant screenshots, and known unverified behavior before Unity writes begin. Commit, hashes, hierarchy, and renderer state are recorded; the second-pass audit found the 2D screenshot is still missing.
 - [x] Create a new project-owned 3D renderer asset without replacing `Renderer2D.asset`.
 - [x] Add the new renderer to the URP asset in a way that preserves the old scene's renderer behavior.
 - [x] Create a new, separately named isometric 2.5D prototype scene; do not overwrite `PrototypeScene.unity`.
@@ -488,7 +491,7 @@ Stop condition: do not begin broad conversion or source production assets if the
 - [ ] Decide whether 2D and 3D implementations coexist temporarily in the same runtime assembly or use explicit assembly boundaries.
 - [ ] Remove the runtime assembly's direct Tilemap Extras dependency only after the 2D generator no longer needs that assembly reference or has moved behind a legacy boundary.
 - [ ] Add runtime and editor test assemblies with only the tests required for the conversion seams.
-- [ ] Add a non-mutating Unity validation entry point.
+- [x] Add a non-mutating Unity validation entry point. The CP-02 preservation validator exists; extend it when the accepted seams require more coverage.
 - [ ] Add an enabled-scene/renderer assignment check so the conversion lab cannot enter builds or change the legacy renderer accidentally.
 - [ ] Verify compilation and serialization in both the preserved 2D scene and new 3D scene.
 
@@ -734,13 +737,11 @@ The asset pipeline and 3D world generator are likely to dominate total conversio
 
 ## Immediate Next-Step Checklist
 
-The user delegated execution of the conversion plan on 2026-08-12. `ISOMETRIC_DIRECTION_BRIEF.md` therefore records the recommended Gate 0 defaults as the working spike contract. Unity implementation remains limited to the protected Gate 1 path until CP-06 evidence is reviewed.
+The protected spike exists, but the second-pass audit prevents treating it as accepted. Use `3D_CONVERSION_START_READINESS.md` in this order:
 
-- [ ] Exact task-owned files and new asset paths.
-- [ ] Existing dirty files that remain user-owned and untouched.
-- [ ] The new renderer and scene names.
-- [ ] The temporary motor and camera experiment boundary.
-- [ ] The one interaction and BigARM behavior included.
-- [ ] Input devices and camera/readability scenarios to test.
-- [ ] Proof artifacts required for the go/no-go review.
-- [ ] A hard stop before broad conversion, purchases, package changes, or legacy cleanup.
+1. Close A-01 through A-17 for editor safety, implementation corrections, and evidence integrity.
+2. Resolve A-18 through A-26 with the user and record the CP-06 proceed, revise, or stop decision.
+3. If the user chooses proceed, finish A-27 through A-35 as the exact CP-07 task contract.
+4. Keep Level B production-asset work gated behind its creative, platform, technical-standard, sourcing, and representative-family requirements.
+
+Unity implementation remains limited to protected-spike corrections until CP-06 is accepted. Do not begin shared conversion, purchases, package changes, Build Settings changes, cutover, or legacy cleanup by implication.
