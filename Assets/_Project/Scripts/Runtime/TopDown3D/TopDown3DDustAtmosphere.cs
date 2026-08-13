@@ -14,6 +14,7 @@ namespace BooterBigArm.TopDown3D
         public const float DefaultMinimumRegionalIntensity = 1.08f;
         public const float DefaultMaximumRegionalIntensity = 1.58f;
         public const float DefaultFogDensityAtIntensityOne = 0.0295f;
+        public const float DefaultChromaticAberrationIntensity = 0.12f;
 
         public readonly struct DustSample
         {
@@ -49,6 +50,10 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Color brightTwilightDust = new Color(0.62f, 0.34f, 0.17f);
         [SerializeField, Range(0f, 1f)] private float zoneTintStrength = 0.42f;
 
+        [Header("Lens Treatment")]
+        [SerializeField, Range(0f, 1f)] private float chromaticAberrationIntensity =
+            DefaultChromaticAberrationIntensity;
+
         [Header("Close Haze")]
         [SerializeField, Range(0f, 80f)] private float moteEmissionAtIntensityOne = 30f;
         [SerializeField, Range(0f, 20f)] private float veilEmissionAtIntensityOne = 6.5f;
@@ -59,6 +64,7 @@ namespace BooterBigArm.TopDown3D
         private ColorAdjustments colorAdjustments;
         private Bloom bloom;
         private Vignette vignette;
+        private ChromaticAberration chromaticAberration;
         private ParticleSystem motes;
         private ParticleSystem veils;
         private Material particleMaterial;
@@ -143,6 +149,7 @@ namespace BooterBigArm.TopDown3D
             responseSeconds = Mathf.Max(0.01f, responseSeconds);
             fogDensityAtIntensityOne = Mathf.Max(0.0001f, fogDensityAtIntensityOne);
             zoneTintStrength = Mathf.Clamp01(zoneTintStrength);
+            chromaticAberrationIntensity = Mathf.Clamp01(chromaticAberrationIntensity);
             moteEmissionAtIntensityOne = Mathf.Clamp(moteEmissionAtIntensityOne, 0f, 80f);
             veilEmissionAtIntensityOne = Mathf.Clamp(veilEmissionAtIntensityOne, 0f, 20f);
         }
@@ -333,6 +340,11 @@ namespace BooterBigArm.TopDown3D
                 vignette.intensity.value = Mathf.Lerp(0.045f, 0.12f, exposure);
             }
 
+            if (chromaticAberration != null)
+            {
+                chromaticAberration.intensity.value = chromaticAberrationIntensity;
+            }
+
             UpdateParticleAppearance(motes, moteEmissionAtIntensityOne, false);
             UpdateParticleAppearance(veils, veilEmissionAtIntensityOne, true);
         }
@@ -350,6 +362,8 @@ namespace BooterBigArm.TopDown3D
             colorAdjustments = runtimeProfile.Add<ColorAdjustments>(true);
             bloom = runtimeProfile.Add<Bloom>(true);
             vignette = runtimeProfile.Add<Vignette>(true);
+            chromaticAberration = runtimeProfile.Add<ChromaticAberration>(true);
+            chromaticAberration.intensity.value = chromaticAberrationIntensity;
             bloom.threshold.value = 0.85f;
             bloom.scatter.value = 0.72f;
             bloom.highQualityFiltering.value = true;
@@ -566,6 +580,7 @@ namespace BooterBigArm.TopDown3D
             colorAdjustments = null;
             bloom = null;
             vignette = null;
+            chromaticAberration = null;
             if (volume != null && volume.sharedProfile == runtimeProfile)
             {
                 volume.sharedProfile = null;
