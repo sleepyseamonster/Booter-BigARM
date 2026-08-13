@@ -20,8 +20,13 @@ namespace BooterBigArm.Editor
             "Assets/_Project/Settings/World/TopDown3DNaturalObjectCatalog.asset";
         public const string FineGrayClutterMaterialPath = MaterialFolder + "/FineGray_Clutter.mat";
         public const string TerrainMaterialPath = MaterialFolder + "/Greybox_Terrain.mat";
+        public const string RockMaterialPath = MaterialFolder + "/Greybox_Rock.mat";
         public const string TerrainShaderPath =
             "Assets/_Project/Shaders/TopDown3D/BrokenWorldTerrainBlend.shader";
+        public const string RockShaderPath =
+            "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockTriplanar.shader";
+        public const string RockAlbedoPath =
+            "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceAlbedo.png";
         public const string TerrainAlbedoPath =
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png";
         public const string TerrainSweptSandAlbedoPath =
@@ -40,6 +45,8 @@ namespace BooterBigArm.Editor
         public const float TerrainRockyThreshold = 0.68f;
         public const float TerrainPatchBlendWidth = 0.11f;
         public const float TerrainSmoothness = 0.18f;
+        public const float RockMetersPerTile = 0.85f;
+        public const float RockSmoothness = 0.14f;
 
         public const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
 
@@ -234,10 +241,27 @@ namespace BooterBigArm.Editor
 
         private static Material EnsureRockMaterial()
         {
-            var material = EnsureMaterial("Greybox_Rock", new Color(0.31f, 0.145f, 0.085f));
-            if (!Mathf.Approximately(material.GetFloat("_Smoothness"), 0.18f))
+            var material = EnsureMaterial("Greybox_Rock", Color.white);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(RockShaderPath);
+            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(RockAlbedoPath);
+            if (shader == null || albedo == null)
             {
-                material.SetFloat("_Smoothness", 0.18f);
+                throw new InvalidOperationException("The triplanar rock shader or its albedo texture is missing.");
+            }
+
+            var changed = false;
+            if (material.shader != shader)
+            {
+                material.shader = shader;
+                changed = true;
+            }
+
+            changed |= SetTextureIfNeeded(material, "_BaseMap", albedo);
+            changed |= SetFloatIfNeeded(material, "_RockMetersPerTile", RockMetersPerTile);
+            changed |= SetFloatIfNeeded(material, "_TriplanarSharpness", 4f);
+            changed |= SetFloatIfNeeded(material, "_Smoothness", RockSmoothness);
+            if (changed)
+            {
                 EditorUtility.SetDirty(material);
             }
 
