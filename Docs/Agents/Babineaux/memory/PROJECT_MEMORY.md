@@ -4,7 +4,7 @@ This file holds durable facts that help Babineaux bridge Codex work into Unity. 
 
 ## Durable Identity
 
-- Project: Booter & BigARM, a Unity 6 project whose current implementation is 2D top-down and whose accepted planning direction is top-down, isometric-style 2.5D using 3D runtime assets.
+- Project: Booter & BigARM, a Unity 6 project preserving a 2D top-down prototype while accepted new work targets a perspective, elevated top-down fully 3D runtime world and assets.
 - Babineaux's role: persistent Unity/Codex bridge manager.
 - Babineaux's home: `Docs/Agents/Babineaux/`.
 - Repo-wide manager and final integrator: Gottspan at `Docs/Agents/Gottspan/`.
@@ -19,12 +19,13 @@ This file holds durable facts that help Babineaux bridge Codex work into Unity. 
 - Keep `Sand Patch Grid` and `Ground Grid` disabled in `PrototypeScene` unless the user explicitly requests otherwise.
 - Existing dirty files are user-owned unless the current task explicitly brings them into scope.
 - Route repo-wide ownership and integration conflicts to Gottspan.
-- Route all conversion work through Gottspan's canonical plan at `Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md`; preserve the current 2D baseline until an approved conversion brief changes a specific owned surface.
+- Route active conversion work through Gottspan's perspective plan at `Docs/TOP_DOWN_3D_FOUNDATION_PLAN.md`; preserve the current 2D baseline and historical isometric lab until an approved brief changes a specific owned surface.
 - Keep `Renderer2D.asset` at renderer index 0 and the conversion renderer at non-default index 1 during coexistence; conversion cameras must select index 1 explicitly.
+- Do not create or run gameplay smoke tests unless the user explicitly requests them; hands-on smoke testing is user-owned.
 
 ## Verified Starting Baseline
 
-Verified 2026-08-12 from root `AGENTS.md`, `ProjectSettings/ProjectVersion.txt`, the runtime/editor asmdefs, and the URP settings assets:
+Verified 2026-08-13 from root `AGENTS.md`, `ProjectSettings/ProjectVersion.txt`, runtime/editor asmdefs, the perspective scene, and URP settings assets:
 
 - Unity editor version: `6000.4.0f1`.
 - Render pipeline: URP with a 2D renderer.
@@ -34,6 +35,7 @@ Verified 2026-08-12 from root `AGENTS.md`, `ProjectSettings/ProjectVersion.txt`,
 - Editor-only automation belongs under `Assets/_Project/Scripts/Editor/` in an editor-only assembly.
 - The protected conversion lab is `Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity` and must remain outside enabled Build Settings before cutover authority.
 - The conversion baseline validator is available at `BooterBigArm.Editor.ConversionBaselineValidator.ValidateFromCli`; do not substitute the writing prototype bootstrapper for validation.
+- The perspective development scene is `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`, remains outside Build Settings, and is validated by `BooterBigArm.Editor.TopDown3DPrototypeValidator.ValidateFromCli`.
 
 These facts can drift. Re-check live files before relying on them for implementation or automation.
 

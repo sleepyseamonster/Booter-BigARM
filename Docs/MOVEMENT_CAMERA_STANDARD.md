@@ -1,6 +1,14 @@
 # Movement And Camera Standard
 
-This is the baseline for a gamepad-optimized top-down 2D character and camera setup. It keeps movement responsive, readable, and flexible enough for future mechanics like dashes, knockback, mounts, vehicles, or status effects.
+This is the preserved baseline for the legacy top-down 2D path. The accepted perspective top-down 3D lane overrides its body, projection, pixel-grid, and sorting-specific rules while retaining the separation between input, movement physics, and camera framing.
+
+For the perspective lane:
+
+- use a 3D `Rigidbody` on XZ with Y as elevation;
+- project movement through the camera basis onto the traversal plane;
+- use an elevated perspective camera with serialized pitch, yaw, distance, field of view, damping, and obstruction values;
+- use 3D depth, lighting, colliders, materials, and renderer topology instead of pixel snapping and sprite sorting;
+- keep hands-on feel and controller acceptance with the user unless the user explicitly delegates it.
 
 ## Pixel Scale Baseline
 

@@ -33,11 +33,11 @@ Practical rule:
 ## Movement And Camera
 
 - Treat the player as a physics-backed top-down actor, not a free-floating transform.
-- Prefer `Rigidbody2D`-based movement for collision-aware traversal.
+- Prefer `Rigidbody2D` for the preserved 2D path and a 3D `Rigidbody` on XZ/Y for the accepted perspective path.
 - Gather input outside the physics step and apply movement inside the physics step.
 - Enable interpolation on the player body when the camera follows it, so motion looks smooth.
 - Keep the camera isolated from gameplay logic. The camera should follow a target and provide readability, not own movement rules.
-- Keep the camera orthographic unless a later mechanic explicitly requires a different projection.
+- Keep the preserved 2D path orthographic. New conversion work uses the accepted elevated perspective camera while retaining a top-down feel.
 
 Unity docs that support this baseline:
 - [Rigidbody2D](https://docs.unity3d.com/kr/2022.3/ScriptReference/Rigidbody2D.html)

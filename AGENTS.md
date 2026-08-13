@@ -14,7 +14,7 @@ This file defines the operating rules for work inside this Unity repository.
 
 ## Scope
 
-- This is a 2D top-down Unity game project.
+- This is a Unity game project preserving a 2D top-down prototype while new work moves toward a perspective, elevated top-down fully 3D game.
 - The project should stay Unity-compatible at all times.
 - Most production work should happen under `Assets/`.
 - Prefer small, verifiable changes over broad refactors.
@@ -62,6 +62,8 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Primary prototype scene and first enabled build scene: `Assets/_Project/Scenes/PrototypeScene.unity`
 - Secondary sample scene: `Assets/_Project/Scenes/SampleScene.unity`
 - Current settings assets: `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset` and `Assets/_Project/Settings/Rendering/URP/Renderer2D.asset`
+- Perspective development scene, excluded from Build Settings: `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`
+- `Renderer2D.asset` remains the default renderer at index 0; the perspective development scene explicitly uses the non-default 3D renderer at index 1.
 - In `Assets/_Project/Scenes/PrototypeScene.unity`, keep `Sand Patch Grid` and `Ground Grid` disabled in the hierarchy unless explicitly requested. Do not re-enable them during scene repair or bootstrap work.
 
 ## Canonical World Reference
@@ -103,10 +105,11 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 6. Before finishing, self-audit the work for missed edge cases, regressions, and documentation gaps.
 7. Provide only relevant next steps that continue the same job; do not suggest random follow-up work.
 8. Run only tests or checks that are directly relevant to the change.
-9. If the workspace is a git repository and the change is in a good state, commit the work after verification; do not commit broken changes.
-10. If the workspace is not a git repository, explicitly report that commit was not possible.
-11. Stage only task-owned files. Existing dirty files are user-owned unless the current task explicitly puts them in scope.
-12. A commit does not authorize a push, pull request, release, branch switch, worktree operation, package change, or external write. Those require current task authority.
+9. Do not create or run gameplay smoke tests unless the user explicitly requests them; hands-on smoke testing is user-owned.
+10. If the workspace is a git repository and the change is in a good state, commit the work after verification; do not commit broken changes.
+11. If the workspace is not a git repository, explicitly report that commit was not possible.
+12. Stage only task-owned files. Existing dirty files are user-owned unless the current task explicitly puts them in scope.
+13. A commit does not authorize a push, pull request, release, branch switch, worktree operation, package change, or external write. Those require current task authority.
 
 ## Sub-Agents
 

@@ -55,14 +55,48 @@ When it is present, the build script expects the active build target to already 
 - Player-build automation exists at `BooterBigArm.Editor.BuildAutomation.BuildFromCli`.
 - `PrototypeSceneBootstrapper` exposes prototype scene build and repair commands. These commands write scene/project content and must not be used as non-mutating validation.
 - The protected conversion lane has a non-mutating validator at `BooterBigArm.Editor.ConversionBaselineValidator.ValidateFromCli` and a matching Unity menu command.
-- The Unity Test Framework package is installed, and focused conversion EditMode tests exist in `BooterBigArm.Editor.Tests`. Use the Unity menu command `Booter & BigARM/Validation/Run Conversion EditMode Tests` while the GUI owns the project.
+- The perspective foundation builder is `BooterBigArm.Editor.TopDown3DPrototypeBuilder.BuildFromCli`. It refuses to overwrite an existing generated scene. `RebuildFromCli` intentionally replaces only `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity` after protected-baseline validation.
+- The perspective foundation validator is `BooterBigArm.Editor.TopDown3DPrototypeValidator.ValidateFromCli`. It verifies protected assets, Build Settings exclusion, perspective camera/renderer topology, scene component ownership, missing scripts, and compact BigARM scale.
+- The GUI menu `Booter & BigARM/Top Down 3D` provides guarded Build, Open, and Validate commands.
+- The Unity Test Framework package is installed, and focused non-smoke EditMode tests exist in `BooterBigArm.Editor.Tests`. Use the Unity menu command `Booter & BigARM/Validation/Run Conversion EditMode Tests` while the GUI owns the project.
 - VS Code attach/debugging is already configured in [`.vscode/launch.json`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/.vscode/launch.json).
+
+### Perspective Foundation Commands
+
+Build once when the generated scene does not exist:
+
+```bash
+"/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/MacOS/Unity" \
+  -projectPath "/Users/worldbuilder/Desktop/Booter & BigARM" \
+  -batchmode -nographics -quit \
+  -executeMethod BooterBigArm.Editor.TopDown3DPrototypeBuilder.BuildFromCli
+```
+
+Validate without changing project content:
+
+```bash
+"/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/MacOS/Unity" \
+  -projectPath "/Users/worldbuilder/Desktop/Booter & BigARM" \
+  -batchmode -nographics -quit \
+  -executeMethod BooterBigArm.Editor.TopDown3DPrototypeValidator.ValidateFromCli
+```
+
+Run the focused EditMode suite:
+
+```bash
+"/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/MacOS/Unity" \
+  -projectPath "/Users/worldbuilder/Desktop/Booter & BigARM" \
+  -batchmode -nographics -runTests -testPlatform EditMode \
+  -assemblyNames BooterBigArm.Editor.Tests \
+  -testResults "/tmp/booter-topdown3d-editmode.xml"
+```
 
 ## Safety Gate
 
 - Do not start batchmode against this project while the Unity GUI has it open.
 - Batchmode may import or serialize assets even when used for compilation; inspect Git state before and after it runs.
 - Scene build and repair entry points are mutating tools. Run them only when their output is the requested change and the affected scene/assets are owned by the task.
+- Do not create or run gameplay smoke tests unless the user explicitly requests them; hands-on acceptance is user-owned for this project.
 
 ## Notes
 

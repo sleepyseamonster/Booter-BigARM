@@ -14,14 +14,14 @@ This is the consolidated working roadmap for the prototype. It combines the curr
 
 ## Current Program Priority
 
-The accepted planning direction is a top-down, isometric-style 2.5D presentation using 3D runtime assets. Gottspan owns the conversion program under the user's creative and product authority.
+The accepted direction is a perspective, elevated top-down presentation using a fully 3D runtime world and assets. Gottspan owns the conversion program under the user's creative and product authority.
 
-- [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md) is the canonical conversion master plan, system migration matrix, decision register, work breakdown, and acceptance checklist.
-- The protected technical spike is implemented through CP-05 and is awaiting the CP-06 user go/no-go decision. Shared-system conversion has not begun.
-- [ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md](./ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md) contains the current proof, screenshots, corrections, preserved boundaries, and remaining gaps.
-- Preserve the existing 2D prototype as a reference and recovery point until the 2.5D vertical slice and later cutover candidate are explicitly accepted.
+- [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md) is the active bounded plan for camera, movement, input, procedural terrain, and simple BigARM follow behavior.
+- The first perspective foundation is implemented in a separate scene and awaits user-owned hands-on acceptance before broader shared-system or production-content work.
+- [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md) contains current automated proof, preservation evidence, limitations, and the user acceptance boundary.
+- Preserve the existing 2D prototype and former isometric lab as references and recovery points until a perspective vertical slice and later cutover candidate are explicitly accepted.
 - Do not expand the 2D presentation path except for preservation or separately prioritized fixes that remain valuable during conversion.
-- The gameplay phases below remain desired game outcomes. Their implementation should proceed on the accepted 2.5D foundation rather than deepening soon-to-be-replaced 2D presentation systems.
+- The gameplay phases below remain desired game outcomes. Their implementation should proceed on the accepted perspective 3D foundation rather than deepening soon-to-be-replaced 2D presentation systems.
 
 ## Workstreams
 
@@ -61,7 +61,7 @@ The accepted planning direction is a top-down, isometric-style 2.5D presentation
 7. `Tooling And Validation`
 - Editor bootstrap and repair flows.
 - Build automation.
-- Smoke checks and targeted tests.
+- Structural validators and targeted non-smoke tests.
 - Documentation alignment.
 
 ## Phases
@@ -160,13 +160,13 @@ Exit criteria:
 
 ## Order Of Operations
 
-1. Complete conversion planning decisions and the protected isometric technical spike through CP-06.
-2. If the spike is accepted, establish shared runtime/validation seams and finite-area loop parity through CP-09.
-3. Prove deterministic 3D world generation, streaming, and BigARM navigation through CP-12.
-4. Build the representative asset pipeline, then integrate production content through CP-15.
-5. Harden the exact candidate through CP-16.
-6. Perform CP-17 cutover only with fresh user acceptance.
-7. Perform CP-18 legacy retirement only with separate destructive authority.
+1. Have the user accept or revise the implemented perspective camera, movement, physical-controller response, terrain traversal, and compact BigARM behavior.
+2. Apply only the accepted foundation tuning, then define the next bounded shared-runtime and validation seam.
+3. Establish finite-area loop parity without expanding deferred harvesting, item, survival, or final companion design.
+4. Extend deterministic 3D world generation and streaming toward representative topology and later navigation needs.
+5. Build the representative asset pipeline only after the art, platform, scale, and performance brief is accepted.
+6. Harden and cut over an exact candidate only with fresh user acceptance.
+7. Retire legacy content only with separate destructive authority.
 
 The original Phase 1–7 gameplay order remains the feature-development order inside that conversion sequence. Conversion work must not be used as an excuse to expand combat, crafting breadth, biome count, or other adjacent systems before the survival traversal slice works.
 

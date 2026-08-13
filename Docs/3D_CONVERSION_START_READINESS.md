@@ -1,13 +1,15 @@
 # 3D Conversion Start-Readiness Inventory
 
-This is the current readiness control sheet for beginning the production conversion of Booter & BigARM to a top-down, isometric-style 2.5D game made with 3D runtime assets. It does not replace [`3D_CONVERSION_AUDIT_AND_CHECKLIST.md`](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md), which remains the canonical full conversion program.
+> **Historical status:** This is the final readiness inventory for the superseded isometric direction. The active perspective direction, implementation boundary, and proof state now live in [`TOP_DOWN_3D_FOUNDATION_PLAN.md`](./TOP_DOWN_3D_FOUNDATION_PLAN.md), [`PROJECT_STATUS.md`](./PROJECT_STATUS.md), and [`ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md`](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md). Do not use unchecked isometric items below as current work authorization.
+
+This was the readiness control sheet for beginning the superseded isometric production conversion.
 
 This document answers two narrower questions:
 
 1. What must be true before shared 3D conversion engineering begins at CP-07?
 2. What additional work must be true before production 3D models, rigs, animation, and environment families begin at CP-13?
 
-**Current readiness:** Amber — the existing project is a viable conversion base, but CP-07 should not begin until the immediate blockers and CP-06 acceptance items below are closed.
+**Readiness at supersession:** Amber — retained as historical audit evidence only.
 
 ## Readiness Levels
 

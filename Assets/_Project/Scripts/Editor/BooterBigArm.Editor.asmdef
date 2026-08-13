@@ -3,6 +3,7 @@
   "rootNamespace": "BooterBigArm.Editor",
   "references": [
     "BooterBigArm.Runtime",
+    "BooterBigArm.TopDown3D.Runtime",
     "Unity.Cinemachine",
     "Unity.InputSystem",
     "Unity.2D.Tilemap.Extras",

@@ -57,7 +57,6 @@ namespace BooterBigArm.Runtime
             }
 
             body.position = GetDesiredPosition();
-            body.linearVelocity = Vector3.zero;
         }
 
         private void Awake()

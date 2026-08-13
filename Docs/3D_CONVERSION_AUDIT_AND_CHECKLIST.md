@@ -1,8 +1,10 @@
 # 2.5D Isometric-Style Conversion Master Plan
 
-This is the canonical audit, execution plan, and gated checklist for moving Booter & BigARM from its current top-down 2D pixel-art prototype to a top-down, isometric-style 2.5D game rendered with 3D environments, characters, props, lighting, and effects. `Docs/ROADMAP.md` remains the overall gameplay roadmap; this document owns the conversion program and its acceptance gates.
+> **Historical status:** This plan governed the completed protected isometric spike. Its camera and presentation direction was superseded on 2026-08-13 by [`TOP_DOWN_3D_FOUNDATION_PLAN.md`](./TOP_DOWN_3D_FOUNDATION_PLAN.md). Preserve it as audit and comparison evidence; do not treat its unchecked items as current work authorization.
 
-Use [`3D_CONVERSION_START_READINESS.md`](./3D_CONVERSION_START_READINESS.md) as the live Level A/Level B inventory for closing the current CP-06 blockers, preparing the CP-07 task contract, and later authorizing production 3D asset work.
+This was the canonical audit, execution plan, and gated checklist for moving Booter & BigARM from its top-down 2D pixel-art prototype to a top-down, isometric-style 2.5D game rendered with 3D environments, characters, props, lighting, and effects. `Docs/ROADMAP.md` now holds the active program order.
+
+[`3D_CONVERSION_START_READINESS.md`](./3D_CONVERSION_START_READINESS.md) preserves the final Level A/Level B inventory for that historical direction.
 
 The intended direction is **top-down, isometric-style 2.5D**: the runtime world is made from 3D assets and uses 3D rendering and collision, while a fixed or tightly constrained isometric-style camera and primarily planar traversal preserve readability. Screen-space UI can remain 2D. This does not imply a free-orbit third-person camera or unrestricted vertical traversal.
 

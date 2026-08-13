@@ -32,12 +32,14 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md)
+  The active perspective top-down 3D direction, bounded first-foundation scope, architecture, proof requirements, and stop conditions.
 - [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md)
-  The canonical audit, ownership contract, migration matrix, architecture target, work breakdown, decision gates, asset requirements, and risks for the top-down isometric-style 2.5D conversion.
+  The original conversion audit, ownership contract, migration matrix, work breakdown, decision gates, asset requirements, and risks. Its orthographic/isometric direction is superseded for new work by the active perspective foundation plan.
 - [3D_CONVERSION_START_READINESS.md](./3D_CONVERSION_START_READINESS.md)
   The live Level A and Level B inventory for closing the protected-spike blockers, accepting CP-06, preparing CP-07, and later authorizing production 3D asset work.
 - [ISOMETRIC_DIRECTION_BRIEF.md](./ISOMETRIC_DIRECTION_BRIEF.md)
-  The approved working visual, camera, interaction, input, greybox, preservation, and acceptance contract for the protected conversion spike.
+  The historical working contract for the completed protected isometric conversion spike; it remains evidence rather than current production direction.
 
 ## Implementation Standards And Seams
 
@@ -63,6 +65,8 @@ These describe current repo state rather than durable design truth.
   The immutable CP-02 scene, renderer, hierarchy, Build Settings, Git-blob, and SHA-256 preservation anchor for the protected 2D path.
 - [ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md](./ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md)
   CP-01 through CP-05 implementation evidence, screenshots, corrections, validation results, limitations, and the CP-06 decision boundary.
+- [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md)
+  Current perspective foundation implementation, automated proof, protected-baseline evidence, deferred scope, and user-owned acceptance boundary.
 
 ## Design Evidence And Decisions
 

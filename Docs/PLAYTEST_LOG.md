@@ -27,3 +27,4 @@ This log turns game-design questions into repeatable observations. Record what h
 - Tie results to an exact commit or build and the scene used.
 - A single session can reveal a problem but rarely proves a broad balance claim.
 - Promote stable conclusions into the appropriate canon, roadmap, or implementation standard.
+- Hands-on smoke testing is user-owned. Codex agents do not create or run smoke tests unless the user explicitly requests them.

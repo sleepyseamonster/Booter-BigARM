@@ -1,6 +1,8 @@
 # Isometric Conversion Direction Brief
 
-**Status:** Approved working contract for the protected technical spike
+> **Historical spike contract:** The user replaced this orthographic/isometric direction on 2026-08-13 with a perspective top-down 3D direction. Preserve this file as evidence for the completed protected spike. New work is controlled by [`TOP_DOWN_3D_FOUNDATION_PLAN.md`](./TOP_DOWN_3D_FOUNDATION_PLAN.md).
+
+**Status:** Superseded for new work; retained as the approved contract for the completed protected technical spike
 **Owner:** Gottspan under the user's creative and product authority
 **Applies to:** CP-01 through CP-05 in `3D_CONVERSION_AUDIT_AND_CHECKLIST.md`
 **Does not authorize:** purchases, package installation, Build Settings cutover, legacy deletion, or final art lock

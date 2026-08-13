@@ -51,3 +51,15 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Controlling files updated:** `Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md`, `Docs/PROJECT_STATUS.md`, `Docs/ROADMAP.md`, and the protected lab implementation under `Assets/_Project/`.
 - **Consequences / follow-up:** Stop at CP-06 until the user chooses proceed, revise, or stop. A proceed decision authorizes planning and implementation of CP-07 only; it does not authorize packages, purchases, Build Settings cutover, production assets, release, or legacy deletion.
 - **Supersedes:** none
+
+## 2026-08-13 — Perspective Top-Down 3D Revision
+
+- **Status:** accepted
+- **Decision owner:** user
+- **Question:** Should the conversion keep an orthographic/isometric presentation or move farther toward a fully 3D presentation?
+- **Decision:** Use a perspective, elevated top-down 3D camera and fully 3D procedural world. Prioritize camera feel, player movement, deterministic 3D world generation, correct gamepad control, and a smaller BigARM with simple intelligent follow behavior. Defer detailed harvesting, item, survival, and final companion mechanics.
+- **Why:** The user wants visible perspective depth and a more fully 3D result while preserving the readability and navigation feel of a top-down game.
+- **Evidence:** The user's current direction following review of the protected orthographic and mild-perspective spike.
+- **Controlling files updated:** `Docs/TOP_DOWN_3D_FOUNDATION_PLAN.md`, `Docs/DOCS_INDEX.md`, and the new implementation under `Assets/_Project/`.
+- **Consequences / follow-up:** Orthographic remains historical comparison evidence only. The first perspective foundation stays in a separate scene, preserves the 2D baseline and prior spike, and does not authorize packages, production assets, save migration, Build Settings changes, cutover, release, or legacy deletion.
+- **Supersedes:** the camera and presentation direction in the 2026-08-12 protected-spike proposal; the preservation contract remains active.

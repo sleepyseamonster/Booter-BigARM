@@ -3,6 +3,7 @@
   "rootNamespace": "BooterBigArm.Tests",
   "references": [
     "BooterBigArm.Runtime",
+    "BooterBigArm.TopDown3D.Runtime",
     "BooterBigArm.Editor",
     "Unity.Cinemachine",
     "Unity.InputSystem",
