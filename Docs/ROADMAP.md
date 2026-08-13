@@ -17,7 +17,8 @@ This is the consolidated working roadmap for the prototype. It combines the curr
 The accepted planning direction is a top-down, isometric-style 2.5D presentation using 3D runtime assets. Gottspan owns the conversion program under the user's creative and product authority.
 
 - [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md) is the canonical conversion master plan, system migration matrix, decision register, work breakdown, and acceptance checklist.
-- The current phase is audit and planning only. No renderer, scene, package, settings, asset, or gameplay conversion has been implemented yet.
+- The protected technical spike is implemented through CP-05 and is awaiting the CP-06 user go/no-go decision. Shared-system conversion has not begun.
+- [ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md](./ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md) contains the current proof, screenshots, corrections, preserved boundaries, and remaining gaps.
 - Preserve the existing 2D prototype as a reference and recovery point until the 2.5D vertical slice and later cutover candidate are explicitly accepted.
 - Do not expand the 2D presentation path except for preservation or separately prioritized fixes that remain valuable during conversion.
 - The gameplay phases below remain desired game outcomes. Their implementation should proceed on the accepted 2.5D foundation rather than deepening soon-to-be-replaced 2D presentation systems.

@@ -20,6 +20,7 @@ This file holds durable facts that help Babineaux bridge Codex work into Unity. 
 - Existing dirty files are user-owned unless the current task explicitly brings them into scope.
 - Route repo-wide ownership and integration conflicts to Gottspan.
 - Route all conversion work through Gottspan's canonical plan at `Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md`; preserve the current 2D baseline until an approved conversion brief changes a specific owned surface.
+- Keep `Renderer2D.asset` at renderer index 0 and the conversion renderer at non-default index 1 during coexistence; conversion cameras must select index 1 explicitly.
 
 ## Verified Starting Baseline
 
@@ -31,6 +32,8 @@ Verified 2026-08-12 from root `AGENTS.md`, `ProjectSettings/ProjectVersion.txt`,
 - Runtime assembly namespace baseline: `BooterBigArm.Runtime`.
 - Runtime code belongs under `Assets/_Project/Scripts/Runtime/`.
 - Editor-only automation belongs under `Assets/_Project/Scripts/Editor/` in an editor-only assembly.
+- The protected conversion lab is `Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity` and must remain outside enabled Build Settings before cutover authority.
+- The conversion baseline validator is available at `BooterBigArm.Editor.ConversionBaselineValidator.ValidateFromCli`; do not substitute the writing prototype bootstrapper for validation.
 
 These facts can drift. Re-check live files before relying on them for implementation or automation.
 

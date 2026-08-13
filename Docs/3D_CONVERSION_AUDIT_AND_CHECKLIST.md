@@ -12,9 +12,9 @@ The intended direction is **top-down, isometric-style 2.5D**: the runtime world 
 - Program owner: Gottspan owns conversion planning, task design, architecture coordination, integration order, validation expectations, status reconciliation, and evidence-based closeout.
 - Product owner: the user retains final creative direction, acceptance, priority, purchasing, account, destructive-cleanup, release, and public-commitment authority.
 - Planning authority: the user has authorized continued audit and creation of the full conversion plan.
-- Implementation authority in this pass: documentation only.
+- Implementation authority: CP-01 through CP-05 protected-spike work is authorized; CP-06 remains a user acceptance gate before shared-system conversion.
 - Final conversion status: not yet accepted as a destructive cutover.
-- Program state: CP-00 planning audit complete; CP-01 direction brief is the next planned batch, but no implementation batch is authorized in this pass.
+- Program state: CP-00 through CP-03 are complete. CP-04 and CP-05 are implemented and evidence-ready; the program is intentionally stopped at CP-06 for the user's proceed, revise, or stop decision.
 - The current 2D prototype remains the working implementation until a separate 3D vertical slice passes its acceptance gate.
 - No asset purchase, package installation, destructive asset removal, broad project-setting change, or release is authorized by this plan.
 
@@ -452,25 +452,27 @@ Exit proof: a short accepted direction brief with no unresolved choice that woul
 
 ### Gate 1 — Protected technical spike
 
-- [ ] Capture the preserved 2D baseline commit, scene list, renderer default, relevant screenshots, and known unverified behavior before Unity writes begin.
-- [ ] Create a new project-owned 3D renderer asset without replacing `Renderer2D.asset`.
-- [ ] Add the new renderer to the URP asset in a way that preserves the old scene's renderer behavior.
-- [ ] Create a new, separately named isometric 2.5D prototype scene; do not overwrite `PrototypeScene.unity`.
-- [ ] Keep both current build scenes and their enabled/disabled state unchanged until an explicit build-settings task.
-- [ ] Create a greybox Booter using a capsule or similarly obvious placeholder.
-- [ ] Implement a separate experimental 3D motor; do not rename or mutate `PlayerMotor2D` in place.
-- [ ] Compare a 3D `Rigidbody` motor and any alternative only if the accepted movement requirements justify the extra spike.
-- [ ] Add a fixed isometric-style Cinemachine camera without pixel-perfect components.
+- [x] Capture the preserved 2D baseline commit, scene list, renderer default, relevant screenshots, and known unverified behavior before Unity writes begin.
+- [x] Create a new project-owned 3D renderer asset without replacing `Renderer2D.asset`.
+- [x] Add the new renderer to the URP asset in a way that preserves the old scene's renderer behavior.
+- [x] Create a new, separately named isometric 2.5D prototype scene; do not overwrite `PrototypeScene.unity`.
+- [x] Keep both current build scenes and their enabled/disabled state unchanged until an explicit build-settings task.
+- [x] Create a greybox Booter using a capsule or similarly obvious placeholder.
+- [x] Implement a separate experimental 3D motor; do not rename or mutate `PlayerMotor2D` in place.
+- [x] Use the 3D `Rigidbody` motor for the spike; no accepted requirement justified a second motor experiment.
+- [x] Add a fixed isometric-style Cinemachine camera without pixel-perfect components.
 - [ ] Prove camera-relative movement, facing, and interaction direction with both gamepad and keyboard/mouse.
-- [ ] Keep Touch, Joystick, XR, `Attack`, and `Jump` outside the first slice unless D-09 or another accepted decision brings them into scope.
-- [ ] Verify equal movement speed on screen-cardinal and diagonal input.
-- [ ] Verify movement and facing remain correct at every allowed camera zoom and any allowed camera rotation.
-- [ ] Add one ground plane, several walls/rocks, one ramp if elevation is in scope, and basic directional lighting/fog.
-- [ ] Place deliberate camera-side occluders and prove the selected fade, cutaway, silhouette, or placement rule.
-- [ ] Add one 3D collider-based harvest node and one pickup using placeholder geometry.
-- [ ] Use temporary explicit layer masks without prematurely declaring the final collision matrix.
-- [ ] Add a placeholder BigARM object with only basic follow/recall behavior.
-- [ ] Capture comparable screenshots/video and playtest notes for the 2D and 3D scenes.
+- [x] Keep Touch, Joystick, XR, `Attack`, and `Jump` outside the first slice unless D-09 or another accepted decision brings them into scope.
+- [x] Verify equal movement speed on screen-cardinal and diagonal input through focused camera-basis tests.
+- [x] Verify movement and facing remain correct at the spike's fixed yaw in both permitted projection modes; no zoom or rotation is allowed yet.
+- [x] Add one ground plane, several walls/rocks, one traversable ramp, and basic directional lighting/fog.
+- [x] Place deliberate camera-side occluders and prove temporary binary hide/reveal behavior.
+- [x] Add one 3D collider-based harvest node, world-space marker, and one pickup using placeholder geometry.
+- [x] Use temporary explicit layer masks without prematurely declaring the final collision matrix.
+- [x] Add a placeholder BigARM object with basic camera-relative follow/recall behavior.
+- [x] Capture comparable projection screenshots and structured live-play notes for the 3D scene.
+
+Keyboard/mouse passed live. The gamepad half of the remaining unchecked item requires a physical-device playtest before Gate 1 can be accepted.
 
 Exit proof: the 2.5D slice launches independently, is controllable, maintains a consistent isometric-style composition, remains readable around occluders, and demonstrates enough of Booter/BigARM scale to support a user go/no-go decision.
 
@@ -675,12 +677,12 @@ The batches below are the controlled execution order. Gates above define accepta
 | ID | Batch | Depends on | Principal deliverables | Exit proof | Status |
 | --- | --- | --- | --- | --- | --- |
 | CP-00 | Full audit and master plan | User's conversion direction | Repository audit, migration matrix, architecture target, gates, risk register, work breakdown, and ownership | Planning docs agree; structural checks pass; only planning files changed | Complete |
-| CP-01 | Direction brief | CP-00 | Decisions D-01 through D-09 resolved only to the depth needed for the spike; visual references and acceptance questions attached | User accepts the brief; no unresolved choice would invalidate CP-03 through CP-05 | Pending user decisions |
-| CP-02 | Preservation baseline and validation floor | CP-01 | Exact legacy baseline, scene/renderer/build-settings inventory, minimal non-mutating validator, initial test asmdefs, and conversion task paths | Validator reports legacy state; focused tests run; unrelated dirty files preserved | Pending implementation authority |
-| CP-03 | Parallel renderer and conversion lab | CP-02 | Non-default 3D renderer, separate isometric lab scene, primitive environment, directional light, restrained volume, explicit camera renderer | Legacy scene retains 2D renderer; lab renders 3D; Build Settings unchanged; compile/import clean | Pending implementation authority |
-| CP-04 | Player movement and camera comparison | CP-03 | Temporary 3D player motor, shared camera-basis math, orthographic/mild-perspective comparison, fixed framing, zoom limits | Gamepad and keyboard/mouse movement is readable, speed-correct, collision-aware, and accepted for feel | Pending implementation authority |
-| CP-05 | Occlusion, interaction, and BigARM scale spike | CP-04 | Camera-side occluder experiment, one harvest node, one pickup, placeholder BigARM follow/recall volume, world-space marker test | Booter and interactions stay readable; BigARM scale is viable; no broad conversion started | Pending implementation authority |
-| CP-06 | Spike go/no-go | CP-03 through CP-05 | Comparison captures, playtest notes, measured risks, accepted/rejected experiments, revised effort assessment | User explicitly chooses proceed, revise, or stop; accepted choices enter decision log | Pending spike evidence |
+| CP-01 | Direction brief | CP-00 | Decisions D-01 through D-09 resolved only to the depth needed for the spike; acceptance questions attached | No unresolved choice invalidates CP-03 through CP-05; final creative locks remain gated | Complete — `ISOMETRIC_DIRECTION_BRIEF.md` |
+| CP-02 | Preservation baseline and validation floor | CP-01 | Exact legacy baseline, scene/renderer/build-settings inventory, minimal non-mutating validator, initial test asmdefs, and conversion task paths | Validator reports legacy state; focused tests run; unrelated dirty files preserved | Complete — validator pass, 8 focused tests pass |
+| CP-03 | Parallel renderer and conversion lab | CP-02 | Non-default 3D renderer, separate isometric lab scene, primitive environment, directional light, restrained volume, explicit camera renderer | Legacy scene retains 2D renderer; lab renders 3D; Build Settings unchanged; compile/import clean | Complete — preservation hashes and live renderer proof recorded |
+| CP-04 | Player movement and camera comparison | CP-03 | Temporary 3D player motor, shared camera-basis math, orthographic/mild-perspective comparison, fixed framing, zoom limits | Gamepad and keyboard/mouse movement is readable, speed-correct, collision-aware, and accepted for feel | Evidence ready — keyboard/test/ramp pass; gamepad and user feel/lens acceptance pending |
+| CP-05 | Occlusion, interaction, and BigARM scale spike | CP-04 | Camera-side occluder experiment, one harvest node, one pickup, placeholder BigARM follow/recall volume, world-space marker test | Booter and interactions stay readable; BigARM scale is viable; no broad conversion started | Evidence ready — live interaction/visibility/scale proof; user acceptance pending |
+| CP-06 | Spike go/no-go | CP-03 through CP-05 | Comparison captures, playtest notes, measured risks, accepted/rejected experiments, revised effort assessment | User explicitly chooses proceed, revise, or stop; accepted choices enter decision log | Awaiting user decision — see protected spike report |
 | CP-07 | Shared runtime seams | CP-06 proceed | Serialized-safe traversal/world seams, shared coordinate contract, consumer decoupling, legacy adapters, focused regression tests | Both legacy and conversion scenes serialize/compile; shared state works through accepted seams | Pending Gate 1 acceptance |
 | CP-08 | Finite-area loop parity | CP-07 | Survival, inventory, harvesting, pickups, canister, BigARM storage/commands, HUD, and save/load in bounded 3D greybox | Leave–gather–pressure–return loop passes scripted checks and structured playtest | Pending Gate 2 |
 | CP-09 | Save and identity migration | CP-07 and CP-08 | Explicit XZ chunk identity, schema/generation version policy, stable IDs, chosen legacy-save policy, migration/incompatibility handling | Fresh and supported legacy cases behave exactly as documented; axis/version tests pass | Pending product policy |
@@ -732,7 +734,7 @@ The asset pipeline and 3D world generator are likely to dominate total conversio
 
 ## Immediate Next-Step Checklist
 
-No Unity implementation should begin until the user reviews or delegates the Gate 0 choices. Once those are accepted, the first authorized implementation task should be limited to Gate 1 and should define:
+The user delegated execution of the conversion plan on 2026-08-12. `ISOMETRIC_DIRECTION_BRIEF.md` therefore records the recommended Gate 0 defaults as the working spike contract. Unity implementation remains limited to the protected Gate 1 path until CP-06 evidence is reviewed.
 
 - [ ] Exact task-owned files and new asset paths.
 - [ ] Existing dirty files that remain user-owned and untouched.

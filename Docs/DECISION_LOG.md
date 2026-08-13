@@ -37,5 +37,17 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Why:** The user explicitly selected the isometric 2.5D direction, asked Gottspan to take ownership, and requested a complete audit and conversion plan. The repository audit shows substantial reusable game-state code but central 2D coupling in movement, world generation, BigARM locomotion, scenes, renderer setup, prefabs, and assets.
 - **Evidence:** Live inspection of runtime/editor code, both enabled scenes, URP and quality assets, packages, input actions, physics/navigation settings, prefabs, art inventory, tests, build automation, and controlling docs.
 - **Controlling files updated:** `Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md`, `Docs/ROADMAP.md`, `Docs/PROJECT_STATUS.md`, `Docs/DOCS_INDEX.md`, `Docs/DECISION_LOG.md`, and the bounded Gottspan/Babineaux project-memory routing notes.
-- **Consequences / follow-up:** Execute the gated conversion program without in-place scene or asset replacement. No Unity implementation is authorized by the planning pass. Final camera, elevation, aiming, art, platform, sourcing, package, cutover, and cleanup decisions remain gated as documented.
+- **Consequences / follow-up:** Execute the gated conversion program without in-place scene or asset replacement. The user authorized execution on 2026-08-12, so the recommended spike defaults are recorded in `Docs/ISOMETRIC_DIRECTION_BRIEF.md`; final camera, elevation, aiming, art, platform, sourcing, package, cutover, and cleanup decisions remain gated as documented.
 - **Supersedes:** none; current 2D implementation standards remain active for the preserved legacy path until individually superseded by evidence and the final cutover.
+
+## 2026-08-12 — Protected Isometric Spike Ready For Review
+
+- **Status:** proposed
+- **Decision owner:** user
+- **Question:** Does the protected isometric technical spike justify proceeding to shared runtime seams?
+- **Decision:** Gottspan recommends proceeding with fixed orthographic framing as the working default, keeping 48-degree mild perspective as a comparison until the user selects a lens. BigARM remains camera-relative screen-left during the spike, elevation remains limited to modest ramps, and binary occlusion remains temporary.
+- **Why:** The parallel lab compiles, preserves the legacy scenes and renderer default, passes 8 focused tests, and passed live keyboard movement, ramp, harvest, pickup, camera, occlusion, and BigARM scale checks without runtime exceptions.
+- **Evidence:** `Docs/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md` and its linked captures.
+- **Controlling files updated:** `Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md`, `Docs/PROJECT_STATUS.md`, `Docs/ROADMAP.md`, and the protected lab implementation under `Assets/_Project/`.
+- **Consequences / follow-up:** Stop at CP-06 until the user chooses proceed, revise, or stop. A proceed decision authorizes planning and implementation of CP-07 only; it does not authorize packages, purchases, Build Settings cutover, production assets, release, or legacy deletion.
+- **Supersedes:** none

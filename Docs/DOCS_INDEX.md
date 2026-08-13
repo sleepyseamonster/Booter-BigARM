@@ -34,6 +34,8 @@ These should be treated as the source of truth unless they are intentionally rev
 
 - [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md)
   The canonical audit, ownership contract, migration matrix, architecture target, work breakdown, decision gates, asset requirements, and risks for the top-down isometric-style 2.5D conversion.
+- [ISOMETRIC_DIRECTION_BRIEF.md](./ISOMETRIC_DIRECTION_BRIEF.md)
+  The approved working visual, camera, interaction, input, greybox, preservation, and acceptance contract for the protected conversion spike.
 
 ## Implementation Standards And Seams
 
@@ -55,6 +57,10 @@ These describe current repo state rather than durable design truth.
 - [PROJECT_STATUS.md](./PROJECT_STATUS.md)
 - [ROADMAP.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/ROADMAP.md)
 - [RESEARCH_PLAN.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/RESEARCH_PLAN.md)
+- [ConversionEvidence/LEGACY_BASELINE_2026-08-12.md](./ConversionEvidence/LEGACY_BASELINE_2026-08-12.md)
+  The immutable CP-02 scene, renderer, hierarchy, Build Settings, Git-blob, and SHA-256 preservation anchor for the protected 2D path.
+- [ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md](./ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md)
+  CP-01 through CP-05 implementation evidence, screenshots, corrections, validation results, limitations, and the CP-06 decision boundary.
 
 ## Design Evidence And Decisions
 

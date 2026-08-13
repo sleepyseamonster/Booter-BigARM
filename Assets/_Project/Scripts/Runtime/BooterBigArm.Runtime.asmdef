@@ -2,6 +2,7 @@
   "name": "BooterBigArm.Runtime",
   "rootNamespace": "BooterBigArm.Runtime",
   "references": [
+    "Unity.Cinemachine",
     "Unity.InputSystem",
     "Unity.2D.Tilemap.Extras"
   ],
