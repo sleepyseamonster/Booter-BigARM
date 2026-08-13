@@ -22,4 +22,12 @@ Before adding a helper or automation entry point, confirm that it:
 
 ## Current Inventory
 
-No Babineaux-specific tools have been added yet.
+### `launch-unity.sh`
+
+- **Purpose:** Open this project in its pinned Unity editor, avoid a duplicate target-project session, wait for the real editor window, restore `PrototypeScene` when Unity lands on `Untitled`, and bring the editor forward.
+- **Path:** `Docs/Agents/Babineaux/tools/launch-unity.sh`
+- **Invocation:** `Docs/Agents/Babineaux/tools/launch-unity.sh`
+- **Read-only check:** `Docs/Agents/Babineaux/tools/launch-unity.sh --status`
+- **Side effects:** Starting Unity can import project assets and update ignored editor state. Restoring `PrototypeScene` changes the active editor scene but does not save it.
+- **Prerequisites:** The project-pinned Unity version must be installed. macOS Accessibility permission is required for window focus and scene restoration.
+- **Safety behavior:** Reuses an already-open target project, refuses a windowless stale Unity process, and does not terminate any Unity process automatically.

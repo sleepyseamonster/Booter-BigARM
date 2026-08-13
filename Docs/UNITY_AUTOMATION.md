@@ -11,6 +11,14 @@ This project currently has no MCP bridge exposed in the workspace. The practical
 
 ### Open The Project In The Editor
 
+Babineaux's guarded interactive launcher reads the pinned version from the project, avoids a duplicate target-project session, waits for the actual editor window, restores `PrototypeScene` when Unity lands on `Untitled`, and focuses Unity:
+
+```bash
+Docs/Agents/Babineaux/tools/launch-unity.sh
+```
+
+Use the direct editor command when diagnosing the launcher itself:
+
 ```bash
 "/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/MacOS/Unity" \
   -projectPath "/Users/worldbuilder/Desktop/Booter & BigARM"
