@@ -11,6 +11,7 @@ The Broken World has no plant life or open water. Natural clutter is therefore g
 - `TopDown3DWorldSettings` owns global density, clustering, slope, spacing, seed-version, and spawn-clearance tuning.
 - `TopDown3DNaturalObjectCatalog` owns stable content IDs, cost layers, weighted shape families, scale/proportion ranges, sink depth, tilt, and footprints.
 - `TopDown3DNaturalObjectPlanner` is the pure placement layer. It uses independent seed namespaces for obstacle, scatter, and ground-detail layers.
+- Obstacle, scatter, ground-detail, and landmark candidates also sample one shared low-frequency abundance field. This creates coherent rock-rich stretches and genuinely sparse ground instead of letting independent layers fill every gap.
 - Candidates are anchored to global cells and tested against neighboring cells before being assigned to a chunk. This keeps borders seamless and makes output independent of chunk load order.
 - Terrain height and normals come from `TopDown3DHeightSampler`, the same source used by the terrain mesh.
 - Cosmetic placements are reconstructed from seed and are not save data. Future interactive or harvestable natural objects require stable gameplay identities and saved deltas in a separate layer.
@@ -21,6 +22,7 @@ The Broken World has no plant life or open water. Natural clutter is therefore g
 2. `Scatter`: small non-colliding stones combined into one mesh per chunk so the chunk remains the culling and lifetime boundary.
 3. `GroundDetail`: dense chips and flakes combined into one mesh per chunk, with no colliders and no realtime shadow casting.
 4. `FineGrayCluster`: small neutral-gray grit and shale pieces using an independent, stronger cluster mask, a separate shared material, no colliders, and no realtime shadow casting.
+5. `Landmark`: rare, extra-large spires and monumental outcrops with conservative slope limits, broad cross-chunk spacing, simple collision, and full obstacle shadows.
 
 The default gray layer targets 156 candidates per 18-meter chunk, but its sharpened density mask rejects all candidates across broad low-value regions. The surviving 4.5–14 cm pieces bunch into substantially denser local pockets with ample bare ground between them, without changing the seed streams or placement of the original three layers.
 
@@ -28,14 +30,16 @@ The per-chunk combined meshes are destroyed with their owning streamed chunk. Th
 
 The mesh family uses controlled procedural geology rather than unrestricted per-instance mesh generation. Each of the five archetypes has twelve deterministic cached variants with elliptical silhouettes, non-concentric strata, uneven shoulders, broad top faces, embedded flat bases, and a clipped fracture side. This provides sixty reusable low-poly forms without creating or retaining a unique mesh for every spawned object.
 
+About thirty percent of ordinary obstacle candidates become formations of two to five touching rocks. The members vary in cached shape, variant, scale, yaw, and slight tilt, then combine into one generated mesh, one rendered object, and one bounding collider for that chunk. Rare landmarks can also form smaller fused groups. Their member layout is derived from the placement seed, so unload/reload and chunk build order reproduce the same formation.
+
 ## Rock Surface Families
 
-Ordinary obstacles, scatter, and ground-detail rocks share one world-anchored surface field with three outcomes: regular stone, dark charcoal stone, and restrained teal mineral stone. The low-frequency field forms coherent geological patches across chunk seams; it does not alter positions, collision, scale, or the independent fine-gray layer. Each family uses the same triplanar shader and tuning with its own authored albedo texture, and combined visual layers are split by material so shared materials remain batch-friendly.
+Ordinary obstacles, scatter, ground-detail rocks, and landmarks share one world-anchored surface field with three outcomes: regular stone, dark charcoal stone, and restrained teal mineral stone. The low-frequency field forms coherent geological patches across chunk seams; it does not alter positions, collision, scale, or the independent fine-gray layer. Each family uses the same triplanar shader and tuning with its own authored albedo texture, and combined visual layers are split by material so shared materials remain batch-friendly.
 
 ## Visual Standard
 
 - Detail should come from top-down silhouette, deliberate broad planes, asymmetric proportions, controlled sinking/contact, and restrained distribution rather than hidden polygon density.
-- Each shape has six deterministic variants. Meshes use flat per-face normals for a clean low-poly plane rhythm.
+- Each shape has twelve deterministic variants. Meshes use flat per-face normals for a clean low-poly plane rhythm.
 - Use shared opaque URP materials; do not clone a material per object.
 - Keep small clutter non-colliding and avoid realtime shadows where its screen contribution is tiny.
 - Medium and large production assets can replace generated meshes later without changing the planner contract. They should use authored LODs, simple collision, stable pivots, and the same catalog IDs.

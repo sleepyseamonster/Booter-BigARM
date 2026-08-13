@@ -87,7 +87,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void Catalog_ContainsAllFourCostLayersWithUniqueStableIds()
+        public void Catalog_ContainsAllFiveCostLayersWithUniqueStableIds()
         {
             var catalog = LoadSettings().NaturalObjectCatalog;
             Assert.That(catalog, Is.Not.Null);
@@ -95,6 +95,7 @@ namespace BooterBigArm.Tests
             Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.Scatter), Is.True);
             Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.Obstacle), Is.True);
             Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.FineGrayCluster), Is.True);
+            Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.Landmark), Is.True);
             var grayMaterial = LoadSettings().FineGrayClutterMaterial;
             Assert.That(grayMaterial, Is.Not.Null);
             var grayColor = grayMaterial.GetColor("_BaseColor");
@@ -186,6 +187,77 @@ namespace BooterBigArm.Tests
             Assert.That(placements, Is.Not.Empty);
             Assert.That(placements.All(placement =>
                 Mathf.Max(placement.Scale.x, placement.Scale.z) <= 0.2f), Is.True);
+        }
+
+        [Test]
+        public void RockAbundance_CreatesBroadSparseAndDenseRegions()
+        {
+            var settings = LoadSettings();
+            var minimum = float.MaxValue;
+            var maximum = float.MinValue;
+            var neighborDifference = 0f;
+            var comparisons = 0;
+            for (var z = -180; z <= 180; z += 12)
+            {
+                for (var x = -180; x <= 180; x += 12)
+                {
+                    var position = new Vector2(x, z);
+                    var abundance = TopDown3DNaturalObjectPlanner.SampleRockAbundance(
+                        settings,
+                        position);
+                    minimum = Mathf.Min(minimum, abundance);
+                    maximum = Mathf.Max(maximum, abundance);
+                    neighborDifference += Mathf.Abs(
+                        abundance
+                        - TopDown3DNaturalObjectPlanner.SampleRockAbundance(
+                            settings,
+                            position + Vector2.right * 4f));
+                    comparisons++;
+                }
+            }
+
+            Assert.That(minimum, Is.LessThan(0.25f));
+            Assert.That(maximum, Is.GreaterThan(1.55f));
+            Assert.That(
+                neighborDifference / comparisons,
+                Is.LessThan(0.2f),
+                "The shared abundance field should change gradually across neighboring ground.");
+        }
+
+        [Test]
+        public void ObstacleFormationsAndToweringLandmarks_AppearAtControlledRates()
+        {
+            var settings = LoadSettings();
+            var exclusion = new Vector2(10000f, 10000f);
+            var formations = new System.Collections.Generic.List<TopDown3DNaturalObjectPlacement>();
+            var landmarks = new System.Collections.Generic.List<TopDown3DNaturalObjectPlacement>();
+            for (var z = -10; z <= 10; z++)
+            {
+                for (var x = -10; x <= 10; x++)
+                {
+                    var placements = TopDown3DNaturalObjectPlanner.BuildPlacements(
+                        settings,
+                        settings.NaturalObjectCatalog,
+                        new Vector2Int(x, z),
+                        exclusion);
+                    formations.AddRange(placements.Where(placement =>
+                        placement.Layer == TopDown3DNaturalObjectLayer.Obstacle
+                        && placement.MemberCount > 1));
+                    landmarks.AddRange(placements.Where(placement =>
+                        placement.Layer == TopDown3DNaturalObjectLayer.Landmark));
+                }
+            }
+
+            Assert.That(formations, Is.Not.Empty);
+            Assert.That(formations.All(placement =>
+                placement.MemberCount >= 2
+                && placement.MemberCount <= settings.ObstacleFormationMaximumMembers), Is.True);
+            Assert.That(landmarks, Is.Not.Empty);
+            Assert.That(landmarks.All(placement => placement.Scale.y > 5f), Is.True);
+            Assert.That(
+                landmarks.Count,
+                Is.LessThan(formations.Count),
+                "Towering landmarks should remain rarer than fused ordinary formations.");
         }
 
         private static TopDown3DWorldSettings LoadSettings()

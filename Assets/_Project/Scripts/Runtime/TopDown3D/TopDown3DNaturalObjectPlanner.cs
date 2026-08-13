@@ -15,7 +15,9 @@ namespace BooterBigArm.TopDown3D
             Vector3 position,
             Quaternion rotation,
             Vector3 scale,
-            float footprintRadius)
+            float footprintRadius,
+            int formationSeed,
+            int memberCount)
         {
             StableId = stableId;
             Layer = layer;
@@ -26,6 +28,8 @@ namespace BooterBigArm.TopDown3D
             Rotation = rotation;
             Scale = scale;
             FootprintRadius = footprintRadius;
+            FormationSeed = formationSeed;
+            MemberCount = Mathf.Max(1, memberCount);
         }
 
         public string StableId { get; }
@@ -37,6 +41,8 @@ namespace BooterBigArm.TopDown3D
         public Quaternion Rotation { get; }
         public Vector3 Scale { get; }
         public float FootprintRadius { get; }
+        public int FormationSeed { get; }
+        public int MemberCount { get; }
 
         public bool Equals(TopDown3DNaturalObjectPlacement other)
         {
@@ -48,7 +54,9 @@ namespace BooterBigArm.TopDown3D
                 && Position == other.Position
                 && Rotation == other.Rotation
                 && Scale == other.Scale
-                && FootprintRadius.Equals(other.FootprintRadius);
+                && FootprintRadius.Equals(other.FootprintRadius)
+                && FormationSeed == other.FormationSeed
+                && MemberCount == other.MemberCount;
         }
 
         public override bool Equals(object obj)
@@ -66,6 +74,8 @@ namespace BooterBigArm.TopDown3D
                 hash = hash * 397 ^ (int)Surface;
                 hash = hash * 397 ^ Variant;
                 hash = hash * 397 ^ Position.GetHashCode();
+                hash = hash * 397 ^ FormationSeed;
+                hash = hash * 397 ^ MemberCount;
                 return hash;
             }
         }
@@ -98,6 +108,7 @@ namespace BooterBigArm.TopDown3D
                 settings.ClutterClusterStrength,
                 0.2f,
                 1.8f,
+                true,
                 placements);
             BuildLayer(
                 settings,
@@ -112,6 +123,7 @@ namespace BooterBigArm.TopDown3D
                 settings.ClutterClusterStrength,
                 0.2f,
                 1.8f,
+                true,
                 placements);
             BuildLayer(
                 settings,
@@ -126,6 +138,7 @@ namespace BooterBigArm.TopDown3D
                 settings.ClutterClusterStrength,
                 0.2f,
                 1.8f,
+                true,
                 placements);
             BuildLayer(
                 settings,
@@ -141,6 +154,22 @@ namespace BooterBigArm.TopDown3D
                 // A negative low-density factor creates truly empty ground between dense gray pockets.
                 -2.4f,
                 3.2f,
+                false,
+                placements);
+            BuildLayer(
+                settings,
+                catalog,
+                chunkCoordinate,
+                spawnExclusionCenter,
+                TopDown3DNaturalObjectLayer.Landmark,
+                settings.LandmarksPerChunk,
+                settings.LandmarkSpacing,
+                settings.MaximumLandmarkSlope,
+                settings.ClutterClusterFrequency * 0.6f,
+                settings.ClutterClusterStrength * 0.5f,
+                0.55f,
+                1.35f,
+                true,
                 placements);
             return placements;
         }
@@ -151,13 +180,14 @@ namespace BooterBigArm.TopDown3D
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter,
             TopDown3DNaturalObjectLayer layer,
-            int targetCount,
+            float targetCount,
             float extraSpacing,
             float maximumSlope,
             float clusterFrequency,
             float clusterStrength,
             float clusterMinimumFactor,
             float clusterMaximumFactor,
+            bool useSharedRockAbundance,
             ICollection<TopDown3DNaturalObjectPlacement> output)
         {
             if (targetCount <= 0 || !catalog.HasLayer(layer))
@@ -167,21 +197,25 @@ namespace BooterBigArm.TopDown3D
 
             var definitions = GetDefinitions(catalog, layer);
             var maximumFootprint = 0f;
+            var maximumMembers = layer == TopDown3DNaturalObjectLayer.Obstacle
+                ? settings.ObstacleFormationMaximumMembers
+                : layer == TopDown3DNaturalObjectLayer.Landmark ? 3 : 1;
+            var maximumFormationFootprint = GetFormationFootprintMultiplier(maximumMembers);
             for (var i = 0; i < definitions.Count; i++)
             {
                 maximumFootprint = Mathf.Max(
                     maximumFootprint,
                     definitions[i].FootprintRadius
                     * definitions[i].UniformScaleRange.y
-                    * Mathf.Max(definitions[i].Proportions.x, definitions[i].Proportions.z));
+                    * Mathf.Max(definitions[i].Proportions.x, definitions[i].Proportions.z)
+                    * maximumFormationFootprint);
             }
 
             var chunkSize = settings.ChunkSize;
             var cellSize = Mathf.Max(
                 0.18f,
                 Mathf.Sqrt((chunkSize * chunkSize) / Mathf.Max(1f, targetCount * 2.25f)));
-            var minimumDistance = maximumFootprint * 2f + extraSpacing;
-            cellSize = Mathf.Max(cellSize, minimumDistance * 0.62f);
+            var competitionSearchDistance = maximumFootprint * 2f + extraSpacing;
             var layerSeed = StableHash(
                 settings.WorldSeed,
                 settings.NaturalObjectGenerationVersion,
@@ -189,10 +223,10 @@ namespace BooterBigArm.TopDown3D
 
             var originX = chunkCoordinate.x * chunkSize;
             var originZ = chunkCoordinate.y * chunkSize;
-            var minCellX = Mathf.FloorToInt((originX - minimumDistance) / cellSize);
-            var maxCellX = Mathf.FloorToInt((originX + chunkSize + minimumDistance) / cellSize);
-            var minCellZ = Mathf.FloorToInt((originZ - minimumDistance) / cellSize);
-            var maxCellZ = Mathf.FloorToInt((originZ + chunkSize + minimumDistance) / cellSize);
+            var minCellX = Mathf.FloorToInt((originX - competitionSearchDistance) / cellSize);
+            var maxCellX = Mathf.FloorToInt((originX + chunkSize + competitionSearchDistance) / cellSize);
+            var minCellZ = Mathf.FloorToInt((originZ - competitionSearchDistance) / cellSize);
+            var maxCellZ = Mathf.FloorToInt((originZ + chunkSize + competitionSearchDistance) / cellSize);
             var cellsPerChunk = (chunkSize / cellSize) * (chunkSize / cellSize);
             var baseAdmission = Mathf.Clamp01(targetCount / Mathf.Max(1f, cellsPerChunk));
 
@@ -203,23 +237,30 @@ namespace BooterBigArm.TopDown3D
                     var candidate = BuildCandidate(layerSeed, cellX, cellZ, cellSize);
                     if (!BelongsToChunk(candidate.Position, chunkCoordinate, chunkSize)
                         || !PassesDensity(
+                            settings,
                             layerSeed,
                             candidate,
                             baseAdmission,
                             clusterFrequency,
                             clusterStrength,
                             clusterMinimumFactor,
-                            clusterMaximumFactor)
+                            clusterMaximumFactor,
+                            useSharedRockAbundance)
                         || LosesNeighborCompetition(
+                            settings,
+                            layer,
+                            definitions,
                             layerSeed,
                             candidate,
                             cellSize,
-                            minimumDistance,
+                            competitionSearchDistance,
+                            extraSpacing,
                             baseAdmission,
                             clusterFrequency,
                             clusterStrength,
                             clusterMinimumFactor,
-                            clusterMaximumFactor))
+                            clusterMaximumFactor,
+                            useSharedRockAbundance))
                     {
                         continue;
                     }
@@ -231,7 +272,10 @@ namespace BooterBigArm.TopDown3D
                         definition.UniformScaleRange.y,
                         candidate.Scale);
                     var scale = definition.Proportions * uniformScale;
-                    var footprint = definition.FootprintRadius * Mathf.Max(scale.x, scale.z);
+                    var memberCount = GetMemberCount(settings, layer, candidate);
+                    var footprint = definition.FootprintRadius
+                        * Mathf.Max(scale.x, scale.z)
+                        * GetFormationFootprintMultiplier(memberCount);
                     if (Vector2.Distance(worldPosition, spawnExclusionCenter)
                         < settings.ClearSpawnRadius + footprint)
                     {
@@ -273,24 +317,31 @@ namespace BooterBigArm.TopDown3D
                         position,
                         tilt * yaw,
                         scale,
-                        footprint));
+                        footprint,
+                        candidate.FormationSeed,
+                        memberCount));
                 }
             }
         }
 
         private static bool LosesNeighborCompetition(
+            TopDown3DWorldSettings settings,
+            TopDown3DNaturalObjectLayer layer,
+            IReadOnlyList<TopDown3DNaturalObjectDefinition> definitions,
             int layerSeed,
             Candidate candidate,
             float cellSize,
-            float minimumDistance,
+            float competitionSearchDistance,
+            float extraSpacing,
             float baseAdmission,
             float clusterFrequency,
             float clusterStrength,
             float clusterMinimumFactor,
-            float clusterMaximumFactor)
+            float clusterMaximumFactor,
+            bool useSharedRockAbundance)
         {
-            var range = Mathf.Max(1, Mathf.CeilToInt(minimumDistance / cellSize));
-            var minimumDistanceSquared = minimumDistance * minimumDistance;
+            var range = Mathf.Max(1, Mathf.CeilToInt(competitionSearchDistance / cellSize));
+            var candidateFootprint = GetCandidateFootprint(settings, layer, definitions, candidate);
             for (var z = -range; z <= range; z++)
             {
                 for (var x = -range; x <= range; x++)
@@ -306,14 +357,23 @@ namespace BooterBigArm.TopDown3D
                         candidate.CellZ + z,
                         cellSize);
                     if (!PassesDensity(
+                            settings,
                             layerSeed,
                             neighbor,
                             baseAdmission,
                             clusterFrequency,
                             clusterStrength,
                             clusterMinimumFactor,
-                            clusterMaximumFactor)
-                        || (neighbor.Position - candidate.Position).sqrMagnitude >= minimumDistanceSquared)
+                            clusterMaximumFactor,
+                            useSharedRockAbundance))
+                    {
+                        continue;
+                    }
+
+                    var neighborFootprint = GetCandidateFootprint(settings, layer, definitions, neighbor);
+                    var minimumDistance = candidateFootprint + neighborFootprint + extraSpacing;
+                    if ((neighbor.Position - candidate.Position).sqrMagnitude
+                        >= minimumDistance * minimumDistance)
                     {
                         continue;
                     }
@@ -331,13 +391,15 @@ namespace BooterBigArm.TopDown3D
         }
 
         private static bool PassesDensity(
+            TopDown3DWorldSettings settings,
             int layerSeed,
             Candidate candidate,
             float baseAdmission,
             float clusterFrequency,
             float clusterStrength,
             float clusterMinimumFactor,
-            float clusterMaximumFactor)
+            float clusterMaximumFactor,
+            bool useSharedRockAbundance)
         {
             var cluster = ValueNoise(
                 layerSeed ^ 0x2C9277B5,
@@ -347,7 +409,79 @@ namespace BooterBigArm.TopDown3D
                 1f,
                 Mathf.Lerp(clusterMinimumFactor, clusterMaximumFactor, cluster),
                 clusterStrength);
-            return candidate.Admission <= Mathf.Clamp01(baseAdmission * clusterFactor);
+            var abundanceFactor = useSharedRockAbundance
+                ? SampleRockAbundance(settings, candidate.Position)
+                : 1f;
+            return candidate.Admission <= Mathf.Clamp01(baseAdmission * clusterFactor * abundanceFactor);
+        }
+
+        public static float SampleRockAbundance(
+            TopDown3DWorldSettings settings,
+            Vector2 worldPosition)
+        {
+            var abundanceSeed = StableHash(
+                settings.WorldSeed,
+                settings.NaturalObjectGenerationVersion,
+                0x61D9A4B7);
+            var abundance = ValueNoise(
+                abundanceSeed,
+                worldPosition.x * settings.RockAbundanceFrequency,
+                worldPosition.y * settings.RockAbundanceFrequency);
+            var shapedAbundance = Mathf.SmoothStep(0.25f, 0.75f, abundance);
+            return Mathf.Lerp(
+                1f,
+                Mathf.Lerp(0.04f, 1.8f, shapedAbundance),
+                settings.RockAbundanceStrength);
+        }
+
+        private static float GetCandidateFootprint(
+            TopDown3DWorldSettings settings,
+            TopDown3DNaturalObjectLayer layer,
+            IReadOnlyList<TopDown3DNaturalObjectDefinition> definitions,
+            Candidate candidate)
+        {
+            var definition = SelectDefinition(definitions, candidate.Selection);
+            var uniformScale = Mathf.Lerp(
+                definition.UniformScaleRange.x,
+                definition.UniformScaleRange.y,
+                candidate.Scale);
+            var scale = definition.Proportions * uniformScale;
+            return definition.FootprintRadius
+                * Mathf.Max(scale.x, scale.z)
+                * GetFormationFootprintMultiplier(GetMemberCount(settings, layer, candidate));
+        }
+
+        private static int GetMemberCount(
+            TopDown3DWorldSettings settings,
+            TopDown3DNaturalObjectLayer layer,
+            Candidate candidate)
+        {
+            if (layer == TopDown3DNaturalObjectLayer.Obstacle)
+            {
+                if (candidate.FormationChance > settings.ObstacleFormationChance)
+                {
+                    return 1;
+                }
+
+                return Mathf.Clamp(
+                    2 + Mathf.FloorToInt(
+                        candidate.FormationSize * (settings.ObstacleFormationMaximumMembers - 1)),
+                    2,
+                    settings.ObstacleFormationMaximumMembers);
+            }
+
+            if (layer == TopDown3DNaturalObjectLayer.Landmark
+                && candidate.FormationChance <= 0.25f)
+            {
+                return Mathf.Clamp(2 + Mathf.FloorToInt(candidate.FormationSize * 2f), 2, 3);
+            }
+
+            return 1;
+        }
+
+        private static float GetFormationFootprintMultiplier(int memberCount)
+        {
+            return 1f + (Mathf.Max(1, memberCount) - 1) * 0.34f;
         }
 
         public static TopDown3DRockSurface SampleRockSurface(
@@ -432,7 +566,10 @@ namespace BooterBigArm.TopDown3D
                 Hash01(hash ^ 0x37C8E4D7),
                 Hash01(hash ^ 0x19F34AC1),
                 Hash01(hash ^ 0x4E2B81F3),
-                Hash01(hash ^ 0x631F8D29));
+                Hash01(hash ^ 0x631F8D29),
+                Hash01(hash ^ 0x25C74A91),
+                Hash01(hash ^ 0x7A8D31E5),
+                StableHash(hash, cellX ^ 0x416D2E3B, cellZ ^ 0x2D1F7A65));
         }
 
         private static int StableCellOrder(int leftX, int leftZ, int rightX, int rightZ)
@@ -497,7 +634,10 @@ namespace BooterBigArm.TopDown3D
                 float selection,
                 float scale,
                 float yaw,
-                float variant)
+                float variant,
+                float formationChance,
+                float formationSize,
+                int formationSeed)
             {
                 CellX = cellX;
                 CellZ = cellZ;
@@ -508,6 +648,9 @@ namespace BooterBigArm.TopDown3D
                 Scale = scale;
                 Yaw = yaw;
                 Variant = variant;
+                FormationChance = formationChance;
+                FormationSize = formationSize;
+                FormationSeed = formationSeed;
             }
 
             public int CellX { get; }
@@ -519,6 +662,9 @@ namespace BooterBigArm.TopDown3D
             public float Scale { get; }
             public float Yaw { get; }
             public float Variant { get; }
+            public float FormationChance { get; }
+            public float FormationSize { get; }
+            public int FormationSeed { get; }
         }
     }
 }

@@ -27,11 +27,18 @@ MonoBehaviour:
   noisePersistence: 0.5
   propsPerChunk: 4
   naturalObjectCatalog: {fileID: 11400000, guid: 03ec8052e2404ee19712ee02d05deb23, type: 2}
-  naturalObjectGenerationVersion: 1
+  naturalObjectGenerationVersion: 2
   scatterObjectsPerChunk: 22
   groundDetailsPerChunk: 72
   clutterClusterFrequency: 0.035
   clutterClusterStrength: 0.7
+  rockAbundanceFrequency: 0.018
+  rockAbundanceStrength: 0.95
+  obstacleFormationChance: 0.3
+  obstacleFormationMaximumMembers: 5
+  landmarksPerChunk: 0.03
+  landmarkSpacing: 8
+  maximumLandmarkSlope: 28
   scatterSpacing: 0.18
   groundDetailSpacing: 0.04
   fineGrayClutterMaterial: {fileID: 2100000, guid: 50ec2ac4616046718215ccc257883321, type: 2}

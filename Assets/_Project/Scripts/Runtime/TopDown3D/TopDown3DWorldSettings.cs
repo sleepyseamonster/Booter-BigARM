@@ -21,11 +21,18 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0, 12)] private int propsPerChunk = 4;
         [Header("Natural Objects")]
         [SerializeField] private TopDown3DNaturalObjectCatalog naturalObjectCatalog;
-        [SerializeField, Min(1)] private int naturalObjectGenerationVersion = 1;
+        [SerializeField, Min(1)] private int naturalObjectGenerationVersion = 2;
         [SerializeField, Range(0, 64)] private int scatterObjectsPerChunk = 22;
         [SerializeField, Range(0, 160)] private int groundDetailsPerChunk = 72;
         [SerializeField, Min(0.0001f)] private float clutterClusterFrequency = 0.035f;
         [SerializeField, Range(0f, 1f)] private float clutterClusterStrength = 0.7f;
+        [SerializeField, Min(0.0001f)] private float rockAbundanceFrequency = 0.018f;
+        [SerializeField, Range(0f, 1f)] private float rockAbundanceStrength = 0.95f;
+        [SerializeField, Range(0f, 1f)] private float obstacleFormationChance = 0.3f;
+        [SerializeField, Range(2, 6)] private int obstacleFormationMaximumMembers = 5;
+        [SerializeField, Range(0f, 0.25f)] private float landmarksPerChunk = 0.03f;
+        [SerializeField, Min(0f)] private float landmarkSpacing = 8f;
+        [SerializeField, Range(1f, 60f)] private float maximumLandmarkSlope = 28f;
         [SerializeField, Min(0f)] private float scatterSpacing = 0.18f;
         [SerializeField, Min(0f)] private float groundDetailSpacing = 0.04f;
         [SerializeField] private Material fineGrayClutterMaterial;
@@ -68,6 +75,13 @@ namespace BooterBigArm.TopDown3D
         public int GroundDetailsPerChunk => groundDetailsPerChunk;
         public float ClutterClusterFrequency => clutterClusterFrequency;
         public float ClutterClusterStrength => clutterClusterStrength;
+        public float RockAbundanceFrequency => rockAbundanceFrequency;
+        public float RockAbundanceStrength => rockAbundanceStrength;
+        public float ObstacleFormationChance => obstacleFormationChance;
+        public int ObstacleFormationMaximumMembers => obstacleFormationMaximumMembers;
+        public float LandmarksPerChunk => landmarksPerChunk;
+        public float LandmarkSpacing => landmarkSpacing;
+        public float MaximumLandmarkSlope => maximumLandmarkSlope;
         public float ScatterSpacing => scatterSpacing;
         public float GroundDetailSpacing => groundDetailSpacing;
         public Material FineGrayClutterMaterial => fineGrayClutterMaterial;
@@ -119,6 +133,13 @@ namespace BooterBigArm.TopDown3D
             groundDetailsPerChunk = Mathf.Clamp(groundDetailsPerChunk, 0, 160);
             clutterClusterFrequency = Mathf.Max(0.0001f, clutterClusterFrequency);
             clutterClusterStrength = Mathf.Clamp01(clutterClusterStrength);
+            rockAbundanceFrequency = Mathf.Max(0.0001f, rockAbundanceFrequency);
+            rockAbundanceStrength = Mathf.Clamp01(rockAbundanceStrength);
+            obstacleFormationChance = Mathf.Clamp01(obstacleFormationChance);
+            obstacleFormationMaximumMembers = Mathf.Clamp(obstacleFormationMaximumMembers, 2, 6);
+            landmarksPerChunk = Mathf.Clamp(landmarksPerChunk, 0f, 0.25f);
+            landmarkSpacing = Mathf.Max(0f, landmarkSpacing);
+            maximumLandmarkSlope = Mathf.Clamp(maximumLandmarkSlope, 1f, 60f);
             scatterSpacing = Mathf.Max(0f, scatterSpacing);
             groundDetailSpacing = Mathf.Max(0f, groundDetailSpacing);
             fineGrayClutterPerChunk = Mathf.Clamp(fineGrayClutterPerChunk, 0, 240);

@@ -9,7 +9,8 @@ namespace BooterBigArm.TopDown3D
         GroundDetail,
         Scatter,
         Obstacle,
-        FineGrayCluster
+        FineGrayCluster,
+        Landmark
     }
 
     public enum TopDown3DNaturalObjectShape
