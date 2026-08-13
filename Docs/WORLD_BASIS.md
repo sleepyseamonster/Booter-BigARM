@@ -23,6 +23,14 @@ The game is about endurance, deliberate movement, and living inside a hostile sy
 - The setting is procedurally generated and effectively infinite.
 - Ancient ruins, broken war machines, and buried megastructures appear throughout the terrain.
 
+## Perpetual Twilight
+
+- One planetary pole points toward the sun while the opposite pole points away from it.
+- People live around the equatorial boundary between those extremes, where the world remains in perpetual twilight.
+- The sun's apparent daily activity has a figure-eight relationship in the world's lore. The game does not need to reproduce that astronomical path literally.
+- The playable day/night cycle moves between brighter sunset and deeper twilight. It never becomes conventional noon or full night.
+- The low sun angle makes long shadows a stable part of navigation, concealment, danger, and environmental readability rather than a purely visual effect.
+
 ## Survival Rules
 
 - There is no water in the world.

@@ -359,12 +359,8 @@ namespace BooterBigArm.Editor
         private static void CreateLighting()
         {
             var lightObject = new GameObject("Directional Key Light");
-            lightObject.transform.rotation = Quaternion.Euler(52f, -28f, 0f);
             var light = lightObject.AddComponent<Light>();
-            light.type = LightType.Directional;
-            light.color = new Color(1f, 0.91f, 0.78f);
-            light.intensity = 1.15f;
-            light.shadows = LightShadows.Soft;
+            lightObject.AddComponent<PerpetualTwilightSun>().Configure(light);
         }
 
         private static void EnsureFolder(string folderPath)

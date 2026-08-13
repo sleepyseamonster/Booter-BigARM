@@ -75,6 +75,15 @@ This foundation batch is complete when the repository contains a separate `TopDo
 - The foundation AI owns only follow spacing, local obstacle avoidance, ground placement, stuck recovery, and recall.
 - More complex decisions remain behind the later companion-design gate.
 
+### Lighting And Shadows
+
+- `PerpetualTwilightSun` is the perspective lane's authoritative global-light owner.
+- The sun remains low on one side of the world and moves through a slow, continuous brighter-sunset/deeper-twilight loop rather than a conventional overhead day and dark night.
+- Direct-light color and intensity, flat ambient fill, fog, and the procedural runtime sky move together so the world retains an orange twilight read without flattening the shadows.
+- The directional light uses soft, high-strength shadows backed by two main-light cascades and a 50-unit shadow distance. Its narrow elevation and azimuth bands keep shadows long and readable without sudden direction reversals.
+- Later gameplay may read `PerpetualTwilightSun.Active`, `DirectionToSun`, `LightTravelDirection`, and `Brightness01`; it should not create a competing clock or infer sun state from presentation-only colors.
+- The current generated perspective scene adopts the system at runtime. Future scene rebuilds serialize the component through `TopDown3DPrototypeBuilder`.
+
 ## Execution Sequence
 
 1. Add the isolated runtime assembly and implement input, movement, camera, deterministic terrain, streaming, and BigARM follow systems.
