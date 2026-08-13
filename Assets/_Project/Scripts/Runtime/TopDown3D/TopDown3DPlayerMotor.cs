@@ -10,7 +10,7 @@ namespace BooterBigArm.TopDown3D
 
         [SerializeField] private TopDown3DInputRouter input;
         [SerializeField] private Transform cameraBasis;
-        [SerializeField, Min(0.1f)] private float walkSpeed = 5.4f;
+        [SerializeField, Min(0.1f)] private float walkSpeed = 4.2f;
         [SerializeField, Min(0.1f)] private float sprintSpeed = 7.4f;
         [SerializeField, Min(0.1f)] private float acceleration = 30f;
         [SerializeField, Min(0.1f)] private float deceleration = 36f;
