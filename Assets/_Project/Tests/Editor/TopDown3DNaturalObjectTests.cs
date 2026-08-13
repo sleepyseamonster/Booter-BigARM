@@ -110,14 +110,19 @@ namespace BooterBigArm.Tests
         {
             foreach (TopDown3DNaturalObjectShape shape in System.Enum.GetValues(typeof(TopDown3DNaturalObjectShape)))
             {
-                for (var variant = 0; variant < 6; variant++)
+                var distinctBounds = new System.Collections.Generic.HashSet<Vector3>();
+                for (var variant = 0; variant < TopDown3DNaturalMeshLibrary.VariantsPerShape; variant++)
                 {
                     var mesh = TopDown3DNaturalMeshLibrary.GetMesh(shape, variant);
                     Assert.That(mesh, Is.Not.Null);
                     Assert.That(mesh.vertexCount, Is.GreaterThan(0).And.LessThan(600));
                     Assert.That(mesh.triangles.Length % 3, Is.Zero);
                     Assert.That(mesh.bounds.size.sqrMagnitude, Is.GreaterThan(0f));
+                    Assert.That(mesh.bounds.min.y, Is.GreaterThanOrEqualTo(-0.0001f));
+                    distinctBounds.Add(mesh.bounds.size);
                 }
+
+                Assert.That(distinctBounds.Count, Is.GreaterThanOrEqualTo(8));
             }
         }
 

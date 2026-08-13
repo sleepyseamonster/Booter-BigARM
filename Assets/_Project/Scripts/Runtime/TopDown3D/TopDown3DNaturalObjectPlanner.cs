@@ -73,8 +73,6 @@ namespace BooterBigArm.TopDown3D
 
     public static class TopDown3DNaturalObjectPlanner
     {
-        private const int VariantCount = 6;
-
         public static List<TopDown3DNaturalObjectPlacement> BuildPlacements(
             TopDown3DWorldSettings settings,
             TopDown3DNaturalObjectCatalog catalog,
@@ -270,7 +268,8 @@ namespace BooterBigArm.TopDown3D
                         layer == TopDown3DNaturalObjectLayer.FineGrayCluster
                             ? TopDown3DRockSurface.Regular
                             : SampleRockSurface(settings, worldPosition),
-                        Mathf.FloorToInt(candidate.Variant * VariantCount) % VariantCount,
+                        Mathf.FloorToInt(candidate.Variant * TopDown3DNaturalMeshLibrary.VariantsPerShape)
+                            % TopDown3DNaturalMeshLibrary.VariantsPerShape,
                         position,
                         tilt * yaw,
                         scale,

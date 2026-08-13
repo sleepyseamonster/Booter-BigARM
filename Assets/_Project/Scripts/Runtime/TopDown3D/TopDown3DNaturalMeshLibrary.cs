@@ -5,7 +5,7 @@ namespace BooterBigArm.TopDown3D
 {
     public static class TopDown3DNaturalMeshLibrary
     {
-        private const int VariantsPerShape = 6;
+        public const int VariantsPerShape = 12;
         private static readonly Dictionary<int, MeshEntry> Meshes = new Dictionary<int, MeshEntry>();
 
         public static Mesh GetMesh(TopDown3DNaturalObjectShape shape, int variant)
@@ -42,42 +42,82 @@ namespace BooterBigArm.TopDown3D
 
         private static MeshEntry BuildMesh(TopDown3DNaturalObjectShape shape, int variant)
         {
-            GetShape(shape, out var segments, out var baseRadius, out var middleRadius, out var upperRadius, out var height);
-            var rings = new Vector3[3, segments];
-            for (var ring = 0; ring < 3; ring++)
+            var profile = GetShapeProfile(shape);
+            var rings = new Vector3[profile.Radii.Length, profile.Segments];
+            var xStretch = Mathf.Lerp(0.78f, 1.22f, Hash01((int)shape, variant, 503, 31));
+            var zStretch = Mathf.Lerp(0.8f, 1.2f, Hash01((int)shape, variant, 719, 47));
+            var fractureAngle = Hash01((int)shape, variant, 887, 59) * Mathf.PI * 2f;
+            var fractureNormal = new Vector2(Mathf.Cos(fractureAngle), Mathf.Sin(fractureAngle));
+            var fractureLimit = Mathf.Lerp(0.5f, 0.72f, Hash01((int)shape, variant, 997, 71));
+            var fractureDepth = Mathf.Lerp(0.1f, 0.24f, Hash01((int)shape, variant, 1069, 83));
+            for (var ring = 0; ring < profile.Radii.Length; ring++)
             {
-                var radius = ring == 0 ? baseRadius : ring == 1 ? middleRadius : upperRadius;
-                var y = ring == 0 ? 0.04f : ring == 1 ? height * 0.42f : height * 0.78f;
-                for (var segment = 0; segment < segments; segment++)
+                var center = GetRingCenter(shape, variant, ring, profile.Radii[ring]);
+                for (var segment = 0; segment < profile.Segments; segment++)
                 {
-                    var angle = ((segment + RingOffset(shape, variant, ring)) / segments) * Mathf.PI * 2f;
-                    var radialNoise = Mathf.Lerp(0.78f, 1.16f, Hash01((int)shape, variant, ring, segment));
+                    var angleJitter = Mathf.Lerp(
+                        -0.28f,
+                        0.28f,
+                        Hash01((int)shape, variant, segment, 1217));
+                    var angle = ((segment + RingOffset(shape, variant, ring) + angleJitter)
+                        / profile.Segments) * Mathf.PI * 2f;
+                    var silhouetteNoise = Mathf.Lerp(
+                        0.8f,
+                        1.2f,
+                        Hash01((int)shape, variant, segment, 1327));
+                    var ringNoise = Mathf.Lerp(
+                        0.92f,
+                        1.08f,
+                        Hash01((int)shape, variant, ring, segment));
                     var heightNoise = ring == 0
                         ? 0f
-                        : Mathf.Lerp(-0.06f, 0.06f, Hash01(variant, segment, ring, 941));
-                    rings[ring, segment] = new Vector3(
-                        Mathf.Cos(angle) * radius * radialNoise,
-                        y + height * heightNoise,
-                        Mathf.Sin(angle) * radius * radialNoise);
+                        : Mathf.Lerp(-0.035f, 0.035f, Hash01(variant, segment, ring, 941));
+                    var radius = profile.Radii[ring] * silhouetteNoise * ringNoise;
+                    var point = new Vector3(
+                        center.x + Mathf.Cos(angle) * radius * xStretch,
+                        profile.Height * (profile.Heights[ring] + heightNoise),
+                        center.y + Mathf.Sin(angle) * radius * zStretch);
+                    rings[ring, segment] = ApplyFracture(
+                        point,
+                        fractureNormal,
+                        fractureLimit * profile.Radii[1],
+                        fractureDepth * profile.Radii[1]);
                 }
             }
 
+            var topRing = profile.Radii.Length - 1;
+            var topCenter = GetRingCenter(shape, variant, topRing, profile.Radii[topRing]);
             var top = new Vector3(
-                Mathf.Lerp(-0.16f, 0.16f, Hash01(variant, (int)shape, 701, 17)),
-                height,
-                Mathf.Lerp(-0.16f, 0.16f, Hash01(variant, (int)shape, 307, 29)));
+                topCenter.x + Mathf.Lerp(-0.08f, 0.08f, Hash01(variant, (int)shape, 701, 17)),
+                profile.Height * profile.TopHeight,
+                topCenter.y + Mathf.Lerp(-0.08f, 0.08f, Hash01(variant, (int)shape, 307, 29)));
+            top = ApplyFracture(
+                top,
+                fractureNormal,
+                fractureLimit * profile.Radii[1],
+                fractureDepth * profile.Radii[1]);
             var bottom = new Vector3(0f, 0f, 0f);
-            var vertices = new List<Vector3>(segments * 24);
-            var normals = new List<Vector3>(segments * 24);
-            var triangles = new List<int>(segments * 24);
+            var vertices = new List<Vector3>(profile.Segments * 24);
+            var normals = new List<Vector3>(profile.Segments * 24);
+            var triangles = new List<int>(profile.Segments * 24);
 
-            for (var segment = 0; segment < segments; segment++)
+            for (var segment = 0; segment < profile.Segments; segment++)
             {
-                var next = (segment + 1) % segments;
+                var next = (segment + 1) % profile.Segments;
                 AddTriangle(vertices, normals, triangles, bottom, rings[0, segment], rings[0, next]);
-                AddQuad(vertices, normals, triangles, rings[0, segment], rings[0, next], rings[1, next], rings[1, segment]);
-                AddQuad(vertices, normals, triangles, rings[1, segment], rings[1, next], rings[2, next], rings[2, segment]);
-                AddTriangle(vertices, normals, triangles, rings[2, segment], top, rings[2, next]);
+                for (var ring = 0; ring < topRing; ring++)
+                {
+                    AddQuad(
+                        vertices,
+                        normals,
+                        triangles,
+                        rings[ring, segment],
+                        rings[ring, next],
+                        rings[ring + 1, next],
+                        rings[ring + 1, segment]);
+                }
+
+                AddTriangle(vertices, normals, triangles, rings[topRing, segment], top, rings[topRing, next]);
             }
 
             var mesh = new Mesh
@@ -128,51 +168,76 @@ namespace BooterBigArm.TopDown3D
             triangles.Add(index + 2);
         }
 
-        private static void GetShape(
+        private static Vector2 GetRingCenter(
             TopDown3DNaturalObjectShape shape,
-            out int segments,
-            out float baseRadius,
-            out float middleRadius,
-            out float upperRadius,
-            out float height)
+            int variant,
+            int ring,
+            float radius)
+        {
+            var drift = radius * (ring + 1) * 0.055f;
+            return new Vector2(
+                Mathf.Lerp(-drift, drift, Hash01((int)shape, variant, ring, 1433)),
+                Mathf.Lerp(-drift, drift, Hash01((int)shape, variant, ring, 1543)));
+        }
+
+        private static Vector3 ApplyFracture(
+            Vector3 point,
+            Vector2 fractureNormal,
+            float fractureLimit,
+            float fractureDepth)
+        {
+            var projected = point.x * fractureNormal.x + point.z * fractureNormal.y;
+            if (projected <= fractureLimit)
+            {
+                return point;
+            }
+
+            var clippedProjection = fractureLimit - fractureDepth;
+            var correction = projected - clippedProjection;
+            point.x -= fractureNormal.x * correction;
+            point.z -= fractureNormal.y * correction;
+            return point;
+        }
+
+        private static ShapeProfile GetShapeProfile(TopDown3DNaturalObjectShape shape)
         {
             switch (shape)
             {
                 case TopDown3DNaturalObjectShape.Pebble:
-                    segments = 7;
-                    baseRadius = 0.72f;
-                    middleRadius = 0.84f;
-                    upperRadius = 0.56f;
-                    height = 0.46f;
-                    break;
+                    return new ShapeProfile(
+                        8,
+                        0.46f,
+                        0.94f,
+                        new[] { 0.68f, 0.86f, 0.72f, 0.42f },
+                        new[] { 0.06f, 0.3f, 0.62f, 0.84f });
                 case TopDown3DNaturalObjectShape.Shard:
-                    segments = 6;
-                    baseRadius = 0.58f;
-                    middleRadius = 0.74f;
-                    upperRadius = 0.34f;
-                    height = 1.05f;
-                    break;
+                    return new ShapeProfile(
+                        6,
+                        1.05f,
+                        0.95f,
+                        new[] { 0.54f, 0.74f, 0.5f, 0.2f },
+                        new[] { 0.04f, 0.28f, 0.64f, 0.86f });
                 case TopDown3DNaturalObjectShape.Slab:
-                    segments = 7;
-                    baseRadius = 0.86f;
-                    middleRadius = 1f;
-                    upperRadius = 0.82f;
-                    height = 0.34f;
-                    break;
+                    return new ShapeProfile(
+                        7,
+                        0.34f,
+                        0.94f,
+                        new[] { 0.82f, 1f, 0.94f, 0.76f },
+                        new[] { 0.08f, 0.3f, 0.62f, 0.84f });
                 case TopDown3DNaturalObjectShape.Nodule:
-                    segments = 8;
-                    baseRadius = 0.62f;
-                    middleRadius = 0.88f;
-                    upperRadius = 0.72f;
-                    height = 0.72f;
-                    break;
+                    return new ShapeProfile(
+                        9,
+                        0.72f,
+                        0.95f,
+                        new[] { 0.6f, 0.88f, 0.82f, 0.52f },
+                        new[] { 0.05f, 0.32f, 0.66f, 0.86f });
                 default:
-                    segments = 8;
-                    baseRadius = 0.68f;
-                    middleRadius = 0.96f;
-                    upperRadius = 0.63f;
-                    height = 1f;
-                    break;
+                    return new ShapeProfile(
+                        9,
+                        1f,
+                        0.96f,
+                        new[] { 0.66f, 0.98f, 0.84f, 0.48f },
+                        new[] { 0.04f, 0.3f, 0.65f, 0.86f });
             }
         }
 
@@ -222,6 +287,29 @@ namespace BooterBigArm.TopDown3D
 
             public Mesh Mesh { get; }
             public MeshData Data { get; }
+        }
+
+        private readonly struct ShapeProfile
+        {
+            public ShapeProfile(
+                int segments,
+                float height,
+                float topHeight,
+                float[] radii,
+                float[] heights)
+            {
+                Segments = segments;
+                Height = height;
+                TopHeight = topHeight;
+                Radii = radii;
+                Heights = heights;
+            }
+
+            public int Segments { get; }
+            public float Height { get; }
+            public float TopHeight { get; }
+            public float[] Radii { get; }
+            public float[] Heights { get; }
         }
     }
 }
