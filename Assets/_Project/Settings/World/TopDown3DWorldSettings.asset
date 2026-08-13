@@ -35,10 +35,10 @@ MonoBehaviour:
   scatterSpacing: 0.18
   groundDetailSpacing: 0.04
   fineGrayClutterMaterial: {fileID: 2100000, guid: 50ec2ac4616046718215ccc257883321, type: 2}
-  fineGrayClutterPerChunk: 118
-  fineGrayClusterFrequency: 0.085
-  fineGrayClusterStrength: 0.95
-  fineGrayClutterSpacing: 0.012
+  fineGrayClutterPerChunk: 156
+  fineGrayClusterFrequency: 0.065
+  fineGrayClusterStrength: 1
+  fineGrayClutterSpacing: 0.006
   maximumClutterSlope: 44
   clearSpawnRadius: 7
   safeSpawnSearchRadius: 8

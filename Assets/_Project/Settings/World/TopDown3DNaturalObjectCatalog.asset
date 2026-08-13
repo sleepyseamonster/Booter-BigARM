@@ -98,7 +98,7 @@ MonoBehaviour:
     layer: 3
     shape: 0
     weight: 4
-    uniformScaleRange: {x: 0.035, y: 0.105}
+    uniformScaleRange: {x: 0.05, y: 0.135}
     proportions: {x: 1.25, y: 0.55, z: 0.85}
     sinkDepth: 0.18
     maximumTilt: 34
@@ -107,7 +107,7 @@ MonoBehaviour:
     layer: 3
     shape: 1
     weight: 2.2
-    uniformScaleRange: {x: 0.03, y: 0.09}
+    uniformScaleRange: {x: 0.045, y: 0.12}
     proportions: {x: 0.9, y: 0.55, z: 0.5}
     sinkDepth: 0.22
     maximumTilt: 36
@@ -116,7 +116,7 @@ MonoBehaviour:
     layer: 3
     shape: 2
     weight: 1.2
-    uniformScaleRange: {x: 0.04, y: 0.11}
+    uniformScaleRange: {x: 0.055, y: 0.14}
     proportions: {x: 1.35, y: 0.45, z: 0.8}
     sinkDepth: 0.24
     maximumTilt: 30

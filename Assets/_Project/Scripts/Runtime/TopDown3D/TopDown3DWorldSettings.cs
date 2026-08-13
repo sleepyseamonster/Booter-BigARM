@@ -29,10 +29,10 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(0f)] private float scatterSpacing = 0.18f;
         [SerializeField, Min(0f)] private float groundDetailSpacing = 0.04f;
         [SerializeField] private Material fineGrayClutterMaterial;
-        [SerializeField, Range(0, 240)] private int fineGrayClutterPerChunk = 118;
-        [SerializeField, Min(0.0001f)] private float fineGrayClusterFrequency = 0.085f;
-        [SerializeField, Range(0f, 1f)] private float fineGrayClusterStrength = 0.95f;
-        [SerializeField, Min(0f)] private float fineGrayClutterSpacing = 0.012f;
+        [SerializeField, Range(0, 240)] private int fineGrayClutterPerChunk = 156;
+        [SerializeField, Min(0.0001f)] private float fineGrayClusterFrequency = 0.065f;
+        [SerializeField, Range(0f, 1f)] private float fineGrayClusterStrength = 1f;
+        [SerializeField, Min(0f)] private float fineGrayClutterSpacing = 0.006f;
         [SerializeField, Range(1f, 60f)] private float maximumClutterSlope = 44f;
         [SerializeField, Min(0f)] private float clearSpawnRadius = 7f;
         [SerializeField, Min(0.25f)] private float safeSpawnSearchRadius = 8f;

@@ -135,8 +135,9 @@ namespace BooterBigArm.TopDown3D
                 settings.MaximumClutterSlope,
                 settings.FineGrayClusterFrequency,
                 settings.FineGrayClusterStrength,
-                0.06f,
-                2.05f,
+                // A negative low-density factor creates truly empty ground between dense gray pockets.
+                -2.4f,
+                3.2f,
                 placements);
             return placements;
         }

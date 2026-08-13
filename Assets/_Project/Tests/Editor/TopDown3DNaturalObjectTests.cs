@@ -122,12 +122,18 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void FineGrayCluster_IsDenseStronglyClusteredAndSmall()
+        public void FineGrayCluster_IsLargerDenseAndStronglyClustered()
         {
             var settings = LoadSettings();
             Assert.That(settings.FineGrayClutterPerChunk, Is.GreaterThan(settings.GroundDetailsPerChunk));
             Assert.That(settings.FineGrayClusterStrength, Is.GreaterThan(settings.ClutterClusterStrength));
             Assert.That(settings.FineGrayClusterFrequency, Is.GreaterThan(settings.ClutterClusterFrequency));
+            Assert.That(settings.FineGrayClutterSpacing, Is.LessThan(settings.GroundDetailSpacing));
+            Assert.That(
+                settings.NaturalObjectCatalog.Definitions
+                    .Where(definition => definition.Layer == TopDown3DNaturalObjectLayer.FineGrayCluster)
+                    .All(definition => definition.UniformScaleRange.y >= 0.12f),
+                Is.True);
 
             var placements = TopDown3DNaturalObjectPlanner.BuildPlacements(
                     settings,
@@ -138,7 +144,7 @@ namespace BooterBigArm.Tests
                 .ToArray();
             Assert.That(placements, Is.Not.Empty);
             Assert.That(placements.All(placement =>
-                Mathf.Max(placement.Scale.x, placement.Scale.z) <= 0.15f), Is.True);
+                Mathf.Max(placement.Scale.x, placement.Scale.z) <= 0.2f), Is.True);
         }
 
         private static TopDown3DWorldSettings LoadSettings()
