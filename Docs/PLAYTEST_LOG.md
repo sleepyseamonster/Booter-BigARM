@@ -40,3 +40,14 @@ This log turns game-design questions into repeatable observations. Record what h
 - **Interpretation:** The separate 3D foundation is accepted as the working direction; this does not establish physical-controller feel or extended traversal reliability.
 - **Decision:** continue with traversal hardening and conventional right-stick camera rotation
 - **Next experiment:** user checks camera orbit and movement while crossing multiple chunk boundaries on a physical gamepad
+
+### 2026-08-13 — Landscape Framing Review
+
+- **Unity version and scene:** Unity `6000.4.0f1`, `TopDown3DPrototype`
+- **Design question:** Does the camera show enough of the surrounding landscape?
+- **Player / observer:** user
+- **Observed behavior:** The camera felt too close to Booter and did not show enough of the generated landscape.
+- **Evidence:** user hands-on review in the project task
+- **Interpretation:** Pull the perspective camera back modestly while expanding streamed terrain far enough to preserve every supported orbit angle.
+- **Decision:** increase the camera distance from 16 to 18 world units and the steady streaming radius from four to five chunks; keep the immediate two-chunk ring and frame budget unchanged.
+- **Next experiment:** user checks character readability, landscape visibility, and empty-space coverage at the shallowest pitch while orbiting through a full turn.

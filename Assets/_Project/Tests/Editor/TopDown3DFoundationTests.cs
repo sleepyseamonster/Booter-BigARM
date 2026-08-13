@@ -86,6 +86,27 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void LandscapeCameraPullback_HasMatchingWorldCoverage()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
+            var cameraObject = new GameObject("Landscape camera coverage contract");
+            try
+            {
+                cameraObject.AddComponent<Camera>();
+                var rig = cameraObject.AddComponent<TopDown3DCameraRig>();
+
+                Assert.That(settings, Is.Not.Null);
+                Assert.That(rig.Distance, Is.EqualTo(18f).Within(0.0001f));
+                Assert.That(settings.StreamingRadius, Is.GreaterThanOrEqualTo(5));
+                Assert.That(settings.ImmediateLoadRadius, Is.EqualTo(2));
+            }
+            finally
+            {
+                Object.DestroyImmediate(cameraObject);
+            }
+        }
+
+        [Test]
         public void SafeSpawnSearch_ReturnsDeterministicWalkableGround()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);

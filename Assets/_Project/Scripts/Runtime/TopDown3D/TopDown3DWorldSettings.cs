@@ -8,7 +8,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private int worldSeed = 24681357;
         [SerializeField, Min(4f)] private float chunkSize = 18f;
         [SerializeField, Range(2, 64)] private int quadsPerAxis = 12;
-        [SerializeField, Range(1, 5)] private int streamingRadius = 4;
+        [SerializeField, Range(1, 5)] private int streamingRadius = 5;
         [SerializeField, Range(1, 4)] private int immediateLoadRadius = 2;
         [SerializeField, Range(1, 8)] private int chunksBuiltPerFrame = 2;
         [SerializeField, Range(0, 3)] private int unloadPadding = 1;
