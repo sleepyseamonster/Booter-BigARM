@@ -13,7 +13,7 @@ namespace BooterBigArm.TopDown3D
     {
         public const float DefaultMinimumRegionalIntensity = 1.08f;
         public const float DefaultMaximumRegionalIntensity = 1.58f;
-        public const float DefaultFogDensityAtIntensityOne = 0.0325f;
+        public const float DefaultFogDensityAtIntensityOne = 0.0295f;
 
         public readonly struct DustSample
         {
@@ -50,8 +50,8 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0f, 1f)] private float zoneTintStrength = 0.42f;
 
         [Header("Close Haze")]
-        [SerializeField, Range(0f, 80f)] private float moteEmissionAtIntensityOne = 34f;
-        [SerializeField, Range(0f, 20f)] private float veilEmissionAtIntensityOne = 7.5f;
+        [SerializeField, Range(0f, 80f)] private float moteEmissionAtIntensityOne = 30f;
+        [SerializeField, Range(0f, 20f)] private float veilEmissionAtIntensityOne = 6.5f;
         [SerializeField] private Vector3 prevailingWind = new Vector3(0.14f, 0.015f, 0.05f);
 
         private Volume volume;
@@ -313,18 +313,18 @@ namespace BooterBigArm.TopDown3D
             var exposure = DustExposure01;
             if (colorAdjustments != null)
             {
-                colorAdjustments.postExposure.value = Mathf.Lerp(-0.06f, -0.18f, exposure);
-                colorAdjustments.contrast.value = Mathf.Lerp(-8f, -20f, exposure);
-                colorAdjustments.saturation.value = Mathf.Lerp(-10f, -28f, exposure);
+                colorAdjustments.postExposure.value = Mathf.Lerp(-0.05f, -0.16f, exposure);
+                colorAdjustments.contrast.value = Mathf.Lerp(-7f, -18f, exposure);
+                colorAdjustments.saturation.value = Mathf.Lerp(-9f, -25f, exposure);
                 colorAdjustments.colorFilter.value = Color.Lerp(
                     Color.white,
                     new Color(1.06f, 0.84f, 0.64f),
-                    Mathf.Lerp(0.16f, 0.38f, exposure));
+                    Mathf.Lerp(0.14f, 0.34f, exposure));
             }
 
             if (bloom != null)
             {
-                bloom.intensity.value = Mathf.Lerp(0.12f, 0.38f, exposure);
+                bloom.intensity.value = Mathf.Lerp(0.1f, 0.34f, exposure);
                 bloom.tint.value = Color.Lerp(Color.white, currentTint, 0.35f);
             }
 
@@ -465,8 +465,8 @@ namespace BooterBigArm.TopDown3D
             var emission = particles.emission;
             emission.rateOverTime = emissionAtIntensityOne * Mathf.Clamp(currentIntensity, 0.25f, 2.5f);
             var alpha = veil
-                ? Mathf.Lerp(0.03f, 0.085f, DustExposure01)
-                : Mathf.Lerp(0.065f, 0.16f, DustExposure01);
+                ? Mathf.Lerp(0.026f, 0.075f, DustExposure01)
+                : Mathf.Lerp(0.058f, 0.145f, DustExposure01);
             var nearColor = Color.Lerp(Color.white, currentTint, veil ? 0.55f : 0.72f);
             var farColor = Color.Lerp(new Color(0.72f, 0.49f, 0.28f), currentTint, 0.8f);
             nearColor.a = alpha * 0.55f;

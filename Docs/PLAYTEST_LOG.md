@@ -73,3 +73,15 @@ This log turns game-design questions into repeatable observations. Record what h
 - **Interpretation:** The initial fog density and close-veil opacity were too conservative. Haze must affect the normal 25-unit camera frame and remain visibly present around Booter even in the clearest regions.
 - **Decision:** move the always-on 50% visibility boundary to approximately 16–24 world units and strengthen close suspended dust while preserving immediate navigation readability.
 - **Next experiment:** compare the clearest regional field and a dense dust region while orbiting the camera; verify that Booter remains readable but distant terrain quickly loses contrast.
+
+### 2026-08-13 — Dust Atmosphere Fine-Tuning
+
+- **Build / commit:** current dust fine-tuning pass
+- **Unity version and scene:** Unity `6000.4.0f1`, `TopDown3DPrototype`
+- **Design question:** Is the strengthened always-on dust slightly too heavy during ordinary traversal?
+- **Player / observer:** user
+- **Observed behavior:** The closer haze is now visible, but the user requested that the overall dust be turned down a little.
+- **Evidence:** user hands-on review in the project task
+- **Interpretation:** Preserve the close, persistent dusty-world read while recovering a modest amount of terrain clarity and character contrast.
+- **Decision:** ease the 50% visibility boundary to approximately 18–26 world units, reduce close-particle emission by roughly 12%, and soften veil opacity and dust post-processing without changing regional variation or zone behavior.
+- **Next experiment:** orbit and traverse through clear and dense regions; confirm that the world remains continuously hazy while Booter and nearby terrain read more cleanly.

@@ -209,7 +209,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void AlwaysOnDust_BringsHalfVisibilityInsideLandscapeCameraRange()
+        public void AlwaysOnDust_KeepsHalfVisibilityNearLandscapeCameraRange()
         {
             var clearestDensity = TopDown3DDustAtmosphere.DefaultFogDensityAtIntensityOne
                 * TopDown3DDustAtmosphere.DefaultMinimumRegionalIntensity;
@@ -218,10 +218,10 @@ namespace BooterBigArm.Tests
 
             Assert.That(
                 TopDown3DDustAtmosphere.EvaluateHalfVisibilityDistance(clearestDensity),
-                Is.InRange(23f, 24f));
+                Is.InRange(26f, 27f));
             Assert.That(
                 TopDown3DDustAtmosphere.EvaluateHalfVisibilityDistance(dustiestDensity),
-                Is.InRange(16f, 17f));
+                Is.InRange(17f, 18f));
         }
 
         [Test]
