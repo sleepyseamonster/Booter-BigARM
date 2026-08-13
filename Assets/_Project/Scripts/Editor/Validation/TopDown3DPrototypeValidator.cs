@@ -41,7 +41,10 @@ namespace BooterBigArm.Editor
             var errors = ConversionBaselineValidator.CollectErrors();
             ValidateAssetExists(TopDown3DPrototypeBuilder.ScenePath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.WorldSettingsPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainShaderPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainAlbedoPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainSweptSandAlbedoPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainGravelAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainMaterialPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.FineGrayClutterMaterialPath, errors);
             ValidateTerrainMaterial(errors);
@@ -120,22 +123,34 @@ namespace BooterBigArm.Editor
         private static void ValidateTerrainMaterial(ICollection<string> errors)
         {
             var material = AssetDatabase.LoadAssetAtPath<Material>(TopDown3DPrototypeBuilder.TerrainMaterialPath);
-            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.TerrainAlbedoPath);
-            if (material == null || albedo == null)
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(TopDown3DPrototypeBuilder.TerrainShaderPath);
+            var baseAlbedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.TerrainAlbedoPath);
+            var sweptSand = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                TopDown3DPrototypeBuilder.TerrainSweptSandAlbedoPath);
+            var gravel = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.TerrainGravelAlbedoPath);
+            if (material == null || shader == null || baseAlbedo == null || sweptSand == null || gravel == null)
             {
                 return;
             }
 
-            if (material.GetTexture("_BaseMap") != albedo)
+            if (material.shader != shader)
+            {
+                errors.Add("TopDown3D terrain material must use the Broken World layered terrain shader.");
+            }
+
+            if (material.GetTexture("_BaseMap") != baseAlbedo)
             {
                 errors.Add("TopDown3D terrain material must use the Broken World sand-dirt albedo texture.");
             }
 
-            var expectedTiling = Vector2.one * TopDown3DPrototypeBuilder.TerrainTextureTiling;
-            if (Vector2.Distance(material.GetTextureScale("_BaseMap"), expectedTiling) > 0.0001f)
+            if (material.GetTexture("_SweptSandMap") != sweptSand)
             {
-                errors.Add(
-                    $"TopDown3D terrain albedo tiling must remain {TopDown3DPrototypeBuilder.TerrainTextureTiling} by {TopDown3DPrototypeBuilder.TerrainTextureTiling}.");
+                errors.Add("TopDown3D terrain material must use the sparse swept-sand albedo texture.");
+            }
+
+            if (material.GetTexture("_GravelMap") != gravel)
+            {
+                errors.Add("TopDown3D terrain material must use the sparse gravel albedo texture.");
             }
         }
 

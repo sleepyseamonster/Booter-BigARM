@@ -20,9 +20,21 @@ namespace BooterBigArm.Editor
             "Assets/_Project/Settings/World/TopDown3DNaturalObjectCatalog.asset";
         public const string FineGrayClutterMaterialPath = MaterialFolder + "/FineGray_Clutter.mat";
         public const string TerrainMaterialPath = MaterialFolder + "/Greybox_Terrain.mat";
+        public const string TerrainShaderPath =
+            "Assets/_Project/Shaders/TopDown3D/BrokenWorldTerrainBlend.shader";
         public const string TerrainAlbedoPath =
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png";
-        public const float TerrainTextureTiling = 6f;
+        public const string TerrainSweptSandAlbedoPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSweptSandAlbedo.png";
+        public const string TerrainGravelAlbedoPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelAlbedo.png";
+        public const float TerrainBaseMetersPerTile = 3f;
+        public const float TerrainSweptSandMetersPerTile = 4f;
+        public const float TerrainGravelMetersPerTile = 2.25f;
+        public const float TerrainPatchFrequency = 0.035f;
+        public const float TerrainSweptSandThreshold = 0.64f;
+        public const float TerrainGravelThreshold = 0.66f;
+        public const float TerrainPatchBlendWidth = 0.11f;
         public const float TerrainSmoothness = 0.18f;
 
         public const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
@@ -153,31 +165,33 @@ namespace BooterBigArm.Editor
         private static Material EnsureTerrainMaterial()
         {
             var material = EnsureMaterial("Greybox_Terrain", Color.white);
-            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainAlbedoPath);
-            if (albedo == null)
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(TerrainShaderPath);
+            var baseAlbedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainAlbedoPath);
+            var sweptSandAlbedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainSweptSandAlbedoPath);
+            var gravelAlbedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainGravelAlbedoPath);
+            if (shader == null || baseAlbedo == null || sweptSandAlbedo == null || gravelAlbedo == null)
             {
-                throw new InvalidOperationException($"Missing terrain albedo texture at {TerrainAlbedoPath}.");
+                throw new InvalidOperationException("The layered terrain shader or one of its albedo textures is missing.");
             }
 
             var changed = false;
-            var tiling = Vector2.one * TerrainTextureTiling;
-            if (material.GetTexture("_BaseMap") != albedo)
+            if (material.shader != shader)
             {
-                material.SetTexture("_BaseMap", albedo);
+                material.shader = shader;
                 changed = true;
             }
 
-            if (material.GetTextureScale("_BaseMap") != tiling)
-            {
-                material.SetTextureScale("_BaseMap", tiling);
-                changed = true;
-            }
-
-            if (!Mathf.Approximately(material.GetFloat("_Smoothness"), TerrainSmoothness))
-            {
-                material.SetFloat("_Smoothness", TerrainSmoothness);
-                changed = true;
-            }
+            changed |= SetTextureIfNeeded(material, "_BaseMap", baseAlbedo);
+            changed |= SetTextureIfNeeded(material, "_SweptSandMap", sweptSandAlbedo);
+            changed |= SetTextureIfNeeded(material, "_GravelMap", gravelAlbedo);
+            changed |= SetFloatIfNeeded(material, "_BaseMetersPerTile", TerrainBaseMetersPerTile);
+            changed |= SetFloatIfNeeded(material, "_SweptSandMetersPerTile", TerrainSweptSandMetersPerTile);
+            changed |= SetFloatIfNeeded(material, "_GravelMetersPerTile", TerrainGravelMetersPerTile);
+            changed |= SetFloatIfNeeded(material, "_PatchFrequency", TerrainPatchFrequency);
+            changed |= SetFloatIfNeeded(material, "_SweptSandThreshold", TerrainSweptSandThreshold);
+            changed |= SetFloatIfNeeded(material, "_GravelThreshold", TerrainGravelThreshold);
+            changed |= SetFloatIfNeeded(material, "_BlendWidth", TerrainPatchBlendWidth);
+            changed |= SetFloatIfNeeded(material, "_Smoothness", TerrainSmoothness);
 
             if (changed)
             {
@@ -185,6 +199,28 @@ namespace BooterBigArm.Editor
             }
 
             return material;
+        }
+
+        private static bool SetTextureIfNeeded(Material material, string propertyName, Texture texture)
+        {
+            if (material.GetTexture(propertyName) == texture)
+            {
+                return false;
+            }
+
+            material.SetTexture(propertyName, texture);
+            return true;
+        }
+
+        private static bool SetFloatIfNeeded(Material material, string propertyName, float value)
+        {
+            if (Mathf.Approximately(material.GetFloat(propertyName), value))
+            {
+                return false;
+            }
+
+            material.SetFloat(propertyName, value);
+            return true;
         }
 
         private static Material EnsureRockMaterial()

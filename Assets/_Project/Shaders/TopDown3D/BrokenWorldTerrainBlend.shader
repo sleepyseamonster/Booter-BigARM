@@ -1,0 +1,254 @@
+Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
+{
+    Properties
+    {
+        [MainTexture] _BaseMap("Rust Sand Dirt", 2D) = "white" {}
+        _SweptSandMap("Swept Beige Sand", 2D) = "white" {}
+        _GravelMap("Iron Gravel", 2D) = "white" {}
+        [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
+        _BaseMetersPerTile("Base Meters Per Tile", Float) = 3
+        _SweptSandMetersPerTile("Swept Sand Meters Per Tile", Float) = 4
+        _GravelMetersPerTile("Gravel Meters Per Tile", Float) = 2.25
+        _PatchFrequency("Patch Frequency", Float) = 0.035
+        _SweptSandThreshold("Swept Sand Threshold", Range(0, 1)) = 0.64
+        _GravelThreshold("Gravel Threshold", Range(0, 1)) = 0.66
+        _BlendWidth("Patch Edge Softness", Range(0.01, 0.3)) = 0.11
+        _SweptSandStrength("Swept Sand Strength", Range(0, 1)) = 0.9
+        _GravelStrength("Gravel Strength", Range(0, 1)) = 0.92
+        _Smoothness("Smoothness", Range(0, 1)) = 0.18
+        [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
+        [HideInInspector] _Surface("Surface", Float) = 0
+        [HideInInspector] _Cull("Cull", Float) = 2
+        [HideInInspector] _ZWrite("ZWrite", Float) = 1
+    }
+
+    SubShader
+    {
+        Tags
+        {
+            "RenderPipeline" = "UniversalPipeline"
+            "RenderType" = "Opaque"
+            "Queue" = "Geometry"
+        }
+        LOD 300
+
+        Pass
+        {
+            Name "ForwardLit"
+            Tags { "LightMode" = "UniversalForward" }
+
+            Cull [_Cull]
+            ZWrite [_ZWrite]
+            ZTest LEqual
+
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma vertex TerrainVertex
+            #pragma fragment TerrainFragment
+            #pragma multi_compile_instancing
+            #pragma multi_compile_fog
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT
+
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceData.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+
+            TEXTURE2D(_BaseMap);
+            SAMPLER(sampler_BaseMap);
+            TEXTURE2D(_SweptSandMap);
+            SAMPLER(sampler_SweptSandMap);
+            TEXTURE2D(_GravelMap);
+            SAMPLER(sampler_GravelMap);
+
+            CBUFFER_START(UnityPerMaterial)
+                float4 _BaseMap_ST;
+                half4 _BaseColor;
+                float _BaseMetersPerTile;
+                float _SweptSandMetersPerTile;
+                float _GravelMetersPerTile;
+                float _PatchFrequency;
+                float _SweptSandThreshold;
+                float _GravelThreshold;
+                float _BlendWidth;
+                float _SweptSandStrength;
+                float _GravelStrength;
+                float _Smoothness;
+                float _Cutoff;
+                float _Surface;
+                float _Cull;
+                float _ZWrite;
+            CBUFFER_END
+
+            struct Attributes
+            {
+                float4 positionOS : POSITION;
+                float3 normalOS : NORMAL;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+            };
+
+            struct Varyings
+            {
+                float4 positionCS : SV_POSITION;
+                float3 positionWS : TEXCOORD0;
+                half3 normalWS : TEXCOORD1;
+                half fogFactor : TEXCOORD2;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+                UNITY_VERTEX_OUTPUT_STEREO
+            };
+
+            float Hash21(float2 value)
+            {
+                value = frac(value * float2(123.34, 456.21));
+                value += dot(value, value + 45.32);
+                return frac(value.x * value.y);
+            }
+
+            float ValueNoise(float2 position)
+            {
+                float2 cell = floor(position);
+                float2 local = frac(position);
+                local = local * local * (3.0 - 2.0 * local);
+                float bottom = lerp(Hash21(cell), Hash21(cell + float2(1.0, 0.0)), local.x);
+                float top = lerp(Hash21(cell + float2(0.0, 1.0)), Hash21(cell + 1.0), local.x);
+                return lerp(bottom, top, local.y);
+            }
+
+            float FractalNoise(float2 position)
+            {
+                float value = 0.0;
+                float amplitude = 0.5;
+                const float2x2 rotation = float2x2(0.80, -0.60, 0.60, 0.80);
+                [unroll]
+                for (int octave = 0; octave < 4; octave++)
+                {
+                    value += ValueNoise(position) * amplitude;
+                    position = mul(rotation, position) * 2.03 + float2(11.7, 7.3);
+                    amplitude *= 0.5;
+                }
+
+                return value;
+            }
+
+            half3 SampleAntiTiled(
+                float2 uv,
+                float2 groundPosition,
+                float seed,
+                TEXTURE2D_PARAM(textureMap, sampler_textureMap))
+            {
+                const float2x2 rotation = float2x2(0.8660254, -0.5, 0.5, 0.8660254);
+                float blend = smoothstep(
+                    0.25,
+                    0.75,
+                    ValueNoise(groundPosition * 0.075 + seed * 9.17));
+                float2 alternateUv = mul(rotation, uv * 0.91) + float2(17.3, 29.1) * seed;
+                half3 primary = SAMPLE_TEXTURE2D(textureMap, sampler_textureMap, uv).rgb;
+                half3 alternate = SAMPLE_TEXTURE2D(textureMap, sampler_textureMap, alternateUv).rgb;
+                return lerp(primary, alternate, blend);
+            }
+
+            Varyings TerrainVertex(Attributes input)
+            {
+                Varyings output = (Varyings)0;
+                UNITY_SETUP_INSTANCE_ID(input);
+                UNITY_TRANSFER_INSTANCE_ID(input, output);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
+
+                VertexPositionInputs positions = GetVertexPositionInputs(input.positionOS.xyz);
+                VertexNormalInputs normals = GetVertexNormalInputs(input.normalOS);
+                output.positionCS = positions.positionCS;
+                output.positionWS = positions.positionWS;
+                output.normalWS = normals.normalWS;
+                output.fogFactor = ComputeFogFactor(positions.positionCS.z);
+                return output;
+            }
+
+            half4 TerrainFragment(Varyings input) : SV_Target
+            {
+                UNITY_SETUP_INSTANCE_ID(input);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+
+                float3 absolutePositionWS = GetAbsolutePositionWS(input.positionWS);
+                float2 groundPosition = absolutePositionWS.xz;
+                half3 normalWS = NormalizeNormalPerPixel(input.normalWS);
+
+                float baseMeters = max(_BaseMetersPerTile, 0.01);
+                float sweptMeters = max(_SweptSandMetersPerTile, 0.01);
+                float gravelMeters = max(_GravelMetersPerTile, 0.01);
+                half3 baseAlbedo = SampleAntiTiled(
+                    groundPosition / baseMeters,
+                    groundPosition,
+                    1.0,
+                    TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
+                half3 sweptAlbedo = SampleAntiTiled(
+                    groundPosition / sweptMeters,
+                    groundPosition,
+                    2.0,
+                    TEXTURE2D_ARGS(_SweptSandMap, sampler_SweptSandMap));
+                half3 gravelAlbedo = SampleAntiTiled(
+                    groundPosition / gravelMeters,
+                    groundPosition,
+                    3.0,
+                    TEXTURE2D_ARGS(_GravelMap, sampler_GravelMap));
+
+                float2 patchPosition = groundPosition * _PatchFrequency;
+                float sweptNoise = FractalNoise(patchPosition + float2(13.1, -7.9));
+                float gravelNoise = FractalNoise(patchPosition * 0.87 + float2(-31.7, 19.4));
+                float slope = saturate(1.0 - normalWS.y);
+                gravelNoise += slope * 0.18;
+
+                float sweptMask = smoothstep(
+                    _SweptSandThreshold,
+                    _SweptSandThreshold + _BlendWidth,
+                    sweptNoise) * _SweptSandStrength;
+                float gravelMask = smoothstep(
+                    _GravelThreshold,
+                    _GravelThreshold + _BlendWidth,
+                    gravelNoise) * _GravelStrength;
+                gravelMask *= 1.0 - sweptMask;
+
+                half3 albedo = lerp(baseAlbedo, sweptAlbedo, sweptMask);
+                albedo = lerp(albedo, gravelAlbedo, gravelMask);
+                float macroVariation = lerp(0.94, 1.04, FractalNoise(groundPosition * 0.008 + 4.0));
+                albedo *= _BaseColor.rgb * macroVariation;
+
+                SurfaceData surfaceData = (SurfaceData)0;
+                surfaceData.albedo = albedo;
+                surfaceData.specular = half3(0.2, 0.2, 0.2);
+                surfaceData.metallic = 0.0;
+                surfaceData.smoothness = lerp(_Smoothness, 0.11, gravelMask);
+                surfaceData.normalTS = half3(0.0, 0.0, 1.0);
+                surfaceData.emission = 0.0;
+                surfaceData.occlusion = 1.0;
+                surfaceData.alpha = 1.0;
+                surfaceData.clearCoatMask = 0.0;
+                surfaceData.clearCoatSmoothness = 0.0;
+
+                InputData inputData = (InputData)0;
+                inputData.positionWS = input.positionWS;
+                inputData.positionCS = input.positionCS;
+                inputData.normalWS = normalWS;
+                inputData.viewDirectionWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
+                inputData.shadowCoord = TransformWorldToShadowCoord(input.positionWS);
+                inputData.fogCoord = input.fogFactor;
+                inputData.vertexLighting = VertexLighting(input.positionWS, normalWS);
+                inputData.bakedGI = SampleSH(normalWS);
+                inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
+                inputData.shadowMask = half4(1.0, 1.0, 1.0, 1.0);
+
+                half4 color = UniversalFragmentPBR(inputData, surfaceData);
+                color.rgb = MixFog(color.rgb, input.fogFactor);
+                return color;
+            }
+            ENDHLSL
+        }
+
+        UsePass "Universal Render Pipeline/Lit/ShadowCaster"
+        UsePass "Universal Render Pipeline/Lit/DepthOnly"
+        UsePass "Universal Render Pipeline/Lit/DepthNormals"
+    }
+
+    FallBack "Hidden/Universal Render Pipeline/FallbackError"
+}
