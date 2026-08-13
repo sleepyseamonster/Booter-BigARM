@@ -386,27 +386,20 @@ namespace BooterBigArm.Editor
                 TopDown3DHeightSampler.SampleHeight(settings, startX, startZ) + 0.82f,
                 startZ);
             var collider = bigArm.AddComponent<BoxCollider>();
-            collider.size = new Vector3(1.6f, 1.6f, 1.9f);
+            collider.center = new Vector3(0f, 0.3f, 0f);
+            collider.size = new Vector3(1.1f, 2.2f, 1.3f);
             var body = bigArm.AddComponent<Rigidbody>();
             body.mass = 8f;
             body.isKinematic = true;
             bigArm.AddComponent<TopDown3DBigArmFollower>();
 
             var bodyVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            bodyVisual.name = "Compact BigARM Body";
+            bodyVisual.name = "BigARM Rectangular Prism";
             bodyVisual.transform.SetParent(bigArm.transform, false);
-            bodyVisual.transform.localPosition = Vector3.zero;
-            bodyVisual.transform.localScale = new Vector3(1.5f, 1.15f, 1.75f);
+            bodyVisual.transform.localPosition = new Vector3(0f, 0.3f, 0f);
+            bodyVisual.transform.localScale = new Vector3(1.05f, 2.2f, 1.25f);
             UnityEngine.Object.DestroyImmediate(bodyVisual.GetComponent<Collider>());
             bodyVisual.GetComponent<Renderer>().sharedMaterial = material;
-
-            var shoulder = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            shoulder.name = "BigARM Shoulder";
-            shoulder.transform.SetParent(bigArm.transform, false);
-            shoulder.transform.localPosition = new Vector3(0.4f, 0.55f, 0f);
-            shoulder.transform.localScale = Vector3.one * 0.65f;
-            UnityEngine.Object.DestroyImmediate(shoulder.GetComponent<Collider>());
-            shoulder.GetComponent<Renderer>().sharedMaterial = material;
             return bigArm;
         }
 

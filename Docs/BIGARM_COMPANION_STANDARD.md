@@ -14,6 +14,7 @@ This document is the canonical implementation baseline for how BigARM exists, mo
 
 The perspective prototype establishes the loaded-world behavior:
 
+- use one simple upright rectangular prism, taller than it is wide, with no secondary round shoulder shape during the greybox prototype;
 - record Booter's recent route and follow a position along that route instead of orbiting a camera-relative formation point;
 - use a follow band so BigARM can stop without jittering around an exact coordinate;
 - accelerate, decelerate, turn, and slow for sharp heading changes;
