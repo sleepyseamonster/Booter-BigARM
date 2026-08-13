@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
@@ -40,9 +41,27 @@ namespace BooterBigArm.Editor
             var errors = ConversionBaselineValidator.CollectErrors();
             ValidateAssetExists(TopDown3DPrototypeBuilder.ScenePath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.WorldSettingsPath, errors);
+            ValidateCameraInput(errors);
             ValidateBuildSettings(errors);
             ValidateScene(errors);
             return errors;
+        }
+
+        private static void ValidateCameraInput(ICollection<string> errors)
+        {
+            var input = AssetDatabase.LoadAssetAtPath<InputActionAsset>(TopDown3DPrototypeBuilder.InputActionsPath);
+            var look = input?.FindActionMap("Gameplay", false)?.FindAction("Look", false);
+            if (look == null)
+            {
+                errors.Add("The perspective camera requires Gameplay/Look in the shared input asset.");
+                return;
+            }
+
+            if (!look.bindings.Any(binding =>
+                    binding.path == "<Gamepad>/rightStick" && binding.groups.Contains("Gamepad")))
+            {
+                errors.Add("Gameplay/Look must bind the gamepad right stick for perspective camera orbit.");
+            }
         }
 
         private static void ValidateAssetExists(string path, ICollection<string> errors)

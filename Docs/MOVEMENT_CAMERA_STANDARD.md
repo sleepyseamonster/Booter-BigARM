@@ -7,6 +7,7 @@ For the perspective lane:
 - use a 3D `Rigidbody` on XZ with Y as elevation;
 - project movement through the camera basis onto the traversal plane;
 - use an elevated perspective camera with serialized pitch, yaw, distance, field of view, damping, and obstruction values;
+- use right-stick horizontal orbit and constrained vertical pitch while preserving camera-relative movement and the elevated top-down composition;
 - use 3D depth, lighting, colliders, materials, and renderer topology instead of pixel snapping and sprite sorting;
 - keep hands-on feel and controller acceptance with the user unless the user explicitly delegates it.
 

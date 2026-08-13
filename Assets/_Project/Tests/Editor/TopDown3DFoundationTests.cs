@@ -40,6 +40,22 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void AdjacentChunkMeshes_ShareExactBorderNormals()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
+            Assert.That(settings, Is.Not.Null);
+            var left = TopDown3DChunkMeshBuilder.BuildData(settings, Vector2Int.zero);
+            var right = TopDown3DChunkMeshBuilder.BuildData(settings, Vector2Int.right);
+            var verticesPerAxis = settings.QuadsPerAxis + 1;
+            for (var z = 0; z < verticesPerAxis; z++)
+            {
+                var leftNormal = left.Normals[z * verticesPerAxis + settings.QuadsPerAxis];
+                var rightNormal = right.Normals[z * verticesPerAxis];
+                Assert.That(Vector3.Distance(leftNormal, rightNormal), Is.LessThan(0.000001f), $"Normal seam at row {z}.");
+            }
+        }
+
+        [Test]
         public void PerspectiveMovementBasis_IsCameraRelativeAndSpeedClamped()
         {
             var direction = TopDown3DMovementBasis.ToWorldDirection(
@@ -51,12 +67,61 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void CameraOrbit_IsFrameRateIndependentAndPitchClamped()
+        {
+            var oneStepYaw = TopDown3DCameraRig.CalculateYaw(350f, 1f, 120f, 0.25f);
+            var twoStepYaw = TopDown3DCameraRig.CalculateYaw(
+                TopDown3DCameraRig.CalculateYaw(350f, 1f, 120f, 0.125f),
+                1f,
+                120f,
+                0.125f);
+            Assert.That(oneStepYaw, Is.EqualTo(20f).Within(0.0001f));
+            Assert.That(twoStepYaw, Is.EqualTo(oneStepYaw).Within(0.0001f));
+            Assert.That(
+                TopDown3DCameraRig.CalculatePitch(40f, 1f, 70f, 1f, 38f, 65f),
+                Is.EqualTo(38f).Within(0.0001f));
+            Assert.That(
+                TopDown3DCameraRig.CalculatePitch(60f, -1f, 70f, 1f, 38f, 65f),
+                Is.EqualTo(65f).Within(0.0001f));
+        }
+
+        [Test]
+        public void SafeSpawnSearch_ReturnsDeterministicWalkableGround()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
+            Assert.That(settings, Is.Not.Null);
+            var foundFirst = TopDown3DHeightSampler.TryFindWalkablePosition(
+                settings,
+                Vector2.zero,
+                settings.SafeSpawnSearchRadius,
+                settings.SafeSpawnSearchStep,
+                settings.MaximumSafeSpawnSlope,
+                out var first);
+            var foundSecond = TopDown3DHeightSampler.TryFindWalkablePosition(
+                settings,
+                Vector2.zero,
+                settings.SafeSpawnSearchRadius,
+                settings.SafeSpawnSearchStep,
+                settings.MaximumSafeSpawnSlope,
+                out var second);
+            Assert.That(foundFirst, Is.True);
+            Assert.That(foundSecond, Is.True);
+            Assert.That(second, Is.EqualTo(first));
+            Assert.That(
+                Vector3.Angle(
+                    TopDown3DHeightSampler.SampleNormal(settings, first.x, first.z),
+                    Vector3.up),
+                Is.LessThanOrEqualTo(settings.MaximumSafeSpawnSlope));
+        }
+
+        [Test]
         public void GameplayActions_ContainRequiredGamepadAndKeyboardBindings()
         {
             var asset = AssetDatabase.LoadAssetAtPath<InputActionAsset>(InputActionsPath);
             Assert.That(asset, Is.Not.Null);
             var gameplay = asset.FindActionMap("Gameplay", true);
             AssertBinding(gameplay.FindAction("Move", true), "<Gamepad>/leftStick", "Gamepad");
+            AssertBinding(gameplay.FindAction("Look", true), "<Gamepad>/rightStick", "Gamepad");
             AssertBinding(gameplay.FindAction("Sprint", true), "<Gamepad>/rightShoulder", "Gamepad");
             AssertBinding(gameplay.FindAction("RecallBigArm", true), "<Gamepad>/leftShoulder", "Gamepad");
             AssertBinding(gameplay.FindAction("Move", true), "<Keyboard>/w", "Keyboard&Mouse");

@@ -1,6 +1,6 @@
 # Perspective Top-Down 3D Foundation Plan
 
-**Status:** Implemented; awaiting user-owned hands-on acceptance
+**Status:** Initial foundation accepted; traversal hardening and right-stick camera orbit implemented, awaiting user-owned feel tuning
 **Owner:** Gottspan under the user's creative and product authority
 **Supersedes for new work:** the orthographic/isometric camera direction in `ISOMETRIC_DIRECTION_BRIEF.md`
 **Preserves:** the existing 2D prototype and the completed isometric conversion lab as comparison evidence
@@ -15,9 +15,9 @@ The first implementation foundation prioritizes camera feel, player movement, ga
 
 This foundation batch is complete when the repository contains a separate `TopDown3DPrototype` scene, excluded from Build Settings, that demonstrates:
 
-- a perspective camera with fixed elevated yaw/pitch, stable follow damping, and obstruction handling;
+- a perspective camera with elevated, constrained right-stick yaw/pitch orbit, stable follow damping, and obstruction handling;
 - normalized camera-relative player movement using a 3D Rigidbody and walkable-slope grounding;
-- one centralized owner for Gameplay input with gamepad and keyboard bindings for movement, sprint, and BigARM recall;
+- one centralized owner for Gameplay input with gamepad and keyboard bindings for movement, sprint, and BigARM recall plus gamepad right-stick camera look;
 - deterministic 3D mesh terrain generated from seed plus chunk coordinates;
 - runtime chunk loading and unloading around Booter without cracks between neighboring chunks;
 - a smaller BigARM with simple idle, follow, avoidance, stuck-recovery, and recall behavior;
@@ -46,7 +46,8 @@ This foundation batch is complete when the repository contains a separate `TopDo
 ### Camera
 
 - Perspective projection is authoritative for new work.
-- The first camera uses fixed yaw and pitch with no player-controlled orbit.
+- The camera uses the existing `Gameplay/Look` right-stick binding as angular velocity: horizontal input orbits, vertical input adjusts pitch inside a top-down-safe range, and releasing the stick holds the current view.
+- The Input System's gamepad-stick deadzone is authoritative; the camera does not stack a second deadzone processor.
 - Camera distance, pitch, field of view, damping, and target offset remain serialized tuning values.
 - Camera obstruction pulls the camera toward its target without changing gameplay movement intent.
 
@@ -62,7 +63,10 @@ This foundation batch is complete when the repository contains a separate `TopDo
 - A settings asset owns immutable generation and streaming parameters.
 - Terrain height is a deterministic function of world seed and world-space sample coordinates.
 - Every chunk builds an independent mesh and collider from the same border samples, producing matching seams.
+- Border vertices use world-sampled normals, so neighboring chunks match in both geometry and terrain lighting.
 - Chunk identity is an XZ coordinate. Y is elevation.
+- Initial loading creates a safe local collider ring immediately, then builds farther chunks within a per-frame budget; unloading uses a padded radius to avoid boundary thrash.
+- Initial spawn selection rejects terrain above the configured walkable slope, and prop placement rejects the spawn exclusion zone, steep surfaces, overlaps, and chunk-edge conflicts.
 - Generated runtime objects remain separate from authored scene content and are not save data.
 
 ### BigARM
@@ -78,6 +82,7 @@ This foundation batch is complete when the repository contains a separate `TopDo
 3. Add structural, input-binding, determinism, and seam-continuity tests.
 4. Import through Unity, build the new scene, and run focused non-smoke validation.
 5. Record the automated and visual proof boundary, reconcile docs, and commit only verified task-owned files. Hands-on movement, controller, camera-feel, and companion acceptance belong to the user unless the user explicitly asks Codex to perform them.
+6. After initial user acceptance, harden traversal with walkable safe spawn selection, staged streaming, unload hysteresis, collision-safe props, normal-continuous seams, and right-stick camera orbit.
 
 ## Stop Conditions
 

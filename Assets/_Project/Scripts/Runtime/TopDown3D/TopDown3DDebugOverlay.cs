@@ -30,6 +30,7 @@ namespace BooterBigArm.TopDown3D
             GUILayout.BeginArea(new Rect(12f, 12f, 390f, 215f), GUI.skin.box);
             GUILayout.Label("PERSPECTIVE TOP-DOWN 3D FOUNDATION");
             GUILayout.Label("Move: Left Stick / WASD    Sprint: RB / Left Shift");
+            GUILayout.Label("Rotate camera: Right Stick (horizontal orbit + limited pitch)");
             GUILayout.Label("Recall BigARM: LB / F1");
             if (input != null)
             {
@@ -44,7 +45,9 @@ namespace BooterBigArm.TopDown3D
 
             if (world != null)
             {
-                GUILayout.Label($"Seed: {world.WorldSeed}  Chunk: {world.CurrentCenterChunk}  Loaded: {world.LoadedChunkCount}");
+                GUILayout.Label(
+                    $"Seed: {world.WorldSeed}  Chunk: {world.CurrentCenterChunk}  "
+                    + $"Loaded: {world.LoadedChunkCount}  Pending: {world.PendingChunkCount}");
             }
 
             if (bigArm != null)

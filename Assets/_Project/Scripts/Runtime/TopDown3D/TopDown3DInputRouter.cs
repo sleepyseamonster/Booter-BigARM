@@ -10,16 +10,19 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private InputActionAsset inputActions;
         [SerializeField] private string gameplayMapName = "Gameplay";
         [SerializeField] private string moveActionName = "Move";
+        [SerializeField] private string lookActionName = "Look";
         [SerializeField] private string sprintActionName = "Sprint";
         [SerializeField] private string recallActionName = "RecallBigArm";
         [SerializeField, Range(0f, 0.5f)] private float moveDeadzone = 0.12f;
 
         private InputActionMap gameplayMap;
         private InputAction moveAction;
+        private InputAction lookAction;
         private InputAction sprintAction;
         private InputAction recallAction;
 
         public Vector2 MoveValue { get; private set; }
+        public Vector2 CameraLookValue { get; private set; }
         public bool SprintHeld { get; private set; }
         public string LastInputDevice { get; private set; } = "None";
 
@@ -39,6 +42,8 @@ namespace BooterBigArm.TopDown3D
 
             moveAction.performed += HandleMove;
             moveAction.canceled += HandleMove;
+            lookAction.performed += HandleLook;
+            lookAction.canceled += HandleLook;
             sprintAction.performed += HandleSprint;
             sprintAction.canceled += HandleSprint;
             recallAction.performed += HandleRecall;
@@ -59,6 +64,12 @@ namespace BooterBigArm.TopDown3D
                 sprintAction.canceled -= HandleSprint;
             }
 
+            if (lookAction != null)
+            {
+                lookAction.performed -= HandleLook;
+                lookAction.canceled -= HandleLook;
+            }
+
             if (recallAction != null)
             {
                 recallAction.performed -= HandleRecall;
@@ -67,9 +78,11 @@ namespace BooterBigArm.TopDown3D
             gameplayMap?.Disable();
             gameplayMap = null;
             moveAction = null;
+            lookAction = null;
             sprintAction = null;
             recallAction = null;
             MoveValue = Vector2.zero;
+            CameraLookValue = Vector2.zero;
             SprintHeld = false;
         }
 
@@ -83,15 +96,20 @@ namespace BooterBigArm.TopDown3D
 
             gameplayMap = inputActions.FindActionMap(gameplayMapName, false);
             moveAction = gameplayMap?.FindAction(moveActionName, false);
+            lookAction = gameplayMap?.FindAction(lookActionName, false);
             sprintAction = gameplayMap?.FindAction(sprintActionName, false);
             recallAction = gameplayMap?.FindAction(recallActionName, false);
-            if (gameplayMap != null && moveAction != null && sprintAction != null && recallAction != null)
+            if (gameplayMap != null
+                && moveAction != null
+                && lookAction != null
+                && sprintAction != null
+                && recallAction != null)
             {
                 return true;
             }
 
             Debug.LogError(
-                $"{nameof(TopDown3DInputRouter)} could not resolve Gameplay/Move/Sprint/RecallBigArm from the assigned input asset.",
+                $"{nameof(TopDown3DInputRouter)} could not resolve Gameplay/Move/Look/Sprint/RecallBigArm from the assigned input asset.",
                 this);
             return false;
         }
@@ -115,6 +133,21 @@ namespace BooterBigArm.TopDown3D
         {
             RecordDevice(context);
             SprintHeld = context.ReadValueAsButton();
+        }
+
+        private void HandleLook(InputAction.CallbackContext context)
+        {
+            // The shared Look action also carries pointer delta. This foundation pass intentionally
+            // consumes only the gamepad stick so pixel delta and normalized stick rate are never mixed.
+            if (!(context.control?.device is Gamepad))
+            {
+                return;
+            }
+
+            RecordDevice(context);
+            CameraLookValue = context.canceled
+                ? Vector2.zero
+                : Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
         }
 
         private void HandleRecall(InputAction.CallbackContext context)

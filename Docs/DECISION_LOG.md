@@ -63,3 +63,15 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Controlling files updated:** `Docs/TOP_DOWN_3D_FOUNDATION_PLAN.md`, `Docs/DOCS_INDEX.md`, and the new implementation under `Assets/_Project/`.
 - **Consequences / follow-up:** Orthographic remains historical comparison evidence only. The first perspective foundation stays in a separate scene, preserves the 2D baseline and prior spike, and does not authorize packages, production assets, save migration, Build Settings changes, cutover, release, or legacy deletion.
 - **Supersedes:** the camera and presentation direction in the 2026-08-12 protected-spike proposal; the preservation contract remains active.
+
+## 2026-08-13 — Right-Stick Perspective Camera Orbit
+
+- **Status:** accepted
+- **Decision owner:** user
+- **Question:** How should the player control the elevated perspective camera on gamepad?
+- **Decision:** The right stick rotates the camera in the conventional 3D manner: horizontal input orbits around Booter, vertical input adjusts pitch within a constrained elevated top-down range, and releasing the stick holds the chosen view. Player movement remains camera-relative.
+- **Why:** The game is now fully perspective and 3D-focused, while still requiring the readability and navigation feel of a top-down game.
+- **Evidence:** The user's explicit instruction after accepting the initial perspective foundation.
+- **Controlling files updated:** `Docs/TOP_DOWN_3D_FOUNDATION_PLAN.md`, `Docs/PROJECT_STATUS.md`, `TopDown3DInputRouter`, `TopDown3DCameraRig`, validator, and focused EditMode tests.
+- **Consequences / follow-up:** Physical-controller orbit speed, vertical direction, pitch limits, and interaction with movement remain user-owned feel tuning. This does not authorize free-look mouse behavior, camera lock-on, shoulder swapping, packages, or cutover.
+- **Supersedes:** the fixed-yaw/no-player-orbit camera statement in the initial foundation plan.

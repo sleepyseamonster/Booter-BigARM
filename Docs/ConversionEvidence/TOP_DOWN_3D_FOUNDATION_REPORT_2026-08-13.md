@@ -6,11 +6,12 @@ The first perspective top-down 3D foundation is implemented in a separate genera
 
 The foundation includes:
 
-- a fixed elevated perspective camera with damped follow and obstruction pull-in;
+- an elevated perspective camera with constrained right-stick orbit, damped follow, and obstruction pull-in;
 - a camera-relative 3D Rigidbody player motor;
 - centralized Gameplay input for keyboard and gamepad movement, sprint, and BigARM recall;
-- deterministic streamed terrain meshes and colliders with matching chunk borders;
-- deterministic greybox prop placement;
+- deterministic streamed terrain meshes and colliders with matching geometry and lighting normals at chunk borders;
+- walkable safe-spawn selection plus deterministic, slope-aware, collision-spaced greybox prop placement;
+- immediate near-chunk loading followed by budgeted outer-ring creation and padded unload hysteresis;
 - a compact BigARM follower with idle, follow, avoidance, recovery, and recall states;
 - guarded scene build/open tooling, non-mutating validation, and focused EditMode tests.
 
@@ -19,8 +20,9 @@ The foundation includes:
 - Unity editor: `6000.4.0f1`.
 - `TopDown3DPrototypeBuilder.RebuildFromCli`: exit `0`.
 - `TopDown3DPrototypeValidator.ValidateFromCli`: exit `0`.
-- `BooterBigArm.Editor.Tests`: `13 / 13` EditMode tests passed, with no failures, skips, or inconclusive results.
-- The focused tests verify deterministic height sampling, exact neighboring chunk-border heights, camera-relative normalized movement math, required keyboard/gamepad bindings, compact scene topology, explicit perspective renderer selection, and the protected legacy baseline.
+- The original foundation run passed `13 / 13` EditMode tests. After the traversal and camera-control hardening pass, the Unity GUI test runner passed `16 / 16`, with no failures, skips, or inconclusive results.
+- The focused tests verify deterministic height sampling, exact neighboring chunk-border heights and normals, deterministic walkable safe-spawn selection, frame-rate-independent yaw and constrained pitch math, camera-relative normalized movement, required keyboard/gamepad bindings including right-stick Look, compact scene topology, explicit perspective renderer selection, and the protected legacy baseline.
+- The Unity GUI perspective validator passed after the hardening pass. Unity completed its script reload without C# compilation errors.
 - Fresh rebuild, validation, and EditMode-test logs contain no C# compilation errors, unhandled exceptions, missing-font warnings, import-worker transport errors, filesystem-time errors, or last-scene unload warnings.
 
 ## Preservation Evidence
@@ -55,6 +57,7 @@ Per the user's instruction, no gameplay smoke-test suite is retained and Codex w
 
 - keyboard movement and sprint feel;
 - physical-gamepad left-stick, RB sprint, and LB recall behavior;
+- physical-gamepad right-stick orbit direction, speed, pitch range, and hold-on-release behavior;
 - camera framing, damping, and obstruction response during extended movement;
 - grounding and world streaming while crossing multiple chunk boundaries;
 - BigARM follow spacing, size, avoidance, recovery, and recall feel.

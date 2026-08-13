@@ -4,16 +4,18 @@ namespace BooterBigArm.TopDown3D
 {
     public readonly struct TopDown3DChunkMeshData
     {
-        public TopDown3DChunkMeshData(Vector3[] vertices, int[] triangles, Vector2[] uvs)
+        public TopDown3DChunkMeshData(Vector3[] vertices, int[] triangles, Vector2[] uvs, Vector3[] normals)
         {
             Vertices = vertices;
             Triangles = triangles;
             Uvs = uvs;
+            Normals = normals;
         }
 
         public Vector3[] Vertices { get; }
         public int[] Triangles { get; }
         public Vector2[] Uvs { get; }
+        public Vector3[] Normals { get; }
     }
 
     public static class TopDown3DChunkMeshBuilder
@@ -24,6 +26,7 @@ namespace BooterBigArm.TopDown3D
             var verticesPerAxis = quads + 1;
             var vertices = new Vector3[verticesPerAxis * verticesPerAxis];
             var uvs = new Vector2[vertices.Length];
+            var normals = new Vector3[vertices.Length];
             var triangles = new int[quads * quads * 6];
             var step = settings.ChunkSize / quads;
             var originX = chunkCoordinate.x * settings.ChunkSize;
@@ -43,6 +46,7 @@ namespace BooterBigArm.TopDown3D
                         TopDown3DHeightSampler.SampleHeight(settings, worldX, worldZ),
                         localZ);
                     uvs[index] = new Vector2(worldX / settings.ChunkSize, worldZ / settings.ChunkSize);
+                    normals[index] = TopDown3DHeightSampler.SampleNormal(settings, worldX, worldZ, step);
                 }
             }
 
@@ -62,7 +66,7 @@ namespace BooterBigArm.TopDown3D
                 }
             }
 
-            return new TopDown3DChunkMeshData(vertices, triangles, uvs);
+            return new TopDown3DChunkMeshData(vertices, triangles, uvs, normals);
         }
 
         public static Mesh BuildMesh(TopDown3DWorldSettings settings, Vector2Int chunkCoordinate)
@@ -75,7 +79,7 @@ namespace BooterBigArm.TopDown3D
             mesh.SetVertices(data.Vertices);
             mesh.SetTriangles(data.Triangles, 0, true);
             mesh.SetUVs(0, data.Uvs);
-            mesh.RecalculateNormals();
+            mesh.SetNormals(data.Normals);
             mesh.RecalculateBounds();
             return mesh;
         }

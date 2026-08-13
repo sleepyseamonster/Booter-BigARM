@@ -17,7 +17,7 @@ namespace BooterBigArm.Editor
         public const string WorldSettingsPath = "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
         public const string MaterialFolder = "Assets/_Project/Materials/TopDown3D";
 
-        private const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
+        public const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
 
         [MenuItem("Booter & BigARM/Top Down 3D/Build Perspective Prototype")]
         public static void BuildFromMenu()
@@ -120,6 +120,8 @@ namespace BooterBigArm.Editor
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
             if (settings != null)
             {
+                // Re-save existing assets so newly introduced serialized tuning fields become durable.
+                EditorUtility.SetDirty(settings);
                 return settings;
             }
 
@@ -145,9 +147,24 @@ namespace BooterBigArm.Editor
                 AssetDatabase.CreateAsset(material, path);
             }
 
-            material.SetColor("_BaseColor", color);
-            material.enableInstancing = true;
-            EditorUtility.SetDirty(material);
+            var changed = false;
+            if (material.GetColor("_BaseColor") != color)
+            {
+                material.SetColor("_BaseColor", color);
+                changed = true;
+            }
+
+            if (!material.enableInstancing)
+            {
+                material.enableInstancing = true;
+                changed = true;
+            }
+
+            if (changed)
+            {
+                EditorUtility.SetDirty(material);
+            }
+
             return material;
         }
 
@@ -191,12 +208,24 @@ namespace BooterBigArm.Editor
             Material bigArmMaterial)
         {
             var previousActiveScene = SceneManager.GetActiveScene();
+            var loadedTargetScene = SceneManager.GetSceneByPath(ScenePath);
+            if (loadedTargetScene.IsValid() && loadedTargetScene.isLoaded && loadedTargetScene.isDirty)
+            {
+                throw new InvalidOperationException(
+                    $"Refusing to replace dirty loaded scene {ScenePath}; save or discard its changes first.");
+            }
+
             var creationMode = Application.isBatchMode ? NewSceneMode.Single : NewSceneMode.Additive;
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, creationMode);
             SceneManager.SetActiveScene(scene);
 
             try
             {
+                if (!Application.isBatchMode && loadedTargetScene.IsValid() && loadedTargetScene.isLoaded)
+                {
+                    EditorSceneManager.CloseScene(loadedTargetScene, true);
+                }
+
                 scene.name = "TopDown3DPrototype";
                 RenderSettings.fog = true;
                 RenderSettings.fogMode = FogMode.Linear;
@@ -210,7 +239,7 @@ namespace BooterBigArm.Editor
                 input.Configure(inputActions);
 
                 var player = CreatePlayer(settings, playerMaterial);
-                var cameraRig = CreateCamera(player.transform, rendererIndex);
+                var cameraRig = CreateCamera(player.transform, input, rendererIndex);
                 var motor = player.GetComponent<TopDown3DPlayerMotor>();
                 motor.Configure(input, cameraRig.transform);
 
@@ -273,7 +302,10 @@ namespace BooterBigArm.Editor
             return player;
         }
 
-        private static TopDown3DCameraRig CreateCamera(Transform target, int rendererIndex)
+        private static TopDown3DCameraRig CreateCamera(
+            Transform target,
+            TopDown3DInputRouter input,
+            int rendererIndex)
         {
             var cameraObject = new GameObject("Main Camera");
             cameraObject.tag = "MainCamera";
@@ -286,7 +318,7 @@ namespace BooterBigArm.Editor
             additionalData.SetRenderer(rendererIndex);
             additionalData.renderPostProcessing = false;
             var rig = cameraObject.AddComponent<TopDown3DCameraRig>();
-            rig.Configure(target);
+            rig.Configure(target, input);
             return rig;
         }
 

@@ -38,6 +38,7 @@ Verified 2026-08-13 from root `AGENTS.md`, `ProjectSettings/ProjectVersion.txt`,
 - The protected conversion lab is `Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity` and must remain outside enabled Build Settings before cutover authority.
 - The conversion baseline validator is available at `BooterBigArm.Editor.ConversionBaselineValidator.ValidateFromCli`; do not substitute the writing prototype bootstrapper for validation.
 - The perspective development scene is `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`, remains outside Build Settings, and is validated by `BooterBigArm.Editor.TopDown3DPrototypeValidator.ValidateFromCli`.
+- The perspective foundation uses the existing `Gameplay/Look` right-stick binding for constrained yaw/pitch orbit and budgeted deterministic terrain streaming with safe-spawn and prop-placement guards; the focused EditMode suite passed 16 of 16 after the 2026-08-13 hardening pass.
 
 These facts can drift. Re-check live files before relying on them for implementation or automation.
 

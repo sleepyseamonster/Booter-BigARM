@@ -38,12 +38,12 @@ Verified 2026-08-13 from live repo files and Unity 6000.4.0f1 validation:
 - `Renderer2D.asset` remains the default renderer at index 0; `IsometricRenderer.asset` is the non-default conversion renderer at index 1.
 - The separate perspective scene is `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`; it uses renderer index 1 and remains absent from Build Settings.
 - Perspective runtime code is isolated in `BooterBigArm.TopDown3D.Runtime` under `Assets/_Project/Scripts/Runtime/TopDown3D/`.
-- The generated foundation includes centralized input, a 3D Rigidbody motor, a custom perspective camera, deterministic streamed mesh terrain, and compact simple-follow BigARM behavior.
-- `TopDown3DPrototypeValidator.ValidateFromCli` passes and the focused EditMode suite reports 13 of 13 passing.
+- The generated foundation includes centralized input, a 3D Rigidbody motor, constrained right-stick perspective camera orbit, deterministic budget-streamed mesh terrain, walkable safe-spawn selection, collision-aware props, and compact simple-follow BigARM behavior.
+- `TopDown3DPrototypeValidator` passes and the focused EditMode suite reports 16 of 16 passing after the 2026-08-13 traversal-hardening pass.
 
 ## Known Management Gaps
 
-- Perspective camera feel, physical-gamepad response, extended chunk traversal, player grounding across terrain, and BigARM behavior acceptance remain with the user.
+- Right-stick camera feel, physical-gamepad response, extended chunk traversal, player grounding across terrain, and BigARM behavior acceptance remain with the user.
 - Survival-loop parity, harvesting/items, save migration, final companion mechanics, production assets, and biome/landmark generation remain deferred.
 - Player-build proof remains intentionally unavailable because the perspective prototype is excluded from Build Settings until a later gate.
 

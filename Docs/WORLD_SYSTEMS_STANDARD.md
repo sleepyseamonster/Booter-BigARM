@@ -36,6 +36,7 @@ Relevant sources:
 - Keep chunk identity stable so the same chunk can be reconstructed later from the same seed and coordinate.
 - Use additive scene loading only when authored scene content is the right tool; do not use scenes as the primary save-file format.
 - Prefer asynchronous loading for runtime content that can be streamed in or out.
+- Until generation moves to jobs or asynchronous content loading, enforce a per-frame chunk-build budget, load the immediate traversal area first, and use unload hysteresis so boundary crossings do not create one-frame work spikes or repeated churn.
 - Keep authored content and generated data separate so world generation can evolve without rewriting save files.
 
 Relevant Unity sources:

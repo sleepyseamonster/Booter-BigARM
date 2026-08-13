@@ -28,3 +28,15 @@ This log turns game-design questions into repeatable observations. Record what h
 - A single session can reveal a problem but rarely proves a broad balance claim.
 - Promote stable conclusions into the appropriate canon, roadmap, or implementation standard.
 - Hands-on smoke testing is user-owned. Codex agents do not create or run smoke tests unless the user explicitly requests them.
+
+### 2026-08-13 — Perspective Foundation Review
+
+- **Build / commit:** `828d52f`
+- **Unity version and scene:** Unity `6000.4.0f1`, `TopDown3DPrototype`
+- **Design question:** Is the initial perspective top-down 3D direction sound enough to continue?
+- **Player / observer:** user
+- **Observed behavior:** The user reported that everything looked good and approved continuing the planned sequence.
+- **Evidence:** user hands-on review in the project task
+- **Interpretation:** The separate 3D foundation is accepted as the working direction; this does not establish physical-controller feel or extended traversal reliability.
+- **Decision:** continue with traversal hardening and conventional right-stick camera rotation
+- **Next experiment:** user checks camera orbit and movement while crossing multiple chunk boundaries on a physical gamepad

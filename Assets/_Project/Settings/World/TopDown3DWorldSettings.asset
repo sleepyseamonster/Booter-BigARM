@@ -16,6 +16,9 @@ MonoBehaviour:
   chunkSize: 18
   quadsPerAxis: 12
   streamingRadius: 2
+  immediateLoadRadius: 1
+  chunksBuiltPerFrame: 2
+  unloadPadding: 1
   baseHeight: 0
   heightAmplitude: 2.1
   noiseFrequency: 0.028
@@ -24,3 +27,9 @@ MonoBehaviour:
   noisePersistence: 0.5
   propsPerChunk: 4
   clearSpawnRadius: 7
+  safeSpawnSearchRadius: 8
+  safeSpawnSearchStep: 1.5
+  maximumSafeSpawnSlope: 38
+  maximumPropSlope: 38
+  propSpacing: 0.6
+  propPlacementAttempts: 10

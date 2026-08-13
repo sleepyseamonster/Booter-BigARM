@@ -43,8 +43,9 @@ Unity documents `PerformInteractiveRebinding`, `SaveBindingOverridesAsJson`, and
 ## Gamepad Feel
 
 - Use a `Vector2` move action with a stick binding and a 2D vector keyboard composite.
-- Apply a stick deadzone processor to analog movement and aim bindings.
-- Tune deadzone values intentionally instead of relying on device defaults.
+- Use a `Vector2` Look action with the gamepad right stick for perspective camera orbit.
+- Ensure analog sticks receive one radial deadzone treatment. Gamepad stick controls already apply the Input System's `StickDeadzone`; do not add the same processor again at the binding layer unless intentionally replacing and testing that response.
+- Tune deadzone values intentionally at the owning layer rather than stacking processors in multiple layers.
 
 Unity's processor docs describe `StickDeadzone` and `AxisDeadzone` processors for exactly this purpose. See:
 - [Processors manual](https://docs.unity3d.com/ja/Packages/com.unity.inputsystem%401.4/manual/Processors.html)
@@ -72,6 +73,5 @@ Unity's UI support docs cover `InputSystemUIInputModule` and the UI event-system
 2. Separate gameplay and UI action maps.
 3. Use control schemes and `PlayerInput` for device pairing.
 4. Support rebinding with JSON save/load.
-5. Use deadzone processors for analog feel.
+5. Use one intentional radial deadzone path for analog feel; avoid double-processing a stick.
 6. Keep input as an adapter, not game logic.
-

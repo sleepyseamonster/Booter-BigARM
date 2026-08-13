@@ -9,9 +9,14 @@ namespace BooterBigArm.TopDown3D
         private const int ObstructionHitCapacity = 16;
 
         [SerializeField] private Transform target;
+        [SerializeField] private TopDown3DInputRouter input;
         [SerializeField] private Vector3 targetOffset = new Vector3(0f, 1.15f, 0f);
         [SerializeField, Range(20f, 75f)] private float pitchDegrees = 50f;
         [SerializeField] private float yawDegrees = 40f;
+        [SerializeField, Range(20f, 75f)] private float minimumPitchDegrees = 38f;
+        [SerializeField, Range(20f, 75f)] private float maximumPitchDegrees = 65f;
+        [SerializeField, Range(30f, 240f)] private float yawSpeedDegrees = 120f;
+        [SerializeField, Range(20f, 180f)] private float pitchSpeedDegrees = 70f;
         [SerializeField, Min(2f)] private float distance = 16f;
         [SerializeField, Range(20f, 80f)] private float fieldOfView = 48f;
         [SerializeField, Min(0f)] private float followSmoothTime = 0.14f;
@@ -29,15 +34,17 @@ namespace BooterBigArm.TopDown3D
         public float YawDegrees => yawDegrees;
         public float Distance => distance;
 
-        public void Configure(Transform followTarget)
+        public void Configure(Transform followTarget, TopDown3DInputRouter inputRouter = null)
         {
             target = followTarget;
+            input = inputRouter;
             SnapToTarget();
         }
 
         private void Awake()
         {
             outputCamera = GetComponent<Camera>();
+            ResolveInput();
             ApplyLens();
         }
 
@@ -54,6 +61,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             ApplyLens();
+            ApplyOrbitInput();
             var rawTarget = target.position + targetOffset;
             smoothedTarget = followSmoothTime <= 0f
                 ? rawTarget
@@ -63,6 +71,56 @@ namespace BooterBigArm.TopDown3D
             var backward = -(rotation * Vector3.forward);
             var resolvedDistance = ResolveDistance(smoothedTarget, backward);
             transform.SetPositionAndRotation(smoothedTarget + backward * resolvedDistance, rotation);
+        }
+
+        public static float CalculateYaw(float currentYaw, float inputValue, float speedDegrees, float deltaTime)
+        {
+            return Mathf.Repeat(
+                currentYaw + Mathf.Clamp(inputValue, -1f, 1f) * Mathf.Max(0f, speedDegrees) * Mathf.Max(0f, deltaTime),
+                360f);
+        }
+
+        public static float CalculatePitch(
+            float currentPitch,
+            float inputValue,
+            float speedDegrees,
+            float deltaTime,
+            float minimumPitch,
+            float maximumPitch)
+        {
+            var lower = Mathf.Min(minimumPitch, maximumPitch);
+            var upper = Mathf.Max(minimumPitch, maximumPitch);
+            return Mathf.Clamp(
+                currentPitch - Mathf.Clamp(inputValue, -1f, 1f) * Mathf.Max(0f, speedDegrees) * Mathf.Max(0f, deltaTime),
+                lower,
+                upper);
+        }
+
+        private void ApplyOrbitInput()
+        {
+            ResolveInput();
+            if (input == null)
+            {
+                return;
+            }
+
+            var look = input.CameraLookValue;
+            yawDegrees = CalculateYaw(yawDegrees, look.x, yawSpeedDegrees, Time.deltaTime);
+            pitchDegrees = CalculatePitch(
+                pitchDegrees,
+                look.y,
+                pitchSpeedDegrees,
+                Time.deltaTime,
+                minimumPitchDegrees,
+                maximumPitchDegrees);
+        }
+
+        private void ResolveInput()
+        {
+            if (input == null)
+            {
+                input = FindFirstObjectByType<TopDown3DInputRouter>();
+            }
         }
 
         private float ResolveDistance(Vector3 origin, Vector3 backward)
@@ -125,6 +183,11 @@ namespace BooterBigArm.TopDown3D
         private void OnValidate()
         {
             distance = Mathf.Max(2f, distance);
+            minimumPitchDegrees = Mathf.Clamp(minimumPitchDegrees, 20f, 75f);
+            maximumPitchDegrees = Mathf.Clamp(maximumPitchDegrees, minimumPitchDegrees, 75f);
+            pitchDegrees = Mathf.Clamp(pitchDegrees, minimumPitchDegrees, maximumPitchDegrees);
+            yawSpeedDegrees = Mathf.Clamp(yawSpeedDegrees, 30f, 240f);
+            pitchSpeedDegrees = Mathf.Clamp(pitchSpeedDegrees, 20f, 180f);
             minimumDistance = Mathf.Clamp(minimumDistance, 1f, distance);
             followSmoothTime = Mathf.Max(0f, followSmoothTime);
             obstructionRadius = Mathf.Max(0.05f, obstructionRadius);
