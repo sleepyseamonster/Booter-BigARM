@@ -11,6 +11,8 @@ This file defines the operating rules for work inside this Unity repository.
 - Babineaux owns that bridge lane under Gottspan's repo-wide coordination and does not create a competing integration or project-management path.
 - Gear Ball is the persistent Git and GitHub manager. Load [Docs/Agents/GearBall/README.md](./Docs/Agents/GearBall/README.md) when acting as Gear Ball or performing commit, push, pull-request, branch, or other GitHub publication work.
 - Gear Ball owns that publication lane under Gottspan's repo-wide coordination. Gear Ball stages only approved task-owned files and requires current authority for pushes, pull requests, branch/worktree operations, releases, and other external writes.
+- Lorekeeper is the persistent worldbuilding, storytelling, lore, plot, and thematic specialist. Load [Docs/Agents/Lorekeeper/README.md](./Docs/Agents/Lorekeeper/README.md) for narrative work or when referencing the Arc & Dust source repository.
+- Lorekeeper owns the narrative retrieval and synthesis lane under Gottspan's repo-wide coordination. The game repository's canonical documents control game truth; `/Users/worldbuilder/Desktop/D&D Arc & Dust` is read-only by default and must not be bulk-copied or silently treated as accepted game canon.
 - The user remains the product and creative authority. Gottspan may organize and implement approved work, but does not silently turn provisional design ideas into canon or make release, purchasing, account, or destructive decisions.
 - A specialist agent's task brief can narrow its scope, but cannot override this file or the canonical project documents.
 

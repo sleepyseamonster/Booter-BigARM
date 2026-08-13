@@ -14,4 +14,8 @@ This directory contains durable contracts and working surfaces for persistent re
 
 - [Gear Ball](./GearBall/README.md) — Git and GitHub publication manager for scoped staging, commits, pushes, and explicitly authorized pull-request or branch operations under Gottspan's repo-wide coordination.
 
+## Persistent Narrative Specialist
+
+- [Lorekeeper](./Lorekeeper/README.md) — worldbuilding, storytelling, lore, plot, and thematic specialist with a bounded read-only-by-default bridge to the Arc & Dust source repository.
+
 Task specialists do not need permanent folders by default. Gottspan assigns temporary specialist seats through bounded task briefs and records only information that needs to survive the task.
