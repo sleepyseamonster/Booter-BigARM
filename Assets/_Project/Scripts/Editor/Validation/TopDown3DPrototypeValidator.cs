@@ -47,8 +47,12 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainGravelAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainRockyAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainMaterialPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.RockShaderPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.RockAlbedoPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.RockMaterialPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.FineGrayClutterMaterialPath, errors);
             ValidateTerrainMaterial(errors);
+            ValidateRockMaterial(errors);
             ValidateWorldCoverage(errors);
             ValidateNaturalObjectCatalog(errors);
             ValidateCameraInput(errors);
@@ -159,6 +163,33 @@ namespace BooterBigArm.Editor
             if (material.GetTexture("_RockyMap") != rocky)
             {
                 errors.Add("TopDown3D terrain material must use the sparse mixed rocky albedo texture.");
+            }
+        }
+
+        private static void ValidateRockMaterial(ICollection<string> errors)
+        {
+            var material = AssetDatabase.LoadAssetAtPath<Material>(TopDown3DPrototypeBuilder.RockMaterialPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(TopDown3DPrototypeBuilder.RockShaderPath);
+            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.RockAlbedoPath);
+            if (material == null || shader == null || albedo == null)
+            {
+                return;
+            }
+
+            if (material.shader != shader)
+            {
+                errors.Add("TopDown3D spawned rocks must use the Broken World triplanar rock shader.");
+            }
+
+            if (material.GetTexture("_BaseMap") != albedo)
+            {
+                errors.Add("TopDown3D spawned rocks must use the Broken World rock-surface albedo texture.");
+            }
+
+            if (!Mathf.Approximately(material.GetFloat("_RockMetersPerTile"), TopDown3DPrototypeBuilder.RockMetersPerTile)
+                || !Mathf.Approximately(material.GetFloat("_Smoothness"), TopDown3DPrototypeBuilder.RockSmoothness))
+            {
+                errors.Add("TopDown3D spawned-rock material tuning does not match the canonical builder values.");
             }
         }
 
