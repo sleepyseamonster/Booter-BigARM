@@ -3,6 +3,7 @@
   "rootNamespace": "BooterBigArm.TopDown3D",
   "references": [
     "Unity.InputSystem",
+    "Unity.RenderPipelines.Core.Runtime",
     "Unity.RenderPipelines.Universal.Runtime"
   ],
   "includePlatforms": [],

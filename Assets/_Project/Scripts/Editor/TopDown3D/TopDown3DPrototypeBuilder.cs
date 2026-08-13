@@ -377,10 +377,9 @@ namespace BooterBigArm.Editor
 
                 scene.name = "TopDown3DPrototype";
                 RenderSettings.fog = true;
-                RenderSettings.fogMode = FogMode.Linear;
-                RenderSettings.fogColor = new Color(0.30f, 0.38f, 0.46f);
-                RenderSettings.fogStartDistance = 55f;
-                RenderSettings.fogEndDistance = 135f;
+                RenderSettings.fogMode = FogMode.ExponentialSquared;
+                RenderSettings.fogColor = new Color(0.42f, 0.19f, 0.10f);
+                RenderSettings.fogDensity = 0.0125f;
                 RenderSettings.ambientMode = AmbientMode.Flat;
                 RenderSettings.ambientLight = new Color(0.36f, 0.39f, 0.43f);
 
@@ -400,6 +399,7 @@ namespace BooterBigArm.Editor
                 follower.Configure(player.transform, cameraRig.transform, input);
 
                 CreateLighting();
+                CreateDustAtmosphere(player.transform, cameraRig.GetComponent<Camera>(), settings.WorldSeed);
                 new GameObject("Top Down 3D Debug Overlay")
                     .AddComponent<TopDown3DDebugOverlay>()
                     .Configure(input, motor, world, follower, cameraRig);
@@ -465,7 +465,7 @@ namespace BooterBigArm.Editor
             cameraObject.AddComponent<AudioListener>();
             var additionalData = cameraObject.AddComponent<UniversalAdditionalCameraData>();
             additionalData.SetRenderer(rendererIndex);
-            additionalData.renderPostProcessing = false;
+            additionalData.renderPostProcessing = true;
             var rig = cameraObject.AddComponent<TopDown3DCameraRig>();
             rig.Configure(target, input);
             return rig;
@@ -503,6 +503,50 @@ namespace BooterBigArm.Editor
             var lightObject = new GameObject("Directional Key Light");
             var light = lightObject.AddComponent<Light>();
             lightObject.AddComponent<PerpetualTwilightSun>().Configure(light);
+        }
+
+        private static void CreateDustAtmosphere(Transform subject, Camera camera, int worldSeed)
+        {
+            new GameObject("Dust Atmosphere")
+                .AddComponent<TopDown3DDustAtmosphere>()
+                .Configure(subject, camera, worldSeed);
+
+            var regions = new GameObject("Dust Regions");
+            CreateDustZone(
+                regions.transform,
+                "Dense Dust Basin",
+                new Vector3(38f, 0f, 16f),
+                15f,
+                16f,
+                1.82f,
+                new Color(0.72f, 0.32f, 0.12f));
+            CreateDustZone(
+                regions.transform,
+                "Sheltered Thin-Dust Pocket",
+                new Vector3(-34f, 0f, -22f),
+                11f,
+                14f,
+                0.64f,
+                new Color(0.40f, 0.25f, 0.18f));
+        }
+
+        private static void CreateDustZone(
+            Transform parent,
+            string zoneName,
+            Vector3 position,
+            float innerRadius,
+            float blendDistance,
+            float intensity,
+            Color tint)
+        {
+            var zoneObject = new GameObject(zoneName);
+            zoneObject.transform.SetParent(parent, false);
+            zoneObject.transform.position = position;
+            zoneObject.AddComponent<TopDown3DDustZone>().Configure(
+                innerRadius,
+                blendDistance,
+                intensity,
+                tint);
         }
 
         private static void EnsureFolder(string folderPath)

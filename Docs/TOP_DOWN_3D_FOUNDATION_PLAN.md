@@ -21,6 +21,7 @@ This foundation batch is complete when the repository contains a separate `TopDo
 - deterministic 3D mesh terrain generated from seed plus chunk coordinates;
 - runtime chunk loading and unloading around Booter without cracks between neighboring chunks;
 - a smaller BigARM with route-based natural follow, acceleration, avoidance, stuck recovery, physical catch-up, and no teleport fallback;
+- layered dust atmosphere with distance haze, close suspended dust, restrained post-processing, deterministic regional variation, and explicit local-zone overrides;
 - structural and deterministic tests, conversion-preservation validation, clean Unity compilation, and recorded playtest limitations.
 
 ## In Scope
@@ -79,12 +80,21 @@ This foundation batch is complete when the repository contains a separate `TopDo
 
 ### Lighting And Shadows
 
-- `PerpetualTwilightSun` is the perspective lane's authoritative global-light owner.
+- `PerpetualTwilightSun` is the perspective lane's authoritative global-light, ambient-fill, and sky owner.
 - The sun remains low on one side of the world and moves through a slow, continuous brighter-sunset/deeper-twilight loop rather than a conventional overhead day and dark night.
-- Direct-light color and intensity, flat ambient fill, fog, and the procedural runtime sky move together so the world retains an orange twilight read without flattening the shadows.
+- Direct-light color and intensity, flat ambient fill, and the procedural runtime sky move together so the world retains an orange twilight read without flattening the shadows.
 - The directional light uses high-quality soft shadows backed by a 4096 main-light atlas, four camera-tuned cascades, conservative cascade culling, and a 60-unit shadow distance. Its narrow elevation and azimuth bands keep shadows long and readable without sudden direction reversals.
 - Later gameplay may read `PerpetualTwilightSun.Active`, `DirectionToSun`, `LightTravelDirection`, and `Brightness01`; it should not create a competing clock or infer sun state from presentation-only colors.
 - The current generated perspective scene adopts the system at runtime. Future scene rebuilds serialize the component through `TopDown3DPrototypeBuilder`.
+
+### Dust Atmosphere
+
+- `TopDown3DDustAtmosphere` is the perspective lane's single fog, close-haze, and atmosphere post-processing owner; the twilight sun supplies brightness state but no longer writes competing fog values.
+- Exponential-squared distance fog limits long-range visibility while two low-cost camera-following particle layers provide subtle suspended motes and broad near-field dust veils.
+- A restrained runtime Volume adjusts contrast, saturation, warm filtering, bloom, and vignette with dust intensity. It avoids depth of field so gameplay focus and silhouette readability remain intact.
+- A seeded, low-frequency regional field creates broad deterministic dust variation. `TopDown3DDustZone` provides smooth local overrides for authored hazards, shelters, storms, or later gameplay effects without requiring a second visual path.
+- Later gameplay may read `TopDown3DDustAtmosphere.Active`, `CurrentDustIntensity`, `DustExposure01`, and `ApproximateVisibilityDistance`; it should not reverse-engineer mechanic state from `RenderSettings` or particle emission.
+- Existing perspective scenes receive the controller at runtime when absent. Future guarded scene rebuilds serialize the atmosphere plus one dense and one sheltered tuning region through `TopDown3DPrototypeBuilder`.
 
 ## Execution Sequence
 

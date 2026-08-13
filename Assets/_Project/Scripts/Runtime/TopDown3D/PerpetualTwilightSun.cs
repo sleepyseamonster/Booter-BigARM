@@ -49,11 +49,6 @@ namespace BooterBigArm.TopDown3D
         [Header("World Fill")]
         [SerializeField] private Color deepTwilightAmbient = new Color(0.16f, 0.075f, 0.10f);
         [SerializeField] private Color brightTwilightAmbient = new Color(0.38f, 0.23f, 0.17f);
-        [SerializeField] private Color deepTwilightFog = new Color(0.20f, 0.075f, 0.09f);
-        [SerializeField] private Color brightTwilightFog = new Color(0.55f, 0.25f, 0.13f);
-        [SerializeField, Min(0f)] private float fogStartDistance = 55f;
-        [SerializeField, Min(0f)] private float fogEndDistance = 135f;
-
         [Header("Sky")]
         [SerializeField] private Color deepTwilightSkyTint = new Color(0.36f, 0.10f, 0.12f);
         [SerializeField] private Color brightTwilightSkyTint = new Color(0.86f, 0.34f, 0.16f);
@@ -129,7 +124,6 @@ namespace BooterBigArm.TopDown3D
             elevationAmplitudeDegrees = Mathf.Min(
                 elevationAmplitudeDegrees,
                 Mathf.Max(0f, centerElevationDegrees - 1f));
-            fogEndDistance = Mathf.Max(fogStartDistance + 1f, fogEndDistance);
             ResolveSun();
 
             if (!Application.isPlaying)
@@ -208,21 +202,17 @@ namespace BooterBigArm.TopDown3D
             sun.shadowBias = shadowBias;
             sun.shadowNormalBias = shadowNormalBias;
             sun.shadowNearPlane = 0.1f;
-            sun.shadowResolution = LightShadowResolution.VeryHigh;
             sun.bounceIntensity = 0.2f;
-            additionalSunData.usePipelineSettings = false;
-            additionalSunData.softShadowQuality = SoftShadowQuality.High;
+            if (additionalSunData != null)
+            {
+                additionalSunData.usePipelineSettings = false;
+                additionalSunData.softShadowQuality = SoftShadowQuality.High;
+            }
 
             RenderSettings.sun = sun;
             RenderSettings.ambientMode = AmbientMode.Flat;
             RenderSettings.ambientLight = Color.Lerp(deepTwilightAmbient, brightTwilightAmbient, brightness01);
             RenderSettings.subtractiveShadowColor = new Color(0.055f, 0.025f, 0.05f);
-            RenderSettings.fog = true;
-            RenderSettings.fogMode = FogMode.Linear;
-            RenderSettings.fogColor = Color.Lerp(deepTwilightFog, brightTwilightFog, brightness01);
-            RenderSettings.fogStartDistance = fogStartDistance;
-            RenderSettings.fogEndDistance = fogEndDistance;
-
             if (runtimeSkybox != null)
             {
                 runtimeSkybox.SetColor(

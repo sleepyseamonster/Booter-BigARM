@@ -27,7 +27,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnGUI()
         {
-            GUILayout.BeginArea(new Rect(12f, 12f, 390f, 215f), GUI.skin.box);
+            GUILayout.BeginArea(new Rect(12f, 12f, 390f, 238f), GUI.skin.box);
             GUILayout.Label("PERSPECTIVE TOP-DOWN 3D FOUNDATION");
             GUILayout.Label("Move: Left Stick / WASD    Sprint: RB / Left Shift");
             GUILayout.Label("Rotate camera: Right Stick (horizontal orbit + limited pitch)");
@@ -59,6 +59,15 @@ namespace BooterBigArm.TopDown3D
             if (cameraRig != null)
             {
                 GUILayout.Label($"Perspective camera: pitch {cameraRig.PitchDegrees:0}  yaw {cameraRig.YawDegrees:0}  distance {cameraRig.Distance:0.0}");
+            }
+
+            if (TopDown3DDustAtmosphere.Active != null)
+            {
+                var atmosphere = TopDown3DDustAtmosphere.Active;
+                GUILayout.Label(
+                    $"Dust: {atmosphere.CurrentDustIntensity:0.00}  "
+                    + $"Exposure: {atmosphere.DustExposure01:0.00}  "
+                    + $"Visibility: ~{atmosphere.ApproximateVisibilityDistance:0}m");
             }
 
             GUILayout.EndArea();

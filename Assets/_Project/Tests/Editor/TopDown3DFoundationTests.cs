@@ -184,6 +184,63 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void RegionalDustField_IsDeterministicAndBounded()
+        {
+            var position = new Vector3(84.25f, 3f, -117.5f);
+            var first = TopDown3DDustAtmosphere.EvaluateRegionalIntensity(
+                24681357,
+                position,
+                0.0065f,
+                0.86f,
+                1.28f);
+            var second = TopDown3DDustAtmosphere.EvaluateRegionalIntensity(
+                24681357,
+                position,
+                0.0065f,
+                0.86f,
+                1.28f);
+
+            Assert.That(second, Is.EqualTo(first));
+            Assert.That(first, Is.InRange(0.86f, 1.28f));
+        }
+
+        [Test]
+        public void DustZoneWeight_HasFullStrengthCoreAndSmoothFalloff()
+        {
+            Assert.That(TopDown3DDustZone.EvaluateWeight(8f, 10f, 12f), Is.EqualTo(1f));
+            Assert.That(TopDown3DDustZone.EvaluateWeight(22f, 10f, 12f), Is.EqualTo(0f));
+            Assert.That(TopDown3DDustZone.EvaluateWeight(16f, 10f, 12f), Is.EqualTo(0.5f).Within(0.0001f));
+        }
+
+        [Test]
+        public void DustAtmosphere_CoreZoneProvidesGameplayReadableExposure()
+        {
+            var atmosphereObject = new GameObject("Dust atmosphere contract");
+            var zoneObject = new GameObject("Dense dust contract zone");
+            try
+            {
+                var atmosphere = atmosphereObject.AddComponent<TopDown3DDustAtmosphere>();
+                atmosphere.Configure(null, null, 24681357);
+                zoneObject.transform.position = new Vector3(30f, 0f, -12f);
+                zoneObject.AddComponent<TopDown3DDustZone>().Configure(
+                    10f,
+                    12f,
+                    1.8f,
+                    new Color(0.72f, 0.32f, 0.12f));
+
+                var sample = atmosphere.SampleAtPosition(zoneObject.transform.position);
+
+                Assert.That(sample.Intensity, Is.EqualTo(1.8f).Within(0.0001f));
+                Assert.That(sample.ZoneInfluence, Is.EqualTo(1f));
+            }
+            finally
+            {
+                Object.DestroyImmediate(zoneObject);
+                Object.DestroyImmediate(atmosphereObject);
+            }
+        }
+
+        [Test]
         public void GameplayActions_ContainRequiredGamepadAndKeyboardBindings()
         {
             var asset = AssetDatabase.LoadAssetAtPath<InputActionAsset>(InputActionsPath);

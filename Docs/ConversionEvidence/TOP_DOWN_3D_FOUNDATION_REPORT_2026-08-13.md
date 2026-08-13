@@ -25,6 +25,12 @@ The foundation includes:
 - The Unity GUI perspective validator passed after the hardening pass. Unity completed its script reload without C# compilation errors.
 - Fresh rebuild, validation, and EditMode-test logs contain no C# compilation errors, unhandled exceptions, missing-font warnings, import-worker transport errors, filesystem-time errors, or last-scene unload warnings.
 
+## Dust Atmosphere Extension
+
+The perspective lane now has one layered dust-atmosphere owner. It combines exponential-squared distance fog, a restrained runtime post-processing Volume, close suspended motes and soft dust veils, deterministic low-frequency regional variation, and smooth local `TopDown3DDustZone` overrides. Gameplay-facing readouts expose current intensity, normalized exposure, and approximate visibility without requiring later mechanics to infer state from rendering values.
+
+The runtime, editor-builder, and focused test sources compile with exit `0` through the pinned Unity 6000.4.0f1 compiler inputs. The Unity GUI currently owns the project, so this pass did not launch batchmode, rebuild the generated scene, or claim a fresh Unity Test Runner result. The runtime bootstrap supplies the atmosphere to the existing scene when it is absent; the guarded builder will serialize the atmosphere and example dense/sheltered regions on the next authorized rebuild. Exact visual tuning remains user-owned acceptance.
+
 ## Preservation Evidence
 
 The generated perspective scene remains absent from `ProjectSettings/EditorBuildSettings.asset`. The only enabled scenes remain:

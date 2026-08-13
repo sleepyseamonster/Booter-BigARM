@@ -2,7 +2,7 @@
 
 This is the shared implementation pulse for Booter & BigARM. It records what live repo evidence establishes, what still needs Unity or playtest proof, and which decisions are waiting for the user. It does not replace the strategic order in [ROADMAP.md](./ROADMAP.md).
 
-Last reconciled: 2026-08-13 by Gottspan through the expanded landscape-framing camera pass.
+Last reconciled: 2026-08-13 by Gottspan through the first dusty-atmosphere pass.
 
 ## Active Program
 
@@ -21,6 +21,7 @@ Last reconciled: 2026-08-13 by Gottspan through the expanded landscape-framing c
 | Input | A single `TopDown3DInputRouter` owns Gameplay input in the new scene. Existing bindings provide keyboard/gamepad movement, sprint, BigARM recall, and `Gameplay/Look` on the gamepad right stick. The camera relies on the Input System's radial stick deadzone rather than stacking another processor. | Binding structure is automatically verified. Physical-controller response remains user-owned acceptance. |
 | Movement and camera | An isolated 3D Rigidbody motor and perspective camera rig provide camera-relative XZ movement, acceleration, sprint, facing, slope grounding, damped follow, obstruction pull-in, right-stick yaw orbit, constrained right-stick pitch, and a 25-world-unit landscape framing distance. | Compilation, scene validation, orbit math, movement-basis tests, and initial visual rendering pass. Final framing, right-stick direction/speed, and pitch-range feel remain user-owned tuning. |
 | World generation | Seeded height sampling, geometry-and-normal seam-matched chunk meshes/colliders, walkable safe-spawn selection, collision-aware prop placement, a two-chunk immediate ring, a budgeted seven-chunk camera-coverage ring, and padded unload hysteresis now exist. | Determinism, safe-spawn, adjacent height/normal seams, and the camera-to-world coverage contract are automatically guarded. Extended multi-chunk traversal remains user-owned acceptance. |
+| Dust atmosphere | One perspective-lane controller now owns exponential-squared distance fog, close dust motes and veils, dust-responsive color grading/glare, broad seeded regional variation, and smoothly blended local dust-zone overrides. The current scene receives it through the runtime compatibility bootstrap; the guarded builder serializes it on the next authorized rebuild. | The runtime assembly compiles in isolation against the pinned Unity/URP assemblies and focused deterministic/zone tests are present. Exact Unity suite results and visual tuning remain pending a safe editor opportunity and user-owned acceptance. |
 | Save/load | The existing versioned 2D prototype save systems remain preserved. | Perspective-world persistence and migration were explicitly deferred. |
 | Survival economy | Existing prototype systems remain preserved. | Harvesting, items, balance, and loop redesign were explicitly deferred. |
 | BigARM | The new companion direction is canonical. The perspective follower tracks Booter's route, uses a follow band, acceleration/deceleration, turn-weighted movement, local avoidance, stuck recovery, and physical catch-up. Call and distance recovery no longer relocate BigARM; unavailable ground produces an explicit `WaitingForTerrain` state. | Source inspection confirms the relocation path was removed and focused EditMode checks were added. Their exact post-change run is pending a safe editor opportunity; hands-on feel and unloaded-world traversal remain open. |
@@ -44,6 +45,7 @@ The next acceptance pass belongs to the user and should answer:
 - whether keyboard and a physical gamepad produce comfortable walk, sprint, recall, and camera behavior;
 - whether terrain relief, chunk traversal, camera obstruction, and Booter grounding remain readable in motion;
 - whether BigARM's route-following, follow distance, acceleration, turning, avoidance, and physical catch-up feel natural;
+- whether the baseline haze, far-visibility cutoff, close suspended dust, twilight color, and transition into denser/sheltered regions feel atmospheric without obscuring immediate navigation;
 - which one of those foundation areas should be tuned first before deferred mechanics or production assets resume.
 
 ## Update Rule
