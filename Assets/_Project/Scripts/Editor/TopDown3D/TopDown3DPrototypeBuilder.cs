@@ -54,8 +54,22 @@ namespace BooterBigArm.Editor
         public const float TerrainSmoothness = 0.18f;
         public const float RockMetersPerTile = 0.85f;
         public const float RockSmoothness = 0.14f;
+        public const float PlayerColliderHeight = 2.3f;
+        public const float PlayerColliderRadius = 0.48f;
+        public const float PlayerGroundClearance = 0.06f;
 
         public const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
+        public const string PrototypeHumanoidFolder =
+            "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid";
+        public const string PrototypeHumanoidModelPath = PrototypeHumanoidFolder + "/defaultmale_rig.fbx";
+        public const string PrototypeHumanoidAnimationsFolder = PrototypeHumanoidFolder + "/Animations";
+        public const string PrototypeHumanoidIdlePath = PrototypeHumanoidAnimationsFolder + "/m@Idle.fbx";
+        public const string PrototypeHumanoidWalkPath = PrototypeHumanoidAnimationsFolder + "/m@WalkForwards.fbx";
+        public const string PrototypeHumanoidRunPath = PrototypeHumanoidAnimationsFolder + "/m@RunForwards.fbx";
+        public const string PrototypeHumanoidSprintPath = PrototypeHumanoidAnimationsFolder + "/m@SprintForwards.fbx";
+        public const string PrototypeHumanoidSpinPath = PrototypeHumanoidAnimationsFolder + "/m@RapidTurningLeft.fbx";
+        public const string PrototypeHumanoidVaultPath =
+            PrototypeHumanoidAnimationsFolder + "/m@SprintForwardsJump_Frame01.fbx";
 
         [MenuItem("Booter & BigARM/Top Down 3D/Build Perspective Prototype")]
         public static void BuildFromMenu()
@@ -455,15 +469,31 @@ namespace BooterBigArm.Editor
             player.name = "Booter Perspective 3D Controller";
             player.transform.position = new Vector3(
                 0f,
-                TopDown3DHeightSampler.SampleHeight(settings, 0f, 0f) + 1.05f,
+                TopDown3DHeightSampler.SampleHeight(settings, 0f, 0f)
+                    + PlayerColliderHeight * 0.5f
+                    + PlayerGroundClearance,
                 0f);
-            player.transform.localScale = new Vector3(0.82f, 1f, 0.82f);
+            player.transform.localScale = Vector3.one;
             player.GetComponent<Renderer>().sharedMaterial = material;
+            player.GetComponent<Renderer>().enabled = false;
+            var capsule = player.GetComponent<CapsuleCollider>();
+            capsule.height = PlayerColliderHeight;
+            capsule.radius = PlayerColliderRadius;
 
             var body = player.AddComponent<Rigidbody>();
             body.mass = 1f;
             body.collisionDetectionMode = CollisionDetectionMode.Continuous;
             player.AddComponent<TopDown3DPlayerMotor>();
+            player.AddComponent<TopDown3DPlayerAnimationDriver>().Configure(
+                LoadRequiredAsset<GameObject>(PrototypeHumanoidModelPath),
+                LoadRequiredAnimationClip(PrototypeHumanoidIdlePath, "Idle"),
+                LoadRequiredAnimationClip(PrototypeHumanoidWalkPath, "WalkForwards"),
+                LoadRequiredAnimationClip(PrototypeHumanoidRunPath, "RunForwards"),
+                LoadRequiredAnimationClip(PrototypeHumanoidSprintPath, "SprintForwards"),
+                LoadRequiredAnimationClip(PrototypeHumanoidSpinPath, "RapidTurningLeft"),
+                LoadRequiredAnimationClip(
+                    PrototypeHumanoidVaultPath,
+                    "SprintForwardsJump_Frame01"));
 
             var facing = GameObject.CreatePrimitive(PrimitiveType.Cube);
             facing.name = "Facing Marker";
@@ -472,6 +502,7 @@ namespace BooterBigArm.Editor
             facing.transform.localScale = new Vector3(0.55f, 0.16f, 0.14f);
             UnityEngine.Object.DestroyImmediate(facing.GetComponent<Collider>());
             facing.GetComponent<Renderer>().sharedMaterial = material;
+            facing.SetActive(false);
             return player;
         }
 
@@ -587,6 +618,32 @@ namespace BooterBigArm.Editor
 
                 current = next;
             }
+        }
+
+        private static T LoadRequiredAsset<T>(string assetPath) where T : UnityEngine.Object
+        {
+            var asset = AssetDatabase.LoadAssetAtPath<T>(assetPath);
+            if (asset == null)
+            {
+                throw new InvalidOperationException($"Missing required prototype character asset: {assetPath}.");
+            }
+
+            return asset;
+        }
+
+        private static AnimationClip LoadRequiredAnimationClip(string assetPath, string clipName)
+        {
+            var assets = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+            foreach (var asset in assets)
+            {
+                if (asset is AnimationClip clip && clip.name == clipName)
+                {
+                    return clip;
+                }
+            }
+
+            throw new InvalidOperationException(
+                $"Missing required animation clip '{clipName}' at {assetPath}.");
         }
     }
 }

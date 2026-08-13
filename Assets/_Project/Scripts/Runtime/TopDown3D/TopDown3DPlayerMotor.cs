@@ -62,6 +62,7 @@ namespace BooterBigArm.TopDown3D
         public bool IsGrounded { get; private set; }
         public bool SprintActive { get; private set; }
         public TopDown3DTraversalMove ActiveTraversal { get; private set; }
+        public float ActiveTraversalDuration => activeTraversalDuration;
 
         public void Configure(TopDown3DInputRouter inputRouter, Transform movementCamera)
         {

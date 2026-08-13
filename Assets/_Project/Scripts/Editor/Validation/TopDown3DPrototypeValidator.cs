@@ -55,6 +55,13 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.DarkRockMaterialPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TealRockMaterialPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.FineGrayClutterMaterialPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidModelPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidIdlePath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidWalkPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidRunPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidSprintPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidSpinPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidVaultPath, errors);
             ValidateTerrainMaterial(errors);
             ValidateRockMaterial(errors);
             ValidateWorldCoverage(errors);
@@ -295,6 +302,7 @@ namespace BooterBigArm.Editor
                 var roots = scene.GetRootGameObjects();
                 ValidateSingle<TopDown3DInputRouter>(roots, errors);
                 ValidateSingle<TopDown3DPlayerMotor>(roots, errors);
+                ValidateSingle<TopDown3DPlayerAnimationDriver>(roots, errors);
                 ValidateSingle<TopDown3DCameraRig>(roots, errors);
                 ValidateSingle<TopDown3DProceduralWorld>(roots, errors);
                 ValidateSingle<TopDown3DBigArmFollower>(roots, errors);
@@ -314,6 +322,38 @@ namespace BooterBigArm.Editor
                 if (box == null || box.size.x > 1.75f || box.size.z > 2f)
                 {
                     errors.Add("BigARM must use the compact foundation footprint, not the original oversized spike volume.");
+                }
+
+                var animationDriver = FindComponents<TopDown3DPlayerAnimationDriver>(roots).SingleOrDefault();
+                if (animationDriver != null && !animationDriver.HasCompleteAnimationSet)
+                {
+                    errors.Add("Booter's prototype Humanoid animation driver must reference the full locomotion, spin, and vault set.");
+                }
+
+                var playerMotor = FindComponents<TopDown3DPlayerMotor>(roots).SingleOrDefault();
+                var playerCapsule = playerMotor != null ? playerMotor.GetComponent<CapsuleCollider>() : null;
+                if (playerMotor != null
+                    && Vector3.Distance(playerMotor.transform.localScale, Vector3.one) > 0.0001f)
+                {
+                    errors.Add("Booter's controller root must remain uniformly scaled so the Humanoid is not distorted.");
+                }
+
+                if (playerCapsule == null
+                    || !Mathf.Approximately(playerCapsule.height, TopDown3DPrototypeBuilder.PlayerColliderHeight)
+                    || !Mathf.Approximately(playerCapsule.radius, TopDown3DPrototypeBuilder.PlayerColliderRadius))
+                {
+                    errors.Add("Booter's gameplay capsule must match the enlarged prototype Humanoid body.");
+                }
+
+                if (animationDriver != null
+                    && (!Mathf.Approximately(
+                            animationDriver.VisualScale,
+                            TopDown3DPlayerAnimationDriver.PrototypeVisualScale)
+                        || !Mathf.Approximately(
+                            animationDriver.VisualLocalPosition.y,
+                            TopDown3DPlayerAnimationDriver.PrototypeVisualGroundOffset)))
+                {
+                    errors.Add("Booter's Humanoid must use the enlarged, ground-aligned prototype presentation scale.");
                 }
 
                 for (var i = 0; i < roots.Length; i++)
