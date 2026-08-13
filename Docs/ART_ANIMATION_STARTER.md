@@ -21,7 +21,7 @@ Start with assets that unblock gameplay readability and give the project a stabl
 Recommended first batch:
 
 1. Booter base sprite set
-2. BigARM base silhouette and idle state
+2. BigARM companion silhouette and idle state
 3. Harvest node sprites for stone, scrap, ironstone, and algae-related resources
 4. Ground tile polish pass for the current prototype terrain
 5. Item icons for the current inventory items
@@ -117,7 +117,7 @@ Initial gameplay-facing clip targets:
 ## Style Guardrails
 
 - Booter should read as trained, burdened, and practical, not heroic or sleek.
-- BigARM should read as ancient military hardware rebuilt into something survivable.
+- BigARM should read as ancient military hardware rebuilt into a capable companion, not a vehicle or mobile base.
 - Shapes should feel heavy and repaired rather than pristine.
 - Color should stay inside rust, iron, dust, algae, and bone-adjacent ranges.
 - Keep the screen readable from gameplay distance before polishing micro-detail.

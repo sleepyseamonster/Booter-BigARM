@@ -115,6 +115,54 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void BigArmSpeedProfile_StopsInsideFollowBandAndAcceleratesForCatchUp()
+        {
+            var stopped = TopDown3DBigArmFollower.CalculateDesiredSpeed(0.8f, 0.85f, 2.8f, 5.8f, 8.4f, false);
+            var following = TopDown3DBigArmFollower.CalculateDesiredSpeed(5f, 0.85f, 2.8f, 5.8f, 8.4f, false);
+            var catchingUp = TopDown3DBigArmFollower.CalculateDesiredSpeed(5f, 0.85f, 2.8f, 5.8f, 8.4f, true);
+
+            Assert.That(stopped, Is.EqualTo(0f));
+            Assert.That(following, Is.EqualTo(5.8f).Within(0.0001f));
+            Assert.That(catchingUp, Is.EqualTo(8.4f).Within(0.0001f));
+        }
+
+        [Test]
+        public void BigArmCall_DoesNotRelocateCompanion()
+        {
+            var bigArm = new GameObject("BigARM no-teleport contract");
+            try
+            {
+                bigArm.transform.position = new Vector3(-40f, 2f, 17f);
+                bigArm.AddComponent<BoxCollider>();
+                bigArm.AddComponent<Rigidbody>();
+                var follower = bigArm.AddComponent<TopDown3DBigArmFollower>();
+                var before = bigArm.transform.position;
+
+                follower.RequestRecall();
+
+                Assert.That(bigArm.transform.position, Is.EqualTo(before));
+            }
+            finally
+            {
+                Object.DestroyImmediate(bigArm);
+            }
+        }
+
+        [Test]
+        public void PerspectiveCharacterMaterials_UseSwappedIdentityColors()
+        {
+            var booter = AssetDatabase.LoadAssetAtPath<Material>(
+                "Assets/_Project/Materials/TopDown3D/Greybox_Booter.mat");
+            var bigArm = AssetDatabase.LoadAssetAtPath<Material>(
+                "Assets/_Project/Materials/TopDown3D/Greybox_BigARM.mat");
+
+            Assert.That(booter, Is.Not.Null);
+            Assert.That(bigArm, Is.Not.Null);
+            Assert.That(booter.GetColor("_BaseColor"), Is.EqualTo(new Color(0.87f, 0.31f, 0.12f, 1f)));
+            Assert.That(bigArm.GetColor("_BaseColor"), Is.EqualTo(new Color(0.08f, 0.74f, 0.76f, 1f)));
+        }
+
+        [Test]
         public void GameplayActions_ContainRequiredGamepadAndKeyboardBindings()
         {
             var asset = AssetDatabase.LoadAssetAtPath<InputActionAsset>(InputActionsPath);

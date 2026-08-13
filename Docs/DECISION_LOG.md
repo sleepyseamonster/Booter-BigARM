@@ -75,3 +75,15 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Controlling files updated:** `Docs/TOP_DOWN_3D_FOUNDATION_PLAN.md`, `Docs/PROJECT_STATUS.md`, `TopDown3DInputRouter`, `TopDown3DCameraRig`, validator, and focused EditMode tests.
 - **Consequences / follow-up:** Physical-controller orbit speed, vertical direction, pitch limits, and interaction with movement remain user-owned feel tuning. This does not authorize free-look mouse behavior, camera lock-on, shoulder swapping, packages, or cutover.
 - **Supersedes:** the fixed-yaw/no-player-orbit camera statement in the initial foundation plan.
+
+## 2026-08-13 — BigARM Companion Direction And Physical Traversal Rule
+
+- **Status:** accepted
+- **Decision owner:** user
+- **Question:** What is BigARM's role, and what must happen when he is separated from Booter?
+- **Decision:** BigARM is a simple companion and synergistic, non-separable part of Booter's gameplay mechanics. He is no longer a rover, mobile habitat, safe zone, storage point, crafting platform, or home base. BigARM may wander and perform autonomous tasks, but he always retains a true world position and must physically traverse the world to reach Booter. Calls, distance, unloaded terrain, stuck recovery, save/load, and scene transitions do not authorize snapping or teleporting him near Booter.
+- **Why:** The user fundamentally revised BigARM's story and game-design role and explicitly rejected magical distance recovery.
+- **Evidence:** The user's current instruction and the first natural-follow implementation in the perspective runtime lane.
+- **Controlling files updated:** `Docs/WORLD_BASIS.md`, `Docs/BIGARM_COMPANION_STANDARD.md`, `Docs/ROADMAP.md`, `Docs/PROJECT_STATUS.md`, and `TopDown3DBigArmFollower`.
+- **Consequences / follow-up:** The first slice covers loaded-world route following and physical catch-up. The next approved slice must decide how deterministic coarse traversal, multi-anchor streaming, route persistence, and physical re-entry cooperate when BigARM's true location is outside loaded terrain.
+- **Supersedes:** the mobile-habitat, moving-safe-zone, crafting-hub, storage/recovery, home-base, camera-relative recall, and teleport-style distance-recovery assumptions in older documents and prototypes. Protected legacy assets remain preserved as implementation history rather than current design authority.

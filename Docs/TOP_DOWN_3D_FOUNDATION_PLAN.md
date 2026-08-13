@@ -20,7 +20,7 @@ This foundation batch is complete when the repository contains a separate `TopDo
 - one centralized owner for Gameplay input with gamepad and keyboard bindings for movement, sprint, and BigARM recall plus gamepad right-stick camera look;
 - deterministic 3D mesh terrain generated from seed plus chunk coordinates;
 - runtime chunk loading and unloading around Booter without cracks between neighboring chunks;
-- a smaller BigARM with simple idle, follow, avoidance, stuck-recovery, and recall behavior;
+- a smaller BigARM with route-based natural follow, acceleration, avoidance, stuck recovery, physical catch-up, and no teleport fallback;
 - structural and deterministic tests, conversion-preservation validation, clean Unity compilation, and recorded playtest limitations.
 
 ## In Scope
@@ -72,8 +72,10 @@ This foundation batch is complete when the repository contains a separate `TopDo
 ### BigARM
 
 - BigARM remains larger than Booter but is substantially smaller than the original conversion-spike placeholder.
-- The foundation AI owns only follow spacing, local obstacle avoidance, ground placement, stuck recovery, and recall.
-- More complex decisions remain behind the later companion-design gate.
+- BigARM is a companion and synergistic part of Booter's mechanics, not a mobile base, habitat, safe zone, or crafting hub.
+- The first natural-follow slice follows Booter's recent route with a forgiving follow band, acceleration/deceleration, turn-weighted movement, local avoidance, stuck recovery, and faster physical catch-up when called.
+- Calls and large separation never relocate BigARM. Missing streamed terrain produces an explicit waiting state until the later world-scale traversal seam is designed.
+- More complex autonomous tasks and unloaded-world traversal remain behind the later companion-design gate in `BIGARM_COMPANION_STANDARD.md`.
 
 ### Lighting And Shadows
 

@@ -31,7 +31,7 @@ namespace BooterBigArm.TopDown3D
             GUILayout.Label("PERSPECTIVE TOP-DOWN 3D FOUNDATION");
             GUILayout.Label("Move: Left Stick / WASD    Sprint: RB / Left Shift");
             GUILayout.Label("Rotate camera: Right Stick (horizontal orbit + limited pitch)");
-            GUILayout.Label("Recall BigARM: LB / F1");
+            GUILayout.Label("Call BigARM: LB / F1 (physical catch-up, no teleport)");
             if (input != null)
             {
                 GUILayout.Label($"Input device: {input.LastInputDevice}");
@@ -52,7 +52,8 @@ namespace BooterBigArm.TopDown3D
 
             if (bigArm != null)
             {
-                GUILayout.Label($"BigARM state: {bigArm.State}");
+                GUILayout.Label(
+                    $"BigARM state: {bigArm.State}  Distance: {bigArm.DistanceToBooter:0.0}  Speed: {bigArm.CurrentSpeed:0.0}");
             }
 
             if (cameraRig != null)

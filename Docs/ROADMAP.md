@@ -10,7 +10,8 @@ This is the consolidated working roadmap for the prototype. It combines the curr
 - The world should be readable first and expansive second.
 - Procedural generation should vary curated structure, not replace structure.
 - Minimal UI should still communicate critical state clearly.
-- BigARM is part of the world simulation, not a menu abstraction.
+- BigARM is a physically persistent companion and synergistic part of Booter's mechanics, not a mobile base or menu abstraction.
+- Separation never authorizes snapping BigARM to Booter; loaded and unloaded travel must preserve his true world position.
 
 ## Current Program Priority
 
@@ -43,9 +44,9 @@ The accepted direction is a perspective, elevated top-down presentation using a 
 - Return-to-safety pacing.
 
 4. `BigARM Loop`
-- Safe-zone behavior.
-- Storage, crafting, and recovery.
-- Upgrade and home-base progression.
+- Natural follow, call, and regroup behavior.
+- Autonomous tasks that remain compatible with the shared Booter/BigARM mechanical kit.
+- Persistent traversal across loaded and unloaded world regions.
 
 5. `Interaction Content`
 - Harvesting and pickup interactions.
@@ -89,7 +90,7 @@ Deliverables:
 - Refined movement and camera feel.
 - One survival resource or pressure mechanic.
 - Carry pressure or salvage weight.
-- A temporary BigARM or home-safe-zone return loop.
+- A temporary regroup loop that demonstrates complementary Booter/BigARM mechanics without treating BigARM as a safe zone.
 
 Exit criteria:
 - The player can travel, lose something meaningful, and recover by returning home.
@@ -106,18 +107,18 @@ Deliverables:
 Exit criteria:
 - Players can orient themselves in the world and remember important locations.
 
-### Phase 4: BigARM And Recovery Slice
+### Phase 4: BigARM Companion Slice
 
-Turn BigARM into a real game object in the loop.
+Turn the Booter/BigARM partnership into a real systemic part of the loop.
 
 Deliverables:
-- Storage and recovery behavior.
-- Basic crafting or repair support.
-- Upgrade path scaffolding.
-- Home-base state that matters to the player.
+- Persistent position, task, and route state.
+- Loaded-world locomotion plus credible unloaded-world traversal.
+- One autonomous task and one complementary player/companion interaction.
+- Regroup behavior with no teleport fallback.
 
 Exit criteria:
-- BigARM is a functional reason to return, recover, and prepare.
+- BigARM can separate, act, and physically regroup while the partnership remains mechanically meaningful.
 
 ### Phase 5: Pressure And Purpose Slice
 

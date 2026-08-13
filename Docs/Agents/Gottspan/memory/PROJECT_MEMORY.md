@@ -22,6 +22,7 @@ This file retains durable repo-management facts. It is not a live status dashboa
 - All sub-agents share one worktree; overlapping edits are unsafe.
 - Existing dirty files are user-owned until explicitly brought into scope.
 - Preserve the current 2D implementation and the isometric lab as comparison baselines until the user accepts a perspective cutover candidate; foundation implementation does not authorize cutover or legacy cleanup.
+- BigARM is a companion and synergistic part of Booter's mechanics, not a mobile base. He may act separately but always keeps a true world position and must physically traverse to regroup; no distance, recall, unloaded-terrain, or recovery path may snap him to Booter. See `Docs/BIGARM_COMPANION_STANDARD.md`.
 - Hands-on smoke testing is user-owned. Do not create or run smoke tests unless the user explicitly requests them.
 
 ## Verified Manager Baseline

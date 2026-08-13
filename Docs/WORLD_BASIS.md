@@ -51,13 +51,15 @@ Booter is a professional desert survivor and metal scrapper.
 
 ## BigARM
 
-BigARM is an ancient war machine rebuilt into a mobile habitat, crafting platform, and AI companion.
+BigARM is a simple, physically present companion whose abilities are designed to work synergistically with Booter.
 
-- BigARM is a moving safe zone.
-- BigARM is a crafting and upgrade hub.
-- BigARM is a storage and recovery point.
+- BigARM is not a rover, vehicle, mobile habitat, home base, safe zone, storage depot, or crafting platform.
+- Booter and BigARM form one inseparable mechanical partnership even when they are physically separated in the world.
+- BigARM may wander, choose local tasks, and operate autonomously.
+- BigARM always has a true world position and must physically traverse the world to regroup with Booter.
+- BigARM never snaps, teleports, or magically appears near Booter as a distance-recovery shortcut.
 - BigARM exists in the world simulation, not as a menu abstraction.
-- The relationship with Booter evolves from hostility to reluctant cooperation to companionship.
+- Further story changes to BigARM and the relationship with Booter remain open until the user defines them.
 
 ## World Structure
 
@@ -76,10 +78,10 @@ The world should naturally create:
 
 ## Core Loop
 
-1. Travel through the world with BigARM.
+1. Move through the world in coordination with BigARM, whether together or pursuing separate tasks.
 2. Scout terrain and identify threats.
 3. Salvage scrap, iron, and biological resources.
-4. Return to BigARM to recover and prepare.
+4. Regroup and combine Booter's and BigARM's complementary capabilities.
 5. Craft tools, weapons, and upgrades.
 6. Trade in settlements and outposts.
 7. Plan and execute hunts.
