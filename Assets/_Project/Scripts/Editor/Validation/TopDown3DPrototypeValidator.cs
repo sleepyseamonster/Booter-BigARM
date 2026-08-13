@@ -45,6 +45,7 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainMaterialPath, errors);
             ValidateTerrainMaterial(errors);
             ValidateWorldCoverage(errors);
+            ValidateNaturalObjectCatalog(errors);
             ValidateCameraInput(errors);
             ValidateBuildSettings(errors);
             ValidateScene(errors);
@@ -70,6 +71,40 @@ namespace BooterBigArm.Editor
             {
                 errors.Add(
                     "TopDown3D initial loading must build a two-chunk radius before budgeted outer-ring streaming begins.");
+            }
+        }
+
+        private static void ValidateNaturalObjectCatalog(ICollection<string> errors)
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(
+                TopDown3DPrototypeBuilder.WorldSettingsPath);
+            var catalog = settings != null ? settings.NaturalObjectCatalog : null;
+            if (catalog == null)
+            {
+                errors.Add("TopDown3D world settings require a natural-object catalog.");
+                return;
+            }
+
+            foreach (TopDown3DNaturalObjectLayer layer in Enum.GetValues(typeof(TopDown3DNaturalObjectLayer)))
+            {
+                if (!catalog.HasLayer(layer))
+                {
+                    errors.Add($"Natural-object catalog is missing the {layer} layer.");
+                }
+            }
+
+            var stableIds = new HashSet<string>(StringComparer.Ordinal);
+            for (var i = 0; i < catalog.Definitions.Count; i++)
+            {
+                var definition = catalog.Definitions[i];
+                if (definition == null || string.IsNullOrWhiteSpace(definition.StableId))
+                {
+                    errors.Add($"Natural-object catalog definition {i} has no stable ID.");
+                }
+                else if (!stableIds.Add(definition.StableId))
+                {
+                    errors.Add($"Natural-object catalog repeats stable ID '{definition.StableId}'.");
+                }
             }
         }
 

@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782f497fe0fb444bc81d5db193b47aaf, type: 3}
+  m_Name: TopDown3DNaturalObjectCatalog
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DNaturalObjectCatalog
+  definitions:
+  - stableId: ironstone-boulder
+    layer: 2
+    shape: 3
+    weight: 3
+    uniformScaleRange: {x: 0.75, y: 1.45}
+    proportions: {x: 1.1, y: 1.05, z: 1}
+    sinkDepth: 0.1
+    maximumTilt: 16
+    footprintRadius: 0.58
+  - stableId: fractured-slab
+    layer: 2
+    shape: 2
+    weight: 1.4
+    uniformScaleRange: {x: 0.9, y: 1.5}
+    proportions: {x: 1.35, y: 0.85, z: 0.92}
+    sinkDepth: 0.12
+    maximumTilt: 12
+    footprintRadius: 0.65
+  - stableId: iron-nodule
+    layer: 2
+    shape: 4
+    weight: 1.8
+    uniformScaleRange: {x: 0.7, y: 1.2}
+    proportions: {x: 0.9, y: 1.15, z: 0.9}
+    sinkDepth: 0.08
+    maximumTilt: 20
+    footprintRadius: 0.5
+  - stableId: shale-shard
+    layer: 1
+    shape: 1
+    weight: 2.2
+    uniformScaleRange: {x: 0.3, y: 0.72}
+    proportions: {x: 0.65, y: 0.82, z: 0.5}
+    sinkDepth: 0.14
+    maximumTilt: 28
+    footprintRadius: 0.16
+  - stableId: wind-scoured-stone
+    layer: 1
+    shape: 0
+    weight: 3
+    uniformScaleRange: {x: 0.32, y: 0.76}
+    proportions: {x: 1.25, y: 0.85, z: 0.9}
+    sinkDepth: 0.18
+    maximumTilt: 24
+    footprintRadius: 0.18
+  - stableId: crust-plate
+    layer: 1
+    shape: 2
+    weight: 1.3
+    uniformScaleRange: {x: 0.4, y: 0.82}
+    proportions: {x: 1.4, y: 0.6, z: 0.85}
+    sinkDepth: 0.22
+    maximumTilt: 18
+    footprintRadius: 0.18
+  - stableId: gravel-chip
+    layer: 0
+    shape: 0
+    weight: 3.2
+    uniformScaleRange: {x: 0.09, y: 0.23}
+    proportions: {x: 1.15, y: 0.7, z: 0.88}
+    sinkDepth: 0.2
+    maximumTilt: 32
+    footprintRadius: 0.045
+  - stableId: shale-flake
+    layer: 0
+    shape: 1
+    weight: 2
+    uniformScaleRange: {x: 0.08, y: 0.2}
+    proportions: {x: 0.8, y: 0.55, z: 0.45}
+    sinkDepth: 0.24
+    maximumTilt: 34
+    footprintRadius: 0.04
+  - stableId: mineral-nodule
+    layer: 0
+    shape: 4
+    weight: 1
+    uniformScaleRange: {x: 0.08, y: 0.18}
+    proportions: {x: 0.85, y: 0.9, z: 0.85}
+    sinkDepth: 0.16
+    maximumTilt: 30
+    footprintRadius: 0.04

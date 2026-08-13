@@ -104,7 +104,7 @@ namespace BooterBigArm.Editor
 
             var settings = EnsureWorldSettings();
             var terrainMaterial = EnsureTerrainMaterial();
-            var rockMaterial = EnsureMaterial("Greybox_Rock", new Color(0.27f, 0.23f, 0.22f));
+            var rockMaterial = EnsureRockMaterial();
             var playerMaterial = EnsureMaterial("Greybox_Booter", new Color(0.87f, 0.31f, 0.12f));
             var bigArmMaterial = EnsureMaterial("Greybox_BigARM", new Color(0.08f, 0.74f, 0.76f));
             var rendererIndex = ResolveConversionRendererIndex();
@@ -167,6 +167,18 @@ namespace BooterBigArm.Editor
 
             if (changed)
             {
+                EditorUtility.SetDirty(material);
+            }
+
+            return material;
+        }
+
+        private static Material EnsureRockMaterial()
+        {
+            var material = EnsureMaterial("Greybox_Rock", new Color(0.31f, 0.145f, 0.085f));
+            if (!Mathf.Approximately(material.GetFloat("_Smoothness"), 0.18f))
+            {
+                material.SetFloat("_Smoothness", 0.18f);
                 EditorUtility.SetDirty(material);
             }
 

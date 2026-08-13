@@ -19,6 +19,16 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(1f)] private float noiseLacunarity = 2f;
         [SerializeField, Range(0.05f, 0.95f)] private float noisePersistence = 0.5f;
         [SerializeField, Range(0, 12)] private int propsPerChunk = 4;
+        [Header("Natural Objects")]
+        [SerializeField] private TopDown3DNaturalObjectCatalog naturalObjectCatalog;
+        [SerializeField, Min(1)] private int naturalObjectGenerationVersion = 1;
+        [SerializeField, Range(0, 64)] private int scatterObjectsPerChunk = 22;
+        [SerializeField, Range(0, 160)] private int groundDetailsPerChunk = 72;
+        [SerializeField, Min(0.0001f)] private float clutterClusterFrequency = 0.035f;
+        [SerializeField, Range(0f, 1f)] private float clutterClusterStrength = 0.7f;
+        [SerializeField, Min(0f)] private float scatterSpacing = 0.18f;
+        [SerializeField, Min(0f)] private float groundDetailSpacing = 0.04f;
+        [SerializeField, Range(1f, 60f)] private float maximumClutterSlope = 44f;
         [SerializeField, Min(0f)] private float clearSpawnRadius = 7f;
         [SerializeField, Min(0.25f)] private float safeSpawnSearchRadius = 8f;
         [SerializeField, Min(0.25f)] private float safeSpawnSearchStep = 1.5f;
@@ -41,6 +51,15 @@ namespace BooterBigArm.TopDown3D
         public float NoiseLacunarity => noiseLacunarity;
         public float NoisePersistence => noisePersistence;
         public int PropsPerChunk => propsPerChunk;
+        public TopDown3DNaturalObjectCatalog NaturalObjectCatalog => naturalObjectCatalog;
+        public int NaturalObjectGenerationVersion => naturalObjectGenerationVersion;
+        public int ScatterObjectsPerChunk => scatterObjectsPerChunk;
+        public int GroundDetailsPerChunk => groundDetailsPerChunk;
+        public float ClutterClusterFrequency => clutterClusterFrequency;
+        public float ClutterClusterStrength => clutterClusterStrength;
+        public float ScatterSpacing => scatterSpacing;
+        public float GroundDetailSpacing => groundDetailSpacing;
+        public float MaximumClutterSlope => maximumClutterSlope;
         public float ClearSpawnRadius => clearSpawnRadius;
         public float SafeSpawnSearchRadius => safeSpawnSearchRadius;
         public float SafeSpawnSearchStep => safeSpawnSearchStep;
@@ -62,6 +81,14 @@ namespace BooterBigArm.TopDown3D
             noiseLacunarity = Mathf.Max(1f, noiseLacunarity);
             noisePersistence = Mathf.Clamp(noisePersistence, 0.05f, 0.95f);
             propsPerChunk = Mathf.Clamp(propsPerChunk, 0, 12);
+            naturalObjectGenerationVersion = Mathf.Max(1, naturalObjectGenerationVersion);
+            scatterObjectsPerChunk = Mathf.Clamp(scatterObjectsPerChunk, 0, 64);
+            groundDetailsPerChunk = Mathf.Clamp(groundDetailsPerChunk, 0, 160);
+            clutterClusterFrequency = Mathf.Max(0.0001f, clutterClusterFrequency);
+            clutterClusterStrength = Mathf.Clamp01(clutterClusterStrength);
+            scatterSpacing = Mathf.Max(0f, scatterSpacing);
+            groundDetailSpacing = Mathf.Max(0f, groundDetailSpacing);
+            maximumClutterSlope = Mathf.Clamp(maximumClutterSlope, 1f, 60f);
             clearSpawnRadius = Mathf.Max(0f, clearSpawnRadius);
             safeSpawnSearchRadius = Mathf.Max(0.25f, safeSpawnSearchRadius);
             safeSpawnSearchStep = Mathf.Max(0.25f, safeSpawnSearchStep);

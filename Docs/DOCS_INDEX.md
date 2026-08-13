@@ -47,6 +47,8 @@ These define current preferred approaches or sequencing.
 
 - [BIGARM_COMPANION_STANDARD.md](./BIGARM_COMPANION_STANDARD.md)
   The canonical product and implementation rules for BigARM's companion role, physical follow behavior, and future unloaded-world traversal seam.
+- [GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md](./GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md)
+  The deterministic TopDown3D natural-object placement, cost-layer, rendering, art, performance, and proof contract.
 - [IMPLEMENTATION_SEQUENCE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/IMPLEMENTATION_SEQUENCE.md)
 - [GAMEPLAY_ARCHITECTURE_BASELINES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md)
 - [INPUT_ARCHITECTURE_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/INPUT_ARCHITECTURE_STANDARD.md)

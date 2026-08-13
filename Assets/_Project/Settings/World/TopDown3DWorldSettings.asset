@@ -26,6 +26,15 @@ MonoBehaviour:
   noiseLacunarity: 2
   noisePersistence: 0.5
   propsPerChunk: 4
+  naturalObjectCatalog: {fileID: 11400000, guid: 03ec8052e2404ee19712ee02d05deb23, type: 2}
+  naturalObjectGenerationVersion: 1
+  scatterObjectsPerChunk: 22
+  groundDetailsPerChunk: 72
+  clutterClusterFrequency: 0.035
+  clutterClusterStrength: 0.7
+  scatterSpacing: 0.18
+  groundDetailSpacing: 0.04
+  maximumClutterSlope: 44
   clearSpawnRadius: 7
   safeSpawnSearchRadius: 8
   safeSpawnSearchStep: 1.5
