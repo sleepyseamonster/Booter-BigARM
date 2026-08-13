@@ -16,6 +16,11 @@ namespace BooterBigArm.Editor
         public const string ScenePath = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
         public const string WorldSettingsPath = "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
         public const string MaterialFolder = "Assets/_Project/Materials/TopDown3D";
+        public const string TerrainMaterialPath = MaterialFolder + "/Greybox_Terrain.mat";
+        public const string TerrainAlbedoPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png";
+        public const float TerrainTextureTiling = 6f;
+        public const float TerrainSmoothness = 0.18f;
 
         public const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
 
@@ -98,10 +103,10 @@ namespace BooterBigArm.Editor
             EnsureFolder("Assets/_Project/Settings/World");
 
             var settings = EnsureWorldSettings();
-            var terrainMaterial = EnsureMaterial("Greybox_Terrain", new Color(0.34f, 0.40f, 0.27f));
+            var terrainMaterial = EnsureTerrainMaterial();
             var rockMaterial = EnsureMaterial("Greybox_Rock", new Color(0.27f, 0.23f, 0.22f));
-            var playerMaterial = EnsureMaterial("Greybox_Booter", new Color(0.08f, 0.74f, 0.76f));
-            var bigArmMaterial = EnsureMaterial("Greybox_BigARM", new Color(0.87f, 0.31f, 0.12f));
+            var playerMaterial = EnsureMaterial("Greybox_Booter", new Color(0.87f, 0.31f, 0.12f));
+            var bigArmMaterial = EnsureMaterial("Greybox_BigARM", new Color(0.08f, 0.74f, 0.76f));
             var rendererIndex = ResolveConversionRendererIndex();
             CreateScene(
                 rendererIndex,
@@ -129,6 +134,43 @@ namespace BooterBigArm.Editor
             settings.name = "TopDown3DWorldSettings";
             AssetDatabase.CreateAsset(settings, WorldSettingsPath);
             return settings;
+        }
+
+        private static Material EnsureTerrainMaterial()
+        {
+            var material = EnsureMaterial("Greybox_Terrain", Color.white);
+            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainAlbedoPath);
+            if (albedo == null)
+            {
+                throw new InvalidOperationException($"Missing terrain albedo texture at {TerrainAlbedoPath}.");
+            }
+
+            var changed = false;
+            var tiling = Vector2.one * TerrainTextureTiling;
+            if (material.GetTexture("_BaseMap") != albedo)
+            {
+                material.SetTexture("_BaseMap", albedo);
+                changed = true;
+            }
+
+            if (material.GetTextureScale("_BaseMap") != tiling)
+            {
+                material.SetTextureScale("_BaseMap", tiling);
+                changed = true;
+            }
+
+            if (!Mathf.Approximately(material.GetFloat("_Smoothness"), TerrainSmoothness))
+            {
+                material.SetFloat("_Smoothness", TerrainSmoothness);
+                changed = true;
+            }
+
+            if (changed)
+            {
+                EditorUtility.SetDirty(material);
+            }
+
+            return material;
         }
 
         private static Material EnsureMaterial(string name, Color color)

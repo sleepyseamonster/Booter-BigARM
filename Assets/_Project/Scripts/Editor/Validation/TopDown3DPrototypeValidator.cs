@@ -41,6 +41,9 @@ namespace BooterBigArm.Editor
             var errors = ConversionBaselineValidator.CollectErrors();
             ValidateAssetExists(TopDown3DPrototypeBuilder.ScenePath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.WorldSettingsPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainAlbedoPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainMaterialPath, errors);
+            ValidateTerrainMaterial(errors);
             ValidateWorldCoverage(errors);
             ValidateCameraInput(errors);
             ValidateBuildSettings(errors);
@@ -67,6 +70,28 @@ namespace BooterBigArm.Editor
             {
                 errors.Add(
                     "TopDown3D initial loading must build a two-chunk radius before budgeted outer-ring streaming begins.");
+            }
+        }
+
+        private static void ValidateTerrainMaterial(ICollection<string> errors)
+        {
+            var material = AssetDatabase.LoadAssetAtPath<Material>(TopDown3DPrototypeBuilder.TerrainMaterialPath);
+            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.TerrainAlbedoPath);
+            if (material == null || albedo == null)
+            {
+                return;
+            }
+
+            if (material.GetTexture("_BaseMap") != albedo)
+            {
+                errors.Add("TopDown3D terrain material must use the Broken World sand-dirt albedo texture.");
+            }
+
+            var expectedTiling = Vector2.one * TopDown3DPrototypeBuilder.TerrainTextureTiling;
+            if (Vector2.Distance(material.GetTextureScale("_BaseMap"), expectedTiling) > 0.0001f)
+            {
+                errors.Add(
+                    $"TopDown3D terrain albedo tiling must remain {TopDown3DPrototypeBuilder.TerrainTextureTiling} by {TopDown3DPrototypeBuilder.TerrainTextureTiling}.");
             }
         }
 
