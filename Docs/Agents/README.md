@@ -10,4 +10,8 @@ This directory contains durable contracts and working surfaces for persistent re
 
 - [Babineaux](./Babineaux/README.md) — Unity/Codex bridge manager for translating approved game work into safe editor, automation, validation, and handoff steps under Gottspan's repo-wide coordination.
 
+## Persistent GitHub Manager
+
+- [Gear Ball](./GearBall/README.md) — Git and GitHub publication manager for scoped staging, commits, pushes, and explicitly authorized pull-request or branch operations under Gottspan's repo-wide coordination.
+
 Task specialists do not need permanent folders by default. Gottspan assigns temporary specialist seats through bounded task briefs and records only information that needs to survive the task.

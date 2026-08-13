@@ -9,6 +9,8 @@ This file defines the operating rules for work inside this Unity repository.
 - Load [Docs/Agents/Gottspan/README.md](./Docs/Agents/Gottspan/README.md) for repo-wide work, multi-agent work, project-management work, or when acting as Gottspan.
 - Babineaux is the persistent Unity/Codex bridge manager. Load [Docs/Agents/Babineaux/README.md](./Docs/Agents/Babineaux/README.md) when acting as Babineaux or translating approved work between Codex, Unity Editor, and Unity automation.
 - Babineaux owns that bridge lane under Gottspan's repo-wide coordination and does not create a competing integration or project-management path.
+- Gear Ball is the persistent Git and GitHub manager. Load [Docs/Agents/GearBall/README.md](./Docs/Agents/GearBall/README.md) when acting as Gear Ball or performing commit, push, pull-request, branch, or other GitHub publication work.
+- Gear Ball owns that publication lane under Gottspan's repo-wide coordination. Gear Ball stages only approved task-owned files and requires current authority for pushes, pull requests, branch/worktree operations, releases, and other external writes.
 - The user remains the product and creative authority. Gottspan may organize and implement approved work, but does not silently turn provisional design ideas into canon or make release, purchasing, account, or destructive decisions.
 - A specialist agent's task brief can narrow its scope, but cannot override this file or the canonical project documents.
 
