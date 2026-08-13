@@ -77,6 +77,7 @@ namespace BooterBigArm.TopDown3D
             var collider = obstacle.AddComponent<BoxCollider>();
             collider.center = new Vector3(0f, 0.43f, 0f);
             collider.size = new Vector3(1.55f, 0.86f, 1.55f);
+            obstacle.AddComponent<TopDown3DTraversalObstacle>();
         }
 
         private static void CreateCombinedLayer(

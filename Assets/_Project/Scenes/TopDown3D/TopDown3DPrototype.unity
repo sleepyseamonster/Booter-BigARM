@@ -411,6 +411,22 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  smartTraversalEnabled: 1
+  minimumTraversalInput: 0.35
+  traversalProbeDistance: 1.25
+  maximumVaultHeight: 1.15
+  sideThresholdRatio: 0.48
+  vaultDuration: 0.48
+  minimumVaultArcHeight: 0.9
+  vaultArcClearance: 0.18
+  vaultLandingClearance: 0.35
+  spinDuration: 0.34
+  spinSideDistance: 1.15
+  spinForwardDistance: 0.75
+  traversalCooldown: 0.2
+  traversalMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!54 &264785640
 Rigidbody:
   m_ObjectHideFlags: 0
