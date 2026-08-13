@@ -77,12 +77,6 @@ namespace BooterBigArm.TopDown3D
             var collider = obstacle.AddComponent<BoxCollider>();
             collider.center = new Vector3(0f, 0.43f, 0f);
             collider.size = new Vector3(1.55f, 0.86f, 1.55f);
-
-            var lod = obstacle.AddComponent<LODGroup>();
-            lod.fadeMode = LODFadeMode.CrossFade;
-            lod.animateCrossFading = true;
-            lod.SetLODs(new[] { new LOD(0.018f, new Renderer[] { renderer }) });
-            lod.RecalculateBounds();
         }
 
         private static void CreateCombinedLayer(
