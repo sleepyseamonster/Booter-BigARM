@@ -28,6 +28,11 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0f, 1f)] private float clutterClusterStrength = 0.7f;
         [SerializeField, Min(0f)] private float scatterSpacing = 0.18f;
         [SerializeField, Min(0f)] private float groundDetailSpacing = 0.04f;
+        [SerializeField] private Material fineGrayClutterMaterial;
+        [SerializeField, Range(0, 240)] private int fineGrayClutterPerChunk = 118;
+        [SerializeField, Min(0.0001f)] private float fineGrayClusterFrequency = 0.085f;
+        [SerializeField, Range(0f, 1f)] private float fineGrayClusterStrength = 0.95f;
+        [SerializeField, Min(0f)] private float fineGrayClutterSpacing = 0.012f;
         [SerializeField, Range(1f, 60f)] private float maximumClutterSlope = 44f;
         [SerializeField, Min(0f)] private float clearSpawnRadius = 7f;
         [SerializeField, Min(0.25f)] private float safeSpawnSearchRadius = 8f;
@@ -59,6 +64,11 @@ namespace BooterBigArm.TopDown3D
         public float ClutterClusterStrength => clutterClusterStrength;
         public float ScatterSpacing => scatterSpacing;
         public float GroundDetailSpacing => groundDetailSpacing;
+        public Material FineGrayClutterMaterial => fineGrayClutterMaterial;
+        public int FineGrayClutterPerChunk => fineGrayClutterPerChunk;
+        public float FineGrayClusterFrequency => fineGrayClusterFrequency;
+        public float FineGrayClusterStrength => fineGrayClusterStrength;
+        public float FineGrayClutterSpacing => fineGrayClutterSpacing;
         public float MaximumClutterSlope => maximumClutterSlope;
         public float ClearSpawnRadius => clearSpawnRadius;
         public float SafeSpawnSearchRadius => safeSpawnSearchRadius;
@@ -67,6 +77,14 @@ namespace BooterBigArm.TopDown3D
         public float MaximumPropSlope => maximumPropSlope;
         public float PropSpacing => propSpacing;
         public int PropPlacementAttempts => propPlacementAttempts;
+
+        public void ConfigureNaturalObjectAssets(
+            TopDown3DNaturalObjectCatalog catalog,
+            Material grayClutterMaterial)
+        {
+            naturalObjectCatalog = catalog;
+            fineGrayClutterMaterial = grayClutterMaterial;
+        }
 
         private void OnValidate()
         {
@@ -88,6 +106,10 @@ namespace BooterBigArm.TopDown3D
             clutterClusterStrength = Mathf.Clamp01(clutterClusterStrength);
             scatterSpacing = Mathf.Max(0f, scatterSpacing);
             groundDetailSpacing = Mathf.Max(0f, groundDetailSpacing);
+            fineGrayClutterPerChunk = Mathf.Clamp(fineGrayClutterPerChunk, 0, 240);
+            fineGrayClusterFrequency = Mathf.Max(0.0001f, fineGrayClusterFrequency);
+            fineGrayClusterStrength = Mathf.Clamp01(fineGrayClusterStrength);
+            fineGrayClutterSpacing = Mathf.Max(0f, fineGrayClutterSpacing);
             maximumClutterSlope = Mathf.Clamp(maximumClutterSlope, 1f, 60f);
             clearSpawnRadius = Mathf.Max(0f, clearSpawnRadius);
             safeSpawnSearchRadius = Mathf.Max(0.25f, safeSpawnSearchRadius);

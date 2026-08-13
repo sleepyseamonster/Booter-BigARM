@@ -16,6 +16,9 @@ namespace BooterBigArm.Editor
         public const string ScenePath = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
         public const string WorldSettingsPath = "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
         public const string MaterialFolder = "Assets/_Project/Materials/TopDown3D";
+        public const string NaturalObjectCatalogPath =
+            "Assets/_Project/Settings/World/TopDown3DNaturalObjectCatalog.asset";
+        public const string FineGrayClutterMaterialPath = MaterialFolder + "/FineGray_Clutter.mat";
         public const string TerrainMaterialPath = MaterialFolder + "/Greybox_Terrain.mat";
         public const string TerrainAlbedoPath =
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png";
@@ -105,6 +108,17 @@ namespace BooterBigArm.Editor
             var settings = EnsureWorldSettings();
             var terrainMaterial = EnsureTerrainMaterial();
             var rockMaterial = EnsureRockMaterial();
+            var fineGrayClutterMaterial = EnsureFineGrayClutterMaterial();
+            var naturalObjectCatalog = AssetDatabase.LoadAssetAtPath<TopDown3DNaturalObjectCatalog>(
+                NaturalObjectCatalogPath);
+            if (naturalObjectCatalog == null)
+            {
+                throw new InvalidOperationException(
+                    $"Missing natural-object catalog at {NaturalObjectCatalogPath}.");
+            }
+
+            settings.ConfigureNaturalObjectAssets(naturalObjectCatalog, fineGrayClutterMaterial);
+            EditorUtility.SetDirty(settings);
             var playerMaterial = EnsureMaterial("Greybox_Booter", new Color(0.87f, 0.31f, 0.12f));
             var bigArmMaterial = EnsureMaterial("Greybox_BigARM", new Color(0.08f, 0.74f, 0.76f));
             var rendererIndex = ResolveConversionRendererIndex();
@@ -179,6 +193,18 @@ namespace BooterBigArm.Editor
             if (!Mathf.Approximately(material.GetFloat("_Smoothness"), 0.18f))
             {
                 material.SetFloat("_Smoothness", 0.18f);
+                EditorUtility.SetDirty(material);
+            }
+
+            return material;
+        }
+
+        private static Material EnsureFineGrayClutterMaterial()
+        {
+            var material = EnsureMaterial("FineGray_Clutter", new Color(0.235f, 0.245f, 0.255f));
+            if (!Mathf.Approximately(material.GetFloat("_Smoothness"), 0.12f))
+            {
+                material.SetFloat("_Smoothness", 0.12f);
                 EditorUtility.SetDirty(material);
             }
 

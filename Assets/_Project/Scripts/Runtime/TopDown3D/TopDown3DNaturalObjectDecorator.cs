@@ -24,6 +24,7 @@ namespace BooterBigArm.TopDown3D
                 spawnExclusionCenter);
             var scatter = new List<TopDown3DNaturalObjectPlacement>();
             var details = new List<TopDown3DNaturalObjectPlacement>();
+            var fineGrayClusters = new List<TopDown3DNaturalObjectPlacement>();
             var obstacleIndex = 0;
             for (var i = 0; i < placements.Count; i++)
             {
@@ -36,14 +37,23 @@ namespace BooterBigArm.TopDown3D
                     case TopDown3DNaturalObjectLayer.Scatter:
                         scatter.Add(placement);
                         break;
-                    default:
+                    case TopDown3DNaturalObjectLayer.GroundDetail:
                         details.Add(placement);
+                        break;
+                    case TopDown3DNaturalObjectLayer.FineGrayCluster:
+                        fineGrayClusters.Add(placement);
                         break;
                 }
             }
 
             CreateCombinedLayer(chunk, material, scatter, "Natural Scatter", ShadowCastingMode.On);
             CreateCombinedLayer(chunk, material, details, "Ground Micro Detail", ShadowCastingMode.Off);
+            CreateCombinedLayer(
+                chunk,
+                settings.FineGrayClutterMaterial,
+                fineGrayClusters,
+                "Fine Gray Ground Clusters",
+                ShadowCastingMode.Off);
         }
 
         private static void CreateObstacle(
@@ -82,7 +92,7 @@ namespace BooterBigArm.TopDown3D
             string name,
             ShadowCastingMode shadows)
         {
-            if (placements.Count == 0)
+            if (material == null || placements.Count == 0)
             {
                 return;
             }

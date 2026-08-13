@@ -87,13 +87,15 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void Catalog_ContainsAllThreeCostLayersWithUniqueStableIds()
+        public void Catalog_ContainsAllFourCostLayersWithUniqueStableIds()
         {
             var catalog = LoadSettings().NaturalObjectCatalog;
             Assert.That(catalog, Is.Not.Null);
             Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.GroundDetail), Is.True);
             Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.Scatter), Is.True);
             Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.Obstacle), Is.True);
+            Assert.That(catalog.HasLayer(TopDown3DNaturalObjectLayer.FineGrayCluster), Is.True);
+            Assert.That(LoadSettings().FineGrayClutterMaterial, Is.Not.Null);
             Assert.That(
                 catalog.Definitions.Select(definition => definition.StableId).Distinct().Count(),
                 Is.EqualTo(catalog.Definitions.Count));
@@ -113,6 +115,26 @@ namespace BooterBigArm.Tests
                     Assert.That(mesh.bounds.size.sqrMagnitude, Is.GreaterThan(0f));
                 }
             }
+        }
+
+        [Test]
+        public void FineGrayCluster_IsDenseStronglyClusteredAndSmall()
+        {
+            var settings = LoadSettings();
+            Assert.That(settings.FineGrayClutterPerChunk, Is.GreaterThan(settings.GroundDetailsPerChunk));
+            Assert.That(settings.FineGrayClusterStrength, Is.GreaterThan(settings.ClutterClusterStrength));
+            Assert.That(settings.FineGrayClusterFrequency, Is.GreaterThan(settings.ClutterClusterFrequency));
+
+            var placements = TopDown3DNaturalObjectPlanner.BuildPlacements(
+                    settings,
+                    settings.NaturalObjectCatalog,
+                    new Vector2Int(2, 2),
+                    new Vector2(10000f, 10000f))
+                .Where(placement => placement.Layer == TopDown3DNaturalObjectLayer.FineGrayCluster)
+                .ToArray();
+            Assert.That(placements, Is.Not.Empty);
+            Assert.That(placements.All(placement =>
+                Mathf.Max(placement.Scale.x, placement.Scale.z) <= 0.15f), Is.True);
         }
 
         private static TopDown3DWorldSettings LoadSettings()

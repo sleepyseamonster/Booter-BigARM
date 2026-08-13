@@ -94,3 +94,30 @@ MonoBehaviour:
     sinkDepth: 0.16
     maximumTilt: 30
     footprintRadius: 0.04
+  - stableId: cool-gray-grit
+    layer: 3
+    shape: 0
+    weight: 4
+    uniformScaleRange: {x: 0.035, y: 0.105}
+    proportions: {x: 1.25, y: 0.55, z: 0.85}
+    sinkDepth: 0.18
+    maximumTilt: 34
+    footprintRadius: 0.025
+  - stableId: gray-shale-speck
+    layer: 3
+    shape: 1
+    weight: 2.2
+    uniformScaleRange: {x: 0.03, y: 0.09}
+    proportions: {x: 0.9, y: 0.55, z: 0.5}
+    sinkDepth: 0.22
+    maximumTilt: 36
+    footprintRadius: 0.022
+  - stableId: gray-crust-speck
+    layer: 3
+    shape: 2
+    weight: 1.2
+    uniformScaleRange: {x: 0.04, y: 0.11}
+    proportions: {x: 1.35, y: 0.45, z: 0.8}
+    sinkDepth: 0.24
+    maximumTilt: 30
+    footprintRadius: 0.026

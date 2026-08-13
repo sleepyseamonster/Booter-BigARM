@@ -91,6 +91,10 @@ namespace BooterBigArm.TopDown3D
                 settings.PropsPerChunk,
                 settings.PropSpacing,
                 settings.MaximumPropSlope,
+                settings.ClutterClusterFrequency,
+                settings.ClutterClusterStrength,
+                0.2f,
+                1.8f,
                 placements);
             BuildLayer(
                 settings,
@@ -101,6 +105,10 @@ namespace BooterBigArm.TopDown3D
                 settings.ScatterObjectsPerChunk,
                 settings.ScatterSpacing,
                 settings.MaximumClutterSlope,
+                settings.ClutterClusterFrequency,
+                settings.ClutterClusterStrength,
+                0.2f,
+                1.8f,
                 placements);
             BuildLayer(
                 settings,
@@ -111,6 +119,24 @@ namespace BooterBigArm.TopDown3D
                 settings.GroundDetailsPerChunk,
                 settings.GroundDetailSpacing,
                 settings.MaximumClutterSlope,
+                settings.ClutterClusterFrequency,
+                settings.ClutterClusterStrength,
+                0.2f,
+                1.8f,
+                placements);
+            BuildLayer(
+                settings,
+                catalog,
+                chunkCoordinate,
+                spawnExclusionCenter,
+                TopDown3DNaturalObjectLayer.FineGrayCluster,
+                settings.FineGrayClutterPerChunk,
+                settings.FineGrayClutterSpacing,
+                settings.MaximumClutterSlope,
+                settings.FineGrayClusterFrequency,
+                settings.FineGrayClusterStrength,
+                0.06f,
+                2.05f,
                 placements);
             return placements;
         }
@@ -124,6 +150,10 @@ namespace BooterBigArm.TopDown3D
             int targetCount,
             float extraSpacing,
             float maximumSlope,
+            float clusterFrequency,
+            float clusterStrength,
+            float clusterMinimumFactor,
+            float clusterMaximumFactor,
             ICollection<TopDown3DNaturalObjectPlacement> output)
         {
             if (targetCount <= 0 || !catalog.HasLayer(layer))
@@ -168,14 +198,24 @@ namespace BooterBigArm.TopDown3D
                 {
                     var candidate = BuildCandidate(layerSeed, cellX, cellZ, cellSize);
                     if (!BelongsToChunk(candidate.Position, chunkCoordinate, chunkSize)
-                        || !PassesDensity(settings, layerSeed, candidate, baseAdmission)
+                        || !PassesDensity(
+                            layerSeed,
+                            candidate,
+                            baseAdmission,
+                            clusterFrequency,
+                            clusterStrength,
+                            clusterMinimumFactor,
+                            clusterMaximumFactor)
                         || LosesNeighborCompetition(
-                            settings,
                             layerSeed,
                             candidate,
                             cellSize,
                             minimumDistance,
-                            baseAdmission))
+                            baseAdmission,
+                            clusterFrequency,
+                            clusterStrength,
+                            clusterMinimumFactor,
+                            clusterMaximumFactor))
                     {
                         continue;
                     }
@@ -231,12 +271,15 @@ namespace BooterBigArm.TopDown3D
         }
 
         private static bool LosesNeighborCompetition(
-            TopDown3DWorldSettings settings,
             int layerSeed,
             Candidate candidate,
             float cellSize,
             float minimumDistance,
-            float baseAdmission)
+            float baseAdmission,
+            float clusterFrequency,
+            float clusterStrength,
+            float clusterMinimumFactor,
+            float clusterMaximumFactor)
         {
             var range = Mathf.Max(1, Mathf.CeilToInt(minimumDistance / cellSize));
             var minimumDistanceSquared = minimumDistance * minimumDistance;
@@ -254,7 +297,14 @@ namespace BooterBigArm.TopDown3D
                         candidate.CellX + x,
                         candidate.CellZ + z,
                         cellSize);
-                    if (!PassesDensity(settings, layerSeed, neighbor, baseAdmission)
+                    if (!PassesDensity(
+                            layerSeed,
+                            neighbor,
+                            baseAdmission,
+                            clusterFrequency,
+                            clusterStrength,
+                            clusterMinimumFactor,
+                            clusterMaximumFactor)
                         || (neighbor.Position - candidate.Position).sqrMagnitude >= minimumDistanceSquared)
                     {
                         continue;
@@ -273,16 +323,22 @@ namespace BooterBigArm.TopDown3D
         }
 
         private static bool PassesDensity(
-            TopDown3DWorldSettings settings,
             int layerSeed,
             Candidate candidate,
-            float baseAdmission)
+            float baseAdmission,
+            float clusterFrequency,
+            float clusterStrength,
+            float clusterMinimumFactor,
+            float clusterMaximumFactor)
         {
             var cluster = ValueNoise(
                 layerSeed ^ 0x2C9277B5,
-                candidate.Position.x * settings.ClutterClusterFrequency,
-                candidate.Position.y * settings.ClutterClusterFrequency);
-            var clusterFactor = Mathf.Lerp(1f, Mathf.Lerp(0.2f, 1.8f, cluster), settings.ClutterClusterStrength);
+                candidate.Position.x * clusterFrequency,
+                candidate.Position.y * clusterFrequency);
+            var clusterFactor = Mathf.Lerp(
+                1f,
+                Mathf.Lerp(clusterMinimumFactor, clusterMaximumFactor, cluster),
+                clusterStrength);
             return candidate.Admission <= Mathf.Clamp01(baseAdmission * clusterFactor);
         }
 

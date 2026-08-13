@@ -43,6 +43,7 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.WorldSettingsPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainMaterialPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.FineGrayClutterMaterialPath, errors);
             ValidateTerrainMaterial(errors);
             ValidateWorldCoverage(errors);
             ValidateNaturalObjectCatalog(errors);
@@ -83,6 +84,14 @@ namespace BooterBigArm.Editor
             {
                 errors.Add("TopDown3D world settings require a natural-object catalog.");
                 return;
+            }
+
+            var grayMaterial = AssetDatabase.LoadAssetAtPath<Material>(
+                TopDown3DPrototypeBuilder.FineGrayClutterMaterialPath);
+            if (settings.FineGrayClutterMaterial == null
+                || settings.FineGrayClutterMaterial != grayMaterial)
+            {
+                errors.Add("TopDown3D world settings must reference the shared fine-gray clutter material.");
             }
 
             foreach (TopDown3DNaturalObjectLayer layer in Enum.GetValues(typeof(TopDown3DNaturalObjectLayer)))
