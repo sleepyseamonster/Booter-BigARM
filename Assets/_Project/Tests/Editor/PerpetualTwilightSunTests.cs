@@ -62,8 +62,11 @@ namespace BooterBigArm.Tests
             var serialized = new SerializedObject(pipeline);
             Assert.That(serialized.FindProperty("m_MainLightShadowsSupported").boolValue, Is.True);
             Assert.That(serialized.FindProperty("m_SoftShadowsSupported").boolValue, Is.True);
-            Assert.That(serialized.FindProperty("m_ShadowCascadeCount").intValue, Is.GreaterThanOrEqualTo(2));
-            Assert.That(serialized.FindProperty("m_ShadowDistance").floatValue, Is.GreaterThanOrEqualTo(50f));
+            Assert.That(serialized.FindProperty("m_MainLightShadowmapResolution").intValue, Is.GreaterThanOrEqualTo(4096));
+            Assert.That(serialized.FindProperty("m_ShadowCascadeCount").intValue, Is.EqualTo(4));
+            Assert.That(serialized.FindProperty("m_ShadowDistance").floatValue, Is.GreaterThanOrEqualTo(60f));
+            Assert.That(serialized.FindProperty("m_SoftShadowQuality").intValue, Is.EqualTo((int)SoftShadowQuality.High));
+            Assert.That(serialized.FindProperty("m_ConservativeEnclosingSphere").boolValue, Is.True);
         }
     }
 }

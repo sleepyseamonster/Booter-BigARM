@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 namespace BooterBigArm.TopDown3D
@@ -42,8 +43,8 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(0f)] private float deepTwilightIntensity = 0.68f;
         [SerializeField, Min(0f)] private float brightTwilightIntensity = 1.18f;
         [SerializeField, Range(0f, 1f)] private float shadowStrength = 0.96f;
-        [SerializeField, Range(0f, 2f)] private float shadowBias = 0.045f;
-        [SerializeField, Range(0f, 3f)] private float shadowNormalBias = 0.32f;
+        [SerializeField, Range(0f, 2f)] private float shadowBias = 0.2f;
+        [SerializeField, Range(0f, 3f)] private float shadowNormalBias = 0.35f;
 
         [Header("World Fill")]
         [SerializeField] private Color deepTwilightAmbient = new Color(0.16f, 0.075f, 0.10f);
@@ -60,6 +61,7 @@ namespace BooterBigArm.TopDown3D
 
         [SerializeField, HideInInspector] private Light sun;
 
+        private UniversalAdditionalLightData additionalSunData;
         private Material runtimeSkybox;
         private Material previousSkybox;
         private float brightness01;
@@ -175,6 +177,11 @@ namespace BooterBigArm.TopDown3D
             {
                 sun = GetComponent<Light>();
             }
+
+            if (sun != null && additionalSunData == null)
+            {
+                additionalSunData = sun.GetUniversalAdditionalLightData();
+            }
         }
 
         private void ApplyCurrentState()
@@ -200,9 +207,11 @@ namespace BooterBigArm.TopDown3D
             sun.shadowStrength = shadowStrength;
             sun.shadowBias = shadowBias;
             sun.shadowNormalBias = shadowNormalBias;
-            sun.shadowNearPlane = 0.2f;
-            sun.shadowResolution = LightShadowResolution.High;
+            sun.shadowNearPlane = 0.1f;
+            sun.shadowResolution = LightShadowResolution.VeryHigh;
             sun.bounceIntensity = 0.2f;
+            additionalSunData.usePipelineSettings = false;
+            additionalSunData.softShadowQuality = SoftShadowQuality.High;
 
             RenderSettings.sun = sun;
             RenderSettings.ambientMode = AmbientMode.Flat;
