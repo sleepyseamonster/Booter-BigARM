@@ -44,9 +44,17 @@ When it is present, the build script expects the active build target to already 
 
 ## Current State
 
-- There is no pre-existing custom editor automation in the repo.
+- Player-build automation exists at `BooterBigArm.Editor.BuildAutomation.BuildFromCli`.
+- `PrototypeSceneBootstrapper` exposes prototype scene build and repair commands. These commands write scene/project content and must not be used as non-mutating validation.
+- There is not yet a dedicated non-mutating project-validation entry point.
+- The Unity Test Framework package is installed, but the repo does not yet contain committed test source files or test assemblies.
 - VS Code attach/debugging is already configured in [`.vscode/launch.json`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/.vscode/launch.json).
-- The first automation entry point should stay small and predictable: build the active target from enabled scenes.
+
+## Safety Gate
+
+- Do not start batchmode against this project while the Unity GUI has it open.
+- Batchmode may import or serialize assets even when used for compilation; inspect Git state before and after it runs.
+- Scene build and repair entry points are mutating tools. Run them only when their output is the requested change and the affected scene/assets are owned by the task.
 
 ## Notes
 

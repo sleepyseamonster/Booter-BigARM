@@ -19,6 +19,17 @@ These should be treated as the source of truth unless they are intentionally rev
 - [AGENT_AND_UNITY_PRACTICES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/AGENT_AND_UNITY_PRACTICES.md)
   Working norms for Codex and Unity repo practice.
 
+## Agent Operations
+
+- [Agents/Gottspan/README.md](./Agents/Gottspan/README.md)
+  The canonical repo-manager contract and entry point for project coordination.
+- [Agents/Gottspan/instructions/MULTI_AGENT_WORKFLOW.md](./Agents/Gottspan/instructions/MULTI_AGENT_WORKFLOW.md)
+  Delegation, shared-worktree ownership, handoff, and integration rules.
+- [Agents/Gottspan/sops/REPO_AND_UNITY_MANAGEMENT.md](./Agents/Gottspan/sops/REPO_AND_UNITY_MANAGEMENT.md)
+  Gottspan's startup, planning, change-control, Unity validation, and closeout SOP.
+- [Agents/Gottspan/memory/PROJECT_MEMORY.md](./Agents/Gottspan/memory/PROJECT_MEMORY.md)
+  Bounded durable project facts and known management gaps; it does not replace live inspection.
+
 ## Implementation Standards And Seams
 
 These define current preferred approaches or sequencing.
@@ -36,8 +47,16 @@ These define current preferred approaches or sequencing.
 These describe current repo state rather than durable design truth.
 
 - [PROJECT_BASELINE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/PROJECT_BASELINE.md)
+- [PROJECT_STATUS.md](./PROJECT_STATUS.md)
 - [ROADMAP.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/ROADMAP.md)
 - [RESEARCH_PLAN.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/RESEARCH_PLAN.md)
+
+## Design Evidence And Decisions
+
+- [DECISION_LOG.md](./DECISION_LOG.md)
+  Pointers and rationale for consequential design, architecture, and workflow decisions; controlling docs still hold current truth.
+- [PLAYTEST_LOG.md](./PLAYTEST_LOG.md)
+  Repeatable playtest observations tied to a build or commit and a specific design question.
 
 ## Provisional Reference Docs
 

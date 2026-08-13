@@ -10,7 +10,8 @@ This document captures the current Unity project state so future changes can be 
 
 ## Current Files Of Interest
 
-- `Assets/_Project/Scenes/SampleScene.unity`
+- `Assets/_Project/Scenes/PrototypeScene.unity` — primary prototype scene and first enabled build scene.
+- `Assets/_Project/Scenes/SampleScene.unity` — secondary sample scene.
 - `Assets/_Project/Scripts/Runtime/Prototype/`
 - `Assets/_Project/Scripts/Editor/Prototype/`
 - `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset`
@@ -18,6 +19,20 @@ This document captures the current Unity project state so future changes can be 
 - `Assets/_Project/Settings/Input/InputSystem_Actions.inputactions`
 - `Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset`
 - `Assets/_Project/Settings/Rendering/URP/UniversalRenderPipelineGlobalSettings.asset`
+
+## Implemented Prototype Systems
+
+The live runtime tree currently includes:
+
+- Gameplay, system, and UI input adapters.
+- Physics-backed player movement and camera targeting.
+- Deterministic world identity and prototype generation settings.
+- Versioned save schema, JSON persistence, and save/load coordination.
+- Survival state and debug/HUD surfaces.
+- Inventory, item definitions, harvesting, world pickups, and dust-canister state.
+- BigARM command, threat-signal, save-data, and AI-controller surfaces.
+
+This inventory proves code and asset presence, not player-facing completeness or design quality. Use [PROJECT_STATUS.md](./PROJECT_STATUS.md) for the current evidence/verification distinction.
 
 ## Current Folder State
 

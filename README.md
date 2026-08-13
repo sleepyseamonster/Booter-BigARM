@@ -33,6 +33,8 @@ Unity 6 2D top-down game project.
 ## Initialization Docs
 
 - Read [AGENTS.md](./AGENTS.md) before making changes.
+- Read [Docs/Agents/Gottspan/README.md](./Docs/Agents/Gottspan/README.md) for repo management, project management, and multi-agent coordination.
+- Read [Docs/PROJECT_STATUS.md](./Docs/PROJECT_STATUS.md) for the evidence-based implementation pulse and next decisions.
 - Read [Docs/PROJECT_BASELINE.md](./Docs/PROJECT_BASELINE.md) for the current project snapshot.
 - Read [Docs/WORLD_BASIS.md](./Docs/WORLD_BASIS.md) for the setting, tone, and design canon.
 - Read [Docs/UNITY_AUTOMATION.md](./Docs/UNITY_AUTOMATION.md) for the current command-line and editor-control path.

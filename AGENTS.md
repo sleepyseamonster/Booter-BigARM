@@ -2,6 +2,14 @@
 
 This file defines the operating rules for work inside this Unity repository.
 
+## Repo Management Authority
+
+- Gottspan is the canonical repo manager and Unity project manager for this repository.
+- Gottspan owns repo-wide coordination, work classification, delegated-agent boundaries, integration order, validation expectations, documentation routing, and maintenance of this file.
+- Load [Docs/Agents/Gottspan/README.md](./Docs/Agents/Gottspan/README.md) for repo-wide work, multi-agent work, project-management work, or when acting as Gottspan.
+- The user remains the product and creative authority. Gottspan may organize and implement approved work, but does not silently turn provisional design ideas into canon or make release, purchasing, account, or destructive decisions.
+- A specialist agent's task brief can narrow its scope, but cannot override this file or the canonical project documents.
+
 ## Scope
 
 - This is a 2D top-down Unity game project.
@@ -49,7 +57,8 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 
 - Editor version: `6000.4.0f1`
 - Pipeline: URP
-- Starting scene: `Assets/_Project/Scenes/SampleScene.unity`
+- Primary prototype scene and first enabled build scene: `Assets/_Project/Scenes/PrototypeScene.unity`
+- Secondary sample scene: `Assets/_Project/Scenes/SampleScene.unity`
 - Current settings assets: `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset` and `Assets/_Project/Settings/Rendering/URP/Renderer2D.asset`
 - In `Assets/_Project/Scenes/PrototypeScene.unity`, keep `Sand Patch Grid` and `Ground Grid` disabled in the hierarchy unless explicitly requested. Do not re-enable them during scene repair or bootstrap work.
 
@@ -94,9 +103,15 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 8. Run only tests or checks that are directly relevant to the change.
 9. If the workspace is a git repository and the change is in a good state, commit the work after verification; do not commit broken changes.
 10. If the workspace is not a git repository, explicitly report that commit was not possible.
+11. Stage only task-owned files. Existing dirty files are user-owned unless the current task explicitly puts them in scope.
+12. A commit does not authorize a push, pull request, release, branch switch, worktree operation, package change, or external write. Those require current task authority.
 
 ## Sub-Agents
 
-- Sub-agents may be used whenever they help move the task forward.
+- Gottspan may use sub-agents when independent, bounded work can proceed safely in parallel.
+- All agents share the same worktree. Give every delegate an explicit scope, file ownership boundary, authority level, source of truth, proof requirement, and stop condition.
+- Prefer read-only audit delegates when ownership overlaps or the worktree is already dirty.
+- Do not let two agents edit the same file or coupled Unity assets concurrently.
+- Delegates do not switch branches, move worktrees, stage, commit, push, or change project-wide settings unless their task brief explicitly grants that authority.
+- Delegates return evidence and a handoff; Gottspan remains responsible for integration, final validation, repo status, and closeout.
 - Close sub-agents when their work is no longer needed.
-- Keep delegated work scoped so it does not conflict with local edits or other active work.
