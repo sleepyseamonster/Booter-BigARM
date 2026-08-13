@@ -11,8 +11,10 @@ mode="launch"
 
 if [[ "${1:-}" == "--status" ]]; then
   mode="status"
+elif [[ "${1:-}" == "--foreground" ]]; then
+  mode="foreground"
 elif [[ $# -gt 0 ]]; then
-  echo "Usage: $0 [--status]" >&2
+  echo "Usage: $0 [--status|--foreground]" >&2
   exit 64
 fi
 
@@ -118,9 +120,9 @@ if [[ -z "$editor_pid" ]]; then
       exit 1
     fi
 
-    /usr/bin/open -na "$unity_app" --args -projectPath "$project_root"
+    /usr/bin/open -g -na "$unity_app" --args -projectPath "$project_root"
   else
-    /usr/bin/open -a "$unity_app" --args -projectPath "$project_root"
+    /usr/bin/open -g -a "$unity_app" --args -projectPath "$project_root"
   fi
 
   for _ in {1..45}; do
@@ -147,23 +149,25 @@ if [[ "$window_names" != *"$project_name"* ]]; then
   exit 1
 fi
 
-if [[ "$window_names" != *"PrototypeScene"* ]]; then
-  if [[ "$window_names" == *"Untitled - $project_name"* ]]; then
-    open_primary_scene "$editor_pid"
+if [[ "$mode" == "foreground" ]]; then
+  if [[ "$window_names" != *"PrototypeScene"* ]]; then
+    if [[ "$window_names" == *"Untitled - $project_name"* ]]; then
+      open_primary_scene "$editor_pid"
 
-    for _ in {1..20}; do
-      window_names="$(window_names_for_pid "$editor_pid")"
-      [[ "$window_names" == *"PrototypeScene"* ]] && break
-      sleep 1
-    done
+      for _ in {1..20}; do
+        window_names="$(window_names_for_pid "$editor_pid")"
+        [[ "$window_names" == *"PrototypeScene"* ]] && break
+        sleep 1
+      done
+    fi
   fi
+
+  focus_editor "$editor_pid"
 fi
 
-focus_editor "$editor_pid"
-
 if [[ "$window_names" == *"PrototypeScene"* ]]; then
-  echo "READY: pid=$editor_pid version=$project_version scene=PrototypeScene"
+  echo "READY: pid=$editor_pid version=$project_version scene=PrototypeScene mode=$mode"
 else
-  echo "READY: pid=$editor_pid version=$project_version window=$window_names"
+  echo "READY: pid=$editor_pid version=$project_version mode=$mode window=$window_names"
   echo "NOTE: The editor is open, but PrototypeScene was not confirmed." >&2
 fi

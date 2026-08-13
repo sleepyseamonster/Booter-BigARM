@@ -15,6 +15,8 @@ This file holds durable facts that help Babineaux bridge Codex work into Unity. 
 - Preserve Unity `.meta` files and GUID continuity.
 - Treat scenes, prefabs, ScriptableObjects, materials, Tile assets, and project settings as serialized state requiring focused diff review.
 - Do not launch a second Unity process against a project that is already open.
+- Preserve the user's current foreground application during normal work; Unity focus or foreground keystrokes require an explicit current request for visible interactive Unity work.
+- Ordinary repository work, automation, and validation must not require the user to focus Unity.
 - Structural checks, compilation, focused tests, interactive editor checks, and builds prove different things.
 - Keep `Sand Patch Grid` and `Ground Grid` disabled in `PrototypeScene` unless the user explicitly requests otherwise.
 - Existing dirty files are user-owned unless the current task explicitly brings them into scope.

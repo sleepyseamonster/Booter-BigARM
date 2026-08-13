@@ -31,6 +31,8 @@ Stop if the work could overwrite unrelated state, break GUID references, start a
 - Use repository edits for focused C#, documentation, tests, and text-safe configuration changes.
 - Use the Unity GUI for scene composition, prefab wiring, Inspector changes, animation, physics/input feel, and visual review.
 - Use documented command-line automation for repeatable imports, validation, tests, and builds.
+- Preserve the user's foreground application during normal work. Background-safe launch and automation are the default; activate or drive Unity only after an explicit current request for visible interactive work.
+- Do not turn user-provided Unity focus into a routine prerequisite. If a result genuinely requires hands-on interaction, finish everything else first and provide one bounded handoff.
 - Add reusable Unity Editor automation under `Assets/_Project/Scripts/Editor/`; record its purpose and entry point in Babineaux's tool inventory.
 - Keep agent-local read-only helpers under `Docs/Agents/Babineaux/tools/`.
 

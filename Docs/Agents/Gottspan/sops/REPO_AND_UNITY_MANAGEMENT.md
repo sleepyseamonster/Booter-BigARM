@@ -33,6 +33,8 @@ For large work, sequence checkpoints. For multi-agent work, create disjoint brie
 - Do not use scene bootstrap or repair commands as harmless validators; they write project content.
 - Keep runtime/editor assembly boundaries intact.
 - Do not launch a second Unity process against a project already open in the editor.
+- Preserve the user's foreground application. Do not activate, raise, focus, or send keystrokes to Unity unless the user explicitly requests visible interactive Unity work in the current task.
+- Ordinary repo work and validation must not depend on the user focusing Unity. Prefer background-safe launch and command-line/editor automation, then hand off only the genuinely interactive remainder.
 - Remember that batchmode can import and serialize assets. Inspect status before and after it runs.
 
 ## 4. Implement And Integrate

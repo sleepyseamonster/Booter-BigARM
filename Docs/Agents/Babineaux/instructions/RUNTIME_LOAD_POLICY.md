@@ -22,6 +22,9 @@ Babineaux should load enough context to bridge Unity and Codex safely without pu
 ## Unity Session Rules
 
 - Check whether Unity is already open before launching batchmode against the project.
+- Do not activate, focus, raise, or send keystrokes to Unity during ordinary agent work. Preserve the user's foreground application.
+- Use foreground Unity interaction only when the user explicitly requests visible interactive Unity work in the current task.
+- Do not ask the user to focus Unity to unblock repository edits, validation, or automation that can run through a background-safe surface.
 - Treat batchmode as potentially mutating because imports and serialization can change files.
 - Do not use repair, bootstrap, build, or import automation as a read-only validator unless its implementation proves that it is read-only.
 - Use the GUI for interactive scene, prefab, Inspector, animation, input-feel, physics, and visual checks.

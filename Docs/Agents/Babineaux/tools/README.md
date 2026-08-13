@@ -24,10 +24,11 @@ Before adding a helper or automation entry point, confirm that it:
 
 ### `launch-unity.sh`
 
-- **Purpose:** Open this project in its pinned Unity editor, avoid a duplicate target-project session, wait for the real editor window, restore `PrototypeScene` when Unity lands on `Untitled`, and bring the editor forward.
+- **Purpose:** Open this project in its pinned Unity editor without activating it, avoid a duplicate target-project session, and wait for the real editor window while preserving the user's foreground application.
 - **Path:** `Docs/Agents/Babineaux/tools/launch-unity.sh`
 - **Invocation:** `Docs/Agents/Babineaux/tools/launch-unity.sh`
 - **Read-only check:** `Docs/Agents/Babineaux/tools/launch-unity.sh --status`
-- **Side effects:** Starting Unity can import project assets and update ignored editor state. Restoring `PrototypeScene` changes the active editor scene but does not save it.
-- **Prerequisites:** The project-pinned Unity version must be installed. macOS Accessibility permission is required for window focus and scene restoration.
-- **Safety behavior:** Reuses an already-open target project, refuses a windowless stale Unity process, and does not terminate any Unity process automatically.
+- **Explicit foreground mode:** `Docs/Agents/Babineaux/tools/launch-unity.sh --foreground`. Agents may use this only when the user explicitly requests visible interactive Unity work in the current task. It can bring Unity forward and restore `PrototypeScene` from `Untitled`.
+- **Side effects:** Starting Unity can import project assets and update ignored editor state. Foreground mode may change the active editor scene but does not save it.
+- **Prerequisites:** The project-pinned Unity version must be installed. macOS Accessibility permission is required for window inspection and foreground mode.
+- **Safety behavior:** Defaults to background launch, reuses an already-open target project without raising it, refuses a windowless stale Unity process, and does not terminate any Unity process automatically.

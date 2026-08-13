@@ -11,13 +11,19 @@ This project currently has no MCP bridge exposed in the workspace. The practical
 
 ### Open The Project In The Editor
 
-Babineaux's guarded interactive launcher reads the pinned version from the project, avoids a duplicate target-project session, waits for the actual editor window, restores `PrototypeScene` when Unity lands on `Untitled`, and focuses Unity:
+Babineaux's guarded launcher reads the pinned version from the project, avoids a duplicate target-project session, waits for the actual editor window, and preserves the user's current foreground application:
 
 ```bash
 Docs/Agents/Babineaux/tools/launch-unity.sh
 ```
 
-Use the direct editor command when diagnosing the launcher itself:
+Only when the user explicitly requests visible interactive Unity work in the current task, foreground mode may activate Unity and restore `PrototypeScene` when the editor lands on `Untitled`:
+
+```bash
+Docs/Agents/Babineaux/tools/launch-unity.sh --foreground
+```
+
+Use the direct editor command only when diagnosing the launcher itself. A direct application launch may activate Unity, so agents must not use it unless the current task explicitly authorizes visible foreground Unity work:
 
 ```bash
 "/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/MacOS/Unity" \
@@ -94,6 +100,8 @@ Run the focused EditMode suite:
 ## Safety Gate
 
 - Do not start batchmode against this project while the Unity GUI has it open.
+- Do not activate, focus, raise, or send keystrokes to Unity during normal repo work, automation, validation, or background launch. Preserve the user's foreground application.
+- Foreground mode is allowed only for an explicit current request for visible interactive Unity work. Do not require the user to focus Unity for ordinary agent progress.
 - Batchmode may import or serialize assets even when used for compilation; inspect Git state before and after it runs.
 - Scene build and repair entry points are mutating tools. Run them only when their output is the requested change and the affected scene/assets are owned by the task.
 - Do not create or run gameplay smoke tests unless the user explicitly requests them; hands-on acceptance is user-owned for this project.
