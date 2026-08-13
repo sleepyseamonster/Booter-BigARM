@@ -31,6 +31,8 @@ The perspective lane now has one layered dust-atmosphere owner. It combines expo
 
 The runtime, editor-builder, and focused test sources compile with exit `0` through the pinned Unity 6000.4.0f1 compiler inputs. The Unity GUI currently owns the project, so this pass did not launch batchmode, rebuild the generated scene, or claim a fresh Unity Test Runner result. The runtime bootstrap supplies the atmosphere to the existing scene when it is absent; the guarded builder will serialize the atmosphere and example dense/sheltered regions on the next authorized rebuild. Exact visual tuning remains user-owned acceptance.
 
+The user's first visual review found that this baseline was too subtle and began too far from the playable camera frame. The corrected tuning makes dust unavoidable: the deterministic regional floor now places the exponential-squared fog's 50% visibility point at roughly 24 world units in the clearest field and roughly 16 world units in the naturally dustiest field. Close motes, broad veils, contrast loss, warm filtering, and glow were strengthened so the immediate scene reads as dusty before distant fog fully accumulates.
+
 ## Preservation Evidence
 
 The generated perspective scene remains absent from `ProjectSettings/EditorBuildSettings.asset`. The only enabled scenes remain:

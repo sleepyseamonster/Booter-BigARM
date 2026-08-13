@@ -191,17 +191,37 @@ namespace BooterBigArm.Tests
                 24681357,
                 position,
                 0.0065f,
-                0.86f,
-                1.28f);
+                TopDown3DDustAtmosphere.DefaultMinimumRegionalIntensity,
+                TopDown3DDustAtmosphere.DefaultMaximumRegionalIntensity);
             var second = TopDown3DDustAtmosphere.EvaluateRegionalIntensity(
                 24681357,
                 position,
                 0.0065f,
-                0.86f,
-                1.28f);
+                TopDown3DDustAtmosphere.DefaultMinimumRegionalIntensity,
+                TopDown3DDustAtmosphere.DefaultMaximumRegionalIntensity);
 
             Assert.That(second, Is.EqualTo(first));
-            Assert.That(first, Is.InRange(0.86f, 1.28f));
+            Assert.That(
+                first,
+                Is.InRange(
+                    TopDown3DDustAtmosphere.DefaultMinimumRegionalIntensity,
+                    TopDown3DDustAtmosphere.DefaultMaximumRegionalIntensity));
+        }
+
+        [Test]
+        public void AlwaysOnDust_BringsHalfVisibilityInsideLandscapeCameraRange()
+        {
+            var clearestDensity = TopDown3DDustAtmosphere.DefaultFogDensityAtIntensityOne
+                * TopDown3DDustAtmosphere.DefaultMinimumRegionalIntensity;
+            var dustiestDensity = TopDown3DDustAtmosphere.DefaultFogDensityAtIntensityOne
+                * TopDown3DDustAtmosphere.DefaultMaximumRegionalIntensity;
+
+            Assert.That(
+                TopDown3DDustAtmosphere.EvaluateHalfVisibilityDistance(clearestDensity),
+                Is.InRange(23f, 24f));
+            Assert.That(
+                TopDown3DDustAtmosphere.EvaluateHalfVisibilityDistance(dustiestDensity),
+                Is.InRange(16f, 17f));
         }
 
         [Test]

@@ -403,7 +403,7 @@ namespace BooterBigArm.Editor
                 RenderSettings.fog = true;
                 RenderSettings.fogMode = FogMode.ExponentialSquared;
                 RenderSettings.fogColor = new Color(0.42f, 0.19f, 0.10f);
-                RenderSettings.fogDensity = 0.0125f;
+                RenderSettings.fogDensity = TopDown3DDustAtmosphere.DefaultFogDensityAtIntensityOne;
                 RenderSettings.ambientMode = AmbientMode.Flat;
                 RenderSettings.ambientLight = new Color(0.36f, 0.39f, 0.43f);
 
@@ -550,7 +550,7 @@ namespace BooterBigArm.Editor
                 new Vector3(-34f, 0f, -22f),
                 11f,
                 14f,
-                0.64f,
+                0.90f,
                 new Color(0.40f, 0.25f, 0.18f));
         }
 

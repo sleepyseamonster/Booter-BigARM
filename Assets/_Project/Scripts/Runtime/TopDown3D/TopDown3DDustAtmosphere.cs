@@ -11,6 +11,10 @@ namespace BooterBigArm.TopDown3D
     [DefaultExecutionOrder(-350)]
     public sealed class TopDown3DDustAtmosphere : MonoBehaviour
     {
+        public const float DefaultMinimumRegionalIntensity = 1.08f;
+        public const float DefaultMaximumRegionalIntensity = 1.58f;
+        public const float DefaultFogDensityAtIntensityOne = 0.0325f;
+
         public readonly struct DustSample
         {
             public DustSample(float intensity, float zoneInfluence, Color tint)
@@ -31,20 +35,23 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private int worldSeed = 24681357;
 
         [Header("Regional Dust")]
-        [SerializeField, Range(0.25f, 3f)] private float minimumRegionalIntensity = 0.86f;
-        [SerializeField, Range(0.25f, 3f)] private float maximumRegionalIntensity = 1.28f;
+        [SerializeField, Range(0.25f, 3f)] private float minimumRegionalIntensity =
+            DefaultMinimumRegionalIntensity;
+        [SerializeField, Range(0.25f, 3f)] private float maximumRegionalIntensity =
+            DefaultMaximumRegionalIntensity;
         [SerializeField, Min(0.0001f)] private float regionalFrequency = 0.0065f;
-        [SerializeField, Min(0.01f)] private float responseSeconds = 2.4f;
+        [SerializeField, Min(0.01f)] private float responseSeconds = 1.8f;
 
         [Header("Distance Haze")]
-        [SerializeField, Min(0.0001f)] private float fogDensityAtIntensityOne = 0.0125f;
-        [SerializeField] private Color deepTwilightDust = new Color(0.25f, 0.09f, 0.07f);
-        [SerializeField] private Color brightTwilightDust = new Color(0.58f, 0.31f, 0.15f);
+        [SerializeField, Min(0.0001f)] private float fogDensityAtIntensityOne =
+            DefaultFogDensityAtIntensityOne;
+        [SerializeField] private Color deepTwilightDust = new Color(0.32f, 0.14f, 0.09f);
+        [SerializeField] private Color brightTwilightDust = new Color(0.62f, 0.34f, 0.17f);
         [SerializeField, Range(0f, 1f)] private float zoneTintStrength = 0.42f;
 
         [Header("Close Haze")]
-        [SerializeField, Range(0f, 80f)] private float moteEmissionAtIntensityOne = 24f;
-        [SerializeField, Range(0f, 20f)] private float veilEmissionAtIntensityOne = 3.6f;
+        [SerializeField, Range(0f, 80f)] private float moteEmissionAtIntensityOne = 34f;
+        [SerializeField, Range(0f, 20f)] private float veilEmissionAtIntensityOne = 7.5f;
         [SerializeField] private Vector3 prevailingWind = new Vector3(0.14f, 0.015f, 0.05f);
 
         private Volume volume;
@@ -69,8 +76,8 @@ namespace BooterBigArm.TopDown3D
         public static TopDown3DDustAtmosphere Active { get; private set; }
 
         public float CurrentDustIntensity => currentIntensity;
-        public float DustExposure01 => Mathf.InverseLerp(0.7f, 1.9f, currentIntensity);
-        public float ApproximateVisibilityDistance => 1f / Mathf.Max(0.0001f, CurrentFogDensity);
+        public float DustExposure01 => Mathf.InverseLerp(0.85f, 1.9f, currentIntensity);
+        public float ApproximateVisibilityDistance => EvaluateHalfVisibilityDistance(CurrentFogDensity);
         public float CurrentFogDensity => fogDensityAtIntensityOne * Mathf.Max(0.25f, currentIntensity);
 
         private void OnEnable()
@@ -218,6 +225,11 @@ namespace BooterBigArm.TopDown3D
             return Mathf.Lerp(minimum, maximum, field);
         }
 
+        public static float EvaluateHalfVisibilityDistance(float fogDensity)
+        {
+            return Mathf.Sqrt(Mathf.Log(2f)) / Mathf.Max(0.0001f, fogDensity);
+        }
+
         private static float HashToOffset(int seed, uint salt)
         {
             unchecked
@@ -301,18 +313,18 @@ namespace BooterBigArm.TopDown3D
             var exposure = DustExposure01;
             if (colorAdjustments != null)
             {
-                colorAdjustments.postExposure.value = Mathf.Lerp(-0.02f, -0.12f, exposure);
-                colorAdjustments.contrast.value = Mathf.Lerp(-3f, -13f, exposure);
-                colorAdjustments.saturation.value = Mathf.Lerp(-6f, -22f, exposure);
+                colorAdjustments.postExposure.value = Mathf.Lerp(-0.06f, -0.18f, exposure);
+                colorAdjustments.contrast.value = Mathf.Lerp(-8f, -20f, exposure);
+                colorAdjustments.saturation.value = Mathf.Lerp(-10f, -28f, exposure);
                 colorAdjustments.colorFilter.value = Color.Lerp(
                     Color.white,
-                    new Color(1.04f, 0.88f, 0.72f),
-                    Mathf.Lerp(0.08f, 0.26f, exposure));
+                    new Color(1.06f, 0.84f, 0.64f),
+                    Mathf.Lerp(0.16f, 0.38f, exposure));
             }
 
             if (bloom != null)
             {
-                bloom.intensity.value = Mathf.Lerp(0.07f, 0.28f, exposure);
+                bloom.intensity.value = Mathf.Lerp(0.12f, 0.38f, exposure);
                 bloom.tint.value = Color.Lerp(Color.white, currentTint, 0.35f);
             }
 
@@ -355,18 +367,18 @@ namespace BooterBigArm.TopDown3D
                 "Suspended Dust Motes",
                 420,
                 new ParticleSystem.MinMaxCurve(8f, 14f),
-                new ParticleSystem.MinMaxCurve(0.025f, 0.11f),
+                new ParticleSystem.MinMaxCurve(0.035f, 0.16f),
                 new Vector3(38f, 10f, 38f),
-                0.22f,
-                0.07f);
+                0.28f,
+                0.12f);
             veils = CreateParticleLayer(
                 "Close Dust Veils",
-                110,
+                150,
                 new ParticleSystem.MinMaxCurve(10f, 17f),
-                new ParticleSystem.MinMaxCurve(1.8f, 4.8f),
+                new ParticleSystem.MinMaxCurve(2.6f, 6.5f),
                 new Vector3(42f, 11f, 42f),
-                0.1f,
-                0.018f);
+                0.16f,
+                0.06f);
         }
 
         private ParticleSystem CreateParticleLayer(
@@ -453,8 +465,8 @@ namespace BooterBigArm.TopDown3D
             var emission = particles.emission;
             emission.rateOverTime = emissionAtIntensityOne * Mathf.Clamp(currentIntensity, 0.25f, 2.5f);
             var alpha = veil
-                ? Mathf.Lerp(0.008f, 0.024f, DustExposure01)
-                : Mathf.Lerp(0.04f, 0.115f, DustExposure01);
+                ? Mathf.Lerp(0.03f, 0.085f, DustExposure01)
+                : Mathf.Lerp(0.065f, 0.16f, DustExposure01);
             var nearColor = Color.Lerp(Color.white, currentTint, veil ? 0.55f : 0.72f);
             var farColor = Color.Lerp(new Color(0.72f, 0.49f, 0.28f), currentTint, 0.8f);
             nearColor.a = alpha * 0.55f;
@@ -587,6 +599,12 @@ namespace BooterBigArm.TopDown3D
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
             SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void EnsureCurrentSceneHasAtmosphere()
+        {
+            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
         }
 
         private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)

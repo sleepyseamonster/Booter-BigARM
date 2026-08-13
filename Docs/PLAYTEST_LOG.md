@@ -61,3 +61,15 @@ This log turns game-design questions into repeatable observations. Record what h
 - **Evidence:** user hands-on review in the project task
 - **Decision:** set the camera distance to 25 and expand the steady streaming radius to seven chunks without changing pitch, FOV, the immediate ring, or the per-frame build budget.
 - **Next experiment:** reopen the scene from disk, then check landscape visibility, character readability, and empty-space coverage through a full orbit.
+
+### 2026-08-13 — Dust Atmosphere Visibility Review
+
+- **Build / commit:** `79ab025`
+- **Unity version and scene:** Unity `6000.4.0f1`, `TopDown3DPrototype`
+- **Design question:** Does the first dust-atmosphere pass make the world feel continuously foggy, hazy, and dusty at gameplay distance?
+- **Player / observer:** user
+- **Observed behavior:** The user could not clearly see the haze and reported that it began too far away to make the immediate game area feel dusty.
+- **Evidence:** user hands-on review in the project task
+- **Interpretation:** The initial fog density and close-veil opacity were too conservative. Haze must affect the normal 25-unit camera frame and remain visibly present around Booter even in the clearest regions.
+- **Decision:** move the always-on 50% visibility boundary to approximately 16–24 world units and strengthen close suspended dust while preserving immediate navigation readability.
+- **Next experiment:** compare the clearest regional field and a dense dust region while orbiting the camera; verify that Booter remains readable but distant terrain quickly loses contrast.
