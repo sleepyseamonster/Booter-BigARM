@@ -41,10 +41,33 @@ namespace BooterBigArm.Editor
             var errors = ConversionBaselineValidator.CollectErrors();
             ValidateAssetExists(TopDown3DPrototypeBuilder.ScenePath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.WorldSettingsPath, errors);
+            ValidateWorldCoverage(errors);
             ValidateCameraInput(errors);
             ValidateBuildSettings(errors);
             ValidateScene(errors);
             return errors;
+        }
+
+        private static void ValidateWorldCoverage(ICollection<string> errors)
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(
+                TopDown3DPrototypeBuilder.WorldSettingsPath);
+            if (settings == null)
+            {
+                return;
+            }
+
+            if (settings.StreamingRadius < 4)
+            {
+                errors.Add(
+                    "TopDown3D world streaming must retain a four-chunk radius so supported camera angles and terrain relief cannot expose empty space.");
+            }
+
+            if (settings.ImmediateLoadRadius < 2)
+            {
+                errors.Add(
+                    "TopDown3D initial loading must build a two-chunk radius before budgeted outer-ring streaming begins.");
+            }
         }
 
         private static void ValidateCameraInput(ICollection<string> errors)

@@ -2,7 +2,7 @@
 
 This is the shared implementation pulse for Booter & BigARM. It records what live repo evidence establishes, what still needs Unity or playtest proof, and which decisions are waiting for the user. It does not replace the strategic order in [ROADMAP.md](./ROADMAP.md).
 
-Last reconciled: 2026-08-13 by Gottspan through the traversal-hardening and right-stick camera pass.
+Last reconciled: 2026-08-13 by Gottspan through the camera-coverage streaming pass.
 
 ## Active Program
 
@@ -20,7 +20,7 @@ Last reconciled: 2026-08-13 by Gottspan through the traversal-hardening and righ
 | --- | --- | --- |
 | Input | A single `TopDown3DInputRouter` owns Gameplay input in the new scene. Existing bindings provide keyboard/gamepad movement, sprint, BigARM recall, and `Gameplay/Look` on the gamepad right stick. The camera relies on the Input System's radial stick deadzone rather than stacking another processor. | Binding structure is automatically verified. Physical-controller response remains user-owned acceptance. |
 | Movement and camera | An isolated 3D Rigidbody motor and perspective camera rig provide camera-relative XZ movement, acceleration, sprint, facing, slope grounding, damped follow, obstruction pull-in, right-stick yaw orbit, and constrained right-stick pitch. | Compilation, scene validation, orbit math, movement-basis tests, and initial visual rendering pass. Right-stick direction/speed and pitch-range feel remain user-owned tuning. |
-| World generation | Seeded height sampling, geometry-and-normal seam-matched chunk meshes/colliders, walkable safe-spawn selection, collision-aware prop placement, budgeted chunk creation, and padded unload hysteresis now exist. | Determinism, safe-spawn, and adjacent height/normal seam tests pass. Extended multi-chunk traversal remains user-owned acceptance. |
+| World generation | Seeded height sampling, geometry-and-normal seam-matched chunk meshes/colliders, walkable safe-spawn selection, collision-aware prop placement, a two-chunk immediate ring, a budgeted four-chunk camera-coverage ring, and padded unload hysteresis now exist. | Determinism, safe-spawn, adjacent height/normal seams, and the minimum camera-coverage envelope are automatically guarded. Extended multi-chunk traversal remains user-owned acceptance. |
 | Save/load | The existing versioned 2D prototype save systems remain preserved. | Perspective-world persistence and migration were explicitly deferred. |
 | Survival economy | Existing prototype systems remain preserved. | Harvesting, items, balance, and loop redesign were explicitly deferred. |
 | BigARM | The perspective foundation has a smaller 1.6 by 1.9 collider footprint with idle, follow, avoidance, stuck-recovery, and recall states. | Structure and compact footprint are validated; hands-on behavior acceptance remains user-owned. |
