@@ -8,8 +8,8 @@ namespace BooterBigArm.TopDown3D
     [RequireComponent(typeof(TopDown3DPlayerMotor))]
     public sealed class TopDown3DPlayerAnimationDriver : MonoBehaviour
     {
-        public const float PrototypeVisualScale = 1.3f;
-        public const float PrototypeVisualGroundOffset = -1.15f;
+        public const float PrototypeVisualScale = 1.4f;
+        public const float PrototypeVisualGroundOffset = -1.24f;
 
         private const int IdleIndex = 0;
         private const int WalkIndex = 1;

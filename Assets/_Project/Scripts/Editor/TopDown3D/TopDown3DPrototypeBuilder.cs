@@ -54,8 +54,8 @@ namespace BooterBigArm.Editor
         public const float TerrainSmoothness = 0.18f;
         public const float RockMetersPerTile = 0.85f;
         public const float RockSmoothness = 0.14f;
-        public const float PlayerColliderHeight = 2.3f;
-        public const float PlayerColliderRadius = 0.48f;
+        public const float PlayerColliderHeight = 2.48f;
+        public const float PlayerColliderRadius = 0.52f;
         public const float PlayerGroundClearance = 0.06f;
 
         public const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";

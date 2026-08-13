@@ -381,7 +381,7 @@ Transform:
   m_GameObject: {fileID: 264785637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.05003795, z: 0}
+  m_LocalPosition: {x: 0, y: 0.039962053, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -441,9 +441,9 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver
   humanoidPrefab: {fileID: 100004, guid: 20d97ea0953936148b25caa82b5e14f9, type: 3}
-  visualLocalPosition: {x: 0, y: -1.15, z: 0}
+  visualLocalPosition: {x: 0, y: -1.24, z: 0}
   visualLocalEulerAngles: {x: 0, y: 0, z: 0}
-  visualScale: 1.3
+  visualScale: 1.4
   idleClip: {fileID: 7400000, guid: 77ebce5437875674da8b297c3eed5d1a, type: 3}
   walkClip: {fileID: 7400000, guid: 8d2f32dac24d0c446b26db61358312e9, type: 3}
   runClip: {fileID: 7400000, guid: 5603ba2736827934f814315bda037898, type: 3}
@@ -550,8 +550,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.48
-  m_Height: 2.3
+  m_Radius: 0.52
+  m_Height: 2.48
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &264785643
