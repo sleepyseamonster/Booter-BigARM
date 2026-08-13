@@ -17,7 +17,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(20f, 75f)] private float maximumPitchDegrees = 65f;
         [SerializeField, Range(30f, 240f)] private float yawSpeedDegrees = 120f;
         [SerializeField, Range(20f, 180f)] private float pitchSpeedDegrees = 70f;
-        [SerializeField, Min(2f)] private float distance = 18f;
+        [SerializeField, Min(2f)] private float distance = 25f;
         [SerializeField, Range(20f, 80f)] private float fieldOfView = 48f;
         [SerializeField, Min(0f)] private float followSmoothTime = 0.14f;
         [SerializeField, Min(0.05f)] private float obstructionRadius = 0.35f;

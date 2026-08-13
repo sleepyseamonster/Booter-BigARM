@@ -65,10 +65,10 @@ namespace BooterBigArm.Editor
                 return;
             }
 
-            if (settings.StreamingRadius < 5)
+            if (settings.StreamingRadius < 7)
             {
                 errors.Add(
-                    "TopDown3D world streaming must retain a five-chunk radius so the landscape camera framing cannot expose empty space at supported orbit angles.");
+                    "TopDown3D world streaming must retain a seven-chunk radius so the 25-unit landscape camera cannot expose empty space at supported orbit angles.");
             }
 
             if (settings.ImmediateLoadRadius < 2)

@@ -51,3 +51,13 @@ This log turns game-design questions into repeatable observations. Record what h
 - **Interpretation:** Pull the perspective camera back modestly while expanding streamed terrain far enough to preserve every supported orbit angle.
 - **Decision:** increase the camera distance from 16 to 18 world units and the steady streaming radius from four to five chunks; keep the immediate two-chunk ring and frame budget unchanged.
 - **Next experiment:** user checks character readability, landscape visibility, and empty-space coverage at the shallowest pitch while orbiting through a full turn.
+
+### 2026-08-13 — Expanded Landscape Framing
+
+- **Unity version and scene:** Unity `6000.4.0f1`, `TopDown3DPrototype`
+- **Design question:** Is the initial 18-unit pullback visually substantial enough?
+- **Player / observer:** user
+- **Observed behavior:** The user did not perceive enough change and requested a camera distance of 25 world units.
+- **Evidence:** user hands-on review in the project task
+- **Decision:** set the camera distance to 25 and expand the steady streaming radius to seven chunks without changing pitch, FOV, the immediate ring, or the per-frame build budget.
+- **Next experiment:** reopen the scene from disk, then check landscape visibility, character readability, and empty-space coverage through a full orbit.

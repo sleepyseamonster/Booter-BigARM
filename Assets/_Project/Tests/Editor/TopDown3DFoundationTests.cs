@@ -96,8 +96,8 @@ namespace BooterBigArm.Tests
                 var rig = cameraObject.AddComponent<TopDown3DCameraRig>();
 
                 Assert.That(settings, Is.Not.Null);
-                Assert.That(rig.Distance, Is.EqualTo(18f).Within(0.0001f));
-                Assert.That(settings.StreamingRadius, Is.GreaterThanOrEqualTo(5));
+                Assert.That(rig.Distance, Is.EqualTo(25f).Within(0.0001f));
+                Assert.That(settings.StreamingRadius, Is.GreaterThanOrEqualTo(7));
                 Assert.That(settings.ImmediateLoadRadius, Is.EqualTo(2));
             }
             finally
