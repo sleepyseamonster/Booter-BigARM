@@ -158,7 +158,7 @@ namespace BooterBigArm.Tests
 
             Assert.That(booter, Is.Not.Null);
             Assert.That(bigArm, Is.Not.Null);
-            Assert.That(booter.GetColor("_BaseColor"), Is.EqualTo(new Color(0.87f, 0.31f, 0.12f, 1f)));
+            Assert.That(booter.GetColor("_BaseColor"), Is.EqualTo(new Color(0.58f, 0.49f, 0.37f, 1f)));
             Assert.That(bigArm.GetColor("_BaseColor"), Is.EqualTo(new Color(0.08f, 0.74f, 0.76f, 1f)));
         }
 

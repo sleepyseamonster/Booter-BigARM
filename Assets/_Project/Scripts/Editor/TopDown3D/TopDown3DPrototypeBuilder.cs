@@ -119,7 +119,7 @@ namespace BooterBigArm.Editor
 
             settings.ConfigureNaturalObjectAssets(naturalObjectCatalog, fineGrayClutterMaterial);
             EditorUtility.SetDirty(settings);
-            var playerMaterial = EnsureMaterial("Greybox_Booter", new Color(0.87f, 0.31f, 0.12f));
+            var playerMaterial = EnsureMaterial("Greybox_Booter", new Color(0.58f, 0.49f, 0.37f));
             var bigArmMaterial = EnsureMaterial("Greybox_BigARM", new Color(0.08f, 0.74f, 0.76f));
             var rendererIndex = ResolveConversionRendererIndex();
             CreateScene(
