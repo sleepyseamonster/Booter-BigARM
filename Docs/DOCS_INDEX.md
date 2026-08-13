@@ -46,6 +46,8 @@ These define current preferred approaches or sequencing.
 
 These describe current repo state rather than durable design truth.
 
+- [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md)
+  The evidence-backed audit, decision gates, asset requirements, risks, and phased checklist for the top-down isometric-style 2.5D conversion.
 - [PROJECT_BASELINE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/PROJECT_BASELINE.md)
 - [PROJECT_STATUS.md](./PROJECT_STATUS.md)
 - [ROADMAP.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/ROADMAP.md)
