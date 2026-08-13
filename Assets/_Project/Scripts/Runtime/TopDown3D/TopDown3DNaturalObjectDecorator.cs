@@ -6,6 +6,8 @@ namespace BooterBigArm.TopDown3D
 {
     public static class TopDown3DNaturalObjectDecorator
     {
+        private const int RockSurfaceCount = 3;
+
         public static void Decorate(
             TopDown3DGeneratedChunk chunk,
             TopDown3DWorldSettings settings,
@@ -22,8 +24,8 @@ namespace BooterBigArm.TopDown3D
                 settings.NaturalObjectCatalog,
                 chunk.Coordinate,
                 spawnExclusionCenter);
-            var scatter = new List<TopDown3DNaturalObjectPlacement>();
-            var details = new List<TopDown3DNaturalObjectPlacement>();
+            var scatter = CreateSurfaceBuckets();
+            var details = CreateSurfaceBuckets();
             var fineGrayClusters = new List<TopDown3DNaturalObjectPlacement>();
             var obstacleIndex = 0;
             for (var i = 0; i < placements.Count; i++)
@@ -32,13 +34,17 @@ namespace BooterBigArm.TopDown3D
                 switch (placement.Layer)
                 {
                     case TopDown3DNaturalObjectLayer.Obstacle:
-                        CreateObstacle(chunk.transform, material, placement, ++obstacleIndex);
+                        CreateObstacle(
+                            chunk.transform,
+                            ResolveRockMaterial(settings, material, placement.Surface),
+                            placement,
+                            ++obstacleIndex);
                         break;
                     case TopDown3DNaturalObjectLayer.Scatter:
-                        scatter.Add(placement);
+                        scatter[(int)placement.Surface].Add(placement);
                         break;
                     case TopDown3DNaturalObjectLayer.GroundDetail:
-                        details.Add(placement);
+                        details[(int)placement.Surface].Add(placement);
                         break;
                     case TopDown3DNaturalObjectLayer.FineGrayCluster:
                         fineGrayClusters.Add(placement);
@@ -46,14 +52,71 @@ namespace BooterBigArm.TopDown3D
                 }
             }
 
-            CreateCombinedLayer(chunk, material, scatter, "Natural Scatter", ShadowCastingMode.On);
-            CreateCombinedLayer(chunk, material, details, "Ground Micro Detail", ShadowCastingMode.Off);
+            for (var surfaceIndex = 0; surfaceIndex < RockSurfaceCount; surfaceIndex++)
+            {
+                var surface = (TopDown3DRockSurface)surfaceIndex;
+                var surfaceMaterial = ResolveRockMaterial(settings, material, surface);
+                var surfaceName = GetSurfaceName(surface);
+                CreateCombinedLayer(
+                    chunk,
+                    surfaceMaterial,
+                    scatter[surfaceIndex],
+                    $"Natural Scatter - {surfaceName}",
+                    ShadowCastingMode.On);
+                CreateCombinedLayer(
+                    chunk,
+                    surfaceMaterial,
+                    details[surfaceIndex],
+                    $"Ground Micro Detail - {surfaceName}",
+                    ShadowCastingMode.Off);
+            }
+
             CreateCombinedLayer(
                 chunk,
                 settings.FineGrayClutterMaterial,
                 fineGrayClusters,
                 "Fine Gray Ground Clusters",
                 ShadowCastingMode.Off);
+        }
+
+        private static List<TopDown3DNaturalObjectPlacement>[] CreateSurfaceBuckets()
+        {
+            var buckets = new List<TopDown3DNaturalObjectPlacement>[RockSurfaceCount];
+            for (var i = 0; i < buckets.Length; i++)
+            {
+                buckets[i] = new List<TopDown3DNaturalObjectPlacement>();
+            }
+
+            return buckets;
+        }
+
+        private static Material ResolveRockMaterial(
+            TopDown3DWorldSettings settings,
+            Material regularMaterial,
+            TopDown3DRockSurface surface)
+        {
+            switch (surface)
+            {
+                case TopDown3DRockSurface.Dark:
+                    return settings.DarkRockMaterial != null ? settings.DarkRockMaterial : regularMaterial;
+                case TopDown3DRockSurface.Teal:
+                    return settings.TealRockMaterial != null ? settings.TealRockMaterial : regularMaterial;
+                default:
+                    return regularMaterial;
+            }
+        }
+
+        private static string GetSurfaceName(TopDown3DRockSurface surface)
+        {
+            switch (surface)
+            {
+                case TopDown3DRockSurface.Dark:
+                    return "Dark";
+                case TopDown3DRockSurface.Teal:
+                    return "Teal";
+                default:
+                    return "Regular";
+            }
         }
 
         private static void CreateObstacle(

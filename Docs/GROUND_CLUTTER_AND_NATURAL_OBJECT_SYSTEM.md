@@ -26,6 +26,10 @@ The default gray layer targets 156 candidates per 18-meter chunk, but its sharpe
 
 The per-chunk combined meshes are destroyed with their owning streamed chunk. The small reusable faceted shape family is cached and shared.
 
+## Rock Surface Families
+
+Ordinary obstacles, scatter, and ground-detail rocks share one world-anchored surface field with three outcomes: regular stone, dark charcoal stone, and restrained teal mineral stone. The low-frequency field forms coherent geological patches across chunk seams; it does not alter positions, collision, scale, or the independent fine-gray layer. Each family uses the same triplanar shader and tuning with its own authored albedo texture, and combined visual layers are split by material so shared materials remain batch-friendly.
+
 ## Visual Standard
 
 - Detail should come from top-down silhouette, deliberate broad planes, asymmetric proportions, controlled sinking/contact, and restrained distribution rather than hidden polygon density.

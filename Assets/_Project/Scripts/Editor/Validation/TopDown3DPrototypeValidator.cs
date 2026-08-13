@@ -49,7 +49,11 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainMaterialPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.RockShaderPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.RockAlbedoPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.DarkRockAlbedoPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TealRockAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.RockMaterialPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.DarkRockMaterialPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TealRockMaterialPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.FineGrayClutterMaterialPath, errors);
             ValidateTerrainMaterial(errors);
             ValidateRockMaterial(errors);
@@ -100,6 +104,20 @@ namespace BooterBigArm.Editor
                 || settings.FineGrayClutterMaterial != grayMaterial)
             {
                 errors.Add("TopDown3D world settings must reference the shared fine-gray clutter material.");
+            }
+
+            var darkMaterial = AssetDatabase.LoadAssetAtPath<Material>(
+                TopDown3DPrototypeBuilder.DarkRockMaterialPath);
+            var tealMaterial = AssetDatabase.LoadAssetAtPath<Material>(
+                TopDown3DPrototypeBuilder.TealRockMaterialPath);
+            if (settings.DarkRockMaterial == null || settings.DarkRockMaterial != darkMaterial)
+            {
+                errors.Add("TopDown3D world settings must reference the shared dark-rock material.");
+            }
+
+            if (settings.TealRockMaterial == null || settings.TealRockMaterial != tealMaterial)
+            {
+                errors.Add("TopDown3D world settings must reference the shared teal-rock material.");
             }
 
             foreach (TopDown3DNaturalObjectLayer layer in Enum.GetValues(typeof(TopDown3DNaturalObjectLayer)))
@@ -168,9 +186,32 @@ namespace BooterBigArm.Editor
 
         private static void ValidateRockMaterial(ICollection<string> errors)
         {
-            var material = AssetDatabase.LoadAssetAtPath<Material>(TopDown3DPrototypeBuilder.RockMaterialPath);
+            ValidateRockMaterial(
+                TopDown3DPrototypeBuilder.RockMaterialPath,
+                TopDown3DPrototypeBuilder.RockAlbedoPath,
+                "regular",
+                errors);
+            ValidateRockMaterial(
+                TopDown3DPrototypeBuilder.DarkRockMaterialPath,
+                TopDown3DPrototypeBuilder.DarkRockAlbedoPath,
+                "dark",
+                errors);
+            ValidateRockMaterial(
+                TopDown3DPrototypeBuilder.TealRockMaterialPath,
+                TopDown3DPrototypeBuilder.TealRockAlbedoPath,
+                "teal",
+                errors);
+        }
+
+        private static void ValidateRockMaterial(
+            string materialPath,
+            string albedoPath,
+            string surfaceName,
+            ICollection<string> errors)
+        {
+            var material = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
             var shader = AssetDatabase.LoadAssetAtPath<Shader>(TopDown3DPrototypeBuilder.RockShaderPath);
-            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.RockAlbedoPath);
+            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(albedoPath);
             if (material == null || shader == null || albedo == null)
             {
                 return;
@@ -178,18 +219,18 @@ namespace BooterBigArm.Editor
 
             if (material.shader != shader)
             {
-                errors.Add("TopDown3D spawned rocks must use the Broken World triplanar rock shader.");
+                errors.Add($"TopDown3D {surfaceName} rocks must use the Broken World triplanar rock shader.");
             }
 
             if (material.GetTexture("_BaseMap") != albedo)
             {
-                errors.Add("TopDown3D spawned rocks must use the Broken World rock-surface albedo texture.");
+                errors.Add($"TopDown3D {surfaceName} rocks must use their assigned rock-surface albedo texture.");
             }
 
             if (!Mathf.Approximately(material.GetFloat("_RockMetersPerTile"), TopDown3DPrototypeBuilder.RockMetersPerTile)
                 || !Mathf.Approximately(material.GetFloat("_Smoothness"), TopDown3DPrototypeBuilder.RockSmoothness))
             {
-                errors.Add("TopDown3D spawned-rock material tuning does not match the canonical builder values.");
+                errors.Add($"TopDown3D {surfaceName}-rock material tuning does not match the canonical builder values.");
             }
         }
 

@@ -21,6 +21,13 @@ namespace BooterBigArm.TopDown3D
         Nodule
     }
 
+    public enum TopDown3DRockSurface
+    {
+        Regular,
+        Dark,
+        Teal
+    }
+
     [Serializable]
     public sealed class TopDown3DNaturalObjectDefinition
     {

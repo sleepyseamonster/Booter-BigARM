@@ -122,6 +122,42 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void RockSurfaces_UseAllThreeFamiliesInSpatialClusters()
+        {
+            var settings = LoadSettings();
+            Assert.That(settings.DarkRockMaterial, Is.Not.Null);
+            Assert.That(settings.TealRockMaterial, Is.Not.Null);
+
+            var seen = new bool[3];
+            var matchingNeighbors = 0;
+            var neighborComparisons = 0;
+            for (var z = -60; z <= 60; z += 2)
+            {
+                for (var x = -60; x <= 60; x += 2)
+                {
+                    var surface = TopDown3DNaturalObjectPlanner.SampleRockSurface(
+                        settings,
+                        new Vector2(x, z));
+                    seen[(int)surface] = true;
+                    if (x < 60)
+                    {
+                        var neighbor = TopDown3DNaturalObjectPlanner.SampleRockSurface(
+                            settings,
+                            new Vector2(x + 2, z));
+                        matchingNeighbors += surface == neighbor ? 1 : 0;
+                        neighborComparisons++;
+                    }
+                }
+            }
+
+            Assert.That(seen.All(value => value), Is.True);
+            Assert.That(
+                (float)matchingNeighbors / neighborComparisons,
+                Is.GreaterThan(0.8f),
+                "Rock surfaces should form broad patches rather than per-rock color noise.");
+        }
+
+        [Test]
         public void FineGrayCluster_IsLargerDenseAndStronglyClustered()
         {
             var settings = LoadSettings();

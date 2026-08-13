@@ -10,6 +10,7 @@ namespace BooterBigArm.TopDown3D
             string stableId,
             TopDown3DNaturalObjectLayer layer,
             TopDown3DNaturalObjectShape shape,
+            TopDown3DRockSurface surface,
             int variant,
             Vector3 position,
             Quaternion rotation,
@@ -19,6 +20,7 @@ namespace BooterBigArm.TopDown3D
             StableId = stableId;
             Layer = layer;
             Shape = shape;
+            Surface = surface;
             Variant = variant;
             Position = position;
             Rotation = rotation;
@@ -29,6 +31,7 @@ namespace BooterBigArm.TopDown3D
         public string StableId { get; }
         public TopDown3DNaturalObjectLayer Layer { get; }
         public TopDown3DNaturalObjectShape Shape { get; }
+        public TopDown3DRockSurface Surface { get; }
         public int Variant { get; }
         public Vector3 Position { get; }
         public Quaternion Rotation { get; }
@@ -40,6 +43,7 @@ namespace BooterBigArm.TopDown3D
             return StableId == other.StableId
                 && Layer == other.Layer
                 && Shape == other.Shape
+                && Surface == other.Surface
                 && Variant == other.Variant
                 && Position == other.Position
                 && Rotation == other.Rotation
@@ -59,6 +63,7 @@ namespace BooterBigArm.TopDown3D
                 var hash = StableId != null ? StableId.GetHashCode() : 0;
                 hash = hash * 397 ^ (int)Layer;
                 hash = hash * 397 ^ (int)Shape;
+                hash = hash * 397 ^ (int)Surface;
                 hash = hash * 397 ^ Variant;
                 hash = hash * 397 ^ Position.GetHashCode();
                 return hash;
@@ -262,6 +267,9 @@ namespace BooterBigArm.TopDown3D
                         definition.StableId,
                         layer,
                         definition.Shape,
+                        layer == TopDown3DNaturalObjectLayer.FineGrayCluster
+                            ? TopDown3DRockSurface.Regular
+                            : SampleRockSurface(settings, worldPosition),
                         Mathf.FloorToInt(candidate.Variant * VariantCount) % VariantCount,
                         position,
                         tilt * yaw,
@@ -341,6 +349,28 @@ namespace BooterBigArm.TopDown3D
                 Mathf.Lerp(clusterMinimumFactor, clusterMaximumFactor, cluster),
                 clusterStrength);
             return candidate.Admission <= Mathf.Clamp01(baseAdmission * clusterFactor);
+        }
+
+        public static TopDown3DRockSurface SampleRockSurface(
+            TopDown3DWorldSettings settings,
+            Vector2 worldPosition)
+        {
+            var surfaceSeed = StableHash(
+                settings.WorldSeed,
+                settings.NaturalObjectGenerationVersion,
+                0x25A17D3E);
+            var cluster = ValueNoise(
+                surfaceSeed,
+                worldPosition.x * settings.RockSurfaceClusterFrequency,
+                worldPosition.y * settings.RockSurfaceClusterFrequency);
+            if (cluster < settings.DarkRockSurfaceThreshold)
+            {
+                return TopDown3DRockSurface.Dark;
+            }
+
+            return cluster > settings.TealRockSurfaceThreshold
+                ? TopDown3DRockSurface.Teal
+                : TopDown3DRockSurface.Regular;
         }
 
         private static List<TopDown3DNaturalObjectDefinition> GetDefinitions(

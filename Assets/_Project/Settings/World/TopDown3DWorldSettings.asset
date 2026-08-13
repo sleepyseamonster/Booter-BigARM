@@ -39,6 +39,11 @@ MonoBehaviour:
   fineGrayClusterFrequency: 0.065
   fineGrayClusterStrength: 1
   fineGrayClutterSpacing: 0.006
+  darkRockMaterial: {fileID: 2100000, guid: 38287d14ea49453698d5031568a10ef6, type: 2}
+  tealRockMaterial: {fileID: 2100000, guid: fd571f3b820d4afdb69e001c7832fcff, type: 2}
+  rockSurfaceClusterFrequency: 0.04
+  darkRockSurfaceThreshold: 0.4
+  tealRockSurfaceThreshold: 0.74
   maximumClutterSlope: 44
   clearSpawnRadius: 7
   safeSpawnSearchRadius: 8

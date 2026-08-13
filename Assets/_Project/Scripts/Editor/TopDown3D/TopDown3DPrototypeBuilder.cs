@@ -21,12 +21,18 @@ namespace BooterBigArm.Editor
         public const string FineGrayClutterMaterialPath = MaterialFolder + "/FineGray_Clutter.mat";
         public const string TerrainMaterialPath = MaterialFolder + "/Greybox_Terrain.mat";
         public const string RockMaterialPath = MaterialFolder + "/Greybox_Rock.mat";
+        public const string DarkRockMaterialPath = MaterialFolder + "/BrokenWorld_Rock_Dark.mat";
+        public const string TealRockMaterialPath = MaterialFolder + "/BrokenWorld_Rock_Teal.mat";
         public const string TerrainShaderPath =
             "Assets/_Project/Shaders/TopDown3D/BrokenWorldTerrainBlend.shader";
         public const string RockShaderPath =
             "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockTriplanar.shader";
         public const string RockAlbedoPath =
             "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceAlbedo.png";
+        public const string DarkRockAlbedoPath =
+            "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceDarkAlbedo.png";
+        public const string TealRockAlbedoPath =
+            "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealAlbedo.png";
         public const string TerrainAlbedoPath =
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png";
         public const string TerrainSweptSandAlbedoPath =
@@ -132,6 +138,12 @@ namespace BooterBigArm.Editor
             var settings = EnsureWorldSettings();
             var terrainMaterial = EnsureTerrainMaterial();
             var rockMaterial = EnsureRockMaterial();
+            var darkRockMaterial = EnsureRockMaterial(
+                "BrokenWorld_Rock_Dark",
+                DarkRockAlbedoPath);
+            var tealRockMaterial = EnsureRockMaterial(
+                "BrokenWorld_Rock_Teal",
+                TealRockAlbedoPath);
             var fineGrayClutterMaterial = EnsureFineGrayClutterMaterial();
             var naturalObjectCatalog = AssetDatabase.LoadAssetAtPath<TopDown3DNaturalObjectCatalog>(
                 NaturalObjectCatalogPath);
@@ -141,7 +153,11 @@ namespace BooterBigArm.Editor
                     $"Missing natural-object catalog at {NaturalObjectCatalogPath}.");
             }
 
-            settings.ConfigureNaturalObjectAssets(naturalObjectCatalog, fineGrayClutterMaterial);
+            settings.ConfigureNaturalObjectAssets(
+                naturalObjectCatalog,
+                fineGrayClutterMaterial,
+                darkRockMaterial,
+                tealRockMaterial);
             EditorUtility.SetDirty(settings);
             var playerMaterial = EnsureMaterial("Greybox_Booter", new Color(0.58f, 0.49f, 0.37f));
             var bigArmMaterial = EnsureMaterial("Greybox_BigARM", new Color(0.08f, 0.74f, 0.76f));
@@ -243,12 +259,18 @@ namespace BooterBigArm.Editor
 
         private static Material EnsureRockMaterial()
         {
-            var material = EnsureMaterial("Greybox_Rock", Color.white);
+            return EnsureRockMaterial("Greybox_Rock", RockAlbedoPath);
+        }
+
+        private static Material EnsureRockMaterial(string materialName, string albedoPath)
+        {
+            var material = EnsureMaterial(materialName, Color.white);
             var shader = AssetDatabase.LoadAssetAtPath<Shader>(RockShaderPath);
-            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(RockAlbedoPath);
+            var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(albedoPath);
             if (shader == null || albedo == null)
             {
-                throw new InvalidOperationException("The triplanar rock shader or its albedo texture is missing.");
+                throw new InvalidOperationException(
+                    $"The triplanar rock shader or albedo texture is missing for {materialName}.");
             }
 
             var changed = false;

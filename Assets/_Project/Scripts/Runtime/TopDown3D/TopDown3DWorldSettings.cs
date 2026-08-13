@@ -33,6 +33,12 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(0.0001f)] private float fineGrayClusterFrequency = 0.065f;
         [SerializeField, Range(0f, 1f)] private float fineGrayClusterStrength = 1f;
         [SerializeField, Min(0f)] private float fineGrayClutterSpacing = 0.006f;
+        [Header("Rock Surface Clusters")]
+        [SerializeField] private Material darkRockMaterial;
+        [SerializeField] private Material tealRockMaterial;
+        [SerializeField, Min(0.0001f)] private float rockSurfaceClusterFrequency = 0.04f;
+        [SerializeField, Range(0.05f, 0.45f)] private float darkRockSurfaceThreshold = 0.4f;
+        [SerializeField, Range(0.55f, 0.95f)] private float tealRockSurfaceThreshold = 0.74f;
         [SerializeField, Range(1f, 60f)] private float maximumClutterSlope = 44f;
         [SerializeField, Min(0f)] private float clearSpawnRadius = 7f;
         [SerializeField, Min(0.25f)] private float safeSpawnSearchRadius = 8f;
@@ -69,6 +75,11 @@ namespace BooterBigArm.TopDown3D
         public float FineGrayClusterFrequency => fineGrayClusterFrequency;
         public float FineGrayClusterStrength => fineGrayClusterStrength;
         public float FineGrayClutterSpacing => fineGrayClutterSpacing;
+        public Material DarkRockMaterial => darkRockMaterial;
+        public Material TealRockMaterial => tealRockMaterial;
+        public float RockSurfaceClusterFrequency => rockSurfaceClusterFrequency;
+        public float DarkRockSurfaceThreshold => darkRockSurfaceThreshold;
+        public float TealRockSurfaceThreshold => tealRockSurfaceThreshold;
         public float MaximumClutterSlope => maximumClutterSlope;
         public float ClearSpawnRadius => clearSpawnRadius;
         public float SafeSpawnSearchRadius => safeSpawnSearchRadius;
@@ -80,10 +91,14 @@ namespace BooterBigArm.TopDown3D
 
         public void ConfigureNaturalObjectAssets(
             TopDown3DNaturalObjectCatalog catalog,
-            Material grayClutterMaterial)
+            Material grayClutterMaterial,
+            Material darkSurfaceMaterial,
+            Material tealSurfaceMaterial)
         {
             naturalObjectCatalog = catalog;
             fineGrayClutterMaterial = grayClutterMaterial;
+            darkRockMaterial = darkSurfaceMaterial;
+            tealRockMaterial = tealSurfaceMaterial;
         }
 
         private void OnValidate()
@@ -110,6 +125,9 @@ namespace BooterBigArm.TopDown3D
             fineGrayClusterFrequency = Mathf.Max(0.0001f, fineGrayClusterFrequency);
             fineGrayClusterStrength = Mathf.Clamp01(fineGrayClusterStrength);
             fineGrayClutterSpacing = Mathf.Max(0f, fineGrayClutterSpacing);
+            rockSurfaceClusterFrequency = Mathf.Max(0.0001f, rockSurfaceClusterFrequency);
+            darkRockSurfaceThreshold = Mathf.Clamp(darkRockSurfaceThreshold, 0.05f, 0.45f);
+            tealRockSurfaceThreshold = Mathf.Clamp(tealRockSurfaceThreshold, 0.55f, 0.95f);
             maximumClutterSlope = Mathf.Clamp(maximumClutterSlope, 1f, 60f);
             clearSpawnRadius = Mathf.Max(0f, clearSpawnRadius);
             safeSpawnSearchRadius = Mathf.Max(0.25f, safeSpawnSearchRadius);
