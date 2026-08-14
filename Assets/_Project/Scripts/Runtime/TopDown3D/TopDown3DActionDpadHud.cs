@@ -19,16 +19,14 @@ namespace BooterBigArm.TopDown3D
     }
 
     [DisallowMultipleComponent]
+    [RequireComponent(typeof(RectTransform))]
     public sealed class TopDown3DActionDpadHud : MonoBehaviour
     {
         public const float ReferenceSize = 168f;
         public const float ReferenceMargin = 34f;
-        public const int CanvasSortingOrder = 120;
+        public const int CanvasSortingOrder = TopDown3DGameHudCanvas.CanvasSortingOrder;
 
-        private static readonly Vector2 ReferenceResolution = new(1920f, 1080f);
-
-        private Canvas hudCanvas;
-        private CanvasScaler canvasScaler;
+        private TopDown3DGameHudCanvas gameHud;
         private TopDown3DActionDpadGraphic dpadGraphic;
         private Rect lastSafeArea;
         private Vector2Int lastScreenSize;
@@ -38,7 +36,7 @@ namespace BooterBigArm.TopDown3D
 
         public void Initialize()
         {
-            EnsureCanvas();
+            EnsureGameHudParent();
             EnsureVisualTree();
             RefreshSafeArea(force: true);
         }
@@ -71,21 +69,31 @@ namespace BooterBigArm.TopDown3D
 
         public static TopDown3DActionDpadHud TryInstallForScene(Scene scene)
         {
-            if (!scene.IsValid() || !scene.isLoaded || FindInScene<TopDown3DInputRouter>(scene) == null)
+            if (!scene.IsValid()
+                || !scene.isLoaded
+                || TopDown3DGameHudCanvas.FindInScene<TopDown3DInputRouter>(scene) == null)
             {
                 return null;
             }
 
-            var existing = FindInScene<TopDown3DActionDpadHud>(scene);
+            var gameHud = TopDown3DGameHudCanvas.TryInstallForScene(scene);
+            if (gameHud == null)
+            {
+                return null;
+            }
+
+            var existing = TopDown3DGameHudCanvas.FindInScene<TopDown3DActionDpadHud>(scene);
             if (existing != null)
             {
+                existing.AttachToGameHud(gameHud);
                 existing.Initialize();
                 return existing;
             }
 
-            var hudObject = new GameObject("Action D-Pad HUD");
-            SceneManager.MoveGameObjectToScene(hudObject, scene);
+            var hudObject = new GameObject("Action D-Pad HUD", typeof(RectTransform));
+            hudObject.transform.SetParent(gameHud.transform, false);
             var hud = hudObject.AddComponent<TopDown3DActionDpadHud>();
+            hud.gameHud = gameHud;
             hud.Initialize();
             return hud;
         }
@@ -105,33 +113,21 @@ namespace BooterBigArm.TopDown3D
             RefreshSafeArea(force: false);
         }
 
-        private void EnsureCanvas()
+        private void EnsureGameHudParent()
         {
-            hudCanvas = GetComponent<Canvas>();
-            if (hudCanvas == null)
+            if (gameHud == null)
             {
-                hudCanvas = gameObject.AddComponent<Canvas>();
+                gameHud = GetComponentInParent<TopDown3DGameHudCanvas>();
             }
 
-            hudCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            hudCanvas.sortingOrder = CanvasSortingOrder;
-            hudCanvas.pixelPerfect = false;
-
-            canvasScaler = GetComponent<CanvasScaler>();
-            if (canvasScaler == null)
+            if (gameHud == null && gameObject.scene.IsValid() && gameObject.scene.isLoaded)
             {
-                canvasScaler = gameObject.AddComponent<CanvasScaler>();
+                gameHud = TopDown3DGameHudCanvas.TryInstallForScene(gameObject.scene);
             }
 
-            canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            canvasScaler.referenceResolution = ReferenceResolution;
-            canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
-            canvasScaler.matchWidthOrHeight = 0.5f;
-
-            var raycaster = GetComponent<GraphicRaycaster>();
-            if (raycaster != null)
+            if (gameHud != null)
             {
-                DestroyRuntimeObject(raycaster);
+                AttachToGameHud(gameHud);
             }
         }
 
@@ -157,9 +153,10 @@ namespace BooterBigArm.TopDown3D
             }
 
             rectTransform.anchorMin = Vector2.zero;
-            rectTransform.anchorMax = Vector2.zero;
-            rectTransform.pivot = Vector2.zero;
-            rectTransform.sizeDelta = Vector2.one * ReferenceSize;
+            rectTransform.anchorMax = Vector2.one;
+            rectTransform.pivot = new Vector2(0.5f, 0.5f);
+            rectTransform.offsetMin = Vector2.zero;
+            rectTransform.offsetMax = Vector2.zero;
             dpadGraphic.raycastTarget = false;
 
             var obsoleteSafeArea = transform.Find("Safe Area");
@@ -171,14 +168,14 @@ namespace BooterBigArm.TopDown3D
 
         private void RefreshSafeArea(bool force)
         {
-            if (dpadGraphic == null || Screen.width <= 0 || Screen.height <= 0)
+            if (gameHud == null || Screen.width <= 0 || Screen.height <= 0)
             {
                 return;
             }
 
             var safeArea = Screen.safeArea;
             var screenSize = new Vector2Int(Screen.width, Screen.height);
-            var canvasScale = hudCanvas != null ? hudCanvas.scaleFactor : 1f;
+            var canvasScale = gameHud.Canvas != null ? gameHud.Canvas.scaleFactor : 1f;
             if (!force
                 && safeArea == lastSafeArea
                 && screenSize == lastScreenSize
@@ -190,22 +187,30 @@ namespace BooterBigArm.TopDown3D
             lastSafeArea = safeArea;
             lastScreenSize = screenSize;
             lastCanvasScale = canvasScale;
-            dpadGraphic.rectTransform.anchoredPosition = GetBottomLeftAnchoredPosition(safeArea, canvasScale);
+            var rectTransform = (RectTransform)transform;
+            rectTransform.anchorMin = Vector2.zero;
+            rectTransform.anchorMax = Vector2.zero;
+            rectTransform.pivot = Vector2.zero;
+            rectTransform.sizeDelta = Vector2.one * ReferenceSize;
+            rectTransform.anchoredPosition = GetBottomLeftAnchoredPosition(safeArea, canvasScale);
         }
 
-        private static T FindInScene<T>(Scene scene) where T : Component
+        private void AttachToGameHud(TopDown3DGameHudCanvas owner)
         {
-            var roots = scene.GetRootGameObjects();
-            for (var i = 0; i < roots.Length; i++)
+            gameHud = owner;
+            if (owner.gameObject == gameObject)
             {
-                var component = roots[i].GetComponentInChildren<T>(true);
-                if (component != null)
-                {
-                    return component;
-                }
+                return;
             }
 
-            return null;
+            if (transform.parent != owner.transform)
+            {
+                transform.SetParent(owner.transform, false);
+            }
+
+            DestroyRuntimeObject(GetComponent<GraphicRaycaster>());
+            DestroyRuntimeObject(GetComponent<CanvasScaler>());
+            DestroyRuntimeObject(GetComponent<Canvas>());
         }
 
         private static void DestroyRuntimeObject(Object target)

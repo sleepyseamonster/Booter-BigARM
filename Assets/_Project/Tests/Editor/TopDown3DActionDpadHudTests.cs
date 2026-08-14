@@ -10,16 +10,17 @@ namespace BooterBigArm.Tests
     public sealed class TopDown3DActionDpadHudTests
     {
         [Test]
-        public void Initialize_BuildsPolishedSafeAreaAwareBottomLeftHud()
+        public void Install_BuildsPolishedDpadUnderSharedCanvas()
         {
-            var hudObject = new GameObject("HUD Test");
+            var scene = SceneManager.CreateScene("DpadLayoutTestScene");
             try
             {
-                var hud = hudObject.AddComponent<TopDown3DActionDpadHud>();
-                hud.Initialize();
+                AddInactiveInputRouter(scene);
+                var gameHud = TopDown3DGameHudCanvas.TryInstallForScene(scene);
+                var hud = TopDown3DActionDpadHud.TryInstallForScene(scene);
 
-                var canvas = hudObject.GetComponent<Canvas>();
-                var scaler = hudObject.GetComponent<CanvasScaler>();
+                var canvas = gameHud.Canvas;
+                var scaler = gameHud.Scaler;
                 var graphic = hud.Graphic;
 
                 Assert.That(canvas, Is.Not.Null);
@@ -28,22 +29,26 @@ namespace BooterBigArm.Tests
                 Assert.That(scaler.uiScaleMode, Is.EqualTo(CanvasScaler.ScaleMode.ScaleWithScreenSize));
                 Assert.That(graphic, Is.Not.Null);
                 Assert.That(graphic.raycastTarget, Is.False);
-                Assert.That(graphic.rectTransform.anchorMin, Is.EqualTo(Vector2.zero));
-                Assert.That(graphic.rectTransform.anchorMax, Is.EqualTo(Vector2.zero));
-                Assert.That(graphic.rectTransform.pivot, Is.EqualTo(Vector2.zero));
+                Assert.That(hud.transform.parent, Is.EqualTo(gameHud.transform));
+                var hudRect = (RectTransform)hud.transform;
+                Assert.That(hudRect.anchorMin, Is.EqualTo(Vector2.zero));
+                Assert.That(hudRect.anchorMax, Is.EqualTo(Vector2.zero));
+                Assert.That(hudRect.pivot, Is.EqualTo(Vector2.zero));
                 var expectedPosition = TopDown3DActionDpadHud.GetBottomLeftAnchoredPosition(
                     Screen.safeArea,
                     canvas.scaleFactor);
-                Assert.That(graphic.rectTransform.anchoredPosition, Is.EqualTo(expectedPosition));
-                Assert.That(graphic.rectTransform.sizeDelta,
+                Assert.That(hudRect.anchoredPosition, Is.EqualTo(expectedPosition));
+                Assert.That(hudRect.sizeDelta,
                     Is.EqualTo(Vector2.one * TopDown3DActionDpadHud.ReferenceSize));
-                Assert.That(graphic.transform.parent, Is.EqualTo(hudObject.transform));
-                Assert.That(hudObject.transform.Find("Safe Area"), Is.Null);
-                Assert.That(hudObject.GetComponent<GraphicRaycaster>(), Is.Null);
+                Assert.That(graphic.transform.parent, Is.EqualTo(hud.transform));
+                Assert.That(graphic.rectTransform.anchorMin, Is.EqualTo(Vector2.zero));
+                Assert.That(graphic.rectTransform.anchorMax, Is.EqualTo(Vector2.one));
+                Assert.That(gameHud.GetComponent<GraphicRaycaster>(), Is.Null);
+                Assert.That(CountSceneCanvases(scene), Is.EqualTo(1));
             }
             finally
             {
-                Object.DestroyImmediate(hudObject);
+                EditorSceneManager.CloseScene(scene, true);
             }
         }
 
@@ -81,11 +86,11 @@ namespace BooterBigArm.Tests
         [Test]
         public void DirectionContract_LeavesActionsUnmappedAndUsesVialForDown()
         {
-            var hudObject = new GameObject("HUD Test");
+            var scene = SceneManager.CreateScene("DpadDirectionTestScene");
             try
             {
-                var hud = hudObject.AddComponent<TopDown3DActionDpadHud>();
-                hud.Initialize();
+                AddInactiveInputRouter(scene);
+                var hud = TopDown3DActionDpadHud.TryInstallForScene(scene);
 
                 Assert.That(hud.GetIcon(TopDown3DDpadDirection.Up), Is.EqualTo(TopDown3DDpadIcon.DirectionArrow));
                 Assert.That(hud.GetIcon(TopDown3DDpadDirection.Left), Is.EqualTo(TopDown3DDpadIcon.DirectionArrow));
@@ -99,7 +104,7 @@ namespace BooterBigArm.Tests
             }
             finally
             {
-                Object.DestroyImmediate(hudObject);
+                EditorSceneManager.CloseScene(scene, true);
             }
         }
 
@@ -111,10 +116,7 @@ namespace BooterBigArm.Tests
             {
                 Assert.That(TopDown3DActionDpadHud.TryInstallForScene(scene), Is.Null);
 
-                var inputObject = new GameObject("Input Router");
-                inputObject.SetActive(false);
-                SceneManager.MoveGameObjectToScene(inputObject, scene);
-                inputObject.AddComponent<TopDown3DInputRouter>();
+                AddInactiveInputRouter(scene);
 
                 var first = TopDown3DActionDpadHud.TryInstallForScene(scene);
                 var second = TopDown3DActionDpadHud.TryInstallForScene(scene);
@@ -122,11 +124,57 @@ namespace BooterBigArm.Tests
                 Assert.That(first, Is.Not.Null);
                 Assert.That(second, Is.SameAs(first));
                 Assert.That(scene.GetRootGameObjects().Length, Is.EqualTo(2));
+                Assert.That(CountSceneCanvases(scene), Is.EqualTo(1));
             }
             finally
             {
                 EditorSceneManager.CloseScene(scene, true);
             }
+        }
+
+        [Test]
+        public void GameHudCanvas_IsSharedByDpadAndSurvivalHud()
+        {
+            var scene = SceneManager.CreateScene("SharedGameHudTestScene");
+            try
+            {
+                AddInactiveInputRouter(scene);
+                var player = new GameObject("Player");
+                SceneManager.MoveGameObjectToScene(player, scene);
+                player.AddComponent<TopDown3DPlayerMotor>();
+
+                var dpad = TopDown3DActionDpadHud.TryInstallForScene(scene);
+                var survival = TopDown3DSurvivalHud.TryInstallForScene(scene);
+
+                Assert.That(dpad, Is.Not.Null);
+                Assert.That(survival, Is.Not.Null);
+                Assert.That(dpad.GetComponentInParent<TopDown3DGameHudCanvas>(), Is.SameAs(survival.GameHud));
+                Assert.That(CountSceneCanvases(scene), Is.EqualTo(1));
+            }
+            finally
+            {
+                EditorSceneManager.CloseScene(scene, true);
+            }
+        }
+
+        private static void AddInactiveInputRouter(Scene scene)
+        {
+            var inputObject = new GameObject("Input Router");
+            inputObject.SetActive(false);
+            SceneManager.MoveGameObjectToScene(inputObject, scene);
+            inputObject.AddComponent<TopDown3DInputRouter>();
+        }
+
+        private static int CountSceneCanvases(Scene scene)
+        {
+            var count = 0;
+            var roots = scene.GetRootGameObjects();
+            for (var i = 0; i < roots.Length; i++)
+            {
+                count += roots[i].GetComponentsInChildren<Canvas>(true).Length;
+            }
+
+            return count;
         }
     }
 }

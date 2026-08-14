@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace BooterBigArm.TopDown3D
 {
     [DisallowMultipleComponent]
+    [RequireComponent(typeof(RectTransform))]
     public sealed class TopDown3DSurvivalHud : MonoBehaviour
     {
         public const float ReferenceWidth = 300f;
@@ -11,28 +13,50 @@ namespace BooterBigArm.TopDown3D
         public const float ReferenceMargin = 34f;
         public const float ReferenceGap = 5f;
         public const float ReferencePadding = 8f;
-        public const float MinimumUiScale = 0.85f;
 
-        private static readonly Color ShadowColor = new(0.01f, 0.012f, 0.015f, 0.48f);
-        private static readonly Color PanelColor = new(0.027f, 0.033f, 0.039f, 0.82f);
-        private static readonly Color CellColor = new(0.075f, 0.09f, 0.106f, 0.94f);
-        private static readonly Color BorderColor = new(0.77f, 0.68f, 0.5f, 0.82f);
-        private static readonly Color HighlightColor = new(0.98f, 0.88f, 0.66f, 0.18f);
-        private static readonly Color TrackColor = new(0.025f, 0.03f, 0.035f, 1f);
-        private static readonly Color HealthColor = new(0.73f, 0.22f, 0.17f, 1f);
-        private static readonly Color HungerColor = new(0.78f, 0.57f, 0.2f, 1f);
-        private static readonly Color ThirstColor = new(0.22f, 0.65f, 0.67f, 1f);
-        private static readonly Color OxygenColor = new(0.54f, 0.73f, 0.78f, 1f);
+        private static readonly Color32 ShadowColor = new(3, 4, 5, 122);
+        private static readonly Color32 PanelColor = new(7, 8, 10, 224);
+        private static readonly Color32 CellColor = new(19, 23, 27, 240);
+        private static readonly Color32 BorderColor = new(197, 173, 128, 210);
+        private static readonly Color32 HighlightColor = new(250, 224, 168, 44);
+        private static readonly Color32 TrackColor = new(6, 8, 9, 255);
+        private static readonly Color32 LabelColor = new(231, 219, 190, 245);
+        private static readonly Color32 HealthColor = new(186, 56, 43, 255);
+        private static readonly Color32 HungerColor = new(199, 145, 51, 255);
+        private static readonly Color32 ThirstColor = new(56, 166, 171, 255);
+        private static readonly Color32 OxygenColor = new(138, 186, 199, 255);
+        private static readonly string[] VitalLabels = { "HEALTH", "HUNGER", "THIRST", "OXYGEN" };
+        private static readonly Color32[] VitalColors = { HealthColor, HungerColor, ThirstColor, OxygenColor };
 
         [SerializeField] private TopDown3DSurvivalVitals vitals;
 
-        private GUIStyle labelStyle;
+        private readonly RectTransform[] fillRects = new RectTransform[4];
+        private TopDown3DGameHudCanvas gameHud;
+        private RectTransform panelRect;
+        private Rect lastSafeArea;
+        private Vector2Int lastScreenSize;
+        private float lastCanvasScale;
+        private bool subscribed;
 
         public TopDown3DSurvivalVitals Vitals => vitals;
+        public TopDown3DGameHudCanvas GameHud => gameHud;
+        public RectTransform PanelRect => panelRect;
 
         public void Configure(TopDown3DSurvivalVitals survivalVitals)
         {
+            UnsubscribeFromVitals();
             vitals = survivalVitals;
+            SubscribeToVitals();
+            Initialize();
+            RefreshMeters();
+        }
+
+        public static Vector2 GetTopLeftAnchoredPosition(Rect safeArea, int screenHeight, float canvasScale)
+        {
+            var safeScale = Mathf.Max(0.001f, canvasScale);
+            return new Vector2(
+                ReferenceMargin + (safeArea.xMin / safeScale),
+                -(ReferenceMargin + ((screenHeight - safeArea.yMax) / safeScale)));
         }
 
         public static TopDown3DSurvivalHud TryInstallForScene(Scene scene)
@@ -42,7 +66,7 @@ namespace BooterBigArm.TopDown3D
                 return null;
             }
 
-            var player = FindInScene<TopDown3DPlayerMotor>(scene);
+            var player = TopDown3DGameHudCanvas.FindInScene<TopDown3DPlayerMotor>(scene);
             if (player == null)
             {
                 return null;
@@ -54,179 +78,313 @@ namespace BooterBigArm.TopDown3D
                 survivalVitals = player.gameObject.AddComponent<TopDown3DSurvivalVitals>();
             }
 
-            var existing = FindInScene<TopDown3DSurvivalHud>(scene);
-            if (existing != null)
+            var gameHud = TopDown3DGameHudCanvas.TryInstallForScene(scene);
+            if (gameHud == null)
             {
+                return null;
+            }
+
+            var existing = TopDown3DGameHudCanvas.FindInScene<TopDown3DSurvivalHud>(scene);
+            if (existing != null && existing.transform is RectTransform)
+            {
+                existing.AttachToGameHud(gameHud);
                 existing.Configure(survivalVitals);
                 return existing;
             }
 
-            var hudObject = new GameObject("Survival HUD");
-            SceneManager.MoveGameObjectToScene(hudObject, scene);
+            if (existing != null)
+            {
+                DestroyRuntimeObject(existing.gameObject);
+            }
+
+            var hudObject = new GameObject("Survival HUD", typeof(RectTransform));
+            hudObject.transform.SetParent(gameHud.transform, false);
             var hud = hudObject.AddComponent<TopDown3DSurvivalHud>();
+            hud.gameHud = gameHud;
             hud.Configure(survivalVitals);
             return hud;
         }
 
-        public static Rect GetPanelRect(Rect safeArea, int screenHeight, float scale)
+        private void Awake()
         {
-            var scaledMargin = ReferenceMargin * scale;
-            return new Rect(
-                safeArea.xMin + scaledMargin,
-                screenHeight - safeArea.yMax + scaledMargin,
-                ReferenceWidth * scale,
-                ReferenceHeight * scale);
+            Initialize();
         }
 
-        public static Rect GetMeterRect(Rect panel, int meterIndex, float scale)
+        private void OnEnable()
         {
-            var gap = ReferenceGap * scale;
-            var padding = ReferencePadding * scale;
-            var cellHeight = (panel.height - (padding * 2f) - (gap * 3f)) * 0.25f;
-            return new Rect(
-                panel.x + padding,
-                panel.y + padding + (meterIndex * (cellHeight + gap)),
-                panel.width - (padding * 2f),
-                cellHeight);
+            SubscribeToVitals();
+            Initialize();
+            RefreshMeters();
         }
 
-        public static float GetUiScale(int screenWidth, int screenHeight)
+        private void OnDisable()
         {
-            return Mathf.Clamp(
-                Mathf.Min(screenWidth / 1920f, screenHeight / 1080f),
-                MinimumUiScale,
-                1.25f);
+            UnsubscribeFromVitals();
         }
 
-        private void OnGUI()
+        private void Update()
         {
-            if (vitals == null || Screen.width <= 0 || Screen.height <= 0)
+            RefreshSafeArea(force: false);
+        }
+
+        private void Initialize()
+        {
+            panelRect = transform as RectTransform;
+            if (panelRect == null)
             {
                 return;
             }
 
-            var scale = GetUiScale(Screen.width, Screen.height);
-            var panel = GetPanelRect(Screen.safeArea, Screen.height, scale);
-            EnsureStyles(scale);
+            if (gameHud == null)
+            {
+                gameHud = GetComponentInParent<TopDown3DGameHudCanvas>();
+            }
 
-            DrawSolid(new Rect(
-                panel.x + (4f * scale),
-                panel.y + (5f * scale),
-                panel.width,
-                panel.height), ShadowColor);
-            DrawSolid(Expand(panel, 2f * scale), BorderColor);
-            DrawSolid(panel, PanelColor);
-            DrawSolid(
-                new Rect(panel.x, panel.y, panel.width, Mathf.Max(1f, 2f * scale)),
-                HighlightColor);
-            DrawMeter(panel, 0, scale, "HEALTH", TopDown3DSurvivalVital.Health, HealthColor);
-            DrawMeter(panel, 1, scale, "HUNGER", TopDown3DSurvivalVital.Hunger, HungerColor);
-            DrawMeter(panel, 2, scale, "THIRST", TopDown3DSurvivalVital.Thirst, ThirstColor);
-            DrawMeter(panel, 3, scale, "OXYGEN", TopDown3DSurvivalVital.Oxygen, OxygenColor);
+            if (gameHud != null)
+            {
+                AttachToGameHud(gameHud);
+            }
+
+            panelRect.anchorMin = new Vector2(0f, 1f);
+            panelRect.anchorMax = new Vector2(0f, 1f);
+            panelRect.pivot = new Vector2(0f, 1f);
+            panelRect.sizeDelta = new Vector2(ReferenceWidth, ReferenceHeight);
+            EnsureVisualTree();
+            RefreshSafeArea(force: true);
         }
 
-        private void DrawMeter(
-            Rect panel,
-            int meterIndex,
-            float scale,
-            string label,
-            TopDown3DSurvivalVital vital,
-            Color fillColor)
+        private void AttachToGameHud(TopDown3DGameHudCanvas owner)
         {
-            var cell = GetMeterRect(panel, meterIndex, scale);
-            DrawSolid(cell, CellColor);
-
-            var padding = 7f * scale;
-            var pipWidth = Mathf.Max(3f, 4f * scale);
-            var pipHeight = Mathf.Max(10f, cell.height * 0.48f);
-            DrawSolid(
-                new Rect(
-                    cell.x + padding,
-                    cell.center.y - (pipHeight * 0.5f),
-                    pipWidth,
-                    pipHeight),
-                fillColor);
-
-            var labelWidth = 61f * scale;
-            var labelRect = new Rect(
-                cell.x + padding + pipWidth + (7f * scale),
-                cell.y,
-                labelWidth,
-                cell.height);
-            GUI.Label(labelRect, label, labelStyle);
-
-            var barX = labelRect.xMax + (4f * scale);
-            var bar = new Rect(
-                barX,
-                cell.y + (cell.height * 0.31f),
-                Mathf.Max(1f, cell.xMax - barX - padding),
-                Mathf.Max(7f, cell.height * 0.38f));
-            DrawSolid(bar, TrackColor);
-
-            var inset = Mathf.Max(1f, 1.5f * scale);
-            var inner = new Rect(
-                bar.x + inset,
-                bar.y + inset,
-                Mathf.Max(0f, bar.width - (inset * 2f)),
-                Mathf.Max(0f, bar.height - (inset * 2f)));
-            inner.width *= vitals.GetNormalizedValue(vital);
-            DrawSolid(inner, fillColor);
-
-            if (inner.width > 0f)
+            gameHud = owner;
+            if (owner.gameObject == gameObject)
             {
-                var sheen = new Rect(inner.x, inner.y, inner.width, Mathf.Max(1f, inner.height * 0.34f));
-                var sheenColor = Color.Lerp(fillColor, Color.white, 0.42f);
-                sheenColor.a = 0.38f;
-                DrawSolid(sheen, sheenColor);
+                return;
+            }
+
+            if (transform.parent != owner.transform)
+            {
+                transform.SetParent(owner.transform, false);
             }
         }
 
-        private void EnsureStyles(float scale)
+        private void EnsureVisualTree()
         {
-            if (labelStyle == null)
+            var shadow = EnsureImage("Drop Shadow", ShadowColor);
+            Stretch(shadow.rectTransform, new Vector2(4f, -5f), new Vector2(4f, -5f));
+            shadow.transform.SetAsFirstSibling();
+
+            var border = EnsureImage("Border", BorderColor);
+            Stretch(border.rectTransform, Vector2.zero, Vector2.zero);
+            border.transform.SetSiblingIndex(1);
+
+            var background = EnsureImage("Background", PanelColor);
+            Stretch(background.rectTransform, Vector2.one * 2f, Vector2.one * -2f);
+            background.transform.SetSiblingIndex(2);
+
+            var highlight = EnsureImage("Top Highlight", HighlightColor);
+            highlight.rectTransform.anchorMin = new Vector2(0f, 1f);
+            highlight.rectTransform.anchorMax = Vector2.one;
+            highlight.rectTransform.pivot = new Vector2(0.5f, 1f);
+            highlight.rectTransform.offsetMin = new Vector2(2f, -4f);
+            highlight.rectTransform.offsetMax = new Vector2(-2f, -2f);
+            highlight.transform.SetSiblingIndex(3);
+
+            var rowHeight = (ReferenceHeight - (ReferencePadding * 2f) - (ReferenceGap * 3f)) * 0.25f;
+            for (var i = 0; i < 4; i++)
             {
-                labelStyle = new GUIStyle(GUI.skin.label)
-                {
-                    alignment = TextAnchor.MiddleLeft,
-                    clipping = TextClipping.Clip,
-                    fontStyle = FontStyle.Bold,
-                    normal = { textColor = new Color(0.9f, 0.86f, 0.76f, 0.96f) }
-                };
+                EnsureVitalRow(i, rowHeight);
+            }
+        }
+
+        private void EnsureVitalRow(int index, float rowHeight)
+        {
+            var row = EnsureImage($"Vital Row {index}", CellColor);
+            var rowRect = row.rectTransform;
+            rowRect.anchorMin = new Vector2(0f, 1f);
+            rowRect.anchorMax = new Vector2(1f, 1f);
+            rowRect.pivot = new Vector2(0.5f, 1f);
+            rowRect.sizeDelta = new Vector2(-(ReferencePadding * 2f), rowHeight);
+            rowRect.anchoredPosition = new Vector2(
+                0f,
+                -(ReferencePadding + (index * (rowHeight + ReferenceGap))));
+
+            var pip = EnsureImage("Pip", VitalColors[index], rowRect);
+            pip.rectTransform.anchorMin = new Vector2(0f, 0.5f);
+            pip.rectTransform.anchorMax = new Vector2(0f, 0.5f);
+            pip.rectTransform.pivot = new Vector2(0f, 0.5f);
+            pip.rectTransform.anchoredPosition = new Vector2(7f, 0f);
+            pip.rectTransform.sizeDelta = new Vector2(4f, 14f);
+
+            var label = EnsureText("Label", rowRect);
+            label.text = VitalLabels[index];
+            label.color = LabelColor;
+            label.fontSize = 13;
+            label.fontStyle = FontStyle.Bold;
+            label.alignment = TextAnchor.MiddleLeft;
+            label.raycastTarget = false;
+            label.rectTransform.anchorMin = new Vector2(0f, 0f);
+            label.rectTransform.anchorMax = new Vector2(0f, 1f);
+            label.rectTransform.pivot = new Vector2(0f, 0.5f);
+            label.rectTransform.anchoredPosition = new Vector2(18f, 0f);
+            label.rectTransform.sizeDelta = new Vector2(62f, 0f);
+
+            var track = EnsureImage("Track", TrackColor, rowRect);
+            track.rectTransform.anchorMin = new Vector2(0f, 0.5f);
+            track.rectTransform.anchorMax = new Vector2(1f, 0.5f);
+            track.rectTransform.pivot = new Vector2(0.5f, 0.5f);
+            track.rectTransform.offsetMin = new Vector2(84f, -6f);
+            track.rectTransform.offsetMax = new Vector2(-7f, 6f);
+
+            var fill = EnsureImage("Fill", VitalColors[index], track.rectTransform);
+            fill.rectTransform.anchorMin = Vector2.zero;
+            fill.rectTransform.anchorMax = Vector2.one;
+            fill.rectTransform.offsetMin = Vector2.zero;
+            fill.rectTransform.offsetMax = Vector2.zero;
+            fillRects[index] = fill.rectTransform;
+
+            var sheen = EnsureImage("Sheen", new Color32(255, 255, 255, 56), fill.rectTransform);
+            sheen.rectTransform.anchorMin = new Vector2(0f, 0.66f);
+            sheen.rectTransform.anchorMax = Vector2.one;
+            sheen.rectTransform.offsetMin = Vector2.zero;
+            sheen.rectTransform.offsetMax = Vector2.zero;
+        }
+
+        private Image EnsureImage(string objectName, Color color, RectTransform parent = null)
+        {
+            var owner = parent != null ? parent : panelRect;
+            var child = owner.Find(objectName);
+            if (child == null)
+            {
+                var childObject = new GameObject(objectName, typeof(RectTransform));
+                child = childObject.GetComponent<RectTransform>();
+                child.SetParent(owner, false);
             }
 
-            labelStyle.fontSize = Mathf.Max(10, Mathf.RoundToInt(11f * scale));
-        }
-
-        private static Rect Expand(Rect rect, float amount)
-        {
-            return new Rect(
-                rect.x - amount,
-                rect.y - amount,
-                rect.width + (amount * 2f),
-                rect.height + (amount * 2f));
-        }
-
-        private static void DrawSolid(Rect rect, Color color)
-        {
-            var previousColor = GUI.color;
-            GUI.color = color;
-            GUI.DrawTexture(rect, Texture2D.whiteTexture);
-            GUI.color = previousColor;
-        }
-
-        private static T FindInScene<T>(Scene scene) where T : Component
-        {
-            var roots = scene.GetRootGameObjects();
-            for (var i = 0; i < roots.Length; i++)
+            var image = child.GetComponent<Image>();
+            if (image == null)
             {
-                var component = roots[i].GetComponentInChildren<T>(true);
-                if (component != null)
+                image = child.gameObject.AddComponent<Image>();
+            }
+
+            image.color = color;
+            image.raycastTarget = false;
+            return image;
+        }
+
+        private static Text EnsureText(string objectName, RectTransform parent)
+        {
+            var child = parent.Find(objectName);
+            if (child == null)
+            {
+                var childObject = new GameObject(objectName, typeof(RectTransform));
+                child = childObject.GetComponent<RectTransform>();
+                child.SetParent(parent, false);
+            }
+
+            var text = child.GetComponent<Text>();
+            if (text == null)
+            {
+                text = child.gameObject.AddComponent<Text>();
+            }
+
+            if (text.font == null)
+            {
+                text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            }
+
+            return text;
+        }
+
+        private void RefreshSafeArea(bool force)
+        {
+            if (panelRect == null || gameHud == null || Screen.width <= 0 || Screen.height <= 0)
+            {
+                return;
+            }
+
+            var safeArea = Screen.safeArea;
+            var screenSize = new Vector2Int(Screen.width, Screen.height);
+            var canvasScale = gameHud.Canvas != null ? gameHud.Canvas.scaleFactor : 1f;
+            if (!force
+                && safeArea == lastSafeArea
+                && screenSize == lastScreenSize
+                && Mathf.Approximately(canvasScale, lastCanvasScale))
+            {
+                return;
+            }
+
+            lastSafeArea = safeArea;
+            lastScreenSize = screenSize;
+            lastCanvasScale = canvasScale;
+            panelRect.anchoredPosition = GetTopLeftAnchoredPosition(safeArea, Screen.height, canvasScale);
+        }
+
+        private void RefreshMeters()
+        {
+            if (vitals == null)
+            {
+                return;
+            }
+
+            for (var i = 0; i < fillRects.Length; i++)
+            {
+                if (fillRects[i] == null)
                 {
-                    return component;
+                    continue;
                 }
+
+                var normalized = vitals.GetNormalizedValue((TopDown3DSurvivalVital)i);
+                fillRects[i].anchorMax = new Vector2(normalized, 1f);
+            }
+        }
+
+        private void SubscribeToVitals()
+        {
+            if (subscribed || vitals == null)
+            {
+                return;
             }
 
-            return null;
+            vitals.Changed += RefreshMeters;
+            subscribed = true;
+        }
+
+        private void UnsubscribeFromVitals()
+        {
+            if (!subscribed || vitals == null)
+            {
+                subscribed = false;
+                return;
+            }
+
+            vitals.Changed -= RefreshMeters;
+            subscribed = false;
+        }
+
+        private static void Stretch(RectTransform rectTransform, Vector2 offsetMin, Vector2 offsetMax)
+        {
+            rectTransform.anchorMin = Vector2.zero;
+            rectTransform.anchorMax = Vector2.one;
+            rectTransform.pivot = new Vector2(0.5f, 0.5f);
+            rectTransform.offsetMin = offsetMin;
+            rectTransform.offsetMax = offsetMax;
+        }
+
+        private static void DestroyRuntimeObject(Object target)
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            if (Application.isPlaying)
+            {
+                Destroy(target);
+            }
+            else
+            {
+                DestroyImmediate(target);
+            }
         }
     }
 

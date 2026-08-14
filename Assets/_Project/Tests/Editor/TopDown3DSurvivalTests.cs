@@ -106,38 +106,13 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void HudLayout_UsesReadableNonOverlappingVerticalStackInsideSafeArea()
+        public void HudLayout_UsesSafeAreaAwareTopLeftCanvasPosition()
         {
             var safeArea = new Rect(80f, 40f, 1760f, 980f);
-            var panel = TopDown3DSurvivalHud.GetPanelRect(safeArea, 1080, 1f);
+            var anchored = TopDown3DSurvivalHud.GetTopLeftAnchoredPosition(safeArea, 1080, 2f);
 
-            Assert.That(panel.xMin, Is.GreaterThanOrEqualTo(safeArea.xMin));
-            Assert.That(panel.yMin, Is.GreaterThanOrEqualTo(1080f - safeArea.yMax));
-            Assert.That(panel.width, Is.EqualTo(TopDown3DSurvivalHud.ReferenceWidth));
-            Assert.That(panel.height, Is.EqualTo(TopDown3DSurvivalHud.ReferenceHeight));
-
-            var health = TopDown3DSurvivalHud.GetMeterRect(panel, 0, 1f);
-            var hunger = TopDown3DSurvivalHud.GetMeterRect(panel, 1, 1f);
-            var thirst = TopDown3DSurvivalHud.GetMeterRect(panel, 2, 1f);
-            var oxygen = TopDown3DSurvivalHud.GetMeterRect(panel, 3, 1f);
-            Assert.That(health.Overlaps(hunger), Is.False);
-            Assert.That(health.Overlaps(thirst), Is.False);
-            Assert.That(hunger.Overlaps(oxygen), Is.False);
-            Assert.That(thirst.Overlaps(oxygen), Is.False);
-            Assert.That(health.x, Is.EqualTo(hunger.x));
-            Assert.That(health.width, Is.EqualTo(oxygen.width));
-            Assert.That(health.y, Is.LessThan(hunger.y));
-            Assert.That(hunger.y, Is.LessThan(thirst.y));
-            Assert.That(thirst.y, Is.LessThan(oxygen.y));
-        }
-
-        [Test]
-        public void HudScale_RemainsReadableAtSmallAndHighDpiGameViews()
-        {
-            Assert.That(TopDown3DSurvivalHud.GetUiScale(960, 540),
-                Is.EqualTo(TopDown3DSurvivalHud.MinimumUiScale));
-            Assert.That(TopDown3DSurvivalHud.GetUiScale(1920, 1080), Is.EqualTo(1f));
-            Assert.That(TopDown3DSurvivalHud.GetUiScale(3840, 2160), Is.EqualTo(1.25f));
+            Assert.That(anchored.x, Is.EqualTo(TopDown3DSurvivalHud.ReferenceMargin + 40f));
+            Assert.That(anchored.y, Is.EqualTo(-(TopDown3DSurvivalHud.ReferenceMargin + 30f)));
         }
 
         [Test]
@@ -158,6 +133,12 @@ namespace BooterBigArm.Tests
                 Assert.That(first, Is.Not.Null);
                 Assert.That(second, Is.SameAs(first));
                 Assert.That(first.Vitals, Is.SameAs(player.GetComponent<TopDown3DSurvivalVitals>()));
+                Assert.That(first.GameHud, Is.Not.Null);
+                Assert.That(first.transform.parent, Is.EqualTo(first.GameHud.transform));
+                Assert.That(first.PanelRect.sizeDelta,
+                    Is.EqualTo(new Vector2(TopDown3DSurvivalHud.ReferenceWidth, TopDown3DSurvivalHud.ReferenceHeight)));
+                Assert.That(first.transform.Find("Vital Row 0/Label"), Is.Not.Null);
+                Assert.That(first.transform.Find("Vital Row 3/Track/Fill"), Is.Not.Null);
             }
             finally
             {
