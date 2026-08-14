@@ -58,6 +58,7 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.RockAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.DarkRockAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TealRockAlbedoPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TealRockLusterMaskPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.RockMaterialPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.DarkRockMaterialPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TealRockMaterialPath, errors);
@@ -245,16 +246,19 @@ namespace BooterBigArm.Editor
                 TopDown3DPrototypeBuilder.RockMaterialPath,
                 TopDown3DPrototypeBuilder.RockAlbedoPath,
                 "regular",
+                null,
                 errors);
             ValidateRockMaterial(
                 TopDown3DPrototypeBuilder.DarkRockMaterialPath,
                 TopDown3DPrototypeBuilder.DarkRockAlbedoPath,
                 "dark",
+                null,
                 errors);
             ValidateRockMaterial(
                 TopDown3DPrototypeBuilder.TealRockMaterialPath,
                 TopDown3DPrototypeBuilder.TealRockAlbedoPath,
                 "teal",
+                TopDown3DPrototypeBuilder.TealRockLusterMaskPath,
                 errors);
         }
 
@@ -262,12 +266,17 @@ namespace BooterBigArm.Editor
             string materialPath,
             string albedoPath,
             string surfaceName,
+            string lusterMaskPath,
             ICollection<string> errors)
         {
             var material = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
             var shader = AssetDatabase.LoadAssetAtPath<Shader>(TopDown3DPrototypeBuilder.RockShaderPath);
             var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(albedoPath);
-            if (material == null || shader == null || albedo == null)
+            var lusterMask = string.IsNullOrEmpty(lusterMaskPath)
+                ? null
+                : AssetDatabase.LoadAssetAtPath<Texture2D>(lusterMaskPath);
+            if (material == null || shader == null || albedo == null
+                || (!string.IsNullOrEmpty(lusterMaskPath) && lusterMask == null))
             {
                 return;
             }
@@ -280,6 +289,27 @@ namespace BooterBigArm.Editor
             if (material.GetTexture("_BaseMap") != albedo)
             {
                 errors.Add($"TopDown3D {surfaceName} rocks must use their assigned rock-surface albedo texture.");
+            }
+
+            if (lusterMask != null)
+            {
+                if (material.GetTexture("_LusterMask") != lusterMask
+                    || !Mathf.Approximately(
+                        material.GetFloat("_LusterStrength"),
+                        TopDown3DPrototypeBuilder.TealRockLusterStrength)
+                    || !Mathf.Approximately(
+                        material.GetFloat("_LusterSmoothness"),
+                        TopDown3DPrototypeBuilder.TealRockLusterSmoothness)
+                    || !Mathf.Approximately(
+                        material.GetFloat("_LusterMetallic"),
+                        TopDown3DPrototypeBuilder.TealRockLusterMetallic))
+                {
+                    errors.Add("TopDown3D teal rocks must use the canonical sparse mineral-luster treatment.");
+                }
+            }
+            else if (material.GetFloat("_LusterStrength") > 0.0001f)
+            {
+                errors.Add($"TopDown3D {surfaceName} rocks must remain matte without the teal mineral-luster treatment.");
             }
 
             if (!Mathf.Approximately(material.GetFloat("_RockMetersPerTile"), TopDown3DPrototypeBuilder.RockMetersPerTile)

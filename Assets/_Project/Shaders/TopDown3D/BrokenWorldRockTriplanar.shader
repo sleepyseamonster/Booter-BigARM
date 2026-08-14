@@ -3,10 +3,14 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Triplanar"
     Properties
     {
         [MainTexture] _BaseMap("Rock Surface", 2D) = "white" {}
+        [NoScaleOffset] _LusterMask("Mineral Luster Mask", 2D) = "black" {}
         [MainColor] _BaseColor("Rock Tint", Color) = (1, 1, 1, 1)
         _RockMetersPerTile("Rock Meters Per Tile", Float) = 0.85
         _TriplanarSharpness("Triplanar Sharpness", Range(1, 12)) = 4
         _Smoothness("Smoothness", Range(0, 1)) = 0.14
+        _LusterStrength("Mineral Luster Strength", Range(0, 1)) = 0
+        _LusterSmoothness("Mineral Luster Smoothness", Range(0, 1)) = 0.94
+        _LusterMetallic("Mineral Luster Metallic", Range(0, 1)) = 0.35
         [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
         [HideInInspector] _Cull("Cull", Float) = 2
@@ -49,6 +53,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Triplanar"
 
             TEXTURE2D(_BaseMap);
             SAMPLER(sampler_BaseMap);
+            TEXTURE2D(_LusterMask);
+            SAMPLER(sampler_LusterMask);
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseMap_ST;
@@ -56,6 +62,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Triplanar"
                 float _RockMetersPerTile;
                 float _TriplanarSharpness;
                 float _Smoothness;
+                float _LusterStrength;
+                float _LusterSmoothness;
+                float _LusterMetallic;
                 float _Cutoff;
                 float _Surface;
                 float _Cull;
@@ -116,6 +125,27 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Triplanar"
                 return xProjection * weights.x + yProjection * weights.y + zProjection * weights.z;
             }
 
+            half SampleRockLusterTriplanar(float3 positionWS, half3 normalWS)
+            {
+                float meters = max(_RockMetersPerTile, 0.01);
+                float3 projectionPosition = positionWS / meters;
+                half sharpness = max((half)_TriplanarSharpness, 1.0h);
+                half3 weights = pow(abs(normalWS), sharpness);
+                weights /= max(weights.x + weights.y + weights.z, 0.001h);
+
+                float2 uvX = projectionPosition.zy;
+                float2 uvY = projectionPosition.xz;
+                float2 uvZ = projectionPosition.xy;
+                uvX.x *= normalWS.x < 0.0h ? -1.0 : 1.0;
+                uvY.x *= normalWS.y < 0.0h ? -1.0 : 1.0;
+                uvZ.x *= normalWS.z >= 0.0h ? -1.0 : 1.0;
+
+                half xProjection = SAMPLE_TEXTURE2D(_LusterMask, sampler_LusterMask, uvX).r;
+                half yProjection = SAMPLE_TEXTURE2D(_LusterMask, sampler_LusterMask, uvY).r;
+                half zProjection = SAMPLE_TEXTURE2D(_LusterMask, sampler_LusterMask, uvZ).r;
+                return xProjection * weights.x + yProjection * weights.y + zProjection * weights.z;
+            }
+
             half4 RockFragment(Varyings input) : SV_Target
             {
                 UNITY_SETUP_INSTANCE_ID(input);
@@ -124,12 +154,14 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Triplanar"
                 half3 normalWS = NormalizeNormalPerPixel(input.normalWS);
                 float3 absolutePositionWS = GetAbsolutePositionWS(input.positionWS);
                 half3 albedo = SampleRockTriplanar(absolutePositionWS, normalWS) * _BaseColor.rgb;
+                half luster = saturate(
+                    SampleRockLusterTriplanar(absolutePositionWS, normalWS) * _LusterStrength);
 
                 SurfaceData surfaceData = (SurfaceData)0;
                 surfaceData.albedo = albedo;
-                surfaceData.specular = half3(0.16, 0.16, 0.16);
-                surfaceData.metallic = 0.0;
-                surfaceData.smoothness = _Smoothness;
+                surfaceData.specular = lerp(half3(0.16, 0.16, 0.16), half3(0.72, 0.78, 0.80), luster);
+                surfaceData.metallic = luster * _LusterMetallic;
+                surfaceData.smoothness = lerp(_Smoothness, _LusterSmoothness, luster);
                 surfaceData.normalTS = half3(0.0, 0.0, 1.0);
                 surfaceData.emission = 0.0;
                 surfaceData.occlusion = 1.0;

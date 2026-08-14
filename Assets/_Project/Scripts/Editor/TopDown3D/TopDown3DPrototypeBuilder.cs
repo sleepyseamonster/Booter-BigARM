@@ -33,6 +33,8 @@ namespace BooterBigArm.Editor
             "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceDarkAlbedo.png";
         public const string TealRockAlbedoPath =
             "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealAlbedo.png";
+        public const string TealRockLusterMaskPath =
+            "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealLusterMask.png";
         public const string TerrainAlbedoPath =
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png";
         public const string TerrainSweptSandAlbedoPath =
@@ -72,6 +74,9 @@ namespace BooterBigArm.Editor
         public const float TerrainSmoothness = 0.18f;
         public const float RockMetersPerTile = 0.85f;
         public const float RockSmoothness = 0.14f;
+        public const float TealRockLusterStrength = 1f;
+        public const float TealRockLusterSmoothness = 0.94f;
+        public const float TealRockLusterMetallic = 0.35f;
         public const float PlayerColliderHeight = 2.48f;
         public const float PlayerColliderRadius = 0.52f;
         public const float PlayerGroundClearance = 0.06f;
@@ -175,7 +180,8 @@ namespace BooterBigArm.Editor
                 DarkRockAlbedoPath);
             var tealRockMaterial = EnsureRockMaterial(
                 "BrokenWorld_Rock_Teal",
-                TealRockAlbedoPath);
+                TealRockAlbedoPath,
+                TealRockLusterMaskPath);
             var fineGrayClutterMaterial = EnsureFineGrayClutterMaterial();
             var naturalObjectCatalog = AssetDatabase.LoadAssetAtPath<TopDown3DNaturalObjectCatalog>(
                 NaturalObjectCatalogPath);
@@ -319,15 +325,21 @@ namespace BooterBigArm.Editor
             return EnsureRockMaterial("Greybox_Rock", RockAlbedoPath);
         }
 
-        private static Material EnsureRockMaterial(string materialName, string albedoPath)
+        private static Material EnsureRockMaterial(
+            string materialName,
+            string albedoPath,
+            string lusterMaskPath = null)
         {
             var material = EnsureMaterial(materialName, Color.white);
             var shader = AssetDatabase.LoadAssetAtPath<Shader>(RockShaderPath);
             var albedo = AssetDatabase.LoadAssetAtPath<Texture2D>(albedoPath);
-            if (shader == null || albedo == null)
+            var lusterMask = string.IsNullOrEmpty(lusterMaskPath)
+                ? null
+                : AssetDatabase.LoadAssetAtPath<Texture2D>(lusterMaskPath);
+            if (shader == null || albedo == null || (!string.IsNullOrEmpty(lusterMaskPath) && lusterMask == null))
             {
                 throw new InvalidOperationException(
-                    $"The triplanar rock shader or albedo texture is missing for {materialName}.");
+                    $"The triplanar rock shader or a required surface texture is missing for {materialName}.");
             }
 
             var changed = false;
@@ -338,9 +350,16 @@ namespace BooterBigArm.Editor
             }
 
             changed |= SetTextureIfNeeded(material, "_BaseMap", albedo);
+            changed |= SetTextureIfNeeded(material, "_LusterMask", lusterMask);
             changed |= SetFloatIfNeeded(material, "_RockMetersPerTile", RockMetersPerTile);
             changed |= SetFloatIfNeeded(material, "_TriplanarSharpness", 4f);
             changed |= SetFloatIfNeeded(material, "_Smoothness", RockSmoothness);
+            changed |= SetFloatIfNeeded(
+                material,
+                "_LusterStrength",
+                lusterMask != null ? TealRockLusterStrength : 0f);
+            changed |= SetFloatIfNeeded(material, "_LusterSmoothness", TealRockLusterSmoothness);
+            changed |= SetFloatIfNeeded(material, "_LusterMetallic", TealRockLusterMetallic);
             if (changed)
             {
                 EditorUtility.SetDirty(material);
