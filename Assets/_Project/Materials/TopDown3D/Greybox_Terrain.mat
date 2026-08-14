@@ -50,8 +50,16 @@ Material:
         m_Texture: {fileID: 2800000, guid: 354db7cf45544c04949e454b51dbc722, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GravelTransitionMap:
+        m_Texture: {fileID: 2800000, guid: f72dd2217b4147049d4f8cf3937f0d86, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _RockyMap:
         m_Texture: {fileID: 2800000, guid: 0dedf1b44a434bc49327c0e9c859ef8b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RockyTransitionMap:
+        m_Texture: {fileID: 2800000, guid: 38ebe0750fc44f48811f01a97b024742, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -94,6 +102,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 58cc08e58bc64101be1b7f546838bc15, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SweptSandTransitionMap:
+        m_Texture: {fileID: 2800000, guid: a3a177ed53934ba4b9087ea2adea50a5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -128,7 +140,7 @@ Material:
     - _GravelMetersPerTile: 2.25
     - _GravelStrength: 0.92
     - _GravelThreshold: 0.66
-    - _RockyMetersPerTile: 4.75
+    - _RockyMetersPerTile: 3
     - _RockyStrength: 0.96
     - _RockyThreshold: 0.62
     - _GlossMapScale: 0
@@ -149,6 +161,7 @@ Material:
     - _SweptSandMetersPerTile: 4
     - _SweptSandStrength: 0.9
     - _SweptSandThreshold: 0.64
+    - _TransitionWidth: 0.13
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
