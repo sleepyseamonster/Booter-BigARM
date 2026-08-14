@@ -154,8 +154,13 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Triplanar"
                 half3 normalWS = NormalizeNormalPerPixel(input.normalWS);
                 float3 absolutePositionWS = GetAbsolutePositionWS(input.positionWS);
                 half3 albedo = SampleRockTriplanar(absolutePositionWS, normalWS) * _BaseColor.rgb;
-                half luster = saturate(
-                    SampleRockLusterTriplanar(absolutePositionWS, normalWS) * _LusterStrength);
+                half luster = 0.0h;
+                [branch]
+                if (_LusterStrength > 0.0)
+                {
+                    luster = saturate(
+                        SampleRockLusterTriplanar(absolutePositionWS, normalWS) * _LusterStrength);
+                }
 
                 SurfaceData surfaceData = (SurfaceData)0;
                 surfaceData.albedo = albedo;

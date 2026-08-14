@@ -42,9 +42,6 @@ namespace BooterBigArm.TopDown3D
                     new int[0]);
             }
 
-            var vertices = new List<Vector3>();
-            var normals = new List<Vector3>();
-            var triangles = new List<int>();
             var features = new List<TopDown3DEscarpmentFeature>();
             var chunkOrigin = new Vector2(
                 chunkCoordinate.x * settings.ChunkSize,
@@ -53,6 +50,15 @@ namespace BooterBigArm.TopDown3D
                 settings,
                 new Rect(chunkOrigin.x, chunkOrigin.y, settings.ChunkSize, settings.ChunkSize),
                 features);
+            var segmentCount = Mathf.Max(
+                MinimumAngularSegments,
+                settings.EscarpmentFaceSegments * AngularDensityMultiplier);
+            var maximumOwnedSegments = features.Count * segmentCount;
+            var maximumVertexCount = maximumOwnedSegments * (RadialBands + 1) * 2;
+            var maximumTriangleIndexCount = maximumOwnedSegments * RadialBands * 6;
+            var vertices = new List<Vector3>(maximumVertexCount);
+            var normals = new List<Vector3>(maximumVertexCount);
+            var triangles = new List<int>(maximumTriangleIndexCount);
 
             for (var index = 0; index < features.Count; index++)
             {
@@ -107,6 +113,10 @@ namespace BooterBigArm.TopDown3D
             renderer.sharedMaterial = rockMaterial;
             renderer.shadowCastingMode = ShadowCastingMode.Off;
             renderer.receiveShadows = true;
+            if (Application.isPlaying)
+            {
+                mesh.UploadMeshData(true);
+            }
         }
 
         private static void AppendFeature(
