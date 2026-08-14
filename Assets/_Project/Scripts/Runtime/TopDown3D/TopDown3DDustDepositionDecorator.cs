@@ -6,14 +6,20 @@ namespace BooterBigArm.TopDown3D
 {
     public readonly struct TopDown3DDustMeshData
     {
-        public TopDown3DDustMeshData(Vector3[] vertices, Color32[] colors, int[] triangles)
+        public TopDown3DDustMeshData(
+            Vector3[] vertices,
+            Vector3[] normals,
+            Color32[] colors,
+            int[] triangles)
         {
             Vertices = vertices;
+            Normals = normals;
             Colors = colors;
             Triangles = triangles;
         }
 
         public Vector3[] Vertices { get; }
+        public Vector3[] Normals { get; }
         public Color32[] Colors { get; }
         public int[] Triangles { get; }
     }
@@ -56,9 +62,9 @@ namespace BooterBigArm.TopDown3D
                 name = $"Chunk {chunk.Coordinate.x},{chunk.Coordinate.y} Deposited Dust"
             };
             mesh.SetVertices(meshData.Vertices);
+            mesh.SetNormals(meshData.Normals);
             mesh.SetColors(meshData.Colors);
             mesh.SetTriangles(meshData.Triangles, 0, true);
-            mesh.RecalculateNormals();
             mesh.RecalculateBounds();
             chunk.RegisterGeneratedMesh(mesh);
 
@@ -82,6 +88,7 @@ namespace BooterBigArm.TopDown3D
             {
                 return new TopDown3DDustMeshData(
                     new Vector3[0],
+                    new Vector3[0],
                     new Color32[0],
                     new int[0]);
             }
@@ -103,11 +110,14 @@ namespace BooterBigArm.TopDown3D
                                 + settings.DustSurfaceOffset
                                 + sample.Height,
                             z * plan.Step),
+                        Vector3.up,
                         sample.Weight);
                 }
             }
 
+            CalculateGridNormals(grid, verticesPerAxis);
             var vertices = new List<Vector3>(plan.QuadsPerAxis * plan.QuadsPerAxis * 6);
+            var normals = new List<Vector3>(vertices.Capacity);
             var colors = new List<Color32>(vertices.Capacity);
             var triangles = new List<int>(vertices.Capacity);
             var clippedPolygon = new List<DustVertex>(4);
@@ -123,6 +133,7 @@ namespace BooterBigArm.TopDown3D
                         grid[bottomLeft + 1],
                         clippedPolygon,
                         vertices,
+                        normals,
                         colors,
                         triangles);
                     AddClippedTriangle(
@@ -131,6 +142,7 @@ namespace BooterBigArm.TopDown3D
                         grid[topLeft + 1],
                         clippedPolygon,
                         vertices,
+                        normals,
                         colors,
                         triangles);
                 }
@@ -138,6 +150,7 @@ namespace BooterBigArm.TopDown3D
 
             return new TopDown3DDustMeshData(
                 vertices.ToArray(),
+                normals.ToArray(),
                 colors.ToArray(),
                 triangles.ToArray());
         }
@@ -148,6 +161,7 @@ namespace BooterBigArm.TopDown3D
             DustVertex c,
             List<DustVertex> clippedPolygon,
             List<Vector3> vertices,
+            List<Vector3> normals,
             List<Color32> colors,
             List<int> triangles)
         {
@@ -185,6 +199,7 @@ namespace BooterBigArm.TopDown3D
                     clippedPolygon[index],
                     clippedPolygon[index + 1],
                     vertices,
+                    normals,
                     colors,
                     triangles);
             }
@@ -198,6 +213,7 @@ namespace BooterBigArm.TopDown3D
                 : Mathf.Clamp01((MinimumVisibleWeight - start.Weight) / range);
             return new DustVertex(
                 Vector3.Lerp(start.Position, end.Position, time),
+                Vector3.Lerp(start.Normal, end.Normal, time).normalized,
                 MinimumVisibleWeight);
         }
 
@@ -206,13 +222,14 @@ namespace BooterBigArm.TopDown3D
             DustVertex b,
             DustVertex c,
             List<Vector3> vertices,
+            List<Vector3> normals,
             List<Color32> colors,
             List<int> triangles)
         {
             var index = vertices.Count;
-            AddVertex(a, vertices, colors);
-            AddVertex(b, vertices, colors);
-            AddVertex(c, vertices, colors);
+            AddVertex(a, vertices, normals, colors);
+            AddVertex(b, vertices, normals, colors);
+            AddVertex(c, vertices, normals, colors);
             triangles.Add(index);
             triangles.Add(index + 1);
             triangles.Add(index + 2);
@@ -221,9 +238,11 @@ namespace BooterBigArm.TopDown3D
         private static void AddVertex(
             DustVertex vertex,
             List<Vector3> vertices,
+            List<Vector3> normals,
             List<Color32> colors)
         {
             vertices.Add(vertex.Position);
+            normals.Add(vertex.Normal);
             colors.Add(new Color32(
                 255,
                 255,
@@ -233,14 +252,38 @@ namespace BooterBigArm.TopDown3D
 
         private readonly struct DustVertex
         {
-            public DustVertex(Vector3 position, float weight)
+            public DustVertex(Vector3 position, Vector3 normal, float weight)
             {
                 Position = position;
+                Normal = normal;
                 Weight = weight;
             }
 
             public Vector3 Position { get; }
+            public Vector3 Normal { get; }
             public float Weight { get; }
+        }
+
+        private static void CalculateGridNormals(DustVertex[] grid, int verticesPerAxis)
+        {
+            for (var z = 0; z < verticesPerAxis; z++)
+            {
+                for (var x = 0; x < verticesPerAxis; x++)
+                {
+                    var left = grid[z * verticesPerAxis + Mathf.Max(0, x - 1)].Position;
+                    var right = grid[z * verticesPerAxis + Mathf.Min(verticesPerAxis - 1, x + 1)].Position;
+                    var back = grid[Mathf.Max(0, z - 1) * verticesPerAxis + x].Position;
+                    var forward = grid[Mathf.Min(verticesPerAxis - 1, z + 1) * verticesPerAxis + x].Position;
+                    var tangentX = right - left;
+                    var tangentZ = forward - back;
+                    var normal = Vector3.Cross(tangentZ, tangentX).normalized;
+                    var index = z * verticesPerAxis + x;
+                    grid[index] = new DustVertex(
+                        grid[index].Position,
+                        normal.sqrMagnitude > 0.000001f ? normal : Vector3.up,
+                        grid[index].Weight);
+                }
+            }
         }
     }
 }

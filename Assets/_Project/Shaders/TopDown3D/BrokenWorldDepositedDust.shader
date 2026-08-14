@@ -7,10 +7,12 @@ Shader "BooterBigArm/TopDown3D/Broken World Deposited Dust"
         _MetersPerTile("Meters Per Tile", Float) = 3.5
         _Smoothness("Smoothness", Range(0, 1)) = 0.07
         _EdgeTone("Thin Edge Tone", Range(0.5, 1)) = 0.86
+        _EdgeFeather("Edge Feather", Range(0.03, 0.4)) = 0.34
+        _Opacity("Deposit Opacity", Range(0.35, 1)) = 0.72
         [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
         [HideInInspector] _Cull("Cull", Float) = 2
-        [HideInInspector] _ZWrite("ZWrite", Float) = 1
+        [HideInInspector] _ZWrite("ZWrite", Float) = 0
     }
 
     SubShader
@@ -18,8 +20,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Deposited Dust"
         Tags
         {
             "RenderPipeline" = "UniversalPipeline"
-            "RenderType" = "Opaque"
-            "Queue" = "Geometry+1"
+            "RenderType" = "Transparent"
+            "Queue" = "Transparent-10"
         }
         LOD 250
 
@@ -29,6 +31,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Deposited Dust"
             Tags { "LightMode" = "UniversalForward" }
 
             Cull [_Cull]
+            Blend SrcAlpha OneMinusSrcAlpha
             ZWrite [_ZWrite]
             ZTest LEqual
 
@@ -56,6 +59,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Deposited Dust"
                 float _MetersPerTile;
                 float _Smoothness;
                 float _EdgeTone;
+                float _EdgeFeather;
+                float _Opacity;
                 float _Cutoff;
                 float _Surface;
                 float _Cull;
@@ -130,6 +135,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Deposited Dust"
                 half3 alternate = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, alternateUv).rgb;
                 half3 dustAlbedo = lerp(primary, alternate, textureBlend);
                 half edgeTone = lerp((half)_EdgeTone, 1.04h, saturate(input.depositionWeight));
+                half opacity = saturate(
+                    smoothstep(0.025h, max(0.026h, (half)_EdgeFeather), input.depositionWeight))
+                    * (half)_Opacity;
                 half3 normalWS = NormalizeNormalPerPixel(input.normalWS);
 
                 SurfaceData surfaceData = (SurfaceData)0;
@@ -140,7 +148,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Deposited Dust"
                 surfaceData.normalTS = half3(0.0, 0.0, 1.0);
                 surfaceData.emission = 0.0;
                 surfaceData.occlusion = 1.0;
-                surfaceData.alpha = 1.0;
+                surfaceData.alpha = opacity;
                 surfaceData.clearCoatMask = 0.0;
                 surfaceData.clearCoatSmoothness = 0.0;
 
@@ -157,14 +165,13 @@ Shader "BooterBigArm/TopDown3D/Broken World Deposited Dust"
                 inputData.shadowMask = half4(1.0, 1.0, 1.0, 1.0);
 
                 half4 color = UniversalFragmentPBR(inputData, surfaceData);
+                color.a = opacity;
                 color.rgb = MixFog(color.rgb, input.fogFactor);
                 return color;
             }
             ENDHLSL
         }
 
-        UsePass "Universal Render Pipeline/Lit/DepthOnly"
-        UsePass "Universal Render Pipeline/Lit/DepthNormals"
     }
 
     FallBack "Hidden/Universal Render Pipeline/FallbackError"

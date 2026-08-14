@@ -250,11 +250,12 @@ namespace BooterBigArm.TopDown3D
                 var delta = worldPosition - sourcePosition;
                 var downwind = Vector2.Dot(delta, wind);
                 var sourceRadius = Mathf.Max(0.35f, source.FootprintRadius);
+                var obstructionScale = SmoothStepRange(0.35f, 1.5f, sourceRadius);
                 var wakeLength = Mathf.Min(
-                    settings.ChunkSize * 0.78f,
-                    settings.DustWakeLength
+                    settings.DustWakeLength * 1.28f,
+                    settings.DustWakeLength * Mathf.Lerp(0.65f, 1f, obstructionScale)
                         + sourceRadius
-                        * (source.Layer == TopDown3DNaturalObjectLayer.Landmark ? 1.8f : 1.15f));
+                        * (source.Layer == TopDown3DNaturalObjectLayer.Landmark ? 0.32f : 0.22f));
                 if (downwind < -sourceRadius * 0.15f || downwind > wakeLength)
                 {
                     continue;
@@ -267,7 +268,9 @@ namespace BooterBigArm.TopDown3D
                     * 0.28f
                     * curveDirection;
                 var across = Mathf.Abs(Vector2.Dot(delta, crossWind) - curvedCenter);
-                var wakeWidth = Mathf.Max(0.8f, sourceRadius * settings.DustWakeWidthMultiplier);
+                var wakeWidth = Mathf.Max(
+                    0.38f,
+                    sourceRadius * settings.DustWakeWidthMultiplier * 0.9f);
                 if (across > wakeWidth)
                 {
                     continue;
@@ -285,7 +288,9 @@ namespace BooterBigArm.TopDown3D
                     wakeWidth * 0.3f,
                     wakeWidth,
                     across);
-                var weight = Mathf.Clamp01(nearFade * farFade * lateralFade);
+                var sourceAdmission = Mathf.Lerp(0.18f, 1f, obstructionScale);
+                var weight = Mathf.Clamp01(
+                    nearFade * farFade * lateralFade * sourceAdmission);
                 var footprintHeight = Mathf.Lerp(
                     0.78f,
                     1.9f,

@@ -27,10 +27,13 @@ namespace BooterBigArm.Tests
                 settings.DepositedDustMaterial.GetTexture("_BaseMap"),
                 Is.SameAs(terrainMaterial.GetTexture("_BaseMap")),
                 "Deposited drifts should inherit the rust ground surface, not pale swept sand.");
-            Assert.That(settings.DustOverlayQuadsPerAxis, Is.InRange(8, 40));
+            Assert.That(settings.DepositedDustMaterial.GetTag("RenderType", false), Is.EqualTo("Transparent"));
+            Assert.That(settings.DepositedDustMaterial.GetFloat("_EdgeFeather"), Is.GreaterThan(0.1f));
+            Assert.That(settings.DepositedDustMaterial.GetFloat("_Opacity"), Is.LessThan(1f));
+            Assert.That(settings.DustOverlayQuadsPerAxis, Is.EqualTo(40));
             Assert.That(settings.DustMaximumBaseHeight, Is.GreaterThan(0f));
             Assert.That(settings.DustMaximumWakeHeight, Is.GreaterThan(settings.DustMaximumBaseHeight));
-            Assert.That(settings.DustWakeLength, Is.LessThan(settings.ChunkSize));
+            Assert.That(settings.DustWakeLength, Is.LessThan(settings.ChunkSize * 0.3f));
             Assert.That(settings.MaximumDustDepositionSlope, Is.LessThan(settings.MaximumClutterSlope));
         }
 
@@ -114,8 +117,10 @@ namespace BooterBigArm.Tests
                         coordinate,
                         plan);
                     foundDeposit |= mesh.Triangles.Length > 0;
+                    Assert.That(mesh.Normals.Length, Is.EqualTo(mesh.Vertices.Length));
                     for (var index = 0; index < mesh.Vertices.Length; index++)
                     {
+                        Assert.That(mesh.Normals[index].magnitude, Is.EqualTo(1f).Within(0.001f));
                         var normalizedX = mesh.Vertices[index].x / plan.Step;
                         var normalizedZ = mesh.Vertices[index].z / plan.Step;
                         if (Mathf.Abs(normalizedX - Mathf.Round(normalizedX)) > 0.001f
@@ -218,7 +223,7 @@ namespace BooterBigArm.Tests
             var sources = new List<TopDown3DNaturalObjectPlacement> { source };
             var lee = TopDown3DDustDepositionPlanner.SampleShelterWeight(
                 settings,
-                wind * 3f,
+                wind * 1.4f,
                 sources);
             var side = TopDown3DDustDepositionPlanner.SampleShelterWeight(
                 settings,
@@ -263,7 +268,7 @@ namespace BooterBigArm.Tests
                 2.8f,
                 7123,
                 5);
-            var samplePosition = wind * 2f;
+            var samplePosition = wind * 1.5f;
             var smallPile = TopDown3DDustDepositionPlanner.SampleAt(
                 settings,
                 samplePosition,
@@ -275,6 +280,37 @@ namespace BooterBigArm.Tests
 
             Assert.That(largePile.Height, Is.GreaterThan(smallPile.Height * 1.45f));
             Assert.That(largePile.ShelterWeight, Is.GreaterThan(0.4f));
+        }
+
+        [Test]
+        public void ObjectWake_FadesOutSoonAfterTheConfiguredShortLength()
+        {
+            var settings = LoadSettings();
+            var wind = TopDown3DDustDepositionPlanner.GetPrevailingWindDirection(settings);
+            var source = new TopDown3DNaturalObjectPlacement(
+                "large-rock",
+                TopDown3DNaturalObjectLayer.Obstacle,
+                TopDown3DNaturalObjectShape.Boulder,
+                TopDown3DRockSurface.Regular,
+                0,
+                Vector3.zero,
+                Quaternion.identity,
+                Vector3.one * 2f,
+                2f,
+                3917,
+                1);
+            var sources = new List<TopDown3DNaturalObjectPlacement> { source };
+            var near = TopDown3DDustDepositionPlanner.SampleShelterWeight(
+                settings,
+                wind * 1.25f,
+                sources);
+            var beyond = TopDown3DDustDepositionPlanner.SampleShelterWeight(
+                settings,
+                wind * (settings.DustWakeLength * 1.5f),
+                sources);
+
+            Assert.That(near, Is.GreaterThan(0.4f));
+            Assert.That(beyond, Is.LessThan(0.01f));
         }
 
         private static TopDown3DWorldSettings LoadSettings()

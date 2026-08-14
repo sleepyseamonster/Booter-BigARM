@@ -63,14 +63,14 @@ namespace BooterBigArm.TopDown3D
         [Header("Deposited Dust")]
         [SerializeField] private Material depositedDustMaterial;
         [SerializeField, Min(1)] private int dustDepositionGenerationVersion = 1;
-        [SerializeField, Range(8, 40)] private int dustOverlayQuadsPerAxis = 24;
+        [SerializeField, Range(8, 40)] private int dustOverlayQuadsPerAxis = 40;
         [SerializeField, Range(0f, 360f)] private float prevailingWindDegrees = 32f;
         [SerializeField, Min(0.0001f)] private float dustPocketFrequency = 0.012f;
         [SerializeField, Min(0.0001f)] private float dustWindrowFrequency = 0.09f;
         [SerializeField, Range(0.3f, 0.85f)] private float dustCoverageThreshold = 0.58f;
         [SerializeField, Range(0.01f, 0.5f)] private float dustMaximumBaseHeight = 0.16f;
-        [SerializeField, Range(1f, 16f)] private float dustWakeLength = 6.5f;
-        [SerializeField, Range(0.5f, 3f)] private float dustWakeWidthMultiplier = 1.35f;
+        [SerializeField, Range(1f, 16f)] private float dustWakeLength = 2.8f;
+        [SerializeField, Range(0.5f, 3f)] private float dustWakeWidthMultiplier = 1.15f;
         [SerializeField, Range(0.05f, 0.8f)] private float dustMaximumWakeHeight = 0.28f;
         [SerializeField, Range(1f, 60f)] private float maximumDustDepositionSlope = 26f;
         [SerializeField, Range(0.002f, 0.08f)] private float dustSurfaceOffset = 0.018f;
