@@ -455,7 +455,7 @@ namespace BooterBigArm.TopDown3D
             vertexHelper.AddVert(first, color, Vector2.zero);
             vertexHelper.AddVert(second, color, Vector2.zero);
             vertexHelper.AddVert(third, color, Vector2.zero);
-            vertexHelper.AddTriangle(start, start + 1, start + 2);
+            vertexHelper.AddTriangle(start, start + 2, start + 1);
         }
 
         private static void AddCircle(
@@ -477,7 +477,7 @@ namespace BooterBigArm.TopDown3D
             for (var i = 0; i < segments; i++)
             {
                 var next = (i + 1) % segments;
-                vertexHelper.AddTriangle(centerIndex, centerIndex + i + 1, centerIndex + next + 1);
+                vertexHelper.AddTriangle(centerIndex, centerIndex + next + 1, centerIndex + i + 1);
             }
         }
 
@@ -500,7 +500,7 @@ namespace BooterBigArm.TopDown3D
             for (var i = 0; i < points.Length; i++)
             {
                 var next = (i + 1) % points.Length;
-                vertexHelper.AddTriangle(centerIndex, centerIndex + i + 1, centerIndex + next + 1);
+                vertexHelper.AddTriangle(centerIndex, centerIndex + next + 1, centerIndex + i + 1);
             }
         }
     }

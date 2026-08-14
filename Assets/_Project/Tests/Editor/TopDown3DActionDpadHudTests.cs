@@ -1,5 +1,6 @@
 using BooterBigArm.TopDown3D;
 using NUnit.Framework;
+using System.Reflection;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -104,6 +105,50 @@ namespace BooterBigArm.Tests
             }
             finally
             {
+                EditorSceneManager.CloseScene(scene, true);
+            }
+        }
+
+        [Test]
+        public void GraphicGeometry_UsesCanvasFacingTriangleWinding()
+        {
+            var scene = SceneManager.CreateScene("DpadGeometryTestScene");
+            Mesh mesh = null;
+            try
+            {
+                AddInactiveInputRouter(scene);
+                var hud = TopDown3DActionDpadHud.TryInstallForScene(scene);
+                var graphic = hud.Graphic;
+                var populateMesh = typeof(TopDown3DActionDpadGraphic).GetMethod(
+                    "OnPopulateMesh",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+                Assert.That(populateMesh, Is.Not.Null);
+
+                using var vertexHelper = new VertexHelper();
+                populateMesh.Invoke(graphic, new object[] { vertexHelper });
+                mesh = new Mesh();
+                vertexHelper.FillMesh(mesh);
+
+                Assert.That(mesh.vertexCount, Is.GreaterThan(0));
+                Assert.That(mesh.triangles.Length, Is.GreaterThan(0));
+                var vertices = mesh.vertices;
+                var triangles = mesh.triangles;
+                for (var i = 0; i < triangles.Length; i += 3)
+                {
+                    var first = vertices[triangles[i]];
+                    var second = vertices[triangles[i + 1]];
+                    var third = vertices[triangles[i + 2]];
+                    var signedArea = Vector3.Cross(second - first, third - first).z;
+                    Assert.That(signedArea, Is.LessThan(0f), $"Triangle {i / 3} faces away from the UI canvas.");
+                }
+            }
+            finally
+            {
+                if (mesh != null)
+                {
+                    Object.DestroyImmediate(mesh);
+                }
+
                 EditorSceneManager.CloseScene(scene, true);
             }
         }
