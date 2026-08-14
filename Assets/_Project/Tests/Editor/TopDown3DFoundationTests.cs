@@ -209,7 +209,94 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void AlwaysOnDust_KeepsHalfVisibilityNearLandscapeCameraRange()
+        public void RegionalDustClumps_EmphasizeThinAndThickSpots()
+        {
+            const float sameBroadDensity = 0.5f;
+            var thinSpot = TopDown3DDustAtmosphere.EvaluateClumpEmphasis(
+                sameBroadDensity,
+                0.25f,
+                TopDown3DDustAtmosphere.DefaultClumpStrength);
+            var thickSpot = TopDown3DDustAtmosphere.EvaluateClumpEmphasis(
+                sameBroadDensity,
+                0.80f,
+                TopDown3DDustAtmosphere.DefaultClumpStrength);
+
+            Assert.That(thinSpot, Is.LessThan(0.15f));
+            Assert.That(thickSpot, Is.GreaterThan(0.85f));
+            Assert.That(thickSpot - thinSpot, Is.GreaterThan(0.70f));
+        }
+
+        [Test]
+        public void ProceduralDustPockets_AreDeterministicBoundedAndSeparatedByClearAir()
+        {
+            var sawClearAir = false;
+            var sawPocketInterior = false;
+
+            for (var z = -12; z <= 12; z++)
+            {
+                for (var x = -12; x <= 12; x++)
+                {
+                    var position = new Vector3(x * 36f, 0f, z * 36f);
+                    var first = EvaluateDefaultPocketIntensity(position);
+                    var second = EvaluateDefaultPocketIntensity(position);
+
+                    Assert.That(second, Is.EqualTo(first));
+                    Assert.That(
+                        first,
+                        Is.InRange(0f, TopDown3DDustAtmosphere.DefaultMaximumRegionalIntensity));
+                    sawClearAir |= first <= 0.0001f;
+                    sawPocketInterior |= first >= TopDown3DDustAtmosphere.DefaultMinimumRegionalIntensity;
+                }
+            }
+
+            Assert.That(sawClearAir, Is.True, "The seeded world sample never reached clear air.");
+            Assert.That(sawPocketInterior, Is.True, "The seeded world sample never entered a dust pocket.");
+        }
+
+        [Test]
+        public void ProceduralDustPockets_RemainContinuousAcrossChunkBoundaries()
+        {
+            const float seamOffset = 0.001f;
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
+            Assert.That(settings, Is.Not.Null);
+
+            for (var chunk = -16; chunk <= 16; chunk++)
+            {
+                var boundary = chunk * settings.ChunkSize;
+                for (var row = -8; row <= 8; row++)
+                {
+                    var z = row * 27f;
+                    var left = EvaluateDefaultPocketIntensity(
+                        new Vector3(boundary - seamOffset, 0f, z));
+                    var right = EvaluateDefaultPocketIntensity(
+                        new Vector3(boundary + seamOffset, 0f, z));
+
+                    Assert.That(
+                        Mathf.Abs(right - left),
+                        Is.LessThan(0.001f),
+                        $"Dust field jumped at chunk boundary x={boundary}, z={z}.");
+                }
+            }
+        }
+
+        [Test]
+        public void DefaultDustPockets_SpanSeveralProceduralChunks()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
+            Assert.That(settings, Is.Not.Null);
+            Assert.That(
+                TopDown3DDustAtmosphere.DefaultPocketCellSize / settings.ChunkSize,
+                Is.EqualTo(8f).Within(0.0001f));
+            Assert.That(
+                (TopDown3DDustAtmosphere.DefaultMinimumPocketRadius * 2f) / settings.ChunkSize,
+                Is.EqualTo(6f).Within(0.0001f));
+            Assert.That(
+                (TopDown3DDustAtmosphere.DefaultMaximumPocketRadius * 2f) / settings.ChunkSize,
+                Is.EqualTo(8f).Within(0.0001f));
+        }
+
+        [Test]
+        public void DustPocketInterior_KeepsHalfVisibilityNearLandscapeCameraRange()
         {
             var clearestDensity = TopDown3DDustAtmosphere.DefaultFogDensityAtIntensityOne
                 * TopDown3DDustAtmosphere.DefaultMinimumRegionalIntensity;
@@ -222,6 +309,9 @@ namespace BooterBigArm.Tests
             Assert.That(
                 TopDown3DDustAtmosphere.EvaluateHalfVisibilityDistance(dustiestDensity),
                 Is.InRange(17f, 18f));
+            Assert.That(
+                TopDown3DDustAtmosphere.EvaluateHalfVisibilityDistance(0f),
+                Is.EqualTo(float.PositiveInfinity));
         }
 
         [Test]
@@ -258,6 +348,22 @@ namespace BooterBigArm.Tests
                 Object.DestroyImmediate(zoneObject);
                 Object.DestroyImmediate(atmosphereObject);
             }
+        }
+
+        private static float EvaluateDefaultPocketIntensity(Vector3 position)
+        {
+            return TopDown3DDustAtmosphere.EvaluatePocketIntensity(
+                24681357,
+                position,
+                TopDown3DDustAtmosphere.DefaultPocketCellSize,
+                TopDown3DDustAtmosphere.DefaultPocketSpawnChance,
+                TopDown3DDustAtmosphere.DefaultMinimumPocketRadius,
+                TopDown3DDustAtmosphere.DefaultMaximumPocketRadius,
+                TopDown3DDustAtmosphere.DefaultPocketEdgeBlend,
+                TopDown3DDustAtmosphere.DefaultPocketCenterJitter,
+                0.0065f,
+                TopDown3DDustAtmosphere.DefaultMinimumRegionalIntensity,
+                TopDown3DDustAtmosphere.DefaultMaximumRegionalIntensity);
         }
 
         [Test]

@@ -25,10 +25,12 @@ namespace BooterBigArm.TopDown3D
         }
 
         private const float MinimumCycleDurationSeconds = 1f;
+        public const float DefaultCycleDurationSeconds = 1200f;
 
         [Header("Cycle")]
         [SerializeField] private bool cycleEnabled = true;
-        [SerializeField, Min(MinimumCycleDurationSeconds)] private float cycleDurationSeconds = 1200f;
+        [SerializeField, Min(MinimumCycleDurationSeconds)] private float cycleDurationSeconds =
+            DefaultCycleDurationSeconds;
         [SerializeField, Range(0f, 1f)] private float cycle01 = 0.12f;
 
         [Header("Sun Path")]
@@ -64,6 +66,7 @@ namespace BooterBigArm.TopDown3D
         public static PerpetualTwilightSun Active { get; private set; }
 
         public float Cycle01 => cycle01;
+        public float CycleDurationSeconds => cycleDurationSeconds;
         public float Brightness01 => brightness01;
         public bool CycleEnabled => cycleEnabled;
         public Vector3 DirectionToSun => sun != null ? -sun.transform.forward : Vector3.up;

@@ -18,7 +18,7 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
-    RenderType: Transparent
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties:
@@ -54,8 +54,8 @@ Material:
     - _MetersPerTile: 3.5
     - _Opacity: 0.72
     - _Smoothness: 0.07
-    - _Surface: 1
-    - _ZWrite: 0
+    - _Surface: 0
+    - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

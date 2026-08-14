@@ -12,7 +12,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(0f)] private float innerRadius = 14f;
         [SerializeField, Min(0.01f)] private float blendDistance = 12f;
         [SerializeField, Range(0.25f, 3f)] private float dustIntensity = 1.7f;
-        [SerializeField] private Color dustTint = new Color(0.72f, 0.36f, 0.16f);
+        [SerializeField] private Color dustTint = TopDown3DDustAtmosphere.DefaultBrightRustDust;
 
         public static IEnumerable<TopDown3DDustZone> ActiveZones => ActiveInstances;
 

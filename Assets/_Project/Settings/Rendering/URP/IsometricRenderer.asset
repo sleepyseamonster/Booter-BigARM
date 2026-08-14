@@ -24,8 +24,9 @@ MonoBehaviour:
     probeSamplingDebugMesh: {fileID: 0}
     probeSamplingDebugTexture: {fileID: 0}
     probeVolumeBlendStatesCS: {fileID: 0}
-  m_RendererFeatures: []
-  m_RendererFeatureMap:
+  m_RendererFeatures:
+  - {fileID: 8947123059812374813}
+  m_RendererFeatureMap: 1d99d2dd04912a7c
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -54,3 +55,21 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
+--- !u!114 &8947123059812374813
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83137fe2ee54874bb2c701c8d518734, type: 3}
+  m_Name: TopDown3D Volumetric Dust
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DVolumetricDustFeature
+  m_Active: 1
+  volumetricShader: {fileID: 4800000, guid: 0b82d768d5a3442d83b10f77a6defc29, type: 3}
+  downsample: 2
+  raymarchSteps: 16
+  shadowSamples: 8
+  depthEdgeSharpness: 96

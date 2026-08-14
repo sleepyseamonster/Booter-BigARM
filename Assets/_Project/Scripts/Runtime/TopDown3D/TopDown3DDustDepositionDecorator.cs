@@ -78,6 +78,10 @@ namespace BooterBigArm.TopDown3D
                 : fallbackMaterial;
             renderer.shadowCastingMode = ShadowCastingMode.Off;
             renderer.receiveShadows = true;
+            if (Application.isPlaying)
+            {
+                mesh.UploadMeshData(true);
+            }
         }
 
         public static TopDown3DDustMeshData BuildMeshData(

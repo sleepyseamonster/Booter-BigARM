@@ -12,7 +12,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Deposited Dust"
         [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
         [HideInInspector] _Cull("Cull", Float) = 2
-        [HideInInspector] _ZWrite("ZWrite", Float) = 0
+        [HideInInspector] _ZWrite("ZWrite", Float) = 1
     }
 
     SubShader
@@ -20,8 +20,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Deposited Dust"
         Tags
         {
             "RenderPipeline" = "UniversalPipeline"
-            "RenderType" = "Transparent"
-            "Queue" = "Transparent-10"
+            "RenderType" = "Opaque"
+            "Queue" = "Geometry+40"
         }
         LOD 250
 
@@ -171,6 +171,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Deposited Dust"
             }
             ENDHLSL
         }
+
+        UsePass "Universal Render Pipeline/Lit/DepthOnly"
+        UsePass "Universal Render Pipeline/Lit/DepthNormals"
 
     }
 
