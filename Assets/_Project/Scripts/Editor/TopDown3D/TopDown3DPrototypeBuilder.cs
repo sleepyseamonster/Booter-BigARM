@@ -45,8 +45,16 @@ namespace BooterBigArm.Editor
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelTransitionAlbedo.png";
         public const string TerrainRockyAlbedoPath =
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyAlbedo.png";
+        public const string TerrainRockyHeightPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyHeight.png";
+        public const string TerrainRockyNormalPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyNormal.png";
         public const string TerrainRockyTransitionAlbedoPath =
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionAlbedo.png";
+        public const string TerrainRockyTransitionHeightPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionHeight.png";
+        public const string TerrainRockyTransitionNormalPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionNormal.png";
         public const float TerrainBaseMetersPerTile = 3f;
         public const float TerrainSweptSandMetersPerTile = 4f;
         public const float TerrainGravelMetersPerTile = 2.25f;
@@ -56,6 +64,9 @@ namespace BooterBigArm.Editor
         public const float TerrainGravelThreshold = 0.66f;
         public const float TerrainRockyThreshold = 0.62f;
         public const float TerrainRockyStrength = 0.96f;
+        public const float TerrainRockyHeightScale = 0.055f;
+        public const float TerrainRockyNormalStrength = 0.9f;
+        public const float TerrainRockyReliefOcclusion = 0.16f;
         public const float TerrainPatchBlendWidth = 0.11f;
         public const float TerrainTransitionWidth = 0.13f;
         public const float TerrainSmoothness = 0.18f;
@@ -223,11 +234,18 @@ namespace BooterBigArm.Editor
             var gravelTransitionAlbedo =
                 AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainGravelTransitionAlbedoPath);
             var rockyAlbedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyAlbedoPath);
+            var rockyHeight = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyHeightPath);
+            var rockyNormal = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyNormalPath);
             var rockyTransitionAlbedo =
                 AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyTransitionAlbedoPath);
+            var rockyTransitionHeight =
+                AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyTransitionHeightPath);
+            var rockyTransitionNormal =
+                AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyTransitionNormalPath);
             if (shader == null || baseAlbedo == null || sweptSandAlbedo == null || gravelAlbedo == null
                 || rockyAlbedo == null || sweptSandTransitionAlbedo == null || gravelTransitionAlbedo == null
-                || rockyTransitionAlbedo == null)
+                || rockyTransitionAlbedo == null || rockyHeight == null || rockyNormal == null
+                || rockyTransitionHeight == null || rockyTransitionNormal == null)
             {
                 throw new InvalidOperationException("The layered terrain shader or one of its albedo textures is missing.");
             }
@@ -246,6 +264,10 @@ namespace BooterBigArm.Editor
             changed |= SetTextureIfNeeded(material, "_GravelTransitionMap", gravelTransitionAlbedo);
             changed |= SetTextureIfNeeded(material, "_RockyMap", rockyAlbedo);
             changed |= SetTextureIfNeeded(material, "_RockyTransitionMap", rockyTransitionAlbedo);
+            changed |= SetTextureIfNeeded(material, "_RockyHeightMap", rockyHeight);
+            changed |= SetTextureIfNeeded(material, "_RockyNormalMap", rockyNormal);
+            changed |= SetTextureIfNeeded(material, "_RockyTransitionHeightMap", rockyTransitionHeight);
+            changed |= SetTextureIfNeeded(material, "_RockyTransitionNormalMap", rockyTransitionNormal);
             changed |= SetFloatIfNeeded(material, "_BaseMetersPerTile", TerrainBaseMetersPerTile);
             changed |= SetFloatIfNeeded(material, "_SweptSandMetersPerTile", TerrainSweptSandMetersPerTile);
             changed |= SetFloatIfNeeded(material, "_GravelMetersPerTile", TerrainGravelMetersPerTile);
@@ -255,6 +277,9 @@ namespace BooterBigArm.Editor
             changed |= SetFloatIfNeeded(material, "_GravelThreshold", TerrainGravelThreshold);
             changed |= SetFloatIfNeeded(material, "_RockyThreshold", TerrainRockyThreshold);
             changed |= SetFloatIfNeeded(material, "_RockyStrength", TerrainRockyStrength);
+            changed |= SetFloatIfNeeded(material, "_RockyHeightScale", TerrainRockyHeightScale);
+            changed |= SetFloatIfNeeded(material, "_RockyNormalStrength", TerrainRockyNormalStrength);
+            changed |= SetFloatIfNeeded(material, "_RockyReliefOcclusion", TerrainRockyReliefOcclusion);
             changed |= SetFloatIfNeeded(material, "_BlendWidth", TerrainPatchBlendWidth);
             changed |= SetFloatIfNeeded(material, "_TransitionWidth", TerrainTransitionWidth);
             changed |= SetFloatIfNeeded(material, "_Smoothness", TerrainSmoothness);

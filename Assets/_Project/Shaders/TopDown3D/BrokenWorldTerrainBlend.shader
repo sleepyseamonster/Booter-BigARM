@@ -9,6 +9,10 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
         _GravelTransitionMap("Gravel Transition", 2D) = "white" {}
         _RockyMap("Mixed Gray Earth Rock", 2D) = "white" {}
         _RockyTransitionMap("Mixed Rock Transition", 2D) = "white" {}
+        [NoScaleOffset] _RockyHeightMap("Mixed Rock Height", 2D) = "black" {}
+        [NoScaleOffset] _RockyNormalMap("Mixed Rock Normal", 2D) = "bump" {}
+        [NoScaleOffset] _RockyTransitionHeightMap("Mixed Rock Transition Height", 2D) = "black" {}
+        [NoScaleOffset] _RockyTransitionNormalMap("Mixed Rock Transition Normal", 2D) = "bump" {}
         [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
         _BaseMetersPerTile("Base Meters Per Tile", Float) = 3
         _SweptSandMetersPerTile("Swept Sand Meters Per Tile", Float) = 4
@@ -23,6 +27,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
         _SweptSandStrength("Swept Sand Strength", Range(0, 1)) = 0.9
         _GravelStrength("Gravel Strength", Range(0, 1)) = 0.92
         _RockyStrength("Rocky Strength", Range(0, 1)) = 0.96
+        _RockyHeightScale("Rocky Raised Relief", Range(0, 0.12)) = 0.055
+        _RockyNormalStrength("Rocky Normal Strength", Range(0, 2)) = 0.9
+        _RockyReliefOcclusion("Rocky Crevice Occlusion", Range(0, 0.5)) = 0.16
         _Smoothness("Smoothness", Range(0, 1)) = 0.18
         [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
@@ -78,6 +85,14 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
             SAMPLER(sampler_RockyMap);
             TEXTURE2D(_RockyTransitionMap);
             SAMPLER(sampler_RockyTransitionMap);
+            TEXTURE2D(_RockyHeightMap);
+            SAMPLER(sampler_RockyHeightMap);
+            TEXTURE2D(_RockyNormalMap);
+            SAMPLER(sampler_RockyNormalMap);
+            TEXTURE2D(_RockyTransitionHeightMap);
+            SAMPLER(sampler_RockyTransitionHeightMap);
+            TEXTURE2D(_RockyTransitionNormalMap);
+            SAMPLER(sampler_RockyTransitionNormalMap);
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseMap_ST;
@@ -95,6 +110,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float _SweptSandStrength;
                 float _GravelStrength;
                 float _RockyStrength;
+                float _RockyHeightScale;
+                float _RockyNormalStrength;
+                float _RockyReliefOcclusion;
                 float _Smoothness;
                 float _Cutoff;
                 float _Surface;
@@ -169,6 +187,41 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 return lerp(primary, alternate, blend);
             }
 
+            float SampleAntiTiledHeight(
+                float2 uv,
+                float2 groundPosition,
+                float seed,
+                TEXTURE2D_PARAM(textureMap, sampler_textureMap))
+            {
+                const float2x2 rotation = float2x2(0.8660254, -0.5, 0.5, 0.8660254);
+                float blend = smoothstep(
+                    0.25,
+                    0.75,
+                    ValueNoise(groundPosition * 0.075 + seed * 9.17));
+                float2 alternateUv = mul(rotation, uv * 0.91) + float2(17.3, 29.1) * seed;
+                float primary = SAMPLE_TEXTURE2D(textureMap, sampler_textureMap, uv).r;
+                float alternate = SAMPLE_TEXTURE2D(textureMap, sampler_textureMap, alternateUv).r;
+                return lerp(primary, alternate, blend);
+            }
+
+            half3 SampleAntiTiledNormal(
+                float2 uv,
+                float2 groundPosition,
+                float seed,
+                TEXTURE2D_PARAM(textureMap, sampler_textureMap))
+            {
+                const float2x2 rotation = float2x2(0.8660254, -0.5, 0.5, 0.8660254);
+                float blend = smoothstep(
+                    0.25,
+                    0.75,
+                    ValueNoise(groundPosition * 0.075 + seed * 9.17));
+                float2 alternateUv = mul(rotation, uv * 0.91) + float2(17.3, 29.1) * seed;
+                half3 primary = UnpackNormal(SAMPLE_TEXTURE2D(textureMap, sampler_textureMap, uv));
+                half3 alternate = UnpackNormal(SAMPLE_TEXTURE2D(textureMap, sampler_textureMap, alternateUv));
+                alternate.xy = mul(transpose(rotation), alternate.xy);
+                return normalize(lerp(primary, alternate, blend));
+            }
+
             void BuildPatchMasks(
                 float signal,
                 float threshold,
@@ -210,7 +263,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
 
                 float3 absolutePositionWS = GetAbsolutePositionWS(input.positionWS);
                 float2 groundPosition = absolutePositionWS.xz;
-                half3 normalWS = NormalizeNormalPerPixel(input.normalWS);
+                half3 geometricNormalWS = NormalizeNormalPerPixel(input.normalWS);
+                half3 normalWS = geometricNormalWS;
+                half3 viewDirectionWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
 
                 float baseMeters = max(_BaseMetersPerTile, 0.01);
                 float sweptMeters = max(_SweptSandMetersPerTile, 0.01);
@@ -241,16 +296,53 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     groundPosition,
                     3.4,
                     TEXTURE2D_ARGS(_GravelTransitionMap, sampler_GravelTransitionMap));
-                half3 rockyAlbedo = SampleAntiTiled(
+                float rockyHeight = SampleAntiTiledHeight(
                     groundPosition / rockyMeters,
                     groundPosition,
                     4.0,
+                    TEXTURE2D_ARGS(_RockyHeightMap, sampler_RockyHeightMap));
+                float rockyViewDenominator = max(abs(viewDirectionWS.y), 0.28);
+                float2 rockyParallax = viewDirectionWS.xz / rockyViewDenominator
+                    * rockyHeight * _RockyHeightScale;
+                float2 rockyGroundPosition = groundPosition + rockyParallax;
+                rockyHeight = SampleAntiTiledHeight(
+                    rockyGroundPosition / rockyMeters,
+                    rockyGroundPosition,
+                    4.0,
+                    TEXTURE2D_ARGS(_RockyHeightMap, sampler_RockyHeightMap));
+                half3 rockyAlbedo = SampleAntiTiled(
+                    rockyGroundPosition / rockyMeters,
+                    rockyGroundPosition,
+                    4.0,
                     TEXTURE2D_ARGS(_RockyMap, sampler_RockyMap));
-                half3 rockyTransitionAlbedo = SampleAntiTiled(
+                half3 rockyNormalTS = SampleAntiTiledNormal(
+                    rockyGroundPosition / rockyMeters,
+                    rockyGroundPosition,
+                    4.0,
+                    TEXTURE2D_ARGS(_RockyNormalMap, sampler_RockyNormalMap));
+                float rockyTransitionHeight = SampleAntiTiledHeight(
                     groundPosition / gravelMeters,
                     groundPosition,
                     4.4,
+                    TEXTURE2D_ARGS(_RockyTransitionHeightMap, sampler_RockyTransitionHeightMap));
+                float2 rockyTransitionParallax = viewDirectionWS.xz / rockyViewDenominator
+                    * rockyTransitionHeight * (_RockyHeightScale * 0.7);
+                float2 rockyTransitionGroundPosition = groundPosition + rockyTransitionParallax;
+                rockyTransitionHeight = SampleAntiTiledHeight(
+                    rockyTransitionGroundPosition / gravelMeters,
+                    rockyTransitionGroundPosition,
+                    4.4,
+                    TEXTURE2D_ARGS(_RockyTransitionHeightMap, sampler_RockyTransitionHeightMap));
+                half3 rockyTransitionAlbedo = SampleAntiTiled(
+                    rockyTransitionGroundPosition / gravelMeters,
+                    rockyTransitionGroundPosition,
+                    4.4,
                     TEXTURE2D_ARGS(_RockyTransitionMap, sampler_RockyTransitionMap));
+                half3 rockyTransitionNormalTS = SampleAntiTiledNormal(
+                    rockyTransitionGroundPosition / gravelMeters,
+                    rockyTransitionGroundPosition,
+                    4.4,
+                    TEXTURE2D_ARGS(_RockyTransitionNormalMap, sampler_RockyTransitionNormalMap));
 
                 float2 patchPosition = groundPosition * _PatchFrequency;
                 float sweptNoise = FractalNoise(patchPosition + float2(13.1, -7.9));
@@ -259,7 +351,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 sweptNoise += (FractalNoise(patchPosition * 4.7 + float2(-8.2, 41.6)) - 0.5) * 0.10;
                 gravelNoise += (FractalNoise(patchPosition * 5.1 + float2(24.8, -15.3)) - 0.5) * 0.11;
                 rockyNoise += (FractalNoise(patchPosition * 5.3 + float2(8.4, -42.7)) - 0.5) * 0.12;
-                float slope = saturate(1.0 - normalWS.y);
+                float slope = saturate(1.0 - geometricNormalWS.y);
                 gravelNoise += slope * 0.18;
                 rockyNoise += slope * 0.10;
 
@@ -306,6 +398,25 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float macroVariation = lerp(0.94, 1.04, FractalNoise(groundPosition * 0.008 + 4.0));
                 albedo *= _BaseColor.rgb * macroVariation;
 
+                half3 rockyDetailNormalTS = half3(0.0, 0.0, 1.0);
+                rockyDetailNormalTS = normalize(lerp(
+                    rockyDetailNormalTS,
+                    rockyTransitionNormalTS,
+                    saturate(rockyTransitionMask * _RockyNormalStrength)));
+                rockyDetailNormalTS = normalize(lerp(
+                    rockyDetailNormalTS,
+                    rockyNormalTS,
+                    saturate(rockyMask * _RockyNormalStrength)));
+                half3 tangentReference = abs(geometricNormalWS.z) < 0.999h
+                    ? half3(0.0, 0.0, 1.0)
+                    : half3(0.0, 1.0, 0.0);
+                half3 tangentWS = normalize(cross(geometricNormalWS, tangentReference));
+                half3 bitangentWS = normalize(cross(tangentWS, geometricNormalWS));
+                normalWS = normalize(
+                    tangentWS * rockyDetailNormalTS.x
+                    + bitangentWS * rockyDetailNormalTS.y
+                    + geometricNormalWS * rockyDetailNormalTS.z);
+
                 SurfaceData surfaceData = (SurfaceData)0;
                 surfaceData.albedo = albedo;
                 surfaceData.specular = half3(0.2, 0.2, 0.2);
@@ -316,7 +427,10 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 surfaceData.smoothness = lerp(_Smoothness, 0.10, stonyMask);
                 surfaceData.normalTS = half3(0.0, 0.0, 1.0);
                 surfaceData.emission = 0.0;
-                surfaceData.occlusion = 1.0;
+                float rockyCrevice = max(
+                    rockyTransitionMask * (1.0 - rockyTransitionHeight),
+                    rockyMask * (1.0 - rockyHeight));
+                surfaceData.occlusion = 1.0 - rockyCrevice * _RockyReliefOcclusion;
                 surfaceData.alpha = 1.0;
                 surfaceData.clearCoatMask = 0.0;
                 surfaceData.clearCoatSmoothness = 0.0;
@@ -325,7 +439,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 inputData.positionWS = input.positionWS;
                 inputData.positionCS = input.positionCS;
                 inputData.normalWS = normalWS;
-                inputData.viewDirectionWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
+                inputData.viewDirectionWS = viewDirectionWS;
                 inputData.shadowCoord = TransformWorldToShadowCoord(input.positionWS);
                 inputData.fogCoord = input.fogFactor;
                 inputData.vertexLighting = VertexLighting(input.positionWS, normalWS);

@@ -48,7 +48,11 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainGravelAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainGravelTransitionAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainRockyAlbedoPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainRockyHeightPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainRockyNormalPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainRockyTransitionAlbedoPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainRockyTransitionHeightPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainRockyTransitionNormalPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainMaterialPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.RockShaderPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.RockAlbedoPath, errors);
@@ -166,10 +170,18 @@ namespace BooterBigArm.Editor
             var gravelTransition = AssetDatabase.LoadAssetAtPath<Texture2D>(
                 TopDown3DPrototypeBuilder.TerrainGravelTransitionAlbedoPath);
             var rocky = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.TerrainRockyAlbedoPath);
+            var rockyHeight = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.TerrainRockyHeightPath);
+            var rockyNormal = AssetDatabase.LoadAssetAtPath<Texture2D>(TopDown3DPrototypeBuilder.TerrainRockyNormalPath);
             var rockyTransition = AssetDatabase.LoadAssetAtPath<Texture2D>(
                 TopDown3DPrototypeBuilder.TerrainRockyTransitionAlbedoPath);
+            var rockyTransitionHeight = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                TopDown3DPrototypeBuilder.TerrainRockyTransitionHeightPath);
+            var rockyTransitionNormal = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                TopDown3DPrototypeBuilder.TerrainRockyTransitionNormalPath);
             if (material == null || shader == null || baseAlbedo == null || sweptSand == null || gravel == null
-                || rocky == null || sweptSandTransition == null || gravelTransition == null || rockyTransition == null)
+                || rocky == null || sweptSandTransition == null || gravelTransition == null || rockyTransition == null
+                || rockyHeight == null || rockyNormal == null || rockyTransitionHeight == null
+                || rockyTransitionNormal == null)
             {
                 return;
             }
@@ -212,6 +224,18 @@ namespace BooterBigArm.Editor
             if (material.GetTexture("_RockyTransitionMap") != rockyTransition)
             {
                 errors.Add("TopDown3D terrain material must use the mixed-rock transition albedo texture.");
+            }
+
+            if (material.GetTexture("_RockyHeightMap") != rockyHeight
+                || material.GetTexture("_RockyNormalMap") != rockyNormal)
+            {
+                errors.Add("TopDown3D terrain material must use the mixed-rock height and normal textures.");
+            }
+
+            if (material.GetTexture("_RockyTransitionHeightMap") != rockyTransitionHeight
+                || material.GetTexture("_RockyTransitionNormalMap") != rockyTransitionNormal)
+            {
+                errors.Add("TopDown3D terrain material must use the mixed-rock transition height and normal textures.");
             }
         }
 
