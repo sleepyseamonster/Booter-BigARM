@@ -15,6 +15,7 @@ MonoBehaviour:
   definitions:
   - stableId: ironstone-boulder
     layer: 2
+    rockSizeTier: 1
     shape: 3
     weight: 3
     uniformScaleRange: {x: 0.75, y: 1.45}
@@ -24,6 +25,7 @@ MonoBehaviour:
     footprintRadius: 0.58
   - stableId: fractured-slab
     layer: 2
+    rockSizeTier: 1
     shape: 2
     weight: 1.4
     uniformScaleRange: {x: 0.9, y: 1.5}
@@ -33,6 +35,7 @@ MonoBehaviour:
     footprintRadius: 0.65
   - stableId: iron-nodule
     layer: 2
+    rockSizeTier: 1
     shape: 4
     weight: 1.8
     uniformScaleRange: {x: 0.7, y: 1.2}
@@ -42,6 +45,7 @@ MonoBehaviour:
     footprintRadius: 0.5
   - stableId: shale-shard
     layer: 1
+    rockSizeTier: 0
     shape: 1
     weight: 2.2
     uniformScaleRange: {x: 0.3, y: 0.72}
@@ -51,6 +55,7 @@ MonoBehaviour:
     footprintRadius: 0.16
   - stableId: wind-scoured-stone
     layer: 1
+    rockSizeTier: 0
     shape: 0
     weight: 3
     uniformScaleRange: {x: 0.32, y: 0.76}
@@ -60,6 +65,7 @@ MonoBehaviour:
     footprintRadius: 0.18
   - stableId: crust-plate
     layer: 1
+    rockSizeTier: 0
     shape: 2
     weight: 1.3
     uniformScaleRange: {x: 0.4, y: 0.82}
@@ -69,6 +75,7 @@ MonoBehaviour:
     footprintRadius: 0.18
   - stableId: gravel-chip
     layer: 0
+    rockSizeTier: 0
     shape: 0
     weight: 3.2
     uniformScaleRange: {x: 0.09, y: 0.23}
@@ -78,6 +85,7 @@ MonoBehaviour:
     footprintRadius: 0.045
   - stableId: shale-flake
     layer: 0
+    rockSizeTier: 0
     shape: 1
     weight: 2
     uniformScaleRange: {x: 0.08, y: 0.2}
@@ -87,6 +95,7 @@ MonoBehaviour:
     footprintRadius: 0.04
   - stableId: mineral-nodule
     layer: 0
+    rockSizeTier: 0
     shape: 4
     weight: 1
     uniformScaleRange: {x: 0.08, y: 0.18}
@@ -96,6 +105,7 @@ MonoBehaviour:
     footprintRadius: 0.04
   - stableId: cool-gray-grit
     layer: 3
+    rockSizeTier: 0
     shape: 0
     weight: 4
     uniformScaleRange: {x: 0.05, y: 0.135}
@@ -105,6 +115,7 @@ MonoBehaviour:
     footprintRadius: 0.025
   - stableId: gray-shale-speck
     layer: 3
+    rockSizeTier: 0
     shape: 1
     weight: 2.2
     uniformScaleRange: {x: 0.045, y: 0.12}
@@ -114,6 +125,7 @@ MonoBehaviour:
     footprintRadius: 0.022
   - stableId: gray-crust-speck
     layer: 3
+    rockSizeTier: 0
     shape: 2
     weight: 1.2
     uniformScaleRange: {x: 0.055, y: 0.14}
@@ -123,6 +135,7 @@ MonoBehaviour:
     footprintRadius: 0.026
   - stableId: towering-basalt-spire
     layer: 4
+    rockSizeTier: 3
     shape: 1
     weight: 1.7
     uniformScaleRange: {x: 3.8, y: 6.2}
@@ -132,6 +145,7 @@ MonoBehaviour:
     footprintRadius: 0.56
   - stableId: monumental-ironstone-outcrop
     layer: 4
+    rockSizeTier: 3
     shape: 3
     weight: 1
     uniformScaleRange: {x: 3.4, y: 5.4}
@@ -139,3 +153,23 @@ MonoBehaviour:
     sinkDepth: 0.12
     maximumTilt: 9
     footprintRadius: 0.62
+  - stableId: massive-ironstone-outcrop
+    layer: 2
+    rockSizeTier: 2
+    shape: 3
+    weight: 1.4
+    uniformScaleRange: {x: 2.25, y: 3.55}
+    proportions: {x: 1.15, y: 1.1, z: 1}
+    sinkDepth: 0.1
+    maximumTilt: 10
+    footprintRadius: 0.6
+  - stableId: massive-fractured-spire
+    layer: 2
+    rockSizeTier: 2
+    shape: 1
+    weight: 1
+    uniformScaleRange: {x: 2.2, y: 3.45}
+    proportions: {x: 0.85, y: 1.1, z: 0.75}
+    sinkDepth: 0.1
+    maximumTilt: 9
+    footprintRadius: 0.56

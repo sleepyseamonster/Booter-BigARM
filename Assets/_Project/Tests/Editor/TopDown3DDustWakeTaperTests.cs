@@ -17,19 +17,31 @@ namespace BooterBigArm.Tests
                 MakeTerrainFlatAndRemoveBaseDeposition(settings);
                 var wind = TopDown3DDustDepositionPlanner.GetPrevailingWindDirection(settings);
                 var crossWind = new Vector2(-wind.y, wind.x);
-                var source = new TopDown3DNaturalObjectPlacement(
+                var bounds = new Bounds(Vector3.up, new Vector3(2.8f, 2f, 2.8f));
+                var member = new TopDown3DRockFormationMember(
+                    "taper-test-rock:0",
                     "taper-test-rock",
-                    TopDown3DNaturalObjectLayer.Obstacle,
+                    TopDown3DRockSizeTier.Large,
                     TopDown3DNaturalObjectShape.Boulder,
-                    TopDown3DRockSurface.Regular,
                     0,
                     Vector3.zero,
                     Quaternion.identity,
-                    Vector3.one * 1.4f,
+                    Vector3.one,
+                    0,
+                    -1,
                     1.4f,
+                    bounds);
+                var source = new TopDown3DRockFormationPlan(
+                    new TopDown3DRockRootKey(TopDown3DRockSizeTier.Large, 0, 0, 1),
+                    "taper-test-rock",
                     19731,
-                    1);
-                var sources = new List<TopDown3DNaturalObjectPlacement> { source };
+                    TopDown3DNaturalObjectLayer.Obstacle,
+                    TopDown3DRockSurface.Regular,
+                    new[] { member },
+                    Vector2.zero,
+                    1.4f,
+                    2f);
+                var sources = new List<TopDown3DRockFormationPlan> { source };
                 var middlePosition = wind * 1.5f;
                 var tipPosition = wind * 2.9f;
 

@@ -27,7 +27,16 @@ namespace BooterBigArm.Tests
                 settings.DepositedDustMaterial.GetTexture("_BaseMap"),
                 Is.SameAs(terrainMaterial.GetTexture("_BaseMap")),
                 "Deposited drifts should inherit the rust ground surface, not pale swept sand.");
-            Assert.That(settings.DepositedDustMaterial.GetTag("RenderType", false), Is.EqualTo("Transparent"));
+            Assert.That(settings.DepositedDustMaterial.GetTag("RenderType", false), Is.EqualTo("Opaque"));
+            Assert.That(
+                settings.DepositedDustMaterial.renderQueue,
+                Is.LessThan((int)UnityEngine.Rendering.RenderQueue.Transparent),
+                "Deposited drifts must render before the volumetric dust composite.");
+            Assert.That(
+                TopDown3DVolumetricDustFeature.CanonicalInjectionPoint,
+                Is.EqualTo(UnityEngine.Rendering.Universal.RenderPassEvent.BeforeRenderingTransparents));
+            Assert.That(settings.DepositedDustMaterial.GetFloat("_Surface"), Is.EqualTo(0f));
+            Assert.That(settings.DepositedDustMaterial.GetFloat("_ZWrite"), Is.EqualTo(1f));
             Assert.That(settings.DepositedDustMaterial.GetFloat("_EdgeFeather"), Is.GreaterThan(0.1f));
             Assert.That(settings.DepositedDustMaterial.GetFloat("_Opacity"), Is.LessThan(1f));
             Assert.That(settings.DustOverlayQuadsPerAxis, Is.EqualTo(40));
@@ -208,19 +217,8 @@ namespace BooterBigArm.Tests
             var settings = LoadSettings();
             var wind = TopDown3DDustDepositionPlanner.GetPrevailingWindDirection(settings);
             var crossWind = new Vector2(-wind.y, wind.x);
-            var source = new TopDown3DNaturalObjectPlacement(
-                "test-rock",
-                TopDown3DNaturalObjectLayer.Obstacle,
-                TopDown3DNaturalObjectShape.Boulder,
-                TopDown3DRockSurface.Regular,
-                0,
-                Vector3.zero,
-                Quaternion.identity,
-                Vector3.one,
-                1f,
-                91273,
-                3);
-            var sources = new List<TopDown3DNaturalObjectPlacement> { source };
+            var source = CreateSource("test-rock", 1f, 2.2f, 91273);
+            var sources = new List<TopDown3DRockFormationPlan> { source };
             var lee = TopDown3DDustDepositionPlanner.SampleShelterWeight(
                 settings,
                 wind * 1.4f,
@@ -244,39 +242,22 @@ namespace BooterBigArm.Tests
         {
             var settings = LoadSettings();
             var wind = TopDown3DDustDepositionPlanner.GetPrevailingWindDirection(settings);
-            var small = new TopDown3DNaturalObjectPlacement(
-                "small-rock",
-                TopDown3DNaturalObjectLayer.Obstacle,
-                TopDown3DNaturalObjectShape.Boulder,
-                TopDown3DRockSurface.Regular,
-                0,
-                Vector3.zero,
-                Quaternion.identity,
-                Vector3.one,
-                0.4f,
-                7123,
-                1);
-            var large = new TopDown3DNaturalObjectPlacement(
+            var small = CreateSource("small-rock", 0.4f, 0.8f, 7123);
+            var large = CreateSource(
                 "large-formation",
-                TopDown3DNaturalObjectLayer.Landmark,
-                TopDown3DNaturalObjectShape.Boulder,
-                TopDown3DRockSurface.Regular,
-                0,
-                Vector3.zero,
-                Quaternion.identity,
-                Vector3.one * 3f,
                 2.8f,
+                8f,
                 7123,
-                5);
+                TopDown3DRockSizeTier.Towering);
             var samplePosition = wind * 1.5f;
             var smallPile = TopDown3DDustDepositionPlanner.SampleAt(
                 settings,
                 samplePosition,
-                new List<TopDown3DNaturalObjectPlacement> { small });
+                new List<TopDown3DRockFormationPlan> { small });
             var largePile = TopDown3DDustDepositionPlanner.SampleAt(
                 settings,
                 samplePosition,
-                new List<TopDown3DNaturalObjectPlacement> { large });
+                new List<TopDown3DRockFormationPlan> { large });
 
             Assert.That(largePile.Height, Is.GreaterThan(smallPile.Height * 1.45f));
             Assert.That(largePile.ShelterWeight, Is.GreaterThan(0.4f));
@@ -287,19 +268,8 @@ namespace BooterBigArm.Tests
         {
             var settings = LoadSettings();
             var wind = TopDown3DDustDepositionPlanner.GetPrevailingWindDirection(settings);
-            var source = new TopDown3DNaturalObjectPlacement(
-                "large-rock",
-                TopDown3DNaturalObjectLayer.Obstacle,
-                TopDown3DNaturalObjectShape.Boulder,
-                TopDown3DRockSurface.Regular,
-                0,
-                Vector3.zero,
-                Quaternion.identity,
-                Vector3.one * 2f,
-                2f,
-                3917,
-                1);
-            var sources = new List<TopDown3DNaturalObjectPlacement> { source };
+            var source = CreateSource("large-rock", 2f, 3f, 3917);
+            var sources = new List<TopDown3DRockFormationPlan> { source };
             var near = TopDown3DDustDepositionPlanner.SampleShelterWeight(
                 settings,
                 wind * 1.25f,
@@ -318,6 +288,43 @@ namespace BooterBigArm.Tests
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
             Assert.That(settings, Is.Not.Null);
             return settings;
+        }
+
+        private static TopDown3DRockFormationPlan CreateSource(
+            string stableId,
+            float radius,
+            float height,
+            int seed,
+            TopDown3DRockSizeTier tier = TopDown3DRockSizeTier.Large)
+        {
+            var bounds = new Bounds(
+                Vector3.up * height * 0.5f,
+                new Vector3(radius * 2f, height, radius * 2f));
+            var member = new TopDown3DRockFormationMember(
+                $"{stableId}:0",
+                stableId,
+                tier,
+                TopDown3DNaturalObjectShape.Boulder,
+                0,
+                Vector3.zero,
+                Quaternion.identity,
+                Vector3.one,
+                0,
+                -1,
+                radius,
+                bounds);
+            return new TopDown3DRockFormationPlan(
+                new TopDown3DRockRootKey(tier, 0, 0, 1),
+                stableId,
+                seed,
+                tier == TopDown3DRockSizeTier.Towering
+                    ? TopDown3DNaturalObjectLayer.Landmark
+                    : TopDown3DNaturalObjectLayer.Obstacle,
+                TopDown3DRockSurface.Regular,
+                new[] { member },
+                Vector2.zero,
+                radius,
+                height);
         }
     }
 }

@@ -164,7 +164,7 @@ namespace BooterBigArm.TopDown3D
         public static float SampleShelterWeight(
             TopDown3DWorldSettings settings,
             Vector2 worldPosition,
-            IReadOnlyList<TopDown3DNaturalObjectPlacement> physicalSources)
+            IReadOnlyList<TopDown3DRockFormationPlan> physicalSources)
         {
             return SampleShelter(settings, worldPosition, physicalSources).Weight;
         }
@@ -172,7 +172,7 @@ namespace BooterBigArm.TopDown3D
         public static TopDown3DDustDepositionSample SampleAt(
             TopDown3DWorldSettings settings,
             Vector2 worldPosition,
-            IReadOnlyList<TopDown3DNaturalObjectPlacement> physicalSources)
+            IReadOnlyList<TopDown3DRockFormationPlan> physicalSources)
         {
             var baseWeight = SampleBaseWeight(settings, worldPosition);
             var heightNoiseSeed = StableHash(
@@ -202,13 +202,13 @@ namespace BooterBigArm.TopDown3D
                 shelter.Weight * slopeAttenuation);
         }
 
-        private static List<TopDown3DNaturalObjectPlacement> CollectPhysicalSources(
+        private static List<TopDown3DRockFormationPlan> CollectPhysicalSources(
             TopDown3DWorldSettings settings,
             TopDown3DNaturalObjectCatalog catalog,
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter)
         {
-            var sources = new List<TopDown3DNaturalObjectPlacement>();
+            var sources = new List<TopDown3DRockFormationPlan>();
             if (catalog == null)
             {
                 return sources;
@@ -218,7 +218,7 @@ namespace BooterBigArm.TopDown3D
             {
                 for (var x = -1; x <= 1; x++)
                 {
-                    sources.AddRange(TopDown3DNaturalObjectPlanner.BuildPhysicalPlacements(
+                    sources.AddRange(TopDown3DRockFormationPlanner.BuildPhysicalFormations(
                         settings,
                         catalog,
                         chunkCoordinate + new Vector2Int(x, z),
@@ -232,7 +232,7 @@ namespace BooterBigArm.TopDown3D
         private static ShelterSample SampleShelter(
             TopDown3DWorldSettings settings,
             Vector2 worldPosition,
-            IReadOnlyList<TopDown3DNaturalObjectPlacement> physicalSources)
+            IReadOnlyList<TopDown3DRockFormationPlan> physicalSources)
         {
             if (physicalSources == null || physicalSources.Count == 0)
             {
@@ -246,23 +246,23 @@ namespace BooterBigArm.TopDown3D
             for (var i = 0; i < physicalSources.Count; i++)
             {
                 var source = physicalSources[i];
-                var sourcePosition = new Vector2(source.Position.x, source.Position.z);
+                var sourcePosition = source.EnvelopeCenter;
                 var delta = worldPosition - sourcePosition;
                 var downwind = Vector2.Dot(delta, wind);
-                var sourceRadius = Mathf.Max(0.35f, source.FootprintRadius);
+                var sourceRadius = Mathf.Max(0.35f, source.EnvelopeRadius);
                 var obstructionScale = SmoothStepRange(0.35f, 1.5f, sourceRadius);
                 var wakeLength = Mathf.Min(
                     settings.DustWakeLength * 1.28f,
-                    settings.DustWakeLength * Mathf.Lerp(0.65f, 1f, obstructionScale)
+                        settings.DustWakeLength * Mathf.Lerp(0.65f, 1f, obstructionScale)
                         + sourceRadius
-                        * (source.Layer == TopDown3DNaturalObjectLayer.Landmark ? 0.32f : 0.22f));
+                        * 0.26f);
                 if (downwind < -sourceRadius * 0.15f || downwind > wakeLength)
                 {
                     continue;
                 }
 
                 var normalizedDistance = Mathf.Clamp01(downwind / Mathf.Max(0.01f, wakeLength));
-                var curveDirection = HashSigned(source.FormationSeed ^ 0x59D3A417);
+                var curveDirection = HashSigned(source.Seed ^ 0x59D3A417);
                 var curvedCenter = Mathf.Sin(normalizedDistance * Mathf.PI)
                     * sourceRadius
                     * 0.28f
@@ -297,18 +297,12 @@ namespace BooterBigArm.TopDown3D
                 var sourceAdmission = Mathf.Lerp(0.18f, 1f, obstructionScale);
                 var weight = Mathf.Clamp01(
                     nearFade * farFade * lateralFade * sourceAdmission);
-                var footprintHeight = Mathf.Lerp(
-                    0.78f,
-                    1.9f,
-                    SmoothStepRange(0.35f, 3.2f, sourceRadius));
-                var formationHeight = 1f
-                    + Mathf.Min(5, source.MemberCount - 1) * 0.085f;
-                var landmarkHeight = source.Layer == TopDown3DNaturalObjectLayer.Landmark
-                    ? 1.18f
-                    : 1f;
                 var sourceHeight = Mathf.Min(
                     2.35f,
-                    footprintHeight * formationHeight * landmarkHeight);
+                    Mathf.Lerp(
+                        0.78f,
+                        2.35f,
+                        SmoothStepRange(0.5f, 9f, source.Height)));
                 strongestWeight = Mathf.Max(strongestWeight, weight);
                 greatestHeight = Mathf.Max(
                     greatestHeight,

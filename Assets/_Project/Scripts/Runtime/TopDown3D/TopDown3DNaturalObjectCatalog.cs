@@ -22,6 +22,14 @@ namespace BooterBigArm.TopDown3D
         Nodule
     }
 
+    public enum TopDown3DRockSizeTier
+    {
+        None,
+        Large,
+        Massive,
+        Towering
+    }
+
     public enum TopDown3DRockSurface
     {
         Regular,
@@ -34,6 +42,7 @@ namespace BooterBigArm.TopDown3D
     {
         [SerializeField] private string stableId = "natural-object";
         [SerializeField] private TopDown3DNaturalObjectLayer layer;
+        [SerializeField] private TopDown3DRockSizeTier rockSizeTier;
         [SerializeField] private TopDown3DNaturalObjectShape shape;
         [SerializeField, Min(0.01f)] private float weight = 1f;
         [SerializeField] private Vector2 uniformScaleRange = new Vector2(0.8f, 1.2f);
@@ -44,6 +53,7 @@ namespace BooterBigArm.TopDown3D
 
         public string StableId => stableId;
         public TopDown3DNaturalObjectLayer Layer => layer;
+        public TopDown3DRockSizeTier RockSizeTier => rockSizeTier;
         public TopDown3DNaturalObjectShape Shape => shape;
         public float Weight => Mathf.Max(0.01f, weight);
         public Vector2 UniformScaleRange => new Vector2(

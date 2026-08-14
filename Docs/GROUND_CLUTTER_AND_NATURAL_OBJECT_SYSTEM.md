@@ -9,9 +9,9 @@ The Broken World has no plant life or open water. Natural clutter is therefore g
 ## Generation Contract
 
 - `TopDown3DWorldSettings` owns global density, clustering, slope, spacing, seed-version, and spawn-clearance tuning.
-- `TopDown3DNaturalObjectCatalog` owns stable content IDs, cost layers, weighted shape families, scale/proportion ranges, sink depth, tilt, and footprints.
-- `TopDown3DNaturalObjectPlanner` is the pure placement layer. It uses independent seed namespaces for obstacle, scatter, and ground-detail layers.
-- Obstacle, scatter, ground-detail, and landmark candidates also sample one shared low-frequency abundance field. This creates coherent rock-rich stretches and genuinely sparse ground instead of letting independent layers fill every gap.
+- `TopDown3DNaturalObjectCatalog` owns stable content IDs, cost layers, physical size tiers, weighted shape families, scale/proportion ranges, sink depth, tilt, and footprints.
+- `TopDown3DNaturalObjectPlanner` returns one immutable chunk plan. Cosmetic placement retains the natural-object generation version, while `TopDown3DRockFormationPlanner` owns all physical root and formation decisions under a separate physical-rock generation version.
+- Large, Massive, Towering, scatter, and ground-detail candidates sample one shared low-frequency abundance field. This creates coherent rock-rich stretches and genuinely sparse ground instead of letting independent layers fill every gap.
 - Candidates are anchored to global cells and tested against neighboring cells before being assigned to a chunk. This keeps borders seamless and makes output independent of chunk load order.
 - Terrain height and normals come from `TopDown3DHeightSampler`, the same source used by the terrain mesh.
 - Cosmetic placements are reconstructed from seed and are not save data. Future interactive or harvestable natural objects require stable gameplay identities and saved deltas in a separate layer.
@@ -30,7 +30,11 @@ The per-chunk combined meshes are destroyed with their owning streamed chunk. Th
 
 The mesh family uses controlled procedural geology rather than unrestricted per-instance mesh generation. Each of the five archetypes has twelve deterministic cached variants with elliptical silhouettes, non-concentric strata, uneven shoulders, broad top faces, embedded flat bases, and a clipped fracture side. This provides sixty reusable low-poly forms without creating or retaining a unique mesh for every spawned object.
 
-About thirty percent of ordinary obstacle candidates become formations of two to five touching rocks. The members vary in cached shape, variant, scale, yaw, and slight tilt, then combine into one generated mesh, one rendered object, and one bounding collider for that chunk. Rare landmarks can also form smaller fused groups. Their member layout is derived from the placement seed, so unload/reload and chunk build order reproduce the same formation.
+Physical rocks have three independent root tiers: `Large`, `Massive`, and `Towering`. Massive outcrops and fractured spires occupy the deliberate scale band between ordinary obstacles and rare landmarks; deterministic multi-class precedence keeps `Towering > Massive > Large` spacing stable across chunk borders.
+
+Touching formation growth follows only `Towering -> Massive`, `Massive -> Large`, and `Large -> Large`. Large continuation chance decays with depth, and hard member/depth caps prevent runaway chains. Each accepted child is selected from twelve seed-rotated golden-angle directions, grounded from the shared terrain sampler, tested for parent contact, vertical overlap, spawn clearance, and non-parent interpenetration, then scored deterministically. A failed child ends that branch without discarding its valid ancestors.
+
+The root chunk owns the whole formation even when a child crosses a chunk boundary. One immutable plan supplies stable root/member identity, world transforms, projected support, bounds, envelope, and height to every consumer. Rendering combines all members into one generated mesh and one renderer; collision remains one box per member, with one traversal component on the root. Dust shelter uses the same actual envelope and height rather than reconstructing formation size from a member count.
 
 ## Wind-Deposited Dust
 
@@ -38,7 +42,7 @@ Deposited dust is a deterministic ground layer, separate from the airborne atmos
 
 Physical obstacles and landmarks contribute shelter wakes. Dust accumulates only on their downwind side, curves slightly around each seeded formation, and fades with lateral and downwind distance. Larger formations produce wider wakes, while rare landmarks can anchor longer and taller banks. Steep slopes attenuate both broad deposits and sheltered piles.
 
-Each chunk samples the continuous deposition field on a denser overlay grid than the base terrain. Visible cells become one opaque, non-colliding combined mesh using the swept-sand texture, soft mesh normals, a matte shared material, no realtime shadow casting, and ordinary shadow receiving. Neighboring chunks sample identical world positions and include a physical-rock halo, so height and coverage match exactly at borders. Generated meshes remain owned and destroyed by their chunk.
+Each chunk samples the continuous deposition field on a denser overlay grid than the base terrain. Visible cells become one opaque, non-colliding combined mesh using the swept-sand texture, soft mesh normals, a matte shared material, no realtime shadow casting, and ordinary shadow receiving. The material renders in the depth-writing opaque phase before the volumetric-dust composite, so deposits contribute scene color and depth, receive the same twilight shadows as terrain, and remain integrated when airborne dust is present. Neighboring chunks sample identical world positions and include a physical-rock halo, so height and coverage match exactly at borders. Generated meshes remain owned and destroyed by their chunk.
 
 ## Rock Surface Families
 
@@ -56,7 +60,7 @@ Ordinary obstacles, scatter, ground-detail rocks, and landmarks share one world-
 
 The first backend uses spatially tight per-chunk combined meshes for visual layers and individual objects only for sparse physical rocks. Before raising density or adding shader features, verify with Unity Profiler and Frame Debugger on the target camera and hardware. GPU instancing, GPU Resident Drawer, and GPU occlusion are later profile-driven options, not assumed wins.
 
-Automated proof covers deterministic placement, chunk ownership, cross-border obstacle spacing, all-layer spawn exclusion, catalog completeness, stable IDs, and bounded mesh generation. Visual quality, camera-distance readability, controller traversal, and performance acceptance remain user-owned hands-on checks.
+Automated proof covers deterministic chunk plans, cosmetic-stream independence from physical versioning, chunk ownership, multi-tier cross-border spacing, full-member spawn exclusion, approved formation topology and caps, grounded touching contact, non-parent overlap limits, catalog completeness, stable IDs, one-renderer/per-member-collider topology, dust-envelope response, and bounded mesh generation. Visual quality, camera-distance readability, controller traversal, and performance acceptance remain user-owned hands-on checks.
 
 ## Research Basis
 

@@ -15,9 +15,7 @@ namespace BooterBigArm.TopDown3D
             Vector3 position,
             Quaternion rotation,
             Vector3 scale,
-            float footprintRadius,
-            int formationSeed,
-            int memberCount)
+            float footprintRadius)
         {
             StableId = stableId;
             Layer = layer;
@@ -28,8 +26,6 @@ namespace BooterBigArm.TopDown3D
             Rotation = rotation;
             Scale = scale;
             FootprintRadius = footprintRadius;
-            FormationSeed = formationSeed;
-            MemberCount = Mathf.Max(1, memberCount);
         }
 
         public string StableId { get; }
@@ -41,8 +37,6 @@ namespace BooterBigArm.TopDown3D
         public Quaternion Rotation { get; }
         public Vector3 Scale { get; }
         public float FootprintRadius { get; }
-        public int FormationSeed { get; }
-        public int MemberCount { get; }
 
         public bool Equals(TopDown3DNaturalObjectPlacement other)
         {
@@ -54,9 +48,7 @@ namespace BooterBigArm.TopDown3D
                 && Position == other.Position
                 && Rotation == other.Rotation
                 && Scale == other.Scale
-                && FootprintRadius.Equals(other.FootprintRadius)
-                && FormationSeed == other.FormationSeed
-                && MemberCount == other.MemberCount;
+                && FootprintRadius.Equals(other.FootprintRadius);
         }
 
         public override bool Equals(object obj)
@@ -74,16 +66,28 @@ namespace BooterBigArm.TopDown3D
                 hash = hash * 397 ^ (int)Surface;
                 hash = hash * 397 ^ Variant;
                 hash = hash * 397 ^ Position.GetHashCode();
-                hash = hash * 397 ^ FormationSeed;
-                hash = hash * 397 ^ MemberCount;
                 return hash;
             }
         }
     }
 
+    public sealed class TopDown3DNaturalObjectChunkPlan
+    {
+        internal TopDown3DNaturalObjectChunkPlan(
+            List<TopDown3DNaturalObjectPlacement> cosmeticPlacements,
+            List<TopDown3DRockFormationPlan> physicalFormations)
+        {
+            CosmeticPlacements = cosmeticPlacements;
+            PhysicalFormations = physicalFormations;
+        }
+
+        public IReadOnlyList<TopDown3DNaturalObjectPlacement> CosmeticPlacements { get; }
+        public IReadOnlyList<TopDown3DRockFormationPlan> PhysicalFormations { get; }
+    }
+
     public static class TopDown3DNaturalObjectPlanner
     {
-        public static List<TopDown3DNaturalObjectPlacement> BuildPlacements(
+        public static TopDown3DNaturalObjectChunkPlan BuildChunkPlan(
             TopDown3DWorldSettings settings,
             TopDown3DNaturalObjectCatalog catalog,
             Vector2Int chunkCoordinate,
@@ -92,24 +96,11 @@ namespace BooterBigArm.TopDown3D
             var placements = new List<TopDown3DNaturalObjectPlacement>();
             if (settings == null || catalog == null)
             {
-                return placements;
+                return new TopDown3DNaturalObjectChunkPlan(
+                    placements,
+                    new List<TopDown3DRockFormationPlan>());
             }
 
-            BuildLayer(
-                settings,
-                catalog,
-                chunkCoordinate,
-                spawnExclusionCenter,
-                TopDown3DNaturalObjectLayer.Obstacle,
-                settings.PropsPerChunk,
-                settings.PropSpacing,
-                settings.MaximumPropSlope,
-                settings.ClutterClusterFrequency,
-                settings.ClutterClusterStrength,
-                0.2f,
-                1.8f,
-                true,
-                placements);
             BuildLayer(
                 settings,
                 catalog,
@@ -156,67 +147,13 @@ namespace BooterBigArm.TopDown3D
                 3.2f,
                 false,
                 placements);
-            BuildLayer(
-                settings,
-                catalog,
-                chunkCoordinate,
-                spawnExclusionCenter,
-                TopDown3DNaturalObjectLayer.Landmark,
-                settings.LandmarksPerChunk,
-                settings.LandmarkSpacing,
-                settings.MaximumLandmarkSlope,
-                settings.ClutterClusterFrequency * 0.6f,
-                settings.ClutterClusterStrength * 0.5f,
-                0.55f,
-                1.35f,
-                true,
-                placements);
-            return placements;
-        }
-
-        public static List<TopDown3DNaturalObjectPlacement> BuildPhysicalPlacements(
-            TopDown3DWorldSettings settings,
-            TopDown3DNaturalObjectCatalog catalog,
-            Vector2Int chunkCoordinate,
-            Vector2 spawnExclusionCenter)
-        {
-            var placements = new List<TopDown3DNaturalObjectPlacement>();
-            if (settings == null || catalog == null)
-            {
-                return placements;
-            }
-
-            BuildLayer(
-                settings,
-                catalog,
-                chunkCoordinate,
-                spawnExclusionCenter,
-                TopDown3DNaturalObjectLayer.Obstacle,
-                settings.PropsPerChunk,
-                settings.PropSpacing,
-                settings.MaximumPropSlope,
-                settings.ClutterClusterFrequency,
-                settings.ClutterClusterStrength,
-                0.2f,
-                1.8f,
-                true,
-                placements);
-            BuildLayer(
-                settings,
-                catalog,
-                chunkCoordinate,
-                spawnExclusionCenter,
-                TopDown3DNaturalObjectLayer.Landmark,
-                settings.LandmarksPerChunk,
-                settings.LandmarkSpacing,
-                settings.MaximumLandmarkSlope,
-                settings.ClutterClusterFrequency * 0.6f,
-                settings.ClutterClusterStrength * 0.5f,
-                0.55f,
-                1.35f,
-                true,
-                placements);
-            return placements;
+            return new TopDown3DNaturalObjectChunkPlan(
+                placements,
+                TopDown3DRockFormationPlanner.BuildPhysicalFormations(
+                    settings,
+                    catalog,
+                    chunkCoordinate,
+                    spawnExclusionCenter));
         }
 
         private static void BuildLayer(
@@ -242,18 +179,13 @@ namespace BooterBigArm.TopDown3D
 
             var definitions = GetDefinitions(catalog, layer);
             var maximumFootprint = 0f;
-            var maximumMembers = layer == TopDown3DNaturalObjectLayer.Obstacle
-                ? settings.ObstacleFormationMaximumMembers
-                : layer == TopDown3DNaturalObjectLayer.Landmark ? 3 : 1;
-            var maximumFormationFootprint = GetFormationFootprintMultiplier(maximumMembers);
             for (var i = 0; i < definitions.Count; i++)
             {
                 maximumFootprint = Mathf.Max(
                     maximumFootprint,
                     definitions[i].FootprintRadius
                     * definitions[i].UniformScaleRange.y
-                    * Mathf.Max(definitions[i].Proportions.x, definitions[i].Proportions.z)
-                    * maximumFormationFootprint);
+                    * Mathf.Max(definitions[i].Proportions.x, definitions[i].Proportions.z));
             }
 
             var chunkSize = settings.ChunkSize;
@@ -317,10 +249,8 @@ namespace BooterBigArm.TopDown3D
                         definition.UniformScaleRange.y,
                         candidate.Scale);
                     var scale = definition.Proportions * uniformScale;
-                    var memberCount = GetMemberCount(settings, layer, candidate);
                     var footprint = definition.FootprintRadius
-                        * Mathf.Max(scale.x, scale.z)
-                        * GetFormationFootprintMultiplier(memberCount);
+                        * Mathf.Max(scale.x, scale.z);
                     if (Vector2.Distance(worldPosition, spawnExclusionCenter)
                         < settings.ClearSpawnRadius + footprint)
                     {
@@ -362,9 +292,7 @@ namespace BooterBigArm.TopDown3D
                         position,
                         tilt * yaw,
                         scale,
-                        footprint,
-                        candidate.FormationSeed,
-                        memberCount));
+                        footprint));
                 }
             }
         }
@@ -492,41 +420,7 @@ namespace BooterBigArm.TopDown3D
                 candidate.Scale);
             var scale = definition.Proportions * uniformScale;
             return definition.FootprintRadius
-                * Mathf.Max(scale.x, scale.z)
-                * GetFormationFootprintMultiplier(GetMemberCount(settings, layer, candidate));
-        }
-
-        private static int GetMemberCount(
-            TopDown3DWorldSettings settings,
-            TopDown3DNaturalObjectLayer layer,
-            Candidate candidate)
-        {
-            if (layer == TopDown3DNaturalObjectLayer.Obstacle)
-            {
-                if (candidate.FormationChance > settings.ObstacleFormationChance)
-                {
-                    return 1;
-                }
-
-                return Mathf.Clamp(
-                    2 + Mathf.FloorToInt(
-                        candidate.FormationSize * (settings.ObstacleFormationMaximumMembers - 1)),
-                    2,
-                    settings.ObstacleFormationMaximumMembers);
-            }
-
-            if (layer == TopDown3DNaturalObjectLayer.Landmark
-                && candidate.FormationChance <= 0.25f)
-            {
-                return Mathf.Clamp(2 + Mathf.FloorToInt(candidate.FormationSize * 2f), 2, 3);
-            }
-
-            return 1;
-        }
-
-        private static float GetFormationFootprintMultiplier(int memberCount)
-        {
-            return 1f + (Mathf.Max(1, memberCount) - 1) * 0.34f;
+                * Mathf.Max(scale.x, scale.z);
         }
 
         public static TopDown3DRockSurface SampleRockSurface(
@@ -611,10 +505,7 @@ namespace BooterBigArm.TopDown3D
                 Hash01(hash ^ 0x37C8E4D7),
                 Hash01(hash ^ 0x19F34AC1),
                 Hash01(hash ^ 0x4E2B81F3),
-                Hash01(hash ^ 0x631F8D29),
-                Hash01(hash ^ 0x25C74A91),
-                Hash01(hash ^ 0x7A8D31E5),
-                StableHash(hash, cellX ^ 0x416D2E3B, cellZ ^ 0x2D1F7A65));
+                Hash01(hash ^ 0x631F8D29));
         }
 
         private static int StableCellOrder(int leftX, int leftZ, int rightX, int rightZ)
@@ -679,10 +570,7 @@ namespace BooterBigArm.TopDown3D
                 float selection,
                 float scale,
                 float yaw,
-                float variant,
-                float formationChance,
-                float formationSize,
-                int formationSeed)
+                float variant)
             {
                 CellX = cellX;
                 CellZ = cellZ;
@@ -693,9 +581,6 @@ namespace BooterBigArm.TopDown3D
                 Scale = scale;
                 Yaw = yaw;
                 Variant = variant;
-                FormationChance = formationChance;
-                FormationSize = formationSize;
-                FormationSeed = formationSeed;
             }
 
             public int CellX { get; }
@@ -707,9 +592,6 @@ namespace BooterBigArm.TopDown3D
             public float Scale { get; }
             public float Yaw { get; }
             public float Variant { get; }
-            public float FormationChance { get; }
-            public float FormationSize { get; }
-            public int FormationSeed { get; }
         }
     }
 }

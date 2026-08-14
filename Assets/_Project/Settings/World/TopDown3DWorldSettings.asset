@@ -41,14 +41,23 @@ MonoBehaviour:
   propsPerChunk: 4
   naturalObjectCatalog: {fileID: 11400000, guid: 03ec8052e2404ee19712ee02d05deb23, type: 2}
   naturalObjectGenerationVersion: 2
+  physicalRockGenerationVersion: 1
   scatterObjectsPerChunk: 22
   groundDetailsPerChunk: 72
   clutterClusterFrequency: 0.035
   clutterClusterStrength: 0.7
   rockAbundanceFrequency: 0.018
   rockAbundanceStrength: 0.95
-  obstacleFormationChance: 0.3
-  obstacleFormationMaximumMembers: 5
+  largeToLargeChance: 0.32
+  largeContinuationDecay: 0.5
+  physicalFormationMaximumMembers: 5
+  physicalFormationMaximumDepth: 4
+  formationContactInset: 0.05
+  massiveRocksPerChunk: 0.14
+  massiveRockSpacing: 5.5
+  maximumMassiveRockSlope: 32
+  toweringToMassiveChance: 0.65
+  massiveToLargeChance: 0.7
   landmarksPerChunk: 0.03
   landmarkSpacing: 8
   maximumLandmarkSlope: 28
