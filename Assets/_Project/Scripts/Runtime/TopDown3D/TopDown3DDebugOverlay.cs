@@ -10,6 +10,9 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DProceduralWorld world;
         [SerializeField] private TopDown3DBigArmFollower bigArm;
         [SerializeField] private TopDown3DCameraRig cameraRig;
+        [SerializeField] private bool showOverlay;
+
+        public bool IsVisible => showOverlay;
 
         public void Configure(
             TopDown3DInputRouter inputRouter,
@@ -25,8 +28,18 @@ namespace BooterBigArm.TopDown3D
             cameraRig = rig;
         }
 
+        public void SetVisible(bool visible)
+        {
+            showOverlay = visible;
+        }
+
         private void OnGUI()
         {
+            if (!showOverlay)
+            {
+                return;
+            }
+
             GUILayout.BeginArea(new Rect(12f, 12f, 390f, 238f), GUI.skin.box);
             GUILayout.Label("PERSPECTIVE TOP-DOWN 3D FOUNDATION");
             GUILayout.Label("Move: Left Stick / WASD    Sprint: RB / Left Shift");

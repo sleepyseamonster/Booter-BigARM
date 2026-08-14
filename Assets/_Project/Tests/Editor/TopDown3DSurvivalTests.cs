@@ -106,7 +106,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void HudLayout_UsesCompactNonOverlappingTwoByTwoGridInsideSafeArea()
+        public void HudLayout_UsesReadableNonOverlappingVerticalStackInsideSafeArea()
         {
             var safeArea = new Rect(80f, 40f, 1760f, 980f);
             var panel = TopDown3DSurvivalHud.GetPanelRect(safeArea, 1080, 1f);
@@ -124,6 +124,20 @@ namespace BooterBigArm.Tests
             Assert.That(health.Overlaps(thirst), Is.False);
             Assert.That(hunger.Overlaps(oxygen), Is.False);
             Assert.That(thirst.Overlaps(oxygen), Is.False);
+            Assert.That(health.x, Is.EqualTo(hunger.x));
+            Assert.That(health.width, Is.EqualTo(oxygen.width));
+            Assert.That(health.y, Is.LessThan(hunger.y));
+            Assert.That(hunger.y, Is.LessThan(thirst.y));
+            Assert.That(thirst.y, Is.LessThan(oxygen.y));
+        }
+
+        [Test]
+        public void HudScale_RemainsReadableAtSmallAndHighDpiGameViews()
+        {
+            Assert.That(TopDown3DSurvivalHud.GetUiScale(960, 540),
+                Is.EqualTo(TopDown3DSurvivalHud.MinimumUiScale));
+            Assert.That(TopDown3DSurvivalHud.GetUiScale(1920, 1080), Is.EqualTo(1f));
+            Assert.That(TopDown3DSurvivalHud.GetUiScale(3840, 2160), Is.EqualTo(1.25f));
         }
 
         [Test]

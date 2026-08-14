@@ -21,18 +21,18 @@ namespace BooterBigArm.TopDown3D
     [DisallowMultipleComponent]
     public sealed class TopDown3DActionDpadHud : MonoBehaviour
     {
-        public const float ReferenceSize = 120f;
-        public const float ReferenceMargin = 28f;
+        public const float ReferenceSize = 168f;
+        public const float ReferenceMargin = 34f;
         public const int CanvasSortingOrder = 120;
 
         private static readonly Vector2 ReferenceResolution = new(1920f, 1080f);
 
         private Canvas hudCanvas;
         private CanvasScaler canvasScaler;
-        private RectTransform safeAreaRoot;
         private TopDown3DActionDpadGraphic dpadGraphic;
         private Rect lastSafeArea;
         private Vector2Int lastScreenSize;
+        private float lastCanvasScale;
 
         public TopDown3DActionDpadGraphic Graphic => dpadGraphic;
 
@@ -59,6 +59,14 @@ namespace BooterBigArm.TopDown3D
         public bool IsDirectionPressed(TopDown3DDpadDirection direction)
         {
             return dpadGraphic != null && dpadGraphic.IsDirectionPressed(direction);
+        }
+
+        public static Vector2 GetBottomLeftAnchoredPosition(Rect safeArea, float canvasScale)
+        {
+            var safeScale = Mathf.Max(0.001f, canvasScale);
+            return new Vector2(
+                ReferenceMargin + (safeArea.xMin / safeScale),
+                ReferenceMargin + (safeArea.yMin / safeScale));
         }
 
         public static TopDown3DActionDpadHud TryInstallForScene(Scene scene)
@@ -129,65 +137,60 @@ namespace BooterBigArm.TopDown3D
 
         private void EnsureVisualTree()
         {
-            if (safeAreaRoot == null)
-            {
-                var existingSafeArea = transform.Find("Safe Area");
-                if (existingSafeArea != null)
-                {
-                    safeAreaRoot = existingSafeArea as RectTransform;
-                }
-            }
-
-            if (safeAreaRoot == null)
-            {
-                var safeAreaObject = new GameObject("Safe Area", typeof(RectTransform));
-                safeAreaRoot = safeAreaObject.GetComponent<RectTransform>();
-                safeAreaRoot.SetParent(transform, false);
-            }
-
-            safeAreaRoot.offsetMin = Vector2.zero;
-            safeAreaRoot.offsetMax = Vector2.zero;
-
             if (dpadGraphic == null)
             {
-                dpadGraphic = safeAreaRoot.GetComponentInChildren<TopDown3DActionDpadGraphic>(true);
+                dpadGraphic = GetComponentInChildren<TopDown3DActionDpadGraphic>(true);
             }
 
             if (dpadGraphic == null)
             {
                 var dpadObject = new GameObject("D-Pad Indicator", typeof(RectTransform));
                 var dpadTransform = dpadObject.GetComponent<RectTransform>();
-                dpadTransform.SetParent(safeAreaRoot, false);
+                dpadTransform.SetParent(transform, false);
                 dpadGraphic = dpadObject.AddComponent<TopDown3DActionDpadGraphic>();
             }
 
             var rectTransform = dpadGraphic.rectTransform;
+            if (rectTransform.parent != transform)
+            {
+                rectTransform.SetParent(transform, false);
+            }
+
             rectTransform.anchorMin = Vector2.zero;
             rectTransform.anchorMax = Vector2.zero;
             rectTransform.pivot = Vector2.zero;
-            rectTransform.anchoredPosition = new Vector2(ReferenceMargin, ReferenceMargin);
             rectTransform.sizeDelta = Vector2.one * ReferenceSize;
             dpadGraphic.raycastTarget = false;
+
+            var obsoleteSafeArea = transform.Find("Safe Area");
+            if (obsoleteSafeArea != null && obsoleteSafeArea.childCount == 0)
+            {
+                DestroyRuntimeObject(obsoleteSafeArea.gameObject);
+            }
         }
 
         private void RefreshSafeArea(bool force)
         {
-            if (safeAreaRoot == null || Screen.width <= 0 || Screen.height <= 0)
+            if (dpadGraphic == null || Screen.width <= 0 || Screen.height <= 0)
             {
                 return;
             }
 
             var safeArea = Screen.safeArea;
             var screenSize = new Vector2Int(Screen.width, Screen.height);
-            if (!force && safeArea == lastSafeArea && screenSize == lastScreenSize)
+            var canvasScale = hudCanvas != null ? hudCanvas.scaleFactor : 1f;
+            if (!force
+                && safeArea == lastSafeArea
+                && screenSize == lastScreenSize
+                && Mathf.Approximately(canvasScale, lastCanvasScale))
             {
                 return;
             }
 
             lastSafeArea = safeArea;
             lastScreenSize = screenSize;
-            safeAreaRoot.anchorMin = new Vector2(safeArea.xMin / Screen.width, safeArea.yMin / Screen.height);
-            safeAreaRoot.anchorMax = new Vector2(safeArea.xMax / Screen.width, safeArea.yMax / Screen.height);
+            lastCanvasScale = canvasScale;
+            dpadGraphic.rectTransform.anchoredPosition = GetBottomLeftAnchoredPosition(safeArea, canvasScale);
         }
 
         private static T FindInScene<T>(Scene scene) where T : Component
@@ -227,9 +230,13 @@ namespace BooterBigArm.TopDown3D
     public sealed class TopDown3DActionDpadGraphic : MaskableGraphic
     {
         private static readonly Color32 ShadowColor = new(7, 8, 10, 118);
+        private static readonly Color32 BackplateBorderColor = new(172, 146, 99, 126);
+        private static readonly Color32 BackplateColor = new(10, 13, 16, 154);
         private static readonly Color32 BorderColor = new(197, 173, 128, 208);
+        private static readonly Color32 VialBorderColor = new(93, 190, 177, 230);
         private static readonly Color32 CellColor = new(19, 23, 27, 222);
         private static readonly Color32 PressedCellColor = new(79, 67, 46, 240);
+        private static readonly Color32 CellHighlightColor = new(255, 238, 197, 24);
         private static readonly Color32 IconColor = new(231, 221, 199, 240);
         private static readonly Color32 VialLiquidColor = new(91, 190, 177, 255);
 
@@ -282,10 +289,17 @@ namespace BooterBigArm.TopDown3D
             var step = cellSize + gap;
             var center = bounds.center;
 
-            DrawCell(vertexHelper, center + (Vector2.up * step), cellSize, upPressed);
-            DrawCell(vertexHelper, center + (Vector2.left * step), cellSize, leftPressed);
-            DrawCell(vertexHelper, center + (Vector2.right * step), cellSize, rightPressed);
-            DrawCell(vertexHelper, center + (Vector2.down * step), cellSize, downPressed);
+            AddCircle(vertexHelper, center + new Vector2(0f, -side * 0.018f), side * 0.5f, 32, ShadowColor);
+            AddCircle(vertexHelper, center, side * 0.485f, 32, BackplateBorderColor);
+            AddCircle(vertexHelper, center, side * 0.455f, 32, BackplateColor);
+
+            DrawCell(vertexHelper, center + (Vector2.up * step), cellSize, upPressed, BorderColor);
+            DrawCell(vertexHelper, center + (Vector2.left * step), cellSize, leftPressed, BorderColor);
+            DrawCell(vertexHelper, center + (Vector2.right * step), cellSize, rightPressed, BorderColor);
+            DrawCell(vertexHelper, center + (Vector2.down * step), cellSize, downPressed, VialBorderColor);
+
+            AddCircle(vertexHelper, center, cellSize * 0.18f, 16, BorderColor);
+            AddCircle(vertexHelper, center, cellSize * 0.125f, 16, CellColor);
 
             DrawDirectionArrow(vertexHelper, center + (Vector2.up * step), cellSize, Vector2.up);
             DrawDirectionArrow(vertexHelper, center + (Vector2.left * step), cellSize, Vector2.left);
@@ -293,13 +307,18 @@ namespace BooterBigArm.TopDown3D
             DrawVial(vertexHelper, center + (Vector2.down * step), cellSize);
         }
 
-        private static void DrawCell(VertexHelper vertexHelper, Vector2 center, float size, bool pressed)
+        private static void DrawCell(
+            VertexHelper vertexHelper,
+            Vector2 center,
+            float size,
+            bool pressed,
+            Color32 borderColor)
         {
             var shadowRect = RectFromCenter(center + new Vector2(0f, -size * 0.055f), size);
             AddChamferedRect(vertexHelper, shadowRect, size * 0.19f, ShadowColor);
 
             var outerRect = RectFromCenter(center, size);
-            AddChamferedRect(vertexHelper, outerRect, size * 0.19f, BorderColor);
+            AddChamferedRect(vertexHelper, outerRect, size * 0.19f, borderColor);
 
             var borderWidth = Mathf.Max(1.25f, size * 0.045f);
             var innerRect = new Rect(
@@ -312,6 +331,14 @@ namespace BooterBigArm.TopDown3D
                 innerRect,
                 Mathf.Max(0f, (size * 0.19f) - borderWidth),
                 pressed ? PressedCellColor : CellColor);
+
+            var highlightHeight = Mathf.Max(1f, size * 0.055f);
+            var highlightRect = new Rect(
+                innerRect.xMin + (size * 0.13f),
+                innerRect.yMax - highlightHeight - (size * 0.08f),
+                innerRect.width - (size * 0.26f),
+                highlightHeight);
+            AddChamferedRect(vertexHelper, highlightRect, highlightHeight * 0.45f, CellHighlightColor);
         }
 
         private static void DrawDirectionArrow(
@@ -426,6 +453,29 @@ namespace BooterBigArm.TopDown3D
             vertexHelper.AddVert(second, color, Vector2.zero);
             vertexHelper.AddVert(third, color, Vector2.zero);
             vertexHelper.AddTriangle(start, start + 1, start + 2);
+        }
+
+        private static void AddCircle(
+            VertexHelper vertexHelper,
+            Vector2 center,
+            float radius,
+            int segments,
+            Color32 color)
+        {
+            var centerIndex = vertexHelper.currentVertCount;
+            vertexHelper.AddVert(center, color, Vector2.zero);
+            for (var i = 0; i < segments; i++)
+            {
+                var angle = (Mathf.PI * 2f * i) / segments;
+                var point = center + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+                vertexHelper.AddVert(point, color, Vector2.zero);
+            }
+
+            for (var i = 0; i < segments; i++)
+            {
+                var next = (i + 1) % segments;
+                vertexHelper.AddTriangle(centerIndex, centerIndex + i + 1, centerIndex + next + 1);
+            }
         }
 
         private static void AddConvexPolygon(VertexHelper vertexHelper, Vector2[] points, Color32 color)

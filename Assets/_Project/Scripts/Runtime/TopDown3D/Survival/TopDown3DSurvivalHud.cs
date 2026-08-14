@@ -6,14 +6,18 @@ namespace BooterBigArm.TopDown3D
     [DisallowMultipleComponent]
     public sealed class TopDown3DSurvivalHud : MonoBehaviour
     {
-        public const float ReferenceWidth = 270f;
-        public const float ReferenceHeight = 80f;
-        public const float ReferenceMargin = 28f;
-        public const float ReferenceGap = 6f;
+        public const float ReferenceWidth = 300f;
+        public const float ReferenceHeight = 152f;
+        public const float ReferenceMargin = 34f;
+        public const float ReferenceGap = 5f;
+        public const float ReferencePadding = 8f;
+        public const float MinimumUiScale = 0.85f;
 
+        private static readonly Color ShadowColor = new(0.01f, 0.012f, 0.015f, 0.48f);
         private static readonly Color PanelColor = new(0.027f, 0.033f, 0.039f, 0.82f);
         private static readonly Color CellColor = new(0.075f, 0.09f, 0.106f, 0.94f);
         private static readonly Color BorderColor = new(0.77f, 0.68f, 0.5f, 0.82f);
+        private static readonly Color HighlightColor = new(0.98f, 0.88f, 0.66f, 0.18f);
         private static readonly Color TrackColor = new(0.025f, 0.03f, 0.035f, 1f);
         private static readonly Color HealthColor = new(0.73f, 0.22f, 0.17f, 1f);
         private static readonly Color HungerColor = new(0.78f, 0.57f, 0.2f, 1f);
@@ -77,15 +81,21 @@ namespace BooterBigArm.TopDown3D
         public static Rect GetMeterRect(Rect panel, int meterIndex, float scale)
         {
             var gap = ReferenceGap * scale;
-            var cellWidth = (panel.width - gap) * 0.5f;
-            var cellHeight = (panel.height - gap) * 0.5f;
-            var column = meterIndex % 2;
-            var row = meterIndex / 2;
+            var padding = ReferencePadding * scale;
+            var cellHeight = (panel.height - (padding * 2f) - (gap * 3f)) * 0.25f;
             return new Rect(
-                panel.x + (column * (cellWidth + gap)),
-                panel.y + (row * (cellHeight + gap)),
-                cellWidth,
+                panel.x + padding,
+                panel.y + padding + (meterIndex * (cellHeight + gap)),
+                panel.width - (padding * 2f),
                 cellHeight);
+        }
+
+        public static float GetUiScale(int screenWidth, int screenHeight)
+        {
+            return Mathf.Clamp(
+                Mathf.Min(screenWidth / 1920f, screenHeight / 1080f),
+                MinimumUiScale,
+                1.25f);
         }
 
         private void OnGUI()
@@ -95,15 +105,20 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            var scale = Mathf.Clamp(
-                Mathf.Min(Screen.width / 1920f, Screen.height / 1080f),
-                0.65f,
-                1.25f);
+            var scale = GetUiScale(Screen.width, Screen.height);
             var panel = GetPanelRect(Screen.safeArea, Screen.height, scale);
             EnsureStyles(scale);
 
+            DrawSolid(new Rect(
+                panel.x + (4f * scale),
+                panel.y + (5f * scale),
+                panel.width,
+                panel.height), ShadowColor);
             DrawSolid(Expand(panel, 2f * scale), BorderColor);
             DrawSolid(panel, PanelColor);
+            DrawSolid(
+                new Rect(panel.x, panel.y, panel.width, Mathf.Max(1f, 2f * scale)),
+                HighlightColor);
             DrawMeter(panel, 0, scale, "HEALTH", TopDown3DSurvivalVital.Health, HealthColor);
             DrawMeter(panel, 1, scale, "HUNGER", TopDown3DSurvivalVital.Hunger, HungerColor);
             DrawMeter(panel, 2, scale, "THIRST", TopDown3DSurvivalVital.Thirst, ThirstColor);
@@ -121,20 +136,31 @@ namespace BooterBigArm.TopDown3D
             var cell = GetMeterRect(panel, meterIndex, scale);
             DrawSolid(cell, CellColor);
 
-            var padding = 6f * scale;
-            var labelWidth = 48f * scale;
+            var padding = 7f * scale;
+            var pipWidth = Mathf.Max(3f, 4f * scale);
+            var pipHeight = Mathf.Max(10f, cell.height * 0.48f);
+            DrawSolid(
+                new Rect(
+                    cell.x + padding,
+                    cell.center.y - (pipHeight * 0.5f),
+                    pipWidth,
+                    pipHeight),
+                fillColor);
+
+            var labelWidth = 61f * scale;
             var labelRect = new Rect(
-                cell.x + padding,
+                cell.x + padding + pipWidth + (7f * scale),
                 cell.y,
                 labelWidth,
                 cell.height);
             GUI.Label(labelRect, label, labelStyle);
 
+            var barX = labelRect.xMax + (4f * scale);
             var bar = new Rect(
-                labelRect.xMax,
-                cell.y + (cell.height * 0.34f),
-                Mathf.Max(1f, cell.xMax - labelRect.xMax - padding),
-                Mathf.Max(3f, cell.height * 0.32f));
+                barX,
+                cell.y + (cell.height * 0.31f),
+                Mathf.Max(1f, cell.xMax - barX - padding),
+                Mathf.Max(7f, cell.height * 0.38f));
             DrawSolid(bar, TrackColor);
 
             var inset = Mathf.Max(1f, 1.5f * scale);
@@ -145,6 +171,14 @@ namespace BooterBigArm.TopDown3D
                 Mathf.Max(0f, bar.height - (inset * 2f)));
             inner.width *= vitals.GetNormalizedValue(vital);
             DrawSolid(inner, fillColor);
+
+            if (inner.width > 0f)
+            {
+                var sheen = new Rect(inner.x, inner.y, inner.width, Mathf.Max(1f, inner.height * 0.34f));
+                var sheenColor = Color.Lerp(fillColor, Color.white, 0.42f);
+                sheenColor.a = 0.38f;
+                DrawSolid(sheen, sheenColor);
+            }
         }
 
         private void EnsureStyles(float scale)
@@ -160,7 +194,7 @@ namespace BooterBigArm.TopDown3D
                 };
             }
 
-            labelStyle.fontSize = Mathf.Max(8, Mathf.RoundToInt(10f * scale));
+            labelStyle.fontSize = Mathf.Max(10, Mathf.RoundToInt(11f * scale));
         }
 
         private static Rect Expand(Rect rect, float amount)
