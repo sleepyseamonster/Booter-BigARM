@@ -7,7 +7,7 @@ namespace BooterBigArm.TopDown3D
     {
         [SerializeField] private int worldSeed = 24681357;
         [SerializeField, Min(4f)] private float chunkSize = 18f;
-        [SerializeField, Range(2, 64)] private int quadsPerAxis = 12;
+        [SerializeField, Range(2, 64)] private int quadsPerAxis = 24;
         [SerializeField, Range(1, 7)] private int streamingRadius = 7;
         [SerializeField, Range(1, 4)] private int immediateLoadRadius = 2;
         [SerializeField, Range(1, 8)] private int chunksBuiltPerFrame = 2;
@@ -18,6 +18,19 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(1, 6)] private int noiseOctaves = 3;
         [SerializeField, Min(1f)] private float noiseLacunarity = 2f;
         [SerializeField, Range(0.05f, 0.95f)] private float noisePersistence = 0.5f;
+        [Header("Craggy Escarpments")]
+        [SerializeField, Min(1)] private int escarpmentGenerationVersion = 1;
+        [SerializeField, Min(24f)] private float escarpmentRegionSize = 54f;
+        [SerializeField, Range(0f, 1f)] private float escarpmentRegionChance = 0.48f;
+        [SerializeField, Min(2f)] private float escarpmentMinimumRadius = 7.5f;
+        [SerializeField, Min(3f)] private float escarpmentMaximumRadius = 13.5f;
+        [SerializeField, Range(0.25f, 0.75f)] private float escarpmentMinimumHeight = 0.48f;
+        [SerializeField, Range(0.3f, 0.8f)] private float escarpmentMaximumHeight = 0.66f;
+        [SerializeField, Range(0.35f, 1.5f)] private float escarpmentEdgeWidth = 0.52f;
+        [SerializeField, Range(0f, 0.3f)] private float cragReliefAmplitude = 0.12f;
+        [SerializeField, Min(0.01f)] private float cragReliefFrequency = 0.12f;
+        [SerializeField, Range(16, 64)] private int escarpmentFaceSegments = 40;
+        [SerializeField, Range(1, 6)] private int escarpmentColliderSegmentsPerRun = 3;
         [SerializeField, Range(0, 12)] private int propsPerChunk = 4;
         [Header("Natural Objects")]
         [SerializeField] private TopDown3DNaturalObjectCatalog naturalObjectCatalog;
@@ -82,6 +95,18 @@ namespace BooterBigArm.TopDown3D
         public int NoiseOctaves => noiseOctaves;
         public float NoiseLacunarity => noiseLacunarity;
         public float NoisePersistence => noisePersistence;
+        public int EscarpmentGenerationVersion => escarpmentGenerationVersion;
+        public float EscarpmentRegionSize => escarpmentRegionSize;
+        public float EscarpmentRegionChance => escarpmentRegionChance;
+        public float EscarpmentMinimumRadius => escarpmentMinimumRadius;
+        public float EscarpmentMaximumRadius => escarpmentMaximumRadius;
+        public float EscarpmentMinimumHeight => escarpmentMinimumHeight;
+        public float EscarpmentMaximumHeight => escarpmentMaximumHeight;
+        public float EscarpmentEdgeWidth => escarpmentEdgeWidth;
+        public float CragReliefAmplitude => cragReliefAmplitude;
+        public float CragReliefFrequency => cragReliefFrequency;
+        public int EscarpmentFaceSegments => escarpmentFaceSegments;
+        public int EscarpmentColliderSegmentsPerRun => escarpmentColliderSegmentsPerRun;
         public int PropsPerChunk => propsPerChunk;
         public TopDown3DNaturalObjectCatalog NaturalObjectCatalog => naturalObjectCatalog;
         public int NaturalObjectGenerationVersion => naturalObjectGenerationVersion;
@@ -154,6 +179,21 @@ namespace BooterBigArm.TopDown3D
             noiseOctaves = Mathf.Clamp(noiseOctaves, 1, 6);
             noiseLacunarity = Mathf.Max(1f, noiseLacunarity);
             noisePersistence = Mathf.Clamp(noisePersistence, 0.05f, 0.95f);
+            escarpmentGenerationVersion = Mathf.Max(1, escarpmentGenerationVersion);
+            escarpmentRegionSize = Mathf.Max(24f, escarpmentRegionSize);
+            escarpmentRegionChance = Mathf.Clamp01(escarpmentRegionChance);
+            escarpmentMinimumRadius = Mathf.Max(2f, escarpmentMinimumRadius);
+            escarpmentMaximumRadius = Mathf.Max(escarpmentMinimumRadius, escarpmentMaximumRadius);
+            escarpmentMinimumHeight = Mathf.Clamp(escarpmentMinimumHeight, 0.25f, 0.75f);
+            escarpmentMaximumHeight = Mathf.Clamp(
+                escarpmentMaximumHeight,
+                escarpmentMinimumHeight,
+                0.8f);
+            escarpmentEdgeWidth = Mathf.Clamp(escarpmentEdgeWidth, 0.35f, 1.5f);
+            cragReliefAmplitude = Mathf.Clamp(cragReliefAmplitude, 0f, 0.3f);
+            cragReliefFrequency = Mathf.Max(0.01f, cragReliefFrequency);
+            escarpmentFaceSegments = Mathf.Clamp(escarpmentFaceSegments, 16, 64);
+            escarpmentColliderSegmentsPerRun = Mathf.Clamp(escarpmentColliderSegmentsPerRun, 1, 6);
             propsPerChunk = Mathf.Clamp(propsPerChunk, 0, 12);
             naturalObjectGenerationVersion = Mathf.Max(1, naturalObjectGenerationVersion);
             scatterObjectsPerChunk = Mathf.Clamp(scatterObjectsPerChunk, 0, 64);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DWorldSettings
   worldSeed: 24681357
   chunkSize: 18
-  quadsPerAxis: 12
+  quadsPerAxis: 24
   streamingRadius: 7
   immediateLoadRadius: 2
   chunksBuiltPerFrame: 2
@@ -25,6 +25,18 @@ MonoBehaviour:
   noiseOctaves: 3
   noiseLacunarity: 2
   noisePersistence: 0.5
+  escarpmentGenerationVersion: 1
+  escarpmentRegionSize: 54
+  escarpmentRegionChance: 0.48
+  escarpmentMinimumRadius: 7.5
+  escarpmentMaximumRadius: 13.5
+  escarpmentMinimumHeight: 0.48
+  escarpmentMaximumHeight: 0.66
+  escarpmentEdgeWidth: 0.52
+  cragReliefAmplitude: 0.12
+  cragReliefFrequency: 0.12
+  escarpmentFaceSegments: 40
+  escarpmentColliderSegmentsPerRun: 3
   propsPerChunk: 4
   naturalObjectCatalog: {fileID: 11400000, guid: 03ec8052e2404ee19712ee02d05deb23, type: 2}
   naturalObjectGenerationVersion: 2

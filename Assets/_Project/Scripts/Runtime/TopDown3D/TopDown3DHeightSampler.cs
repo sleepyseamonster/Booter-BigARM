@@ -6,6 +6,12 @@ namespace BooterBigArm.TopDown3D
     {
         public static float SampleHeight(TopDown3DWorldSettings settings, float worldX, float worldZ)
         {
+            return SampleBaseHeight(settings, worldX, worldZ)
+                + TopDown3DEscarpmentSampler.SampleElevation(settings, worldX, worldZ);
+        }
+
+        public static float SampleBaseHeight(TopDown3DWorldSettings settings, float worldX, float worldZ)
+        {
             if (settings == null)
             {
                 return 0f;
