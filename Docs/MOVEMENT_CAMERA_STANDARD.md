@@ -9,6 +9,11 @@ For the perspective lane:
 - use an elevated perspective camera with serialized pitch, yaw, distance, field of view, damping, and obstruction values;
 - use right-stick horizontal orbit and constrained vertical pitch while preserving camera-relative movement and the elevated top-down composition;
 - use 3D depth, lighting, colliders, materials, and renderer topology instead of pixel snapping and sprite sorting;
+- keep one collision owner for each walkable surface; decorative crag faces must not overlap the authoritative terrain collider;
+- use a capsule with a low-friction movement material, a volume cast for ground proximity, and a raycast for the true triangle normal before applying the serialized slope limit;
+- the current perspective prototype accepts terrain through `48` degrees and projects movement along accepted surfaces;
+- sample the authoritative support normal beneath the capsule centerline, then time-filter accepted normals before driving slope velocity so terrain triangle seams do not shake the controller;
+- apply the `48` degree rejection to the unsmoothed measured normal, and rate-limit grounded vertical correction so filtering cannot make steep terrain climbable or produce instant vertical velocity changes;
 - keep hands-on feel and controller acceptance with the user unless the user explicitly delegates it.
 
 ## Pixel Scale Baseline

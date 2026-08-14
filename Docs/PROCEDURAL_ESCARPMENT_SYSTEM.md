@@ -24,9 +24,9 @@ This hybrid keeps physics and placement honest while giving the steep area a ded
 - `TopDown3DHeightSampler` adds that elevation to the existing broad terrain noise.
 - `TopDown3DChunkMeshBuilder`, terrain collision, normals, safe spawn, clutter, and dust all consume the same final height.
 - `TopDown3DEscarpmentDecorator` builds one faceted face mesh per affected chunk using the regular rock material.
-- Narrow grouped `BoxCollider` runs carry `TopDown3DTraversalObstacle`, allowing the existing smart traversal system to recognize the wall.
-- Collider height is capped below the current `0.80`-unit vault contract. Taller cliffs require a separate climbing or blocking contract rather than silently exceeding this one.
-- Generated meshes and collider objects are children of their owning chunk and unload with it.
+- The streamed terrain `MeshCollider` is the sole collision authority for the raised surface. The overlapping face mesh is presentation-only, avoiding duplicate collider seams that can snag a moving capsule.
+- Booter's controller reads the true terrain-triangle normal and accepts surfaces through `48` degrees. Steeper uphill faces remain blocking while lateral and downhill movement remain physical.
+- Generated presentation meshes are children of their owning chunk and unload with it.
 
 ## Distribution and Art Direction
 
@@ -46,7 +46,7 @@ This hybrid keeps physics and placement honest while giving the steep area a ded
 - minimum and maximum climbable height;
 - rocky edge width;
 - crag relief amplitude and frequency;
-- face segment count and collider grouping size.
+- face segment count. The retained collider-grouping field supports deterministic data compatibility but no longer creates overlapping runtime colliders.
 
 Change the escarpment generation version whenever a deliberate placement-breaking algorithm change is accepted. Ordinary presentation changes should not reshuffle formation ownership.
 
@@ -56,7 +56,7 @@ Change the escarpment generation version whenever a deliberate placement-breakin
 - Feature enumeration is stable and contains no duplicate cell owners.
 - Samples demonstrate both raised areas and substantially more open ground.
 - Face mesh data is deterministic, faceted, and non-empty in affected chunks.
-- Traversal collider runs remain at or below the current vault height.
-- Face meshes and traversal markers are chunk-owned and removed on unload.
+- Planned wall data remains deterministic and bounded for compatibility, but runtime decoration creates no duplicate wall colliders.
+- Face meshes are chunk-owned and removed on unload.
 - Adjacent terrain chunks continue sharing identical border samples through the common height sampler.
 - Unity compilation must be clean before handoff; final visual density and hands-on traversal acceptance remain user-owned.

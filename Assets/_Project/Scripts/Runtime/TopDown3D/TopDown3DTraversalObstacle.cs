@@ -5,7 +5,7 @@ namespace BooterBigArm.TopDown3D
     public enum TopDown3DTraversalMove
     {
         None,
-        Spin,
+        SideStep,
         Vault
     }
 
@@ -32,7 +32,7 @@ namespace BooterBigArm.TopDown3D
             var sideThreshold = lateralHalfExtent * Mathf.Clamp01(sideThresholdRatio);
             if (Mathf.Abs(lateralOffset) >= sideThreshold)
             {
-                return TopDown3DTraversalMove.Spin;
+                return TopDown3DTraversalMove.SideStep;
             }
 
             return obstacleHeight <= Mathf.Max(0f, maximumVaultHeight)
@@ -72,7 +72,17 @@ namespace BooterBigArm.TopDown3D
             }
 
             return Vector3.Lerp(start, end, time)
-                + Vector3.up * (Mathf.Sin(time * Mathf.PI) * Mathf.Max(0f, arcHeight));
+                + Vector3.up * (4f * time * (1f - time) * Mathf.Max(0f, arcHeight));
+        }
+
+        public static float CalculateSpeedLimitedDuration(
+            float pathDistance,
+            float maximumSpeed,
+            float minimumDuration)
+        {
+            return Mathf.Max(
+                Mathf.Max(0.05f, minimumDuration),
+                Mathf.Max(0f, pathDistance) / Mathf.Max(0.1f, maximumSpeed));
         }
 
         public static Vector3 CalculateQuadraticPoint(

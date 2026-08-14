@@ -9,32 +9,36 @@ namespace BooterBigArm.TopDown3D
         private const int GroundHitCapacity = 8;
         private const int TraversalHitCapacity = 12;
         private const int TraversalOverlapCapacity = 12;
+        private const float GroundNormalRayLift = 0.3f;
 
         [SerializeField] private TopDown3DInputRouter input;
         [SerializeField] private Transform cameraBasis;
         [SerializeField, Min(0.1f)] private float walkSpeed = 4.2f;
         [SerializeField, Min(0.1f)] private float sprintSpeed = 7.4f;
-        [SerializeField, Min(0.1f)] private float acceleration = 30f;
-        [SerializeField, Min(0.1f)] private float deceleration = 36f;
-        [SerializeField, Min(1f)] private float turnSpeedDegrees = 720f;
+        [SerializeField, Min(0.1f)] private float acceleration = 18f;
+        [SerializeField, Min(0.1f)] private float deceleration = 24f;
+        [SerializeField, Min(1f)] private float turnSpeedDegrees = 540f;
         [SerializeField, Range(1f, 75f)] private float maxWalkableSlope = 48f;
         [SerializeField, Min(0.01f)] private float groundProbeDistance = 0.28f;
+        [SerializeField, Min(0.1f)] private float groundNormalSharpness = 12f;
+        [SerializeField, Min(0.1f)] private float groundedVerticalAcceleration = 45f;
         [SerializeField] private LayerMask groundMask = ~0;
 
         [Header("Smart Traversal")]
         [SerializeField] private bool smartTraversalEnabled = true;
-        [SerializeField, Range(0.1f, 1f)] private float minimumTraversalInput = 0.35f;
-        [SerializeField, Min(0.1f)] private float traversalProbeDistance = 1.25f;
-        [SerializeField, Min(0.1f)] private float maximumVaultHeight = 1.15f;
-        [SerializeField, Range(0f, 1f)] private float sideThresholdRatio = 0.48f;
-        [SerializeField, Min(0.05f)] private float vaultDuration = 0.48f;
-        [SerializeField, Min(0f)] private float minimumVaultArcHeight = 0.9f;
-        [SerializeField, Min(0f)] private float vaultArcClearance = 0.18f;
-        [SerializeField, Min(0f)] private float vaultLandingClearance = 0.35f;
-        [SerializeField, Min(0.05f)] private float spinDuration = 0.34f;
-        [SerializeField, Min(0f)] private float spinSideDistance = 1.15f;
-        [SerializeField, Min(0f)] private float spinForwardDistance = 0.75f;
-        [SerializeField, Min(0f)] private float traversalCooldown = 0.2f;
+        [SerializeField, Range(0.1f, 1f)] private float minimumTraversalInput = 0.5f;
+        [SerializeField, Min(0f)] private float minimumTraversalSpeed = 2.8f;
+        [SerializeField, Min(0.1f)] private float traversalProbeDistance = 0.75f;
+        [SerializeField, Min(0.1f)] private float maximumVaultHeight = 0.8f;
+        [SerializeField, Range(0f, 1f)] private float sideThresholdRatio = 0.76f;
+        [SerializeField, Min(0.05f)] private float vaultDuration = 0.68f;
+        [SerializeField, Min(0f)] private float minimumVaultArcHeight = 0.32f;
+        [SerializeField, Min(0f)] private float vaultArcClearance = 0.12f;
+        [SerializeField, Min(0f)] private float vaultLandingClearance = 0.25f;
+        [SerializeField, Min(0.05f)] private float sideStepDuration = 0.45f;
+        [SerializeField, Min(0f)] private float sideStepSideDistance = 0.75f;
+        [SerializeField, Min(0f)] private float sideStepForwardDistance = 0.4f;
+        [SerializeField, Min(0f)] private float traversalCooldown = 0.28f;
         [SerializeField] private LayerMask traversalMask = ~0;
 
         private readonly RaycastHit[] groundHits = new RaycastHit[GroundHitCapacity];
@@ -42,6 +46,7 @@ namespace BooterBigArm.TopDown3D
         private readonly Collider[] traversalOverlaps = new Collider[TraversalOverlapCapacity];
         private Rigidbody body;
         private CapsuleCollider capsule;
+        private PhysicsMaterial movementPhysicsMaterial;
         private Vector3 facingDirection = Vector3.forward;
         private Vector3 traversalStart;
         private Vector3 traversalControl;
@@ -52,9 +57,12 @@ namespace BooterBigArm.TopDown3D
         private float activeTraversalDuration;
         private float activeTraversalArcHeight;
         private float activeTraversalElapsed;
-        private float activeSpinDirection;
+        private float activeTraversalSide;
+        private float activeTraversalExitSpeed;
         private float traversalCooldownRemaining;
         private bool gravityBeforeTraversal;
+        private Vector3 stableGroundNormal = Vector3.up;
+        private bool hasStableGroundNormal;
 
         public Vector3 Position => body != null ? body.position : transform.position;
         public Vector3 Velocity => body != null ? body.linearVelocity : Vector3.zero;
@@ -63,6 +71,7 @@ namespace BooterBigArm.TopDown3D
         public bool SprintActive { get; private set; }
         public TopDown3DTraversalMove ActiveTraversal { get; private set; }
         public float ActiveTraversalDuration => activeTraversalDuration;
+        public float ActiveTraversalSide => activeTraversalSide;
 
         public void Configure(TopDown3DInputRouter inputRouter, Transform movementCamera)
         {
@@ -82,6 +91,9 @@ namespace BooterBigArm.TopDown3D
             }
 
             transform.position = position;
+            IsGrounded = false;
+            stableGroundNormal = Vector3.up;
+            hasStableGroundNormal = false;
         }
 
         private void Awake()
@@ -92,6 +104,7 @@ namespace BooterBigArm.TopDown3D
             body.collisionDetectionMode = CollisionDetectionMode.Continuous;
             body.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             body.linearDamping = 0f;
+            ConfigureMovementPhysicsMaterial();
         }
 
         private void FixedUpdate()
@@ -112,15 +125,54 @@ namespace BooterBigArm.TopDown3D
                 input.MoveValue,
                 cameraBasis.forward,
                 cameraBasis.right);
+            if (desiredDirection.sqrMagnitude > 0.0001f
+                && TryGetSurfaceNormalAhead(desiredDirection, out var surfaceNormalAhead))
+            {
+                desiredDirection = TopDown3DSlopeMath.RemoveSteepUphillComponent(
+                    desiredDirection,
+                    surfaceNormalAhead,
+                    maxWalkableSlope);
+            }
 
-            IsGrounded = TryGetGroundNormal(out var groundNormal);
+            var wasGrounded = IsGrounded;
+            IsGrounded = TryGetGroundNormal(out var measuredGroundNormal);
+            var groundNormal = measuredGroundNormal;
+            if (IsGrounded)
+            {
+                stableGroundNormal = wasGrounded && hasStableGroundNormal
+                    ? TopDown3DSlopeMath.SmoothNormal(
+                        stableGroundNormal,
+                        measuredGroundNormal,
+                        groundNormalSharpness,
+                        Time.fixedDeltaTime)
+                    : measuredGroundNormal;
+                hasStableGroundNormal = true;
+                groundNormal = stableGroundNormal;
+            }
+            else
+            {
+                stableGroundNormal = Vector3.up;
+                hasStableGroundNormal = false;
+            }
+
             if (IsGrounded && desiredDirection.sqrMagnitude > 0.0001f)
             {
                 var inputMagnitude = desiredDirection.magnitude;
-                desiredDirection = Vector3.ProjectOnPlane(desiredDirection, groundNormal).normalized * inputMagnitude;
+                desiredDirection = TopDown3DSlopeMath.ProjectDirectionOnSlope(
+                    desiredDirection,
+                    groundNormal,
+                    maxWalkableSlope) * inputMagnitude;
             }
 
-            SprintActive = input.SprintHeld && desiredDirection.sqrMagnitude > 0.0001f;
+            if (IsGrounded)
+            {
+                var gravityAlongSlope = Vector3.ProjectOnPlane(Physics.gravity, groundNormal);
+                body.AddForce(-gravityAlongSlope, ForceMode.Acceleration);
+            }
+
+            SprintActive = input.SprintHeld
+                && desiredDirection.sqrMagnitude > 0.0001f
+                && traversalCooldownRemaining <= 0f;
             if (SprintActive && TryBeginTraversal(desiredDirection))
             {
                 return;
@@ -136,9 +188,13 @@ namespace BooterBigArm.TopDown3D
             var verticalVelocity = currentVelocity.y;
             if (IsGrounded)
             {
-                verticalVelocity = desiredDirection.sqrMagnitude > 0.0001f
+                var targetVerticalVelocity = desiredDirection.sqrMagnitude > 0.0001f
                     ? targetVelocity.y
                     : Mathf.Min(verticalVelocity, -1.5f);
+                verticalVelocity = Mathf.MoveTowards(
+                    verticalVelocity,
+                    targetVerticalVelocity,
+                    groundedVerticalAcceleration * Time.fixedDeltaTime);
             }
 
             body.linearVelocity = new Vector3(nextPlanar.x, verticalVelocity, nextPlanar.z);
@@ -159,7 +215,9 @@ namespace BooterBigArm.TopDown3D
             if (!smartTraversalEnabled
                 || !IsGrounded
                 || traversalCooldownRemaining > 0f
-                || desiredDirection.sqrMagnitude < minimumTraversalInput * minimumTraversalInput)
+                || desiredDirection.sqrMagnitude < minimumTraversalInput * minimumTraversalInput
+                || new Vector2(body.linearVelocity.x, body.linearVelocity.z).magnitude
+                    < minimumTraversalSpeed)
             {
                 return false;
             }
@@ -219,8 +277,14 @@ namespace BooterBigArm.TopDown3D
 
             switch (move)
             {
-                case TopDown3DTraversalMove.Spin:
-                    return TryBeginSpin(obstacleCollider, forward, lateral, lateralOffset, lateralHalfExtent, radius);
+                case TopDown3DTraversalMove.SideStep:
+                    return TryBeginSideStep(
+                        obstacleCollider,
+                        forward,
+                        lateral,
+                        lateralOffset,
+                        lateralHalfExtent,
+                        radius);
                 case TopDown3DTraversalMove.Vault:
                     return TryBeginVault(obstacleCollider, forward, obstacleHeight, radius);
                 default:
@@ -228,7 +292,7 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
-        private bool TryBeginSpin(
+        private bool TryBeginSideStep(
             Collider obstacle,
             Vector3 forward,
             Vector3 lateral,
@@ -242,24 +306,34 @@ namespace BooterBigArm.TopDown3D
                 - Mathf.Abs(lateralOffset)
                 + playerRadius
                 + vaultLandingClearance;
-            var sideDistance = Mathf.Max(spinSideDistance, requiredSideDistance);
+            var sideDistance = Mathf.Max(sideStepSideDistance, requiredSideDistance);
             var planarTarget = body.position
                 + outward * sideDistance
-                + forward * spinForwardDistance;
+                + forward * sideStepForwardDistance;
             if (!TryResolveGroundedTarget(planarTarget, obstacle, out var target))
             {
                 return false;
             }
 
             var control = body.position + outward * sideDistance;
+            if (!IsSideStepPathClear(body.position, control, target, obstacle))
+            {
+                return false;
+            }
+
+            var speedLimitedDuration = TopDown3DTraversalPlanner.CalculateSpeedLimitedDuration(
+                2f * Mathf.Max(sideDistance, sideStepForwardDistance),
+                walkSpeed,
+                sideStepDuration);
             BeginTraversal(
-                TopDown3DTraversalMove.Spin,
+                TopDown3DTraversalMove.SideStep,
                 target,
                 control,
                 forward,
-                spinDuration,
+                speedLimitedDuration,
                 0f,
-                outwardSign);
+                outwardSign,
+                walkSpeed);
             return true;
         }
 
@@ -282,14 +356,47 @@ namespace BooterBigArm.TopDown3D
             }
 
             var arcHeight = Mathf.Max(minimumVaultArcHeight, obstacleHeight + vaultArcClearance);
+            var entrySpeed = new Vector2(body.linearVelocity.x, body.linearVelocity.z).magnitude;
+            var vaultSpeed = Mathf.Min(entrySpeed, walkSpeed);
+            var speedLimitedDuration = TopDown3DTraversalPlanner.CalculateSpeedLimitedDuration(
+                Vector3.Distance(
+                    new Vector3(body.position.x, 0f, body.position.z),
+                    new Vector3(target.x, 0f, target.z)),
+                vaultSpeed,
+                vaultDuration);
             BeginTraversal(
                 TopDown3DTraversalMove.Vault,
                 target,
                 Vector3.zero,
                 forward,
-                vaultDuration,
+                speedLimitedDuration,
                 arcHeight,
-                0f);
+                0f,
+                vaultSpeed);
+            return true;
+        }
+
+        private bool IsSideStepPathClear(
+            Vector3 start,
+            Vector3 control,
+            Vector3 end,
+            Collider sourceObstacle)
+        {
+            const int sampleCount = 5;
+            for (var sample = 1; sample <= sampleCount; sample++)
+            {
+                var time = sample / (float)sampleCount;
+                var samplePosition = TopDown3DTraversalPlanner.CalculateQuadraticPoint(
+                    start,
+                    control,
+                    end,
+                    time);
+                if (!IsCapsuleClearAt(samplePosition, null, sourceObstacle))
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 
@@ -300,7 +407,8 @@ namespace BooterBigArm.TopDown3D
             Vector3 direction,
             float duration,
             float arcHeight,
-            float spinDirection)
+            float traversalSide,
+            float exitSpeed)
         {
             ActiveTraversal = move;
             traversalStart = body.position;
@@ -312,7 +420,10 @@ namespace BooterBigArm.TopDown3D
             activeTraversalDuration = Mathf.Max(0.05f, duration);
             activeTraversalArcHeight = Mathf.Max(0f, arcHeight);
             activeTraversalElapsed = 0f;
-            activeSpinDirection = spinDirection;
+            activeTraversalSide = Mathf.Abs(traversalSide) <= 0.0001f
+                ? 0f
+                : Mathf.Sign(traversalSide);
+            activeTraversalExitSpeed = Mathf.Clamp(exitSpeed, 0f, walkSpeed);
             gravityBeforeTraversal = body.useGravity;
             body.useGravity = false;
             body.linearVelocity = Vector3.zero;
@@ -326,23 +437,22 @@ namespace BooterBigArm.TopDown3D
         {
             activeTraversalElapsed += Time.fixedDeltaTime;
             var normalizedTime = Mathf.Clamp01(activeTraversalElapsed / activeTraversalDuration);
-            var easedTime = normalizedTime * normalizedTime * (3f - 2f * normalizedTime);
             var position = ActiveTraversal == TopDown3DTraversalMove.Vault
                 ? TopDown3DTraversalPlanner.CalculateVaultPoint(
                     traversalStart,
                     traversalEnd,
                     activeTraversalArcHeight,
-                    easedTime)
+                    normalizedTime)
                 : TopDown3DTraversalPlanner.CalculateQuadraticPoint(
                     traversalStart,
                     traversalControl,
                     traversalEnd,
-                    easedTime);
+                    normalizedTime);
 
-            var facingRotation = Quaternion.Slerp(traversalStartRotation, traversalEndRotation, easedTime);
-            var rotation = ActiveTraversal == TopDown3DTraversalMove.Spin
-                ? Quaternion.AngleAxis(activeSpinDirection * 360f * easedTime, Vector3.up) * facingRotation
-                : facingRotation;
+            var rotation = Quaternion.Slerp(
+                traversalStartRotation,
+                traversalEndRotation,
+                normalizedTime);
             body.MovePosition(position);
             body.MoveRotation(rotation);
 
@@ -354,10 +464,11 @@ namespace BooterBigArm.TopDown3D
             var completedMove = ActiveTraversal;
             ActiveTraversal = TopDown3DTraversalMove.None;
             body.useGravity = gravityBeforeTraversal;
-            body.linearVelocity = traversalDirection * sprintSpeed * 0.65f;
+            body.linearVelocity = traversalDirection * activeTraversalExitSpeed;
             traversalCooldownRemaining = traversalCooldown;
-            SprintActive = input != null && input.SprintHeld;
-            IsGrounded = completedMove == TopDown3DTraversalMove.Spin;
+            SprintActive = false;
+            IsGrounded = completedMove == TopDown3DTraversalMove.SideStep;
+            activeTraversalSide = 0f;
         }
 
         private bool TryResolveGroundedTarget(
@@ -411,7 +522,10 @@ namespace BooterBigArm.TopDown3D
             return IsCapsuleClearAt(groundedTarget, groundCollider);
         }
 
-        private bool IsCapsuleClearAt(Vector3 bodyPosition, Collider groundCollider)
+        private bool IsCapsuleClearAt(
+            Vector3 bodyPosition,
+            Collider groundCollider,
+            Collider ignoredCollider = null)
         {
             GetWorldCapsule(bodyPosition, 0.94f, out var top, out var bottom, out var radius);
             var overlapCount = Physics.OverlapCapsuleNonAlloc(
@@ -426,6 +540,7 @@ namespace BooterBigArm.TopDown3D
                 var overlap = traversalOverlaps[i];
                 if (overlap != null
                     && overlap != groundCollider
+                    && overlap != ignoredCollider
                     && overlap.GetComponentInParent<TopDown3DGroundSurface>() == null
                     && !overlap.transform.IsChildOf(transform))
                 {
@@ -466,6 +581,8 @@ namespace BooterBigArm.TopDown3D
             body.angularVelocity = Vector3.zero;
             traversalCooldownRemaining = 0f;
             SprintActive = false;
+            activeTraversalSide = 0f;
+            activeTraversalExitSpeed = 0f;
         }
 
         private bool TryGetGroundNormal(out Vector3 normal)
@@ -491,17 +608,68 @@ namespace BooterBigArm.TopDown3D
                 QueryTriggerInteraction.Ignore);
 
             var nearestDistance = float.PositiveInfinity;
-            var found = false;
+            var proximityPoint = Vector3.zero;
+            Collider proximityCollider = null;
             for (var i = 0; i < hitCount; i++)
             {
                 var hit = groundHits[i];
-                if (hit.collider == null || hit.collider.transform.IsChildOf(transform))
+                if (hit.collider == null
+                    || hit.collider.transform.IsChildOf(transform)
+                    || hit.collider.GetComponentInParent<TopDown3DGroundSurface>() == null
+                    || hit.distance >= nearestDistance)
                 {
                     continue;
                 }
 
-                var slope = Vector3.Angle(hit.normal, Vector3.up);
-                if (slope > maxWalkableSlope || hit.distance >= nearestDistance)
+                nearestDistance = hit.distance;
+                proximityPoint = hit.point;
+                proximityCollider = hit.collider;
+            }
+
+            if (proximityCollider == null)
+            {
+                return false;
+            }
+
+            var centerRayOrigin = center + Vector3.up * GroundNormalRayLift;
+            var centerRayDistance = halfHeight + GroundNormalRayLift + groundProbeDistance;
+            if (!TryReadTrueSurfaceNormal(
+                    centerRayOrigin,
+                    centerRayDistance,
+                    proximityCollider,
+                    out normal)
+                && !TryReadTrueSurfaceNormal(
+                    proximityPoint + Vector3.up * GroundNormalRayLift,
+                    GroundNormalRayLift * 2f + groundProbeDistance,
+                    proximityCollider,
+                    out normal))
+            {
+                return false;
+            }
+
+            return TopDown3DSlopeMath.IsWalkable(normal, maxWalkableSlope);
+        }
+
+        private bool TryReadTrueSurfaceNormal(
+            Vector3 rayOrigin,
+            float rayDistance,
+            Collider expectedCollider,
+            out Vector3 normal)
+        {
+            normal = Vector3.up;
+            var hitCount = Physics.RaycastNonAlloc(
+                rayOrigin,
+                Vector3.down,
+                groundHits,
+                rayDistance,
+                groundMask,
+                QueryTriggerInteraction.Ignore);
+            var nearestDistance = float.PositiveInfinity;
+            var found = false;
+            for (var i = 0; i < hitCount; i++)
+            {
+                var hit = groundHits[i];
+                if (hit.collider != expectedCollider || hit.distance >= nearestDistance)
                 {
                     continue;
                 }
@@ -512,6 +680,70 @@ namespace BooterBigArm.TopDown3D
             }
 
             return found;
+        }
+
+        private bool TryGetSurfaceNormalAhead(Vector3 desiredDirection, out Vector3 normal)
+        {
+            normal = Vector3.up;
+            var planarDirection = Vector3.ProjectOnPlane(desiredDirection, Vector3.up);
+            if (planarDirection.sqrMagnitude <= 0.000001f)
+            {
+                return false;
+            }
+
+            GetWorldCapsule(body.position, 1f, out _, out var bottom, out var radius);
+            planarDirection.Normalize();
+            var footHeight = bottom.y - radius;
+            var rayOrigin = new Vector3(
+                body.position.x + planarDirection.x * (radius + groundProbeDistance),
+                body.position.y + GroundNormalRayLift,
+                body.position.z + planarDirection.z * (radius + groundProbeDistance));
+            var rayDistance = rayOrigin.y - footHeight + maximumVaultHeight + groundProbeDistance;
+            var hitCount = Physics.RaycastNonAlloc(
+                rayOrigin,
+                Vector3.down,
+                groundHits,
+                rayDistance,
+                groundMask,
+                QueryTriggerInteraction.Ignore);
+            var nearestDistance = float.PositiveInfinity;
+            var found = false;
+            for (var i = 0; i < hitCount; i++)
+            {
+                var hit = groundHits[i];
+                if (hit.collider == null
+                    || hit.collider.transform.IsChildOf(transform)
+                    || hit.collider.GetComponentInParent<TopDown3DGroundSurface>() == null
+                    || hit.distance >= nearestDistance)
+                {
+                    continue;
+                }
+
+                nearestDistance = hit.distance;
+                normal = hit.normal;
+                found = true;
+            }
+
+            return found;
+        }
+
+        private void ConfigureMovementPhysicsMaterial()
+        {
+            if (capsule == null)
+            {
+                return;
+            }
+
+            movementPhysicsMaterial = new PhysicsMaterial("Booter Low-Friction Movement")
+            {
+                dynamicFriction = 0f,
+                staticFriction = 0f,
+                bounciness = 0f,
+                frictionCombine = PhysicsMaterialCombine.Minimum,
+                bounceCombine = PhysicsMaterialCombine.Minimum,
+                hideFlags = HideFlags.HideAndDontSave
+            };
+            capsule.sharedMaterial = movementPhysicsMaterial;
         }
 
         private void EnsureBody()
@@ -525,6 +757,17 @@ namespace BooterBigArm.TopDown3D
         private void OnDisable()
         {
             CancelTraversal();
+            IsGrounded = false;
+            stableGroundNormal = Vector3.up;
+            hasStableGroundNormal = false;
+        }
+
+        private void OnDestroy()
+        {
+            if (movementPhysicsMaterial != null)
+            {
+                Destroy(movementPhysicsMaterial);
+            }
         }
 
         private void OnValidate()
@@ -534,7 +777,10 @@ namespace BooterBigArm.TopDown3D
             deceleration = Mathf.Max(0.1f, deceleration);
             turnSpeedDegrees = Mathf.Max(1f, turnSpeedDegrees);
             groundProbeDistance = Mathf.Max(0.01f, groundProbeDistance);
+            groundNormalSharpness = Mathf.Max(0.1f, groundNormalSharpness);
+            groundedVerticalAcceleration = Mathf.Max(0.1f, groundedVerticalAcceleration);
             minimumTraversalInput = Mathf.Clamp(minimumTraversalInput, 0.1f, 1f);
+            minimumTraversalSpeed = Mathf.Max(0f, minimumTraversalSpeed);
             traversalProbeDistance = Mathf.Max(0.1f, traversalProbeDistance);
             maximumVaultHeight = Mathf.Max(0.1f, maximumVaultHeight);
             sideThresholdRatio = Mathf.Clamp01(sideThresholdRatio);
@@ -542,10 +788,89 @@ namespace BooterBigArm.TopDown3D
             minimumVaultArcHeight = Mathf.Max(0f, minimumVaultArcHeight);
             vaultArcClearance = Mathf.Max(0f, vaultArcClearance);
             vaultLandingClearance = Mathf.Max(0f, vaultLandingClearance);
-            spinDuration = Mathf.Max(0.05f, spinDuration);
-            spinSideDistance = Mathf.Max(0f, spinSideDistance);
-            spinForwardDistance = Mathf.Max(0f, spinForwardDistance);
+            sideStepDuration = Mathf.Max(0.05f, sideStepDuration);
+            sideStepSideDistance = Mathf.Max(0f, sideStepSideDistance);
+            sideStepForwardDistance = Mathf.Max(0f, sideStepForwardDistance);
             traversalCooldown = Mathf.Max(0f, traversalCooldown);
+        }
+    }
+
+    public static class TopDown3DSlopeMath
+    {
+        public static Vector3 SmoothNormal(
+            Vector3 currentNormal,
+            Vector3 measuredNormal,
+            float sharpness,
+            float deltaTime)
+        {
+            if (measuredNormal.sqrMagnitude <= 0.000001f)
+            {
+                return currentNormal.sqrMagnitude > 0.000001f
+                    ? currentNormal.normalized
+                    : Vector3.up;
+            }
+
+            if (currentNormal.sqrMagnitude <= 0.000001f)
+            {
+                return measuredNormal.normalized;
+            }
+
+            var blend = 1f - Mathf.Exp(
+                -Mathf.Max(0f, sharpness) * Mathf.Max(0f, deltaTime));
+            return Vector3.Slerp(
+                currentNormal.normalized,
+                measuredNormal.normalized,
+                blend).normalized;
+        }
+
+        public static bool IsWalkable(Vector3 surfaceNormal, float maximumSlopeDegrees)
+        {
+            if (surfaceNormal.sqrMagnitude <= 0.000001f)
+            {
+                return false;
+            }
+
+            return Vector3.Angle(surfaceNormal, Vector3.up)
+                <= Mathf.Clamp(maximumSlopeDegrees, 0f, 89f) + 0.01f;
+        }
+
+        public static Vector3 ProjectDirectionOnSlope(
+            Vector3 desiredDirection,
+            Vector3 surfaceNormal,
+            float maximumSlopeDegrees)
+        {
+            if (desiredDirection.sqrMagnitude <= 0.000001f
+                || !IsWalkable(surfaceNormal, maximumSlopeDegrees))
+            {
+                return Vector3.zero;
+            }
+
+            var projected = Vector3.ProjectOnPlane(desiredDirection, surfaceNormal);
+            return projected.sqrMagnitude > 0.000001f ? projected.normalized : Vector3.zero;
+        }
+
+        public static Vector3 RemoveSteepUphillComponent(
+            Vector3 desiredDirection,
+            Vector3 surfaceNormal,
+            float maximumSlopeDegrees)
+        {
+            if (desiredDirection.sqrMagnitude <= 0.000001f
+                || IsWalkable(surfaceNormal, maximumSlopeDegrees))
+            {
+                return desiredDirection;
+            }
+
+            var uphill = Vector3.ProjectOnPlane(-surfaceNormal, Vector3.up);
+            if (uphill.sqrMagnitude <= 0.000001f)
+            {
+                return desiredDirection;
+            }
+
+            uphill.Normalize();
+            var uphillAmount = Vector3.Dot(desiredDirection, uphill);
+            return uphillAmount > 0f
+                ? desiredDirection - uphill * uphillAmount
+                : desiredDirection;
         }
     }
 }

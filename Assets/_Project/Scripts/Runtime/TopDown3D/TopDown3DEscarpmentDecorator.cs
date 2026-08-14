@@ -124,26 +124,9 @@ namespace BooterBigArm.TopDown3D
                 renderer.receiveShadows = true;
             }
 
-            if (data.Walls.Length <= 0)
-            {
-                return;
-            }
-
-            var collisionRoot = new GameObject("Climbable Escarpment Walls");
-            collisionRoot.layer = chunk.gameObject.layer;
-            collisionRoot.transform.SetParent(chunk.transform, false);
-            for (var i = 0; i < data.Walls.Length; i++)
-            {
-                var wall = data.Walls[i];
-                var wallObject = new GameObject($"Climbable Rock Wall {i + 1}");
-                wallObject.layer = chunk.gameObject.layer;
-                wallObject.transform.SetParent(collisionRoot.transform, false);
-                wallObject.transform.localPosition = wall.Center;
-                wallObject.transform.localRotation = wall.Rotation;
-                var collider = wallObject.AddComponent<BoxCollider>();
-                collider.size = wall.Size;
-                wallObject.AddComponent<TopDown3DTraversalObstacle>();
-            }
+            // The streamed terrain MeshCollider already contains this exact elevation.
+            // A second overlapping wall collider creates seams that snag a moving capsule,
+            // so the rock-face strip remains presentation-only.
         }
 
         private static void AppendFeature(

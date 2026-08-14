@@ -76,7 +76,7 @@ namespace BooterBigArm.Tests.Editor
         }
 
         [Test]
-        public void EscarpmentFaceData_IsDeterministicFacetedAndClimbable()
+        public void EscarpmentFaceData_IsDeterministicFacetedAndBounded()
         {
             var settings = ScriptableObject.CreateInstance<TopDown3DWorldSettings>();
             try
@@ -118,7 +118,7 @@ namespace BooterBigArm.Tests.Editor
         }
 
         [Test]
-        public void EscarpmentDecorator_CreatesRockFacesAndTraversalMarkers()
+        public void EscarpmentDecorator_CreatesRockFacesWithoutDuplicateCollision()
         {
             var settings = ScriptableObject.CreateInstance<TopDown3DWorldSettings>();
             var chunkObject = new GameObject("Escarpment Test Chunk");
@@ -131,14 +131,12 @@ namespace BooterBigArm.Tests.Editor
                 TopDown3DEscarpmentDecorator.Decorate(chunk, settings, null);
 
                 Assert.That(chunk.transform.Find("Rocky Escarpment Faces"), Is.Not.Null);
-                var collisionRoot = chunk.transform.Find("Climbable Escarpment Walls");
-                Assert.That(collisionRoot, Is.Not.Null);
                 Assert.That(
-                    collisionRoot.GetComponentsInChildren<TopDown3DTraversalObstacle>().Length,
-                    Is.GreaterThan(0));
+                    chunk.GetComponentsInChildren<TopDown3DTraversalObstacle>().Length,
+                    Is.EqualTo(0));
                 Assert.That(
-                    collisionRoot.GetComponentsInChildren<BoxCollider>().Length,
-                    Is.GreaterThan(0));
+                    chunk.GetComponentsInChildren<Collider>().Length,
+                    Is.EqualTo(0));
             }
             finally
             {
