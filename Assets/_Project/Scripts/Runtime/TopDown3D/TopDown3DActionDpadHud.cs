@@ -253,8 +253,7 @@ namespace BooterBigArm.TopDown3D
         }
     }
 
-    [DisallowMultipleComponent]
-    public sealed class TopDown3DActionDpadGraphic : MaskableGraphic
+    public abstract class TopDown3DActionDpadGraphicBase : MaskableGraphic
     {
         private static readonly Color32 ShadowColor = new(7, 8, 10, 118);
         private static readonly Color32 BackplateBorderColor = new(172, 146, 99, 126);

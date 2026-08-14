@@ -119,7 +119,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (input == null)
             {
-                input = FindFirstObjectByType<TopDown3DInputRouter>();
+                input = FindAnyObjectByType<TopDown3DInputRouter>();
             }
         }
 

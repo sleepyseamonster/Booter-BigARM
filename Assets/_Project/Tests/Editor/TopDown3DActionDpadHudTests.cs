@@ -1,6 +1,7 @@
 using BooterBigArm.TopDown3D;
 using NUnit.Framework;
 using System.Reflection;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,6 +30,12 @@ namespace BooterBigArm.Tests
                 Assert.That(canvas.sortingOrder, Is.EqualTo(TopDown3DActionDpadHud.CanvasSortingOrder));
                 Assert.That(scaler.uiScaleMode, Is.EqualTo(CanvasScaler.ScaleMode.ScaleWithScreenSize));
                 Assert.That(graphic, Is.Not.Null);
+                var graphicScript = MonoScript.FromMonoBehaviour(graphic);
+                Assert.That(graphicScript, Is.Not.Null);
+                Assert.That(graphicScript.GetClass(), Is.EqualTo(typeof(TopDown3DActionDpadGraphic)));
+                Assert.That(
+                    AssetDatabase.GetAssetPath(graphicScript),
+                    Does.EndWith("/TopDown3DActionDpadGraphic.cs"));
                 Assert.That(graphic.raycastTarget, Is.False);
                 Assert.That(hud.transform.parent, Is.EqualTo(gameHud.transform));
                 var hudRect = (RectTransform)hud.transform;
