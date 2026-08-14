@@ -19,12 +19,17 @@ namespace BooterBigArm.TopDown3D
     }
 
     [DisallowMultipleComponent]
+    [ExecuteAlways]
     [RequireComponent(typeof(RectTransform))]
     public sealed class TopDown3DActionDpadHud : MonoBehaviour
     {
         public const float ReferenceSize = 168f;
         public const float ReferenceMargin = 34f;
         public const int CanvasSortingOrder = TopDown3DGameHudCanvas.CanvasSortingOrder;
+
+        [Header("Editable Layout")]
+        [SerializeField, Min(64f)] private float size = ReferenceSize;
+        [SerializeField, Min(0f)] private float safeAreaMargin = ReferenceMargin;
 
         private TopDown3DGameHudCanvas gameHud;
         private TopDown3DActionDpadGraphic dpadGraphic;
@@ -33,7 +38,10 @@ namespace BooterBigArm.TopDown3D
         private float lastCanvasScale;
 
         public TopDown3DActionDpadGraphic Graphic => dpadGraphic;
+        public float Size => size;
+        public float SafeAreaMargin => safeAreaMargin;
 
+        [ContextMenu("Rebuild D-Pad Visuals")]
         public void Initialize()
         {
             EnsureGameHudParent();
@@ -61,10 +69,15 @@ namespace BooterBigArm.TopDown3D
 
         public static Vector2 GetBottomLeftAnchoredPosition(Rect safeArea, float canvasScale)
         {
+            return GetBottomLeftAnchoredPosition(safeArea, canvasScale, ReferenceMargin);
+        }
+
+        public static Vector2 GetBottomLeftAnchoredPosition(Rect safeArea, float canvasScale, float margin)
+        {
             var safeScale = Mathf.Max(0.001f, canvasScale);
             return new Vector2(
-                ReferenceMargin + (safeArea.xMin / safeScale),
-                ReferenceMargin + (safeArea.yMin / safeScale));
+                margin + (safeArea.xMin / safeScale),
+                margin + (safeArea.yMin / safeScale));
         }
 
         public static TopDown3DActionDpadHud TryInstallForScene(Scene scene)
@@ -109,6 +122,14 @@ namespace BooterBigArm.TopDown3D
         private void Update()
         {
             RefreshSafeArea(force: false);
+        }
+
+        private void OnValidate()
+        {
+            size = Mathf.Max(64f, size);
+            safeAreaMargin = Mathf.Max(0f, safeAreaMargin);
+            RefreshSafeArea(force: true);
+            dpadGraphic?.SetVerticesDirty();
         }
 
         private void EnsureGameHudParent()
@@ -189,8 +210,11 @@ namespace BooterBigArm.TopDown3D
             rectTransform.anchorMin = Vector2.zero;
             rectTransform.anchorMax = Vector2.zero;
             rectTransform.pivot = Vector2.zero;
-            rectTransform.sizeDelta = Vector2.one * ReferenceSize;
-            rectTransform.anchoredPosition = GetBottomLeftAnchoredPosition(safeArea, canvasScale);
+            rectTransform.sizeDelta = Vector2.one * size;
+            rectTransform.anchoredPosition = GetBottomLeftAnchoredPosition(
+                safeArea,
+                canvasScale,
+                safeAreaMargin);
         }
 
         private void AttachToGameHud(TopDown3DGameHudCanvas owner)
