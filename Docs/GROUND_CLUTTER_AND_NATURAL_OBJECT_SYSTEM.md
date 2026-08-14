@@ -26,7 +26,7 @@ The Broken World has no plant life or open water. Natural clutter is therefore g
 
 The default gray layer targets 156 candidates per 18-meter chunk, but its sharpened density mask rejects all candidates across broad low-value regions. The surviving 4.5–14 cm pieces bunch into substantially denser local pockets with ample bare ground between them, without changing the seed streams or placement of the original three layers.
 
-The per-chunk combined meshes are destroyed with their owning streamed chunk. The small reusable faceted shape family is cached and shared.
+The per-chunk combined meshes are destroyed with their owning streamed chunk. The small reusable shape family is smooth-shaded, cached, and shared while preserving its procedural silhouette geometry.
 
 The mesh family uses controlled procedural geology rather than unrestricted per-instance mesh generation. Each of the five archetypes has twelve deterministic cached variants with elliptical silhouettes, non-concentric strata, uneven shoulders, broad top faces, embedded flat bases, and a clipped fracture side. This provides sixty reusable low-poly forms without creating or retaining a unique mesh for every spawned object.
 

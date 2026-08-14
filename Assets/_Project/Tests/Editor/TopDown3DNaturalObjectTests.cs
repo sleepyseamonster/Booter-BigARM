@@ -272,7 +272,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void ProceduralRockFamily_ProducesFiniteFacetedMeshes()
+        public void ProceduralRockFamily_ProducesFiniteSmoothShadedMeshes()
         {
             foreach (TopDown3DNaturalObjectShape shape in Enum.GetValues(typeof(TopDown3DNaturalObjectShape)))
             {
@@ -285,11 +285,38 @@ namespace BooterBigArm.Tests
                     Assert.That(mesh.triangles.Length % 3, Is.Zero);
                     Assert.That(mesh.bounds.size.sqrMagnitude, Is.GreaterThan(0f));
                     Assert.That(mesh.bounds.min.y, Is.GreaterThanOrEqualTo(-0.0001f));
+                    Assert.That(mesh.normals.Length, Is.EqualTo(mesh.vertexCount));
+                    AssertSmoothNormalsAtSharedPositions(mesh);
                     distinctBounds.Add(mesh.bounds.size);
                 }
 
                 Assert.That(distinctBounds.Count, Is.GreaterThanOrEqualTo(8));
             }
+        }
+
+        private static void AssertSmoothNormalsAtSharedPositions(Mesh mesh)
+        {
+            var vertices = mesh.vertices;
+            var normals = mesh.normals;
+            var normalByPosition = new Dictionary<Vector3, Vector3>();
+            var sharedPositionCount = 0;
+            for (var vertex = 0; vertex < vertices.Length; vertex++)
+            {
+                Assert.That(float.IsNaN(normals[vertex].x), Is.False);
+                Assert.That(float.IsNaN(normals[vertex].y), Is.False);
+                Assert.That(float.IsNaN(normals[vertex].z), Is.False);
+                Assert.That(normals[vertex].magnitude, Is.EqualTo(1f).Within(0.0001f));
+                if (!normalByPosition.TryGetValue(vertices[vertex], out var sharedNormal))
+                {
+                    normalByPosition.Add(vertices[vertex], normals[vertex]);
+                    continue;
+                }
+
+                sharedPositionCount++;
+                Assert.That(Vector3.Angle(sharedNormal, normals[vertex]), Is.LessThan(0.01f));
+            }
+
+            Assert.That(sharedPositionCount, Is.GreaterThan(0));
         }
 
         [Test]

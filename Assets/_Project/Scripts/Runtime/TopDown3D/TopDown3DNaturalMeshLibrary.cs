@@ -104,12 +104,11 @@ namespace BooterBigArm.TopDown3D
             for (var segment = 0; segment < profile.Segments; segment++)
             {
                 var next = (segment + 1) % profile.Segments;
-                AddTriangle(vertices, normals, triangles, bottom, rings[0, segment], rings[0, next]);
+                AddTriangle(vertices, triangles, bottom, rings[0, segment], rings[0, next]);
                 for (var ring = 0; ring < topRing; ring++)
                 {
                     AddQuad(
                         vertices,
-                        normals,
                         triangles,
                         rings[ring, segment],
                         rings[ring, next],
@@ -117,8 +116,10 @@ namespace BooterBigArm.TopDown3D
                         rings[ring + 1, segment]);
                 }
 
-                AddTriangle(vertices, normals, triangles, rings[topRing, segment], top, rings[topRing, next]);
+                AddTriangle(vertices, triangles, rings[topRing, segment], top, rings[topRing, next]);
             }
+
+            BuildSmoothNormals(vertices, triangles, normals);
 
             var mesh = new Mesh
             {
@@ -136,36 +137,62 @@ namespace BooterBigArm.TopDown3D
 
         private static void AddQuad(
             ICollection<Vector3> vertices,
-            ICollection<Vector3> normals,
             ICollection<int> triangles,
             Vector3 a,
             Vector3 b,
             Vector3 c,
             Vector3 d)
         {
-            AddTriangle(vertices, normals, triangles, a, c, b);
-            AddTriangle(vertices, normals, triangles, a, d, c);
+            AddTriangle(vertices, triangles, a, c, b);
+            AddTriangle(vertices, triangles, a, d, c);
         }
 
         private static void AddTriangle(
             ICollection<Vector3> vertices,
-            ICollection<Vector3> normals,
             ICollection<int> triangles,
             Vector3 a,
             Vector3 b,
             Vector3 c)
         {
-            var normal = Vector3.Cross(b - a, c - a).normalized;
             var index = vertices.Count;
             vertices.Add(a);
             vertices.Add(b);
             vertices.Add(c);
-            normals.Add(normal);
-            normals.Add(normal);
-            normals.Add(normal);
             triangles.Add(index);
             triangles.Add(index + 1);
             triangles.Add(index + 2);
+        }
+
+        private static void BuildSmoothNormals(
+            IReadOnlyList<Vector3> vertices,
+            IReadOnlyList<int> triangles,
+            ICollection<Vector3> normals)
+        {
+            var accumulatedByPosition = new Dictionary<Vector3, Vector3>();
+            for (var triangle = 0; triangle < triangles.Count; triangle += 3)
+            {
+                var a = vertices[triangles[triangle]];
+                var b = vertices[triangles[triangle + 1]];
+                var c = vertices[triangles[triangle + 2]];
+                var areaWeightedNormal = Vector3.Cross(b - a, c - a);
+                AccumulateNormal(accumulatedByPosition, a, areaWeightedNormal);
+                AccumulateNormal(accumulatedByPosition, b, areaWeightedNormal);
+                AccumulateNormal(accumulatedByPosition, c, areaWeightedNormal);
+            }
+
+            for (var vertex = 0; vertex < vertices.Count; vertex++)
+            {
+                normals.Add(accumulatedByPosition[vertices[vertex]].normalized);
+            }
+        }
+
+        private static void AccumulateNormal(
+            IDictionary<Vector3, Vector3> accumulatedByPosition,
+            Vector3 position,
+            Vector3 normal)
+        {
+            accumulatedByPosition.TryGetValue(position, out var accumulated);
+            accumulatedByPosition[position] = accumulated + normal;
         }
 
         private static Vector2 GetRingCenter(
