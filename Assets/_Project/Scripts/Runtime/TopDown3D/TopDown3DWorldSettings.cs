@@ -19,6 +19,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(1f)] private float noiseLacunarity = 2f;
         [SerializeField, Range(0.05f, 0.95f)] private float noisePersistence = 0.5f;
         [Header("Craggy Escarpments")]
+        [SerializeField] private bool generateEscarpments = true;
         [SerializeField, Min(1)] private int escarpmentGenerationVersion = 1;
         [SerializeField, Min(24f)] private float escarpmentRegionSize = 54f;
         [SerializeField, Range(0f, 1f)] private float escarpmentRegionChance = 0.48f;
@@ -61,6 +62,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0.55f, 0.95f)] private float tealRockSurfaceThreshold = 0.74f;
         [SerializeField, Range(1f, 60f)] private float maximumClutterSlope = 44f;
         [Header("Deposited Dust")]
+        [SerializeField] private bool generateDepositedDust = true;
         [SerializeField] private Material depositedDustMaterial;
         [SerializeField, Min(1)] private int dustDepositionGenerationVersion = 1;
         [SerializeField, Range(8, 40)] private int dustOverlayQuadsPerAxis = 40;
@@ -95,6 +97,7 @@ namespace BooterBigArm.TopDown3D
         public int NoiseOctaves => noiseOctaves;
         public float NoiseLacunarity => noiseLacunarity;
         public float NoisePersistence => noisePersistence;
+        public bool GenerateEscarpments => generateEscarpments;
         public int EscarpmentGenerationVersion => escarpmentGenerationVersion;
         public float EscarpmentRegionSize => escarpmentRegionSize;
         public float EscarpmentRegionChance => escarpmentRegionChance;
@@ -134,6 +137,7 @@ namespace BooterBigArm.TopDown3D
         public float DarkRockSurfaceThreshold => darkRockSurfaceThreshold;
         public float TealRockSurfaceThreshold => tealRockSurfaceThreshold;
         public float MaximumClutterSlope => maximumClutterSlope;
+        public bool GenerateDepositedDust => generateDepositedDust;
         public Material DepositedDustMaterial => depositedDustMaterial;
         public int DustDepositionGenerationVersion => dustDepositionGenerationVersion;
         public int DustOverlayQuadsPerAxis => dustOverlayQuadsPerAxis;

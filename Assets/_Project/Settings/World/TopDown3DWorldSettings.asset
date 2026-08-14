@@ -25,6 +25,7 @@ MonoBehaviour:
   noiseOctaves: 3
   noiseLacunarity: 2
   noisePersistence: 0.5
+  generateEscarpments: 0
   escarpmentGenerationVersion: 1
   escarpmentRegionSize: 54
   escarpmentRegionChance: 0.48
@@ -64,6 +65,7 @@ MonoBehaviour:
   darkRockSurfaceThreshold: 0.4
   tealRockSurfaceThreshold: 0.74
   maximumClutterSlope: 44
+  generateDepositedDust: 0
   depositedDustMaterial: {fileID: 2100000, guid: 6c024362ed05443da762b0cf18ac9d2d, type: 2}
   dustDepositionGenerationVersion: 1
   dustOverlayQuadsPerAxis: 40

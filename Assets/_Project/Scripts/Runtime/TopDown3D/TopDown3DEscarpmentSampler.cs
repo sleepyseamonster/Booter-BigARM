@@ -99,7 +99,9 @@ namespace BooterBigArm.TopDown3D
             float worldX,
             float worldZ)
         {
-            if (settings == null || settings.EscarpmentRegionChance <= 0f)
+            if (settings == null
+                || !settings.GenerateEscarpments
+                || settings.EscarpmentRegionChance <= 0f)
             {
                 return 0f;
             }
@@ -148,7 +150,10 @@ namespace BooterBigArm.TopDown3D
             Rect worldBounds,
             ICollection<TopDown3DEscarpmentFeature> results)
         {
-            if (settings == null || results == null || settings.EscarpmentRegionChance <= 0f)
+            if (settings == null
+                || results == null
+                || !settings.GenerateEscarpments
+                || settings.EscarpmentRegionChance <= 0f)
             {
                 return;
             }
@@ -191,7 +196,7 @@ namespace BooterBigArm.TopDown3D
             out TopDown3DEscarpmentFeature feature)
         {
             feature = default;
-            if (settings == null)
+            if (settings == null || !settings.GenerateEscarpments)
             {
                 return false;
             }

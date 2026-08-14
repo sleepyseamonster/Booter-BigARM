@@ -36,6 +36,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (chunk == null
                 || settings == null
+                || !settings.GenerateDepositedDust
                 || (settings.DepositedDustMaterial == null && fallbackMaterial == null))
             {
                 return;
