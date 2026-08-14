@@ -271,11 +271,6 @@ namespace BooterBigArm.TopDown3D
                 var wakeWidth = Mathf.Max(
                     0.38f,
                     sourceRadius * settings.DustWakeWidthMultiplier * 0.9f);
-                if (across > wakeWidth)
-                {
-                    continue;
-                }
-
                 var nearFade = SmoothStepRange(
                     -sourceRadius * 0.15f,
                     sourceRadius * 0.48f,
@@ -284,9 +279,20 @@ namespace BooterBigArm.TopDown3D
                     wakeLength * 0.56f,
                     wakeLength,
                     downwind);
+                if (farFade <= 0f)
+                {
+                    continue;
+                }
+
+                var taperedWakeWidth = wakeWidth * Mathf.Sqrt(farFade);
+                if (across > taperedWakeWidth)
+                {
+                    continue;
+                }
+
                 var lateralFade = 1f - SmoothStepRange(
-                    wakeWidth * 0.3f,
-                    wakeWidth,
+                    taperedWakeWidth * 0.3f,
+                    taperedWakeWidth,
                     across);
                 var sourceAdmission = Mathf.Lerp(0.18f, 1f, obstructionScale);
                 var weight = Mathf.Clamp01(
@@ -306,7 +312,7 @@ namespace BooterBigArm.TopDown3D
                 strongestWeight = Mathf.Max(strongestWeight, weight);
                 greatestHeight = Mathf.Max(
                     greatestHeight,
-                    weight * settings.DustMaximumWakeHeight * sourceHeight);
+                    weight * farFade * settings.DustMaximumWakeHeight * sourceHeight);
             }
 
             return new ShelterSample(strongestWeight, greatestHeight);
