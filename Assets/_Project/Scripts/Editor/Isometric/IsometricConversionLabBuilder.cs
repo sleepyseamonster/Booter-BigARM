@@ -20,7 +20,7 @@ namespace BooterBigArm.Editor
     public static class IsometricConversionLabBuilder
     {
         private const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
-        private const string ItemDatabasePath = "Assets/_Project/Settings/Items/PrototypeItemDatabase.asset";
+        private const string ItemDatabasePath = "Assets/_Project/Legacy2D/Settings/Items/PrototypeItemDatabase.asset";
         private const string MaterialFolder = "Assets/_Project/Materials/IsometricSpike";
         private const string VolumeProfilePath = "Assets/_Project/Settings/Rendering/URP/IsometricLabVolumeProfile.asset";
         private const string DefaultPostProcessDataPath =

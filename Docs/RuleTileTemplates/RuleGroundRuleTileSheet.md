@@ -15,4 +15,4 @@ A rotated or mirrored version of a tile shape is still the same family of shape.
 
 ## Source
 
-The canonical mask list lives in `Assets/_Project/Scripts/Runtime/Prototype/RuleGroundMasks.cs`.
+The canonical legacy mask list lives in `Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/RuleGroundMasks.cs`.

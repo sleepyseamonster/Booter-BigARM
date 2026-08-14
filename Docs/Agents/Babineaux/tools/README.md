@@ -28,7 +28,7 @@ Before adding a helper or automation entry point, confirm that it:
 - **Path:** `Docs/Agents/Babineaux/tools/launch-unity.sh`
 - **Invocation:** `Docs/Agents/Babineaux/tools/launch-unity.sh`
 - **Read-only check:** `Docs/Agents/Babineaux/tools/launch-unity.sh --status`
-- **Explicit foreground mode:** `Docs/Agents/Babineaux/tools/launch-unity.sh --foreground`. Agents may use this only when the user explicitly requests visible interactive Unity work in the current task. It can bring Unity forward and restore `PrototypeScene` from `Untitled`.
+- **Explicit foreground mode:** `Docs/Agents/Babineaux/tools/launch-unity.sh --foreground`. Agents may use this only when the user explicitly requests visible interactive Unity work in the current task. It can bring Unity forward and restore the primary `TopDown3DPrototype` scene from `Untitled`.
 - **Side effects:** Starting Unity can import project assets and update ignored editor state. Foreground mode may change the active editor scene but does not save it.
 - **Prerequisites:** The project-pinned Unity version must be installed. macOS Accessibility permission is required for window inspection and foreground mode.
 - **Safety behavior:** Defaults to background launch, reuses an already-open target project without raising it, refuses a windowless stale Unity process, and does not terminate any Unity process automatically.

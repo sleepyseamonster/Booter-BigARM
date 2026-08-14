@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/PrototypeScene.unity
+    path: Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity
+    guid: 075ac7be6cb2242378155234e70541f8
+  - enabled: 0
+    path: Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity
     guid: 7eff388004086471084ee6eb23afdb47
-  - enabled: 1
-    path: Assets/_Project/Scenes/SampleScene.unity
+  - enabled: 0
+    path: Assets/_Project/Legacy2D/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

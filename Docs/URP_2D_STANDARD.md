@@ -1,14 +1,14 @@
-# URP 2D Standard
+# Legacy URP 2D Standard
 
-This is the project-specific baseline for using Unity's 2D renderer in a top-down game. It stays intentionally short and only covers decisions that affect setup, sorting, and render readability.
+This is the maintenance baseline for the isolated legacy 2D prototype. TopDown3D is the primary production product; these rules do not govern new production systems.
 
 ## Baseline
 
-- Use URP with the 2D Renderer asset as the default rendering path.
-- Keep the pipeline assets under `Assets/_Project/Settings/Rendering/URP/`.
-- Treat the 2D Renderer setup as the default for the project, not an optional special case.
+- Keep the legacy 2D Renderer asset at `Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset`.
+- Keep legacy cameras explicitly assigned to renderer index 0.
+- Keep the production 3D renderer at index 1 as the project default.
 
-Unity's 2D Renderer setup is documented in the official URP 2D manual. The project already follows that pattern. See:
+Unity's 2D Renderer setup is documented in the official URP 2D manual. The preserved legacy lane follows that pattern. See:
 - [Set up the 2D Renderer asset in URP](https://docs.unity3d.com/kr/6000.0/Manual/urp/Setup.html)
 - [2D lighting in URP](https://docs.unity3d.com/kr/6000.0/Manual/urp/2d-index.html)
 
@@ -47,8 +47,8 @@ Unity's 2D lighting documentation covers light types, sprite preparation, tilema
 
 ## Practical Rule Set
 
-1. Use URP 2D as the default render path.
+1. Use URP 2D only inside the isolated legacy lane.
 2. Use sorting layers and sorting groups before special camera logic.
 3. Keep lighting purposeful and readable.
-4. Keep render assets in the project-owned URP settings folder.
+4. Keep legacy render assets inside `Assets/_Project/Legacy2D/Settings/Rendering/URP/`.
 5. Keep post-processing restrained enough that the pixel art remains sharp.

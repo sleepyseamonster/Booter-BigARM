@@ -17,7 +17,7 @@ Babineaux's guarded launcher reads the pinned version from the project, avoids a
 Docs/Agents/Babineaux/tools/launch-unity.sh
 ```
 
-Only when the user explicitly requests visible interactive Unity work in the current task, foreground mode may activate Unity and restore `PrototypeScene` when the editor lands on `Untitled`:
+Only when the user explicitly requests visible interactive Unity work in the current task, foreground mode may activate Unity and restore `TopDown3DPrototype` when the editor lands on `Untitled`:
 
 ```bash
 Docs/Agents/Babineaux/tools/launch-unity.sh --foreground
@@ -59,10 +59,10 @@ When it is present, the build script expects the active build target to already 
 ## Current State
 
 - Player-build automation exists at `BooterBigArm.Editor.BuildAutomation.BuildFromCli`.
-- `PrototypeSceneBootstrapper` exposes prototype scene build and repair commands. These commands write scene/project content and must not be used as non-mutating validation.
-- The protected conversion lane has a non-mutating validator at `BooterBigArm.Editor.ConversionBaselineValidator.ValidateFromCli` and a matching Unity menu command.
+- `PrototypeSceneBootstrapper` exposes legacy 2D scene build and repair commands under `Assets/_Project/Legacy2D/`. These commands write scene/project content and must not be used as non-mutating validation.
+- The protected-baseline validator at `BooterBigArm.Editor.ConversionBaselineValidator.ValidateFromCli` now verifies the TopDown3D production cutover and the preserved legacy boundary.
 - The perspective foundation builder is `BooterBigArm.Editor.TopDown3DPrototypeBuilder.BuildFromCli`. It refuses to overwrite an existing generated scene. `RebuildFromCli` intentionally replaces only `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity` after protected-baseline validation.
-- The perspective foundation validator is `BooterBigArm.Editor.TopDown3DPrototypeValidator.ValidateFromCli`. It verifies protected assets, Build Settings exclusion, perspective camera/renderer topology, scene component ownership, missing scripts, and compact BigARM scale.
+- The perspective foundation validator is `BooterBigArm.Editor.TopDown3DPrototypeValidator.ValidateFromCli`. It verifies protected assets, production Build Settings inclusion, perspective camera/renderer topology, scene component ownership, missing scripts, and compact BigARM scale.
 - The GUI menu `Booter & BigARM/Top Down 3D` provides guarded Build, Open, and Validate commands.
 - The Unity Test Framework package is installed, and focused non-smoke EditMode tests exist in `BooterBigArm.Editor.Tests`. Use the Unity menu command `Booter & BigARM/Validation/Run Conversion EditMode Tests` while the GUI owns the project.
 - VS Code attach/debugging is already configured in [`.vscode/launch.json`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/.vscode/launch.json).

@@ -99,3 +99,15 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Controlling files updated:** `AGENTS.md`, `Docs/WORLD_SYSTEMS_STANDARD.md`, `Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md`, `Docs/ROADMAP.md`, and `Docs/Agents/Babineaux/templates/UNITY_TASK_BRIEF.md`.
 - **Consequences / follow-up:** Every future system brief must complete the procgen compatibility contract before implementation. Concerns may be marked not applicable with a reason. This does not require every mechanic to be random; authored content should constrain and anchor procedural output.
 - **Supersedes:** none; this elevates and broadens the existing deterministic world-generation baseline.
+
+## 2026-08-13 — TopDown3D Production Cutover And Legacy 2D Isolation
+
+- **Status:** accepted
+- **Decision owner:** user
+- **Question:** Which implementation is the primary product, and how should the former 2D prototype be organized?
+- **Decision:** TopDown3D is the primary production product. Preserve the former 2D prototype as reference content under `Assets/_Project/Legacy2D/`, separated by asset and assembly boundaries. Make the TopDown3D scene the enabled build entry point and the 3D renderer the project default; keep legacy scenes disabled and explicitly bound to the retained 2D renderer.
+- **Why:** The user accepted the 3D version as primary production and requested complete separation of legacy 2D content.
+- **Evidence:** The user's explicit 2026-08-13 acceptance plus the GUID-preserving migration, Build Settings update, renderer-default update, and assembly boundaries in the repository.
+- **Controlling files updated:** `AGENTS.md`, `Docs/LEGACY_2D_BOUNDARY.md`, `Docs/PROJECT_STRUCTURE.md`, `Docs/PROJECT_BASELINE.md`, `ProjectSettings/EditorBuildSettings.asset`, `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset`, and the assembly definitions under `Assets/_Project/Legacy2D/` and `Assets/_Project/Scripts/Runtime/Isometric/`.
+- **Consequences / follow-up:** New production work must not depend on the legacy folder. Legacy content remains preserved and usable but is not co-equal production architecture. This decision does not authorize legacy deletion, package removal, save migration, release, or publication.
+- **Supersedes:** The build-entry, renderer-default, and no-cutover constraints in the 2026-08-13 perspective foundation decision. It does not supersede the procedural-generation-first architecture or the legacy preservation requirement.

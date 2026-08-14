@@ -18,7 +18,7 @@ This file defines the operating rules for work inside this Unity repository.
 
 ## Scope
 
-- This is a Unity game project preserving a 2D top-down prototype while new work moves toward a perspective, elevated top-down fully 3D game.
+- This is a perspective, elevated top-down fully 3D Unity game. The former 2D top-down prototype is preserved as isolated legacy reference content under `Assets/_Project/Legacy2D/`.
 - The project should stay Unity-compatible at all times.
 - Most production work should happen under `Assets/`.
 - Prefer small, verifiable changes over broad refactors.
@@ -49,6 +49,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - `Assets/_Project/UI/`
 - `Assets/_Project/VFX/`
 - `Assets/_Project/Tests/`
+- `Assets/_Project/Legacy2D/` — preserved legacy content only; never a destination for new production systems.
 
 ## Working Rules For New Content
 
@@ -63,18 +64,17 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Keep project notes in `Docs/`, not inside `Assets/`, unless the asset must be imported by Unity.
 - Keep runtime code under `Assets/_Project/Scripts/Runtime/` and editor-only code under `Assets/_Project/Scripts/Editor/`.
 - Keep editor-only automation in asmdef-isolated editor assemblies.
-- Keep runtime gameplay code inside `BooterBigArm.Runtime` unless a feature needs a new assembly boundary.
+- Keep production runtime gameplay code inside `BooterBigArm.TopDown3D.Runtime` unless a feature needs a new assembly boundary. `BooterBigArm.Runtime` is legacy-only.
 
 ## Current Project Snapshot
 
 - Editor version: `6000.4.0f1`
 - Pipeline: URP
-- Primary prototype scene and first enabled build scene: `Assets/_Project/Scenes/PrototypeScene.unity`
-- Secondary sample scene: `Assets/_Project/Scenes/SampleScene.unity`
-- Current settings assets: `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset` and `Assets/_Project/Settings/Rendering/URP/Renderer2D.asset`
-- Perspective development scene, excluded from Build Settings: `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`
-- `Renderer2D.asset` remains the default renderer at index 0; the perspective development scene explicitly uses the non-default 3D renderer at index 1.
-- In `Assets/_Project/Scenes/PrototypeScene.unity`, keep `Sand Patch Grid` and `Ground Grid` disabled in the hierarchy unless explicitly requested. Do not re-enable them during scene repair or bootstrap work.
+- Primary production scene and first enabled build scene: `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`
+- Preserved legacy scenes: `Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity` and `Assets/_Project/Legacy2D/Scenes/SampleScene.unity`; both remain disabled in Build Settings.
+- Current production renderer settings: `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset` with the 3D renderer at index 1 as the default.
+- The preserved 2D renderer is `Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset` at index 0; legacy scene cameras select index 0 explicitly.
+- In `Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity`, keep `Sand Patch Grid` and `Ground Grid` disabled in the hierarchy unless explicitly requested. Do not re-enable them during scene repair or bootstrap work.
 
 ## Canonical World Reference
 

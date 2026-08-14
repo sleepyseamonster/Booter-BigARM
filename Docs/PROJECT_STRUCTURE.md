@@ -15,6 +15,14 @@ This document defines the target layout for `Assets/_Project/` so new work lands
 Assets/_Project/
   Art/
   Audio/
+  Legacy2D/
+    Art/
+    Prefabs/
+    Scenes/
+    Scripts/
+      Runtime/
+      Editor/
+    Settings/
   Materials/
   Prefabs/
   Scenes/
@@ -37,6 +45,7 @@ Assets/_Project/
 ## Folder Responsibilities
 
 - `Art/` - source art, concept references, and production art assets.
+- `Legacy2D/` - preserved, self-contained 2D prototype content. It is reference and maintenance territory, not a production destination.
 - `Audio/` - music, SFX, and audio import sources.
 - `Materials/` - runtime materials and shader-related project assets.
 - `Prefabs/` - reusable gameplay and UI prefabs.
@@ -63,9 +72,11 @@ Assets/_Project/
 - Keep reusable gameplay objects in prefabs, not scene-only copies.
 - Keep imported source art separate from optimized runtime art when practical.
 - Keep documentation in `Docs/` rather than inside `Assets/`, unless Unity must import the file.
+- Put all new production gameplay under the normal type-first roots; do not add new systems to `Legacy2D/`.
+- Share an asset with production only when it is genuinely presentation-neutral. Legacy-only 2D art, scenes, scripts, prefabs, renderer data, and settings stay inside `Legacy2D/`.
 
 ## Migration Rule
 
-- Existing content can stay in place until there is a clear reason to move it.
+- The 2D prototype has completed its reference-safe move to `Assets/_Project/Legacy2D/`.
 - When moving assets, preserve `.meta` files and let Unity handle the reference updates whenever possible.
 - Update [AGENTS.md](../AGENTS.md) and [PROJECT_BASELINE.md](./PROJECT_BASELINE.md) when the structure changes in a way that affects future work.

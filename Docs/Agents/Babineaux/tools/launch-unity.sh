@@ -6,7 +6,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 project_root="$(cd "$script_dir/../../../.." && pwd)"
 project_name="$(basename "$project_root")"
 project_version_file="$project_root/ProjectSettings/ProjectVersion.txt"
-primary_scene="$project_root/Assets/_Project/Scenes/PrototypeScene.unity"
+primary_scene="$project_root/Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity"
 mode="launch"
 
 if [[ "${1:-}" == "--status" ]]; then
@@ -150,13 +150,13 @@ if [[ "$window_names" != *"$project_name"* ]]; then
 fi
 
 if [[ "$mode" == "foreground" ]]; then
-  if [[ "$window_names" != *"PrototypeScene"* ]]; then
+  if [[ "$window_names" != *"TopDown3DPrototype"* ]]; then
     if [[ "$window_names" == *"Untitled - $project_name"* ]]; then
       open_primary_scene "$editor_pid"
 
       for _ in {1..20}; do
         window_names="$(window_names_for_pid "$editor_pid")"
-        [[ "$window_names" == *"PrototypeScene"* ]] && break
+        [[ "$window_names" == *"TopDown3DPrototype"* ]] && break
         sleep 1
       done
     fi
@@ -165,9 +165,9 @@ if [[ "$mode" == "foreground" ]]; then
   focus_editor "$editor_pid"
 fi
 
-if [[ "$window_names" == *"PrototypeScene"* ]]; then
-  echo "READY: pid=$editor_pid version=$project_version scene=PrototypeScene mode=$mode"
+if [[ "$window_names" == *"TopDown3DPrototype"* ]]; then
+  echo "READY: pid=$editor_pid version=$project_version scene=TopDown3DPrototype mode=$mode"
 else
   echo "READY: pid=$editor_pid version=$project_version mode=$mode window=$window_names"
-  echo "NOTE: The editor is open, but PrototypeScene was not confirmed." >&2
+  echo "NOTE: The editor is open, but TopDown3DPrototype was not confirmed." >&2
 fi

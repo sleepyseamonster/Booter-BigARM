@@ -45,16 +45,16 @@ Source:
 - [Asset workflow](https://docs.unity3d.com/es/2021.1/Manual/AssetWorkflow.html)
 - [Format of Text Serialized files](https://docs.unity3d.com/ru/2019.4/Manual/FormatDescription.html)
 
-### 5. Standardize the 2D URP baseline
+### 5. Keep production 3D and legacy 2D render paths explicit
 
-- Keep URP + 2D Renderer as the rendering baseline.
-- Keep the current renderer assets and project settings as the default project foundation.
-- Build scene templates and gameplay scenes on top of that baseline rather than replacing it ad hoc.
+- Keep URP with the 3D renderer at index 1 as the production default.
+- Keep the isolated legacy 2D renderer at index 0 so legacy scene cameras can select it explicitly.
+- Do not place new production systems in `Assets/_Project/Legacy2D/`.
 
 Source:
 - [Set up the 2D Renderer asset in URP](https://docs.unity3d.com/kr/6000.0/Manual/urp/Setup.html)
 - [`Assets/_Project/Settings/Rendering/URP/UniversalRP.asset`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Assets/_Project/Settings/Rendering/URP/UniversalRP.asset)
-- [`Assets/_Project/Settings/Rendering/URP/Renderer2D.asset`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Assets/_Project/Settings/Rendering/URP/Renderer2D.asset)
+- [`Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset)
 
 ### 6. Use command line for repeatable automation
 

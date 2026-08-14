@@ -346,12 +346,22 @@ namespace BooterBigArm.Editor
 
         private static void ValidateBuildSettings(ICollection<string> errors)
         {
+            var foundProductionScene = false;
             foreach (var scene in EditorBuildSettings.scenes)
             {
                 if (string.Equals(scene.path, TopDown3DPrototypeBuilder.ScenePath, StringComparison.Ordinal))
                 {
-                    errors.Add("TopDown3DPrototype must remain absent from Build Settings before cutover.");
+                    foundProductionScene = true;
+                    if (!scene.enabled)
+                    {
+                        errors.Add("TopDown3DPrototype must be enabled as the primary production scene.");
+                    }
                 }
+            }
+
+            if (!foundProductionScene)
+            {
+                errors.Add("TopDown3DPrototype must be present in production Build Settings.");
             }
         }
 

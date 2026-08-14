@@ -14,6 +14,8 @@ These should be treated as the source of truth unless they are intentionally rev
   The procedural generation, chunking, and save/load baseline.
 - [PROJECT_STRUCTURE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/PROJECT_STRUCTURE.md)
   The target layout for `Assets/_Project/`.
+- [LEGACY_2D_BOUNDARY.md](./LEGACY_2D_BOUNDARY.md)
+  The production-versus-legacy asset, assembly, renderer, and Build Settings boundary after the accepted TopDown3D cutover.
 - [UNITY_PROJECT_STANDARDS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/UNITY_PROJECT_STANDARDS.md)
   Compact naming and organization standards.
 - [AGENT_AND_UNITY_PRACTICES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/AGENT_AND_UNITY_PRACTICES.md)
@@ -59,7 +61,7 @@ These define current preferred approaches or sequencing.
   The contextual sprint traversal contract, first spin/vault move set, safety boundaries, and extension seam.
 - [SURVIVAL_SYSTEM_STANDARD.md](./SURVIVAL_SYSTEM_STANDARD.md)
   The four-vital player-state, depletion, persistence, procedural-world, and compact HUD contract.
-- [URP_2D_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/URP_2D_STANDARD.md)
+- [URP_2D_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/URP_2D_STANDARD.md) — legacy 2D maintenance only.
 - [UNITY_AUTOMATION.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/UNITY_AUTOMATION.md)
 - [CODEX_EDITOR_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/CODEX_EDITOR_STANDARD.md)
 

@@ -18,44 +18,44 @@ namespace BooterBigArm.Editor
 {
     public static class PrototypeSceneBootstrapper
     {
-        private const string PrototypeScenePath = "Assets/_Project/Scenes/PrototypeScene.unity";
-        private const string PrototypeArtFolder = "Assets/_Project/Art/Prototype";
-        private const string PlayerSpritePath = "Assets/_Project/Art/Prototype/PrototypeSquare.png";
-        private const string ShadowSpritePath = "Assets/_Project/Art/Prototype/Shadows/PrototypeShadow.png";
-        private const string TallPropSpritePath = "Assets/_Project/Art/Prototype/Props/TallPropPlaceholder.png";
-        private const string TallPropPrefabPath = "Assets/_Project/Prefabs/Prototype/TallPropPlaceholder.prefab";
-        private const string RuleGroundFolder = "Assets/_Project/Art/Prototype/Ground/RuleGround";
-        private const string SandPatchRuleTilePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/Sand Patch.asset";
-        private const string FeatureRuleGroundTexturePath = "Assets/_Project/Art/Prototype/Ground/RuleGround/rocky.png";
-        private const string FeatureRuleGroundTileAssetPath = "Assets/_Project/Art/Prototype/Ground/RuleGround/rocky.asset";
-        private const string TallPropWidePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropWide64x64.prefab";
-        private const string TallPropTallPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTall64x96.prefab";
-        private const string TallPropSquarePrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSquare32x32.prefab";
-        private const string TallPropTinyPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropTiny16x16.prefab";
-        private const string TallPropSlimPrefabPath = "Assets/_Project/Prefabs/Prototype/TallProps/TallPropSlim16x32.prefab";
-        private const string BoulderPrefabFolder = "Assets/_Project/Prefabs";
-        private const string ItemSettingsFolder = "Assets/_Project/Settings/Items";
-        private const string ItemDefsFolder = "Assets/_Project/Settings/Items/Defs";
-        private const string ItemDatabasePath = "Assets/_Project/Settings/Items/PrototypeItemDatabase.asset";
-        private const string ItemScrapMetalPath = "Assets/_Project/Settings/Items/Defs/ItemDef_ScrapMetal.asset";
-        private const string ItemFiberBundlePath = "Assets/_Project/Settings/Items/Defs/ItemDef_FiberBundle.asset";
-        private const string ItemAlgaeChunkPath = "Assets/_Project/Settings/Items/Defs/ItemDef_AlgaeChunk.asset";
-        private const string ItemStonePath = "Assets/_Project/Settings/Items/Defs/ItemDef_Stone.asset";
-        private const string ItemOreChunkPath = "Assets/_Project/Settings/Items/Defs/ItemDef_OreChunk.asset";
-        private const string ItemBrokenCircuitPath = "Assets/_Project/Settings/Items/Defs/ItemDef_BrokenCircuit.asset";
-        private const string ItemIronstonePath = "Assets/_Project/Settings/Items/Defs/ItemDef_Ironstone.asset";
-        private const string ItemDustCanisterPath = "Assets/_Project/Settings/Items/Defs/ItemDef_DustCanister.asset";
-        private const string ItemDustPath = "Assets/_Project/Settings/Items/Defs/ItemDef_Dust.asset";
-        private const string IronstoneArtFolder = "Assets/_Project/Art/Prototype/Ironstone";
-        private const string IronstoneNodeSpritePath = "Assets/_Project/Art/Prototype/Ironstone/IronstoneOutcrop.png";
-        private const string IronstoneDropSpritePath = "Assets/_Project/Art/Prototype/Ironstone/IronstoneChunk.png";
-        private const string MetalScrapArtFolder = "Assets/_Project/Art/Prototype/MetalScrap";
-        private const string MetalScrapNodeSpritePath = "Assets/_Project/Art/Prototype/MetalScrap/MetalScrapHeap.png";
-        private const string MetalScrapDropSpritePath = "Assets/_Project/Art/Prototype/MetalScrap/MetalScrapChunk.png";
-        private const string DustArtFolder = "Assets/_Project/Art/Prototype/Dust";
-        private const string DustCanisterSpritePath = "Assets/_Project/Art/Prototype/Dust/DustCanister.png";
-        private const string DustResourceSpritePath = "Assets/_Project/Art/Prototype/Dust/DustResource.png";
-        private const string PrototypePropCatalogPath = "Assets/_Project/Settings/World/PrototypeWorldPropCatalog.asset";
+        private const string PrototypeScenePath = "Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity";
+        private const string PrototypeArtFolder = "Assets/_Project/Legacy2D/Art";
+        private const string PlayerSpritePath = "Assets/_Project/Legacy2D/Art/PrototypeSquare.png";
+        private const string ShadowSpritePath = "Assets/_Project/Legacy2D/Art/Shadows/PrototypeShadow.png";
+        private const string TallPropSpritePath = "Assets/_Project/Legacy2D/Art/Props/TallPropPlaceholder.png";
+        private const string TallPropPrefabPath = "Assets/_Project/Legacy2D/Prefabs/TallPropPlaceholder.prefab";
+        private const string RuleGroundFolder = "Assets/_Project/Legacy2D/Art/Ground/RuleGround";
+        private const string SandPatchRuleTilePath = "Assets/_Project/Legacy2D/Art/Ground/RuleGround/Sand Patch.asset";
+        private const string FeatureRuleGroundTexturePath = "Assets/_Project/Legacy2D/Art/Ground/RuleGround/rocky.png";
+        private const string FeatureRuleGroundTileAssetPath = "Assets/_Project/Legacy2D/Art/Ground/RuleGround/rocky.asset";
+        private const string TallPropWidePrefabPath = "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropWide64x64.prefab";
+        private const string TallPropTallPrefabPath = "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropTall64x96.prefab";
+        private const string TallPropSquarePrefabPath = "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropSquare32x32.prefab";
+        private const string TallPropTinyPrefabPath = "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropTiny16x16.prefab";
+        private const string TallPropSlimPrefabPath = "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropSlim16x32.prefab";
+        private const string BoulderPrefabFolder = "Assets/_Project/Legacy2D/Prefabs";
+        private const string ItemSettingsFolder = "Assets/_Project/Legacy2D/Settings/Items";
+        private const string ItemDefsFolder = "Assets/_Project/Legacy2D/Settings/Items/Defs";
+        private const string ItemDatabasePath = "Assets/_Project/Legacy2D/Settings/Items/PrototypeItemDatabase.asset";
+        private const string ItemScrapMetalPath = "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_ScrapMetal.asset";
+        private const string ItemFiberBundlePath = "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_FiberBundle.asset";
+        private const string ItemAlgaeChunkPath = "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_AlgaeChunk.asset";
+        private const string ItemStonePath = "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Stone.asset";
+        private const string ItemOreChunkPath = "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_OreChunk.asset";
+        private const string ItemBrokenCircuitPath = "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_BrokenCircuit.asset";
+        private const string ItemIronstonePath = "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Ironstone.asset";
+        private const string ItemDustCanisterPath = "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_DustCanister.asset";
+        private const string ItemDustPath = "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Dust.asset";
+        private const string IronstoneArtFolder = "Assets/_Project/Legacy2D/Art/Ironstone";
+        private const string IronstoneNodeSpritePath = "Assets/_Project/Legacy2D/Art/Ironstone/IronstoneOutcrop.png";
+        private const string IronstoneDropSpritePath = "Assets/_Project/Legacy2D/Art/Ironstone/IronstoneChunk.png";
+        private const string MetalScrapArtFolder = "Assets/_Project/Legacy2D/Art/MetalScrap";
+        private const string MetalScrapNodeSpritePath = "Assets/_Project/Legacy2D/Art/MetalScrap/MetalScrapHeap.png";
+        private const string MetalScrapDropSpritePath = "Assets/_Project/Legacy2D/Art/MetalScrap/MetalScrapChunk.png";
+        private const string DustArtFolder = "Assets/_Project/Legacy2D/Art/Dust";
+        private const string DustCanisterSpritePath = "Assets/_Project/Legacy2D/Art/Dust/DustCanister.png";
+        private const string DustResourceSpritePath = "Assets/_Project/Legacy2D/Art/Dust/DustResource.png";
+        private const string PrototypePropCatalogPath = "Assets/_Project/Legacy2D/Settings/World/PrototypeWorldPropCatalog.asset";
         private const string GreaterWastelandBiomeId = "Greater Wasteland";
         private const string ReefBiomeId = "The Reef";
         private const string SandOverlayGridName = "Sand Overlay Grid";
@@ -63,14 +63,14 @@ namespace BooterBigArm.Editor
         private const string SandOverlayOffsetTilemapName = "Sand Overlay Offset Tilemap";
         private const string FeatureRuleGroundGridName = "Feature Rule Ground Grid";
         private const string FeatureRuleGroundTilemapName = "Feature Rule Ground Tilemap";
-        private const string GroundSandFolder = "Assets/_Project/Art/Prototype/Ground/Sand";
-        private const string GroundSandPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand.psd";
-        private const string GroundSandOverlayPsdPath = "Assets/_Project/Art/Prototype/Ground/Sand/tilemap_sand_overlay_128.psd";
-        private const string GroundPebbleFolder = "Assets/_Project/Art/Prototype/Ground/Pebbles";
-        private const string GroundRockFolder = "Assets/_Project/Art/Prototype/Ground/Rocks";
-        private const string GroundSmoothFolder = "Assets/_Project/Art/Prototype/Ground/Smooth";
+        private const string GroundSandFolder = "Assets/_Project/Legacy2D/Art/Ground/Sand";
+        private const string GroundSandPsdPath = "Assets/_Project/Legacy2D/Art/Ground/Sand/tilemap_sand.psd";
+        private const string GroundSandOverlayPsdPath = "Assets/_Project/Legacy2D/Art/Ground/Sand/tilemap_sand_overlay_128.psd";
+        private const string GroundPebbleFolder = "Assets/_Project/Legacy2D/Art/Ground/Pebbles";
+        private const string GroundRockFolder = "Assets/_Project/Legacy2D/Art/Ground/Rocks";
+        private const string GroundSmoothFolder = "Assets/_Project/Legacy2D/Art/Ground/Smooth";
         private const string InputActionsPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
-        private const string VolumeProfilePath = "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset";
+        private const string VolumeProfilePath = "Assets/_Project/Legacy2D/Settings/Profiles/DefaultVolumeProfile.asset";
         private const int RuleGroundTextureSize = 16;
         private const int FeatureRuleGroundSortingOrder = 5;
         private const int ShadowSortingOrder = 6;
@@ -2795,14 +2795,17 @@ namespace BooterBigArm.Editor
                 scenePaths.Add(PrototypeScenePath);
             }
 
-            var sampleScenePath = "Assets/_Project/Scenes/SampleScene.unity";
+            var sampleScenePath = "Assets/_Project/Legacy2D/Scenes/SampleScene.unity";
             if (File.Exists(sampleScenePath) && !scenePaths.Contains(sampleScenePath))
             {
                 scenePaths.Add(sampleScenePath);
             }
 
-            var scenes = scenePaths.Select(path => new EditorBuildSettingsScene(path, true)).ToArray();
-            EditorBuildSettings.scenes = scenes;
+            var scenes = EditorBuildSettings.scenes
+                .Where(scene => !scenePaths.Contains(scene.path))
+                .ToList();
+            scenes.AddRange(scenePaths.Select(path => new EditorBuildSettingsScene(path, false)));
+            EditorBuildSettings.scenes = scenes.ToArray();
         }
 
         private static void SetObjectReference<T>(UnityEngine.Object target, string fieldName, T value)

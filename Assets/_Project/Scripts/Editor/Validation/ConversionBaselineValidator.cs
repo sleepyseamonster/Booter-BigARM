@@ -10,17 +10,17 @@ namespace BooterBigArm.Editor
 {
     public static class ConversionBaselineValidator
     {
-        public const string PrototypeScenePath = "Assets/_Project/Scenes/PrototypeScene.unity";
-        public const string SampleScenePath = "Assets/_Project/Scenes/SampleScene.unity";
+        public const string PrototypeScenePath = "Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity";
+        public const string SampleScenePath = "Assets/_Project/Legacy2D/Scenes/SampleScene.unity";
+        public const string ProductionScenePath = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
         public const string ConversionScenePath = "Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity";
         public const string PipelineAssetPath = "Assets/_Project/Settings/Rendering/URP/UniversalRP.asset";
-        public const string LegacyRendererPath = "Assets/_Project/Settings/Rendering/URP/Renderer2D.asset";
+        public const string LegacyRendererPath = "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset";
         public const string ConversionRendererPath = "Assets/_Project/Settings/Rendering/URP/IsometricRenderer.asset";
 
         private static readonly string[] ExpectedEnabledScenes =
         {
-            PrototypeScenePath,
-            SampleScenePath
+            ProductionScenePath
         };
 
         [MenuItem("Booter & BigARM/Validation/Validate Conversion Baseline")]
@@ -29,7 +29,7 @@ namespace BooterBigArm.Editor
             var errors = CollectErrors();
             if (errors.Count == 0)
             {
-                Debug.Log("Conversion baseline validation passed. Legacy scenes, renderer default, hierarchy guards, and Build Settings are preserved.");
+                Debug.Log("Production baseline validation passed. TopDown3D is primary and the isolated legacy scenes remain protected.");
                 return;
             }
 
@@ -44,7 +44,7 @@ namespace BooterBigArm.Editor
                 throw new BuildFailedException(FormatErrors(errors));
             }
 
-            Debug.Log("Conversion baseline validation passed.");
+            Debug.Log("Production and legacy-boundary validation passed.");
         }
 
         public static List<string> CollectErrors()
@@ -52,8 +52,10 @@ namespace BooterBigArm.Editor
             var errors = new List<string>();
             ValidateAssetExists(PrototypeScenePath, errors);
             ValidateAssetExists(SampleScenePath, errors);
+            ValidateAssetExists(ProductionScenePath, errors);
             ValidateAssetExists(PipelineAssetPath, errors);
             ValidateAssetExists(LegacyRendererPath, errors);
+            ValidateAssetExists(ConversionRendererPath, errors);
             ValidateBuildSettings(errors);
             ValidateRendererTopology(errors);
             ValidateProtectedHierarchyState(errors);
@@ -71,6 +73,8 @@ namespace BooterBigArm.Editor
         private static void ValidateBuildSettings(ICollection<string> errors)
         {
             var enabledScenes = new List<string>();
+            var foundPrototypeScene = false;
+            var foundSampleScene = false;
             foreach (var scene in EditorBuildSettings.scenes)
             {
                 if (scene.enabled)
@@ -80,13 +84,36 @@ namespace BooterBigArm.Editor
 
                 if (string.Equals(scene.path, ConversionScenePath, StringComparison.Ordinal) && scene.enabled)
                 {
-                    errors.Add("The conversion lab must not be enabled in Build Settings before cutover.");
+                    errors.Add("The isometric conversion lab must remain disabled in production Build Settings.");
                 }
+
+                if (string.Equals(scene.path, PrototypeScenePath, StringComparison.Ordinal))
+                {
+                    foundPrototypeScene = true;
+                    if (scene.enabled)
+                    {
+                        errors.Add($"Legacy scene '{scene.path}' must remain disabled in production Build Settings.");
+                    }
+                }
+
+                if (string.Equals(scene.path, SampleScenePath, StringComparison.Ordinal))
+                {
+                    foundSampleScene = true;
+                    if (scene.enabled)
+                    {
+                        errors.Add($"Legacy scene '{scene.path}' must remain disabled in production Build Settings.");
+                    }
+                }
+            }
+
+            if (!foundPrototypeScene || !foundSampleScene)
+            {
+                errors.Add("Both preserved legacy scenes must remain registered and disabled in Build Settings.");
             }
 
             if (enabledScenes.Count != ExpectedEnabledScenes.Length)
             {
-                errors.Add($"Expected exactly {ExpectedEnabledScenes.Length} enabled legacy scenes, found {enabledScenes.Count}.");
+                errors.Add($"Expected exactly {ExpectedEnabledScenes.Length} enabled production scene, found {enabledScenes.Count}.");
                 return;
             }
 
@@ -117,9 +144,10 @@ namespace BooterBigArm.Editor
                 return;
             }
 
-            if (defaultIndex.intValue != 0)
+            var conversionRenderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(ConversionRendererPath);
+            if (conversionRenderer == null)
             {
-                errors.Add($"URP default renderer index must remain 0, found {defaultIndex.intValue}.");
+                return;
             }
 
             if (rendererList.arraySize == 0 || rendererList.GetArrayElementAtIndex(0).objectReferenceValue != legacyRenderer)
@@ -127,16 +155,15 @@ namespace BooterBigArm.Editor
                 errors.Add("Renderer2D.asset must remain renderer index 0.");
             }
 
-            var conversionRenderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(ConversionRendererPath);
-            if (conversionRenderer == null)
-            {
-                return;
-            }
-
             var conversionIndex = FindRendererIndex(rendererList, conversionRenderer);
             if (conversionIndex <= 0)
             {
-                errors.Add("The conversion renderer must be present at a non-default index greater than 0.");
+                errors.Add("The production 3D renderer must be present at an index greater than 0.");
+            }
+
+            if (defaultIndex.intValue != conversionIndex)
+            {
+                errors.Add($"The production 3D renderer must be the URP default at index {conversionIndex}; found {defaultIndex.intValue}.");
             }
         }
 
