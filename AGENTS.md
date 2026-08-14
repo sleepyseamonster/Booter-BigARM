@@ -52,6 +52,10 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 
 ## Working Rules For New Content
 
+- Treat procedural generation as a project-wide architectural priority for every new or extended gameplay system.
+- Before implementation, state how the system interacts with deterministic world identity, chunk streaming and unload/reload, stable generated-object identity, authored constraints, and persisted runtime deltas. Mark a concern not applicable only when the reason is explicit.
+- Do not design gameplay around a permanently authored or always-loaded world when the production system must operate in the procedural world. A bounded throwaway prototype may make that tradeoff only when the task says so.
+- Procedural-generation-first does not mean randomizing every feature. Hand-authored rules, landmarks, encounters, and narrative content should constrain, anchor, and improve the generated world.
 - Put gameplay scripts in a dedicated scripts folder, ideally with asmdefs once the codebase grows.
 - Keep scenes minimal and purpose-built.
 - Keep reusable objects as prefabs.

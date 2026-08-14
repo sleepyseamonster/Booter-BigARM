@@ -18,6 +18,16 @@
 - **Canonical docs:**
 - **Live Unity/code evidence:**
 
+## Procedural-World Compatibility
+
+- **World seed/version/chunk ownership:**
+- **Stable generated and authored identities:**
+- **Load/unload and chunk-boundary behavior:**
+- **Regenerated state versus persisted deltas:**
+- **Authored constraints and anchors:**
+- **Deterministic proof:**
+- **Explicitly not applicable, with reasons:**
+
 ## Control Surface
 
 - **Codex/repository actions:**

@@ -8,6 +8,7 @@ This is the consolidated working roadmap for the prototype. It combines the curr
 - The player should be vulnerable, constrained, and forced to make tradeoffs.
 - Movement, survival, and failure should accumulate over time rather than spike instantly.
 - The world should be readable first and expansive second.
+- Procedural generation is the architectural priority when building every gameplay system. Each system must work with deterministic world identity, streaming, stable generated-object identity, authored constraints, and saved runtime deltas wherever those concerns apply.
 - Procedural generation should vary curated structure, not replace structure.
 - Minimal UI should still communicate critical state clearly.
 - BigARM is a physically persistent companion and synergistic part of Booter's mechanics, not a mobile base or menu abstraction.

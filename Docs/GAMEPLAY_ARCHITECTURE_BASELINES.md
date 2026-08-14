@@ -6,6 +6,7 @@ This document captures the current baseline for the game's foundational systems.
 
 - Gamepad is the primary interaction path.
 - Keyboard and mouse remain fully supported and should not be treated as a second-class input path.
+- Procedural-world compatibility is the first architectural check for every new or extended gameplay system; use the cross-system contract in `Docs/WORLD_SYSTEMS_STANDARD.md` before implementation.
 - Gameplay systems should be data-driven and able to evolve without rewriting the whole stack.
 - Use authored data for tuning and runtime state for progression.
 

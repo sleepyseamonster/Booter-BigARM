@@ -87,3 +87,15 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Controlling files updated:** `Docs/WORLD_BASIS.md`, `Docs/BIGARM_COMPANION_STANDARD.md`, `Docs/ROADMAP.md`, `Docs/PROJECT_STATUS.md`, and `TopDown3DBigArmFollower`.
 - **Consequences / follow-up:** The first slice covers loaded-world route following and physical catch-up. The next approved slice must decide how deterministic coarse traversal, multi-anchor streaming, route persistence, and physical re-entry cooperate when BigARM's true location is outside loaded terrain.
 - **Supersedes:** the mobile-habitat, moving-safe-zone, crafting-hub, storage/recovery, home-base, camera-relative recall, and teleport-style distance-recovery assumptions in older documents and prototypes. Protected legacy assets remain preserved as implementation history rather than current design authority.
+
+## 2026-08-13 — Procedural Generation First Across Game Systems
+
+- **Status:** accepted
+- **Decision owner:** user
+- **Question:** What architectural concern takes priority when new game systems are designed and built?
+- **Decision:** Procedural generation is the first architectural compatibility check for every new or extended gameplay system. Each system must explicitly address deterministic world identity, stable generated-object identity, chunk streaming and unload/reload behavior, authored constraints, persistence deltas, and deterministic proof wherever those concerns apply.
+- **Why:** The production game depends on an effectively infinite generated world. Systems built around permanently authored or always-loaded scenes would create expensive rewrites and incompatible behavior later.
+- **Evidence:** The user's explicit 2026-08-13 direction that procedural generation must be the priority when building any game system.
+- **Controlling files updated:** `AGENTS.md`, `Docs/WORLD_SYSTEMS_STANDARD.md`, `Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md`, `Docs/ROADMAP.md`, and `Docs/Agents/Babineaux/templates/UNITY_TASK_BRIEF.md`.
+- **Consequences / follow-up:** Every future system brief must complete the procgen compatibility contract before implementation. Concerns may be marked not applicable with a reason. This does not require every mechanic to be random; authored content should constrain and anchor procedural output.
+- **Supersedes:** none; this elevates and broadens the existing deterministic world-generation baseline.

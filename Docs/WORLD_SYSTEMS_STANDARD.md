@@ -2,6 +2,23 @@
 
 This is the baseline for deterministic procedural generation, chunk streaming, and save/load architecture in Booter & BigARM.
 
+## Project-Wide Priority
+
+Procedural generation is the first architectural compatibility check for every new or extended gameplay system. This priority applies to movement, traversal, survival, harvesting, inventory, companions, encounters, quests, landmarks, presentation, and tools—not only terrain generation.
+
+Before implementation, each system must define the parts of this contract that apply:
+
+- **World identity:** Which seed, generation version, chunk coordinate, or other deterministic key owns the result?
+- **Stable identity:** How are generated entities and authored anchors identified across unload, reload, save, and regeneration?
+- **Streaming lifecycle:** What happens when the owning chunk is absent, loading, active, or unloaded?
+- **Persistence:** Which state is regenerated, and which player-caused or simulation-caused deltas must be saved?
+- **Authored constraints:** Which handcrafted rules, landmarks, encounters, or narrative anchors shape the procedural output?
+- **Deterministic proof:** Which repeated-seed, chunk-boundary, unload/reload, or save/restore check demonstrates compatibility?
+
+A system may mark a concern not applicable when the reason is explicit. It must not silently assume a permanently authored, always-loaded map when the production game requires an effectively infinite generated world.
+
+Procedural-generation-first does not require every mechanic to be random. It requires systems to remain compatible with a deterministic, streamed, hybrid-authored world and prevents temporary scene assumptions from becoming production architecture by accident.
+
 ## Core Model
 
 - Treat world generation data, runtime world state, and save-file data as separate layers.
@@ -76,9 +93,10 @@ Relevant Unity sources:
 
 ## Practical Rule Set
 
-1. World generation must be reproducible from stable inputs.
-2. Save data must live outside the project content tree in `persistentDataPath`.
-3. `ScriptableObject` assets define config, not mutable save state.
-4. JSON DTOs should be versioned and kept Unity-serializable.
-5. Streaming content should be asynchronous and chunk-based.
-6. Generation and save formats must be designed to evolve without breaking old worlds.
+1. Every gameplay-system brief must address procedural-world compatibility before implementation.
+2. World generation must be reproducible from stable inputs.
+3. Save data must live outside the project content tree in `persistentDataPath`.
+4. `ScriptableObject` assets define config, not mutable save state.
+5. JSON DTOs should be versioned and kept Unity-serializable.
+6. Streaming content should be asynchronous and chunk-based.
+7. Generation and save formats must be designed to evolve without breaking old worlds.
