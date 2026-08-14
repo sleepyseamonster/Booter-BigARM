@@ -69,9 +69,7 @@ namespace BooterBigArm.TopDown3D
 
         public static TopDown3DActionDpadHud TryInstallForScene(Scene scene)
         {
-            if (!scene.IsValid()
-                || !scene.isLoaded
-                || TopDown3DGameHudCanvas.FindInScene<TopDown3DInputRouter>(scene) == null)
+            if (!scene.IsValid() || !scene.isLoaded)
             {
                 return null;
             }
@@ -507,24 +505,4 @@ namespace BooterBigArm.TopDown3D
         }
     }
 
-    internal static class TopDown3DActionDpadHudBootstrap
-    {
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void RegisterForSceneLoads()
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        private static void EnsureCurrentSceneHasHud()
-        {
-            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
-        }
-
-        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            TopDown3DActionDpadHud.TryInstallForScene(scene);
-        }
-    }
 }

@@ -109,7 +109,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void TryInstallForScene_RequiresPerspectiveInputAndIsIdempotent()
+        public void TryInstallForScene_RequiresGameplayMarkerAndIsIdempotent()
         {
             var scene = SceneManager.CreateScene("DpadHudTestScene");
             try
@@ -124,6 +124,28 @@ namespace BooterBigArm.Tests
                 Assert.That(first, Is.Not.Null);
                 Assert.That(second, Is.SameAs(first));
                 Assert.That(scene.GetRootGameObjects().Length, Is.EqualTo(2));
+                Assert.That(CountSceneCanvases(scene), Is.EqualTo(1));
+            }
+            finally
+            {
+                EditorSceneManager.CloseScene(scene, true);
+            }
+        }
+
+        [Test]
+        public void TryInstallForScene_PlayerMarkerDoesNotRequireInputRouter()
+        {
+            var scene = SceneManager.CreateScene("DpadPlayerMarkerTestScene");
+            try
+            {
+                var player = new GameObject("Player");
+                SceneManager.MoveGameObjectToScene(player, scene);
+                player.AddComponent<TopDown3DPlayerMotor>();
+
+                var hud = TopDown3DActionDpadHud.TryInstallForScene(scene);
+
+                Assert.That(hud, Is.Not.Null);
+                Assert.That(hud.GetComponentInParent<TopDown3DGameHudCanvas>(), Is.Not.Null);
                 Assert.That(CountSceneCanvases(scene), Is.EqualTo(1));
             }
             finally

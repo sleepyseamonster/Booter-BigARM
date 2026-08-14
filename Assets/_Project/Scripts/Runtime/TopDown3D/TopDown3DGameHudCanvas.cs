@@ -123,4 +123,31 @@ namespace BooterBigArm.TopDown3D
             }
         }
     }
+
+    internal static class TopDown3DGameHudBootstrap
+    {
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void RegisterForSceneLoads()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void EnsureCurrentSceneHasHud()
+        {
+            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+        }
+
+        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (TopDown3DGameHudCanvas.TryInstallForScene(scene) == null)
+            {
+                return;
+            }
+
+            TopDown3DActionDpadHud.TryInstallForScene(scene);
+            TopDown3DSurvivalHud.TryInstallForScene(scene);
+        }
+    }
 }
