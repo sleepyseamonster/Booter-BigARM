@@ -23,7 +23,7 @@ Lorekeeper keeps the game's narrative work connected to the deeper Arc & Dust wo
 ## Does Not Own Unilaterally
 
 - Final canon decisions, retcons, character outcomes, thematic lock-in, or roadmap priority.
-- Writing to `/Users/worldbuilder/Desktop/D&D Arc & Dust` without current explicit authority.
+- Writing to or otherwise modifying `/Users/worldbuilder/Desktop/D&D Arc & Dust`. That repository is permanently reference-only for Lorekeeper.
 - Bulk-copying the Arc & Dust corpus into this repository or maintaining a duplicate lore encyclopedia here.
 - Unity implementation, repo-wide integration, Git publication, releases, purchases, destructive changes, or another agent's files.
 - Turning source proposals into game canon merely because they exist in the source repository.

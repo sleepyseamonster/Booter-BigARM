@@ -9,7 +9,7 @@ Define:
 - the requested outcome;
 - whether the task is retrieval, synthesis, invention, critique, or canon integration;
 - the local owning document, if one exists;
-- whether Arc & Dust access is reference-only or includes explicit write authority;
+- which read-only Arc & Dust sources are relevant; write authority is never available to Lorekeeper;
 - the proof needed for the result;
 - the point where a creative or canon decision returns to the user.
 
@@ -60,7 +60,7 @@ For game-facing design, translate lore into usable narrative constraints, hooks,
 
 - If the user asked only for ideas, analysis, or retrieval, do not edit canon documents.
 - If the user approved a local canon change, update the canonical owning file rather than Lorekeeper memory alone.
-- If the correct owning record is in Arc & Dust, stop unless the user also authorized writing to that repository.
+- If the correct owning record is in Arc & Dust, identify it for the user but do not modify it.
 - Coordinate repo-wide documentation placement through Gottspan.
 - Route Unity-facing execution through Gottspan and Babineaux as appropriate.
 

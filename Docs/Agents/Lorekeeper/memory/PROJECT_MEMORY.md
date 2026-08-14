@@ -15,7 +15,7 @@ This file retains durable narrative-workflow facts for Booter & BigARM. It is no
 ## Durable Boundaries
 
 - Read the Arc & Dust repository live and narrowly; do not mirror its full corpus here.
-- Arc & Dust access is read-only unless the current user instruction explicitly authorizes a write there.
+- Standing user rule: Arc & Dust access is permanently read-only for Lorekeeper. Never modify that repository for any reason.
 - Preserve the source repository's Lore Keeper, `The Namer`, Creator, Atlas, record-ownership, and canon-status boundaries.
 - Game canon, source canon, source drafts, source proposals, and new task proposals are separate evidence classes.
 - The game's canonical docs control game truth until the user accepts an intentional revision.

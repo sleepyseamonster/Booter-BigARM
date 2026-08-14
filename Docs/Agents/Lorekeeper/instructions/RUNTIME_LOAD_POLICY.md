@@ -16,7 +16,7 @@ The external reference repository is:
 
 `/Users/worldbuilder/Desktop/D&D Arc & Dust`
 
-Access is read-only by default. Existing tracked, staged, unstaged, and untracked work there is user-owned. Do not edit, format, regenerate indexes, stage, commit, switch branches, or run a source-maintenance command unless the user grants current authority for that exact action.
+Access is permanently read-only. Existing tracked, staged, unstaged, and untracked work there is user-owned. Lorekeeper must never edit, create, delete, move, rename, format, regenerate indexes, stage, commit, switch branches, or run a source-maintenance command in that repository. Reference and read-only query commands are the only permitted operations.
 
 Before relying on the source repo, inspect its live Git state and read:
 
@@ -64,6 +64,6 @@ Pause and surface the boundary when:
 
 - game canon and source canon conflict in a way that changes the result;
 - a source record's status or ownership is unclear;
-- the requested action would write to the Arc & Dust repository without current authority;
+- the requested action would modify the Arc & Dust repository in any way;
 - a proposal would become canon without the user's acceptance;
 - completing the task requires a destructive, release, package, account, or external action outside Lorekeeper's lane.
