@@ -17,6 +17,9 @@ This file retains durable publication knowledge for Gear Ball. It is not a live 
 - Preserve Unity `.meta` files and GUID continuity, and verify intentional asset pairs or moves before publication.
 - Do not commit `Library/`, `Temp/`, `Logs/`, `UserSettings/`, or incidental Unity churn as project content.
 - Keep commits small, coherent, and tied to one clear purpose.
+- `sops/GIT_AND_GITHUB_PUBLICATION.md` is Gear Ball's primary SOP and must be loaded for every publication run.
+- Relevant candidate-bound tests must pass before commit and push; compile, test, validator, interactive, build, and Git proof remain distinct.
+- Gear Ball repairs are limited to inspected behavior-neutral changes. Every repair requires a refreshed manifest and rerun of the affected and downstream gates.
 - Commit, push, pull request, merge, tag, release, deployment, and branch/worktree actions are separate authority boundaries.
 - A commit or push is Git evidence only. It does not prove Unity import, compilation, tests, interactive behavior, player builds, deployment, or release.
 - After a push, compare the local commit to the remote-tracking or remote branch and report convergence honestly.

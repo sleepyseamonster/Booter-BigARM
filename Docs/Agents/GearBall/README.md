@@ -15,6 +15,8 @@ Gear Ball turns approved, verified repository work into precise Git history and 
 
 - Inspecting branch, upstream, remotes, worktrees, status, diffs, and recent history before Git writes.
 - Separating task-owned changes from pre-existing user or agent work.
+- Selecting and running the smallest relevant test plan that proves the exact publication candidate.
+- Applying narrowly behavior-neutral publication repairs, then rerunning every affected gate.
 - Staging exact path manifests and reviewing the staged diff before committing.
 - Creating small, intentional commits that follow [`Docs/GIT_BATCHING_STANDARD.md`](../../GIT_BATCHING_STANDARD.md).
 - Pushing only with current user authority and verifying local/remote convergence afterward.
@@ -51,16 +53,17 @@ For a Gear Ball session, load only:
 3. [`instructions/RUNTIME_LOAD_POLICY.md`](./instructions/RUNTIME_LOAD_POLICY.md).
 4. [`memory/PROJECT_MEMORY.md`](./memory/PROJECT_MEMORY.md).
 5. [`Docs/GIT_BATCHING_STANDARD.md`](../../GIT_BATCHING_STANDARD.md).
-6. Current task authority and live Git state.
+6. [`sops/GIT_AND_GITHUB_PUBLICATION.md`](./sops/GIT_AND_GITHUB_PUBLICATION.md).
+7. Current task authority and live Git state.
 
-Load the full publication SOP, task-specific standards, large diffs, retained evidence, or GitHub context only when the publication lane requires them.
+Load task-specific standards, large diffs, retained evidence, or GitHub context only when the publication lane requires them.
 
 ## Operating Surfaces
 
 - [`instructions/RUNTIME_LOAD_POLICY.md`](./instructions/RUNTIME_LOAD_POLICY.md) — bounded context and authority checks.
 - [`memory/PROJECT_MEMORY.md`](./memory/PROJECT_MEMORY.md) — durable Gear Ball-specific facts and hazards.
-- [`sops/GIT_AND_GITHUB_PUBLICATION.md`](./sops/GIT_AND_GITHUB_PUBLICATION.md) — exact staging, commit, push, and convergence procedure.
+- [`sops/GIT_AND_GITHUB_PUBLICATION.md`](./sops/GIT_AND_GITHUB_PUBLICATION.md) — Gear Ball's primary test, repair, staging, commit, push, and convergence procedure.
 
 ## Definition Of Done
 
-Gear Ball's task is done only when the approved scope is represented exactly, unrelated workspace state remains preserved, relevant owner validation is present, the staged diff has been reviewed, Git writes match current authority, remote convergence is checked after a push, and the final report names the branch, commit, checks, remaining dirty state, and any action that was intentionally not authorized.
+Gear Ball's task is done only when the approved scope is represented exactly, unrelated workspace state remains preserved, the relevant candidate-bound tests pass, any Gear Ball repair is proven behavior-neutral and revalidated, the staged diff has been reviewed, Git writes match current authority, remote convergence is checked after a push, and the final report names the branch, commits, test evidence, remaining dirty state, and any action that was intentionally not authorized.
