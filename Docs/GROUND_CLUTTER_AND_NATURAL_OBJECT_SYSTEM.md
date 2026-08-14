@@ -32,6 +32,14 @@ The mesh family uses controlled procedural geology rather than unrestricted per-
 
 About thirty percent of ordinary obstacle candidates become formations of two to five touching rocks. The members vary in cached shape, variant, scale, yaw, and slight tilt, then combine into one generated mesh, one rendered object, and one bounding collider for that chunk. Rare landmarks can also form smaller fused groups. Their member layout is derived from the placement seed, so unload/reload and chunk build order reproduce the same formation.
 
+## Wind-Deposited Dust
+
+Deposited dust is a deterministic ground layer, separate from the airborne atmosphere system. A world-space field combines broad low-frequency pockets with anisotropic noise aligned to one prevailing wind direction. This creates long windrows, exposed scoured gaps, and coherent dust-rich basins across chunk borders.
+
+Physical obstacles and landmarks contribute shelter wakes. Dust accumulates only on their downwind side, curves slightly around each seeded formation, and fades with lateral and downwind distance. Larger formations produce wider wakes, while rare landmarks can anchor longer and taller banks. Steep slopes attenuate both broad deposits and sheltered piles.
+
+Each chunk samples the continuous deposition field on a denser overlay grid than the base terrain. Visible cells become one opaque, non-colliding combined mesh using the swept-sand texture, soft mesh normals, a matte shared material, no realtime shadow casting, and ordinary shadow receiving. Neighboring chunks sample identical world positions and include a physical-rock halo, so height and coverage match exactly at borders. Generated meshes remain owned and destroyed by their chunk.
+
 ## Rock Surface Families
 
 Ordinary obstacles, scatter, ground-detail rocks, and landmarks share one world-anchored surface field with three outcomes: regular stone, dark charcoal stone, and restrained teal mineral stone. The low-frequency field forms coherent geological patches across chunk seams; it does not alter positions, collision, scale, or the independent fine-gray layer. Each family uses the same triplanar shader and tuning with its own authored albedo texture, and combined visual layers are split by material so shared materials remain batch-friendly.

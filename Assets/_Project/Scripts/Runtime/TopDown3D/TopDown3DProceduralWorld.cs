@@ -216,6 +216,11 @@ namespace BooterBigArm.TopDown3D
             chunk.Initialize(coordinate, mesh);
             loadedChunks.Add(coordinate, chunk);
             TopDown3DNaturalObjectDecorator.Decorate(chunk, settings, propMaterial, spawnExclusionCenter);
+            TopDown3DDustDepositionDecorator.Decorate(
+                chunk,
+                settings,
+                groundMaterial,
+                spawnExclusionCenter);
         }
     }
 }

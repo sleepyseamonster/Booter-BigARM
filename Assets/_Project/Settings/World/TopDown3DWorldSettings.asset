@@ -52,6 +52,19 @@ MonoBehaviour:
   darkRockSurfaceThreshold: 0.4
   tealRockSurfaceThreshold: 0.74
   maximumClutterSlope: 44
+  depositedDustMaterial: {fileID: 2100000, guid: 6c024362ed05443da762b0cf18ac9d2d, type: 2}
+  dustDepositionGenerationVersion: 1
+  dustOverlayQuadsPerAxis: 24
+  prevailingWindDegrees: 32
+  dustPocketFrequency: 0.012
+  dustWindrowFrequency: 0.09
+  dustCoverageThreshold: 0.58
+  dustMaximumBaseHeight: 0.16
+  dustWakeLength: 6.5
+  dustWakeWidthMultiplier: 1.35
+  dustMaximumWakeHeight: 0.28
+  maximumDustDepositionSlope: 26
+  dustSurfaceOffset: 0.018
   clearSpawnRadius: 7
   safeSpawnSearchRadius: 8
   safeSpawnSearchStep: 1.5

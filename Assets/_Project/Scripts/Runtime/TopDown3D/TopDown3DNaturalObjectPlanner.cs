@@ -174,6 +174,51 @@ namespace BooterBigArm.TopDown3D
             return placements;
         }
 
+        public static List<TopDown3DNaturalObjectPlacement> BuildPhysicalPlacements(
+            TopDown3DWorldSettings settings,
+            TopDown3DNaturalObjectCatalog catalog,
+            Vector2Int chunkCoordinate,
+            Vector2 spawnExclusionCenter)
+        {
+            var placements = new List<TopDown3DNaturalObjectPlacement>();
+            if (settings == null || catalog == null)
+            {
+                return placements;
+            }
+
+            BuildLayer(
+                settings,
+                catalog,
+                chunkCoordinate,
+                spawnExclusionCenter,
+                TopDown3DNaturalObjectLayer.Obstacle,
+                settings.PropsPerChunk,
+                settings.PropSpacing,
+                settings.MaximumPropSlope,
+                settings.ClutterClusterFrequency,
+                settings.ClutterClusterStrength,
+                0.2f,
+                1.8f,
+                true,
+                placements);
+            BuildLayer(
+                settings,
+                catalog,
+                chunkCoordinate,
+                spawnExclusionCenter,
+                TopDown3DNaturalObjectLayer.Landmark,
+                settings.LandmarksPerChunk,
+                settings.LandmarkSpacing,
+                settings.MaximumLandmarkSlope,
+                settings.ClutterClusterFrequency * 0.6f,
+                settings.ClutterClusterStrength * 0.5f,
+                0.55f,
+                1.35f,
+                true,
+                placements);
+            return placements;
+        }
+
         private static void BuildLayer(
             TopDown3DWorldSettings settings,
             TopDown3DNaturalObjectCatalog catalog,
