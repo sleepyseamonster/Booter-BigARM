@@ -6,4 +6,4 @@ Source: https://github.com/Unity-Technologies/Standard-Assets-Characters
 
 License: Unity Companion License for Unity-dependent projects. See https://unity.com/legal/licenses/unity-companion-license
 
-Imported content is limited to the model plus idle, walk, run, sprint, rapid-turn, and sprint-jump clips. The source controller, input, camera, scripts, scenes, audio, and sample environment are intentionally excluded so the prototype's existing Rigidbody motor remains authoritative.
+Imported content is limited to the model plus idle, walk, run, sprint, left/right run-strafe, rapid-turn, running-jump, and sprint-jump clips. The rapid-turn and sprint-jump clips are retained as source material but are not part of the current move set. The source controller, input, camera, scripts, scenes, audio, and sample environment are intentionally excluded so the prototype's existing Rigidbody motor remains authoritative.

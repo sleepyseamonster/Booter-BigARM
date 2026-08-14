@@ -15,9 +15,10 @@ namespace BooterBigArm.TopDown3D
         private const int WalkIndex = 1;
         private const int RunIndex = 2;
         private const int SprintIndex = 3;
-        private const int SpinIndex = 4;
-        private const int VaultIndex = 5;
-        private const int ClipCount = 6;
+        private const int SideStepLeftIndex = 4;
+        private const int SideStepRightIndex = 5;
+        private const int VaultIndex = 6;
+        private const int ClipCount = 7;
 
         [Header("Prototype Humanoid")]
         [SerializeField] private GameObject humanoidPrefab;
@@ -31,7 +32,8 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private AnimationClip walkClip;
         [SerializeField] private AnimationClip runClip;
         [SerializeField] private AnimationClip sprintClip;
-        [SerializeField] private AnimationClip spinClip;
+        [SerializeField] private AnimationClip sideStepLeftClip;
+        [SerializeField] private AnimationClip sideStepRightClip;
         [SerializeField] private AnimationClip vaultClip;
 
         [Header("Locomotion Blend")]
@@ -39,6 +41,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(0.01f)] private float nominalWalkSpeed = 1.8f;
         [SerializeField, Min(0.01f)] private float nominalRunSpeed = 4.2f;
         [SerializeField, Min(0.01f)] private float nominalSprintSpeed = 7.4f;
+        [SerializeField, Range(0.5f, 1.25f)] private float runPlaybackScale = 0.9f;
         [SerializeField, Min(0.01f)] private float crossFadeDuration = 0.1f;
 
         private readonly AnimationClipPlayable[] clipPlayables = new AnimationClipPlayable[ClipCount];
@@ -48,12 +51,14 @@ namespace BooterBigArm.TopDown3D
         private AnimationMixerPlayable mixer;
         private int activeClipIndex = -1;
 
-        public bool HasCompleteAnimationSet => humanoidPrefab != null
+        public bool HasCoreAnimationSet => humanoidPrefab != null
             && idleClip != null
             && walkClip != null
             && runClip != null
-            && sprintClip != null
-            && spinClip != null
+            && sprintClip != null;
+        public bool HasCompleteAnimationSet => HasCoreAnimationSet
+            && sideStepLeftClip != null
+            && sideStepRightClip != null
             && vaultClip != null;
         public Vector3 VisualLocalPosition => visualLocalPosition;
         public float VisualScale => visualScale;
@@ -64,7 +69,8 @@ namespace BooterBigArm.TopDown3D
             AnimationClip walk,
             AnimationClip run,
             AnimationClip sprint,
-            AnimationClip spin,
+            AnimationClip sideStepLeft,
+            AnimationClip sideStepRight,
             AnimationClip vault)
         {
             humanoidPrefab = modelPrefab;
@@ -72,21 +78,53 @@ namespace BooterBigArm.TopDown3D
             walkClip = walk;
             runClip = run;
             sprintClip = sprint;
-            spinClip = spin;
+            sideStepLeftClip = sideStepLeft;
+            sideStepRightClip = sideStepRight;
             vaultClip = vault;
         }
 
         private void Awake()
         {
             motor = GetComponent<TopDown3DPlayerMotor>();
-            if (!HasCompleteAnimationSet)
+            if (!HasCoreAnimationSet)
             {
-                Debug.LogError("Booter's prototype Humanoid model or animation set is incomplete.", this);
+                Debug.LogError(
+                    "Booter's core prototype Humanoid model or locomotion set is incomplete.",
+                    this);
+                ShowGreyboxFallback();
                 enabled = false;
                 return;
             }
 
+            ResolveTraversalAnimationFallbacks();
             CreateVisual();
+        }
+
+        private void ResolveTraversalAnimationFallbacks()
+        {
+            if (sideStepLeftClip != null && sideStepRightClip != null && vaultClip != null)
+            {
+                return;
+            }
+
+            Debug.LogWarning(
+                "Booter's traversal animation references are incomplete in the loaded scene. "
+                + "Using the run clip as a temporary visual fallback until the scene reloads.",
+                this);
+            if (sideStepLeftClip == null)
+            {
+                sideStepLeftClip = runClip;
+            }
+
+            if (sideStepRightClip == null)
+            {
+                sideStepRightClip = runClip;
+            }
+
+            if (vaultClip == null)
+            {
+                vaultClip = runClip;
+            }
         }
 
         private void CreateVisual()
@@ -104,6 +142,7 @@ namespace BooterBigArm.TopDown3D
             {
                 Debug.LogError("Booter's prototype Humanoid prefab does not contain an Animator.", this);
                 Destroy(visualInstance);
+                ShowGreyboxFallback();
                 enabled = false;
                 return;
             }
@@ -130,9 +169,33 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
+        private void ShowGreyboxFallback()
+        {
+            var capsuleRenderer = GetComponent<MeshRenderer>();
+            if (capsuleRenderer != null)
+            {
+                capsuleRenderer.enabled = true;
+            }
+
+            var facingMarker = transform.Find("Facing Marker");
+            if (facingMarker != null)
+            {
+                facingMarker.gameObject.SetActive(true);
+            }
+        }
+
         private void CreatePlayableGraph(Animator animator)
         {
-            var clips = new[] { idleClip, walkClip, runClip, sprintClip, spinClip, vaultClip };
+            var clips = new[]
+            {
+                idleClip,
+                walkClip,
+                runClip,
+                sprintClip,
+                sideStepLeftClip,
+                sideStepRightClip,
+                vaultClip
+            };
             playableGraph = PlayableGraph.Create("Booter Prototype Humanoid Animation");
             playableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
             mixer = AnimationMixerPlayable.Create(playableGraph, ClipCount);
@@ -182,8 +245,10 @@ namespace BooterBigArm.TopDown3D
         {
             switch (motor.ActiveTraversal)
             {
-                case TopDown3DTraversalMove.Spin:
-                    return SpinIndex;
+                case TopDown3DTraversalMove.SideStep:
+                    return motor.ActiveTraversalSide < 0f
+                        ? SideStepLeftIndex
+                        : SideStepRightIndex;
                 case TopDown3DTraversalMove.Vault:
                     return VaultIndex;
             }
@@ -214,12 +279,13 @@ namespace BooterBigArm.TopDown3D
                     playbackSpeed = planarSpeed / nominalWalkSpeed;
                     break;
                 case RunIndex:
-                    playbackSpeed = planarSpeed / nominalRunSpeed;
+                    playbackSpeed = planarSpeed / nominalRunSpeed * runPlaybackScale;
                     break;
                 case SprintIndex:
                     playbackSpeed = planarSpeed / nominalSprintSpeed;
                     break;
-                case SpinIndex:
+                case SideStepLeftIndex:
+                case SideStepRightIndex:
                 case VaultIndex:
                     var duration = Mathf.Max(0.05f, motor.ActiveTraversalDuration);
                     playbackSpeed = clipPlayables[clipIndex].GetAnimationClip().length / duration;
@@ -247,6 +313,7 @@ namespace BooterBigArm.TopDown3D
             nominalWalkSpeed = Mathf.Max(0.01f, nominalWalkSpeed);
             nominalRunSpeed = Mathf.Max(nominalWalkSpeed, nominalRunSpeed);
             nominalSprintSpeed = Mathf.Max(nominalRunSpeed, nominalSprintSpeed);
+            runPlaybackScale = Mathf.Clamp(runPlaybackScale, 0.5f, 1.25f);
             crossFadeDuration = Mathf.Max(0.01f, crossFadeDuration);
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using BooterBigArm.TopDown3D;
 using UnityEditor;
 using UnityEditor.Build;
@@ -27,6 +28,8 @@ namespace BooterBigArm.Editor
             "Assets/_Project/Shaders/TopDown3D/BrokenWorldTerrainBlend.shader";
         public const string RockShaderPath =
             "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockTriplanar.shader";
+        public const string VolumetricDustShaderPath =
+            "Assets/_Project/Shaders/TopDown3D/BrokenWorldVolumetricDust.shader";
         public const string RockAlbedoPath =
             "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceAlbedo.png";
         public const string DarkRockAlbedoPath =
@@ -90,9 +93,12 @@ namespace BooterBigArm.Editor
         public const string PrototypeHumanoidWalkPath = PrototypeHumanoidAnimationsFolder + "/m@WalkForwards.fbx";
         public const string PrototypeHumanoidRunPath = PrototypeHumanoidAnimationsFolder + "/m@RunForwards.fbx";
         public const string PrototypeHumanoidSprintPath = PrototypeHumanoidAnimationsFolder + "/m@SprintForwards.fbx";
-        public const string PrototypeHumanoidSpinPath = PrototypeHumanoidAnimationsFolder + "/m@RapidTurningLeft.fbx";
+        public const string PrototypeHumanoidSideStepLeftPath =
+            PrototypeHumanoidAnimationsFolder + "/m@StrafeLeftRunForwards.fbx";
+        public const string PrototypeHumanoidSideStepRightPath =
+            PrototypeHumanoidAnimationsFolder + "/m@StrafeRightRunForwards.fbx";
         public const string PrototypeHumanoidVaultPath =
-            PrototypeHumanoidAnimationsFolder + "/m@SprintForwardsJump_Frame01.fbx";
+            PrototypeHumanoidAnimationsFolder + "/m@RunForwardsJump_Frame01.fbx";
 
         [MenuItem("Booter & BigARM/Top Down 3D/Build Perspective Prototype")]
         public static void BuildFromMenu()
@@ -199,6 +205,7 @@ namespace BooterBigArm.Editor
             EditorUtility.SetDirty(settings);
             var playerMaterial = EnsureMaterial("Greybox_Booter", new Color(0.58f, 0.49f, 0.37f));
             var bigArmMaterial = EnsureMaterial("Greybox_BigARM", new Color(0.08f, 0.74f, 0.76f));
+            EnsureVolumetricDustRendererFeature();
             var rendererIndex = ResolveConversionRendererIndex();
             CreateScene(
                 rendererIndex,
@@ -417,6 +424,70 @@ namespace BooterBigArm.Editor
             return material;
         }
 
+        public static void EnsureVolumetricDustRendererFeature()
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
+                ConversionBaselineValidator.ConversionRendererPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(VolumetricDustShaderPath);
+            if (renderer == null || shader == null)
+            {
+                throw new InvalidOperationException(
+                    "The protected perspective renderer or volumetric dust shader is missing.");
+            }
+
+            var matchingFeatures = renderer.rendererFeatures
+                .OfType<TopDown3DVolumetricDustFeature>()
+                .ToArray();
+            if (matchingFeatures.Length > 1)
+            {
+                throw new InvalidOperationException(
+                    "The perspective renderer contains duplicate volumetric dust features.");
+            }
+
+            if (matchingFeatures.Length == 1)
+            {
+                var existing = matchingFeatures[0];
+                if (existing.VolumetricShader != shader || !existing.isActive)
+                {
+                    existing.Configure(shader);
+                    existing.SetActive(true);
+                    EditorUtility.SetDirty(existing);
+                    renderer.SetDirty();
+                    EditorUtility.SetDirty(renderer);
+                }
+
+                return;
+            }
+
+            var feature = ScriptableObject.CreateInstance<TopDown3DVolumetricDustFeature>();
+            feature.name = "TopDown3D Volumetric Dust";
+            feature.hideFlags = HideFlags.HideInHierarchy;
+            feature.Configure(shader);
+            feature.SetActive(true);
+            AssetDatabase.AddObjectToAsset(feature, renderer);
+            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(feature, out _, out long localId);
+
+            var serializedRenderer = new SerializedObject(renderer);
+            var serializedFeatures = serializedRenderer.FindProperty("m_RendererFeatures");
+            var serializedFeatureMap = serializedRenderer.FindProperty("m_RendererFeatureMap");
+            if (serializedFeatures == null || serializedFeatureMap == null || localId == 0)
+            {
+                UnityEngine.Object.DestroyImmediate(feature, true);
+                throw new InvalidOperationException(
+                    "Unity could not serialize the volumetric dust renderer feature safely.");
+            }
+
+            var featureIndex = serializedFeatures.arraySize;
+            serializedFeatures.InsertArrayElementAtIndex(featureIndex);
+            serializedFeatures.GetArrayElementAtIndex(featureIndex).objectReferenceValue = feature;
+            serializedFeatureMap.InsertArrayElementAtIndex(featureIndex);
+            serializedFeatureMap.GetArrayElementAtIndex(featureIndex).longValue = localId;
+            serializedRenderer.ApplyModifiedPropertiesWithoutUndo();
+            renderer.SetDirty();
+            EditorUtility.SetDirty(renderer);
+            EditorUtility.SetDirty(feature);
+        }
+
         private static int ResolveConversionRendererIndex()
         {
             var pipeline = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(
@@ -476,8 +547,7 @@ namespace BooterBigArm.Editor
                 }
 
                 scene.name = "TopDown3DPrototype";
-                RenderSettings.fog = true;
-                RenderSettings.fogMode = FogMode.ExponentialSquared;
+                RenderSettings.fog = false;
                 RenderSettings.fogColor = new Color(0.42f, 0.19f, 0.10f);
                 RenderSettings.fogDensity = TopDown3DDustAtmosphere.DefaultFogDensityAtIntensityOne;
                 RenderSettings.ambientMode = AmbientMode.Flat;
@@ -552,10 +622,15 @@ namespace BooterBigArm.Editor
                 LoadRequiredAnimationClip(PrototypeHumanoidWalkPath, "WalkForwards"),
                 LoadRequiredAnimationClip(PrototypeHumanoidRunPath, "RunForwards"),
                 LoadRequiredAnimationClip(PrototypeHumanoidSprintPath, "SprintForwards"),
-                LoadRequiredAnimationClip(PrototypeHumanoidSpinPath, "RapidTurningLeft"),
+                LoadRequiredAnimationClip(
+                    PrototypeHumanoidSideStepLeftPath,
+                    "StrafeLeftRunForwards"),
+                LoadRequiredAnimationClip(
+                    PrototypeHumanoidSideStepRightPath,
+                    "StrafeRightRunForwards"),
                 LoadRequiredAnimationClip(
                     PrototypeHumanoidVaultPath,
-                    "SprintForwardsJump_Frame01"));
+                    "RunForwardsJump_Frame01"));
 
             var facing = GameObject.CreatePrimitive(PrimitiveType.Cube);
             facing.name = "Facing Marker";
@@ -636,7 +711,7 @@ namespace BooterBigArm.Editor
                 15f,
                 16f,
                 1.82f,
-                new Color(0.72f, 0.32f, 0.12f));
+                TopDown3DDustAtmosphere.DefaultDenseRustDust);
             CreateDustZone(
                 regions.transform,
                 "Sheltered Thin-Dust Pocket",
@@ -644,7 +719,7 @@ namespace BooterBigArm.Editor
                 11f,
                 14f,
                 0.90f,
-                new Color(0.40f, 0.25f, 0.18f));
+                TopDown3DDustAtmosphere.DefaultShelteredRustDust);
         }
 
         private static void CreateDustZone(

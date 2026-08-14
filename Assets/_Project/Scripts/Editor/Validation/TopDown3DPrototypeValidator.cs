@@ -42,6 +42,7 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.ScenePath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.WorldSettingsPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainShaderPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.VolumetricDustShaderPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainSweptSandAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainSweptSandTransitionAlbedoPath, errors);
@@ -68,13 +69,16 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidWalkPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidRunPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidSprintPath, errors);
-            ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidSpinPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidSideStepLeftPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidSideStepRightPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.PrototypeHumanoidVaultPath, errors);
             ValidateTerrainMaterial(errors);
             ValidateRockMaterial(errors);
             ValidateWorldCoverage(errors);
             ValidateNaturalObjectCatalog(errors);
             ValidateCameraInput(errors);
+            ValidateVolumetricDustShader(errors);
+            ValidateVolumetricDustRenderer(errors);
             ValidateBuildSettings(errors);
             ValidateScene(errors);
             return errors;
@@ -135,6 +139,25 @@ namespace BooterBigArm.Editor
                 errors.Add("TopDown3D world settings must reference the shared teal-rock material.");
             }
 
+            if (settings.PhysicalRockGenerationVersion < 1)
+            {
+                errors.Add("Physical rock generation requires its own positive generation version.");
+            }
+
+            if (settings.MassiveRocksPerChunk <= settings.LandmarksPerChunk
+                || settings.MassiveRocksPerChunk >= settings.PropsPerChunk)
+            {
+                errors.Add("Massive-rock density must remain between Large and Towering root density.");
+            }
+
+            if (settings.PhysicalFormationMaximumMembers < 1
+                || settings.PhysicalFormationMaximumDepth < 0
+                || settings.FormationContactInset < 0f
+                || settings.FormationContactInset > 0.2f)
+            {
+                errors.Add("Physical rock formation caps or contact tuning are outside supported bounds.");
+            }
+
             foreach (TopDown3DNaturalObjectLayer layer in Enum.GetValues(typeof(TopDown3DNaturalObjectLayer)))
             {
                 if (!catalog.HasLayer(layer))
@@ -144,6 +167,7 @@ namespace BooterBigArm.Editor
             }
 
             var stableIds = new HashSet<string>(StringComparer.Ordinal);
+            var physicalTiers = new HashSet<TopDown3DRockSizeTier>();
             for (var i = 0; i < catalog.Definitions.Count; i++)
             {
                 var definition = catalog.Definitions[i];
@@ -154,6 +178,24 @@ namespace BooterBigArm.Editor
                 else if (!stableIds.Add(definition.StableId))
                 {
                     errors.Add($"Natural-object catalog repeats stable ID '{definition.StableId}'.");
+                }
+
+                if (definition != null && definition.RockSizeTier != TopDown3DRockSizeTier.None)
+                {
+                    physicalTiers.Add(definition.RockSizeTier);
+                }
+            }
+
+            foreach (var tier in new[]
+                     {
+                         TopDown3DRockSizeTier.Large,
+                         TopDown3DRockSizeTier.Massive,
+                         TopDown3DRockSizeTier.Towering
+                     })
+            {
+                if (!physicalTiers.Contains(tier))
+                {
+                    errors.Add($"Natural-object catalog is missing the {tier} physical rock tier.");
                 }
             }
         }
@@ -344,6 +386,65 @@ namespace BooterBigArm.Editor
             }
         }
 
+        private static void ValidateVolumetricDustRenderer(ICollection<string> errors)
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
+                ConversionBaselineValidator.ConversionRendererPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(
+                TopDown3DPrototypeBuilder.VolumetricDustShaderPath);
+            if (renderer == null || shader == null)
+            {
+                return;
+            }
+
+            var features = renderer.rendererFeatures
+                .OfType<TopDown3DVolumetricDustFeature>()
+                .ToArray();
+            if (features.Length != 1)
+            {
+                errors.Add(
+                    $"The perspective renderer must contain exactly one TopDown3D volumetric dust feature; found {features.Length}.");
+                return;
+            }
+
+            var feature = features[0];
+            if (!feature.isActive)
+            {
+                errors.Add("The TopDown3D volumetric dust renderer feature must be active.");
+            }
+
+            if (feature.VolumetricShader != shader)
+            {
+                errors.Add("The TopDown3D volumetric dust renderer feature must reference the canonical shader.");
+            }
+
+            if (feature.Downsample != 2
+                || feature.RaymarchSteps != 16
+                || feature.ShadowSamples != 8
+                || !Mathf.Approximately(feature.DepthEdgeSharpness, 96f))
+            {
+                errors.Add("The TopDown3D volumetric dust renderer feature does not match the accepted high-quality spatial preset.");
+            }
+
+        }
+
+        private static void ValidateVolumetricDustShader(ICollection<string> errors)
+        {
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(
+                TopDown3DPrototypeBuilder.VolumetricDustShaderPath);
+            if (shader == null)
+            {
+                return;
+            }
+
+            var messages = ShaderUtil.GetShaderMessages(shader);
+            if (!shader.isSupported || messages.Length > 0)
+            {
+                errors.Add(
+                    $"The volumetric dust shader must compile without messages on the active editor platform. Supported={shader.isSupported}; messages={messages.Length}.");
+            }
+        }
+
         private static void ValidateBuildSettings(ICollection<string> errors)
         {
             var foundProductionScene = false;
@@ -415,7 +516,7 @@ namespace BooterBigArm.Editor
                 var animationDriver = FindComponents<TopDown3DPlayerAnimationDriver>(roots).SingleOrDefault();
                 if (animationDriver != null && !animationDriver.HasCompleteAnimationSet)
                 {
-                    errors.Add("Booter's prototype Humanoid animation driver must reference the full locomotion, spin, and vault set.");
+                    errors.Add("Booter's prototype Humanoid animation driver must reference the full locomotion, left/right sidestep, and vault set.");
                 }
 
                 var playerMotor = FindComponents<TopDown3DPlayerMotor>(roots).SingleOrDefault();

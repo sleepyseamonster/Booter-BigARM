@@ -404,57 +404,33 @@ MonoBehaviour:
   cameraBasis: {fileID: 736909021}
   walkSpeed: 4.2
   sprintSpeed: 7.4
-  acceleration: 30
-  deceleration: 36
-  turnSpeedDegrees: 720
+  acceleration: 18
+  deceleration: 24
+  turnSpeedDegrees: 540
   maxWalkableSlope: 48
   groundProbeDistance: 0.28
+  groundNormalSharpness: 12
+  groundedVerticalAcceleration: 45
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
   smartTraversalEnabled: 1
-  minimumTraversalInput: 0.35
-  traversalProbeDistance: 1.25
-  maximumVaultHeight: 1.15
-  sideThresholdRatio: 0.48
-  vaultDuration: 0.48
-  minimumVaultArcHeight: 0.9
-  vaultArcClearance: 0.18
-  vaultLandingClearance: 0.35
-  spinDuration: 0.34
-  spinSideDistance: 1.15
-  spinForwardDistance: 0.75
-  traversalCooldown: 0.2
+  minimumTraversalInput: 0.5
+  minimumTraversalSpeed: 2.8
+  traversalProbeDistance: 0.75
+  maximumVaultHeight: 0.8
+  sideThresholdRatio: 0.76
+  vaultDuration: 0.68
+  minimumVaultArcHeight: 0.32
+  vaultArcClearance: 0.12
+  vaultLandingClearance: 0.25
+  sideStepDuration: 0.45
+  sideStepSideDistance: 0.75
+  sideStepForwardDistance: 0.4
+  traversalCooldown: 0.28
   traversalMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &264785644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264785637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b27e4322ca4d12869a3308c00f74e7, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver
-  humanoidPrefab: {fileID: 100004, guid: 20d97ea0953936148b25caa82b5e14f9, type: 3}
-  visualLocalPosition: {x: 0, y: -1.24, z: 0}
-  visualLocalEulerAngles: {x: 0, y: 0, z: 0}
-  visualScale: 1.4
-  idleClip: {fileID: 7400000, guid: 77ebce5437875674da8b297c3eed5d1a, type: 3}
-  walkClip: {fileID: 7400000, guid: 8d2f32dac24d0c446b26db61358312e9, type: 3}
-  runClip: {fileID: 7400000, guid: 5603ba2736827934f814315bda037898, type: 3}
-  sprintClip: {fileID: 7400000, guid: f5929a78ddc0f40518df247d645a7747, type: 3}
-  spinClip: {fileID: 7400000, guid: a7046a107b3b39a4ab9d86ab609a80d3, type: 3}
-  vaultClip: {fileID: 7400000, guid: be3e601dc676c444f847ab738d27d7d3, type: 3}
-  walkToRunThreshold: 2.4
-  nominalWalkSpeed: 1.8
-  nominalRunSpeed: 4.2
-  nominalSprintSpeed: 7.4
-  crossFadeDuration: 0.1
 --- !u!54 &264785640
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -562,6 +538,244 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264785637}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &264785644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264785637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b27e4322ca4d12869a3308c00f74e7, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver
+  humanoidPrefab: {fileID: 100004, guid: 20d97ea0953936148b25caa82b5e14f9, type: 3}
+  visualLocalPosition: {x: 0, y: -1.24, z: 0}
+  visualLocalEulerAngles: {x: 0, y: 0, z: 0}
+  visualScale: 1.4
+  idleClip: {fileID: 7400000, guid: 77ebce5437875674da8b297c3eed5d1a, type: 3}
+  walkClip: {fileID: 7400000, guid: 8d2f32dac24d0c446b26db61358312e9, type: 3}
+  runClip: {fileID: 7400000, guid: 5603ba2736827934f814315bda037898, type: 3}
+  sprintClip: {fileID: 7400000, guid: f5929a78ddc0f40518df247d645a7747, type: 3}
+  sideStepLeftClip: {fileID: 7400000, guid: 2d93caa0952f4ad7b89bd6b83f4773c1, type: 3}
+  sideStepRightClip: {fileID: 7400000, guid: f546f95e162b04775be059a9c7a23191, type: 3}
+  vaultClip: {fileID: 7400000, guid: 8c093e122a327463595440bb261f3bc9, type: 3}
+  walkToRunThreshold: 2.4
+  nominalWalkSpeed: 1.8
+  nominalRunSpeed: 4.2
+  nominalSprintSpeed: 7.4
+  runPlaybackScale: 0.9
+  crossFadeDuration: 0.1
+--- !u!1 &328138066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328138067}
+  - component: {fileID: 328138068}
+  m_Layer: 0
+  m_Name: D-Pad Indicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &328138067
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328138066}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 697783595}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &328138068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328138066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26353ba4cd894fdd8e6f250909e7c258, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DActionDpadGraphic
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  upPressed: 0
+  leftPressed: 0
+  rightPressed: 0
+  downPressed: 0
+--- !u!1 &601423276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 601423280}
+  - component: {fileID: 601423279}
+  - component: {fileID: 601423278}
+  - component: {fileID: 601423277}
+  m_Layer: 0
+  m_Name: Game HUD Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &601423277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601423276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0.5
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &601423278
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601423276}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 120
+  m_TargetDisplay: 0
+--- !u!114 &601423279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601423276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d9cb683ae949fbae46c0cb462d8c14, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DGameHudCanvas
+--- !u!224 &601423280
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601423276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 697783595}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!1 &697783594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 697783595}
+  - component: {fileID: 697783596}
+  m_Layer: 0
+  m_Name: Action D-Pad HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &697783595
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697783594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 328138067}
+  m_Father: {fileID: 601423280}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 34, y: 34}
+  m_SizeDelta: {x: 168, y: 168}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &697783596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697783594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f603b2a3534682844cc0f2f8510e0c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DActionDpadHud
+  size: 168
+  safeAreaMargin: 34
 --- !u!1 &701269550
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,6 +810,7 @@ MonoBehaviour:
   world: {fileID: 1112642390}
   bigArm: {fileID: 987390414}
   cameraRig: {fileID: 736909020}
+  showOverlay: 0
 --- !u!4 &701269552
 Transform:
   m_ObjectHideFlags: 0
@@ -669,7 +884,7 @@ Transform:
   m_GameObject: {fileID: 736909019}
   serializedVersion: 2
   m_LocalRotation: {x: 0.39713126, y: 0.3099755, z: -0.14454395, w: 0.8516507}
-  m_LocalPosition: {x: -10.329396, y: 20.091074, z: -12.310099}
+  m_LocalPosition: {x: -10.329396, y: 20.341074, z: -12.310098}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -813,12 +1028,19 @@ MonoBehaviour:
   cameraBasis: {fileID: 736909021}
   input: {fileID: 90984658}
   followDistance: 4.2
-  screenSideOffset: -1.8
   moveSpeed: 4.2
+  catchUpSpeed: 8.4
+  acceleration: 14
+  deceleration: 20
   turnSpeedDegrees: 300
+  sharpTurnSpeedScale: 0.45
   idleRadius: 1.1
+  slowdownRadius: 2.8
   avoidanceProbeDistance: 1.8
-  recallDistance: 18
+  catchUpDistance: 18
+  catchUpReleaseDistance: 7
+  trailSampleDistance: 1.1
+  trailRetentionDistance: 180
   groundClearance: 0.82
   stuckCheckSeconds: 1.25
   movementMask:
@@ -1044,3 +1266,4 @@ SceneRoots:
   - {fileID: 987390417}
   - {fileID: 1190172751}
   - {fileID: 701269552}
+  - {fileID: 601423280}
