@@ -57,6 +57,8 @@ These define current preferred approaches or sequencing.
 - [MOVEMENT_CAMERA_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/MOVEMENT_CAMERA_STANDARD.md)
 - [SMART_TRAVERSAL_STANDARD.md](./SMART_TRAVERSAL_STANDARD.md)
   The contextual sprint traversal contract, first spin/vault move set, safety boundaries, and extension seam.
+- [SURVIVAL_SYSTEM_STANDARD.md](./SURVIVAL_SYSTEM_STANDARD.md)
+  The four-vital player-state, depletion, persistence, procedural-world, and compact HUD contract.
 - [URP_2D_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/URP_2D_STANDARD.md)
 - [UNITY_AUTOMATION.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/UNITY_AUTOMATION.md)
 - [CODEX_EDITOR_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/CODEX_EDITOR_STANDARD.md)
