@@ -26,7 +26,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(3f)] private float escarpmentMaximumRadius = 13.5f;
         [SerializeField, Range(0.25f, 0.75f)] private float escarpmentMinimumHeight = 0.48f;
         [SerializeField, Range(0.3f, 0.8f)] private float escarpmentMaximumHeight = 0.66f;
-        [SerializeField, Range(0.35f, 1.5f)] private float escarpmentEdgeWidth = 0.52f;
+        [SerializeField, Range(0.35f, 1.5f)] private float escarpmentEdgeWidth = 0.92f;
         [SerializeField, Range(0f, 0.3f)] private float cragReliefAmplitude = 0.12f;
         [SerializeField, Min(0.01f)] private float cragReliefFrequency = 0.12f;
         [SerializeField, Range(16, 64)] private int escarpmentFaceSegments = 40;

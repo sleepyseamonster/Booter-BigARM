@@ -215,7 +215,7 @@ namespace BooterBigArm.TopDown3D
             var chunk = chunkObject.AddComponent<TopDown3DGeneratedChunk>();
             chunk.Initialize(coordinate, mesh);
             loadedChunks.Add(coordinate, chunk);
-            TopDown3DEscarpmentDecorator.Decorate(chunk, settings, propMaterial);
+            TopDown3DEscarpmentSurfaceDecorator.Decorate(chunk, settings, propMaterial);
             TopDown3DNaturalObjectDecorator.Decorate(chunk, settings, propMaterial, spawnExclusionCenter);
             TopDown3DDustDepositionDecorator.Decorate(
                 chunk,
