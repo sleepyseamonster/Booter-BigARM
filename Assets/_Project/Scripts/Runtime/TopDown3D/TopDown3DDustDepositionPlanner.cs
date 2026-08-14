@@ -148,10 +148,16 @@ namespace BooterBigArm.TopDown3D
                 seed ^ 0x17C8E529,
                 along * settings.DustPocketFrequency * 3.4f,
                 across * settings.DustWindrowFrequency * 1.8f);
-            var deposition = pocket * 0.56f + windrow * 0.34f + ripple * 0.1f;
+            var erosion = FractalNoise(
+                seed ^ 0x51E37A2D,
+                along * settings.DustPocketFrequency * 1.85f + 13.7f,
+                across * settings.DustWindrowFrequency * 0.72f - 9.3f);
+            var erosionGate = SmoothStepRange(0.36f, 0.76f, erosion);
+            var deposition = pocket * 0.54f + windrow * 0.34f + ripple * 0.12f;
+            deposition -= (1f - erosionGate) * 0.16f;
             return SmoothStepRange(
-                settings.DustCoverageThreshold,
-                Mathf.Min(0.98f, settings.DustCoverageThreshold + 0.22f),
+                Mathf.Min(0.94f, settings.DustCoverageThreshold + 0.035f),
+                Mathf.Min(0.99f, settings.DustCoverageThreshold + 0.2f),
                 deposition);
         }
 
@@ -280,9 +286,18 @@ namespace BooterBigArm.TopDown3D
                     wakeWidth,
                     across);
                 var weight = Mathf.Clamp01(nearFade * farFade * lateralFade);
-                var sourceHeight = source.Layer == TopDown3DNaturalObjectLayer.Landmark
-                    ? 1.38f
-                    : 1f + (source.MemberCount - 1) * 0.065f;
+                var footprintHeight = Mathf.Lerp(
+                    0.78f,
+                    1.9f,
+                    SmoothStepRange(0.35f, 3.2f, sourceRadius));
+                var formationHeight = 1f
+                    + Mathf.Min(5, source.MemberCount - 1) * 0.085f;
+                var landmarkHeight = source.Layer == TopDown3DNaturalObjectLayer.Landmark
+                    ? 1.18f
+                    : 1f;
+                var sourceHeight = Mathf.Min(
+                    2.35f,
+                    footprintHeight * formationHeight * landmarkHeight);
                 strongestWeight = Mathf.Max(strongestWeight, weight);
                 greatestHeight = Mathf.Max(
                     greatestHeight,

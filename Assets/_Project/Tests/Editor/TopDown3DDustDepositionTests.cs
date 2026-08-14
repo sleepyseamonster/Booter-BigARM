@@ -10,6 +10,8 @@ namespace BooterBigArm.Tests
     {
         private const string WorldSettingsPath =
             "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
+        private const string TerrainMaterialPath =
+            "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat";
 
         [Test]
         public void Settings_ProvideAuthoredDepositedDustMaterialAndBoundedTuning()
@@ -19,6 +21,12 @@ namespace BooterBigArm.Tests
             Assert.That(
                 settings.DepositedDustMaterial.shader.name,
                 Is.EqualTo("BooterBigArm/TopDown3D/Broken World Deposited Dust"));
+            var terrainMaterial = AssetDatabase.LoadAssetAtPath<Material>(TerrainMaterialPath);
+            Assert.That(terrainMaterial, Is.Not.Null);
+            Assert.That(
+                settings.DepositedDustMaterial.GetTexture("_BaseMap"),
+                Is.SameAs(terrainMaterial.GetTexture("_BaseMap")),
+                "Deposited drifts should inherit the rust ground surface, not pale swept sand.");
             Assert.That(settings.DustOverlayQuadsPerAxis, Is.InRange(8, 40));
             Assert.That(settings.DustMaximumBaseHeight, Is.GreaterThan(0f));
             Assert.That(settings.DustMaximumWakeHeight, Is.GreaterThan(settings.DustMaximumBaseHeight));
@@ -80,6 +88,54 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void DepositMesh_ClipsBoundariesBetweenGridLines()
+        {
+            var settings = LoadSettings();
+            var exclusion = new Vector2(10000f, 10000f);
+            var foundDeposit = false;
+            var foundContourVertex = false;
+            for (var z = -8; z <= 8 && !foundContourVertex; z++)
+            {
+                for (var x = -8; x <= 8 && !foundContourVertex; x++)
+                {
+                    var coordinate = new Vector2Int(x, z);
+                    var plan = TopDown3DDustDepositionPlanner.BuildPlan(
+                        settings,
+                        settings.NaturalObjectCatalog,
+                        coordinate,
+                        exclusion);
+                    if (!plan.HasVisibleDeposits)
+                    {
+                        continue;
+                    }
+
+                    var mesh = TopDown3DDustDepositionDecorator.BuildMeshData(
+                        settings,
+                        coordinate,
+                        plan);
+                    foundDeposit |= mesh.Triangles.Length > 0;
+                    for (var index = 0; index < mesh.Vertices.Length; index++)
+                    {
+                        var normalizedX = mesh.Vertices[index].x / plan.Step;
+                        var normalizedZ = mesh.Vertices[index].z / plan.Step;
+                        if (Mathf.Abs(normalizedX - Mathf.Round(normalizedX)) > 0.001f
+                            || Mathf.Abs(normalizedZ - Mathf.Round(normalizedZ)) > 0.001f)
+                        {
+                            foundContourVertex = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            Assert.That(foundDeposit, Is.True);
+            Assert.That(
+                foundContourVertex,
+                Is.True,
+                "The visible boundary should be interpolated within cells, not emitted as full grid squares.");
+        }
+
+        [Test]
         public void BaseDeposits_FormLongerFeaturesAlongThePrevailingWind()
         {
             var settings = LoadSettings();
@@ -113,6 +169,32 @@ namespace BooterBigArm.Tests
                 crossDifference,
                 Is.GreaterThan(alongDifference * 1.08f),
                 "Windrows should vary more across the wind than along it.");
+        }
+
+        [Test]
+        public void BaseDeposits_LeaveMostOfTheWorldSurfaceExposed()
+        {
+            var settings = LoadSettings();
+            var deposited = 0;
+            var total = 0;
+            for (var z = -180; z <= 180; z += 3)
+            {
+                for (var x = -180; x <= 180; x += 3)
+                {
+                    if (TopDown3DDustDepositionPlanner.SampleBaseWeight(
+                            settings,
+                            new Vector2(x, z)) >= 0.025f)
+                    {
+                        deposited++;
+                    }
+
+                    total++;
+                }
+            }
+
+            var coverage = deposited / (float)total;
+            Assert.That(coverage, Is.GreaterThan(0.01f));
+            Assert.That(coverage, Is.LessThan(0.3f));
         }
 
         [Test]
@@ -150,6 +232,49 @@ namespace BooterBigArm.Tests
             Assert.That(lee, Is.GreaterThan(0.4f));
             Assert.That(side, Is.LessThan(0.01f));
             Assert.That(upwind, Is.LessThan(0.01f));
+        }
+
+        [Test]
+        public void LargerFormation_BuildsAHigherLeeSidePile()
+        {
+            var settings = LoadSettings();
+            var wind = TopDown3DDustDepositionPlanner.GetPrevailingWindDirection(settings);
+            var small = new TopDown3DNaturalObjectPlacement(
+                "small-rock",
+                TopDown3DNaturalObjectLayer.Obstacle,
+                TopDown3DNaturalObjectShape.Boulder,
+                TopDown3DRockSurface.Regular,
+                0,
+                Vector3.zero,
+                Quaternion.identity,
+                Vector3.one,
+                0.4f,
+                7123,
+                1);
+            var large = new TopDown3DNaturalObjectPlacement(
+                "large-formation",
+                TopDown3DNaturalObjectLayer.Landmark,
+                TopDown3DNaturalObjectShape.Boulder,
+                TopDown3DRockSurface.Regular,
+                0,
+                Vector3.zero,
+                Quaternion.identity,
+                Vector3.one * 3f,
+                2.8f,
+                7123,
+                5);
+            var samplePosition = wind * 2f;
+            var smallPile = TopDown3DDustDepositionPlanner.SampleAt(
+                settings,
+                samplePosition,
+                new List<TopDown3DNaturalObjectPlacement> { small });
+            var largePile = TopDown3DDustDepositionPlanner.SampleAt(
+                settings,
+                samplePosition,
+                new List<TopDown3DNaturalObjectPlacement> { large });
+
+            Assert.That(largePile.Height, Is.GreaterThan(smallPile.Height * 1.45f));
+            Assert.That(largePile.ShelterWeight, Is.GreaterThan(0.4f));
         }
 
         private static TopDown3DWorldSettings LoadSettings()
