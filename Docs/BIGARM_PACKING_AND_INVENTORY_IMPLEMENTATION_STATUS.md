@@ -14,3 +14,5 @@ Implemented runtime seams:
 The no-teleport companion invariant remains unchanged. Cargo access requires BigARM's real proximity; the companion's world position remains owned above the follower.
 
 Proof boundary: the repository's `Temp/UnityLockfile` is present during this implementation slice, so Unity compiler, EditMode, scene-builder, visual, and Play Mode evidence must be collected after the editor releases the lock. The current dirty worktree also contains unrelated landscape and prototype changes; those remain outside this feature's ownership.
+
+The builder and validator integration edits are present in the working tree but intentionally remain outside the feature commits until the pre-existing dirty prototype files can be reviewed and validated as one coherent scene change.

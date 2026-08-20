@@ -45,7 +45,7 @@ namespace BooterBigArm.TopDown3D
                 return TopDown3DGatherActionResult.Rejected;
             }
 
-            destinationInventory = destinations != null ? destinations.Choose(candidate.Reward.ItemId).Inventory : inventory;
+            destinationInventory = destinations != null ? destinations.Choose(candidate.Reward.ItemId, candidate.Reward.Quantity).Inventory : inventory;
             if (destinationInventory == null || !destinationInventory.CanAdd(candidate.Reward))
             {
                 return TopDown3DGatherActionResult.InventoryFull;

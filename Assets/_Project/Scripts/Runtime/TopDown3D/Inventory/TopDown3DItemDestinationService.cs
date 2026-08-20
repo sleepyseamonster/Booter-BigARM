@@ -19,16 +19,17 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DItemDestinationService(TopDown3DInventoryState playerInventory, TopDown3DInventoryState cargo, Func<bool> cargoAccess)
         { booter = playerInventory; bigArm = cargo; bigArmAccessible = cargoAccess ?? (() => false); }
 
-        public TopDown3DItemDestination Choose(string itemId)
+        public TopDown3DItemDestination Choose(string itemId, int quantity = 1)
         {
-            if (bigArm != null && bigArmAccessible() && bigArm.Policy.Allows(bigArm.ItemCatalog.GetRequiredDefinition(itemId)))
+            if (bigArm != null && bigArmAccessible() && bigArm.Policy.Allows(bigArm.ItemCatalog.GetRequiredDefinition(itemId))
+                && bigArm.CanAdd(new TopDown3DItemAmount(itemId, quantity)))
                 return new TopDown3DItemDestination(bigArm, true);
             return new TopDown3DItemDestination(booter, false);
         }
 
         public TopDown3DTransferResult AddHarvest(string itemId, int quantity)
         {
-            var destination = Choose(itemId);
+            var destination = Choose(itemId, quantity);
             var result = destination.Inventory.TryAdd(new TopDown3DItemAmount(itemId, quantity));
             return new TopDown3DTransferResult(result.Code, result.Succeeded ? quantity : 0, result.Message);
         }
