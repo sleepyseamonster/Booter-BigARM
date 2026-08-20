@@ -28,7 +28,13 @@ namespace BooterBigArm.TopDown3D
         public bool ApplySnapshot(TopDown3DBigArmCompanionSnapshot snapshot)
         {
             if (snapshot == null || string.IsNullOrWhiteSpace(snapshot.CompanionId) || !IsFinite(snapshot.AuthoritativePosition)) return false;
-            companionId = snapshot.CompanionId; authoritativePosition = snapshot.AuthoritativePosition; task = snapshot.Task; detailSimulationLoaded = snapshot.DetailSimulationLoaded; Changed?.Invoke(); return true;
+            companionId = snapshot.CompanionId;
+            authoritativePosition = snapshot.AuthoritativePosition;
+            task = snapshot.Task;
+            detailSimulationLoaded = snapshot.DetailSimulationLoaded;
+            transform.position = authoritativePosition;
+            Changed?.Invoke();
+            return true;
         }
 
         private void Awake() { authoritativePosition = transform.position; }
