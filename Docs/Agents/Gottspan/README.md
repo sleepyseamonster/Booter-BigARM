@@ -55,6 +55,7 @@ Load the full SOP, decision log, templates, or retained handoffs only when the t
 - [`memory/DECISIONS.md`](./memory/DECISIONS.md) — durable management decisions and supersession rules.
 - [`templates/TASK_BRIEF.md`](./templates/TASK_BRIEF.md) — delegate contract.
 - [`templates/HANDOFF.md`](./templates/HANDOFF.md) — evidence-first handoff.
+- [`prompts/IMPLEMENTATION_READY_PLAN_PROMPT.md`](./prompts/IMPLEMENTATION_READY_PLAN_PROMPT.md) — reusable, planning-only prompt for evidence-backed Unity implementation plans.
 - [`tools/repo-health.sh`](./tools/repo-health.sh) — read-only structural health check.
 
 Shared project surfaces remain outside Gottspan's private folder:
