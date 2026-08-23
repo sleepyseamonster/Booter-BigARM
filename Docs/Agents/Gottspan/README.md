@@ -55,6 +55,7 @@ Load the full SOP, decision log, templates, or retained handoffs only when the t
 - [`memory/DECISIONS.md`](./memory/DECISIONS.md) — durable management decisions and supersession rules.
 - [`templates/TASK_BRIEF.md`](./templates/TASK_BRIEF.md) — delegate contract.
 - [`templates/HANDOFF.md`](./templates/HANDOFF.md) — evidence-first handoff.
+- [`prompts/README.md`](./prompts/README.md) — Gottspan-owned catalog of reusable repository prompts.
 - [`prompts/IMPLEMENTATION_READY_PLAN_PROMPT.md`](./prompts/IMPLEMENTATION_READY_PLAN_PROMPT.md) — reusable, planning-only prompt for evidence-backed Unity implementation plans.
 - [`prompts/IMPLEMENTATION_PLAN_BUILDOUT_PROMPT.md`](./prompts/IMPLEMENTATION_PLAN_BUILDOUT_PROMPT.md) — reusable, implementation-stage prompt that executes one approved plan in validated batches.
 - [`tools/repo-health.sh`](./tools/repo-health.sh) — read-only structural health check.
