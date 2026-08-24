@@ -18,6 +18,8 @@ namespace BooterBigArm.TopDown3D
             new ProfilerMarker("TopDown3D.World.BuildChunk");
         private static readonly ProfilerMarker DecorateChunkMarker =
             new ProfilerMarker("TopDown3D.World.DecorateChunk");
+        private static readonly ProfilerMarker PlanNaturalObjectsMarker =
+            new ProfilerMarker("TopDown3D.World.PlanNaturalObjects");
 
         [SerializeField] private TopDown3DWorldSettings settings;
         [SerializeField] private Transform streamingTarget;
@@ -27,6 +29,7 @@ namespace BooterBigArm.TopDown3D
         private readonly Dictionary<Vector2Int, TopDown3DGeneratedChunk> loadedChunks =
             new Dictionary<Vector2Int, TopDown3DGeneratedChunk>();
         private readonly HashSet<Vector2Int> requiredChunks = new HashSet<Vector2Int>();
+        private readonly HashSet<Vector2Int> requiredDecoratedChunks = new HashSet<Vector2Int>();
         private readonly List<Vector2Int> pendingChunks = new List<Vector2Int>();
         private readonly Queue<Vector2Int> pendingDecorations = new Queue<Vector2Int>();
         private readonly HashSet<Vector2Int> queuedDecorations = new HashSet<Vector2Int>();
@@ -35,14 +38,48 @@ namespace BooterBigArm.TopDown3D
         private int pendingChunkCursor;
         private Vector2Int currentCenterChunk = new Vector2Int(int.MinValue, int.MinValue);
         private Vector2 spawnExclusionCenter;
+        private TopDown3DWorldGenerator worldGenerator;
+        private TopDown3DFarLandscape farLandscape;
+        private TopDown3DResourceWorldState resourceWorldState;
 
         public int LoadedChunkCount => loadedChunks.Count;
         public int PendingChunkCount => PendingTerrainChunkCount;
         public int PendingTerrainChunkCount => Mathf.Max(0, pendingChunks.Count - pendingChunkCursor);
         public int PendingDecorationCount => queuedDecorations.Count;
         public int DecoratedChunkCount => decoratedChunks.Count;
+        public int TerrainRendererCount => loadedChunks.Count;
+        public int TerrainColliderCount => loadedChunks.Count;
+        public int DecorationRendererCount => SumDecorationRenderers();
+        public int DecorationColliderCount => SumDecorationColliders();
+        public int DecorationMeshCount => SumDecorationMeshes();
         public Vector2Int CurrentCenterChunk => currentCenterChunk;
         public int WorldSeed => settings != null ? settings.WorldSeed : 0;
+
+        private int EffectiveStreamingRadius => settings == null
+            ? 0
+            : Mathf.Clamp(
+                TopDown3DPlaytestPerformanceProfile.StreamingRadiusOverride > 0
+                    ? TopDown3DPlaytestPerformanceProfile.StreamingRadiusOverride
+                    : settings.StreamingRadius,
+                1,
+                settings.StreamingRadius);
+
+        private int EffectiveDecorationStreamingRadius => settings == null
+            ? 0
+            : Mathf.Clamp(
+                TopDown3DPlaytestPerformanceProfile.DecorationStreamingRadiusOverride >= 0
+                    ? TopDown3DPlaytestPerformanceProfile.DecorationStreamingRadiusOverride
+                    : settings.DecorationStreamingRadius,
+                0,
+                EffectiveStreamingRadius);
+
+        private int EffectiveChunksBuiltPerFrame => settings == null
+            ? 0
+            : Mathf.Max(
+                1,
+                TopDown3DPlaytestPerformanceProfile.ChunksBuiltPerFrameOverride > 0
+                    ? TopDown3DPlaytestPerformanceProfile.ChunksBuiltPerFrameOverride
+                    : settings.ChunksBuiltPerFrame);
 
         public void Configure(
             TopDown3DWorldSettings worldSettings,
@@ -58,14 +95,35 @@ namespace BooterBigArm.TopDown3D
 
         private void Start()
         {
+            worldGenerator = new TopDown3DWorldGenerator(settings);
+            if (settings != null && settings.ResourceCatalog != null)
+            {
+                resourceWorldState = GetComponent<TopDown3DResourceWorldState>();
+                if (resourceWorldState == null)
+                {
+                    resourceWorldState = gameObject.AddComponent<TopDown3DResourceWorldState>();
+                }
+
+                resourceWorldState.Configure(settings.ResourceGenerationVersion);
+            }
+            farLandscape = new TopDown3DFarLandscape(
+                transform,
+                settings,
+                worldGenerator,
+                groundMaterial);
             EnsureSafeStreamingTarget();
+            farLandscape.Refresh(streamingTarget != null ? streamingTarget.position : Vector3.zero, true);
             RefreshChunks(true);
         }
 
         private void Update()
         {
             RefreshChunks(false);
-            ProcessPendingChunks(settings != null ? settings.ChunksBuiltPerFrame : 0);
+            if (streamingTarget != null)
+            {
+                farLandscape?.Refresh(streamingTarget.position, false);
+            }
+            ProcessPendingChunks(EffectiveChunksBuiltPerFrame);
         }
 
         private void RefreshChunks(bool force)
@@ -77,7 +135,8 @@ namespace BooterBigArm.TopDown3D
                     return;
                 }
 
-                var center = TopDown3DHeightSampler.WorldToChunk(settings, streamingTarget.position);
+                worldGenerator ??= new TopDown3DWorldGenerator(settings);
+                var center = worldGenerator.WorldToChunk(settings, streamingTarget.position);
                 if (!force && center == currentCenterChunk)
                 {
                     return;
@@ -85,21 +144,30 @@ namespace BooterBigArm.TopDown3D
 
                 currentCenterChunk = center;
                 requiredChunks.Clear();
+                requiredDecoratedChunks.Clear();
                 pendingChunks.Clear();
                 pendingDecorations.Clear();
                 queuedDecorations.Clear();
                 pendingChunkCursor = 0;
-                for (var z = -settings.StreamingRadius; z <= settings.StreamingRadius; z++)
+                var streamingRadius = EffectiveStreamingRadius;
+                var decorationStreamingRadius = EffectiveDecorationStreamingRadius;
+                for (var z = -streamingRadius; z <= streamingRadius; z++)
                 {
-                    for (var x = -settings.StreamingRadius; x <= settings.StreamingRadius; x++)
+                    for (var x = -streamingRadius; x <= streamingRadius; x++)
                     {
                         var coordinate = new Vector2Int(center.x + x, center.y + z);
                         requiredChunks.Add(coordinate);
+                        if (ChebyshevDistance(coordinate, center) <= decorationStreamingRadius)
+                        {
+                            requiredDecoratedChunks.Add(coordinate);
+                        }
+
                         if (!loadedChunks.ContainsKey(coordinate))
                         {
                             pendingChunks.Add(coordinate);
                         }
-                        else if (!decoratedChunks.Contains(coordinate))
+                        else if (requiredDecoratedChunks.Contains(coordinate)
+                            && !decoratedChunks.Contains(coordinate))
                         {
                             EnqueueDecoration(coordinate);
                         }
@@ -109,7 +177,7 @@ namespace BooterBigArm.TopDown3D
                 pendingChunks.Sort(ComparePendingChunks);
                 if (force)
                 {
-                    var immediateRadius = Mathf.Min(settings.ImmediateLoadRadius, settings.StreamingRadius);
+                    var immediateRadius = Mathf.Min(settings.ImmediateLoadRadius, streamingRadius);
                     for (var i = pendingChunks.Count - 1; i >= 0; i--)
                     {
                         var coordinate = pendingChunks[i];
@@ -122,11 +190,14 @@ namespace BooterBigArm.TopDown3D
                         pendingChunks.RemoveAt(i);
                     }
 
-                    DecorateChunkImmediately(center);
+                    if (EffectiveDecorationStreamingRadius > 0)
+                    {
+                        DecorateChunkImmediately(center);
+                    }
                 }
 
                 unloadBuffer.Clear();
-                var unloadRadius = settings.StreamingRadius + settings.UnloadPadding;
+                var unloadRadius = streamingRadius + settings.UnloadPadding;
                 foreach (var pair in loadedChunks)
                 {
                     if (ChebyshevDistance(pair.Key, center) > unloadRadius)
@@ -144,6 +215,27 @@ namespace BooterBigArm.TopDown3D
                     }
 
                     loadedChunks.Remove(coordinate);
+                    decoratedChunks.Remove(coordinate);
+                    queuedDecorations.Remove(coordinate);
+                }
+
+                unloadBuffer.Clear();
+                foreach (var coordinate in decoratedChunks)
+                {
+                    if (!requiredDecoratedChunks.Contains(coordinate))
+                    {
+                        unloadBuffer.Add(coordinate);
+                    }
+                }
+
+                for (var i = 0; i < unloadBuffer.Count; i++)
+                {
+                    var coordinate = unloadBuffer[i];
+                    if (loadedChunks.TryGetValue(coordinate, out var chunk) && chunk != null)
+                    {
+                        chunk.ClearDecoration();
+                    }
+
                     decoratedChunks.Remove(coordinate);
                     queuedDecorations.Remove(coordinate);
                 }
@@ -214,8 +306,8 @@ namespace BooterBigArm.TopDown3D
             }
 
             var desired = new Vector2(streamingTarget.position.x, streamingTarget.position.z);
-            if (!TopDown3DHeightSampler.TryFindWalkablePosition(
-                    settings,
+            worldGenerator ??= new TopDown3DWorldGenerator(settings);
+            if (!worldGenerator.TryFindWalkablePosition(
                     desired,
                     settings.SafeSpawnSearchRadius,
                     settings.SafeSpawnSearchStep,
@@ -224,7 +316,7 @@ namespace BooterBigArm.TopDown3D
             {
                 groundPosition = new Vector3(
                     desired.x,
-                    TopDown3DHeightSampler.SampleHeight(settings, desired.x, desired.y),
+                    worldGenerator.SampleHeight(desired.x, desired.y),
                     desired.y);
                 Debug.LogWarning("No walkable safe-spawn candidate was found; using the requested terrain position.", this);
             }
@@ -261,7 +353,8 @@ namespace BooterBigArm.TopDown3D
                     0f,
                     coordinate.y * settings.ChunkSize);
 
-                var mesh = TopDown3DChunkMeshBuilder.BuildMesh(settings, coordinate);
+                worldGenerator ??= new TopDown3DWorldGenerator(settings);
+                var mesh = TopDown3DChunkMeshBuilder.BuildMesh(settings, worldGenerator, coordinate);
                 var filter = chunkObject.AddComponent<MeshFilter>();
                 filter.sharedMesh = mesh;
                 var renderer = chunkObject.AddComponent<MeshRenderer>();
@@ -274,7 +367,10 @@ namespace BooterBigArm.TopDown3D
                 var chunk = chunkObject.AddComponent<TopDown3DGeneratedChunk>();
                 chunk.Initialize(coordinate, mesh);
                 loadedChunks.Add(coordinate, chunk);
-                EnqueueDecoration(coordinate);
+                if (requiredDecoratedChunks.Contains(coordinate))
+                {
+                    EnqueueDecoration(coordinate);
+                }
             }
         }
 
@@ -295,7 +391,7 @@ namespace BooterBigArm.TopDown3D
                 var coordinate = pendingDecorations.Dequeue();
                 if (!queuedDecorations.Remove(coordinate)
                     || decoratedChunks.Contains(coordinate)
-                    || !requiredChunks.Contains(coordinate)
+                    || !requiredDecoratedChunks.Contains(coordinate)
                     || !loadedChunks.TryGetValue(coordinate, out var chunk)
                     || chunk == null)
                 {
@@ -328,14 +424,83 @@ namespace BooterBigArm.TopDown3D
         {
             using (DecorateChunkMarker.Auto())
             {
-                TopDown3DEscarpmentSurfaceDecorator.Decorate(chunk, settings, propMaterial);
-                TopDown3DNaturalObjectDecorator.Decorate(chunk, settings, propMaterial, spawnExclusionCenter);
+                TopDown3DNaturalObjectChunkPlan plan;
+                using (PlanNaturalObjectsMarker.Auto())
+                {
+                    plan = TopDown3DNaturalObjectPlanner.BuildChunkPlan(
+                        settings,
+                        worldGenerator,
+                        settings.NaturalObjectCatalog,
+                        chunk.Coordinate,
+                        spawnExclusionCenter);
+                }
+
+                TopDown3DNaturalObjectDecorator.Decorate(
+                    chunk,
+                    settings,
+                    propMaterial,
+                    plan);
+                TopDown3DResourceNodeDecorator.Decorate(
+                    chunk,
+                    settings,
+                    plan,
+                    resourceWorldState);
                 TopDown3DDustDepositionDecorator.Decorate(
                     chunk,
                     settings,
+                    worldGenerator,
                     groundMaterial,
                     spawnExclusionCenter);
+                chunk.RefreshDecorationCounts();
             }
+        }
+
+        private int SumDecorationRenderers()
+        {
+            var count = 0;
+            foreach (var chunk in loadedChunks.Values)
+            {
+                if (chunk != null)
+                {
+                    count += chunk.DecorationRendererCount;
+                }
+            }
+
+            return count;
+        }
+
+        private int SumDecorationColliders()
+        {
+            var count = 0;
+            foreach (var chunk in loadedChunks.Values)
+            {
+                if (chunk != null)
+                {
+                    count += chunk.DecorationColliderCount;
+                }
+            }
+
+            return count;
+        }
+
+        private int SumDecorationMeshes()
+        {
+            var count = 0;
+            foreach (var chunk in loadedChunks.Values)
+            {
+                if (chunk != null)
+                {
+                    count += chunk.DecorationMeshCount;
+                }
+            }
+
+            return count;
+        }
+
+        private void OnDestroy()
+        {
+            farLandscape?.Dispose();
+            farLandscape = null;
         }
     }
 }

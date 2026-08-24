@@ -5,18 +5,25 @@ namespace BooterBigArm.TopDown3D
 {
     public readonly struct TopDown3DChunkMeshData
     {
-        public TopDown3DChunkMeshData(Vector3[] vertices, int[] triangles, Vector2[] uvs, Vector3[] normals)
+        public TopDown3DChunkMeshData(
+            Vector3[] vertices,
+            int[] triangles,
+            Vector2[] uvs,
+            Vector3[] normals,
+            Color[] colors)
         {
             Vertices = vertices;
             Triangles = triangles;
             Uvs = uvs;
             Normals = normals;
+            Colors = colors;
         }
 
         public Vector3[] Vertices { get; }
         public int[] Triangles { get; }
         public Vector2[] Uvs { get; }
         public Vector3[] Normals { get; }
+        public Color[] Colors { get; }
     }
 
     public static class TopDown3DChunkMeshBuilder
@@ -26,7 +33,10 @@ namespace BooterBigArm.TopDown3D
         private static readonly ProfilerMarker BuildMeshMarker =
             new ProfilerMarker("TopDown3D.World.ApplyTerrainMesh");
 
-        public static TopDown3DChunkMeshData BuildData(TopDown3DWorldSettings settings, Vector2Int chunkCoordinate)
+        public static TopDown3DChunkMeshData BuildData(
+            TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
+            Vector2Int chunkCoordinate)
         {
             using (BuildDataMarker.Auto())
             {
@@ -35,6 +45,7 @@ namespace BooterBigArm.TopDown3D
                 var vertices = new Vector3[verticesPerAxis * verticesPerAxis];
                 var uvs = new Vector2[vertices.Length];
                 var normals = new Vector3[vertices.Length];
+                var colors = new Color[vertices.Length];
                 var triangles = new int[quads * quads * 6];
                 var step = settings.ChunkSize / quads;
                 var originX = chunkCoordinate.x * settings.ChunkSize;
@@ -49,12 +60,11 @@ namespace BooterBigArm.TopDown3D
                         var localZ = z * step;
                         var worldX = originX + localX;
                         var worldZ = originZ + localZ;
-                        vertices[index] = new Vector3(
-                            localX,
-                            TopDown3DHeightSampler.SampleHeight(settings, worldX, worldZ),
-                            localZ);
+                        var surface = generator.Sample(worldX, worldZ);
+                        vertices[index] = new Vector3(localX, surface.Height, localZ);
                         uvs[index] = new Vector2(worldX / settings.ChunkSize, worldZ / settings.ChunkSize);
-                        normals[index] = TopDown3DHeightSampler.SampleNormal(settings, worldX, worldZ, step);
+                        normals[index] = surface.Normal;
+                        colors[index] = surface.ToVertexColor();
                     }
                 }
 
@@ -74,15 +84,18 @@ namespace BooterBigArm.TopDown3D
                     }
                 }
 
-                return new TopDown3DChunkMeshData(vertices, triangles, uvs, normals);
+                return new TopDown3DChunkMeshData(vertices, triangles, uvs, normals, colors);
             }
         }
 
-        public static Mesh BuildMesh(TopDown3DWorldSettings settings, Vector2Int chunkCoordinate)
+        public static Mesh BuildMesh(
+            TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
+            Vector2Int chunkCoordinate)
         {
             using (BuildMeshMarker.Auto())
             {
-                var data = BuildData(settings, chunkCoordinate);
+                var data = BuildData(settings, generator, chunkCoordinate);
                 var mesh = new Mesh
                 {
                     name = $"TopDown3D Chunk {chunkCoordinate.x},{chunkCoordinate.y}"
@@ -91,6 +104,7 @@ namespace BooterBigArm.TopDown3D
                 mesh.SetTriangles(data.Triangles, 0, true);
                 mesh.SetUVs(0, data.Uvs);
                 mesh.SetNormals(data.Normals);
+                mesh.SetColors(data.Colors);
                 mesh.RecalculateBounds();
                 return mesh;
             }
