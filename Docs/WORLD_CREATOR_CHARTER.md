@@ -24,6 +24,7 @@ The World Creator shall produce a continuous world in which:
 - one coordinate authority supports both believable player-facing globe navigation and the actual regional input to procedural generation;
 - travel through coordinate space changes regional character without exposing implementation grids, while intentional faults, chasms, contacts, and authored boundaries may remain abrupt;
 - important navigable views, landmark approaches, reveals, and route sequences have geological cause, compositional intent, and navigational meaning;
+- significant distant landforms and landmarks that act as navigational promises are genuinely reachable through the intended route graph, or their obstruction and inaccessibility are legible, intentional parts of the world;
 - macro landforms, local formations, surface breakup, atmosphere, and later sites agree about the same place;
 - explored places can be named or marked and reconstructed without saving their entire generated geometry;
 - the player can simply walk, look, orient, and discover in a landscape that feels deliberately made;
@@ -81,6 +82,8 @@ Required coordinate outputs are landscape context. Danger, occupation, narrative
 
 Artists and designers shall author samples, shape families, rules, constraints, exclusions, relationships, composition goals, and playable beats. The generator shall adapt those ingredients to the local world plan. Completed towns, ruins, or landmarks must not simply be dropped onto unrelated terrain as isolated stamps.
 
+Sample-driven authoring is an iterative quality loop: build a representative place, identify the causal and compositional rules that make it successful, apply those rules through bounded deterministic generation, review the generated results in play, and improve the sample or rules. A sample is evidence for a grammar, not a finished patch of terrain to repeat.
+
 ### 6. Variation must be hierarchical
 
 Uniqueness must exist at every visible scale:
@@ -99,11 +102,17 @@ Regional coherence requires controlled recurrence. Strata language, rock familie
 
 Open ground, long sightlines, quiet basins, narrow reveals, and sparse intervals must be deliberately composed. Density means meaningful spatial information, not uniform object count.
 
-### 8. Traversal is a first-class output
+Density shall be conditioned by spatial purpose. Travel corridors, discovery spaces, combat grounds, landmark approaches, settlements, exposed wilderness, and deliberate rest areas require different rhythms of rock, dust, debris, ruins, formations, concealment, and openness. The absence of water and plant life does not justify empty undifferentiated ground, and visual richness does not justify filling every surface.
+
+### 8. Playable geology and traversal are first-class outputs
+
+The World Creator shall design playable geology rather than attempt a literal scientific reconstruction. Geological and historical cause establish credibility, but the resolved landscape must guide attention, reveal destinations, support deliberate movement and combat, and remain readable from the production camera. When scenic complexity and playability conflict, the system shall preserve the world fiction while giving playability priority.
 
 The landscape generator shall emit affordance data rather than force every later system to infer gameplay from render meshes. Required concepts include walkability, slope class, ledge and wall boundaries, corridor width, cover, shelter, overlook, choke, arena potential, route cost, and site-support capacity.
 
 Affordances and routes shall be evaluated against declared agent profiles. Booter-only paths, BigARM-compatible routes, separations, detours, and inaccessible spaces may all create gameplay, but they must be intentional. The macro world must retain enough stable route truth for BigARM to remain at a real world position, traverse while detailed terrain is unloaded, and physically regroup without teleporting.
+
+Player-perspective traversal and approach review outrank attractive overhead views or isolated screenshots. A landscape that works only from a development camera, one approach, or one distance has not passed composition review.
 
 ### 9. One place, multiple representations
 
@@ -139,7 +148,7 @@ No final performance claim exists until a Development Player is profiled on an a
 - nearby formations do not reuse the same dominant silhouette, member topology, orientation, scale rhythm, and material treatment together;
 - regional plans preserve characteristic motifs and material language without repeating a fixed complete layout;
 - composition evaluation detects repeated horizon profiles, overly even spacing, noisy uniform density, blocked routes, weak focal hierarchy, and implausible intersections;
-- automated novelty checks may gate candidates, but they must preserve geological and cultural coherence; fixed-camera panels and human walk-through review remain the authority for visual success.
+- automated novelty checks may gate candidates, but they must preserve geological and cultural coherence; production-camera panels across multiple approaches and distances, followed by human walk-through review, remain the authority for visual success.
 
 The generator may reuse a finite asset vocabulary. It must combine and transform that vocabulary through local causal plans deeply enough that the player perceives places, not kit pieces.
 
@@ -176,6 +185,7 @@ The foundation is successful when it can demonstrate, through the canonical prod
 - explicit traversal and site-support affordances;
 - deliberate Booter and BigARM route compatibility, including unloaded-world route truth;
 - historical integration seams through which later sites can shape and inherit their surrounding terrain;
+- navigationally significant visible destinations that are reachable, or whose obstruction is intentionally legible;
 - measurable novelty and composition checks;
 - bounded memory, generation work, and rendering cost;
 - compelling fixed-camera evidence across several seeds and coordinate transects;

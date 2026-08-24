@@ -326,8 +326,10 @@ Composition operates on bounded view cells and route approaches. It scores:
 - readable foreground/middle/horizon hierarchy;
 - at least one navigable opening;
 - focal anchor versus supporting forms;
-- density rhythm and intentional rest;
+- purpose-conditioned density rhythm and intentional rest across travel, discovery, combat, site approach, settlement, and exposed-wilderness roles;
 - occlusion and reveal sequence;
+- whether navigationally significant visible destinations have a valid route or an intentionally legible obstruction;
+- landmark and skyline readability from multiple approach directions and representation distances within the canonical perpetual-twilight lighting range;
 - repeated silhouettes/spacing;
 - route, spawn, and site clearances;
 - implausible intersections or unsupported features.
@@ -369,7 +371,7 @@ The site solver selects or fulfills a compatible reservation, adapts its layout 
 
 Planning, compilation, and Unity-object integration are separate stages:
 
-1. Request immutable plan/representation keys around the streaming target.
+1. Request immutable plan/representation keys around the streaming target, with bounded lookahead from travel direction and production-camera sightlines; this may affect readiness priority but never canonical world truth.
 2. Serve cache hits immediately.
 3. Build missing pure-data plans and mesh buffers off the main thread where Unity API restrictions allow.
 4. Cancel obsolete requests and reject results whose request token no longer matches.
@@ -381,6 +383,8 @@ Planning, compilation, and Unity-object integration are separate stages:
 Plan, cache, save, and feature keys remain in absolute coordinate space. Before Unity realization, positions are converted through the current local origin frame. An origin rebase moves temporary representations together and invalidates neither canonical data nor in-flight work keyed by absolute place.
 
 The visual density strategy is geometry where silhouette matters, shader/material detail where parallax does not, and proxies/HLOD where distance hides local structure.
+
+Far representations and merged proxies retain stable feature references and consume relevant persisted runtime deltas. A landmark, structure, wreck, or other persistent feature that changes near the player must not silently revert to its original state when viewed from a distant representation.
 
 ## 7. Planned code and data boundaries
 
@@ -658,6 +662,9 @@ Each panel includes seed, coordinate, topology version, camera transform, qualit
 | Sites can belong to terrain | Synthetic history/reservation fixtures + plan inspection | Site intent affects allowed approaches and bounded landform compilation; destruction/burial/weathering order is stable; no second terrain authority exists |
 | No obvious cookie-cutter repetition | Fingerprint report + panel covering nine seed-and-transect cases + user review | No materially similar complete macro/meso arrangement within provisional 1,500 m memory radius; protected regional motifs and deterministic relaxation events are reported |
 | Views feel composed | Scorer report + fixed-camera review | No hard violations; focal hierarchy, navigable opening, density rhythm, and negative-space shots pass user review |
+| Visible destinations preserve exploration trust | Feature/route overlay + multi-approach production-camera captures + walk-through | Every navigationally significant visible destination in the proof slice is reachable through the declared route graph, or its obstruction is intentional and readable before the player commits to the approach |
+| Density serves spatial purpose | Purpose overlay + route captures + walk-through | Travel, discovery, combat, site-approach, exposed-wilderness, and rest spaces remain visually distinct without plant life, water, uniform clutter, or undifferentiated emptiness |
+| Samples scale rules rather than stamps | Sample provenance report + generated comparison panel | Generated places trace to authored causal/compositional rules while materially varying complete layout, silhouette hierarchy, spacing rhythm, and approach sequence |
 | Streaming work is bounded | Profiler markers + stress travel | Main-thread world integration remains at or below provisional 2 ms budget except declared initialization gate; no recurring GC after warmup |
 | Rendering fits target | Development Player profile | Final threshold set in Batch 0; collect average, 1% low, CPU/GPU frame time, spikes, draw calls, triangles, memory, allocations |
 | Visual target is achieved | Production-scene captures + hands-on review | User accepts the landscape as compelling to walk through and not recognizably procedural |
@@ -737,6 +744,7 @@ The requested next action is user review, not implementation.
 Primary references that informed the architecture:
 
 - Pearl Abyss describes Crimson Desert's sample-based environment workflow, automated visual-cohesion pipeline, procedural terrain tools, biome-based placement, art control, regional identity, landscape complexity, landmark placement, and environmental storytelling: [Pearl Abyss gamescom dev announcement](https://www.pearlabyss.com/ko-KR/Board/Detail?_boardNo=15097).
+- An on-site report of Pearl Abyss's gamescom dev presentation expands those principles into playable-environment readability, purpose-conditioned density, sample-to-rule production, horizon reachability, multi-distance landmark design, anticipatory streaming, layered terrain editing, and state-aware distant proxies. This project translates those lessons into dry playable geology and does not import Pywel's vegetation, water, finite-continent assumptions, or reported scale figures: [Inven Global presentation write-up](https://www.invenglobal.com/articles/25076/if-you-can-see-it-you-should-be-able-to-go-there-the-secrets-behind-the-art-of-pearl-abyss-crimson-desert).
 - Pearl Abyss describes BlackSpace as an in-house engine built around large seamless spaces and systemic environment presentation; it is an aspiration reference, not evidence that this project should recreate its engine: [BlackSpace Engine developer archive](https://crimsondesert.pearlabyss.com/en-US/News/Notice/Detail?_boardNo=40).
 - Hydrology-driven procedural terrain research demonstrates hierarchical drainage networks as explicit terrain structure rather than noise-shaped appearance: [Large Scale Terrain Generation from Tectonic Uplift and Fluvial Erosion](https://doi.org/10.1145/2461912.2461996).
 - Procedural city research demonstrates global goals combined with local rules and road grammars: [Procedural Modeling of Cities](https://people.eecs.berkeley.edu/~sequin/CS285/PAPERS/Parish_Muller01.pdf).
