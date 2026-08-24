@@ -1,6 +1,6 @@
 # World Creator Architecture Plan
 
-Status: implementation-ready proposal awaiting user review
+Status: revised implementation-ready proposal awaiting user approval
 
 Plan date: 2026-08-23
 
@@ -25,7 +25,7 @@ This task is done when the repository contains:
 ### In scope
 
 - Current elevated top-down 3D production world path.
-- Deterministic world identity and coordinate-driven generation.
+- Deterministic world identity, a precision-safe replaceable coordinate contract, and coordinate-driven generation.
 - Terrain, canyon systems, landform features, rocks, surface response, near/mid/far representation, traversal semantics, stable identity, streaming, and persistence seams.
 - Contracts required by later ruin, dig-site, landmark, town, city, and encounter generators.
 - A staged replacement strategy that can retain proven infrastructure.
@@ -33,6 +33,7 @@ This task is done when the repository contains:
 ### Out of scope
 
 - Runtime implementation, Unity assets, scenes, settings, packages, builder execution, tests, captures, or profiler runs.
+- The final thematic globe-coordinate design, including its bounds, origin, axes, units, notation, projection, wrapping, named regions, regional map, and lore; these remain deliberately deferred to the user's dedicated design pass.
 - Final coordinate-region definitions or lore canon not yet supplied by the user.
 - Finished settlement/site generators, destructible terrain, caves as a universal system, or gameplay-density systems.
 - Visual or performance claims based solely on source inspection.
@@ -144,12 +145,13 @@ Missing production-proof categories include:
 
 - connected cross-region canyon/system topology;
 - planning-cell halo and ownership agreement;
+- precision-safe absolute coordinates, local-origin rebasing, and marked-place stability across rebases;
 - topology-version isolation from cosmetic versions;
 - saved-place reconstruction and migration behavior;
 - multi-representation feature agreement;
 - asynchronous cancellation and stale-result rejection;
-- traversal-graph connectivity and minimum-width constraints;
-- site reservations and terrain-adaptation contracts;
+- agent-profiled traversal-graph connectivity, including Booter/BigARM route and unloaded-world compatibility;
+- early site intent, causal-history reservations, and later terrain-adaptation contracts;
 - novelty/silhouette/composition metrics;
 - bounded generation time, allocation, cache, memory, and Development Player frame-time evidence;
 - fixed-camera and human walk-through acceptance.
@@ -167,11 +169,12 @@ Missing production-proof categories include:
 | Existing technology or decision | Decision | Reason and destination |
 | --- | --- | --- |
 | World seed + explicit generation versions | Keep and expand | Becomes `WorldIdentity` with separate topology, landform, material, decoration, resource, and site domains. |
-| World-coordinate deterministic sampling | Keep | Required for seams, queries, and reconstruction. Sampling consumes compiled plans rather than inventing macro geography locally. |
+| World-coordinate deterministic sampling | Keep | Required for seams, queries, and reconstruction. Sampling consumes compiled plans from a precision-safe absolute address rather than inventing macro geography locally. |
+| Current Unity `float` XZ as the effective absolute address | Replace before long-range proof | Add a replaceable coordinate model and precision-safe absolute place address; convert into a rebased local Unity frame only for nearby realization. Do not define the future thematic globe schema yet. |
 | Chunk as streaming/realization unit | Keep | Planning cells and feature ownership operate at larger scales; render chunks stay replaceable. |
 | Instance-owned generator authority | Evolve | Replace one monolithic sampler with a `WorldCreator` facade over explicit planners, plan cache, query service, and representation compiler. |
 | `TopDown3DWorldSurfaceSample` seam | Evolve | Split canonical semantic surface/volume/affordance data from renderer-specific packed channels. |
-| `TopDown3DGeologyProfile` scalar settings | Replace | Introduce authored coordinate regions, geologic province definitions, strata families, landform grammars, and composition profiles. |
+| `TopDown3DGeologyProfile` scalar settings | Replace | Introduce geologic province definitions, strata families, landform grammars, and composition profiles behind the coordinate-context interface. User-authored coordinate regions join later through the dedicated coordinate design. |
 | Layered noise macro terrain | Replace as macro author | Retain noise only for continuous fields, warp, local irregularity, selection, and materials. |
 | Sine-band drainage | Replace | Use deterministic network/graph planning with canonical cross-cell ownership and terrain-conforming canyon profiles. |
 | Elliptical sand-trap stamps | Replace | Deposits derive from basins, shelter, wind, slope, canyon history, and feature geometry. |
@@ -209,20 +212,30 @@ No existing runtime file is deleted at the start. “Replace” means migrate co
 WorldIdentity(seed + version manifest)
         |
         v
-WorldCoordinateContext (continuous authored fields)
+IWorldCoordinateModel
+        |-- future thematic globe address and regional-map lookup
+        |-- precision-safe absolute place address
+        |-- rebased local Unity frame
+        |
+        v
+WorldCoordinateContext (authored landscape influences; final regions deferred)
         |
         v
 MacroRegionPlan (province + structural history + canonical ownership/halo)
         |
         +--> CanyonSystemPlan / RidgeSystemPlan / BasinSystemPlan / RouteSkeleton
+        +--> SiteIntentReservations (approaches, foundations, historical role, allowed influence)
         |
         v
-LandformFeaturePlans (walls, shelves, spires, outcrops, deposits, negative spaces)
+WorldHistoryPlan (geology, construction/occupation, destruction, burial/weathering, present state)
+        |
+        v
+ResolvedLandformFeaturePlans (walls, shelves, spires, outcrops, deposits, negative spaces)
         |
         v
 Composition + Constraint Solver
-        |-- connectivity / clearance / site reservations
-        |-- silhouette novelty / density rhythm / view goals
+        |-- agent-profiled connectivity / clearance / site reservations
+        |-- silhouette novelty / regional motifs / density rhythm / view goals
         |
         v
 WorldQueryService
@@ -233,7 +246,7 @@ Representation Compiler + Cache
         |-- near render/collision
         |-- mid HLOD feature/terrain tiles
         |-- far horizon/province representation
-        +-- later site, map-record, AI, audio, and gameplay consumers
+        +-- later site realization, map-record, AI, audio, and gameplay consumers
 ```
 
 World truth is immutable generated data plus separately stored runtime deltas. Unity GameObjects are temporary representations.
@@ -244,18 +257,21 @@ Scale names define responsibilities, not visible grid borders. Exact sizes are p
 
 | Scale | Provisional span | Owns |
 | --- | ---: | --- |
-| Coordinate field | continuous | authored regional influences and transitions |
+| Coordinate model | user-defined later | thematic globe address, absolute place identity, regional-map lookup, and local-frame conversion |
+| Coordinate influence field | continuous or intentionally bounded | authored regional landscape influences and transitions |
 | Province cell | 2,304 m | geologic family, elevation regime, dominant structural direction, history parameters |
 | System-planning cell | 576 m | canyon/ridge/basin/route graphs, feature reservations, cross-cell ports |
 | Landform cell | 144 m | walls, shelves, outcrops, spires, local negative space, composition candidates |
 | Near realization chunk | current 18 m baseline | high-resolution ground mesh, collision, close features, gameplay representations |
 | Material/detail domain | continuous / sub-metre | surface response, decals, shader microdetail, dust, fractures |
 
-These powers-of-two relationships align with the existing 18 m chunk and current 288–1,152 m regional benchmark while creating explicit planning layers. They are proposed defaults, not canon.
+These powers-of-two planning relationships align with the existing 18 m chunk and current 288–1,152 m regional benchmark while creating explicit planning layers. They are proposed technical defaults, not thematic coordinates or canon. Planning cells shall never define the future globe notation, regional borders, or map bounds.
 
 ### 6.3 Coordinate context
 
-`WorldCoordinateContext` samples continuous fields from authored coordinate-region definitions. Each definition supplies influence shapes/falloffs and parameter ranges; overlapping influences blend or resolve by declared rules. Example outputs:
+`IWorldCoordinateModel` is the sole seam between thematic navigation, precision-safe absolute place identity, the user's future regional map, and rebased Unity-local coordinates. The initial foundation implements and tests this seam without deciding the final globe representation. Exact bounds, projection, notation, wrapping, units, and region definitions remain user-owned future inputs.
+
+`WorldCoordinateContext` samples landscape influences through that interface. A future coordinate-region definition may supply shapes, intentional boundaries, falloffs, parameter ranges, and resolution rules. Overlapping influences may blend; declared faults, contacts, chasms, or constructed boundaries may change abruptly without exposing cache/planning grids. Example landscape outputs include:
 
 - province family weights;
 - base elevation and relief regime;
@@ -263,10 +279,11 @@ These powers-of-two relationships align with the existing 18 m chunk and current
 - canyon-network density, branching, depth, width, and age;
 - strata family, hardness, folding, fracture, and color tendencies;
 - weathering, sediment, prevailing wind, and exposure;
-- danger/history/occupation potential for later systems;
 - landmark cadence and visual-density targets.
 
-Grid cells only index/caches results. Coordinate character is continuous.
+Danger, occupation, narrative history, and other gameplay meanings are separate optional overlays until the user explicitly assigns them to the coordinate design.
+
+Grid cells only index or cache results. They are not player-facing coordinates and cannot create accidental regional borders.
 
 ### 6.4 Macro planning and seams
 
@@ -279,6 +296,8 @@ Each planning cell is built with a deterministic halo. Cross-boundary systems us
 5. Tests build cells in different orders and assert byte-equivalent plans.
 
 No neighbor runtime load is required merely to know a boundary. A plan may compute its bounded halo or load a deterministic cached neighbor plan.
+
+All plan keys and feature identities use the precision-safe absolute address. Streaming targets and Unity objects use a local origin frame. Rebasing that frame cannot change plan hashes, feature IDs, saved-place records, or query results at an absolute place.
 
 ### 6.5 Canyon systems
 
@@ -294,13 +313,13 @@ The canyon-form compiler converts graph segments into terrain operations:
 - route and crossing opportunities;
 - reserved negative spaces for future sites and encounters.
 
-This is an abstract geologic grammar, not a literal real-time fluid simulation. Expensive erosion may be an editor evaluation tool, never the runtime prerequisite for loading a chunk.
+This is a dry abstract geologic grammar, not a literal real-time fluid simulation or a present-day river system. Network terminology may represent fossil drainage, ancient erosion, tectonic channels, wind-driven deposition, or another canon-compatible cause. Expensive erosion may be an editor evaluation tool, never the runtime prerequisite for loading a chunk.
 
 ### 6.6 Landform grammar and perceptual novelty
 
 Every feature plan records genealogy: which province/system/segment caused it, which strata it exposes, which forces shaped it, which route/site role it supports, and its stable parent feature.
 
-Candidate selection uses a bounded novelty index containing compact fingerprints rather than remembered geometry. Fingerprints include horizon profile, footprint/aspect, height rhythm, branching topology, dominant orientation, member count/tier pattern, material distribution, and spatial relation to nearby features. The solver rejects candidates that are too similar inside a configurable memory radius and relaxes deterministically if constraints become impossible.
+Candidate selection uses a bounded novelty index containing compact fingerprints rather than remembered geometry. Fingerprints include horizon profile, footprint/aspect, height rhythm, branching topology, dominant orientation, member count/tier pattern, material distribution, and spatial relation to nearby features. The solver rejects candidates whose complete arrangement is too similar inside a configurable memory radius and relaxes deterministically if constraints become impossible. Regional motif tags protect coherent strata, erosion, rock, and construction vocabulary from being mistaken for unwanted repetition.
 
 Composition operates on bounded view cells and route approaches. It scores:
 
@@ -321,14 +340,20 @@ Canonical queries are split:
 
 - `SurfaceSample`: height(s), normal, strata/material semantics, exposure, weathering, deposit, wind, feature IDs.
 - `VolumeSample`: solid/empty classification and nearest feature/feature-volume distance for bounded non-heightfield forms.
-- `AffordanceSample`: walkability, cost, corridor, ledge, wall, cover, shelter, overlook, choke, arena potential, site support, and semantic tags.
+- `AffordanceSample`: agent-profiled walkability, cost, corridor, ledge, wall, cover, shelter, overlook, choke, arena potential, site support, and semantic tags.
 - `FeatureQuery`: stable feature plan, genealogy, bounds, representation tier, reservations, and persistence domain.
 
 Render packing, collider meshes, nav data, AI queries, and later generator inputs are adapters over these services.
 
-### 6.8 Later site generators
+### 6.8 Site intent, world history, and later realization
 
-Ruin, dig-site, landmark, outpost, town, and city generators enter after landscape planning. A site recipe declares:
+Ruin, dig-site, landmark, outpost, town, and city systems participate in three bounded phases so they never become pasted-on decorations or competing terrain authorities:
+
+1. **Intent and reservation:** a macro planner declares candidate purpose, required approaches, footprint ranges, sightlines, route relationships, historical phase, and permitted terrain influence before final landform compilation.
+2. **Causal integration:** the shared `WorldHistoryPlan` resolves geology, construction or occupation, destruction, burial, weathering, deposits, and present exposure. The landscape and site inherit one history.
+3. **Realization:** a later site generator fits its grammar to the resolved reservation and issues only declared bounded terrain operations through the canonical compiler.
+
+A site recipe declares:
 
 - required and preferred affordances;
 - minimum/maximum footprint and vertical range;
@@ -338,7 +363,7 @@ Ruin, dig-site, landmark, outpost, town, and city generators enter after landsca
 - exclusion and coexistence rules;
 - stable identity/persistence domain.
 
-The site solver selects a compatible reservation, adapts its layout to landforms and routes, requests bounded terrain integration, and emits its own plan. It does not paste a completed flat prefab or directly deform loaded chunk meshes.
+The site solver selects or fulfills a compatible reservation, adapts its layout to landforms and routes, requests bounded terrain integration, and emits its own plan. It does not paste a completed flat prefab or directly deform loaded chunk meshes.
 
 ### 6.9 Streaming and performance model
 
@@ -352,6 +377,8 @@ Planning, compilation, and Unity-object integration are separate stages:
 6. Pool buffers and representation objects.
 7. Retain near collision only where gameplay needs it.
 8. Evict caches by memory budget and reproducible priority, not arbitrary destruction.
+
+Plan, cache, save, and feature keys remain in absolute coordinate space. Before Unity realization, positions are converted through the current local origin frame. An origin rebase moves temporary representations together and invalidates neither canonical data nor in-flight work keyed by absolute place.
 
 The visual density strategy is geometry where silhouette matters, shader/material detail where parallax does not, and proxies/HLOD where distance hides local structure.
 
@@ -367,12 +394,16 @@ Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/
     WorldFeatureId.cs
     WorldSeedNamespace.cs
   Coordinates/
+    IWorldCoordinateModel.cs
+    WorldCoordinateAddress.cs
+    AbsoluteWorldPosition.cs
+    LocalOriginFrame.cs
     WorldCoordinateContext.cs
-    CoordinateRegionDefinition.cs
-    CoordinateRegionCatalog.cs
   Planning/
     WorldPlanKey.cs
     MacroRegionPlan.cs
+    WorldHistoryPlan.cs
+    SiteIntentReservation.cs
     WorldPlanCache.cs
     IWorldPlanGenerator.cs
     WorldPlanningScheduler.cs
@@ -391,6 +422,7 @@ Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/
     LandscapeNoveltyIndex.cs
     LandscapeCompositionScorer.cs
   Query/
+    WorldAgentProfile.cs
     WorldSurfaceSample.cs
     WorldVolumeSample.cs
     WorldAffordanceSample.cs
@@ -418,12 +450,13 @@ Assets/_Project/Scripts/Editor/TopDown3D/WorldCreator/
   WorldCreatorAssetValidator.cs
 
 Assets/_Project/Settings/WorldCreator/
-  CoordinateRegionCatalog.asset
   GeologicProvinceCatalog.asset
   StrataFamilyCatalog.asset
   LandformGrammarCatalog.asset
   WorldCreatorPerformanceProfile.asset
 ```
+
+The final thematic coordinate model, coordinate-region definitions, regional map, and related assets are intentionally absent from this initial file plan. They will be named and added during the user's dedicated coordinate-system design rather than guessed during landscape-foundation implementation. A disposable test adapter may exercise the interface in tests and proof tooling but shall not become production canon or a fallback authority.
 
 All production runtime types remain inside `BooterBigArm.TopDown3D.Runtime` unless profiling or dependency pressure justifies a separate asmdef. Pure planner types should minimize `UnityEngine.Object` dependencies so they can be tested and scheduled independently.
 
@@ -436,6 +469,7 @@ Each batch is a separately reviewable change. The production scene remains Unity
 Scope:
 
 - User approves charter, architecture D, slice, and provisional proof assumptions.
+- Confirm that the final thematic globe-coordinate system and regional map remain deferred to a later user-authored design; foundation work may implement only their replaceable interface and non-canon proof fixtures.
 - Resolve or isolate the current dirty landscape lane before implementation.
 - Record exact branch/SHA, Unity lock, package/editor versions, serialized production settings, and current visual/performance evidence.
 - Decide the target mid-range hardware definition.
@@ -444,26 +478,28 @@ Proof: clean task ownership, documented authority, baseline captures/profile or 
 
 Stop: any overlapping unowned work or unresolved product decision.
 
-### Batch 1 — Identity and pure plan contracts
+### Batch 1 — Identity, absolute coordinates, and pure plan contracts
 
 Scope:
 
 - Add world/version manifest, namespaced seeds, stable feature IDs, plan keys, immutable plan records, ownership/halo rules, and cache interface.
+- Add `IWorldCoordinateModel`, precision-safe absolute place/address types, and local-origin-frame conversion without defining the final globe schema.
 - Add saved-place record schema and migration rejection rules without yet changing the live save file.
 
-Proof: pure deterministic tests, different build-order equivalence, ID uniqueness, namespace isolation, serialization round trip.
+Proof: pure deterministic tests, different build-order equivalence, ID uniqueness, namespace isolation, serialization round trip, far-address precision, and identical plan/feature/save identity across local-origin rebases.
 
 Rollback: remove unused new assembly files; no production consumer changed.
 
-### Batch 2 — Coordinate context and authored geology data
+### Batch 2 — Proof landscape context and authored geology data
 
 Scope:
 
-- Add coordinate-region blending and province/strata catalogs.
+- Add a disposable non-canon coordinate test adapter and the landscape-context query seam consumed by province/strata planning.
+- Do not add production coordinate-region definitions, thematic notation, globe bounds, projection, named regions, or a regional-map catalog.
 - Provide debug sampling and plan inspection.
-- Configure one provisional proof region without encoding unapproved global lore.
+- Configure one provisional geology proof influence without encoding an unapproved coordinate region or global lore.
 
-Proof: continuity across influence boundaries, deterministic samples, bounded ranges, asset validation, coordinate transect debug output.
+Proof: deterministic absolute-address samples, gradual test influence continuity, intentional test discontinuity support, bounded ranges, asset validation, coordinate-interface substitution, and transect debug output clearly labeled non-canon.
 
 Rollback: new data remains unused by production.
 
@@ -471,10 +507,11 @@ Rollback: new data remains unused by production.
 
 Scope:
 
-- Generate stable cross-cell canyon graphs, ports, hierarchy, widths/depths, shelves, and traversal reservations.
+- Generate stable cross-cell canyon graphs, ports, hierarchy, widths/depths, shelves, and agent-profiled traversal reservations.
+- Provide a stable macro route abstraction that can distinguish Booter-only and BigARM-compatible travel while detailed terrain is absent.
 - No render cutover.
 
-Proof: connectivity, acyclic/declared-cycle rules, boundary agreement, minimum widths, build-order equivalence, bounded planning cost, visual graph overlays.
+Proof: connectivity, acyclic/declared-cycle rules, boundary agreement, agent-profile clearances, intentional access differences, BigARM-compatible regroup route, build-order equivalence, bounded planning cost, and visual graph overlays.
 
 Stop: graph seams, unbounded neighbor dependency, or no deterministic ownership.
 
@@ -483,10 +520,11 @@ Stop: graph seams, unbounded neighbor dependency, or no deterministic ownership.
 Scope:
 
 - Compile canyon/province plans into broad heightfield ground plus bounded landform-feature requests.
-- Implement semantic surface/volume/affordance queries.
+- Implement semantic surface/volume/agent-profiled-affordance queries.
+- Add synthetic site-intent reservations and `WorldHistoryPlan` fixtures proving that approaches, construction/destruction phases, burial/weathering, and bounded terrain operations can affect compilation without implementing a finished site generator.
 - Keep old production terrain active.
 
-Proof: query determinism, seam equality, finite/range tests, route connectivity, feature identity, sampled comparison panels generated through an isolated editor tool.
+Proof: query determinism, seam equality, finite/range tests, Booter/BigARM route connectivity, feature identity, site-history ordering, reservation influence, bounded terrain-operation validation, and sampled comparison panels generated through an isolated editor tool.
 
 Rollback: dormant adapter removed without production impact.
 
@@ -495,9 +533,10 @@ Rollback: dormant adapter removed without production impact.
 Scope:
 
 - Add pooled near buffers, asynchronous/cancellable data builds, main-thread integration queue, cache budgets, mid/far tiles/proxies, and instrumentation.
+- Convert absolute planned positions through a replaceable local origin frame and support safe representation rebasing.
 - Prove with non-production fixtures before scene cutover.
 
-Proof: cancellation/stale rejection, bounded allocations after warmup, cache hit/eviction, near/mid/far identity agreement, no colliders outside near policy, stress transect.
+Proof: cancellation/stale rejection, bounded allocations after warmup, cache hit/eviction, near/mid/far identity agreement, local-origin rebase stability, in-flight absolute-key stability, no colliders outside near policy, and stress transect.
 
 Stop: main-thread spikes or memory growth exceed provisional gates.
 
@@ -540,10 +579,10 @@ Rollback: retain adapter to current shader packing.
 
 Scope:
 
-- Add world manifest, saved-place coordinates/name/feature references, generalized deltas, and resource snapshot to game save.
+- Add world manifest, precision-safe absolute saved-place address, optional future thematic-coordinate payload seam, player-supplied name, feature references, generalized deltas, and resource snapshot to game save.
 - Define load rejection/migration for incompatible topology versions.
 
-Proof: save/reload/cross-chunk travel, depleted resources, saved-place reconstruction, wrong-version atomic rejection, migration fixtures, no whole-chunk geometry in save.
+Proof: save/reload/cross-chunk travel, depleted resources, saved-place reconstruction across local-origin rebases, coordinate-model substitution fixtures, wrong-version atomic rejection, migration fixtures, and no whole-chunk geometry in save.
 
 Stop: a marked place silently resolves to different topology.
 
@@ -563,14 +602,14 @@ Stop: any proof gap remains labeled; do not claim completion or broaden into sit
 
 ### Slice name
 
-**The Fractured Transect** — a production-path proof of one coordinate/geology family, not a throwaway demo and not final lore canon.
+**The Fractured Transect** — a production-path proof of one geology family through a disposable coordinate-interface adapter, not a throwaway demo and not final coordinate or lore canon.
 
 ### World extent and exploration path
 
 - Deterministic architecture remains unbounded.
-- Proof envelope: 4,608 m by 4,608 m (two provisional province cells per axis).
+- Technical proof envelope: 4,608 m by 4,608 m (two provisional province cells per axis). This is a test extent, not a globe bound or regional-map decision.
 - Required walked/profiled transect: at least 3,000 continuous metres across province and system-cell boundaries.
-- Evidence set: three seeds and three coordinate transects per seed, including one diagonal boundary crossing.
+- Evidence set: three seeds and three absolute-address test transects per seed, including one diagonal planning-cell crossing and one local-origin rebase.
 - Production camera and character scale remain unchanged unless the user separately approves a gameplay/camera change.
 
 ### Required generated content
@@ -580,13 +619,14 @@ Stop: any proof gap remains labeled; do not claim completion or broaden into sit
 - one bounded vertical/overhang-capable feature family proving the hybrid path;
 - geology-driven rock formations with hierarchical silhouette and novelty constraints;
 - explicit deposits, talus, strata/material response, wind exposure, and shelter;
-- a connected primary traversal route plus optional overlooks, chokepoints, crossings, cover, and future-site reservations;
+- a connected primary traversal route, an intentional Booter/BigARM access distinction, a BigARM-compatible regroup route, plus optional overlooks, chokepoints, crossings, cover, and future-site reservations;
+- a synthetic site-intent/history fixture proving that a later ruin, dig site, or settlement can shape approaches, terrain, destruction, burial, and weathering without implementing or canonizing that site;
 - stable near/mid/far representations and feature IDs;
 - debug overlays for plans, ownership, routes, affordances, fingerprints, and budgets.
 
 ### Deliberately absent
 
-No finished ruin, dig site, town, city, quest, encounter population, vegetation, world-map UI, or global region catalog. Later systems receive reservations and affordances only.
+No finished ruin, dig site, town, city, quest, encounter population, vegetation, world-map UI, final thematic coordinate system, globe bounds/projection/notation, user regional map, or production coordinate-region catalog. Later systems receive coordinate, history, reservation, and affordance contracts only.
 
 ### Visual composition shots
 
@@ -597,7 +637,7 @@ For every seed, capture the same declared camera recipe at:
 3. overlook with near/mid/far agreement;
 4. quiet negative-space basin;
 5. rock/landform silhouette cluster;
-6. coordinate transition;
+6. non-canon proof-influence transition and intentional-boundary comparison;
 7. streaming seam/representation transition stress point.
 
 Each panel includes seed, coordinate, topology version, camera transform, quality preset, build identifier, and debug-overlay companion where useful.
@@ -606,14 +646,17 @@ Each panel includes seed, coordinate, topology version, camera transform, qualit
 
 | Claim | Required evidence | Provisional gate |
 | --- | --- | --- |
-| Same world reconstructs | Pure tests + serialized plan hashes + unload/reload | Identical seed/version/coordinates produce identical canonical plans and IDs independent of request order |
+| Same world reconstructs | Pure tests + serialized plan hashes + unload/reload | Identical seed/version/absolute address produces identical canonical plans and IDs independent of request order |
+| Coordinate design remains open | Interface-substitution tests + source ownership scan | A disposable proof adapter can be replaced without changing planner, streaming, persistence, or representation ownership; no final globe schema or regional map is encoded |
+| Absolute place survives rebasing | Far-address fixtures + local-origin shifts + save/reload | Plan hashes, feature IDs, query results, and saved-place addresses remain identical while local Unity positions rebase safely |
 | Canyon systems cross cells | Graph tests + overlays + seam samples | Boundary ports/segments and compiled surfaces agree exactly; required route remains connected |
-| Coordinate changes are continuous | Transect sampling + captures | No unintentional parameter or visual discontinuity at index cells or region influence boundaries |
+| Regional influence behavior is deliberate | Test transect sampling + captures | No accidental discontinuity at planning/cache cells; gradual proof influences remain continuous and declared hard boundaries remain intact |
 | Chunks do not author geology | Source ownership scan + plan inspector | All macro/system features trace to plans whose scale exceeds realization chunks |
 | Saved locations remain real | Save/load/migration fixtures | Saved seed, world manifest, coordinate, and stable feature references reconstruct or fail/migrate explicitly |
 | Near/mid/far show one place | Feature-ID overlay + fixed captures | Same stable features persist with bounded transition error and no visible hole, overlap, or identity swap |
-| Traversal remains playable | Affordance/graph tests + user walk-through | Primary transect connected; configured clearances/slopes respected; no required route blocked by decoration |
-| No obvious cookie-cutter repetition | Fingerprint report + panel covering nine seed-and-transect cases + user review | No materially similar macro/meso fingerprint within provisional 1,500 m memory radius; deterministic relaxation events reported |
+| Traversal remains playable | Agent-profile affordance/graph tests + user walk-through | Primary Booter transect and BigARM regroup route remain connected; intentional access differences are reported; no required route is blocked by decoration |
+| Sites can belong to terrain | Synthetic history/reservation fixtures + plan inspection | Site intent affects allowed approaches and bounded landform compilation; destruction/burial/weathering order is stable; no second terrain authority exists |
+| No obvious cookie-cutter repetition | Fingerprint report + panel covering nine seed-and-transect cases + user review | No materially similar complete macro/meso arrangement within provisional 1,500 m memory radius; protected regional motifs and deterministic relaxation events are reported |
 | Views feel composed | Scorer report + fixed-camera review | No hard violations; focal hierarchy, navigable opening, density rhythm, and negative-space shots pass user review |
 | Streaming work is bounded | Profiler markers + stress travel | Main-thread world integration remains at or below provisional 2 ms budget except declared initialization gate; no recurring GC after warmup |
 | Rendering fits target | Development Player profile | Final threshold set in Batch 0; collect average, 1% low, CPU/GPU frame time, spikes, draw calls, triangles, memory, allocations |
@@ -644,15 +687,20 @@ Quality scalability must reduce representation cost without changing canonical f
 | Risk | Impact | Mitigation / gate |
 | --- | --- | --- |
 | Architecture grows into an engine rewrite | Delivery stalls | Keep production assembly, Unity/URP path, and bounded slice; add only interfaces needed by the slice |
+| Foundation code guesses the future coordinate system | User's thematic and regional design becomes constrained | Implement only `IWorldCoordinateModel`, absolute/local address separation, and disposable test adapters; forbid production globe/region assets until the user's dedicated design |
+| Large coordinates lose Unity precision | Terrain, physics, saves, and marked places drift | Precision-safe absolute keys, rebased local frames, far-address fixtures, rebase tests, and no float-derived persistent identity |
 | Cross-cell plans become recursively global | Infinite work/deadlocks | Canonical boundary keys, fixed halos, owner rules, bounded graph spans, deterministic termination tests |
 | Hybrid features create terrain/collider seams | Traversal and visual failure | One query authority, signed operations, transition skirts/morphs, exact seam fixtures, near collision proof |
 | Async work uses Unity APIs or stale results | Crashes/corruption | Pure data jobs, immutable results, request tokens, cancellation/stale-result tests, main-thread integration only |
 | Novelty solver becomes expensive or unsatisfiable | Hitches or nondeterminism | Compact fingerprints, bounded neighborhood/candidates, deterministic relaxation ladder, report every relaxation |
+| Novelty scoring erases coherent regional motifs | Varied but unbelievable landscapes | Protect region/strata/culture motif tags and reject repeated complete arrangements rather than recurring vocabulary |
 | Procedural scoring produces technically varied ugliness | Missed visual target | Authored grammars/samples, fixed-camera panels, user review remains final visual authority |
 | Finite asset library remains recognizable | Cookie-cutter silhouettes | Genealogy-driven composition, mesh/material variation where valuable, novelty fingerprints, expand assets only from evidence |
 | Version bumps invalidate saved places | Player trust loss | Version manifest, topology pin/migration policy, explicit rejection, stable records, fixtures before cutover |
 | Settings become another monolithic tuning asset | Fragile iteration | Split data ownership and validators; expose derived debug context rather than hundreds of unrelated sliders |
 | Far landscape diverges from gameplay world | False landmarks/navigation | Shared plans and stable feature IDs; representation-error tests and overlay captures |
+| Terrain and future sites still behave as a one-way pipeline | Ruins, towns, and dig sites look pasted in | Early intent reservations, shared causal-history plans, declared terrain operations, and synthetic integration fixtures before any site generator |
+| BigARM cannot traverse generated or unloaded terrain | Core companion contract breaks or requires teleport recovery | Agent-profiled affordances, stable macro route truth, intentional access differences, and regroup-route proof |
 | Performance target stays undefined | Unprovable “mid computer” claim | Batch 0 requires hardware/resolution/quality decision; all earlier budgets remain provisional |
 | Current dirty landscape lane is overwritten | Loss of user work | Re-audit ownership at implementation start; isolate/stage only task files; atomic cutover after integration |
 | Canon drift from Arc & Dust reference | Wrong world encoded | Lorekeeper reference-only boundary; proposals require user acceptance into game docs |
@@ -664,18 +712,18 @@ The architecture can begin with defaults, but the following decisions remain use
 1. Approve or revise the charter's definition of perceptual uniqueness.
 2. Approve hybrid architecture D and bounded volumetric features instead of universal voxels.
 3. Approve **The Fractured Transect** as the first slice and its proposed proof envelope.
-4. Choose the first visual geology/coordinate family; the plan will otherwise use a non-canon fractured red-canyon proof profile.
+4. Choose the first visual geology family or accept the non-canon fractured red-canyon proof profile. The final thematic globe coordinate system and regional map are explicitly deferred and will not be inferred from this choice.
 5. Define “mid-range computer,” target resolution, quality preset, and desired frame-rate threshold.
 6. Decide how old saved worlds behave after topology-version changes: pin, migrate when supported, or declare incompatible during development.
 
-None blocks review of this plan. All must be resolved no later than the implementation batch that consumes the decision.
+The coordinate system's bounds, notation, projection, wrapping, regional map, and lore are not decisions required for this foundation approval. They remain reserved for the user's later dedicated design. The other decisions must be resolved no later than the implementation batch that consumes them.
 
 ## 14. Review checkpoint
 
 At this checkpoint:
 
 - the current generator and documentation have been audited read-only;
-- the World Creator Charter is drafted;
+- the World Creator Charter is revised to preserve the user's future coordinate-system authority and close the audit findings;
 - architecture alternatives are compared and the hybrid causal compiler is selected;
 - keep/evolve/replace decisions are explicit;
 - the first production slice and proof matrix are defined;
