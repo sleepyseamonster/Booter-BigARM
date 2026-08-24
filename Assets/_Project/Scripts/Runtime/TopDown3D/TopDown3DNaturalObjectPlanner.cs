@@ -156,7 +156,7 @@ namespace BooterBigArm.TopDown3D
                 3.2f,
                 true,
                 placements);
-            var formations = TopDown3DRockFormationPlanner.BuildPhysicalFormations(
+            var formations = TopDown3DGeologicalRockAdapter.BuildPhysicalFormations(
                 settings,
                 generator,
                 catalog,

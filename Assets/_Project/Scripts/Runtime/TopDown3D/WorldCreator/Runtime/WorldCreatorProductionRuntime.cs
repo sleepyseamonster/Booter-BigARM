@@ -41,6 +41,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public WorldCreatorProductionProfile Profile => Authority.Profile;
         public WorldIdentity Identity => Authority.Identity;
         public IWorldCoordinateModel CoordinateModel => Authority.CoordinateModel;
+        public IWorldCoordinateContextProvider ContextProvider => Authority.ContextProvider;
         public IWorldQueryService Query => Authority.Query;
         public LocalOriginFrame CurrentFrame => scheduler.CurrentFrame;
         public WorldFeatureId SourceFingerprint => Authority.SourceFingerprint;
@@ -205,14 +206,14 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             Profile = WorldCreatorProductionProfile.LoadRequired();
             Identity = new WorldIdentity(worldSeed, Profile.CreateVersionManifest());
             CoordinateModel = new NonCanonTechnicalCoordinateModel();
-            var contextProvider = new WorldCoordinateContextSampler(
+            ContextProvider = new WorldCoordinateContextSampler(
                 Profile.ProvinceCatalog,
                 Profile.StrataCatalog,
                 Profile.InfluenceProfile);
             Query = new UnboundedHybridWorldQueryService(
                 Identity,
                 CoordinateModel,
-                contextProvider,
+                ContextProvider,
                 CanyonPlannerProfile.CreateNonCanonTechnicalProofProfile(),
                 Profile.MaximumCanyonPlans,
                 Profile.MaximumTerrainWindows);
@@ -227,6 +228,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public WorldCreatorProductionProfile Profile { get; }
         public WorldIdentity Identity { get; }
         public IWorldCoordinateModel CoordinateModel { get; }
+        public IWorldCoordinateContextProvider ContextProvider { get; }
         public UnboundedHybridWorldQueryService Query { get; }
         public WorldFeatureId SourceFingerprint { get; }
 

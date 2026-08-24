@@ -39,6 +39,7 @@ namespace BooterBigArm.TopDown3D
         public int GenerationVersion => authority.Identity.Versions.Topology;
         public float RegionSize => checked((float)CanyonPlannerProfile.CreateNonCanonTechnicalProofProfile().CellSpan);
         public IWorldQueryService QueryService => authority.Query;
+        internal WorldCreatorProductionAuthority Authority => authority;
 
         public TopDown3DWorldSurfaceSample Sample(float worldX, float worldZ)
         {

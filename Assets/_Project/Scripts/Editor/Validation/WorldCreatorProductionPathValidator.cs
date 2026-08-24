@@ -24,6 +24,10 @@ namespace BooterBigArm.Editor.WorldCreator
             "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DProceduralWorld.cs";
         private const string FarSourcePath =
             "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DFarLandscape.cs";
+        private const string NaturalPlannerSourcePath =
+            "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DNaturalObjectPlanner.cs";
+        private const string GeologicalPlannerSourcePath =
+            "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Geology/WorldRockFormationPlanner.cs";
 
         [MenuItem("Booter & BigARM/Validation/Validate World Creator Production Path")]
         public static void ValidateMenu()
@@ -81,7 +85,10 @@ namespace BooterBigArm.Editor.WorldCreator
             var generator = ReadSource(GeneratorSourcePath, errors);
             var world = ReadSource(WorldSourcePath, errors);
             var far = ReadSource(FarSourcePath, errors);
-            if (generator == null || world == null || far == null)
+            var naturalPlanner = ReadSource(NaturalPlannerSourcePath, errors);
+            var geologicalPlanner = ReadSource(GeologicalPlannerSourcePath, errors);
+            if (generator == null || world == null || far == null
+                || naturalPlanner == null || geologicalPlanner == null)
             {
                 return;
             }
@@ -109,6 +116,20 @@ namespace BooterBigArm.Editor.WorldCreator
                 || far.Contains("generator.Sample(", StringComparison.Ordinal))
             {
                 errors.Add("Middle or far terrain bypasses the canonical representation scheduler.");
+            }
+
+            if (!naturalPlanner.Contains(
+                    "TopDown3DGeologicalRockAdapter.BuildPhysicalFormations",
+                    StringComparison.Ordinal)
+                || naturalPlanner.Contains(
+                    "TopDown3DRockFormationPlanner.BuildPhysicalFormations",
+                    StringComparison.Ordinal)
+                || !geologicalPlanner.Contains("WorldRockFormationPlanner", StringComparison.Ordinal)
+                || !geologicalPlanner.Contains("WorldVersionDomain.Decoration", StringComparison.Ordinal)
+                || !geologicalPlanner.Contains("NoveltyFingerprint", StringComparison.Ordinal)
+                || !geologicalPlanner.Contains("StructuralDirection", StringComparison.Ordinal))
+            {
+                errors.Add("Physical rocks are not exclusively authored by the geological reservation planner.");
             }
         }
 
