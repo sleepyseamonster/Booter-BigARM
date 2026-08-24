@@ -76,10 +76,14 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             AbsoluteA = new double[vertexCount];
             AbsoluteB = new double[vertexCount];
             Height = new float[vertexCount];
+            NormalA = new float[vertexCount];
+            NormalVertical = new float[vertexCount];
+            NormalB = new float[vertexCount];
             LocalX = new float[vertexCount];
             LocalY = new float[vertexCount];
             LocalZ = new float[vertexCount];
             FeatureIds = new WorldFeatureId[vertexCount];
+            Semantics = new WorldSurfaceSemantic[vertexCount];
             Indices = new int[indexCount];
         }
 
@@ -87,19 +91,28 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public double[] AbsoluteA { get; }
         public double[] AbsoluteB { get; }
         public float[] Height { get; }
+        public float[] NormalA { get; }
+        public float[] NormalVertical { get; }
+        public float[] NormalB { get; }
         public float[] LocalX { get; }
         public float[] LocalY { get; }
         public float[] LocalZ { get; }
         public WorldFeatureId[] FeatureIds { get; }
+        public WorldSurfaceSemantic[] Semantics { get; }
         public int[] Indices { get; }
 
         public long EstimatedBytes =>
             (long)AbsoluteA.Length * sizeof(double) * 2L
-            + (long)Height.Length * sizeof(float) * 4L
+            + (long)Height.Length * sizeof(float) * 7L
             + (long)FeatureIds.Length * sizeof(ulong) * 2L
+            + (long)Semantics.Length * sizeof(ushort)
             + (long)Indices.Length * sizeof(int);
 
-        public void ClearIdentities() => Array.Clear(FeatureIds, 0, FeatureIds.Length);
+        public void ClearIdentities()
+        {
+            Array.Clear(FeatureIds, 0, FeatureIds.Length);
+            Array.Clear(Semantics, 0, Semantics.Length);
+        }
     }
 
     internal sealed class WorldRepresentationBufferLease : IDisposable

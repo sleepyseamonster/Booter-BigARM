@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BooterBigArm.TopDown3D.WorldCreator;
 using Unity.Profiling;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -5,206 +9,284 @@ using UnityEngine.Rendering;
 namespace BooterBigArm.TopDown3D
 {
     /// <summary>
-    /// Coarse, non-colliding middle and far terrain derived from the canonical world generator.
-    /// Rebuilds only when the streaming target crosses a stable regional anchor.
+    /// Streams non-colliding middle and far tiles from the same canonical representation
+    /// scheduler used by near terrain. It owns presentation objects, never geography.
     /// </summary>
     internal sealed class TopDown3DFarLandscape
     {
-        private static readonly ProfilerMarker RebuildMarker =
-            new ProfilerMarker("TopDown3D.World.RebuildFarLandscape");
+        private const int MidRadius = 3;
+        private const int FarRadius = 3;
+        private const int InnerExclusionRadius = 1;
+
+        private static readonly ProfilerMarker IntegrateMarker =
+            new ProfilerMarker("TopDown3D.World.IntegrateFarRepresentation");
 
         private readonly Transform parent;
         private readonly TopDown3DWorldSettings settings;
         private readonly TopDown3DWorldGenerator generator;
+        private readonly WorldCreatorProductionRuntime runtime;
         private readonly Material material;
-
-        private GameObject root;
-        private Vector2Int anchorCell = new Vector2Int(int.MinValue, int.MinValue);
+        private readonly HashSet<WorldRepresentationKey> required =
+            new HashSet<WorldRepresentationKey>();
+        private readonly List<WorldRepresentationKey> pending =
+            new List<WorldRepresentationKey>();
+        private readonly Dictionary<WorldRepresentationKey, Task<WorldRepresentationRequestOutcome>> requests =
+            new Dictionary<WorldRepresentationKey, Task<WorldRepresentationRequestOutcome>>();
+        private readonly Dictionary<WorldRepresentationKey, GameObject> loaded =
+            new Dictionary<WorldRepresentationKey, GameObject>();
+        private readonly List<WorldRepresentationKey> removalBuffer =
+            new List<WorldRepresentationKey>();
+        private long anchorA = long.MinValue;
+        private long anchorB = long.MinValue;
 
         internal TopDown3DFarLandscape(
             Transform parent,
             TopDown3DWorldSettings settings,
             TopDown3DWorldGenerator generator,
+            WorldCreatorProductionRuntime runtime,
             Material material)
         {
             this.parent = parent;
             this.settings = settings;
             this.generator = generator;
+            this.runtime = runtime;
             this.material = material;
         }
 
+        internal int LoadedRepresentationCount => loaded.Count;
+        internal int PendingRepresentationCount => pending.Count + requests.Count;
+
         internal void Refresh(Vector3 targetPosition, bool force)
         {
-            if (parent == null || settings == null || generator == null || material == null)
+            if (parent == null || settings == null || generator == null || runtime == null || material == null)
             {
                 return;
             }
 
-            var anchorStep = Mathf.Max(settings.ChunkSize * 4f, generator.RegionSize * 0.25f);
-            var nextCell = new Vector2Int(
-                Mathf.FloorToInt(targetPosition.x / anchorStep),
-                Mathf.FloorToInt(targetPosition.z / anchorStep));
-            if (!force && nextCell == anchorCell)
+            var absolute = generator.ToAbsolute(targetPosition.x, targetPosition.y, targetPosition.z);
+            var anchorSpan = settings.ChunkSize * 4d;
+            var nextA = checked((long)Math.Floor(absolute.HorizontalA / anchorSpan));
+            var nextB = checked((long)Math.Floor(absolute.HorizontalB / anchorSpan));
+            if (!force && nextA == anchorA && nextB == anchorB)
             {
                 return;
             }
 
-            anchorCell = nextCell;
-            var anchor = new Vector2(
-                (nextCell.x + 0.5f) * anchorStep,
-                (nextCell.y + 0.5f) * anchorStep);
-            Rebuild(anchor);
+            anchorA = nextA;
+            anchorB = nextB;
+            required.Clear();
+            pending.Clear();
+            AddTier(WorldRepresentationTier.Mid, settings.ChunkSize * 4d, MidRadius, absolute);
+            AddTier(WorldRepresentationTier.Far, settings.ChunkSize * 16d, FarRadius, absolute);
+            RemoveStaleObjects();
+            foreach (var key in required)
+            {
+                if (!loaded.ContainsKey(key) && !requests.ContainsKey(key))
+                {
+                    pending.Add(key);
+                }
+            }
+
+            pending.Sort((left, right) => left.CompareTo(right));
+        }
+
+        internal int ProcessReady(int requestBudget, int integrationBudget)
+        {
+            var requestsToStart = Mathf.Max(0, requestBudget);
+            while (requestsToStart-- > 0 && pending.Count > 0)
+            {
+                var key = pending[0];
+                pending.RemoveAt(0);
+                if (!required.Contains(key) || loaded.ContainsKey(key) || requests.ContainsKey(key))
+                {
+                    continue;
+                }
+
+                requests.Add(key, runtime.RequestAsync(key));
+            }
+
+            var integrated = 0;
+            removalBuffer.Clear();
+            foreach (var pair in requests)
+            {
+                if (integrated >= integrationBudget || !pair.Value.IsCompleted)
+                {
+                    continue;
+                }
+
+                var outcome = pair.Value.GetAwaiter().GetResult();
+                if (outcome.State == WorldRepresentationRequestState.Failed)
+                {
+                    Debug.LogError($"World Creator far representation failed: {outcome.Error}");
+                    removalBuffer.Add(pair.Key);
+                    continue;
+                }
+
+                if (!required.Contains(pair.Key))
+                {
+                    removalBuffer.Add(pair.Key);
+                    continue;
+                }
+
+                if (!runtime.TryGetIntegrated(pair.Key, out var result))
+                {
+                    continue;
+                }
+
+                using (IntegrateMarker.Auto())
+                {
+                    CreateRepresentation(result);
+                }
+
+                removalBuffer.Add(pair.Key);
+                integrated++;
+            }
+
+            for (var i = 0; i < removalBuffer.Count; i++)
+            {
+                requests.Remove(removalBuffer[i]);
+            }
+
+            return integrated;
+        }
+
+        internal void RepositionForCurrentFrame()
+        {
+            foreach (var pair in loaded)
+            {
+                if (pair.Value != null
+                    && runtime.TryToLocal(pair.Key.Minimum, out var local))
+                {
+                    pair.Value.transform.localPosition = new Vector3(local.X, local.Y, local.Z);
+                }
+            }
         }
 
         internal void Dispose()
         {
-            DestroyRoot();
-        }
-
-        private void Rebuild(Vector2 anchor)
-        {
-            using (RebuildMarker.Auto())
+            foreach (var pair in loaded)
             {
-                DestroyRoot();
-                root = new GameObject("Distant Geological Landscape");
-                root.transform.SetParent(parent, false);
-                root.transform.localPosition = new Vector3(anchor.x, 0f, anchor.y);
-
-                var nearExtent = (settings.StreamingRadius + 1f) * settings.ChunkSize;
-                CreateRing(
-                    "Middle Landscape Ring",
-                    anchor,
-                    nearExtent,
-                    360f,
-                    80);
-                CreateRing(
-                    "Far Landscape Ring",
-                    anchor,
-                    360f,
-                    576f,
-                    48);
-            }
-        }
-
-        private void CreateRing(
-            string name,
-            Vector2 anchor,
-            float innerHalfExtent,
-            float outerHalfExtent,
-            int quadsPerAxis)
-        {
-            var verticesPerAxis = quadsPerAxis + 1;
-            var vertexCount = verticesPerAxis * verticesPerAxis;
-            var vertices = new Vector3[vertexCount];
-            var normals = new Vector3[vertexCount];
-            var colors = new Color[vertexCount];
-            var uvs = new Vector2[vertexCount];
-            var step = outerHalfExtent * 2f / quadsPerAxis;
-            for (var z = 0; z < verticesPerAxis; z++)
-            {
-                for (var x = 0; x < verticesPerAxis; x++)
-                {
-                    var index = z * verticesPerAxis + x;
-                    var localX = -outerHalfExtent + x * step;
-                    var localZ = -outerHalfExtent + z * step;
-                    var worldX = anchor.x + localX;
-                    var worldZ = anchor.y + localZ;
-                    var surface = generator.Sample(worldX, worldZ);
-                    vertices[index] = new Vector3(localX, surface.Height, localZ);
-                    normals[index] = surface.Normal;
-                    colors[index] = surface.ToVertexColor();
-                    uvs[index] = new Vector2(worldX / settings.ChunkSize, worldZ / settings.ChunkSize);
-                }
+                DestroyOwnedObject(pair.Value);
             }
 
-            var triangles = new int[quadsPerAxis * quadsPerAxis * 6];
-            var triangleIndex = 0;
-            for (var z = 0; z < quadsPerAxis; z++)
+            loaded.Clear();
+            requests.Clear();
+            pending.Clear();
+            required.Clear();
+        }
+
+        private void AddTier(
+            WorldRepresentationTier tier,
+            double span,
+            int radius,
+            AbsoluteWorldPosition target)
+        {
+            var centerA = checked((long)Math.Floor(target.HorizontalA / span));
+            var centerB = checked((long)Math.Floor(target.HorizontalB / span));
+            for (var offsetB = -radius; offsetB <= radius; offsetB++)
             {
-                for (var x = 0; x < quadsPerAxis; x++)
+                for (var offsetA = -radius; offsetA <= radius; offsetA++)
                 {
-                    var centerX = -outerHalfExtent + (x + 0.5f) * step;
-                    var centerZ = -outerHalfExtent + (z + 0.5f) * step;
-                    if (Mathf.Abs(centerX) < innerHalfExtent
-                        && Mathf.Abs(centerZ) < innerHalfExtent)
+                    if (Math.Max(Math.Abs(offsetA), Math.Abs(offsetB)) <= InnerExclusionRadius)
                     {
                         continue;
                     }
 
-                    var bottomLeft = z * verticesPerAxis + x;
-                    var topLeft = bottomLeft + verticesPerAxis;
-                    triangles[triangleIndex++] = bottomLeft;
-                    triangles[triangleIndex++] = topLeft;
-                    triangles[triangleIndex++] = bottomLeft + 1;
-                    triangles[triangleIndex++] = bottomLeft + 1;
-                    triangles[triangleIndex++] = topLeft;
-                    triangles[triangleIndex++] = topLeft + 1;
+                    required.Add(runtime.CreateRepresentationKey(
+                        tier,
+                        checked(centerA + offsetA),
+                        checked(centerB + offsetB),
+                        span));
+                }
+            }
+        }
+
+        private void RemoveStaleObjects()
+        {
+            removalBuffer.Clear();
+            foreach (var pair in loaded)
+            {
+                if (!required.Contains(pair.Key))
+                {
+                    DestroyOwnedObject(pair.Value);
+                    removalBuffer.Add(pair.Key);
                 }
             }
 
-            if (triangleIndex != triangles.Length)
+            for (var i = 0; i < removalBuffer.Count; i++)
             {
-                System.Array.Resize(ref triangles, triangleIndex);
+                loaded.Remove(removalBuffer[i]);
             }
 
-            var mesh = new Mesh { name = name };
-            mesh.indexFormat = vertexCount > ushort.MaxValue ? IndexFormat.UInt32 : IndexFormat.UInt16;
-            mesh.SetVertices(vertices);
-            mesh.SetNormals(normals);
-            mesh.SetColors(colors);
-            mesh.SetUVs(0, uvs);
-            mesh.SetTriangles(triangles, 0, true);
-            mesh.RecalculateBounds();
+            removalBuffer.Clear();
+            foreach (var pair in requests)
+            {
+                if (!required.Contains(pair.Key))
+                {
+                    removalBuffer.Add(pair.Key);
+                }
+            }
+
+            for (var i = 0; i < removalBuffer.Count; i++)
+            {
+                requests.Remove(removalBuffer[i]);
+            }
+        }
+
+        private void CreateRepresentation(WorldRepresentationBuildResult result)
+        {
+            if (loaded.ContainsKey(result.Key)
+                || !runtime.TryToLocal(result.Key.Minimum, out var local))
+            {
+                return;
+            }
+
+            var name = $"World Creator {result.Key.Tier} {result.Key.TileA},{result.Key.TileB}";
+            var mesh = TopDown3DChunkMeshBuilder.BuildMesh(result, name);
             if (Application.isPlaying)
             {
                 mesh.UploadMeshData(true);
             }
 
-            var ringObject = new GameObject(name);
-            ringObject.transform.SetParent(root.transform, false);
-            ringObject.AddComponent<MeshFilter>().sharedMesh = mesh;
-            var renderer = ringObject.AddComponent<MeshRenderer>();
+            var representation = new GameObject(name);
+            representation.transform.SetParent(parent, false);
+            representation.transform.localPosition = new Vector3(local.X, local.Y, local.Z);
+            representation.AddComponent<MeshFilter>().sharedMesh = mesh;
+            var renderer = representation.AddComponent<MeshRenderer>();
             renderer.sharedMaterial = material;
             renderer.shadowCastingMode = ShadowCastingMode.Off;
             renderer.receiveShadows = true;
+            loaded.Add(result.Key, representation);
         }
 
-        private void DestroyRoot()
+        private static void DestroyOwnedObject(GameObject ownedObject)
         {
-            if (root == null)
+            if (ownedObject == null)
             {
                 return;
             }
 
-            var filters = root.GetComponentsInChildren<MeshFilter>();
-            for (var i = 0; i < filters.Length; i++)
+            var filter = ownedObject.GetComponent<MeshFilter>();
+            if (filter != null && filter.sharedMesh != null)
             {
-                var mesh = filters[i].sharedMesh;
-                if (mesh == null)
-                {
-                    continue;
-                }
-
                 if (Application.isPlaying)
                 {
-                    Object.Destroy(mesh);
+                    UnityEngine.Object.Destroy(filter.sharedMesh);
                 }
                 else
                 {
-                    Object.DestroyImmediate(mesh);
+                    UnityEngine.Object.DestroyImmediate(filter.sharedMesh);
                 }
             }
 
             if (Application.isPlaying)
             {
-                Object.Destroy(root);
+                UnityEngine.Object.Destroy(ownedObject);
             }
             else
             {
-                Object.DestroyImmediate(root);
+                UnityEngine.Object.DestroyImmediate(ownedObject);
             }
-
-            root = null;
         }
     }
 }

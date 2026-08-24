@@ -67,7 +67,11 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                         buffers.AbsoluteA[index] = absoluteA;
                         buffers.AbsoluteB[index] = absoluteB;
                         buffers.Height[index] = checked((float)sample.Position.Vertical);
+                        buffers.NormalA[index] = sample.NormalA;
+                        buffers.NormalVertical[index] = sample.NormalVertical;
+                        buffers.NormalB[index] = sample.NormalB;
                         buffers.FeatureIds[index] = sample.DominantFeatureId;
+                        buffers.Semantics[index] = sample.Semantic;
                     }
                 }
 
@@ -126,6 +130,19 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public bool IsDisposed => lease == null;
 
         public float GetHeight(int vertexIndex) => RequireBuffers().Height[vertexIndex];
+        public int GetIndex(int index) => RequireBuffers().Indices[index];
+        public WorldSurfaceSemantic GetSemantic(int vertexIndex) => RequireBuffers().Semantics[vertexIndex];
+        public void GetNormal(
+            int vertexIndex,
+            out float normalA,
+            out float normalVertical,
+            out float normalB)
+        {
+            var buffers = RequireBuffers();
+            normalA = buffers.NormalA[vertexIndex];
+            normalVertical = buffers.NormalVertical[vertexIndex];
+            normalB = buffers.NormalB[vertexIndex];
+        }
         public WorldFeatureId GetFeatureId(int vertexIndex) => RequireBuffers().FeatureIds[vertexIndex];
         public AbsoluteWorldPosition GetAbsolutePosition(int vertexIndex)
         {

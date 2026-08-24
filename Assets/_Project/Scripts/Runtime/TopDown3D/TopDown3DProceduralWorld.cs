@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using BooterBigArm.TopDown3D.WorldCreator;
 using Unity.Profiling;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -35,16 +38,25 @@ namespace BooterBigArm.TopDown3D
         private readonly HashSet<Vector2Int> queuedDecorations = new HashSet<Vector2Int>();
         private readonly HashSet<Vector2Int> decoratedChunks = new HashSet<Vector2Int>();
         private readonly List<Vector2Int> unloadBuffer = new List<Vector2Int>();
+        private readonly Dictionary<Vector2Int, TerrainRequest> terrainRequests =
+            new Dictionary<Vector2Int, TerrainRequest>();
         private int pendingChunkCursor;
         private Vector2Int currentCenterChunk = new Vector2Int(int.MinValue, int.MinValue);
         private Vector2 spawnExclusionCenter;
+        private WorldCreatorProductionRuntime worldCreatorRuntime;
         private TopDown3DWorldGenerator worldGenerator;
         private TopDown3DFarLandscape farLandscape;
         private TopDown3DResourceWorldState resourceWorldState;
+        private TopDown3DPlayerMotor suspendedMotor;
+        private Rigidbody suspendedBody;
+        private bool suspendedMotorWasEnabled;
+        private bool suspendedBodyWasKinematic;
+        private bool waitingForInitialTerrain;
 
         public int LoadedChunkCount => loadedChunks.Count;
         public int PendingChunkCount => PendingTerrainChunkCount;
-        public int PendingTerrainChunkCount => Mathf.Max(0, pendingChunks.Count - pendingChunkCursor);
+        public int PendingTerrainChunkCount => Mathf.Max(0, pendingChunks.Count - pendingChunkCursor)
+            + terrainRequests.Count;
         public int PendingDecorationCount => queuedDecorations.Count;
         public int DecoratedChunkCount => decoratedChunks.Count;
         public int TerrainRendererCount => loadedChunks.Count;
@@ -95,7 +107,8 @@ namespace BooterBigArm.TopDown3D
 
         private void Start()
         {
-            worldGenerator = new TopDown3DWorldGenerator(settings);
+            worldCreatorRuntime = WorldCreatorProductionRuntime.Create(settings != null ? settings.WorldSeed : 0);
+            worldGenerator = new TopDown3DWorldGenerator(settings, worldCreatorRuntime);
             if (settings != null && settings.ResourceCatalog != null)
             {
                 resourceWorldState = GetComponent<TopDown3DResourceWorldState>();
@@ -110,20 +123,25 @@ namespace BooterBigArm.TopDown3D
                 transform,
                 settings,
                 worldGenerator,
+                worldCreatorRuntime,
                 groundMaterial);
             EnsureSafeStreamingTarget();
+            SuspendStreamingTargetUntilInitialTerrain();
             farLandscape.Refresh(streamingTarget != null ? streamingTarget.position : Vector3.zero, true);
             RefreshChunks(true);
         }
 
         private void Update()
         {
+            TryRebaseLocalOrigin();
+            worldCreatorRuntime?.DrainIntegrationQueue(4, TimeSpan.FromMilliseconds(1d));
             RefreshChunks(false);
             if (streamingTarget != null)
             {
                 farLandscape?.Refresh(streamingTarget.position, false);
             }
             ProcessPendingChunks(EffectiveChunksBuiltPerFrame);
+            farLandscape?.ProcessReady(2, 2);
         }
 
         private void RefreshChunks(bool force)
@@ -135,7 +153,7 @@ namespace BooterBigArm.TopDown3D
                     return;
                 }
 
-                worldGenerator ??= new TopDown3DWorldGenerator(settings);
+                worldGenerator ??= new TopDown3DWorldGenerator(settings, worldCreatorRuntime);
                 var center = worldGenerator.WorldToChunk(settings, streamingTarget.position);
                 if (!force && center == currentCenterChunk)
                 {
@@ -186,7 +204,7 @@ namespace BooterBigArm.TopDown3D
                             continue;
                         }
 
-                        EnsureChunkTerrain(coordinate);
+                        RequestChunkTerrain(coordinate);
                         pendingChunks.RemoveAt(i);
                     }
 
@@ -215,6 +233,7 @@ namespace BooterBigArm.TopDown3D
                     }
 
                     loadedChunks.Remove(coordinate);
+                    terrainRequests.Remove(coordinate);
                     decoratedChunks.Remove(coordinate);
                     queuedDecorations.Remove(coordinate);
                 }
@@ -250,7 +269,7 @@ namespace BooterBigArm.TopDown3D
                 var startedAt = Time.realtimeSinceStartupAsDouble;
                 for (var i = 0; i < count; i++)
                 {
-                    if (!TryProcessDecoration())
+                    if (!TryIntegrateRequestedTerrain() && !TryProcessDecoration())
                     {
                         if (pendingChunkCursor >= pendingChunks.Count)
                         {
@@ -260,7 +279,7 @@ namespace BooterBigArm.TopDown3D
                         var coordinate = pendingChunks[pendingChunkCursor++];
                         if (requiredChunks.Contains(coordinate))
                         {
-                            EnsureChunkTerrain(coordinate);
+                            RequestChunkTerrain(coordinate);
                         }
                     }
 
@@ -306,7 +325,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             var desired = new Vector2(streamingTarget.position.x, streamingTarget.position.z);
-            worldGenerator ??= new TopDown3DWorldGenerator(settings);
+            worldGenerator ??= new TopDown3DWorldGenerator(settings, worldCreatorRuntime);
             if (!worldGenerator.TryFindWalkablePosition(
                     desired,
                     settings.SafeSpawnSearchRadius,
@@ -337,11 +356,79 @@ namespace BooterBigArm.TopDown3D
             spawnExclusionCenter = new Vector2(spawnPosition.x, spawnPosition.z);
         }
 
-        private void EnsureChunkTerrain(Vector2Int coordinate)
+        private void RequestChunkTerrain(Vector2Int coordinate)
+        {
+            if (loadedChunks.ContainsKey(coordinate)
+                || terrainRequests.ContainsKey(coordinate)
+                || worldCreatorRuntime == null
+                || settings == null)
+            {
+                return;
+            }
+
+            var key = worldCreatorRuntime.CreateRepresentationKey(
+                WorldRepresentationTier.Near,
+                coordinate.x,
+                coordinate.y,
+                settings.ChunkSize);
+            terrainRequests.Add(
+                coordinate,
+                new TerrainRequest(key, worldCreatorRuntime.RequestAsync(key)));
+        }
+
+        private bool TryIntegrateRequestedTerrain()
+        {
+            var found = false;
+            var coordinate = default(Vector2Int);
+            var request = default(TerrainRequest);
+            foreach (var pair in terrainRequests)
+            {
+                if (pair.Value.Task.IsCompleted)
+                {
+                    found = true;
+                    coordinate = pair.Key;
+                    request = pair.Value;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                return false;
+            }
+
+            var outcome = request.Task.GetAwaiter().GetResult();
+            if (outcome.State == WorldRepresentationRequestState.Failed)
+            {
+                Debug.LogError($"World Creator near representation failed: {outcome.Error}", this);
+                terrainRequests.Remove(coordinate);
+                return true;
+            }
+
+            if (!requiredChunks.Contains(coordinate))
+            {
+                terrainRequests.Remove(coordinate);
+                return true;
+            }
+
+            if (!worldCreatorRuntime.TryGetIntegrated(request.Key, out var result))
+            {
+                return false;
+            }
+
+            terrainRequests.Remove(coordinate);
+            IntegrateChunkTerrain(coordinate, result);
+            return true;
+        }
+
+        private void IntegrateChunkTerrain(
+            Vector2Int coordinate,
+            WorldRepresentationBuildResult representation)
         {
             using (BuildChunkMarker.Auto())
             {
-                if (loadedChunks.ContainsKey(coordinate))
+                if (loadedChunks.ContainsKey(coordinate)
+                    || !worldCreatorRuntime.TryToLocal(representation.Key.Minimum, out var localOrigin))
                 {
                     return;
                 }
@@ -349,12 +436,13 @@ namespace BooterBigArm.TopDown3D
                 var chunkObject = new GameObject($"Chunk {coordinate.x},{coordinate.y}");
                 chunkObject.transform.SetParent(transform, false);
                 chunkObject.transform.localPosition = new Vector3(
-                    coordinate.x * settings.ChunkSize,
-                    0f,
-                    coordinate.y * settings.ChunkSize);
+                    localOrigin.X,
+                    localOrigin.Y,
+                    localOrigin.Z);
 
-                worldGenerator ??= new TopDown3DWorldGenerator(settings);
-                var mesh = TopDown3DChunkMeshBuilder.BuildMesh(settings, worldGenerator, coordinate);
+                var mesh = TopDown3DChunkMeshBuilder.BuildMesh(
+                    representation,
+                    $"World Creator Near {coordinate.x},{coordinate.y}");
                 var filter = chunkObject.AddComponent<MeshFilter>();
                 filter.sharedMesh = mesh;
                 var renderer = chunkObject.AddComponent<MeshRenderer>();
@@ -370,6 +458,11 @@ namespace BooterBigArm.TopDown3D
                 if (requiredDecoratedChunks.Contains(coordinate))
                 {
                     EnqueueDecoration(coordinate);
+                }
+
+                if (waitingForInitialTerrain && coordinate == currentCenterChunk)
+                {
+                    ResumeStreamingTargetAfterInitialTerrain();
                 }
             }
         }
@@ -497,10 +590,130 @@ namespace BooterBigArm.TopDown3D
             return count;
         }
 
+        private void SuspendStreamingTargetUntilInitialTerrain()
+        {
+            if (streamingTarget == null)
+            {
+                return;
+            }
+
+            suspendedMotor = streamingTarget.GetComponent<TopDown3DPlayerMotor>();
+            suspendedBody = streamingTarget.GetComponent<Rigidbody>();
+            if (suspendedMotor != null)
+            {
+                suspendedMotorWasEnabled = suspendedMotor.enabled;
+                suspendedMotor.enabled = false;
+            }
+
+            if (suspendedBody != null)
+            {
+                suspendedBodyWasKinematic = suspendedBody.isKinematic;
+                suspendedBody.isKinematic = true;
+            }
+
+            waitingForInitialTerrain = true;
+        }
+
+        private void ResumeStreamingTargetAfterInitialTerrain()
+        {
+            if (!waitingForInitialTerrain)
+            {
+                return;
+            }
+
+            waitingForInitialTerrain = false;
+            if (suspendedBody != null)
+            {
+                suspendedBody.isKinematic = suspendedBodyWasKinematic;
+            }
+
+            if (suspendedMotor != null)
+            {
+                suspendedMotor.enabled = suspendedMotorWasEnabled;
+            }
+        }
+
+        private void TryRebaseLocalOrigin()
+        {
+            if (worldCreatorRuntime == null || streamingTarget == null || settings == null)
+            {
+                return;
+            }
+
+            var position = streamingTarget.position;
+            var threshold = worldCreatorRuntime.Profile.RebaseThreshold;
+            if (Mathf.Max(Mathf.Abs(position.x), Mathf.Abs(position.z)) < threshold)
+            {
+                return;
+            }
+
+            var chunkSize = Mathf.Max(1f, settings.ChunkSize);
+            var shift = new Vector3(
+                Mathf.Round(position.x / chunkSize) * chunkSize,
+                0f,
+                Mathf.Round(position.z / chunkSize) * chunkSize);
+            var currentOrigin = worldCreatorRuntime.CurrentFrame.OriginPosition;
+            var nextOrigin = new AbsoluteWorldPosition(
+                currentOrigin.HorizontalA + shift.x,
+                currentOrigin.Vertical,
+                currentOrigin.HorizontalB + shift.z);
+            if (!worldCreatorRuntime.TryRebase(nextOrigin))
+            {
+                return;
+            }
+
+            var worldRoot = transform.root.gameObject;
+            var roots = gameObject.scene.GetRootGameObjects();
+            for (var i = 0; i < roots.Length; i++)
+            {
+                if (roots[i] != worldRoot)
+                {
+                    roots[i].transform.position -= shift;
+                }
+            }
+
+            RepositionLoadedChunks();
+            farLandscape?.RepositionForCurrentFrame();
+        }
+
+        private void RepositionLoadedChunks()
+        {
+            foreach (var pair in loadedChunks)
+            {
+                var key = worldCreatorRuntime.CreateRepresentationKey(
+                    WorldRepresentationTier.Near,
+                    pair.Key.x,
+                    pair.Key.y,
+                    settings.ChunkSize);
+                if (pair.Value != null
+                    && worldCreatorRuntime.TryToLocal(key.Minimum, out var local))
+                {
+                    pair.Value.transform.localPosition = new Vector3(local.X, local.Y, local.Z);
+                }
+            }
+        }
+
         private void OnDestroy()
         {
+            ResumeStreamingTargetAfterInitialTerrain();
             farLandscape?.Dispose();
             farLandscape = null;
+            worldCreatorRuntime?.Dispose();
+            worldCreatorRuntime = null;
+        }
+
+        private readonly struct TerrainRequest
+        {
+            public TerrainRequest(
+                WorldRepresentationKey key,
+                Task<WorldRepresentationRequestOutcome> task)
+            {
+                Key = key;
+                Task = task;
+            }
+
+            public WorldRepresentationKey Key { get; }
+            public Task<WorldRepresentationRequestOutcome> Task { get; }
         }
     }
 }

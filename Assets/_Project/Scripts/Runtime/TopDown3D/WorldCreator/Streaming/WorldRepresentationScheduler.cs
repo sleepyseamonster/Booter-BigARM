@@ -44,6 +44,14 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public LocalOriginFrame CurrentFrame { get; private set; }
         public int QueuedIntegrationCount => integrationQueue.Count;
 
+        public bool TryGetIntegrated(
+            WorldRepresentationKey key,
+            out WorldRepresentationBuildResult result)
+        {
+            ThrowIfDisposed();
+            return cache.TryGet(key, out result);
+        }
+
         public async Task<WorldRepresentationRequestOutcome> RequestAsync(
             WorldRepresentationKey key,
             CancellationToken cancellationToken = default)
@@ -160,10 +168,31 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         {
             ThrowIfDisposed();
             var representations = cache.Snapshot();
+            var retained = new List<WorldRepresentationBuildResult>(representations.Count);
+            var removed = 0;
             for (var i = 0; i < representations.Count; i++)
-                if (!representations[i].CanRebase(nextFrame)) return false;
-            for (var i = 0; i < representations.Count; i++)
-                if (!representations[i].TryRebase(nextFrame)) throw new InvalidOperationException("Validated representation rebase failed.");
+            {
+                if (representations[i].CanRebase(nextFrame))
+                {
+                    retained.Add(representations[i]);
+                }
+                else if (cache.Remove(representations[i].Key))
+                {
+                    removed++;
+                }
+            }
+
+            for (var i = 0; i < retained.Count; i++)
+            {
+                if (!retained[i].TryRebase(nextFrame))
+                    throw new InvalidOperationException("Validated representation rebase failed.");
+            }
+
+            if (removed > 0)
+            {
+                lock (gate) evicted += removed;
+            }
+
             CurrentFrame = nextFrame;
             return true;
         }

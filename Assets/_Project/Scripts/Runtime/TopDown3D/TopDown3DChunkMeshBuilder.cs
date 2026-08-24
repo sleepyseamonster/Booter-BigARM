@@ -1,5 +1,7 @@
+using BooterBigArm.TopDown3D.WorldCreator;
 using Unity.Profiling;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace BooterBigArm.TopDown3D
 {
@@ -108,6 +110,63 @@ namespace BooterBigArm.TopDown3D
                 mesh.RecalculateBounds();
                 return mesh;
             }
+        }
+
+        public static Mesh BuildMesh(WorldRepresentationBuildResult representation, string meshName)
+        {
+            using (BuildMeshMarker.Auto())
+            {
+                var vertices = new Vector3[representation.VertexCount];
+                var normals = new Vector3[representation.VertexCount];
+                var colors = new Color[representation.VertexCount];
+                var uvs = new Vector2[representation.VertexCount];
+                for (var index = 0; index < representation.VertexCount; index++)
+                {
+                    var absolute = representation.GetAbsolutePosition(index);
+                    vertices[index] = new Vector3(
+                        checked((float)(absolute.HorizontalA - representation.Key.Minimum.HorizontalA)),
+                        checked((float)absolute.Vertical),
+                        checked((float)(absolute.HorizontalB - representation.Key.Minimum.HorizontalB)));
+                    representation.GetNormal(index, out var normalA, out var normalVertical, out var normalB);
+                    normals[index] = new Vector3(normalA, normalVertical, normalB);
+                    colors[index] = SemanticColor(representation.GetSemantic(index));
+                    uvs[index] = new Vector2(
+                        checked((float)(absolute.HorizontalA / representation.Key.TileSpan)),
+                        checked((float)(absolute.HorizontalB / representation.Key.TileSpan)));
+                }
+
+                var triangles = new int[representation.IndexCount];
+                for (var index = 0; index < triangles.Length; index++)
+                {
+                    triangles[index] = representation.GetIndex(index);
+                }
+
+                var mesh = new Mesh { name = meshName };
+                mesh.indexFormat = vertices.Length > ushort.MaxValue
+                    ? IndexFormat.UInt32
+                    : IndexFormat.UInt16;
+                mesh.SetVertices(vertices);
+                mesh.SetTriangles(triangles, 0, true);
+                mesh.SetUVs(0, uvs);
+                mesh.SetNormals(normals);
+                mesh.SetColors(colors);
+                mesh.RecalculateBounds();
+                return mesh;
+            }
+        }
+
+        private static Color SemanticColor(WorldSurfaceSemantic semantic)
+        {
+            var canyonFloor = (semantic & WorldSurfaceSemantic.CanyonFloor) != 0;
+            var canyonShelf = (semantic & WorldSurfaceSemantic.CanyonShelf) != 0;
+            var canyonWall = (semantic & WorldSurfaceSemantic.CanyonWall) != 0;
+            var disturbed = (semantic & (WorldSurfaceSemantic.Disturbed | WorldSurfaceSemantic.Buried)) != 0;
+            var weathered = (semantic & WorldSurfaceSemantic.Weathered) != 0;
+            return new Color(
+                canyonFloor || disturbed ? 0.46f : 0.04f,
+                canyonShelf ? 0.68f : 0.18f,
+                canyonWall ? 0.9f : 0.24f,
+                weathered ? 0.88f : 0.52f);
         }
     }
 }

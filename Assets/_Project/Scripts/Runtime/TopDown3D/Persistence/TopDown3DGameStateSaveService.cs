@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using BooterBigArm.TopDown3D.WorldCreator;
 using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
@@ -21,7 +22,12 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DGameStateSnapshot CaptureSnapshot()
         {
             if (booterInventory == null || booterTransform == null) throw new InvalidOperationException("Save service is not configured.");
-            return TopDown3DGameStateSnapshot.Create(worldSeed, booterTransform.position, booterInventory.CaptureSnapshot(), bigArmState != null ? bigArmState.CaptureSnapshot(cargo) : null);
+            return TopDown3DGameStateSnapshot.Create(
+                worldSeed,
+                WorldCreatorProductionProfile.CurrentTopologyVersion,
+                booterTransform.position,
+                booterInventory.CaptureSnapshot(),
+                bigArmState != null ? bigArmState.CaptureSnapshot(cargo) : null);
         }
 
         public bool Save()
@@ -42,7 +48,16 @@ namespace BooterBigArm.TopDown3D
             try
             {
                 var snapshot = JsonUtility.FromJson<TopDown3DGameStateSnapshot>(File.ReadAllText(SavePath));
-                if (snapshot == null || snapshot.Version != 1 || snapshot.BooterInventory == null || !IsFinite(snapshot.BooterPosition)) return false;
+                if (snapshot == null
+                    || !snapshot.IsCompatible(
+                        worldSeed,
+                        WorldCreatorProductionProfile.CurrentTopologyVersion)
+                    || snapshot.BooterInventory == null
+                    || !IsFinite(snapshot.BooterPosition))
+                {
+                    Debug.LogWarning("Rejected an incompatible pre-topology-v2 or wrong-world prototype save.", this);
+                    return false;
+                }
                 if (!booterInventory.ApplySnapshot(snapshot.BooterInventory).Succeeded) return false;
                 booterTransform.position = snapshot.BooterPosition;
                 if (bigArmState != null && snapshot.BigArm != null && !bigArmState.ApplySnapshot(snapshot.BigArm)) return false;

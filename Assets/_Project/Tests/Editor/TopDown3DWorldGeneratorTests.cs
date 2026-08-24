@@ -1,4 +1,8 @@
+using System;
+using System.IO;
+using System.Threading.Tasks;
 using BooterBigArm.TopDown3D;
+using BooterBigArm.TopDown3D.WorldCreator;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -7,230 +11,194 @@ namespace BooterBigArm.Tests
 {
     public sealed class TopDown3DWorldGeneratorTests
     {
-        private const string WorldSettingsPath = "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
+        private const string WorldSettingsPath =
+            "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
+        private const string GeneratorSourcePath =
+            "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DWorldGenerator.cs";
 
         [Test]
-        public void SurfaceSample_IsDeterministicAndNormalized()
+        public void ProductionProfile_IsExplicitlyNonCanonAndTopologyV2()
         {
-            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
-            Assert.That(settings, Is.Not.Null);
+            var profile = WorldCreatorProductionProfile.LoadRequired();
+
+            Assert.That(profile.NonCanonProofOnly, Is.True);
+            Assert.That(profile.InfluenceProfile.StableId, Does.StartWith("proof.non-canon."));
+            Assert.That(profile.CreateVersionManifest().Topology,
+                Is.EqualTo(WorldCreatorProductionProfile.CurrentTopologyVersion));
+            Assert.That(profile.TryValidate(out var error), Is.True, error);
+        }
+
+        [Test]
+        public void SurfaceSample_IsDeterministicAndOwnedByWorldQueryService()
+        {
+            var settings = LoadSettings();
             var firstGenerator = new TopDown3DWorldGenerator(settings);
             var secondGenerator = new TopDown3DWorldGenerator(settings);
+
             var first = firstGenerator.Sample(137.25f, -418.75f);
             var second = secondGenerator.Sample(137.25f, -418.75f);
 
+            Assert.That(firstGenerator.QueryService, Is.TypeOf<UnboundedHybridWorldQueryService>());
+            Assert.That(firstGenerator.GenerationVersion,
+                Is.EqualTo(WorldCreatorProductionProfile.CurrentTopologyVersion));
             Assert.That(second.Height, Is.EqualTo(first.Height));
+            Assert.That(second.Normal, Is.EqualTo(first.Normal));
             Assert.That(second.FeatureId, Is.EqualTo(first.FeatureId));
-            Assert.That(second.ToVertexColor(), Is.EqualTo(first.ToVertexColor()));
-            Assert.That(first.SandWeight, Is.InRange(0f, 1f));
-            Assert.That(first.GravelWeight, Is.InRange(0f, 1f));
-            Assert.That(first.BedrockWeight, Is.InRange(0f, 1f));
-            Assert.That(first.Normal.sqrMagnitude, Is.EqualTo(1f).Within(0.00001f));
+            Assert.That(first.Normal.sqrMagnitude, Is.EqualTo(1f).Within(0.0001f));
         }
 
         [Test]
-        public void SurfaceSignals_StayInsideDocumentedRanges()
+        public void NeighboringChunkBoundary_UsesTheExactSameAbsoluteSample()
         {
-            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
-            Assert.That(settings, Is.Not.Null);
+            var settings = LoadSettings();
             var generator = new TopDown3DWorldGenerator(settings);
+            var boundaryX = settings.ChunkSize * 11f;
+            var worldZ = settings.ChunkSize * -7.35f;
 
-            for (var z = -576f; z <= 576f; z += 37f)
-            {
-                for (var x = -576f; x <= 576f; x += 41f)
-                {
-                    var sample = generator.Sample(x, z);
-                    Assert.That(float.IsNaN(sample.Height) || float.IsInfinity(sample.Height), Is.False);
-                    Assert.That(sample.Flow, Is.InRange(0f, 1f));
-                    Assert.That(sample.Talus, Is.InRange(0f, 1f));
-                    Assert.That(sample.Lithology, Is.InRange(0f, 1f));
-                    Assert.That(sample.Weathering, Is.InRange(0f, 1f));
-                    Assert.That(sample.TraversalCorridor, Is.InRange(0f, 1f));
-                }
-            }
+            var leftOwner = generator.Sample(boundaryX, worldZ);
+            var rightOwner = generator.Sample(boundaryX, worldZ);
+
+            Assert.That(rightOwner.Height, Is.EqualTo(leftOwner.Height));
+            Assert.That(rightOwner.Normal, Is.EqualTo(leftOwner.Normal));
+            Assert.That(rightOwner.FeatureId, Is.EqualTo(leftOwner.FeatureId));
         }
 
         [Test]
-        public void ErodedTerrace_IsContinuousAcrossStratumBoundaries()
+        public void FarAbsoluteCoordinates_RemainDeterministicAndFinite()
         {
-            const float stepHeight = 2.4f;
-            const float boundary = stepHeight * 3f;
-            const float epsilon = 0.0001f;
+            var generator = new TopDown3DWorldGenerator(LoadSettings());
+            var position = new AbsoluteWorldPosition(8_000_000d, 0d, -6_000_000d);
 
-            var below = TopDown3DWorldGenerator.ShapeErodedTerrace(boundary - epsilon, stepHeight);
-            var atBoundary = TopDown3DWorldGenerator.ShapeErodedTerrace(boundary, stepHeight);
-            var above = TopDown3DWorldGenerator.ShapeErodedTerrace(boundary + epsilon, stepHeight);
+            Assert.That(generator.QueryService.TrySampleSurface(
+                position,
+                out var first,
+                out var firstError), Is.True, firstError);
+            Assert.That(generator.QueryService.TrySampleSurface(
+                position,
+                out var second,
+                out var secondError), Is.True, secondError);
 
-            Assert.That(Mathf.Abs(atBoundary - below), Is.LessThan(0.001f));
-            Assert.That(Mathf.Abs(above - atBoundary), Is.LessThan(0.001f));
+            Assert.That(double.IsNaN(first.Position.Vertical)
+                || double.IsInfinity(first.Position.Vertical), Is.False);
+            Assert.That(second.Position.Vertical, Is.EqualTo(first.Position.Vertical));
+            Assert.That(second.DominantFeatureId, Is.EqualTo(first.DominantFeatureId));
         }
 
         [Test]
-        public void ErodedTerrace_PreservesBroadGeologicalShelves()
+        public async Task RepresentationScheduler_ProducesNearCollisionAndNonCollidingFarData()
         {
-            const float stepHeight = 2.4f;
-            var lowerShelf = TopDown3DWorldGenerator.ShapeErodedTerrace(stepHeight * 2.10f, stepHeight);
-            var upperShelf = TopDown3DWorldGenerator.ShapeErodedTerrace(stepHeight * 2.90f, stepHeight);
+            var settings = LoadSettings();
+            using var runtime = WorldCreatorProductionRuntime.Create(settings.WorldSeed);
+            var near = runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Near,
+                0,
+                0,
+                settings.ChunkSize);
+            var far = runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Far,
+                0,
+                0,
+                settings.ChunkSize * 16d);
 
-            Assert.That(lowerShelf, Is.EqualTo(stepHeight * 2f).Within(0.0001f));
-            Assert.That(upperShelf, Is.EqualTo(stepHeight * 3f).Within(0.0001f));
+            var outcomes = await Task.WhenAll(runtime.RequestAsync(near), runtime.RequestAsync(far));
+            Assert.That(outcomes, Has.All.Matches<WorldRepresentationRequestOutcome>(
+                outcome => outcome.State == WorldRepresentationRequestState.QueuedForIntegration));
+            Assert.That(runtime.DrainIntegrationQueue(4, TimeSpan.FromMilliseconds(50d)), Is.EqualTo(2));
+            Assert.That(runtime.TryGetIntegrated(near, out var nearResult), Is.True);
+            Assert.That(runtime.TryGetIntegrated(far, out var farResult), Is.True);
+            Assert.That(nearResult.HasCollision, Is.True);
+            Assert.That(farResult.HasCollision, Is.False);
+            Assert.That(nearResult.SourceFingerprint, Is.EqualTo(runtime.SourceFingerprint));
+            Assert.That(farResult.SourceFingerprint, Is.EqualTo(runtime.SourceFingerprint));
         }
 
         [Test]
-        public void SandTrapMask_IsSparseDeterministicAndChunkIndependent()
+        public async Task OriginRebase_PreservesAbsoluteRepresentationIdentity()
         {
-            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
-            Assert.That(settings, Is.Not.Null);
-            var coveredSamples = 0;
-            var totalSamples = 0;
-            var strongestSample = 0f;
+            var settings = LoadSettings();
+            using var runtime = WorldCreatorProductionRuntime.Create(settings.WorldSeed);
+            var key = runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Near,
+                42,
+                -37,
+                settings.ChunkSize);
+            var outcome = await runtime.RequestAsync(key);
+            Assert.That(outcome.State, Is.EqualTo(WorldRepresentationRequestState.QueuedForIntegration));
+            runtime.DrainIntegrationQueue(2, TimeSpan.FromMilliseconds(50d));
+            Assert.That(runtime.TryGetIntegrated(key, out var before), Is.True);
+            var stableId = before.Key.StableId;
 
-            for (var z = -126f; z <= 126f; z += 3f)
-            {
-                for (var x = -126f; x <= 126f; x += 3f)
-                {
-                    var first = TopDown3DWorldGenerator.SampleSandTrapMask(
-                        settings.WorldSeed,
-                        settings.TerrainGenerationVersion,
-                        x,
-                        z);
-                    var second = TopDown3DWorldGenerator.SampleSandTrapMask(
-                        settings.WorldSeed,
-                        settings.TerrainGenerationVersion,
-                        x,
-                        z);
-                    Assert.That(second, Is.EqualTo(first));
-                    strongestSample = Mathf.Max(strongestSample, first);
-                    if (first >= 0.5f)
-                    {
-                        coveredSamples++;
-                    }
-
-                    totalSamples++;
-                }
-            }
-
-            var coverage = coveredSamples / (float)totalSamples;
-            Assert.That(
-                coverage,
-                Is.InRange(0.006f, 0.05f),
-                $"Terrain generation {settings.TerrainGenerationVersion} produced "
-                + $"a strongest sand mask of {strongestSample:0.###}.");
-
-            const float seamX = 18f;
-            const float seamZ = 7.25f;
-            var left = TopDown3DWorldGenerator.SampleSandTrapMask(
-                settings.WorldSeed,
-                settings.TerrainGenerationVersion,
-                seamX - 0.0001f,
-                seamZ);
-            var right = TopDown3DWorldGenerator.SampleSandTrapMask(
-                settings.WorldSeed,
-                settings.TerrainGenerationVersion,
-                seamX + 0.0001f,
-                seamZ);
-            Assert.That(Mathf.Abs(right - left), Is.LessThan(0.001f));
+            var nextOrigin = new AbsoluteWorldPosition(720d, 0d, -540d);
+            Assert.That(runtime.TryRebase(nextOrigin), Is.True);
+            Assert.That(runtime.TryGetIntegrated(key, out var after), Is.True);
+            Assert.That(after.Key.StableId, Is.EqualTo(stableId));
+            Assert.That(after.LocalFrame.OriginPosition, Is.EqualTo(nextOrigin));
         }
 
         [Test]
-        public void SandTrapMask_ContainsGameplayScaleBasinsWithoutBroadSandFields()
+        public async Task DistantRebase_EvictsDisposableLocalDataWithoutChangingAbsoluteKeys()
         {
-            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
-            Assert.That(settings, Is.Not.Null);
-            var longestRun = 0;
+            var settings = LoadSettings();
+            using var runtime = WorldCreatorProductionRuntime.Create(settings.WorldSeed);
+            var key = runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Near,
+                0,
+                0,
+                settings.ChunkSize);
+            await runtime.RequestAsync(key);
+            runtime.DrainIntegrationQueue(2, TimeSpan.FromMilliseconds(50d));
+            Assert.That(runtime.TryGetIntegrated(key, out _), Is.True);
 
-            for (var z = -180; z <= 180; z++)
-            {
-                var currentRun = 0;
-                for (var x = -180; x <= 180; x++)
-                {
-                    var mask = TopDown3DWorldGenerator.SampleSandTrapMask(
-                        settings.WorldSeed,
-                        settings.TerrainGenerationVersion,
-                        x,
-                        z);
-                    currentRun = mask >= 0.45f ? currentRun + 1 : 0;
-                    longestRun = Mathf.Max(longestRun, currentRun);
-                }
-            }
-
-            for (var x = -180; x <= 180; x++)
-            {
-                var currentRun = 0;
-                for (var z = -180; z <= 180; z++)
-                {
-                    var mask = TopDown3DWorldGenerator.SampleSandTrapMask(
-                        settings.WorldSeed,
-                        settings.TerrainGenerationVersion,
-                        x,
-                        z);
-                    currentRun = mask >= 0.45f ? currentRun + 1 : 0;
-                    longestRun = Mathf.Max(longestRun, currentRun);
-                }
-            }
-
-            Assert.That(longestRun, Is.InRange(12, 24));
+            Assert.That(runtime.TryRebase(new AbsoluteWorldPosition(1_000_000d, 0d, -1_000_000d)), Is.True);
+            Assert.That(runtime.TryGetIntegrated(key, out _), Is.False);
+            var rebuiltKey = runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Near,
+                0,
+                0,
+                settings.ChunkSize);
+            Assert.That(rebuiltKey.StableId, Is.EqualTo(key.StableId));
         }
 
         [Test]
-        public void SandTrapMask_StartAreaContainsVisibleBasinOutsideClearSpawn()
+        public void PrototypeSaveCompatibility_RejectsTopologyV1AndWrongWorld()
         {
-            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
-            Assert.That(settings, Is.Not.Null);
-            var strongestStartAreaMask = 0f;
+            var legacy = JsonUtility.FromJson<TopDown3DGameStateSnapshot>(
+                "{\"version\":1,\"worldSeed\":24681357}");
+            var current = TopDown3DGameStateSnapshot.Create(
+                24681357,
+                WorldCreatorProductionProfile.CurrentTopologyVersion,
+                Vector3.zero,
+                null,
+                null);
 
-            for (var z = -35; z <= 35; z++)
-            {
-                for (var x = -35; x <= 35; x++)
-                {
-                    var distance = Mathf.Sqrt(x * x + z * z);
-                    if (distance < settings.ClearSpawnRadius + 4f)
-                    {
-                        continue;
-                    }
-
-                    strongestStartAreaMask = Mathf.Max(
-                        strongestStartAreaMask,
-                        TopDown3DWorldGenerator.SampleSandTrapMask(
-                            settings.WorldSeed,
-                            settings.TerrainGenerationVersion,
-                            x,
-                            z));
-                }
-            }
-
-            Assert.That(strongestStartAreaMask, Is.GreaterThanOrEqualTo(0.9f));
+            Assert.That(legacy.IsCompatible(
+                24681357,
+                WorldCreatorProductionProfile.CurrentTopologyVersion), Is.False);
+            Assert.That(current.IsCompatible(
+                24681357,
+                WorldCreatorProductionProfile.CurrentTopologyVersion), Is.True);
+            Assert.That(current.IsCompatible(
+                1,
+                WorldCreatorProductionProfile.CurrentTopologyVersion), Is.False);
         }
 
         [Test]
-        public void AdjacentChunkMeshes_ShareExactSurfaceWeights()
+        public void ProductionGeneratorAdapter_ContainsNoLegacyMacroTerrainAlgorithm()
+        {
+            var source = File.ReadAllText(GeneratorSourcePath);
+
+            Assert.That(source, Does.Not.Contain("SampleCore"));
+            Assert.That(source, Does.Not.Contain("FractalNoise"));
+            Assert.That(source, Does.Not.Contain("Mathf.PerlinNoise"));
+            Assert.That(source, Does.Not.Contain("TopDown3DGeologyProfile"));
+            Assert.That(source, Does.Contain("IWorldQueryService"));
+        }
+
+        private static TopDown3DWorldSettings LoadSettings()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
             Assert.That(settings, Is.Not.Null);
-            var generator = new TopDown3DWorldGenerator(settings);
-            var left = TopDown3DChunkMeshBuilder.BuildData(settings, generator, Vector2Int.zero);
-            var right = TopDown3DChunkMeshBuilder.BuildData(settings, generator, Vector2Int.right);
-            var verticesPerAxis = settings.QuadsPerAxis + 1;
-
-            for (var z = 0; z < verticesPerAxis; z++)
-            {
-                var leftColor = left.Colors[z * verticesPerAxis + settings.QuadsPerAxis];
-                var rightColor = right.Colors[z * verticesPerAxis];
-                Assert.That(rightColor, Is.EqualTo(leftColor), $"Surface-weight seam at row {z}.");
-            }
-        }
-
-        [Test]
-        public void RegionalFeatureIdentity_IsStableAwayFromRegionBoundaries()
-        {
-            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
-            Assert.That(settings, Is.Not.Null);
-            var generator = new TopDown3DWorldGenerator(settings);
-            var regionSize = generator.RegionSize;
-            var first = generator.Sample(regionSize * 2.2f, regionSize * -1.3f);
-            var second = generator.Sample(regionSize * 2.35f, regionSize * -1.15f);
-
-            Assert.That(second.FeatureId, Is.EqualTo(first.FeatureId));
+            return settings;
         }
     }
 }

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f93a2ad62442b8b3efd824bc02e18e, type: 3}
+  m_Name: ProductionWorldCreatorProfile
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.WorldCreator.WorldCreatorProductionProfile
+  nonCanonProofOnly: 1
+  provinceCatalog: {fileID: 11400000, guid: f7e3705c293754430863abd68bbc89ba, type: 2}
+  strataCatalog: {fileID: 11400000, guid: 9ad930256e5a14c469a2660675bae5fb, type: 2}
+  influenceProfile: {fileID: 11400000, guid: eda16be9ddbee43e681981c092c0e548, type: 2}
+  topologyVersion: 2
+  coordinateVersion: 1
+  landformVersion: 1
+  materialVersion: 1
+  decorationVersion: 1
+  resourceVersion: 1
+  siteVersion: 1
+  nearResolution: 25
+  midResolution: 9
+  farResolution: 5
+  maximumCanyonPlans: 96
+  maximumTerrainWindows: 24
+  maximumRepresentationEntries: 256
+  maximumRepresentationMegabytes: 96
+  maximumRetainedBuffersPerResolution: 4
+  localFrameRadius: 8192
+  rebaseThreshold: 1536
