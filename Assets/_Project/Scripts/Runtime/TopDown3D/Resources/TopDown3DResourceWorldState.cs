@@ -110,23 +110,7 @@ namespace BooterBigArm.TopDown3D
 
         public bool ApplySnapshot(TopDown3DResourceWorldSnapshot snapshot)
         {
-            if (snapshot == null || snapshot.Version != CurrentSnapshotVersion
-                || snapshot.ResourceGenerationVersion != resourceGenerationVersion
-                || snapshot.Deltas == null)
-            {
-                return false;
-            }
-
-            var next = new Dictionary<string, int>(StringComparer.Ordinal);
-            for (var i = 0; i < snapshot.Deltas.Count; i++)
-            {
-                var delta = snapshot.Deltas[i];
-                if (delta == null || string.IsNullOrWhiteSpace(delta.StableId)
-                    || delta.RemainingUses < 0 || !next.TryAdd(delta.StableId, delta.RemainingUses))
-                {
-                    return false;
-                }
-            }
+            if (!TryBuildSnapshotState(snapshot, out var next)) return false;
 
             deltas.Clear();
             foreach (var pair in next)
@@ -134,6 +118,32 @@ namespace BooterBigArm.TopDown3D
                 deltas.Add(pair.Key, pair.Value);
             }
 
+            return true;
+        }
+
+        public bool CanApplySnapshot(TopDown3DResourceWorldSnapshot snapshot)
+        {
+            return TryBuildSnapshotState(snapshot, out _);
+        }
+
+        private bool TryBuildSnapshotState(
+            TopDown3DResourceWorldSnapshot snapshot,
+            out Dictionary<string, int> next)
+        {
+            next = null;
+            if (snapshot == null || snapshot.Version != CurrentSnapshotVersion
+                || snapshot.ResourceGenerationVersion != resourceGenerationVersion
+                || snapshot.Deltas == null)
+                return false;
+
+            next = new Dictionary<string, int>(StringComparer.Ordinal);
+            for (var i = 0; i < snapshot.Deltas.Count; i++)
+            {
+                var delta = snapshot.Deltas[i];
+                if (delta == null || string.IsNullOrWhiteSpace(delta.StableId)
+                    || delta.RemainingUses < 0 || !next.TryAdd(delta.StableId, delta.RemainingUses))
+                    return false;
+            }
             return true;
         }
     }

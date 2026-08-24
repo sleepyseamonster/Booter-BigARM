@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using BooterBigArm.TopDown3D.WorldCreator;
 using NUnit.Framework;
 
@@ -17,6 +18,26 @@ namespace BooterBigArm.Tests.WorldCreator
             CollectionAssert.AreEqual(firstPayload, secondPayload);
             Assert.That(SavedPlaceRecordCodec.TryDecode(firstPayload, out var decoded, out var error), Is.True, error);
             Assert.That(decoded, Is.EqualTo(record));
+            Assert.That(decoded.PlayerName, Is.EqualTo("The Long Descent"));
+            Assert.That(decoded.ThematicCoordinate.HasValue, Is.True);
+            Assert.That(decoded.FeatureReferences.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void SavedPlaceCodec_MigratesLegacyV1WithoutInventingThematicCoordinates()
+        {
+            var record = CreateRecord();
+            var encoder = typeof(SavedPlaceRecordCodec).GetMethod(
+                "EncodeLegacyV1ForTests",
+                BindingFlags.Static | BindingFlags.NonPublic);
+            Assert.That(encoder, Is.Not.Null);
+            var payload = (byte[])encoder.Invoke(null, new object[] { record });
+
+            Assert.That(SavedPlaceRecordCodec.TryDecode(payload, out var migrated, out var error), Is.True, error);
+            Assert.That(migrated.PlayerName, Is.EqualTo("Saved place"));
+            Assert.That(migrated.ThematicCoordinate.HasValue, Is.False);
+            Assert.That(migrated.HasAnchorFeature, Is.True);
+            Assert.That(migrated.AbsolutePosition, Is.EqualTo(default(AbsoluteWorldPosition)));
         }
 
         [Test]
@@ -60,10 +81,16 @@ namespace BooterBigArm.Tests.WorldCreator
             var firstFrame = new LocalOriginFrame(model.Encode(firstOrigin), firstOrigin, 1024d);
             var secondFrame = new LocalOriginFrame(model.Encode(secondOrigin), secondOrigin, 1024d);
             var record = CreateRecord(world, model, address);
+            var payload = SavedPlaceRecordCodec.Encode(record);
+            Assert.That(SavedPlaceRecordCodec.TryDecode(payload, out var reconstructed, out var error),
+                Is.True,
+                error);
 
             Assert.That(firstFrame.ToLocal(absolute), Is.Not.EqualTo(secondFrame.ToLocal(absolute)));
-            Assert.That(record.Address, Is.EqualTo(address));
-            Assert.That(record.SavedPlaceId, Is.EqualTo(CreateRecord(world, model, address).SavedPlaceId));
+            Assert.That(reconstructed.Address, Is.EqualTo(address));
+            Assert.That(reconstructed.AbsolutePosition, Is.EqualTo(absolute));
+            Assert.That(reconstructed.SavedPlaceId,
+                Is.EqualTo(CreateRecord(world, model, address).SavedPlaceId));
         }
 
         [Test]
@@ -99,12 +126,23 @@ namespace BooterBigArm.Tests.WorldCreator
             var siteNamespace = new WorldSeedNamespace(WorldVersionDomain.Site, "site.landmark");
             var savedPlaceId = WorldFeatureId.Create(world, savedPlaceNamespace, address, "marker:0");
             var anchorId = WorldFeatureId.Create(world, siteNamespace, address, "landmark:0");
+            Assert.That(model.TryResolve(address, out var absolute), Is.True);
             return new SavedPlaceRecord(
                 savedPlaceId,
                 WorldPersistenceManifest.CreateCurrent(world, model),
+                "The Long Descent",
                 address,
-                true,
-                anchorId);
+                absolute,
+                new OptionalThematicCoordinatePayload(
+                    true,
+                    "test.future-coordinate-authority",
+                    1,
+                    "opaque-test-payload"),
+                new[]
+                {
+                    new WorldFeatureReference("anchor", anchorId),
+                    new WorldFeatureReference("overlook", savedPlaceId)
+                });
         }
     }
 }

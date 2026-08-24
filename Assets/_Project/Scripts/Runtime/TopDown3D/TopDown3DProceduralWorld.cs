@@ -47,6 +47,61 @@ namespace BooterBigArm.TopDown3D
         private TopDown3DWorldGenerator worldGenerator;
         private TopDown3DFarLandscape farLandscape;
         private TopDown3DResourceWorldState resourceWorldState;
+
+        internal WorldCreatorProductionRuntime ProductionRuntime => worldCreatorRuntime;
+        internal TopDown3DResourceWorldState ResourceWorldState => resourceWorldState;
+
+        internal bool TryLocalToAbsolute(Vector3 localPosition, out AbsoluteWorldPosition absolute)
+        {
+            if (worldCreatorRuntime == null)
+            {
+                absolute = default;
+                return false;
+            }
+            absolute = worldCreatorRuntime.ToAbsolute(
+                localPosition.x,
+                localPosition.y,
+                localPosition.z);
+            return true;
+        }
+
+        internal bool TryAbsoluteToLocal(AbsoluteWorldPosition absolute, out Vector3 localPosition)
+        {
+            localPosition = default;
+            if (worldCreatorRuntime == null
+                || !worldCreatorRuntime.TryToLocal(absolute, out var local))
+                return false;
+            localPosition = new Vector3(local.X, local.Y, local.Z);
+            return true;
+        }
+
+        internal bool TryPrepareLoadFrame(AbsoluteWorldPosition absolute)
+        {
+            if (worldCreatorRuntime == null) return false;
+            if (worldCreatorRuntime.TryToLocal(absolute, out _)) return true;
+
+            var currentOrigin = worldCreatorRuntime.CurrentFrame.OriginPosition;
+            var nextOrigin = new AbsoluteWorldPosition(
+                absolute.HorizontalA,
+                currentOrigin.Vertical,
+                absolute.HorizontalB);
+            var shift = new Vector3(
+                checked((float)(nextOrigin.HorizontalA - currentOrigin.HorizontalA)),
+                checked((float)(nextOrigin.Vertical - currentOrigin.Vertical)),
+                checked((float)(nextOrigin.HorizontalB - currentOrigin.HorizontalB)));
+            if (!worldCreatorRuntime.TryRebase(nextOrigin)) return false;
+
+            var worldRoot = transform.root.gameObject;
+            var roots = gameObject.scene.GetRootGameObjects();
+            for (var i = 0; i < roots.Length; i++)
+            {
+                if (roots[i] != worldRoot) roots[i].transform.position -= shift;
+            }
+            RepositionLoadedChunks();
+            farLandscape?.RepositionForCurrentFrame();
+            return true;
+        }
+
         private TopDown3DPlayerMotor suspendedMotor;
         private Rigidbody suspendedBody;
         private bool suspendedMotorWasEnabled;

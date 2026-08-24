@@ -7,7 +7,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
     public static class SavedPlaceRecordCodec
     {
         private const uint Magic = 0x50534357U;
-        private const int CodecVersion = 1;
+        private const int CodecVersion = 2;
         private const int MaximumPayloadBytes = 64 * 1024;
 
         public static byte[] Encode(SavedPlaceRecord record)
@@ -19,11 +19,40 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 writer.Write(CodecVersion);
                 WriteFeatureId(writer, record.SavedPlaceId);
                 WriteManifest(writer, record.Manifest);
+                writer.Write(record.PlayerName);
+                WriteAddress(writer, record.Address);
+                WriteAbsolutePosition(writer, record.AbsolutePosition);
+                writer.Write(record.ThematicCoordinate.HasValue);
+                if (record.ThematicCoordinate.HasValue)
+                {
+                    writer.Write(record.ThematicCoordinate.AuthorityId);
+                    writer.Write(record.ThematicCoordinate.Version);
+                    writer.Write(record.ThematicCoordinate.Payload);
+                }
+                writer.Write(record.FeatureReferences.Count);
+                for (var i = 0; i < record.FeatureReferences.Count; i++)
+                {
+                    writer.Write(record.FeatureReferences[i].Role);
+                    WriteFeatureId(writer, record.FeatureReferences[i].FeatureId);
+                }
+            }
+
+            return stream.ToArray();
+        }
+
+        internal static byte[] EncodeLegacyV1ForTests(SavedPlaceRecord record)
+        {
+            using var stream = new MemoryStream(512);
+            using (var writer = new BinaryWriter(stream, new UTF8Encoding(false, true), true))
+            {
+                writer.Write(Magic);
+                writer.Write(1);
+                WriteFeatureId(writer, record.SavedPlaceId);
+                WriteManifest(writer, record.Manifest);
                 WriteAddress(writer, record.Address);
                 writer.Write(record.HasAnchorFeature);
                 WriteFeatureId(writer, record.AnchorFeatureId);
             }
-
             return stream.ToArray();
         }
 
@@ -48,7 +77,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 }
 
                 var codecVersion = reader.ReadInt32();
-                if (codecVersion != CodecVersion)
+                if (codecVersion != 1 && codecVersion != CodecVersion)
                 {
                     error = $"Saved-place codec version {codecVersion} is not supported.";
                     return false;
@@ -56,16 +85,65 @@ namespace BooterBigArm.TopDown3D.WorldCreator
 
                 var savedPlaceId = ReadFeatureId(reader);
                 var manifest = ReadManifest(reader);
+                if (codecVersion == 1)
+                {
+                    var legacyAddress = ReadAddress(reader);
+                    var hasAnchor = reader.ReadBoolean();
+                    var anchor = ReadFeatureId(reader);
+                    if (stream.Position != stream.Length)
+                    {
+                        error = "Saved-place payload has trailing data.";
+                        return false;
+                    }
+                    record = new SavedPlaceRecord(
+                        savedPlaceId,
+                        manifest,
+                        "Saved place",
+                        legacyAddress,
+                        default,
+                        OptionalThematicCoordinatePayload.None,
+                        hasAnchor
+                            ? new[] { new WorldFeatureReference("anchor", anchor) }
+                            : Array.Empty<WorldFeatureReference>());
+                    return true;
+                }
+
+                var playerName = ReadBoundedString(reader, 64, "player name");
                 var address = ReadAddress(reader);
-                var hasAnchor = reader.ReadBoolean();
-                var anchor = ReadFeatureId(reader);
+                var absolutePosition = ReadAbsolutePosition(reader);
+                OptionalThematicCoordinatePayload thematic = default;
+                if (reader.ReadBoolean())
+                {
+                    thematic = new OptionalThematicCoordinatePayload(
+                        true,
+                        ReadBoundedString(reader, 128, "thematic authority id"),
+                        reader.ReadInt32(),
+                        ReadBoundedString(reader, 4096, "thematic coordinate payload"));
+                }
+                var referenceCount = reader.ReadInt32();
+                if (referenceCount < 0 || referenceCount > 64)
+                    throw new InvalidDataException("Saved-place feature reference count is invalid.");
+                var references = new WorldFeatureReference[referenceCount];
+                for (var i = 0; i < referenceCount; i++)
+                {
+                    references[i] = new WorldFeatureReference(
+                        ReadBoundedString(reader, 64, "feature role"),
+                        ReadFeatureId(reader));
+                }
                 if (stream.Position != stream.Length)
                 {
                     error = "Saved-place payload has trailing data.";
                     return false;
                 }
 
-                record = new SavedPlaceRecord(savedPlaceId, manifest, address, hasAnchor, anchor);
+                record = new SavedPlaceRecord(
+                    savedPlaceId,
+                    manifest,
+                    playerName,
+                    address,
+                    absolutePosition,
+                    thematic,
+                    references);
                 return true;
             }
             catch (Exception exception) when (
@@ -131,6 +209,18 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 ReadBoundedString(reader, 128, "coordinate model id"),
                 reader.ReadInt32(),
                 ReadBoundedString(reader, 4096, "canonical coordinate"));
+        }
+
+        private static void WriteAbsolutePosition(BinaryWriter writer, AbsoluteWorldPosition position)
+        {
+            writer.Write(position.HorizontalA);
+            writer.Write(position.Vertical);
+            writer.Write(position.HorizontalB);
+        }
+
+        private static AbsoluteWorldPosition ReadAbsolutePosition(BinaryReader reader)
+        {
+            return new AbsoluteWorldPosition(reader.ReadDouble(), reader.ReadDouble(), reader.ReadDouble());
         }
 
         private static void WriteFeatureId(BinaryWriter writer, WorldFeatureId featureId)

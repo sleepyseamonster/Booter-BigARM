@@ -32,6 +32,10 @@ namespace BooterBigArm.Editor.WorldCreator
             "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DChunkMeshBuilder.cs";
         private const string DustPlannerSourcePath =
             "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustDepositionPlanner.cs";
+        private const string SaveServiceSourcePath =
+            "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/TopDown3DGameStateSaveService.cs";
+        private const string GameSnapshotSourcePath =
+            "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/TopDown3DGameStateSnapshot.cs";
 
         [MenuItem("Booter & BigARM/Validation/Validate World Creator Production Path")]
         public static void ValidateMenu()
@@ -78,9 +82,9 @@ namespace BooterBigArm.Editor.WorldCreator
                 errors.Add("The production profile must remain non-canon and topology v2.");
             }
 
-            if (TopDown3DGameStateSnapshot.CurrentVersion != 2)
+            if (TopDown3DGameStateSnapshot.CurrentVersion != 3)
             {
-                errors.Add("Prototype saves must use the strict topology-v2 snapshot format.");
+                errors.Add("Prototype saves must use the manifest-backed precision-safe schema v3 format.");
             }
         }
 
@@ -93,9 +97,12 @@ namespace BooterBigArm.Editor.WorldCreator
             var geologicalPlanner = ReadSource(GeologicalPlannerSourcePath, errors);
             var chunkMesh = ReadSource(ChunkMeshSourcePath, errors);
             var dustPlanner = ReadSource(DustPlannerSourcePath, errors);
+            var saveService = ReadSource(SaveServiceSourcePath, errors);
+            var gameSnapshot = ReadSource(GameSnapshotSourcePath, errors);
             if (generator == null || world == null || far == null
                 || naturalPlanner == null || geologicalPlanner == null
-                || chunkMesh == null || dustPlanner == null)
+                || chunkMesh == null || dustPlanner == null
+                || saveService == null || gameSnapshot == null)
             {
                 return;
             }
@@ -150,6 +157,19 @@ namespace BooterBigArm.Editor.WorldCreator
                     StringComparison.Ordinal))
             {
                 errors.Add("Terrain packing or dust bypasses the semantic surface-material authority.");
+            }
+
+            if (!saveService.Contains("WorldPersistenceManifest.CreateCurrent", StringComparison.Ordinal)
+                || !saveService.Contains("SavedPlaceRecordCodec", StringComparison.Ordinal)
+                || !saveService.Contains("resourceWorldState.CaptureSnapshot", StringComparison.Ordinal)
+                || !saveService.Contains("TopDown3DWorldDeltaSnapshot", StringComparison.Ordinal)
+                || !gameSnapshot.Contains("TopDown3DAbsolutePositionSnapshot", StringComparison.Ordinal)
+                || !gameSnapshot.Contains("MaximumSavedPlaces", StringComparison.Ordinal)
+                || !gameSnapshot.Contains("MaximumWorldDeltas", StringComparison.Ordinal)
+                || gameSnapshot.Contains("List<Vector3>", StringComparison.Ordinal)
+                || gameSnapshot.Contains("MeshData", StringComparison.Ordinal))
+            {
+                errors.Add("Game-state persistence bypasses the manifest, precision-safe place, delta, or bounded-data contracts.");
             }
         }
 
