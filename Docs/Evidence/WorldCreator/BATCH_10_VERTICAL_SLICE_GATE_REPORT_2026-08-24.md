@@ -92,6 +92,8 @@ The player diagnostic used the reversible stress profile, null graphics device, 
 
 ## Required final review
 
+The exact review setup, seven-view capture matrix, target definition fields, profile sequence, and approval record are in `BATCH_10_VISUAL_AND_TARGET_PROFILE_HANDOFF_2026-08-24.md`.
+
 1. The user opens the production scene and performs the fixed-camera/hands-on landscape review, including canyon reveal/interior, overlook, negative-space basin, geological silhouette, proof-influence transition, and streaming transition.
 2. The user defines or supplies the target Windows hardware class and desired resolution/quality/frame-rate threshold; the exact Development build is then profiled there.
 3. If both gates pass, Batch 10 and the World Creator foundation can receive final approval. If either fails, the evidence identifies whether the next work belongs to composition, traversal, representation, or performance rather than reopening the architecture blindly.
