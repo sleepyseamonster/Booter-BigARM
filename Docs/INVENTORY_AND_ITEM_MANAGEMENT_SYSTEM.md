@@ -127,6 +127,46 @@ Booter's Ironstone gathering animation is an in-place, non-looping action owned 
 - No terrain edits or alternate navigation owner. The World Creator remains responsible for route topology and traversal affordances.
 - No promise that a distant landmark is harvestable or that BigARM can use a Booter-only route; those are world affordance decisions.
 
+## Design Research: What To Borrow, What To Avoid
+
+This system takes lessons from other expedition and survival games, but it does not copy their full inventory rules.
+
+| Reference | Strong pattern | What Booter & BigARM adopts | What it deliberately avoids |
+| --- | --- | --- | --- |
+| [Death Stranding Director's Cut](https://www.kojimaproductions.jp/index.php/en/death-stranding-directors-cut-beginners-guide) | Weight, balance, route terrain, and cargo arrangement all inform one journey; Auto-Arrange gives the player a safe baseline. | A legible load band, mild traversal consequences, physical cargo, route-aware preparation, and one trustworthy Auto-Pack command. | Per-package fragility, weather decay, continuous stability correction, and cargo damage chores. |
+| [Monster Hunter Wilds](https://www.playstation.com/en-ca/games/monster-hunter-wilds/monster-hunter-wilds-starters-guide/) | Frequently used actions are reachable through a contextual radial menu; gathering can happen while travelling; a companion can carry useful supplies. | Keep quick-use tools in Booter's kit or quick-access mounts, make collection flow into travel, and preserve controller-first interaction. | Eight radial menus, per-hunt loadout bureaucracy, and opening a menu to use a common action. |
+| [Astroneer](https://blog.astroneer.space/p/rails-update/) | Predictable automatic placement and replenishment reduce routine shuffling while leaving deliberate placement available. | Stable automatic destination rules, stack-first placement, and future optional replenishment for explicitly reserved quick-access supplies. | Forced backpack micromanagement, unexpected ejection, and item-by-item handling for common resources. |
+| [Pacific Drive](https://www.pacificdrivegame.com/?itemId=m1ugy54d9zkv5v2oyfr04664tbpkru-j9n86-x3wfh) | The vehicle is a tangible companion: prepare, venture out, gather, return, improve. The trip gives cargo meaning. | BigARM is a visible expedition partner and bulk hauler; route and haul decisions reinforce one another. | A grid-shaped trunk puzzle, repeated scavenging stops, and an inventory screen that makes the player feel slower than the world. |
+
+The design conclusion is simple: **make packing an occasional preparation and payoff ritual, not the tax charged for every pickup.**
+
+### Anti-Tedium Rules
+
+These are player-experience requirements, not optional polish:
+
+1. **One gather, one receipt.** A successful Ironstone gather deposits automatically into the legal preferred owner and shows one short result. It never opens packing by itself.
+2. **One obvious recovery action.** A full or unavailable destination offers `Make Room` or `Recall BigARM`, with the actual cause stated. It does not make the player infer an invisible capacity rule.
+3. **One-command normal sort.** Auto-Pack is always available when BigARM holds cargo, finishes in one action, and is safe to repeat.
+4. **No mandatory split-stack work.** Whole-stack moves are sufficient for the core loop. A future split command may exist only when it solves a demonstrated player need.
+5. **Prepare at transitions, not under pressure.** Inventory management belongs at shelters, overlooks, regroup points, before a known difficult route, and after a major haul. It is not expected during ordinary walking, gathering, or a traversal move.
+6. **Keep action items out of storage hunting.** Frequently needed gear has a consistent Booter or quick-access location and later may receive a small, configurable quick-use surface. Do not build that surface until action items actually exist.
+7. **Make leaving loot behind valid.** A player who skips common Ironstone because the return route is already heavy has made a good expedition decision, not failed an optimization puzzle. Future resource presentation should communicate rarity or purpose before asking for a carry decision.
+8. **Do not punish first use.** The first Ironstone loop teaches target, gather animation, destination receipt, nearby BigARM access, quick transfer, and Auto-Pack one at a time. It never introduces balance, mount classes, or a full screen of commands simultaneously.
+
+### Feel Metrics For Playtesting
+
+The following measurements decide whether the feature earns more depth:
+
+| Question | Initial target | If it fails |
+| --- | --- | --- |
+| Can a new player complete the first Ironstone-to-BigARM loop without help? | Yes, in one short encounter. | Improve prompt, targeting, receipt, and interaction access before adding items. |
+| Can a player prepare an ordinary load with Quick Transfer plus Auto-Pack? | Under 30 seconds. | Remove clicks, not capacity. |
+| Does a player understand why a harvest or transfer was rejected? | Immediately, from one message. | Add cause-specific feedback; never add a generic warning. |
+| Does a loaded return route feel different but still fair? | The player notices it without becoming stuck or repeatedly opening UI. | Reduce penalties or improve route/readout clarity. |
+| Does manual packing appear because players enjoy optimization? | Optional, never required for a viable load. | Keep it light; do not turn it into a gate. |
+
+If the normal loop needs repeated sorting, more than a few seconds of screen work after each find, or a player cannot explain where Ironstone went, the system is not ready for more complexity. The next change must remove friction before adding another item class, mount rule, or cargo consequence.
+
 ## Success Criteria
 
 The system is successful when a player can harvest Ironstone with a clear animation and receipt, see it appear on nearby BigARM, access both inventories through physical interaction, transfer stacks in either direction quickly, Auto-Pack a useful stable load, and understand how a fuller load changes a return route—all without repetitive sorting or surprise loss.
