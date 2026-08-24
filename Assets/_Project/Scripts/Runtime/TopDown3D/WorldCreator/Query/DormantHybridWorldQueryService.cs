@@ -3,15 +3,16 @@ using System;
 namespace BooterBigArm.TopDown3D.WorldCreator
 {
     /// <summary>
-    /// Pure, dormant Batch 4 adapter. Production terrain remains authoritative until the atomic cutover batch.
+    /// Pure query adapter over one immutable compiled terrain window. It owns no scene or
+    /// streaming authority; callers decide whether the window is dormant proof or production data.
     /// </summary>
-    public sealed class DormantHybridWorldQueryService : IWorldQueryService
+    public class HybridTerrainWindowQueryService : IWorldQueryService
     {
         private readonly HybridTerrainPlan plan;
         private readonly IWorldCoordinateModel coordinateModel;
         private readonly IWorldCoordinateContextProvider contextProvider;
 
-        public DormantHybridWorldQueryService(
+        public HybridTerrainWindowQueryService(
             HybridTerrainPlan plan,
             IWorldCoordinateModel coordinateModel,
             IWorldCoordinateContextProvider contextProvider)
@@ -276,6 +277,20 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             a = (float)(a / length);
             vertical = (float)(vertical / length);
             b = (float)(b / length);
+        }
+    }
+
+    /// <summary>
+    /// Compatibility name retained for Batch 4 proof tools while production authority remains gated.
+    /// </summary>
+    public sealed class DormantHybridWorldQueryService : HybridTerrainWindowQueryService
+    {
+        public DormantHybridWorldQueryService(
+            HybridTerrainPlan plan,
+            IWorldCoordinateModel coordinateModel,
+            IWorldCoordinateContextProvider contextProvider)
+            : base(plan, coordinateModel, contextProvider)
+        {
         }
     }
 }
