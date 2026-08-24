@@ -38,7 +38,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 world,
                 RepresentationNamespace,
                 OwnerAddress,
-                $"{(byte)tier}:{tileA}:{tileB}:{tileSpan:R}");
+                $"{(byte)tier}:{tileA}:{tileB}:{tileSpan:R}:material:{world.Versions.Material}");
         }
 
         public WorldRepresentationTier Tier { get; }

@@ -28,6 +28,10 @@ namespace BooterBigArm.Editor.WorldCreator
             "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DNaturalObjectPlanner.cs";
         private const string GeologicalPlannerSourcePath =
             "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Geology/WorldRockFormationPlanner.cs";
+        private const string ChunkMeshSourcePath =
+            "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DChunkMeshBuilder.cs";
+        private const string DustPlannerSourcePath =
+            "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustDepositionPlanner.cs";
 
         [MenuItem("Booter & BigARM/Validation/Validate World Creator Production Path")]
         public static void ValidateMenu()
@@ -87,8 +91,11 @@ namespace BooterBigArm.Editor.WorldCreator
             var far = ReadSource(FarSourcePath, errors);
             var naturalPlanner = ReadSource(NaturalPlannerSourcePath, errors);
             var geologicalPlanner = ReadSource(GeologicalPlannerSourcePath, errors);
+            var chunkMesh = ReadSource(ChunkMeshSourcePath, errors);
+            var dustPlanner = ReadSource(DustPlannerSourcePath, errors);
             if (generator == null || world == null || far == null
-                || naturalPlanner == null || geologicalPlanner == null)
+                || naturalPlanner == null || geologicalPlanner == null
+                || chunkMesh == null || dustPlanner == null)
             {
                 return;
             }
@@ -130,6 +137,19 @@ namespace BooterBigArm.Editor.WorldCreator
                 || !geologicalPlanner.Contains("StructuralDirection", StringComparison.Ordinal))
             {
                 errors.Add("Physical rocks are not exclusively authored by the geological reservation planner.");
+            }
+
+            if (!chunkMesh.Contains("WorldTerrainMaterialPackingAdapter.Pack", StringComparison.Ordinal)
+                || chunkMesh.Contains("SemanticColor(", StringComparison.Ordinal)
+                || !dustPlanner.Contains("Authority.Materials.TrySample", StringComparison.Ordinal)
+                || !dustPlanner.Contains(
+                    "TopDown3DGeologicalRockAdapter.BuildPhysicalFormations",
+                    StringComparison.Ordinal)
+                || dustPlanner.Contains(
+                    "TopDown3DRockFormationPlanner.BuildPhysicalFormations",
+                    StringComparison.Ordinal))
+            {
+                errors.Add("Terrain packing or dust bypasses the semantic surface-material authority.");
             }
         }
 

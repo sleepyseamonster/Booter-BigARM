@@ -28,6 +28,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 authority.Profile.MaximumRetainedBuffersPerResolution);
             var compiler = new WorldRepresentationCompiler(
                 authority.Query,
+                authority.Materials,
                 pool,
                 authority.Profile.CreateRepresentationProfile(),
                 authority.SourceFingerprint);
@@ -43,6 +44,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public IWorldCoordinateModel CoordinateModel => Authority.CoordinateModel;
         public IWorldCoordinateContextProvider ContextProvider => Authority.ContextProvider;
         public IWorldQueryService Query => Authority.Query;
+        public IWorldSurfaceMaterialService Materials => Authority.Materials;
         public LocalOriginFrame CurrentFrame => scheduler.CurrentFrame;
         public WorldFeatureId SourceFingerprint => Authority.SourceFingerprint;
 
@@ -217,12 +219,17 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 CanyonPlannerProfile.CreateNonCanonTechnicalProofProfile(),
                 Profile.MaximumCanyonPlans,
                 Profile.MaximumTerrainWindows);
+            Materials = new WorldSurfaceMaterialService(
+                Identity,
+                CoordinateModel,
+                ContextProvider,
+                Query);
             var originAddress = CoordinateModel.Encode(new AbsoluteWorldPosition(0d, 0d, 0d));
             SourceFingerprint = WorldFeatureId.Create(
                 Identity,
                 RuntimeNamespace,
                 originAddress,
-                Profile.InfluenceProfile.StableId);
+                $"{Profile.InfluenceProfile.StableId}:material:{Identity.Versions.Material}");
         }
 
         public WorldCreatorProductionProfile Profile { get; }
@@ -230,6 +237,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public IWorldCoordinateModel CoordinateModel { get; }
         public IWorldCoordinateContextProvider ContextProvider { get; }
         public UnboundedHybridWorldQueryService Query { get; }
+        public IWorldSurfaceMaterialService Materials { get; }
         public WorldFeatureId SourceFingerprint { get; }
 
         public bool TrySampleSurface(

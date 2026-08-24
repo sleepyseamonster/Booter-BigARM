@@ -84,6 +84,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             LocalZ = new float[vertexCount];
             FeatureIds = new WorldFeatureId[vertexCount];
             Semantics = new WorldSurfaceSemantic[vertexCount];
+            Materials = new WorldSurfaceMaterialSample[vertexCount];
             Indices = new int[indexCount];
         }
 
@@ -99,6 +100,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public float[] LocalZ { get; }
         public WorldFeatureId[] FeatureIds { get; }
         public WorldSurfaceSemantic[] Semantics { get; }
+        public WorldSurfaceMaterialSample[] Materials { get; }
         public int[] Indices { get; }
 
         public long EstimatedBytes =>
@@ -106,12 +108,14 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             + (long)Height.Length * sizeof(float) * 7L
             + (long)FeatureIds.Length * sizeof(ulong) * 2L
             + (long)Semantics.Length * sizeof(ushort)
+            + (long)Materials.Length * (sizeof(double) * 3L + sizeof(float) * 10L)
             + (long)Indices.Length * sizeof(int);
 
         public void ClearIdentities()
         {
             Array.Clear(FeatureIds, 0, FeatureIds.Length);
             Array.Clear(Semantics, 0, Semantics.Length);
+            Array.Clear(Materials, 0, Materials.Length);
         }
     }
 

@@ -109,12 +109,10 @@ namespace BooterBigArm.TopDown3D
                 {
                     var index = z * verticesPerAxis + x;
                     var sample = plan.GetSample(x, z);
-                    var worldX = chunkCoordinate.x * settings.ChunkSize + x * plan.Step;
-                    var worldZ = chunkCoordinate.y * settings.ChunkSize + z * plan.Step;
                     grid[index] = new DustVertex(
                         new Vector3(
                             x * plan.Step,
-                            generator.SampleHeight(worldX, worldZ)
+                            sample.SurfaceHeight
                                 + settings.DustSurfaceOffset
                                 + sample.Height,
                             z * plan.Step),

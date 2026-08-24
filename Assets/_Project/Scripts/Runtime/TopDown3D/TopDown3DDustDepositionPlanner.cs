@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using BooterBigArm.TopDown3D.WorldCreator;
 using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
@@ -7,21 +8,45 @@ namespace BooterBigArm.TopDown3D
     public readonly struct TopDown3DDustDepositionSample : IEquatable<TopDown3DDustDepositionSample>
     {
         public TopDown3DDustDepositionSample(float weight, float height, float shelterWeight)
+            : this(weight, height, shelterWeight, 0f, 0f, 0f, 0f)
+        {
+        }
+
+        public TopDown3DDustDepositionSample(
+            float weight,
+            float height,
+            float shelterWeight,
+            float surfaceHeight,
+            float windExposure,
+            float erosion,
+            float semanticDeposit)
         {
             Weight = Mathf.Clamp01(weight);
             Height = Mathf.Max(0f, height);
             ShelterWeight = Mathf.Clamp01(shelterWeight);
+            SurfaceHeight = surfaceHeight;
+            WindExposure = Mathf.Clamp01(windExposure);
+            Erosion = Mathf.Clamp01(erosion);
+            SemanticDeposit = Mathf.Clamp01(semanticDeposit);
         }
 
         public float Weight { get; }
         public float Height { get; }
         public float ShelterWeight { get; }
+        public float SurfaceHeight { get; }
+        public float WindExposure { get; }
+        public float Erosion { get; }
+        public float SemanticDeposit { get; }
 
         public bool Equals(TopDown3DDustDepositionSample other)
         {
             return Weight.Equals(other.Weight)
                 && Height.Equals(other.Height)
-                && ShelterWeight.Equals(other.ShelterWeight);
+                && ShelterWeight.Equals(other.ShelterWeight)
+                && SurfaceHeight.Equals(other.SurfaceHeight)
+                && WindExposure.Equals(other.WindExposure)
+                && Erosion.Equals(other.Erosion)
+                && SemanticDeposit.Equals(other.SemanticDeposit);
         }
 
         public override bool Equals(object obj)
@@ -36,6 +61,8 @@ namespace BooterBigArm.TopDown3D
                 var hash = Weight.GetHashCode();
                 hash = hash * 397 ^ Height.GetHashCode();
                 hash = hash * 397 ^ ShelterWeight.GetHashCode();
+                hash = hash * 397 ^ SurfaceHeight.GetHashCode();
+                hash = hash * 397 ^ SemanticDeposit.GetHashCode();
                 return hash;
             }
         }
@@ -107,7 +134,11 @@ namespace BooterBigArm.TopDown3D
                 for (var x = 0; x < verticesPerAxis; x++)
                 {
                     var worldPosition = origin + new Vector2(x * step, z * step);
-                    var sample = SampleAt(settings, generator, worldPosition, physicalSources);
+                    var sample = SampleAtCanonical(
+                        settings,
+                        generator,
+                        worldPosition,
+                        physicalSources);
                     samples[z * verticesPerAxis + x] = sample;
                     hasVisibleDeposits |= sample.Weight >= MinimumVisibleWeight;
                 }
@@ -177,21 +208,57 @@ namespace BooterBigArm.TopDown3D
             Vector2 worldPosition,
             IReadOnlyList<TopDown3DRockFormationPlan> physicalSources)
         {
-            var baseWeight = SampleBaseWeight(settings, worldPosition);
-            var heightNoiseSeed = StableHash(
-                settings.WorldSeed,
-                settings.DustDepositionGenerationVersion,
-                0x35A4C91D);
-            var heightNoise = ValueNoise(
-                heightNoiseSeed,
-                worldPosition.x * settings.DustPocketFrequency * 2.7f,
-                worldPosition.y * settings.DustPocketFrequency * 2.7f);
+            return SampleAtCore(
+                settings,
+                generator,
+                worldPosition,
+                physicalSources,
+                false);
+        }
+
+        private static TopDown3DDustDepositionSample SampleAtCanonical(
+            TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
+            Vector2 worldPosition,
+            IReadOnlyList<TopDown3DRockFormationPlan> physicalSources)
+        {
+            return SampleAtCore(
+                settings,
+                generator,
+                worldPosition,
+                physicalSources,
+                true);
+        }
+
+        private static TopDown3DDustDepositionSample SampleAtCore(
+            TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
+            Vector2 worldPosition,
+            IReadOnlyList<TopDown3DRockFormationPlan> physicalSources,
+            bool useSemanticWind)
+        {
+            var absolute = new AbsoluteWorldPosition(worldPosition.x, 0d, worldPosition.y);
+            if (!generator.Authority.Materials.TrySample(absolute, out var material, out var error))
+            {
+                throw new InvalidOperationException(error);
+            }
+
+            var baseWeight = SmoothStepRange(0.38f, 0.72f, material.Deposit);
             var baseHeight = baseWeight
                 * settings.DustMaximumBaseHeight
-                * Mathf.Lerp(0.68f, 1f, heightNoise);
-            var shelter = SampleShelter(settings, worldPosition, physicalSources);
-            var normal = generator.SampleNormal(worldPosition.x, worldPosition.y);
-            var slope = Vector3.Angle(normal, Vector3.up);
+                * Mathf.Lerp(0.62f, 1f, material.Sediment)
+                * Mathf.Lerp(0.72f, 1f, material.Shelter);
+            var wind = useSemanticWind
+                ? DirectionFromTurns(material.PrevailingWindDirection)
+                : GetPrevailingWindDirection(settings);
+            var shelter = SampleShelter(
+                settings,
+                generator,
+                worldPosition,
+                wind,
+                physicalSources,
+                true);
+            var slope = material.SlopeDegrees;
             var slopeAttenuation = 1f - SmoothStepRange(
                 settings.MaximumDustDepositionSlope * 0.7f,
                 settings.MaximumDustDepositionSlope,
@@ -199,7 +266,11 @@ namespace BooterBigArm.TopDown3D
             return new TopDown3DDustDepositionSample(
                 Mathf.Max(baseWeight, shelter.Weight) * slopeAttenuation,
                 Mathf.Max(baseHeight, shelter.Height) * slopeAttenuation,
-                shelter.Weight * slopeAttenuation);
+                shelter.Weight * slopeAttenuation,
+                checked((float)material.Position.Vertical),
+                material.WindExposure,
+                material.Erosion,
+                material.Deposit);
         }
 
         private static List<TopDown3DRockFormationPlan> CollectPhysicalSources(
@@ -219,7 +290,7 @@ namespace BooterBigArm.TopDown3D
             {
                 for (var x = -1; x <= 1; x++)
                 {
-                    sources.AddRange(TopDown3DRockFormationPlanner.BuildPhysicalFormations(
+                    sources.AddRange(TopDown3DGeologicalRockAdapter.BuildPhysicalFormations(
                         settings,
                         generator,
                         catalog,
@@ -236,12 +307,28 @@ namespace BooterBigArm.TopDown3D
             Vector2 worldPosition,
             IReadOnlyList<TopDown3DRockFormationPlan> physicalSources)
         {
+            return SampleShelter(
+                settings,
+                null,
+                worldPosition,
+                GetPrevailingWindDirection(settings),
+                physicalSources,
+                false);
+        }
+
+        private static ShelterSample SampleShelter(
+            TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
+            Vector2 worldPosition,
+            Vector2 wind,
+            IReadOnlyList<TopDown3DRockFormationPlan> physicalSources,
+            bool sourcesAreLocal)
+        {
             if (physicalSources == null || physicalSources.Count == 0)
             {
                 return default;
             }
 
-            var wind = GetPrevailingWindDirection(settings);
             var crossWind = new Vector2(-wind.y, wind.x);
             var strongestWeight = 0f;
             var greatestHeight = 0f;
@@ -249,6 +336,13 @@ namespace BooterBigArm.TopDown3D
             {
                 var source = physicalSources[i];
                 var sourcePosition = source.EnvelopeCenter;
+                if (sourcesAreLocal && generator != null)
+                {
+                    var absolute = generator.ToAbsolute(sourcePosition.x, 0f, sourcePosition.y);
+                    sourcePosition = new Vector2(
+                        checked((float)absolute.HorizontalA),
+                        checked((float)absolute.HorizontalB));
+                }
                 var delta = worldPosition - sourcePosition;
                 var downwind = Vector2.Dot(delta, wind);
                 var sourceRadius = Mathf.Max(0.35f, source.EnvelopeRadius);
@@ -312,6 +406,12 @@ namespace BooterBigArm.TopDown3D
             }
 
             return new ShelterSample(strongestWeight, greatestHeight);
+        }
+
+        private static Vector2 DirectionFromTurns(float turns)
+        {
+            var radians = turns * Mathf.PI * 2f;
+            return new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)).normalized;
         }
 
         private static float FractalNoise(int seed, float x, float z)

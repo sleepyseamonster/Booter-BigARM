@@ -129,7 +129,8 @@ namespace BooterBigArm.TopDown3D
                         checked((float)(absolute.HorizontalB - representation.Key.Minimum.HorizontalB)));
                     representation.GetNormal(index, out var normalA, out var normalVertical, out var normalB);
                     normals[index] = new Vector3(normalA, normalVertical, normalB);
-                    colors[index] = SemanticColor(representation.GetSemantic(index));
+                    colors[index] = WorldTerrainMaterialPackingAdapter.Pack(
+                        representation.GetMaterial(index));
                     uvs[index] = new Vector2(
                         checked((float)(absolute.HorizontalA / representation.Key.TileSpan)),
                         checked((float)(absolute.HorizontalB / representation.Key.TileSpan)));
@@ -155,18 +156,5 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
-        private static Color SemanticColor(WorldSurfaceSemantic semantic)
-        {
-            var canyonFloor = (semantic & WorldSurfaceSemantic.CanyonFloor) != 0;
-            var canyonShelf = (semantic & WorldSurfaceSemantic.CanyonShelf) != 0;
-            var canyonWall = (semantic & WorldSurfaceSemantic.CanyonWall) != 0;
-            var disturbed = (semantic & (WorldSurfaceSemantic.Disturbed | WorldSurfaceSemantic.Buried)) != 0;
-            var weathered = (semantic & WorldSurfaceSemantic.Weathered) != 0;
-            return new Color(
-                canyonFloor || disturbed ? 0.46f : 0.04f,
-                canyonShelf ? 0.68f : 0.18f,
-                canyonWall ? 0.9f : 0.24f,
-                weathered ? 0.88f : 0.52f);
-        }
     }
 }

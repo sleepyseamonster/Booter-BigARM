@@ -14,6 +14,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
     public sealed class WorldRepresentationCompiler : IWorldRepresentationCompiler
     {
         private readonly IWorldQueryService query;
+        private readonly IWorldSurfaceMaterialService materials;
         private readonly WorldRepresentationBufferPool pool;
         private readonly WorldRepresentationBuildProfile profile;
         private readonly WorldFeatureId sourceFingerprint;
@@ -23,8 +24,24 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             WorldRepresentationBufferPool pool,
             WorldRepresentationBuildProfile profile,
             WorldFeatureId sourceFingerprint)
+            : this(
+                query,
+                new QueryDerivedSurfaceMaterialService(query),
+                pool,
+                profile,
+                sourceFingerprint)
+        {
+        }
+
+        public WorldRepresentationCompiler(
+            IWorldQueryService query,
+            IWorldSurfaceMaterialService materials,
+            WorldRepresentationBufferPool pool,
+            WorldRepresentationBuildProfile profile,
+            WorldFeatureId sourceFingerprint)
         {
             this.query = query ?? throw new ArgumentNullException(nameof(query));
+            this.materials = materials ?? throw new ArgumentNullException(nameof(materials));
             this.pool = pool ?? throw new ArgumentNullException(nameof(pool));
             this.profile = profile;
             if (sourceFingerprint.IsEmpty) throw new ArgumentException("Representations require a canonical source fingerprint.", nameof(sourceFingerprint));
@@ -64,6 +81,14 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                             throw new InvalidOperationException(error);
                         }
 
+                        if (!materials.TrySample(
+                                new AbsoluteWorldPosition(absoluteA, 0d, absoluteB),
+                                out var material,
+                                out error))
+                        {
+                            throw new InvalidOperationException(error);
+                        }
+
                         buffers.AbsoluteA[index] = absoluteA;
                         buffers.AbsoluteB[index] = absoluteB;
                         buffers.Height[index] = checked((float)sample.Position.Vertical);
@@ -72,6 +97,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                         buffers.NormalB[index] = sample.NormalB;
                         buffers.FeatureIds[index] = sample.DominantFeatureId;
                         buffers.Semantics[index] = sample.Semantic;
+                        buffers.Materials[index] = material;
                     }
                 }
 
@@ -132,6 +158,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public float GetHeight(int vertexIndex) => RequireBuffers().Height[vertexIndex];
         public int GetIndex(int index) => RequireBuffers().Indices[index];
         public WorldSurfaceSemantic GetSemantic(int vertexIndex) => RequireBuffers().Semantics[vertexIndex];
+        public WorldSurfaceMaterialSample GetMaterial(int vertexIndex) => RequireBuffers().Materials[vertexIndex];
         public void GetNormal(
             int vertexIndex,
             out float normalA,
