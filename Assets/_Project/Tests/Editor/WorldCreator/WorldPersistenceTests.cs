@@ -70,6 +70,21 @@ namespace BooterBigArm.Tests.WorldCreator
         }
 
         [Test]
+        public void PersistenceManifest_RejectsSiteDomainChangeExplicitly()
+        {
+            var model = new NonCanonCoordinateModel();
+            var persistedWorld = WorldCreatorTestFactory.CreateWorld(site: 1);
+            var currentWorld = WorldCreatorTestFactory.CreateWorld(site: 2);
+            var manifest = WorldPersistenceManifest.CreateCurrent(persistedWorld, model);
+
+            var result = manifest.CheckCompatibility(currentWorld, model);
+
+            Assert.That(result.IsCompatible, Is.False);
+            Assert.That(result.Issue, Is.EqualTo(WorldCompatibilityIssue.SiteVersionMismatch));
+            Assert.That(result.Message, Does.Contain("Site"));
+        }
+
+        [Test]
         public void SavedPlaceIdentityAndAddress_SurviveLocalOriginRebase()
         {
             var model = new NonCanonCoordinateModel();

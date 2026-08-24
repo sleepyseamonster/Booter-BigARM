@@ -15,6 +15,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         private readonly IWorldCoordinateModel coordinateModel;
         private readonly IWorldCoordinateContextProvider contextProvider;
         private readonly CanyonSystemPlanner canyonPlanner;
+        private readonly IWorldHistoryPlanProvider historyProvider;
         private readonly int maximumCanyonPlans;
         private readonly int maximumTerrainWindows;
         private readonly Dictionary<CanyonSystemCellIndex, CanyonCacheEntry> canyonPlans =
@@ -38,7 +39,8 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             IWorldCoordinateContextProvider contextProvider,
             CanyonPlannerProfile canyonProfile,
             int maximumCanyonPlans = 96,
-            int maximumTerrainWindows = 24)
+            int maximumTerrainWindows = 24,
+            IWorldHistoryPlanProvider historyProvider = null)
         {
             this.world = world;
             this.coordinateModel = coordinateModel ?? throw new ArgumentNullException(nameof(coordinateModel));
@@ -47,6 +49,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             if (maximumTerrainWindows < 1) throw new ArgumentOutOfRangeException(nameof(maximumTerrainWindows));
             this.maximumCanyonPlans = maximumCanyonPlans;
             this.maximumTerrainWindows = maximumTerrainWindows;
+            this.historyProvider = historyProvider;
             canyonPlanner = new CanyonSystemPlanner(contextProvider, canyonProfile);
         }
 
@@ -163,7 +166,14 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                         }
                     }
 
-                    var terrain = HybridTerrainCompiler.Compile(world, plans);
+                    var histories = historyProvider?.GetPlans(
+                        world,
+                        coordinateModel,
+                        cell,
+                        canyonPlanner.Profile.CellSpan);
+                    if (histories == null && historyProvider != null)
+                        throw new InvalidOperationException("The history provider returned a null plan collection.");
+                    var terrain = HybridTerrainCompiler.Compile(world, plans, histories);
                     query = new HybridTerrainWindowQueryService(terrain, coordinateModel, contextProvider);
                     var node = terrainRecency.AddLast(cell);
                     terrainWindows.Add(cell, new TerrainCacheEntry(query, node));

@@ -714,30 +714,27 @@ Quality scalability must reduce representation cost without changing canonical f
 
 ## 13. Product decisions reserved for review
 
-The architecture can begin with defaults, but the following decisions remain user-owned:
+The user approved the charter's perceptual-uniqueness standard, hybrid architecture D, bounded volumetric features, **The Fractured Transect** proof slice, its non-canon fractured geology profile, topology-v2 cutover, and fail-closed development-save behavior. Those approvals governed Batches 0-10; they do not canonize the disposable proof coordinates or geology.
 
-1. Approve or revise the charter's definition of perceptual uniqueness.
-2. Approve hybrid architecture D and bounded volumetric features instead of universal voxels.
-3. Approve **The Fractured Transect** as the first slice and its proposed proof envelope.
-4. Choose the first visual geology family or accept the non-canon fractured red-canyon proof profile. The final thematic globe coordinate system and regional map are explicitly deferred and will not be inferred from this choice.
-5. Define “mid-range computer,” target resolution, quality preset, and desired frame-rate threshold.
-6. Decide how old saved worlds behave after topology-version changes: pin, migrate when supported, or declare incompatible during development.
+Two product gates remain:
 
-The coordinate system's bounds, notation, projection, wrapping, regional map, and lore are not decisions required for this foundation approval. They remain reserved for the user's later dedicated design. The other decisions must be resolved no later than the implementation batch that consumes them.
+1. Define the target “mid-range” Windows hardware class, output resolution, quality preset, and frame-rate threshold.
+2. Visually accept or reject the fixed-camera and hands-on production-world result.
+
+The coordinate system's bounds, notation, projection, wrapping, regional map, landscape meanings, and lore remain reserved for the user's later dedicated design. They were not inferred during implementation.
 
 ## 14. Review checkpoint
 
 At this checkpoint:
 
-- the current generator and documentation have been audited read-only;
-- the World Creator Charter is revised to preserve the user's future coordinate-system authority and close the audit findings;
-- architecture alternatives are compared and the hybrid causal compiler is selected;
-- keep/evolve/replace decisions are explicit;
-- the first production slice and proof matrix are defined;
-- no runtime code or Unity content has been changed;
-- implementation authority remains closed.
+- Batches 0-9 are implemented, verified, documented, and committed through the live manifest-backed save/saved-place cutover.
+- Batch 10's automated production proof covers three seeds and three 3,000+ metre transects per seed inside the declared 4,608 m envelope, including local-origin rebasing, deterministic arrangement signatures, semantic materials, agent affordances, geological formation novelty, bounded feature requests, synthetic causal site history, near/mid/far agreement, cache bounds, and production-authority scans.
+- The synthetic site-history fixture entered the production proof path under independent site version `2`; site-v1 saves reject explicitly rather than silently resolving against changed site terrain.
+- Retired scalar terrain, escarpment, and cell-density rock planners have no production runtime consumers. Compatibility definitions are retained only where existing test/tool consumers still exist or where their worktree removal is user-owned; they are not a second production authority.
+- The final thematic coordinate system and regional map remain replaceable and undefined.
+- Batch 10 is not finally approved: fixed-camera/hands-on visual acceptance and a controlled target-Windows Development Player profile remain open gates.
 
-The charter and architecture are approved as ready to govern implementation. The next action is a separately authorized Batch 0 implementation-readiness pass, not an automatic runtime-code change.
+The durable receipts and gate classification are recorded in `Docs/Evidence/WorldCreator/BATCH_10_VERTICAL_SLICE_GATE_REPORT_2026-08-24.md`.
 
 ## 15. Research basis
 

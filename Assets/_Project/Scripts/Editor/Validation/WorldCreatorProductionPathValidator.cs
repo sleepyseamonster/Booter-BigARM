@@ -36,6 +36,12 @@ namespace BooterBigArm.Editor.WorldCreator
             "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/TopDown3DGameStateSaveService.cs";
         private const string GameSnapshotSourcePath =
             "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/TopDown3DGameStateSnapshot.cs";
+        private const string ProductionRuntimeSourcePath =
+            "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Runtime/WorldCreatorProductionRuntime.cs";
+        private const string UnboundedQuerySourcePath =
+            "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Query/UnboundedHybridWorldQueryService.cs";
+        private const string RuntimeSourceRoot =
+            "Assets/_Project/Scripts/Runtime/TopDown3D";
 
         [MenuItem("Booter & BigARM/Validation/Validate World Creator Production Path")]
         public static void ValidateMenu()
@@ -99,10 +105,13 @@ namespace BooterBigArm.Editor.WorldCreator
             var dustPlanner = ReadSource(DustPlannerSourcePath, errors);
             var saveService = ReadSource(SaveServiceSourcePath, errors);
             var gameSnapshot = ReadSource(GameSnapshotSourcePath, errors);
+            var productionRuntime = ReadSource(ProductionRuntimeSourcePath, errors);
+            var unboundedQuery = ReadSource(UnboundedQuerySourcePath, errors);
             if (generator == null || world == null || far == null
                 || naturalPlanner == null || geologicalPlanner == null
                 || chunkMesh == null || dustPlanner == null
-                || saveService == null || gameSnapshot == null)
+                || saveService == null || gameSnapshot == null
+                || productionRuntime == null || unboundedQuery == null)
             {
                 return;
             }
@@ -170,6 +179,54 @@ namespace BooterBigArm.Editor.WorldCreator
                 || gameSnapshot.Contains("MeshData", StringComparison.Ordinal))
             {
                 errors.Add("Game-state persistence bypasses the manifest, precision-safe place, delta, or bounded-data contracts.");
+            }
+
+            if (!productionRuntime.Contains("NonCanonProofHistoryProvider", StringComparison.Ordinal)
+                || !productionRuntime.Contains("NonCanonProofHistory", StringComparison.Ordinal)
+                || !unboundedQuery.Contains("IWorldHistoryPlanProvider", StringComparison.Ordinal)
+                || !unboundedQuery.Contains("HybridTerrainCompiler.Compile(world, plans, histories)", StringComparison.Ordinal))
+            {
+                errors.Add("The production terrain path does not expose or consume the bounded causal-history provider seam.");
+            }
+
+            ValidateRetiredAuthorityConsumers(errors);
+        }
+
+        private static void ValidateRetiredAuthorityConsumers(ICollection<string> errors)
+        {
+            if (!Directory.Exists(RuntimeSourceRoot))
+            {
+                errors.Add("The TopDown3D runtime source root is missing.");
+                return;
+            }
+
+            var retiredDefinitions = new HashSet<string>(StringComparer.Ordinal)
+            {
+                "TopDown3DRockFormationPlanner.cs",
+                "TopDown3DHeightSampler.cs",
+                "TopDown3DEscarpmentDecorator.cs",
+                "TopDown3DEscarpmentSampler.cs",
+                "TopDown3DEscarpmentSurfaceDecorator.cs"
+            };
+            var forbiddenConsumers = new[]
+            {
+                "TopDown3DRockFormationPlanner.",
+                "TopDown3DHeightSampler.",
+                "TopDown3DEscarpmentDecorator",
+                "TopDown3DEscarpmentSampler",
+                "TopDown3DEscarpmentSurfaceDecorator"
+            };
+            var files = Directory.GetFiles(RuntimeSourceRoot, "*.cs", SearchOption.AllDirectories);
+            for (var i = 0; i < files.Length; i++)
+            {
+                if (retiredDefinitions.Contains(Path.GetFileName(files[i]))) continue;
+                var source = File.ReadAllText(files[i]);
+                for (var tokenIndex = 0; tokenIndex < forbiddenConsumers.Length; tokenIndex++)
+                {
+                    if (!source.Contains(forbiddenConsumers[tokenIndex], StringComparison.Ordinal)) continue;
+                    errors.Add(
+                        $"Runtime source '{files[i]}' still consumes retired authority '{forbiddenConsumers[tokenIndex]}'.");
+                }
             }
         }
 

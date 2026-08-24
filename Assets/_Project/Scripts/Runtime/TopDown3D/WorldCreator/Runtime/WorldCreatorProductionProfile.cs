@@ -10,6 +10,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
     {
         public const string ResourcePath = "WorldCreator/ProductionWorldCreatorProfile";
         public const int CurrentTopologyVersion = 2;
+        public const int CurrentSiteVersion = 2;
 
         [Header("Temporary production-path proof authority")]
         [SerializeField] private bool nonCanonProofOnly = true;
@@ -24,7 +25,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         [SerializeField, Min(1)] private int materialVersion = 1;
         [SerializeField, Min(1)] private int decorationVersion = 1;
         [SerializeField, Min(1)] private int resourceVersion = 1;
-        [SerializeField, Min(1)] private int siteVersion = 1;
+        [SerializeField, Min(1)] private int siteVersion = CurrentSiteVersion;
 
         [Header("Representation budgets")]
         [SerializeField, Range(3, 65)] private int nearResolution = 25;
@@ -78,6 +79,12 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             if (topologyVersion != CurrentTopologyVersion)
             {
                 error = $"The production runtime requires topology version {CurrentTopologyVersion}.";
+                return false;
+            }
+
+            if (siteVersion != CurrentSiteVersion)
+            {
+                error = $"The production runtime requires site version {CurrentSiteVersion}.";
                 return false;
             }
 
@@ -158,7 +165,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             materialVersion = Mathf.Max(1, materialVersion);
             decorationVersion = Mathf.Max(1, decorationVersion);
             resourceVersion = Mathf.Max(1, resourceVersion);
-            siteVersion = Mathf.Max(1, siteVersion);
+            siteVersion = CurrentSiteVersion;
             maximumCanyonPlans = Mathf.Max(9, maximumCanyonPlans);
             maximumTerrainWindows = Mathf.Max(1, maximumTerrainWindows);
             maximumRepresentationEntries = Mathf.Max(1, maximumRepresentationEntries);

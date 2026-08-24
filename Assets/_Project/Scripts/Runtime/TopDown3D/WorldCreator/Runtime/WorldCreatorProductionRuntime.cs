@@ -45,6 +45,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public IWorldCoordinateContextProvider ContextProvider => Authority.ContextProvider;
         public IWorldQueryService Query => Authority.Query;
         public IWorldSurfaceMaterialService Materials => Authority.Materials;
+        public WorldHistoryPlan NonCanonProofHistory => Authority.NonCanonProofHistory;
         public LocalOriginFrame CurrentFrame => scheduler.CurrentFrame;
         public WorldFeatureId SourceFingerprint => Authority.SourceFingerprint;
 
@@ -212,13 +213,22 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 Profile.ProvinceCatalog,
                 Profile.StrataCatalog,
                 Profile.InfluenceProfile);
+            var historyCenter = CreateNonCanonProofHistoryCenter(worldSeed);
+            NonCanonProofHistory = HybridTerrainCompiler.CreateNonCanonSyntheticHistoryFixture(
+                Identity,
+                CoordinateModel,
+                historyCenter);
             Query = new UnboundedHybridWorldQueryService(
                 Identity,
                 CoordinateModel,
                 ContextProvider,
                 CanyonPlannerProfile.CreateNonCanonTechnicalProofProfile(),
                 Profile.MaximumCanyonPlans,
-                Profile.MaximumTerrainWindows);
+                Profile.MaximumTerrainWindows,
+                new NonCanonProofHistoryProvider(
+                    Identity,
+                    CoordinateModel,
+                    NonCanonProofHistory));
             Materials = new WorldSurfaceMaterialService(
                 Identity,
                 CoordinateModel,
@@ -229,7 +239,8 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 Identity,
                 RuntimeNamespace,
                 originAddress,
-                $"{Profile.InfluenceProfile.StableId}:material:{Identity.Versions.Material}");
+                $"{Profile.InfluenceProfile.StableId}:material:{Identity.Versions.Material}"
+                + $":site:{Identity.Versions.Site}:history:{NonCanonProofHistory.Id}");
         }
 
         public WorldCreatorProductionProfile Profile { get; }
@@ -238,7 +249,16 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public IWorldCoordinateContextProvider ContextProvider { get; }
         public UnboundedHybridWorldQueryService Query { get; }
         public IWorldSurfaceMaterialService Materials { get; }
+        public WorldHistoryPlan NonCanonProofHistory { get; }
         public WorldFeatureId SourceFingerprint { get; }
+
+        private static AbsoluteWorldPosition CreateNonCanonProofHistoryCenter(long worldSeed)
+        {
+            var bits = unchecked((ulong)worldSeed);
+            var normalizedA = (bits & 0xffffUL) / 65535d - 0.5d;
+            var normalizedB = ((bits >> 16) & 0xffffUL) / 65535d - 0.5d;
+            return new AbsoluteWorldPosition(normalizedA * 160d, 0d, normalizedB * 160d);
+        }
 
         public bool TrySampleSurface(
             AbsoluteWorldPosition position,
@@ -325,6 +345,55 @@ namespace BooterBigArm.TopDown3D.WorldCreator
 
             public WorldSurfaceSample Sample { get; }
             public LinkedListNode<SurfaceCacheKey> Node { get; }
+        }
+    }
+
+    internal sealed class NonCanonProofHistoryProvider : IWorldHistoryPlanProvider
+    {
+        private readonly WorldHistoryPlan history;
+        private readonly IReadOnlyList<WorldHistoryPlan> singleton;
+        private readonly WorldIdentity expectedWorld;
+        private readonly string coordinateModelId;
+        private readonly int coordinateModelVersion;
+
+        public NonCanonProofHistoryProvider(
+            WorldIdentity world,
+            IWorldCoordinateModel coordinateModel,
+            WorldHistoryPlan proofHistory)
+        {
+            if (coordinateModel == null) throw new ArgumentNullException(nameof(coordinateModel));
+            expectedWorld = world;
+            coordinateModelId = coordinateModel.ModelId;
+            coordinateModelVersion = coordinateModel.ModelVersion;
+            history = proofHistory ?? throw new ArgumentNullException(nameof(proofHistory));
+            singleton = Array.AsReadOnly(new[] { history });
+        }
+
+        public IReadOnlyList<WorldHistoryPlan> GetPlans(
+            WorldIdentity world,
+            IWorldCoordinateModel coordinateModel,
+            CanyonSystemCellIndex windowCell,
+            double cellSpan)
+        {
+            if (coordinateModel == null) throw new ArgumentNullException(nameof(coordinateModel));
+            if (!(cellSpan > 0d)) throw new ArgumentOutOfRangeException(nameof(cellSpan));
+            if (!world.Equals(expectedWorld)
+                || !string.Equals(coordinateModel.ModelId, coordinateModelId, StringComparison.Ordinal)
+                || coordinateModel.ModelVersion != coordinateModelVersion)
+                throw new InvalidOperationException("The non-canon proof history was requested for a different world or coordinate model.");
+            var minimumA = windowCell.HorizontalA * cellSpan;
+            var minimumB = windowCell.HorizontalB * cellSpan;
+            var maximumA = minimumA + cellSpan;
+            var maximumB = minimumB + cellSpan;
+            var center = history.Reservation.Center;
+            var closestA = Math.Max(minimumA, Math.Min(maximumA, center.HorizontalA));
+            var closestB = Math.Max(minimumB, Math.Min(maximumB, center.HorizontalB));
+            var deltaA = closestA - center.HorizontalA;
+            var deltaB = closestB - center.HorizontalB;
+            var radius = history.Reservation.FootprintRadius;
+            return deltaA * deltaA + deltaB * deltaB <= radius * radius
+                ? singleton
+                : Array.Empty<WorldHistoryPlan>();
         }
     }
 
