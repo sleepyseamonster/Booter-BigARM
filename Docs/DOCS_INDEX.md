@@ -10,6 +10,8 @@ These should be treated as the source of truth unless they are intentionally rev
 
 - [WORLD_BASIS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_BASIS.md)
   The setting, tone, and core world fantasy.
+- [WORLD_CREATOR_CHARTER.md](./WORLD_CREATOR_CHARTER.md)
+  The approved product promise, quality bar, lore constraints, and non-negotiable principles for the effectively infinite World Creator.
 - [WORLD_SYSTEMS_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_SYSTEMS_STANDARD.md)
   The procedural generation, chunking, and save/load baseline.
 - [PROJECT_STRUCTURE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/PROJECT_STRUCTURE.md)
@@ -36,6 +38,8 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [WORLD_CREATOR_ARCHITECTURE_PLAN.md](./WORLD_CREATOR_ARCHITECTURE_PLAN.md)
+  The approved hybrid causal world-compiler architecture, migration sequence, first vertical slice, and evidence gates subordinate to the World Creator Charter.
 - [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md)
   The active perspective top-down 3D direction, bounded first-foundation scope, architecture, proof requirements, and stop conditions.
 - [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md)

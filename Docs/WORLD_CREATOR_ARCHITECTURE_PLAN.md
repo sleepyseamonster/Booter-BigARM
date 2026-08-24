@@ -1,12 +1,12 @@
 # World Creator Architecture Plan
 
-Status: revised implementation-ready proposal awaiting user approval
+Status: approved implementation-ready architecture on 2026-08-24
 
 Plan date: 2026-08-23
 
-Authority: planning and documentation only
+Authority: planning and documentation only; technical and design-readiness approval by Gottspan under the user's explicit delegation
 
-Runtime change gate: closed until the user approves this plan and [WORLD_CREATOR_CHARTER.md](./WORLD_CREATOR_CHARTER.md)
+Runtime change gate: closed until the user separately authorizes implementation; this approval does not itself authorize runtime, scene, asset, package, project-setting, migration, deletion, or cutover changes
 
 ## 1. Done, scope, source of truth, proof, and stop
 
@@ -50,7 +50,7 @@ This task is done when the repository contains:
 
 ### Stop condition
 
-Stop after the two planning documents are verified. Do not change runtime code, Unity assets, scenes, settings, packages, existing dirty documentation, or run Unity. Implementation begins only after the user reviews and approves the charter, selected architecture, slice boundary, and provisional proof target.
+Stop after the two planning documents are verified, approved, and canonically routed. Do not change runtime code, Unity assets, scenes, settings, packages, or run Unity. Implementation begins only after the user separately authorizes Batch 0; later batches remain gated by their own proof and stop conditions.
 
 ## 2. Live repository and evidence boundary
 
@@ -737,7 +737,7 @@ At this checkpoint:
 - no runtime code or Unity content has been changed;
 - implementation authority remains closed.
 
-The requested next action is user review, not implementation.
+The charter and architecture are approved as ready to govern implementation. The next action is a separately authorized Batch 0 implementation-readiness pass, not an automatic runtime-code change.
 
 ## 15. Research basis
 

@@ -1,12 +1,12 @@
 # World Creator Charter
 
-Status: revised proposal awaiting user approval
+Status: approved as the durable World Creator product and quality authority on 2026-08-24
 
-Authority: the user remains creative and product authority
+Authority: the user remains creative and product authority; the user explicitly delegated charter-readiness approval to Gottspan on 2026-08-24
 
 Change boundary: this charter authorizes planning only; it does not authorize runtime-code, scene, asset, package, or project-setting changes
 
-On approval, this charter becomes the durable product and quality authority for the World Creator. [WORLD_CREATOR_ARCHITECTURE_PLAN.md](./WORLD_CREATOR_ARCHITECTURE_PLAN.md) remains subordinate implementation guidance and may evolve without weakening the charter. Canonical routing through `DOCS_INDEX.md` and the decision log occurs only after approval in a clean, task-owned documentation lane.
+This charter is the durable product and quality authority for the World Creator. [WORLD_CREATOR_ARCHITECTURE_PLAN.md](./WORLD_CREATOR_ARCHITECTURE_PLAN.md) remains subordinate implementation guidance and may evolve without weakening the charter. Approval does not authorize runtime implementation, deletion, cutover, or any decision explicitly reserved to the user.
 
 ## Purpose
 
