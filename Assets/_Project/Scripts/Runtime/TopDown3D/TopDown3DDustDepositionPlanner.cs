@@ -74,6 +74,7 @@ namespace BooterBigArm.TopDown3D
 
         public static TopDown3DDustDepositionPlan BuildPlan(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             TopDown3DNaturalObjectCatalog catalog,
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter)
@@ -93,6 +94,7 @@ namespace BooterBigArm.TopDown3D
             var samples = new TopDown3DDustDepositionSample[verticesPerAxis * verticesPerAxis];
             var physicalSources = CollectPhysicalSources(
                 settings,
+                generator,
                 catalog,
                 chunkCoordinate,
                 spawnExclusionCenter);
@@ -105,7 +107,7 @@ namespace BooterBigArm.TopDown3D
                 for (var x = 0; x < verticesPerAxis; x++)
                 {
                     var worldPosition = origin + new Vector2(x * step, z * step);
-                    var sample = SampleAt(settings, worldPosition, physicalSources);
+                    var sample = SampleAt(settings, generator, worldPosition, physicalSources);
                     samples[z * verticesPerAxis + x] = sample;
                     hasVisibleDeposits |= sample.Weight >= MinimumVisibleWeight;
                 }
@@ -171,6 +173,7 @@ namespace BooterBigArm.TopDown3D
 
         public static TopDown3DDustDepositionSample SampleAt(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             Vector2 worldPosition,
             IReadOnlyList<TopDown3DRockFormationPlan> physicalSources)
         {
@@ -187,10 +190,7 @@ namespace BooterBigArm.TopDown3D
                 * settings.DustMaximumBaseHeight
                 * Mathf.Lerp(0.68f, 1f, heightNoise);
             var shelter = SampleShelter(settings, worldPosition, physicalSources);
-            var normal = TopDown3DHeightSampler.SampleNormal(
-                settings,
-                worldPosition.x,
-                worldPosition.y);
+            var normal = generator.SampleNormal(worldPosition.x, worldPosition.y);
             var slope = Vector3.Angle(normal, Vector3.up);
             var slopeAttenuation = 1f - SmoothStepRange(
                 settings.MaximumDustDepositionSlope * 0.7f,
@@ -204,6 +204,7 @@ namespace BooterBigArm.TopDown3D
 
         private static List<TopDown3DRockFormationPlan> CollectPhysicalSources(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             TopDown3DNaturalObjectCatalog catalog,
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter)
@@ -220,6 +221,7 @@ namespace BooterBigArm.TopDown3D
                 {
                     sources.AddRange(TopDown3DRockFormationPlanner.BuildPhysicalFormations(
                         settings,
+                        generator,
                         catalog,
                         chunkCoordinate + new Vector2Int(x, z),
                         spawnExclusionCenter));

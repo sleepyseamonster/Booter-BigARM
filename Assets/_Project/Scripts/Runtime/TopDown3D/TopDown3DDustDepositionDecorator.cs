@@ -31,6 +31,7 @@ namespace BooterBigArm.TopDown3D
         public static void Decorate(
             TopDown3DGeneratedChunk chunk,
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             Material fallbackMaterial,
             Vector2 spawnExclusionCenter)
         {
@@ -44,6 +45,7 @@ namespace BooterBigArm.TopDown3D
 
             var plan = TopDown3DDustDepositionPlanner.BuildPlan(
                 settings,
+                generator,
                 settings.NaturalObjectCatalog,
                 chunk.Coordinate,
                 spawnExclusionCenter);
@@ -52,7 +54,7 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            var meshData = BuildMeshData(settings, chunk.Coordinate, plan);
+            var meshData = BuildMeshData(settings, generator, chunk.Coordinate, plan);
             if (meshData.Triangles.Length == 0)
             {
                 return;
@@ -67,10 +69,10 @@ namespace BooterBigArm.TopDown3D
             mesh.SetColors(meshData.Colors);
             mesh.SetTriangles(meshData.Triangles, 0, true);
             mesh.RecalculateBounds();
-            chunk.RegisterGeneratedMesh(mesh);
+            chunk.RegisterDecorationMesh(mesh);
 
             var dustObject = new GameObject("Wind Deposited Dust");
-            dustObject.transform.SetParent(chunk.transform, false);
+            dustObject.transform.SetParent(chunk.DecorationRoot, false);
             dustObject.AddComponent<MeshFilter>().sharedMesh = mesh;
             var renderer = dustObject.AddComponent<MeshRenderer>();
             renderer.sharedMaterial = settings.DepositedDustMaterial != null
@@ -86,6 +88,7 @@ namespace BooterBigArm.TopDown3D
 
         public static TopDown3DDustMeshData BuildMeshData(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             Vector2Int chunkCoordinate,
             TopDown3DDustDepositionPlan plan)
         {
@@ -111,7 +114,7 @@ namespace BooterBigArm.TopDown3D
                     grid[index] = new DustVertex(
                         new Vector3(
                             x * plan.Step,
-                            TopDown3DHeightSampler.SampleHeight(settings, worldX, worldZ)
+                            generator.SampleHeight(worldX, worldZ)
                                 + settings.DustSurfaceOffset
                                 + sample.Height,
                             z * plan.Step),
