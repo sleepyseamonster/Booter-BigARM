@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a4e5ecff49c4e54b04011c16050771, type: 3}
+  m_Name: Proof_NonCanon_GeologicProvinceCatalog
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.WorldCreator.GeologicProvinceCatalog
+  nonCanonProofOnly: 1
+  definitions:
+  - stableId: proof.non-canon.province.dry-shelf-baseline
+    displayName: '[NON-CANON PROOF] Dry Shelf Baseline'
+    landscape:
+      baseElevationBias: -0.12
+      relief: 0.34
+      structuralDirection: 0.18
+      structuralAnisotropy: 0.42
+      canyonDensity: 0.28
+      canyonBranching: 0.22
+      canyonDepth: 0.35
+      canyonWidth: 0.58
+      weathering: 0.62
+      sediment: 0.48
+      prevailingWindDirection: 0.72
+      windStrength: 0.66
+      landmarkCadence: 0.18
+      visualDensity: 0.32
+  - stableId: proof.non-canon.province.fractured-canyon
+    displayName: '[NON-CANON PROOF] Fractured Canyon Influence'
+    landscape:
+      baseElevationBias: 0.16
+      relief: 0.86
+      structuralDirection: 0.61
+      structuralAnisotropy: 0.88
+      canyonDensity: 0.82
+      canyonBranching: 0.74
+      canyonDepth: 0.91
+      canyonWidth: 0.34
+      weathering: 0.78
+      sediment: 0.26
+      prevailingWindDirection: 0.68
+      windStrength: 0.84
+      landmarkCadence: 0.42
+      visualDensity: 0.76

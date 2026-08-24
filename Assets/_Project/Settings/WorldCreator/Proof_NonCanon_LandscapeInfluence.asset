@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483bf9e17bc8c495b92d7da0f36834e8, type: 3}
+  m_Name: Proof_NonCanon_LandscapeInfluence
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.WorldCreator.NonCanonProofInfluenceProfile
+  nonCanonProofOnly: 1
+  stableId: proof.non-canon.influence.fractured-transect
+  version: 1
+  baselineProvinceId: proof.non-canon.province.dry-shelf-baseline
+  baselineStrataFamilyId: proof.non-canon.strata.iron-shelf
+  influenceProvinceId: proof.non-canon.province.fractured-canyon
+  influenceStrataFamilyId: proof.non-canon.strata.fractured-pale-iron
+  gradualStartHorizontalA: -768
+  gradualEndHorizontalA: 768
+  intentionalBoundaryHorizontalB: 384
+  intentionalBoundaryWeight: 0.35
