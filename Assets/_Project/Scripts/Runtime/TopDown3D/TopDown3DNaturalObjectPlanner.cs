@@ -75,20 +75,24 @@ namespace BooterBigArm.TopDown3D
     {
         internal TopDown3DNaturalObjectChunkPlan(
             List<TopDown3DNaturalObjectPlacement> cosmeticPlacements,
-            List<TopDown3DRockFormationPlan> physicalFormations)
+            List<TopDown3DRockFormationPlan> physicalFormations,
+            List<TopDown3DResourceNodePlacement> interactiveResourcePlacements)
         {
             CosmeticPlacements = cosmeticPlacements;
             PhysicalFormations = physicalFormations;
+            InteractiveResourcePlacements = interactiveResourcePlacements;
         }
 
         public IReadOnlyList<TopDown3DNaturalObjectPlacement> CosmeticPlacements { get; }
         public IReadOnlyList<TopDown3DRockFormationPlan> PhysicalFormations { get; }
+        public IReadOnlyList<TopDown3DResourceNodePlacement> InteractiveResourcePlacements { get; }
     }
 
     public static class TopDown3DNaturalObjectPlanner
     {
         public static TopDown3DNaturalObjectChunkPlan BuildChunkPlan(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             TopDown3DNaturalObjectCatalog catalog,
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter)
@@ -98,11 +102,13 @@ namespace BooterBigArm.TopDown3D
             {
                 return new TopDown3DNaturalObjectChunkPlan(
                     placements,
-                    new List<TopDown3DRockFormationPlan>());
+                    new List<TopDown3DRockFormationPlan>(),
+                    new List<TopDown3DResourceNodePlacement>());
             }
 
             BuildLayer(
                 settings,
+                generator,
                 catalog,
                 chunkCoordinate,
                 spawnExclusionCenter,
@@ -112,12 +118,13 @@ namespace BooterBigArm.TopDown3D
                 settings.MaximumClutterSlope,
                 settings.ClutterClusterFrequency,
                 settings.ClutterClusterStrength,
-                0.2f,
-                1.8f,
+                -0.6f,
+                2.4f,
                 true,
                 placements);
             BuildLayer(
                 settings,
+                generator,
                 catalog,
                 chunkCoordinate,
                 spawnExclusionCenter,
@@ -127,12 +134,13 @@ namespace BooterBigArm.TopDown3D
                 settings.MaximumClutterSlope,
                 settings.ClutterClusterFrequency,
                 settings.ClutterClusterStrength,
-                0.2f,
-                1.8f,
+                -0.6f,
+                2.4f,
                 true,
                 placements);
             BuildLayer(
                 settings,
+                generator,
                 catalog,
                 chunkCoordinate,
                 spawnExclusionCenter,
@@ -142,22 +150,31 @@ namespace BooterBigArm.TopDown3D
                 settings.MaximumClutterSlope,
                 settings.FineGrayClusterFrequency,
                 settings.FineGrayClusterStrength,
-                // A negative low-density factor creates truly empty ground between dense gray pockets.
+                // The sharp local mask sits inside the shared broad abundance field so gray clutter
+                // reinforces common pockets instead of filling the other clutter layers' empty ground.
                 -2.4f,
                 3.2f,
-                false,
+                true,
                 placements);
-            return new TopDown3DNaturalObjectChunkPlan(
-                placements,
-                TopDown3DRockFormationPlanner.BuildPhysicalFormations(
-                    settings,
-                    catalog,
-                    chunkCoordinate,
-                    spawnExclusionCenter));
+            var formations = TopDown3DRockFormationPlanner.BuildPhysicalFormations(
+                settings,
+                generator,
+                catalog,
+                chunkCoordinate,
+                spawnExclusionCenter);
+            var resources = TopDown3DResourceNodePlanner.BuildChunkPlacements(
+                settings,
+                generator,
+                settings.ResourceCatalog,
+                chunkCoordinate,
+                spawnExclusionCenter,
+                formations);
+            return new TopDown3DNaturalObjectChunkPlan(placements, formations, resources);
         }
 
         private static void BuildLayer(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             TopDown3DNaturalObjectCatalog catalog,
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter,
@@ -215,6 +232,8 @@ namespace BooterBigArm.TopDown3D
                     if (!BelongsToChunk(candidate.Position, chunkCoordinate, chunkSize)
                         || !PassesDensity(
                             settings,
+                            generator,
+                            layer,
                             layerSeed,
                             candidate,
                             baseAdmission,
@@ -225,6 +244,7 @@ namespace BooterBigArm.TopDown3D
                             useSharedRockAbundance)
                         || LosesNeighborCompetition(
                             settings,
+                            generator,
                             layer,
                             definitions,
                             layerSeed,
@@ -257,7 +277,7 @@ namespace BooterBigArm.TopDown3D
                         continue;
                     }
 
-                    var normal = TopDown3DHeightSampler.SampleNormal(settings, worldPosition.x, worldPosition.y);
+                    var normal = generator.SampleNormal(worldPosition.x, worldPosition.y);
                     var slope = Vector3.Angle(normal, Vector3.up);
                     if (slope > maximumSlope)
                     {
@@ -272,10 +292,7 @@ namespace BooterBigArm.TopDown3D
                         Quaternion.FromToRotation(Vector3.up, normal),
                         tiltRatio);
                     var yaw = Quaternion.AngleAxis(candidate.Yaw * 360f, Vector3.up);
-                    var surfaceHeight = TopDown3DHeightSampler.SampleHeight(
-                        settings,
-                        worldPosition.x,
-                        worldPosition.y);
+                    var surfaceHeight = generator.SampleHeight(worldPosition.x, worldPosition.y);
                     var position = new Vector3(
                         worldPosition.x,
                         surfaceHeight - definition.SinkDepth * scale.y,
@@ -287,8 +304,8 @@ namespace BooterBigArm.TopDown3D
                         layer == TopDown3DNaturalObjectLayer.FineGrayCluster
                             ? TopDown3DRockSurface.Regular
                             : SampleRockSurface(settings, worldPosition),
-                        Mathf.FloorToInt(candidate.Variant * TopDown3DNaturalMeshLibrary.VariantsPerShape)
-                            % TopDown3DNaturalMeshLibrary.VariantsPerShape,
+                        Mathf.FloorToInt(candidate.Variant * TopDown3DNaturalObjectCatalog.MeshVariantsPerShape)
+                            % TopDown3DNaturalObjectCatalog.MeshVariantsPerShape,
                         position,
                         tilt * yaw,
                         scale,
@@ -299,6 +316,7 @@ namespace BooterBigArm.TopDown3D
 
         private static bool LosesNeighborCompetition(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             TopDown3DNaturalObjectLayer layer,
             IReadOnlyList<TopDown3DNaturalObjectDefinition> definitions,
             int layerSeed,
@@ -331,6 +349,8 @@ namespace BooterBigArm.TopDown3D
                         cellSize);
                     if (!PassesDensity(
                             settings,
+                            generator,
+                            layer,
                             layerSeed,
                             neighbor,
                             baseAdmission,
@@ -365,6 +385,8 @@ namespace BooterBigArm.TopDown3D
 
         private static bool PassesDensity(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
+            TopDown3DNaturalObjectLayer layer,
             int layerSeed,
             Candidate candidate,
             float baseAdmission,
@@ -374,8 +396,14 @@ namespace BooterBigArm.TopDown3D
             float clusterMaximumFactor,
             bool useSharedRockAbundance)
         {
+            var clusterSeed = useSharedRockAbundance
+                ? StableHash(
+                    settings.WorldSeed,
+                    settings.NaturalObjectGenerationVersion,
+                    0x2C9277B5)
+                : layerSeed ^ 0x2C9277B5;
             var cluster = ValueNoise(
-                layerSeed ^ 0x2C9277B5,
+                clusterSeed,
                 candidate.Position.x * clusterFrequency,
                 candidate.Position.y * clusterFrequency);
             var clusterFactor = Mathf.Lerp(
@@ -385,7 +413,32 @@ namespace BooterBigArm.TopDown3D
             var abundanceFactor = useSharedRockAbundance
                 ? SampleRockAbundance(settings, candidate.Position)
                 : 1f;
-            return candidate.Admission <= Mathf.Clamp01(baseAdmission * clusterFactor * abundanceFactor);
+            var surface = generator.Sample(candidate.Position.x, candidate.Position.y);
+            float geologyFactor;
+            switch (layer)
+            {
+                case TopDown3DNaturalObjectLayer.Scatter:
+                    geologyFactor = 0.22f
+                        + surface.GravelWeight * 0.82f
+                        + surface.BedrockWeight * 0.62f
+                        + surface.Talus * 0.42f;
+                    break;
+                case TopDown3DNaturalObjectLayer.FineGrayCluster:
+                    geologyFactor = 0.28f
+                        + surface.GravelWeight * 0.48f
+                        + surface.Weathering * 0.54f;
+                    break;
+                default:
+                    geologyFactor = 0.38f
+                        + surface.SandWeight * 0.42f
+                        + surface.GravelWeight * 0.34f
+                        + surface.DepositWeight * 0.28f;
+                    break;
+            }
+
+            var corridorProtection = Mathf.Lerp(1f, 0.28f, surface.TraversalCorridor);
+            return candidate.Admission <= Mathf.Clamp01(
+                baseAdmission * clusterFactor * abundanceFactor * geologyFactor * corridorProtection);
         }
 
         public static float SampleRockAbundance(
@@ -400,10 +453,15 @@ namespace BooterBigArm.TopDown3D
                 abundanceSeed,
                 worldPosition.x * settings.RockAbundanceFrequency,
                 worldPosition.y * settings.RockAbundanceFrequency);
-            var shapedAbundance = Mathf.SmoothStep(0.25f, 0.75f, abundance);
+            // A narrow response curve creates recognizable rock-rich islands with genuinely
+            // empty ground between them while the higher peak preserves average world density.
+            var shapedAbundance = Mathf.SmoothStep(
+                0f,
+                1f,
+                Mathf.InverseLerp(0.4f, 0.7f, abundance));
             return Mathf.Lerp(
                 1f,
-                Mathf.Lerp(0.04f, 1.8f, shapedAbundance),
+                Mathf.Lerp(0f, 2.2f, shapedAbundance),
                 settings.RockAbundanceStrength);
         }
 
