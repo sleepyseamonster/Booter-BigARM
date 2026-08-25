@@ -53,6 +53,7 @@ namespace BooterBigArm.TopDown3D
         private float currentSpeed;
         private bool callRequested;
         private bool automaticCatchUp;
+        private bool startupGroundingComplete;
 
         public FollowState State { get; private set; } = FollowState.Idle;
         public float CurrentSpeed => currentSpeed;
@@ -115,12 +116,23 @@ namespace BooterBigArm.TopDown3D
         private void OnDisable()
         {
             SetSubscribedInput(null);
+            startupGroundingComplete = false;
         }
 
         private void FixedUpdate()
         {
             if (followTarget == null || body == null)
             {
+                return;
+            }
+
+            if (!startupGroundingComplete)
+            {
+                if (!TryInitializeOnGround())
+                {
+                    State = FollowState.WaitingForTerrain;
+                }
+
                 return;
             }
 
@@ -183,6 +195,43 @@ namespace BooterBigArm.TopDown3D
                 turnSpeedDegrees * Time.fixedDeltaTime));
 
             UpdateStuckTracking(distanceToDesired > idleRadius);
+        }
+
+        internal bool TryInitializeOnGround()
+        {
+            if (body == null)
+            {
+                body = GetComponent<Rigidbody>();
+            }
+
+            if (body == null)
+            {
+                return false;
+            }
+
+            // Booter is placed from the generated world's current safe-spawn elevation, while
+            // BigARM's serialized position can still contain the older prototype elevation.
+            // Use Booter's live height as the startup reference and a deliberately broad one-time
+            // terrain probe. Normal following keeps the tighter projection window below.
+            var startupProbe = body.position;
+            if (followTarget != null)
+            {
+                startupProbe.y = followTarget.position.y;
+            }
+
+            if (!TryProjectToGround(startupProbe, 40f, 120f, out var groundedPosition))
+            {
+                return false;
+            }
+
+            // The companion starts before procedural terrain exists. Teleporting once after its
+            // ground collider appears avoids sweeping the kinematic body vertically through Booter.
+            body.position = groundedPosition;
+            currentSpeed = 0f;
+            startupGroundingComplete = true;
+            State = FollowState.Idle;
+            ResetStuckTracking();
+            return true;
         }
 
         private void UpdateCatchUpIntent(float distanceToBooter)
@@ -317,12 +366,21 @@ namespace BooterBigArm.TopDown3D
 
         private bool TryProjectToGround(Vector3 position, out Vector3 grounded)
         {
-            var origin = position + Vector3.up * 10f;
+            return TryProjectToGround(position, 10f, 30f, out grounded);
+        }
+
+        private bool TryProjectToGround(
+            Vector3 position,
+            float probeHeight,
+            float probeDistance,
+            out Vector3 grounded)
+        {
+            var origin = position + Vector3.up * probeHeight;
             var count = Physics.RaycastNonAlloc(
                 origin,
                 Vector3.down,
                 groundHits,
-                30f,
+                probeDistance,
                 movementMask,
                 QueryTriggerInteraction.Ignore);
             var nearest = float.PositiveInfinity;

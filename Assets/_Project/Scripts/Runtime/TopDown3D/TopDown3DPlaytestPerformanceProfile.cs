@@ -14,6 +14,7 @@ namespace BooterBigArm.TopDown3D
     public sealed class TopDown3DPlaytestPerformanceProfile : MonoBehaviour
     {
         internal const string FullContentProfileArgument = "-topDown3DFullContentProfile";
+        public const string FullContentEditorPreferenceKey = "BooterBigArm.TopDown3D.FullContentPlayMode";
 
         private const string FastTerrainKeyword = "TOPDOWN3D_PLAYTEST_FAST_TERRAIN";
         private const float ReportIntervalSeconds = 5f;
@@ -63,7 +64,9 @@ namespace BooterBigArm.TopDown3D
 
         private void Awake()
         {
-            fullContentTelemetryMode = IsFullContentProfileRequested(Environment.GetCommandLineArgs());
+            fullContentTelemetryMode = ShouldUseFullContentProfile(
+                Environment.GetCommandLineArgs(),
+                IsEditorFullContentProfileEnabled());
             if (fullContentTelemetryMode)
             {
                 Debug.Log(
@@ -228,6 +231,20 @@ namespace BooterBigArm.TopDown3D
             }
 
             return false;
+        }
+
+        internal static bool ShouldUseFullContentProfile(string[] arguments, bool editorOptIn)
+        {
+            return editorOptIn || IsFullContentProfileRequested(arguments);
+        }
+
+        private static bool IsEditorFullContentProfileEnabled()
+        {
+#if UNITY_EDITOR
+            return UnityEditor.EditorPrefs.GetBool(FullContentEditorPreferenceKey, false);
+#else
+            return false;
+#endif
         }
 
         private float Percentile(float percentile)
