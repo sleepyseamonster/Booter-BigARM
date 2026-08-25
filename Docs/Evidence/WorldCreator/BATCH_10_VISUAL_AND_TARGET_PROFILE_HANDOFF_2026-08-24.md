@@ -2,7 +2,9 @@
 
 Date: 2026-08-24
 
-Candidate commit: `4f4303a60cd3be1ee0c2aee3599f33d36853b7fc`
+Runtime candidate commit: `5a09dd5d2438bfa41a142ec81824cc254e3da2ce`
+
+Verification commit: `6ffd502521bc3fa1d3a99f2c9d53b06fff296cc3`
 
 Production scene: `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`
 
@@ -19,11 +21,15 @@ If either gate fails, classify the problem as composition, traversal, representa
 
 ## Important build distinction
 
-Do not use Editor Play Mode or the current Development Player for final visual acceptance. `TopDown3DPlaytestPerformanceProfile` automatically applies there and deliberately uses 50% render scale, reduced shadows and texture mips, a two-chunk terrain ring, no runtime decoration, the fast terrain path, and one generation stage per frame.
+Do not use Editor Play Mode or a Development Player for final visual acceptance. `TopDown3DPlaytestPerformanceProfile` deliberately defaults those environments to 50% render scale, reduced shadows and texture mips, a two-chunk terrain ring, minimal runtime decoration, the fast terrain path, and one generation stage per frame.
 
 - Visual acceptance must use a non-Development Player with the production quality posture and runtime decoration present.
-- Target profiling must use a Development Player only after the stress profile can be disabled while retaining telemetry/profiler access. The current stress-profile receipt is diagnostic evidence, not the full-content target result.
+- The ready visual build is `/Users/worldbuilder/Desktop/Booter & BigARM/Builds/StandaloneOSX/WorldCreatorVisualReview-5a09dd5.app`.
+- Controlled Development profiling must pass `-topDown3DFullContentProfile`. That exact opt-in retains telemetry while leaving production rendering, streaming, decoration, and generation settings unchanged.
 - Record the exact commit and whether the stress profile is active for every capture. A mixed or unknown posture is invalid evidence.
+- The implementation, build hashes, mode comparison, tests, and network behavior are recorded in `BATCH_10_FULL_CONTENT_REVIEW_BUILD_RECEIPT_2026-08-24.md`.
+
+Launching the review build creates a normal macOS Dock item. Unity's enabled cloud-service bootstrap may cause NetBarrier to ask about internet access; World Creator does not need it, and the user may choose **No**.
 
 No Unity window should be opened, focused, or controlled by an agent unless the user explicitly requests visible interactive work.
 
@@ -32,6 +38,7 @@ No Unity window should be opened, focused, or controlled by an agent unless the 
 ### Review setup
 
 - Build type: non-Development Player.
+- Build: `/Users/worldbuilder/Desktop/Booter & BigARM/Builds/StandaloneOSX/WorldCreatorVisualReview-5a09dd5.app`.
 - Scene: production scene listed above.
 - Seed: begin with `24681357`; use F8 only for explicitly labeled comparison-seed observations.
 - Quality: record the selected quality level. Standalone currently defaults to `Ultra`.
@@ -117,10 +124,11 @@ No provisional hardware class is recorded here. The user retains the target deci
 - `StandaloneWindows64`, Development build, Autoconnect Profiler or an equivalent recorded profiler session.
 - Full production render scale, shadows, texture mip posture, streaming radius, runtime decoration, and generation scheduling enabled.
 - Stress profile explicitly reported as inactive.
+- Player launched with `-topDown3DFullContentProfile`.
 - No editor process or unrelated foreground workload contaminating the run.
 - Same resolution, quality, and display mode throughout the capture.
 
-The repository build entry point is `BooterBigArm.Editor.BuildAutomation.BuildFromCli`. It accepts `-buildTarget StandaloneWindows64`, `-development`, and `-buildOutput`. The active Unity target must already be `StandaloneWindows64`; changing build target is a separate controlled step and is not performed by this handoff.
+The repository build entry point is `BooterBigArm.Editor.BuildAutomation.BuildFromCli`. It accepts `-buildTarget StandaloneWindows64`, `-development`, and `-buildOutput`. The active Unity target must already be `StandaloneWindows64`; changing build target is a separate controlled step and is not performed by this handoff. The built player must then be launched with `-topDown3DFullContentProfile`.
 
 ### Profile sequence
 
