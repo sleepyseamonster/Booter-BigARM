@@ -37,7 +37,8 @@ required_files=(
   "Packages/packages-lock.json"
   "ProjectSettings/ProjectVersion.txt"
   "ProjectSettings/EditorBuildSettings.asset"
-  "Assets/_Project/Scripts/Runtime/BooterBigArm.Runtime.asmdef"
+  "Assets/_Project/Legacy2D/Scripts/Runtime/BooterBigArm.Runtime.asmdef"
+  "Assets/_Project/Scripts/Runtime/TopDown3D/BooterBigArm.TopDown3D.Runtime.asmdef"
   "Assets/_Project/Scripts/Editor/BooterBigArm.Editor.asmdef"
 )
 
