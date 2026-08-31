@@ -32,6 +32,8 @@ The World Creator shall produce a continuous world in which:
 
 The visual aspiration is the apparent density, regional identity, silhouette variety, and walk-through credibility that the user admires in Crimson Desert, translated into the dead, canyon-dominated Broken World and into a budget appropriate for a mid-range computer. This is a quality bar, not a claim that this project will copy another game's technology or content.
 
+The first playable territory is an intentional exception to the world's broader canyon-dominated identity. It shall establish traversal and landscape readability through substantial rolling hills, smaller divots, localized pits, and varied ground, but it shall contain no canyon system or deep canyon cuts. Until the user authors the globe coordinate system and regional map, this is a provisional production-profile rule rather than an invented coordinate boundary or named region.
+
 ## The Broken World constraints
 
 The canonical setting remains defined by [WORLD_BASIS.md](./WORLD_BASIS.md). For World Creator work, the decisive constraints are:

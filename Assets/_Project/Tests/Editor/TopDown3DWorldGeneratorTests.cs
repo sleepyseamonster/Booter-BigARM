@@ -22,10 +22,71 @@ namespace BooterBigArm.Tests
             var profile = WorldCreatorProductionProfile.LoadRequired();
 
             Assert.That(profile.NonCanonProofOnly, Is.True);
+            Assert.That(profile.IncludeCanyonsInInitialPlayableArea, Is.False);
             Assert.That(profile.InfluenceProfile.StableId, Does.StartWith("proof.non-canon."));
             Assert.That(profile.CreateVersionManifest().Topology,
                 Is.EqualTo(WorldCreatorProductionProfile.CurrentTopologyVersion));
+            Assert.That(profile.CreateVersionManifest().Landform,
+                Is.EqualTo(WorldCreatorProductionProfile.CurrentLandformVersion));
             Assert.That(profile.TryValidate(out var error), Is.True, error);
+        }
+
+        [Test]
+        public void InitialPlayableArea_SuppressesCanyonsWithoutFlatteningTerrain()
+        {
+            using var runtime = WorldCreatorProductionRuntime.Create(LoadSettings().WorldSeed);
+            const int size = 21;
+            const double spacing = 18d;
+            var heights = new double[size, size];
+            var minimum = double.MaxValue;
+            var maximum = double.MinValue;
+            var canyonSemantics = WorldSurfaceSemantic.CanyonFloor
+                | WorldSurfaceSemantic.CanyonShelf
+                | WorldSurfaceSemantic.CanyonWall;
+            for (var z = 0; z < size; z++)
+            {
+                for (var x = 0; x < size; x++)
+                {
+                    var position = new AbsoluteWorldPosition(
+                        (x - size / 2) * spacing,
+                        0d,
+                        (z - size / 2) * spacing);
+                    Assert.That(runtime.Query.TrySampleSurface(position, out var sample, out var error), Is.True, error);
+                    Assert.That(sample.Semantic & canyonSemantics, Is.EqualTo(WorldSurfaceSemantic.None));
+                    heights[x, z] = sample.Position.Vertical;
+                    minimum = Math.Min(minimum, sample.Position.Vertical);
+                    maximum = Math.Max(maximum, sample.Position.Vertical);
+                }
+            }
+
+            var localHighs = 0;
+            var localLows = 0;
+            for (var z = 1; z < size - 1; z++)
+            {
+                for (var x = 1; x < size - 1; x++)
+                {
+                    var center = heights[x, z];
+                    if (center > heights[x - 1, z]
+                        && center > heights[x + 1, z]
+                        && center > heights[x, z - 1]
+                        && center > heights[x, z + 1])
+                    {
+                        localHighs++;
+                    }
+
+                    if (center < heights[x - 1, z]
+                        && center < heights[x + 1, z]
+                        && center < heights[x, z - 1]
+                        && center < heights[x, z + 1])
+                    {
+                        localLows++;
+                    }
+                }
+            }
+
+            Assert.That(maximum - minimum, Is.GreaterThan(12d));
+            Assert.That(localHighs, Is.GreaterThan(0));
+            Assert.That(localLows, Is.GreaterThan(0));
         }
 
         [Test]

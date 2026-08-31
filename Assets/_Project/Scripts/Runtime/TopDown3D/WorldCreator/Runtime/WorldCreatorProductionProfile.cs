@@ -10,6 +10,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
     {
         public const string ResourcePath = "WorldCreator/ProductionWorldCreatorProfile";
         public const int CurrentTopologyVersion = 2;
+        public const int CurrentLandformVersion = 2;
         public const int CurrentSiteVersion = 2;
 
         [Header("Temporary production-path proof authority")]
@@ -18,10 +19,14 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         [SerializeField] private StrataFamilyCatalog strataCatalog;
         [SerializeField] private NonCanonProofInfluenceProfile influenceProfile;
 
+        [Header("Provisional first playable area")]
+        [Tooltip("Temporary non-canon fallback until the user-authored coordinate regions replace it.")]
+        [SerializeField] private bool includeCanyonsInInitialPlayableArea;
+
         [Header("Independent world versions")]
         [SerializeField, Min(1)] private int topologyVersion = CurrentTopologyVersion;
         [SerializeField, Min(1)] private int coordinateVersion = 1;
-        [SerializeField, Min(1)] private int landformVersion = 1;
+        [SerializeField, Min(1)] private int landformVersion = CurrentLandformVersion;
         [SerializeField, Min(1)] private int materialVersion = 1;
         [SerializeField, Min(1)] private int decorationVersion = 1;
         [SerializeField, Min(1)] private int resourceVersion = 1;
@@ -43,6 +48,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public GeologicProvinceCatalog ProvinceCatalog => provinceCatalog;
         public StrataFamilyCatalog StrataCatalog => strataCatalog;
         public NonCanonProofInfluenceProfile InfluenceProfile => influenceProfile;
+        public bool IncludeCanyonsInInitialPlayableArea => includeCanyonsInInitialPlayableArea;
         public int MaximumCanyonPlans => maximumCanyonPlans;
         public int MaximumTerrainWindows => maximumTerrainWindows;
         public int MaximumRepresentationEntries => maximumRepresentationEntries;
@@ -79,6 +85,12 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             if (topologyVersion != CurrentTopologyVersion)
             {
                 error = $"The production runtime requires topology version {CurrentTopologyVersion}.";
+                return false;
+            }
+
+            if (landformVersion != CurrentLandformVersion)
+            {
+                error = $"The production runtime requires landform version {CurrentLandformVersion}.";
                 return false;
             }
 
@@ -161,7 +173,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         {
             topologyVersion = CurrentTopologyVersion;
             coordinateVersion = Mathf.Max(1, coordinateVersion);
-            landformVersion = Mathf.Max(1, landformVersion);
+            landformVersion = CurrentLandformVersion;
             materialVersion = Mathf.Max(1, materialVersion);
             decorationVersion = Mathf.Max(1, decorationVersion);
             resourceVersion = Mathf.Max(1, resourceVersion);

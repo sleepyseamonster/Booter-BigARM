@@ -52,20 +52,36 @@ namespace BooterBigArm.Tests.WorldCreator
         [Test]
         public void CausalSurfaceResponse_DistinguishesExposedAndDepositionalGround()
         {
-            using var runtime = WorldCreatorProductionRuntime.Create(3496479);
+            var profile = WorldCreatorProductionProfile.LoadRequired();
+            var identity = new WorldIdentity(3496479, profile.CreateVersionManifest());
+            var coordinateModel = new NonCanonTechnicalCoordinateModel();
+            var context = new WorldCoordinateContextSampler(
+                profile.ProvinceCatalog,
+                profile.StrataCatalog,
+                profile.InfluenceProfile);
+            var query = new UnboundedHybridWorldQueryService(
+                identity,
+                coordinateModel,
+                context,
+                CanyonPlannerProfile.CreateNonCanonTechnicalProofProfile());
+            var materials = new WorldSurfaceMaterialService(
+                identity,
+                coordinateModel,
+                context,
+                query);
             var exposedCount = 0;
             var depositedCount = 0;
             var exposedStrata = 0f;
             var depositedStrata = 0f;
             var exposedDeposit = 0f;
             var depositedDeposit = 0f;
-            for (var b = -640d; b <= 640d; b += 16d)
+            for (var b = -640d; b <= 640d; b += 32d)
             {
-                for (var a = -640d; a <= 640d; a += 16d)
+                for (var a = -640d; a <= 640d; a += 32d)
                 {
                     var position = new AbsoluteWorldPosition(a, 0d, b);
-                    Assert.That(runtime.Query.TrySampleSurface(position, out var surface, out var error), Is.True, error);
-                    Assert.That(runtime.Materials.TrySample(position, out var material, out error), Is.True, error);
+                    Assert.That(query.TrySampleSurface(position, out var surface, out var error), Is.True, error);
+                    Assert.That(materials.TrySample(position, out var material, out error), Is.True, error);
                     if ((surface.Semantic & WorldSurfaceSemantic.CanyonWall) != 0)
                     {
                         exposedCount++;

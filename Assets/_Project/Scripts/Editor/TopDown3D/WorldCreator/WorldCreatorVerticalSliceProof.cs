@@ -40,7 +40,7 @@ namespace BooterBigArm.Editor.WorldCreator
             var sourceFingerprints = new HashSet<WorldFeatureId>();
             var builder = new StringBuilder(16384);
             builder.AppendLine("NON-CANON WORLD CREATOR BATCH 10 VERTICAL-SLICE TECHNICAL REPORT");
-            builder.AppendLine("Production topology-v2 authority; disposable coordinate/geology adapter; no globe, region, or lore canon.");
+            builder.AppendLine("Production topology-v2 authority; provisional canyon-free first area; disposable coordinate/geology adapter; no globe, region, or lore canon.");
             builder.Append("proofEnvelopeMetres=4608x4608, seeds=").Append(Seeds.Length)
                 .Append(", transectsPerSeed=").Append(Transects.Length)
                 .Append(", samplesPerTransect=").Append(SamplesPerTransect).AppendLine();
@@ -57,12 +57,12 @@ namespace BooterBigArm.Editor.WorldCreator
                     runtime.ContextProvider,
                     runtime.Query);
                 var proofHistory = ValidateProofHistory(runtime);
-                var boundedFeatureCount = ValidateBoundedFeatureFamily(runtime);
+                var canyonSubsystemBoundedFeatureCount = ValidateBoundedFeatureFamily(runtime);
                 builder.Append("seed=").Append(Seeds[seedIndex])
                     .Append(", identity=").Append(runtime.Identity)
                     .Append(", source=").Append(runtime.SourceFingerprint)
                     .Append(", syntheticHistory=").Append(proofHistory.Id)
-                    .Append(", boundedFeatureRequests=").Append(boundedFeatureCount)
+                    .Append(", canyonSubsystemBoundedFeatureRequests=").Append(canyonSubsystemBoundedFeatureCount)
                     .AppendLine();
 
                 for (var transectIndex = 0; transectIndex < Transects.Length; transectIndex++)
@@ -137,6 +137,8 @@ namespace BooterBigArm.Editor.WorldCreator
 
                     if (booterWalkable == 0 || bigArmWalkable == 0)
                         throw new InvalidOperationException("A proof transect exposed no walkable sample for a required agent profile.");
+                    if (!runtime.Profile.IncludeCanyonsInInitialPlayableArea && canyonSamples != 0)
+                        throw new InvalidOperationException("The provisional first playable area emitted canyon surface semantics.");
                     if (!arrangementSignatures.Add(signature))
                         throw new InvalidOperationException("Two complete proof transects produced the same non-identity arrangement signature.");
 
@@ -320,10 +322,15 @@ namespace BooterBigArm.Editor.WorldCreator
             var terrain = HybridTerrainCompiler.Compile(runtime.Identity, plans);
             if (terrain.LandformRequests.Count == 0)
                 throw new InvalidOperationException("The production canyon plan emitted no bounded feature request.");
+            var canyonProofQuery = new HybridTerrainWindowQueryService(
+                terrain,
+                runtime.CoordinateModel,
+                runtime.ContextProvider,
+                includeCanyonExcavation: true);
             for (var i = 0; i < terrain.LandformRequests.Count; i++)
             {
                 var request = terrain.LandformRequests[i];
-                if (!runtime.Query.TrySampleSurface(request.Center, out var surface, out var error))
+                if (!canyonProofQuery.TrySampleSurface(request.Center, out var surface, out var error))
                     throw new InvalidOperationException(error);
                 if ((surface.Semantic & WorldSurfaceSemantic.BoundedLandform) != 0)
                     return terrain.LandformRequests.Count;

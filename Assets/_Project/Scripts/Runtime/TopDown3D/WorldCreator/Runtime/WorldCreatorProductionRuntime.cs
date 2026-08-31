@@ -228,7 +228,8 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 new NonCanonProofHistoryProvider(
                     Identity,
                     CoordinateModel,
-                    NonCanonProofHistory));
+                    NonCanonProofHistory),
+                Profile.IncludeCanyonsInInitialPlayableArea);
             Materials = new WorldSurfaceMaterialService(
                 Identity,
                 CoordinateModel,

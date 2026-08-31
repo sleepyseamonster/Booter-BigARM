@@ -16,9 +16,10 @@ MonoBehaviour:
   provinceCatalog: {fileID: 11400000, guid: f7e3705c293754430863abd68bbc89ba, type: 2}
   strataCatalog: {fileID: 11400000, guid: 9ad930256e5a14c469a2660675bae5fb, type: 2}
   influenceProfile: {fileID: 11400000, guid: eda16be9ddbee43e681981c092c0e548, type: 2}
+  includeCanyonsInInitialPlayableArea: 0
   topologyVersion: 2
   coordinateVersion: 1
-  landformVersion: 1
+  landformVersion: 2
   materialVersion: 1
   decorationVersion: 1
   resourceVersion: 1

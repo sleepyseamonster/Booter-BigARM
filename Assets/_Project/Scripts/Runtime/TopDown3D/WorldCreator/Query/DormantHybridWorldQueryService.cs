@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace BooterBigArm.TopDown3D.WorldCreator
 {
@@ -11,15 +12,27 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         private readonly HybridTerrainPlan plan;
         private readonly IWorldCoordinateModel coordinateModel;
         private readonly IWorldCoordinateContextProvider contextProvider;
+        private readonly bool includeCanyonExcavation;
+        private readonly HashSet<WorldFeatureId> canyonSourceIds;
 
         public HybridTerrainWindowQueryService(
             HybridTerrainPlan plan,
             IWorldCoordinateModel coordinateModel,
-            IWorldCoordinateContextProvider contextProvider)
+            IWorldCoordinateContextProvider contextProvider,
+            bool includeCanyonExcavation = true)
         {
             this.plan = plan ?? throw new ArgumentNullException(nameof(plan));
             this.coordinateModel = coordinateModel ?? throw new ArgumentNullException(nameof(coordinateModel));
             this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
+            this.includeCanyonExcavation = includeCanyonExcavation;
+            if (!includeCanyonExcavation)
+            {
+                canyonSourceIds = new HashSet<WorldFeatureId>();
+                for (var i = 0; i < plan.CanyonSegments.Count; i++)
+                {
+                    canyonSourceIds.Add(plan.CanyonSegments[i].Source.Id);
+                }
+            }
         }
 
         public bool TrySampleSurface(AbsoluteWorldPosition position, out WorldSurfaceSample sample, out string error)
@@ -69,6 +82,11 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             for (var i = 0; i < plan.LandformRequests.Count; i++)
             {
                 var request = plan.LandformRequests[i];
+                if (!includeCanyonExcavation && IsCanyonDerived(request))
+                {
+                    continue;
+                }
+
                 var horizontalDistance = WorldHistoryPlan.HorizontalDistance(position, request.Center);
                 var radial = horizontalDistance - request.Radius;
                 var verticalCenter = request.Center.Vertical + request.Height * 0.5d;
@@ -101,7 +119,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             var slope = (float)(Math.Acos(Math.Max(-1d, Math.Min(1d, surface.NormalVertical))) * 180d / Math.PI);
             var reserved = false;
             var routeId = WorldFeatureId.Empty;
-            for (var i = 0; i < plan.CanyonSegments.Count; i++)
+            for (var i = 0; includeCanyonExcavation && i < plan.CanyonSegments.Count; i++)
             {
                 var segment = plan.CanyonSegments[i];
                 var distance = DistanceToSegment(position, segment.From.Position, segment.To.Position, out _);
@@ -151,12 +169,21 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 + Math.Sin(projected * 0.006d + seedPhase) * (8d + landscape.Relief * 28d)
                 + Math.Sin(cross * 0.0027d - seedPhase * 0.7d) * (4d + landscape.Relief * 13d)
                 + Math.Sin((horizontalA + horizontalB) * 0.0011d + seedPhase * 1.7d) * 7d;
+            if (!includeCanyonExcavation)
+            {
+                height += SampleInitialPlayableAreaRelief(
+                    horizontalA,
+                    horizontalB,
+                    landscape.Relief,
+                    plan.World.Seed);
+            }
+
             semantic = WorldSurfaceSemantic.BroadGround;
             featureId = context.ContextId;
 
             var nearestCanyonDistance = double.MaxValue;
             var strongestCanyonCut = 0d;
-            for (var i = 0; i < plan.CanyonSegments.Count; i++)
+            for (var i = 0; includeCanyonExcavation && i < plan.CanyonSegments.Count; i++)
             {
                 var segment = plan.CanyonSegments[i];
                 var distance = DistanceToSegment(queryPosition, segment.From.Position, segment.To.Position, out var amount);
@@ -185,6 +212,11 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             for (var i = 0; i < plan.LandformRequests.Count; i++)
             {
                 var request = plan.LandformRequests[i];
+                if (!includeCanyonExcavation && IsCanyonDerived(request))
+                {
+                    continue;
+                }
+
                 var distance = WorldHistoryPlan.HorizontalDistance(queryPosition, request.Center);
                 if (distance >= request.Radius) continue;
                 var amount = 1d - distance / request.Radius;
@@ -225,6 +257,78 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             return true;
         }
 
+        private bool IsCanyonDerived(LandformFeatureRequest request)
+        {
+            return canyonSourceIds != null && canyonSourceIds.Contains(request.ParentFeatureId);
+        }
+
+        private static double SampleInitialPlayableAreaRelief(
+            double horizontalA,
+            double horizontalB,
+            float relief,
+            long worldSeed)
+        {
+            var seed = unchecked((ulong)worldSeed);
+            var warpA = SampleValueNoise(horizontalA, horizontalB, 180d, seed ^ 0x9e3779b97f4a7c15UL) * 24d;
+            var warpB = SampleValueNoise(horizontalA, horizontalB, 180d, seed ^ 0xd1b54a32d192ed03UL) * 24d;
+            var rollingRelief = SampleValueNoise(
+                horizontalA + warpA,
+                horizontalB + warpB,
+                72d,
+                seed ^ 0x94d049bb133111ebUL) * (3d + relief * 7d);
+            var pitSignal = SampleValueNoise(
+                horizontalA - warpB * 0.35d,
+                horizontalB + warpA * 0.35d,
+                46d,
+                seed ^ 0xbf58476d1ce4e5b9UL);
+            var pitAmount = Smooth01((-pitSignal - 0.25d) / 0.55d);
+            var pitDepth = pitAmount * pitAmount * (1.5d + relief * 5d);
+            return rollingRelief - pitDepth;
+        }
+
+        private static double SampleValueNoise(
+            double horizontalA,
+            double horizontalB,
+            double cellSpan,
+            ulong seed)
+        {
+            var scaledA = horizontalA / cellSpan;
+            var scaledB = horizontalB / cellSpan;
+            var cellA = (long)Math.Floor(scaledA);
+            var cellB = (long)Math.Floor(scaledB);
+            var amountA = Smooth01(scaledA - cellA);
+            var amountB = Smooth01(scaledB - cellB);
+            var lower = Lerp(
+                HashToSignedUnit(seed, cellA, cellB),
+                HashToSignedUnit(seed, cellA + 1L, cellB),
+                amountA);
+            var upper = Lerp(
+                HashToSignedUnit(seed, cellA, cellB + 1L),
+                HashToSignedUnit(seed, cellA + 1L, cellB + 1L),
+                amountA);
+            return Lerp(lower, upper, amountB);
+        }
+
+        private static double HashToSignedUnit(ulong seed, long cellA, long cellB)
+        {
+            var hash = seed;
+            hash ^= unchecked((ulong)cellA) + 0x9e3779b97f4a7c15UL + (hash << 6) + (hash >> 2);
+            hash ^= unchecked((ulong)cellB) + 0xd1b54a32d192ed03UL + (hash << 6) + (hash >> 2);
+            hash ^= hash >> 30;
+            hash *= 0xbf58476d1ce4e5b9UL;
+            hash ^= hash >> 27;
+            hash *= 0x94d049bb133111ebUL;
+            hash ^= hash >> 31;
+            var normalized = (hash >> 11) * (1d / 9007199254740992d);
+            return normalized * 2d - 1d;
+        }
+
+        private static double Smooth01(double value)
+        {
+            value = Math.Max(0d, Math.Min(1d, value));
+            return value * value * (3d - 2d * value);
+        }
+
         private static WorldSurfaceSemantic SemanticFor(BoundedTerrainOperationKind kind)
         {
             return kind switch
@@ -261,7 +365,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             return WorldHistoryPlan.HorizontalDistance(point, closest);
         }
 
-        private static double Lerp(float from, float to, double amount) => from + (to - from) * amount;
+        private static double Lerp(double from, double to, double amount) => from + (to - from) * amount;
 
         private static void Normalize(ref float a, ref float vertical, ref float b)
         {

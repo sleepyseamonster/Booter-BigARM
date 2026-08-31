@@ -16,6 +16,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         private readonly IWorldCoordinateContextProvider contextProvider;
         private readonly CanyonSystemPlanner canyonPlanner;
         private readonly IWorldHistoryPlanProvider historyProvider;
+        private readonly bool includeCanyonExcavation;
         private readonly int maximumCanyonPlans;
         private readonly int maximumTerrainWindows;
         private readonly Dictionary<CanyonSystemCellIndex, CanyonCacheEntry> canyonPlans =
@@ -40,7 +41,8 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             CanyonPlannerProfile canyonProfile,
             int maximumCanyonPlans = 96,
             int maximumTerrainWindows = 24,
-            IWorldHistoryPlanProvider historyProvider = null)
+            IWorldHistoryPlanProvider historyProvider = null,
+            bool includeCanyonExcavation = true)
         {
             this.world = world;
             this.coordinateModel = coordinateModel ?? throw new ArgumentNullException(nameof(coordinateModel));
@@ -50,6 +52,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             this.maximumCanyonPlans = maximumCanyonPlans;
             this.maximumTerrainWindows = maximumTerrainWindows;
             this.historyProvider = historyProvider;
+            this.includeCanyonExcavation = includeCanyonExcavation;
             canyonPlanner = new CanyonSystemPlanner(contextProvider, canyonProfile);
         }
 
@@ -174,7 +177,11 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                     if (histories == null && historyProvider != null)
                         throw new InvalidOperationException("The history provider returned a null plan collection.");
                     var terrain = HybridTerrainCompiler.Compile(world, plans, histories);
-                    query = new HybridTerrainWindowQueryService(terrain, coordinateModel, contextProvider);
+                    query = new HybridTerrainWindowQueryService(
+                        terrain,
+                        coordinateModel,
+                        contextProvider,
+                        includeCanyonExcavation);
                     var node = terrainRecency.AddLast(cell);
                     terrainWindows.Add(cell, new TerrainCacheEntry(query, node));
                     terrainWindowBuilds++;
