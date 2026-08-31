@@ -30,7 +30,7 @@ This document defines the first perspective-player seam for contextual sprint tr
 
 ## Initial Tuning
 
-- Normal run and sprint speeds remain `4.20` and `7.40`; acceleration/deceleration are reduced to `18`/`24`, with a `540` degree-per-second turn cap for a heavier body response.
+- Normal run and sprint speeds remain `4.20` and `7.40`. The weight profile uses `8.5` start acceleration, `12.5` commanded speed reduction, `20` planted no-input stopping, `13.5` direction-change acceleration, a `420` degree-per-second normal turn cap, and a `300` degree-per-second sprint turn cap.
 - Minimum movement input: `0.50`
 - Minimum approach speed: `2.80` world units per second
 - Forward probe distance: `0.75` world units

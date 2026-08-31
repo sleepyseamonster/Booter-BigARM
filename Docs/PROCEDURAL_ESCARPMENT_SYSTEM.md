@@ -1,4 +1,6 @@
-# Procedural Escarpment System
+# Procedural Escarpment System (Superseded)
+
+This document describes the retired standalone escarpment implementation. The accepted shared geological surface authority in `TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md` supersedes it. Production terrain, scarps, mesas, material weights, and placement now derive from `TopDown3DWorldGenerator`; do not restore the separate sampler/decorator path.
 
 ## Purpose
 

@@ -11,30 +11,30 @@ The Broken World has no plant life or open water. Natural clutter is therefore g
 - `TopDown3DWorldSettings` owns global density, clustering, slope, spacing, seed-version, and spawn-clearance tuning.
 - `TopDown3DNaturalObjectCatalog` owns stable content IDs, cost layers, physical size tiers, weighted shape families, scale/proportion ranges, sink depth, tilt, and footprints.
 - `TopDown3DNaturalObjectPlanner` returns one immutable chunk plan. Cosmetic placement retains the natural-object generation version, while `TopDown3DRockFormationPlanner` owns all physical root and formation decisions under a separate physical-rock generation version.
-- Large, Massive, Towering, scatter, and ground-detail candidates sample one shared low-frequency abundance field. This creates coherent rock-rich stretches and genuinely sparse ground instead of letting independent layers fill every gap.
+- Physical rocks and every cosmetic clutter layer sample one shared abundance field with a zero-density floor and compact rock-rich islands. Scatter and ground-detail also derive their tighter masks from one common cluster seed, so the layers visibly group together instead of filling one another's gaps.
 - Candidates are anchored to global cells and tested against neighboring cells before being assigned to a chunk. This keeps borders seamless and makes output independent of chunk load order.
-- Terrain height and normals come from `TopDown3DHeightSampler`, the same source used by the terrain mesh.
+- Terrain height, normals, feature identity, material weights, and placement masks come from the shared versioned `TopDown3DWorldGenerator`, the same authority used by the terrain mesh and far-landscape rings.
 - Cosmetic placements are reconstructed from seed and are not save data. Future interactive or harvestable natural objects require stable gameplay identities and saved deltas in a separate layer.
 
 ## Cost Layers
 
-1. `Obstacle`: sparse readable rocks with shared procedural meshes, simple box colliders, and realtime shadows. Obstacles remain rendered for the full lifetime of their off-camera-generated chunk so a screen-size cutoff cannot make them pop into view.
+1. `Obstacle`: sparse readable rocks from the shared baked catalog, one simple box collider per member, realtime shadows, and three screen-relative render LODs.
 2. `Scatter`: small non-colliding stones combined into one mesh per chunk so the chunk remains the culling and lifetime boundary.
 3. `GroundDetail`: dense chips and flakes combined into one mesh per chunk, with no colliders and no realtime shadow casting.
-4. `FineGrayCluster`: small neutral-gray grit and shale pieces using an independent, stronger cluster mask, a separate shared material, no colliders, and no realtime shadow casting.
+4. `FineGrayCluster`: small neutral-gray grit and shale pieces using a higher-frequency local cluster mask inside the shared abundance islands, a separate shared material, no colliders, and no realtime shadow casting.
 5. `Landmark`: rare, extra-large spires and monumental outcrops with conservative slope limits, broad cross-chunk spacing, simple collision, and full obstacle shadows.
 
-The default gray layer targets 156 candidates per 18-meter chunk, but its sharpened density mask rejects all candidates across broad low-value regions. The surviving 4.5–14 cm pieces bunch into substantially denser local pockets with ample bare ground between them, without changing the seed streams or placement of the original three layers.
+The default gray layer targets 156 candidates per 18-meter chunk, but its sharpened local density mask and the shared broad abundance field reject all candidates across low-value regions. The surviving 4.5–14 cm pieces reinforce the same rock-rich stretches as the other clutter while forming denser sub-pockets with ample bare ground between them.
 
-The per-chunk combined meshes are destroyed with their owning streamed chunk. The small reusable shape family is smooth-shaded, cached, and shared while preserving its procedural silhouette geometry.
+The per-chunk combined meshes are destroyed with their owning streamed chunk. They combine catalog LOD0 geometry at deterministic placements, while the reusable baked mesh assets remain shared and owned by the catalog.
 
-The mesh family uses controlled procedural geology rather than unrestricted per-instance mesh generation. Each of the five archetypes has twelve deterministic cached variants with elliptical silhouettes, non-concentric strata, uneven shoulders, broad top faces, embedded flat bases, and a clipped fracture side. This provides sixty reusable low-poly forms without creating or retaining a unique mesh for every spawned object.
+The production family contains nine archetypes (`Pebble`, `Shard`, `Slab`, `Boulder`, `Nodule`, `Outcrop`, `Cliff`, `Talus`, and `HeroSpire`), three deterministic silhouette variants per archetype, and three progressively reduced LOD meshes per variant. The editor baker owns mesh creation; player/runtime code only resolves the catalogued assets.
 
-Physical rocks have three independent root tiers: `Large`, `Massive`, and `Towering`. Massive outcrops and fractured spires occupy the deliberate scale band between ordinary obstacles and rare landmarks; deterministic multi-class precedence keeps `Towering > Massive > Large` spacing stable across chunk borders.
+Physical rocks have six independent root tiers: `Small`, `Medium`, `Large`, `Extra Large`, `Massive`, and `Towering`. Every tier can appear as a standalone rock. Deterministic multi-class precedence keeps `Towering > Massive > Extra Large > Large > Medium > Small` spacing stable across chunk borders while root density increases toward the smaller tiers.
 
-Touching formation growth follows only `Towering -> Massive`, `Massive -> Large`, and `Large -> Large`. Large continuation chance decays with depth, and hard member/depth caps prevent runaway chains. Each accepted child is selected from twelve seed-rotated golden-angle directions, grounded from the shared terrain sampler, tested for parent contact, vertical overlap, spawn clearance, and non-parent interpenetration, then scored deterministically. A failed child ends that branch without discarding its valid ancestors.
+Touching formation growth follows the strict hierarchy `Towering -> Massive -> Extra Large -> Large -> Medium -> Small`. Each parent receives bounded, independently seeded child opportunities, allowing organic branching rather than only linear chains. Contact distance is calculated from the actual directional support of both catalog LOD0 meshes and sampled across a controlled blend range. Physical-rock generation version 5 owns the baked-geometry cutover and accepts a child only when the center of the pair's overlapping bounds has deterministic interior clearance inside both closed source volumes. Non-parent projected support circles may not overlap, keeping the contact graph tree-shaped and avoiding ambiguous multi-way intersections. Candidate children are selected from twelve seed-rotated golden-angle directions, grounded from the shared geological generator, tested for spawn clearance, then scored deterministically. Hard child/member/depth caps prevent runaway formations, and failed child attempts do not discard valid ancestors or siblings.
 
-The root chunk owns the whole formation even when a child crosses a chunk boundary. One immutable plan supplies stable root/member identity, world transforms, projected support, bounds, envelope, and height to every consumer. Rendering combines all members into one generated mesh and one renderer; collision remains one box per member, with one traversal component on the root. Dust shelter uses the same actual envelope and height rather than reconstructing formation size from a member count.
+The root chunk owns the whole formation even when a child crosses a chunk boundary. One immutable plan supplies stable root/member identity, world transforms, projected support, bounds, envelope, and height to every consumer. Production rendering reconstructs each member from the shared mesh catalog under one formation root, with one simple collider per member and one traversal component on the root. The former runtime Manifold fusion path is retained only as an editor-side asset-baking experiment; streaming and gameplay no longer depend on native Boolean work. Dust shelter uses the same actual envelope and height rather than reconstructing formation size from a member count.
 
 ## Wind-Deposited Dust
 
@@ -51,16 +51,16 @@ Ordinary obstacles, scatter, ground-detail rocks, and landmarks share one world-
 ## Visual Standard
 
 - Detail should come from top-down silhouette, deliberate broad planes, asymmetric proportions, controlled sinking/contact, and restrained distribution rather than hidden polygon density.
-- Each shape has twelve deterministic variants. Meshes use flat per-face normals for a clean low-poly plane rhythm.
+- Each shape has three deterministic baked variants and three LODs. Broad planar normals and asymmetric strata are intentional so silhouettes and light-facing planes remain legible from the elevated top-down camera.
 - Use shared opaque URP materials; do not clone a material per object.
 - Keep small clutter non-colliding and avoid realtime shadows where its screen contribution is tiny.
-- Medium and large production assets can replace generated meshes later without changing the planner contract. They should use authored LODs, simple collision, stable pivots, and the same catalog IDs.
+- The production catalog is the only runtime mesh authority. Missing or incomplete families fail closed; there is no procedural runtime fallback.
 
 ## Performance And Proof
 
-The first backend uses spatially tight per-chunk combined meshes for visual layers and individual objects only for sparse physical rocks. Before raising density or adding shader features, verify with Unity Profiler and Frame Debugger on the target camera and hardware. GPU instancing, GPU Resident Drawer, and GPU occlusion are later profile-driven options, not assumed wins.
+The runtime uses spatially tight per-chunk combined meshes for visual layers. Each physical formation keeps one simple box collider per member but consolidates all member geometry into one three-level `LODGroup` per formation, avoiding per-member renderer multiplication while preserving the baked shapes and deterministic hierarchy. It performs no native Boolean work while chunks stream. Before raising density or adding shader features, verify with Unity Profiler and Frame Debugger at the canonical elevated top-down camera on target hardware. GPU instancing, GPU Resident Drawer, and GPU occlusion remain profile-driven options, not assumed wins.
 
-Automated proof covers deterministic chunk plans, cosmetic-stream independence from physical versioning, chunk ownership, multi-tier cross-border spacing, full-member spawn exclusion, approved formation topology and caps, grounded touching contact, non-parent overlap limits, catalog completeness, stable IDs, one-renderer/per-member-collider topology, dust-envelope response, and bounded mesh generation. Visual quality, camera-distance readability, controller traversal, and performance acceptance remain user-owned hands-on checks.
+Automated proof covers deterministic chunk plans, cosmetic-stream independence from physical versioning, independent roots across all six physical tiers, chunk ownership, multi-tier cross-border spacing, full-member spawn exclusion, strict downward branching topology and caps, directional immediate-parent contact, non-parent overlap limits, all 27 catalog families and 81 LOD assets, stable IDs, per-member LOD/collider topology, dust-envelope response, and bounded mesh generation. Visual quality, camera-distance readability, controller traversal, and Development Player performance acceptance remain separate checks. The editor-only fusion experiment retains its own isolated validation and is not a production dependency.
 
 ## Research Basis
 

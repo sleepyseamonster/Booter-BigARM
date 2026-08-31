@@ -43,7 +43,7 @@ Unity documents `PerformInteractiveRebinding`, `SaveBindingOverridesAsJson`, and
 ## Gamepad Feel
 
 - Use a `Vector2` move action with a stick binding and a 2D vector keyboard composite.
-- Use a `Vector2` Look action with the gamepad right stick for perspective camera orbit.
+- Use a `Vector2` Look action with the gamepad right stick for perspective camera orbit and a separate `CameraLookAhead` button action on the left trigger. The camera rig, not the input router, decides whether the current right-stick value means orbit or translated look-ahead.
 - Ensure analog sticks receive one radial deadzone treatment. Gamepad stick controls already apply the Input System's `StickDeadzone`; do not add the same processor again at the binding layer unless intentionally replacing and testing that response.
 - Tune deadzone values intentionally at the owning layer rather than stacking processors in multiple layers.
 
@@ -60,6 +60,14 @@ Unity's UI support docs cover `InputSystemUIInputModule` and the UI event-system
 - [Input System UI support](https://docs.unity3d.com/ja/Packages/com.unity.inputsystem%401.4/manual/UISupport.html)
 - [UI event system support](https://docs.unity3d.com/kr/2022.3/Manual/UIE-Runtime-Event-System.html)
 
+## Action Prompts
+
+- The input router owns the current prompt device; gameplay and UI views must not hardcode keyboard or gamepad labels.
+- When a compatible gamepad is connected, prompts default to the gamepad binding. Meaningful keyboard or mouse input switches prompts to keyboard/mouse, and meaningful gamepad input switches them back.
+- Display text comes from the active action binding and connected device control, so Xbox, PlayStation, and generic gamepads can use their native button names and future binding overrides remain visible.
+- Device disconnect restores keyboard/mouse prompts when no other gamepad remains.
+- Text button names are the current baseline. A future glyph atlas may change presentation, but it must consume this same router-owned device and binding authority rather than introduce a second mapping table.
+
 ## Evolving Architecture
 
 - Treat raw input as an adapter layer, not gameplay logic.
@@ -75,3 +83,4 @@ Unity's UI support docs cover `InputSystemUIInputModule` and the UI event-system
 4. Support rebinding with JSON save/load.
 5. Use one intentional radial deadzone path for analog feel; avoid double-processing a stick.
 6. Keep input as an adapter, not game logic.
+7. Derive action prompts from the router's active prompt device and current bindings.

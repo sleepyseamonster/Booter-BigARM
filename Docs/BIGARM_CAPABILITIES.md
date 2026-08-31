@@ -4,9 +4,9 @@ This document captures the intended AI fantasy and behavior model for BigARM. It
 
 ## Core Role
 
-BigARM is not just a storage object or a companion follower.
+BigARM is not just a storage object or a companion follower. His finite loadframe makes carrying a visible expedition role, but cargo remains physically local and access-gated.
 
-He is a mobile base, a field assistant, a scout, and a protector.
+He is a mobile field carrier, assistant, scout, and protector—not a safe zone or remote base.
 
 BigARM should feel capable of operating independently for stretches of time, then returning to Booter when the player needs support.
 
@@ -132,4 +132,3 @@ The later goal is to add:
 - Best way to represent BigARM away-state visually and logically
 - How to prioritize protection versus scouting versus harvesting
 - How much autonomy should be visible to the player at any given time
-

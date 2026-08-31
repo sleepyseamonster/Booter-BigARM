@@ -7,14 +7,31 @@ For the perspective lane:
 - use a 3D `Rigidbody` on XZ with Y as elevation;
 - project movement through the camera basis onto the traversal plane;
 - use an elevated perspective camera with serialized pitch, yaw, distance, field of view, damping, and obstruction values;
-- use right-stick horizontal orbit and constrained vertical pitch while preserving camera-relative movement and the elevated top-down composition;
+- use right-stick horizontal orbit and constrained vertical pitch by default; while the gamepad left trigger is held, suppress orbit and use the right stick to translate the framing target across the XZ plane without blocking player movement;
+- limit look-ahead translation to `12` meters, move outward at `12.6 m/s` (three times normal run speed), and recenter at `37.8 m/s` (three times the outward speed) whenever the stick or modifier is released;
 - use 3D depth, lighting, colliders, materials, and renderer topology instead of pixel snapping and sprite sorting;
 - keep one collision owner for each walkable surface; decorative crag faces must not overlap the authoritative terrain collider;
 - use a capsule with a low-friction movement material, a volume cast for ground proximity, and a raycast for the true triangle normal before applying the serialized slope limit;
 - the current perspective prototype accepts terrain through `48` degrees and projects movement along accepted surfaces;
 - sample the authoritative support normal beneath the capsule centerline, then time-filter accepted normals before driving slope velocity so terrain triangle seams do not shake the controller;
 - apply the `48` degree rejection to the unsmoothed measured normal, and rate-limit grounded vertical correction so filtering cannot make steep terrain climbable or produce instant vertical velocity changes;
+- create weight through bounded momentum rather than input latency: keep movement input immediate while targeting `0.45-0.60` seconds to normal run, `0.80-1.00` seconds to sprint, and `0.30-0.42` seconds from normal run to rest;
+- expose a read-only locomotion snapshot from the Rigidbody motor; animation may read current/desired planar velocity, acceleration, actual facing, measured yaw rate, support normal, sprint, traversal ownership, alignment, and heading error but may not move the gameplay body;
+- keep one project-owned `TopDown3DLocomotionClipProfile` as the clip, contact, transition, and playback-bound authority used by the scene, builder, runtime, validator, and tests;
+- drive sustained walk, run, sprint, and directional gaits from one semantic locomotion phase with continuous normalized weights; remap that phase through each clip's measured left/right contacts instead of assuming identical raw normalized time;
+- select medium directional gait from local desired trajectory and measured Rigidbody yaw, and use authored non-looping, planted-side start, stop, and pivot clips for the major weight transfers; none of these states may lock steering or apply displacement;
+- keep the Playables mixer as the sole Humanoid pose authority during grounded-locomotion recovery. Root motion, clip Foot IK, procedural foot goals, pelvis translation, foot rotation, and the failed downstream pose job remain disabled;
+- emit grounded contacts from calibrated semantic phase crossings or explicit one-shot plant metadata. Footstep dust consumes those contacts and must not maintain a second distance cadence, guessed-foot alternation, or runtime auto-installer;
 - keep hands-on feel and controller acceptance with the user unless the user explicitly delegates it.
+
+## Weighty Locomotion Reference Findings
+
+The first weight profile was researched on 2026-08-16 and deliberately separates visible mass from control latency:
+
+- Capcom describes the `Monster Hunter Wilds` player-animation pipeline as a combination of revised legacy motion, motion capture, and hand-authored work, with the player animation lead explicitly balancing in-game performance against visually striking movement. The project inference is to preserve readable body mechanics and gait transitions without globally slowing input response. See [Autodesk's Capcom production interview](https://blogs.autodesk.com/media-and-entertainment/2026/04/23/the-production-infrastructure-behind-capcoms-monster-hunter-wilds/).
+- Rockstar devoted a GDC session to the creative and technical systems behind Arthur Morgan's locomotion, but later made Red Dead Online's on-foot movement quicker and more responsive while preserving speed through vaults and climbs. The project inference is to borrow momentum and follow-through without copying the most sluggish response characteristics. See [GDC's RDR2 locomotion overview](https://gdconf.com/article/learn-the-secrets-of-red-dead-redemption-2-s-player-locomotion-at-gdc/) and [Rockstar's movement update notes](https://support.rockstargames.com/articles/6dT8UroC7aKslsqA38oaxj/red-dead-redemption-2-title-update-1-11-notes-ps4-xbox-one).
+- Pearl Abyss' official `Crimson Desert` update specifically improved short-distance turning responsiveness and removed a brief movement stop in another traversal mode. The project inference is that realistic momentum must still yield promptly to clear player intent. See [Crimson Desert update 1.01.00](https://crimsondesert.pearlabyss.com/en-US/News/Notice/Detail?_boardNo=76).
+- Motion-matching research frames responsive natural locomotion as matching both the current pose and the desired future trajectory with short blends. This prototype does not adopt motion matching, but it applies the transferable pieces: travel-aligned facing, gait phase continuity, hysteresis, and transition-specific blend timing. See [GDC: Motion Matching and the Road to Next-Gen Animation](https://www.gdcvault.com/play/1023280/Motion-Matching-and-The-Road).
 
 ## Pixel Scale Baseline
 

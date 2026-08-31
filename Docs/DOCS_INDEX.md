@@ -40,8 +40,14 @@ These should be treated as the source of truth unless they are intentionally rev
 
 - [WORLD_CREATOR_ARCHITECTURE_PLAN.md](./WORLD_CREATOR_ARCHITECTURE_PLAN.md)
   The approved hybrid causal world-compiler architecture, migration sequence, first vertical slice, and evidence gates subordinate to the World Creator Charter.
+- [WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md](./WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md)
+  The implementation-ready recovery plan for Booter's grounded locomotion animation, calibrated clip authority, authored starts/stops/pivots, validation, and hands-on proof boundary.
+- [TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md](./TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md)
+  The approved production landscape objective, canonical generator architecture, implementation batches, proof boundaries, and stop conditions.
+- [TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md](./TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md)
+  The fixed-camera review, scale-band, terrain-material, rock-family, asset, and performance contract for the representative landscape slice.
 - [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md)
-  The active perspective top-down 3D direction, bounded first-foundation scope, architecture, proof requirements, and stop conditions.
+  The accepted perspective top-down 3D foundation scope, architecture, and historical proof requirements; landscape work now follows the dedicated production landscape plan.
 - [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md)
   The original conversion audit, ownership contract, migration matrix, work breakdown, decision gates, asset requirements, and risks. Its orthographic/isometric direction is superseded for new work by the active perspective foundation plan.
 - [3D_CONVERSION_START_READINESS.md](./3D_CONVERSION_START_READINESS.md)
@@ -57,6 +63,8 @@ These define current preferred approaches or sequencing.
   The canonical product and implementation rules for BigARM's companion role, physical follow behavior, and future unloaded-world traversal seam.
 - [GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md](./GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md)
   The deterministic TopDown3D natural-object placement, cost-layer, rendering, art, performance, and proof contract.
+- [IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md](./IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md)
+  The implemented deterministic Ironstone node, gathering transaction, inventory, UI, and snapshot boundary.
 - [IMPLEMENTATION_SEQUENCE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/IMPLEMENTATION_SEQUENCE.md)
 - [GAMEPLAY_ARCHITECTURE_BASELINES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md)
 - [INPUT_ARCHITECTURE_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/INPUT_ARCHITECTURE_STANDARD.md)

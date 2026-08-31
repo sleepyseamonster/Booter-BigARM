@@ -2,17 +2,17 @@
 
 This is the shared implementation pulse for Booter & BigARM. It records what live repo evidence establishes, what still needs Unity or playtest proof, and which decisions are waiting for the user. It does not replace the strategic order in [ROADMAP.md](./ROADMAP.md).
 
-Last reconciled: 2026-08-13 by Gottspan through the procedural dust-pocket buildout.
+Last reconciled: 2026-08-14 by Gottspan after the representative landscape-family Unity validation.
 
 ## Active Program
 
 - The user has revised the presentation direction to a perspective, elevated top-down game with a fully 3D runtime world and assets.
 - Gottspan owns the conversion program under the user's creative and product authority.
-- The first perspective foundation was accepted by the user and has received a second traversal-hardening pass. It remains in a separate generated development scene, deliberately outside Build Settings, and does not cut over the game.
-- The active plan is [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md).
+- The perspective foundation was accepted and cut over as the primary production path. `TopDown3DPrototype.unity` is the first enabled Build Settings scene; former 2D scenes remain disabled, isolated legacy reference content.
+- The active landscape plan is [TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md](./TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md). The earlier [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md) remains historical foundation rationale and evidence.
 - The current evidence packet is [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md).
 - The former isometric lab and its audit remain historical comparison evidence, not the camera direction for new work.
-- The existing 2D prototype remains the working implementation and protected comparison baseline.
+- The existing 2D prototype remains a protected comparison baseline, not the production implementation.
 
 ## Current Foundation
 
@@ -20,7 +20,7 @@ Last reconciled: 2026-08-13 by Gottspan through the procedural dust-pocket build
 | --- | --- | --- |
 | Input | A single `TopDown3DInputRouter` owns Gameplay input in the new scene. Existing bindings provide keyboard/gamepad movement, sprint, BigARM recall, and `Gameplay/Look` on the gamepad right stick. The camera relies on the Input System's radial stick deadzone rather than stacking another processor. | Binding structure is automatically verified. Physical-controller response remains user-owned acceptance. |
 | Movement and camera | An isolated 3D Rigidbody motor and perspective camera rig provide camera-relative XZ movement, acceleration, sprint, facing, slope grounding, damped follow, obstruction pull-in, right-stick yaw orbit, constrained right-stick pitch, and a 25-world-unit landscape framing distance. | Compilation, scene validation, orbit math, movement-basis tests, and initial visual rendering pass. Final framing, right-stick direction/speed, and pitch-range feel remain user-owned tuning. |
-| World generation | Seeded height sampling, geometry-and-normal seam-matched chunk meshes/colliders, walkable safe-spawn selection, collision-aware prop placement, a two-chunk immediate ring, a budgeted seven-chunk camera-coverage ring, and padded unload hysteresis now exist. | Determinism, safe-spawn, adjacent height/normal seams, and the camera-to-world coverage contract are automatically guarded. Extended multi-chunk traversal remains user-owned acceptance. |
+| World generation | A versioned shared geological generator owns terrain height, normals, feature identity, material weights, drainage/corridors, placement masks, safe spawn, near streamed chunks, and non-colliding middle/far rings. The natural-object catalog now owns 27 baked rock families and 81 LOD mesh assets; runtime procedural rock construction and native fusion are removed from player generation. | Unity import and the canonical landscape validator pass; the owned landscape selection passes 27/27 EditMode tests. Fixed-camera near/mid/far review, seam and traversal acceptance, final material calibration, and controlled Development Player profiling remain separate proof gates. |
 | Dust atmosphere | The global haze is deliberately parked: its retained controller defaults off, never becomes `Active`, and is not installed by the scene-load bootstrap. Volumetric haze, dust post-processing, global motes, and veils therefore do not render. Pocket sampling, authored zones, shaders, renderer feature, optics, tuning, and tests remain intact for a later return; ground-deposited drifts and footstep kick-up remain independent. | Source-level contracts guard the default-off posture while preserving deterministic distribution, optics, renderer-feature installation, and particle tuning. Runtime/editor-test compilation is green. A clean Play Mode restart and user visual acceptance remain the final proof that no global haze presentation is visible. |
 | Save/load | The existing versioned 2D prototype save systems remain preserved. | Perspective-world persistence and migration were explicitly deferred. |
 | Survival economy | Existing prototype systems remain preserved. | Harvesting, items, balance, and loop redesign were explicitly deferred. |
@@ -29,8 +29,8 @@ Last reconciled: 2026-08-13 by Gottspan through the procedural dust-pocket build
 
 ## Management Gates
 
-- Keep the perspective foundation bounded to its separate scene and runtime assembly until the user accepts camera, movement, controller, terrain, and companion feel.
-- Do not install navigation or asset-format packages, source production assets, alter Build Settings, or retire legacy content merely because the conversion plan exists.
+- Keep production TopDown3D code in its isolated runtime assembly and preserve the accepted legacy boundary.
+- Do not install navigation or asset-format packages, source external production assets, alter Build Settings, or retire legacy content merely because the landscape plan exists.
 - Treat the current camera values, generated terrain, greybox visuals, and BigARM states as tuning-ready foundations rather than finished design.
 - Reconcile roadmap wording against implementation before selecting a new large feature; implemented code does not mean a phase's exit criteria are met.
 - Use [PLAYTEST_LOG.md](./PLAYTEST_LOG.md) for the user's hands-on observations before expanding breadth. Codex does not create or run smoke tests unless the user explicitly requests them.

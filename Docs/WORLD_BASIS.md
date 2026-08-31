@@ -53,7 +53,7 @@ Booter is a professional desert survivor and metal scrapper.
 
 BigARM is a simple, physically present companion whose abilities are designed to work synergistically with Booter.
 
-- BigARM is not a rover, vehicle, mobile habitat, home base, safe zone, storage depot, or crafting platform.
+- BigARM is not a rover, vehicle, mobile habitat, home base, safe zone, or crafting platform. He is a finite, physically present mobile carrier; cargo access and transfer require his real simulated presence and never become remote storage.
 - Booter and BigARM form one inseparable mechanical partnership even when they are physically separated in the world.
 - BigARM may wander, choose local tasks, and operate autonomously.
 - BigARM always has a true world position and must physically traverse the world to regroup with Booter.

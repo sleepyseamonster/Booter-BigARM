@@ -47,7 +47,7 @@ This foundation batch is complete when the repository contains a separate `TopDo
 ### Camera
 
 - Perspective projection is authoritative for new work.
-- The camera uses the existing `Gameplay/Look` right-stick binding as angular velocity: horizontal input orbits, vertical input adjusts pitch inside a top-down-safe range, and releasing the stick holds the current view.
+- The camera uses the existing `Gameplay/Look` right-stick binding as angular velocity by default: horizontal input orbits, vertical input adjusts pitch inside a top-down-safe range, and releasing the stick holds the current view. Holding `Gameplay/CameraLookAhead` on the gamepad left trigger suppresses orbit and translates the framing target in the stick direction up to `12` meters at `12.6 m/s`; releasing the stick or modifier recenters at `37.8 m/s` without blocking movement.
 - The Input System's gamepad-stick deadzone is authoritative; the camera does not stack a second deadzone processor.
 - Camera distance, pitch, field of view, damping, and target offset remain serialized tuning values.
 - Camera obstruction pulls the camera toward its target without changing gameplay movement intent.
@@ -57,7 +57,7 @@ This foundation batch is complete when the repository contains a separate `TopDo
 - A single input router owns the Gameplay action map in the new scene.
 - Gameplay systems consume higher-level movement, sprint, and recall state from that router.
 - Player input is projected through the camera basis onto XZ, clamped to unit magnitude, and applied through Rigidbody physics.
-- The motor exposes position, velocity, grounded state, sprint state, facing, and teleport behavior needed by later shared seams.
+- The motor exposes position, velocity, grounded state, sprint state, facing, teleport behavior, and a read-only locomotion presentation snapshot. The snapshot lets animation respond to velocity, acceleration, support normal, and desired heading without becoming a competing movement authority.
 
 ### Procedural World
 
@@ -99,7 +99,7 @@ This foundation batch is complete when the repository contains a separate `TopDo
 - A seeded world-space cellular field places softly blended, irregular dust pockets independently of loaded chunks. Default pocket centers use 144-unit cells, their 54-to-72-unit radii span roughly six to eight 18-unit chunks, and an 18-unit edge band eases between dust and clear air. Sampling absolute XZ plus the immutable world seed makes the result stable across chunk seams, loading order, unloading, and negative coordinates.
 - The low-frequency regional field now varies density inside each pocket rather than imposing an always-on dust floor. `TopDown3DDustZone` remains the smooth local override for authored hazards, shelters, storms, or later gameplay effects without requiring a second visual path.
 - Pocket interiors also carry a deterministic, strongly shaped 0.038-frequency clump field, producing readable thick and thin rust-dust patches at roughly a 26-unit scale. Because this modulation is folded into `SampleAtPosition`, volumetric scattering, visibility, exposure, and close-particle response agree on each clump instead of layering a camera-only noise effect.
-- `TopDown3DFootstepDust` converts actual grounded travel distance into alternating rust-dust puffs, so walking and sprinting retain a stable cadence without imported animation events. Every grounded step produces a clearly readable puff, including in clear-air regions; sampling the same world-space pocket field as the volumetric atmosphere lets thick pocket interiors increase particle count, opacity, size, and lifetime without controlling whether the effect exists.
+- `TopDown3DPlayerAnimationDriver` owns one semantic gait phase and emits left/right contacts when that phase crosses calibrated foot plants. `TopDown3DFootstepDust` consumes those contacts directly; it has no competing distance clock, guessed-foot alternation, or runtime auto-installer. Every valid grounded contact produces a readable puff, including in clear-air regions, while the same world-space pocket field may increase particle count, opacity, size, and lifetime without controlling whether the effect exists.
 - Later gameplay must treat `TopDown3DDustAtmosphere.Active == null` as the parked/no-global-haze state. When the atmosphere is deliberately re-enabled, it may read `CurrentDustIntensity`, `DustExposure01`, and `ApproximateVisibilityDistance`; it should not reverse-engineer mechanic state from `RenderSettings` or particle emission.
 - While the default-off posture is active, existing perspective scenes do not receive a controller from the runtime bootstrap. Guarded scene rebuilds may preserve the serialized atmosphere and tuning regions through `TopDown3DPrototypeBuilder`; they remain inert until the retained `globalHazeEnabled` gate is deliberately enabled again.
 - The retained renderer feature remains installed exactly once on the protected non-default 3D renderer but no-ops while no atmosphere is `Active`. The default 2D renderer, pipeline-wide depth setting, Build Settings, and sun clock remain unchanged.

@@ -4,7 +4,7 @@ This document is the canonical implementation baseline for how BigARM exists, mo
 
 ## Locked Direction
 
-- BigARM is Booter's companion, not a rover, vehicle, mobile habitat, home base, safe zone, storage depot, or crafting platform.
+- BigARM is Booter's companion, not a rover, vehicle, mobile habitat, home base, safe zone, or crafting platform. His finite loadframe can carry expedition cargo, but it is not a depot or remote menu.
 - Booter and BigARM form one synergistic gameplay partnership even when they are physically apart.
 - BigARM may wander, pursue autonomous tasks, and make local movement decisions.
 - BigARM always has a true world position.

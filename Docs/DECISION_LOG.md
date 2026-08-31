@@ -112,6 +112,18 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** New production work must not depend on the legacy folder. Legacy content remains preserved and usable but is not co-equal production architecture. This decision does not authorize legacy deletion, package removal, save migration, release, or publication.
 - **Supersedes:** The build-entry, renderer-default, and no-cutover constraints in the 2026-08-13 perspective foundation decision. It does not supersede the procedural-generation-first architecture or the legacy preservation requirement.
 
+## 2026-08-14 — Shared Geological Surface Authority
+
+- **Status:** accepted
+- **Decision owner:** user
+- **Question:** How should the production landscape move from local noise and separate feature samplers toward the realistic-stylized Broken World direction?
+- **Decision:** Build one instance-owned deterministic `TopDown3DWorldGenerator` as the sole height and geological-surface authority for near terrain, distant terrain, materials, rocks, cliffs, landmarks, and natural-object placement. Cut production consumers over atomically, version the changed terrain identity, and remove the former static height/escarpment authority instead of keeping a compatibility mode. Runtime world availability must not depend on native rock-fusion CSG; any retained fusion is editor-only baking support.
+- **Why:** The approved visual direction depends on coherent large-scale landforms and shared geological causality. Independent noise, escarpment, material, and placement paths create contradictions, seams, and duplicate authority.
+- **Evidence:** The user's six landscape references and explicit implementation approval; the landscape-system audit; the completed Unity bake of 27 catalog families and 81 LOD meshes; the passing canonical landscape validator; and the passing 27-test owned landscape selection.
+- **Controlling files updated:** `Docs/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md`, `Docs/TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md`, `Docs/GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md`, `Docs/DOCS_INDEX.md`, `Docs/PROJECT_STATUS.md`, and the production TopDown3D generator, catalog, terrain, material, placement, far-landscape, rock-bake, validation, and test paths.
+- **Consequences / follow-up:** Terrain generation is version 2, natural-object generation is version 3, and physical-rock generation is version 5. The representative family is integrated; fixed-camera visual acceptance and controlled Development Player profiling remain required before adding biome breadth or claiming final visual/performance quality. This does not authorize packages, purchases, publication, release, legacy deletion, or gameplay-system changes.
+- **Supersedes:** The static `TopDown3DHeightSampler` plus separate escarpment sampler as the future production terrain architecture; it does not erase prior test evidence for the foundation that used them.
+
 ## 2026-08-24 — World Creator Charter And Hybrid Causal Architecture
 
 - **Status:** accepted

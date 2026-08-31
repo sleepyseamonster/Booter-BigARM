@@ -1,18 +1,43 @@
 # TopDown3D Performance Audit And Optimization
 
-Status: staged-startup packet present; the latest C# import, automated tests, shader visual validation, and player profiling are still required before performance acceptance.
+Status: source-level render-cost remediation present; Unity import, automated tests, visual validation, and controlled player profiling are still required before performance acceptance.
+
+## Dedicated Editor And Development Playtest Profile — 2026-08-19
+
+The audit found a capable Apple M1 Max system constrained principally by GPU/Editor contention rather than a gameplay CPU hotspot. A non-persistent profile now activates only for Unity Editor and Development Player playtests. It clones the active URP asset at runtime, so it does not rewrite the project graphics asset or release-player quality:
+
+- stress-test mode renders at 50% internal scale, caps the game at 60 FPS, applies a two-level global texture-mip reduction, and uses a 1024-pixel single-cascade main-light shadow setup;
+- enables a compiled fast terrain variant that retains generated geology weights but replaces the near-field anti-tiling, transition, height, parallax, and normal path with four albedo samples for playtesting;
+- uses a two-chunk terrain ring for Editor/Development stress tests, realizes at most one terrain stage per frame, and disables runtime decoration to isolate chunk streaming; regardless of playtest profile, only the player's three-by-three terrain ring receives active MeshColliders while distant loaded chunks remain render-only;
+- keeps stable placement IDs, generator inputs, terrain mesh/collider ownership, resource depletion deltas, and re-generation on return to a decorated radius intact;
+- logs five-second frame-time percentiles, CPU/GPU frame timings where Unity exposes them, resolution, managed memory, pending chunk work, and generated renderer/collider counts under `[TopDown3D Performance]`.
+
+This is intentionally a playtest posture, not a declaration of release settings. Closing Play Mode restores the original quality pipeline, frame cap, VSync setting, and terrain keyword.
+
+The 2026-08-19 batch import completed a successful Unity Tundra compilation of the runtime, editor validator, and editor-test assemblies after repairing two independent playtest blockers in newly added BigARM code: an unassigned validation-error local and the missing `.meta` for the existing cargo-access script. The requested full EditMode run entered its installed performance-test prebuild phase and continued consuming a full CPU core without publishing test cases or results after four minutes; it was stopped to avoid recreating the reported host contention. This is not a test pass. Interactive Editor/Development Player telemetry remains the acceptance gate.
+
+## Render-Cost Remediation — 2026-08-17
+
+A live Editor/host sample during the reported unplayable frame rate again favored rendering over gameplay CPU work: Unity stayed near 5–10% CPU while the Apple GPU reported roughly 44–59% device utilization, and the Unity sample was concentrated in camera/SRP rendering. The host also had about 16 GB of swap in use and multiple other large applications resident. This is current diagnostic evidence, not a Development Player benchmark.
+
+Two behavior-preserving source changes now target the project-owned render multiplication:
+
+- Once geological detail is fully faded at 150 metres, the terrain shader uses a derivative-safe, explicit-mip four-albedo path driven by the same generated geology weights. Near terrain retains the full anti-tiling, height, parallax, normal, transition, and relief path. This prevents the middle/far landscape from paying the near-field shader's roughly 34 texture reads and repeated procedural noise where that detail is no longer visible.
+- Physical formation members retain their deterministic transforms, stable identities, box colliders, baked mesh families, materials, and three LOD geometries. Rendering is consolidated to one three-level `LODGroup` per formation instead of one `LODGroup` and three renderers per member. Resource nodes keep their independent per-node LOD path.
+
+The current runtime and affected Editor-test sources compile successfully through isolated copies of Unity's generated Roslyn response files. The open Editor has not yet imported these edits because background auto-refresh is deferred while it is unfocused. Shader import, the focused EditMode contract, fixed-camera visual review, hands-on playtesting, and player profiling remain open.
 
 ## Scope And Preservation Contract
 
-This pass targets runtime latency, frame spikes, and avoidable memory pressure in the current `TopDown3DPrototype` without changing world identity, generated placement, collision, streaming coverage, camera framing, materials, or graphic settings.
+This pass targets runtime latency, frame spikes, and avoidable memory pressure in the current `TopDown3DPrototype` without changing world identity, generated placement, streaming coverage, camera framing, materials, or graphic settings. Terrain collision is deliberately local to the player instead of being created for every visible streamed chunk.
 
 The following behavior remains unchanged:
 
 - the world seed, generation versions, stable generated-object identities, and chunk coordinates;
 - the 18-unit chunk size, 24 quads per axis, seven-chunk streaming radius, two-chunk immediate ring, two-chunk configured frame allowance, and one-chunk unload padding;
 - the requested per-chunk natural-object densities and every existing placement/planning rule;
-- terrain texture inputs, patch masks, blend order, rocky parallax, normals, lighting, shadows, render scale, and MSAA;
-- chunk ownership and unload/reload reconstruction, including terrain MeshCollider ownership.
+- near-terrain texture inputs, patch masks, blend order, rocky parallax, normals, lighting, shadows, render scale, and MSAA; fully faded terrain uses the separately documented coarse path and still requires visual acceptance;
+- chunk ownership and unload/reload reconstruction, including terrain MeshCollider ownership inside the local collision ring.
 
 ## Audit Baseline
 
@@ -35,17 +60,17 @@ The source and live-system audit was captured on 2026-08-13 in Unity 6000.4.0f1 
 
 `TopDown3DProceduralWorld` now consumes its sorted pending list with a cursor instead of repeated front removal. The configured chunk-count allowance remains authoritative, and realization yields after the first completed work stage that takes the batch beyond a provisional 2 ms guardrail. This bounds continued work between frames without changing which chunks are requested or their distance order.
 
-Startup still creates the entire immediate terrain and MeshCollider ring synchronously, then fully decorates the center chunk before the first physics step. That preserves safe spawn, visible ground coverage, and collision authority. Escarpment skin, natural objects, and deposited dust for the other immediate chunks are queued and completed through the normal frame budget; newly streamed chunks likewise complete terrain and decoration as separate stages.
+Startup and runtime terrain chunks are visual-first. A separately queued, three-by-three collision ring around the current player chunk creates at most one new terrain MeshCollider per frame; loaded terrain outside that ring has no MeshCollider. The player stays suspended until the center collider exists, preserving safe spawn and ground authority without PhysX cooking every visible chunk. Escarpment skin, natural objects, and deposited dust remain queued through the normal frame budget.
 
 The decoration queue is keyed by deterministic chunk coordinates, rejects duplicates, skips chunks that leave the required set, requeues required terrain-only chunks after a center change, and clears state when a chunk unloads. It does not change the world seed, planner inputs, stable IDs, authored constraints, or reconstructed output. No persisted runtime delta exists for these presentation objects, so persistence behavior is unchanged.
 
-Splitting terrain generation or MeshCollider cooking itself is deliberately deferred until profiling proves it necessary. The immediate collision ring is the spawn and traversal safety boundary.
+Splitting terrain generation itself is deliberately deferred until profiling proves it necessary. MeshCollider cooking is serialized through the local collision queue because that is the spawn and traversal safety boundary.
 
 ### Mesh construction and memory
 
 Terrain data/build, chunk decoration, natural-object planning, formation combination, and cosmetic layer combination now have named profiler markers. Natural-object buckets, combined-mesh buffers, and escarpment-skin buffers receive known or calculated capacities before population. Immutable, presentation-only natural-object, escarpment-skin, and deposited-dust meshes release their CPU copy in Play Mode after renderers and simple source-bounds colliders are configured.
 
-Terrain meshes remain CPU-readable because the same mesh is owned by a MeshCollider. No collider topology or generated transform changed.
+Terrain meshes remain CPU-readable because a chunk can enter the local MeshCollider ring. No generated transform changed.
 
 ### Shader work
 
