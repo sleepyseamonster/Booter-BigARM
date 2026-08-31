@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad89fda2e5a8435db7a7fc7e3ecf3f9, type: 3}
+  m_Name: TopDown3DPackingSettings
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPackingSettings
+  mounts:
+  - stableId: core.l1
+    zone: 0
+    side: 0
+    height: 0
+    maxStackMass: 20
+  - stableId: core.l2
+    zone: 0
+    side: 0
+    height: 0.1
+    maxStackMass: 20
+  - stableId: core.l3
+    zone: 0
+    side: 0
+    height: 0.2
+    maxStackMass: 20
+  - stableId: core.r1
+    zone: 0
+    side: 1
+    height: 0
+    maxStackMass: 20
+  - stableId: core.r2
+    zone: 0
+    side: 1
+    height: 0.1
+    maxStackMass: 20
+  - stableId: core.r3
+    zone: 0
+    side: 1
+    height: 0.2
+    maxStackMass: 20
+  - stableId: side.l1
+    zone: 1
+    side: 0
+    height: 0.8
+    maxStackMass: 20
+  - stableId: side.l2
+    zone: 1
+    side: 0
+    height: 0.9
+    maxStackMass: 20
+  - stableId: side.r1
+    zone: 1
+    side: 1
+    height: 0.8
+    maxStackMass: 20
+  - stableId: side.r2
+    zone: 1
+    side: 1
+    height: 0.9
+    maxStackMass: 20
+  - stableId: upper.l1
+    zone: 2
+    side: 0
+    height: 1.6
+    maxStackMass: 20
+  - stableId: upper.r1
+    zone: 2
+    side: 1
+    height: 1.6
+    maxStackMass: 20
+  recommendedMass: 80
+  comfortableFraction: 0.75
+  hardFraction: 1.15

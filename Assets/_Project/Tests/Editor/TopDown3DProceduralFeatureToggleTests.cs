@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using BooterBigArm.TopDown3D;
 using NUnit.Framework;
 using UnityEditor;
@@ -12,22 +11,13 @@ namespace BooterBigArm.Tests
             "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
 
         [Test]
-        public void ActiveWorld_KeepsEscarpmentsAndDepositedDustDormant()
+        public void ActiveWorld_UsesVersionedGeologyAndKeepsDepositedDustDormant()
         {
             var settings = LoadSettings();
 
-            Assert.That(settings.GenerateEscarpments, Is.False);
+            Assert.That(settings.TerrainGenerationVersion, Is.GreaterThanOrEqualTo(2));
+            Assert.That(settings.GeologyProfile, Is.Not.Null);
             Assert.That(settings.GenerateDepositedDust, Is.False);
-            Assert.That(
-                TopDown3DEscarpmentSampler.SampleElevation(settings, 32f, -19f),
-                Is.EqualTo(0f));
-
-            var features = new List<TopDown3DEscarpmentFeature>();
-            TopDown3DEscarpmentSampler.CollectFeatures(
-                settings,
-                new Rect(-120f, -120f, 240f, 240f),
-                features);
-            Assert.That(features, Is.Empty);
         }
 
         [Test]
@@ -43,6 +33,7 @@ namespace BooterBigArm.Tests
                 TopDown3DDustDepositionDecorator.Decorate(
                     chunk,
                     settings,
+                    new TopDown3DWorldGenerator(settings),
                     settings.DepositedDustMaterial,
                     new Vector2(10000f, 10000f));
 
@@ -55,12 +46,12 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void FreshSettings_KeepBothModulesAvailableForLater()
+        public void FreshSettings_ProvideGeologyAndDepositedDustSettings()
         {
             var settings = ScriptableObject.CreateInstance<TopDown3DWorldSettings>();
             try
             {
-                Assert.That(settings.GenerateEscarpments, Is.True);
+                Assert.That(settings.GeologyProfile, Is.Not.Null);
                 Assert.That(settings.GenerateDepositedDust, Is.True);
             }
             finally

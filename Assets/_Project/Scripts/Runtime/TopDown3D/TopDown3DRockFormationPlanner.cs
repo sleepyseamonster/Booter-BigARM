@@ -209,10 +209,19 @@ namespace BooterBigArm.TopDown3D
     {
         public const int DirectionAttempts = 12;
         private const float GoldenAngleDegrees = 137.507764f;
-        private const float MaximumNonParentOverlap = 0.12f;
+        private static readonly TopDown3DRockSizeTier[] PhysicalTiersDescending =
+        {
+            TopDown3DRockSizeTier.Towering,
+            TopDown3DRockSizeTier.Massive,
+            TopDown3DRockSizeTier.ExtraLarge,
+            TopDown3DRockSizeTier.Large,
+            TopDown3DRockSizeTier.Medium,
+            TopDown3DRockSizeTier.Small
+        };
 
         public static List<TopDown3DRockFormationPlan> BuildPhysicalFormations(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             TopDown3DNaturalObjectCatalog catalog,
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter)
@@ -223,49 +232,46 @@ namespace BooterBigArm.TopDown3D
                 return formations;
             }
 
-            BuildTier(
-                settings,
-                catalog,
-                chunkCoordinate,
-                spawnExclusionCenter,
-                TopDown3DRockSizeTier.Towering,
-                formations);
-            BuildTier(
-                settings,
-                catalog,
-                chunkCoordinate,
-                spawnExclusionCenter,
-                TopDown3DRockSizeTier.Massive,
-                formations);
-            BuildTier(
-                settings,
-                catalog,
-                chunkCoordinate,
-                spawnExclusionCenter,
-                TopDown3DRockSizeTier.Large,
-                formations);
+            var tierPlanningData = BuildTierPlanningData(settings, catalog);
+            var formationCache = new Dictionary<TopDown3DRockRootKey, TopDown3DRockFormationPlan>();
+            for (var tierIndex = 0; tierIndex < tierPlanningData.Length; tierIndex++)
+            {
+                BuildTier(
+                    settings,
+                    generator,
+                    catalog,
+                    chunkCoordinate,
+                    spawnExclusionCenter,
+                    tierPlanningData[tierIndex],
+                    tierPlanningData,
+                    formationCache,
+                    formations);
+            }
+
             return formations;
         }
 
         private static void BuildTier(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             TopDown3DNaturalObjectCatalog catalog,
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter,
-            TopDown3DRockSizeTier tier,
+            TierPlanningData tierData,
+            IReadOnlyList<TierPlanningData> allTierData,
+            IDictionary<TopDown3DRockRootKey, TopDown3DRockFormationPlan> formationCache,
             ICollection<TopDown3DRockFormationPlan> output)
         {
-            var definitions = GetDefinitions(catalog, tier);
-            var config = GetConfig(settings, tier);
+            var tier = tierData.Tier;
+            var definitions = tierData.Definitions;
+            var config = tierData.Config;
             if (definitions.Count == 0 || config.TargetCount <= 0f)
             {
                 return;
             }
 
-            var cellSize = GetCellSize(settings.ChunkSize, config.TargetCount);
-            var cellsPerChunk = (settings.ChunkSize / cellSize) * (settings.ChunkSize / cellSize);
-            var baseAdmission = Mathf.Clamp01(config.TargetCount / Mathf.Max(1f, cellsPerChunk));
-            var layerSeed = GetTierSeed(settings, tier);
+            var cellSize = tierData.CellSize;
+            var layerSeed = tierData.LayerSeed;
             var originX = chunkCoordinate.x * settings.ChunkSize;
             var originZ = chunkCoordinate.y * settings.ChunkSize;
             var minCellX = Mathf.FloorToInt(originX / cellSize);
@@ -279,34 +285,29 @@ namespace BooterBigArm.TopDown3D
                 {
                     var candidate = BuildCandidate(layerSeed, cellX, cellZ, cellSize);
                     if (!BelongsToChunk(candidate.Position, chunkCoordinate, settings.ChunkSize)
-                        || !TryBuildRootMember(
+                        || !TryBuildFormationPlan(
                             settings,
-                            definitions,
-                            config,
-                            tier,
+                            generator,
+                            catalog,
+                            tierData,
                             candidate,
-                            baseAdmission,
                             spawnExclusionCenter,
-                            out var root))
+                            formationCache,
+                            out var formation))
                     {
                         continue;
                     }
 
-                    var formation = BuildFormation(
-                        settings,
-                        catalog,
-                        tier,
-                        candidate,
-                        root,
-                        spawnExclusionCenter);
                     if (LosesCompetition(
                             settings,
+                            generator,
                             catalog,
-                            tier,
-                            config,
+                            tierData,
+                            allTierData,
                             candidate,
                             formation,
-                            spawnExclusionCenter))
+                            spawnExclusionCenter,
+                            formationCache))
                     {
                         continue;
                     }
@@ -318,6 +319,8 @@ namespace BooterBigArm.TopDown3D
 
         private static bool TryBuildRootMember(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
+            TopDown3DNaturalObjectCatalog catalog,
             IReadOnlyList<TopDown3DNaturalObjectDefinition> definitions,
             TierConfig config,
             TopDown3DRockSizeTier tier,
@@ -327,10 +330,31 @@ namespace BooterBigArm.TopDown3D
             out TopDown3DRockFormationMember root)
         {
             root = default;
-            var abundance = TopDown3DNaturalObjectPlanner.SampleRockAbundance(
+            var sharedAbundance = TopDown3DNaturalObjectPlanner.SampleRockAbundance(
                 settings,
                 candidate.Position);
-            if (candidate.Admission > Mathf.Clamp01(baseAdmission * abundance))
+            var formationAbundance = Mathf.Lerp(
+                0.78f,
+                1.35f,
+                Mathf.Clamp01(sharedAbundance / 2.2f));
+            var surface = generator.Sample(candidate.Position.x, candidate.Position.y);
+            // Large formations can rise through red dirt. Visible bedrock remains a useful
+            // geological signal, but it must not be the admission gate for the formation
+            // hierarchy or sparse terrain texturing will erase the world's silhouettes.
+            var geologySuitability = 0.72f
+                + surface.BedrockWeight * 0.35f
+                + surface.GravelWeight * 0.20f
+                + surface.Talus * 0.28f
+                + surface.Lithology * 0.12f
+                + Mathf.Abs(surface.Curvature) * 0.14f;
+            var corridorProtection = GetTierRank(tier) >= GetTierRank(TopDown3DRockSizeTier.Large)
+                ? Mathf.Lerp(1f, 0.04f, surface.TraversalCorridor)
+                : Mathf.Lerp(1f, 0.35f, surface.TraversalCorridor);
+            if (candidate.Admission > Mathf.Clamp01(
+                    baseAdmission
+                    * formationAbundance
+                    * geologySuitability
+                    * corridorProtection))
             {
                 return false;
             }
@@ -338,10 +362,7 @@ namespace BooterBigArm.TopDown3D
             var definition = SelectDefinition(definitions, candidate.Selection);
             var scale = GetScale(definition, candidate.Scale);
             var variant = GetVariant(candidate.Variant);
-            var normal = TopDown3DHeightSampler.SampleNormal(
-                settings,
-                candidate.Position.x,
-                candidate.Position.y);
+            var normal = generator.SampleNormal(candidate.Position.x, candidate.Position.y);
             var slope = Vector3.Angle(normal, Vector3.up);
             if (slope > config.MaximumSlope)
             {
@@ -349,17 +370,14 @@ namespace BooterBigArm.TopDown3D
             }
 
             var rotation = GetGroundedRotation(definition, normal, candidate.Yaw * 360f);
-            var support = GetProjectedSupportRadius(definition.Shape, variant, rotation, scale);
+            var support = GetProjectedSupportRadius(catalog, definition.Shape, variant, rotation, scale);
             if (Vector2.Distance(candidate.Position, spawnExclusionCenter)
                 < settings.ClearSpawnRadius + support)
             {
                 return false;
             }
 
-            var height = TopDown3DHeightSampler.SampleHeight(
-                settings,
-                candidate.Position.x,
-                candidate.Position.y);
+            var height = generator.SampleHeight(candidate.Position.x, candidate.Position.y);
             var position = new Vector3(
                 candidate.Position.x,
                 height - definition.SinkDepth * scale.y,
@@ -371,6 +389,7 @@ namespace BooterBigArm.TopDown3D
                 settings.PhysicalRockGenerationVersion);
             var stableId = $"rock:{settings.WorldSeed}:{key}:0";
             root = CreateMember(
+                catalog,
                 stableId,
                 definition,
                 tier,
@@ -385,35 +404,47 @@ namespace BooterBigArm.TopDown3D
 
         private static bool LosesCompetition(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             TopDown3DNaturalObjectCatalog catalog,
-            TopDown3DRockSizeTier tier,
-            TierConfig config,
+            TierPlanningData tierData,
+            IReadOnlyList<TierPlanningData> allTierData,
             Candidate candidate,
             TopDown3DRockFormationPlan formation,
-            Vector2 spawnExclusionCenter)
+            Vector2 spawnExclusionCenter,
+            IDictionary<TopDown3DRockRootKey, TopDown3DRockFormationPlan> formationCache)
         {
-            for (var otherTierValue = (int)tier; otherTierValue <= (int)TopDown3DRockSizeTier.Towering; otherTierValue++)
+            var tier = tierData.Tier;
+            var config = tierData.Config;
+            var tierRank = GetTierRank(tier);
+            for (var tierIndex = 0; tierIndex < allTierData.Count; tierIndex++)
             {
-                var otherTier = (TopDown3DRockSizeTier)otherTierValue;
-                var otherDefinitions = GetDefinitions(catalog, otherTier);
-                var otherConfig = GetConfig(settings, otherTier);
+                var otherData = allTierData[tierIndex];
+                var otherTier = otherData.Tier;
+                if (GetTierRank(otherTier) < tierRank)
+                {
+                    continue;
+                }
+
+                var otherDefinitions = otherData.Definitions;
+                var otherConfig = otherData.Config;
                 if (otherDefinitions.Count == 0 || otherConfig.TargetCount <= 0f)
                 {
                     continue;
                 }
 
-                var otherCellSize = GetCellSize(settings.ChunkSize, otherConfig.TargetCount);
-                var otherCellsPerChunk = (settings.ChunkSize / otherCellSize)
-                    * (settings.ChunkSize / otherCellSize);
-                var otherAdmission = Mathf.Clamp01(
-                    otherConfig.TargetCount / Mathf.Max(1f, otherCellsPerChunk));
+                var otherCellSize = otherData.CellSize;
+                var competitionSpacing = GetCompetitionSpacing(
+                    tier,
+                    config,
+                    otherTier,
+                    otherConfig);
                 var searchDistance = formation.EnvelopeRadius
-                    + GetMaximumFormationRadius(settings, otherTier, otherDefinitions)
-                    + Mathf.Max(config.Spacing, otherConfig.Spacing);
+                    + otherData.MaximumFormationRadius
+                    + competitionSpacing;
                 var range = Mathf.Max(1, Mathf.CeilToInt(searchDistance / otherCellSize) + 1);
                 var centerCellX = Mathf.FloorToInt(candidate.Position.x / otherCellSize);
                 var centerCellZ = Mathf.FloorToInt(candidate.Position.y / otherCellSize);
-                var otherSeed = GetTierSeed(settings, otherTier);
+                var otherSeed = otherData.LayerSeed;
                 for (var z = -range; z <= range; z++)
                 {
                     for (var x = -range; x <= range; x++)
@@ -430,36 +461,29 @@ namespace BooterBigArm.TopDown3D
                             continue;
                         }
 
-                        if (!TryBuildRootMember(
+                        if (!TryBuildFormationPlan(
                                 settings,
-                                otherDefinitions,
-                                otherConfig,
-                                otherTier,
+                                generator,
+                                catalog,
+                                otherData,
                                 other,
-                                otherAdmission,
                                 spawnExclusionCenter,
-                                out var otherRoot))
+                                formationCache,
+                                out var otherFormation))
                         {
                             continue;
                         }
 
-                        var otherFormation = BuildFormation(
-                            settings,
-                            catalog,
-                            otherTier,
-                            other,
-                            otherRoot,
-                            spawnExclusionCenter);
                         var minimumDistance = formation.EnvelopeRadius
                             + otherFormation.EnvelopeRadius
-                            + Mathf.Max(config.Spacing, otherConfig.Spacing);
+                            + competitionSpacing;
                         if ((otherFormation.EnvelopeCenter - formation.EnvelopeCenter).sqrMagnitude
                             >= minimumDistance * minimumDistance)
                         {
                             continue;
                         }
 
-                        if (otherTier > tier
+                        if (GetTierRank(otherTier) > tierRank
                             || other.Priority > candidate.Priority
                             || (Mathf.Approximately(other.Priority, candidate.Priority)
                                 && StableCellOrder(
@@ -477,8 +501,58 @@ namespace BooterBigArm.TopDown3D
             return false;
         }
 
+        private static bool TryBuildFormationPlan(
+            TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
+            TopDown3DNaturalObjectCatalog catalog,
+            TierPlanningData tierData,
+            Candidate candidate,
+            Vector2 spawnExclusionCenter,
+            IDictionary<TopDown3DRockRootKey, TopDown3DRockFormationPlan> formationCache,
+            out TopDown3DRockFormationPlan formation)
+        {
+            var key = new TopDown3DRockRootKey(
+                tierData.Tier,
+                candidate.CellX,
+                candidate.CellZ,
+                settings.PhysicalRockGenerationVersion);
+            if (formationCache.TryGetValue(key, out formation))
+            {
+                return formation != null;
+            }
+
+            if (!TryBuildRootMember(
+                    settings,
+                    generator,
+                    catalog,
+                    tierData.Definitions,
+                    tierData.Config,
+                    tierData.Tier,
+                    candidate,
+                    tierData.BaseAdmission,
+                    spawnExclusionCenter,
+                    out var root))
+            {
+                formationCache.Add(key, null);
+                formation = null;
+                return false;
+            }
+
+            formation = BuildFormation(
+                settings,
+                generator,
+                catalog,
+                tierData.Tier,
+                candidate,
+                root,
+                spawnExclusionCenter);
+            formationCache.Add(key, formation);
+            return true;
+        }
+
         private static TopDown3DRockFormationPlan BuildFormation(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             TopDown3DNaturalObjectCatalog catalog,
             TopDown3DRockSizeTier rootTier,
             Candidate candidate,
@@ -492,42 +566,57 @@ namespace BooterBigArm.TopDown3D
                 settings.PhysicalRockGenerationVersion);
             var formationStableId = $"rock:{settings.WorldSeed}:{key}";
             var members = new List<TopDown3DRockFormationMember> { root };
-            var parentIndex = 0;
-            var depth = 0;
-            var consecutiveLargeDepth = rootTier == TopDown3DRockSizeTier.Large ? 0 : -1;
-            while (members.Count < settings.PhysicalFormationMaximumMembers
-                && depth < settings.PhysicalFormationMaximumDepth)
+            var memberDepths = new List<int> { 0 };
+            for (var parentIndex = 0;
+                 parentIndex < members.Count
+                 && members.Count < settings.PhysicalFormationMaximumMembers;
+                 parentIndex++)
             {
+                var depth = memberDepths[parentIndex];
+                if (depth >= settings.PhysicalFormationMaximumDepth)
+                {
+                    continue;
+                }
+
                 var parent = members[parentIndex];
                 var childTier = GetChildTier(parent.Tier);
                 if (childTier == TopDown3DRockSizeTier.None)
                 {
-                    break;
+                    continue;
                 }
 
-                var branchSeed = StableHash(candidate.FormationSeed, members.Count, depth + 0x4139);
-                var chance = GetChildChance(settings, parent.Tier, consecutiveLargeDepth);
-                if (Hash01(branchSeed ^ 0x5D27A1E3) > chance
-                    || !TryCreateChild(
-                        settings,
-                        catalog,
-                        formationStableId,
-                        branchSeed,
-                        childTier,
-                        parentIndex,
-                        members,
-                        spawnExclusionCenter,
-                        out var child))
+                var baseChance = GetChildChance(settings, parent.Tier);
+                for (var childSlot = 0;
+                     childSlot < settings.FormationMaximumChildrenPerParent
+                     && members.Count < settings.PhysicalFormationMaximumMembers;
+                     childSlot++)
                 {
-                    break;
-                }
+                    var branchSeed = StableHash(
+                        candidate.FormationSeed,
+                        parentIndex * 4099 + childSlot * 131,
+                        depth + 0x4139);
+                    var chance = baseChance * Mathf.Pow(
+                        settings.AdditionalChildChanceMultiplier,
+                        childSlot);
+                    if (Hash01(branchSeed ^ 0x5D27A1E3) > chance
+                        || !TryCreateChild(
+                            settings,
+                            generator,
+                            catalog,
+                            formationStableId,
+                            branchSeed,
+                            childTier,
+                            parentIndex,
+                            members,
+                            spawnExclusionCenter,
+                            out var child))
+                    {
+                        continue;
+                    }
 
-                members.Add(child);
-                parentIndex = child.MemberIndex;
-                depth++;
-                consecutiveLargeDepth = childTier == TopDown3DRockSizeTier.Large
-                    ? Mathf.Max(0, consecutiveLargeDepth + 1)
-                    : -1;
+                    members.Add(child);
+                    memberDepths.Add(depth + 1);
+                }
             }
 
             GetEnvelope(members, out var center, out var radius, out var height);
@@ -547,6 +636,7 @@ namespace BooterBigArm.TopDown3D
 
         private static bool TryCreateChild(
             TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
             TopDown3DNaturalObjectCatalog catalog,
             string formationStableId,
             int seed,
@@ -567,7 +657,12 @@ namespace BooterBigArm.TopDown3D
             var scale = GetScale(definition, Hash01(seed ^ 0x41B92C57));
             var variant = GetVariant(Hash01(seed ^ 0x2C7158E9));
             var yaw = Hash01(seed ^ 0x6A91E3D5) * 360f;
+            var parentDistanceRatio = Mathf.Lerp(
+                settings.FormationMinimumParentDistanceRatio,
+                settings.FormationMaximumParentDistanceRatio,
+                Mathf.Pow(Hash01(seed ^ 0x34A71C9D), 1.6f));
             var parent = members[parentIndex];
+            var parentSolid = TopDown3DRockVolumeOverlap.CreateWorldSolid(catalog, parent);
             var baseAngle = Hash01(seed ^ 0x173BC8A1) * 360f;
             var axis = new Vector2(
                 Mathf.Cos(baseAngle * Mathf.Deg2Rad),
@@ -578,20 +673,25 @@ namespace BooterBigArm.TopDown3D
             {
                 var angle = (baseAngle + attempt * GoldenAngleDegrees) * Mathf.Deg2Rad;
                 var direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-                var provisionalNormal = TopDown3DHeightSampler.SampleNormal(
-                    settings,
-                    parent.Position.x,
-                    parent.Position.z);
+                var provisionalNormal = generator.SampleNormal(parent.Position.x, parent.Position.z);
                 var provisionalRotation = GetGroundedRotation(definition, provisionalNormal, yaw);
-                var support = GetProjectedSupportRadius(
+                var parentContactRadius = GetDirectionalSupportRadius(
+                    catalog,
+                    parent.Shape,
+                    parent.Variant,
+                    parent.Rotation,
+                    parent.Scale,
+                    direction);
+                var childContactRadius = GetDirectionalSupportRadius(
+                    catalog,
                     definition.Shape,
                     variant,
                     provisionalRotation,
-                    scale);
-                var distance = (parent.SupportRadius + support)
-                    * (1f - settings.FormationContactInset);
+                    scale,
+                    -direction);
+                var distance = (parentContactRadius + childContactRadius) * parentDistanceRatio;
                 var worldXZ = new Vector2(parent.Position.x, parent.Position.z) + direction * distance;
-                var normal = TopDown3DHeightSampler.SampleNormal(settings, worldXZ.x, worldXZ.y);
+                var normal = generator.SampleNormal(worldXZ.x, worldXZ.y);
                 var slope = Vector3.Angle(normal, Vector3.up);
                 if (slope > GetConfig(settings, childTier).MaximumSlope)
                 {
@@ -599,19 +699,42 @@ namespace BooterBigArm.TopDown3D
                 }
 
                 var rotation = GetGroundedRotation(definition, normal, yaw);
-                support = GetProjectedSupportRadius(definition.Shape, variant, rotation, scale);
+                childContactRadius = GetDirectionalSupportRadius(
+                    catalog,
+                    definition.Shape,
+                    variant,
+                    rotation,
+                    scale,
+                    -direction);
+                distance = (parentContactRadius + childContactRadius) * parentDistanceRatio;
+                worldXZ = new Vector2(parent.Position.x, parent.Position.z) + direction * distance;
+                normal = generator.SampleNormal(worldXZ.x, worldXZ.y);
+                slope = Vector3.Angle(normal, Vector3.up);
+                if (slope > GetConfig(settings, childTier).MaximumSlope)
+                {
+                    continue;
+                }
+
+                rotation = GetGroundedRotation(definition, normal, yaw);
+                var support = GetProjectedSupportRadius(
+                    catalog,
+                    definition.Shape,
+                    variant,
+                    rotation,
+                    scale);
                 if (Vector2.Distance(worldXZ, spawnExclusionCenter)
                     < settings.ClearSpawnRadius + support)
                 {
                     continue;
                 }
 
-                var surfaceHeight = TopDown3DHeightSampler.SampleHeight(settings, worldXZ.x, worldXZ.y);
+                var surfaceHeight = generator.SampleHeight(worldXZ.x, worldXZ.y);
                 var position = new Vector3(
                     worldXZ.x,
                     surfaceHeight - definition.SinkDepth * scale.y,
                     worldXZ.y);
                 var candidate = CreateMember(
+                    catalog,
                     $"{formationStableId}:{members.Count}",
                     definition,
                     childTier,
@@ -621,8 +744,15 @@ namespace BooterBigArm.TopDown3D
                     scale,
                     members.Count,
                     parentIndex);
+                var candidateSolid = TopDown3DRockVolumeOverlap.CreateWorldSolid(catalog, candidate);
                 if (!HasVerticalOverlap(parent.WorldBounds, candidate.WorldBounds)
-                    || OverlapsNonParent(candidate, members, parentIndex))
+                    || !TopDown3DRockVolumeOverlap.HasPositiveVolumeOverlap(
+                        parentSolid,
+                        candidateSolid)
+                    || OverlapsNonParent(
+                        candidate,
+                        members,
+                        parentIndex))
                 {
                     continue;
                 }
@@ -630,9 +760,9 @@ namespace BooterBigArm.TopDown3D
                 var rootPosition = new Vector2(members[0].Position.x, members[0].Position.z);
                 var envelopeGrowth = Vector2.Distance(rootPosition, worldXZ) + candidate.SupportRadius;
                 var crowding = GetCrowdingScore(candidate, members, parentIndex);
-                var score = Vector2.Dot(direction, axis) * 0.45f
-                    - envelopeGrowth * 0.035f
-                    + crowding * 0.2f
+                var score = Vector2.Dot(direction, axis) * 0.25f
+                    - envelopeGrowth * 0.08f
+                    + crowding * 0.05f
                     - attempt * 0.0001f;
                 if (!found || score > bestScore)
                 {
@@ -646,6 +776,7 @@ namespace BooterBigArm.TopDown3D
         }
 
         private static TopDown3DRockFormationMember CreateMember(
+            TopDown3DNaturalObjectCatalog catalog,
             string stableId,
             TopDown3DNaturalObjectDefinition definition,
             TopDown3DRockSizeTier tier,
@@ -656,8 +787,19 @@ namespace BooterBigArm.TopDown3D
             int memberIndex,
             int parentIndex)
         {
-            var support = GetProjectedSupportRadius(definition.Shape, variant, rotation, scale);
-            var bounds = GetWorldBounds(definition.Shape, variant, position, rotation, scale);
+            var support = GetProjectedSupportRadius(
+                catalog,
+                definition.Shape,
+                variant,
+                rotation,
+                scale);
+            var bounds = GetWorldBounds(
+                catalog,
+                definition.Shape,
+                variant,
+                position,
+                rotation,
+                scale);
             return new TopDown3DRockFormationMember(
                 stableId,
                 definition.StableId,
@@ -674,12 +816,13 @@ namespace BooterBigArm.TopDown3D
         }
 
         private static float GetProjectedSupportRadius(
+            TopDown3DNaturalObjectCatalog catalog,
             TopDown3DNaturalObjectShape shape,
             int variant,
             Quaternion rotation,
             Vector3 scale)
         {
-            var vertices = TopDown3DNaturalMeshLibrary.GetData(shape, variant).Vertices;
+            var vertices = catalog.GetRequiredLod0Data(shape, variant).Vertices;
             var maximum = 0f;
             for (var i = 0; i < vertices.Length; i++)
             {
@@ -690,14 +833,35 @@ namespace BooterBigArm.TopDown3D
             return Mathf.Max(0.05f, maximum);
         }
 
+        private static float GetDirectionalSupportRadius(
+            TopDown3DNaturalObjectCatalog catalog,
+            TopDown3DNaturalObjectShape shape,
+            int variant,
+            Quaternion rotation,
+            Vector3 scale,
+            Vector2 direction)
+        {
+            direction.Normalize();
+            var vertices = catalog.GetRequiredLod0Data(shape, variant).Vertices;
+            var maximum = 0f;
+            for (var i = 0; i < vertices.Length; i++)
+            {
+                var point = rotation * Vector3.Scale(vertices[i], scale);
+                maximum = Mathf.Max(maximum, point.x * direction.x + point.z * direction.y);
+            }
+
+            return Mathf.Max(0.025f, maximum);
+        }
+
         private static Bounds GetWorldBounds(
+            TopDown3DNaturalObjectCatalog catalog,
             TopDown3DNaturalObjectShape shape,
             int variant,
             Vector3 position,
             Quaternion rotation,
             Vector3 scale)
         {
-            var vertices = TopDown3DNaturalMeshLibrary.GetData(shape, variant).Vertices;
+            var vertices = catalog.GetRequiredLod0Data(shape, variant).Vertices;
             var matrix = Matrix4x4.TRS(position, rotation, scale);
             var bounds = new Bounds(matrix.MultiplyPoint3x4(vertices[0]), Vector3.zero);
             for (var i = 1; i < vertices.Length; i++)
@@ -727,8 +891,9 @@ namespace BooterBigArm.TopDown3D
                 }
 
                 var other = members[i];
-                var minimumDistance = (candidate.SupportRadius + other.SupportRadius)
-                    * (1f - MaximumNonParentOverlap);
+                // Projected support radii conservatively contain every horizontal vertex.
+                // Keeping these circles disjoint prevents non-parent volume intersections.
+                var minimumDistance = candidate.SupportRadius + other.SupportRadius;
                 var otherPosition = new Vector2(other.Position.x, other.Position.z);
                 if ((candidatePosition - otherPosition).sqrMagnitude
                     < minimumDistance * minimumDistance)
@@ -802,18 +967,20 @@ namespace BooterBigArm.TopDown3D
 
         private static float GetChildChance(
             TopDown3DWorldSettings settings,
-            TopDown3DRockSizeTier parentTier,
-            int consecutiveLargeDepth)
+            TopDown3DRockSizeTier parentTier)
         {
             switch (parentTier)
             {
                 case TopDown3DRockSizeTier.Towering:
                     return settings.ToweringToMassiveChance;
                 case TopDown3DRockSizeTier.Massive:
-                    return settings.MassiveToLargeChance;
+                    return settings.MassiveToExtraLargeChance;
+                case TopDown3DRockSizeTier.ExtraLarge:
+                    return settings.ExtraLargeToLargeChance;
                 case TopDown3DRockSizeTier.Large:
-                    return settings.LargeToLargeChance
-                        * Mathf.Pow(settings.LargeContinuationDecay, Mathf.Max(0, consecutiveLargeDepth));
+                    return settings.LargeToMediumChance;
+                case TopDown3DRockSizeTier.Medium:
+                    return settings.MediumToSmallChance;
                 default:
                     return 0f;
             }
@@ -826,8 +993,13 @@ namespace BooterBigArm.TopDown3D
                 case TopDown3DRockSizeTier.Towering:
                     return TopDown3DRockSizeTier.Massive;
                 case TopDown3DRockSizeTier.Massive:
-                case TopDown3DRockSizeTier.Large:
+                    return TopDown3DRockSizeTier.ExtraLarge;
+                case TopDown3DRockSizeTier.ExtraLarge:
                     return TopDown3DRockSizeTier.Large;
+                case TopDown3DRockSizeTier.Large:
+                    return TopDown3DRockSizeTier.Medium;
+                case TopDown3DRockSizeTier.Medium:
+                    return TopDown3DRockSizeTier.Small;
                 default:
                     return TopDown3DRockSizeTier.None;
             }
@@ -857,8 +1029,8 @@ namespace BooterBigArm.TopDown3D
 
         private static int GetVariant(float sample)
         {
-            return Mathf.FloorToInt(sample * TopDown3DNaturalMeshLibrary.VariantsPerShape)
-                % TopDown3DNaturalMeshLibrary.VariantsPerShape;
+            return Mathf.FloorToInt(sample * TopDown3DNaturalObjectCatalog.MeshVariantsPerShape)
+                % TopDown3DNaturalObjectCatalog.MeshVariantsPerShape;
         }
 
         private static List<TopDown3DNaturalObjectDefinition> GetDefinitions(
@@ -902,6 +1074,7 @@ namespace BooterBigArm.TopDown3D
         }
 
         private static float GetMaximumRootSupport(
+            TopDown3DNaturalObjectCatalog catalog,
             IReadOnlyList<TopDown3DNaturalObjectDefinition> definitions)
         {
             var maximum = 0f;
@@ -912,6 +1085,7 @@ namespace BooterBigArm.TopDown3D
                 maximum = Mathf.Max(
                     maximum,
                     GetProjectedSupportRadius(
+                        catalog,
                         definition.Shape,
                         0,
                         Quaternion.identity,
@@ -921,31 +1095,58 @@ namespace BooterBigArm.TopDown3D
             return maximum;
         }
 
-        private static float GetMaximumFormationRadius(
+        private static TierPlanningData[] BuildTierPlanningData(
             TopDown3DWorldSettings settings,
-            TopDown3DRockSizeTier rootTier,
-            IReadOnlyList<TopDown3DNaturalObjectDefinition> rootDefinitions)
+            TopDown3DNaturalObjectCatalog catalog)
         {
-            var radius = GetMaximumRootSupport(rootDefinitions);
-            var childTier = GetChildTier(rootTier);
-            var catalog = settings.NaturalObjectCatalog;
-            var remainingMembers = Mathf.Min(
-                settings.PhysicalFormationMaximumMembers - 1,
-                settings.PhysicalFormationMaximumDepth);
-            while (childTier != TopDown3DRockSizeTier.None
-                && catalog != null
-                && remainingMembers-- > 0)
+            var result = new TierPlanningData[PhysicalTiersDescending.Length];
+            for (var i = 0; i < PhysicalTiersDescending.Length; i++)
             {
-                radius += GetMaximumRootSupport(GetDefinitions(catalog, childTier)) * 2f;
-                if (childTier == TopDown3DRockSizeTier.Large)
-                {
-                    continue;
-                }
-
-                childTier = GetChildTier(childTier);
+                var tier = PhysicalTiersDescending[i];
+                var definitions = GetDefinitions(catalog, tier);
+                var config = GetConfig(settings, tier);
+                result[i] = new TierPlanningData(
+                    tier,
+                    definitions,
+                    config,
+                    GetCellSize(settings.ChunkSize, config.TargetCount),
+                    GetBaseAdmission(settings.ChunkSize, config.TargetCount),
+                    GetTierSeed(settings, tier),
+                    GetMaximumRootSupport(catalog, definitions));
             }
 
-            return radius;
+            for (var i = 0; i < result.Length; i++)
+            {
+                var radius = result[i].MaximumRootSupport;
+                var childTier = GetChildTier(result[i].Tier);
+                var remainingMembers = Mathf.Min(
+                    settings.PhysicalFormationMaximumMembers - 1,
+                    settings.PhysicalFormationMaximumDepth);
+                while (childTier != TopDown3DRockSizeTier.None && remainingMembers-- > 0)
+                {
+                    radius += GetTierPlanningData(result, childTier).MaximumRootSupport * 2f;
+                    childTier = GetChildTier(childTier);
+                }
+
+                result[i].MaximumFormationRadius = radius;
+            }
+
+            return result;
+        }
+
+        private static TierPlanningData GetTierPlanningData(
+            IReadOnlyList<TierPlanningData> tiers,
+            TopDown3DRockSizeTier tier)
+        {
+            for (var i = 0; i < tiers.Count; i++)
+            {
+                if (tiers[i].Tier == tier)
+                {
+                    return tiers[i];
+                }
+            }
+
+            throw new InvalidOperationException($"Missing planning data for physical rock tier {tier}.");
         }
 
         private static TierConfig GetConfig(
@@ -954,11 +1155,26 @@ namespace BooterBigArm.TopDown3D
         {
             switch (tier)
             {
+                case TopDown3DRockSizeTier.Small:
+                    return new TierConfig(
+                        settings.SmallRocksPerChunk,
+                        settings.SmallRockSpacing,
+                        settings.MaximumSmallRockSlope);
+                case TopDown3DRockSizeTier.Medium:
+                    return new TierConfig(
+                        settings.MediumRocksPerChunk,
+                        settings.MediumRockSpacing,
+                        settings.MaximumMediumRockSlope);
                 case TopDown3DRockSizeTier.Large:
                     return new TierConfig(
                         settings.PropsPerChunk,
                         settings.PropSpacing,
                         settings.MaximumPropSlope);
+                case TopDown3DRockSizeTier.ExtraLarge:
+                    return new TierConfig(
+                        settings.ExtraLargeRocksPerChunk,
+                        settings.ExtraLargeRockSpacing,
+                        settings.MaximumExtraLargeRockSlope);
                 case TopDown3DRockSizeTier.Massive:
                     return new TierConfig(
                         settings.MassiveRocksPerChunk,
@@ -974,11 +1190,59 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
+        private static float GetCompetitionSpacing(
+            TopDown3DRockSizeTier tier,
+            TierConfig config,
+            TopDown3DRockSizeTier otherTier,
+            TierConfig otherConfig)
+        {
+            // Peer formations retain their full authored spacing. Across tiers, the smaller
+            // spacing wins so secondary outcrops can gather around a landmark without any
+            // formation envelopes intersecting. This creates geological clusters instead
+            // of a large empty halo around every massive or towering root.
+            return tier == otherTier
+                ? Mathf.Max(config.Spacing, otherConfig.Spacing)
+                : Mathf.Min(config.Spacing, otherConfig.Spacing);
+        }
+
+        private static int GetTierRank(TopDown3DRockSizeTier tier)
+        {
+            switch (tier)
+            {
+                case TopDown3DRockSizeTier.Small:
+                    return 0;
+                case TopDown3DRockSizeTier.Medium:
+                    return 1;
+                case TopDown3DRockSizeTier.Large:
+                    return 2;
+                case TopDown3DRockSizeTier.ExtraLarge:
+                    return 3;
+                case TopDown3DRockSizeTier.Massive:
+                    return 4;
+                case TopDown3DRockSizeTier.Towering:
+                    return 5;
+                default:
+                    return -1;
+            }
+        }
+
         private static float GetCellSize(float chunkSize, float targetCount)
         {
             return Mathf.Max(
                 0.18f,
                 Mathf.Sqrt((chunkSize * chunkSize) / Mathf.Max(1f, targetCount * 2.25f)));
+        }
+
+        internal static float GetBaseAdmission(float chunkSize, float targetCount)
+        {
+            if (targetCount <= 0f)
+            {
+                return 0f;
+            }
+
+            var cellSize = GetCellSize(chunkSize, targetCount);
+            var cellsPerChunk = (chunkSize / cellSize) * (chunkSize / cellSize);
+            return Mathf.Clamp01(targetCount / Mathf.Max(0.0001f, cellsPerChunk));
         }
 
         private static int GetTierSeed(TopDown3DWorldSettings settings, TopDown3DRockSizeTier tier)
@@ -1058,6 +1322,36 @@ namespace BooterBigArm.TopDown3D
             public float TargetCount { get; }
             public float Spacing { get; }
             public float MaximumSlope { get; }
+        }
+
+        private sealed class TierPlanningData
+        {
+            public TierPlanningData(
+                TopDown3DRockSizeTier tier,
+                IReadOnlyList<TopDown3DNaturalObjectDefinition> definitions,
+                TierConfig config,
+                float cellSize,
+                float baseAdmission,
+                int layerSeed,
+                float maximumRootSupport)
+            {
+                Tier = tier;
+                Definitions = definitions;
+                Config = config;
+                CellSize = cellSize;
+                BaseAdmission = baseAdmission;
+                LayerSeed = layerSeed;
+                MaximumRootSupport = maximumRootSupport;
+            }
+
+            public TopDown3DRockSizeTier Tier { get; }
+            public IReadOnlyList<TopDown3DNaturalObjectDefinition> Definitions { get; }
+            public TierConfig Config { get; }
+            public float CellSize { get; }
+            public float BaseAdmission { get; }
+            public int LayerSeed { get; }
+            public float MaximumRootSupport { get; }
+            public float MaximumFormationRadius { get; set; }
         }
 
         private readonly struct Candidate

@@ -63,10 +63,12 @@ namespace BooterBigArm.Tests
                     sources);
                 var middleHeight = TopDown3DDustDepositionPlanner.SampleAt(
                     settings,
+                    new TopDown3DWorldGenerator(settings),
                     middlePosition,
                     sources).Height;
                 var tipHeight = TopDown3DDustDepositionPlanner.SampleAt(
                     settings,
+                    new TopDown3DWorldGenerator(settings),
                     tipPosition,
                     sources).Height;
 
@@ -87,8 +89,12 @@ namespace BooterBigArm.Tests
             TopDown3DWorldSettings settings)
         {
             var serializedSettings = new SerializedObject(settings);
-            serializedSettings.FindProperty("heightAmplitude").floatValue = 0f;
-            serializedSettings.FindProperty("escarpmentRegionChance").floatValue = 0f;
+            var geology = serializedSettings.FindProperty("geologyProfile");
+            geology.FindPropertyRelative("basinRelief").floatValue = 0f;
+            geology.FindPropertyRelative("ridgeRelief").floatValue = 0f;
+            geology.FindPropertyRelative("mesaRelief").floatValue = 0f;
+            geology.FindPropertyRelative("drainageDepth").floatValue = 0f;
+            geology.FindPropertyRelative("localRelief").floatValue = 0f;
             serializedSettings.FindProperty("dustMaximumBaseHeight").floatValue = 0f;
             serializedSettings.ApplyModifiedPropertiesWithoutUndo();
         }

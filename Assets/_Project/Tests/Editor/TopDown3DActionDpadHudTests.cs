@@ -14,7 +14,7 @@ namespace BooterBigArm.Tests
         [Test]
         public void Install_BuildsPolishedDpadUnderSharedCanvas()
         {
-            var scene = SceneManager.CreateScene("DpadLayoutTestScene");
+            var scene = CreateTestScene();
             try
             {
                 AddInactiveInputRouter(scene);
@@ -56,7 +56,7 @@ namespace BooterBigArm.Tests
             }
             finally
             {
-                EditorSceneManager.CloseScene(scene, true);
+                ResetTestScene();
             }
         }
 
@@ -94,7 +94,7 @@ namespace BooterBigArm.Tests
         [Test]
         public void DirectionContract_LeavesActionsUnmappedAndUsesVialForDown()
         {
-            var scene = SceneManager.CreateScene("DpadDirectionTestScene");
+            var scene = CreateTestScene();
             try
             {
                 AddInactiveInputRouter(scene);
@@ -112,14 +112,14 @@ namespace BooterBigArm.Tests
             }
             finally
             {
-                EditorSceneManager.CloseScene(scene, true);
+                ResetTestScene();
             }
         }
 
         [Test]
         public void GraphicGeometry_UsesCanvasFacingTriangleWinding()
         {
-            var scene = SceneManager.CreateScene("DpadGeometryTestScene");
+            var scene = CreateTestScene();
             Mesh mesh = null;
             try
             {
@@ -128,7 +128,10 @@ namespace BooterBigArm.Tests
                 var graphic = hud.Graphic;
                 var populateMesh = typeof(TopDown3DActionDpadGraphic).GetMethod(
                     "OnPopulateMesh",
-                    BindingFlags.Instance | BindingFlags.NonPublic);
+                    BindingFlags.Instance | BindingFlags.NonPublic,
+                    null,
+                    new[] { typeof(VertexHelper) },
+                    null);
                 Assert.That(populateMesh, Is.Not.Null);
 
                 using var vertexHelper = new VertexHelper();
@@ -156,14 +159,14 @@ namespace BooterBigArm.Tests
                     Object.DestroyImmediate(mesh);
                 }
 
-                EditorSceneManager.CloseScene(scene, true);
+                ResetTestScene();
             }
         }
 
         [Test]
         public void TryInstallForScene_RequiresGameplayMarkerAndIsIdempotent()
         {
-            var scene = SceneManager.CreateScene("DpadHudTestScene");
+            var scene = CreateTestScene();
             try
             {
                 Assert.That(TopDown3DActionDpadHud.TryInstallForScene(scene), Is.Null);
@@ -180,14 +183,14 @@ namespace BooterBigArm.Tests
             }
             finally
             {
-                EditorSceneManager.CloseScene(scene, true);
+                ResetTestScene();
             }
         }
 
         [Test]
         public void TryInstallForScene_PlayerMarkerDoesNotRequireInputRouter()
         {
-            var scene = SceneManager.CreateScene("DpadPlayerMarkerTestScene");
+            var scene = CreateTestScene();
             try
             {
                 var player = new GameObject("Player");
@@ -202,14 +205,14 @@ namespace BooterBigArm.Tests
             }
             finally
             {
-                EditorSceneManager.CloseScene(scene, true);
+                ResetTestScene();
             }
         }
 
         [Test]
         public void GameHudCanvas_IsSharedByDpadAndSurvivalHud()
         {
-            var scene = SceneManager.CreateScene("SharedGameHudTestScene");
+            var scene = CreateTestScene();
             try
             {
                 AddInactiveInputRouter(scene);
@@ -227,7 +230,7 @@ namespace BooterBigArm.Tests
             }
             finally
             {
-                EditorSceneManager.CloseScene(scene, true);
+                ResetTestScene();
             }
         }
 
@@ -237,6 +240,16 @@ namespace BooterBigArm.Tests
             inputObject.SetActive(false);
             SceneManager.MoveGameObjectToScene(inputObject, scene);
             inputObject.AddComponent<TopDown3DInputRouter>();
+        }
+
+        private static Scene CreateTestScene()
+        {
+            return EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+        }
+
+        private static void ResetTestScene()
+        {
+            EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
         }
 
         private static int CountSceneCanvases(Scene scene)

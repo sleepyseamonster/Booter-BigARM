@@ -10,7 +10,8 @@ namespace BooterBigArm.TopDown3D
     }
 
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(Collider))]
+    // A streamed formation owns one marker on its root while its physical colliders live on
+    // deterministic member children. Player probes resolve the marker through GetComponentInParent.
     public sealed class TopDown3DTraversalObstacle : MonoBehaviour
     {
     }

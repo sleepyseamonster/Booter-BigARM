@@ -18,8 +18,9 @@ namespace BooterBigArm.Tests
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
             Assert.That(settings, Is.Not.Null);
-            var first = TopDown3DHeightSampler.SampleHeight(settings, 37.25f, -18.75f);
-            var second = TopDown3DHeightSampler.SampleHeight(settings, 37.25f, -18.75f);
+            var generator = new TopDown3DWorldGenerator(settings);
+            var first = generator.SampleHeight(37.25f, -18.75f);
+            var second = generator.SampleHeight(37.25f, -18.75f);
             Assert.That(second, Is.EqualTo(first));
         }
 
@@ -28,8 +29,9 @@ namespace BooterBigArm.Tests
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
             Assert.That(settings, Is.Not.Null);
-            var left = TopDown3DChunkMeshBuilder.BuildData(settings, Vector2Int.zero);
-            var right = TopDown3DChunkMeshBuilder.BuildData(settings, Vector2Int.right);
+            var generator = new TopDown3DWorldGenerator(settings);
+            var left = TopDown3DChunkMeshBuilder.BuildData(settings, generator, Vector2Int.zero);
+            var right = TopDown3DChunkMeshBuilder.BuildData(settings, generator, Vector2Int.right);
             var verticesPerAxis = settings.QuadsPerAxis + 1;
             for (var z = 0; z < verticesPerAxis; z++)
             {
@@ -44,8 +46,9 @@ namespace BooterBigArm.Tests
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
             Assert.That(settings, Is.Not.Null);
-            var left = TopDown3DChunkMeshBuilder.BuildData(settings, Vector2Int.zero);
-            var right = TopDown3DChunkMeshBuilder.BuildData(settings, Vector2Int.right);
+            var generator = new TopDown3DWorldGenerator(settings);
+            var left = TopDown3DChunkMeshBuilder.BuildData(settings, generator, Vector2Int.zero);
+            var right = TopDown3DChunkMeshBuilder.BuildData(settings, generator, Vector2Int.right);
             var verticesPerAxis = settings.QuadsPerAxis + 1;
             for (var z = 0; z < verticesPerAxis; z++)
             {
@@ -86,6 +89,60 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void CameraLookAhead_IsFrameRateIndependentRangeLimitedAndQuicklyRecenters()
+        {
+            var oneStep = TopDown3DCameraRig.CalculateLookAheadOffset(
+                Vector3.zero,
+                Vector2.up,
+                Vector3.forward,
+                Vector3.right,
+                true,
+                12f,
+                12.6f,
+                37.8f,
+                0.5f);
+            var twoSteps = Vector3.zero;
+            for (var i = 0; i < 2; i++)
+            {
+                twoSteps = TopDown3DCameraRig.CalculateLookAheadOffset(
+                    twoSteps,
+                    Vector2.up,
+                    Vector3.forward,
+                    Vector3.right,
+                    true,
+                    12f,
+                    12.6f,
+                    37.8f,
+                    0.25f);
+            }
+
+            Assert.That(oneStep, Is.EqualTo(Vector3.forward * 6.3f));
+            Assert.That(twoSteps, Is.EqualTo(oneStep));
+            var clamped = TopDown3DCameraRig.CalculateLookAheadOffset(
+                oneStep,
+                Vector2.up,
+                Vector3.forward,
+                Vector3.right,
+                true,
+                12f,
+                12.6f,
+                37.8f,
+                1f);
+            Assert.That(clamped.magnitude, Is.EqualTo(12f).Within(0.0001f));
+            var returned = TopDown3DCameraRig.CalculateLookAheadOffset(
+                clamped,
+                Vector2.zero,
+                Vector3.forward,
+                Vector3.right,
+                true,
+                12f,
+                12.6f,
+                37.8f,
+                1f / 3f);
+            Assert.That(returned, Is.EqualTo(Vector3.zero));
+        }
+
+        [Test]
         public void LandscapeCameraPullback_HasMatchingWorldCoverage()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
@@ -97,8 +154,13 @@ namespace BooterBigArm.Tests
 
                 Assert.That(settings, Is.Not.Null);
                 Assert.That(rig.Distance, Is.EqualTo(25f).Within(0.0001f));
+                Assert.That(rig.MaximumLookAheadDistance, Is.EqualTo(12f).Within(0.0001f));
+                Assert.That(rig.LookAheadSpeed, Is.EqualTo(12.6f).Within(0.0001f));
+                Assert.That(rig.LookAheadReturnSpeed, Is.EqualTo(37.8f).Within(0.0001f));
                 Assert.That(settings.StreamingRadius, Is.GreaterThanOrEqualTo(7));
+                Assert.That(settings.DecorationStreamingRadius, Is.EqualTo(3));
                 Assert.That(settings.ImmediateLoadRadius, Is.EqualTo(2));
+                Assert.That(cameraObject.GetComponent<Camera>().farClipPlane, Is.GreaterThanOrEqualTo(1100f));
             }
             finally
             {
@@ -111,15 +173,14 @@ namespace BooterBigArm.Tests
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
             Assert.That(settings, Is.Not.Null);
-            var foundFirst = TopDown3DHeightSampler.TryFindWalkablePosition(
-                settings,
+            var generator = new TopDown3DWorldGenerator(settings);
+            var foundFirst = generator.TryFindWalkablePosition(
                 Vector2.zero,
                 settings.SafeSpawnSearchRadius,
                 settings.SafeSpawnSearchStep,
                 settings.MaximumSafeSpawnSlope,
                 out var first);
-            var foundSecond = TopDown3DHeightSampler.TryFindWalkablePosition(
-                settings,
+            var foundSecond = generator.TryFindWalkablePosition(
                 Vector2.zero,
                 settings.SafeSpawnSearchRadius,
                 settings.SafeSpawnSearchStep,
@@ -130,9 +191,39 @@ namespace BooterBigArm.Tests
             Assert.That(second, Is.EqualTo(first));
             Assert.That(
                 Vector3.Angle(
-                    TopDown3DHeightSampler.SampleNormal(settings, first.x, first.z),
+                    generator.SampleNormal(first.x, first.z),
                     Vector3.up),
                 Is.LessThanOrEqualTo(settings.MaximumSafeSpawnSlope));
+        }
+
+        [Test]
+        public void BigArmStartupGrounding_TeleportsWithoutAFirstStepSweep()
+        {
+            var ground = new GameObject("Generated ground contract");
+            var player = new GameObject("Booter contract");
+            var bigArm = new GameObject("BigARM startup grounding contract");
+            try
+            {
+                ground.AddComponent<BoxCollider>().size = new Vector3(20f, 1f, 20f);
+                ground.AddComponent<TopDown3DGroundSurface>();
+
+                player.transform.position = new Vector3(4f, 2f, 0f);
+                bigArm.transform.position = new Vector3(0f, -5f, 0f);
+                bigArm.AddComponent<BoxCollider>();
+                var body = bigArm.AddComponent<Rigidbody>();
+                var follower = bigArm.AddComponent<TopDown3DBigArmFollower>();
+                follower.Configure(player.transform, null, null);
+                Physics.SyncTransforms();
+
+                Assert.That(follower.TryInitializeOnGround(), Is.True);
+                Assert.That(body.position.y, Is.EqualTo(1.32f).Within(0.001f));
+            }
+            finally
+            {
+                Object.DestroyImmediate(ground);
+                Object.DestroyImmediate(player);
+                Object.DestroyImmediate(bigArm);
+            }
         }
 
         [Test]
@@ -179,8 +270,12 @@ namespace BooterBigArm.Tests
 
             Assert.That(booter, Is.Not.Null);
             Assert.That(bigArm, Is.Not.Null);
-            Assert.That(booter.GetColor("_BaseColor"), Is.EqualTo(new Color(0.58f, 0.49f, 0.37f, 1f)));
-            Assert.That(bigArm.GetColor("_BaseColor"), Is.EqualTo(new Color(0.08f, 0.74f, 0.76f, 1f)));
+            Assert.That(
+                Vector4.Distance(booter.GetColor("_BaseColor"), new Color(0.58f, 0.49f, 0.37f, 1f)),
+                Is.LessThan(0.0001f));
+            Assert.That(
+                Vector4.Distance(bigArm.GetColor("_BaseColor"), new Color(0.08f, 0.74f, 0.76f, 1f)),
+                Is.LessThan(0.0001f));
         }
 
         [Test]
@@ -374,6 +469,7 @@ namespace BooterBigArm.Tests
             var gameplay = asset.FindActionMap("Gameplay", true);
             AssertBinding(gameplay.FindAction("Move", true), "<Gamepad>/leftStick", "Gamepad");
             AssertBinding(gameplay.FindAction("Look", true), "<Gamepad>/rightStick", "Gamepad");
+            AssertBinding(gameplay.FindAction("CameraLookAhead", true), "<Gamepad>/leftTrigger", "Gamepad");
             AssertBinding(gameplay.FindAction("Sprint", true), "<Gamepad>/rightShoulder", "Gamepad");
             AssertBinding(gameplay.FindAction("RecallBigArm", true), "<Gamepad>/leftShoulder", "Gamepad");
             AssertBinding(gameplay.FindAction("Move", true), "<Keyboard>/w", "Keyboard&Mouse");

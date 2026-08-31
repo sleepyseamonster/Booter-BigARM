@@ -48,11 +48,11 @@ MonoBehaviour:
     rockSizeTier: 0
     shape: 1
     weight: 2.2
-    uniformScaleRange: {x: 0.3, y: 0.72}
-    proportions: {x: 0.65, y: 0.82, z: 0.5}
+    uniformScaleRange: {x: 0.26, y: 0.6}
+    proportions: {x: 0.65, y: 0.68, z: 0.5}
     sinkDepth: 0.14
     maximumTilt: 28
-    footprintRadius: 0.16
+    footprintRadius: 0.14
   - stableId: wind-scoured-stone
     layer: 1
     rockSizeTier: 0
@@ -68,11 +68,11 @@ MonoBehaviour:
     rockSizeTier: 0
     shape: 2
     weight: 1.3
-    uniformScaleRange: {x: 0.4, y: 0.82}
-    proportions: {x: 1.4, y: 0.6, z: 0.85}
+    uniformScaleRange: {x: 0.34, y: 0.68}
+    proportions: {x: 1.35, y: 0.48, z: 0.82}
     sinkDepth: 0.22
     maximumTilt: 18
-    footprintRadius: 0.18
+    footprintRadius: 0.15
   - stableId: gravel-chip
     layer: 0
     rockSizeTier: 0
@@ -133,6 +133,66 @@ MonoBehaviour:
     sinkDepth: 0.24
     maximumTilt: 30
     footprintRadius: 0.026
+  - stableId: small-rounded-ironstone
+    layer: 2
+    rockSizeTier: 4
+    shape: 0
+    weight: 2.4
+    uniformScaleRange: {x: 0.28, y: 0.48}
+    proportions: {x: 1.15, y: 0.9, z: 1}
+    sinkDepth: 0.14
+    maximumTilt: 24
+    footprintRadius: 0.2
+  - stableId: small-fractured-shard
+    layer: 2
+    rockSizeTier: 4
+    shape: 1
+    weight: 1.4
+    uniformScaleRange: {x: 0.26, y: 0.45}
+    proportions: {x: 0.8, y: 1.1, z: 0.7}
+    sinkDepth: 0.13
+    maximumTilt: 26
+    footprintRadius: 0.18
+  - stableId: medium-ironstone-boulder
+    layer: 2
+    rockSizeTier: 5
+    shape: 3
+    weight: 2.5
+    uniformScaleRange: {x: 0.5, y: 0.85}
+    proportions: {x: 1.1, y: 1, z: 1}
+    sinkDepth: 0.12
+    maximumTilt: 20
+    footprintRadius: 0.4
+  - stableId: medium-worn-slab
+    layer: 2
+    rockSizeTier: 5
+    shape: 2
+    weight: 1.5
+    uniformScaleRange: {x: 0.55, y: 0.9}
+    proportions: {x: 1.3, y: 0.75, z: 0.95}
+    sinkDepth: 0.14
+    maximumTilt: 18
+    footprintRadius: 0.42
+  - stableId: extra-large-ironstone-outcrop
+    layer: 2
+    rockSizeTier: 6
+    shape: 3
+    weight: 1.6
+    uniformScaleRange: {x: 1.5, y: 2.25}
+    proportions: {x: 1.15, y: 1.15, z: 1}
+    sinkDepth: 0.11
+    maximumTilt: 12
+    footprintRadius: 0.58
+  - stableId: extra-large-fractured-spire
+    layer: 2
+    rockSizeTier: 6
+    shape: 1
+    weight: 1
+    uniformScaleRange: {x: 1.45, y: 2.15}
+    proportions: {x: 0.85, y: 1.3, z: 0.78}
+    sinkDepth: 0.11
+    maximumTilt: 11
+    footprintRadius: 0.54
   - stableId: towering-basalt-spire
     layer: 4
     rockSizeTier: 3
@@ -173,3 +233,301 @@ MonoBehaviour:
     sinkDepth: 0.1
     maximumTilt: 9
     footprintRadius: 0.56
+  meshFamilies:
+  - stableId: broken-world-pebble-00
+    shape: 0
+    variant: 0
+    lod0: {fileID: 4300000, guid: 153285c5b8e874c17a2cc9078e2f5901, type: 2}
+    lod1: {fileID: 4300000, guid: ad31c60e1e014496ca4489b177452a4d, type: 2}
+    lod2: {fileID: 4300000, guid: 4a1943d68ef6f44b197b32efdb345df4, type: 2}
+    colliderCenter: {x: -0.031678826, y: 0.25, z: -0.0077669322}
+    colliderSize: {x: 1.2786212, y: 0.47, z: 1.0482152}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-pebble-01
+    shape: 0
+    variant: 1
+    lod0: {fileID: 4300000, guid: 9b8a806016ade4e4da2d3f1144b9a273, type: 2}
+    lod1: {fileID: 4300000, guid: e29026ceb1b744702add04846396f590, type: 2}
+    lod2: {fileID: 4300000, guid: 15cfbba0aa41f439eaf7e4e76b3897ab, type: 2}
+    colliderCenter: {x: -0.0679234, y: 0.25, z: -0.060729474}
+    colliderSize: {x: 1.1284319, y: 0.47, z: 0.9819569}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-pebble-02
+    shape: 0
+    variant: 2
+    lod0: {fileID: 4300000, guid: d2840b8690cf4433f896dbeedc8b5653, type: 2}
+    lod1: {fileID: 4300000, guid: ca5232973785d43d983a97c4ca619f57, type: 2}
+    lod2: {fileID: 4300000, guid: 50178df32440742dba2ae513676dcfdb, type: 2}
+    colliderCenter: {x: 0.042946875, y: 0.25, z: -0.044175327}
+    colliderSize: {x: 1.0920279, y: 0.47, z: 0.9467761}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-shard-00
+    shape: 1
+    variant: 0
+    lod0: {fileID: 4300000, guid: 0f9deaf2244af43798ef25456f14ba8e, type: 2}
+    lod1: {fileID: 4300000, guid: fd46ddd508ae9449480a7a86633bc464, type: 2}
+    lod2: {fileID: 4300000, guid: 58d49e2ad605d457e9450d8c586b92c0, type: 2}
+    colliderCenter: {x: 0.056249246, y: 0.6, z: -0.0068202913}
+    colliderSize: {x: 0.9142138, y: 1.128, z: 0.6759941}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-shard-01
+    shape: 1
+    variant: 1
+    lod0: {fileID: 4300000, guid: 25d710730c3a648d5bb3f596b6ed6fd2, type: 2}
+    lod1: {fileID: 4300000, guid: 18e6e7c55adda4062962bbabf2702c4c, type: 2}
+    lod2: {fileID: 4300000, guid: 4b3a056bfbfd14d579c50c25f0da4b9e, type: 2}
+    colliderCenter: {x: -0.0153897405, y: 0.6, z: -0.020362154}
+    colliderSize: {x: 0.8323343, y: 1.128, z: 0.7057559}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-shard-02
+    shape: 1
+    variant: 2
+    lod0: {fileID: 4300000, guid: d4d5c911129e8417294250c932c3818f, type: 2}
+    lod1: {fileID: 4300000, guid: 6dc2eeeefcee140539d8a74541ac67bd, type: 2}
+    lod2: {fileID: 4300000, guid: c876ae9f3660d4b1f812fc94e88d77bf, type: 2}
+    colliderCenter: {x: 0.017577872, y: 0.6, z: -0.0462344}
+    colliderSize: {x: 0.80290294, y: 1.128, z: 0.65678805}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-slab-00
+    shape: 2
+    variant: 0
+    lod0: {fileID: 4300000, guid: e190ddd6832cf4a6aa4e91611cfb9ade, type: 2}
+    lod1: {fileID: 4300000, guid: 772c4335d0a404ee38b78a436b56b73a, type: 2}
+    lod2: {fileID: 4300000, guid: d1ef1bf9af6bb482e8dac3cbb2fcf801, type: 2}
+    colliderCenter: {x: -0.080570936, y: 0.20000002, z: -0.049756676}
+    colliderSize: {x: 1.673106, y: 0.37600005, z: 1.3828204}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-slab-01
+    shape: 2
+    variant: 1
+    lod0: {fileID: 4300000, guid: 7c18b1373b1744a73b2b9789f4e884d2, type: 2}
+    lod1: {fileID: 4300000, guid: 89d5ae0e354474882854d728825ff9ae, type: 2}
+    lod2: {fileID: 4300000, guid: 5cc164f1f267f4aaaba4b7d99c5f95d6, type: 2}
+    colliderCenter: {x: 0.084662884, y: 0.20000002, z: -0.043194413}
+    colliderSize: {x: 1.7048537, y: 0.37600005, z: 1.3184984}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-slab-02
+    shape: 2
+    variant: 2
+    lod0: {fileID: 4300000, guid: 7d86cf26d5135479299fa059b3145c51, type: 2}
+    lod1: {fileID: 4300000, guid: f7cd0f36308ac4f249ddecb5e2db13bf, type: 2}
+    lod2: {fileID: 4300000, guid: 4a3be02e4fbe44b4abc37607b83674b5, type: 2}
+    colliderCenter: {x: 0.060258597, y: 0.20000002, z: 0.02790907}
+    colliderSize: {x: 1.7934127, y: 0.37600005, z: 1.2806038}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-boulder-00
+    shape: 3
+    variant: 0
+    lod0: {fileID: 4300000, guid: 97f515535e5e84effaa5964a0eb65cbb, type: 2}
+    lod1: {fileID: 4300000, guid: 23f0160ffc09a4a9a8b571b88d8508f9, type: 2}
+    lod2: {fileID: 4300000, guid: a951829e6762a47f7a5a5b0dbc243fdf, type: 2}
+    colliderCenter: {x: 0.018758476, y: 0.52500004, z: -0.013725549}
+    colliderSize: {x: 1.7666355, y: 0.98700005, z: 1.4388185}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-boulder-01
+    shape: 3
+    variant: 1
+    lod0: {fileID: 4300000, guid: aa5e8a847ffb24a05bc6990f917f8837, type: 2}
+    lod1: {fileID: 4300000, guid: 8e763eac3da27464baebff71a0bae813, type: 2}
+    lod2: {fileID: 4300000, guid: 094b2721866b34140806705e054d378a, type: 2}
+    colliderCenter: {x: 0.0071427524, y: 0.52500004, z: -0.119301826}
+    colliderSize: {x: 1.7281119, y: 0.98700005, z: 1.460216}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-boulder-02
+    shape: 3
+    variant: 2
+    lod0: {fileID: 4300000, guid: 83089cd34cb92415f9865039b6bbaf5e, type: 2}
+    lod1: {fileID: 4300000, guid: 0d0ce2b4892d1402e87304be74377a10, type: 2}
+    lod2: {fileID: 4300000, guid: 87ce433a8c4bc46d3b1fcc697f405857, type: 2}
+    colliderCenter: {x: -0.02377364, y: 0.52500004, z: 0.019185543}
+    colliderSize: {x: 1.7550614, y: 0.98700005, z: 1.3744047}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-nodule-00
+    shape: 4
+    variant: 0
+    lod0: {fileID: 4300000, guid: c9898e92a11d64758b296ebfd5ed6e71, type: 2}
+    lod1: {fileID: 4300000, guid: 3873b1741594147519109417d07e4fa2, type: 2}
+    lod2: {fileID: 4300000, guid: 92280920526234fa5a13d453c4998958, type: 2}
+    colliderCenter: {x: 0.0695948, y: 0.39, z: 0.021879405}
+    colliderSize: {x: 1.3811159, y: 0.73319995, z: 1.3171955}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-nodule-01
+    shape: 4
+    variant: 1
+    lod0: {fileID: 4300000, guid: c27376fd858f540a19536d80a0a961b4, type: 2}
+    lod1: {fileID: 4300000, guid: bd1c78077297c491c9fecdd2ffdedd36, type: 2}
+    lod2: {fileID: 4300000, guid: 3269c8a0134054b7da6a995930a800e0, type: 2}
+    colliderCenter: {x: -0.0511961, y: 0.39, z: 0.026496053}
+    colliderSize: {x: 1.3274169, y: 0.73319995, z: 1.3622994}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-nodule-02
+    shape: 4
+    variant: 2
+    lod0: {fileID: 4300000, guid: e4c4c2d76b56f4c0aa7d0a2edb7bdd78, type: 2}
+    lod1: {fileID: 4300000, guid: e01aaab57e9264aa29bbb04a6c093200, type: 2}
+    lod2: {fileID: 4300000, guid: 35a5fc2f999404f4db36a7c4678c908b, type: 2}
+    colliderCenter: {x: 0.008902967, y: 0.39, z: 0.035643548}
+    colliderSize: {x: 1.1687701, y: 0.73319995, z: 1.0610108}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-outcrop-00
+    shape: 5
+    variant: 0
+    lod0: {fileID: 4300000, guid: e81c1205f860e408797a0f9a28663955, type: 2}
+    lod1: {fileID: 4300000, guid: 714c1aec8d5eb4c2584e61fce4b6c3ec, type: 2}
+    lod2: {fileID: 4300000, guid: bb27ca2abb762431e96282d07a375f70, type: 2}
+    colliderCenter: {x: -0.13639224, y: 0.6, z: -0.11442757}
+    colliderSize: {x: 2.502567, y: 1.128, z: 2.170362}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-outcrop-01
+    shape: 5
+    variant: 1
+    lod0: {fileID: 4300000, guid: 321c3787f53f34c50a23b654209cd6f9, type: 2}
+    lod1: {fileID: 4300000, guid: 6caa51249c229456d8fbe04f19320071, type: 2}
+    lod2: {fileID: 4300000, guid: 20f485813dd8a4217b86cb0e535763b3, type: 2}
+    colliderCenter: {x: -0.020405471, y: 0.6, z: 0.03651637}
+    colliderSize: {x: 2.658029, y: 1.128, z: 1.8830965}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-outcrop-02
+    shape: 5
+    variant: 2
+    lod0: {fileID: 4300000, guid: 88219677346814cdb8eb9c8b331ff1d7, type: 2}
+    lod1: {fileID: 4300000, guid: 0795e6b574c684bc1ac454616d6bd68a, type: 2}
+    lod2: {fileID: 4300000, guid: 1c01600c1c5e545ecbe74053aa28928c, type: 2}
+    colliderCenter: {x: -0.20139897, y: 0.6, z: 0.017458737}
+    colliderSize: {x: 2.7205496, y: 1.128, z: 1.815777}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-cliff-00
+    shape: 6
+    variant: 0
+    lod0: {fileID: 4300000, guid: 586f11dd20f0c4634af8c0eae063b2b8, type: 2}
+    lod1: {fileID: 4300000, guid: 5fdd5b39fcae84e0f903058606f58095, type: 2}
+    lod2: {fileID: 4300000, guid: d627bb8d48a00459aad2ae2b8d2748ac, type: 2}
+    colliderCenter: {x: 0.09489, y: 0.875, z: 0.038110316}
+    colliderSize: {x: 3.4718866, y: 1.645, z: 1.2130078}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-cliff-01
+    shape: 6
+    variant: 1
+    lod0: {fileID: 4300000, guid: 326b28317eb4e4c05a67ad5e095e12b7, type: 2}
+    lod1: {fileID: 4300000, guid: fbe6512e236e049948a7ce6dc2eae681, type: 2}
+    lod2: {fileID: 4300000, guid: bedd7644055e5467fb205be7d0f269ff, type: 2}
+    colliderCenter: {x: -0.15515304, y: 0.875, z: 0.022210449}
+    colliderSize: {x: 3.7270448, y: 1.645, z: 0.99420816}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-cliff-02
+    shape: 6
+    variant: 2
+    lod0: {fileID: 4300000, guid: edafd60235e584799b21ea65872ac866, type: 2}
+    lod1: {fileID: 4300000, guid: c4bcdcce837fb49bea14ac7f1ab54510, type: 2}
+    lod2: {fileID: 4300000, guid: 9840cfad7129c4a5fa088c35387a4f8c, type: 2}
+    colliderCenter: {x: -0.011137605, y: 0.875, z: -0.06494698}
+    colliderSize: {x: 3.6989627, y: 1.645, z: 1.1164204}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-talus-00
+    shape: 7
+    variant: 0
+    lod0: {fileID: 4300000, guid: 8da1d4d4dbb0743f6ab8201b93cd1aa6, type: 2}
+    lod1: {fileID: 4300000, guid: f9483088a385d49c09001bfe074e2a47, type: 2}
+    lod2: {fileID: 4300000, guid: e4702b8a1fb09420889ee07d928c3a1b, type: 2}
+    colliderCenter: {x: -0.018443584, y: 0.21000002, z: 0.09713483}
+    colliderSize: {x: 3.175178, y: 0.39480004, z: 2.016507}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-talus-01
+    shape: 7
+    variant: 1
+    lod0: {fileID: 4300000, guid: 2c9592cb6419b4f29bd21cf4dcc1b00c, type: 2}
+    lod1: {fileID: 4300000, guid: 566bbced2dd2844bbaf1457463e00b11, type: 2}
+    lod2: {fileID: 4300000, guid: 349a438b6db0442f0a06701e230c9411, type: 2}
+    colliderCenter: {x: -0.12563622, y: 0.21000002, z: 0.0409081}
+    colliderSize: {x: 2.6118033, y: 0.39480004, z: 2.0114362}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-talus-02
+    shape: 7
+    variant: 2
+    lod0: {fileID: 4300000, guid: 163c36f9098ad42cd8d37ba678594dc8, type: 2}
+    lod1: {fileID: 4300000, guid: c768682c03f094732a984af0f189c1c5, type: 2}
+    lod2: {fileID: 4300000, guid: 86fff962884894287bc68a018d0ee3bb, type: 2}
+    colliderCenter: {x: -0.038959265, y: 0.21000002, z: -0.03437221}
+    colliderSize: {x: 2.3733988, y: 0.39480004, z: 1.871036}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-herospire-00
+    shape: 8
+    variant: 0
+    lod0: {fileID: 4300000, guid: 04f47c6bcee49464ab68ff0b2a591caf, type: 2}
+    lod1: {fileID: 4300000, guid: 689c5cd74856c4ed1b185a9e6f85d01d, type: 2}
+    lod2: {fileID: 4300000, guid: 1daf060185ebd43fe89579f44381ec25, type: 2}
+    colliderCenter: {x: 0.18911216, y: 1.4, z: -0.06214091}
+    colliderSize: {x: 1.601368, y: 2.632, z: 1.4557047}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-herospire-01
+    shape: 8
+    variant: 1
+    lod0: {fileID: 4300000, guid: 4e991741e95e54019858b09cc9aa8ce9, type: 2}
+    lod1: {fileID: 4300000, guid: 399c0a44c12a54765a5ef7d06fce2da6, type: 2}
+    lod2: {fileID: 4300000, guid: 3e14a687bf9874b6ba9a8a57de216d8e, type: 2}
+    colliderCenter: {x: -0.22306591, y: 1.4, z: -0.003076762}
+    colliderSize: {x: 1.7118951, y: 2.632, z: 1.4766157}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015
+  - stableId: broken-world-herospire-02
+    shape: 8
+    variant: 2
+    lod0: {fileID: 4300000, guid: 1f7dbe07a58ee46798fb839354ae04e5, type: 2}
+    lod1: {fileID: 4300000, guid: 1104a95e6d59c45dea1b55e45d1577e6, type: 2}
+    lod2: {fileID: 4300000, guid: 8ea4bbe0a994d44f59b32a1e22a18682, type: 2}
+    colliderCenter: {x: -0.044683725, y: 1.4, z: 0.05418828}
+    colliderSize: {x: 1.7998717, y: 2.632, z: 1.3430078}
+    lod0ScreenHeight: 0.24
+    lod1ScreenHeight: 0.085
+    lod2ScreenHeight: 0.015

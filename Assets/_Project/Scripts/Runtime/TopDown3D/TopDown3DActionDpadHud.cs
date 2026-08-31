@@ -399,37 +399,37 @@ namespace BooterBigArm.TopDown3D
 
             var outer = new[]
             {
-                center + new Vector2(-3.2f, 3f) * scale,
-                center + new Vector2(3.2f, 3f) * scale,
-                center + new Vector2(5.5f, 0.6f) * scale,
-                center + new Vector2(5.5f, -7f) * scale,
-                center + new Vector2(3.4f, -9.2f) * scale,
-                center + new Vector2(-3.4f, -9.2f) * scale,
                 center + new Vector2(-5.5f, -7f) * scale,
+                center + new Vector2(-3.4f, -9.2f) * scale,
+                center + new Vector2(3.4f, -9.2f) * scale,
+                center + new Vector2(5.5f, -7f) * scale,
+                center + new Vector2(5.5f, 0.6f) * scale,
+                center + new Vector2(3.2f, 3f) * scale,
+                center + new Vector2(-3.2f, 3f) * scale,
                 center + new Vector2(-5.5f, 0.6f) * scale
             };
             AddConvexPolygon(vertexHelper, outer, IconColor);
 
             var inner = new[]
             {
-                center + new Vector2(-2.4f, 1.7f) * scale,
-                center + new Vector2(2.4f, 1.7f) * scale,
-                center + new Vector2(3.8f, 0.1f) * scale,
-                center + new Vector2(3.8f, -6.2f) * scale,
-                center + new Vector2(2.4f, -7.6f) * scale,
-                center + new Vector2(-2.4f, -7.6f) * scale,
                 center + new Vector2(-3.8f, -6.2f) * scale,
+                center + new Vector2(-2.4f, -7.6f) * scale,
+                center + new Vector2(2.4f, -7.6f) * scale,
+                center + new Vector2(3.8f, -6.2f) * scale,
+                center + new Vector2(3.8f, 0.1f) * scale,
+                center + new Vector2(2.4f, 1.7f) * scale,
+                center + new Vector2(-2.4f, 1.7f) * scale,
                 center + new Vector2(-3.8f, 0.1f) * scale
             };
             AddConvexPolygon(vertexHelper, inner, CellColor);
 
             var liquid = new[]
             {
-                center + new Vector2(-3.75f, -3.1f) * scale,
-                center + new Vector2(3.75f, -3.1f) * scale,
-                center + new Vector2(3.75f, -6.1f) * scale,
-                center + new Vector2(2.3f, -7.45f) * scale,
                 center + new Vector2(-2.3f, -7.45f) * scale,
+                center + new Vector2(2.3f, -7.45f) * scale,
+                center + new Vector2(3.75f, -6.1f) * scale,
+                center + new Vector2(3.75f, -3.1f) * scale,
+                center + new Vector2(-3.75f, -3.1f) * scale,
                 center + new Vector2(-3.75f, -6.1f) * scale
             };
             AddConvexPolygon(vertexHelper, liquid, VialLiquidColor);

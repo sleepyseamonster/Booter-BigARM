@@ -43,7 +43,7 @@ namespace BooterBigArm.TopDown3D
             GUILayout.BeginArea(new Rect(12f, 12f, 390f, 238f), GUI.skin.box);
             GUILayout.Label("PERSPECTIVE TOP-DOWN 3D FOUNDATION");
             GUILayout.Label("Move: Left Stick / WASD    Sprint: RB / Left Shift");
-            GUILayout.Label("Rotate camera: Right Stick (horizontal orbit + limited pitch)");
+            GUILayout.Label("Camera: Right Stick orbit    LT + Right Stick look ahead");
             GUILayout.Label("Call BigARM: LB / F1 (physical catch-up, no teleport)");
             if (input != null)
             {

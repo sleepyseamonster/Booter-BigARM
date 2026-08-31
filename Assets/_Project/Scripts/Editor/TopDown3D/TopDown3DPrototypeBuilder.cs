@@ -16,6 +16,7 @@ namespace BooterBigArm.Editor
     {
         public const string ScenePath = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
         public const string WorldSettingsPath = "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
+        public const string PackingSettingsPath = "Assets/_Project/Settings/Items/TopDown3DPackingSettings.asset";
         public const string MaterialFolder = "Assets/_Project/Materials/TopDown3D";
         public const string NaturalObjectCatalogPath =
             "Assets/_Project/Settings/World/TopDown3DNaturalObjectCatalog.asset";
@@ -54,6 +55,12 @@ namespace BooterBigArm.Editor
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyHeight.png";
         public const string TerrainRockyNormalPath =
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyNormal.png";
+        public const string TerrainRockyMidTransitionAlbedoPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionAlbedo.png";
+        public const string TerrainRockyMidTransitionHeightPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionHeight.png";
+        public const string TerrainRockyMidTransitionNormalPath =
+            "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionNormal.png";
         public const string TerrainRockyTransitionAlbedoPath =
             "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionAlbedo.png";
         public const string TerrainRockyTransitionHeightPath =
@@ -89,16 +96,16 @@ namespace BooterBigArm.Editor
             "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid";
         public const string PrototypeHumanoidModelPath = PrototypeHumanoidFolder + "/defaultmale_rig.fbx";
         public const string PrototypeHumanoidAnimationsFolder = PrototypeHumanoidFolder + "/Animations";
-        public const string PrototypeHumanoidIdlePath = PrototypeHumanoidAnimationsFolder + "/m@Idle.fbx";
-        public const string PrototypeHumanoidWalkPath = PrototypeHumanoidAnimationsFolder + "/m@WalkForwards.fbx";
-        public const string PrototypeHumanoidRunPath = PrototypeHumanoidAnimationsFolder + "/m@RunForwards.fbx";
-        public const string PrototypeHumanoidSprintPath = PrototypeHumanoidAnimationsFolder + "/m@SprintForwards.fbx";
+        public const string LocomotionClipProfilePath =
+            "Assets/_Project/Settings/Player/TopDown3DLocomotionClipProfile.asset";
         public const string PrototypeHumanoidSideStepLeftPath =
             PrototypeHumanoidAnimationsFolder + "/m@StrafeLeftRunForwards.fbx";
         public const string PrototypeHumanoidSideStepRightPath =
             PrototypeHumanoidAnimationsFolder + "/m@StrafeRightRunForwards.fbx";
         public const string PrototypeHumanoidVaultPath =
             PrototypeHumanoidAnimationsFolder + "/m@RunForwardsJump_Frame01.fbx";
+        public const string PrototypeHumanoidGatherPath =
+            global::BooterBigArm.TopDown3D.Editor.TopDown3DIronstoneAssetBuilder.GatherAnimationPath;
 
         [MenuItem("Booter & BigARM/Top Down 3D/Build Perspective Prototype")]
         public static void BuildFromMenu()
@@ -177,8 +184,11 @@ namespace BooterBigArm.Editor
             EnsureFolder("Assets/_Project/Scenes/TopDown3D");
             EnsureFolder(MaterialFolder);
             EnsureFolder("Assets/_Project/Settings/World");
+            EnsureFolder("Assets/_Project/Settings/Items");
 
             var settings = EnsureWorldSettings();
+            global::BooterBigArm.TopDown3D.Editor.TopDown3DIronstoneAssetBuilder.BuildIronstoneAssets();
+            var packingSettings = EnsurePackingSettings();
             var terrainMaterial = EnsureTerrainMaterial();
             var rockMaterial = EnsureRockMaterial();
             var darkRockMaterial = EnsureRockMaterial(
@@ -214,9 +224,28 @@ namespace BooterBigArm.Editor
                 terrainMaterial,
                 rockMaterial,
                 playerMaterial,
-                bigArmMaterial);
+                bigArmMaterial,
+                packingSettings);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        private static TopDown3DPackingSettings EnsurePackingSettings()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DPackingSettings>(PackingSettingsPath);
+            if (settings == null)
+            {
+                settings = ScriptableObject.CreateInstance<TopDown3DPackingSettings>();
+                settings.name = "TopDown3DPackingSettings";
+                settings.ConfigureDefaults();
+                AssetDatabase.CreateAsset(settings, PackingSettingsPath);
+            }
+            else if (!settings.TryValidate(out _))
+            {
+                settings.ConfigureDefaults();
+                EditorUtility.SetDirty(settings);
+            }
+            return settings;
         }
 
         private static TopDown3DWorldSettings EnsureWorldSettings()
@@ -249,6 +278,12 @@ namespace BooterBigArm.Editor
             var rockyAlbedo = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyAlbedoPath);
             var rockyHeight = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyHeightPath);
             var rockyNormal = AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyNormalPath);
+            var rockyMidTransitionAlbedo =
+                AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyMidTransitionAlbedoPath);
+            var rockyMidTransitionHeight =
+                AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyMidTransitionHeightPath);
+            var rockyMidTransitionNormal =
+                AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyMidTransitionNormalPath);
             var rockyTransitionAlbedo =
                 AssetDatabase.LoadAssetAtPath<Texture2D>(TerrainRockyTransitionAlbedoPath);
             var rockyTransitionHeight =
@@ -258,6 +293,8 @@ namespace BooterBigArm.Editor
             if (shader == null || baseAlbedo == null || sweptSandAlbedo == null || gravelAlbedo == null
                 || rockyAlbedo == null || sweptSandTransitionAlbedo == null || gravelTransitionAlbedo == null
                 || rockyTransitionAlbedo == null || rockyHeight == null || rockyNormal == null
+                || rockyMidTransitionAlbedo == null || rockyMidTransitionHeight == null
+                || rockyMidTransitionNormal == null
                 || rockyTransitionHeight == null || rockyTransitionNormal == null)
             {
                 throw new InvalidOperationException("The layered terrain shader or one of its albedo textures is missing.");
@@ -276,9 +313,12 @@ namespace BooterBigArm.Editor
             changed |= SetTextureIfNeeded(material, "_GravelMap", gravelAlbedo);
             changed |= SetTextureIfNeeded(material, "_GravelTransitionMap", gravelTransitionAlbedo);
             changed |= SetTextureIfNeeded(material, "_RockyMap", rockyAlbedo);
+            changed |= SetTextureIfNeeded(material, "_RockyMidTransitionMap", rockyMidTransitionAlbedo);
             changed |= SetTextureIfNeeded(material, "_RockyTransitionMap", rockyTransitionAlbedo);
             changed |= SetTextureIfNeeded(material, "_RockyHeightMap", rockyHeight);
             changed |= SetTextureIfNeeded(material, "_RockyNormalMap", rockyNormal);
+            changed |= SetTextureIfNeeded(material, "_RockyMidTransitionHeightMap", rockyMidTransitionHeight);
+            changed |= SetTextureIfNeeded(material, "_RockyMidTransitionNormalMap", rockyMidTransitionNormal);
             changed |= SetTextureIfNeeded(material, "_RockyTransitionHeightMap", rockyTransitionHeight);
             changed |= SetTextureIfNeeded(material, "_RockyTransitionNormalMap", rockyTransitionNormal);
             changed |= SetFloatIfNeeded(material, "_BaseMetersPerTile", TerrainBaseMetersPerTile);
@@ -502,7 +542,7 @@ namespace BooterBigArm.Editor
             var serialized = new SerializedObject(pipeline);
             var renderers = serialized.FindProperty("m_RendererDataList");
             var defaultIndex = serialized.FindProperty("m_DefaultRendererIndex");
-            if (renderers == null || !renderers.isArray || defaultIndex == null || defaultIndex.intValue != 0)
+            if (renderers == null || !renderers.isArray || defaultIndex == null)
             {
                 throw new InvalidOperationException("The URP renderer list or protected default could not be verified.");
             }
@@ -511,11 +551,17 @@ namespace BooterBigArm.Editor
             {
                 if (renderers.GetArrayElementAtIndex(i).objectReferenceValue == renderer)
                 {
+                    if (defaultIndex.intValue != i)
+                    {
+                        throw new InvalidOperationException(
+                            $"The production 3D renderer must remain the URP default at index {i}.");
+                    }
+
                     return i;
                 }
             }
 
-            throw new InvalidOperationException("The 3D conversion renderer is not registered at a non-default index.");
+            throw new InvalidOperationException("The production 3D renderer is not registered at an index greater than zero.");
         }
 
         private static void CreateScene(
@@ -525,7 +571,8 @@ namespace BooterBigArm.Editor
             Material terrainMaterial,
             Material rockMaterial,
             Material playerMaterial,
-            Material bigArmMaterial)
+            Material bigArmMaterial,
+            TopDown3DPackingSettings packingSettings)
         {
             var previousActiveScene = SceneManager.GetActiveScene();
             var loadedTargetScene = SceneManager.GetSceneByPath(ScenePath);
@@ -538,6 +585,7 @@ namespace BooterBigArm.Editor
             var creationMode = Application.isBatchMode ? NewSceneMode.Single : NewSceneMode.Additive;
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, creationMode);
             SceneManager.SetActiveScene(scene);
+            packingSettings = LoadRequiredAsset<TopDown3DPackingSettings>(PackingSettingsPath);
 
             try
             {
@@ -550,7 +598,7 @@ namespace BooterBigArm.Editor
                 RenderSettings.fog = false;
                 RenderSettings.fogColor = new Color(0.42f, 0.19f, 0.10f);
                 RenderSettings.fogDensity = TopDown3DDustAtmosphere.DefaultFogDensityAtIntensityOne;
-                RenderSettings.ambientMode = AmbientMode.Flat;
+                RenderSettings.ambientMode = AmbientMode.Trilight;
                 RenderSettings.ambientLight = new Color(0.36f, 0.39f, 0.43f);
 
                 var input = new GameObject("Top Down 3D Input").AddComponent<TopDown3DInputRouter>();
@@ -560,19 +608,51 @@ namespace BooterBigArm.Editor
                 var cameraRig = CreateCamera(player.transform, input, rendererIndex);
                 var motor = player.GetComponent<TopDown3DPlayerMotor>();
                 motor.Configure(input, cameraRig.transform);
+                var inventory = player.AddComponent<TopDown3DPlayerInventory>();
+                inventory.Configure(
+                    LoadRequiredAsset<TopDown3DItemCatalog>(
+                        global::BooterBigArm.TopDown3D.Editor.TopDown3DIronstoneAssetBuilder.ItemCatalogPath),
+                    TopDown3DPlayerInventory.DefaultCapacity);
+                var interaction = player.AddComponent<TopDown3DInteractionController>();
+                interaction.Configure(motor);
+                var actionController = player.AddComponent<TopDown3DPlayerActionController>();
+                actionController.Configure(
+                    input,
+                    interaction,
+                    inventory,
+                    motor,
+                    player.GetComponent<TopDown3DPlayerAnimationDriver>());
 
                 var world = new GameObject("Deterministic Streamed 3D World").AddComponent<TopDown3DProceduralWorld>();
                 world.Configure(settings, player.transform, terrainMaterial, rockMaterial);
+                world.gameObject.AddComponent<TopDown3DResourceWorldState>()
+                    .Configure(settings.ResourceGenerationVersion);
 
-                var bigArm = CreateBigArm(settings, bigArmMaterial);
+                var bigArm = CreateBigArm(settings, bigArmMaterial, inventory.ItemCatalog, packingSettings);
+                actionController.ConfigureCargo(bigArm.GetComponent<TopDown3DBigArmCargo>());
                 var follower = bigArm.GetComponent<TopDown3DBigArmFollower>();
                 follower.Configure(player.transform, cameraRig.transform, input);
+                var saveService = new GameObject("Coordinated Game State Save").AddComponent<TopDown3DGameStateSaveService>();
+                saveService.Configure(
+                    inventory,
+                    player.transform,
+                    bigArm.GetComponent<TopDown3DBigArmCargo>(),
+                    bigArm.GetComponent<TopDown3DBigArmState>(),
+                    settings.WorldSeed);
 
                 CreateLighting();
                 CreateDustAtmosphere(player.transform, cameraRig.GetComponent<Camera>(), settings.WorldSeed);
                 new GameObject("Top Down 3D Debug Overlay")
                     .AddComponent<TopDown3DDebugOverlay>()
                     .Configure(input, motor, world, follower, cameraRig);
+                TopDown3DGameHudCanvas.TryInstallForScene(scene);
+                TopDown3DActionDpadHud.TryInstallForScene(scene);
+                TopDown3DSurvivalHud.TryInstallForScene(scene);
+                TopDown3DInteractionFeedbackHud.TryInstallForScene(scene);
+                if (TopDown3DInventoryUiSceneInstaller.TryInstallForScene(scene) == null)
+                {
+                    throw new InvalidOperationException("Failed to install the canonical TopDown3D inventory UI.");
+                }
 
                 if (!EditorSceneManager.SaveScene(scene, ScenePath, false))
                 {
@@ -601,7 +681,7 @@ namespace BooterBigArm.Editor
             player.name = "Booter Perspective 3D Controller";
             player.transform.position = new Vector3(
                 0f,
-                TopDown3DHeightSampler.SampleHeight(settings, 0f, 0f)
+                new TopDown3DWorldGenerator(settings).SampleHeight(0f, 0f)
                     + PlayerColliderHeight * 0.5f
                     + PlayerGroundClearance,
                 0f);
@@ -618,10 +698,7 @@ namespace BooterBigArm.Editor
             player.AddComponent<TopDown3DPlayerMotor>();
             player.AddComponent<TopDown3DPlayerAnimationDriver>().Configure(
                 LoadRequiredAsset<GameObject>(PrototypeHumanoidModelPath),
-                LoadRequiredAnimationClip(PrototypeHumanoidIdlePath, "Idle"),
-                LoadRequiredAnimationClip(PrototypeHumanoidWalkPath, "WalkForwards"),
-                LoadRequiredAnimationClip(PrototypeHumanoidRunPath, "RunForwards"),
-                LoadRequiredAnimationClip(PrototypeHumanoidSprintPath, "SprintForwards"),
+                LoadRequiredAsset<TopDown3DLocomotionClipProfile>(LocomotionClipProfilePath),
                 LoadRequiredAnimationClip(
                     PrototypeHumanoidSideStepLeftPath,
                     "StrafeLeftRunForwards"),
@@ -630,7 +707,9 @@ namespace BooterBigArm.Editor
                     "StrafeRightRunForwards"),
                 LoadRequiredAnimationClip(
                     PrototypeHumanoidVaultPath,
-                    "RunForwardsJump_Frame01"));
+                    "RunForwardsJump_Frame01"),
+                LoadRequiredAsset<AnimationClip>(PrototypeHumanoidGatherPath));
+            player.AddComponent<TopDown3DFootstepDust>();
 
             var facing = GameObject.CreatePrimitive(PrimitiveType.Cube);
             facing.name = "Facing Marker";
@@ -663,14 +742,14 @@ namespace BooterBigArm.Editor
             return rig;
         }
 
-        private static GameObject CreateBigArm(TopDown3DWorldSettings settings, Material material)
+        private static GameObject CreateBigArm(TopDown3DWorldSettings settings, Material material, TopDown3DItemCatalog catalog, TopDown3DPackingSettings packingSettings)
         {
             const float startX = -4.2f;
             const float startZ = -2.5f;
             var bigArm = new GameObject("BigARM Simple Follow AI");
             bigArm.transform.position = new Vector3(
                 startX,
-                TopDown3DHeightSampler.SampleHeight(settings, startX, startZ) + 0.82f,
+                new TopDown3DWorldGenerator(settings).SampleHeight(startX, startZ) + 0.82f,
                 startZ);
             var collider = bigArm.AddComponent<BoxCollider>();
             collider.center = new Vector3(0f, 0.3f, 0f);
@@ -679,6 +758,11 @@ namespace BooterBigArm.Editor
             body.mass = 8f;
             body.isKinematic = true;
             bigArm.AddComponent<TopDown3DBigArmFollower>();
+                var cargo = bigArm.AddComponent<TopDown3DBigArmCargo>();
+                cargo.Configure(catalog, packingSettings);
+                bigArm.AddComponent<TopDown3DBigArmState>();
+                bigArm.AddComponent<TopDown3DBigArmCargoAccess>();
+                bigArm.AddComponent<TopDown3DBigArmCargoVisuals>().Configure(cargo);
 
             var bodyVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);
             bodyVisual.name = "BigARM Rectangular Prism";

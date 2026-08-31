@@ -1,25 +1,19 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace BooterBigArm.TopDown3D
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(TopDown3DPlayerMotor), typeof(CapsuleCollider))]
+    [RequireComponent(
+        typeof(TopDown3DPlayerMotor),
+        typeof(CapsuleCollider),
+        typeof(TopDown3DPlayerAnimationDriver))]
     [DefaultExecutionOrder(120)]
     public sealed class TopDown3DFootstepDust : MonoBehaviour
     {
         public const float MinimumMovementSpeed = 0.35f;
-        public const float MaximumTrackedDistancePerFrame = 2f;
-        public const int MaximumStepsPerFrame = 2;
         public const int DefaultMinimumParticlesPerStep = 10;
         public const int DefaultMaximumParticlesPerStep = 20;
         public const float DefaultClearAirDustStrength = 0.8f;
-
-        [Header("Cadence")]
-        [SerializeField, Min(0.1f)] private float walkingStepDistance = 1.28f;
-        [SerializeField, Min(0.1f)] private float sprintingStepDistance = 1.48f;
-        [SerializeField, Min(0f)] private float footSeparation = 0.16f;
-        [SerializeField] private float footForwardOffset = -0.1f;
 
         [Header("Dust Burst")]
         [SerializeField, Range(2, 24)] private int minimumParticlesPerStep =
@@ -32,53 +26,11 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(0f)] private float upwardSpeed = 0.52f;
 
         private TopDown3DPlayerMotor motor;
-        private CapsuleCollider capsule;
+        private TopDown3DPlayerAnimationDriver animationDriver;
         private ParticleSystem dustParticles;
         private Material dustMaterial;
         private Texture2D dustTexture;
-        private Vector3 previousPosition;
-        private float accumulatedStepDistance;
         private uint burstSequence;
-        private bool leftFoot;
-        private bool hasPreviousPosition;
-
-        public static float EvaluateStepDistance(
-            float planarSpeed,
-            bool sprinting,
-            float walkingDistance = 1.28f,
-            float sprintingDistance = 1.48f)
-        {
-            var targetDistance = sprinting ? sprintingDistance : walkingDistance;
-            var speedResponse = Mathf.InverseLerp(
-                MinimumMovementSpeed,
-                sprinting ? 7.4f : 4.2f,
-                Mathf.Max(0f, planarSpeed));
-            return Mathf.Max(0.1f, targetDistance * Mathf.Lerp(0.88f, 1f, speedResponse));
-        }
-
-        public static int ConsumeStepDistance(
-            ref float accumulatedDistance,
-            float traveledDistance,
-            float stepDistance,
-            int maximumSteps = MaximumStepsPerFrame)
-        {
-            if (traveledDistance <= 0f || stepDistance <= 0f || maximumSteps <= 0)
-            {
-                return 0;
-            }
-
-            accumulatedDistance = Mathf.Max(0f, accumulatedDistance) + traveledDistance;
-            var stepCount = Mathf.Min(
-                Mathf.FloorToInt(accumulatedDistance / stepDistance),
-                maximumSteps);
-            accumulatedDistance -= stepCount * stepDistance;
-            if (stepCount == maximumSteps && accumulatedDistance >= stepDistance)
-            {
-                accumulatedDistance = Mathf.Repeat(accumulatedDistance, stepDistance);
-            }
-
-            return stepCount;
-        }
 
         public static int EvaluateBurstCount(
             float planarSpeed,
@@ -106,47 +58,20 @@ namespace BooterBigArm.TopDown3D
             return Mathf.Lerp(Mathf.Clamp01(clearAirStrength), 1f, pocketWeight);
         }
 
-        public static int EnsurePresentInScene(Scene scene)
-        {
-            if (!scene.IsValid() || !scene.isLoaded)
-            {
-                return 0;
-            }
-
-            var attachedCount = 0;
-            var roots = scene.GetRootGameObjects();
-            for (var rootIndex = 0; rootIndex < roots.Length; rootIndex++)
-            {
-                var motors = roots[rootIndex].GetComponentsInChildren<TopDown3DPlayerMotor>(true);
-                for (var motorIndex = 0; motorIndex < motors.Length; motorIndex++)
-                {
-                    var playerMotor = motors[motorIndex];
-                    if (playerMotor.GetComponent<TopDown3DFootstepDust>() != null)
-                    {
-                        continue;
-                    }
-
-                    playerMotor.gameObject.AddComponent<TopDown3DFootstepDust>();
-                    attachedCount++;
-                }
-            }
-
-            return attachedCount;
-        }
-
         private void Awake()
         {
             motor = GetComponent<TopDown3DPlayerMotor>();
-            capsule = GetComponent<CapsuleCollider>();
-            previousPosition = transform.position;
-            hasPreviousPosition = true;
+            animationDriver = GetComponent<TopDown3DPlayerAnimationDriver>();
         }
 
         private void OnEnable()
         {
-            previousPosition = transform.position;
-            hasPreviousPosition = true;
-            accumulatedStepDistance = 0f;
+            if (animationDriver != null)
+            {
+                animationDriver.FootContact -= HandleFootContact;
+                animationDriver.FootContact += HandleFootContact;
+            }
+
             if (!Application.isPlaying)
             {
                 return;
@@ -159,55 +84,26 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
-        private void Update()
+        private void HandleFootContact(TopDown3DFootContact contact)
         {
-            var currentPosition = transform.position;
-            if (!hasPreviousPosition)
+            if (motor == null
+                || !motor.IsGrounded
+                || motor.ActiveTraversal != TopDown3DTraversalMove.None
+                || contact.PlanarSpeed < MinimumMovementSpeed)
             {
-                previousPosition = currentPosition;
-                hasPreviousPosition = true;
                 return;
             }
 
-            var frameOffset = currentPosition - previousPosition;
-            frameOffset.y = 0f;
-            var traveledDistance = frameOffset.magnitude;
-            previousPosition = currentPosition;
-
-            if (motor == null || !motor.IsGrounded || traveledDistance > MaximumTrackedDistancePerFrame)
-            {
-                accumulatedStepDistance = 0f;
-                return;
-            }
-
-            var velocity = motor.Velocity;
-            velocity.y = 0f;
-            var planarSpeed = Mathf.Max(
-                velocity.magnitude,
-                Time.deltaTime > 0f ? traveledDistance / Time.deltaTime : 0f);
-            if (planarSpeed < MinimumMovementSpeed || traveledDistance <= 0.0001f)
-            {
-                accumulatedStepDistance = 0f;
-                return;
-            }
-
-            var stepDistance = EvaluateStepDistance(
-                planarSpeed,
-                motor.SprintActive,
-                walkingStepDistance,
-                sprintingStepDistance);
-            var steps = ConsumeStepDistance(
-                ref accumulatedStepDistance,
-                traveledDistance,
-                stepDistance);
-            for (var stepIndex = 0; stepIndex < steps; stepIndex++)
-            {
-                EmitFootstep(velocity, planarSpeed);
-            }
+            EmitFootstep(contact);
         }
 
         private void OnDisable()
         {
+            if (animationDriver != null)
+            {
+                animationDriver.FootContact -= HandleFootContact;
+            }
+
             if (dustParticles != null)
             {
                 dustParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -227,7 +123,7 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
-        private void EmitFootstep(Vector3 planarVelocity, float planarSpeed)
+        private void EmitFootstep(TopDown3DFootContact contact)
         {
             EnsureParticleSystem();
             if (dustParticles == null)
@@ -235,18 +131,9 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            leftFoot = !leftFoot;
             burstSequence++;
-            var side = leftFoot ? -footSeparation : footSeparation;
             var flattenedForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
-            var flattenedRight = Vector3.ProjectOnPlane(transform.right, Vector3.up).normalized;
-            var contactPosition = transform.position
-                + flattenedRight * side
-                + flattenedForward * footForwardOffset;
-            if (capsule != null && capsule.enabled)
-            {
-                contactPosition.y = capsule.bounds.min.y + 0.035f;
-            }
+            var contactPosition = contact.WorldPosition;
 
             var atmosphere = TopDown3DDustAtmosphere.Active;
             var regionalIntensity = 0f;
@@ -260,10 +147,11 @@ namespace BooterBigArm.TopDown3D
 
             var strength = EvaluateDustStrength(regionalIntensity, clearAirDustStrength);
             var particleCount = EvaluateBurstCount(
-                planarSpeed,
+                contact.PlanarSpeed,
                 regionalIntensity,
                 minimumParticlesPerStep,
                 maximumParticlesPerStep);
+            var planarVelocity = motor.LocomotionSnapshot.CurrentPlanarVelocity;
             var movementDirection = planarVelocity.sqrMagnitude > 0.0001f
                 ? planarVelocity.normalized
                 : flattenedForward;
@@ -415,22 +303,5 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void RegisterForSceneLoads()
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        private static void EnsureCurrentSceneHasFootstepDust()
-        {
-            EnsurePresentInScene(SceneManager.GetActiveScene());
-        }
-
-        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            EnsurePresentInScene(scene);
-        }
     }
 }

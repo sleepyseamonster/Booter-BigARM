@@ -24,6 +24,8 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Transform followTarget;
         [SerializeField] private Transform cameraBasis;
         [SerializeField] private TopDown3DInputRouter input;
+        [SerializeField] private TopDown3DBigArmCargo cargo;
+        [SerializeField] private TopDown3DBigArmState companionState;
         [SerializeField, Min(1f)] private float followDistance = 4.2f;
         [SerializeField, Min(0.1f)] private float moveSpeed = 5.8f;
         [SerializeField, Min(0.1f)] private float catchUpSpeed = 8.4f;
@@ -67,6 +69,8 @@ namespace BooterBigArm.TopDown3D
             followTargetBody = followTarget != null ? followTarget.GetComponent<Rigidbody>() : null;
             cameraBasis = movementCamera;
             input = inputRouter;
+            cargo = GetComponent<TopDown3DBigArmCargo>();
+            companionState = GetComponent<TopDown3DBigArmState>();
             targetTrail.Clear();
             RefreshInputSubscription();
         }
@@ -152,10 +156,13 @@ namespace BooterBigArm.TopDown3D
                 GetCruiseSpeed(),
                 catchUpSpeed,
                 catchUpActive);
+            var loadSpeed = cargo != null ? cargo.LoadProfile.SpeedMultiplier : 1f;
+            desiredSpeed *= loadSpeed;
+            var loadAcceleration = cargo != null ? cargo.LoadProfile.AccelerationMultiplier : 1f;
             currentSpeed = Mathf.MoveTowards(
                 currentSpeed,
                 desiredSpeed,
-                (desiredSpeed > currentSpeed ? acceleration : deceleration) * Time.fixedDeltaTime);
+                (desiredSpeed > currentSpeed ? acceleration : deceleration) * loadAcceleration * Time.fixedDeltaTime);
 
             if (distanceToDesired <= idleRadius && currentSpeed <= 0.01f)
             {
@@ -193,6 +200,7 @@ namespace BooterBigArm.TopDown3D
                 body.rotation,
                 Quaternion.LookRotation(direction, Vector3.up),
                 turnSpeedDegrees * Time.fixedDeltaTime));
+            companionState?.PublishPosition(body.position);
 
             UpdateStuckTracking(distanceToDesired > idleRadius);
         }

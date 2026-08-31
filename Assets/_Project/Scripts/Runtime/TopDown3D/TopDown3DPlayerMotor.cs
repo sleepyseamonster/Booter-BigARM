@@ -2,6 +2,47 @@ using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
 {
+    public readonly struct TopDown3DLocomotionSnapshot
+    {
+        public TopDown3DLocomotionSnapshot(
+            Vector3 currentPlanarVelocity,
+            Vector3 desiredPlanarVelocity,
+            Vector3 planarAcceleration,
+            Vector3 facingDirection,
+            float measuredYawRate,
+            Vector3 supportNormal,
+            bool isGrounded,
+            bool sprintActive,
+            bool traversalOwnsMotion,
+            float directionAlignment,
+            float signedHeadingError)
+        {
+            CurrentPlanarVelocity = currentPlanarVelocity;
+            DesiredPlanarVelocity = desiredPlanarVelocity;
+            PlanarAcceleration = planarAcceleration;
+            FacingDirection = facingDirection;
+            MeasuredYawRate = measuredYawRate;
+            SupportNormal = supportNormal;
+            IsGrounded = isGrounded;
+            SprintActive = sprintActive;
+            TraversalOwnsMotion = traversalOwnsMotion;
+            DirectionAlignment = directionAlignment;
+            SignedHeadingError = signedHeadingError;
+        }
+
+        public Vector3 CurrentPlanarVelocity { get; }
+        public Vector3 DesiredPlanarVelocity { get; }
+        public Vector3 PlanarAcceleration { get; }
+        public Vector3 FacingDirection { get; }
+        public float MeasuredYawRate { get; }
+        public Vector3 SupportNormal { get; }
+        public bool IsGrounded { get; }
+        public bool SprintActive { get; }
+        public bool TraversalOwnsMotion { get; }
+        public float DirectionAlignment { get; }
+        public float SignedHeadingError { get; }
+    }
+
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
     public sealed class TopDown3DPlayerMotor : MonoBehaviour
@@ -15,9 +56,12 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Transform cameraBasis;
         [SerializeField, Min(0.1f)] private float walkSpeed = 4.2f;
         [SerializeField, Min(0.1f)] private float sprintSpeed = 7.4f;
-        [SerializeField, Min(0.1f)] private float acceleration = 18f;
-        [SerializeField, Min(0.1f)] private float deceleration = 24f;
-        [SerializeField, Min(1f)] private float turnSpeedDegrees = 540f;
+        [SerializeField, Min(0.1f)] private float acceleration = 8.5f;
+        [SerializeField, Min(0.1f)] private float deceleration = 12.5f;
+        [SerializeField, Min(0.1f)] private float stopDeceleration = 20f;
+        [SerializeField, Min(0.1f)] private float directionChangeAcceleration = 13.5f;
+        [SerializeField, Min(1f)] private float turnSpeedDegrees = 420f;
+        [SerializeField, Min(1f)] private float sprintTurnSpeedDegrees = 300f;
         [SerializeField, Range(1f, 75f)] private float maxWalkableSlope = 48f;
         [SerializeField, Min(0.01f)] private float groundProbeDistance = 0.28f;
         [SerializeField, Min(0.1f)] private float groundNormalSharpness = 12f;
@@ -63,15 +107,23 @@ namespace BooterBigArm.TopDown3D
         private bool gravityBeforeTraversal;
         private Vector3 stableGroundNormal = Vector3.up;
         private bool hasStableGroundNormal;
+        private Vector3 lastPublishedFacing = Vector3.forward;
+        private bool hasPublishedFacing;
+        private object actionConstraintOwner;
 
         public Vector3 Position => body != null ? body.position : transform.position;
         public Vector3 Velocity => body != null ? body.linearVelocity : Vector3.zero;
+        public Vector3 PlanarAcceleration { get; private set; }
+        public TopDown3DLocomotionSnapshot LocomotionSnapshot { get; private set; }
         public Vector3 FacingDirection => facingDirection;
         public bool IsGrounded { get; private set; }
         public bool SprintActive { get; private set; }
         public TopDown3DTraversalMove ActiveTraversal { get; private set; }
         public float ActiveTraversalDuration => activeTraversalDuration;
         public float ActiveTraversalSide => activeTraversalSide;
+        public bool IsActionConstrained => actionConstraintOwner != null;
+        public float MaxWalkableSlope => maxWalkableSlope;
+        public LayerMask GroundMask => groundMask;
 
         public void Configure(TopDown3DInputRouter inputRouter, Transform movementCamera)
         {
@@ -91,9 +143,63 @@ namespace BooterBigArm.TopDown3D
             }
 
             transform.position = position;
+            PlanarAcceleration = Vector3.zero;
             IsGrounded = false;
             stableGroundNormal = Vector3.up;
             hasStableGroundNormal = false;
+            ResetPresentationSnapshot();
+        }
+
+        public bool TryBeginActionConstraint(object owner)
+        {
+            if (owner == null || (actionConstraintOwner != null && !ReferenceEquals(actionConstraintOwner, owner)))
+            {
+                return false;
+            }
+
+            EnsureBody();
+            CancelTraversal();
+            actionConstraintOwner = owner;
+            SprintActive = false;
+            PlanarAcceleration = Vector3.zero;
+            if (body != null)
+            {
+                body.linearVelocity = new Vector3(0f, body.linearVelocity.y, 0f);
+                body.angularVelocity = Vector3.zero;
+            }
+
+            return true;
+        }
+
+        public void EndActionConstraint(object owner)
+        {
+            if (!ReferenceEquals(actionConstraintOwner, owner))
+            {
+                return;
+            }
+
+            actionConstraintOwner = null;
+            SprintActive = false;
+            PlanarAcceleration = Vector3.zero;
+        }
+
+        public void FacePlanarDirection(Vector3 direction)
+        {
+            EnsureBody();
+            var planar = Vector3.ProjectOnPlane(direction, Vector3.up);
+            if (planar.sqrMagnitude <= 0.0001f)
+            {
+                return;
+            }
+
+            facingDirection = planar.normalized;
+            var rotation = Quaternion.LookRotation(facingDirection, Vector3.up);
+            if (body != null)
+            {
+                body.rotation = rotation;
+            }
+
+            transform.rotation = rotation;
         }
 
         private void Awake()
@@ -110,14 +216,39 @@ namespace BooterBigArm.TopDown3D
         private void FixedUpdate()
         {
             traversalCooldownRemaining = Mathf.Max(0f, traversalCooldownRemaining - Time.fixedDeltaTime);
+            if (IsActionConstrained)
+            {
+                PlanarAcceleration = Vector3.zero;
+                SprintActive = false;
+                if (body != null)
+                {
+                    body.linearVelocity = new Vector3(0f, body.linearVelocity.y, 0f);
+                    body.angularVelocity = Vector3.zero;
+                }
+
+                PublishPresentationSnapshot(Vector3.zero, Vector3.zero, false);
+
+                return;
+            }
+
             if (ActiveTraversal != TopDown3DTraversalMove.None)
             {
+                PlanarAcceleration = Vector3.zero;
                 AdvanceTraversal();
+                var traversalVelocity = body != null
+                    ? new Vector3(body.linearVelocity.x, 0f, body.linearVelocity.z)
+                    : Vector3.zero;
+                PublishPresentationSnapshot(traversalVelocity, traversalVelocity, true);
                 return;
             }
 
             if (input == null || cameraBasis == null)
             {
+                PlanarAcceleration = Vector3.zero;
+                var unconfiguredPlanarVelocity = body != null
+                    ? new Vector3(body.linearVelocity.x, 0f, body.linearVelocity.z)
+                    : Vector3.zero;
+                PublishPresentationSnapshot(unconfiguredPlanarVelocity, Vector3.zero, false);
                 return;
             }
 
@@ -182,8 +313,15 @@ namespace BooterBigArm.TopDown3D
             var currentVelocity = body.linearVelocity;
             var currentPlanar = new Vector3(currentVelocity.x, 0f, currentVelocity.z);
             var targetPlanar = new Vector3(targetVelocity.x, 0f, targetVelocity.z);
-            var rate = targetPlanar.sqrMagnitude > 0.0001f ? acceleration : deceleration;
+            var rate = TopDown3DLocomotionMath.SelectAccelerationRate(
+                currentPlanar,
+                targetPlanar,
+                acceleration,
+                deceleration,
+                stopDeceleration,
+                directionChangeAcceleration);
             var nextPlanar = Vector3.MoveTowards(currentPlanar, targetPlanar, rate * Time.fixedDeltaTime);
+            PlanarAcceleration = (nextPlanar - currentPlanar) / Mathf.Max(0.0001f, Time.fixedDeltaTime);
 
             var verticalVelocity = currentVelocity.y;
             if (IsGrounded)
@@ -199,15 +337,28 @@ namespace BooterBigArm.TopDown3D
 
             body.linearVelocity = new Vector3(nextPlanar.x, verticalVelocity, nextPlanar.z);
 
-            var planarFacing = new Vector3(desiredDirection.x, 0f, desiredDirection.z);
+            var planarFacing = nextPlanar;
+            if (planarFacing.sqrMagnitude <= 0.01f)
+            {
+                planarFacing = new Vector3(desiredDirection.x, 0f, desiredDirection.z);
+            }
+
             if (planarFacing.sqrMagnitude > 0.0001f)
             {
                 facingDirection = planarFacing.normalized;
+                var turnRate = TopDown3DLocomotionMath.SelectTurnSpeed(
+                    nextPlanar.magnitude,
+                    walkSpeed,
+                    sprintSpeed,
+                    turnSpeedDegrees,
+                    sprintTurnSpeedDegrees);
                 body.MoveRotation(Quaternion.RotateTowards(
                     body.rotation,
                     Quaternion.LookRotation(facingDirection, Vector3.up),
-                    turnSpeedDegrees * Time.fixedDeltaTime));
+                    turnRate * Time.fixedDeltaTime));
             }
+
+            PublishPresentationSnapshot(nextPlanar, targetPlanar, false);
         }
 
         private bool TryBeginTraversal(Vector3 desiredDirection)
@@ -754,12 +905,80 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
+        private void PublishPresentationSnapshot(
+            Vector3 currentPlanarVelocity,
+            Vector3 desiredPlanarVelocity,
+            bool traversalOwnsMotion)
+        {
+            var actualFacing = body != null
+                ? Vector3.ProjectOnPlane(body.rotation * Vector3.forward, Vector3.up).normalized
+                : facingDirection;
+            if (actualFacing.sqrMagnitude <= 0.0001f)
+            {
+                actualFacing = facingDirection;
+            }
+
+            var currentDirection = currentPlanarVelocity.sqrMagnitude > 0.0001f
+                ? currentPlanarVelocity.normalized
+                : actualFacing;
+            var desiredDirection = desiredPlanarVelocity.sqrMagnitude > 0.0001f
+                ? desiredPlanarVelocity.normalized
+                : currentDirection;
+            var hasDesiredDirection = desiredPlanarVelocity.sqrMagnitude > 0.0001f;
+            var directionAlignment = hasDesiredDirection
+                ? Mathf.Clamp(Vector3.Dot(currentDirection, desiredDirection), -1f, 1f)
+                : 1f;
+            var signedHeadingError = hasDesiredDirection
+                ? Vector3.SignedAngle(currentDirection, desiredDirection, Vector3.up)
+                : 0f;
+            var measuredYawRate = hasPublishedFacing
+                ? Vector3.SignedAngle(lastPublishedFacing, actualFacing, Vector3.up)
+                    / Mathf.Max(0.0001f, Time.fixedDeltaTime)
+                : 0f;
+            lastPublishedFacing = actualFacing;
+            hasPublishedFacing = true;
+
+            LocomotionSnapshot = new TopDown3DLocomotionSnapshot(
+                currentPlanarVelocity,
+                desiredPlanarVelocity,
+                PlanarAcceleration,
+                actualFacing,
+                measuredYawRate,
+                hasStableGroundNormal ? stableGroundNormal : Vector3.up,
+                IsGrounded,
+                SprintActive,
+                traversalOwnsMotion,
+                directionAlignment,
+                signedHeadingError);
+        }
+
+        private void ResetPresentationSnapshot()
+        {
+            LocomotionSnapshot = new TopDown3DLocomotionSnapshot(
+                Vector3.zero,
+                Vector3.zero,
+                Vector3.zero,
+                facingDirection,
+                0f,
+                Vector3.up,
+                false,
+                false,
+                false,
+                1f,
+                0f);
+            lastPublishedFacing = facingDirection;
+            hasPublishedFacing = false;
+        }
+
         private void OnDisable()
         {
             CancelTraversal();
+            actionConstraintOwner = null;
+            PlanarAcceleration = Vector3.zero;
             IsGrounded = false;
             stableGroundNormal = Vector3.up;
             hasStableGroundNormal = false;
+            ResetPresentationSnapshot();
         }
 
         private void OnDestroy()
@@ -775,7 +994,10 @@ namespace BooterBigArm.TopDown3D
             sprintSpeed = Mathf.Max(walkSpeed, sprintSpeed);
             acceleration = Mathf.Max(0.1f, acceleration);
             deceleration = Mathf.Max(0.1f, deceleration);
+            stopDeceleration = Mathf.Max(0.1f, stopDeceleration);
+            directionChangeAcceleration = Mathf.Max(0.1f, directionChangeAcceleration);
             turnSpeedDegrees = Mathf.Max(1f, turnSpeedDegrees);
+            sprintTurnSpeedDegrees = Mathf.Max(1f, sprintTurnSpeedDegrees);
             groundProbeDistance = Mathf.Max(0.01f, groundProbeDistance);
             groundNormalSharpness = Mathf.Max(0.1f, groundNormalSharpness);
             groundedVerticalAcceleration = Mathf.Max(0.1f, groundedVerticalAcceleration);
@@ -792,6 +1014,56 @@ namespace BooterBigArm.TopDown3D
             sideStepSideDistance = Mathf.Max(0f, sideStepSideDistance);
             sideStepForwardDistance = Mathf.Max(0f, sideStepForwardDistance);
             traversalCooldown = Mathf.Max(0f, traversalCooldown);
+        }
+    }
+
+    public static class TopDown3DLocomotionMath
+    {
+        public static float SelectAccelerationRate(
+            Vector3 currentPlanarVelocity,
+            Vector3 targetPlanarVelocity,
+            float acceleration,
+            float deceleration,
+            float stopDeceleration,
+            float directionChangeAcceleration)
+        {
+            acceleration = Mathf.Max(0f, acceleration);
+            deceleration = Mathf.Max(0f, deceleration);
+            stopDeceleration = Mathf.Max(0f, stopDeceleration);
+            directionChangeAcceleration = Mathf.Max(0f, directionChangeAcceleration);
+            var currentSpeed = currentPlanarVelocity.magnitude;
+            var targetSpeed = targetPlanarVelocity.magnitude;
+            if (targetSpeed <= 0.0001f)
+            {
+                return stopDeceleration;
+            }
+
+            if (currentSpeed <= 0.0001f)
+            {
+                return acceleration;
+            }
+
+            var alignment = Vector3.Dot(
+                currentPlanarVelocity / currentSpeed,
+                targetPlanarVelocity / targetSpeed);
+            var baseRate = targetSpeed < currentSpeed ? deceleration : acceleration;
+            var directionChangeWeight = 1f - Mathf.InverseLerp(0.35f, 0.95f, alignment);
+            return Mathf.Lerp(baseRate, directionChangeAcceleration, directionChangeWeight);
+        }
+
+        public static float SelectTurnSpeed(
+            float planarSpeed,
+            float normalSpeed,
+            float sprintSpeed,
+            float normalTurnSpeed,
+            float sprintTurnSpeed)
+        {
+            var speedRange = Mathf.Max(0.01f, sprintSpeed - normalSpeed);
+            var sprintWeight = Mathf.Clamp01((planarSpeed - normalSpeed) / speedRange);
+            return Mathf.Lerp(
+                Mathf.Max(0f, normalTurnSpeed),
+                Mathf.Max(0f, sprintTurnSpeed),
+                sprintWeight);
         }
     }
 

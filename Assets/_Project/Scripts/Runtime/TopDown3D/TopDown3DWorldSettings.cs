@@ -10,60 +10,64 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(4f)] private float chunkSize = 18f;
         [SerializeField, Range(2, 64)] private int quadsPerAxis = 24;
         [SerializeField, Range(1, 7)] private int streamingRadius = 7;
+        [SerializeField, Range(1, 7)] private int decorationStreamingRadius = 3;
         [SerializeField, Range(1, 4)] private int immediateLoadRadius = 2;
         [SerializeField, Range(1, 8)] private int chunksBuiltPerFrame = 2;
         [SerializeField, Range(0, 3)] private int unloadPadding = 1;
+        [Header("Geological World")]
+        [SerializeField, Min(1)] private int terrainGenerationVersion = 3;
+        [SerializeField] private TopDown3DGeologyProfile geologyProfile = new TopDown3DGeologyProfile();
         [SerializeField] private float baseHeight;
-        [SerializeField, Min(0f)] private float heightAmplitude = 2.1f;
-        [SerializeField, Min(0.0001f)] private float noiseFrequency = 0.028f;
-        [SerializeField, Range(1, 6)] private int noiseOctaves = 3;
-        [SerializeField, Min(1f)] private float noiseLacunarity = 2f;
-        [SerializeField, Range(0.05f, 0.95f)] private float noisePersistence = 0.5f;
-        [Header("Craggy Escarpments")]
-        [SerializeField] private bool generateEscarpments = true;
-        [SerializeField, Min(1)] private int escarpmentGenerationVersion = 1;
-        [SerializeField, Min(24f)] private float escarpmentRegionSize = 54f;
-        [SerializeField, Range(0f, 1f)] private float escarpmentRegionChance = 0.48f;
-        [SerializeField, Min(2f)] private float escarpmentMinimumRadius = 7.5f;
-        [SerializeField, Min(3f)] private float escarpmentMaximumRadius = 13.5f;
-        [SerializeField, Range(0.25f, 0.75f)] private float escarpmentMinimumHeight = 0.48f;
-        [SerializeField, Range(0.3f, 0.8f)] private float escarpmentMaximumHeight = 0.66f;
-        [SerializeField, Range(0.35f, 1.5f)] private float escarpmentEdgeWidth = 0.92f;
-        [SerializeField, Range(0f, 0.3f)] private float cragReliefAmplitude = 0.12f;
-        [SerializeField, Min(0.01f)] private float cragReliefFrequency = 0.12f;
-        [SerializeField, Range(16, 64)] private int escarpmentFaceSegments = 40;
-        [SerializeField, Range(1, 6)] private int escarpmentColliderSegmentsPerRun = 3;
-        [SerializeField, Range(0, 12)] private int propsPerChunk = 4;
+        [SerializeField, Range(0f, 4f)] private float propsPerChunk = 1.7f;
         [Header("Natural Objects")]
         [SerializeField] private TopDown3DNaturalObjectCatalog naturalObjectCatalog;
-        [SerializeField, Min(1)] private int naturalObjectGenerationVersion = 2;
-        [SerializeField, Min(1)] private int physicalRockGenerationVersion = 1;
+        [SerializeField, Min(1)] private int naturalObjectGenerationVersion = 3;
+        [SerializeField, Min(1)] private int physicalRockGenerationVersion = 7;
+        [Header("Interactive Resources")]
+        [SerializeField] private TopDown3DResourceCatalog resourceCatalog;
+        [SerializeField, Min(1)] private int resourceGenerationVersion = 1;
         [SerializeField, Range(0, 64)] private int scatterObjectsPerChunk = 22;
         [SerializeField, Range(0, 160)] private int groundDetailsPerChunk = 72;
-        [SerializeField, Min(0.0001f)] private float clutterClusterFrequency = 0.035f;
-        [SerializeField, Range(0f, 1f)] private float clutterClusterStrength = 0.7f;
-        [SerializeField, Min(0.0001f)] private float rockAbundanceFrequency = 0.018f;
-        [SerializeField, Range(0f, 1f)] private float rockAbundanceStrength = 0.95f;
+        [SerializeField, Min(0.0001f)] private float clutterClusterFrequency = 0.08f;
+        [SerializeField, Range(0f, 1f)] private float clutterClusterStrength = 0.9f;
+        [SerializeField, Min(0.0001f)] private float rockAbundanceFrequency = 0.035f;
+        [SerializeField, Range(0f, 1f)] private float rockAbundanceStrength = 1f;
+        [SerializeField, Range(0f, 8f)] private float smallRocksPerChunk = 2.4f;
+        [SerializeField, Min(0f)] private float smallRockSpacing = 0.2f;
+        [SerializeField, Range(1f, 60f)] private float maximumSmallRockSlope = 44f;
+        [SerializeField, Range(0f, 6f)] private float mediumRocksPerChunk = 1.9f;
+        [SerializeField, Min(0f)] private float mediumRockSpacing = 0.4f;
+        [SerializeField, Range(1f, 60f)] private float maximumMediumRockSlope = 42f;
+        [SerializeField, Range(0f, 2f)] private float extraLargeRocksPerChunk = 0.86f;
+        [SerializeField, Min(0f)] private float extraLargeRockSpacing = 3f;
+        [SerializeField, Range(1f, 60f)] private float maximumExtraLargeRockSlope = 35f;
         [FormerlySerializedAs("obstacleFormationChance")]
-        [SerializeField, Range(0f, 1f)] private float largeToLargeChance = 0.32f;
-        [SerializeField, Range(0f, 1f)] private float largeContinuationDecay = 0.5f;
+        [FormerlySerializedAs("largeToLargeChance")]
+        [SerializeField, Range(0f, 1f)] private float largeToMediumChance = 0.84f;
+        [FormerlySerializedAs("largeContinuationDecay")]
+        [SerializeField, Range(0f, 1f)] private float additionalChildChanceMultiplier = 0.7f;
+        [SerializeField, Range(1, 3)] private int formationMaximumChildrenPerParent = 3;
         [FormerlySerializedAs("obstacleFormationMaximumMembers")]
-        [SerializeField, Range(1, 8)] private int physicalFormationMaximumMembers = 5;
-        [SerializeField, Range(0, 8)] private int physicalFormationMaximumDepth = 4;
-        [SerializeField, Range(0f, 0.2f)] private float formationContactInset = 0.05f;
-        [SerializeField, Range(0f, 0.5f)] private float massiveRocksPerChunk = 0.14f;
+        [SerializeField, Range(1, 16)] private int physicalFormationMaximumMembers = 12;
+        [SerializeField, Range(0, 8)] private int physicalFormationMaximumDepth = 5;
+        [SerializeField, Range(0.15f, 0.85f)] private float formationMinimumParentDistanceRatio = 0.32f;
+        [SerializeField, Range(0.55f, 1f)] private float formationMaximumParentDistanceRatio = 0.96f;
+        [SerializeField, Range(0f, 0.5f)] private float massiveRocksPerChunk = 0.42f;
         [SerializeField, Min(0f)] private float massiveRockSpacing = 5.5f;
         [SerializeField, Range(1f, 60f)] private float maximumMassiveRockSlope = 32f;
-        [SerializeField, Range(0f, 1f)] private float toweringToMassiveChance = 0.65f;
-        [SerializeField, Range(0f, 1f)] private float massiveToLargeChance = 0.7f;
-        [SerializeField, Range(0f, 0.25f)] private float landmarksPerChunk = 0.03f;
+        [SerializeField, Range(0f, 1f)] private float toweringToMassiveChance = 0.92f;
+        [FormerlySerializedAs("massiveToLargeChance")]
+        [SerializeField, Range(0f, 1f)] private float massiveToExtraLargeChance = 0.88f;
+        [SerializeField, Range(0f, 1f)] private float extraLargeToLargeChance = 0.86f;
+        [SerializeField, Range(0f, 1f)] private float mediumToSmallChance = 0.78f;
+        [SerializeField, Range(0f, 0.25f)] private float landmarksPerChunk = 0.19f;
         [SerializeField, Min(0f)] private float landmarkSpacing = 8f;
         [SerializeField, Range(1f, 60f)] private float maximumLandmarkSlope = 28f;
         [SerializeField, Min(0f)] private float scatterSpacing = 0.18f;
         [SerializeField, Min(0f)] private float groundDetailSpacing = 0.04f;
         [SerializeField] private Material fineGrayClutterMaterial;
         [SerializeField, Range(0, 240)] private int fineGrayClutterPerChunk = 156;
-        [SerializeField, Min(0.0001f)] private float fineGrayClusterFrequency = 0.065f;
+        [SerializeField, Min(0.0001f)] private float fineGrayClusterFrequency = 0.12f;
         [SerializeField, Range(0f, 1f)] private float fineGrayClusterStrength = 1f;
         [SerializeField, Min(0f)] private float fineGrayClutterSpacing = 0.006f;
         [Header("Rock Surface Clusters")]
@@ -100,48 +104,48 @@ namespace BooterBigArm.TopDown3D
         public float ChunkSize => chunkSize;
         public int QuadsPerAxis => quadsPerAxis;
         public int StreamingRadius => streamingRadius;
+        public int DecorationStreamingRadius => decorationStreamingRadius;
         public int ImmediateLoadRadius => immediateLoadRadius;
         public int ChunksBuiltPerFrame => chunksBuiltPerFrame;
         public int UnloadPadding => unloadPadding;
+        public int TerrainGenerationVersion => terrainGenerationVersion;
+        public TopDown3DGeologyProfile GeologyProfile => geologyProfile;
         public float BaseHeight => baseHeight;
-        public float HeightAmplitude => heightAmplitude;
-        public float NoiseFrequency => noiseFrequency;
-        public int NoiseOctaves => noiseOctaves;
-        public float NoiseLacunarity => noiseLacunarity;
-        public float NoisePersistence => noisePersistence;
-        public bool GenerateEscarpments => generateEscarpments;
-        public int EscarpmentGenerationVersion => escarpmentGenerationVersion;
-        public float EscarpmentRegionSize => escarpmentRegionSize;
-        public float EscarpmentRegionChance => escarpmentRegionChance;
-        public float EscarpmentMinimumRadius => escarpmentMinimumRadius;
-        public float EscarpmentMaximumRadius => escarpmentMaximumRadius;
-        public float EscarpmentMinimumHeight => escarpmentMinimumHeight;
-        public float EscarpmentMaximumHeight => escarpmentMaximumHeight;
-        public float EscarpmentEdgeWidth => escarpmentEdgeWidth;
-        public float CragReliefAmplitude => cragReliefAmplitude;
-        public float CragReliefFrequency => cragReliefFrequency;
-        public int EscarpmentFaceSegments => escarpmentFaceSegments;
-        public int EscarpmentColliderSegmentsPerRun => escarpmentColliderSegmentsPerRun;
-        public int PropsPerChunk => propsPerChunk;
+        public float PropsPerChunk => propsPerChunk;
         public TopDown3DNaturalObjectCatalog NaturalObjectCatalog => naturalObjectCatalog;
         public int NaturalObjectGenerationVersion => naturalObjectGenerationVersion;
         public int PhysicalRockGenerationVersion => physicalRockGenerationVersion;
+        public TopDown3DResourceCatalog ResourceCatalog => resourceCatalog;
+        public int ResourceGenerationVersion => resourceGenerationVersion;
         public int ScatterObjectsPerChunk => scatterObjectsPerChunk;
         public int GroundDetailsPerChunk => groundDetailsPerChunk;
         public float ClutterClusterFrequency => clutterClusterFrequency;
         public float ClutterClusterStrength => clutterClusterStrength;
         public float RockAbundanceFrequency => rockAbundanceFrequency;
         public float RockAbundanceStrength => rockAbundanceStrength;
-        public float LargeToLargeChance => largeToLargeChance;
-        public float LargeContinuationDecay => largeContinuationDecay;
+        public float SmallRocksPerChunk => smallRocksPerChunk;
+        public float SmallRockSpacing => smallRockSpacing;
+        public float MaximumSmallRockSlope => maximumSmallRockSlope;
+        public float MediumRocksPerChunk => mediumRocksPerChunk;
+        public float MediumRockSpacing => mediumRockSpacing;
+        public float MaximumMediumRockSlope => maximumMediumRockSlope;
+        public float ExtraLargeRocksPerChunk => extraLargeRocksPerChunk;
+        public float ExtraLargeRockSpacing => extraLargeRockSpacing;
+        public float MaximumExtraLargeRockSlope => maximumExtraLargeRockSlope;
+        public float LargeToMediumChance => largeToMediumChance;
+        public float AdditionalChildChanceMultiplier => additionalChildChanceMultiplier;
+        public int FormationMaximumChildrenPerParent => formationMaximumChildrenPerParent;
         public int PhysicalFormationMaximumMembers => physicalFormationMaximumMembers;
         public int PhysicalFormationMaximumDepth => physicalFormationMaximumDepth;
-        public float FormationContactInset => formationContactInset;
+        public float FormationMinimumParentDistanceRatio => formationMinimumParentDistanceRatio;
+        public float FormationMaximumParentDistanceRatio => formationMaximumParentDistanceRatio;
         public float MassiveRocksPerChunk => massiveRocksPerChunk;
         public float MassiveRockSpacing => massiveRockSpacing;
         public float MaximumMassiveRockSlope => maximumMassiveRockSlope;
         public float ToweringToMassiveChance => toweringToMassiveChance;
-        public float MassiveToLargeChance => massiveToLargeChance;
+        public float MassiveToExtraLargeChance => massiveToExtraLargeChance;
+        public float ExtraLargeToLargeChance => extraLargeToLargeChance;
+        public float MediumToSmallChance => mediumToSmallChance;
         public float LandmarksPerChunk => landmarksPerChunk;
         public float LandmarkSpacing => landmarkSpacing;
         public float MaximumLandmarkSlope => maximumLandmarkSlope;
@@ -192,52 +196,64 @@ namespace BooterBigArm.TopDown3D
             tealRockMaterial = tealSurfaceMaterial;
         }
 
+        public void ConfigureResourceAssets(
+            TopDown3DResourceCatalog catalog,
+            int generationVersion = 1)
+        {
+            resourceCatalog = catalog;
+            resourceGenerationVersion = Mathf.Max(1, generationVersion);
+        }
+
         private void OnValidate()
         {
             chunkSize = Mathf.Max(4f, chunkSize);
             quadsPerAxis = Mathf.Clamp(quadsPerAxis, 2, 64);
             streamingRadius = Mathf.Clamp(streamingRadius, 1, 7);
+            decorationStreamingRadius = Mathf.Clamp(decorationStreamingRadius, 1, streamingRadius);
             immediateLoadRadius = Mathf.Clamp(immediateLoadRadius, 1, streamingRadius);
             chunksBuiltPerFrame = Mathf.Clamp(chunksBuiltPerFrame, 1, 8);
             unloadPadding = Mathf.Clamp(unloadPadding, 0, 3);
-            noiseFrequency = Mathf.Max(0.0001f, noiseFrequency);
-            noiseOctaves = Mathf.Clamp(noiseOctaves, 1, 6);
-            noiseLacunarity = Mathf.Max(1f, noiseLacunarity);
-            noisePersistence = Mathf.Clamp(noisePersistence, 0.05f, 0.95f);
-            escarpmentGenerationVersion = Mathf.Max(1, escarpmentGenerationVersion);
-            escarpmentRegionSize = Mathf.Max(24f, escarpmentRegionSize);
-            escarpmentRegionChance = Mathf.Clamp01(escarpmentRegionChance);
-            escarpmentMinimumRadius = Mathf.Max(2f, escarpmentMinimumRadius);
-            escarpmentMaximumRadius = Mathf.Max(escarpmentMinimumRadius, escarpmentMaximumRadius);
-            escarpmentMinimumHeight = Mathf.Clamp(escarpmentMinimumHeight, 0.25f, 0.75f);
-            escarpmentMaximumHeight = Mathf.Clamp(
-                escarpmentMaximumHeight,
-                escarpmentMinimumHeight,
-                0.8f);
-            escarpmentEdgeWidth = Mathf.Clamp(escarpmentEdgeWidth, 0.35f, 1.5f);
-            cragReliefAmplitude = Mathf.Clamp(cragReliefAmplitude, 0f, 0.3f);
-            cragReliefFrequency = Mathf.Max(0.01f, cragReliefFrequency);
-            escarpmentFaceSegments = Mathf.Clamp(escarpmentFaceSegments, 16, 64);
-            escarpmentColliderSegmentsPerRun = Mathf.Clamp(escarpmentColliderSegmentsPerRun, 1, 6);
-            propsPerChunk = Mathf.Clamp(propsPerChunk, 0, 12);
+            terrainGenerationVersion = Mathf.Max(1, terrainGenerationVersion);
+            geologyProfile ??= new TopDown3DGeologyProfile();
+            propsPerChunk = Mathf.Clamp(propsPerChunk, 0f, 4f);
             naturalObjectGenerationVersion = Mathf.Max(1, naturalObjectGenerationVersion);
             physicalRockGenerationVersion = Mathf.Max(1, physicalRockGenerationVersion);
+            resourceGenerationVersion = Mathf.Max(1, resourceGenerationVersion);
             scatterObjectsPerChunk = Mathf.Clamp(scatterObjectsPerChunk, 0, 64);
             groundDetailsPerChunk = Mathf.Clamp(groundDetailsPerChunk, 0, 160);
             clutterClusterFrequency = Mathf.Max(0.0001f, clutterClusterFrequency);
             clutterClusterStrength = Mathf.Clamp01(clutterClusterStrength);
             rockAbundanceFrequency = Mathf.Max(0.0001f, rockAbundanceFrequency);
             rockAbundanceStrength = Mathf.Clamp01(rockAbundanceStrength);
-            largeToLargeChance = Mathf.Clamp01(largeToLargeChance);
-            largeContinuationDecay = Mathf.Clamp01(largeContinuationDecay);
-            physicalFormationMaximumMembers = Mathf.Clamp(physicalFormationMaximumMembers, 1, 8);
+            smallRocksPerChunk = Mathf.Clamp(smallRocksPerChunk, 0f, 8f);
+            smallRockSpacing = Mathf.Max(0f, smallRockSpacing);
+            maximumSmallRockSlope = Mathf.Clamp(maximumSmallRockSlope, 1f, 60f);
+            mediumRocksPerChunk = Mathf.Clamp(mediumRocksPerChunk, 0f, 6f);
+            mediumRockSpacing = Mathf.Max(0f, mediumRockSpacing);
+            maximumMediumRockSlope = Mathf.Clamp(maximumMediumRockSlope, 1f, 60f);
+            extraLargeRocksPerChunk = Mathf.Clamp(extraLargeRocksPerChunk, 0f, 2f);
+            extraLargeRockSpacing = Mathf.Max(0f, extraLargeRockSpacing);
+            maximumExtraLargeRockSlope = Mathf.Clamp(maximumExtraLargeRockSlope, 1f, 60f);
+            largeToMediumChance = Mathf.Clamp01(largeToMediumChance);
+            additionalChildChanceMultiplier = Mathf.Clamp01(additionalChildChanceMultiplier);
+            formationMaximumChildrenPerParent = Mathf.Clamp(formationMaximumChildrenPerParent, 1, 3);
+            physicalFormationMaximumMembers = Mathf.Clamp(physicalFormationMaximumMembers, 1, 16);
             physicalFormationMaximumDepth = Mathf.Clamp(physicalFormationMaximumDepth, 0, 8);
-            formationContactInset = Mathf.Clamp(formationContactInset, 0f, 0.2f);
+            formationMinimumParentDistanceRatio = Mathf.Clamp(
+                formationMinimumParentDistanceRatio,
+                0.15f,
+                0.85f);
+            formationMaximumParentDistanceRatio = Mathf.Clamp(
+                formationMaximumParentDistanceRatio,
+                Mathf.Max(0.55f, formationMinimumParentDistanceRatio),
+                1f);
             massiveRocksPerChunk = Mathf.Clamp(massiveRocksPerChunk, 0f, 0.5f);
             massiveRockSpacing = Mathf.Max(0f, massiveRockSpacing);
             maximumMassiveRockSlope = Mathf.Clamp(maximumMassiveRockSlope, 1f, 60f);
             toweringToMassiveChance = Mathf.Clamp01(toweringToMassiveChance);
-            massiveToLargeChance = Mathf.Clamp01(massiveToLargeChance);
+            massiveToExtraLargeChance = Mathf.Clamp01(massiveToExtraLargeChance);
+            extraLargeToLargeChance = Mathf.Clamp01(extraLargeToLargeChance);
+            mediumToSmallChance = Mathf.Clamp01(mediumToSmallChance);
             landmarksPerChunk = Mathf.Clamp(landmarksPerChunk, 0f, 0.25f);
             landmarkSpacing = Mathf.Max(0f, landmarkSpacing);
             maximumLandmarkSlope = Mathf.Clamp(maximumLandmarkSlope, 1f, 60f);

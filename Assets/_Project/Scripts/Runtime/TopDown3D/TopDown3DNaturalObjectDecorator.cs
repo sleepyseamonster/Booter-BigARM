@@ -11,34 +11,26 @@ namespace BooterBigArm.TopDown3D
 
         private static readonly ProfilerMarker DecorateMarker =
             new ProfilerMarker("TopDown3D.World.DecorateNaturalObjects");
-        private static readonly ProfilerMarker PlanMarker =
-            new ProfilerMarker("TopDown3D.World.PlanNaturalObjects");
         private static readonly ProfilerMarker BuildFormationMarker =
-            new ProfilerMarker("TopDown3D.World.BuildRockFormation");
+            new ProfilerMarker("TopDown3D.World.PrepareRockFormation");
         private static readonly ProfilerMarker BuildCombinedLayerMarker =
             new ProfilerMarker("TopDown3D.World.BuildCombinedNaturalLayer");
 
-        public static void Decorate(
+        internal static void Decorate(
             TopDown3DGeneratedChunk chunk,
             TopDown3DWorldSettings settings,
             Material material,
-            Vector2 spawnExclusionCenter)
+            TopDown3DNaturalObjectChunkPlan plan)
         {
             using (DecorateMarker.Auto())
             {
-                if (chunk == null || settings == null || material == null || settings.NaturalObjectCatalog == null)
+                if (chunk == null
+                    || settings == null
+                    || material == null
+                    || plan == null
+                    || settings.NaturalObjectCatalog == null)
                 {
                     return;
-                }
-
-                TopDown3DNaturalObjectChunkPlan plan;
-                using (PlanMarker.Auto())
-                {
-                    plan = TopDown3DNaturalObjectPlanner.BuildChunkPlan(
-                        settings,
-                        settings.NaturalObjectCatalog,
-                        chunk.Coordinate,
-                        spawnExclusionCenter);
                 }
 
                 var scatter = CreateSurfaceBuckets((settings.ScatterObjectsPerChunk + 2) / 3);
@@ -67,6 +59,7 @@ namespace BooterBigArm.TopDown3D
                     var formation = plan.PhysicalFormations[i];
                     CreateFormation(
                         chunk,
+                        settings.NaturalObjectCatalog,
                         ResolveRockMaterial(settings, material, formation.Surface),
                         formation,
                         i + 1);
@@ -79,12 +72,14 @@ namespace BooterBigArm.TopDown3D
                     var surfaceName = GetSurfaceName(surface);
                     CreateCombinedLayer(
                         chunk,
+                        settings.NaturalObjectCatalog,
                         surfaceMaterial,
                         scatter[surfaceIndex],
                         $"Natural Scatter - {surfaceName}",
                         ShadowCastingMode.On);
                     CreateCombinedLayer(
                         chunk,
+                        settings.NaturalObjectCatalog,
                         surfaceMaterial,
                         details[surfaceIndex],
                         $"Ground Micro Detail - {surfaceName}",
@@ -93,6 +88,7 @@ namespace BooterBigArm.TopDown3D
 
                 CreateCombinedLayer(
                     chunk,
+                    settings.NaturalObjectCatalog,
                     settings.FineGrayClutterMaterial,
                     fineGrayClusters,
                     "Fine Gray Ground Clusters",
@@ -102,6 +98,7 @@ namespace BooterBigArm.TopDown3D
 
         private static void CreateFormation(
             TopDown3DGeneratedChunk chunk,
+            TopDown3DNaturalObjectCatalog catalog,
             Material material,
             TopDown3DRockFormationPlan formation,
             int index)
@@ -113,97 +110,131 @@ namespace BooterBigArm.TopDown3D
                     return;
                 }
 
-                var rootMember = formation.Members[0];
-                var typeName = rootMember.Tier == TopDown3DRockSizeTier.Towering
-                    ? "Towering Rock Formation"
-                    : rootMember.Tier == TopDown3DRockSizeTier.Massive
-                        ? "Massive Rock Formation"
-                        : "Large Rock Formation";
-                var root = new GameObject($"{typeName} {index} - {formation.StableId}");
-                root.transform.SetParent(chunk.transform, true);
-                root.transform.SetPositionAndRotation(rootMember.Position, rootMember.Rotation);
+                var root = new GameObject(
+                    $"{GetTierName(formation.Members[0].Tier)} Rock Formation {index} - {formation.StableId}");
+                root.transform.SetParent(chunk.DecorationRoot, false);
+                for (var memberIndex = 0; memberIndex < formation.Members.Count; memberIndex++)
+                {
+                    var member = formation.Members[memberIndex];
+                    var memberObject = new GameObject($"Rock {member.MemberIndex} - {member.StableId}");
+                    memberObject.transform.SetParent(root.transform, true);
+                    memberObject.transform.SetPositionAndRotation(member.Position, member.Rotation);
+                    memberObject.transform.localScale = member.Scale;
+                    var family = catalog.GetRequiredMeshFamily(
+                        member.Shape,
+                        member.Variant);
+                    var collider = memberObject.AddComponent<BoxCollider>();
+                    collider.center = family.ColliderCenter;
+                    collider.size = family.ColliderSize;
+                }
 
-                var mesh = BuildFormationMesh(formation, root.transform.worldToLocalMatrix, typeName);
-                chunk.RegisterGeneratedMesh(mesh);
-                root.AddComponent<MeshFilter>().sharedMesh = mesh;
-                var renderer = root.AddComponent<MeshRenderer>();
+                CreateFormationLods(chunk, root, catalog, material, formation);
+                root.AddComponent<TopDown3DTraversalObstacle>();
+            }
+        }
+
+        private static void CreateFormationLods(
+            TopDown3DGeneratedChunk chunk,
+            GameObject root,
+            TopDown3DNaturalObjectCatalog catalog,
+            Material material,
+            TopDown3DRockFormationPlan formation)
+        {
+            var renderers = new Renderer[3];
+            var lod0ScreenHeight = 0f;
+            var lod1ScreenHeight = 0f;
+            var lod2ScreenHeight = 0f;
+            var worldToRoot = root.transform.worldToLocalMatrix;
+            for (var lodIndex = 0; lodIndex < renderers.Length; lodIndex++)
+            {
+                var combines = new CombineInstance[formation.Members.Count];
+                var vertexCount = 0;
+                for (var memberIndex = 0; memberIndex < formation.Members.Count; memberIndex++)
+                {
+                    var member = formation.Members[memberIndex];
+                    var family = catalog.GetRequiredMeshFamily(member.Shape, member.Variant);
+                    var sourceMesh = family.GetLod(lodIndex);
+                    vertexCount += sourceMesh.vertexCount;
+                    combines[memberIndex] = new CombineInstance
+                    {
+                        mesh = sourceMesh,
+                        transform = worldToRoot * Matrix4x4.TRS(
+                            member.Position,
+                            member.Rotation,
+                            member.Scale)
+                    };
+                    lod0ScreenHeight = Mathf.Max(lod0ScreenHeight, family.Lod0ScreenHeight);
+                    lod1ScreenHeight = Mathf.Max(lod1ScreenHeight, family.Lod1ScreenHeight);
+                    lod2ScreenHeight = Mathf.Max(lod2ScreenHeight, family.Lod2ScreenHeight);
+                }
+
+                var mesh = new Mesh { name = $"{root.name} LOD{lodIndex}" };
+                if (vertexCount > ushort.MaxValue)
+                {
+                    mesh.indexFormat = IndexFormat.UInt32;
+                }
+
+                mesh.CombineMeshes(combines, true, true, false);
+                chunk.RegisterDecorationMesh(mesh);
+
+                var lodObject = new GameObject($"LOD{lodIndex}");
+                lodObject.transform.SetParent(root.transform, false);
+                lodObject.AddComponent<MeshFilter>().sharedMesh = mesh;
+                var renderer = lodObject.AddComponent<MeshRenderer>();
                 renderer.sharedMaterial = material;
                 renderer.shadowCastingMode = ShadowCastingMode.On;
                 renderer.receiveShadows = true;
-
-                AddRootCollider(root, rootMember);
-                for (var memberIndex = 1; memberIndex < formation.Members.Count; memberIndex++)
-                {
-                    AddChildCollider(root.transform, formation.Members[memberIndex]);
-                }
-
-                root.AddComponent<TopDown3DTraversalObstacle>();
-                ReleaseRuntimeCpuMeshData(mesh);
+                renderers[lodIndex] = renderer;
             }
-        }
 
-        private static void AddRootCollider(
-            GameObject root,
-            TopDown3DRockFormationMember member)
-        {
-            var sourceBounds = TopDown3DNaturalMeshLibrary.GetMesh(
-                member.Shape,
-                member.Variant).bounds;
-            var collider = root.AddComponent<BoxCollider>();
-            collider.center = Vector3.Scale(sourceBounds.center, member.Scale);
-            collider.size = Vector3.Scale(sourceBounds.size, Abs(member.Scale));
-        }
-
-        private static void AddChildCollider(
-            Transform root,
-            TopDown3DRockFormationMember member)
-        {
-            var child = new GameObject($"Rock Collider {member.MemberIndex} - {member.StableId}");
-            child.transform.SetParent(root, true);
-            child.transform.SetPositionAndRotation(member.Position, member.Rotation);
-            child.transform.localScale = member.Scale;
-            var sourceBounds = TopDown3DNaturalMeshLibrary.GetMesh(
-                member.Shape,
-                member.Variant).bounds;
-            var collider = child.AddComponent<BoxCollider>();
-            collider.center = sourceBounds.center;
-            collider.size = sourceBounds.size;
-        }
-
-        private static Mesh BuildFormationMesh(
-            TopDown3DRockFormationPlan formation,
-            Matrix4x4 worldToRoot,
-            string typeName)
-        {
-            GetFormationMeshCounts(formation, out var vertexCount, out var triangleCount);
-            var vertices = new List<Vector3>(vertexCount);
-            var normals = new List<Vector3>(vertexCount);
-            var triangles = new List<int>(triangleCount);
-            for (var i = 0; i < formation.Members.Count; i++)
+            lod1ScreenHeight = Mathf.Min(lod1ScreenHeight, lod0ScreenHeight - 0.001f);
+            lod2ScreenHeight = Mathf.Min(lod2ScreenHeight, lod1ScreenHeight - 0.001f);
+            var lodGroup = root.AddComponent<LODGroup>();
+            lodGroup.SetLODs(new[]
             {
-                var member = formation.Members[i];
-                AppendMesh(
-                    TopDown3DNaturalMeshLibrary.GetData(member.Shape, member.Variant),
-                    worldToRoot * Matrix4x4.TRS(
-                        member.Position,
-                        member.Rotation,
-                        member.Scale),
-                    vertices,
-                    normals,
-                    triangles);
-            }
-
-            var mesh = new Mesh { name = $"{typeName} - {formation.StableId}" };
-            if (vertices.Count > ushort.MaxValue)
+                new LOD(lod0ScreenHeight, new[] { renderers[0] }),
+                new LOD(lod1ScreenHeight, new[] { renderers[1] }),
+                new LOD(lod2ScreenHeight, new[] { renderers[2] })
+            });
+            lodGroup.RecalculateBounds();
+            for (var i = 0; i < renderers.Length; i++)
             {
-                mesh.indexFormat = IndexFormat.UInt32;
+                ReleaseRuntimeCpuMeshData(renderers[i].GetComponent<MeshFilter>().sharedMesh);
+            }
+        }
+
+        internal static Renderer[] CreateMemberLods(
+            GameObject memberObject,
+            TopDown3DNaturalMeshFamily family,
+            Material material)
+        {
+            var renderers = new Renderer[3];
+            for (var lodIndex = 0; lodIndex < renderers.Length; lodIndex++)
+            {
+                var lodObject = new GameObject($"LOD{lodIndex}");
+                lodObject.transform.SetParent(memberObject.transform, false);
+                lodObject.AddComponent<MeshFilter>().sharedMesh = family.GetLod(lodIndex);
+                var renderer = lodObject.AddComponent<MeshRenderer>();
+                renderer.sharedMaterial = material;
+                renderer.shadowCastingMode = ShadowCastingMode.On;
+                renderer.receiveShadows = true;
+                renderers[lodIndex] = renderer;
             }
 
-            mesh.SetVertices(vertices);
-            mesh.SetNormals(normals);
-            mesh.SetTriangles(triangles, 0, true);
-            mesh.RecalculateBounds();
-            return mesh;
+            var lodGroup = memberObject.AddComponent<LODGroup>();
+            lodGroup.SetLODs(new[]
+            {
+                new LOD(family.Lod0ScreenHeight, new[] { renderers[0] }),
+                new LOD(family.Lod1ScreenHeight, new[] { renderers[1] }),
+                new LOD(family.Lod2ScreenHeight, new[] { renderers[2] })
+            });
+            lodGroup.RecalculateBounds();
+            return renderers;
+        }
+
+        private static string GetTierName(TopDown3DRockSizeTier tier)
+        {
+            return tier == TopDown3DRockSizeTier.ExtraLarge ? "Extra Large" : tier.ToString();
         }
 
         private static List<TopDown3DNaturalObjectPlacement>[] CreateSurfaceBuckets(int capacityPerBucket)
@@ -246,13 +277,8 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
-        private static Vector3 Abs(Vector3 value)
-        {
-            return new Vector3(Mathf.Abs(value.x), Mathf.Abs(value.y), Mathf.Abs(value.z));
-        }
-
         private static void AppendMesh(
-            TopDown3DNaturalMeshLibrary.MeshData source,
+            TopDown3DNaturalMeshData source,
             Matrix4x4 matrix,
             List<Vector3> vertices,
             List<Vector3> normals,
@@ -274,6 +300,7 @@ namespace BooterBigArm.TopDown3D
 
         private static void CreateCombinedLayer(
             TopDown3DGeneratedChunk chunk,
+            TopDown3DNaturalObjectCatalog catalog,
             Material material,
             IReadOnlyList<TopDown3DNaturalObjectPlacement> placements,
             string name,
@@ -286,7 +313,7 @@ namespace BooterBigArm.TopDown3D
                     return;
                 }
 
-                GetPlacementMeshCounts(placements, out var vertexCount, out var triangleCount);
+                GetPlacementMeshCounts(catalog, placements, out var vertexCount, out var triangleCount);
                 var vertices = new List<Vector3>(vertexCount);
                 var normals = new List<Vector3>(vertexCount);
                 var triangles = new List<int>(triangleCount);
@@ -295,7 +322,7 @@ namespace BooterBigArm.TopDown3D
                 {
                     var placement = placements[i];
                     AppendMesh(
-                        TopDown3DNaturalMeshLibrary.GetData(placement.Shape, placement.Variant),
+                        catalog.GetRequiredLod0Data(placement.Shape, placement.Variant),
                         worldToChunk * Matrix4x4.TRS(
                             placement.Position,
                             placement.Rotation,
@@ -315,10 +342,10 @@ namespace BooterBigArm.TopDown3D
                 mesh.SetNormals(normals);
                 mesh.SetTriangles(triangles, 0, true);
                 mesh.RecalculateBounds();
-                chunk.RegisterGeneratedMesh(mesh);
+                chunk.RegisterDecorationMesh(mesh);
 
                 var layerObject = new GameObject(name);
-                layerObject.transform.SetParent(chunk.transform, false);
+                layerObject.transform.SetParent(chunk.DecorationRoot, false);
                 layerObject.AddComponent<MeshFilter>().sharedMesh = mesh;
                 var renderer = layerObject.AddComponent<MeshRenderer>();
                 renderer.sharedMaterial = material;
@@ -328,23 +355,8 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
-        private static void GetFormationMeshCounts(
-            TopDown3DRockFormationPlan formation,
-            out int vertexCount,
-            out int triangleCount)
-        {
-            vertexCount = 0;
-            triangleCount = 0;
-            for (var i = 0; i < formation.Members.Count; i++)
-            {
-                var member = formation.Members[i];
-                var data = TopDown3DNaturalMeshLibrary.GetData(member.Shape, member.Variant);
-                vertexCount += data.Vertices.Length;
-                triangleCount += data.Triangles.Length;
-            }
-        }
-
         private static void GetPlacementMeshCounts(
+            TopDown3DNaturalObjectCatalog catalog,
             IReadOnlyList<TopDown3DNaturalObjectPlacement> placements,
             out int vertexCount,
             out int triangleCount)
@@ -354,7 +366,7 @@ namespace BooterBigArm.TopDown3D
             for (var i = 0; i < placements.Count; i++)
             {
                 var placement = placements[i];
-                var data = TopDown3DNaturalMeshLibrary.GetData(placement.Shape, placement.Variant);
+                var data = catalog.GetRequiredLod0Data(placement.Shape, placement.Variant);
                 vertexCount += data.Vertices.Length;
                 triangleCount += data.Triangles.Length;
             }

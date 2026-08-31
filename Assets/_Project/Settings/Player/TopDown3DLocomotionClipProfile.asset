@@ -1,0 +1,205 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c7b364a6164d3eb85a0d27a183e1c9, type: 3}
+  m_Name: TopDown3DLocomotionClipProfile
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DLocomotionClipProfile
+  clips:
+  - role: 0
+    clip: {fileID: 8993902097722301239, guid: 5e2801555eb2d1f449bb2ad66c467a8e, type: 3}
+    nominalForwardSpeed: 0
+    nominalLateralSpeed: 0
+    looping: 1
+    leftContactPhases: []
+    rightContactPhases: []
+    plantedFoot: 0
+    plantTime: 0
+    releaseTime: 1
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [8, 9]
+    preferredExitRoles: [6, 7]
+    intentionalMirror: 0
+  - role: 1
+    clip: {fileID: 8993902097722301239, guid: 3958c0df302e120489744ea6b010ec4f, type: 3}
+    nominalForwardSpeed: 1.8
+    nominalLateralSpeed: 0
+    looping: 1
+    leftContactPhases: [0.421875, 0.921875]
+    rightContactPhases: [0.1875, 0.703125]
+    plantedFoot: 0
+    plantTime: 0
+    releaseTime: 1
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [6, 7]
+    preferredExitRoles: [2, 8, 9]
+    intentionalMirror: 0
+  - role: 2
+    clip: {fileID: 8993902097722301239, guid: 53f76a6b51cca554bb33a35450acc30f, type: 3}
+    nominalForwardSpeed: 4.2
+    nominalLateralSpeed: 0
+    looping: 1
+    leftContactPhases: [0.44186, 0.93023]
+    rightContactPhases: [0.18605, 0.69767]
+    plantedFoot: 0
+    plantTime: 0
+    releaseTime: 1
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [1, 6, 7]
+    preferredExitRoles: [3, 8, 9, 10, 11]
+    intentionalMirror: 0
+  - role: 3
+    clip: {fileID: 8993902097722301239, guid: 0dc72ad1ce484c544a43336af26e5e05, type: 3}
+    nominalForwardSpeed: 7.4
+    nominalLateralSpeed: 0
+    looping: 1
+    leftContactPhases: [0.43243, 0.91892]
+    rightContactPhases: [0.18919, 0.67568]
+    plantedFoot: 0
+    plantTime: 0
+    releaseTime: 1
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [2]
+    preferredExitRoles: [2, 8, 9, 10, 11]
+    intentionalMirror: 0
+  - role: 4
+    clip: {fileID: 8993902097722301239, guid: 6a5d749241bd9ee4f9da93072970b889, type: 3}
+    nominalForwardSpeed: 4.2
+    nominalLateralSpeed: -2.4
+    looping: 1
+    leftContactPhases: [0.44186, 0.93023]
+    rightContactPhases: [0.18605, 0.69767]
+    plantedFoot: 0
+    plantTime: 0
+    releaseTime: 1
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [2]
+    preferredExitRoles: [2, 10]
+    intentionalMirror: 0
+  - role: 5
+    clip: {fileID: 8993902097722301239, guid: 52821dbf444ec6749883917be8019f1f, type: 3}
+    nominalForwardSpeed: 4.2
+    nominalLateralSpeed: 2.4
+    looping: 1
+    leftContactPhases: [0.44186, 0.93023]
+    rightContactPhases: [0.18605, 0.69767]
+    plantedFoot: 0
+    plantTime: 0
+    releaseTime: 1
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [2]
+    preferredExitRoles: [2, 11]
+    intentionalMirror: 0
+  - role: 6
+    clip: {fileID: 8993902097722301239, guid: aa01997cbf74e2847b241da93f96a442, type: 3}
+    nominalForwardSpeed: 4.2
+    nominalLateralSpeed: 0
+    looping: 0
+    leftContactPhases: []
+    rightContactPhases: []
+    plantedFoot: 0
+    plantTime: 0
+    releaseTime: 0.48
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [0, 8, 9]
+    preferredExitRoles: [1, 2]
+    intentionalMirror: 0
+  - role: 7
+    clip: {fileID: 8993902097722301239, guid: 7261b90646054a439e40427262a97829, type: 3}
+    nominalForwardSpeed: 4.2
+    nominalLateralSpeed: 0
+    looping: 0
+    leftContactPhases: []
+    rightContactPhases: []
+    plantedFoot: 1
+    plantTime: 0
+    releaseTime: 0.48
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [0, 8, 9]
+    preferredExitRoles: [1, 2]
+    intentionalMirror: 1
+  - role: 8
+    clip: {fileID: 8993902097722301239, guid: 22c7cc50a72e2014bb566ed67fd973ce, type: 3}
+    nominalForwardSpeed: 4.2
+    nominalLateralSpeed: 0
+    looping: 0
+    leftContactPhases: []
+    rightContactPhases: []
+    plantedFoot: 0
+    plantTime: 0.62
+    releaseTime: 1
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [1, 2, 3]
+    preferredExitRoles: [0, 6, 7]
+    intentionalMirror: 0
+  - role: 9
+    clip: {fileID: 8993902097722301239, guid: b702e3b332aa4b9289cccf58e5499aff, type: 3}
+    nominalForwardSpeed: 4.2
+    nominalLateralSpeed: 0
+    looping: 0
+    leftContactPhases: []
+    rightContactPhases: []
+    plantedFoot: 1
+    plantTime: 0.62
+    releaseTime: 1
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [1, 2, 3]
+    preferredExitRoles: [0, 6, 7]
+    intentionalMirror: 1
+  - role: 10
+    clip: {fileID: 8993902097722301239, guid: 6ab308534cf6f1248aeeabd718abb99f, type: 3}
+    nominalForwardSpeed: 4.2
+    nominalLateralSpeed: 0
+    looping: 0
+    leftContactPhases: []
+    rightContactPhases: []
+    plantedFoot: 0
+    plantTime: 0.48
+    releaseTime: 0.82
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [2, 3, 4]
+    preferredExitRoles: [2, 4]
+    intentionalMirror: 0
+  - role: 11
+    clip: {fileID: 8993902097722301239, guid: 4bc239a2dc044f3a89814c7811f16d3b, type: 3}
+    nominalForwardSpeed: 4.2
+    nominalLateralSpeed: 0
+    looping: 0
+    leftContactPhases: []
+    rightContactPhases: []
+    plantedFoot: 1
+    plantTime: 0.48
+    releaseTime: 0.82
+    minimumPlaybackRate: 0.9
+    maximumPlaybackRate: 1.1
+    preferredEntryRoles: [2, 3, 5]
+    preferredExitRoles: [2, 5]
+    intentionalMirror: 1
+  idleExitSpeed: 0.35
+  startCompletionSpeed: 1.2
+  stopIntentSpeed: 0.15
+  stopEntrySpeed: 0.75
+  idleEntrySpeed: 0.15
+  pivotEntrySpeed: 2.4
+  pivotEntryAngle: 125
+  pivotReleaseAngle: 72
+  sustainedBlendDuration: 0.18
+  oneShotBlendDuration: 0.14

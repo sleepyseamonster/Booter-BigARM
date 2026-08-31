@@ -148,6 +148,7 @@ namespace BooterBigArm.TopDown3D
 
             TopDown3DActionDpadHud.TryInstallForScene(scene);
             TopDown3DSurvivalHud.TryInstallForScene(scene);
+            TopDown3DInteractionFeedbackHud.TryInstallForScene(scene);
         }
     }
 }

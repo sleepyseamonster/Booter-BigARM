@@ -12,6 +12,9 @@ namespace BooterBigArm.TopDown3D
     public sealed class TopDown3DProceduralWorld : MonoBehaviour
     {
         private const double PendingChunkBudgetMilliseconds = 2.0;
+        // Terrain outside this ring is visual-only.  Keeping collision local prevents
+        // PhysX from cooking every streamed terrain mesh when the player crosses a chunk.
+        private const int TerrainCollisionStreamingRadius = 1;
 
         private static readonly ProfilerMarker RefreshChunksMarker =
             new ProfilerMarker("TopDown3D.World.RefreshChunks");
@@ -37,6 +40,8 @@ namespace BooterBigArm.TopDown3D
         private readonly Queue<Vector2Int> pendingDecorations = new Queue<Vector2Int>();
         private readonly HashSet<Vector2Int> queuedDecorations = new HashSet<Vector2Int>();
         private readonly HashSet<Vector2Int> decoratedChunks = new HashSet<Vector2Int>();
+        private readonly Queue<Vector2Int> pendingTerrainColliders = new Queue<Vector2Int>();
+        private readonly HashSet<Vector2Int> queuedTerrainColliders = new HashSet<Vector2Int>();
         private readonly List<Vector2Int> unloadBuffer = new List<Vector2Int>();
         private readonly Dictionary<Vector2Int, TerrainRequest> terrainRequests =
             new Dictionary<Vector2Int, TerrainRequest>();
@@ -112,10 +117,11 @@ namespace BooterBigArm.TopDown3D
         public int PendingChunkCount => PendingTerrainChunkCount;
         public int PendingTerrainChunkCount => Mathf.Max(0, pendingChunks.Count - pendingChunkCursor)
             + terrainRequests.Count;
+        public int PendingTerrainColliderCount => queuedTerrainColliders.Count;
         public int PendingDecorationCount => queuedDecorations.Count;
         public int DecoratedChunkCount => decoratedChunks.Count;
         public int TerrainRendererCount => loadedChunks.Count;
-        public int TerrainColliderCount => loadedChunks.Count;
+        public int TerrainColliderCount => CountEnabledTerrainColliders();
         public int DecorationRendererCount => SumDecorationRenderers();
         public int DecorationColliderCount => SumDecorationColliders();
         public int DecorationMeshCount => SumDecorationMeshes();
@@ -291,6 +297,7 @@ namespace BooterBigArm.TopDown3D
                     terrainRequests.Remove(coordinate);
                     decoratedChunks.Remove(coordinate);
                     queuedDecorations.Remove(coordinate);
+                    queuedTerrainColliders.Remove(coordinate);
                 }
 
                 unloadBuffer.Clear();
@@ -313,6 +320,8 @@ namespace BooterBigArm.TopDown3D
                     decoratedChunks.Remove(coordinate);
                     queuedDecorations.Remove(coordinate);
                 }
+
+                RefreshTerrainCollisionStreaming();
             }
         }
 
@@ -324,7 +333,9 @@ namespace BooterBigArm.TopDown3D
                 var startedAt = Time.realtimeSinceStartupAsDouble;
                 for (var i = 0; i < count; i++)
                 {
-                    if (!TryIntegrateRequestedTerrain() && !TryProcessDecoration())
+                    if (!TryCreatePendingTerrainCollider()
+                        && !TryIntegrateRequestedTerrain()
+                        && !TryProcessDecoration())
                     {
                         if (pendingChunkCursor >= pendingChunks.Count)
                         {
@@ -438,7 +449,8 @@ namespace BooterBigArm.TopDown3D
             var request = default(TerrainRequest);
             foreach (var pair in terrainRequests)
             {
-                if (pair.Value.Task.IsCompleted)
+                if (pair.Value.Task.IsCompleted
+                    && (!found || ComparePendingChunks(pair.Key, coordinate) < 0))
                 {
                     found = true;
                     coordinate = pair.Key;
@@ -504,22 +516,100 @@ namespace BooterBigArm.TopDown3D
                 renderer.sharedMaterial = groundMaterial;
                 renderer.shadowCastingMode = ShadowCastingMode.On;
                 renderer.receiveShadows = true;
-                var collider = chunkObject.AddComponent<MeshCollider>();
-                collider.sharedMesh = mesh;
                 chunkObject.AddComponent<TopDown3DGroundSurface>();
                 var chunk = chunkObject.AddComponent<TopDown3DGeneratedChunk>();
                 chunk.Initialize(coordinate, mesh);
                 loadedChunks.Add(coordinate, chunk);
+                QueueTerrainCollider(coordinate);
                 if (requiredDecoratedChunks.Contains(coordinate))
                 {
                     EnqueueDecoration(coordinate);
+                }
+
+            }
+        }
+
+        private void RefreshTerrainCollisionStreaming()
+        {
+            foreach (var pair in loadedChunks)
+            {
+                if (pair.Value == null)
+                {
+                    continue;
+                }
+
+                var collider = pair.Value.GetComponent<MeshCollider>();
+                if (ShouldHaveTerrainCollider(pair.Key))
+                {
+                    if (collider == null)
+                    {
+                        QueueTerrainCollider(pair.Key);
+                    }
+                    else
+                    {
+                        collider.enabled = true;
+                    }
+                }
+                else if (collider != null)
+                {
+                    collider.enabled = false;
+                }
+            }
+        }
+
+        private bool ShouldHaveTerrainCollider(Vector2Int coordinate)
+        {
+            return ChebyshevDistance(coordinate, currentCenterChunk) <= TerrainCollisionStreamingRadius;
+        }
+
+        private void QueueTerrainCollider(Vector2Int coordinate)
+        {
+            if (ShouldHaveTerrainCollider(coordinate)
+                && queuedTerrainColliders.Add(coordinate))
+            {
+                pendingTerrainColliders.Enqueue(coordinate);
+            }
+        }
+
+        private bool TryCreatePendingTerrainCollider()
+        {
+            while (pendingTerrainColliders.Count > 0)
+            {
+                var coordinate = pendingTerrainColliders.Dequeue();
+                if (!queuedTerrainColliders.Remove(coordinate)
+                    || !ShouldHaveTerrainCollider(coordinate)
+                    || !loadedChunks.TryGetValue(coordinate, out var chunk)
+                    || chunk == null)
+                {
+                    continue;
+                }
+
+                var collider = chunk.GetComponent<MeshCollider>();
+                if (collider == null)
+                {
+                    var filter = chunk.GetComponent<MeshFilter>();
+                    if (filter == null || filter.sharedMesh == null)
+                    {
+                        continue;
+                    }
+
+                    collider = chunk.gameObject.AddComponent<MeshCollider>();
+                    collider.sharedMesh = filter.sharedMesh;
+                }
+                else
+                {
+                    collider.enabled = true;
                 }
 
                 if (waitingForInitialTerrain && coordinate == currentCenterChunk)
                 {
                     ResumeStreamingTargetAfterInitialTerrain();
                 }
+
+                return true;
             }
+
+            return false;
         }
 
         private void EnqueueDecoration(Vector2Int coordinate)
@@ -611,6 +701,21 @@ namespace BooterBigArm.TopDown3D
                 if (chunk != null)
                 {
                     count += chunk.DecorationRendererCount;
+                }
+            }
+
+            return count;
+        }
+
+        private int CountEnabledTerrainColliders()
+        {
+            var count = 0;
+            foreach (var chunk in loadedChunks.Values)
+            {
+                var collider = chunk != null ? chunk.GetComponent<MeshCollider>() : null;
+                if (collider != null && collider.enabled)
+                {
+                    count++;
                 }
             }
 

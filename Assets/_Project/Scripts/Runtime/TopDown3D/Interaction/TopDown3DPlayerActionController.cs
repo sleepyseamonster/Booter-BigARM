@@ -34,27 +34,19 @@ namespace BooterBigArm.TopDown3D
             inventory = playerInventory;
             motor = playerMotor;
             animationDriver = playerAnimation;
-            gatherAction = inventory != null
-                ? new TopDown3DGatherActionState(inventory.State)
-                : null;
+            RebuildGatherAction();
             Subscribe();
         }
 
         public void ConfigureCargo(TopDown3DBigArmCargo cargo)
         {
             bigArmCargo = cargo;
-            if (inventory != null)
-            {
-                var destinations = new TopDown3DItemDestinationService(
-                    inventory.State,
-                    bigArmCargo != null ? bigArmCargo.State : null,
-                    () => bigArmCargo != null && bigArmCargo.IsInAccessRange(motor != null ? motor.Position : transform.position));
-                gatherAction = new TopDown3DGatherActionState(destinations);
-            }
+            RebuildGatherAction();
         }
 
         public TopDown3DGatherActionResult TryBeginCurrentTarget()
         {
+            EnsureGatherAction();
             if (gatherAction == null || interaction == null || motor == null || animationDriver == null)
             {
                 return TopDown3DGatherActionResult.Rejected;
@@ -146,6 +138,30 @@ namespace BooterBigArm.TopDown3D
             TryBeginCurrentTarget();
         }
 
+        private void EnsureGatherAction()
+        {
+            if (gatherAction == null && inventory != null)
+            {
+                RebuildGatherAction();
+            }
+        }
+
+        private void RebuildGatherAction()
+        {
+            if (inventory == null)
+            {
+                gatherAction = null;
+                return;
+            }
+
+            var destinations = new TopDown3DItemDestinationService(
+                inventory.State,
+                bigArmCargo != null ? bigArmCargo.State : null,
+                () => bigArmCargo != null
+                    && bigArmCargo.IsInAccessRange(motor != null ? motor.Position : transform.position));
+            gatherAction = new TopDown3DGatherActionState(destinations);
+        }
+
         private void EndPresentation()
         {
             animationDriver?.EndGather();
@@ -176,8 +192,16 @@ namespace BooterBigArm.TopDown3D
 
         private void OnEnable()
         {
+            EnsureGatherAction();
             Subscribe();
         }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EnsureGatherAction();
+        }
+#endif
 
         private void OnDisable()
         {

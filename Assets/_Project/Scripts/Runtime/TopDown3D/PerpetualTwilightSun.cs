@@ -51,6 +51,10 @@ namespace BooterBigArm.TopDown3D
         [Header("World Fill")]
         [SerializeField] private Color deepTwilightAmbient = new Color(0.16f, 0.075f, 0.10f);
         [SerializeField] private Color brightTwilightAmbient = new Color(0.38f, 0.23f, 0.17f);
+        [SerializeField] private Color deepTwilightSkyFill = new Color(0.12f, 0.13f, 0.19f);
+        [SerializeField] private Color brightTwilightSkyFill = new Color(0.27f, 0.29f, 0.34f);
+        [SerializeField] private Color deepTwilightGroundFill = new Color(0.045f, 0.025f, 0.035f);
+        [SerializeField] private Color brightTwilightGroundFill = new Color(0.12f, 0.07f, 0.055f);
         [Header("Sky")]
         [SerializeField] private Color deepTwilightSkyTint = new Color(0.36f, 0.10f, 0.12f);
         [SerializeField] private Color brightTwilightSkyTint = new Color(0.86f, 0.34f, 0.16f);
@@ -213,8 +217,19 @@ namespace BooterBigArm.TopDown3D
             }
 
             RenderSettings.sun = sun;
-            RenderSettings.ambientMode = AmbientMode.Flat;
-            RenderSettings.ambientLight = Color.Lerp(deepTwilightAmbient, brightTwilightAmbient, brightness01);
+            RenderSettings.ambientMode = AmbientMode.Trilight;
+            RenderSettings.ambientSkyColor = Color.Lerp(
+                deepTwilightSkyFill,
+                brightTwilightSkyFill,
+                brightness01);
+            RenderSettings.ambientEquatorColor = Color.Lerp(
+                deepTwilightAmbient,
+                brightTwilightAmbient,
+                brightness01);
+            RenderSettings.ambientGroundColor = Color.Lerp(
+                deepTwilightGroundFill,
+                brightTwilightGroundFill,
+                brightness01);
             RenderSettings.subtractiveShadowColor = new Color(0.055f, 0.025f, 0.05f);
             if (runtimeSkybox != null)
             {

@@ -31,6 +31,11 @@ namespace BooterBigArm.TopDown3D
             ActiveInstances.Remove(this);
         }
 
+        private void OnDestroy()
+        {
+            ActiveInstances.Remove(this);
+        }
+
         private void OnValidate()
         {
             innerRadius = Mathf.Max(0f, innerRadius);
@@ -44,6 +49,10 @@ namespace BooterBigArm.TopDown3D
             blendDistance = Mathf.Max(0.01f, edgeBlendDistance);
             dustIntensity = Mathf.Clamp(intensity, 0.25f, 3f);
             dustTint = tint;
+            if (isActiveAndEnabled)
+            {
+                ActiveInstances.Add(this);
+            }
         }
 
         public float SampleWeight(Vector3 worldPosition)

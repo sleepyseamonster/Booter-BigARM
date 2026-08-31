@@ -118,7 +118,7 @@ namespace BooterBigArm.Tests
         [Test]
         public void TryInstallForScene_AttachesVitalsToPlayerAndIsIdempotent()
         {
-            var scene = SceneManager.CreateScene("SurvivalHudTestScene");
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
             try
             {
                 Assert.That(TopDown3DSurvivalHud.TryInstallForScene(scene), Is.Null);

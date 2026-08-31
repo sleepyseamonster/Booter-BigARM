@@ -16,56 +16,68 @@ MonoBehaviour:
   chunkSize: 18
   quadsPerAxis: 24
   streamingRadius: 7
+  decorationStreamingRadius: 3
   immediateLoadRadius: 2
   chunksBuiltPerFrame: 2
   unloadPadding: 1
+  terrainGenerationVersion: 3
+  geologyProfile:
+    regionSize: 288
+    basinRelief: 14
+    ridgeRelief: 9
+    mesaRelief: 12
+    drainageDepth: 5.5
+    terraceStepHeight: 2.4
+    terraceStrength: 0.38
+    localRelief: 1.35
+    drainageWidth: 0.105
+    corridorWidth: 0.48
+    talusSlopeStart: 0.28
+    talusSlopeEnd: 0.72
   baseHeight: 0
-  heightAmplitude: 2.1
-  noiseFrequency: 0.028
-  noiseOctaves: 3
-  noiseLacunarity: 2
-  noisePersistence: 0.5
-  generateEscarpments: 0
-  escarpmentGenerationVersion: 1
-  escarpmentRegionSize: 54
-  escarpmentRegionChance: 0.48
-  escarpmentMinimumRadius: 7.5
-  escarpmentMaximumRadius: 13.5
-  escarpmentMinimumHeight: 0.48
-  escarpmentMaximumHeight: 0.66
-  escarpmentEdgeWidth: 0.92
-  cragReliefAmplitude: 0.12
-  cragReliefFrequency: 0.12
-  escarpmentFaceSegments: 40
-  escarpmentColliderSegmentsPerRun: 3
-  propsPerChunk: 4
+  propsPerChunk: 1.7
   naturalObjectCatalog: {fileID: 11400000, guid: 03ec8052e2404ee19712ee02d05deb23, type: 2}
-  naturalObjectGenerationVersion: 2
-  physicalRockGenerationVersion: 1
+  naturalObjectGenerationVersion: 3
+  physicalRockGenerationVersion: 7
+  resourceCatalog: {fileID: 11400000, guid: 70f7abf6fb143476ca72d1f9eba36e18, type: 2}
+  resourceGenerationVersion: 1
   scatterObjectsPerChunk: 22
   groundDetailsPerChunk: 72
-  clutterClusterFrequency: 0.035
-  clutterClusterStrength: 0.7
-  rockAbundanceFrequency: 0.018
-  rockAbundanceStrength: 0.95
-  largeToLargeChance: 0.32
-  largeContinuationDecay: 0.5
-  physicalFormationMaximumMembers: 5
-  physicalFormationMaximumDepth: 4
-  formationContactInset: 0.05
-  massiveRocksPerChunk: 0.14
+  clutterClusterFrequency: 0.08
+  clutterClusterStrength: 0.9
+  rockAbundanceFrequency: 0.035
+  rockAbundanceStrength: 1
+  smallRocksPerChunk: 2.4
+  smallRockSpacing: 0.2
+  maximumSmallRockSlope: 44
+  mediumRocksPerChunk: 1.9
+  mediumRockSpacing: 0.4
+  maximumMediumRockSlope: 42
+  extraLargeRocksPerChunk: 0.86
+  extraLargeRockSpacing: 3
+  maximumExtraLargeRockSlope: 35
+  largeToMediumChance: 0.84
+  additionalChildChanceMultiplier: 0.7
+  formationMaximumChildrenPerParent: 3
+  physicalFormationMaximumMembers: 12
+  physicalFormationMaximumDepth: 5
+  formationMinimumParentDistanceRatio: 0.32
+  formationMaximumParentDistanceRatio: 0.96
+  massiveRocksPerChunk: 0.42
   massiveRockSpacing: 5.5
   maximumMassiveRockSlope: 32
-  toweringToMassiveChance: 0.65
-  massiveToLargeChance: 0.7
-  landmarksPerChunk: 0.03
+  toweringToMassiveChance: 0.92
+  massiveToExtraLargeChance: 0.88
+  extraLargeToLargeChance: 0.86
+  mediumToSmallChance: 0.78
+  landmarksPerChunk: 0.19
   landmarkSpacing: 8
   maximumLandmarkSlope: 28
   scatterSpacing: 0.18
   groundDetailSpacing: 0.04
   fineGrayClutterMaterial: {fileID: 2100000, guid: 50ec2ac4616046718215ccc257883321, type: 2}
   fineGrayClutterPerChunk: 156
-  fineGrayClusterFrequency: 0.065
+  fineGrayClusterFrequency: 0.12
   fineGrayClusterStrength: 1
   fineGrayClutterSpacing: 0.006
   darkRockMaterial: {fileID: 2100000, guid: 38287d14ea49453698d5031568a10ef6, type: 2}

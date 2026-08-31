@@ -54,11 +54,13 @@ namespace BooterBigArm.Tests
             var exclusion = new Vector2(10000f, 10000f);
             var first = TopDown3DDustDepositionPlanner.BuildPlan(
                 settings,
+                new TopDown3DWorldGenerator(settings),
                 settings.NaturalObjectCatalog,
                 coordinate,
                 exclusion);
             var second = TopDown3DDustDepositionPlanner.BuildPlan(
                 settings,
+                new TopDown3DWorldGenerator(settings),
                 settings.NaturalObjectCatalog,
                 coordinate,
                 exclusion);
@@ -81,11 +83,13 @@ namespace BooterBigArm.Tests
             var exclusion = new Vector2(10000f, 10000f);
             var left = TopDown3DDustDepositionPlanner.BuildPlan(
                 settings,
+                new TopDown3DWorldGenerator(settings),
                 settings.NaturalObjectCatalog,
                 Vector2Int.zero,
                 exclusion);
             var right = TopDown3DDustDepositionPlanner.BuildPlan(
                 settings,
+                new TopDown3DWorldGenerator(settings),
                 settings.NaturalObjectCatalog,
                 Vector2Int.right,
                 exclusion);
@@ -113,6 +117,7 @@ namespace BooterBigArm.Tests
                     var coordinate = new Vector2Int(x, z);
                     var plan = TopDown3DDustDepositionPlanner.BuildPlan(
                         settings,
+                        new TopDown3DWorldGenerator(settings),
                         settings.NaturalObjectCatalog,
                         coordinate,
                         exclusion);
@@ -123,6 +128,7 @@ namespace BooterBigArm.Tests
 
                     var mesh = TopDown3DDustDepositionDecorator.BuildMeshData(
                         settings,
+                        new TopDown3DWorldGenerator(settings),
                         coordinate,
                         plan);
                     foundDeposit |= mesh.Triangles.Length > 0;
@@ -252,10 +258,12 @@ namespace BooterBigArm.Tests
             var samplePosition = wind * 1.5f;
             var smallPile = TopDown3DDustDepositionPlanner.SampleAt(
                 settings,
+                new TopDown3DWorldGenerator(settings),
                 samplePosition,
                 new List<TopDown3DRockFormationPlan> { small });
             var largePile = TopDown3DDustDepositionPlanner.SampleAt(
                 settings,
+                new TopDown3DWorldGenerator(settings),
                 samplePosition,
                 new List<TopDown3DRockFormationPlan> { large });
 

@@ -198,6 +198,7 @@ namespace BooterBigArm.TopDown3D
                 ? "world=not-found"
                 : $"chunks={world.LoadedChunkCount} decorated={world.DecoratedChunkCount} "
                     + $"pendingTerrain={world.PendingTerrainChunkCount} pendingDecoration={world.PendingDecorationCount} "
+                    + $"pendingTerrainCollider={world.PendingTerrainColliderCount} "
                     + $"renderers={world.TerrainRendererCount + world.DecorationRendererCount} "
                     + $"colliders={world.TerrainColliderCount + world.DecorationColliderCount} "
                     + $"decorationMeshes={world.DecorationMeshCount}";

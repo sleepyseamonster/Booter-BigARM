@@ -7,6 +7,9 @@ namespace BooterBigArm.TopDown3D
     public sealed class TopDown3DCameraRig : MonoBehaviour
     {
         private const int ObstructionHitCapacity = 16;
+        public const float DefaultMaximumLookAheadDistance = 12f;
+        public const float DefaultLookAheadSpeed = 12.6f;
+        public const float DefaultLookAheadReturnSpeed = 37.8f;
 
         [SerializeField] private Transform target;
         [SerializeField] private TopDown3DInputRouter input;
@@ -20,6 +23,9 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(2f)] private float distance = 25f;
         [SerializeField, Range(20f, 80f)] private float fieldOfView = 48f;
         [SerializeField, Min(0f)] private float followSmoothTime = 0.14f;
+        [SerializeField, Min(0f)] private float maximumLookAheadDistance = DefaultMaximumLookAheadDistance;
+        [SerializeField, Min(0f)] private float lookAheadSpeed = DefaultLookAheadSpeed;
+        [SerializeField, Min(0f)] private float lookAheadReturnSpeed = DefaultLookAheadReturnSpeed;
         [SerializeField, Min(0.05f)] private float obstructionRadius = 0.35f;
         [SerializeField, Min(1f)] private float minimumDistance = 4f;
         [SerializeField] private LayerMask obstructionMask = ~0;
@@ -28,11 +34,16 @@ namespace BooterBigArm.TopDown3D
         private Camera outputCamera;
         private Vector3 smoothedTarget;
         private Vector3 targetVelocity;
+        private Vector3 lookAheadOffset;
         private bool initialized;
 
         public float PitchDegrees => pitchDegrees;
         public float YawDegrees => yawDegrees;
         public float Distance => distance;
+        public float MaximumLookAheadDistance => maximumLookAheadDistance;
+        public float LookAheadSpeed => lookAheadSpeed;
+        public float LookAheadReturnSpeed => lookAheadReturnSpeed;
+        public Vector3 LookAheadOffset => lookAheadOffset;
 
         public void Configure(Transform followTarget, TopDown3DInputRouter inputRouter = null)
         {
@@ -61,7 +72,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             ApplyLens();
-            ApplyOrbitInput();
+            ApplyCameraInput();
             var rawTarget = target.position + targetOffset;
             smoothedTarget = followSmoothTime <= 0f
                 ? rawTarget
@@ -69,8 +80,9 @@ namespace BooterBigArm.TopDown3D
 
             var rotation = Quaternion.Euler(pitchDegrees, yawDegrees, 0f);
             var backward = -(rotation * Vector3.forward);
-            var resolvedDistance = ResolveDistance(smoothedTarget, backward);
-            transform.SetPositionAndRotation(smoothedTarget + backward * resolvedDistance, rotation);
+            var framingTarget = smoothedTarget + lookAheadOffset;
+            var resolvedDistance = ResolveDistance(framingTarget, backward);
+            transform.SetPositionAndRotation(framingTarget + backward * resolvedDistance, rotation);
         }
 
         public static float CalculateYaw(float currentYaw, float inputValue, float speedDegrees, float deltaTime)
@@ -96,15 +108,71 @@ namespace BooterBigArm.TopDown3D
                 upper);
         }
 
-        private void ApplyOrbitInput()
+        public static Vector3 CalculateLookAheadOffset(
+            Vector3 currentOffset,
+            Vector2 stickInput,
+            Vector3 cameraForward,
+            Vector3 cameraRight,
+            bool lookAheadHeld,
+            float maximumDistance,
+            float outwardSpeed,
+            float returnSpeed,
+            float deltaTime)
         {
-            ResolveInput();
-            if (input == null)
+            maximumDistance = Mathf.Max(0f, maximumDistance);
+            deltaTime = Mathf.Max(0f, deltaTime);
+            currentOffset = Vector3.ClampMagnitude(
+                Vector3.ProjectOnPlane(currentOffset, Vector3.up),
+                maximumDistance);
+            var stick = Vector2.ClampMagnitude(stickInput, 1f);
+            if (!lookAheadHeld || stick.sqrMagnitude <= 0.0001f)
             {
-                return;
+                return Vector3.MoveTowards(
+                    currentOffset,
+                    Vector3.zero,
+                    Mathf.Max(0f, returnSpeed) * deltaTime);
             }
 
-            var look = input.CameraLookValue;
+            var forward = Vector3.ProjectOnPlane(cameraForward, Vector3.up);
+            var right = Vector3.ProjectOnPlane(cameraRight, Vector3.up);
+            forward = forward.sqrMagnitude > 0.0001f ? forward.normalized : Vector3.forward;
+            right = right.sqrMagnitude > 0.0001f ? right.normalized : Vector3.right;
+            var panDirection = (forward * stick.y) + (right * stick.x);
+            if (panDirection.sqrMagnitude <= 0.0001f)
+            {
+                return currentOffset;
+            }
+
+            var displacement = panDirection.normalized
+                * (Mathf.Max(0f, outwardSpeed) * stick.magnitude * deltaTime);
+            return Vector3.ClampMagnitude(currentOffset + displacement, maximumDistance);
+        }
+
+        private void ApplyCameraInput()
+        {
+            ResolveInput();
+            var lookAheadHeld = input != null && input.CameraLookAheadHeld;
+            var look = input != null ? input.CameraLookValue : Vector2.zero;
+            if (!lookAheadHeld)
+            {
+                ApplyOrbitInput(look);
+            }
+
+            var yawRotation = Quaternion.Euler(0f, yawDegrees, 0f);
+            lookAheadOffset = CalculateLookAheadOffset(
+                lookAheadOffset,
+                look,
+                yawRotation * Vector3.forward,
+                yawRotation * Vector3.right,
+                lookAheadHeld,
+                maximumLookAheadDistance,
+                lookAheadSpeed,
+                lookAheadReturnSpeed,
+                Time.deltaTime);
+        }
+
+        private void ApplyOrbitInput(Vector2 look)
+        {
             yawDegrees = CalculateYaw(yawDegrees, look.x, yawSpeedDegrees, Time.deltaTime);
             pitchDegrees = CalculatePitch(
                 pitchDegrees,
@@ -158,6 +226,7 @@ namespace BooterBigArm.TopDown3D
 
             smoothedTarget = target.position + targetOffset;
             targetVelocity = Vector3.zero;
+            lookAheadOffset = Vector3.zero;
             initialized = true;
             var rotation = Quaternion.Euler(pitchDegrees, yawDegrees, 0f);
             transform.SetPositionAndRotation(smoothedTarget - (rotation * Vector3.forward * distance), rotation);
@@ -173,7 +242,7 @@ namespace BooterBigArm.TopDown3D
             outputCamera.orthographic = false;
             outputCamera.fieldOfView = fieldOfView;
             outputCamera.nearClipPlane = 0.1f;
-            outputCamera.farClipPlane = 300f;
+            outputCamera.farClipPlane = 1300f;
             if (!initialized && target != null)
             {
                 SnapToTarget();
@@ -190,6 +259,9 @@ namespace BooterBigArm.TopDown3D
             pitchSpeedDegrees = Mathf.Clamp(pitchSpeedDegrees, 20f, 180f);
             minimumDistance = Mathf.Clamp(minimumDistance, 1f, distance);
             followSmoothTime = Mathf.Max(0f, followSmoothTime);
+            maximumLookAheadDistance = Mathf.Max(0f, maximumLookAheadDistance);
+            lookAheadSpeed = Mathf.Max(0f, lookAheadSpeed);
+            lookAheadReturnSpeed = Mathf.Max(0f, lookAheadReturnSpeed);
             obstructionRadius = Mathf.Max(0.05f, obstructionRadius);
             ApplyLens();
         }
