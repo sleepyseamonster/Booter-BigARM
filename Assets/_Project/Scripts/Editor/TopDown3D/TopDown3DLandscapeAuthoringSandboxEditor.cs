@@ -160,7 +160,7 @@ namespace BooterBigArm.Editor
             var formationObject = new GameObject("Rock Formation Authoring");
             formationObject.transform.SetParent(sandboxObject.transform, false);
             var formation = formationObject.AddComponent<TopDown3DRockFormationAuthoring>();
-            formation.Configure(settings, rockMaterial, Vector2.zero);
+            formation.Configure(settings.NaturalObjectCatalog, rockMaterial);
 
             if (!EditorSceneManager.SaveScene(scene, ScenePath, false))
             {

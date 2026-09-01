@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 377980090}
   - component: {fileID: 377980089}
+  - component: {fileID: 377980091}
   m_Layer: 0
   m_Name: Authoring Sun
   m_TagString: Untagged
@@ -216,6 +217,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &377980091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377980088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &701016671
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 1258870708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -11.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -393,13 +423,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d4e17daed04dd9b44c771369e50820, type: 3}
   m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockFormationAuthoring
-  worldSettings: {fileID: 11400000, guid: 05e0954f75e1049c2b66791f7615c4b8, type: 2}
-  regularRockMaterial: {fileID: 2100000, guid: ed16b59818c6b46d3b621f19650e57ec, type: 2}
-  sourceWorldSeed: 0
-  sourceWorldPosition: {x: 0, y: 0}
-  searchRadiusInChunks: 1
-  selectedFormationIndex: 0
-  selectedFormationStableId:
+  rockMeshCatalog: {fileID: 0}
+  rockMaterial: {fileID: 2100000, guid: ed16b59818c6b46d3b621f19650e57ec, type: 2}
+  legacyRockLibrarySource: {fileID: 11400000, guid: 05e0954f75e1049c2b66791f7615c4b8, type: 2}
+  authoringSeed: -1816570085
+  style: 0
+  minimumMemberCount: 4
+  maximumMemberCount: 9
+  formationRadius: 4
+  compactness: 0.7
+  verticality: 0.55
+  largeRockFrequency: 0.38
+  autoFuseOverlappingMembers: 1
+  autoFusionPreferenceInitialized: 1
+  fusionStatus: Fused 1 overlapping rock cluster(s).
   generatedMembersRoot: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
