@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 using BooterBigArm.Editor;
 
@@ -7,6 +8,48 @@ namespace BooterBigArm.Tests
 {
     public sealed class TopDown3DRockWorkbenchTests
     {
+        private const string WorkbenchMaterialPath =
+            "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat";
+        private const string WorkbenchNormalPath =
+            "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Normal.png";
+        private const string WorkbenchSurfacePath =
+            "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Surface.png";
+        private const string WorkbenchAlbedoPath =
+            "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Albedo.png";
+
+        [Test]
+        public void WorkbenchMaterialUsesDedicatedTriplanarPbrSurfaceMaps()
+        {
+            var material = AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath);
+
+            Assert.That(material, Is.Not.Null);
+            Assert.That(material.shader, Is.Not.Null);
+            Assert.That(
+                material.shader.name,
+                Is.EqualTo("BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"));
+            Assert.That(material.shader.isSupported, Is.True);
+            Assert.That(ShaderUtil.GetShaderMessages(material.shader), Is.Empty);
+            Assert.That(material.GetTexture("_BaseMap"), Is.Not.Null);
+            Assert.That(material.GetTexture("_NormalMap"), Is.Not.Null);
+            Assert.That(material.GetTexture("_SurfaceMap"), Is.Not.Null);
+        }
+
+        [Test]
+        public void WorkbenchTexturesUsePbrColorSpaceAndNormalImportSettings()
+        {
+            var albedo = AssetImporter.GetAtPath(WorkbenchAlbedoPath) as TextureImporter;
+            var normal = AssetImporter.GetAtPath(WorkbenchNormalPath) as TextureImporter;
+            var surface = AssetImporter.GetAtPath(WorkbenchSurfacePath) as TextureImporter;
+
+            Assert.That(albedo, Is.Not.Null);
+            Assert.That(normal, Is.Not.Null);
+            Assert.That(surface, Is.Not.Null);
+            Assert.That(albedo.sRGBTexture, Is.True);
+            Assert.That(normal.textureType, Is.EqualTo(TextureImporterType.NormalMap));
+            Assert.That(normal.sRGBTexture, Is.False);
+            Assert.That(surface.sRGBTexture, Is.False);
+        }
+
         [Test]
         public void OverlappingBoxesBuildOneClosedConnectedSurface()
         {

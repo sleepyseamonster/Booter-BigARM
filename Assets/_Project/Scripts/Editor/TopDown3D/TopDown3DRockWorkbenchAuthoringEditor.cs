@@ -8,14 +8,16 @@ namespace BooterBigArm.Editor
     [CustomEditor(typeof(TopDown3DRockWorkbenchAuthoring))]
     public sealed class TopDown3DRockWorkbenchAuthoringEditor : UnityEditor.Editor
     {
+        internal const string WorkbenchMaterialPath =
+            "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat";
+
         [MenuItem("GameObject/Booter & BigARM/Top Down 3D/Rock Workbench", false, 20)]
         private static void CreateWorkbench(MenuCommand command)
         {
-            var material = AssetDatabase.LoadAssetAtPath<Material>(
-                TopDown3DPrototypeBuilder.RockMaterialPath);
+            var material = AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath);
             if (material == null)
             {
-                throw new InvalidOperationException("The project regular rock material could not be found.");
+                throw new InvalidOperationException("The Rock Workbench PBR material could not be found.");
             }
 
             const string undoName = "Create Rock Workbench";
@@ -42,13 +44,15 @@ namespace BooterBigArm.Editor
 
         public override void OnInspectorGUI()
         {
+            var authoring = (TopDown3DRockWorkbenchAuthoring)target;
+            UpgradeLegacyMaterial(authoring);
+
             serializedObject.Update();
             EditorGUI.BeginChangeCheck();
             DrawPropertiesExcluding(serializedObject, "m_Script");
             var settingsChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
 
-            var authoring = (TopDown3DRockWorkbenchAuthoring)target;
             if (settingsChanged && authoring.AutoRebuild)
             {
                 TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, false);
@@ -57,7 +61,7 @@ namespace BooterBigArm.Editor
 
             EditorGUILayout.Space();
             EditorGUILayout.HelpBox(
-                "Each Cube Volume is an editable source, not a separate finished mesh. Move, rotate, and scale those child objects in the Scene view. The workbench remeshes their combined volume so overlapping cubes become one continuous surface.",
+                "Each Cube Volume is an editable source, not a separate finished mesh. Move, rotate, and scale those child objects in the Scene view. The workbench remeshes their combined volume so overlapping cubes become one continuous surface. Its default PBR surface uses world-space triplanar base color, normal, roughness, occlusion, and upward dust, so it remains continuous across the fused mesh without authored UVs.",
                 MessageType.Info);
 
             using (new EditorGUILayout.HorizontalScope())
@@ -82,6 +86,35 @@ namespace BooterBigArm.Editor
                     ? MessageType.Warning
                     : MessageType.None;
             EditorGUILayout.HelpBox(authoring.PreviewStatus, statusType);
+        }
+
+        private static void UpgradeLegacyMaterial(TopDown3DRockWorkbenchAuthoring authoring)
+        {
+            if (authoring == null) return;
+
+            var current = authoring.RockMaterial;
+            var currentPath = current == null ? string.Empty : AssetDatabase.GetAssetPath(current);
+            if (current != null
+                && !string.Equals(currentPath, TopDown3DPrototypeBuilder.RockMaterialPath, StringComparison.Ordinal))
+            {
+                return;
+            }
+
+            var improved = AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath);
+            if (improved == null || improved == current) return;
+
+            Undo.RecordObject(authoring, "Upgrade Rock Workbench Surface");
+            authoring.Configure(improved);
+            var renderer = authoring.GetComponent<MeshRenderer>();
+            if (renderer != null)
+            {
+                Undo.RecordObject(renderer, "Upgrade Rock Workbench Surface");
+                renderer.sharedMaterial = improved;
+                EditorUtility.SetDirty(renderer);
+            }
+            EditorUtility.SetDirty(authoring);
+            TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
+            SceneView.RepaintAll();
         }
 
         internal static void AddVolume(TopDown3DRockWorkbenchAuthoring authoring, bool selectVolume)
