@@ -62,6 +62,7 @@ namespace BooterBigArm.Editor
 
             nextScanTime = EditorApplication.timeSinceStartup + ScanIntervalSeconds;
             var seen = new HashSet<int>();
+            var rebuiltThisUpdate = false;
             var workbenches = Resources.FindObjectsOfTypeAll<TopDown3DRockWorkbenchAuthoring>();
             foreach (var authoring in workbenches)
             {
@@ -86,10 +87,12 @@ namespace BooterBigArm.Editor
                 }
 
                 if (state.Requested
+                    && !rebuiltThisUpdate
                     && EditorApplication.timeSinceStartup >= state.DueTime
                     && signature == state.PendingSignature)
                 {
                     Rebuild(authoring, state, signature);
+                    rebuiltThisUpdate = true;
                 }
             }
 

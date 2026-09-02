@@ -145,6 +145,100 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void VariationGallerySeedsAreRepeatableAndDistinct()
+        {
+            const int baseSeed = 123456789;
+            var seeds = new HashSet<int>();
+            for (var index = 0;
+                 index < TopDown3DRockWorkbenchVariationGallery.VariationCount;
+                 index++)
+            {
+                var first = TopDown3DRockWorkbenchVariationGallery.DeriveSeed(baseSeed, index);
+                var second = TopDown3DRockWorkbenchVariationGallery.DeriveSeed(baseSeed, index);
+                Assert.That(second, Is.EqualTo(first));
+                Assert.That(seeds.Add(first), Is.True, $"Duplicate gallery seed at index {index}");
+            }
+
+            Assert.That(
+                TopDown3DRockWorkbenchVariationGallery.DeriveSeed(baseSeed, 0),
+                Is.EqualTo(baseSeed));
+        }
+
+        [Test]
+        public void VariationGalleryIsTemporarySeededAndDetachableForEditing()
+        {
+            var previousSelection = Selection.activeObject;
+            var sourceObject = new GameObject("Gallery Source Workbench");
+            TopDown3DRockWorkbenchAuthoring detached = null;
+            try
+            {
+                TopDown3DRockWorkbenchVariationGallery.ClearGallery();
+                var source = sourceObject.AddComponent<TopDown3DRockWorkbenchAuthoring>();
+                source.Configure(AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath));
+                const int baseSeed = 99887766;
+
+                var gallery = TopDown3DRockWorkbenchVariationGallery.CreateOrReplaceGallery(
+                    source,
+                    baseSeed);
+
+                Assert.That(gallery, Is.Not.Null);
+                Assert.That(
+                    gallery.hideFlags & HideFlags.DontSaveInEditor,
+                    Is.EqualTo(HideFlags.DontSaveInEditor));
+                Assert.That(
+                    gallery.transform.childCount,
+                    Is.EqualTo(TopDown3DRockWorkbenchVariationGallery.VariationCount));
+                Assert.That(Selection.activeGameObject, Is.EqualTo(sourceObject));
+                var positions = new HashSet<Vector3>();
+                for (var index = 0; index < gallery.transform.childCount; index++)
+                {
+                    var item = gallery.transform.GetChild(index)
+                        .GetComponent<TopDown3DRockWorkbenchAuthoring>();
+                    Assert.That(item, Is.Not.Null);
+                    Assert.That(
+                        item.GenerationSeed,
+                        Is.EqualTo(TopDown3DRockWorkbenchVariationGallery.DeriveSeed(baseSeed, index)));
+                    Assert.That(item.AutoRebuild, Is.False);
+                    Assert.That(item.ShowSourceVolumes, Is.False);
+                    Assert.That(item.UpdateCollider, Is.False);
+                    Assert.That(
+                        item.gameObject.hideFlags & HideFlags.DontSaveInEditor,
+                        Is.EqualTo(HideFlags.DontSaveInEditor));
+                    Assert.That(positions.Add(item.transform.localPosition), Is.True);
+                    Assert.That(
+                        item.GetComponentsInChildren<TopDown3DRockVolumeNode>(true).Length,
+                        Is.EqualTo(item.GeneratedCubeCount));
+                    Assert.That(TopDown3DRockWorkbenchVariationGallery.IsGalleryItem(item), Is.True);
+                }
+
+                detached = gallery.transform.GetChild(0)
+                    .GetComponent<TopDown3DRockWorkbenchAuthoring>();
+                TopDown3DRockWorkbenchVariationGallery.DetachForEditing(detached);
+
+                Assert.That(detached.transform.parent, Is.Null);
+                Assert.That(detached.AutoRebuild, Is.True);
+                Assert.That(detached.ShowSourceVolumes, Is.True);
+                Assert.That(detached.UpdateCollider, Is.True);
+                Assert.That(
+                    detached.gameObject.hideFlags & HideFlags.DontSaveInEditor,
+                    Is.EqualTo(HideFlags.None));
+                Assert.That(TopDown3DRockWorkbenchVariationGallery.IsGalleryItem(detached), Is.False);
+                Assert.That(gallery.transform.childCount, Is.EqualTo(
+                    TopDown3DRockWorkbenchVariationGallery.VariationCount - 1));
+
+                TopDown3DRockWorkbenchVariationGallery.ClearGallery();
+                Assert.That(TopDown3DRockWorkbenchVariationGallery.FindGalleryRoot(), Is.Null);
+            }
+            finally
+            {
+                TopDown3DRockWorkbenchVariationGallery.ClearGallery();
+                if (detached != null) Object.DestroyImmediate(detached.gameObject);
+                Selection.activeObject = previousSelection;
+                Object.DestroyImmediate(sourceObject);
+            }
+        }
+
+        [Test]
         public void VerticalityCreatesAVisiblyTallerSilhouette()
         {
             var horizontal = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
