@@ -67,8 +67,9 @@ namespace BooterBigArm.Editor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Base Rock Generator", EditorStyles.boldLabel);
             EditorGUILayout.HelpBox(
-                "Generate New Base Rock builds a dominant core, tapered support masses, and smaller details inside the Overall Size envelope. Verticality changes the silhouette from a horizontal spread to an upward spine. The change is one Undo step, the seed can be regenerated exactly, and every resulting cube remains editable.",
+                "Overall Size uniformly scales the rock and automatically adds more cube masses as the rock grows. Generate New Base Rock builds a dominant core, tapered supports, and smaller details. Verticality changes the silhouette from a horizontal spread to an upward spine. The change is one Undo step, the seed can be regenerated exactly, and every resulting cube remains editable.",
                 MessageType.None);
+            EditorGUILayout.LabelField("Automatic Cube Count", authoring.GeneratedCubeCount.ToString());
             using (new EditorGUILayout.HorizontalScope())
             {
                 if (GUILayout.Button("Generate New Base Rock"))

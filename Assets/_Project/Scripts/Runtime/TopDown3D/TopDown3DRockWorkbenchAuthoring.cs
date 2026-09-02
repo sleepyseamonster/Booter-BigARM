@@ -27,10 +27,11 @@ namespace BooterBigArm.TopDown3D
         [Header("Base Rock Generator")]
         [SerializeField, Tooltip("Regenerating this seed reproduces the same editable cube arrangement.")]
         private int generationSeed = 1729;
-        [SerializeField, Range(2, 10), Tooltip("Number of editable cube volumes used to build the generated base rock.")]
-        private int generatedCubeCount = 5;
-        [SerializeField, Tooltip("Maximum local-space envelope for the generated rock. Its natural proportions are preserved inside this size.")]
+        // Retained so existing scenes and prefabs keep their previous size data.
+        [SerializeField, HideInInspector]
         private Vector3 generatedOverallSize = new Vector3(4f, 3f, 3.5f);
+        [SerializeField, Range(0.75f, 10f), InspectorName("Overall Size"), Tooltip("Uniformly scales the generated rock. Larger rocks automatically use more cube masses for richer silhouettes.")]
+        private float generatedOverallScale = 4f;
         [SerializeField, Range(0f, 1f), Tooltip("Low values spread the rock horizontally. High values build a tapered upward spine.")]
         private float generatedVerticality = 0.45f;
         [SerializeField, Range(0f, 1f), Tooltip("Controls variation in cube size, tilt, and directional bias.")]
@@ -48,11 +49,12 @@ namespace BooterBigArm.TopDown3D
         public bool ShowSourceVolumes => showSourceVolumes;
         public bool UpdateCollider => updateCollider;
         public int GenerationSeed => generationSeed;
-        public int GeneratedCubeCount => Mathf.Clamp(generatedCubeCount, 2, 10);
-        public Vector3 GeneratedOverallSize => new Vector3(
-            Mathf.Max(0.5f, generatedOverallSize.x),
-            Mathf.Max(0.5f, generatedOverallSize.y),
-            Mathf.Max(0.5f, generatedOverallSize.z));
+        public float GeneratedOverallScale => Mathf.Clamp(generatedOverallScale, 0.75f, 10f);
+        public int GeneratedCubeCount => Mathf.Clamp(
+            Mathf.CeilToInt(GeneratedOverallScale * 0.9f) + 1,
+            2,
+            10);
+        public Vector3 GeneratedOverallSize => Vector3.one * GeneratedOverallScale;
         public float GeneratedVerticality => Mathf.Clamp01(generatedVerticality);
         public float GeneratedAsymmetry => Mathf.Clamp01(generatedAsymmetry);
         public float GeneratedOverlap => Mathf.Clamp01(generatedOverlap);

@@ -114,6 +114,37 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void OverallSizeUniformlyScalesTheEnvelopeAndAutomaticCubeBudget()
+        {
+            var root = new GameObject("Overall Size Control Test");
+            try
+            {
+                var authoring = root.AddComponent<TopDown3DRockWorkbenchAuthoring>();
+                var serialized = new SerializedObject(authoring);
+                var overallSize = serialized.FindProperty("generatedOverallScale");
+
+                overallSize.floatValue = 1f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+                Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(Vector3.one));
+                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(2));
+
+                overallSize.floatValue = 4f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+                Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(Vector3.one * 4f));
+                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(5));
+
+                overallSize.floatValue = 10f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+                Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(Vector3.one * 10f));
+                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(10));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
         public void VerticalityCreatesAVisiblyTallerSilhouette()
         {
             var horizontal = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
