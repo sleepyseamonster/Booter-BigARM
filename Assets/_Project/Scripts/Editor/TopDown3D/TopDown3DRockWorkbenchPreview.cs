@@ -11,6 +11,12 @@ namespace BooterBigArm.Editor
     {
         private const double ScanIntervalSeconds = 0.08d;
         private const double RebuildDebounceSeconds = 0.12d;
+        private static readonly int RockSeedId = Shader.PropertyToID("_RockSeed01");
+        private static readonly int RockSizeId = Shader.PropertyToID("_RockSize");
+        private static readonly int GeologyScaleId = Shader.PropertyToID("_RockMetersPerTile");
+        private static readonly int SurfaceVariationId = Shader.PropertyToID("_SurfacePatchStrength");
+        private static readonly int CrackAmountId = Shader.PropertyToID("_CrackAmount");
+        private static readonly int WornShineId = Shader.PropertyToID("_WornSmoothnessBoost");
         private static readonly Dictionary<int, PreviewState> States = new Dictionary<int, PreviewState>();
         private static double nextScanTime;
 
@@ -157,6 +163,18 @@ namespace BooterBigArm.Editor
             DestroyGeneratedMesh(authoring);
             filter.sharedMesh = mesh;
             renderer.sharedMaterial = authoring.RockMaterial;
+            var materialProperties = new MaterialPropertyBlock();
+            renderer.GetPropertyBlock(materialProperties);
+            materialProperties.SetFloat(RockSeedId, SeedToUnitFloat(authoring.GenerationSeed));
+            materialProperties.SetFloat(GeologyScaleId, authoring.GeologyScale);
+            materialProperties.SetFloat(SurfaceVariationId, authoring.SurfaceVariation);
+            materialProperties.SetFloat(CrackAmountId, authoring.CrackAmount);
+            materialProperties.SetFloat(WornShineId, authoring.WornShine);
+            var rockSize = mesh.bounds.size;
+            materialProperties.SetVector(
+                RockSizeId,
+                new Vector4(rockSize.x, rockSize.y, rockSize.z, 0f));
+            renderer.SetPropertyBlock(materialProperties);
             collider.sharedMesh = null;
             if (authoring.UpdateCollider) collider.sharedMesh = mesh;
 
@@ -211,6 +229,11 @@ namespace BooterBigArm.Editor
                 hash = hash * 31 + authoring.VoxelSize.GetHashCode();
                 hash = hash * 31 + authoring.FusionSmoothness.GetHashCode();
                 hash = hash * 31 + authoring.UpdateCollider.GetHashCode();
+                hash = hash * 31 + authoring.GeologyScale.GetHashCode();
+                hash = hash * 31 + authoring.SurfaceVariation.GetHashCode();
+                hash = hash * 31 + authoring.CrackAmount.GetHashCode();
+                hash = hash * 31 + authoring.WornShine.GetHashCode();
+                hash = hash * 31 + authoring.GenerationSeed;
                 hash = hash * 31 + (authoring.RockMaterial == null ? 0 : authoring.RockMaterial.GetInstanceID());
                 var nodes = authoring.GetComponentsInChildren<TopDown3DRockVolumeNode>(true);
                 hash = hash * 31 + nodes.Length;
@@ -239,6 +262,18 @@ namespace BooterBigArm.Editor
                 && !EditorUtility.IsPersistent(authoring)
                 && authoring.gameObject.scene.IsValid()
                 && authoring.gameObject.scene.isLoaded;
+        }
+
+        internal static float SeedToUnitFloat(int seed)
+        {
+            unchecked
+            {
+                var value = (uint)seed;
+                value = (value ^ (value >> 16)) * 0x7FEB352Du;
+                value = (value ^ (value >> 15)) * 0x846CA68Bu;
+                value ^= value >> 16;
+                return (value & 0x00FFFFFFu) / 16777215f;
+            }
         }
 
         private static void InternalEditorUtilityRepaintAllViews()

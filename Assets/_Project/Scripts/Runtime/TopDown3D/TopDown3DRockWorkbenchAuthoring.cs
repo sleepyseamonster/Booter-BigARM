@@ -24,6 +24,16 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Tooltip("Keep a MeshCollider synchronized with the temporary preview mesh.")]
         private bool updateCollider = true;
 
+        [Header("Surface Language")]
+        [SerializeField, Range(0.45f, 3f), InspectorName("Geology Scale"), Tooltip("Physical size of the stone grain and strata in meters. Higher values create broader geological structure.")]
+        private float geologyScale = 1.1f;
+        [SerializeField, Range(0f, 1f), Tooltip("Strength of broad seeded transitions between smoother worn stone and rough grainy stone.")]
+        private float surfaceVariation = 0.72f;
+        [SerializeField, Range(0f, 1f), Tooltip("Visibility of procedurally integrated fissures across top and side surfaces.")]
+        private float crackAmount = 0.42f;
+        [SerializeField, Range(0f, 0.5f), Tooltip("Additional highlight response on smoother worn patches. The rock remains non-metallic.")]
+        private float wornShine = 0.2f;
+
         [Header("Base Rock Generator")]
         [SerializeField, Tooltip("Regenerating this seed reproduces the same editable cube arrangement.")]
         private int generationSeed = 1729;
@@ -48,6 +58,10 @@ namespace BooterBigArm.TopDown3D
         public bool AutoRebuild => autoRebuild;
         public bool ShowSourceVolumes => showSourceVolumes;
         public bool UpdateCollider => updateCollider;
+        public float GeologyScale => Mathf.Clamp(geologyScale, 0.45f, 3f);
+        public float SurfaceVariation => Mathf.Clamp01(surfaceVariation);
+        public float CrackAmount => Mathf.Clamp01(crackAmount);
+        public float WornShine => Mathf.Clamp(wornShine, 0f, 0.5f);
         public int GenerationSeed => generationSeed;
         public float GeneratedOverallScale => Mathf.Clamp(generatedOverallScale, 0.75f, 10f);
         public int GeneratedCubeCount => Mathf.Clamp(

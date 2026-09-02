@@ -12,15 +12,18 @@ namespace BooterBigArm.Tests
         private static readonly Vector3 GeneratedRockSize = new Vector3(4f, 3f, 3.5f);
         private const string WorkbenchMaterialPath =
             "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat";
-        private const string WorkbenchNormalPath =
-            "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Normal.png";
-        private const string WorkbenchSurfacePath =
-            "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Surface.png";
-        private const string WorkbenchAlbedoPath =
-            "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Albedo.png";
+        private const string LayeredTextureRoot =
+            "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/";
+        private const string SideAlbedoPath = LayeredTextureRoot + "RockWorkbenchSide_Albedo.png";
+        private const string SideNormalPath = LayeredTextureRoot + "RockWorkbenchSide_Normal.png";
+        private const string SideSurfacePath = LayeredTextureRoot + "RockWorkbenchSide_Surface.png";
+        private const string TopAlbedoPath = LayeredTextureRoot + "RockWorkbenchTop_Albedo.png";
+        private const string TopNormalPath = LayeredTextureRoot + "RockWorkbenchTop_Normal.png";
+        private const string TopSurfacePath = LayeredTextureRoot + "RockWorkbenchTop_Surface.png";
+        private const string CrackMaskPath = LayeredTextureRoot + "RockWorkbenchCrack_Mask.png";
 
         [Test]
-        public void WorkbenchMaterialUsesDedicatedTriplanarPbrSurfaceMaps()
+        public void WorkbenchMaterialUsesLayeredTopSideAndCrackPbrMaps()
         {
             var material = AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath);
 
@@ -34,22 +37,80 @@ namespace BooterBigArm.Tests
             Assert.That(material.GetTexture("_BaseMap"), Is.Not.Null);
             Assert.That(material.GetTexture("_NormalMap"), Is.Not.Null);
             Assert.That(material.GetTexture("_SurfaceMap"), Is.Not.Null);
+            Assert.That(material.GetTexture("_TopBaseMap"), Is.Not.Null);
+            Assert.That(material.GetTexture("_TopNormalMap"), Is.Not.Null);
+            Assert.That(material.GetTexture("_TopSurfaceMap"), Is.Not.Null);
+            Assert.That(material.GetTexture("_CrackMap"), Is.Not.Null);
+            Assert.That(material.GetFloat("_SurfacePatchStrength"), Is.GreaterThan(0f));
+            Assert.That(material.GetFloat("_WornSmoothnessBoost"), Is.GreaterThan(0f));
+            Assert.That(material.GetFloat("_CrackAmount"), Is.GreaterThan(0f));
         }
 
         [Test]
-        public void WorkbenchTexturesUsePbrColorSpaceAndNormalImportSettings()
+        public void WorkbenchLayeredTexturesUsePbrImportSettings()
         {
-            var albedo = AssetImporter.GetAtPath(WorkbenchAlbedoPath) as TextureImporter;
-            var normal = AssetImporter.GetAtPath(WorkbenchNormalPath) as TextureImporter;
-            var surface = AssetImporter.GetAtPath(WorkbenchSurfacePath) as TextureImporter;
+            foreach (var path in new[] { SideAlbedoPath, TopAlbedoPath })
+            {
+                var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                Assert.That(importer, Is.Not.Null, path);
+                Assert.That(importer.sRGBTexture, Is.True, path);
+                Assert.That(importer.wrapMode, Is.EqualTo(TextureWrapMode.Repeat), path);
+                Assert.That(importer.streamingMipmaps, Is.True, path);
+            }
 
-            Assert.That(albedo, Is.Not.Null);
-            Assert.That(normal, Is.Not.Null);
-            Assert.That(surface, Is.Not.Null);
-            Assert.That(albedo.sRGBTexture, Is.True);
-            Assert.That(normal.textureType, Is.EqualTo(TextureImporterType.NormalMap));
-            Assert.That(normal.sRGBTexture, Is.False);
-            Assert.That(surface.sRGBTexture, Is.False);
+            foreach (var path in new[] { SideNormalPath, TopNormalPath })
+            {
+                var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                Assert.That(importer, Is.Not.Null, path);
+                Assert.That(importer.textureType, Is.EqualTo(TextureImporterType.NormalMap), path);
+                Assert.That(importer.sRGBTexture, Is.False, path);
+                Assert.That(importer.wrapMode, Is.EqualTo(TextureWrapMode.Repeat), path);
+            }
+
+            foreach (var path in new[] { SideSurfacePath, TopSurfacePath, CrackMaskPath })
+            {
+                var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                Assert.That(importer, Is.Not.Null, path);
+                Assert.That(importer.sRGBTexture, Is.False, path);
+                Assert.That(importer.wrapMode, Is.EqualTo(TextureWrapMode.Repeat), path);
+            }
+        }
+
+        [Test]
+        public void WorkbenchSurfaceSeedMappingIsRepeatableAndDistinct()
+        {
+            var first = TopDown3DRockWorkbenchPreview.SeedToUnitFloat(24681357);
+            var repeat = TopDown3DRockWorkbenchPreview.SeedToUnitFloat(24681357);
+            var variation = TopDown3DRockWorkbenchPreview.SeedToUnitFloat(97531);
+
+            Assert.That(first, Is.InRange(0f, 1f));
+            Assert.That(repeat, Is.EqualTo(first));
+            Assert.That(variation, Is.Not.EqualTo(first));
+        }
+
+        [Test]
+        public void WorkbenchSurfaceLanguageControlsClampToAuthoredRanges()
+        {
+            var root = new GameObject("Rock Surface Language Test");
+            try
+            {
+                var authoring = root.AddComponent<TopDown3DRockWorkbenchAuthoring>();
+                var serialized = new SerializedObject(authoring);
+                serialized.FindProperty("geologyScale").floatValue = 99f;
+                serialized.FindProperty("surfaceVariation").floatValue = -3f;
+                serialized.FindProperty("crackAmount").floatValue = 7f;
+                serialized.FindProperty("wornShine").floatValue = 4f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                Assert.That(authoring.GeologyScale, Is.EqualTo(3f));
+                Assert.That(authoring.SurfaceVariation, Is.EqualTo(0f));
+                Assert.That(authoring.CrackAmount, Is.EqualTo(1f));
+                Assert.That(authoring.WornShine, Is.EqualTo(0.5f));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
         }
 
         [Test]

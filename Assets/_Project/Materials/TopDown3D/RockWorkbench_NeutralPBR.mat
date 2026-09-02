@@ -26,19 +26,37 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: e8c8299c81934848831cad9771708a2c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 5c8ef02ab76c43b7be5b0523f7a4f024, type: 3}
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SurfaceMap:
-        m_Texture: {fileID: 2800000, guid: 21ad982da8fb4bd682790d770d634b54, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8961b29ef723142b99c11c29da019f52, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CrackAmount: 0.42
+    - _CrackMetersPerTile: 3.2
     - _Cull: 2
     - _Cutoff: 0.5
     - _DustAmount: 0.15
@@ -46,16 +64,25 @@ Material:
     - _HeightColorStrength: 0.1
     - _MacroScale: 7.5
     - _MacroStrength: 0.1
+    - _MineralShine: 0.32
     - _NormalStrength: 0.75
     - _OcclusionStrength: 0.75
     - _RockMetersPerTile: 1.1
+    - _RockSeed01: 0
     - _SmoothnessMax: 0.3
     - _SmoothnessMin: 0.04
     - _Surface: 0
+    - _SurfacePatchStrength: 0.72
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
     - _TriplanarSharpness: 4
+    - _WornSmoothnessBoost: 0.2
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CrackColor: {r: 0.11999995, g: 0.08499997, b: 0.059999965, a: 1}
     - _DustColor: {r: 0.48, g: 0.34, b: 0.24, a: 1}
+    - _MineralColor: {r: 0.47999996, g: 0.41999996, b: 0.33999997, a: 1}
+    - _RockSize: {r: 4, g: 3, b: 3.5, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
