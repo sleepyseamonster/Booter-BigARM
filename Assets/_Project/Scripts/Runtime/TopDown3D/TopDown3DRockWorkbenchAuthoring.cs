@@ -24,6 +24,20 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Tooltip("Keep a MeshCollider synchronized with the temporary preview mesh.")]
         private bool updateCollider = true;
 
+        [Header("Base Rock Generator")]
+        [SerializeField, Tooltip("Regenerating this seed reproduces the same editable cube arrangement.")]
+        private int generationSeed = 1729;
+        [SerializeField, Range(2, 10), Tooltip("Number of editable cube volumes used to build the generated base rock.")]
+        private int generatedCubeCount = 5;
+        [SerializeField, Tooltip("Approximate local-space bounds of the generated base rock.")]
+        private Vector3 generatedOverallSize = new Vector3(4f, 3f, 3.5f);
+        [SerializeField, Range(0f, 1f), Tooltip("Higher values favor taller cubes and upward growth.")]
+        private float generatedVerticality = 0.45f;
+        [SerializeField, Range(0f, 1f), Tooltip("Controls variation in cube size, tilt, and directional bias.")]
+        private float generatedAsymmetry = 0.65f;
+        [SerializeField, Range(0f, 1f), Tooltip("Higher values push generated cubes farther into one another for broader fused joins.")]
+        private float generatedOverlap = 0.62f;
+
         [NonSerialized] private Mesh generatedMesh;
         [NonSerialized] private string previewStatus = "Waiting for a preview build.";
 
@@ -33,12 +47,26 @@ namespace BooterBigArm.TopDown3D
         public bool AutoRebuild => autoRebuild;
         public bool ShowSourceVolumes => showSourceVolumes;
         public bool UpdateCollider => updateCollider;
+        public int GenerationSeed => generationSeed;
+        public int GeneratedCubeCount => Mathf.Clamp(generatedCubeCount, 2, 10);
+        public Vector3 GeneratedOverallSize => new Vector3(
+            Mathf.Max(0.5f, generatedOverallSize.x),
+            Mathf.Max(0.5f, generatedOverallSize.y),
+            Mathf.Max(0.5f, generatedOverallSize.z));
+        public float GeneratedVerticality => Mathf.Clamp01(generatedVerticality);
+        public float GeneratedAsymmetry => Mathf.Clamp01(generatedAsymmetry);
+        public float GeneratedOverlap => Mathf.Clamp01(generatedOverlap);
         public Mesh GeneratedMesh => generatedMesh;
         public string PreviewStatus => previewStatus;
 
         public void Configure(Material material)
         {
             rockMaterial = material;
+        }
+
+        public void SetGenerationSeed(int seed)
+        {
+            generationSeed = seed;
         }
 
         public void SetPreviewState(Mesh mesh, string status)

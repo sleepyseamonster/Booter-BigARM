@@ -64,6 +64,27 @@ namespace BooterBigArm.Editor
                 "Each Cube Volume is an editable source, not a separate finished mesh. Move, rotate, and scale those child objects in the Scene view. The workbench remeshes their combined volume so overlapping cubes become one continuous surface. Its default PBR surface uses world-space triplanar base color, normal, roughness, occlusion, and upward dust, so it remains continuous across the fused mesh without authored UVs.",
                 MessageType.Info);
 
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Base Rock Generator", EditorStyles.boldLabel);
+            EditorGUILayout.HelpBox(
+                "Generate New Base Rock replaces this workbench's current source cubes with a controlled overlapping cluster. The change is one Undo step, the seed can be regenerated exactly, and every resulting cube remains editable.",
+                MessageType.None);
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Generate New Base Rock"))
+                {
+                    TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
+                        authoring,
+                        TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(authoring.GenerationSeed));
+                }
+                if (GUILayout.Button("Regenerate Current Seed"))
+                {
+                    TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
+                        authoring,
+                        authoring.GenerationSeed);
+                }
+            }
+
             using (new EditorGUILayout.HorizontalScope())
             {
                 if (GUILayout.Button("Add Cube Volume")) AddVolume(authoring, true);
