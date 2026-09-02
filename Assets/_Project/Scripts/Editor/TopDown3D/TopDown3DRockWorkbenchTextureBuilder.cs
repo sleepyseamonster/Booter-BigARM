@@ -28,10 +28,14 @@ namespace BooterBigArm.Editor
         internal const string GritAlbedoPath = TextureRoot + "/RockWorkbenchGrit_Albedo.png";
         internal const string GritNormalPath = TextureRoot + "/RockWorkbenchGrit_Normal.png";
         internal const string GritSurfacePath = TextureRoot + "/RockWorkbenchGrit_Surface.png";
+        internal const string UndersideAlbedoPath = TextureRoot + "/RockWorkbenchUnderside_Albedo.png";
+        internal const string UndersideNormalPath = TextureRoot + "/RockWorkbenchUnderside_Normal.png";
+        internal const string UndersideSurfacePath = TextureRoot + "/RockWorkbenchUnderside_Surface.png";
 
         private const string TopSourcePath = SourceRoot + "/RockWorkbenchTop_Source.png";
         private const string SideSourcePath = SourceRoot + "/RockWorkbenchSide_Source.png";
         private const string GritSourcePath = SourceRoot + "/RockWorkbenchGrit_Source.png";
+        private const string UndersideSourcePath = SourceRoot + "/RockWorkbenchUnderside_Source.png";
 
         [MenuItem("Tools/Booter & BigARM/Rock Workbench/Rebuild Layered Textures")]
         public static void GenerateLayeredTextures()
@@ -96,6 +100,7 @@ namespace BooterBigArm.Editor
                 ConfigureAlbedo(GritAlbedoPath);
                 ConfigureNormal(GritNormalPath);
                 ConfigureLinear(GritSurfacePath, "R=AO G=Roughness B=Height");
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
                 AssignGritMaterialTextures();
                 AssetDatabase.SaveAssets();
                 Debug.Log("[Rock Workbench] Independent side grit textures rebuilt.");
@@ -103,6 +108,41 @@ namespace BooterBigArm.Editor
             finally
             {
                 UnityEngine.Object.DestroyImmediate(gritSource);
+            }
+        }
+
+        [MenuItem("Tools/Booter & BigARM/Rock Workbench/Rebuild Underside Shale Textures")]
+        public static void GenerateUndersideTextures()
+        {
+            var undersideSource = LoadSource(UndersideSourcePath);
+            if (undersideSource == null)
+            {
+                throw new InvalidOperationException(
+                    "The Rock Workbench underside source texture must exist before rebuilding the shale textures.");
+            }
+
+            try
+            {
+                Directory.CreateDirectory(TextureRoot);
+                BuildSurfaceSet(
+                    undersideSource,
+                    UndersideAlbedoPath,
+                    UndersideNormalPath,
+                    UndersideSurfacePath,
+                    8.4f,
+                    true);
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                ConfigureAlbedo(UndersideAlbedoPath);
+                ConfigureNormal(UndersideNormalPath);
+                ConfigureLinear(UndersideSurfacePath, "R=AO G=Roughness B=Height");
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                AssignUndersideMaterialTextures();
+                AssetDatabase.SaveAssets();
+                Debug.Log("[Rock Workbench] Independent underside shale textures rebuilt.");
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(undersideSource);
             }
         }
 
@@ -354,6 +394,7 @@ namespace BooterBigArm.Editor
             material.SetTexture("_TopSurfaceMap", AssetDatabase.LoadAssetAtPath<Texture2D>(TopSurfacePath));
             material.SetTexture("_CrackMap", AssetDatabase.LoadAssetAtPath<Texture2D>(CrackMaskPath));
             AssignGritMaterialTextures(material);
+            AssignUndersideMaterialTextures(material);
             EditorUtility.SetDirty(material);
         }
 
@@ -374,6 +415,25 @@ namespace BooterBigArm.Editor
             material.SetTexture("_GritBaseMap", gritAlbedo);
             material.SetTexture("_GritNormalMap", gritNormal);
             material.SetTexture("_GritSurfaceMap", gritSurface);
+        }
+
+        private static void AssignUndersideMaterialTextures()
+        {
+            var material = AssetDatabase.LoadAssetAtPath<Material>(MaterialPath);
+            if (material == null) throw new InvalidOperationException("Rock Workbench material was not found.");
+            AssignUndersideMaterialTextures(material);
+            EditorUtility.SetDirty(material);
+        }
+
+        private static void AssignUndersideMaterialTextures(Material material)
+        {
+            var undersideAlbedo = LoadTextureAsset(UndersideAlbedoPath);
+            var undersideNormal = LoadTextureAsset(UndersideNormalPath);
+            var undersideSurface = LoadTextureAsset(UndersideSurfacePath);
+            if (undersideAlbedo == null || undersideNormal == null || undersideSurface == null) return;
+            material.SetTexture("_BottomBaseMap", undersideAlbedo);
+            material.SetTexture("_BottomNormalMap", undersideNormal);
+            material.SetTexture("_BottomSurfaceMap", undersideSurface);
         }
 
         private static Texture2D LoadTextureAsset(string path)

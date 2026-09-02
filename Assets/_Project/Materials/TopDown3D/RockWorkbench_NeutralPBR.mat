@@ -29,6 +29,18 @@ Material:
         m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 292a27b2824314784a6b75109bbabb3a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CrackMap:
         m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -67,6 +79,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
     - _CrackAmount: 0.42
     - _CrackMetersPerTile: 3.2
     - _Cull: 2
@@ -91,6 +107,7 @@ Material:
     - _TopBlendEnd: 0.72
     - _TopBlendStart: 0.42
     - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 1
     - _WornSmoothnessBoost: 0.2
     - _ZWrite: 1
     m_Colors:

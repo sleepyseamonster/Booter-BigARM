@@ -33,6 +33,8 @@ namespace BooterBigArm.TopDown3D
         private float crackAmount = 0.42f;
         [SerializeField, Range(0f, 1f), InspectorName("Side Grit"), Tooltip("Amount of deep, coarse grain appearing in restrained patches on steep side faces.")]
         private float sideGrit = 0.3f;
+        [SerializeField, Range(0f, 1f), InspectorName("Underside Shale"), Tooltip("Strength of brittle, broken shale on downward-facing surfaces beneath ledges and overhangs.")]
+        private float undersideShale = 1f;
         [SerializeField, Range(0f, 0.5f), Tooltip("Additional highlight response on smoother worn patches. The rock remains non-metallic.")]
         private float wornShine = 0.2f;
 
@@ -64,6 +66,7 @@ namespace BooterBigArm.TopDown3D
         public float SurfaceVariation => Mathf.Clamp01(surfaceVariation);
         public float CrackAmount => Mathf.Clamp01(crackAmount);
         public float SideGrit => Mathf.Clamp01(sideGrit);
+        public float UndersideShale => Mathf.Clamp01(undersideShale);
         public float WornShine => Mathf.Clamp(wornShine, 0f, 0.5f);
         public int GenerationSeed => generationSeed;
         public float GeneratedOverallScale => Mathf.Clamp(generatedOverallScale, 0.75f, 10f);
