@@ -35,7 +35,8 @@ namespace BooterBigArm.Editor
 
     /// <summary>
     /// Editor-only base-rock planner. A seed produces a repeatable cluster of strongly
-    /// overlapping cube volumes; the created child transforms remain ordinary authoring controls.
+    /// overlapping rock-mass volumes; the created child transforms remain ordinary cube-shaped
+    /// authoring controls.
     /// </summary>
     internal static class TopDown3DRockWorkbenchBaseRockGenerator
     {
@@ -118,7 +119,7 @@ namespace BooterBigArm.Editor
                 var parentRadius = DirectionalRadius(parent.LocalScale, parent.LocalRotation, direction);
                 var childRadius = DirectionalRadius(childScale, childRotation, direction);
                 var overlapDepth = Mathf.Lerp(
-                    0.12f,
+                    0.18f,
                     0.8f,
                     Mathf.SmoothStep(0f, 1f, overlap));
                 var centerDistance = (parentRadius + childRadius) * (1f - overlapDepth);
@@ -137,6 +138,20 @@ namespace BooterBigArm.Editor
         {
             var seed = Guid.NewGuid().GetHashCode();
             return seed == currentSeed ? unchecked(seed ^ (int)0x9E3779B9) : seed;
+        }
+
+        internal static int DeriveVolumeShapeSeed(int generationSeed, int volumeIndex)
+        {
+            unchecked
+            {
+                var value = (uint)generationSeed + 0x9E3779B9u * (uint)(volumeIndex + 1);
+                value ^= value >> 16;
+                value *= 0x7FEB352Du;
+                value ^= value >> 15;
+                value *= 0x846CA68Bu;
+                value ^= value >> 16;
+                return (int)value;
+            }
         }
 
         internal static void GenerateIntoWorkbench(
@@ -176,7 +191,9 @@ namespace BooterBigArm.Editor
                     volumeObject.transform.localPosition = spec.LocalPosition;
                     volumeObject.transform.localRotation = spec.LocalRotation;
                     volumeObject.transform.localScale = spec.LocalScale;
-                    Undo.AddComponent<TopDown3DRockVolumeNode>(volumeObject);
+                    var node = Undo.AddComponent<TopDown3DRockVolumeNode>(volumeObject);
+                    node.SetShapeSeed(DeriveVolumeShapeSeed(seed, index));
+                    EditorUtility.SetDirty(node);
                 }
 
                 EditorUtility.SetDirty(authoring);

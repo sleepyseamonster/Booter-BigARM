@@ -126,7 +126,10 @@ namespace BooterBigArm.Editor
                     ClearPreview(authoring, $"Cube volume '{node.name}' has a zero-size axis and could not be meshed.");
                     return;
                 }
-                boxes.Add(new TopDown3DRockWorkbenchBox(authoring.transform, node.transform));
+                boxes.Add(new TopDown3DRockWorkbenchBox(
+                    authoring.transform,
+                    node.transform,
+                    node.ShapeSeed));
             }
 
             if (!TopDown3DRockWorkbenchMesher.TryBuild(
@@ -215,6 +218,7 @@ namespace BooterBigArm.Editor
                 {
                     hash = hash * 31 + node.GetInstanceID();
                     hash = hash * 31 + node.ContributesToRock.GetHashCode();
+                    hash = hash * 31 + node.ShapeSeed;
                     hash = hash * 31 + node.gameObject.activeInHierarchy.GetHashCode();
                     var matrix = authoring.transform.worldToLocalMatrix * node.transform.localToWorldMatrix;
                     for (var row = 0; row < 4; row++)

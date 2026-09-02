@@ -10,8 +10,20 @@ namespace BooterBigArm.Editor
     {
         private readonly Matrix4x4 rootToBox;
         private readonly float distanceScale;
+        private readonly float roundRadius;
+        private readonly float taperX;
+        private readonly float taperZ;
+        private readonly Vector4 cornerCut0;
+        private readonly Vector4 cornerCut1;
+        private readonly Vector4 cornerCut2;
+        private readonly Vector4 cornerCut3;
 
         internal TopDown3DRockWorkbenchBox(Transform root, Transform box)
+            : this(root, box, 0)
+        {
+        }
+
+        internal TopDown3DRockWorkbenchBox(Transform root, Transform box, int shapeSeed)
         {
             if (root == null) throw new ArgumentNullException(nameof(root));
             if (box == null) throw new ArgumentNullException(nameof(box));
@@ -41,6 +53,18 @@ namespace BooterBigArm.Editor
             }
 
             Bounds = bounds;
+
+            var randomState = unchecked((uint)shapeSeed) ^ 0xA511E9B3u;
+            roundRadius = Mathf.Lerp(0.07f, 0.11f, Next01(ref randomState));
+            taperX = Mathf.Lerp(0.035f, 0.09f, Next01(ref randomState));
+            taperZ = Mathf.Lerp(0.035f, 0.09f, Next01(ref randomState));
+
+            var startingCorner = (int)(NextUInt(ref randomState) & 7u);
+            var cornerStride = ((int)(NextUInt(ref randomState) & 3u) * 2) + 1;
+            cornerCut0 = CreateCornerCut(ref randomState, startingCorner);
+            cornerCut1 = CreateCornerCut(ref randomState, (startingCorner + cornerStride) & 7);
+            cornerCut2 = CreateCornerCut(ref randomState, (startingCorner + cornerStride * 2) & 7);
+            cornerCut3 = CreateCornerCut(ref randomState, (startingCorner + cornerStride * 3) & 7);
         }
 
         internal Bounds Bounds { get; }
@@ -48,16 +72,61 @@ namespace BooterBigArm.Editor
         internal float Evaluate(Vector3 rootLocalPoint)
         {
             var localPoint = rootToBox.MultiplyPoint3x4(rootLocalPoint);
+            var height = Mathf.Clamp01(localPoint.y + 0.5f);
+            var upperTaper = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.52f, 1f, height));
+            var halfExtents = new Vector3(
+                0.5f - taperX * upperTaper,
+                0.5f,
+                0.5f - taperZ * upperTaper);
+            var innerHalfExtents = halfExtents - Vector3.one * roundRadius;
             var q = new Vector3(
-                Mathf.Abs(localPoint.x) - 0.5f,
-                Mathf.Abs(localPoint.y) - 0.5f,
-                Mathf.Abs(localPoint.z) - 0.5f);
+                Mathf.Abs(localPoint.x) - innerHalfExtents.x,
+                Mathf.Abs(localPoint.y) - innerHalfExtents.y,
+                Mathf.Abs(localPoint.z) - innerHalfExtents.z);
             var outside = new Vector3(
                 Mathf.Max(q.x, 0f),
                 Mathf.Max(q.y, 0f),
                 Mathf.Max(q.z, 0f));
             var inside = Mathf.Min(Mathf.Max(q.x, Mathf.Max(q.y, q.z)), 0f);
-            return (outside.magnitude + inside) * distanceScale;
+            var roundedDistance = outside.magnitude + inside - roundRadius;
+            var rockDistance = Mathf.Max(roundedDistance, EvaluateCut(cornerCut0, localPoint));
+            rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut1, localPoint));
+            rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut2, localPoint));
+            rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut3, localPoint));
+            return rockDistance * distanceScale;
+        }
+
+        private static Vector4 CreateCornerCut(ref uint randomState, int corner)
+        {
+            var normal = new Vector3(
+                ((corner & 1) == 0 ? -1f : 1f) * Mathf.Lerp(0.72f, 1f, Next01(ref randomState)),
+                ((corner & 2) == 0 ? -1f : 1f) * Mathf.Lerp(0.72f, 1f, Next01(ref randomState)),
+                ((corner & 4) == 0 ? -1f : 1f) * Mathf.Lerp(0.72f, 1f, Next01(ref randomState)));
+            normal.Normalize();
+            return new Vector4(
+                normal.x,
+                normal.y,
+                normal.z,
+                Mathf.Lerp(0.56f, 0.66f, Next01(ref randomState)));
+        }
+
+        private static float EvaluateCut(Vector4 cut, Vector3 point)
+        {
+            return cut.x * point.x + cut.y * point.y + cut.z * point.z - cut.w;
+        }
+
+        private static uint NextUInt(ref uint state)
+        {
+            state += 0x9E3779B9u;
+            var value = state;
+            value = (value ^ (value >> 16)) * 0x7FEB352Du;
+            value = (value ^ (value >> 15)) * 0x846CA68Bu;
+            return value ^ (value >> 16);
+        }
+
+        private static float Next01(ref uint state)
+        {
+            return (NextUInt(ref state) & 0x00FFFFFFu) / 16777215f;
         }
     }
 

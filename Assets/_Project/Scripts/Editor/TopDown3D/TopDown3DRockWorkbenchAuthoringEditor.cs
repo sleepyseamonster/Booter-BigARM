@@ -203,7 +203,11 @@ namespace BooterBigArm.Editor
             volumeObject.transform.localPosition = new Vector3(existing.Length * 1.2f, 0f, 0f);
             volumeObject.transform.localRotation = Quaternion.identity;
             volumeObject.transform.localScale = new Vector3(2f, 2f, 2f);
-            Undo.AddComponent<TopDown3DRockVolumeNode>(volumeObject);
+            var node = Undo.AddComponent<TopDown3DRockVolumeNode>(volumeObject);
+            node.SetShapeSeed(TopDown3DRockWorkbenchBaseRockGenerator.DeriveVolumeShapeSeed(
+                authoring.GenerationSeed,
+                existing.Length));
+            EditorUtility.SetDirty(node);
             if (selectVolume) Selection.activeGameObject = volumeObject;
             TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
         }

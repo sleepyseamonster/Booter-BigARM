@@ -397,12 +397,19 @@ namespace BooterBigArm.Tests
                 var generated = root.GetComponentsInChildren<TopDown3DRockVolumeNode>(true);
                 Assert.That(authoring.GenerationSeed, Is.EqualTo(8675309));
                 Assert.That(generated.Length, Is.EqualTo(authoring.GeneratedCubeCount));
-                foreach (var node in generated)
+                var shapeSeeds = new HashSet<int>();
+                for (var index = 0; index < generated.Length; index++)
                 {
+                    var node = generated[index];
                     Assert.That(node, Is.Not.Null);
                     Assert.That(node.transform.parent, Is.EqualTo(root.transform));
                     Assert.That(node.name, Does.StartWith("Cube Volume "));
+                    Assert.That(
+                        node.ShapeSeed,
+                        Is.EqualTo(TopDown3DRockWorkbenchBaseRockGenerator.DeriveVolumeShapeSeed(8675309, index)));
+                    shapeSeeds.Add(node.ShapeSeed);
                 }
+                Assert.That(shapeSeeds.Count, Is.EqualTo(generated.Length));
             }
             finally
             {
@@ -444,11 +451,15 @@ namespace BooterBigArm.Tests
                                 lopsidedness,
                                 compaction);
                             var boxes = new List<TopDown3DRockWorkbenchBox>(plan.Count);
-                            foreach (var spec in plan)
+                            for (var index = 0; index < plan.Count; index++)
                             {
+                                var spec = plan[index];
                                 var box = CreateBoxObject(root.transform, spec.LocalPosition, spec.LocalScale);
                                 box.transform.localRotation = spec.LocalRotation;
-                                boxes.Add(new TopDown3DRockWorkbenchBox(root.transform, box.transform));
+                                boxes.Add(new TopDown3DRockWorkbenchBox(
+                                    root.transform,
+                                    box.transform,
+                                    TopDown3DRockWorkbenchBaseRockGenerator.DeriveVolumeShapeSeed(seed, index)));
                             }
 
                             Assert.That(
@@ -571,6 +582,73 @@ namespace BooterBigArm.Tests
                     error);
                 Assert.That(result.Topology.IsValid, Is.True, result.Topology.Error);
                 Assert.That(result.ConnectedComponents, Is.EqualTo(1));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void RockMassPrimitivePreservesFaceContactAndRemovesBoxCorners()
+        {
+            var root = new GameObject("Rock Workbench Primitive Test");
+            try
+            {
+                var source = CreateBoxObject(root.transform, Vector3.zero, Vector3.one);
+                var rockMass = new TopDown3DRockWorkbenchBox(root.transform, source.transform, 24680);
+
+                Assert.That(rockMass.Evaluate(Vector3.zero), Is.LessThan(-0.25f));
+                foreach (var faceCenter in new[]
+                         {
+                             new Vector3(-0.5f, 0f, 0f),
+                             new Vector3(0.5f, 0f, 0f),
+                             new Vector3(0f, -0.5f, 0f),
+                             new Vector3(0f, 0.5f, 0f),
+                             new Vector3(0f, 0f, -0.5f),
+                             new Vector3(0f, 0f, 0.5f)
+                         })
+                {
+                    Assert.That(Mathf.Abs(rockMass.Evaluate(faceCenter)), Is.LessThan(0.0001f));
+                }
+
+                Assert.That(rockMass.Evaluate(new Vector3(0.5f, 0.5f, 0.5f)), Is.GreaterThan(0.04f));
+                Assert.That(rockMass.Evaluate(new Vector3(0.5f, 0.5f, 0f)), Is.GreaterThan(0.01f));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void RockMassShapeSeedIsRepeatableAndChangesTheSurface()
+        {
+            var root = new GameObject("Rock Workbench Shape Seed Test");
+            try
+            {
+                var source = CreateBoxObject(root.transform, Vector3.zero, Vector3.one);
+                var first = new TopDown3DRockWorkbenchBox(root.transform, source.transform, 13579);
+                var repeat = new TopDown3DRockWorkbenchBox(root.transform, source.transform, 13579);
+                var variation = new TopDown3DRockWorkbenchBox(root.transform, source.transform, 97531);
+                var totalVariation = 0f;
+
+                foreach (var point in new[]
+                         {
+                             new Vector3(0.44f, 0.44f, 0.44f),
+                             new Vector3(-0.44f, 0.44f, 0.44f),
+                             new Vector3(0.44f, -0.44f, 0.44f),
+                             new Vector3(0.44f, 0.44f, -0.44f),
+                             new Vector3(-0.44f, -0.44f, -0.44f),
+                             new Vector3(0.42f, 0.3f, 0.2f),
+                             new Vector3(-0.3f, 0.42f, -0.25f)
+                         })
+                {
+                    Assert.That(first.Evaluate(point), Is.EqualTo(repeat.Evaluate(point)).Within(0.000001f));
+                    totalVariation += Mathf.Abs(first.Evaluate(point) - variation.Evaluate(point));
+                }
+
+                Assert.That(totalVariation, Is.GreaterThan(0.01f));
             }
             finally
             {
