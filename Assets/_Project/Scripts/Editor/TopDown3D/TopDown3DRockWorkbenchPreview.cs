@@ -16,6 +16,7 @@ namespace BooterBigArm.Editor
         private static readonly int GeologyScaleId = Shader.PropertyToID("_RockMetersPerTile");
         private static readonly int SurfaceVariationId = Shader.PropertyToID("_SurfacePatchStrength");
         private static readonly int CrackAmountId = Shader.PropertyToID("_CrackAmount");
+        private static readonly int SideGritId = Shader.PropertyToID("_SideGritAmount");
         private static readonly int WornShineId = Shader.PropertyToID("_WornSmoothnessBoost");
         private static readonly Dictionary<int, PreviewState> States = new Dictionary<int, PreviewState>();
         private static double nextScanTime;
@@ -169,6 +170,7 @@ namespace BooterBigArm.Editor
             materialProperties.SetFloat(GeologyScaleId, authoring.GeologyScale);
             materialProperties.SetFloat(SurfaceVariationId, authoring.SurfaceVariation);
             materialProperties.SetFloat(CrackAmountId, authoring.CrackAmount);
+            materialProperties.SetFloat(SideGritId, authoring.SideGrit);
             materialProperties.SetFloat(WornShineId, authoring.WornShine);
             var rockSize = mesh.bounds.size;
             materialProperties.SetVector(
@@ -232,6 +234,7 @@ namespace BooterBigArm.Editor
                 hash = hash * 31 + authoring.GeologyScale.GetHashCode();
                 hash = hash * 31 + authoring.SurfaceVariation.GetHashCode();
                 hash = hash * 31 + authoring.CrackAmount.GetHashCode();
+                hash = hash * 31 + authoring.SideGrit.GetHashCode();
                 hash = hash * 31 + authoring.WornShine.GetHashCode();
                 hash = hash * 31 + authoring.GenerationSeed;
                 hash = hash * 31 + (authoring.RockMaterial == null ? 0 : authoring.RockMaterial.GetInstanceID());

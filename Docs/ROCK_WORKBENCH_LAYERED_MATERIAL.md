@@ -11,14 +11,15 @@ The Rock Workbench uses one fused, UV-free material to evaluate geometry and sur
 - Fine texture scale is measured in world meters rather than stretched to each mesh.
 - Rock size controls the scale of broad smooth-versus-grainy patches.
 - The generation seed offsets the surface fields deterministically.
-- Cracks, crack halos, mineral patches, worn shine, and upward dust remain layers of one material; they do not create submeshes or decal GameObjects.
+- Cracks, sparse side grit, crack halos, mineral patches, worn shine, and upward dust remain layers of one material; they do not create submeshes or decal GameObjects.
 - Smooth and mineral patches alter roughness while the rock remains non-metallic.
 
-The workbench exposes four direct surface-language controls:
+The workbench exposes five direct surface-language controls:
 
 - **Geology Scale** — physical size of the repeated grain and strata.
 - **Surface Variation** — strength of broad smooth and grainy regions.
 - **Crack Amount** — visibility of integrated fissures.
+- **Side Grit** — restrained coverage of a coarse, deeply eroded layer on steep faces only. Its normal response supplies most of the perceived depth.
 - **Worn Shine** — additional highlight response on smoother patches.
 
 ## Assets
@@ -32,9 +33,13 @@ Layered textures live under:
 
 - `Assets/_Project/Art/Environment/Rocks/Workbench/Layered/`
 
-The `Source/` images are project-owned AI-generated albedo sources. The aligned 1024 x 1024 albedo, normal, and packed surface maps are rebuilt by:
+The `Source/` images are project-owned AI-generated albedo sources. The current top and side albedos are treated as artist-owned inputs; rebuilding derived maps does not replace those albedos. Their aligned normal and packed surface maps are rebuilt by:
 
 - `Tools > Booter & BigARM > Rock Workbench > Rebuild Layered Textures`
+
+The independent grit albedo, normal, and packed surface set is rebuilt without touching the top or side textures by:
+
+- `Tools > Booter & BigARM > Rock Workbench > Rebuild Side Grit Textures`
 
 The deterministic builder is `TopDown3DRockWorkbenchTextureBuilder.cs`. Packed surface maps use `R=AO`, `G=Roughness`, and `B=Height`. The crack map uses `R=Crack`, `G=CrackHalo`, and `B=MineralDeposit`.
 
@@ -45,6 +50,8 @@ The source images were created with the built-in image-generation tool using the
 Top source prompt: create a seamless, flat, neutral-diffuse desert-rock top surface with broad weathered plates, granular pockets, smoother worn patches, and restrained warm mineral staining; no directional light, perspective, silhouette, text, or watermark.
 
 Side source prompt: create a seamless, flat, neutral-diffuse desert-rock wall with broad horizontal bedding, vertically stretched erosion, intermittent vertical fractures, granular seams, and smoother worn bands; preserve world-up direction and avoid regular stripes, perspective, text, or watermark.
+
+Grit source prompt: create a seamless, flat, neutral-diffuse secondary desert-rock layer with compact coarse granules, deep granular pockets, sharp micro-cavities, porous crust, broken aggregate, and occasional compressed sediment seams; match the current side texture's gray-brown mineral family, keep world-up vertical, and avoid loose gravel, perspective, directional lighting, text, or watermark.
 
 ## Procedural-World Boundary
 

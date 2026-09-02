@@ -25,15 +25,21 @@ namespace BooterBigArm.Editor
         internal const string SideNormalPath = TextureRoot + "/RockWorkbenchSide_Normal.png";
         internal const string SideSurfacePath = TextureRoot + "/RockWorkbenchSide_Surface.png";
         internal const string CrackMaskPath = TextureRoot + "/RockWorkbenchCrack_Mask.png";
+        internal const string GritAlbedoPath = TextureRoot + "/RockWorkbenchGrit_Albedo.png";
+        internal const string GritNormalPath = TextureRoot + "/RockWorkbenchGrit_Normal.png";
+        internal const string GritSurfacePath = TextureRoot + "/RockWorkbenchGrit_Surface.png";
 
         private const string TopSourcePath = SourceRoot + "/RockWorkbenchTop_Source.png";
         private const string SideSourcePath = SourceRoot + "/RockWorkbenchSide_Source.png";
+        private const string GritSourcePath = SourceRoot + "/RockWorkbenchGrit_Source.png";
 
         [MenuItem("Tools/Booter & BigARM/Rock Workbench/Rebuild Layered Textures")]
         public static void GenerateLayeredTextures()
         {
-            var topSource = LoadSource(TopSourcePath);
-            var sideSource = LoadSource(SideSourcePath);
+            var topAlbedoExists = File.Exists(TopAlbedoPath);
+            var sideAlbedoExists = File.Exists(SideAlbedoPath);
+            var topSource = LoadSource(topAlbedoExists ? TopAlbedoPath : TopSourcePath);
+            var sideSource = LoadSource(sideAlbedoExists ? SideAlbedoPath : SideSourcePath);
             if (topSource == null || sideSource == null)
             {
                 throw new InvalidOperationException(
@@ -43,8 +49,8 @@ namespace BooterBigArm.Editor
             try
             {
                 Directory.CreateDirectory(TextureRoot);
-                BuildSurfaceSet(topSource, TopAlbedoPath, TopNormalPath, TopSurfacePath, 3.8f);
-                BuildSurfaceSet(sideSource, SideAlbedoPath, SideNormalPath, SideSurfacePath, 4.6f);
+                BuildSurfaceSet(topSource, TopAlbedoPath, TopNormalPath, TopSurfacePath, 3.8f, !topAlbedoExists);
+                BuildSurfaceSet(sideSource, SideAlbedoPath, SideNormalPath, SideSurfacePath, 4.6f, !sideAlbedoExists);
                 WriteTexture(CrackMaskPath, BuildCrackMask());
 
                 AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
@@ -66,6 +72,40 @@ namespace BooterBigArm.Editor
             }
         }
 
+        [MenuItem("Tools/Booter & BigARM/Rock Workbench/Rebuild Side Grit Textures")]
+        public static void GenerateGritTextures()
+        {
+            var gritSource = LoadSource(GritSourcePath);
+            if (gritSource == null)
+            {
+                throw new InvalidOperationException(
+                    "The Rock Workbench grit source texture must exist before rebuilding the side grit textures.");
+            }
+
+            try
+            {
+                Directory.CreateDirectory(TextureRoot);
+                BuildSurfaceSet(
+                    gritSource,
+                    GritAlbedoPath,
+                    GritNormalPath,
+                    GritSurfacePath,
+                    7.2f,
+                    true);
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                ConfigureAlbedo(GritAlbedoPath);
+                ConfigureNormal(GritNormalPath);
+                ConfigureLinear(GritSurfacePath, "R=AO G=Roughness B=Height");
+                AssignGritMaterialTextures();
+                AssetDatabase.SaveAssets();
+                Debug.Log("[Rock Workbench] Independent side grit textures rebuilt.");
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(gritSource);
+            }
+        }
+
         private static Texture2D LoadSource(string assetPath)
         {
             if (!File.Exists(assetPath)) return null;
@@ -84,7 +124,8 @@ namespace BooterBigArm.Editor
             string albedoPath,
             string normalPath,
             string surfacePath,
-            float normalStrength)
+            float normalStrength,
+            bool writeAlbedo)
         {
             var albedo = new Color[TextureSize * TextureSize];
             var height = new float[albedo.Length];
@@ -131,7 +172,7 @@ namespace BooterBigArm.Editor
                 }
             }
 
-            WriteTexture(albedoPath, CreateTexture(albedo, false));
+            if (writeAlbedo) WriteTexture(albedoPath, CreateTexture(albedo, false));
             WriteTexture(normalPath, CreateTexture(normal, true));
             WriteTexture(surfacePath, CreateTexture(surface, true));
         }
@@ -287,6 +328,7 @@ namespace BooterBigArm.Editor
             var importer = AssetImporter.GetAtPath(path) as TextureImporter;
             if (importer == null) throw new InvalidOperationException($"Texture importer missing for {path}.");
             importer.textureType = textureType;
+            importer.spriteImportMode = SpriteImportMode.None;
             importer.sRGBTexture = srgb;
             importer.mipmapEnabled = true;
             importer.streamingMipmaps = true;
@@ -311,7 +353,38 @@ namespace BooterBigArm.Editor
             material.SetTexture("_TopNormalMap", AssetDatabase.LoadAssetAtPath<Texture2D>(TopNormalPath));
             material.SetTexture("_TopSurfaceMap", AssetDatabase.LoadAssetAtPath<Texture2D>(TopSurfacePath));
             material.SetTexture("_CrackMap", AssetDatabase.LoadAssetAtPath<Texture2D>(CrackMaskPath));
+            AssignGritMaterialTextures(material);
             EditorUtility.SetDirty(material);
+        }
+
+        private static void AssignGritMaterialTextures()
+        {
+            var material = AssetDatabase.LoadAssetAtPath<Material>(MaterialPath);
+            if (material == null) throw new InvalidOperationException("Rock Workbench material was not found.");
+            AssignGritMaterialTextures(material);
+            EditorUtility.SetDirty(material);
+        }
+
+        private static void AssignGritMaterialTextures(Material material)
+        {
+            var gritAlbedo = LoadTextureAsset(GritAlbedoPath);
+            var gritNormal = LoadTextureAsset(GritNormalPath);
+            var gritSurface = LoadTextureAsset(GritSurfacePath);
+            if (gritAlbedo == null || gritNormal == null || gritSurface == null) return;
+            material.SetTexture("_GritBaseMap", gritAlbedo);
+            material.SetTexture("_GritNormalMap", gritNormal);
+            material.SetTexture("_GritSurfaceMap", gritSurface);
+        }
+
+        private static Texture2D LoadTextureAsset(string path)
+        {
+            var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+            if (texture != null) return texture;
+            foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(path))
+            {
+                if (asset is Texture2D subAsset) return subAsset;
+            }
+            return null;
         }
     }
 }

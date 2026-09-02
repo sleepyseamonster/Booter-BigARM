@@ -9,6 +9,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
         [NoScaleOffset][Normal] _TopNormalMap("Top Normal", 2D) = "bump" {}
         [NoScaleOffset] _TopSurfaceMap("Top Surface (R AO, G Roughness, B Height)", 2D) = "white" {}
         [NoScaleOffset] _CrackMap("Cracks (R Crack, G Halo, B Mineral)", 2D) = "black" {}
+        [NoScaleOffset] _GritBaseMap("Side Grit Base Color", 2D) = "white" {}
+        [NoScaleOffset][Normal] _GritNormalMap("Side Grit Normal", 2D) = "bump" {}
+        [NoScaleOffset] _GritSurfaceMap("Side Grit Surface (R AO, G Roughness, B Height)", 2D) = "white" {}
         [MainColor] _BaseColor("Rock Tint", Color) = (1, 1, 1, 1)
         _RockMetersPerTile("Rock Meters Per Tile", Float) = 1.1
         _TriplanarSharpness("Triplanar Sharpness", Range(1, 12)) = 4
@@ -26,6 +29,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
         _MacroStrength("Macro Variation Strength", Range(0, 0.3)) = 0.1
         _CrackMetersPerTile("Crack Meters Per Tile", Float) = 3.2
         _CrackAmount("Crack Amount", Range(0, 1)) = 0.42
+        _GritMetersPerTile("Side Grit Meters Per Tile", Float) = 0.7
+        _GritNormalStrength("Side Grit Depth", Range(0, 2)) = 1.35
+        _SideGritAmount("Side Grit Amount", Range(0, 1)) = 0.3
         _CrackColor("Crack Color", Color) = (0.12, 0.085, 0.06, 1)
         _MineralColor("Mineral Patch Color", Color) = (0.48, 0.42, 0.34, 1)
         _DustColor("Upward Dust Color", Color) = (0.48, 0.34, 0.24, 1)
@@ -88,6 +94,12 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
             SAMPLER(sampler_TopSurfaceMap);
             TEXTURE2D(_CrackMap);
             SAMPLER(sampler_CrackMap);
+            TEXTURE2D(_GritBaseMap);
+            SAMPLER(sampler_GritBaseMap);
+            TEXTURE2D(_GritNormalMap);
+            SAMPLER(sampler_GritNormalMap);
+            TEXTURE2D(_GritSurfaceMap);
+            SAMPLER(sampler_GritSurfaceMap);
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseMap_ST;
@@ -111,6 +123,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 float _MacroStrength;
                 float _CrackMetersPerTile;
                 float _CrackAmount;
+                float _GritMetersPerTile;
+                float _GritNormalStrength;
+                float _SideGritAmount;
                 float _DustAmount;
                 float _DustSharpness;
                 float _RockSeed01;
@@ -206,6 +221,35 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 return result;
             }
 
+            TriplanarSample SampleSideGrit(float3 samplePositionWS, half3 geometricNormalWS)
+            {
+                TriplanarSample result;
+                float meters = max(_GritMetersPerTile, 0.01);
+                float3 projectionPosition = samplePositionWS / meters;
+                half2 weights = pow(abs(geometricNormalWS.xz), max((half)_TriplanarSharpness, 1.0h));
+                weights = max(weights, half2(0.0001h, 0.0001h));
+                weights /= max(weights.x + weights.y, 0.001h);
+                float2 uvX = projectionPosition.zy;
+                float2 uvZ = projectionPosition.xy;
+
+                half3 albedoX = SAMPLE_TEXTURE2D(_GritBaseMap, sampler_GritBaseMap, uvX).rgb;
+                half3 albedoZ = SAMPLE_TEXTURE2D(_GritBaseMap, sampler_GritBaseMap, uvZ).rgb;
+                result.albedo = albedoX * weights.x + albedoZ * weights.y;
+
+                half3 surfaceX = SAMPLE_TEXTURE2D(_GritSurfaceMap, sampler_GritSurfaceMap, uvX).rgb;
+                half3 surfaceZ = SAMPLE_TEXTURE2D(_GritSurfaceMap, sampler_GritSurfaceMap, uvZ).rgb;
+                result.surface = surfaceX * weights.x + surfaceZ * weights.y;
+
+                half3 normalX = UnpackNormalScale(
+                    SAMPLE_TEXTURE2D(_GritNormalMap, sampler_GritNormalMap, uvX), _GritNormalStrength);
+                half3 normalZ = UnpackNormalScale(
+                    SAMPLE_TEXTURE2D(_GritNormalMap, sampler_GritNormalMap, uvZ), _GritNormalStrength);
+                normalX = half3(normalX.xy + geometricNormalWS.zy, abs(normalX.z) * geometricNormalWS.x);
+                normalZ = half3(normalZ.xy + geometricNormalWS.xy, abs(normalZ.z) * geometricNormalWS.z);
+                result.normalWS = normalize(normalX.zyx * weights.x + normalZ.xyz * weights.y);
+                return result;
+            }
+
             TriplanarSample SampleLayeredRock(
                 float3 samplePositionWS,
                 half3 geometricNormalWS,
@@ -285,6 +329,15 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 half grainPatch = smoothstep(0.58h, 0.86h, secondaryPatch)
                     * (1.0h - smoothPatch * 0.65h)
                     * (half)_SurfacePatchStrength;
+                TriplanarSample grit = SampleSideGrit(samplePositionWS, geometricNormalWS);
+                half gritNoise = (half)ValueNoise3D(
+                    samplePositionWS / max(1.2, rockScale * 0.42) + 47.13);
+                half gritPatch = smoothstep(0.64h, 0.86h, gritNoise)
+                    * (1.0h - topBlend)
+                    * (half)_SideGritAmount;
+                rock.albedo = lerp(rock.albedo, grit.albedo, gritPatch * 0.72h);
+                rock.surface = lerp(rock.surface, grit.surface, gritPatch);
+                rock.normalWS = normalize(lerp(rock.normalWS, grit.normalWS, gritPatch));
                 rock.normalWS = normalize(lerp(
                     rock.normalWS,
                     geometricNormalWS,

@@ -21,6 +21,9 @@ namespace BooterBigArm.Tests
         private const string TopNormalPath = LayeredTextureRoot + "RockWorkbenchTop_Normal.png";
         private const string TopSurfacePath = LayeredTextureRoot + "RockWorkbenchTop_Surface.png";
         private const string CrackMaskPath = LayeredTextureRoot + "RockWorkbenchCrack_Mask.png";
+        private const string GritAlbedoPath = LayeredTextureRoot + "RockWorkbenchGrit_Albedo.png";
+        private const string GritNormalPath = LayeredTextureRoot + "RockWorkbenchGrit_Normal.png";
+        private const string GritSurfacePath = LayeredTextureRoot + "RockWorkbenchGrit_Surface.png";
 
         [Test]
         public void WorkbenchMaterialUsesLayeredTopSideAndCrackPbrMaps()
@@ -41,15 +44,19 @@ namespace BooterBigArm.Tests
             Assert.That(material.GetTexture("_TopNormalMap"), Is.Not.Null);
             Assert.That(material.GetTexture("_TopSurfaceMap"), Is.Not.Null);
             Assert.That(material.GetTexture("_CrackMap"), Is.Not.Null);
+            Assert.That(material.GetTexture("_GritBaseMap"), Is.Not.Null);
+            Assert.That(material.GetTexture("_GritNormalMap"), Is.Not.Null);
+            Assert.That(material.GetTexture("_GritSurfaceMap"), Is.Not.Null);
             Assert.That(material.GetFloat("_SurfacePatchStrength"), Is.GreaterThan(0f));
             Assert.That(material.GetFloat("_WornSmoothnessBoost"), Is.GreaterThan(0f));
             Assert.That(material.GetFloat("_CrackAmount"), Is.GreaterThan(0f));
+            Assert.That(material.GetFloat("_SideGritAmount"), Is.GreaterThan(0f));
         }
 
         [Test]
         public void WorkbenchLayeredTexturesUsePbrImportSettings()
         {
-            foreach (var path in new[] { SideAlbedoPath, TopAlbedoPath })
+            foreach (var path in new[] { SideAlbedoPath, TopAlbedoPath, GritAlbedoPath })
             {
                 var importer = AssetImporter.GetAtPath(path) as TextureImporter;
                 Assert.That(importer, Is.Not.Null, path);
@@ -58,7 +65,7 @@ namespace BooterBigArm.Tests
                 Assert.That(importer.streamingMipmaps, Is.True, path);
             }
 
-            foreach (var path in new[] { SideNormalPath, TopNormalPath })
+            foreach (var path in new[] { SideNormalPath, TopNormalPath, GritNormalPath })
             {
                 var importer = AssetImporter.GetAtPath(path) as TextureImporter;
                 Assert.That(importer, Is.Not.Null, path);
@@ -67,7 +74,7 @@ namespace BooterBigArm.Tests
                 Assert.That(importer.wrapMode, Is.EqualTo(TextureWrapMode.Repeat), path);
             }
 
-            foreach (var path in new[] { SideSurfacePath, TopSurfacePath, CrackMaskPath })
+            foreach (var path in new[] { SideSurfacePath, TopSurfacePath, CrackMaskPath, GritSurfacePath })
             {
                 var importer = AssetImporter.GetAtPath(path) as TextureImporter;
                 Assert.That(importer, Is.Not.Null, path);
@@ -99,12 +106,14 @@ namespace BooterBigArm.Tests
                 serialized.FindProperty("geologyScale").floatValue = 99f;
                 serialized.FindProperty("surfaceVariation").floatValue = -3f;
                 serialized.FindProperty("crackAmount").floatValue = 7f;
+                serialized.FindProperty("sideGrit").floatValue = 3f;
                 serialized.FindProperty("wornShine").floatValue = 4f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
                 Assert.That(authoring.GeologyScale, Is.EqualTo(3f));
                 Assert.That(authoring.SurfaceVariation, Is.EqualTo(0f));
                 Assert.That(authoring.CrackAmount, Is.EqualTo(1f));
+                Assert.That(authoring.SideGrit, Is.EqualTo(1f));
                 Assert.That(authoring.WornShine, Is.EqualTo(0.5f));
             }
             finally

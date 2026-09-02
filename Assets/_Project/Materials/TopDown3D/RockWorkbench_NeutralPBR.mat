@@ -33,6 +33,18 @@ Material:
         m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 34cc25eb0e7054c8495a69ad06770d5d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _NormalMap:
         m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -61,6 +73,8 @@ Material:
     - _Cutoff: 0.5
     - _DustAmount: 0.15
     - _DustSharpness: 5
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
     - _HeightColorStrength: 0.1
     - _MacroScale: 7.5
     - _MacroStrength: 0.1
@@ -69,6 +83,7 @@ Material:
     - _OcclusionStrength: 0.75
     - _RockMetersPerTile: 1.1
     - _RockSeed01: 0
+    - _SideGritAmount: 0.3
     - _SmoothnessMax: 0.3
     - _SmoothnessMin: 0.04
     - _Surface: 0
