@@ -40,6 +40,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
         _BottomBlendStart("Underside Blend Start", Range(0, 1)) = 0.08
         _BottomBlendEnd("Underside Blend End", Range(0, 1)) = 0.5
         _UndersideShaleAmount("Underside Shale Amount", Range(0, 1)) = 1
+        _TopShalePatchAmount("Top Shale Patch Amount", Range(0, 1)) = 0.42
         _CrackColor("Crack Color", Color) = (0.12, 0.085, 0.06, 1)
         _MineralColor("Mineral Patch Color", Color) = (0.48, 0.42, 0.34, 1)
         _DustColor("Upward Dust Color", Color) = (0.48, 0.34, 0.24, 1)
@@ -145,6 +146,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 float _BottomBlendStart;
                 float _BottomBlendEnd;
                 float _UndersideShaleAmount;
+                float _TopShalePatchAmount;
                 float _DustAmount;
                 float _DustSharpness;
                 float _RockSeed01;
@@ -287,6 +289,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
             TriplanarSample SampleLayeredRock(
                 float3 samplePositionWS,
                 half3 geometricNormalWS,
+                half topShalePatch,
                 out half topBlend,
                 out half bottomBlend)
             {
@@ -307,6 +310,10 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 result.albedo = lerp(side.albedo, top.albedo, topBlend);
                 result.surface = lerp(side.surface, top.surface, topBlend);
                 result.normalWS = normalize(lerp(side.normalWS, top.normalWS, topBlend));
+                half topShaleBlend = topBlend * topShalePatch * (half)_TopShalePatchAmount;
+                result.albedo = lerp(result.albedo, bottom.albedo, topShaleBlend);
+                result.surface = lerp(result.surface, bottom.surface, topShaleBlend);
+                result.normalWS = normalize(lerp(result.normalWS, bottom.normalWS, topShaleBlend));
                 result.albedo = lerp(result.albedo, bottom.albedo, bottomBlend);
                 result.surface = lerp(result.surface, bottom.surface, bottomBlend);
                 result.normalWS = normalize(lerp(result.normalWS, bottom.normalWS, bottomBlend));
@@ -359,11 +366,19 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                     Hash31(float3(_RockSeed01, 7.3, 2.9)),
                     Hash31(float3(_RockSeed01, 5.1, 9.7))) * 37.0;
                 float3 samplePositionWS = absolutePositionWS + seedOffset;
+                float topShalePatchMeters = max(1.4, rockScale * 0.65);
+                half topShaleNoise = (half)ValueNoise3D(
+                    samplePositionWS / topShalePatchMeters + 73.21);
+                half topShaleDetail = (half)ValueNoise3D(
+                    samplePositionWS / (topShalePatchMeters * 0.42) - 21.7);
+                half topShalePatch = smoothstep(0.58h, 0.82h, topShaleNoise)
+                    * lerp(0.62h, 1.0h, topShaleDetail);
                 half topBlend;
                 half bottomBlend;
                 TriplanarSample rock = SampleLayeredRock(
                     samplePositionWS,
                     geometricNormalWS,
+                    topShalePatch,
                     topBlend,
                     bottomBlend);
 
@@ -372,7 +387,11 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 half secondaryPatch = (half)ValueNoise3D(samplePositionWS / (patchMeters * 0.43) + 19.37);
                 half smoothPatch = smoothstep(0.54h, 0.82h, patchNoise)
                     * (half)_SurfacePatchStrength;
-                half effectiveSmoothPatch = smoothPatch * (1.0h - bottomBlend);
+                half topShaleInfluence = saturate(
+                    topBlend * topShalePatch * (half)_TopShalePatchAmount);
+                half effectiveSmoothPatch = smoothPatch
+                    * (1.0h - bottomBlend)
+                    * (1.0h - topShaleInfluence);
                 half grainPatch = smoothstep(0.58h, 0.86h, secondaryPatch)
                     * (1.0h - smoothPatch * 0.65h)
                     * (half)_SurfacePatchStrength;

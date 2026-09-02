@@ -18,6 +18,7 @@ namespace BooterBigArm.Editor
         private static readonly int CrackAmountId = Shader.PropertyToID("_CrackAmount");
         private static readonly int SideGritId = Shader.PropertyToID("_SideGritAmount");
         private static readonly int UndersideShaleId = Shader.PropertyToID("_UndersideShaleAmount");
+        private static readonly int TopShalePatchesId = Shader.PropertyToID("_TopShalePatchAmount");
         private static readonly int WornShineId = Shader.PropertyToID("_WornSmoothnessBoost");
         private static readonly Dictionary<int, PreviewState> States = new Dictionary<int, PreviewState>();
         private static double nextScanTime;
@@ -173,6 +174,7 @@ namespace BooterBigArm.Editor
             materialProperties.SetFloat(CrackAmountId, authoring.CrackAmount);
             materialProperties.SetFloat(SideGritId, authoring.SideGrit);
             materialProperties.SetFloat(UndersideShaleId, authoring.UndersideShale);
+            materialProperties.SetFloat(TopShalePatchesId, authoring.TopShalePatches);
             materialProperties.SetFloat(WornShineId, authoring.WornShine);
             var rockSize = mesh.bounds.size;
             materialProperties.SetVector(
@@ -238,6 +240,7 @@ namespace BooterBigArm.Editor
                 hash = hash * 31 + authoring.CrackAmount.GetHashCode();
                 hash = hash * 31 + authoring.SideGrit.GetHashCode();
                 hash = hash * 31 + authoring.UndersideShale.GetHashCode();
+                hash = hash * 31 + authoring.TopShalePatches.GetHashCode();
                 hash = hash * 31 + authoring.WornShine.GetHashCode();
                 hash = hash * 31 + authoring.GenerationSeed;
                 hash = hash * 31 + (authoring.RockMaterial == null ? 0 : authoring.RockMaterial.GetInstanceID());

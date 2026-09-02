@@ -58,6 +58,7 @@ namespace BooterBigArm.Tests
             Assert.That(material.GetFloat("_CrackAmount"), Is.GreaterThan(0f));
             Assert.That(material.GetFloat("_SideGritAmount"), Is.GreaterThan(0f));
             Assert.That(material.GetFloat("_UndersideShaleAmount"), Is.GreaterThan(0f));
+            Assert.That(material.GetFloat("_TopShalePatchAmount"), Is.GreaterThan(0f));
         }
 
         [Test]
@@ -122,6 +123,7 @@ namespace BooterBigArm.Tests
                 serialized.FindProperty("crackAmount").floatValue = 7f;
                 serialized.FindProperty("sideGrit").floatValue = 3f;
                 serialized.FindProperty("undersideShale").floatValue = -4f;
+                serialized.FindProperty("topShalePatches").floatValue = 8f;
                 serialized.FindProperty("wornShine").floatValue = 4f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
@@ -130,6 +132,7 @@ namespace BooterBigArm.Tests
                 Assert.That(authoring.CrackAmount, Is.EqualTo(1f));
                 Assert.That(authoring.SideGrit, Is.EqualTo(1f));
                 Assert.That(authoring.UndersideShale, Is.EqualTo(0f));
+                Assert.That(authoring.TopShalePatches, Is.EqualTo(1f));
                 Assert.That(authoring.WornShine, Is.EqualTo(0.5f));
             }
             finally
