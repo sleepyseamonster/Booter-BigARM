@@ -67,7 +67,7 @@ namespace BooterBigArm.Editor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Base Rock Generator", EditorStyles.boldLabel);
             EditorGUILayout.HelpBox(
-                "Overall Size uniformly scales the rock and automatically adds more cube masses as the rock grows. Generate New Base Rock builds a dominant core, tapered supports, and smaller details. Verticality changes the silhouette from a horizontal spread to an upward spine. The change is one Undo step, the seed can be regenerated exactly, and every resulting cube remains editable.",
+                "Overall Size scales the rock and automatically adds masses as it grows. Verticality changes horizontal spread versus upward growth. Lopsidedness changes balanced versus one-sided growth. Compaction changes distinct lobes versus a dense body. Generator sliders affect the generated arrangement; click Apply Settings to Current Rock to compare the same seed. Every resulting cube remains editable.",
                 MessageType.None);
             EditorGUILayout.LabelField("Automatic Cube Count", authoring.GeneratedCubeCount.ToString());
             using (new EditorGUILayout.HorizontalScope())
@@ -78,7 +78,7 @@ namespace BooterBigArm.Editor
                         authoring,
                         TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(authoring.GenerationSeed));
                 }
-                if (GUILayout.Button("Regenerate Current Seed"))
+                if (GUILayout.Button("Apply Settings to Current Rock"))
                 {
                     TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
                         authoring,

@@ -174,6 +174,54 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void LopsidednessCreatesAVisiblyOneSidedMassDistribution()
+        {
+            var balanced = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                606060,
+                10,
+                Vector3.one * 8f,
+                0.45f,
+                0f,
+                0.5f);
+            var lopsided = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                606060,
+                10,
+                Vector3.one * 8f,
+                0.45f,
+                1f,
+                0.5f);
+
+            var balancedOffset = NormalizedHorizontalMassOffset(balanced);
+            var lopsidedOffset = NormalizedHorizontalMassOffset(lopsided);
+
+            Assert.That(lopsidedOffset, Is.GreaterThan(balancedOffset * 1.8f));
+        }
+
+        [Test]
+        public void CompactionCreatesAVisiblyDenserMassArrangement()
+        {
+            var lobed = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                707070,
+                9,
+                Vector3.one * 8f,
+                0.5f,
+                0.65f,
+                0f);
+            var compact = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                707070,
+                9,
+                Vector3.one * 8f,
+                0.5f,
+                0.65f,
+                1f);
+
+            var lobedSpacing = NormalizedNearestMassSpacing(lobed);
+            var compactSpacing = NormalizedNearestMassSpacing(compact);
+
+            Assert.That(compactSpacing, Is.LessThan(lobedSpacing * 0.62f));
+        }
+
+        [Test]
         public void GeneratedPlansStayGroundedInsideTheirMaximumEnvelope()
         {
             foreach (var seed in new[] { 17, 1729, 8675309 })
@@ -279,39 +327,50 @@ namespace BooterBigArm.Tests
                 {
                     foreach (var verticality in new[] { 0f, 0.5f, 1f })
                     {
-                        while (root.transform.childCount > 0)
+                        foreach (var controls in new[]
+                                 {
+                                     new Vector2(0f, 0f),
+                                     new Vector2(0f, 1f),
+                                     new Vector2(1f, 0f),
+                                     new Vector2(1f, 1f)
+                                 })
                         {
-                            Object.DestroyImmediate(root.transform.GetChild(0).gameObject);
-                        }
+                            var lopsidedness = controls.x;
+                            var compaction = controls.y;
+                            while (root.transform.childCount > 0)
+                            {
+                                Object.DestroyImmediate(root.transform.GetChild(0).gameObject);
+                            }
 
-                        var plan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
-                            seed,
-                            7,
-                            GeneratedRockSize,
-                            verticality,
-                            0.65f,
-                            0.62f);
-                        var boxes = new List<TopDown3DRockWorkbenchBox>(plan.Count);
-                        foreach (var spec in plan)
-                        {
-                            var box = CreateBoxObject(root.transform, spec.LocalPosition, spec.LocalScale);
-                            box.transform.localRotation = spec.LocalRotation;
-                            boxes.Add(new TopDown3DRockWorkbenchBox(root.transform, box.transform));
-                        }
+                            var plan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                                seed,
+                                7,
+                                GeneratedRockSize,
+                                verticality,
+                                lopsidedness,
+                                compaction);
+                            var boxes = new List<TopDown3DRockWorkbenchBox>(plan.Count);
+                            foreach (var spec in plan)
+                            {
+                                var box = CreateBoxObject(root.transform, spec.LocalPosition, spec.LocalScale);
+                                box.transform.localRotation = spec.LocalRotation;
+                                boxes.Add(new TopDown3DRockWorkbenchBox(root.transform, box.transform));
+                            }
 
-                        Assert.That(
-                            TopDown3DRockWorkbenchMesher.TryBuild(
-                                boxes,
-                                0.2f,
-                                0.16f,
-                                out var result,
-                                out var error),
-                            Is.True,
-                            $"Seed {seed}, verticality {verticality}: {error}");
-                        Assert.That(result.Topology.IsValid, Is.True,
-                            $"Seed {seed}, verticality {verticality}: {result.Topology.Error}");
-                        Assert.That(result.ConnectedComponents, Is.EqualTo(1),
-                            $"Seed {seed}, verticality {verticality}");
+                            Assert.That(
+                                TopDown3DRockWorkbenchMesher.TryBuild(
+                                    boxes,
+                                    0.2f,
+                                    0.16f,
+                                    out var result,
+                                    out var error),
+                                Is.True,
+                                $"Seed {seed}, verticality {verticality}, lopsidedness {lopsidedness}, compaction {compaction}: {error}");
+                            Assert.That(result.Topology.IsValid, Is.True,
+                                $"Seed {seed}, verticality {verticality}, lopsidedness {lopsidedness}, compaction {compaction}: {result.Topology.Error}");
+                            Assert.That(result.ConnectedComponents, Is.EqualTo(1),
+                                $"Seed {seed}, verticality {verticality}, lopsidedness {lopsidedness}, compaction {compaction}");
+                        }
                     }
                 }
             }
@@ -445,6 +504,43 @@ namespace BooterBigArm.Tests
         private static float Volume(Vector3 scale)
         {
             return scale.x * scale.y * scale.z;
+        }
+
+        private static float NormalizedHorizontalMassOffset(
+            IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> plan)
+        {
+            var centroid = Vector3.zero;
+            for (var index = 1; index < plan.Count; index++)
+            {
+                centroid += plan[index].LocalPosition;
+            }
+            centroid /= plan.Count - 1;
+
+            var offset = centroid - plan[0].LocalPosition;
+            offset.y = 0f;
+            var bounds = TopDown3DRockWorkbenchBaseRockGenerator.CalculateBounds(plan);
+            return offset.magnitude / Mathf.Max(bounds.size.x, bounds.size.z);
+        }
+
+        private static float NormalizedNearestMassSpacing(
+            IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> plan)
+        {
+            var total = 0f;
+            for (var index = 1; index < plan.Count; index++)
+            {
+                var nearest = float.PositiveInfinity;
+                for (var candidate = 0; candidate < index; candidate++)
+                {
+                    var distance = Vector3.Distance(
+                        plan[index].LocalPosition,
+                        plan[candidate].LocalPosition);
+                    var scale = (plan[index].LocalScale.magnitude
+                        + plan[candidate].LocalScale.magnitude) * 0.5f;
+                    nearest = Mathf.Min(nearest, distance / Mathf.Max(scale, 0.001f));
+                }
+                total += nearest;
+            }
+            return total / (plan.Count - 1);
         }
     }
 }

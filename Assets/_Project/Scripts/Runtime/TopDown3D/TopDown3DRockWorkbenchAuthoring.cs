@@ -34,9 +34,9 @@ namespace BooterBigArm.TopDown3D
         private float generatedOverallScale = 4f;
         [SerializeField, Range(0f, 1f), Tooltip("Low values spread the rock horizontally. High values build a tapered upward spine.")]
         private float generatedVerticality = 0.45f;
-        [SerializeField, Range(0f, 1f), Tooltip("Controls variation in cube size, tilt, and directional bias.")]
+        [SerializeField, Range(0f, 1f), InspectorName("Lopsidedness"), Tooltip("Zero distributes masses around the core. One drives growth strongly toward one side with greater size and tilt variation.")]
         private float generatedAsymmetry = 0.65f;
-        [SerializeField, Range(0f, 1f), Tooltip("Higher values push generated cubes farther into one another for broader fused joins.")]
+        [SerializeField, Range(0f, 1f), InspectorName("Compaction"), Tooltip("Zero preserves distinct overlapping lobes. One pulls the masses tightly together into a dense fused body.")]
         private float generatedOverlap = 0.62f;
 
         [NonSerialized] private Mesh generatedMesh;

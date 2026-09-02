@@ -90,7 +90,13 @@ namespace BooterBigArm.Editor
                 var roleCount = role == TopDown3DRockWorkbenchMassRole.Support
                     ? supportCount
                     : cubeCount - supportCount - 1;
-                var parentIndex = ChooseParentIndex(random, index, supportCount, verticality, role);
+                var parentIndex = ChooseParentIndex(
+                    random,
+                    index,
+                    supportCount,
+                    verticality,
+                    asymmetry,
+                    role);
                 var parent = raw[parentIndex];
                 var childScale = CreateRoleScale(
                     random,
@@ -104,13 +110,17 @@ namespace BooterBigArm.Editor
                 var direction = CreateGrowthDirection(
                     random,
                     preferredDirection,
+                    index,
                     verticality,
                     asymmetry,
                     role);
 
                 var parentRadius = DirectionalRadius(parent.LocalScale, parent.LocalRotation, direction);
                 var childRadius = DirectionalRadius(childScale, childRotation, direction);
-                var overlapDepth = Mathf.Lerp(0.3f, 0.62f, overlap);
+                var overlapDepth = Mathf.Lerp(
+                    0.12f,
+                    0.8f,
+                    Mathf.SmoothStep(0f, 1f, overlap));
                 var centerDistance = (parentRadius + childRadius) * (1f - overlapDepth);
                 var childPosition = parent.LocalPosition + direction * centerDistance;
                 raw.Add(new TopDown3DRockWorkbenchVolumeSpec(
@@ -239,6 +249,7 @@ namespace BooterBigArm.Editor
             int index,
             int supportCount,
             float verticality,
+            float asymmetry,
             TopDown3DRockWorkbenchMassRole role)
         {
             if (index == 1) return 0;
@@ -249,6 +260,10 @@ namespace BooterBigArm.Editor
             }
 
             var continueSpineChance = Mathf.Lerp(0.18f, 0.82f, verticality);
+            continueSpineChance = Mathf.Lerp(
+                continueSpineChance,
+                0.92f,
+                Mathf.SmoothStep(0f, 1f, asymmetry) * 0.72f);
             if (random.NextDouble() < continueSpineChance) return index - 1;
             return random.NextDouble() < 0.72 ? 0 : random.Next(1, index);
         }
@@ -266,8 +281,8 @@ namespace BooterBigArm.Editor
             var ratio = role == TopDown3DRockWorkbenchMassRole.Support
                 ? Mathf.Lerp(0.72f, 0.48f, progress)
                 : Mathf.Lerp(0.4f, 0.25f, progress);
-            var horizontalVariation = Mathf.Lerp(0.04f, 0.16f, asymmetry);
-            var verticalVariation = Mathf.Lerp(0.03f, 0.12f, asymmetry);
+            var horizontalVariation = Mathf.Lerp(0.025f, 0.28f, asymmetry);
+            var verticalVariation = Mathf.Lerp(0.02f, 0.22f, asymmetry);
             var verticalRatio = ratio * (role == TopDown3DRockWorkbenchMassRole.Support
                 ? Mathf.Lerp(0.78f, 1.1f, verticality)
                 : Mathf.Lerp(0.7f, 0.92f, verticality));
@@ -280,14 +295,27 @@ namespace BooterBigArm.Editor
         private static Vector3 CreateGrowthDirection(
             System.Random random,
             Vector3 preferredDirection,
+            int index,
             float verticality,
             float asymmetry,
             TopDown3DRockWorkbenchMassRole role)
         {
-            var angle = NextRange(random, 0f, Mathf.PI * 2f);
-            var horizontal = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            horizontal += preferredDirection * (asymmetry * 0.52f);
-            horizontal.Normalize();
+            const float goldenAngle = 2.39996323f;
+            var preferredAngle = Mathf.Atan2(preferredDirection.z, preferredDirection.x);
+            var balancedAngle = preferredAngle + index * goldenAngle;
+            var balancedDirection = new Vector3(
+                Mathf.Cos(balancedAngle),
+                0f,
+                Mathf.Sin(balancedAngle));
+            var randomAngle = NextRange(random, 0f, Mathf.PI * 2f);
+            var randomDirection = new Vector3(
+                Mathf.Cos(randomAngle),
+                0f,
+                Mathf.Sin(randomAngle));
+            var irregularity = Mathf.SmoothStep(0f, 1f, asymmetry) * 0.35f;
+            var horizontal = Vector3.Slerp(balancedDirection, randomDirection, irregularity);
+            var directionalBias = Mathf.SmoothStep(0f, 1f, asymmetry) * 0.88f;
+            horizontal = Vector3.Slerp(horizontal, preferredDirection, directionalBias).normalized;
 
             var detail = role == TopDown3DRockWorkbenchMassRole.Detail;
             var minimumY = detail
@@ -305,7 +333,7 @@ namespace BooterBigArm.Editor
 
         private static Quaternion CreateSharedRotation(System.Random random, float asymmetry)
         {
-            var baseTilt = Mathf.Lerp(2f, 9f, asymmetry);
+            var baseTilt = Mathf.Lerp(1.5f, 14f, asymmetry);
             return Quaternion.Euler(
                 NextRange(random, -baseTilt, baseTilt),
                 NextRange(random, 0f, 360f),
@@ -321,8 +349,8 @@ namespace BooterBigArm.Editor
             var roleVariation = role == TopDown3DRockWorkbenchMassRole.Core
                 ? 0.45f
                 : role == TopDown3DRockWorkbenchMassRole.Support ? 0.75f : 1f;
-            var maximumTilt = Mathf.Lerp(3f, 15f, asymmetry) * roleVariation;
-            var maximumYaw = Mathf.Lerp(5f, 24f, asymmetry) * roleVariation;
+            var maximumTilt = Mathf.Lerp(2f, 26f, asymmetry) * roleVariation;
+            var maximumYaw = Mathf.Lerp(4f, 42f, asymmetry) * roleVariation;
             return sharedRotation * Quaternion.Euler(
                 NextRange(random, -maximumTilt, maximumTilt),
                 NextRange(random, -maximumYaw, maximumYaw),
