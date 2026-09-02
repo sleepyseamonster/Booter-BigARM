@@ -171,17 +171,17 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 return result;
             }
 
-            float Hash31(float3 point)
+            float Hash31(float3 samplePosition)
             {
-                point = frac(point * 0.1031);
-                point += dot(point, point.yzx + 33.33);
-                return frac((point.x + point.y) * point.z);
+                samplePosition = frac(samplePosition * 0.1031);
+                samplePosition += dot(samplePosition, samplePosition.yzx + 33.33);
+                return frac((samplePosition.x + samplePosition.y) * samplePosition.z);
             }
 
-            float ValueNoise3D(float3 point)
+            float ValueNoise3D(float3 samplePosition)
             {
-                float3 cell = floor(point);
-                float3 local = frac(point);
+                float3 cell = floor(samplePosition);
+                float3 local = frac(samplePosition);
                 local = local * local * (3.0 - 2.0 * local);
                 float lowerX0 = lerp(Hash31(cell + float3(0, 0, 0)), Hash31(cell + float3(1, 0, 0)), local.x);
                 float lowerX1 = lerp(Hash31(cell + float3(0, 1, 0)), Hash31(cell + float3(1, 1, 0)), local.x);
