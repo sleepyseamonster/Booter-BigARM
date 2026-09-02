@@ -62,7 +62,7 @@ namespace BooterBigArm.Editor
 
             EditorGUILayout.Space();
             EditorGUILayout.HelpBox(
-                "Each Cube Volume is an editable source, not a separate finished mesh. Move, rotate, and scale those child objects in the Scene view. The workbench remeshes their combined volume so overlapping cubes become one continuous surface. Its layered PBR surface assigns weathered top stone, directional wall strata, and brittle underside shale by face direction, then disperses shattered-plate islands across some top faces and adds seeded smooth, sparse side-grit, shiny, cracked, mineral, and dusty regions without authored UVs.",
+                "Each Cube Volume is an editable source, not a separate finished mesh. Move, rotate, and scale those child objects in the Scene view. The workbench remeshes their combined volume so overlapping cubes become one continuous surface. Its layered PBR surface assigns weathered top stone, directional wall strata, and brittle underside shale by face direction, then disperses shattered-plate islands across some top faces and adds seeded smooth, visibly coarse side-grit, shiny, cracked, mineral, and dusty regions without authored UVs.",
                 MessageType.Info);
 
             EditorGUILayout.Space();

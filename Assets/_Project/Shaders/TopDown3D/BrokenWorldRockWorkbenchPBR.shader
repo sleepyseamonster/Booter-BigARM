@@ -398,13 +398,25 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 TriplanarSample grit = SampleSideGrit(samplePositionWS, geometricNormalWS);
                 half gritNoise = (half)ValueNoise3D(
                     samplePositionWS / max(1.2, rockScale * 0.42) + 47.13);
-                half gritPatch = smoothstep(0.64h, 0.86h, gritNoise)
+                half gritStrength = saturate((half)_SideGritAmount * 1.55h);
+                half gritPatch = smoothstep(0.58h, 0.80h, gritNoise)
                     * (1.0h - topBlend)
                     * (1.0h - bottomBlend)
-                    * (half)_SideGritAmount;
-                rock.albedo = lerp(rock.albedo, grit.albedo, gritPatch * 0.72h);
-                rock.surface = lerp(rock.surface, grit.surface, gritPatch);
-                rock.normalWS = normalize(lerp(rock.normalWS, grit.normalWS, gritPatch));
+                    * gritStrength;
+                half gritHeightContrast = lerp(0.86h, 1.08h, grit.surface.b);
+                half3 contrastedGritAlbedo = grit.albedo * gritHeightContrast;
+                rock.albedo = lerp(
+                    rock.albedo,
+                    contrastedGritAlbedo,
+                    saturate(gritPatch * 0.92h));
+                rock.surface = lerp(
+                    rock.surface,
+                    grit.surface,
+                    saturate(gritPatch * 1.05h));
+                rock.normalWS = normalize(lerp(
+                    rock.normalWS,
+                    grit.normalWS,
+                    saturate(gritPatch * 1.25h)));
                 rock.normalWS = normalize(lerp(
                     rock.normalWS,
                     geometricNormalWS,

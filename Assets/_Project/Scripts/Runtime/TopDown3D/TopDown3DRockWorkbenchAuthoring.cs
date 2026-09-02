@@ -31,7 +31,7 @@ namespace BooterBigArm.TopDown3D
         private float surfaceVariation = 0.72f;
         [SerializeField, Range(0f, 1f), Tooltip("Visibility of procedurally integrated fissures across top and side surfaces.")]
         private float crackAmount = 0.42f;
-        [SerializeField, Range(0f, 1f), InspectorName("Side Grit"), Tooltip("Amount of deep, coarse grain appearing in restrained patches on steep side faces.")]
+        [SerializeField, Range(0f, 1f), InspectorName("Side Grit"), Tooltip("Visibility and prevalence of deep, coarse grain patches on steep side faces.")]
         private float sideGrit = 0.3f;
         [SerializeField, Range(0f, 1f), InspectorName("Underside Shale"), Tooltip("Strength of brittle, broken shale on downward-facing surfaces beneath ledges and overhangs.")]
         private float undersideShale = 1f;

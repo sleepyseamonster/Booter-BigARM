@@ -21,7 +21,7 @@ The workbench exposes seven direct surface-language controls:
 - **Geology Scale** — physical size of the repeated grain and strata.
 - **Surface Variation** — strength of broad smooth and grainy regions.
 - **Crack Amount** — visibility of integrated fissures.
-- **Side Grit** — restrained coverage of a coarse, deeply eroded layer on steep faces only. Its normal response supplies most of the perceived depth.
+- **Side Grit** — visibility and prevalence of a coarse, deeply eroded layer on steep faces only. The blend reinforces albedo contrast, roughness, and normal depth while preserving regions of the primary side stone.
 - **Underside Shale** — strength of brittle, broken shale on downward-facing surfaces. Zero disables it; one fully establishes the underside material.
 - **Top Shale Patches** — strength of broad, irregular shattered-plate islands dispersed across upward surfaces. It never becomes uniform coverage.
 - **Worn Shine** — additional highlight response on smoother patches.
