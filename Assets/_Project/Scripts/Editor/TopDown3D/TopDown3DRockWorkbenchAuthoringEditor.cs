@@ -67,7 +67,7 @@ namespace BooterBigArm.Editor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Base Rock Generator", EditorStyles.boldLabel);
             EditorGUILayout.HelpBox(
-                "Generate New Base Rock replaces this workbench's current source cubes with a controlled overlapping cluster. The change is one Undo step, the seed can be regenerated exactly, and every resulting cube remains editable.",
+                "Generate New Base Rock builds a dominant core, tapered support masses, and smaller details inside the Overall Size envelope. Verticality changes the silhouette from a horizontal spread to an upward spine. The change is one Undo step, the seed can be regenerated exactly, and every resulting cube remains editable.",
                 MessageType.None);
             using (new EditorGUILayout.HorizontalScope())
             {

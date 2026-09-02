@@ -29,9 +29,9 @@ namespace BooterBigArm.TopDown3D
         private int generationSeed = 1729;
         [SerializeField, Range(2, 10), Tooltip("Number of editable cube volumes used to build the generated base rock.")]
         private int generatedCubeCount = 5;
-        [SerializeField, Tooltip("Approximate local-space bounds of the generated base rock.")]
+        [SerializeField, Tooltip("Maximum local-space envelope for the generated rock. Its natural proportions are preserved inside this size.")]
         private Vector3 generatedOverallSize = new Vector3(4f, 3f, 3.5f);
-        [SerializeField, Range(0f, 1f), Tooltip("Higher values favor taller cubes and upward growth.")]
+        [SerializeField, Range(0f, 1f), Tooltip("Low values spread the rock horizontally. High values build a tapered upward spine.")]
         private float generatedVerticality = 0.45f;
         [SerializeField, Range(0f, 1f), Tooltip("Controls variation in cube size, tilt, and directional bias.")]
         private float generatedAsymmetry = 0.65f;

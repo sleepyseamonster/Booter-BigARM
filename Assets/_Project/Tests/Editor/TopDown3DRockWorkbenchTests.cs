@@ -77,6 +77,7 @@ namespace BooterBigArm.Tests
                 Assert.That(second[index].LocalPosition, Is.EqualTo(first[index].LocalPosition));
                 Assert.That(second[index].LocalRotation, Is.EqualTo(first[index].LocalRotation));
                 Assert.That(second[index].LocalScale, Is.EqualTo(first[index].LocalScale));
+                Assert.That(second[index].Role, Is.EqualTo(first[index].Role));
             }
         }
 
@@ -110,6 +111,100 @@ namespace BooterBigArm.Tests
                 }
             }
             Assert.That(differs, Is.True);
+        }
+
+        [Test]
+        public void VerticalityCreatesAVisiblyTallerSilhouette()
+        {
+            var horizontal = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                424242,
+                7,
+                GeneratedRockSize,
+                0f,
+                0.65f,
+                0.62f);
+            var vertical = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                424242,
+                7,
+                GeneratedRockSize,
+                1f,
+                0.65f,
+                0.62f);
+
+            var horizontalBounds = TopDown3DRockWorkbenchBaseRockGenerator.CalculateBounds(horizontal);
+            var verticalBounds = TopDown3DRockWorkbenchBaseRockGenerator.CalculateBounds(vertical);
+            var horizontalRatio = horizontalBounds.size.y
+                / Mathf.Max(horizontalBounds.size.x, horizontalBounds.size.z);
+            var verticalRatio = verticalBounds.size.y
+                / Mathf.Max(verticalBounds.size.x, verticalBounds.size.z);
+
+            Assert.That(verticalRatio, Is.GreaterThan(horizontalRatio * 1.35f));
+            Assert.That(verticalBounds.size.y, Is.GreaterThan(horizontalBounds.size.y));
+        }
+
+        [Test]
+        public void GeneratedPlansStayGroundedInsideTheirMaximumEnvelope()
+        {
+            foreach (var seed in new[] { 17, 1729, 8675309 })
+            {
+                foreach (var verticality in new[] { 0f, 0.5f, 1f })
+                {
+                    var plan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                        seed,
+                        8,
+                        GeneratedRockSize,
+                        verticality,
+                        0.72f,
+                        0.58f);
+                    var bounds = TopDown3DRockWorkbenchBaseRockGenerator.CalculateBounds(plan);
+
+                    Assert.That(bounds.min.y, Is.EqualTo(0f).Within(0.001f),
+                        $"Seed {seed}, verticality {verticality}");
+                    Assert.That(bounds.size.x, Is.LessThanOrEqualTo(GeneratedRockSize.x + 0.001f),
+                        $"Seed {seed}, verticality {verticality}");
+                    Assert.That(bounds.size.y, Is.LessThanOrEqualTo(GeneratedRockSize.y + 0.001f),
+                        $"Seed {seed}, verticality {verticality}");
+                    Assert.That(bounds.size.z, Is.LessThanOrEqualTo(GeneratedRockSize.z + 0.001f),
+                        $"Seed {seed}, verticality {verticality}");
+                }
+            }
+        }
+
+        [Test]
+        public void GeneratedPlanUsesDominantCoreSupportsAndSmallerDetails()
+        {
+            var plan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                314159,
+                8,
+                GeneratedRockSize,
+                0.55f,
+                0.8f,
+                0.62f);
+
+            Assert.That(plan[0].Role, Is.EqualTo(TopDown3DRockWorkbenchMassRole.Core));
+            var supportCount = 0;
+            var detailCount = 0;
+            var largestSupport = 0f;
+            var largestDetail = 0f;
+            for (var index = 1; index < plan.Count; index++)
+            {
+                var volume = Volume(plan[index].LocalScale);
+                if (plan[index].Role == TopDown3DRockWorkbenchMassRole.Support)
+                {
+                    supportCount++;
+                    largestSupport = Mathf.Max(largestSupport, volume);
+                }
+                else if (plan[index].Role == TopDown3DRockWorkbenchMassRole.Detail)
+                {
+                    detailCount++;
+                    largestDetail = Mathf.Max(largestDetail, volume);
+                }
+            }
+
+            Assert.That(supportCount, Is.GreaterThan(0));
+            Assert.That(detailCount, Is.GreaterThan(0));
+            Assert.That(Volume(plan[0].LocalScale), Is.GreaterThan(largestSupport));
+            Assert.That(largestSupport, Is.GreaterThan(largestDetail));
         }
 
         [Test]
@@ -149,39 +244,44 @@ namespace BooterBigArm.Tests
             var root = new GameObject("Generated Base Rock Test");
             try
             {
-                foreach (var seed in new[] { 101, 202, 303, 404 })
+                foreach (var seed in new[] { 101, 202, 303 })
                 {
-                    while (root.transform.childCount > 0)
+                    foreach (var verticality in new[] { 0f, 0.5f, 1f })
                     {
-                        Object.DestroyImmediate(root.transform.GetChild(0).gameObject);
-                    }
+                        while (root.transform.childCount > 0)
+                        {
+                            Object.DestroyImmediate(root.transform.GetChild(0).gameObject);
+                        }
 
-                    var plan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
-                        seed,
-                        5,
-                        GeneratedRockSize,
-                        0.45f,
-                        0.65f,
-                        0.62f);
-                    var boxes = new List<TopDown3DRockWorkbenchBox>(plan.Count);
-                    foreach (var spec in plan)
-                    {
-                        var box = CreateBoxObject(root.transform, spec.LocalPosition, spec.LocalScale);
-                        box.transform.localRotation = spec.LocalRotation;
-                        boxes.Add(new TopDown3DRockWorkbenchBox(root.transform, box.transform));
-                    }
+                        var plan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                            seed,
+                            7,
+                            GeneratedRockSize,
+                            verticality,
+                            0.65f,
+                            0.62f);
+                        var boxes = new List<TopDown3DRockWorkbenchBox>(plan.Count);
+                        foreach (var spec in plan)
+                        {
+                            var box = CreateBoxObject(root.transform, spec.LocalPosition, spec.LocalScale);
+                            box.transform.localRotation = spec.LocalRotation;
+                            boxes.Add(new TopDown3DRockWorkbenchBox(root.transform, box.transform));
+                        }
 
-                    Assert.That(
-                        TopDown3DRockWorkbenchMesher.TryBuild(
-                            boxes,
-                            0.2f,
-                            0.16f,
-                            out var result,
-                            out var error),
-                        Is.True,
-                        $"Seed {seed}: {error}");
-                    Assert.That(result.Topology.IsValid, Is.True, $"Seed {seed}: {result.Topology.Error}");
-                    Assert.That(result.ConnectedComponents, Is.EqualTo(1), $"Seed {seed}");
+                        Assert.That(
+                            TopDown3DRockWorkbenchMesher.TryBuild(
+                                boxes,
+                                0.2f,
+                                0.16f,
+                                out var result,
+                                out var error),
+                            Is.True,
+                            $"Seed {seed}, verticality {verticality}: {error}");
+                        Assert.That(result.Topology.IsValid, Is.True,
+                            $"Seed {seed}, verticality {verticality}: {result.Topology.Error}");
+                        Assert.That(result.ConnectedComponents, Is.EqualTo(1),
+                            $"Seed {seed}, verticality {verticality}");
+                    }
                 }
             }
             finally
@@ -309,6 +409,11 @@ namespace BooterBigArm.Tests
             box.transform.localPosition = position;
             box.transform.localScale = scale;
             return box;
+        }
+
+        private static float Volume(Vector3 scale)
+        {
+            return scale.x * scale.y * scale.z;
         }
     }
 }

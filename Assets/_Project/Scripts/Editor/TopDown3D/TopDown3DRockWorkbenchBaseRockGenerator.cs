@@ -6,21 +6,31 @@ using BooterBigArm.TopDown3D;
 
 namespace BooterBigArm.Editor
 {
+    internal enum TopDown3DRockWorkbenchMassRole
+    {
+        Core,
+        Support,
+        Detail
+    }
+
     internal readonly struct TopDown3DRockWorkbenchVolumeSpec
     {
         internal TopDown3DRockWorkbenchVolumeSpec(
             Vector3 localPosition,
             Quaternion localRotation,
-            Vector3 localScale)
+            Vector3 localScale,
+            TopDown3DRockWorkbenchMassRole role)
         {
             LocalPosition = localPosition;
             LocalRotation = localRotation;
             LocalScale = localScale;
+            Role = role;
         }
 
         internal Vector3 LocalPosition { get; }
         internal Quaternion LocalRotation { get; }
         internal Vector3 LocalScale { get; }
+        internal TopDown3DRockWorkbenchMassRole Role { get; }
     }
 
     /// <summary>
@@ -53,54 +63,61 @@ namespace BooterBigArm.Editor
                 Mathf.Cos(preferredAngle),
                 0f,
                 Mathf.Sin(preferredAngle));
+            var sharedRotation = CreateSharedRotation(random, asymmetry);
 
             var firstScale = new Vector3(
-                overallSize.x * VariedFraction(random, 0.56f, 0.08f, asymmetry),
-                overallSize.y * VariedFraction(
-                    random,
-                    Mathf.Lerp(0.46f, 0.68f, verticality),
-                    0.08f,
-                    asymmetry),
-                overallSize.z * VariedFraction(random, 0.56f, 0.08f, asymmetry));
+                VariedFraction(random, 1.6f, 0.12f, asymmetry),
+                VariedFraction(random, Mathf.Lerp(0.72f, 1.65f, verticality), 0.1f, asymmetry),
+                VariedFraction(random, 1.45f, 0.12f, asymmetry));
             raw.Add(new TopDown3DRockWorkbenchVolumeSpec(
                 Vector3.zero,
-                CreateRotation(random, asymmetry),
-                firstScale));
+                CreateRoleRotation(random, sharedRotation, asymmetry, TopDown3DRockWorkbenchMassRole.Core),
+                firstScale,
+                TopDown3DRockWorkbenchMassRole.Core));
+
+            var supportCount = cubeCount <= 2
+                ? 1
+                : Mathf.Clamp(Mathf.CeilToInt((cubeCount - 1) * 0.6f), 1, cubeCount - 2);
 
             for (var index = 1; index < cubeCount; index++)
             {
-                var parentLimit = Mathf.Min(index, 3);
-                var parentIndex = index <= 2 ? 0 : random.Next(0, parentLimit);
+                var role = index <= supportCount
+                    ? TopDown3DRockWorkbenchMassRole.Support
+                    : TopDown3DRockWorkbenchMassRole.Detail;
+                var roleIndex = role == TopDown3DRockWorkbenchMassRole.Support
+                    ? index - 1
+                    : index - supportCount - 1;
+                var roleCount = role == TopDown3DRockWorkbenchMassRole.Support
+                    ? supportCount
+                    : cubeCount - supportCount - 1;
+                var parentIndex = ChooseParentIndex(random, index, supportCount, verticality, role);
                 var parent = raw[parentIndex];
-                var childScale = new Vector3(
-                    overallSize.x * VariedFraction(random, 0.38f, 0.14f, asymmetry),
-                    overallSize.y * VariedFraction(
-                        random,
-                        Mathf.Lerp(0.34f, 0.52f, verticality),
-                        0.13f,
-                        asymmetry),
-                    overallSize.z * VariedFraction(random, 0.38f, 0.14f, asymmetry));
+                var childScale = CreateRoleScale(
+                    random,
+                    firstScale,
+                    role,
+                    roleIndex,
+                    roleCount,
+                    verticality,
+                    asymmetry);
+                var childRotation = CreateRoleRotation(random, sharedRotation, asymmetry, role);
+                var direction = CreateGrowthDirection(
+                    random,
+                    preferredDirection,
+                    verticality,
+                    asymmetry,
+                    role);
 
-                var angle = NextRange(random, 0f, Mathf.PI * 2f);
-                var direction = new Vector3(
-                    Mathf.Cos(angle),
-                    NextRange(
-                        random,
-                        -Mathf.Lerp(0.08f, 0.3f, verticality),
-                        Mathf.Lerp(0.12f, 0.85f, verticality)),
-                    Mathf.Sin(angle));
-                direction += preferredDirection * (asymmetry * 0.35f);
-                direction.Normalize();
-
-                var parentRadius = ProjectedRadius(parent.LocalScale, direction);
-                var childRadius = ProjectedRadius(childScale, direction);
+                var parentRadius = DirectionalRadius(parent.LocalScale, parent.LocalRotation, direction);
+                var childRadius = DirectionalRadius(childScale, childRotation, direction);
                 var overlapDepth = Mathf.Lerp(0.3f, 0.62f, overlap);
                 var centerDistance = (parentRadius + childRadius) * (1f - overlapDepth);
                 var childPosition = parent.LocalPosition + direction * centerDistance;
                 raw.Add(new TopDown3DRockWorkbenchVolumeSpec(
                     childPosition,
-                    CreateRotation(random, asymmetry),
-                    childScale));
+                    childRotation,
+                    childScale,
+                    role));
             }
 
             return FitPlanToSizeAndGround(raw, overallSize);
@@ -163,65 +180,188 @@ namespace BooterBigArm.Editor
             }
         }
 
+        internal static Bounds CalculateBounds(IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> plan)
+        {
+            if (plan == null || plan.Count == 0) return new Bounds(Vector3.zero, Vector3.zero);
+
+            var first = plan[0];
+            var firstExtents = GetRotatedExtents(first.LocalRotation, first.LocalScale);
+            var min = first.LocalPosition - firstExtents;
+            var max = first.LocalPosition + firstExtents;
+            for (var index = 1; index < plan.Count; index++)
+            {
+                var spec = plan[index];
+                var extents = GetRotatedExtents(spec.LocalRotation, spec.LocalScale);
+                min = Vector3.Min(min, spec.LocalPosition - extents);
+                max = Vector3.Max(max, spec.LocalPosition + extents);
+            }
+
+            var bounds = new Bounds();
+            bounds.SetMinMax(min, max);
+            return bounds;
+        }
+
         private static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> FitPlanToSizeAndGround(
             IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> raw,
             Vector3 overallSize)
         {
-            var first = raw[0];
-            var min = first.LocalPosition - first.LocalScale * 0.5f;
-            var max = first.LocalPosition + first.LocalScale * 0.5f;
-            for (var index = 1; index < raw.Count; index++)
-            {
-                var spec = raw[index];
-                min = Vector3.Min(min, spec.LocalPosition - spec.LocalScale * 0.5f);
-                max = Vector3.Max(max, spec.LocalPosition + spec.LocalScale * 0.5f);
-            }
-
-            var size = max - min;
-            var fit = new Vector3(
+            var rawBounds = CalculateBounds(raw);
+            var size = rawBounds.size;
+            var fit = Mathf.Min(
                 overallSize.x / Mathf.Max(size.x, 0.001f),
                 overallSize.y / Mathf.Max(size.y, 0.001f),
                 overallSize.z / Mathf.Max(size.z, 0.001f));
-            var center = (min + max) * 0.5f;
             var fitted = new List<TopDown3DRockWorkbenchVolumeSpec>(raw.Count);
-            var fittedMinimumY = float.PositiveInfinity;
             foreach (var spec in raw)
             {
-                var position = Vector3.Scale(spec.LocalPosition - center, fit);
-                var scale = Vector3.Scale(spec.LocalScale, fit);
-                fittedMinimumY = Mathf.Min(fittedMinimumY, position.y - scale.y * 0.5f);
                 fitted.Add(new TopDown3DRockWorkbenchVolumeSpec(
-                    position,
+                    (spec.LocalPosition - rawBounds.center) * fit,
                     spec.LocalRotation,
-                    scale));
+                    spec.LocalScale * fit,
+                    spec.Role));
             }
 
+            var fittedMinimumY = CalculateBounds(fitted).min.y;
             for (var index = 0; index < fitted.Count; index++)
             {
                 var spec = fitted[index];
                 fitted[index] = new TopDown3DRockWorkbenchVolumeSpec(
                     spec.LocalPosition + Vector3.up * -fittedMinimumY,
                     spec.LocalRotation,
-                    spec.LocalScale);
+                    spec.LocalScale,
+                    spec.Role);
             }
             return fitted;
         }
 
-        private static Quaternion CreateRotation(System.Random random, float asymmetry)
+        private static int ChooseParentIndex(
+            System.Random random,
+            int index,
+            int supportCount,
+            float verticality,
+            TopDown3DRockWorkbenchMassRole role)
         {
-            var maximumTilt = Mathf.Lerp(4f, 22f, asymmetry);
+            if (index == 1) return 0;
+
+            if (role == TopDown3DRockWorkbenchMassRole.Detail)
+            {
+                return random.Next(0, supportCount + 1);
+            }
+
+            var continueSpineChance = Mathf.Lerp(0.18f, 0.82f, verticality);
+            if (random.NextDouble() < continueSpineChance) return index - 1;
+            return random.NextDouble() < 0.72 ? 0 : random.Next(1, index);
+        }
+
+        private static Vector3 CreateRoleScale(
+            System.Random random,
+            Vector3 coreScale,
+            TopDown3DRockWorkbenchMassRole role,
+            int roleIndex,
+            int roleCount,
+            float verticality,
+            float asymmetry)
+        {
+            var progress = roleCount <= 1 ? 0f : roleIndex / (float)(roleCount - 1);
+            var ratio = role == TopDown3DRockWorkbenchMassRole.Support
+                ? Mathf.Lerp(0.72f, 0.48f, progress)
+                : Mathf.Lerp(0.4f, 0.25f, progress);
+            var horizontalVariation = Mathf.Lerp(0.04f, 0.16f, asymmetry);
+            var verticalVariation = Mathf.Lerp(0.03f, 0.12f, asymmetry);
+            var verticalRatio = ratio * (role == TopDown3DRockWorkbenchMassRole.Support
+                ? Mathf.Lerp(0.78f, 1.1f, verticality)
+                : Mathf.Lerp(0.7f, 0.92f, verticality));
+            return new Vector3(
+                coreScale.x * VariedFraction(random, ratio, horizontalVariation, 1f),
+                coreScale.y * VariedFraction(random, verticalRatio, verticalVariation, 1f),
+                coreScale.z * VariedFraction(random, ratio, horizontalVariation, 1f));
+        }
+
+        private static Vector3 CreateGrowthDirection(
+            System.Random random,
+            Vector3 preferredDirection,
+            float verticality,
+            float asymmetry,
+            TopDown3DRockWorkbenchMassRole role)
+        {
+            var angle = NextRange(random, 0f, Mathf.PI * 2f);
+            var horizontal = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+            horizontal += preferredDirection * (asymmetry * 0.52f);
+            horizontal.Normalize();
+
+            var detail = role == TopDown3DRockWorkbenchMassRole.Detail;
+            var minimumY = detail
+                ? Mathf.Lerp(-0.14f, 0.06f, verticality)
+                : Mathf.Lerp(-0.08f, 0.38f, verticality);
+            var maximumY = detail
+                ? Mathf.Lerp(0.18f, 0.62f, verticality)
+                : Mathf.Lerp(0.14f, 1.12f, verticality);
+            var horizontalWeight = detail
+                ? Mathf.Lerp(1f, 0.58f, verticality)
+                : Mathf.Lerp(1f, 0.34f, verticality);
+            return (horizontal * horizontalWeight
+                + Vector3.up * NextRange(random, minimumY, maximumY)).normalized;
+        }
+
+        private static Quaternion CreateSharedRotation(System.Random random, float asymmetry)
+        {
+            var baseTilt = Mathf.Lerp(2f, 9f, asymmetry);
             return Quaternion.Euler(
-                NextRange(random, -maximumTilt, maximumTilt),
+                NextRange(random, -baseTilt, baseTilt),
                 NextRange(random, 0f, 360f),
+                NextRange(random, -baseTilt, baseTilt));
+        }
+
+        private static Quaternion CreateRoleRotation(
+            System.Random random,
+            Quaternion sharedRotation,
+            float asymmetry,
+            TopDown3DRockWorkbenchMassRole role)
+        {
+            var roleVariation = role == TopDown3DRockWorkbenchMassRole.Core
+                ? 0.45f
+                : role == TopDown3DRockWorkbenchMassRole.Support ? 0.75f : 1f;
+            var maximumTilt = Mathf.Lerp(3f, 15f, asymmetry) * roleVariation;
+            var maximumYaw = Mathf.Lerp(5f, 24f, asymmetry) * roleVariation;
+            return sharedRotation * Quaternion.Euler(
+                NextRange(random, -maximumTilt, maximumTilt),
+                NextRange(random, -maximumYaw, maximumYaw),
                 NextRange(random, -maximumTilt, maximumTilt));
         }
 
-        private static float ProjectedRadius(Vector3 scale, Vector3 direction)
+        private static float DirectionalRadius(
+            Vector3 scale,
+            Quaternion rotation,
+            Vector3 worldDirection)
         {
-            return 0.5f * (
-                Mathf.Abs(direction.x) * scale.x
-                + Mathf.Abs(direction.y) * scale.y
-                + Mathf.Abs(direction.z) * scale.z);
+            var direction = Quaternion.Inverse(rotation) * worldDirection.normalized;
+            var half = scale * 0.5f;
+            var radius = float.PositiveInfinity;
+            if (Mathf.Abs(direction.x) > 0.0001f)
+            {
+                radius = Mathf.Min(radius, half.x / Mathf.Abs(direction.x));
+            }
+            if (Mathf.Abs(direction.y) > 0.0001f)
+            {
+                radius = Mathf.Min(radius, half.y / Mathf.Abs(direction.y));
+            }
+            if (Mathf.Abs(direction.z) > 0.0001f)
+            {
+                radius = Mathf.Min(radius, half.z / Mathf.Abs(direction.z));
+            }
+            return radius;
+        }
+
+        private static Vector3 GetRotatedExtents(Quaternion rotation, Vector3 scale)
+        {
+            var half = scale * 0.5f;
+            var right = rotation * Vector3.right;
+            var up = rotation * Vector3.up;
+            var forward = rotation * Vector3.forward;
+            return new Vector3(
+                Mathf.Abs(right.x) * half.x + Mathf.Abs(up.x) * half.y + Mathf.Abs(forward.x) * half.z,
+                Mathf.Abs(right.y) * half.x + Mathf.Abs(up.y) * half.y + Mathf.Abs(forward.y) * half.z,
+                Mathf.Abs(right.z) * half.x + Mathf.Abs(up.z) * half.y + Mathf.Abs(forward.z) * half.z);
         }
 
         private static float VariedFraction(
