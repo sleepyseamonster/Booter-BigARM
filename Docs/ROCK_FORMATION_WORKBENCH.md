@@ -13,7 +13,21 @@ The current direction uses four visible ideas from the supplied formation refere
 
 These are general visual principles only. No source game assets are copied into this project.
 
-## Create and edit a formation
+## Fast workflow
+
+Create a complete random rock with:
+
+`GameObject > Booter & BigARM > Top Down 3D > New Random Rock`
+
+The main Rock Inspector intentionally shows only `Overall Size`, `Height`, `Lopsidedness`, `Compaction`, and `Show Editing Cubes`. Click `Generate New Rock` for a new seed or `Update Current Rock With These Settings` to preserve the current seed. Mesh, collider, material, detailed surface, seed-gallery, and repair controls are under `Advanced`.
+
+Create a complete random formation with:
+
+`GameObject > Booter & BigARM > Top Down 3D > New Random Rock Formation`
+
+The Formation Inspector intentionally shows only `Overall Size`, `Complexity`, `Height`, `Rock Connections`, and `Long Cracks`. Overall size and complexity automatically determine the member-rock count. `Generate New Formation` replaces the generated member rocks with a new seed; Unity Undo restores the previous arrangement.
+
+## Build a formation from hand-arranged rocks
 
 1. Arrange two or more `Rock Workbench` objects in the Scene.
 2. Select their root objects. Selecting one of their source cubes also works.

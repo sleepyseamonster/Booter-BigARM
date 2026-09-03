@@ -11,27 +11,71 @@ namespace BooterBigArm.Editor
     {
         private const string CreateMenuPath =
             "GameObject/Booter & BigARM/Top Down 3D/Create Formation From Selected Rocks";
+        private bool showAdvanced;
+
+        internal static bool CanCreateFromSelection => CollectSelectedWorkbenches().Count >= 2;
 
         public override void OnInspectorGUI()
         {
             var formation = (TopDown3DRockWorkbenchFormationAuthoring)target;
+            EditorGUILayout.LabelField("Rock Formation Generator", EditorStyles.boldLabel);
             EditorGUILayout.HelpBox(
-                "Preserve Natural Seams is the reference-driven default: the rocks remain separate and editable, while one seed aligns their material patches and long fractures. Smooth Fused Preview makes one shared mesh from every source cube.",
+                "Set the broad size and character, then generate. Every member rock remains editable afterward.",
                 MessageType.Info);
 
             serializedObject.Update();
             EditorGUI.BeginChangeCheck();
-            DrawPropertiesExcluding(serializedObject, "m_Script");
-            if (EditorGUI.EndChangeCheck())
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("generatedOverallSize"),
+                new GUIContent("Overall Size"));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("generatedComplexity"),
+                new GUIContent("Complexity", "Low uses a few bold rocks. High creates more varied masses."));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("generatedVerticality"),
+                new GUIContent("Height", "Low spreads outward. High favors tall rocks."));
+            var generatorSettingsChanged = EditorGUI.EndChangeCheck();
+            serializedObject.ApplyModifiedProperties();
+
+            EditorGUILayout.LabelField(
+                $"Will generate {formation.GeneratedRockCount} editable rocks",
+                EditorStyles.miniLabel);
+            if (GUILayout.Button("Generate New Formation", GUILayout.Height(36f)))
             {
-                serializedObject.ApplyModifiedProperties();
-                TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, false);
+                TopDown3DRockWorkbenchFormationGenerator.GenerateIntoFormation(
+                    formation,
+                    TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(
+                        formation.FormationSeed));
+                GUIUtility.ExitGUI();
             }
+            if (GUILayout.Button("Update Current Formation With These Settings"))
+            {
+                TopDown3DRockWorkbenchFormationGenerator.GenerateIntoFormation(
+                    formation,
+                    formation.FormationSeed);
+                GUIUtility.ExitGUI();
+            }
+            EditorGUILayout.LabelField(
+                "Generation replaces the member rocks. Unity Undo restores the previous arrangement.",
+                EditorStyles.miniLabel);
+
+            if (generatorSettingsChanged) Repaint();
 
             EditorGUILayout.Space();
-            if (GUILayout.Button("Rebuild Formation Now"))
+            EditorGUILayout.LabelField("Formation Look", EditorStyles.boldLabel);
+            serializedObject.Update();
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("joinStyle"),
+                new GUIContent("Rock Connections"));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("longFractures"),
+                new GUIContent("Long Cracks"));
+            var lookChanged = EditorGUI.EndChangeCheck();
+            serializedObject.ApplyModifiedProperties();
+            if (lookChanged)
             {
-                TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, true);
+                TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, false);
             }
 
             var members = formation.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
@@ -42,10 +86,34 @@ namespace BooterBigArm.Editor
                     : members.Length < 2
                         ? MessageType.Warning
                         : MessageType.None);
+
+            showAdvanced = EditorGUILayout.Foldout(
+                showAdvanced,
+                "Advanced",
+                true,
+                EditorStyles.foldoutHeader);
+            if (!showAdvanced) return;
+
+            serializedObject.Update();
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("rockMaterial"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("formationSeed"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("fractureSpacing"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("autoRebuild"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("updateCollider"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("fusedVoxelSize"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("fusedJoinSoftness"));
+            var advancedChanged = EditorGUI.EndChangeCheck();
+            serializedObject.ApplyModifiedProperties();
+            if (advancedChanged)
+                TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, false);
+
+            if (GUILayout.Button("Rebuild Formation Mesh"))
+                TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, true);
         }
 
         [MenuItem(CreateMenuPath, false, 32)]
-        private static void CreateFromSelectedRocks()
+        internal static void CreateFromSelectedRocks()
         {
             var members = CollectSelectedWorkbenches();
             if (members.Count < 2)
@@ -94,7 +162,7 @@ namespace BooterBigArm.Editor
         [MenuItem(CreateMenuPath, true)]
         private static bool ValidateCreateFromSelectedRocks()
         {
-            return CollectSelectedWorkbenches().Count >= 2;
+            return CanCreateFromSelection;
         }
 
         private static List<TopDown3DRockWorkbenchAuthoring> CollectSelectedWorkbenches()

@@ -11,8 +11,9 @@ namespace BooterBigArm.Editor
     {
         internal const string WorkbenchMaterialPath =
             "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat";
+        private bool showAdvanced;
 
-        [MenuItem("GameObject/Booter & BigARM/Top Down 3D/Rock Workbench", false, 20)]
+        [MenuItem("GameObject/Booter & BigARM/Top Down 3D/New Random Rock", false, 20)]
         private static void CreateWorkbench(MenuCommand command)
         {
             var material = AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath);
@@ -33,7 +34,10 @@ namespace BooterBigArm.Editor
                 authoring.Configure(material);
                 rootObject.GetComponent<MeshRenderer>().sharedMaterial = material;
 
-                AddVolume(authoring, false);
+                TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
+                    authoring,
+                    TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(
+                        authoring.GenerationSeed));
                 Selection.activeGameObject = rootObject;
                 TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
             }
@@ -49,8 +53,26 @@ namespace BooterBigArm.Editor
             UpgradeLegacyMaterial(authoring);
 
             serializedObject.Update();
+            EditorGUILayout.LabelField("Rock Generator", EditorStyles.boldLabel);
+            EditorGUILayout.HelpBox(
+                "Choose the broad shape, then click Generate New Rock. Every result stays editable in the Scene.",
+                MessageType.Info);
             EditorGUI.BeginChangeCheck();
-            DrawPropertiesExcluding(serializedObject, "m_Script");
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("generatedOverallScale"),
+                new GUIContent("Overall Size"));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("generatedVerticality"),
+                new GUIContent("Height", "Low makes a spreading rock. High makes a taller rock."));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("generatedAsymmetry"),
+                new GUIContent("Lopsidedness"));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("generatedOverlap"),
+                new GUIContent("Compaction"));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("showSourceVolumes"),
+                new GUIContent("Show Editing Cubes"));
             var settingsChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
 
@@ -60,98 +82,35 @@ namespace BooterBigArm.Editor
                 SceneView.RepaintAll();
             }
 
-            EditorGUILayout.Space();
-            EditorGUILayout.HelpBox(
-                "Each Cube Volume is an editable source, not a separate finished mesh. Move, rotate, and scale those child objects in the Scene view. The workbench remeshes their combined volume so overlapping cubes become one continuous surface. Its layered PBR surface assigns weathered top stone, directional wall strata, and brittle underside shale by face direction, then disperses shattered-plate shale islands across some side and top faces and adds seeded smooth, visibly coarse side-grit, shiny, cracked, mineral, and dusty regions without authored UVs.",
-                MessageType.Info);
-
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Base Rock Generator", EditorStyles.boldLabel);
-            EditorGUILayout.HelpBox(
-                "Overall Size scales the rock and automatically adds masses as it grows. Verticality changes horizontal spread versus upward growth. Lopsidedness changes balanced versus one-sided growth. Compaction changes distinct lobes versus a dense body. Generator sliders affect the generated arrangement; click Apply Settings to Current Rock to compare the same seed. Every resulting cube remains editable.",
-                MessageType.None);
-            EditorGUILayout.LabelField("Automatic Cube Count", authoring.GeneratedCubeCount.ToString());
-            using (new EditorGUILayout.HorizontalScope())
+            EditorGUILayout.LabelField(
+                $"Uses {authoring.GeneratedCubeCount} editable cube masses",
+                EditorStyles.miniLabel);
+            if (GUILayout.Button("Generate New Rock", GUILayout.Height(34f)))
             {
-                if (GUILayout.Button("Generate New Base Rock"))
-                {
-                    TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
-                        authoring,
-                        TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(authoring.GenerationSeed));
-                }
-                if (GUILayout.Button("Apply Settings to Current Rock"))
-                {
-                    TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
-                        authoring,
-                        authoring.GenerationSeed);
-                }
+                TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
+                    authoring,
+                    TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(authoring.GenerationSeed));
             }
-
-            using (new EditorGUILayout.HorizontalScope())
+            if (GUILayout.Button("Update Current Rock With These Settings"))
             {
-                if (GUILayout.Button("Add Cube Volume")) AddVolume(authoring, true);
-                if (GUILayout.Button("Rebuild Now"))
-                {
-                    TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
-                }
-            }
-
-            if (GUILayout.Button("Clear Preview Mesh"))
-            {
-                TopDown3DRockWorkbenchPreview.ClearPreview(authoring, "Preview cleared. Source volumes were preserved.");
+                TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
+                    authoring,
+                    authoring.GenerationSeed);
             }
 
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Seed Variation Gallery", EditorStyles.boldLabel);
-            if (TopDown3DRockWorkbenchVariationGallery.IsGalleryItem(authoring))
+            using (new EditorGUI.DisabledScope(
+                       !TopDown3DRockWorkbenchFormationEditor.CanCreateFromSelection))
             {
-                EditorGUILayout.HelpBox(
-                    "This is one disposable gallery sample. Edit This Rock detaches it as a normal workbench without saving a mesh or prefab.",
-                    MessageType.None);
-                if (GUILayout.Button("Edit This Rock"))
+                if (GUILayout.Button("Create Formation From Selected Rocks"))
                 {
-                    TopDown3DRockWorkbenchVariationGallery.DetachForEditing(authoring);
-                }
-                if (GUILayout.Button("Clear Remaining Gallery"))
-                {
-                    TopDown3DRockWorkbenchVariationGallery.ClearGallery();
+                    TopDown3DRockWorkbenchFormationEditor.CreateFromSelectedRocks();
                     GUIUtility.ExitGUI();
                 }
             }
-            else
-            {
-                EditorGUILayout.HelpBox(
-                    "Generate twelve temporary rocks with identical controls and different deterministic seeds. The gallery is not saved into the scene and creates no mesh assets or prefabs.",
-                    MessageType.None);
-                using (new EditorGUILayout.HorizontalScope())
-                {
-                    if (GUILayout.Button("Generate Seed Gallery"))
-                    {
-                        TopDown3DRockWorkbenchVariationGallery.CreateOrReplaceGallery(
-                            authoring,
-                            authoring.GenerationSeed);
-                    }
-                    using (new EditorGUI.DisabledScope(
-                               !TopDown3DRockWorkbenchVariationGallery.GalleryExists))
-                    {
-                        if (GUILayout.Button("Reroll Gallery"))
-                        {
-                            TopDown3DRockWorkbenchVariationGallery.CreateOrReplaceGallery(
-                                authoring,
-                                TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(
-                                    authoring.GenerationSeed));
-                        }
-                    }
-                }
-                using (new EditorGUI.DisabledScope(
-                           !TopDown3DRockWorkbenchVariationGallery.GalleryExists))
-                {
-                    if (GUILayout.Button("Clear Gallery"))
-                    {
-                        TopDown3DRockWorkbenchVariationGallery.ClearGallery();
-                    }
-                }
-            }
+            EditorGUILayout.LabelField(
+                "Select two or more rocks to enable formation creation.",
+                EditorStyles.miniLabel);
 
             EditorGUILayout.Space();
             var statusType = authoring.PreviewStatus.IndexOf("invalid", StringComparison.OrdinalIgnoreCase) >= 0
@@ -161,6 +120,92 @@ namespace BooterBigArm.Editor
                     ? MessageType.Warning
                     : MessageType.None;
             EditorGUILayout.HelpBox(authoring.PreviewStatus, statusType);
+
+            showAdvanced = EditorGUILayout.Foldout(
+                showAdvanced,
+                "Advanced",
+                true,
+                EditorStyles.foldoutHeader);
+            if (showAdvanced) DrawAdvancedControls(authoring);
+        }
+
+        private void DrawAdvancedControls(TopDown3DRockWorkbenchAuthoring authoring)
+        {
+            serializedObject.Update();
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.LabelField("Mesh Preview", EditorStyles.boldLabel);
+            DrawProperty("rockMaterial");
+            DrawProperty("voxelSize");
+            DrawProperty("fusionSmoothness");
+            DrawProperty("autoRebuild");
+            DrawProperty("updateCollider");
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Surface", EditorStyles.boldLabel);
+            DrawProperty("geologyScale");
+            DrawProperty("surfaceVariation");
+            DrawProperty("crackAmount");
+            DrawProperty("sideGrit");
+            DrawProperty("undersideShale");
+            DrawProperty("sideShalePatches");
+            DrawProperty("topShalePatches");
+            DrawProperty("wornShine");
+            DrawProperty("generationSeed");
+            var changed = EditorGUI.EndChangeCheck();
+            serializedObject.ApplyModifiedProperties();
+            if (changed && authoring.AutoRebuild)
+            {
+                TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, false);
+            }
+
+            EditorGUILayout.Space();
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Add Editing Cube")) AddVolume(authoring, true);
+                if (GUILayout.Button("Rebuild Mesh"))
+                    TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
+            }
+            if (GUILayout.Button("Clear Preview Mesh"))
+            {
+                TopDown3DRockWorkbenchPreview.ClearPreview(
+                    authoring,
+                    "Preview cleared. Source volumes were preserved.");
+            }
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Seed Gallery", EditorStyles.boldLabel);
+            if (TopDown3DRockWorkbenchVariationGallery.IsGalleryItem(authoring))
+            {
+                if (GUILayout.Button("Edit This Gallery Rock"))
+                    TopDown3DRockWorkbenchVariationGallery.DetachForEditing(authoring);
+                if (GUILayout.Button("Clear Remaining Gallery"))
+                {
+                    TopDown3DRockWorkbenchVariationGallery.ClearGallery();
+                    GUIUtility.ExitGUI();
+                }
+                return;
+            }
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Generate Gallery"))
+                {
+                    TopDown3DRockWorkbenchVariationGallery.CreateOrReplaceGallery(
+                        authoring,
+                        authoring.GenerationSeed);
+                }
+                using (new EditorGUI.DisabledScope(
+                           !TopDown3DRockWorkbenchVariationGallery.GalleryExists))
+                {
+                    if (GUILayout.Button("Clear Gallery"))
+                        TopDown3DRockWorkbenchVariationGallery.ClearGallery();
+                }
+            }
+        }
+
+        private void DrawProperty(string name)
+        {
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(name));
         }
 
         private static void UpgradeLegacyMaterial(TopDown3DRockWorkbenchAuthoring authoring)

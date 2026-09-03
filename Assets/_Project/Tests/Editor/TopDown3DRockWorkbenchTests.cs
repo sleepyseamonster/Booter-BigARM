@@ -77,12 +77,19 @@ namespace BooterBigArm.Tests
             {
                 var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
                 var serialized = new SerializedObject(formation);
+                serialized.FindProperty("generatedOverallSize").floatValue = 99f;
+                serialized.FindProperty("generatedComplexity").floatValue = 4f;
+                serialized.FindProperty("generatedVerticality").floatValue = -2f;
                 serialized.FindProperty("longFractures").floatValue = 4f;
                 serialized.FindProperty("fractureSpacing").floatValue = 99f;
                 serialized.FindProperty("fusedVoxelSize").floatValue = -2f;
                 serialized.FindProperty("fusedJoinSoftness").floatValue = 7f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
+                Assert.That(formation.GeneratedOverallSize, Is.EqualTo(30f));
+                Assert.That(formation.GeneratedComplexity, Is.EqualTo(1f));
+                Assert.That(formation.GeneratedVerticality, Is.EqualTo(0f));
+                Assert.That(formation.GeneratedRockCount, Is.EqualTo(9));
                 Assert.That(formation.LongFractures, Is.EqualTo(1f));
                 Assert.That(formation.FractureSpacing, Is.EqualTo(16f));
                 Assert.That(formation.FusedVoxelSize, Is.EqualTo(0.04f));
@@ -90,6 +97,71 @@ namespace BooterBigArm.Tests
             }
             finally
             {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void FormationPlanIsRepeatableAndUsesDistinctMemberSeeds()
+        {
+            var first = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
+                24681357,
+                7,
+                14f,
+                0.65f,
+                0.55f);
+            var repeat = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
+                24681357,
+                7,
+                14f,
+                0.65f,
+                0.55f);
+            var seeds = new HashSet<int>();
+
+            Assert.That(first.Count, Is.EqualTo(7));
+            Assert.That(repeat.Count, Is.EqualTo(first.Count));
+            for (var index = 0; index < first.Count; index++)
+            {
+                Assert.That(repeat[index].LocalPosition, Is.EqualTo(first[index].LocalPosition));
+                Assert.That(repeat[index].LocalRotation, Is.EqualTo(first[index].LocalRotation));
+                Assert.That(repeat[index].RockSize, Is.EqualTo(first[index].RockSize));
+                Assert.That(repeat[index].Seed, Is.EqualTo(first[index].Seed));
+                Assert.That(seeds.Add(first[index].Seed), Is.True);
+                Assert.That(first[index].RockSize, Is.InRange(0.75f, 10f));
+            }
+        }
+
+        [Test]
+        public void OneClickFormationGenerationCreatesEditableRockMembers()
+        {
+            var previousSelection = Selection.activeObject;
+            var root = new GameObject("One Click Formation Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                formation.Configure(
+                    AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath),
+                    424242);
+                var expectedCount = formation.GeneratedRockCount;
+
+                TopDown3DRockWorkbenchFormationGenerator.GenerateIntoFormation(
+                    formation,
+                    424242);
+
+                var members = root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+                Assert.That(members.Length, Is.EqualTo(expectedCount));
+                Assert.That(Selection.activeGameObject, Is.EqualTo(root));
+                foreach (var member in members)
+                {
+                    Assert.That(
+                        member.GetComponentsInChildren<TopDown3DRockVolumeNode>(true).Length,
+                        Is.EqualTo(member.GeneratedCubeCount));
+                    Assert.That(member.ShowSourceVolumes, Is.False);
+                }
+            }
+            finally
+            {
+                Selection.activeObject = previousSelection;
                 Object.DestroyImmediate(root);
             }
         }

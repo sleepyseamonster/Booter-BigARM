@@ -18,6 +18,14 @@ namespace BooterBigArm.TopDown3D
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
     public sealed class TopDown3DRockWorkbenchFormationAuthoring : MonoBehaviour
     {
+        [Header("Formation Generator")]
+        [SerializeField, Range(4f, 30f), Tooltip("Approximate width of the generated formation in meters. Larger formations automatically use more rocks.")]
+        private float generatedOverallSize = 12f;
+        [SerializeField, Range(0f, 1f), Tooltip("Low values create a few bold masses. High values create more rocks and a busier silhouette.")]
+        private float generatedComplexity = 0.55f;
+        [SerializeField, Range(0f, 1f), Tooltip("Low values create a low spreading formation. High values favor taller member rocks.")]
+        private float generatedVerticality = 0.5f;
+
         [Header("Formation Preview")]
         [SerializeField] private Material rockMaterial;
         [SerializeField, Tooltip("Keeps the formation-wide material pattern and fractures repeatable.")]
@@ -47,6 +55,14 @@ namespace BooterBigArm.TopDown3D
             "Add or group at least two Rock Workbenches to build a formation.";
 
         public Material RockMaterial => rockMaterial;
+        public float GeneratedOverallSize => Mathf.Clamp(generatedOverallSize, 4f, 30f);
+        public float GeneratedComplexity => Mathf.Clamp01(generatedComplexity);
+        public float GeneratedVerticality => Mathf.Clamp01(generatedVerticality);
+        public int GeneratedRockCount => Mathf.Clamp(
+            Mathf.RoundToInt(Mathf.Lerp(3f, 7f, GeneratedComplexity))
+            + Mathf.RoundToInt(Mathf.InverseLerp(4f, 30f, GeneratedOverallSize) * 2f),
+            3,
+            9);
         public int FormationSeed => formationSeed;
         public TopDown3DRockFormationJoinStyle JoinStyle => joinStyle;
         public bool AutoRebuild => autoRebuild;
@@ -61,6 +77,11 @@ namespace BooterBigArm.TopDown3D
         public void Configure(Material material, int seed)
         {
             rockMaterial = material;
+            formationSeed = seed;
+        }
+
+        public void SetFormationSeed(int seed)
+        {
             formationSeed = seed;
         }
 
