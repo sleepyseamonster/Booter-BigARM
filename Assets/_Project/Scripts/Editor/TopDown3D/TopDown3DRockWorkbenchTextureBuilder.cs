@@ -53,8 +53,8 @@ namespace BooterBigArm.Editor
             try
             {
                 Directory.CreateDirectory(TextureRoot);
-                BuildSurfaceSet(topSource, TopAlbedoPath, TopNormalPath, TopSurfacePath, 3.8f, !topAlbedoExists);
-                BuildSurfaceSet(sideSource, SideAlbedoPath, SideNormalPath, SideSurfacePath, 4.6f, !sideAlbedoExists);
+                BuildSurfaceSet(topSource, TopAlbedoPath, TopNormalPath, TopSurfacePath, 5.2f, !topAlbedoExists);
+                BuildSurfaceSet(sideSource, SideAlbedoPath, SideNormalPath, SideSurfacePath, 6.4f, !sideAlbedoExists);
                 WriteTexture(CrackMaskPath, BuildCrackMask());
 
                 AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
@@ -79,7 +79,8 @@ namespace BooterBigArm.Editor
         [MenuItem("Tools/Booter & BigARM/Rock Workbench/Rebuild Side Grit Textures")]
         public static void GenerateGritTextures()
         {
-            var gritSource = LoadSource(GritSourcePath);
+            var gritAlbedoExists = File.Exists(GritAlbedoPath);
+            var gritSource = LoadSource(gritAlbedoExists ? GritAlbedoPath : GritSourcePath);
             if (gritSource == null)
             {
                 throw new InvalidOperationException(
@@ -94,8 +95,8 @@ namespace BooterBigArm.Editor
                     GritAlbedoPath,
                     GritNormalPath,
                     GritSurfacePath,
-                    7.2f,
-                    true);
+                    9.6f,
+                    !gritAlbedoExists);
                 AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
                 ConfigureAlbedo(GritAlbedoPath);
                 ConfigureNormal(GritNormalPath);
@@ -114,7 +115,9 @@ namespace BooterBigArm.Editor
         [MenuItem("Tools/Booter & BigARM/Rock Workbench/Rebuild Underside Shale Textures")]
         public static void GenerateUndersideTextures()
         {
-            var undersideSource = LoadSource(UndersideSourcePath);
+            var undersideAlbedoExists = File.Exists(UndersideAlbedoPath);
+            var undersideSource = LoadSource(
+                undersideAlbedoExists ? UndersideAlbedoPath : UndersideSourcePath);
             if (undersideSource == null)
             {
                 throw new InvalidOperationException(
@@ -129,8 +132,8 @@ namespace BooterBigArm.Editor
                     UndersideAlbedoPath,
                     UndersideNormalPath,
                     UndersideSurfacePath,
-                    8.4f,
-                    true);
+                    9.4f,
+                    !undersideAlbedoExists);
                 AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
                 ConfigureAlbedo(UndersideAlbedoPath);
                 ConfigureNormal(UndersideNormalPath);
@@ -205,8 +208,10 @@ namespace BooterBigArm.Editor
                         1f);
 
                     var neighborhood = (left + right + down + up) * 0.25f;
-                    var localDetail = Mathf.Clamp01(Mathf.Abs(height[index] - neighborhood) * 18f);
-                    var ao = Mathf.Lerp(0.68f, 1f, Mathf.SmoothStep(0f, 1f, height[index]));
+                    var localDetail = Mathf.Clamp01(Mathf.Abs(height[index] - neighborhood) * 22f);
+                    var cavity = Mathf.Clamp01((neighborhood - height[index]) * 14f);
+                    var ao = Mathf.Lerp(0.58f, 1f, Mathf.SmoothStep(0f, 1f, height[index]));
+                    ao *= Mathf.Lerp(1f, 0.72f, cavity);
                     var roughness = Mathf.Lerp(0.56f, 0.94f, localDetail);
                     surface[index] = new Color(ao, roughness, height[index], 1f);
                 }

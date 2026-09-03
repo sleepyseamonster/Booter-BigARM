@@ -37,15 +37,15 @@ Layered textures live under:
 
 - `Assets/_Project/Art/Environment/Rocks/Workbench/Layered/`
 
-The `Source/` images are project-owned AI-generated albedo sources. The current top and side albedos are treated as artist-owned inputs; rebuilding derived maps does not replace those albedos. Their aligned normal and packed surface maps are rebuilt by:
+The `Source/` images are project-owned AI-generated starting points. Every current layered albedo is treated as an artist-owned input; rebuilding derived maps does not replace an existing albedo. Normal depth and cavity occlusion are derived from the current edited pixels. The top and side support maps are rebuilt by:
 
 - `Tools > Booter & BigARM > Rock Workbench > Rebuild Layered Textures`
 
-The independent grit albedo, normal, and packed surface set is rebuilt without touching the top or side textures by:
+The independent grit support maps are rebuilt from the current grit albedo without replacing it or touching the top and side textures by:
 
 - `Tools > Booter & BigARM > Rock Workbench > Rebuild Side Grit Textures`
 
-The independent underside shale set is rebuilt without touching any other layer by:
+The independent underside support maps are rebuilt from the current underside albedo without replacing it or touching any other layer by:
 
 - `Tools > Booter & BigARM > Rock Workbench > Rebuild Underside Shale Textures`
 
