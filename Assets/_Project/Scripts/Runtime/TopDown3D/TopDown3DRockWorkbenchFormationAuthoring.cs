@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
 {
+    public enum TopDown3DRockFormationArchetype
+    {
+        ConnectedOutcrop,
+        ScatteredRocks
+    }
+
     public enum TopDown3DRockFormationJoinStyle
     {
         PreserveNaturalSeams,
@@ -20,6 +26,9 @@ namespace BooterBigArm.TopDown3D
     public sealed class TopDown3DRockWorkbenchFormationAuthoring : MonoBehaviour
     {
         [Header("Formation Generator")]
+        [SerializeField, Tooltip("Selects the broad geological composition rules used when generating member rocks.")]
+        private TopDown3DRockFormationArchetype formationArchetype =
+            TopDown3DRockFormationArchetype.ConnectedOutcrop;
         [SerializeField, Range(4f, 30f), Tooltip("Approximate width of the generated formation in meters. Larger formations automatically use more rocks.")]
         private float generatedOverallSize = 12f;
         [SerializeField, Range(0f, 1f), Tooltip("Low values create a few bold masses. High values create more rocks and a busier silhouette.")]
@@ -62,14 +71,24 @@ namespace BooterBigArm.TopDown3D
             "Add or group at least two Rock Workbenches to build a formation.";
 
         public Material RockMaterial => rockMaterial;
+        public TopDown3DRockFormationArchetype FormationArchetype => formationArchetype;
         public float GeneratedOverallSize => Mathf.Clamp(generatedOverallSize, 4f, 30f);
         public float GeneratedComplexity => Mathf.Clamp01(generatedComplexity);
         public float GeneratedVerticality => Mathf.Clamp01(generatedVerticality);
-        public int GeneratedRockCount => Mathf.Clamp(
-            Mathf.RoundToInt(Mathf.Lerp(5f, 10f, GeneratedComplexity))
-            + Mathf.RoundToInt(Mathf.InverseLerp(4f, 30f, GeneratedOverallSize) * 4f),
-            5,
-            14);
+        public int GeneratedRockCount => FormationArchetype
+            == TopDown3DRockFormationArchetype.ScatteredRocks
+                ? Mathf.Clamp(
+                    Mathf.RoundToInt(Mathf.Lerp(8f, 12f, GeneratedComplexity))
+                    + Mathf.RoundToInt(
+                        Mathf.InverseLerp(4f, 30f, GeneratedOverallSize) * 3f),
+                    8,
+                    15)
+                : Mathf.Clamp(
+                    Mathf.RoundToInt(Mathf.Lerp(5f, 10f, GeneratedComplexity))
+                    + Mathf.RoundToInt(
+                        Mathf.InverseLerp(4f, 30f, GeneratedOverallSize) * 4f),
+                    5,
+                    14);
         public int FormationSeed => formationSeed;
         public TopDown3DRockFormationJoinStyle JoinStyle => joinStyle;
         public bool AutoRebuild => autoRebuild;

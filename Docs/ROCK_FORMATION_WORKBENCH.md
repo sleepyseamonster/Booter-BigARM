@@ -25,7 +25,12 @@ Create a complete random formation with:
 
 `GameObject > Booter & BigARM > Top Down 3D > New Random Rock Formation`
 
-The Formation Inspector intentionally shows only `Overall Size`, `Complexity`, `Height`, `Rock Connections`, and `Long Cracks`. Overall size and complexity automatically determine the member-rock count. `Generate New Formation` replaces the generated member rocks with a new seed; Unity Undo restores the previous arrangement.
+The Formation Inspector begins with a `Formation Type`, then shows only the controls that apply to that category. Overall size and complexity automatically determine the member-rock count. `Generate New Formation` replaces the generated member rocks with a new seed; Unity Undo restores the previous arrangement.
+
+The current formation categories are:
+
+- `Connected Outcrop` — one fused geological formation built around a dominant anchor, framed crevice, pillars, buttresses, and attached base talus.
+- `Scattered Rocks` — 8–15 separate, partially buried boulders distributed across a loose field with a deliberate large/medium/small hierarchy. These rocks do not fuse to one another, so clean sand remains visible between them.
 
 ## Build a formation from hand-arranged rocks
 
@@ -57,7 +62,9 @@ The workbench deliberately keeps three deterministic levels separate:
 2. Completed base rocks receive formation-level position, rotation, scale, and composition roles.
 3. The grouped rock fields are sampled into one exterior formation shell while member boundaries remain available for seams.
 
-The automatic formation planner now starts with one visibly dominant, partially buried anchor mass. It reserves a seeded open wedge in the surrounding members, braces both sides of that wedge with attached buttresses, and distributes the remaining pillars and supports around the other directions. This produces a readable entrance-like crevice without turning the whole formation into a one-sided wall. When complexity permits, an overlapping crown sits opposite the opening. Small, low talus rocks attach to outer structural members instead of collecting inside the core, which gives the base a wider debris transition while keeping the fused shell connected.
+The `Connected Outcrop` planner starts with one visibly dominant, partially buried anchor mass. It reserves a seeded open wedge in the surrounding members, braces both sides of that wedge with attached buttresses, and distributes the remaining pillars and supports around the other directions. This produces a readable entrance-like crevice without turning the whole formation into a one-sided wall. When complexity permits, an overlapping crown sits opposite the opening. Small, low talus rocks attach to outer structural members instead of collecting inside the core, which gives the base a wider debris transition while keeping the fused shell connected.
+
+The `Scattered Rocks` planner treats the supplied desert reference as a composition guide rather than source art. It generates one or two dominant boulders, several broad slabs, and smaller irregular fragments. Deterministic rejection placement prevents the boulders from stacking into another outcrop, while elliptical distribution, varied rotation, restrained height, and individual burial keep the result loose and grounded. Each boulder is still a complete blended-cube Rock Workbench and can be moved, stretched, or regenerated independently.
 
 These composition rules are intentionally derived from the existing `Overall Size`, `Complexity`, and `Height` controls. They do not add another group of sliders: the generator is still meant to be quick to reroll, judge, and manually edit. Member workbenches retain deterministic nonuniform scale and restrained lean, reproducing the useful manual stretching behavior without collapsing the formation onto one preferred viewing axis.
 

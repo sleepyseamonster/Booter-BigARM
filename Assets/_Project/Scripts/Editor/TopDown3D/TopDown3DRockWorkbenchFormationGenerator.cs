@@ -12,7 +12,10 @@ namespace BooterBigArm.Editor
         Pillar,
         Buttress,
         Crown,
-        Talus
+        Talus,
+        Boulder,
+        Slab,
+        Fragment
     }
 
     internal readonly struct TopDown3DRockFormationMemberPlan
@@ -88,6 +91,40 @@ namespace BooterBigArm.Editor
         }
 
         internal static IReadOnlyList<TopDown3DRockFormationMemberPlan> CreatePlan(
+            int seed,
+            int rockCount,
+            float overallSize,
+            float complexity,
+            float verticality)
+        {
+            return CreatePlan(
+                TopDown3DRockFormationArchetype.ConnectedOutcrop,
+                seed,
+                rockCount,
+                overallSize,
+                complexity,
+                verticality);
+        }
+
+        internal static IReadOnlyList<TopDown3DRockFormationMemberPlan> CreatePlan(
+            TopDown3DRockFormationArchetype archetype,
+            int seed,
+            int rockCount,
+            float overallSize,
+            float complexity,
+            float verticality)
+        {
+            return archetype == TopDown3DRockFormationArchetype.ScatteredRocks
+                ? CreateScatteredPlan(seed, rockCount, overallSize, complexity, verticality)
+                : CreateConnectedOutcropPlan(
+                    seed,
+                    rockCount,
+                    overallSize,
+                    complexity,
+                    verticality);
+        }
+
+        private static IReadOnlyList<TopDown3DRockFormationMemberPlan> CreateConnectedOutcropPlan(
             int seed,
             int rockCount,
             float overallSize,
@@ -303,6 +340,192 @@ namespace BooterBigArm.Editor
             return plan;
         }
 
+        private static IReadOnlyList<TopDown3DRockFormationMemberPlan> CreateScatteredPlan(
+            int seed,
+            int rockCount,
+            float overallSize,
+            float complexity,
+            float verticality)
+        {
+            rockCount = Mathf.Clamp(rockCount, 8, 15);
+            overallSize = Mathf.Clamp(overallSize, 4f, 30f);
+            complexity = Mathf.Clamp01(complexity);
+            verticality = Mathf.Clamp01(verticality);
+
+            var random = new System.Random(seed);
+            var baseRockSize = Mathf.Clamp(
+                overallSize * Mathf.Lerp(0.09f, 0.115f, complexity),
+                0.48f,
+                3.45f);
+            var halfWidth = Mathf.Max(
+                overallSize * 0.46f,
+                baseRockSize * Mathf.Sqrt(rockCount) * 1.08f);
+            var halfDepth = halfWidth * NextRange(random, 0.68f, 0.92f);
+            var fieldHeading = NextRange(random, 0f, Mathf.PI * 2f);
+            var clearance = Mathf.Max(
+                0.16f,
+                overallSize * Mathf.Lerp(0.035f, 0.022f, complexity));
+            var dominantCount = rockCount >= 12 ? 2 : 1;
+            var slabCount = Mathf.Clamp(
+                Mathf.RoundToInt((rockCount - dominantCount) * 0.38f),
+                2,
+                5);
+            var positions = new List<Vector2>(rockCount);
+            var footprintRadii = new List<float>(rockCount);
+            var plan = new List<TopDown3DRockFormationMemberPlan>(rockCount);
+
+            for (var index = 0; index < rockCount; index++)
+            {
+                TopDown3DRockFormationMemberRole role;
+                float rockSize;
+                Vector3 scale;
+                float memberVerticality;
+                if (index < dominantCount)
+                {
+                    role = TopDown3DRockFormationMemberRole.Boulder;
+                    rockSize = baseRockSize * (index == 0
+                        ? NextRange(random, 1.34f, 1.68f)
+                        : NextRange(random, 1.08f, 1.34f));
+                    scale = new Vector3(
+                        NextRange(random, 1.08f, 1.44f),
+                        Mathf.Lerp(0.58f, 0.98f, verticality)
+                            * NextRange(random, 0.9f, 1.1f),
+                        NextRange(random, 0.96f, 1.36f));
+                    memberVerticality = Mathf.Clamp01(
+                        0.16f + verticality * 0.42f + NextRange(random, -0.08f, 0.12f));
+                }
+                else if (index < dominantCount + slabCount)
+                {
+                    role = TopDown3DRockFormationMemberRole.Slab;
+                    rockSize = baseRockSize * NextRange(random, 0.82f, 1.16f);
+                    scale = new Vector3(
+                        NextRange(random, 1.16f, 1.72f),
+                        Mathf.Lerp(0.38f, 0.7f, verticality)
+                            * NextRange(random, 0.86f, 1.06f),
+                        NextRange(random, 0.78f, 1.22f));
+                    memberVerticality = Mathf.Clamp01(
+                        0.08f + verticality * 0.24f + NextRange(random, -0.04f, 0.1f));
+                }
+                else
+                {
+                    role = TopDown3DRockFormationMemberRole.Fragment;
+                    rockSize = baseRockSize * NextRange(random, 0.58f, 0.9f);
+                    scale = new Vector3(
+                        NextRange(random, 0.84f, 1.26f),
+                        Mathf.Lerp(0.42f, 0.76f, verticality)
+                            * NextRange(random, 0.86f, 1.06f),
+                        NextRange(random, 0.8f, 1.24f));
+                    memberVerticality = Mathf.Clamp01(
+                        0.12f + verticality * 0.3f + NextRange(random, -0.06f, 0.12f));
+                }
+
+                rockSize = Mathf.Clamp(rockSize, 0.45f, 5.8f);
+                var footprintRadius = rockSize * Mathf.Max(scale.x, scale.z) * 0.43f;
+                var horizontal = FindScatteredPosition(
+                    random,
+                    positions,
+                    footprintRadii,
+                    footprintRadius,
+                    halfWidth,
+                    halfDepth,
+                    fieldHeading,
+                    clearance);
+                positions.Add(horizontal);
+                footprintRadii.Add(footprintRadius);
+
+                var member = new TopDown3DRockFormationMemberPlan(
+                    new Vector3(horizontal.x, 0f, horizontal.y),
+                    Quaternion.Euler(
+                        NextRange(random, -10f, 10f) * complexity,
+                        NextRange(random, 0f, 360f),
+                        NextRange(random, -10f, 10f) * complexity),
+                    scale,
+                    rockSize,
+                    memberVerticality,
+                    Mathf.Clamp01(NextRange(random, 0.56f, 0.9f)),
+                    Mathf.Clamp01(Mathf.Lerp(0.7f, 0.88f, complexity)
+                        + NextRange(random, -0.06f, 0.06f)),
+                    DeriveMemberSeed(seed, index),
+                    role);
+                plan.Add(GroundScatteredMember(
+                    member,
+                    NextRange(random, 0.08f, 0.19f)));
+            }
+
+            return plan;
+        }
+
+        private static Vector2 FindScatteredPosition(
+            System.Random random,
+            IReadOnlyList<Vector2> positions,
+            IReadOnlyList<float> footprintRadii,
+            float footprintRadius,
+            float halfWidth,
+            float halfDepth,
+            float heading,
+            float clearance)
+        {
+            var bestPosition = Vector2.zero;
+            var bestGap = float.NegativeInfinity;
+            for (var attempt = 0; attempt < 64; attempt++)
+            {
+                var radius = Mathf.Sqrt((float)random.NextDouble());
+                var angle = NextRange(random, 0f, Mathf.PI * 2f);
+                var local = new Vector2(
+                    Mathf.Cos(angle) * radius * halfWidth,
+                    Mathf.Sin(angle) * radius * halfDepth);
+                var cosine = Mathf.Cos(heading);
+                var sine = Mathf.Sin(heading);
+                var candidate = new Vector2(
+                    local.x * cosine - local.y * sine,
+                    local.x * sine + local.y * cosine);
+
+                var minimumGap = float.PositiveInfinity;
+                for (var index = 0; index < positions.Count; index++)
+                {
+                    var gap = Vector2.Distance(candidate, positions[index])
+                        - footprintRadius
+                        - footprintRadii[index];
+                    minimumGap = Mathf.Min(minimumGap, gap);
+                }
+
+                if (positions.Count == 0 || minimumGap >= clearance) return candidate;
+                if (minimumGap <= bestGap) continue;
+                bestGap = minimumGap;
+                bestPosition = candidate;
+            }
+
+            return bestPosition;
+        }
+
+        private static TopDown3DRockFormationMemberPlan GroundScatteredMember(
+            TopDown3DRockFormationMemberPlan member,
+            float burialRatio)
+        {
+            var lowestContact = CreateLowestContact(member);
+            var burialDepth = member.RockSize * member.LocalScale.y
+                * Mathf.Clamp(burialRatio, 0.04f, 0.24f);
+            var groundedPosition = member.LocalPosition;
+            groundedPosition.y += -lowestContact.Bottom - burialDepth;
+            return WithLocalPosition(member, groundedPosition);
+        }
+
+        private static TopDown3DRockFormationMemberPlan WithLocalPosition(
+            TopDown3DRockFormationMemberPlan member,
+            Vector3 localPosition)
+        {
+            return new TopDown3DRockFormationMemberPlan(
+                localPosition,
+                member.LocalRotation,
+                member.LocalScale,
+                member.RockSize,
+                member.Verticality,
+                member.Lopsidedness,
+                member.Compaction,
+                member.Seed,
+                member.Role);
+        }
+
         internal static void GenerateIntoFormation(
             TopDown3DRockWorkbenchFormationAuthoring formation,
             int seed)
@@ -327,6 +550,7 @@ namespace BooterBigArm.Editor
                     : AssetDatabase.LoadAssetAtPath<Material>(
                         TopDown3DRockWorkbenchAuthoringEditor.WorkbenchMaterialPath);
                 var plan = CreatePlan(
+                    formation.FormationArchetype,
                     seed,
                     formation.GeneratedRockCount,
                     formation.GeneratedOverallSize,

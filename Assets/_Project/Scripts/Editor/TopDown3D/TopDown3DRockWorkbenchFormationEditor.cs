@@ -19,12 +19,12 @@ namespace BooterBigArm.Editor
         {
             var formation = (TopDown3DRockWorkbenchFormationAuthoring)target;
             EditorGUILayout.LabelField("Rock Formation Generator", EditorStyles.boldLabel);
-            EditorGUILayout.HelpBox(
-                "Set the broad size and character, then generate. Every member rock remains editable afterward.",
-                MessageType.Info);
 
             serializedObject.Update();
             EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("formationArchetype"),
+                new GUIContent("Formation Type"));
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("generatedOverallSize"),
                 new GUIContent("Overall Size"));
@@ -37,6 +37,11 @@ namespace BooterBigArm.Editor
             var generatorSettingsChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
 
+            EditorGUILayout.HelpBox(
+                formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks
+                    ? "Generates a loose field of separate, partially buried boulders with uneven spacing and a strong size hierarchy. Every rock remains editable."
+                    : "Generates one connected outcrop with a dominant anchor, structural rocks, and a readable crevice. Every member rock remains editable.",
+                MessageType.Info);
             EditorGUILayout.LabelField(
                 $"Will generate {formation.GeneratedRockCount} editable rocks",
                 EditorStyles.miniLabel);
@@ -59,15 +64,26 @@ namespace BooterBigArm.Editor
                 "Generation replaces the member rocks. Unity Undo restores the previous arrangement.",
                 EditorStyles.miniLabel);
 
-            if (generatorSettingsChanged) Repaint();
+            if (generatorSettingsChanged)
+            {
+                TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, false);
+                Repaint();
+            }
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Formation Look", EditorStyles.boldLabel);
             serializedObject.Update();
             EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(
-                serializedObject.FindProperty("joinStyle"),
-                new GUIContent("Rock Connections"));
+            if (formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks)
+            {
+                EditorGUILayout.LabelField("Rock Connections", "Separate Boulders");
+            }
+            else
+            {
+                EditorGUILayout.PropertyField(
+                    serializedObject.FindProperty("joinStyle"),
+                    new GUIContent("Rock Connections"));
+            }
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("longFractures"),
                 new GUIContent("Long Cracks"));
@@ -315,7 +331,10 @@ namespace BooterBigArm.Editor
             formationSize.y = Mathf.Max(formationSize.y, 0.1f);
             formationSize.z = Mathf.Max(formationSize.z, 0.1f);
 
-            if (formation.JoinStyle == TopDown3DRockFormationJoinStyle.PreserveNaturalSeams)
+            var preserveSeparateRocks = formation.FormationArchetype
+                == TopDown3DRockFormationArchetype.ScatteredRocks
+                || formation.JoinStyle == TopDown3DRockFormationJoinStyle.PreserveNaturalSeams;
+            if (preserveSeparateRocks)
             {
                 ClearFormationMesh(formation);
                 foreach (var member in members)
@@ -342,7 +361,9 @@ namespace BooterBigArm.Editor
 
                 formation.SetPreviewState(
                     null,
-                    $"NATURAL SEAMS: {members.Length} editable rock meshes share one geological pattern and long-fracture field.");
+                    formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks
+                        ? $"SCATTERED ROCKS: {members.Length} separate editable boulders share one geological material field."
+                        : $"NATURAL SEAMS: {members.Length} editable rock meshes share one geological pattern and long-fracture field.");
                 RepaintViews();
                 return true;
             }
@@ -574,6 +595,7 @@ namespace BooterBigArm.Editor
             {
                 var hash = 17;
                 hash = hash * 31 + formation.FormationSeed;
+                hash = hash * 31 + (int)formation.FormationArchetype;
                 hash = hash * 31 + (int)formation.JoinStyle;
                 hash = hash * 31 + formation.UpdateCollider.GetHashCode();
                 hash = hash * 31 + formation.LongFractures.GetHashCode();
