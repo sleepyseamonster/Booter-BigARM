@@ -67,6 +67,7 @@ namespace BooterBigArm.Tests
             Assert.That(material.HasProperty("_RockOriginWS"), Is.True);
             Assert.That(material.HasProperty("_FormationFractureAmount"), Is.True);
             Assert.That(material.HasProperty("_FormationFractureSpacing"), Is.True);
+            Assert.That(material.HasProperty("_GeologicalSeamAmount"), Is.True);
         }
 
         [Test]
@@ -84,6 +85,8 @@ namespace BooterBigArm.Tests
                 serialized.FindProperty("fractureSpacing").floatValue = 99f;
                 serialized.FindProperty("fusedVoxelSize").floatValue = -2f;
                 serialized.FindProperty("fusedJoinSoftness").floatValue = 7f;
+                serialized.FindProperty("geologicalSeamWidth").floatValue = -3f;
+                serialized.FindProperty("geologicalSeamStrength").floatValue = 4f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
                 Assert.That(formation.GeneratedOverallSize, Is.EqualTo(30f));
@@ -94,6 +97,8 @@ namespace BooterBigArm.Tests
                 Assert.That(formation.FractureSpacing, Is.EqualTo(16f));
                 Assert.That(formation.FusedVoxelSize, Is.EqualTo(0.04f));
                 Assert.That(formation.FusedJoinSoftness, Is.EqualTo(0.5f));
+                Assert.That(formation.GeologicalSeamWidth, Is.EqualTo(0.08f));
+                Assert.That(formation.GeologicalSeamStrength, Is.EqualTo(1f));
             }
             finally
             {
@@ -182,8 +187,17 @@ namespace BooterBigArm.Tests
                 serialized.FindProperty("fusedVoxelSize").floatValue = 0.22f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
-                CreateFormationMember(root.transform, "Left Rock", new Vector3(-0.45f, 0f, 0f));
-                CreateFormationMember(root.transform, "Right Rock", new Vector3(0.45f, 0f, 0f));
+                var left = CreateFormationMember(
+                    root.transform,
+                    "Left Rock",
+                    new Vector3(-0.45f, 0f, 0f));
+                left.transform.localScale = new Vector3(1.35f, 1.8f, 0.85f);
+                var right = CreateFormationMember(
+                    root.transform,
+                    "Right Rock",
+                    new Vector3(0.45f, 0.08f, 0.05f));
+                right.transform.localScale = new Vector3(0.9f, 1.25f, 1.15f);
+                right.transform.localRotation = Quaternion.Euler(0f, 18f, 5f);
 
                 Assert.That(
                     TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out var error),
@@ -197,6 +211,73 @@ namespace BooterBigArm.Tests
                     root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>()
                         .All(member => !member.GetComponent<MeshRenderer>().enabled),
                     Is.True);
+            }
+            finally
+            {
+                var formation = root.GetComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                if (formation != null && formation.GeneratedMesh != null)
+                    Object.DestroyImmediate(formation.GeneratedMesh);
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void GeologicalFormationPreviewBuildsOneExteriorShellWithDeterministicSeams()
+        {
+            var root = new GameObject("Geological Formation Preview Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                formation.Configure(
+                    AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath),
+                    424242);
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("joinStyle").enumValueIndex =
+                    (int)TopDown3DRockFormationJoinStyle.FusedGeologicalSeams;
+                serialized.FindProperty("fusedVoxelSize").floatValue = 0.18f;
+                serialized.FindProperty("geologicalSeamWidth").floatValue = 0.5f;
+                serialized.FindProperty("geologicalSeamStrength").floatValue = 0.9f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                var left = CreateFormationMember(
+                    root.transform,
+                    "Left Rock",
+                    new Vector3(-0.45f, 0f, 0f));
+                left.transform.localScale = new Vector3(1.25f, 1.7f, 0.9f);
+                var right = CreateFormationMember(
+                    root.transform,
+                    "Right Rock",
+                    new Vector3(0.45f, 0.08f, 0.05f));
+                right.transform.localScale = new Vector3(0.95f, 1.3f, 1.1f);
+                right.transform.localRotation = Quaternion.Euler(0f, 16f, 4f);
+
+                Assert.That(
+                    TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out var error),
+                    Is.True,
+                    error);
+                Assert.That(formation.GeneratedMesh, Is.Not.Null);
+                Assert.That(formation.PreviewStatus, Does.StartWith("ONE GEOLOGICAL SHELL"));
+                var firstColors = formation.GeneratedMesh.colors32;
+                Assert.That(firstColors.Length, Is.EqualTo(formation.GeneratedMesh.vertexCount));
+                Assert.That(firstColors.Any(color => color.r > 0), Is.True);
+                Assert.That(firstColors.Any(color => color.r == 0), Is.True);
+
+                var renderer = root.GetComponent<MeshRenderer>();
+                var properties = new MaterialPropertyBlock();
+                renderer.GetPropertyBlock(properties);
+                Assert.That(
+                    properties.GetFloat(Shader.PropertyToID("_GeologicalSeamAmount")),
+                    Is.EqualTo(0.9f).Within(0.0001f));
+                Assert.That(
+                    root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>()
+                        .All(member => !member.GetComponent<MeshRenderer>().enabled),
+                    Is.True);
+
+                Assert.That(
+                    TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out error),
+                    Is.True,
+                    error);
+                CollectionAssert.AreEqual(firstColors, formation.GeneratedMesh.colors32);
             }
             finally
             {

@@ -52,6 +52,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
         [HideInInspector] _RockOriginWS("Rock Formation Origin", Vector) = (0, 0, 0, 0)
         [HideInInspector] _FormationFractureAmount("Formation Fracture Amount", Range(0, 1)) = 0
         [HideInInspector] _FormationFractureSpacing("Formation Fracture Spacing", Float) = 6
+        [HideInInspector] _GeologicalSeamAmount("Geological Seam Amount", Range(0, 1)) = 0
         [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
         [HideInInspector] _Cull("Cull", Float) = 2
@@ -160,6 +161,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 float4 _RockOriginWS;
                 float _FormationFractureAmount;
                 float _FormationFractureSpacing;
+                float _GeologicalSeamAmount;
                 float _Cutoff;
                 float _Surface;
                 float _Cull;
@@ -170,6 +172,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
             {
                 float4 positionOS : POSITION;
                 float3 normalOS : NORMAL;
+                half4 color : COLOR;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
@@ -179,6 +182,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 float3 positionWS : TEXCOORD0;
                 half3 normalWS : TEXCOORD1;
                 half fogFactor : TEXCOORD2;
+                half4 geologicalData : COLOR;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
             };
@@ -203,6 +207,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 output.positionWS = positions.positionWS;
                 output.normalWS = normals.normalWS;
                 output.fogFactor = ComputeFogFactor(positions.positionCS.z);
+                output.geologicalData = input.color;
                 return output;
             }
 
@@ -536,10 +541,20 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 half formationFracture = SampleFormationFractures(formationPosition);
                 crack = saturate(crack + formationFracture);
                 crackHalo = saturate(crackHalo + formationFracture * 0.48h);
+                half geologicalSeamNoise = lerp(
+                    0.76h,
+                    1.0h,
+                    (half)ValueNoise3D(samplePositionWS / max(0.42, rockScale * 0.08) + 91.37));
+                half geologicalSeam = saturate(
+                    smoothstep(0.035h, 0.88h, input.geologicalData.r)
+                    * (half)_GeologicalSeamAmount
+                    * geologicalSeamNoise);
                 half mineral = saturate(crackLayer.b * smoothstep(0.46h, 0.78h, secondaryPatch));
                 albedo = lerp(albedo, _MineralColor.rgb, mineral * 0.16h);
                 albedo = lerp(albedo, _CrackColor.rgb, crack);
                 albedo *= 1.0h - crackHalo * 0.12h;
+                albedo = lerp(albedo, _CrackColor.rgb * 0.72h, geologicalSeam);
+                albedo *= 1.0h - geologicalSeam * 0.14h;
 
                 half upward = pow(saturate(geometricNormalWS.y), max((half)_DustSharpness, 1.0h));
                 half dust = saturate(upward * (half)_DustAmount * lerp(0.65h, 1.25h, rock.surface.b));
@@ -554,11 +569,13 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                     + effectiveSmoothPatch * (half)_WornSmoothnessBoost
                     + mineral * (half)_MineralShine * 0.32h
                     - grainPatch * 0.035h
-                    - crack * 0.08h);
+                    - crack * 0.08h
+                    - geologicalSeam * 0.14h);
                 surfaceData.normalTS = half3(0.0h, 0.0h, 1.0h);
                 surfaceData.emission = 0.0h;
                 surfaceData.occlusion = lerp(1.0h, rock.surface.r, _OcclusionStrength)
-                    * lerp(1.0h, 0.58h, crack);
+                    * lerp(1.0h, 0.58h, crack)
+                    * lerp(1.0h, 0.34h, geologicalSeam);
                 surfaceData.alpha = 1.0h;
                 surfaceData.clearCoatMask = 0.0h;
                 surfaceData.clearCoatSmoothness = 0.0h;

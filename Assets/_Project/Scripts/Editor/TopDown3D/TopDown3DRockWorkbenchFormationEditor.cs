@@ -103,6 +103,8 @@ namespace BooterBigArm.Editor
             EditorGUILayout.PropertyField(serializedObject.FindProperty("updateCollider"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("fusedVoxelSize"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("fusedJoinSoftness"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("geologicalSeamWidth"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("geologicalSeamStrength"));
             var advancedChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
             if (advancedChanged)
@@ -348,9 +350,12 @@ namespace BooterBigArm.Editor
             ClearFormationMesh(formation);
             RestoreMembers(state.Members);
             var boxes = new List<TopDown3DRockWorkbenchBox>();
-            foreach (var member in members)
+            var groups = new List<TopDown3DRockWorkbenchFieldGroup>(members.Length);
+            for (var memberIndex = 0; memberIndex < members.Length; memberIndex++)
             {
+                var member = members[memberIndex];
                 var nodes = member.GetComponentsInChildren<TopDown3DRockVolumeNode>(false);
+                var memberBoxes = new List<TopDown3DRockWorkbenchBox>(nodes.Length);
                 foreach (var node in nodes)
                 {
                     if (!node.ContributesToRock || !node.gameObject.activeInHierarchy) continue;
@@ -363,19 +368,41 @@ namespace BooterBigArm.Editor
                         formation.SetPreviewState(null, $"Fused preview could not be built: {error}");
                         return false;
                     }
-                    boxes.Add(new TopDown3DRockWorkbenchBox(
+                    var box = new TopDown3DRockWorkbenchBox(
                         formation.transform,
                         node.transform,
-                        node.ShapeSeed));
+                        node.ShapeSeed);
+                    boxes.Add(box);
+                    memberBoxes.Add(box);
+                }
+
+                if (memberBoxes.Count > 0)
+                {
+                    groups.Add(new TopDown3DRockWorkbenchFieldGroup(
+                        memberIndex,
+                        memberBoxes,
+                        member.FusionSmoothness * GetMinimumRelativeScale(
+                            formation.transform,
+                            member.transform)));
                 }
             }
 
-            if (!TopDown3DRockWorkbenchMesher.TryBuild(
+            TopDown3DRockWorkbenchBuildResult result;
+            var built = formation.JoinStyle == TopDown3DRockFormationJoinStyle.FusedGeologicalSeams
+                ? TopDown3DRockWorkbenchMesher.TryBuildGrouped(
+                    groups,
+                    formation.FusedVoxelSize,
+                    Mathf.Min(0.055f, formation.FusedJoinSoftness * 0.35f),
+                    formation.GeologicalSeamWidth,
+                    out result,
+                    out error)
+                : TopDown3DRockWorkbenchMesher.TryBuild(
                     boxes,
                     formation.FusedVoxelSize,
                     formation.FusedJoinSoftness,
-                    out var result,
-                    out error))
+                    out result,
+                    out error);
+            if (!built)
             {
                 formation.SetPreviewState(null, $"Fused preview could not be built: {error}");
                 RestoreMembers(state.Members);
@@ -408,7 +435,10 @@ namespace BooterBigArm.Editor
                 formation.FormationSeed,
                 formation.transform.position,
                 formation.LongFractures,
-                formation.FractureSpacing);
+                formation.FractureSpacing,
+                formation.JoinStyle == TopDown3DRockFormationJoinStyle.FusedGeologicalSeams
+                    ? formation.GeologicalSeamStrength
+                    : 0f);
             colliderRoot.sharedMesh = null;
             colliderRoot.enabled = formation.UpdateCollider;
             if (formation.UpdateCollider) colliderRoot.sharedMesh = mesh;
@@ -422,7 +452,9 @@ namespace BooterBigArm.Editor
             }
 
             var connection = result.ConnectedComponents == 1
-                ? "ONE FUSED SURFACE"
+                ? formation.JoinStyle == TopDown3DRockFormationJoinStyle.FusedGeologicalSeams
+                    ? "ONE GEOLOGICAL SHELL"
+                    : "ONE FUSED SURFACE"
                 : $"{result.ConnectedComponents} DISCONNECTED SURFACES";
             var resolutionNote = result.EffectiveVoxelSize > formation.FusedVoxelSize + 0.0001f
                 ? $" Effective voxel size was capped to {result.EffectiveVoxelSize:0.###}."
@@ -448,6 +480,18 @@ namespace BooterBigArm.Editor
                 else bounds.Encapsulate(member.transform.position);
             }
             return bounds;
+        }
+
+        private static float GetMinimumRelativeScale(Transform root, Transform child)
+        {
+            var childToRoot = root.worldToLocalMatrix * child.localToWorldMatrix;
+            return Mathf.Max(
+                0.001f,
+                Mathf.Min(
+                    childToRoot.MultiplyVector(Vector3.right).magnitude,
+                    Mathf.Min(
+                        childToRoot.MultiplyVector(Vector3.up).magnitude,
+                        childToRoot.MultiplyVector(Vector3.forward).magnitude)));
         }
 
         private static void ClearFormationMesh(
@@ -536,6 +580,8 @@ namespace BooterBigArm.Editor
                 hash = hash * 31 + formation.FractureSpacing.GetHashCode();
                 hash = hash * 31 + formation.FusedVoxelSize.GetHashCode();
                 hash = hash * 31 + formation.FusedJoinSoftness.GetHashCode();
+                hash = hash * 31 + formation.GeologicalSeamWidth.GetHashCode();
+                hash = hash * 31 + formation.GeologicalSeamStrength.GetHashCode();
                 hash = hash * 31 + (formation.RockMaterial == null
                     ? 0
                     : formation.RockMaterial.GetInstanceID());

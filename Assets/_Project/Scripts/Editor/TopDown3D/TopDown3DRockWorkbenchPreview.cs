@@ -16,6 +16,7 @@ namespace BooterBigArm.Editor
         private static readonly int RockOriginId = Shader.PropertyToID("_RockOriginWS");
         private static readonly int FormationFractureAmountId = Shader.PropertyToID("_FormationFractureAmount");
         private static readonly int FormationFractureSpacingId = Shader.PropertyToID("_FormationFractureSpacing");
+        private static readonly int GeologicalSeamAmountId = Shader.PropertyToID("_GeologicalSeamAmount");
         private static readonly int GeologyScaleId = Shader.PropertyToID("_RockMetersPerTile");
         private static readonly int SurfaceVariationId = Shader.PropertyToID("_SurfacePatchStrength");
         private static readonly int CrackAmountId = Shader.PropertyToID("_CrackAmount");
@@ -205,7 +206,8 @@ namespace BooterBigArm.Editor
             int surfaceSeed,
             Vector3 formationOrigin,
             float formationFractureAmount,
-            float formationFractureSpacing)
+            float formationFractureSpacing,
+            float geologicalSeamAmount = 0f)
         {
             if (authoring == null || renderer == null) return;
             var materialProperties = new MaterialPropertyBlock();
@@ -227,6 +229,7 @@ namespace BooterBigArm.Editor
                 new Vector4(formationOrigin.x, formationOrigin.y, formationOrigin.z, 0f));
             materialProperties.SetFloat(FormationFractureAmountId, formationFractureAmount);
             materialProperties.SetFloat(FormationFractureSpacingId, formationFractureSpacing);
+            materialProperties.SetFloat(GeologicalSeamAmountId, Mathf.Clamp01(geologicalSeamAmount));
             renderer.SetPropertyBlock(materialProperties);
         }
 

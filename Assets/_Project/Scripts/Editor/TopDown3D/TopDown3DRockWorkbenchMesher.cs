@@ -130,6 +130,34 @@ namespace BooterBigArm.Editor
         }
     }
 
+    /// <summary>
+    /// Preserves the authoring identity of one completed Rock Workbench while several
+    /// workbenches are sampled into a single formation surface.
+    /// </summary>
+    internal sealed class TopDown3DRockWorkbenchFieldGroup
+    {
+        internal TopDown3DRockWorkbenchFieldGroup(
+            int id,
+            IReadOnlyList<TopDown3DRockWorkbenchBox> boxes,
+            float smoothness)
+        {
+            if (boxes == null) throw new ArgumentNullException(nameof(boxes));
+            if (boxes.Count == 0) throw new ArgumentException(
+                "A rock field group needs at least one source volume.",
+                nameof(boxes));
+
+            Id = id;
+            var copiedBoxes = new TopDown3DRockWorkbenchBox[boxes.Count];
+            for (var index = 0; index < boxes.Count; index++) copiedBoxes[index] = boxes[index];
+            Boxes = copiedBoxes;
+            Smoothness = Mathf.Max(0f, smoothness);
+        }
+
+        internal int Id { get; }
+        internal IReadOnlyList<TopDown3DRockWorkbenchBox> Boxes { get; }
+        internal float Smoothness { get; }
+    }
+
     internal sealed class TopDown3DRockWorkbenchBuildResult
     {
         internal TopDown3DRockWorkbenchBuildResult(
@@ -137,13 +165,15 @@ namespace BooterBigArm.Editor
             TopDown3DMeshTopologyReport topology,
             int connectedComponents,
             Vector3Int gridCells,
-            float effectiveVoxelSize)
+            float effectiveVoxelSize,
+            Color32[] vertexColors = null)
         {
             MeshData = meshData;
             Topology = topology;
             ConnectedComponents = connectedComponents;
             GridCells = gridCells;
             EffectiveVoxelSize = effectiveVoxelSize;
+            VertexColors = vertexColors;
         }
 
         internal TopDown3DIndexedMeshData MeshData { get; }
@@ -151,6 +181,7 @@ namespace BooterBigArm.Editor
         internal int ConnectedComponents { get; }
         internal Vector3Int GridCells { get; }
         internal float EffectiveVoxelSize { get; }
+        internal Color32[] VertexColors { get; }
 
         internal Mesh CreateMesh(string name)
         {
@@ -164,6 +195,8 @@ namespace BooterBigArm.Editor
             };
             mesh.vertices = MeshData.Vertices;
             mesh.triangles = MeshData.Triangles;
+            if (VertexColors != null && VertexColors.Length == MeshData.Vertices.Length)
+                mesh.colors32 = VertexColors;
             mesh.RecalculateNormals();
             mesh.RecalculateBounds();
             return mesh;
@@ -206,6 +239,73 @@ namespace BooterBigArm.Editor
             out TopDown3DRockWorkbenchBuildResult result,
             out string error)
         {
+            return TryBuildInternal(
+                boxes,
+                requestedVoxelSize,
+                Mathf.Max(0f, smoothness),
+                point => Evaluate(boxes, point, smoothness),
+                null,
+                0f,
+                out result,
+                out error);
+        }
+
+        internal static bool TryBuildGrouped(
+            IReadOnlyList<TopDown3DRockWorkbenchFieldGroup> groups,
+            float requestedVoxelSize,
+            float interGroupSmoothness,
+            float seamWidth,
+            out TopDown3DRockWorkbenchBuildResult result,
+            out string error)
+        {
+            result = null;
+            error = null;
+            if (groups == null || groups.Count == 0)
+            {
+                error = "Add at least one completed rock group.";
+                return false;
+            }
+
+            var boxes = new List<TopDown3DRockWorkbenchBox>();
+            for (var groupIndex = 0; groupIndex < groups.Count; groupIndex++)
+            {
+                var group = groups[groupIndex];
+                if (group == null || group.Boxes == null || group.Boxes.Count == 0)
+                {
+                    error = $"Rock group {groupIndex + 1} has no enabled cube volumes.";
+                    return false;
+                }
+
+                for (var boxIndex = 0; boxIndex < group.Boxes.Count; boxIndex++)
+                    boxes.Add(group.Boxes[boxIndex]);
+            }
+
+            interGroupSmoothness = Mathf.Max(0f, interGroupSmoothness);
+            seamWidth = Mathf.Max(0.001f, seamWidth);
+            var paddingSmoothness = interGroupSmoothness;
+            for (var groupIndex = 0; groupIndex < groups.Count; groupIndex++)
+                paddingSmoothness = Mathf.Max(paddingSmoothness, groups[groupIndex].Smoothness);
+            return TryBuildInternal(
+                boxes,
+                requestedVoxelSize,
+                paddingSmoothness,
+                point => EvaluateGroups(groups, point, interGroupSmoothness),
+                groups,
+                seamWidth,
+                out result,
+                out error);
+        }
+
+        private static bool TryBuildInternal(
+            IReadOnlyList<TopDown3DRockWorkbenchBox> boxes,
+            float requestedVoxelSize,
+            float paddingSmoothness,
+            Func<Vector3, float> evaluateField,
+            IReadOnlyList<TopDown3DRockWorkbenchFieldGroup> seamGroups,
+            float seamWidth,
+            out TopDown3DRockWorkbenchBuildResult result,
+            out string error)
+        {
             result = null;
             error = null;
             if (boxes == null || boxes.Count == 0)
@@ -218,8 +318,10 @@ namespace BooterBigArm.Editor
             for (var i = 1; i < boxes.Count; i++) bounds.Encapsulate(boxes[i].Bounds);
 
             requestedVoxelSize = Mathf.Max(0.04f, requestedVoxelSize);
-            smoothness = Mathf.Max(0f, smoothness);
-            var padding = Mathf.Max(requestedVoxelSize * 1.75f, smoothness + requestedVoxelSize * 1.25f);
+            paddingSmoothness = Mathf.Max(0f, paddingSmoothness);
+            var padding = Mathf.Max(
+                requestedVoxelSize * 1.75f,
+                paddingSmoothness + requestedVoxelSize * 1.25f);
             bounds.Expand(padding * 2f);
 
             var largestDimension = Mathf.Max(bounds.size.x, Mathf.Max(bounds.size.y, bounds.size.z));
@@ -249,7 +351,7 @@ namespace BooterBigArm.Editor
                     for (var x = 0; x < points.x; x++)
                     {
                         var position = bounds.min + Vector3.Scale(new Vector3(x, y, z), step);
-                        var value = Evaluate(boxes, position, smoothness);
+                        var value = evaluateField(position);
                         if (Mathf.Abs(value) < zeroNudge) value = zeroNudge;
                         fieldValues[PointIndex(x, y, z, points)] = value;
                     }
@@ -321,7 +423,10 @@ namespace BooterBigArm.Editor
                 topology,
                 CountConnectedComponents(meshData),
                 cells,
-                voxelSize);
+                voxelSize,
+                seamGroups == null
+                    ? null
+                    : BuildGeologicalSeamColors(meshData.Vertices, seamGroups, seamWidth));
             return true;
         }
 
@@ -469,6 +574,93 @@ namespace BooterBigArm.Editor
             }
 
             return distance;
+        }
+
+        private static float EvaluateGroups(
+            IReadOnlyList<TopDown3DRockWorkbenchFieldGroup> groups,
+            Vector3 point,
+            float interGroupSmoothness)
+        {
+            var distance = EvaluateGroup(groups[0], point);
+            for (var groupIndex = 1; groupIndex < groups.Count; groupIndex++)
+            {
+                distance = SmoothMinimum(
+                    distance,
+                    EvaluateGroup(groups[groupIndex], point),
+                    interGroupSmoothness);
+            }
+
+            return distance;
+        }
+
+        private static float EvaluateGroup(
+            TopDown3DRockWorkbenchFieldGroup group,
+            Vector3 point)
+        {
+            var distance = group.Boxes[0].Evaluate(point);
+            for (var boxIndex = 1; boxIndex < group.Boxes.Count; boxIndex++)
+            {
+                distance = SmoothMinimum(
+                    distance,
+                    group.Boxes[boxIndex].Evaluate(point),
+                    group.Smoothness);
+            }
+
+            return distance;
+        }
+
+        private static Color32[] BuildGeologicalSeamColors(
+            IReadOnlyList<Vector3> vertices,
+            IReadOnlyList<TopDown3DRockWorkbenchFieldGroup> groups,
+            float seamWidth)
+        {
+            var colors = new Color32[vertices.Count];
+            if (groups.Count < 2) return colors;
+
+            var contactWidth = Mathf.Max(0.001f, seamWidth * 0.8f);
+            for (var vertexIndex = 0; vertexIndex < vertices.Count; vertexIndex++)
+            {
+                var closest = float.PositiveInfinity;
+                var secondClosest = float.PositiveInfinity;
+                for (var groupIndex = 0; groupIndex < groups.Count; groupIndex++)
+                {
+                    var distance = EvaluateGroup(groups[groupIndex], vertices[vertexIndex]);
+                    if (distance < closest)
+                    {
+                        secondClosest = closest;
+                        closest = distance;
+                    }
+                    else if (distance < secondClosest)
+                    {
+                        secondClosest = distance;
+                    }
+                }
+
+                var ownershipDifference = Mathf.Max(0f, secondClosest - closest);
+                var ownershipBoundary = 1f - Mathf.SmoothStep(
+                    0f,
+                    1f,
+                    Mathf.InverseLerp(
+                        seamWidth * 0.08f,
+                        seamWidth,
+                        ownershipDifference));
+                var contactDistance = Mathf.Max(0f, secondClosest);
+                var contact = 1f - Mathf.SmoothStep(
+                    0f,
+                    1f,
+                    Mathf.InverseLerp(
+                        contactWidth * 0.2f,
+                        contactWidth,
+                        contactDistance));
+                var seam = Mathf.Pow(Mathf.Clamp01(ownershipBoundary * contact), 0.72f);
+                colors[vertexIndex] = new Color32(
+                    (byte)Mathf.RoundToInt(seam * byte.MaxValue),
+                    0,
+                    0,
+                    byte.MaxValue);
+            }
+
+            return colors;
         }
 
         private static float SmoothMinimum(float first, float second, float smoothness)

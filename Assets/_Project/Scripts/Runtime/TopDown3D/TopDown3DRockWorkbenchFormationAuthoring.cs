@@ -6,7 +6,8 @@ namespace BooterBigArm.TopDown3D
     public enum TopDown3DRockFormationJoinStyle
     {
         PreserveNaturalSeams,
-        SmoothFusedPreview
+        SmoothFusedPreview,
+        FusedGeologicalSeams
     }
 
     /// <summary>
@@ -30,9 +31,9 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Material rockMaterial;
         [SerializeField, Tooltip("Keeps the formation-wide material pattern and fractures repeatable.")]
         private int formationSeed = 481516;
-        [SerializeField, Tooltip("Preserve Natural Seams keeps each rock editable and distinct. Smooth Fused Preview remeshes every source cube as one surface.")]
+        [SerializeField, Tooltip("Fused Geological Seams creates one exterior shell without hidden member geometry while retaining visible rock boundaries.")]
         private TopDown3DRockFormationJoinStyle joinStyle =
-            TopDown3DRockFormationJoinStyle.PreserveNaturalSeams;
+            TopDown3DRockFormationJoinStyle.FusedGeologicalSeams;
         [SerializeField, Tooltip("Rebuild shortly after a member rock or source cube is moved or changed.")]
         private bool autoRebuild = true;
         [SerializeField, Tooltip("Keep a collider on the optional fused preview. Individual rock colliders remain active when seams are preserved.")]
@@ -47,8 +48,14 @@ namespace BooterBigArm.TopDown3D
         [Header("Smooth Fused Preview")]
         [SerializeField, Min(0.04f), Tooltip("Smaller voxels preserve more detail but make formation rebuilds slower.")]
         private float fusedVoxelSize = 0.22f;
-        [SerializeField, Range(0f, 0.5f), Tooltip("Rounds only the joins in Smooth Fused Preview. This has no effect while natural seams are preserved.")]
+        [SerializeField, Range(0f, 0.5f), Tooltip("Rounds all joins in Smooth Fused Preview. Fused Geological Seams uses only a restrained fraction so member boundaries remain readable.")]
         private float fusedJoinSoftness = 0.08f;
+
+        [Header("Fused Geological Seams")]
+        [SerializeField, Range(0.08f, 1.2f), Tooltip("Physical width in meters of the retained contact boundary between fused member rocks.")]
+        private float geologicalSeamWidth = 0.34f;
+        [SerializeField, Range(0f, 1f), Tooltip("Visual depth and darkness of retained rock-to-rock contact seams.")]
+        private float geologicalSeamStrength = 0.78f;
 
         [NonSerialized] private Mesh generatedMesh;
         [NonSerialized] private string previewStatus =
@@ -71,6 +78,8 @@ namespace BooterBigArm.TopDown3D
         public float FractureSpacing => Mathf.Clamp(fractureSpacing, 1.5f, 16f);
         public float FusedVoxelSize => Mathf.Max(0.04f, fusedVoxelSize);
         public float FusedJoinSoftness => Mathf.Clamp(fusedJoinSoftness, 0f, 0.5f);
+        public float GeologicalSeamWidth => Mathf.Clamp(geologicalSeamWidth, 0.08f, 1.2f);
+        public float GeologicalSeamStrength => Mathf.Clamp01(geologicalSeamStrength);
         public Mesh GeneratedMesh => generatedMesh;
         public string PreviewStatus => previewStatus;
 
