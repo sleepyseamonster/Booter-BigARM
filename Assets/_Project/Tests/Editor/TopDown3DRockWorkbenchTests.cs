@@ -188,6 +188,58 @@ namespace BooterBigArm.Tests
             Assert.That(plan.Any(member => member.LocalPosition.z > 0.1f), Is.True);
         }
 
+        [TestCase(97531)]
+        [TestCase(24680)]
+        [TestCase(13579)]
+        [TestCase(8675309)]
+        public void FormationPlanBuildsDominantAnchorCreviceAndGroundedTalus(int seed)
+        {
+            var plan = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
+                seed,
+                14,
+                24f,
+                0.85f,
+                0.72f);
+            var core = plan[0];
+            var structural = plan
+                .Where(member =>
+                    member.Role == TopDown3DRockFormationMemberRole.Pillar
+                    || member.Role == TopDown3DRockFormationMemberRole.Buttress)
+                .ToArray();
+            var talus = plan
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.Talus)
+                .ToArray();
+
+            var coreFootprint = core.RockSize * core.RockSize
+                * core.LocalScale.x * core.LocalScale.z;
+            var largestSecondaryFootprint = plan
+                .Skip(1)
+                .Max(member => member.RockSize * member.RockSize
+                    * member.LocalScale.x * member.LocalScale.z);
+            Assert.That(coreFootprint, Is.GreaterThan(largestSecondaryFootprint * 1.25f));
+            Assert.That(core.LocalPosition.y, Is.LessThan(-0.05f));
+
+            Assert.That(structural.Length, Is.GreaterThanOrEqualTo(4));
+            Assert.That(structural[0].Role, Is.EqualTo(TopDown3DRockFormationMemberRole.Buttress));
+            Assert.That(
+                structural[structural.Length - 1].Role,
+                Is.EqualTo(TopDown3DRockFormationMemberRole.Buttress));
+            var evenSpacing = Mathf.PI * 2f / structural.Length;
+            Assert.That(
+                LargestHorizontalAngularGap(structural),
+                Is.InRange(evenSpacing * 1.25f, Mathf.PI));
+
+            Assert.That(talus.Length, Is.GreaterThanOrEqualTo(3));
+            Assert.That(talus.All(member => member.RockSize < core.RockSize * 0.5f), Is.True);
+            Assert.That(talus.All(member => member.LocalScale.y < 0.6f), Is.True);
+            Assert.That(
+                talus.Average(member => member.LocalPosition.y),
+                Is.LessThan(structural.Average(member => member.LocalPosition.y)));
+            Assert.That(
+                talus.Average(member => HorizontalDistance(member.LocalPosition)),
+                Is.GreaterThan(structural.Average(member => HorizontalDistance(member.LocalPosition))));
+        }
+
         [Test]
         public void OneClickFormationGenerationCreatesEditableRockMembers()
         {
@@ -1181,6 +1233,29 @@ namespace BooterBigArm.Tests
                 total += nearest;
             }
             return total / (plan.Count - 1);
+        }
+
+        private static float LargestHorizontalAngularGap(
+            IReadOnlyList<TopDown3DRockFormationMemberPlan> members)
+        {
+            var directions = members
+                .Select(member => Mathf.Atan2(member.LocalPosition.z, member.LocalPosition.x))
+                .OrderBy(angle => angle)
+                .ToArray();
+            var largest = 0f;
+            for (var index = 0; index < directions.Length; index++)
+            {
+                var next = index + 1 < directions.Length
+                    ? directions[index + 1]
+                    : directions[0] + Mathf.PI * 2f;
+                largest = Mathf.Max(largest, next - directions[index]);
+            }
+            return largest;
+        }
+
+        private static float HorizontalDistance(Vector3 position)
+        {
+            return new Vector2(position.x, position.z).magnitude;
         }
     }
 }

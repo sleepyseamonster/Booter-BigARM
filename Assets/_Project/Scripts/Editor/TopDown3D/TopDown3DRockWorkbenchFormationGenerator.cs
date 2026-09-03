@@ -100,7 +100,8 @@ namespace BooterBigArm.Editor
             verticality = Mathf.Clamp01(verticality);
 
             var random = new System.Random(seed);
-            var phase = NextRange(random, 0f, Mathf.PI * 2f);
+            var creviceHeading = NextRange(random, 0f, Mathf.PI * 2f);
+            var creviceHalfAngle = Mathf.Lerp(0.44f, 0.66f, complexity);
             var baseRockSize = Mathf.Clamp(
                 overallSize * Mathf.Lerp(0.34f, 0.27f, complexity),
                 1.25f,
@@ -108,18 +109,19 @@ namespace BooterBigArm.Editor
             var plan = new List<TopDown3DRockFormationMemberPlan>(rockCount);
 
             var coreSize = Mathf.Clamp(
-                baseRockSize * NextRange(random, 1.04f, 1.2f),
+                baseRockSize * NextRange(random, 1.16f, 1.34f),
                 1.4f,
                 10f);
             var coreScale = new Vector3(
-                NextRange(random, 1.02f, 1.28f),
-                Mathf.Lerp(0.82f, 1.5f, verticality) * NextRange(random, 0.92f, 1.08f),
-                NextRange(random, 1.02f, 1.28f));
+                NextRange(random, 1.16f, 1.44f),
+                Mathf.Lerp(0.86f, 1.48f, verticality) * NextRange(random, 0.94f, 1.08f),
+                NextRange(random, 1.16f, 1.44f));
+            var coreBurial = coreSize * coreScale.y * Mathf.Lerp(0.035f, 0.065f, complexity);
             var coreMember = new TopDown3DRockFormationMemberPlan(
-                Vector3.zero,
+                Vector3.down * coreBurial,
                 Quaternion.Euler(
                     NextRange(random, -4f, 4f) * complexity,
-                    phase * Mathf.Rad2Deg,
+                    creviceHeading * Mathf.Rad2Deg,
                     NextRange(random, -4f, 4f) * complexity),
                 coreScale,
                 coreSize,
@@ -133,87 +135,103 @@ namespace BooterBigArm.Editor
 
             var remaining = rockCount - 1;
             var talusCount = rockCount >= 8
-                ? Mathf.Clamp(Mathf.RoundToInt(Mathf.Lerp(1f, 3f, complexity)), 1, 3)
+                ? Mathf.Clamp(
+                    Mathf.RoundToInt(Mathf.Lerp(2f, 4f, complexity)),
+                    2,
+                    Mathf.Min(4, rockCount - 4))
                 : 1;
             var crownCount = rockCount >= 9 && complexity >= 0.42f ? 1 : 0;
             var structuralSlots = remaining - talusCount - crownCount;
             var pillarCount = Mathf.Clamp(
-                Mathf.RoundToInt(Mathf.Lerp(3f, 4f, complexity)),
-                3,
-                Mathf.Max(3, structuralSlots));
+                Mathf.RoundToInt(Mathf.Lerp(2f, 4f, complexity)),
+                2,
+                Mathf.Max(2, structuralSlots - 1));
             var buttressCount = structuralSlots - pillarCount;
-            if (rockCount >= 7 && buttressCount < 1)
+            if (rockCount >= 8 && structuralSlots >= 4 && buttressCount < 2)
             {
-                pillarCount--;
-                buttressCount++;
+                var transfer = Mathf.Min(2 - buttressCount, pillarCount - 2);
+                pillarCount -= transfer;
+                buttressCount += transfer;
             }
 
             var memberIndex = 1;
-            for (var pillar = 0; pillar < pillarCount; pillar++, memberIndex++)
+            var structuralRoles = CreateStructuralRoles(pillarCount, buttressCount);
+            var structuralMembers = new List<TopDown3DRockFormationMemberPlan>(structuralSlots);
+            for (var slot = 0; slot < structuralRoles.Count; slot++, memberIndex++)
             {
-                var angle = phase
-                    + Mathf.PI * 2f * pillar / pillarCount
-                    + NextRange(random, -0.16f, 0.16f);
-                var scale = new Vector3(
-                    NextRange(random, 0.72f, 1.02f),
-                    Mathf.Lerp(1.08f, 2.05f, verticality) * NextRange(random, 0.9f, 1.12f),
-                    NextRange(random, 0.72f, 1.02f));
-                var size = Mathf.Clamp(
-                    baseRockSize * NextRange(random, 0.78f, 1.08f),
-                    0.9f,
-                    10f);
-                var direction = new Vector3(Mathf.Cos(angle), -0.04f, Mathf.Sin(angle)).normalized;
-                var member = new TopDown3DRockFormationMemberPlan(
-                    Vector3.zero,
-                    Quaternion.Euler(
-                        NextRange(random, -7f, 7f) * complexity,
-                        angle * Mathf.Rad2Deg + NextRange(random, -22f, 22f),
-                        NextRange(random, -7f, 7f) * complexity),
-                    scale,
-                    size,
-                    Mathf.Clamp01(verticality + NextRange(random, 0.08f, 0.26f)),
-                    Mathf.Clamp01(Mathf.Lerp(0.56f, 0.82f, complexity)
-                        + NextRange(random, -0.1f, 0.1f)),
-                    Mathf.Clamp01(Mathf.Lerp(0.62f, 0.8f, complexity)),
-                    DeriveMemberSeed(seed, memberIndex),
-                    TopDown3DRockFormationMemberRole.Pillar);
-                plan.Add(AttachToCore(coreContact, member, direction, 0.76f));
-            }
+                var role = structuralRoles[slot];
+                var angle = CreateReservedArcAngle(
+                    random,
+                    creviceHeading,
+                    creviceHalfAngle,
+                    slot,
+                    structuralSlots);
+                var direction = new Vector3(
+                    Mathf.Cos(angle),
+                    role == TopDown3DRockFormationMemberRole.Pillar ? -0.06f : -0.12f,
+                    Mathf.Sin(angle)).normalized;
+                TopDown3DRockFormationMemberPlan member;
+                float attachmentRatio;
+                if (role == TopDown3DRockFormationMemberRole.Pillar)
+                {
+                    var scale = new Vector3(
+                        NextRange(random, 0.64f, 0.92f),
+                        Mathf.Lerp(1.08f, 2.08f, verticality) * NextRange(random, 0.9f, 1.12f),
+                        NextRange(random, 0.64f, 0.92f));
+                    var size = Mathf.Clamp(
+                        baseRockSize * NextRange(random, 0.68f, 0.94f),
+                        0.9f,
+                        9f);
+                    member = new TopDown3DRockFormationMemberPlan(
+                        Vector3.zero,
+                        Quaternion.Euler(
+                            NextRange(random, -7f, 7f) * complexity,
+                            angle * Mathf.Rad2Deg + NextRange(random, -18f, 18f),
+                            NextRange(random, -7f, 7f) * complexity),
+                        scale,
+                        size,
+                        Mathf.Clamp01(verticality + NextRange(random, 0.08f, 0.26f)),
+                        Mathf.Clamp01(Mathf.Lerp(0.56f, 0.82f, complexity)
+                            + NextRange(random, -0.1f, 0.1f)),
+                        Mathf.Clamp01(Mathf.Lerp(0.62f, 0.8f, complexity)),
+                        DeriveMemberSeed(seed, memberIndex),
+                        role);
+                    attachmentRatio = 0.76f;
+                }
+                else
+                {
+                    var scale = new Vector3(
+                        NextRange(random, 1.04f, 1.48f),
+                        Mathf.Lerp(0.66f, 1.18f, verticality) * NextRange(random, 0.9f, 1.08f),
+                        NextRange(random, 0.62f, 0.94f));
+                    var size = Mathf.Clamp(
+                        baseRockSize * NextRange(random, 0.62f, 0.88f),
+                        0.8f,
+                        8.5f);
+                    member = new TopDown3DRockFormationMemberPlan(
+                        Vector3.zero,
+                        Quaternion.Euler(
+                            NextRange(random, -10f, 10f) * complexity,
+                            angle * Mathf.Rad2Deg + NextRange(random, -14f, 14f),
+                            NextRange(random, -10f, 10f) * complexity),
+                        scale,
+                        size,
+                        Mathf.Clamp01(verticality + NextRange(random, -0.16f, 0.08f)),
+                        Mathf.Clamp01(Mathf.Lerp(0.62f, 0.88f, complexity)),
+                        Mathf.Clamp01(Mathf.Lerp(0.68f, 0.84f, complexity)),
+                        DeriveMemberSeed(seed, memberIndex),
+                        role);
+                    attachmentRatio = 0.8f;
+                }
 
-            for (var buttress = 0; buttress < buttressCount; buttress++, memberIndex++)
-            {
-                var angle = phase
-                    + Mathf.PI / Mathf.Max(3, pillarCount)
-                    + Mathf.PI * 2f * buttress / Mathf.Max(1, buttressCount)
-                    + NextRange(random, -0.22f, 0.22f);
-                var scale = new Vector3(
-                    NextRange(random, 1.08f, 1.58f),
-                    Mathf.Lerp(0.72f, 1.28f, verticality) * NextRange(random, 0.9f, 1.08f),
-                    NextRange(random, 0.68f, 1.0f));
-                var size = Mathf.Clamp(
-                    baseRockSize * NextRange(random, 0.68f, 0.96f),
-                    0.8f,
-                    9f);
-                var direction = new Vector3(Mathf.Cos(angle), -0.08f, Mathf.Sin(angle)).normalized;
-                var member = new TopDown3DRockFormationMemberPlan(
-                    Vector3.zero,
-                    Quaternion.Euler(
-                        NextRange(random, -10f, 10f) * complexity,
-                        angle * Mathf.Rad2Deg + NextRange(random, -16f, 16f),
-                        NextRange(random, -10f, 10f) * complexity),
-                    scale,
-                    size,
-                    Mathf.Clamp01(verticality + NextRange(random, -0.14f, 0.1f)),
-                    Mathf.Clamp01(Mathf.Lerp(0.62f, 0.88f, complexity)),
-                    Mathf.Clamp01(Mathf.Lerp(0.68f, 0.84f, complexity)),
-                    DeriveMemberSeed(seed, memberIndex),
-                    TopDown3DRockFormationMemberRole.Buttress);
-                plan.Add(AttachToCore(coreContact, member, direction, 0.8f));
+                var attached = AttachToCore(coreContact, member, direction, attachmentRatio);
+                structuralMembers.Add(attached);
+                plan.Add(attached);
             }
 
             for (var crown = 0; crown < crownCount; crown++, memberIndex++)
             {
-                var angle = phase + NextRange(random, 0f, Mathf.PI * 2f);
+                var angle = creviceHeading + Mathf.PI + NextRange(random, -0.7f, 0.7f);
                 var scale = new Vector3(
                     NextRange(random, 0.82f, 1.2f),
                     NextRange(random, 0.78f, 1.2f),
@@ -244,18 +262,22 @@ namespace BooterBigArm.Editor
 
             for (var talus = 0; talus < talusCount; talus++, memberIndex++)
             {
-                var angle = phase
-                    + 2.39996323f * (talus + buttressCount * 0.5f)
-                    + NextRange(random, -0.2f, 0.2f);
+                var angle = KeepOutsideCrevice(
+                    creviceHeading
+                        + 2.39996323f * (talus + 1f)
+                        + NextRange(random, -0.16f, 0.16f),
+                    creviceHeading,
+                    creviceHalfAngle + 0.14f,
+                    talus);
                 var scale = new Vector3(
                     NextRange(random, 1.0f, 1.48f),
-                    NextRange(random, 0.44f, 0.72f),
+                    NextRange(random, 0.34f, 0.58f),
                     NextRange(random, 0.9f, 1.4f));
                 var size = Mathf.Clamp(
-                    baseRockSize * NextRange(random, 0.42f, 0.68f),
-                    0.7f,
-                    6f);
-                var direction = new Vector3(Mathf.Cos(angle), -0.18f, Mathf.Sin(angle)).normalized;
+                    baseRockSize * NextRange(random, 0.3f, 0.52f),
+                    0.6f,
+                    5f);
+                var direction = new Vector3(Mathf.Cos(angle), -0.72f, Mathf.Sin(angle)).normalized;
                 var member = new TopDown3DRockFormationMemberPlan(
                     Vector3.zero,
                     Quaternion.Euler(
@@ -269,7 +291,13 @@ namespace BooterBigArm.Editor
                     Mathf.Clamp01(Mathf.Lerp(0.72f, 0.9f, complexity)),
                     DeriveMemberSeed(seed, memberIndex),
                     TopDown3DRockFormationMemberRole.Talus);
-                plan.Add(AttachToCore(coreContact, member, direction, 0.78f));
+                var host = FindClosestStructuralHost(structuralMembers, angle, coreMember);
+                plan.Add(AttachToContacts(
+                    CreateLowestContact(host),
+                    CreateHighestContact(member),
+                    member,
+                    direction,
+                    0.5f));
             }
 
             return plan;
@@ -352,19 +380,113 @@ namespace BooterBigArm.Editor
             }
         }
 
-        private static TopDown3DRockFormationMemberPlan AttachToCore(
-            CoreContact core,
+        private static IReadOnlyList<TopDown3DRockFormationMemberRole> CreateStructuralRoles(
+            int pillarCount,
+            int buttressCount)
+        {
+            var total = pillarCount + buttressCount;
+            var roles = new List<TopDown3DRockFormationMemberRole>(total);
+            var remainingPillars = pillarCount;
+            var remainingButtresses = buttressCount;
+            for (var slot = 0; slot < total; slot++)
+            {
+                var edge = slot == 0 || slot == total - 1;
+                var placeButtress = remainingButtresses > 0
+                    && (edge
+                        || remainingPillars == 0
+                        || remainingButtresses * (total - slot)
+                            > remainingPillars * 2);
+                if (placeButtress)
+                {
+                    roles.Add(TopDown3DRockFormationMemberRole.Buttress);
+                    remainingButtresses--;
+                }
+                else
+                {
+                    roles.Add(TopDown3DRockFormationMemberRole.Pillar);
+                    remainingPillars--;
+                }
+            }
+
+            return roles;
+        }
+
+        private static float CreateReservedArcAngle(
+            System.Random random,
+            float creviceHeading,
+            float creviceHalfAngle,
+            int slot,
+            int slotCount)
+        {
+            if (slotCount <= 1) return creviceHeading + Mathf.PI;
+
+            var usableArc = Mathf.PI * 2f - creviceHalfAngle * 2f;
+            var step = usableArc / (slotCount - 1);
+            var jitter = Mathf.Min(0.11f, step * 0.16f);
+            var angleAlongArc = Mathf.Clamp(
+                slot * step + NextRange(random, -jitter, jitter),
+                0f,
+                usableArc);
+            return creviceHeading + creviceHalfAngle + angleAlongArc;
+        }
+
+        private static float KeepOutsideCrevice(
+            float angle,
+            float creviceHeading,
+            float clearance,
+            int stableSide)
+        {
+            var signedDelta = Mathf.DeltaAngle(
+                creviceHeading * Mathf.Rad2Deg,
+                angle * Mathf.Rad2Deg) * Mathf.Deg2Rad;
+            if (Mathf.Abs(signedDelta) >= clearance) return angle;
+
+            var side = Mathf.Abs(signedDelta) > 0.0001f
+                ? Mathf.Sign(signedDelta)
+                : stableSide % 2 == 0 ? 1f : -1f;
+            return creviceHeading + side * clearance;
+        }
+
+        private static TopDown3DRockFormationMemberPlan FindClosestStructuralHost(
+            IReadOnlyList<TopDown3DRockFormationMemberPlan> structuralMembers,
+            float angle,
+            TopDown3DRockFormationMemberPlan fallback)
+        {
+            if (structuralMembers == null || structuralMembers.Count == 0) return fallback;
+
+            var desired = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            var best = fallback;
+            var bestDot = float.NegativeInfinity;
+            for (var index = 0; index < structuralMembers.Count; index++)
+            {
+                var candidate = structuralMembers[index];
+                var horizontal = new Vector2(
+                    candidate.LocalPosition.x,
+                    candidate.LocalPosition.z);
+                if (horizontal.sqrMagnitude <= 0.000001f) continue;
+
+                var dot = Vector2.Dot(desired, horizontal.normalized);
+                if (dot <= bestDot) continue;
+                bestDot = dot;
+                best = candidate;
+            }
+
+            return best;
+        }
+
+        private static TopDown3DRockFormationMemberPlan AttachToContacts(
+            CoreContact host,
+            CoreContact memberContact,
             TopDown3DRockFormationMemberPlan member,
             Vector3 direction,
             float centerDistanceRatio)
         {
-            var memberContact = CreateCoreContact(member);
             direction = direction.sqrMagnitude <= 0.000001f
                 ? Vector3.right
                 : direction.normalized;
-            var centerDistance = (core.Radius + memberContact.Radius)
+            var centerDistance = (host.Radius + memberContact.Radius)
                 * Mathf.Clamp(centerDistanceRatio, 0.1f, 0.9f);
-            var targetContactCenter = core.Center + direction * centerDistance;
+            var targetContactCenter = host.Center + direction * centerDistance;
             var localPosition = member.LocalPosition
                 + targetContactCenter
                 - memberContact.Center;
@@ -380,8 +502,37 @@ namespace BooterBigArm.Editor
                 member.Role);
         }
 
+        private static TopDown3DRockFormationMemberPlan AttachToCore(
+            CoreContact core,
+            TopDown3DRockFormationMemberPlan member,
+            Vector3 direction,
+            float centerDistanceRatio)
+        {
+            var memberContact = CreateCoreContact(member);
+            return AttachToContacts(core, memberContact, member, direction, centerDistanceRatio);
+        }
+
         private static CoreContact CreateCoreContact(
             TopDown3DRockFormationMemberPlan member)
+        {
+            return CreateContact(member, ContactSelection.Core);
+        }
+
+        private static CoreContact CreateLowestContact(
+            TopDown3DRockFormationMemberPlan member)
+        {
+            return CreateContact(member, ContactSelection.Lowest);
+        }
+
+        private static CoreContact CreateHighestContact(
+            TopDown3DRockFormationMemberPlan member)
+        {
+            return CreateContact(member, ContactSelection.Highest);
+        }
+
+        private static CoreContact CreateContact(
+            TopDown3DRockFormationMemberPlan member,
+            ContactSelection selection)
         {
             var cubeCount = Mathf.Clamp(
                 Mathf.CeilToInt(member.RockSize * 0.9f) + 1,
@@ -394,23 +545,56 @@ namespace BooterBigArm.Editor
                 member.Verticality,
                 member.Lopsidedness,
                 member.Compaction);
-            var sourceCore = rockPlan[0];
             var memberMatrix = Matrix4x4.TRS(
                 member.LocalPosition,
                 member.LocalRotation,
                 member.LocalScale);
-            var coreMatrix = memberMatrix * Matrix4x4.TRS(
-                sourceCore.LocalPosition,
-                sourceCore.LocalRotation,
-                sourceCore.LocalScale);
-            var minimumAxis = Mathf.Min(
-                coreMatrix.MultiplyVector(Vector3.right).magnitude,
-                Mathf.Min(
-                    coreMatrix.MultiplyVector(Vector3.up).magnitude,
-                    coreMatrix.MultiplyVector(Vector3.forward).magnitude));
+            var selected = CreateVolumeContact(memberMatrix, rockPlan[0]);
+            if (selection == ContactSelection.Core) return selected;
+
+            for (var index = 1; index < rockPlan.Count; index++)
+            {
+                var candidate = CreateVolumeContact(memberMatrix, rockPlan[index]);
+                var replace = selection == ContactSelection.Lowest
+                    ? candidate.Bottom < selected.Bottom
+                    : candidate.Top > selected.Top;
+                if (!replace) continue;
+                selected = candidate;
+            }
+
+            var selectedSurface = selection == ContactSelection.Lowest
+                ? selected.Bottom + selected.Radius
+                : selected.Top - selected.Radius;
             return new CoreContact(
-                coreMatrix.MultiplyPoint3x4(Vector3.zero),
-                Mathf.Max(0.05f, minimumAxis * 0.26f));
+                new Vector3(
+                    selected.Center.x,
+                    selectedSurface,
+                    selected.Center.z),
+                selected.Radius,
+                selected.Radius);
+        }
+
+        private static CoreContact CreateVolumeContact(
+            Matrix4x4 memberMatrix,
+            TopDown3DRockWorkbenchVolumeSpec source)
+        {
+            var volumeMatrix = memberMatrix * Matrix4x4.TRS(
+                source.LocalPosition,
+                source.LocalRotation,
+                source.LocalScale);
+            var minimumAxis = Mathf.Min(
+                volumeMatrix.MultiplyVector(Vector3.right).magnitude,
+                Mathf.Min(
+                    volumeMatrix.MultiplyVector(Vector3.up).magnitude,
+                    volumeMatrix.MultiplyVector(Vector3.forward).magnitude));
+            var verticalExtent = 0.5f * (
+                Mathf.Abs(volumeMatrix.MultiplyVector(Vector3.right).y)
+                + Mathf.Abs(volumeMatrix.MultiplyVector(Vector3.up).y)
+                + Mathf.Abs(volumeMatrix.MultiplyVector(Vector3.forward).y));
+            return new CoreContact(
+                volumeMatrix.MultiplyPoint3x4(Vector3.zero),
+                Mathf.Max(0.05f, minimumAxis * 0.26f),
+                verticalExtent);
         }
 
         private static float NextRange(System.Random random, float minimum, float maximum)
@@ -420,14 +604,25 @@ namespace BooterBigArm.Editor
 
         private readonly struct CoreContact
         {
-            internal CoreContact(Vector3 center, float radius)
+            internal CoreContact(Vector3 center, float radius, float verticalExtent)
             {
                 Center = center;
                 Radius = radius;
+                VerticalExtent = verticalExtent;
             }
 
             internal Vector3 Center { get; }
             internal float Radius { get; }
+            internal float VerticalExtent { get; }
+            internal float Bottom => Center.y - VerticalExtent;
+            internal float Top => Center.y + VerticalExtent;
+        }
+
+        private enum ContactSelection
+        {
+            Core,
+            Lowest,
+            Highest
         }
     }
 }
