@@ -40,6 +40,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
         _BottomBlendStart("Underside Blend Start", Range(0, 1)) = 0.08
         _BottomBlendEnd("Underside Blend End", Range(0, 1)) = 0.5
         _UndersideShaleAmount("Underside Shale Amount", Range(0, 1)) = 1
+        _SideShalePatchAmount("Side Shale Patch Amount", Range(0, 1)) = 0.36
         _TopShalePatchAmount("Top Shale Patch Amount", Range(0, 1)) = 0.42
         _CrackColor("Crack Color", Color) = (0.12, 0.085, 0.06, 1)
         _MineralColor("Mineral Patch Color", Color) = (0.48, 0.42, 0.34, 1)
@@ -146,6 +147,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 float _BottomBlendStart;
                 float _BottomBlendEnd;
                 float _UndersideShaleAmount;
+                float _SideShalePatchAmount;
                 float _TopShalePatchAmount;
                 float _DustAmount;
                 float _DustSharpness;
@@ -286,16 +288,47 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 return result;
             }
 
+            TriplanarSample SampleSideShale(float3 samplePositionWS, half3 geometricNormalWS)
+            {
+                TriplanarSample result;
+                float meters = max(_BottomMetersPerTile, 0.01);
+                float3 projectionPosition = samplePositionWS / meters;
+                half2 weights = pow(abs(geometricNormalWS.xz), max((half)_TriplanarSharpness, 1.0h));
+                weights = max(weights, half2(0.0001h, 0.0001h));
+                weights /= max(weights.x + weights.y, 0.001h);
+                float2 uvX = projectionPosition.zy;
+                float2 uvZ = projectionPosition.xy;
+
+                half3 albedoX = SAMPLE_TEXTURE2D(_BottomBaseMap, sampler_BottomBaseMap, uvX).rgb;
+                half3 albedoZ = SAMPLE_TEXTURE2D(_BottomBaseMap, sampler_BottomBaseMap, uvZ).rgb;
+                result.albedo = albedoX * weights.x + albedoZ * weights.y;
+
+                half3 surfaceX = SAMPLE_TEXTURE2D(_BottomSurfaceMap, sampler_BottomSurfaceMap, uvX).rgb;
+                half3 surfaceZ = SAMPLE_TEXTURE2D(_BottomSurfaceMap, sampler_BottomSurfaceMap, uvZ).rgb;
+                result.surface = surfaceX * weights.x + surfaceZ * weights.y;
+
+                half3 normalX = UnpackNormalScale(
+                    SAMPLE_TEXTURE2D(_BottomNormalMap, sampler_BottomNormalMap, uvX), _BottomNormalStrength);
+                half3 normalZ = UnpackNormalScale(
+                    SAMPLE_TEXTURE2D(_BottomNormalMap, sampler_BottomNormalMap, uvZ), _BottomNormalStrength);
+                normalX = half3(normalX.xy + geometricNormalWS.zy, abs(normalX.z) * geometricNormalWS.x);
+                normalZ = half3(normalZ.xy + geometricNormalWS.xy, abs(normalZ.z) * geometricNormalWS.z);
+                result.normalWS = normalize(normalX.zyx * weights.x + normalZ.xyz * weights.y);
+                return result;
+            }
+
             TriplanarSample SampleLayeredRock(
                 float3 samplePositionWS,
                 half3 geometricNormalWS,
                 half topShalePatch,
+                half sideShalePatch,
                 out half topBlend,
                 out half bottomBlend)
             {
                 TriplanarSample side = SampleSideRock(samplePositionWS, geometricNormalWS);
                 TriplanarSample top = SampleTopRock(samplePositionWS, geometricNormalWS);
                 TriplanarSample bottom = SampleUndersideRock(samplePositionWS, geometricNormalWS);
+                TriplanarSample sideShale = SampleSideShale(samplePositionWS, geometricNormalWS);
                 topBlend = smoothstep(
                     (half)_TopBlendStart,
                     max((half)_TopBlendEnd, (half)_TopBlendStart + 0.001h),
@@ -310,6 +343,13 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 result.albedo = lerp(side.albedo, top.albedo, topBlend);
                 result.surface = lerp(side.surface, top.surface, topBlend);
                 result.normalWS = normalize(lerp(side.normalWS, top.normalWS, topBlend));
+                half sideShaleBlend = (1.0h - topBlend)
+                    * (1.0h - bottomBlend)
+                    * sideShalePatch
+                    * (half)_SideShalePatchAmount;
+                result.albedo = lerp(result.albedo, sideShale.albedo, sideShaleBlend);
+                result.surface = lerp(result.surface, sideShale.surface, sideShaleBlend);
+                result.normalWS = normalize(lerp(result.normalWS, sideShale.normalWS, sideShaleBlend));
                 half topShaleBlend = topBlend * topShalePatch * (half)_TopShalePatchAmount;
                 result.albedo = lerp(result.albedo, bottom.albedo, topShaleBlend);
                 result.surface = lerp(result.surface, bottom.surface, topShaleBlend);
@@ -373,12 +413,20 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                     samplePositionWS / (topShalePatchMeters * 0.42) - 21.7);
                 half topShalePatch = smoothstep(0.58h, 0.82h, topShaleNoise)
                     * lerp(0.62h, 1.0h, topShaleDetail);
+                float sideShalePatchMeters = max(1.15, rockScale * 0.5);
+                half sideShaleNoise = (half)ValueNoise3D(
+                    samplePositionWS / sideShalePatchMeters + 31.87);
+                half sideShaleDetail = (half)ValueNoise3D(
+                    samplePositionWS / (sideShalePatchMeters * 0.38) - 14.63);
+                half sideShalePatch = smoothstep(0.56h, 0.80h, sideShaleNoise)
+                    * lerp(0.58h, 1.0h, sideShaleDetail);
                 half topBlend;
                 half bottomBlend;
                 TriplanarSample rock = SampleLayeredRock(
                     samplePositionWS,
                     geometricNormalWS,
                     topShalePatch,
+                    sideShalePatch,
                     topBlend,
                     bottomBlend);
 
@@ -389,9 +437,15 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                     * (half)_SurfacePatchStrength;
                 half topShaleInfluence = saturate(
                     topBlend * topShalePatch * (half)_TopShalePatchAmount);
+                half sideShaleInfluence = saturate(
+                    (1.0h - topBlend)
+                    * (1.0h - bottomBlend)
+                    * sideShalePatch
+                    * (half)_SideShalePatchAmount);
                 half effectiveSmoothPatch = smoothPatch
                     * (1.0h - bottomBlend)
-                    * (1.0h - topShaleInfluence);
+                    * (1.0h - topShaleInfluence)
+                    * (1.0h - sideShaleInfluence);
                 half grainPatch = smoothstep(0.58h, 0.86h, secondaryPatch)
                     * (1.0h - smoothPatch * 0.65h)
                     * (half)_SurfacePatchStrength;
