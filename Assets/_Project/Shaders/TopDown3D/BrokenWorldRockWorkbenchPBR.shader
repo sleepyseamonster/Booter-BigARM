@@ -49,6 +49,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
         _DustSharpness("Upward Dust Sharpness", Range(1, 16)) = 5
         [HideInInspector] _RockSeed01("Rock Seed", Float) = 0
         [HideInInspector] _RockSize("Rock Size", Vector) = (4, 3, 3.5, 0)
+        [HideInInspector] _RockOriginWS("Rock Formation Origin", Vector) = (0, 0, 0, 0)
+        [HideInInspector] _FormationFractureAmount("Formation Fracture Amount", Range(0, 1)) = 0
+        [HideInInspector] _FormationFractureSpacing("Formation Fracture Spacing", Float) = 6
         [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
         [HideInInspector] _Cull("Cull", Float) = 2
@@ -84,6 +87,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
             #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
             #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
             #pragma multi_compile_fragment _ _SHADOWS_SOFT
+            #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Packing.hlsl"
@@ -153,6 +157,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 float _DustSharpness;
                 float _RockSeed01;
                 float4 _RockSize;
+                float4 _RockOriginWS;
+                float _FormationFractureAmount;
+                float _FormationFractureSpacing;
                 float _Cutoff;
                 float _Surface;
                 float _Cull;
@@ -393,6 +400,41 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                 return lerp(lerp(lowerX0, lowerX1, local.y), lerp(upperX0, upperX1, local.y), local.z);
             }
 
+            half SampleFormationFractures(float3 formationPosition)
+            {
+                float spacing = max(_FormationFractureSpacing, 0.25);
+                float angle = _RockSeed01 * 6.2831853 + 0.73;
+                float3 primaryAxis = normalize(float3(cos(angle), 0.16, sin(angle)));
+                float3 secondaryAxis = normalize(float3(-primaryAxis.z, 0.08, primaryAxis.x));
+                float3 broadPosition = formationPosition / spacing;
+
+                float primaryWarp = ValueNoise3D(
+                    broadPosition * 0.82 + float3(11.7, _RockSeed01 * 9.1, 27.3)) - 0.5;
+                float primaryCoordinate = dot(formationPosition, primaryAxis) / spacing
+                    + primaryWarp * 0.52;
+                float primaryDistance = abs(frac(primaryCoordinate) - 0.5);
+                float primaryLine = 1.0 - smoothstep(0.018, 0.060, primaryDistance);
+                float primaryGate = smoothstep(
+                    0.38,
+                    0.72,
+                    ValueNoise3D(broadPosition * 0.63 + 43.19));
+
+                float secondaryWarp = ValueNoise3D(
+                    broadPosition * 0.57 + float3(31.1, 7.4, _RockSeed01 * 13.7)) - 0.5;
+                float secondaryCoordinate = dot(formationPosition, secondaryAxis) / (spacing * 1.7)
+                    + secondaryWarp * 0.4;
+                float secondaryDistance = abs(frac(secondaryCoordinate) - 0.5);
+                float secondaryLine = 1.0 - smoothstep(0.012, 0.042, secondaryDistance);
+                float secondaryGate = smoothstep(
+                    0.52,
+                    0.78,
+                    ValueNoise3D(broadPosition * 0.48 - 18.73));
+
+                return saturate(
+                    (primaryLine * primaryGate + secondaryLine * secondaryGate * 0.55)
+                    * _FormationFractureAmount);
+            }
+
             half4 RockFragment(Varyings input) : SV_Target
             {
                 UNITY_SETUP_INSTANCE_ID(input);
@@ -405,7 +447,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                     Hash31(float3(_RockSeed01, 1.7, 4.1)),
                     Hash31(float3(_RockSeed01, 7.3, 2.9)),
                     Hash31(float3(_RockSeed01, 5.1, 9.7))) * 37.0;
-                float3 samplePositionWS = absolutePositionWS + seedOffset;
+                float3 formationPosition = absolutePositionWS - _RockOriginWS.xyz;
+                float3 samplePositionWS = formationPosition + seedOffset;
                 float topShalePatchMeters = max(1.4, rockScale * 0.65);
                 half topShaleNoise = (half)ValueNoise3D(
                     samplePositionWS / topShalePatchMeters + 73.21);
@@ -476,7 +519,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                     geometricNormalWS,
                     effectiveSmoothPatch * 0.62h));
 
-                half macro = (half)ValueNoise3D(absolutePositionWS / max(_MacroScale, 0.01));
+                half macro = (half)ValueNoise3D(samplePositionWS / max(_MacroScale, 0.01));
                 half macroMultiplier = lerp(1.0h - (half)_MacroStrength, 1.0h + (half)_MacroStrength, macro);
                 half heightMultiplier = lerp(
                     1.0h - (half)_HeightColorStrength,
@@ -490,6 +533,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Rock Workbench PBR"
                     * (half)_CrackAmount
                     * crackCoverage);
                 half crackHalo = saturate(crackLayer.g * (half)_CrackAmount * 0.38h);
+                half formationFracture = SampleFormationFractures(formationPosition);
+                crack = saturate(crack + formationFracture);
+                crackHalo = saturate(crackHalo + formationFracture * 0.48h);
                 half mineral = saturate(crackLayer.b * smoothstep(0.46h, 0.78h, secondaryPatch));
                 albedo = lerp(albedo, _MineralColor.rgb, mineral * 0.16h);
                 albedo = lerp(albedo, _CrackColor.rgb, crack);

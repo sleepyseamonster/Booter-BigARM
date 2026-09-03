@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using BooterBigArm.Editor;
 using BooterBigArm.TopDown3D;
 
@@ -12,6 +14,8 @@ namespace BooterBigArm.Tests
         private static readonly Vector3 GeneratedRockSize = new Vector3(4f, 3f, 3.5f);
         private const string WorkbenchMaterialPath =
             "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat";
+        private const string ProductionRendererPath =
+            "Assets/_Project/Settings/Rendering/URP/IsometricRenderer.asset";
         private const string LayeredTextureRoot =
             "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/";
         private const string SideAlbedoPath = LayeredTextureRoot + "RockWorkbenchSide_Albedo.png";
@@ -60,6 +64,98 @@ namespace BooterBigArm.Tests
             Assert.That(material.GetFloat("_UndersideShaleAmount"), Is.GreaterThan(0f));
             Assert.That(material.GetFloat("_SideShalePatchAmount"), Is.GreaterThan(0f));
             Assert.That(material.GetFloat("_TopShalePatchAmount"), Is.GreaterThan(0f));
+            Assert.That(material.HasProperty("_RockOriginWS"), Is.True);
+            Assert.That(material.HasProperty("_FormationFractureAmount"), Is.True);
+            Assert.That(material.HasProperty("_FormationFractureSpacing"), Is.True);
+        }
+
+        [Test]
+        public void FormationControlsClampToSafeAuthoringRanges()
+        {
+            var root = new GameObject("Rock Formation Control Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("longFractures").floatValue = 4f;
+                serialized.FindProperty("fractureSpacing").floatValue = 99f;
+                serialized.FindProperty("fusedVoxelSize").floatValue = -2f;
+                serialized.FindProperty("fusedJoinSoftness").floatValue = 7f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                Assert.That(formation.LongFractures, Is.EqualTo(1f));
+                Assert.That(formation.FractureSpacing, Is.EqualTo(16f));
+                Assert.That(formation.FusedVoxelSize, Is.EqualTo(0.04f));
+                Assert.That(formation.FusedJoinSoftness, Is.EqualTo(0.5f));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void SmoothFormationPreviewCombinesSeparateWorkbenchesIntoOneSurface()
+        {
+            var root = new GameObject("Rock Formation Preview Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                formation.Configure(
+                    AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath),
+                    424242);
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("joinStyle").enumValueIndex =
+                    (int)TopDown3DRockFormationJoinStyle.SmoothFusedPreview;
+                serialized.FindProperty("fusedVoxelSize").floatValue = 0.22f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                CreateFormationMember(root.transform, "Left Rock", new Vector3(-0.45f, 0f, 0f));
+                CreateFormationMember(root.transform, "Right Rock", new Vector3(0.45f, 0f, 0f));
+
+                Assert.That(
+                    TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out var error),
+                    Is.True,
+                    error);
+                Assert.That(formation.GeneratedMesh, Is.Not.Null);
+                Assert.That(formation.GeneratedMesh.vertexCount, Is.GreaterThan(0));
+                Assert.That(formation.PreviewStatus, Does.StartWith("ONE FUSED SURFACE"));
+                Assert.That(root.GetComponent<MeshRenderer>().enabled, Is.True);
+                Assert.That(
+                    root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>()
+                        .All(member => !member.GetComponent<MeshRenderer>().enabled),
+                    Is.True);
+            }
+            finally
+            {
+                var formation = root.GetComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                if (formation != null && formation.GeneratedMesh != null)
+                    Object.DestroyImmediate(formation.GeneratedMesh);
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void ProductionRendererUsesRestrainedRockContactOcclusion()
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<UniversalRendererData>(ProductionRendererPath);
+            Assert.That(renderer, Is.Not.Null);
+            var features = renderer.rendererFeatures
+                .OfType<ScreenSpaceAmbientOcclusion>()
+                .ToArray();
+            Assert.That(features.Length, Is.EqualTo(1));
+            Assert.That(features[0].isActive, Is.True);
+
+            var serialized = new SerializedObject(features[0]);
+            var settings = serialized.FindProperty("m_Settings");
+            Assert.That(settings, Is.Not.Null);
+            Assert.That(
+                settings.FindPropertyRelative("Intensity").floatValue,
+                Is.InRange(1f, 1.5f));
+            Assert.That(
+                settings.FindPropertyRelative("Radius").floatValue,
+                Is.InRange(0.08f, 0.16f));
+            Assert.That(settings.FindPropertyRelative("Downsample").boolValue, Is.True);
         }
 
         [Test]
@@ -754,6 +850,24 @@ namespace BooterBigArm.Tests
             Vector3 scale)
         {
             return new TopDown3DRockWorkbenchBox(root, CreateBoxObject(root, position, scale).transform);
+        }
+
+        private static TopDown3DRockWorkbenchAuthoring CreateFormationMember(
+            Transform formationRoot,
+            string name,
+            Vector3 localPosition)
+        {
+            var memberObject = new GameObject(name);
+            memberObject.transform.SetParent(formationRoot, false);
+            memberObject.transform.localPosition = localPosition;
+            var member = memberObject.AddComponent<TopDown3DRockWorkbenchAuthoring>();
+            member.Configure(AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath));
+
+            var volume = new GameObject("Cube Volume");
+            volume.transform.SetParent(memberObject.transform, false);
+            volume.transform.localScale = Vector3.one * 2f;
+            volume.AddComponent<TopDown3DRockVolumeNode>();
+            return member;
         }
 
         private static GameObject CreateBoxObject(Transform root, Vector3 position, Vector3 scale)

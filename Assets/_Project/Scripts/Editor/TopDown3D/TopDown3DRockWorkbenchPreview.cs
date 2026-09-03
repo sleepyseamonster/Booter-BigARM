@@ -13,6 +13,9 @@ namespace BooterBigArm.Editor
         private const double RebuildDebounceSeconds = 0.12d;
         private static readonly int RockSeedId = Shader.PropertyToID("_RockSeed01");
         private static readonly int RockSizeId = Shader.PropertyToID("_RockSize");
+        private static readonly int RockOriginId = Shader.PropertyToID("_RockOriginWS");
+        private static readonly int FormationFractureAmountId = Shader.PropertyToID("_FormationFractureAmount");
+        private static readonly int FormationFractureSpacingId = Shader.PropertyToID("_FormationFractureSpacing");
         private static readonly int GeologyScaleId = Shader.PropertyToID("_RockMetersPerTile");
         private static readonly int SurfaceVariationId = Shader.PropertyToID("_SurfacePatchStrength");
         private static readonly int CrackAmountId = Shader.PropertyToID("_CrackAmount");
@@ -167,22 +170,14 @@ namespace BooterBigArm.Editor
             DestroyGeneratedMesh(authoring);
             filter.sharedMesh = mesh;
             renderer.sharedMaterial = authoring.RockMaterial;
-            var materialProperties = new MaterialPropertyBlock();
-            renderer.GetPropertyBlock(materialProperties);
-            materialProperties.SetFloat(RockSeedId, SeedToUnitFloat(authoring.GenerationSeed));
-            materialProperties.SetFloat(GeologyScaleId, authoring.GeologyScale);
-            materialProperties.SetFloat(SurfaceVariationId, authoring.SurfaceVariation);
-            materialProperties.SetFloat(CrackAmountId, authoring.CrackAmount);
-            materialProperties.SetFloat(SideGritId, authoring.SideGrit);
-            materialProperties.SetFloat(UndersideShaleId, authoring.UndersideShale);
-            materialProperties.SetFloat(SideShalePatchesId, authoring.SideShalePatches);
-            materialProperties.SetFloat(TopShalePatchesId, authoring.TopShalePatches);
-            materialProperties.SetFloat(WornShineId, authoring.WornShine);
-            var rockSize = mesh.bounds.size;
-            materialProperties.SetVector(
-                RockSizeId,
-                new Vector4(rockSize.x, rockSize.y, rockSize.z, 0f));
-            renderer.SetPropertyBlock(materialProperties);
+            ApplySurfaceProperties(
+                authoring,
+                renderer,
+                mesh.bounds.size,
+                authoring.GenerationSeed,
+                Vector3.zero,
+                0f,
+                6f);
             collider.sharedMesh = null;
             if (authoring.UpdateCollider) collider.sharedMesh = mesh;
 
@@ -201,6 +196,38 @@ namespace BooterBigArm.Editor
                 + $"Grid {result.GridCells.x} x {result.GridCells.y} x {result.GridCells.z}.{resolutionNote}");
             SceneView.RepaintAll();
             InternalEditorUtilityRepaintAllViews();
+        }
+
+        internal static void ApplySurfaceProperties(
+            TopDown3DRockWorkbenchAuthoring authoring,
+            MeshRenderer renderer,
+            Vector3 rockSize,
+            int surfaceSeed,
+            Vector3 formationOrigin,
+            float formationFractureAmount,
+            float formationFractureSpacing)
+        {
+            if (authoring == null || renderer == null) return;
+            var materialProperties = new MaterialPropertyBlock();
+            renderer.GetPropertyBlock(materialProperties);
+            materialProperties.SetFloat(RockSeedId, SeedToUnitFloat(surfaceSeed));
+            materialProperties.SetFloat(GeologyScaleId, authoring.GeologyScale);
+            materialProperties.SetFloat(SurfaceVariationId, authoring.SurfaceVariation);
+            materialProperties.SetFloat(CrackAmountId, authoring.CrackAmount);
+            materialProperties.SetFloat(SideGritId, authoring.SideGrit);
+            materialProperties.SetFloat(UndersideShaleId, authoring.UndersideShale);
+            materialProperties.SetFloat(SideShalePatchesId, authoring.SideShalePatches);
+            materialProperties.SetFloat(TopShalePatchesId, authoring.TopShalePatches);
+            materialProperties.SetFloat(WornShineId, authoring.WornShine);
+            materialProperties.SetVector(
+                RockSizeId,
+                new Vector4(rockSize.x, rockSize.y, rockSize.z, 0f));
+            materialProperties.SetVector(
+                RockOriginId,
+                new Vector4(formationOrigin.x, formationOrigin.y, formationOrigin.z, 0f));
+            materialProperties.SetFloat(FormationFractureAmountId, formationFractureAmount);
+            materialProperties.SetFloat(FormationFractureSpacingId, formationFractureSpacing);
+            renderer.SetPropertyBlock(materialProperties);
         }
 
         private static void DestroyGeneratedMesh(TopDown3DRockWorkbenchAuthoring authoring)
