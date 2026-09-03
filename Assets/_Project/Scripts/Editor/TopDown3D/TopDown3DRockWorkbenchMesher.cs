@@ -365,7 +365,7 @@ namespace BooterBigArm.Editor
             var bounds = boxes[0].Bounds;
             for (var i = 1; i < boxes.Count; i++) bounds.Encapsulate(boxes[i].Bounds);
 
-            requestedVoxelSize = Mathf.Max(0.04f, requestedVoxelSize);
+            requestedVoxelSize = Mathf.Max(0.025f, requestedVoxelSize);
             paddingSmoothness = Mathf.Max(0f, paddingSmoothness);
             var padding = Mathf.Max(
                 requestedVoxelSize * 1.75f,

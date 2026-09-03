@@ -23,8 +23,8 @@ namespace BooterBigArm.TopDown3D
     {
         [Header("Preview")]
         [SerializeField] private Material rockMaterial;
-        [SerializeField, Min(0.04f), Tooltip("Smaller voxels make a more detailed surface but take longer to rebuild.")]
-        private float voxelSize = 0.18f;
+        [SerializeField, Min(0.025f), Tooltip("Smaller voxels make a more detailed surface but take longer to rebuild.")]
+        private float voxelSize = 0.1f;
         [SerializeField, Range(0f, 1f), Tooltip("Rounds and thickens the join between nearby source volumes. Zero produces a hard union.")]
         private float fusionSmoothness = 0.16f;
         [SerializeField, Tooltip("Rebuild the preview shortly after a source volume or setting changes.")]
@@ -78,7 +78,7 @@ namespace BooterBigArm.TopDown3D
         [NonSerialized] private string previewStatus = "Waiting for a preview build.";
 
         public Material RockMaterial => rockMaterial;
-        public float VoxelSize => Mathf.Max(0.04f, voxelSize);
+        public float VoxelSize => Mathf.Max(0.025f, voxelSize);
         public float FusionSmoothness => Mathf.Clamp(fusionSmoothness, 0f, 1f);
         public bool AutoRebuild => autoRebuild;
         public bool ShowSourceVolumes => showSourceVolumes;

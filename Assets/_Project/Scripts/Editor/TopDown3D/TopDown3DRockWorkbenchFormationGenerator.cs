@@ -911,10 +911,8 @@ namespace BooterBigArm.Editor
                     var serializedMember = new SerializedObject(member);
                     if (formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks)
                     {
-                        serializedMember.FindProperty("voxelSize").floatValue = Mathf.Clamp(
-                            spec.RockSize * 0.055f,
-                            0.055f,
-                            0.16f);
+                        serializedMember.FindProperty("voxelSize").floatValue =
+                            CalculateScatteredVoxelSize(spec);
                         serializedMember.FindProperty("fusionSmoothness").floatValue = Mathf.Clamp(
                             spec.RockSize * 0.028f,
                             0.025f,
@@ -1283,6 +1281,16 @@ namespace BooterBigArm.Editor
                 default:
                     return TopDown3DRockSilhouetteProfile.Boulder;
             }
+        }
+
+        internal static float CalculateScatteredVoxelSize(
+            TopDown3DRockFormationMemberPlan member)
+        {
+            var sourceSize = GetMemberSourceSize(member);
+            var smallestDimension = Mathf.Min(
+                sourceSize.x,
+                Mathf.Min(sourceSize.y, sourceSize.z));
+            return Mathf.Clamp(smallestDimension / 22f, 0.025f, 0.09f);
         }
 
         private static Vector3 GetMemberSourceSize(

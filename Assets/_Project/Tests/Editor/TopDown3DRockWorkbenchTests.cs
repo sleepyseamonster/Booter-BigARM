@@ -421,6 +421,38 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void ScatteredVoxelQualityTracksTheSmallestRockDimension()
+        {
+            var plan = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
+                TopDown3DRockFormationArchetype.ScatteredRocks,
+                151142,
+                15,
+                25.3f,
+                0.7f,
+                0.25f);
+
+            foreach (var member in plan)
+            {
+                var smallestDimension = Mathf.Min(
+                    member.RockSize,
+                    member.RockSize * Mathf.Max(0.01f, member.LocalScale.y));
+                var voxelSize = TopDown3DRockWorkbenchFormationGenerator
+                    .CalculateScatteredVoxelSize(member);
+
+                Assert.That(voxelSize, Is.InRange(0.025f, 0.09f));
+                if (smallestDimension >= 0.55f)
+                {
+                    Assert.That(smallestDimension / voxelSize,
+                        Is.GreaterThanOrEqualTo(21.99f));
+                }
+                else
+                {
+                    Assert.That(voxelSize, Is.EqualTo(0.025f).Within(0.0001f));
+                }
+            }
+        }
+
+        [Test]
         public void RockPilePlanBuildsAnAllSidedLayeredMound()
         {
             var first = TopDown3DRockWorkbenchFormationGenerator.CreateDimensionedPlan(
@@ -548,7 +580,11 @@ namespace BooterBigArm.Tests
                     Is.True);
                 Assert.That(
                     root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true)
-                        .All(member => member.VoxelSize <= 0.1601f),
+                        .All(member => member.VoxelSize <= 0.0901f),
+                    Is.True);
+                Assert.That(
+                    root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true)
+                        .All(member => member.VoxelSize >= 0.0249f),
                     Is.True);
                 Assert.That(
                     root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true)
