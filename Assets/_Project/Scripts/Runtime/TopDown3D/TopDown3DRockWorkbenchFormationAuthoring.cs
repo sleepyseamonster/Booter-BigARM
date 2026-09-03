@@ -79,12 +79,13 @@ namespace BooterBigArm.TopDown3D
         public float GeneratedWidth => Mathf.Clamp(generatedOverallSize, 4f, 30f);
         public float GeneratedHeight => Mathf.Clamp(generatedHeight, 1f, 30f);
         public float GeneratedOverallSize => GeneratedWidth;
+        private float GeneratedDimensionMagnitude => Mathf.Sqrt(
+            GeneratedWidth * GeneratedWidth * 0.65f
+            + GeneratedHeight * GeneratedHeight * 0.35f);
         public float GeneratedComplexity => Mathf.Clamp01(Mathf.InverseLerp(
             1f,
             23f,
-            Mathf.Sqrt(
-                GeneratedWidth * GeneratedWidth * 0.65f
-                + GeneratedHeight * GeneratedHeight * 0.35f)));
+            GeneratedDimensionMagnitude));
         public float GeneratedVerticality =>
             TopDown3DRockWorkbenchAuthoring.CalculateAspectVerticality(
                 GeneratedWidth,
@@ -92,11 +93,12 @@ namespace BooterBigArm.TopDown3D
         public int GeneratedRockCount => FormationArchetype
             == TopDown3DRockFormationArchetype.ScatteredRocks
                 ? Mathf.Clamp(
-                    Mathf.RoundToInt(Mathf.Lerp(8f, 12f, GeneratedComplexity))
-                    + Mathf.RoundToInt(
-                        GeneratedComplexity * 3f),
-                    8,
-                    15)
+                    Mathf.RoundToInt(Mathf.Lerp(
+                        5f,
+                        20f,
+                        Mathf.InverseLerp(3.28f, 30f, GeneratedDimensionMagnitude))),
+                    5,
+                    20)
                 : Mathf.Clamp(
                     Mathf.RoundToInt(Mathf.Lerp(5f, 10f, GeneratedComplexity))
                     + Mathf.RoundToInt(

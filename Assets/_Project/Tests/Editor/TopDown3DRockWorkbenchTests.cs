@@ -108,7 +108,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void ScatteredFormationCountUsesEightToFifteenRocks()
+        public void ScatteredFormationCountUsesFiveToTwentyRocks()
         {
             var root = new GameObject("Scattered Formation Count Test");
             try
@@ -123,14 +123,14 @@ namespace BooterBigArm.Tests
 
                 Assert.That(formation.FormationArchetype,
                     Is.EqualTo(TopDown3DRockFormationArchetype.ScatteredRocks));
-                Assert.That(formation.GeneratedRockCount, Is.EqualTo(8));
+                Assert.That(formation.GeneratedRockCount, Is.EqualTo(5));
 
                 serialized.Update();
                 serialized.FindProperty("generatedOverallSize").floatValue = 30f;
                 serialized.FindProperty("generatedHeight").floatValue = 30f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
-                Assert.That(formation.GeneratedRockCount, Is.EqualTo(15));
+                Assert.That(formation.GeneratedRockCount, Is.EqualTo(20));
             }
             finally
             {
@@ -275,6 +275,7 @@ namespace BooterBigArm.Tests
         [TestCase(112358, 8, 8f, 0.1f, 0.2f)]
         [TestCase(246813, 11, 16f, 0.55f, 0.5f)]
         [TestCase(975310, 15, 28f, 0.95f, 0.85f)]
+        [TestCase(209753, 20, 30f, 1f, 1f)]
         public void ScatteredFormationPlanBuildsSeparatedGroundedBoulders(
             int seed,
             int rockCount,

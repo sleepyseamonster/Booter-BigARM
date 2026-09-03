@@ -32,7 +32,7 @@ The Formation Inspector begins with a `Formation Type`, then exposes the same tw
 The current formation categories are:
 
 - `Connected Outcrop` — one fused geological formation built around a dominant anchor, framed crevice, pillars, buttresses, and attached base talus.
-- `Scattered Rocks` — 8–15 separate, partially buried boulders distributed across a loose field with a deliberate large/medium/small hierarchy. These rocks do not fuse to one another, so clean sand remains visible between them.
+- `Scattered Rocks` — 5–20 separate, partially buried boulders distributed across a loose field with a deliberate large/medium/small hierarchy. Width and height automatically move the count through that full range. These rocks do not fuse to one another, so clean sand remains visible between them.
 
 ## Build a formation from hand-arranged rocks
 

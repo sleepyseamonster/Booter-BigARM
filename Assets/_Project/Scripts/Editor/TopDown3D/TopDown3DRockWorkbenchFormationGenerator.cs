@@ -383,7 +383,7 @@ namespace BooterBigArm.Editor
             float complexity,
             float verticality)
         {
-            rockCount = Mathf.Clamp(rockCount, 8, 15);
+            rockCount = Mathf.Clamp(rockCount, 5, 20);
             overallSize = Mathf.Clamp(overallSize, 4f, 30f);
             complexity = Mathf.Clamp01(complexity);
             verticality = Mathf.Clamp01(verticality);
