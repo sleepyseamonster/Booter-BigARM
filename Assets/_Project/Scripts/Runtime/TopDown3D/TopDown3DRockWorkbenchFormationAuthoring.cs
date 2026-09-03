@@ -53,6 +53,12 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Tooltip("Keep a collider on the optional fused preview. Individual rock colliders remain active when seams are preserved.")]
         private bool updateCollider = true;
 
+        [Header("Member Rock Mesh")]
+        [SerializeField, Range(0.025f, 0.18f), InspectorName("Tessellation Size"), Tooltip("Controls the surface grid for every generated member rock. Smaller values produce finer, less stepped silhouettes but rebuild more slowly.")]
+        private float memberVoxelSize = 0.075f;
+        [SerializeField, Range(0f, 0.35f), InspectorName("Rock Smoothing"), Tooltip("Rounds the blends between the editable source masses inside every member rock. This does not move or merge separate rocks.")]
+        private float memberFusionSmoothness = 0.11f;
+
         [Header("Formation Fractures")]
         [SerializeField, Range(0f, 1f), Tooltip("Strength of a few long fractures projected coherently over the entire formation.")]
         private float longFractures = 0.58f;
@@ -119,6 +125,8 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DRockFormationJoinStyle JoinStyle => joinStyle;
         public bool AutoRebuild => autoRebuild;
         public bool UpdateCollider => updateCollider;
+        public float MemberVoxelSize => Mathf.Clamp(memberVoxelSize, 0.025f, 0.18f);
+        public float MemberFusionSmoothness => Mathf.Clamp(memberFusionSmoothness, 0f, 0.35f);
         public float LongFractures => Mathf.Clamp01(longFractures);
         public float FractureSpacing => Mathf.Clamp(fractureSpacing, 1.5f, 16f);
         public float FusedVoxelSize => Mathf.Max(0.04f, fusedVoxelSize);

@@ -484,8 +484,8 @@ namespace BooterBigArm.Editor
                     rockSize,
                     memberVerticality,
                     Mathf.Clamp01(NextRange(random, 0.56f, 0.9f)),
-                    Mathf.Clamp01(Mathf.Lerp(0.7f, 0.88f, complexity)
-                        + NextRange(random, -0.06f, 0.06f)),
+                    Mathf.Clamp01(Mathf.Lerp(0.5f, 0.72f, complexity)
+                        + NextRange(random, -0.08f, 0.08f)),
                     DeriveMemberSeed(seed, index),
                     role);
                 plan.Add(GroundScatteredMember(
@@ -909,15 +909,10 @@ namespace BooterBigArm.Editor
                     memberObject.GetComponent<MeshRenderer>().sharedMaterial = material;
 
                     var serializedMember = new SerializedObject(member);
-                    if (formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks)
-                    {
-                        serializedMember.FindProperty("voxelSize").floatValue =
-                            CalculateScatteredVoxelSize(spec);
-                        serializedMember.FindProperty("fusionSmoothness").floatValue = Mathf.Clamp(
-                            spec.RockSize * 0.028f,
-                            0.025f,
-                            0.11f);
-                    }
+                    serializedMember.FindProperty("voxelSize").floatValue =
+                        formation.MemberVoxelSize;
+                    serializedMember.FindProperty("fusionSmoothness").floatValue =
+                        formation.MemberFusionSmoothness;
                     serializedMember.FindProperty("generatedOverallScale").floatValue = spec.RockSize;
                     serializedMember.FindProperty("generatedHeight").floatValue =
                         spec.RockSize * Mathf.Max(0.01f, spec.LocalScale.y);
@@ -939,6 +934,32 @@ namespace BooterBigArm.Editor
             {
                 Undo.CollapseUndoOperations(undoGroup);
             }
+        }
+
+        internal static void ApplyMemberMeshSettings(
+            TopDown3DRockWorkbenchFormationAuthoring formation)
+        {
+            if (formation == null) return;
+
+            var members = formation.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+            if (members.Length == 0) return;
+
+            Undo.RecordObjects(members, "Adjust Formation Rock Mesh");
+            foreach (var member in members)
+            {
+                if (member == null) continue;
+                var serializedMember = new SerializedObject(member);
+                serializedMember.FindProperty("voxelSize").floatValue =
+                    formation.MemberVoxelSize;
+                serializedMember.FindProperty("fusionSmoothness").floatValue =
+                    formation.MemberFusionSmoothness;
+                serializedMember.ApplyModifiedPropertiesWithoutUndo();
+                EditorUtility.SetDirty(member);
+                TopDown3DRockWorkbenchPreview.RequestRebuild(member, false);
+            }
+
+            TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, false);
+            SceneView.RepaintAll();
         }
 
         private static IReadOnlyList<TopDown3DRockFormationMemberPlan> ConformScatteredPlanToTerrain(
@@ -1281,16 +1302,6 @@ namespace BooterBigArm.Editor
                 default:
                     return TopDown3DRockSilhouetteProfile.Boulder;
             }
-        }
-
-        internal static float CalculateScatteredVoxelSize(
-            TopDown3DRockFormationMemberPlan member)
-        {
-            var sourceSize = GetMemberSourceSize(member);
-            var smallestDimension = Mathf.Min(
-                sourceSize.x,
-                Mathf.Min(sourceSize.y, sourceSize.z));
-            return Mathf.Clamp(smallestDimension / 22f, 0.025f, 0.09f);
         }
 
         private static Vector3 GetMemberSourceSize(

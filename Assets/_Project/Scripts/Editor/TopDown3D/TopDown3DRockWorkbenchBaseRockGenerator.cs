@@ -53,7 +53,7 @@ namespace BooterBigArm.Editor
             TopDown3DRockSilhouetteProfile silhouetteProfile =
                 TopDown3DRockSilhouetteProfile.Auto)
         {
-            cubeCount = Mathf.Clamp(cubeCount, 2, 10);
+            cubeCount = Mathf.Clamp(cubeCount, 5, 10);
             overallSize = new Vector3(
                 Mathf.Max(0.5f, overallSize.x),
                 Mathf.Max(0.5f, overallSize.y),
@@ -173,14 +173,17 @@ namespace BooterBigArm.Editor
                         GetProfileOverlap(overlap, silhouetteProfile)));
                 if (silhouetteProfile != TopDown3DRockSilhouetteProfile.Boulder)
                 {
-                    // Wedges and tapered stones remove part of their nominal box. Keep
-                    // their centers deeply nested so low Compaction still yields one fused
-                    // rock instead of visually detached plates. Their differing proportions
-                    // and cut planes still alter the outer silhouette.
-                    var minimumShapedOverlap = silhouetteProfile
+                    // Wedges and tapered stones remove part of their nominal box. Preserve
+                    // enough overlap for a connected surface without burying their entire
+                    // silhouette inside the dominant core mass.
+                    var safeLowCompactionOverlap = silhouetteProfile
                         == TopDown3DRockSilhouetteProfile.Slab
                         ? 0.76f
                         : 0.72f;
+                    var minimumShapedOverlap = Mathf.Lerp(
+                        safeLowCompactionOverlap,
+                        0.64f,
+                        Mathf.InverseLerp(0f, 0.5f, overlap));
                     overlapDepth = Mathf.Max(overlapDepth, minimumShapedOverlap);
                 }
                 overlapDepth = Mathf.Clamp01(

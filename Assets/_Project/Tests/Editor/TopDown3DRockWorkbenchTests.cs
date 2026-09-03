@@ -82,6 +82,8 @@ namespace BooterBigArm.Tests
                 serialized.FindProperty("generatedHeight").floatValue = 99f;
                 serialized.FindProperty("longFractures").floatValue = 4f;
                 serialized.FindProperty("fractureSpacing").floatValue = 99f;
+                serialized.FindProperty("memberVoxelSize").floatValue = -2f;
+                serialized.FindProperty("memberFusionSmoothness").floatValue = 7f;
                 serialized.FindProperty("fusedVoxelSize").floatValue = -2f;
                 serialized.FindProperty("fusedJoinSoftness").floatValue = 7f;
                 serialized.FindProperty("geologicalSeamWidth").floatValue = -3f;
@@ -96,6 +98,8 @@ namespace BooterBigArm.Tests
                 Assert.That(formation.GeneratedRockCount, Is.EqualTo(14));
                 Assert.That(formation.LongFractures, Is.EqualTo(1f));
                 Assert.That(formation.FractureSpacing, Is.EqualTo(16f));
+                Assert.That(formation.MemberVoxelSize, Is.EqualTo(0.025f));
+                Assert.That(formation.MemberFusionSmoothness, Is.EqualTo(0.35f));
                 Assert.That(formation.FusedVoxelSize, Is.EqualTo(0.04f));
                 Assert.That(formation.FusedJoinSoftness, Is.EqualTo(0.5f));
                 Assert.That(formation.GeologicalSeamWidth, Is.EqualTo(0.08f));
@@ -421,34 +425,57 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void ScatteredVoxelQualityTracksTheSmallestRockDimension()
+        public void FormationMeshControlsApplyConsistentlyToGeneratedMemberRocks()
         {
-            var plan = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
-                TopDown3DRockFormationArchetype.ScatteredRocks,
-                151142,
-                15,
-                25.3f,
-                0.7f,
-                0.25f);
-
-            foreach (var member in plan)
+            var previousSelection = Selection.activeObject;
+            var root = new GameObject("Formation Member Mesh Control Test");
+            try
             {
-                var smallestDimension = Mathf.Min(
-                    member.RockSize,
-                    member.RockSize * Mathf.Max(0.01f, member.LocalScale.y));
-                var voxelSize = TopDown3DRockWorkbenchFormationGenerator
-                    .CalculateScatteredVoxelSize(member);
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                formation.Configure(
+                    AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath),
+                    151142);
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("formationArchetype").enumValueIndex =
+                    (int)TopDown3DRockFormationArchetype.ScatteredRocks;
+                serialized.FindProperty("memberVoxelSize").floatValue = 0.064f;
+                serialized.FindProperty("memberFusionSmoothness").floatValue = 0.18f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
 
-                Assert.That(voxelSize, Is.InRange(0.025f, 0.09f));
-                if (smallestDimension >= 0.55f)
+                TopDown3DRockWorkbenchFormationGenerator.GenerateIntoFormation(
+                    formation,
+                    formation.FormationSeed);
+
+                var members = root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+                Assert.That(members, Is.Not.Empty);
+                Assert.That(members.All(member =>
+                    Mathf.Abs(member.VoxelSize - 0.064f) < 0.0001f), Is.True);
+                Assert.That(members.All(member =>
+                    Mathf.Abs(member.FusionSmoothness - 0.18f) < 0.0001f), Is.True);
+
+                var positions = members.Select(member => member.transform.localPosition).ToArray();
+                var sourceCounts = members.Select(member =>
+                    member.GetComponentsInChildren<TopDown3DRockVolumeNode>(true).Length).ToArray();
+                serialized.Update();
+                serialized.FindProperty("memberVoxelSize").floatValue = 0.12f;
+                serialized.FindProperty("memberFusionSmoothness").floatValue = 0.04f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+                TopDown3DRockWorkbenchFormationGenerator.ApplyMemberMeshSettings(formation);
+
+                for (var index = 0; index < members.Length; index++)
                 {
-                    Assert.That(smallestDimension / voxelSize,
-                        Is.GreaterThanOrEqualTo(21.99f));
+                    Assert.That(members[index].VoxelSize, Is.EqualTo(0.12f).Within(0.0001f));
+                    Assert.That(members[index].FusionSmoothness, Is.EqualTo(0.04f).Within(0.0001f));
+                    Assert.That(members[index].transform.localPosition, Is.EqualTo(positions[index]));
+                    Assert.That(
+                        members[index].GetComponentsInChildren<TopDown3DRockVolumeNode>(true).Length,
+                        Is.EqualTo(sourceCounts[index]));
                 }
-                else
-                {
-                    Assert.That(voxelSize, Is.EqualTo(0.025f).Within(0.0001f));
-                }
+            }
+            finally
+            {
+                Selection.activeObject = previousSelection;
+                Object.DestroyImmediate(root);
             }
         }
 
@@ -1029,7 +1056,7 @@ namespace BooterBigArm.Tests
                 height.floatValue = 0.5f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
                 Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(new Vector3(1f, 0.5f, 1f)));
-                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(2));
+                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(5));
 
                 serialized.Update();
                 width.floatValue = 4f;

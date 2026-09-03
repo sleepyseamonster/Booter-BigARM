@@ -126,7 +126,7 @@ namespace BooterBigArm.TopDown3D
                 Mathf.CeilToInt(Mathf.Sqrt(
                     width * width * 0.55f
                     + height * height * 0.45f) * 0.85f) + 1,
-                2,
+                5,
                 10);
         }
 

@@ -78,15 +78,36 @@ namespace BooterBigArm.Editor
                     serializedObject.FindProperty("joinStyle"),
                     new GUIContent("Rock Connections"));
             }
+            var connectionsChanged = EditorGUI.EndChangeCheck();
+
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("memberVoxelSize"),
+                new GUIContent(
+                    "Tessellation Size",
+                    "Smaller values produce a finer, less stepped silhouette but rebuild more slowly."));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("memberFusionSmoothness"),
+                new GUIContent(
+                    "Rock Smoothing",
+                    "Rounds the blends between source masses inside every member rock."));
+            var memberMeshChanged = EditorGUI.EndChangeCheck();
+
+            EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("longFractures"),
                 new GUIContent("Long Cracks"));
-            var lookChanged = EditorGUI.EndChangeCheck();
+            var fracturesChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
-            if (lookChanged)
+            if (memberMeshChanged)
+                TopDown3DRockWorkbenchFormationGenerator.ApplyMemberMeshSettings(formation);
+            if (connectionsChanged || fracturesChanged)
             {
                 TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, false);
             }
+            EditorGUILayout.LabelField(
+                "Smaller tessellation is finer but slower. Smoothing changes the blends inside each rock.",
+                EditorStyles.miniLabel);
 
             var members = formation.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
             EditorGUILayout.HelpBox(
