@@ -92,7 +92,7 @@ namespace BooterBigArm.Tests
                 Assert.That(formation.GeneratedOverallSize, Is.EqualTo(30f));
                 Assert.That(formation.GeneratedComplexity, Is.EqualTo(1f));
                 Assert.That(formation.GeneratedVerticality, Is.EqualTo(0f));
-                Assert.That(formation.GeneratedRockCount, Is.EqualTo(9));
+                Assert.That(formation.GeneratedRockCount, Is.EqualTo(14));
                 Assert.That(formation.LongFractures, Is.EqualTo(1f));
                 Assert.That(formation.FractureSpacing, Is.EqualTo(16f));
                 Assert.That(formation.FusedVoxelSize, Is.EqualTo(0.04f));
@@ -129,11 +129,63 @@ namespace BooterBigArm.Tests
             {
                 Assert.That(repeat[index].LocalPosition, Is.EqualTo(first[index].LocalPosition));
                 Assert.That(repeat[index].LocalRotation, Is.EqualTo(first[index].LocalRotation));
+                Assert.That(repeat[index].LocalScale, Is.EqualTo(first[index].LocalScale));
                 Assert.That(repeat[index].RockSize, Is.EqualTo(first[index].RockSize));
                 Assert.That(repeat[index].Seed, Is.EqualTo(first[index].Seed));
+                Assert.That(repeat[index].Role, Is.EqualTo(first[index].Role));
                 Assert.That(seeds.Add(first[index].Seed), Is.True);
                 Assert.That(first[index].RockSize, Is.InRange(0.75f, 10f));
+                Assert.That(first[index].LocalScale.x, Is.GreaterThan(0f));
+                Assert.That(first[index].LocalScale.y, Is.GreaterThan(0f));
+                Assert.That(first[index].LocalScale.z, Is.GreaterThan(0f));
             }
+        }
+
+        [TestCase(97531)]
+        [TestCase(24680)]
+        [TestCase(13579)]
+        public void FormationPlanUsesVolumetricRolesAndSurroundsTheCore(int seed)
+        {
+            var plan = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
+                seed,
+                14,
+                24f,
+                0.85f,
+                0.72f);
+            var roles = plan.Select(member => member.Role).ToHashSet();
+
+            Assert.That(plan.Count, Is.EqualTo(14));
+            Assert.That(plan[0].Role, Is.EqualTo(TopDown3DRockFormationMemberRole.Core));
+            Assert.That(roles, Does.Contain(TopDown3DRockFormationMemberRole.Pillar));
+            Assert.That(roles, Does.Contain(TopDown3DRockFormationMemberRole.Buttress));
+            Assert.That(roles, Does.Contain(TopDown3DRockFormationMemberRole.Crown));
+            Assert.That(roles, Does.Contain(TopDown3DRockFormationMemberRole.Talus));
+            Assert.That(
+                plan.Skip(1).Any(member =>
+                    Mathf.Abs(member.LocalScale.x - member.LocalScale.y) > 0.2f
+                    || Mathf.Abs(member.LocalScale.z - member.LocalScale.y) > 0.2f),
+                Is.True);
+
+            var directions = plan
+                .Skip(1)
+                .Where(member => member.Role != TopDown3DRockFormationMemberRole.Crown)
+                .Select(member => Mathf.Atan2(member.LocalPosition.z, member.LocalPosition.x))
+                .OrderBy(angle => angle)
+                .ToArray();
+            var maximumGap = 0f;
+            for (var index = 0; index < directions.Length; index++)
+            {
+                var next = index + 1 < directions.Length
+                    ? directions[index + 1]
+                    : directions[0] + Mathf.PI * 2f;
+                maximumGap = Mathf.Max(maximumGap, next - directions[index]);
+            }
+
+            Assert.That(maximumGap, Is.LessThan(Mathf.PI));
+            Assert.That(plan.Any(member => member.LocalPosition.x < -0.1f), Is.True);
+            Assert.That(plan.Any(member => member.LocalPosition.x > 0.1f), Is.True);
+            Assert.That(plan.Any(member => member.LocalPosition.z < -0.1f), Is.True);
+            Assert.That(plan.Any(member => member.LocalPosition.z > 0.1f), Is.True);
         }
 
         [Test]
@@ -163,10 +215,67 @@ namespace BooterBigArm.Tests
                         Is.EqualTo(member.GeneratedCubeCount));
                     Assert.That(member.ShowSourceVolumes, Is.False);
                 }
+                Assert.That(members.Any(member => member.name.StartsWith("Core Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("Pillar Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("Buttress Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("Crown Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("Talus Rock")), Is.True);
             }
             finally
             {
                 Selection.activeObject = previousSelection;
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [TestCase(10101, 6f, 0.1f, 0.15f)]
+        [TestCase(20202, 10f, 0.6f, 0.68f)]
+        [TestCase(30303, 16f, 0.4f, 0.9f)]
+        [TestCase(40404, 24f, 0.85f, 0.72f)]
+        [TestCase(50505, 30f, 1f, 1f)]
+        [TestCase(606060, 10f, 0.6f, 0.68f)]
+        [TestCase(70707, 18f, 0.75f, 0.2f)]
+        [TestCase(80808, 8f, 0.95f, 0.5f)]
+        public void GeneratedVolumetricFormationBuildsOneGeologicalShell(
+            int seed,
+            float overallSize,
+            float complexity,
+            float verticality)
+        {
+            var previousSelection = Selection.activeObject;
+            var root = new GameObject("Generated Volumetric Formation Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                formation.Configure(
+                    AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath),
+                    seed);
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("generatedOverallSize").floatValue = overallSize;
+                serialized.FindProperty("generatedComplexity").floatValue = complexity;
+                serialized.FindProperty("generatedVerticality").floatValue = verticality;
+                serialized.FindProperty("fusedVoxelSize").floatValue = 0.28f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                TopDown3DRockWorkbenchFormationGenerator.GenerateIntoFormation(
+                    formation,
+                    seed);
+
+                Assert.That(
+                    TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out var error),
+                    Is.True,
+                    error);
+                Assert.That(formation.PreviewStatus, Does.StartWith("ONE GEOLOGICAL SHELL"));
+                Assert.That(formation.GeneratedMesh, Is.Not.Null);
+                Assert.That(formation.GeneratedMesh.colors32.Length,
+                    Is.EqualTo(formation.GeneratedMesh.vertexCount));
+            }
+            finally
+            {
+                Selection.activeObject = previousSelection;
+                var formation = root.GetComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                if (formation != null && formation.GeneratedMesh != null)
+                    Object.DestroyImmediate(formation.GeneratedMesh);
                 Object.DestroyImmediate(root);
             }
         }

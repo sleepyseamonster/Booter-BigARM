@@ -66,10 +66,10 @@ namespace BooterBigArm.TopDown3D
         public float GeneratedComplexity => Mathf.Clamp01(generatedComplexity);
         public float GeneratedVerticality => Mathf.Clamp01(generatedVerticality);
         public int GeneratedRockCount => Mathf.Clamp(
-            Mathf.RoundToInt(Mathf.Lerp(3f, 7f, GeneratedComplexity))
-            + Mathf.RoundToInt(Mathf.InverseLerp(4f, 30f, GeneratedOverallSize) * 2f),
-            3,
-            9);
+            Mathf.RoundToInt(Mathf.Lerp(5f, 10f, GeneratedComplexity))
+            + Mathf.RoundToInt(Mathf.InverseLerp(4f, 30f, GeneratedOverallSize) * 4f),
+            5,
+            14);
         public int FormationSeed => formationSeed;
         public TopDown3DRockFormationJoinStyle JoinStyle => joinStyle;
         public bool AutoRebuild => autoRebuild;

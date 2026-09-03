@@ -57,7 +57,9 @@ The workbench deliberately keeps three deterministic levels separate:
 2. Completed base rocks receive formation-level position, rotation, scale, and composition roles.
 3. The grouped rock fields are sampled into one exterior formation shell while member boundaries remain available for seams.
 
-The current automatic formation planner is still a first-pass linear arrangement. The next composition phase must distribute primary masses, buttresses, upper tiers, crevices, and perimeter debris volumetrically, then reject formations that read as thin facades from top or surrounding viewpoints. That work remains editor-only until its shape language is visually accepted and translated into the deterministic runtime planner.
+The automatic formation planner now starts with a broad central core, distributes three or more primary pillars around it, fills other directions with stretched buttresses, adds an overlapping upper crown when complexity permits, and places low talus masses around the perimeter. Member workbenches receive deterministic nonuniform scale and restrained lean, reproducing the useful manual stretching behavior without collapsing the formation onto one preferred viewing axis.
+
+The seed hierarchy is `formation seed -> member seed -> cube-volume shape seed`. Repeating the same formation seed and controls reconstructs the same member roles, transforms, base-rock controls, and final seam mask. This work remains editor-only until its shape language is visually accepted and translated into the runtime planner's absolute-coordinate, stable-identity, chunk-owned generation contract.
 
 The production URP renderer also contains a restrained Screen Space Ambient Occlusion feature named `Rock Contact Occlusion`. It emphasizes close contacts, holes, and creases. It is intentionally downsampled and moderate; hands-on Scene and Game view evaluation still decides whether its intensity or radius should change.
 
