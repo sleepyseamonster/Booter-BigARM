@@ -1,6 +1,6 @@
 # Rock Formation Workbench
 
-The Rock Formation Workbench is the editor-only bridge between one generated rock and a future procedural canyon or cave system. It groups several existing Rock Workbenches without discarding their editable source cubes.
+The Rock Formation Workbench is the editor-only bridge between one generated rock and a future procedural canyon or cave system. It groups several existing Rock Workbenches without discarding their editable source volumes.
 
 ## Reference-driven shape rules
 
@@ -19,7 +19,9 @@ Create a complete random rock with:
 
 `GameObject > Booter & BigARM > Top Down 3D > New Random Rock`
 
-The main Rock Inspector intentionally shows only `Overall Size`, `Height`, `Lopsidedness`, `Compaction`, and `Show Editing Cubes`. Click `Generate New Rock` for a new seed or `Update Current Rock With These Settings` to preserve the current seed. Mesh, collider, material, detailed surface, seed-gallery, and repair controls are under `Advanced`.
+The main Rock Inspector intentionally shows only `Overall Size`, `Height`, `Lopsidedness`, `Compaction`, and `Show Editing Volumes`. Click `Generate New Rock` for a new seed or `Update Current Rock With These Settings` to preserve the current seed. Mesh, collider, material, detailed surface, seed-gallery, and repair controls are under `Advanced`.
+
+Generated rocks now use a restrained mix of three editable source shapes. `Weathered Block` supplies a dependable central mass, `Wedge` adds a broad planar slope, and `Tapered Stone` adds a truncated pyramidal profile. Supports and details can become angled while the core remains a weathered block, and the planner increases their overlap so all shapes still resolve through the scalar field as one connected exterior rock. This does not add another top-level slider. Turn on `Show Editing Volumes`, expand the rock, and select an individual source volume to change its `Source Shape`, rotation, scale, or position manually.
 
 Create a complete random formation with:
 
@@ -35,16 +37,16 @@ The current formation categories are:
 ## Build a formation from hand-arranged rocks
 
 1. Arrange two or more `Rock Workbench` objects in the Scene.
-2. Select their root objects. Selecting one of their source cubes also works.
+2. Select their root objects. Selecting one of their source volumes also works.
 3. Choose `GameObject > Booter & BigARM > Top Down 3D > Create Formation From Selected Rocks`.
 4. Select the new `Rock Formation Workbench` parent.
 5. Move, rotate, regenerate, or edit any child Rock Workbench normally.
 
-`Fused Geological Seams` is the default for new formations. Each child Rock Workbench remains editable, but its cube volumes are kept together as one named scalar-field group. The groups are sampled into one closed exterior shell, so hidden overlapping member shells are not generated. A deterministic vertex-color mask records the boundary between the two closest rock groups and the rock shader turns that mask into a dark, rough contact seam.
+`Fused Geological Seams` is the default for new formations. Each child Rock Workbench remains editable, but its source volumes are kept together as one named scalar-field group. The groups are sampled into one closed exterior shell, so hidden overlapping member shells are not generated. A deterministic vertex-color mask records the boundary between the two closest rock groups and the rock shader turns that mask into a dark, rough contact seam.
 
 `Preserve Natural Seams` keeps each child mesh visible and applies one seed, scale, origin, and long-fracture field to all of them. It remains useful for comparing the original authored masses, but overlapping rocks retain their complete hidden shells in this mode.
 
-`Smooth Fused Preview` rebuilds every contributing source cube beneath every child workbench through the existing scalar-field mesher. It creates one temporary closed mesh on the formation parent and hides the child renderers while keeping all source objects editable. The Inspector status explicitly reports whether the result is one connected surface.
+`Smooth Fused Preview` rebuilds every contributing source volume beneath every child workbench through the existing scalar-field mesher. It creates one temporary closed mesh on the formation parent and hides the child renderers while keeping all source objects editable. The Inspector status explicitly reports whether the result is one connected surface.
 
 ## Useful controls
 
@@ -58,17 +60,17 @@ The current formation categories are:
 
 The workbench deliberately keeps three deterministic levels separate:
 
-1. Editable cube volumes are smoothly combined into one base rock.
+1. Editable weathered-block, wedge, and tapered-stone volumes are smoothly combined into one base rock.
 2. Completed base rocks receive formation-level position, rotation, scale, and composition roles.
 3. The grouped rock fields are sampled into one exterior formation shell while member boundaries remain available for seams.
 
 The `Connected Outcrop` planner starts with one visibly dominant, partially buried anchor mass. It reserves a seeded open wedge in the surrounding members, braces both sides of that wedge with attached buttresses, and distributes the remaining pillars and supports around the other directions. This produces a readable entrance-like crevice without turning the whole formation into a one-sided wall. When complexity permits, an overlapping crown sits opposite the opening. Small, low talus rocks attach to outer structural members instead of collecting inside the core, which gives the base a wider debris transition while keeping the fused shell connected.
 
-The `Scattered Rocks` planner treats the supplied desert reference as a composition guide rather than source art. It generates one or two dominant boulders, several broad slabs, and smaller irregular fragments. Deterministic rejection placement prevents the boulders from stacking into another outcrop, while elliptical distribution, varied rotation, restrained height, and individual burial keep the result loose and grounded. Each boulder is still a complete blended-cube Rock Workbench and can be moved, stretched, or regenerated independently.
+The `Scattered Rocks` planner treats the supplied desert reference as a composition guide rather than source art. It generates one or two dominant boulders, several broad slabs, and smaller irregular fragments. Deterministic rejection placement prevents the boulders from stacking into another outcrop, while elliptical distribution, varied rotation, restrained height, and individual burial keep the result loose and grounded. Each boulder is still a complete blended-volume Rock Workbench and can be moved, stretched, or regenerated independently.
 
 These composition rules are intentionally derived from the existing `Overall Size`, `Complexity`, and `Height` controls. They do not add another group of sliders: the generator is still meant to be quick to reroll, judge, and manually edit. Member workbenches retain deterministic nonuniform scale and restrained lean, reproducing the useful manual stretching behavior without collapsing the formation onto one preferred viewing axis.
 
-The seed hierarchy is `formation seed -> member seed -> cube-volume shape seed`. Repeating the same formation seed and controls reconstructs the same member roles, transforms, base-rock controls, and final seam mask. This work remains editor-only until its shape language is visually accepted and translated into the runtime planner's absolute-coordinate, stable-identity, chunk-owned generation contract.
+The seed hierarchy is `formation seed -> member seed -> source-volume shape seed`. Repeating the same formation seed and controls reconstructs the same member roles, transforms, base-rock controls, source-shape choices, and final seam mask. This work remains editor-only until its shape language is visually accepted and translated into the runtime planner's absolute-coordinate, stable-identity, chunk-owned generation contract.
 
 The production URP renderer also contains a restrained Screen Space Ambient Occlusion feature named `Rock Contact Occlusion`. It emphasizes close contacts, holes, and creases. It is intentionally downsampled and moderate; hands-on Scene and Game view evaluation still decides whether its intensity or radius should change.
 

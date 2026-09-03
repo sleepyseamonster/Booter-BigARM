@@ -72,7 +72,7 @@ namespace BooterBigArm.Editor
                 new GUIContent("Compaction"));
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("showSourceVolumes"),
-                new GUIContent("Show Editing Cubes"));
+                new GUIContent("Show Editing Volumes"));
             var settingsChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
 
@@ -83,7 +83,7 @@ namespace BooterBigArm.Editor
             }
 
             EditorGUILayout.LabelField(
-                $"Uses {authoring.GeneratedCubeCount} editable cube masses",
+                $"Uses {authoring.GeneratedCubeCount} editable source masses",
                 EditorStyles.miniLabel);
             if (GUILayout.Button("Generate New Rock", GUILayout.Height(34f)))
             {
@@ -161,7 +161,7 @@ namespace BooterBigArm.Editor
             EditorGUILayout.Space();
             using (new EditorGUILayout.HorizontalScope())
             {
-                if (GUILayout.Button("Add Editing Cube")) AddVolume(authoring, true);
+                if (GUILayout.Button("Add Editing Volume")) AddVolume(authoring, true);
                 if (GUILayout.Button("Rebuild Mesh"))
                     TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
             }
@@ -242,9 +242,9 @@ namespace BooterBigArm.Editor
             if (authoring == null) return;
 
             var existing = authoring.GetComponentsInChildren<TopDown3DRockVolumeNode>(true);
-            var volumeObject = new GameObject($"Cube Volume {existing.Length + 1}");
-            Undo.RegisterCreatedObjectUndo(volumeObject, "Add Rock Cube Volume");
-            Undo.SetTransformParent(volumeObject.transform, authoring.transform, "Parent Rock Cube Volume");
+            var volumeObject = new GameObject($"Weathered Block Volume {existing.Length + 1}");
+            Undo.RegisterCreatedObjectUndo(volumeObject, "Add Rock Source Volume");
+            Undo.SetTransformParent(volumeObject.transform, authoring.transform, "Parent Rock Source Volume");
             volumeObject.transform.localPosition = new Vector3(existing.Length * 1.2f, 0f, 0f);
             volumeObject.transform.localRotation = Quaternion.identity;
             volumeObject.transform.localScale = new Vector3(2f, 2f, 2f);
@@ -269,8 +269,67 @@ namespace BooterBigArm.Editor
                 ? selected ? new Color(0.3f, 0.95f, 1f, 1f) : new Color(0.2f, 0.75f, 1f, 0.75f)
                 : new Color(0.5f, 0.5f, 0.5f, 0.55f);
             Gizmos.matrix = node.transform.localToWorldMatrix;
-            Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+            switch (node.SourceShape)
+            {
+                case TopDown3DRockSourceShape.Wedge:
+                    DrawWedgeGizmo();
+                    break;
+                case TopDown3DRockSourceShape.TaperedStone:
+                    DrawTaperedStoneGizmo();
+                    break;
+                default:
+                    Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+                    break;
+            }
             Gizmos.matrix = Matrix4x4.identity;
+        }
+
+        private static void DrawWedgeGizmo()
+        {
+            var backBottomLeft = new Vector3(-0.5f, -0.5f, -0.5f);
+            var backBottomRight = new Vector3(0.5f, -0.5f, -0.5f);
+            var backTopLeft = new Vector3(-0.5f, 0.5f, -0.5f);
+            var frontBottomLeft = new Vector3(-0.5f, -0.5f, 0.5f);
+            var frontBottomRight = new Vector3(0.5f, -0.5f, 0.5f);
+            var frontTopLeft = new Vector3(-0.5f, 0.5f, 0.5f);
+            DrawTriangle(backBottomLeft, backBottomRight, backTopLeft);
+            DrawTriangle(frontBottomLeft, frontBottomRight, frontTopLeft);
+            Gizmos.DrawLine(backBottomLeft, frontBottomLeft);
+            Gizmos.DrawLine(backBottomRight, frontBottomRight);
+            Gizmos.DrawLine(backTopLeft, frontTopLeft);
+        }
+
+        private static void DrawTriangle(Vector3 first, Vector3 second, Vector3 third)
+        {
+            Gizmos.DrawLine(first, second);
+            Gizmos.DrawLine(second, third);
+            Gizmos.DrawLine(third, first);
+        }
+
+        private static void DrawTaperedStoneGizmo()
+        {
+            const float topHalfExtent = 0.2f;
+            var bottom = new[]
+            {
+                new Vector3(-0.5f, -0.5f, -0.5f),
+                new Vector3(0.5f, -0.5f, -0.5f),
+                new Vector3(0.5f, -0.5f, 0.5f),
+                new Vector3(-0.5f, -0.5f, 0.5f)
+            };
+            var top = new[]
+            {
+                new Vector3(-topHalfExtent, 0.5f, -topHalfExtent),
+                new Vector3(topHalfExtent, 0.5f, -topHalfExtent),
+                new Vector3(topHalfExtent, 0.5f, topHalfExtent),
+                new Vector3(-topHalfExtent, 0.5f, topHalfExtent)
+            };
+            for (var index = 0; index < 4; index++)
+            {
+                var next = (index + 1) % 4;
+                Gizmos.DrawLine(bottom[index], bottom[next]);
+                Gizmos.DrawLine(top[index], top[next]);
+                Gizmos.DrawLine(bottom[index], top[index]);
+            }
         }
 
         [DrawGizmo(GizmoType.NonSelected | GizmoType.Selected)]
@@ -499,11 +558,11 @@ namespace BooterBigArm.Editor
             var workbench = node.GetComponentInParent<TopDown3DRockWorkbenchAuthoring>();
             EditorGUILayout.Space();
             EditorGUILayout.HelpBox(
-                "Use this object's Transform to shape the source cube. The rendered rock belongs to the parent Rock Workbench.",
+                "Choose a source shape, then use this object's Transform to position, rotate, and scale it. The rendered rock belongs to the parent Rock Workbench.",
                 MessageType.Info);
             using (new EditorGUI.DisabledScope(workbench == null))
             {
-                if (GUILayout.Button("Add Another Cube Volume"))
+                if (GUILayout.Button("Add Another Source Volume"))
                 {
                     TopDown3DRockWorkbenchAuthoringEditor.AddVolume(workbench, true);
                 }

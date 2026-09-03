@@ -392,6 +392,7 @@ namespace BooterBigArm.Editor
                     var box = new TopDown3DRockWorkbenchBox(
                         formation.transform,
                         node.transform,
+                        node.SourceShape,
                         node.ShapeSeed);
                     boxes.Add(box);
                     memberBoxes.Add(box);
@@ -629,6 +630,7 @@ namespace BooterBigArm.Editor
                     {
                         hash = hash * 31 + node.GetInstanceID();
                         hash = hash * 31 + node.ContributesToRock.GetHashCode();
+                        hash = hash * 31 + (int)node.SourceShape;
                         hash = hash * 31 + node.ShapeSeed;
                         hash = hash * 31 + node.gameObject.activeInHierarchy.GetHashCode();
                         HashMatrix(

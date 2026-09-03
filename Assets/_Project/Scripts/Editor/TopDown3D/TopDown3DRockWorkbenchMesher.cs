@@ -17,13 +17,27 @@ namespace BooterBigArm.Editor
         private readonly Vector4 cornerCut1;
         private readonly Vector4 cornerCut2;
         private readonly Vector4 cornerCut3;
+        private readonly TopDown3DRockSourceShape sourceShape;
+        private readonly float wedgeSlope;
+        private readonly float wedgeOffset;
+        private readonly float taperedTopX;
+        private readonly float taperedTopZ;
 
         internal TopDown3DRockWorkbenchBox(Transform root, Transform box)
-            : this(root, box, 0)
+            : this(root, box, TopDown3DRockSourceShape.WeatheredBlock, 0)
         {
         }
 
         internal TopDown3DRockWorkbenchBox(Transform root, Transform box, int shapeSeed)
+            : this(root, box, TopDown3DRockSourceShape.WeatheredBlock, shapeSeed)
+        {
+        }
+
+        internal TopDown3DRockWorkbenchBox(
+            Transform root,
+            Transform box,
+            TopDown3DRockSourceShape sourceShape,
+            int shapeSeed)
         {
             if (root == null) throw new ArgumentNullException(nameof(root));
             if (box == null) throw new ArgumentNullException(nameof(box));
@@ -65,6 +79,13 @@ namespace BooterBigArm.Editor
             cornerCut1 = CreateCornerCut(ref randomState, (startingCorner + cornerStride) & 7);
             cornerCut2 = CreateCornerCut(ref randomState, (startingCorner + cornerStride * 2) & 7);
             cornerCut3 = CreateCornerCut(ref randomState, (startingCorner + cornerStride * 3) & 7);
+
+            this.sourceShape = sourceShape;
+            var shapeState = unchecked((uint)shapeSeed) ^ 0xC13FA9A9u;
+            wedgeSlope = Mathf.Lerp(0.85f, 1.25f, Next01(ref shapeState));
+            wedgeOffset = Mathf.Lerp(0.18f, 0.32f, Next01(ref shapeState));
+            taperedTopX = Mathf.Lerp(0.12f, 0.26f, Next01(ref shapeState));
+            taperedTopZ = Mathf.Lerp(0.14f, 0.3f, Next01(ref shapeState));
         }
 
         internal Bounds Bounds { get; }
@@ -89,11 +110,38 @@ namespace BooterBigArm.Editor
                 Mathf.Max(q.z, 0f));
             var inside = Mathf.Min(Mathf.Max(q.x, Mathf.Max(q.y, q.z)), 0f);
             var roundedDistance = outside.magnitude + inside - roundRadius;
-            var rockDistance = Mathf.Max(roundedDistance, EvaluateCut(cornerCut0, localPoint));
+            var rockDistance = roundedDistance;
+            if (sourceShape == TopDown3DRockSourceShape.Wedge)
+            {
+                var wedgeDistance = (localPoint.x + wedgeSlope * localPoint.y - wedgeOffset)
+                    / Mathf.Sqrt(1f + wedgeSlope * wedgeSlope);
+                rockDistance = Mathf.Max(rockDistance, wedgeDistance);
+            }
+            else if (sourceShape == TopDown3DRockSourceShape.TaperedStone)
+            {
+                rockDistance = Mathf.Max(
+                    rockDistance,
+                    EvaluateTaperedSide(localPoint.x, localPoint.y, taperedTopX));
+                rockDistance = Mathf.Max(
+                    rockDistance,
+                    EvaluateTaperedSide(localPoint.z, localPoint.y, taperedTopZ));
+            }
+
+            rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut0, localPoint));
             rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut1, localPoint));
             rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut2, localPoint));
             rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut3, localPoint));
             return rockDistance * distanceScale;
+        }
+
+        private static float EvaluateTaperedSide(
+            float horizontal,
+            float vertical,
+            float topHalfExtent)
+        {
+            var taper = 0.5f - Mathf.Clamp(topHalfExtent, 0.05f, 0.45f);
+            return (Mathf.Abs(horizontal) + taper * vertical - 0.5f * (1f - taper))
+                / Mathf.Sqrt(1f + taper * taper);
         }
 
         private static Vector4 CreateCornerCut(ref uint randomState, int corner)

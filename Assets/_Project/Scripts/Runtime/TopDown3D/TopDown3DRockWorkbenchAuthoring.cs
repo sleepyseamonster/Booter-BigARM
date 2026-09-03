@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BooterBigArm.TopDown3D
 {
     /// <summary>
-    /// Editor-authoring root for experimenting with a rock as a union of editable box volumes.
+    /// Editor-authoring root for experimenting with a rock as a union of editable stone volumes.
     /// This preview is intentionally independent from streamed procedural-world generation.
     /// </summary>
     [DisallowMultipleComponent]
@@ -15,11 +15,11 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Material rockMaterial;
         [SerializeField, Min(0.04f), Tooltip("Smaller voxels make a more detailed surface but take longer to rebuild.")]
         private float voxelSize = 0.18f;
-        [SerializeField, Range(0f, 1f), Tooltip("Rounds and thickens the join between nearby cube volumes. Zero produces a hard union.")]
+        [SerializeField, Range(0f, 1f), Tooltip("Rounds and thickens the join between nearby source volumes. Zero produces a hard union.")]
         private float fusionSmoothness = 0.16f;
-        [SerializeField, Tooltip("Rebuild the preview shortly after a source cube or setting changes.")]
+        [SerializeField, Tooltip("Rebuild the preview shortly after a source volume or setting changes.")]
         private bool autoRebuild = true;
-        [SerializeField, Tooltip("Show selectable wire boxes for the source cube volumes in the Scene view.")]
+        [SerializeField, Tooltip("Show selectable wireframes for the source volumes in the Scene view.")]
         private bool showSourceVolumes = true;
         [SerializeField, Tooltip("Keep a MeshCollider synchronized with the temporary preview mesh.")]
         private bool updateCollider = true;
@@ -43,12 +43,12 @@ namespace BooterBigArm.TopDown3D
         private float wornShine = 0.2f;
 
         [Header("Base Rock Generator")]
-        [SerializeField, Tooltip("Regenerating this seed reproduces the same editable cube arrangement.")]
+        [SerializeField, Tooltip("Regenerating this seed reproduces the same editable source-volume arrangement.")]
         private int generationSeed = 1729;
         // Retained so existing scenes and prefabs keep their previous size data.
         [SerializeField, HideInInspector]
         private Vector3 generatedOverallSize = new Vector3(4f, 3f, 3.5f);
-        [SerializeField, Range(0.75f, 10f), InspectorName("Overall Size"), Tooltip("Uniformly scales the generated rock. Larger rocks automatically use more cube masses for richer silhouettes.")]
+        [SerializeField, Range(0.75f, 10f), InspectorName("Overall Size"), Tooltip("Uniformly scales the generated rock. Larger rocks automatically use more source masses for richer silhouettes.")]
         private float generatedOverallScale = 4f;
         [SerializeField, Range(0f, 1f), Tooltip("Low values spread the rock horizontally. High values build a tapered upward spine.")]
         private float generatedVerticality = 0.45f;

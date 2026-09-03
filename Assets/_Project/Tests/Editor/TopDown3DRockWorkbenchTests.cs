@@ -723,6 +723,7 @@ namespace BooterBigArm.Tests
                 Assert.That(second[index].LocalRotation, Is.EqualTo(first[index].LocalRotation));
                 Assert.That(second[index].LocalScale, Is.EqualTo(first[index].LocalScale));
                 Assert.That(second[index].Role, Is.EqualTo(first[index].Role));
+                Assert.That(second[index].SourceShape, Is.EqualTo(first[index].SourceShape));
             }
         }
 
@@ -1000,6 +1001,13 @@ namespace BooterBigArm.Tests
                 0.62f);
 
             Assert.That(plan[0].Role, Is.EqualTo(TopDown3DRockWorkbenchMassRole.Core));
+            Assert.That(
+                plan[0].SourceShape,
+                Is.EqualTo(TopDown3DRockSourceShape.WeatheredBlock));
+            Assert.That(
+                plan.Skip(1).Any(spec =>
+                    spec.SourceShape != TopDown3DRockSourceShape.WeatheredBlock),
+                Is.True);
             var supportCount = 0;
             var detailCount = 0;
             var largestSupport = 0f;
@@ -1040,6 +1048,13 @@ namespace BooterBigArm.Tests
                 TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(authoring, 8675309);
 
                 var generated = root.GetComponentsInChildren<TopDown3DRockVolumeNode>(true);
+                var expected = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                    8675309,
+                    authoring.GeneratedCubeCount,
+                    authoring.GeneratedOverallSize,
+                    authoring.GeneratedVerticality,
+                    authoring.GeneratedAsymmetry,
+                    authoring.GeneratedOverlap);
                 Assert.That(authoring.GenerationSeed, Is.EqualTo(8675309));
                 Assert.That(generated.Length, Is.EqualTo(authoring.GeneratedCubeCount));
                 var shapeSeeds = new HashSet<int>();
@@ -1048,7 +1063,8 @@ namespace BooterBigArm.Tests
                     var node = generated[index];
                     Assert.That(node, Is.Not.Null);
                     Assert.That(node.transform.parent, Is.EqualTo(root.transform));
-                    Assert.That(node.name, Does.StartWith("Cube Volume "));
+                    Assert.That(node.name, Does.EndWith($"Volume {index + 1}"));
+                    Assert.That(node.SourceShape, Is.EqualTo(expected[index].SourceShape));
                     Assert.That(
                         node.ShapeSeed,
                         Is.EqualTo(TopDown3DRockWorkbenchBaseRockGenerator.DeriveVolumeShapeSeed(8675309, index)));
@@ -1104,6 +1120,7 @@ namespace BooterBigArm.Tests
                                 boxes.Add(new TopDown3DRockWorkbenchBox(
                                     root.transform,
                                     box.transform,
+                                    spec.SourceShape,
                                     TopDown3DRockWorkbenchBaseRockGenerator.DeriveVolumeShapeSeed(seed, index)));
                             }
 
@@ -1259,6 +1276,104 @@ namespace BooterBigArm.Tests
 
                 Assert.That(rockMass.Evaluate(new Vector3(0.5f, 0.5f, 0.5f)), Is.GreaterThan(0.04f));
                 Assert.That(rockMass.Evaluate(new Vector3(0.5f, 0.5f, 0f)), Is.GreaterThan(0.01f));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void SourceVolumeDefaultsToWeatheredBlockAndAllowsManualShapeChanges()
+        {
+            var source = new GameObject("Editable Source Volume Test");
+            try
+            {
+                var node = source.AddComponent<TopDown3DRockVolumeNode>();
+
+                Assert.That(
+                    node.SourceShape,
+                    Is.EqualTo(TopDown3DRockSourceShape.WeatheredBlock));
+
+                node.SetSourceShape(TopDown3DRockSourceShape.Wedge);
+
+                Assert.That(node.SourceShape, Is.EqualTo(TopDown3DRockSourceShape.Wedge));
+            }
+            finally
+            {
+                Object.DestroyImmediate(source);
+            }
+        }
+
+        [Test]
+        public void AngledSourceShapesCreateReadableSlopesAndTaper()
+        {
+            var root = new GameObject("Rock Workbench Angled Shape Test");
+            try
+            {
+                var source = CreateBoxObject(root.transform, Vector3.zero, Vector3.one);
+                var block = new TopDown3DRockWorkbenchBox(
+                    root.transform,
+                    source.transform,
+                    TopDown3DRockSourceShape.WeatheredBlock,
+                    24680);
+                var wedge = new TopDown3DRockWorkbenchBox(
+                    root.transform,
+                    source.transform,
+                    TopDown3DRockSourceShape.Wedge,
+                    24680);
+                var tapered = new TopDown3DRockWorkbenchBox(
+                    root.transform,
+                    source.transform,
+                    TopDown3DRockSourceShape.TaperedStone,
+                    24680);
+                var upperSide = new Vector3(0.4f, 0.35f, 0f);
+
+                Assert.That(block.Evaluate(upperSide), Is.LessThan(0f));
+                Assert.That(wedge.Evaluate(upperSide), Is.GreaterThan(0f));
+                Assert.That(tapered.Evaluate(upperSide), Is.GreaterThan(0f));
+                Assert.That(wedge.Evaluate(new Vector3(0.35f, -0.4f, 0f)), Is.LessThan(0f));
+                Assert.That(tapered.Evaluate(new Vector3(0f, 0.35f, 0f)), Is.LessThan(0f));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [TestCase(TopDown3DRockSourceShape.Wedge)]
+        [TestCase(TopDown3DRockSourceShape.TaperedStone)]
+        public void AngledSourceShapeBuildsOneClosedMesh(
+            TopDown3DRockSourceShape sourceShape)
+        {
+            var root = new GameObject("Rock Workbench Angled Mesh Test");
+            try
+            {
+                var source = CreateBoxObject(
+                    root.transform,
+                    Vector3.zero,
+                    new Vector3(3f, 2.4f, 2.8f));
+                var volumes = new[]
+                {
+                    new TopDown3DRockWorkbenchBox(
+                        root.transform,
+                        source.transform,
+                        sourceShape,
+                        13579)
+                };
+
+                Assert.That(
+                    TopDown3DRockWorkbenchMesher.TryBuild(
+                        volumes,
+                        0.14f,
+                        0f,
+                        out var result,
+                        out var error),
+                    Is.True,
+                    error);
+                Assert.That(result.Topology.IsValid, Is.True, result.Topology.Error);
+                Assert.That(result.ConnectedComponents, Is.EqualTo(1));
+                Assert.That(result.Topology.TriangleCount, Is.GreaterThan(0));
             }
             finally
             {

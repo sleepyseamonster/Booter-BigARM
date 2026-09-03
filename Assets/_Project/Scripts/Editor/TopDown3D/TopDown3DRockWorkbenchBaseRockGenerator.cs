@@ -19,24 +19,27 @@ namespace BooterBigArm.Editor
             Vector3 localPosition,
             Quaternion localRotation,
             Vector3 localScale,
-            TopDown3DRockWorkbenchMassRole role)
+            TopDown3DRockWorkbenchMassRole role,
+            TopDown3DRockSourceShape sourceShape =
+                TopDown3DRockSourceShape.WeatheredBlock)
         {
             LocalPosition = localPosition;
             LocalRotation = localRotation;
             LocalScale = localScale;
             Role = role;
+            SourceShape = sourceShape;
         }
 
         internal Vector3 LocalPosition { get; }
         internal Quaternion LocalRotation { get; }
         internal Vector3 LocalScale { get; }
         internal TopDown3DRockWorkbenchMassRole Role { get; }
+        internal TopDown3DRockSourceShape SourceShape { get; }
     }
 
     /// <summary>
     /// Editor-only base-rock planner. A seed produces a repeatable cluster of strongly
-    /// overlapping rock-mass volumes; the created child transforms remain ordinary cube-shaped
-    /// authoring controls.
+    /// overlapping rock-mass volumes whose transforms remain ordinary editable authoring controls.
     /// </summary>
     internal static class TopDown3DRockWorkbenchBaseRockGenerator
     {
@@ -115,6 +118,15 @@ namespace BooterBigArm.Editor
                     verticality,
                     asymmetry,
                     role);
+                var sourceShape = ChooseSourceShape(seed, index, role, asymmetry);
+                if (cubeCount >= 3
+                    && index == 1
+                    && sourceShape == TopDown3DRockSourceShape.WeatheredBlock)
+                {
+                    sourceShape = (DeriveVolumeShapeSeed(seed, index) & 1) == 0
+                        ? TopDown3DRockSourceShape.Wedge
+                        : TopDown3DRockSourceShape.TaperedStone;
+                }
 
                 var parentRadius = DirectionalRadius(parent.LocalScale, parent.LocalRotation, direction);
                 var childRadius = DirectionalRadius(childScale, childRotation, direction);
@@ -122,13 +134,18 @@ namespace BooterBigArm.Editor
                     0.18f,
                     0.8f,
                     Mathf.SmoothStep(0f, 1f, overlap));
+                overlapDepth = Mathf.Clamp01(
+                    overlapDepth
+                    + GetShapeOverlapAllowance(sourceShape)
+                    + GetShapeOverlapAllowance(parent.SourceShape) * 0.65f);
                 var centerDistance = (parentRadius + childRadius) * (1f - overlapDepth);
                 var childPosition = parent.LocalPosition + direction * centerDistance;
                 raw.Add(new TopDown3DRockWorkbenchVolumeSpec(
                     childPosition,
                     childRotation,
                     childScale,
-                    role));
+                    role,
+                    sourceShape));
             }
 
             return FitPlanToSizeAndGround(raw, overallSize);
@@ -185,13 +202,15 @@ namespace BooterBigArm.Editor
                 for (var index = 0; index < plan.Count; index++)
                 {
                     var spec = plan[index];
-                    var volumeObject = new GameObject($"Cube Volume {index + 1}");
+                    var volumeObject = new GameObject(
+                        $"{GetShapeLabel(spec.SourceShape)} Volume {index + 1}");
                     Undo.RegisterCreatedObjectUndo(volumeObject, undoName);
                     Undo.SetTransformParent(volumeObject.transform, authoring.transform, undoName);
                     volumeObject.transform.localPosition = spec.LocalPosition;
                     volumeObject.transform.localRotation = spec.LocalRotation;
                     volumeObject.transform.localScale = spec.LocalScale;
                     var node = Undo.AddComponent<TopDown3DRockVolumeNode>(volumeObject);
+                    node.SetSourceShape(spec.SourceShape);
                     node.SetShapeSeed(DeriveVolumeShapeSeed(seed, index));
                     EditorUtility.SetDirty(node);
                 }
@@ -245,7 +264,8 @@ namespace BooterBigArm.Editor
                     (spec.LocalPosition - rawBounds.center) * fit,
                     spec.LocalRotation,
                     spec.LocalScale * fit,
-                    spec.Role));
+                    spec.Role,
+                    spec.SourceShape));
             }
 
             var fittedMinimumY = CalculateBounds(fitted).min.y;
@@ -256,9 +276,61 @@ namespace BooterBigArm.Editor
                     spec.LocalPosition + Vector3.up * -fittedMinimumY,
                     spec.LocalRotation,
                     spec.LocalScale,
-                    spec.Role);
+                    spec.Role,
+                    spec.SourceShape);
             }
             return fitted;
+        }
+
+        private static TopDown3DRockSourceShape ChooseSourceShape(
+            int seed,
+            int index,
+            TopDown3DRockWorkbenchMassRole role,
+            float asymmetry)
+        {
+            if (role == TopDown3DRockWorkbenchMassRole.Core)
+                return TopDown3DRockSourceShape.WeatheredBlock;
+
+            var shapeSeed = DeriveVolumeShapeSeed(seed ^ unchecked((int)0x5F356495), index);
+            var roll = HashToUnitFloat(shapeSeed);
+            var wedgeChance = role == TopDown3DRockWorkbenchMassRole.Support
+                ? Mathf.Lerp(0.22f, 0.38f, asymmetry)
+                : Mathf.Lerp(0.32f, 0.5f, asymmetry);
+            var taperedChance = role == TopDown3DRockWorkbenchMassRole.Support
+                ? Mathf.Lerp(0.08f, 0.16f, asymmetry)
+                : Mathf.Lerp(0.14f, 0.25f, asymmetry);
+            if (roll < wedgeChance) return TopDown3DRockSourceShape.Wedge;
+            if (roll < wedgeChance + taperedChance)
+                return TopDown3DRockSourceShape.TaperedStone;
+            return TopDown3DRockSourceShape.WeatheredBlock;
+        }
+
+        private static float GetShapeOverlapAllowance(TopDown3DRockSourceShape sourceShape)
+        {
+            switch (sourceShape)
+            {
+                case TopDown3DRockSourceShape.Wedge:
+                    return 0.14f;
+                case TopDown3DRockSourceShape.TaperedStone:
+                    return 0.09f;
+                default:
+                    return 0f;
+            }
+        }
+
+        private static float HashToUnitFloat(int seed)
+        {
+            return (unchecked((uint)seed) & 0x00FFFFFFu) / 16777215f;
+        }
+
+        private static string GetShapeLabel(TopDown3DRockSourceShape sourceShape)
+        {
+            return sourceShape switch
+            {
+                TopDown3DRockSourceShape.Wedge => "Wedge",
+                TopDown3DRockSourceShape.TaperedStone => "Tapered Stone",
+                _ => "Weathered Block"
+            };
         }
 
         private static int ChooseParentIndex(
