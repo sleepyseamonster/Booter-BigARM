@@ -256,20 +256,40 @@ namespace BooterBigArm.Editor
             Vector3 overallSize)
         {
             var rawBounds = CalculateBounds(raw);
-            var size = rawBounds.size;
-            var fit = Mathf.Min(
-                overallSize.x / Mathf.Max(size.x, 0.001f),
-                overallSize.y / Mathf.Max(size.y, 0.001f),
-                overallSize.z / Mathf.Max(size.z, 0.001f));
             var fitted = new List<TopDown3DRockWorkbenchVolumeSpec>(raw.Count);
+            var independentWidthAndHeight = Mathf.Abs(overallSize.x - overallSize.z) <= 0.001f;
             foreach (var spec in raw)
             {
                 fitted.Add(new TopDown3DRockWorkbenchVolumeSpec(
-                    (spec.LocalPosition - rawBounds.center) * fit,
-                    spec.LocalRotation,
-                    spec.LocalScale * fit,
+                    spec.LocalPosition - rawBounds.center,
+                    independentWidthAndHeight
+                        ? KeepYawOnly(spec.LocalRotation)
+                        : spec.LocalRotation,
+                    spec.LocalScale,
                     spec.Role,
                     spec.SourceShape));
+            }
+
+            if (independentWidthAndHeight)
+            {
+                // Upright sources allow one exact horizontal/vertical affine scale without
+                // shearing their editable transforms or weakening their overlaps.
+                var bounds = CalculateBounds(fitted);
+                ApplyAxisCorrection(fitted, new Vector3(
+                    overallSize.x / Mathf.Max(bounds.size.x, 0.001f),
+                    overallSize.y / Mathf.Max(bounds.size.y, 0.001f),
+                    overallSize.z / Mathf.Max(bounds.size.z, 0.001f)));
+            }
+            else
+            {
+                // Compatibility path for earlier callers that supplied three unrelated axes.
+                // Uniform fitting preserves their previous connected-volume behavior.
+                var size = rawBounds.size;
+                var fit = Mathf.Min(
+                    overallSize.x / Mathf.Max(size.x, 0.001f),
+                    overallSize.y / Mathf.Max(size.y, 0.001f),
+                    overallSize.z / Mathf.Max(size.z, 0.001f));
+                ApplyAxisCorrection(fitted, Vector3.one * fit);
             }
 
             var fittedMinimumY = CalculateBounds(fitted).min.y;
@@ -284,6 +304,29 @@ namespace BooterBigArm.Editor
                     spec.SourceShape);
             }
             return fitted;
+        }
+
+        private static void ApplyAxisCorrection(
+            List<TopDown3DRockWorkbenchVolumeSpec> plan,
+            Vector3 correction)
+        {
+            for (var index = 0; index < plan.Count; index++)
+            {
+                var spec = plan[index];
+                plan[index] = new TopDown3DRockWorkbenchVolumeSpec(
+                    Vector3.Scale(spec.LocalPosition, correction),
+                    spec.LocalRotation,
+                    Vector3.Scale(spec.LocalScale, correction),
+                    spec.Role,
+                    spec.SourceShape);
+            }
+        }
+
+        private static Quaternion KeepYawOnly(Quaternion rotation)
+        {
+            var forward = Vector3.ProjectOnPlane(rotation * Vector3.forward, Vector3.up);
+            if (forward.sqrMagnitude <= 0.000001f) forward = Vector3.forward;
+            return Quaternion.LookRotation(forward.normalized, Vector3.up);
         }
 
         private static TopDown3DRockSourceShape ChooseSourceShape(

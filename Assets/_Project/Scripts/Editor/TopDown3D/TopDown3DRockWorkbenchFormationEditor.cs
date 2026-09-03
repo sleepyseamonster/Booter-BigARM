@@ -27,13 +27,10 @@ namespace BooterBigArm.Editor
                 new GUIContent("Formation Type"));
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("generatedOverallSize"),
-                new GUIContent("Overall Size"));
+                new GUIContent("Width", "Physical width and depth of the formation in meters."));
             EditorGUILayout.PropertyField(
-                serializedObject.FindProperty("generatedComplexity"),
-                new GUIContent("Complexity", "Low uses a few bold rocks. High creates more varied masses."));
-            EditorGUILayout.PropertyField(
-                serializedObject.FindProperty("generatedVerticality"),
-                new GUIContent("Height", "Low spreads outward. High favors tall rocks."));
+                serializedObject.FindProperty("generatedHeight"),
+                new GUIContent("Height", "Physical formation height in meters, independent from width."));
             var generatorSettingsChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
 
@@ -43,7 +40,7 @@ namespace BooterBigArm.Editor
                     : "Generates one connected outcrop with a dominant anchor, structural rocks, and a readable crevice. Every member rock remains editable.",
                 MessageType.Info);
             EditorGUILayout.LabelField(
-                $"Will generate {formation.GeneratedRockCount} editable rocks",
+                $"Will generate {formation.GeneratedRockCount} editable rocks; detail scales automatically",
                 EditorStyles.miniLabel);
             if (GUILayout.Button("Generate New Formation", GUILayout.Height(36f)))
             {

@@ -31,9 +31,13 @@ namespace BooterBigArm.TopDown3D
             TopDown3DRockFormationArchetype.ConnectedOutcrop;
         [SerializeField, Range(4f, 30f), Tooltip("Approximate width of the generated formation in meters. Larger formations automatically use more rocks.")]
         private float generatedOverallSize = 12f;
-        [SerializeField, Range(0f, 1f), Tooltip("Low values create a few bold masses. High values create more rocks and a busier silhouette.")]
+        [SerializeField, Range(1f, 30f), Tooltip("Physical height of the generated formation in meters. Height is independent from width.")]
+        private float generatedHeight = 8f;
+        // Retained for scene and prefab compatibility. Complexity and verticality are now
+        // derived from the formation's physical dimensions.
+        [SerializeField, HideInInspector]
         private float generatedComplexity = 0.55f;
-        [SerializeField, Range(0f, 1f), Tooltip("Low values create a low spreading formation. High values favor taller member rocks.")]
+        [SerializeField, HideInInspector]
         private float generatedVerticality = 0.5f;
 
         [Header("Formation Preview")]
@@ -72,21 +76,31 @@ namespace BooterBigArm.TopDown3D
 
         public Material RockMaterial => rockMaterial;
         public TopDown3DRockFormationArchetype FormationArchetype => formationArchetype;
-        public float GeneratedOverallSize => Mathf.Clamp(generatedOverallSize, 4f, 30f);
-        public float GeneratedComplexity => Mathf.Clamp01(generatedComplexity);
-        public float GeneratedVerticality => Mathf.Clamp01(generatedVerticality);
+        public float GeneratedWidth => Mathf.Clamp(generatedOverallSize, 4f, 30f);
+        public float GeneratedHeight => Mathf.Clamp(generatedHeight, 1f, 30f);
+        public float GeneratedOverallSize => GeneratedWidth;
+        public float GeneratedComplexity => Mathf.Clamp01(Mathf.InverseLerp(
+            1f,
+            23f,
+            Mathf.Sqrt(
+                GeneratedWidth * GeneratedWidth * 0.65f
+                + GeneratedHeight * GeneratedHeight * 0.35f)));
+        public float GeneratedVerticality =>
+            TopDown3DRockWorkbenchAuthoring.CalculateAspectVerticality(
+                GeneratedWidth,
+                GeneratedHeight);
         public int GeneratedRockCount => FormationArchetype
             == TopDown3DRockFormationArchetype.ScatteredRocks
                 ? Mathf.Clamp(
                     Mathf.RoundToInt(Mathf.Lerp(8f, 12f, GeneratedComplexity))
                     + Mathf.RoundToInt(
-                        Mathf.InverseLerp(4f, 30f, GeneratedOverallSize) * 3f),
+                        GeneratedComplexity * 3f),
                     8,
                     15)
                 : Mathf.Clamp(
                     Mathf.RoundToInt(Mathf.Lerp(5f, 10f, GeneratedComplexity))
                     + Mathf.RoundToInt(
-                        Mathf.InverseLerp(4f, 30f, GeneratedOverallSize) * 4f),
+                        GeneratedComplexity * 4f),
                     5,
                     14);
         public int FormationSeed => formationSeed;

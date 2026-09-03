@@ -79,8 +79,7 @@ namespace BooterBigArm.Tests
                 var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
                 var serialized = new SerializedObject(formation);
                 serialized.FindProperty("generatedOverallSize").floatValue = 99f;
-                serialized.FindProperty("generatedComplexity").floatValue = 4f;
-                serialized.FindProperty("generatedVerticality").floatValue = -2f;
+                serialized.FindProperty("generatedHeight").floatValue = 99f;
                 serialized.FindProperty("longFractures").floatValue = 4f;
                 serialized.FindProperty("fractureSpacing").floatValue = 99f;
                 serialized.FindProperty("fusedVoxelSize").floatValue = -2f;
@@ -90,8 +89,10 @@ namespace BooterBigArm.Tests
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
                 Assert.That(formation.GeneratedOverallSize, Is.EqualTo(30f));
+                Assert.That(formation.GeneratedHeight, Is.EqualTo(30f));
                 Assert.That(formation.GeneratedComplexity, Is.EqualTo(1f));
-                Assert.That(formation.GeneratedVerticality, Is.EqualTo(0f));
+                Assert.That(formation.GeneratedVerticality, Is.EqualTo(
+                    TopDown3DRockWorkbenchAuthoring.CalculateAspectVerticality(30f, 30f)));
                 Assert.That(formation.GeneratedRockCount, Is.EqualTo(14));
                 Assert.That(formation.LongFractures, Is.EqualTo(1f));
                 Assert.That(formation.FractureSpacing, Is.EqualTo(16f));
@@ -117,7 +118,7 @@ namespace BooterBigArm.Tests
                 serialized.FindProperty("formationArchetype").enumValueIndex =
                     (int)TopDown3DRockFormationArchetype.ScatteredRocks;
                 serialized.FindProperty("generatedOverallSize").floatValue = 4f;
-                serialized.FindProperty("generatedComplexity").floatValue = 0f;
+                serialized.FindProperty("generatedHeight").floatValue = 1f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
                 Assert.That(formation.FormationArchetype,
@@ -126,7 +127,7 @@ namespace BooterBigArm.Tests
 
                 serialized.Update();
                 serialized.FindProperty("generatedOverallSize").floatValue = 30f;
-                serialized.FindProperty("generatedComplexity").floatValue = 1f;
+                serialized.FindProperty("generatedHeight").floatValue = 30f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
                 Assert.That(formation.GeneratedRockCount, Is.EqualTo(15));
@@ -477,19 +478,18 @@ namespace BooterBigArm.Tests
             }
         }
 
-        [TestCase(10101, 6f, 0.1f, 0.15f)]
-        [TestCase(20202, 10f, 0.6f, 0.68f)]
-        [TestCase(30303, 16f, 0.4f, 0.9f)]
-        [TestCase(40404, 24f, 0.85f, 0.72f)]
-        [TestCase(50505, 30f, 1f, 1f)]
-        [TestCase(606060, 10f, 0.6f, 0.68f)]
-        [TestCase(70707, 18f, 0.75f, 0.2f)]
-        [TestCase(80808, 8f, 0.95f, 0.5f)]
+        [TestCase(10101, 6f, 3f)]
+        [TestCase(20202, 10f, 7f)]
+        [TestCase(30303, 16f, 18f)]
+        [TestCase(40404, 24f, 20f)]
+        [TestCase(50505, 30f, 30f)]
+        [TestCase(606060, 10f, 8f)]
+        [TestCase(70707, 18f, 4f)]
+        [TestCase(80808, 8f, 5f)]
         public void GeneratedVolumetricFormationBuildsOneGeologicalShell(
             int seed,
-            float overallSize,
-            float complexity,
-            float verticality)
+            float width,
+            float height)
         {
             var previousSelection = Selection.activeObject;
             var root = new GameObject("Generated Volumetric Formation Test");
@@ -500,9 +500,8 @@ namespace BooterBigArm.Tests
                     AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath),
                     seed);
                 var serialized = new SerializedObject(formation);
-                serialized.FindProperty("generatedOverallSize").floatValue = overallSize;
-                serialized.FindProperty("generatedComplexity").floatValue = complexity;
-                serialized.FindProperty("generatedVerticality").floatValue = verticality;
+                serialized.FindProperty("generatedOverallSize").floatValue = width;
+                serialized.FindProperty("generatedHeight").floatValue = height;
                 serialized.FindProperty("fusedVoxelSize").floatValue = 0.28f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
@@ -814,34 +813,162 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void OverallSizeUniformlyScalesTheEnvelopeAndAutomaticCubeBudget()
+        public void WidthAndHeightIndependentlyScaleTheEnvelopeAndAutomaticMassBudget()
         {
-            var root = new GameObject("Overall Size Control Test");
+            var root = new GameObject("Independent Dimension Control Test");
             try
             {
                 var authoring = root.AddComponent<TopDown3DRockWorkbenchAuthoring>();
                 var serialized = new SerializedObject(authoring);
-                var overallSize = serialized.FindProperty("generatedOverallScale");
+                var width = serialized.FindProperty("generatedOverallScale");
+                var height = serialized.FindProperty("generatedHeight");
 
-                overallSize.floatValue = 1f;
+                width.floatValue = 1f;
+                height.floatValue = 0.5f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
-                Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(Vector3.one));
+                Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(new Vector3(1f, 0.5f, 1f)));
                 Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(2));
 
-                overallSize.floatValue = 4f;
+                serialized.Update();
+                width.floatValue = 4f;
+                height.floatValue = 3f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
-                Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(Vector3.one * 4f));
+                Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(new Vector3(4f, 3f, 4f)));
                 Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(5));
 
-                overallSize.floatValue = 10f;
+                serialized.Update();
+                width.floatValue = 1f;
+                height.floatValue = 20f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
-                Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(Vector3.one * 10f));
+                Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(new Vector3(1f, 20f, 1f)));
                 Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(10));
             }
             finally
             {
                 Object.DestroyImmediate(root);
             }
+        }
+
+        [Test]
+        public void IndependentDimensionsProduceTallPillarsAndWideFlatRocks()
+        {
+            var tall = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                12345,
+                TopDown3DRockWorkbenchAuthoring.CalculateSourceMassCount(1.25f, 14f),
+                new Vector3(1.25f, 14f, 1.25f),
+                TopDown3DRockWorkbenchAuthoring.CalculateAspectVerticality(1.25f, 14f),
+                0.65f,
+                0.62f);
+            var flat = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                12345,
+                TopDown3DRockWorkbenchAuthoring.CalculateSourceMassCount(12f, 1f),
+                new Vector3(12f, 1f, 12f),
+                TopDown3DRockWorkbenchAuthoring.CalculateAspectVerticality(12f, 1f),
+                0.65f,
+                0.62f);
+            var tallBounds = TopDown3DRockWorkbenchBaseRockGenerator.CalculateBounds(tall);
+            var flatBounds = TopDown3DRockWorkbenchBaseRockGenerator.CalculateBounds(flat);
+
+            Assert.That(tallBounds.size.y, Is.EqualTo(14f).Within(0.02f));
+            Assert.That(tallBounds.size.y, Is.GreaterThan(
+                Mathf.Max(tallBounds.size.x, tallBounds.size.z) * 4f));
+            Assert.That(flatBounds.size.y, Is.EqualTo(1f).Within(0.02f));
+            Assert.That(Mathf.Max(flatBounds.size.x, flatBounds.size.z),
+                Is.GreaterThan(flatBounds.size.y * 6f));
+        }
+
+        [Test]
+        public void ExtremeIndependentDimensionsRemainOneConnectedRockSurface()
+        {
+            var root = new GameObject("Independent Dimension Surface Test");
+            try
+            {
+                foreach (var dimensions in new[]
+                         {
+                             new Vector2(1.25f, 14f),
+                             new Vector2(12f, 1f)
+                         })
+                {
+                    while (root.transform.childCount > 0)
+                    {
+                        Object.DestroyImmediate(root.transform.GetChild(0).gameObject);
+                    }
+
+                    var plan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                        12345,
+                        TopDown3DRockWorkbenchAuthoring.CalculateSourceMassCount(
+                            dimensions.x,
+                            dimensions.y),
+                        new Vector3(dimensions.x, dimensions.y, dimensions.x),
+                        TopDown3DRockWorkbenchAuthoring.CalculateAspectVerticality(
+                            dimensions.x,
+                            dimensions.y),
+                        0.65f,
+                        0.62f);
+                    var boxes = new List<TopDown3DRockWorkbenchBox>(plan.Count);
+                    for (var index = 0; index < plan.Count; index++)
+                    {
+                        var spec = plan[index];
+                        var box = CreateBoxObject(
+                            root.transform,
+                            spec.LocalPosition,
+                            spec.LocalScale);
+                        box.transform.localRotation = spec.LocalRotation;
+                        boxes.Add(new TopDown3DRockWorkbenchBox(
+                            root.transform,
+                            box.transform,
+                            spec.SourceShape,
+                            TopDown3DRockWorkbenchBaseRockGenerator.DeriveVolumeShapeSeed(
+                                12345,
+                                index)));
+                    }
+
+                    Assert.That(
+                        TopDown3DRockWorkbenchMesher.TryBuild(
+                            boxes,
+                            0.12f,
+                            0.16f,
+                            out var result,
+                            out var error),
+                        Is.True,
+                        $"{dimensions}: {error}");
+                    Assert.That(result.Topology.IsValid, Is.True, result.Topology.Error);
+                    Assert.That(result.ConnectedComponents, Is.EqualTo(1), dimensions.ToString());
+                }
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void FormationDimensionsSetPhysicalHeightAndAutomaticComplexity()
+        {
+            var tall = TopDown3DRockWorkbenchFormationGenerator.CreateDimensionedPlan(
+                TopDown3DRockFormationArchetype.ConnectedOutcrop,
+                54321,
+                10,
+                6f,
+                24f,
+                0.5f);
+            var flat = TopDown3DRockWorkbenchFormationGenerator.CreateDimensionedPlan(
+                TopDown3DRockFormationArchetype.ConnectedOutcrop,
+                54321,
+                10,
+                24f,
+                3f,
+                0.5f);
+
+            Assert.That(
+                TopDown3DRockWorkbenchFormationGenerator.CalculatePlanHeight(tall),
+                Is.EqualTo(24f).Within(0.05f));
+            Assert.That(
+                TopDown3DRockWorkbenchFormationGenerator.CalculatePlanHeight(flat),
+                Is.EqualTo(3f).Within(0.05f));
+            Assert.That(
+                TopDown3DRockWorkbenchAuthoring.CalculateSourceMassCount(2f, 2f),
+                Is.LessThan(TopDown3DRockWorkbenchAuthoring.CalculateSourceMassCount(8f, 12f)));
         }
 
         [Test]

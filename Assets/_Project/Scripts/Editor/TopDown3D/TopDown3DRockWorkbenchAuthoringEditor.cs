@@ -60,10 +60,10 @@ namespace BooterBigArm.Editor
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("generatedOverallScale"),
-                new GUIContent("Overall Size"));
+                new GUIContent("Width", "Physical width and depth in meters."));
             EditorGUILayout.PropertyField(
-                serializedObject.FindProperty("generatedVerticality"),
-                new GUIContent("Height", "Low makes a spreading rock. High makes a taller rock."));
+                serializedObject.FindProperty("generatedHeight"),
+                new GUIContent("Height", "Physical vertical height in meters, independent from width."));
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("generatedAsymmetry"),
                 new GUIContent("Lopsidedness"));
@@ -340,7 +340,7 @@ namespace BooterBigArm.Editor
             if (!TopDown3DRockWorkbenchVariationGallery.IsGalleryItem(authoring)) return;
 
             var labelPosition = authoring.transform.position
-                + Vector3.up * Mathf.Max(1f, authoring.GeneratedOverallScale * 0.65f);
+                + Vector3.up * Mathf.Max(1f, authoring.GeneratedHeight * 0.65f);
             Handles.Label(labelPosition, $"Seed {authoring.GenerationSeed}", EditorStyles.boldLabel);
         }
     }

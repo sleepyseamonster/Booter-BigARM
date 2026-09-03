@@ -137,6 +137,29 @@ namespace BooterBigArm.Editor
                     verticality);
         }
 
+        internal static IReadOnlyList<TopDown3DRockFormationMemberPlan> CreateDimensionedPlan(
+            TopDown3DRockFormationArchetype archetype,
+            int seed,
+            int rockCount,
+            float width,
+            float height,
+            float complexity)
+        {
+            width = Mathf.Clamp(width, 4f, 30f);
+            height = Mathf.Clamp(height, 1f, 30f);
+            var verticality = TopDown3DRockWorkbenchAuthoring.CalculateAspectVerticality(
+                width,
+                height);
+            var plan = CreatePlan(
+                archetype,
+                seed,
+                rockCount,
+                width,
+                complexity,
+                verticality);
+            return FitPlanToHeight(KeepMemberYawOnly(plan), height);
+        }
+
         private static IReadOnlyList<TopDown3DRockFormationMemberPlan> CreateConnectedOutcropPlan(
             int seed,
             int rockCount,
@@ -592,21 +615,11 @@ namespace BooterBigArm.Editor
             TopDown3DRockFormationMemberPlan member,
             Vector3 surfaceNormal)
         {
-            var cubeCount = Mathf.Clamp(
-                Mathf.CeilToInt(member.RockSize * 0.9f) + 1,
-                2,
-                10);
-            var rockPlan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
-                member.Seed,
-                cubeCount,
-                Vector3.one * member.RockSize,
-                member.Verticality,
-                member.Lopsidedness,
-                member.Compaction);
+            var rockPlan = CreateMemberRockPlan(member);
             var memberMatrix = Matrix4x4.TRS(
                 Vector3.zero,
                 member.LocalRotation,
-                member.LocalScale);
+                GetMemberRootScale(member));
             var distances = new List<float>(rockPlan.Count * GroundSupportPattern.Length);
             for (var volumeIndex = 0; volumeIndex < rockPlan.Count; volumeIndex++)
             {
@@ -645,10 +658,23 @@ namespace BooterBigArm.Editor
             Vector3 localPosition,
             Quaternion localRotation)
         {
+            return WithLocalPoseAndScale(
+                member,
+                localPosition,
+                localRotation,
+                member.LocalScale);
+        }
+
+        private static TopDown3DRockFormationMemberPlan WithLocalPoseAndScale(
+            TopDown3DRockFormationMemberPlan member,
+            Vector3 localPosition,
+            Quaternion localRotation,
+            Vector3 localScale)
+        {
             return new TopDown3DRockFormationMemberPlan(
                 localPosition,
                 localRotation,
-                member.LocalScale,
+                localScale,
                 member.RockSize,
                 member.Verticality,
                 member.Lopsidedness,
@@ -680,13 +706,13 @@ namespace BooterBigArm.Editor
                     ? formation.RockMaterial
                     : AssetDatabase.LoadAssetAtPath<Material>(
                         TopDown3DRockWorkbenchAuthoringEditor.WorkbenchMaterialPath);
-                IReadOnlyList<TopDown3DRockFormationMemberPlan> plan = CreatePlan(
+                IReadOnlyList<TopDown3DRockFormationMemberPlan> plan = CreateDimensionedPlan(
                     formation.FormationArchetype,
                     seed,
                     formation.GeneratedRockCount,
-                    formation.GeneratedOverallSize,
-                    formation.GeneratedComplexity,
-                    formation.GeneratedVerticality);
+                    formation.GeneratedWidth,
+                    formation.GeneratedHeight,
+                    formation.GeneratedComplexity);
                 if (formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks)
                 {
                     plan = ConformScatteredPlanToTerrain(formation, plan);
@@ -699,7 +725,7 @@ namespace BooterBigArm.Editor
                     Undo.SetTransformParent(memberObject.transform, formation.transform, undoName);
                     memberObject.transform.localPosition = spec.LocalPosition;
                     memberObject.transform.localRotation = spec.LocalRotation;
-                    memberObject.transform.localScale = spec.LocalScale;
+                    memberObject.transform.localScale = GetMemberRootScale(spec);
                     var member = Undo.AddComponent<TopDown3DRockWorkbenchAuthoring>(memberObject);
                     member.Configure(material);
                     memberObject.GetComponent<MeshRenderer>().sharedMaterial = material;
@@ -717,7 +743,8 @@ namespace BooterBigArm.Editor
                             0.11f);
                     }
                     serializedMember.FindProperty("generatedOverallScale").floatValue = spec.RockSize;
-                    serializedMember.FindProperty("generatedVerticality").floatValue = spec.Verticality;
+                    serializedMember.FindProperty("generatedHeight").floatValue =
+                        spec.RockSize * Mathf.Max(0.01f, spec.LocalScale.y);
                     serializedMember.FindProperty("generatedAsymmetry").floatValue = spec.Lopsidedness;
                     serializedMember.FindProperty("generatedOverlap").floatValue = spec.Compaction;
                     serializedMember.FindProperty("showSourceVolumes").boolValue = false;
@@ -965,21 +992,11 @@ namespace BooterBigArm.Editor
             TopDown3DRockFormationMemberPlan member,
             ContactSelection selection)
         {
-            var cubeCount = Mathf.Clamp(
-                Mathf.CeilToInt(member.RockSize * 0.9f) + 1,
-                2,
-                10);
-            var rockPlan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
-                member.Seed,
-                cubeCount,
-                Vector3.one * member.RockSize,
-                member.Verticality,
-                member.Lopsidedness,
-                member.Compaction);
+            var rockPlan = CreateMemberRockPlan(member);
             var memberMatrix = Matrix4x4.TRS(
                 member.LocalPosition,
                 member.LocalRotation,
-                member.LocalScale);
+                GetMemberRootScale(member));
             var selected = CreateVolumeContact(memberMatrix, rockPlan[0]);
             if (selection == ContactSelection.Core) return selected;
 
@@ -1026,6 +1043,108 @@ namespace BooterBigArm.Editor
                 volumeMatrix.MultiplyPoint3x4(Vector3.zero),
                 Mathf.Max(0.05f, minimumAxis * 0.26f),
                 verticalExtent);
+        }
+
+        private static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> CreateMemberRockPlan(
+            TopDown3DRockFormationMemberPlan member)
+        {
+            var sourceSize = GetMemberSourceSize(member);
+            var cubeCount = TopDown3DRockWorkbenchAuthoring.CalculateSourceMassCount(
+                sourceSize.x,
+                sourceSize.y);
+            return TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                member.Seed,
+                cubeCount,
+                sourceSize,
+                member.Verticality,
+                member.Lopsidedness,
+                member.Compaction);
+        }
+
+        private static Vector3 GetMemberSourceSize(
+            TopDown3DRockFormationMemberPlan member)
+        {
+            return new Vector3(
+                member.RockSize,
+                member.RockSize * Mathf.Max(0.01f, member.LocalScale.y),
+                member.RockSize);
+        }
+
+        private static Vector3 GetMemberRootScale(
+            TopDown3DRockFormationMemberPlan member)
+        {
+            return new Vector3(member.LocalScale.x, 1f, member.LocalScale.z);
+        }
+
+        private static IReadOnlyList<TopDown3DRockFormationMemberPlan> FitPlanToHeight(
+            IReadOnlyList<TopDown3DRockFormationMemberPlan> source,
+            float targetHeight)
+        {
+            var fitted = new List<TopDown3DRockFormationMemberPlan>(source);
+            for (var iteration = 0; iteration < 6; iteration++)
+            {
+                var currentHeight = CalculatePlanHeight(fitted);
+                var correction = targetHeight / Mathf.Max(0.001f, currentHeight);
+                for (var index = 0; index < fitted.Count; index++)
+                {
+                    var member = fitted[index];
+                    var scale = member.LocalScale;
+                    scale.y *= correction;
+                    var position = member.LocalPosition;
+                    position.y *= correction;
+                    fitted[index] = WithLocalPoseAndScale(
+                        member,
+                        position,
+                        member.LocalRotation,
+                        scale);
+                }
+            }
+
+            return fitted;
+        }
+
+        private static IReadOnlyList<TopDown3DRockFormationMemberPlan> KeepMemberYawOnly(
+            IReadOnlyList<TopDown3DRockFormationMemberPlan> source)
+        {
+            var upright = new List<TopDown3DRockFormationMemberPlan>(source.Count);
+            for (var index = 0; index < source.Count; index++)
+            {
+                var member = source[index];
+                var forward = Vector3.ProjectOnPlane(
+                    member.LocalRotation * Vector3.forward,
+                    Vector3.up);
+                if (forward.sqrMagnitude <= 0.000001f) forward = Vector3.forward;
+                upright.Add(WithLocalPose(
+                    member,
+                    member.LocalPosition,
+                    Quaternion.LookRotation(forward.normalized, Vector3.up)));
+            }
+
+            return upright;
+        }
+
+        internal static float CalculatePlanHeight(
+            IReadOnlyList<TopDown3DRockFormationMemberPlan> plan)
+        {
+            var minimum = float.PositiveInfinity;
+            var maximum = float.NegativeInfinity;
+            for (var memberIndex = 0; memberIndex < plan.Count; memberIndex++)
+            {
+                var member = plan[memberIndex];
+                var rockPlan = CreateMemberRockPlan(member);
+                var memberMatrix = Matrix4x4.TRS(
+                    member.LocalPosition,
+                    member.LocalRotation,
+                    GetMemberRootScale(member));
+                for (var volumeIndex = 0; volumeIndex < rockPlan.Count; volumeIndex++)
+                {
+                    var contact = CreateVolumeContact(memberMatrix, rockPlan[volumeIndex]);
+                    minimum = Mathf.Min(minimum, contact.Bottom);
+                    maximum = Mathf.Max(maximum, contact.Top);
+                }
+            }
+
+            return plan.Count == 0 ? 0f : maximum - minimum;
         }
 
         private static float NextRange(System.Random random, float minimum, float maximum)

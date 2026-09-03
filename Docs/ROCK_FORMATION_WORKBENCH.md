@@ -19,7 +19,7 @@ Create a complete random rock with:
 
 `GameObject > Booter & BigARM > Top Down 3D > New Random Rock`
 
-The main Rock Inspector intentionally shows only `Overall Size`, `Height`, `Lopsidedness`, `Compaction`, and `Show Editing Volumes`. Click `Generate New Rock` for a new seed or `Update Current Rock With These Settings` to preserve the current seed. Mesh, collider, material, detailed surface, seed-gallery, and repair controls are under `Advanced`.
+The main Rock Inspector intentionally shows only `Width`, `Height`, `Lopsidedness`, `Compaction`, and `Show Editing Volumes`. `Width` controls both horizontal axes while `Height` controls the vertical axis independently, so narrow pillars are not shortened by their footprint and broad rocks can remain genuinely low. The editable source-mass count is automatic: small dimensions use a simple cluster while greater width or height adds masses for a richer silhouette. Click `Generate New Rock` for a new seed or `Update Current Rock With These Settings` to preserve the current seed. Mesh, collider, material, detailed surface, seed-gallery, and repair controls are under `Advanced`.
 
 Generated rocks now use three editable source shapes. `Weathered Block` supplies a dependable central mass, `Wedge` adds a broad planar slope, and `Tapered Stone` adds a truncated pyramidal profile. Every rock with enough source masses receives an outward-facing wedge, larger rocks also receive a tapered detail, and the remaining supports and details use a seeded mixture. Their overlap remains sufficient for one connected scalar-field exterior, but angled sources are oriented toward the silhouette instead of disappearing inside the core. This does not add another top-level slider. Turn on `Show Editing Volumes`, expand the rock, and select an individual source volume to change its `Source Shape`, rotation, scale, or position manually.
 
@@ -27,7 +27,7 @@ Create a complete random formation with:
 
 `GameObject > Booter & BigARM > Top Down 3D > New Random Rock Formation`
 
-The Formation Inspector begins with a `Formation Type`, then shows only the controls that apply to that category. Overall size and complexity automatically determine the member-rock count. `Generate New Formation` replaces the generated member rocks with a new seed; Unity Undo restores the previous arrangement.
+The Formation Inspector begins with a `Formation Type`, then exposes the same two physical controls: `Width` sets the horizontal footprint and `Height` sets the vertical envelope. Their combined dimensions automatically determine member count and base-rock source complexity; there is no separate complexity slider to balance manually. `Generate New Formation` replaces the generated member rocks with a new seed; Unity Undo restores the previous arrangement.
 
 The current formation categories are:
 
@@ -68,7 +68,7 @@ The `Connected Outcrop` planner starts with one visibly dominant, partially buri
 
 The `Scattered Rocks` planner treats the supplied desert reference as a composition guide rather than source art. It generates one or two dominant boulders, several broad slabs, and smaller irregular fragments. Deterministic rejection placement prevents the boulders from stacking into another outcrop, while elliptical distribution, varied rotation, restrained height, and individual burial keep the result loose and grounded. Grounding uses a broad set of inset bottom samples so a tilted silhouette cannot balance on one extreme point. In the Landscape Authoring Sandbox, member positions and up axes are conformed to the production terrain generator's height and normal; outside that sandbox, the formation's local horizontal plane is the fallback. Small scattered members also use scale-aware voxel size and join softness so their angled planes remain readable. Each boulder is still a complete blended-volume Rock Workbench and can be moved, stretched, or regenerated independently.
 
-These composition rules are intentionally derived from the existing `Overall Size`, `Complexity`, and `Height` controls. They do not add another group of sliders: the generator is still meant to be quick to reroll, judge, and manually edit. Member workbenches retain deterministic nonuniform scale and restrained lean, reproducing the useful manual stretching behavior without collapsing the formation onto one preferred viewing axis.
+These composition rules are intentionally derived from `Width` and `Height`. A low width with a high height produces a narrow pillar composition; a high width with a low height produces a broad, low composition. Each generated member bakes its effective vertical size into its own base-rock dimensions, which lets its source-mass budget respond to formation scale while preserving editable nonuniform horizontal shaping. The generator remains quick to reroll, judge, and manually edit without a second set of complexity controls.
 
 The seed hierarchy is `formation seed -> member seed -> source-volume shape seed`. Repeating the same formation seed and controls reconstructs the same member roles, transforms, base-rock controls, source-shape choices, and final seam mask. This work remains editor-only until its shape language is visually accepted and translated into the runtime planner's absolute-coordinate, stable-identity, chunk-owned generation contract.
 

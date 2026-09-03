@@ -48,9 +48,13 @@ namespace BooterBigArm.TopDown3D
         // Retained so existing scenes and prefabs keep their previous size data.
         [SerializeField, HideInInspector]
         private Vector3 generatedOverallSize = new Vector3(4f, 3f, 3.5f);
-        [SerializeField, Range(0.75f, 10f), InspectorName("Overall Size"), Tooltip("Uniformly scales the generated rock. Larger rocks automatically use more source masses for richer silhouettes.")]
+        [SerializeField, Range(0.75f, 12f), InspectorName("Width"), Tooltip("Physical width and depth of the generated rock in meters.")]
         private float generatedOverallScale = 4f;
-        [SerializeField, Range(0f, 1f), Tooltip("Low values spread the rock horizontally. High values build a tapered upward spine.")]
+        [SerializeField, Range(0.5f, 30f), Tooltip("Physical height of the generated rock in meters. Height is independent from width.")]
+        private float generatedHeight = 3f;
+        // Retained for scene and prefab compatibility. Shape direction is now derived from
+        // the independent physical width and height controls.
+        [SerializeField, HideInInspector]
         private float generatedVerticality = 0.45f;
         [SerializeField, Range(0f, 1f), InspectorName("Lopsidedness"), Tooltip("Zero distributes masses around the core. One drives growth strongly toward one side with greater size and tilt variation.")]
         private float generatedAsymmetry = 0.65f;
@@ -75,17 +79,41 @@ namespace BooterBigArm.TopDown3D
         public float TopShalePatches => Mathf.Clamp01(topShalePatches);
         public float WornShine => Mathf.Clamp(wornShine, 0f, 0.5f);
         public int GenerationSeed => generationSeed;
-        public float GeneratedOverallScale => Mathf.Clamp(generatedOverallScale, 0.75f, 10f);
-        public int GeneratedCubeCount => Mathf.Clamp(
-            Mathf.CeilToInt(GeneratedOverallScale * 0.9f) + 1,
-            2,
-            10);
-        public Vector3 GeneratedOverallSize => Vector3.one * GeneratedOverallScale;
-        public float GeneratedVerticality => Mathf.Clamp01(generatedVerticality);
+        public float GeneratedWidth => Mathf.Clamp(generatedOverallScale, 0.75f, 12f);
+        public float GeneratedHeight => Mathf.Clamp(generatedHeight, 0.5f, 30f);
+        public float GeneratedOverallScale => GeneratedWidth;
+        public int GeneratedCubeCount => CalculateSourceMassCount(
+            GeneratedWidth,
+            GeneratedHeight);
+        public Vector3 GeneratedOverallSize => new Vector3(
+            GeneratedWidth,
+            GeneratedHeight,
+            GeneratedWidth);
+        public float GeneratedVerticality => CalculateAspectVerticality(
+            GeneratedWidth,
+            GeneratedHeight);
         public float GeneratedAsymmetry => Mathf.Clamp01(generatedAsymmetry);
         public float GeneratedOverlap => Mathf.Clamp01(generatedOverlap);
         public Mesh GeneratedMesh => generatedMesh;
         public string PreviewStatus => previewStatus;
+
+        internal static float CalculateAspectVerticality(float width, float height)
+        {
+            var aspect = Mathf.Max(0.01f, height) / Mathf.Max(0.01f, width);
+            return Mathf.Clamp01(Mathf.InverseLerp(0.35f, 2.5f, aspect));
+        }
+
+        public static int CalculateSourceMassCount(float width, float height)
+        {
+            width = Mathf.Max(0.01f, width);
+            height = Mathf.Max(0.01f, height);
+            return Mathf.Clamp(
+                Mathf.CeilToInt(Mathf.Sqrt(
+                    width * width * 0.55f
+                    + height * height * 0.45f) * 0.85f) + 1,
+                2,
+                10);
+        }
 
         public void Configure(Material material)
         {
