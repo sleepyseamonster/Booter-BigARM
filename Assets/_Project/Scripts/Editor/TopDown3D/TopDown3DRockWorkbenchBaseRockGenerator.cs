@@ -119,14 +119,18 @@ namespace BooterBigArm.Editor
                     asymmetry,
                     role);
                 var sourceShape = ChooseSourceShape(seed, index, role, asymmetry);
-                if (cubeCount >= 3
-                    && index == 1
-                    && sourceShape == TopDown3DRockSourceShape.WeatheredBlock)
+                if (cubeCount >= 3 && index == 1)
                 {
-                    sourceShape = (DeriveVolumeShapeSeed(seed, index) & 1) == 0
-                        ? TopDown3DRockSourceShape.Wedge
-                        : TopDown3DRockSourceShape.TaperedStone;
+                    sourceShape = TopDown3DRockSourceShape.Wedge;
                 }
+                else if (cubeCount >= 5 && index == supportCount + 1)
+                {
+                    sourceShape = TopDown3DRockSourceShape.TaperedStone;
+                }
+                childRotation = OrientSourceShapeTowardGrowth(
+                    childRotation,
+                    direction,
+                    sourceShape);
 
                 var parentRadius = DirectionalRadius(parent.LocalScale, parent.LocalRotation, direction);
                 var childRadius = DirectionalRadius(childScale, childRotation, direction);
@@ -294,11 +298,11 @@ namespace BooterBigArm.Editor
             var shapeSeed = DeriveVolumeShapeSeed(seed ^ unchecked((int)0x5F356495), index);
             var roll = HashToUnitFloat(shapeSeed);
             var wedgeChance = role == TopDown3DRockWorkbenchMassRole.Support
-                ? Mathf.Lerp(0.22f, 0.38f, asymmetry)
-                : Mathf.Lerp(0.32f, 0.5f, asymmetry);
+                ? Mathf.Lerp(0.3f, 0.44f, asymmetry)
+                : Mathf.Lerp(0.42f, 0.56f, asymmetry);
             var taperedChance = role == TopDown3DRockWorkbenchMassRole.Support
-                ? Mathf.Lerp(0.08f, 0.16f, asymmetry)
-                : Mathf.Lerp(0.14f, 0.25f, asymmetry);
+                ? Mathf.Lerp(0.12f, 0.2f, asymmetry)
+                : Mathf.Lerp(0.18f, 0.26f, asymmetry);
             if (roll < wedgeChance) return TopDown3DRockSourceShape.Wedge;
             if (roll < wedgeChance + taperedChance)
                 return TopDown3DRockSourceShape.TaperedStone;
@@ -310,12 +314,38 @@ namespace BooterBigArm.Editor
             switch (sourceShape)
             {
                 case TopDown3DRockSourceShape.Wedge:
-                    return 0.14f;
-                case TopDown3DRockSourceShape.TaperedStone:
                     return 0.09f;
+                case TopDown3DRockSourceShape.TaperedStone:
+                    return 0.07f;
                 default:
                     return 0f;
             }
+        }
+
+        private static Quaternion OrientSourceShapeTowardGrowth(
+            Quaternion rotation,
+            Vector3 growthDirection,
+            TopDown3DRockSourceShape sourceShape)
+        {
+            if (sourceShape != TopDown3DRockSourceShape.Wedge) return rotation;
+
+            var localUp = rotation * Vector3.up;
+            var currentSlopeHeading = Vector3.ProjectOnPlane(
+                rotation * Vector3.right,
+                localUp);
+            var desiredSlopeHeading = Vector3.ProjectOnPlane(
+                growthDirection,
+                localUp);
+            if (currentSlopeHeading.sqrMagnitude <= 0.000001f
+                || desiredSlopeHeading.sqrMagnitude <= 0.000001f)
+            {
+                return rotation;
+            }
+
+            return Quaternion.FromToRotation(
+                       currentSlopeHeading.normalized,
+                       desiredSlopeHeading.normalized)
+                   * rotation;
         }
 
         private static float HashToUnitFloat(int seed)

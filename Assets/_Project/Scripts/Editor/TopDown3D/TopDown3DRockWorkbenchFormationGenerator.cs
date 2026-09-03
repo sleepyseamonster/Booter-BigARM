@@ -57,6 +57,19 @@ namespace BooterBigArm.Editor
     {
         private const string CreateMenuPath =
             "GameObject/Booter & BigARM/Top Down 3D/New Random Rock Formation";
+        private const float StableSupportQuantile = 0.16f;
+        private static readonly Vector3[] GroundSupportPattern =
+        {
+            new Vector3(0f, -0.5f, 0f),
+            new Vector3(-0.24f, -0.5f, 0f),
+            new Vector3(0.24f, -0.5f, 0f),
+            new Vector3(0f, -0.5f, -0.24f),
+            new Vector3(0f, -0.5f, 0.24f),
+            new Vector3(-0.2f, -0.5f, -0.2f),
+            new Vector3(0.2f, -0.5f, -0.2f),
+            new Vector3(0.2f, -0.5f, 0.2f),
+            new Vector3(-0.2f, -0.5f, 0.2f)
+        };
 
         [MenuItem(CreateMenuPath, false, 21)]
         private static void CreateRandomFormation(MenuCommand command)
@@ -435,10 +448,7 @@ namespace BooterBigArm.Editor
 
                 var member = new TopDown3DRockFormationMemberPlan(
                     new Vector3(horizontal.x, 0f, horizontal.y),
-                    Quaternion.Euler(
-                        NextRange(random, -10f, 10f) * complexity,
-                        NextRange(random, 0f, 360f),
-                        NextRange(random, -10f, 10f) * complexity),
+                    Quaternion.Euler(0f, NextRange(random, 0f, 360f), 0f),
                     scale,
                     rockSize,
                     memberVerticality,
@@ -449,7 +459,7 @@ namespace BooterBigArm.Editor
                     role);
                 plan.Add(GroundScatteredMember(
                     member,
-                    NextRange(random, 0.08f, 0.19f)));
+                    NextRange(random, 0.02f, 0.06f)));
             }
 
             return plan;
@@ -502,21 +512,142 @@ namespace BooterBigArm.Editor
             TopDown3DRockFormationMemberPlan member,
             float burialRatio)
         {
-            var lowestContact = CreateLowestContact(member);
             var burialDepth = member.RockSize * member.LocalScale.y
-                * Mathf.Clamp(burialRatio, 0.04f, 0.24f);
-            var groundedPosition = member.LocalPosition;
-            groundedPosition.y += -lowestContact.Bottom - burialDepth;
-            return WithLocalPosition(member, groundedPosition);
+                * Mathf.Clamp(burialRatio, 0.015f, 0.12f);
+            var surfacePoint = new Vector3(
+                member.LocalPosition.x,
+                0f,
+                member.LocalPosition.z);
+            return SeatScatteredMember(
+                member,
+                surfacePoint,
+                Vector3.up,
+                burialDepth);
+        }
+
+        internal static float CalculateGroundSupportCoverage(
+            TopDown3DRockFormationMemberPlan member,
+            Vector3 surfacePoint,
+            Vector3 surfaceNormal)
+        {
+            surfaceNormal = NormalizeSurfaceNormal(surfaceNormal);
+            var distances = CollectGroundSupportDistances(member, surfaceNormal);
+            var rootDistance = Vector3.Dot(
+                member.LocalPosition - surfacePoint,
+                surfaceNormal);
+            var supported = 0;
+            for (var index = 0; index < distances.Count; index++)
+            {
+                if (rootDistance + distances[index] <= 0.0001f) supported++;
+            }
+
+            return distances.Count > 0 ? supported / (float)distances.Count : 0f;
+        }
+
+        internal static TopDown3DRockFormationMemberPlan SeatScatteredMember(
+            TopDown3DRockFormationMemberPlan member,
+            Vector3 surfacePoint,
+            Vector3 surfaceNormal,
+            float burialDepth)
+        {
+            surfaceNormal = NormalizeSurfaceNormal(surfaceNormal);
+            var forward = Vector3.ProjectOnPlane(
+                member.LocalRotation * Vector3.forward,
+                surfaceNormal);
+            if (forward.sqrMagnitude <= 0.000001f)
+            {
+                forward = Vector3.ProjectOnPlane(Vector3.forward, surfaceNormal);
+            }
+            if (forward.sqrMagnitude <= 0.000001f)
+            {
+                forward = Vector3.ProjectOnPlane(Vector3.right, surfaceNormal);
+            }
+
+            var aligned = WithLocalPose(
+                member,
+                member.LocalPosition,
+                Quaternion.LookRotation(forward.normalized, surfaceNormal));
+            var supportDistance = CalculateStableSupportDistance(aligned, surfaceNormal);
+            var groundedPosition = surfacePoint
+                - surfaceNormal * (supportDistance + Mathf.Max(0f, burialDepth));
+            return WithLocalPose(aligned, groundedPosition, aligned.LocalRotation);
+        }
+
+        private static float CalculateStableSupportDistance(
+            TopDown3DRockFormationMemberPlan member,
+            Vector3 surfaceNormal)
+        {
+            var distances = CollectGroundSupportDistances(member, surfaceNormal);
+            if (distances.Count == 0) return 0f;
+
+            distances.Sort();
+            var index = Mathf.Clamp(
+                Mathf.CeilToInt(distances.Count * StableSupportQuantile) - 1,
+                0,
+                distances.Count - 1);
+            return distances[index];
+        }
+
+        private static List<float> CollectGroundSupportDistances(
+            TopDown3DRockFormationMemberPlan member,
+            Vector3 surfaceNormal)
+        {
+            var cubeCount = Mathf.Clamp(
+                Mathf.CeilToInt(member.RockSize * 0.9f) + 1,
+                2,
+                10);
+            var rockPlan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                member.Seed,
+                cubeCount,
+                Vector3.one * member.RockSize,
+                member.Verticality,
+                member.Lopsidedness,
+                member.Compaction);
+            var memberMatrix = Matrix4x4.TRS(
+                Vector3.zero,
+                member.LocalRotation,
+                member.LocalScale);
+            var distances = new List<float>(rockPlan.Count * GroundSupportPattern.Length);
+            for (var volumeIndex = 0; volumeIndex < rockPlan.Count; volumeIndex++)
+            {
+                var source = rockPlan[volumeIndex];
+                var volumeMatrix = memberMatrix * Matrix4x4.TRS(
+                    source.LocalPosition,
+                    source.LocalRotation,
+                    source.LocalScale);
+                for (var sampleIndex = 0; sampleIndex < GroundSupportPattern.Length; sampleIndex++)
+                {
+                    distances.Add(Vector3.Dot(
+                        volumeMatrix.MultiplyPoint3x4(GroundSupportPattern[sampleIndex]),
+                        surfaceNormal));
+                }
+            }
+
+            return distances;
+        }
+
+        private static Vector3 NormalizeSurfaceNormal(Vector3 surfaceNormal)
+        {
+            return surfaceNormal.sqrMagnitude > 0.000001f
+                ? surfaceNormal.normalized
+                : Vector3.up;
         }
 
         private static TopDown3DRockFormationMemberPlan WithLocalPosition(
             TopDown3DRockFormationMemberPlan member,
             Vector3 localPosition)
         {
+            return WithLocalPose(member, localPosition, member.LocalRotation);
+        }
+
+        private static TopDown3DRockFormationMemberPlan WithLocalPose(
+            TopDown3DRockFormationMemberPlan member,
+            Vector3 localPosition,
+            Quaternion localRotation)
+        {
             return new TopDown3DRockFormationMemberPlan(
                 localPosition,
-                member.LocalRotation,
+                localRotation,
                 member.LocalScale,
                 member.RockSize,
                 member.Verticality,
@@ -549,13 +680,17 @@ namespace BooterBigArm.Editor
                     ? formation.RockMaterial
                     : AssetDatabase.LoadAssetAtPath<Material>(
                         TopDown3DRockWorkbenchAuthoringEditor.WorkbenchMaterialPath);
-                var plan = CreatePlan(
+                IReadOnlyList<TopDown3DRockFormationMemberPlan> plan = CreatePlan(
                     formation.FormationArchetype,
                     seed,
                     formation.GeneratedRockCount,
                     formation.GeneratedOverallSize,
                     formation.GeneratedComplexity,
                     formation.GeneratedVerticality);
+                if (formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks)
+                {
+                    plan = ConformScatteredPlanToTerrain(formation, plan);
+                }
                 for (var index = 0; index < plan.Count; index++)
                 {
                     var spec = plan[index];
@@ -570,6 +705,17 @@ namespace BooterBigArm.Editor
                     memberObject.GetComponent<MeshRenderer>().sharedMaterial = material;
 
                     var serializedMember = new SerializedObject(member);
+                    if (formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks)
+                    {
+                        serializedMember.FindProperty("voxelSize").floatValue = Mathf.Clamp(
+                            spec.RockSize * 0.055f,
+                            0.055f,
+                            0.16f);
+                        serializedMember.FindProperty("fusionSmoothness").floatValue = Mathf.Clamp(
+                            spec.RockSize * 0.028f,
+                            0.025f,
+                            0.11f);
+                    }
                     serializedMember.FindProperty("generatedOverallScale").floatValue = spec.RockSize;
                     serializedMember.FindProperty("generatedVerticality").floatValue = spec.Verticality;
                     serializedMember.FindProperty("generatedAsymmetry").floatValue = spec.Lopsidedness;
@@ -587,6 +733,67 @@ namespace BooterBigArm.Editor
             finally
             {
                 Undo.CollapseUndoOperations(undoGroup);
+            }
+        }
+
+        private static IReadOnlyList<TopDown3DRockFormationMemberPlan> ConformScatteredPlanToTerrain(
+            TopDown3DRockWorkbenchFormationAuthoring formation,
+            IReadOnlyList<TopDown3DRockFormationMemberPlan> plan)
+        {
+            var sandbox = UnityEngine.Object.FindAnyObjectByType<TopDown3DLandscapeAuthoringSandbox>();
+            if (sandbox == null
+                || sandbox.WorldSettings == null
+                || sandbox.gameObject.scene != formation.gameObject.scene)
+            {
+                return plan;
+            }
+
+            try
+            {
+                var generator = new TopDown3DWorldGenerator(sandbox.WorldSettings);
+                var conformed = new List<TopDown3DRockFormationMemberPlan>(plan.Count);
+                for (var index = 0; index < plan.Count; index++)
+                {
+                    var member = plan[index];
+                    var flatSupportDistance = CalculateStableSupportDistance(member, Vector3.up);
+                    var burialDepth = Mathf.Max(
+                        0f,
+                        -(member.LocalPosition.y + flatSupportDistance));
+                    var targetWorld = formation.transform.TransformPoint(new Vector3(
+                        member.LocalPosition.x,
+                        0f,
+                        member.LocalPosition.z));
+                    var targetInSandbox = sandbox.transform.InverseTransformPoint(targetWorld);
+                    var surfaceHeight = generator.SampleHeight(
+                        targetInSandbox.x,
+                        targetInSandbox.z);
+                    var surfaceNormalInSandbox = generator.SampleNormal(
+                        targetInSandbox.x,
+                        targetInSandbox.z);
+                    var surfacePointWorld = sandbox.transform.TransformPoint(new Vector3(
+                        targetInSandbox.x,
+                        surfaceHeight,
+                        targetInSandbox.z));
+                    var surfaceNormalWorld = sandbox.transform.TransformDirection(
+                        surfaceNormalInSandbox).normalized;
+                    var surfacePointLocal = formation.transform.InverseTransformPoint(surfacePointWorld);
+                    var surfaceNormalLocal = formation.transform.InverseTransformDirection(
+                        surfaceNormalWorld).normalized;
+                    conformed.Add(SeatScatteredMember(
+                        member,
+                        surfacePointLocal,
+                        surfaceNormalLocal,
+                        burialDepth));
+                }
+
+                return conformed;
+            }
+            catch (Exception exception)
+            {
+                Debug.LogWarning(
+                    $"Scattered rocks could not sample the authoring terrain and used the formation ground plane instead: {exception.Message}",
+                    formation);
+                return plan;
             }
         }
 

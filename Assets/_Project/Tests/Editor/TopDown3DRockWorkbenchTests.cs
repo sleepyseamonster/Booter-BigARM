@@ -324,10 +324,19 @@ namespace BooterBigArm.Tests
                     first[index].LocalScale.y,
                     Is.LessThan(Mathf.Max(first[index].LocalScale.x, first[index].LocalScale.z)));
 
-                var bottom = CalculateFormationMemberSourceBottom(first[index]);
-                var heightScale = first[index].RockSize * first[index].LocalScale.y;
-                Assert.That(bottom, Is.LessThanOrEqualTo(-heightScale * 0.04f));
-                Assert.That(bottom, Is.GreaterThanOrEqualTo(-heightScale * 0.25f));
+                var supportCoverage = TopDown3DRockWorkbenchFormationGenerator
+                    .CalculateGroundSupportCoverage(
+                        first[index],
+                        new Vector3(
+                            first[index].LocalPosition.x,
+                            0f,
+                            first[index].LocalPosition.z),
+                        Vector3.up);
+                Assert.That(supportCoverage, Is.GreaterThanOrEqualTo(0.16f));
+                Assert.That(supportCoverage, Is.LessThanOrEqualTo(0.8f));
+                Assert.That(
+                    Vector3.Angle(first[index].LocalRotation * Vector3.up, Vector3.up),
+                    Is.LessThan(0.01f));
 
                 for (var other = 0; other < index; other++)
                 {
@@ -340,6 +349,43 @@ namespace BooterBigArm.Tests
                     Assert.That(gap, Is.GreaterThanOrEqualTo(0.12f));
                 }
             }
+        }
+
+        [Test]
+        public void ScatteredRockSeatsBroadlyOnASlopedSurface()
+        {
+            var member = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
+                TopDown3DRockFormationArchetype.ScatteredRocks,
+                246813,
+                11,
+                16f,
+                0.55f,
+                0.5f)[0];
+            var surfacePoint = new Vector3(3f, 1.75f, -4f);
+            var surfaceNormal = new Vector3(0.24f, 0.94f, 0.23f).normalized;
+
+            var seated = TopDown3DRockWorkbenchFormationGenerator.SeatScatteredMember(
+                member,
+                surfacePoint,
+                surfaceNormal,
+                0.12f);
+            var repeat = TopDown3DRockWorkbenchFormationGenerator.SeatScatteredMember(
+                member,
+                surfacePoint,
+                surfaceNormal,
+                0.12f);
+
+            Assert.That(seated.LocalPosition, Is.EqualTo(repeat.LocalPosition));
+            Assert.That(seated.LocalRotation, Is.EqualTo(repeat.LocalRotation));
+            Assert.That(
+                Vector3.Angle(seated.LocalRotation * Vector3.up, surfaceNormal),
+                Is.LessThan(0.01f));
+            Assert.That(
+                TopDown3DRockWorkbenchFormationGenerator.CalculateGroundSupportCoverage(
+                    seated,
+                    surfacePoint,
+                    surfaceNormal),
+                Is.InRange(0.16f, 0.55f));
         }
 
         [Test]
@@ -374,6 +420,14 @@ namespace BooterBigArm.Tests
                 Assert.That(
                     root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true)
                         .All(member => member.GetComponent<MeshRenderer>().enabled),
+                    Is.True);
+                Assert.That(
+                    root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true)
+                        .All(member => member.VoxelSize <= 0.1601f),
+                    Is.True);
+                Assert.That(
+                    root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true)
+                        .All(member => member.FusionSmoothness <= 0.1101f),
                     Is.True);
             }
             finally
@@ -1004,10 +1058,22 @@ namespace BooterBigArm.Tests
             Assert.That(
                 plan[0].SourceShape,
                 Is.EqualTo(TopDown3DRockSourceShape.WeatheredBlock));
+            Assert.That(plan[1].SourceShape, Is.EqualTo(TopDown3DRockSourceShape.Wedge));
+            Assert.That(
+                plan.First(spec => spec.Role == TopDown3DRockWorkbenchMassRole.Detail).SourceShape,
+                Is.EqualTo(TopDown3DRockSourceShape.TaperedStone));
             Assert.That(
                 plan.Skip(1).Any(spec =>
                     spec.SourceShape != TopDown3DRockSourceShape.WeatheredBlock),
                 Is.True);
+            var wedgeUp = plan[1].LocalRotation * Vector3.up;
+            var wedgeHeading = Vector3.ProjectOnPlane(
+                plan[1].LocalRotation * Vector3.right,
+                wedgeUp).normalized;
+            var growthHeading = Vector3.ProjectOnPlane(
+                plan[1].LocalPosition - plan[0].LocalPosition,
+                wedgeUp).normalized;
+            Assert.That(Vector3.Dot(wedgeHeading, growthHeading), Is.GreaterThan(0.98f));
             var supportCount = 0;
             var detailCount = 0;
             var largestSupport = 0f;
@@ -1522,40 +1588,5 @@ namespace BooterBigArm.Tests
             return member.RockSize * Mathf.Max(member.LocalScale.x, member.LocalScale.z) * 0.43f;
         }
 
-        private static float CalculateFormationMemberSourceBottom(
-            TopDown3DRockFormationMemberPlan member)
-        {
-            var cubeCount = Mathf.Clamp(
-                Mathf.CeilToInt(member.RockSize * 0.9f) + 1,
-                2,
-                10);
-            var sourcePlan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
-                member.Seed,
-                cubeCount,
-                Vector3.one * member.RockSize,
-                member.Verticality,
-                member.Lopsidedness,
-                member.Compaction);
-            var memberMatrix = Matrix4x4.TRS(
-                member.LocalPosition,
-                member.LocalRotation,
-                member.LocalScale);
-            var bottom = float.PositiveInfinity;
-            foreach (var source in sourcePlan)
-            {
-                var matrix = memberMatrix * Matrix4x4.TRS(
-                    source.LocalPosition,
-                    source.LocalRotation,
-                    source.LocalScale);
-                var verticalExtent = 0.5f * (
-                    Mathf.Abs(matrix.MultiplyVector(Vector3.right).y)
-                    + Mathf.Abs(matrix.MultiplyVector(Vector3.up).y)
-                    + Mathf.Abs(matrix.MultiplyVector(Vector3.forward).y));
-                bottom = Mathf.Min(
-                    bottom,
-                    matrix.MultiplyPoint3x4(Vector3.zero).y - verticalExtent);
-            }
-            return bottom;
-        }
     }
 }
