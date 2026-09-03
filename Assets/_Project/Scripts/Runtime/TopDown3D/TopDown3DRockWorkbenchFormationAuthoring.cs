@@ -6,7 +6,8 @@ namespace BooterBigArm.TopDown3D
     public enum TopDown3DRockFormationArchetype
     {
         ConnectedOutcrop,
-        ScatteredRocks
+        ScatteredRocks,
+        PileOfRocks
     }
 
     public enum TopDown3DRockFormationJoinStyle
@@ -90,21 +91,30 @@ namespace BooterBigArm.TopDown3D
             TopDown3DRockWorkbenchAuthoring.CalculateAspectVerticality(
                 GeneratedWidth,
                 GeneratedHeight);
-        public int GeneratedRockCount => FormationArchetype
-            == TopDown3DRockFormationArchetype.ScatteredRocks
-                ? Mathf.Clamp(
-                    Mathf.RoundToInt(Mathf.Lerp(
-                        5f,
-                        20f,
-                        Mathf.InverseLerp(3.28f, 30f, GeneratedDimensionMagnitude))),
-                    5,
-                    20)
-                : Mathf.Clamp(
+        private float GeneratedCountScale => Mathf.InverseLerp(
+            3.28f,
+            30f,
+            GeneratedDimensionMagnitude);
+        public int GeneratedRockCount => FormationArchetype switch
+        {
+            TopDown3DRockFormationArchetype.ScatteredRocks => Mathf.Clamp(
+                Mathf.RoundToInt(Mathf.Lerp(5f, 20f, GeneratedCountScale)),
+                5,
+                20),
+            TopDown3DRockFormationArchetype.PileOfRocks => Mathf.Clamp(
+                Mathf.RoundToInt(Mathf.Lerp(
+                    5f,
+                    20f,
+                    Mathf.Sqrt(GeneratedCountScale))),
+                5,
+                20),
+            _ => Mathf.Clamp(
                     Mathf.RoundToInt(Mathf.Lerp(5f, 10f, GeneratedComplexity))
                     + Mathf.RoundToInt(
                         GeneratedComplexity * 4f),
                     5,
-                    14);
+                    14)
+        };
         public int FormationSeed => formationSeed;
         public TopDown3DRockFormationJoinStyle JoinStyle => joinStyle;
         public bool AutoRebuild => autoRebuild;

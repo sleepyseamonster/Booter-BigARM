@@ -139,6 +139,42 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void RockPileCountUsesFiveToTwentyRocks()
+        {
+            var root = new GameObject("Rock Pile Count Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("formationArchetype").enumValueIndex =
+                    (int)TopDown3DRockFormationArchetype.PileOfRocks;
+                serialized.FindProperty("generatedOverallSize").floatValue = 4f;
+                serialized.FindProperty("generatedHeight").floatValue = 1f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                Assert.That(formation.GeneratedRockCount, Is.EqualTo(5));
+
+                serialized.Update();
+                serialized.FindProperty("generatedOverallSize").floatValue = 16f;
+                serialized.FindProperty("generatedHeight").floatValue = 8f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                Assert.That(formation.GeneratedRockCount, Is.InRange(13, 15));
+
+                serialized.Update();
+                serialized.FindProperty("generatedOverallSize").floatValue = 30f;
+                serialized.FindProperty("generatedHeight").floatValue = 30f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                Assert.That(formation.GeneratedRockCount, Is.EqualTo(20));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
         public void FormationPlanIsRepeatableAndUsesDistinctMemberSeeds()
         {
             var first = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
@@ -354,6 +390,62 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void RockPilePlanBuildsAnAllSidedLayeredMound()
+        {
+            var first = TopDown3DRockWorkbenchFormationGenerator.CreateDimensionedPlan(
+                TopDown3DRockFormationArchetype.PileOfRocks,
+                130054,
+                14,
+                16f,
+                8f,
+                0.55f);
+            var repeat = TopDown3DRockWorkbenchFormationGenerator.CreateDimensionedPlan(
+                TopDown3DRockFormationArchetype.PileOfRocks,
+                130054,
+                14,
+                16f,
+                8f,
+                0.55f);
+
+            Assert.That(first.Count, Is.EqualTo(14));
+            Assert.That(first.Any(member => member.Role ==
+                TopDown3DRockFormationMemberRole.PileBase), Is.True);
+            Assert.That(first.Any(member => member.Role ==
+                TopDown3DRockFormationMemberRole.PileMiddle), Is.True);
+            Assert.That(first.Any(member => member.Role ==
+                TopDown3DRockFormationMemberRole.PileCap), Is.True);
+
+            var baseHeight = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.PileBase)
+                .Average(member => member.LocalPosition.y);
+            var middleHeight = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.PileMiddle)
+                .Average(member => member.LocalPosition.y);
+            var capHeight = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.PileCap)
+                .Average(member => member.LocalPosition.y);
+            Assert.That(middleHeight, Is.GreaterThan(baseHeight));
+            Assert.That(capHeight, Is.GreaterThan(middleHeight));
+            Assert.That(first.Any(member => member.LocalPosition.x < -0.1f), Is.True);
+            Assert.That(first.Any(member => member.LocalPosition.x > 0.1f), Is.True);
+            Assert.That(first.Any(member => member.LocalPosition.z < -0.1f), Is.True);
+            Assert.That(first.Any(member => member.LocalPosition.z > 0.1f), Is.True);
+            Assert.That(
+                TopDown3DRockWorkbenchFormationGenerator.CalculatePlanHeight(first),
+                Is.EqualTo(8f).Within(0.05f));
+
+            for (var index = 0; index < first.Count; index++)
+            {
+                Assert.That(repeat[index].LocalPosition, Is.EqualTo(first[index].LocalPosition));
+                Assert.That(repeat[index].LocalRotation, Is.EqualTo(first[index].LocalRotation));
+                Assert.That(repeat[index].LocalScale, Is.EqualTo(first[index].LocalScale));
+                Assert.That(repeat[index].RockSize, Is.EqualTo(first[index].RockSize));
+                Assert.That(repeat[index].Seed, Is.EqualTo(first[index].Seed));
+                Assert.That(repeat[index].Role, Is.EqualTo(first[index].Role));
+            }
+        }
+
+        [Test]
         public void ScatteredRockSeatsBroadlyOnASlopedSurface()
         {
             var member = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
@@ -431,6 +523,48 @@ namespace BooterBigArm.Tests
                     root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true)
                         .All(member => member.FusionSmoothness <= 0.1101f),
                     Is.True);
+            }
+            finally
+            {
+                Selection.activeObject = previousSelection;
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void RockPileGenerationBuildsOneEditableGeologicalShell()
+        {
+            var previousSelection = Selection.activeObject;
+            var root = new GameObject("Rock Pile Integration Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                formation.Configure(
+                    AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath),
+                    130054);
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("formationArchetype").enumValueIndex =
+                    (int)TopDown3DRockFormationArchetype.PileOfRocks;
+                serialized.FindProperty("generatedOverallSize").floatValue = 16f;
+                serialized.FindProperty("generatedHeight").floatValue = 8f;
+                serialized.FindProperty("fusedVoxelSize").floatValue = 0.28f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                TopDown3DRockWorkbenchFormationGenerator.GenerateIntoFormation(
+                    formation,
+                    130054);
+
+                var members = root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+                Assert.That(members.Length, Is.EqualTo(formation.GeneratedRockCount));
+                Assert.That(members.Any(member => member.name.StartsWith("PileBase Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("PileMiddle Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("PileCap Rock")), Is.True);
+                Assert.That(
+                    TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out var error),
+                    Is.True,
+                    error);
+                Assert.That(formation.PreviewStatus, Does.StartWith("ONE GEOLOGICAL SHELL"));
+                Assert.That(formation.GeneratedMesh, Is.Not.Null);
             }
             finally
             {

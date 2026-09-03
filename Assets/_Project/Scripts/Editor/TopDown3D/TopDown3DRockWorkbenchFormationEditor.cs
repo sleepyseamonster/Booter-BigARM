@@ -34,10 +34,7 @@ namespace BooterBigArm.Editor
             var generatorSettingsChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
 
-            EditorGUILayout.HelpBox(
-                formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks
-                    ? "Generates a loose field of separate, partially buried boulders with uneven spacing and a strong size hierarchy. Every rock remains editable."
-                    : "Generates one connected outcrop with a dominant anchor, structural rocks, and a readable crevice. Every member rock remains editable.",
+            EditorGUILayout.HelpBox(GetArchetypeDescription(formation.FormationArchetype),
                 MessageType.Info);
             EditorGUILayout.LabelField(
                 $"Will generate {formation.GeneratedRockCount} editable rocks; detail scales automatically",
@@ -125,6 +122,20 @@ namespace BooterBigArm.Editor
 
             if (GUILayout.Button("Rebuild Formation Mesh"))
                 TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, true);
+        }
+
+        private static string GetArchetypeDescription(
+            TopDown3DRockFormationArchetype archetype)
+        {
+            return archetype switch
+            {
+                TopDown3DRockFormationArchetype.ScatteredRocks =>
+                    "Generates a loose field of separate, partially buried boulders with uneven spacing and a strong size hierarchy. Every rock remains editable.",
+                TopDown3DRockFormationArchetype.PileOfRocks =>
+                    "Generates a compact, all-sided mound with broad base stones, an overlapping middle shelf, cap rocks, and retained crevices. Every rock remains editable.",
+                _ =>
+                    "Generates one connected outcrop with a dominant anchor, structural rocks, and a readable crevice. Every member rock remains editable."
+            };
         }
 
         [MenuItem(CreateMenuPath, false, 32)]

@@ -15,7 +15,10 @@ namespace BooterBigArm.Editor
         Talus,
         Boulder,
         Slab,
-        Fragment
+        Fragment,
+        PileBase,
+        PileMiddle,
+        PileCap
     }
 
     internal readonly struct TopDown3DRockFormationMemberPlan
@@ -127,14 +130,19 @@ namespace BooterBigArm.Editor
             float complexity,
             float verticality)
         {
-            return archetype == TopDown3DRockFormationArchetype.ScatteredRocks
-                ? CreateScatteredPlan(seed, rockCount, overallSize, complexity, verticality)
-                : CreateConnectedOutcropPlan(
+            return archetype switch
+            {
+                TopDown3DRockFormationArchetype.ScatteredRocks =>
+                    CreateScatteredPlan(seed, rockCount, overallSize, complexity, verticality),
+                TopDown3DRockFormationArchetype.PileOfRocks =>
+                    CreateRockPilePlan(seed, rockCount, overallSize, complexity, verticality),
+                _ => CreateConnectedOutcropPlan(
                     seed,
                     rockCount,
                     overallSize,
                     complexity,
-                    verticality);
+                    verticality)
+            };
         }
 
         internal static IReadOnlyList<TopDown3DRockFormationMemberPlan> CreateDimensionedPlan(
@@ -483,6 +491,176 @@ namespace BooterBigArm.Editor
                 plan.Add(GroundScatteredMember(
                     member,
                     NextRange(random, 0.02f, 0.06f)));
+            }
+
+            return plan;
+        }
+
+        private static IReadOnlyList<TopDown3DRockFormationMemberPlan> CreateRockPilePlan(
+            int seed,
+            int rockCount,
+            float overallSize,
+            float complexity,
+            float verticality)
+        {
+            rockCount = Mathf.Clamp(rockCount, 5, 20);
+            overallSize = Mathf.Clamp(overallSize, 4f, 30f);
+            complexity = Mathf.Clamp01(complexity);
+            verticality = Mathf.Clamp01(verticality);
+
+            var random = new System.Random(seed);
+            var plan = new List<TopDown3DRockFormationMemberPlan>(rockCount);
+            var baseMembers = new List<TopDown3DRockFormationMemberPlan>();
+            var middleMembers = new List<TopDown3DRockFormationMemberPlan>();
+            var baseRockSize = Mathf.Clamp(
+                overallSize * Mathf.Lerp(0.22f, 0.16f, complexity),
+                0.8f,
+                5.8f);
+            var capCount = rockCount >= 15 ? 2 : 1;
+            var baseCount = Mathf.Clamp(
+                Mathf.CeilToInt(rockCount * 0.46f),
+                3,
+                rockCount - capCount - 1);
+            var middleCount = rockCount - baseCount - capCount;
+            var heading = NextRange(random, 0f, Mathf.PI * 2f);
+
+            var coreSize = Mathf.Clamp(
+                baseRockSize * NextRange(random, 1.04f, 1.18f),
+                0.9f,
+                6.4f);
+            var core = new TopDown3DRockFormationMemberPlan(
+                Vector3.zero,
+                Quaternion.Euler(0f, heading * Mathf.Rad2Deg, 0f),
+                new Vector3(
+                    NextRange(random, 1.35f, 1.62f),
+                    NextRange(random, 0.48f, 0.66f),
+                    NextRange(random, 1.22f, 1.5f)),
+                coreSize,
+                Mathf.Clamp01(0.2f + verticality * 0.22f),
+                Mathf.Clamp01(NextRange(random, 0.58f, 0.78f)),
+                Mathf.Clamp01(NextRange(random, 0.76f, 0.9f)),
+                DeriveMemberSeed(seed, 0),
+                TopDown3DRockFormationMemberRole.PileBase);
+            core = GroundScatteredMember(core, NextRange(random, 0.035f, 0.065f));
+            plan.Add(core);
+            baseMembers.Add(core);
+
+            const float goldenAngle = 2.39996323f;
+            for (var index = 1; index < baseCount; index++)
+            {
+                var angle = heading
+                    + goldenAngle * index
+                    + NextRange(random, -0.16f, 0.16f);
+                var direction = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+                var scale = new Vector3(
+                    NextRange(random, 1.16f, 1.62f),
+                    NextRange(random, 0.32f, 0.56f),
+                    NextRange(random, 0.92f, 1.38f));
+                var size = Mathf.Clamp(
+                    baseRockSize * NextRange(random, 0.62f, 0.9f),
+                    0.55f,
+                    5.2f);
+                var member = new TopDown3DRockFormationMemberPlan(
+                    direction * baseRockSize * NextRange(random, 0.62f, 0.78f),
+                    Quaternion.Euler(
+                        0f,
+                        angle * Mathf.Rad2Deg + NextRange(random, -28f, 28f),
+                        0f),
+                    scale,
+                    size,
+                    Mathf.Clamp01(0.12f + verticality * 0.18f),
+                    Mathf.Clamp01(NextRange(random, 0.58f, 0.86f)),
+                    Mathf.Clamp01(NextRange(random, 0.78f, 0.92f)),
+                    DeriveMemberSeed(seed, index),
+                    TopDown3DRockFormationMemberRole.PileBase);
+                member = GroundScatteredMember(
+                    member,
+                    NextRange(random, 0.035f, 0.075f));
+                plan.Add(member);
+                baseMembers.Add(member);
+            }
+
+            for (var middle = 0; middle < middleCount; middle++)
+            {
+                var memberIndex = baseCount + middle;
+                var angle = heading
+                    + goldenAngle * (middle + 0.5f)
+                    + NextRange(random, -0.2f, 0.2f);
+                var direction = new Vector3(
+                    Mathf.Cos(angle) * NextRange(random, 0.24f, 0.42f),
+                    1f,
+                    Mathf.Sin(angle) * NextRange(random, 0.24f, 0.42f)).normalized;
+                var scale = new Vector3(
+                    NextRange(random, 0.92f, 1.32f),
+                    NextRange(random, 0.58f, 0.94f),
+                    NextRange(random, 0.84f, 1.24f));
+                var size = Mathf.Clamp(
+                    baseRockSize * NextRange(random, 0.62f, 0.92f),
+                    0.55f,
+                    5.4f);
+                var member = new TopDown3DRockFormationMemberPlan(
+                    Vector3.zero,
+                    Quaternion.Euler(
+                        0f,
+                        angle * Mathf.Rad2Deg + NextRange(random, -35f, 35f),
+                        0f),
+                    scale,
+                    size,
+                    Mathf.Clamp01(0.32f + verticality * 0.38f),
+                    Mathf.Clamp01(NextRange(random, 0.56f, 0.84f)),
+                    Mathf.Clamp01(NextRange(random, 0.76f, 0.9f)),
+                    DeriveMemberSeed(seed, memberIndex),
+                    TopDown3DRockFormationMemberRole.PileMiddle);
+                var host = baseMembers[middle % baseMembers.Count];
+                member = AttachToContacts(
+                    CreateHighestContact(host),
+                    CreateLowestContact(member),
+                    member,
+                    direction,
+                    NextRange(random, 0.52f, 0.68f));
+                plan.Add(member);
+                middleMembers.Add(member);
+            }
+
+            for (var cap = 0; cap < capCount; cap++)
+            {
+                var memberIndex = baseCount + middleCount + cap;
+                var angle = heading + Mathf.PI * 0.75f * cap + NextRange(random, -0.4f, 0.4f);
+                var scale = new Vector3(
+                    NextRange(random, 1.02f, 1.42f),
+                    NextRange(random, 0.4f, 0.68f),
+                    NextRange(random, 0.94f, 1.34f));
+                var size = Mathf.Clamp(
+                    baseRockSize * NextRange(random, 0.66f, 0.94f),
+                    0.6f,
+                    5.4f);
+                var member = new TopDown3DRockFormationMemberPlan(
+                    Vector3.zero,
+                    Quaternion.Euler(
+                        0f,
+                        angle * Mathf.Rad2Deg + NextRange(random, -42f, 42f),
+                        0f),
+                    scale,
+                    size,
+                    Mathf.Clamp01(0.24f + verticality * 0.3f),
+                    Mathf.Clamp01(NextRange(random, 0.5f, 0.78f)),
+                    Mathf.Clamp01(NextRange(random, 0.78f, 0.92f)),
+                    DeriveMemberSeed(seed, memberIndex),
+                    TopDown3DRockFormationMemberRole.PileCap);
+                var host = middleMembers.Count > 0
+                    ? middleMembers[(middleMembers.Count - 1 - cap + middleMembers.Count)
+                        % middleMembers.Count]
+                    : core;
+                var direction = new Vector3(
+                    Mathf.Cos(angle) * 0.18f,
+                    1f,
+                    Mathf.Sin(angle) * 0.18f).normalized;
+                plan.Add(AttachToContacts(
+                    CreateHighestContact(host),
+                    CreateLowestContact(member),
+                    member,
+                    direction,
+                    NextRange(random, 0.48f, 0.62f)));
             }
 
             return plan;
