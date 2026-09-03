@@ -3,6 +3,16 @@ using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
 {
+    public enum TopDown3DRockSilhouetteProfile
+    {
+        Auto,
+        Boulder,
+        Slab,
+        AngularChunk,
+        SplitLobe,
+        Shard
+    }
+
     /// <summary>
     /// Editor-authoring root for experimenting with a rock as a union of editable stone volumes.
     /// This preview is intentionally independent from streamed procedural-world generation.
@@ -60,6 +70,9 @@ namespace BooterBigArm.TopDown3D
         private float generatedAsymmetry = 0.65f;
         [SerializeField, Range(0f, 1f), InspectorName("Compaction"), Tooltip("Zero preserves distinct overlapping lobes. One pulls the masses tightly together into a dense fused body.")]
         private float generatedOverlap = 0.62f;
+        [SerializeField, HideInInspector]
+        private TopDown3DRockSilhouetteProfile generatedSilhouetteProfile =
+            TopDown3DRockSilhouetteProfile.Auto;
 
         [NonSerialized] private Mesh generatedMesh;
         [NonSerialized] private string previewStatus = "Waiting for a preview build.";
@@ -94,6 +107,8 @@ namespace BooterBigArm.TopDown3D
             GeneratedHeight);
         public float GeneratedAsymmetry => Mathf.Clamp01(generatedAsymmetry);
         public float GeneratedOverlap => Mathf.Clamp01(generatedOverlap);
+        public TopDown3DRockSilhouetteProfile GeneratedSilhouetteProfile =>
+            generatedSilhouetteProfile;
         public Mesh GeneratedMesh => generatedMesh;
         public string PreviewStatus => previewStatus;
 

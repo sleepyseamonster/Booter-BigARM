@@ -390,6 +390,37 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void ScatteredFormationRolesSelectAReadableMixOfSilhouetteFamilies()
+        {
+            var plan = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
+                TopDown3DRockFormationArchetype.ScatteredRocks,
+                151142,
+                15,
+                25.3f,
+                0.7f,
+                0.25f);
+            var profiles = plan
+                .Select(TopDown3DRockWorkbenchFormationGenerator.ChooseMemberSilhouetteProfile)
+                .ToArray();
+
+            Assert.That(profiles.Distinct().Count(), Is.GreaterThanOrEqualTo(3));
+            Assert.That(plan
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.Slab)
+                .All(member => TopDown3DRockWorkbenchFormationGenerator
+                    .ChooseMemberSilhouetteProfile(member)
+                    == TopDown3DRockSilhouetteProfile.Slab), Is.True);
+            Assert.That(plan
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.Fragment)
+                .All(member =>
+                {
+                    var profile = TopDown3DRockWorkbenchFormationGenerator
+                        .ChooseMemberSilhouetteProfile(member);
+                    return profile == TopDown3DRockSilhouetteProfile.AngularChunk
+                        || profile == TopDown3DRockSilhouetteProfile.Shard;
+                }), Is.True);
+        }
+
+        [Test]
         public void RockPilePlanBuildsAnAllSidedLayeredMound()
         {
             var first = TopDown3DRockWorkbenchFormationGenerator.CreateDimensionedPlan(
@@ -1314,7 +1345,8 @@ namespace BooterBigArm.Tests
                 GeneratedRockSize,
                 0.55f,
                 0.8f,
-                0.62f);
+                0.62f,
+                TopDown3DRockSilhouetteProfile.Boulder);
 
             Assert.That(plan[0].Role, Is.EqualTo(TopDown3DRockWorkbenchMassRole.Core));
             Assert.That(
@@ -1359,6 +1391,145 @@ namespace BooterBigArm.Tests
             Assert.That(detailCount, Is.GreaterThan(0));
             Assert.That(Volume(plan[0].LocalScale), Is.GreaterThan(largestSupport));
             Assert.That(largestSupport, Is.GreaterThan(largestDetail));
+        }
+
+        [Test]
+        public void AutomaticSilhouetteSelectionRepeatsAndCoversEveryFamily()
+        {
+            var profiles = new HashSet<TopDown3DRockSilhouetteProfile>();
+            for (var seed = -64; seed <= 64; seed++)
+            {
+                var first = TopDown3DRockWorkbenchBaseRockGenerator.ResolveSilhouetteProfile(
+                    seed,
+                    TopDown3DRockSilhouetteProfile.Auto);
+                var repeat = TopDown3DRockWorkbenchBaseRockGenerator.ResolveSilhouetteProfile(
+                    seed,
+                    TopDown3DRockSilhouetteProfile.Auto);
+                Assert.That(repeat, Is.EqualTo(first));
+                Assert.That(first, Is.Not.EqualTo(TopDown3DRockSilhouetteProfile.Auto));
+                profiles.Add(first);
+            }
+
+            CollectionAssert.AreEquivalent(
+                new[]
+                {
+                    TopDown3DRockSilhouetteProfile.Boulder,
+                    TopDown3DRockSilhouetteProfile.Slab,
+                    TopDown3DRockSilhouetteProfile.AngularChunk,
+                    TopDown3DRockSilhouetteProfile.SplitLobe,
+                    TopDown3DRockSilhouetteProfile.Shard
+                },
+                profiles);
+        }
+
+        [Test]
+        public void SilhouetteFamiliesChangeTheDominantMassStructure()
+        {
+            var plans = new Dictionary<TopDown3DRockSilhouetteProfile,
+                IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec>>();
+            foreach (var profile in new[]
+                     {
+                         TopDown3DRockSilhouetteProfile.Boulder,
+                         TopDown3DRockSilhouetteProfile.Slab,
+                         TopDown3DRockSilhouetteProfile.AngularChunk,
+                         TopDown3DRockSilhouetteProfile.SplitLobe,
+                         TopDown3DRockSilhouetteProfile.Shard
+                     })
+            {
+                plans.Add(profile, TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                    151142,
+                    8,
+                    new Vector3(6f, 4f, 6f),
+                    0.45f,
+                    0.78f,
+                    0.58f,
+                    profile));
+            }
+
+            Assert.That(plans[TopDown3DRockSilhouetteProfile.Boulder][0].SourceShape,
+                Is.EqualTo(TopDown3DRockSourceShape.WeatheredBlock));
+            Assert.That(plans[TopDown3DRockSilhouetteProfile.Slab][0].SourceShape,
+                Is.EqualTo(TopDown3DRockSourceShape.Wedge));
+            Assert.That(plans[TopDown3DRockSilhouetteProfile.AngularChunk][0].SourceShape,
+                Is.EqualTo(TopDown3DRockSourceShape.TaperedStone));
+            Assert.That(plans[TopDown3DRockSilhouetteProfile.SplitLobe][1].SourceShape,
+                Is.EqualTo(TopDown3DRockSourceShape.WeatheredBlock));
+            Assert.That(plans[TopDown3DRockSilhouetteProfile.Shard][0].SourceShape,
+                Is.EqualTo(TopDown3DRockSourceShape.TaperedStone));
+            Assert.That(
+                Volume(plans[TopDown3DRockSilhouetteProfile.SplitLobe][1].LocalScale),
+                Is.GreaterThan(Volume(
+                    plans[TopDown3DRockSilhouetteProfile.SplitLobe][0].LocalScale) * 0.35f));
+            Assert.That(plans[TopDown3DRockSilhouetteProfile.Shard]
+                .Where(spec => spec.Role == TopDown3DRockWorkbenchMassRole.Support)
+                .All(spec => spec.SourceShape == TopDown3DRockSourceShape.TaperedStone),
+                Is.True);
+        }
+
+        [Test]
+        public void EverySilhouetteFamilyBuildsOneConnectedSurface()
+        {
+            var root = new GameObject("Silhouette Family Surface Test");
+            try
+            {
+                foreach (var profile in new[]
+                         {
+                             TopDown3DRockSilhouetteProfile.Boulder,
+                             TopDown3DRockSilhouetteProfile.Slab,
+                             TopDown3DRockSilhouetteProfile.AngularChunk,
+                             TopDown3DRockSilhouetteProfile.SplitLobe,
+                             TopDown3DRockSilhouetteProfile.Shard
+                         })
+                {
+                    while (root.transform.childCount > 0)
+                    {
+                        Object.DestroyImmediate(root.transform.GetChild(0).gameObject);
+                    }
+
+                    var plan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                        151142,
+                        8,
+                        new Vector3(6f, 4f, 6f),
+                        0.45f,
+                        0.78f,
+                        0.58f,
+                        profile);
+                    var boxes = new List<TopDown3DRockWorkbenchBox>(plan.Count);
+                    for (var index = 0; index < plan.Count; index++)
+                    {
+                        var spec = plan[index];
+                        var box = CreateBoxObject(
+                            root.transform,
+                            spec.LocalPosition,
+                            spec.LocalScale);
+                        box.transform.localRotation = spec.LocalRotation;
+                        boxes.Add(new TopDown3DRockWorkbenchBox(
+                            root.transform,
+                            box.transform,
+                            spec.SourceShape,
+                            TopDown3DRockWorkbenchBaseRockGenerator.DeriveVolumeShapeSeed(
+                                151142,
+                                index)));
+                    }
+
+                    Assert.That(
+                        TopDown3DRockWorkbenchMesher.TryBuild(
+                            boxes,
+                            0.2f,
+                            0.16f,
+                            out var result,
+                            out var error),
+                        Is.True,
+                        $"{profile}: {error}");
+                    Assert.That(result.Topology.IsValid, Is.True,
+                        $"{profile}: {result.Topology.Error}");
+                    Assert.That(result.ConnectedComponents, Is.EqualTo(1), profile.ToString());
+                }
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
         }
 
         [Test]

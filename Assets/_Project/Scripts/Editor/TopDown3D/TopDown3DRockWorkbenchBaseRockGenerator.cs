@@ -49,7 +49,9 @@ namespace BooterBigArm.Editor
             Vector3 overallSize,
             float verticality,
             float asymmetry,
-            float overlap)
+            float overlap,
+            TopDown3DRockSilhouetteProfile silhouetteProfile =
+                TopDown3DRockSilhouetteProfile.Auto)
         {
             cubeCount = Mathf.Clamp(cubeCount, 2, 10);
             overallSize = new Vector3(
@@ -59,6 +61,16 @@ namespace BooterBigArm.Editor
             verticality = Mathf.Clamp01(verticality);
             asymmetry = Mathf.Clamp01(asymmetry);
             overlap = Mathf.Clamp01(overlap);
+            silhouetteProfile = ResolveSilhouetteProfile(seed, silhouetteProfile);
+            if (silhouetteProfile == TopDown3DRockSilhouetteProfile.Shard
+                && overallSize.y / Mathf.Max(overallSize.x, overallSize.z) >= 5f)
+            {
+                // An already extreme physical aspect supplies the shard silhouette by itself.
+                // Keeping the weathered profile here prevents tapered tips from becoming
+                // thinner than the workbench voxel grid.
+                silhouetteProfile = TopDown3DRockSilhouetteProfile.Boulder;
+            }
+            var profileVerticality = GetProfileVerticality(verticality, silhouetteProfile);
 
             var random = new System.Random(seed);
             var raw = new List<TopDown3DRockWorkbenchVolumeSpec>(cubeCount);
@@ -69,15 +81,17 @@ namespace BooterBigArm.Editor
                 Mathf.Sin(preferredAngle));
             var sharedRotation = CreateSharedRotation(random, asymmetry);
 
-            var firstScale = new Vector3(
-                VariedFraction(random, 1.6f, 0.12f, asymmetry),
-                VariedFraction(random, Mathf.Lerp(0.72f, 1.65f, verticality), 0.1f, asymmetry),
-                VariedFraction(random, 1.45f, 0.12f, asymmetry));
+            var firstScale = CreateProfileCoreScale(
+                random,
+                verticality,
+                asymmetry,
+                silhouetteProfile);
             raw.Add(new TopDown3DRockWorkbenchVolumeSpec(
                 Vector3.zero,
                 CreateRoleRotation(random, sharedRotation, asymmetry, TopDown3DRockWorkbenchMassRole.Core),
                 firstScale,
-                TopDown3DRockWorkbenchMassRole.Core));
+                TopDown3DRockWorkbenchMassRole.Core,
+                GetProfileCoreShape(silhouetteProfile)));
 
             var supportCount = cubeCount <= 2
                 ? 1
@@ -98,7 +112,7 @@ namespace BooterBigArm.Editor
                     random,
                     index,
                     supportCount,
-                    verticality,
+                    profileVerticality,
                     asymmetry,
                     role);
                 var parent = raw[parentIndex];
@@ -108,22 +122,38 @@ namespace BooterBigArm.Editor
                     role,
                     roleIndex,
                     roleCount,
-                    verticality,
+                    profileVerticality,
                     asymmetry);
+                childScale = ApplyProfileScale(
+                    random,
+                    childScale,
+                    firstScale,
+                    index,
+                    role,
+                    silhouetteProfile);
                 var childRotation = CreateRoleRotation(random, sharedRotation, asymmetry, role);
                 var direction = CreateGrowthDirection(
                     random,
                     preferredDirection,
                     index,
-                    verticality,
+                    profileVerticality,
                     asymmetry,
                     role);
-                var sourceShape = ChooseSourceShape(seed, index, role, asymmetry);
-                if (cubeCount >= 3 && index == 1)
+                var sourceShape = ChooseSourceShape(
+                    seed,
+                    index,
+                    role,
+                    asymmetry,
+                    silhouetteProfile);
+                if (silhouetteProfile == TopDown3DRockSilhouetteProfile.Boulder
+                    && cubeCount >= 3
+                    && index == 1)
                 {
                     sourceShape = TopDown3DRockSourceShape.Wedge;
                 }
-                else if (cubeCount >= 5 && index == supportCount + 1)
+                else if (silhouetteProfile == TopDown3DRockSilhouetteProfile.Boulder
+                         && cubeCount >= 5
+                         && index == supportCount + 1)
                 {
                     sourceShape = TopDown3DRockSourceShape.TaperedStone;
                 }
@@ -137,7 +167,22 @@ namespace BooterBigArm.Editor
                 var overlapDepth = Mathf.Lerp(
                     0.18f,
                     0.8f,
-                    Mathf.SmoothStep(0f, 1f, overlap));
+                    Mathf.SmoothStep(
+                        0f,
+                        1f,
+                        GetProfileOverlap(overlap, silhouetteProfile)));
+                if (silhouetteProfile != TopDown3DRockSilhouetteProfile.Boulder)
+                {
+                    // Wedges and tapered stones remove part of their nominal box. Keep
+                    // their centers deeply nested so low Compaction still yields one fused
+                    // rock instead of visually detached plates. Their differing proportions
+                    // and cut planes still alter the outer silhouette.
+                    var minimumShapedOverlap = silhouetteProfile
+                        == TopDown3DRockSilhouetteProfile.Slab
+                        ? 0.76f
+                        : 0.72f;
+                    overlapDepth = Mathf.Max(overlapDepth, minimumShapedOverlap);
+                }
                 overlapDepth = Mathf.Clamp01(
                     overlapDepth
                     + GetShapeOverlapAllowance(sourceShape)
@@ -202,7 +247,8 @@ namespace BooterBigArm.Editor
                     authoring.GeneratedOverallSize,
                     authoring.GeneratedVerticality,
                     authoring.GeneratedAsymmetry,
-                    authoring.GeneratedOverlap);
+                    authoring.GeneratedOverlap,
+                    authoring.GeneratedSilhouetteProfile);
                 for (var index = 0; index < plan.Count; index++)
                 {
                     var spec = plan[index];
@@ -333,10 +379,32 @@ namespace BooterBigArm.Editor
             int seed,
             int index,
             TopDown3DRockWorkbenchMassRole role,
-            float asymmetry)
+            float asymmetry,
+            TopDown3DRockSilhouetteProfile silhouetteProfile)
         {
             if (role == TopDown3DRockWorkbenchMassRole.Core)
-                return TopDown3DRockSourceShape.WeatheredBlock;
+                return GetProfileCoreShape(silhouetteProfile);
+
+            switch (silhouetteProfile)
+            {
+                case TopDown3DRockSilhouetteProfile.Slab:
+                    return index % 3 == 2
+                        ? TopDown3DRockSourceShape.WeatheredBlock
+                        : TopDown3DRockSourceShape.Wedge;
+                case TopDown3DRockSilhouetteProfile.AngularChunk:
+                    return index % 2 == 0
+                        ? TopDown3DRockSourceShape.Wedge
+                        : TopDown3DRockSourceShape.TaperedStone;
+                case TopDown3DRockSilhouetteProfile.SplitLobe:
+                    if (index == 1) return TopDown3DRockSourceShape.WeatheredBlock;
+                    return index % 2 == 0
+                        ? TopDown3DRockSourceShape.TaperedStone
+                        : TopDown3DRockSourceShape.Wedge;
+                case TopDown3DRockSilhouetteProfile.Shard:
+                    return role == TopDown3DRockWorkbenchMassRole.Support
+                        ? TopDown3DRockSourceShape.TaperedStone
+                        : TopDown3DRockSourceShape.Wedge;
+            }
 
             var shapeSeed = DeriveVolumeShapeSeed(seed ^ unchecked((int)0x5F356495), index);
             var roll = HashToUnitFloat(shapeSeed);
@@ -350,6 +418,148 @@ namespace BooterBigArm.Editor
             if (roll < wedgeChance + taperedChance)
                 return TopDown3DRockSourceShape.TaperedStone;
             return TopDown3DRockSourceShape.WeatheredBlock;
+        }
+
+        internal static TopDown3DRockSilhouetteProfile ResolveSilhouetteProfile(
+            int seed,
+            TopDown3DRockSilhouetteProfile requested)
+        {
+            if (requested != TopDown3DRockSilhouetteProfile.Auto) return requested;
+
+            var profileSeed = DeriveVolumeShapeSeed(
+                seed ^ unchecked((int)0x2C1B3C6D),
+                0);
+            return (TopDown3DRockSilhouetteProfile)(1
+                + unchecked((uint)profileSeed) % 5u);
+        }
+
+        private static float GetProfileVerticality(
+            float verticality,
+            TopDown3DRockSilhouetteProfile silhouetteProfile)
+        {
+            switch (silhouetteProfile)
+            {
+                case TopDown3DRockSilhouetteProfile.Slab:
+                    return verticality * 0.28f;
+                case TopDown3DRockSilhouetteProfile.AngularChunk:
+                    return Mathf.Lerp(verticality, 0.58f, 0.25f);
+                case TopDown3DRockSilhouetteProfile.SplitLobe:
+                    return Mathf.Lerp(verticality, 0.3f, 0.5f);
+                case TopDown3DRockSilhouetteProfile.Shard:
+                    return Mathf.Lerp(0.35f, 1f, verticality);
+                default:
+                    return verticality;
+            }
+        }
+
+        private static Vector3 CreateProfileCoreScale(
+            System.Random random,
+            float verticality,
+            float asymmetry,
+            TopDown3DRockSilhouetteProfile silhouetteProfile)
+        {
+            Vector3 center;
+            switch (silhouetteProfile)
+            {
+                case TopDown3DRockSilhouetteProfile.Slab:
+                    center = new Vector3(1.85f, Mathf.Lerp(0.48f, 0.78f, verticality), 1.16f);
+                    break;
+                case TopDown3DRockSilhouetteProfile.AngularChunk:
+                    center = new Vector3(1.18f, Mathf.Lerp(0.82f, 1.42f, verticality), 1.02f);
+                    break;
+                case TopDown3DRockSilhouetteProfile.SplitLobe:
+                    center = new Vector3(1.12f, Mathf.Lerp(0.72f, 1.22f, verticality), 1.04f);
+                    break;
+                case TopDown3DRockSilhouetteProfile.Shard:
+                    center = new Vector3(0.86f, Mathf.Lerp(0.72f, 1.95f, verticality), 0.76f);
+                    break;
+                default:
+                    center = new Vector3(1.42f, Mathf.Lerp(0.72f, 1.58f, verticality), 1.28f);
+                    break;
+            }
+
+            return new Vector3(
+                VariedFraction(random, center.x, center.x * 0.1f, asymmetry),
+                VariedFraction(random, center.y, center.y * 0.08f, asymmetry),
+                VariedFraction(random, center.z, center.z * 0.1f, asymmetry));
+        }
+
+        private static TopDown3DRockSourceShape GetProfileCoreShape(
+            TopDown3DRockSilhouetteProfile silhouetteProfile)
+        {
+            switch (silhouetteProfile)
+            {
+                case TopDown3DRockSilhouetteProfile.Slab:
+                    return TopDown3DRockSourceShape.Wedge;
+                case TopDown3DRockSilhouetteProfile.AngularChunk:
+                case TopDown3DRockSilhouetteProfile.Shard:
+                    return TopDown3DRockSourceShape.TaperedStone;
+                default:
+                    return TopDown3DRockSourceShape.WeatheredBlock;
+            }
+        }
+
+        private static Vector3 ApplyProfileScale(
+            System.Random random,
+            Vector3 childScale,
+            Vector3 coreScale,
+            int index,
+            TopDown3DRockWorkbenchMassRole role,
+            TopDown3DRockSilhouetteProfile silhouetteProfile)
+        {
+            var support = role == TopDown3DRockWorkbenchMassRole.Support;
+            switch (silhouetteProfile)
+            {
+                case TopDown3DRockSilhouetteProfile.Slab:
+                    return Vector3.Scale(childScale, new Vector3(
+                        support ? NextRange(random, 1.05f, 1.35f) : 0.9f,
+                        support ? 0.62f : 0.48f,
+                        support ? NextRange(random, 0.82f, 1.18f) : 0.72f));
+                case TopDown3DRockSilhouetteProfile.AngularChunk:
+                    return Vector3.Scale(childScale, new Vector3(
+                        support ? 1.2f : 0.88f,
+                        support ? 1.08f : 0.9f,
+                        support ? 1.08f : 0.78f));
+                case TopDown3DRockSilhouetteProfile.SplitLobe:
+                    if (index == 1)
+                    {
+                        return Vector3.Scale(coreScale, new Vector3(
+                            NextRange(random, 0.82f, 1.02f),
+                            NextRange(random, 0.72f, 0.94f),
+                            NextRange(random, 0.8f, 1f)));
+                    }
+                    return Vector3.Scale(childScale, support
+                        ? new Vector3(1.15f, 0.92f, 1.08f)
+                        : new Vector3(0.9f, 0.82f, 0.84f));
+                case TopDown3DRockSilhouetteProfile.Shard:
+                    return Vector3.Scale(childScale, new Vector3(
+                        support ? 0.9f : 0.78f,
+                        support ? 1.28f : 1.04f,
+                        support ? 0.86f : 0.74f));
+                default:
+                    return Vector3.Scale(childScale, support
+                        ? new Vector3(1.08f, 1f, 1.04f)
+                        : Vector3.one);
+            }
+        }
+
+        private static float GetProfileOverlap(
+            float overlap,
+            TopDown3DRockSilhouetteProfile silhouetteProfile)
+        {
+            switch (silhouetteProfile)
+            {
+                case TopDown3DRockSilhouetteProfile.Slab:
+                    return Mathf.Lerp(overlap, 0.82f, 0.75f);
+                case TopDown3DRockSilhouetteProfile.AngularChunk:
+                    return Mathf.Lerp(overlap, 0.58f, 0.35f);
+                case TopDown3DRockSilhouetteProfile.SplitLobe:
+                    return Mathf.Lerp(overlap, 0.52f, 0.35f);
+                case TopDown3DRockSilhouetteProfile.Shard:
+                    return Mathf.Lerp(overlap, 0.68f, 0.55f);
+                default:
+                    return overlap;
+            }
         }
 
         private static float GetShapeOverlapAllowance(TopDown3DRockSourceShape sourceShape)

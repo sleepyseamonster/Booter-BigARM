@@ -925,6 +925,8 @@ namespace BooterBigArm.Editor
                         spec.RockSize * Mathf.Max(0.01f, spec.LocalScale.y);
                     serializedMember.FindProperty("generatedAsymmetry").floatValue = spec.Lopsidedness;
                     serializedMember.FindProperty("generatedOverlap").floatValue = spec.Compaction;
+                    serializedMember.FindProperty("generatedSilhouetteProfile").enumValueIndex =
+                        (int)ChooseMemberSilhouetteProfile(spec);
                     serializedMember.FindProperty("showSourceVolumes").boolValue = false;
                     serializedMember.ApplyModifiedPropertiesWithoutUndo();
                     TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(member, spec.Seed);
@@ -1236,7 +1238,51 @@ namespace BooterBigArm.Editor
                 sourceSize,
                 member.Verticality,
                 member.Lopsidedness,
-                member.Compaction);
+                member.Compaction,
+                ChooseMemberSilhouetteProfile(member));
+        }
+
+        internal static TopDown3DRockSilhouetteProfile ChooseMemberSilhouetteProfile(
+            TopDown3DRockFormationMemberPlan member)
+        {
+            var variation = unchecked((uint)DeriveMemberSeed(member.Seed, 0)) % 3u;
+            switch (member.Role)
+            {
+                case TopDown3DRockFormationMemberRole.Core:
+                case TopDown3DRockFormationMemberRole.Pillar:
+                case TopDown3DRockFormationMemberRole.Buttress:
+                case TopDown3DRockFormationMemberRole.Crown:
+                case TopDown3DRockFormationMemberRole.Talus:
+                    // Preserve the accepted connected-outcrop composition while the new
+                    // silhouette vocabulary is evaluated in loose and piled formations.
+                    return TopDown3DRockSilhouetteProfile.Boulder;
+                case TopDown3DRockFormationMemberRole.Boulder:
+                    if (variation == 0u) return TopDown3DRockSilhouetteProfile.Boulder;
+                    return variation == 1u
+                        ? TopDown3DRockSilhouetteProfile.SplitLobe
+                        : TopDown3DRockSilhouetteProfile.AngularChunk;
+                case TopDown3DRockFormationMemberRole.Slab:
+                    return TopDown3DRockSilhouetteProfile.Slab;
+                case TopDown3DRockFormationMemberRole.Fragment:
+                    return variation == 0u
+                        ? TopDown3DRockSilhouetteProfile.Shard
+                        : TopDown3DRockSilhouetteProfile.AngularChunk;
+                case TopDown3DRockFormationMemberRole.PileBase:
+                    return variation == 0u
+                        ? TopDown3DRockSilhouetteProfile.SplitLobe
+                        : TopDown3DRockSilhouetteProfile.Slab;
+                case TopDown3DRockFormationMemberRole.PileMiddle:
+                    if (variation == 0u) return TopDown3DRockSilhouetteProfile.Boulder;
+                    return variation == 1u
+                        ? TopDown3DRockSilhouetteProfile.AngularChunk
+                        : TopDown3DRockSilhouetteProfile.SplitLobe;
+                case TopDown3DRockFormationMemberRole.PileCap:
+                    return variation == 0u
+                        ? TopDown3DRockSilhouetteProfile.AngularChunk
+                        : TopDown3DRockSilhouetteProfile.Slab;
+                default:
+                    return TopDown3DRockSilhouetteProfile.Boulder;
+            }
         }
 
         private static Vector3 GetMemberSourceSize(
