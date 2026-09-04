@@ -227,6 +227,35 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void SmallRidgePillarsCountUsesSevenToEighteenRocks()
+        {
+            var root = new GameObject("Small Ridge Pillars Count Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("formationArchetype").enumValueIndex =
+                    (int)TopDown3DRockFormationArchetype.SmallRidgePillars;
+                serialized.FindProperty("generatedOverallSize").floatValue = 4f;
+                serialized.FindProperty("generatedHeight").floatValue = 1f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                Assert.That(formation.GeneratedRockCount, Is.EqualTo(7));
+
+                serialized.Update();
+                serialized.FindProperty("generatedOverallSize").floatValue = 30f;
+                serialized.FindProperty("generatedHeight").floatValue = 30f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                Assert.That(formation.GeneratedRockCount, Is.EqualTo(18));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
         public void FormationPlanIsRepeatableAndUsesDistinctMemberSeeds()
         {
             var first = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
@@ -589,6 +618,62 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void SmallRidgePillarsPlanBuildsALowBackboneWithShortVerticalAccents()
+        {
+            var first = TopDown3DRockWorkbenchFormationGenerator.CreateDimensionedPlan(
+                TopDown3DRockFormationArchetype.SmallRidgePillars,
+                781223,
+                12,
+                14f,
+                5f,
+                0.55f);
+            var repeat = TopDown3DRockWorkbenchFormationGenerator.CreateDimensionedPlan(
+                TopDown3DRockFormationArchetype.SmallRidgePillars,
+                781223,
+                12,
+                14f,
+                5f,
+                0.55f);
+
+            var bodies = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.RidgeBody)
+                .ToArray();
+            var pillars = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.RidgePillar)
+                .ToArray();
+            var talus = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.RidgeTalus)
+                .ToArray();
+
+            Assert.That(first.Count, Is.EqualTo(12));
+            Assert.That(bodies.Length, Is.AtLeast(4));
+            Assert.That(pillars.Length, Is.InRange(2, 6));
+            Assert.That(talus.Length, Is.InRange(1, 3));
+            Assert.That(
+                pillars.Average(member => member.LocalScale.y),
+                Is.GreaterThan(bodies.Average(member => member.LocalScale.y) * 2f));
+            Assert.That(
+                pillars.Average(member => member.LocalPosition.y),
+                Is.GreaterThan(bodies.Average(member => member.LocalPosition.y)));
+            Assert.That(
+                MaximumHorizontalSeparation(bodies),
+                Is.GreaterThan(14f * 0.45f));
+            Assert.That(
+                TopDown3DRockWorkbenchFormationGenerator.CalculatePlanHeight(first),
+                Is.EqualTo(5f).Within(0.05f));
+
+            for (var index = 0; index < first.Count; index++)
+            {
+                Assert.That(repeat[index].LocalPosition, Is.EqualTo(first[index].LocalPosition));
+                Assert.That(repeat[index].LocalRotation, Is.EqualTo(first[index].LocalRotation));
+                Assert.That(repeat[index].LocalScale, Is.EqualTo(first[index].LocalScale));
+                Assert.That(repeat[index].RockSize, Is.EqualTo(first[index].RockSize));
+                Assert.That(repeat[index].Seed, Is.EqualTo(first[index].Seed));
+                Assert.That(repeat[index].Role, Is.EqualTo(first[index].Role));
+            }
+        }
+
+        [Test]
         public void ScatteredRockSeatsBroadlyOnASlopedSurface()
         {
             var member = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
@@ -706,6 +791,49 @@ namespace BooterBigArm.Tests
                 Assert.That(members.Any(member => member.name.StartsWith("PileBase Rock")), Is.True);
                 Assert.That(members.Any(member => member.name.StartsWith("PileMiddle Rock")), Is.True);
                 Assert.That(members.Any(member => member.name.StartsWith("PileCap Rock")), Is.True);
+                Assert.That(
+                    TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out var error),
+                    Is.True,
+                    error);
+                Assert.That(formation.PreviewStatus, Does.StartWith("ONE GEOLOGICAL SHELL"));
+                Assert.That(formation.GeneratedMesh, Is.Not.Null);
+            }
+            finally
+            {
+                Selection.activeObject = previousSelection;
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void SmallRidgePillarsGenerationBuildsOneEditableGeologicalShell()
+        {
+            var previousSelection = Selection.activeObject;
+            var root = new GameObject("Small Ridge Pillars Integration Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                formation.Configure(
+                    AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath),
+                    781223);
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("formationArchetype").enumValueIndex =
+                    (int)TopDown3DRockFormationArchetype.SmallRidgePillars;
+                serialized.FindProperty("generatedOverallSize").floatValue = 14f;
+                serialized.FindProperty("generatedHeight").floatValue = 5f;
+                serialized.FindProperty("memberVoxelSize").floatValue = 0.12f;
+                serialized.FindProperty("fusedVoxelSize").floatValue = 0.3f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                TopDown3DRockWorkbenchFormationGenerator.GenerateIntoFormation(
+                    formation,
+                    781223);
+
+                var members = root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+                Assert.That(members.Length, Is.EqualTo(formation.GeneratedRockCount));
+                Assert.That(members.Any(member => member.name.StartsWith("RidgeBody Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("RidgePillar Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("RidgeTalus Rock")), Is.True);
                 Assert.That(
                     TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out var error),
                     Is.True,
@@ -2198,6 +2326,29 @@ namespace BooterBigArm.Tests
         private static float HorizontalDistance(Vector3 position)
         {
             return new Vector2(position.x, position.z).magnitude;
+        }
+
+        private static float MaximumHorizontalSeparation(
+            IReadOnlyList<TopDown3DRockFormationMemberPlan> members)
+        {
+            var maximum = 0f;
+            for (var first = 0; first < members.Count; first++)
+            {
+                for (var second = first + 1; second < members.Count; second++)
+                {
+                    maximum = Mathf.Max(
+                        maximum,
+                        Vector2.Distance(
+                            new Vector2(
+                                members[first].LocalPosition.x,
+                                members[first].LocalPosition.z),
+                            new Vector2(
+                                members[second].LocalPosition.x,
+                                members[second].LocalPosition.z)));
+                }
+            }
+
+            return maximum;
         }
 
         private static float ScatteredFootprintRadius(
