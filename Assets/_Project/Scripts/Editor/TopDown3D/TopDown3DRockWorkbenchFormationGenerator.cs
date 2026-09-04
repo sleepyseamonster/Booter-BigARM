@@ -21,7 +21,11 @@ namespace BooterBigArm.Editor
         PileCap,
         RidgeBody,
         RidgePillar,
-        RidgeTalus
+        RidgeTalus,
+        HoodooShelf,
+        HoodooPillar,
+        HoodooCap,
+        HoodooTalus
     }
 
     internal readonly struct TopDown3DRockFormationMemberPlan
@@ -141,6 +145,13 @@ namespace BooterBigArm.Editor
                     CreateRockPilePlan(seed, rockCount, overallSize, complexity, verticality),
                 TopDown3DRockFormationArchetype.SmallRidgePillars =>
                     CreateSmallRidgePillarsPlan(
+                        seed,
+                        rockCount,
+                        overallSize,
+                        complexity,
+                        verticality),
+                TopDown3DRockFormationArchetype.HoodooOutcrop =>
+                    CreateHoodooOutcropPlan(
                         seed,
                         rockCount,
                         overallSize,
@@ -832,6 +843,197 @@ namespace BooterBigArm.Editor
             return plan;
         }
 
+        private static IReadOnlyList<TopDown3DRockFormationMemberPlan> CreateHoodooOutcropPlan(
+            int seed,
+            int rockCount,
+            float overallSize,
+            float complexity,
+            float verticality)
+        {
+            rockCount = Mathf.Clamp(rockCount, 9, 18);
+            overallSize = Mathf.Clamp(overallSize, 4f, 30f);
+            complexity = Mathf.Clamp01(complexity);
+            verticality = Mathf.Clamp01(verticality);
+
+            var random = new System.Random(seed);
+            var plan = new List<TopDown3DRockFormationMemberPlan>(rockCount);
+            var shelves = new List<TopDown3DRockFormationMemberPlan>();
+            var pillars = new List<TopDown3DRockFormationMemberPlan>();
+            var pillarCount = Mathf.Clamp(
+                Mathf.RoundToInt(rockCount * Mathf.Lerp(0.22f, 0.28f, complexity)),
+                2,
+                Mathf.Min(4, rockCount - 6));
+            var capCount = Mathf.Clamp(
+                Mathf.RoundToInt(pillarCount * Mathf.Lerp(0.68f, 0.9f, complexity)),
+                2,
+                pillarCount);
+            var talusCount = Mathf.Clamp(
+                Mathf.RoundToInt(rockCount * 0.12f),
+                1,
+                2);
+            var shelfCount = rockCount - pillarCount - capCount - talusCount;
+            var heading = NextRange(random, 0f, Mathf.PI * 2f);
+            var along = new Vector3(Mathf.Cos(heading), 0f, Mathf.Sin(heading));
+            var across = new Vector3(-along.z, 0f, along.x);
+            var baseRockSize = Mathf.Clamp(
+                overallSize / Mathf.Max(3f, shelfCount * 0.56f),
+                1f,
+                6.2f);
+            var halfRun = overallSize * Mathf.Lerp(0.27f, 0.33f, complexity);
+
+            for (var index = 0; index < shelfCount; index++)
+            {
+                var t = shelfCount <= 1
+                    ? 0f
+                    : Mathf.Lerp(-1f, 1f, index / (float)(shelfCount - 1));
+                var shelfSize = Mathf.Clamp(
+                    baseRockSize * NextRange(random, 0.9f, 1.14f),
+                    0.9f,
+                    6.8f);
+                var breadth = Mathf.Sin((t + 0.18f) * Mathf.PI)
+                    * overallSize
+                    * Mathf.Lerp(0.055f, 0.1f, complexity);
+                var shelf = new TopDown3DRockFormationMemberPlan(
+                    along * (t * halfRun)
+                        + across * (breadth + NextRange(
+                            random,
+                            -overallSize * 0.035f,
+                            overallSize * 0.035f)),
+                    Quaternion.Euler(
+                        0f,
+                        heading * Mathf.Rad2Deg + NextRange(random, -28f, 28f),
+                        0f),
+                    new Vector3(
+                        NextRange(random, 1.28f, 1.62f),
+                        NextRange(random, 0.28f, 0.43f),
+                        NextRange(random, 1.12f, 1.5f)),
+                    shelfSize,
+                    Mathf.Clamp01(0.1f + verticality * 0.16f),
+                    Mathf.Clamp01(NextRange(random, 0.6f, 0.86f)),
+                    Mathf.Clamp01(NextRange(random, 0.82f, 0.94f)),
+                    DeriveMemberSeed(seed, index),
+                    TopDown3DRockFormationMemberRole.HoodooShelf);
+                shelf = GroundScatteredMember(shelf, NextRange(random, 0.04f, 0.08f));
+                plan.Add(shelf);
+                shelves.Add(shelf);
+            }
+
+            for (var pillar = 0; pillar < pillarCount; pillar++)
+            {
+                var memberIndex = shelfCount + pillar;
+                var hostSlot = Mathf.Clamp(
+                    Mathf.RoundToInt((pillar + 0.5f) * (shelfCount - 1f) / pillarCount),
+                    0,
+                    shelfCount - 1);
+                var host = shelves[hostSlot];
+                var side = pillar % 2 == 0 ? 1f : -1f;
+                var pillarSize = Mathf.Clamp(
+                    baseRockSize * NextRange(random, 0.48f, 0.68f),
+                    0.65f,
+                    3.8f);
+                var member = new TopDown3DRockFormationMemberPlan(
+                    Vector3.zero,
+                    Quaternion.Euler(
+                        0f,
+                        heading * Mathf.Rad2Deg + NextRange(random, -36f, 36f),
+                        0f),
+                    new Vector3(
+                        NextRange(random, 0.54f, 0.74f),
+                        Mathf.Lerp(1.42f, 2.18f, verticality)
+                            * NextRange(random, 0.92f, 1.12f),
+                        NextRange(random, 0.54f, 0.76f)),
+                    pillarSize,
+                    Mathf.Clamp01(0.78f + verticality * 0.18f),
+                    Mathf.Clamp01(NextRange(random, 0.5f, 0.74f)),
+                    Mathf.Clamp01(NextRange(random, 0.78f, 0.9f)),
+                    DeriveMemberSeed(seed, memberIndex),
+                    TopDown3DRockFormationMemberRole.HoodooPillar);
+                var direction = (Vector3.up * NextRange(random, 0.9f, 0.97f)
+                    + across * side * NextRange(random, 0.04f, 0.12f)).normalized;
+                member = AttachToContacts(
+                    CreateHighestContact(host),
+                    CreateLowestContact(member),
+                    member,
+                    direction,
+                    NextRange(random, 0.42f, 0.54f));
+                plan.Add(member);
+                pillars.Add(member);
+            }
+
+            for (var cap = 0; cap < capCount; cap++)
+            {
+                var memberIndex = shelfCount + pillarCount + cap;
+                var host = pillars[(cap * pillarCount) / capCount];
+                var capSize = Mathf.Clamp(
+                    host.RockSize * NextRange(random, 0.66f, 0.84f),
+                    0.5f,
+                    3.4f);
+                var member = new TopDown3DRockFormationMemberPlan(
+                    Vector3.zero,
+                    Quaternion.Euler(
+                        0f,
+                        heading * Mathf.Rad2Deg + NextRange(random, -55f, 55f),
+                        0f),
+                    new Vector3(
+                        NextRange(random, 1.22f, 1.62f),
+                        NextRange(random, 0.3f, 0.48f),
+                        NextRange(random, 1.08f, 1.48f)),
+                    capSize,
+                    Mathf.Clamp01(0.12f + verticality * 0.12f),
+                    Mathf.Clamp01(NextRange(random, 0.58f, 0.82f)),
+                    Mathf.Clamp01(NextRange(random, 0.8f, 0.92f)),
+                    DeriveMemberSeed(seed, memberIndex),
+                    TopDown3DRockFormationMemberRole.HoodooCap);
+                var capDirection = (Vector3.up * 0.96f
+                    + along * NextRange(random, -0.08f, 0.08f)
+                    + across * NextRange(random, -0.08f, 0.08f)).normalized;
+                plan.Add(AttachToContacts(
+                    CreateHighestContact(host),
+                    CreateLowestContact(member),
+                    member,
+                    capDirection,
+                    NextRange(random, 0.4f, 0.5f)));
+            }
+
+            for (var talus = 0; talus < talusCount; talus++)
+            {
+                var memberIndex = shelfCount + pillarCount + capCount + talus;
+                var hostSlot = talus == 0 ? 0 : shelfCount - 1;
+                var host = shelves[hostSlot];
+                var end = talus == 0 ? -1f : 1f;
+                var side = talus % 2 == 0 ? 1f : -1f;
+                var outward = (along * end + across * side * 0.42f - Vector3.up * 0.3f).normalized;
+                var size = Mathf.Clamp(
+                    baseRockSize * NextRange(random, 0.3f, 0.48f),
+                    0.45f,
+                    3.2f);
+                var member = new TopDown3DRockFormationMemberPlan(
+                    Vector3.zero,
+                    Quaternion.Euler(
+                        0f,
+                        heading * Mathf.Rad2Deg + NextRange(random, -60f, 60f),
+                        0f),
+                    new Vector3(
+                        NextRange(random, 0.86f, 1.24f),
+                        NextRange(random, 0.24f, 0.42f),
+                        NextRange(random, 0.74f, 1.12f)),
+                    size,
+                    Mathf.Clamp01(0.08f + verticality * 0.1f),
+                    Mathf.Clamp01(NextRange(random, 0.64f, 0.9f)),
+                    Mathf.Clamp01(NextRange(random, 0.8f, 0.93f)),
+                    DeriveMemberSeed(seed, memberIndex),
+                    TopDown3DRockFormationMemberRole.HoodooTalus);
+                plan.Add(AttachToContacts(
+                    CreateLowestContact(host),
+                    CreateHighestContact(member),
+                    member,
+                    outward,
+                    NextRange(random, 0.5f, 0.64f)));
+            }
+
+            return plan;
+        }
+
         private static Vector2 FindScatteredPosition(
             System.Random random,
             IReadOnlyList<Vector2> positions,
@@ -1486,6 +1688,22 @@ namespace BooterBigArm.Editor
                     return variation == 0u
                         ? TopDown3DRockSilhouetteProfile.Slab
                         : TopDown3DRockSilhouetteProfile.AngularChunk;
+                case TopDown3DRockFormationMemberRole.HoodooShelf:
+                    return variation == 0u
+                        ? TopDown3DRockSilhouetteProfile.SplitLobe
+                        : TopDown3DRockSilhouetteProfile.Slab;
+                case TopDown3DRockFormationMemberRole.HoodooPillar:
+                    return variation == 0u
+                        ? TopDown3DRockSilhouetteProfile.AngularChunk
+                        : TopDown3DRockSilhouetteProfile.SplitLobe;
+                case TopDown3DRockFormationMemberRole.HoodooCap:
+                    return variation == 0u
+                        ? TopDown3DRockSilhouetteProfile.Slab
+                        : TopDown3DRockSilhouetteProfile.AngularChunk;
+                case TopDown3DRockFormationMemberRole.HoodooTalus:
+                    return variation == 0u
+                        ? TopDown3DRockSilhouetteProfile.AngularChunk
+                        : TopDown3DRockSilhouetteProfile.Slab;
                 default:
                     return TopDown3DRockSilhouetteProfile.Boulder;
             }

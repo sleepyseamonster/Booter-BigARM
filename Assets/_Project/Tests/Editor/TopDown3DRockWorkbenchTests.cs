@@ -308,6 +308,35 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void HoodooOutcropCountUsesNineToEighteenRocks()
+        {
+            var root = new GameObject("Hoodoo Outcrop Count Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("formationArchetype").enumValueIndex =
+                    (int)TopDown3DRockFormationArchetype.HoodooOutcrop;
+                serialized.FindProperty("generatedOverallSize").floatValue = 4f;
+                serialized.FindProperty("generatedHeight").floatValue = 1f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                Assert.That(formation.GeneratedRockCount, Is.EqualTo(9));
+
+                serialized.Update();
+                serialized.FindProperty("generatedOverallSize").floatValue = 30f;
+                serialized.FindProperty("generatedHeight").floatValue = 30f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                Assert.That(formation.GeneratedRockCount, Is.EqualTo(18));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
         public void FormationPlanIsRepeatableAndUsesDistinctMemberSeeds()
         {
             var first = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
@@ -726,6 +755,69 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void HoodooOutcropPlanBuildsBroadShelfWithCappedIsolatedPillars()
+        {
+            var first = TopDown3DRockWorkbenchFormationGenerator.CreateDimensionedPlan(
+                TopDown3DRockFormationArchetype.HoodooOutcrop,
+                920113,
+                14,
+                14f,
+                6f,
+                0.58f);
+            var repeat = TopDown3DRockWorkbenchFormationGenerator.CreateDimensionedPlan(
+                TopDown3DRockFormationArchetype.HoodooOutcrop,
+                920113,
+                14,
+                14f,
+                6f,
+                0.58f);
+
+            var shelves = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.HoodooShelf)
+                .ToArray();
+            var pillars = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.HoodooPillar)
+                .ToArray();
+            var caps = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.HoodooCap)
+                .ToArray();
+            var talus = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.HoodooTalus)
+                .ToArray();
+
+            Assert.That(first.Count, Is.EqualTo(14));
+            Assert.That(shelves.Length, Is.AtLeast(4));
+            Assert.That(pillars.Length, Is.InRange(2, 4));
+            Assert.That(caps.Length, Is.InRange(2, pillars.Length));
+            Assert.That(talus.Length, Is.InRange(1, 2));
+            Assert.That(
+                pillars.Average(member => member.LocalScale.y),
+                Is.GreaterThan(shelves.Average(member => member.LocalScale.y) * 3f));
+            Assert.That(
+                caps.Average(member => member.LocalPosition.y),
+                Is.GreaterThan(pillars.Average(member => member.LocalPosition.y)));
+            Assert.That(
+                caps.Average(member => member.LocalScale.x + member.LocalScale.z),
+                Is.GreaterThan(pillars.Average(member => member.LocalScale.x + member.LocalScale.z)));
+            Assert.That(
+                MaximumHorizontalSeparation(shelves),
+                Is.GreaterThan(14f * 0.45f));
+            Assert.That(
+                TopDown3DRockWorkbenchFormationGenerator.CalculatePlanHeight(first),
+                Is.EqualTo(6f).Within(0.05f));
+
+            for (var index = 0; index < first.Count; index++)
+            {
+                Assert.That(repeat[index].LocalPosition, Is.EqualTo(first[index].LocalPosition));
+                Assert.That(repeat[index].LocalRotation, Is.EqualTo(first[index].LocalRotation));
+                Assert.That(repeat[index].LocalScale, Is.EqualTo(first[index].LocalScale));
+                Assert.That(repeat[index].RockSize, Is.EqualTo(first[index].RockSize));
+                Assert.That(repeat[index].Seed, Is.EqualTo(first[index].Seed));
+                Assert.That(repeat[index].Role, Is.EqualTo(first[index].Role));
+            }
+        }
+
+        [Test]
         public void ScatteredRockSeatsBroadlyOnASlopedSurface()
         {
             var member = TopDown3DRockWorkbenchFormationGenerator.CreatePlan(
@@ -886,6 +978,55 @@ namespace BooterBigArm.Tests
                 Assert.That(members.Any(member => member.name.StartsWith("RidgeBody Rock")), Is.True);
                 Assert.That(members.Any(member => member.name.StartsWith("RidgePillar Rock")), Is.True);
                 Assert.That(members.Any(member => member.name.StartsWith("RidgeTalus Rock")), Is.True);
+                Assert.That(
+                    TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out var error),
+                    Is.True,
+                    error);
+                Assert.That(formation.PreviewStatus, Does.StartWith("ONE GEOLOGICAL SHELL"));
+                Assert.That(formation.GeneratedMesh, Is.Not.Null);
+            }
+            finally
+            {
+                Selection.activeObject = previousSelection;
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [TestCase(920113, 8f, 3f)]
+        [TestCase(470221, 14f, 6f)]
+        [TestCase(880731, 24f, 10f)]
+        public void HoodooOutcropGenerationBuildsOneEditableGeologicalShell(
+            int seed,
+            float overallSize,
+            float height)
+        {
+            var previousSelection = Selection.activeObject;
+            var root = new GameObject("Hoodoo Outcrop Integration Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                formation.Configure(
+                    AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath),
+                    seed);
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("formationArchetype").enumValueIndex =
+                    (int)TopDown3DRockFormationArchetype.HoodooOutcrop;
+                serialized.FindProperty("generatedOverallSize").floatValue = overallSize;
+                serialized.FindProperty("generatedHeight").floatValue = height;
+                serialized.FindProperty("memberVoxelSize").floatValue = 0.14f;
+                serialized.FindProperty("fusedVoxelSize").floatValue = 0.32f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                TopDown3DRockWorkbenchFormationGenerator.GenerateIntoFormation(
+                    formation,
+                    seed);
+
+                var members = root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+                Assert.That(members.Length, Is.EqualTo(formation.GeneratedRockCount));
+                Assert.That(members.Any(member => member.name.StartsWith("HoodooShelf Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("HoodooPillar Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("HoodooCap Rock")), Is.True);
+                Assert.That(members.Any(member => member.name.StartsWith("HoodooTalus Rock")), Is.True);
                 Assert.That(
                     TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out var error),
                     Is.True,

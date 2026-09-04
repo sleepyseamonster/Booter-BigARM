@@ -8,7 +8,8 @@ namespace BooterBigArm.TopDown3D
         ConnectedOutcrop,
         ScatteredRocks,
         PileOfRocks,
-        SmallRidgePillars
+        SmallRidgePillars,
+        HoodooOutcrop
     }
 
     public enum TopDown3DRockFormationJoinStyle
@@ -123,6 +124,13 @@ namespace BooterBigArm.TopDown3D
                     18f,
                     Mathf.Sqrt(GeneratedCountScale))),
                 7,
+                18),
+            TopDown3DRockFormationArchetype.HoodooOutcrop => Mathf.Clamp(
+                Mathf.RoundToInt(Mathf.Lerp(
+                    9f,
+                    18f,
+                    Mathf.Sqrt(GeneratedCountScale))),
+                9,
                 18),
             _ => Mathf.Clamp(
                     Mathf.RoundToInt(Mathf.Lerp(5f, 10f, GeneratedComplexity))

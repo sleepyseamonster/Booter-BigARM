@@ -202,6 +202,8 @@ namespace BooterBigArm.Editor
                     "Generates a compact, all-sided mound with broad base stones, an overlapping middle shelf, cap rocks, and retained crevices. Every rock remains editable.",
                 TopDown3DRockFormationArchetype.SmallRidgePillars =>
                     "Generates a low, gently wandering stone ridge with several short upright pillar accents and attached edge talus. Every rock remains editable.",
+                TopDown3DRockFormationArchetype.HoodooOutcrop =>
+                    "Generates a broad, low eroded shelf carrying several isolated stone columns, selected capstones, and sparse perimeter talus. Every rock remains editable.",
                 _ =>
                     "Generates one connected outcrop with a dominant anchor, structural rocks, and a readable crevice. Every member rock remains editable."
             };
