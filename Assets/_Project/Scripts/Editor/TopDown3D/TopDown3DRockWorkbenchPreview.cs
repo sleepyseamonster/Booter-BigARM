@@ -42,6 +42,25 @@ namespace BooterBigArm.Editor
             state.DueTime = immediate ? 0d : EditorApplication.timeSinceStartup + RebuildDebounceSeconds;
         }
 
+        internal static bool TryBuildNow(
+            TopDown3DRockWorkbenchAuthoring authoring,
+            out string error)
+        {
+            error = string.Empty;
+            if (!IsUsable(authoring))
+            {
+                error = "The rock workbench is not in a loaded scene.";
+                return false;
+            }
+
+            var state = GetOrCreateState(authoring);
+            Rebuild(authoring, state, CalculateSignature(authoring));
+            if (authoring.GeneratedMesh != null) return true;
+
+            error = authoring.PreviewStatus;
+            return false;
+        }
+
         internal static void ClearPreview(TopDown3DRockWorkbenchAuthoring authoring, string status)
         {
             if (authoring == null) return;
@@ -336,6 +355,113 @@ namespace BooterBigArm.Editor
             internal int LastBuiltSignature;
             internal double DueTime;
             internal bool Requested;
+        }
+    }
+
+    /// <summary>
+    /// Recreates editor-only workbench meshes after Unity has loaded the Play Mode
+    /// copy of a scene. Fused formations build directly from their editable source
+    /// volumes; separate-rock formations rebuild their visible member rocks first.
+    /// </summary>
+    [InitializeOnLoad]
+    internal static class TopDown3DRockWorkbenchPlayModePreview
+    {
+        static TopDown3DRockWorkbenchPlayModePreview()
+        {
+            EditorApplication.playModeStateChanged -= HandlePlayModeStateChanged;
+            EditorApplication.playModeStateChanged += HandlePlayModeStateChanged;
+        }
+
+        internal static void RebuildLoadedPreviews()
+        {
+            var workbenches = Resources.FindObjectsOfTypeAll<TopDown3DRockWorkbenchAuthoring>();
+            Array.Sort(workbenches, CompareByHierarchyPath);
+            for (var i = 0; i < workbenches.Length; i++)
+            {
+                var workbench = workbenches[i];
+                if (!IsLoadedActiveSceneObject(workbench)
+                    || IsHiddenByFusedFormation(workbench))
+                {
+                    continue;
+                }
+
+                if (!TopDown3DRockWorkbenchPreview.TryBuildNow(workbench, out var error))
+                {
+                    Debug.LogWarning(
+                        $"Play Mode could not rebuild rock preview '{workbench.name}': {error}",
+                        workbench);
+                }
+            }
+
+            var formations = Resources.FindObjectsOfTypeAll<
+                TopDown3DRockWorkbenchFormationAuthoring>();
+            Array.Sort(formations, CompareByHierarchyPath);
+            for (var i = 0; i < formations.Length; i++)
+            {
+                var formation = formations[i];
+                if (!IsLoadedActiveSceneObject(formation)
+                    || formation.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(false)
+                        .Length < 2)
+                {
+                    continue;
+                }
+
+                if (!TopDown3DRockWorkbenchFormationPreview.TryBuildNow(
+                        formation,
+                        out var error))
+                {
+                    Debug.LogWarning(
+                        $"Play Mode could not rebuild formation preview '{formation.name}': {error}",
+                        formation);
+                }
+            }
+        }
+
+        private static void HandlePlayModeStateChanged(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.EnteredPlayMode)
+            {
+                RebuildLoadedPreviews();
+            }
+        }
+
+        private static bool IsHiddenByFusedFormation(
+            TopDown3DRockWorkbenchAuthoring workbench)
+        {
+            var formation = workbench.GetComponentInParent<
+                TopDown3DRockWorkbenchFormationAuthoring>();
+            return formation != null
+                && formation.FormationArchetype
+                    != TopDown3DRockFormationArchetype.ScatteredRocks
+                && formation.JoinStyle
+                    != TopDown3DRockFormationJoinStyle.PreserveNaturalSeams;
+        }
+
+        private static bool IsLoadedActiveSceneObject(Component component)
+        {
+            return component != null
+                && !EditorUtility.IsPersistent(component)
+                && component.gameObject.scene.IsValid()
+                && component.gameObject.scene.isLoaded
+                && component.gameObject.activeInHierarchy;
+        }
+
+        private static int CompareByHierarchyPath(Component left, Component right)
+        {
+            return string.CompareOrdinal(GetHierarchyPath(left), GetHierarchyPath(right));
+        }
+
+        private static string GetHierarchyPath(Component component)
+        {
+            if (component == null) return string.Empty;
+            var path = component.name;
+            var parent = component.transform.parent;
+            while (parent != null)
+            {
+                path = parent.name + "/" + path;
+                parent = parent.parent;
+            }
+            return path;
         }
     }
 }

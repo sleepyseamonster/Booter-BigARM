@@ -506,7 +506,7 @@ namespace BooterBigArm.Editor
             TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(
                 members[0],
                 rendererRoot,
-                formationSize,
+                mesh.bounds.size,
                 formation.SurfaceFieldSeed,
                 formation.SurfaceFieldOrigin,
                 formation.LongFractures,
