@@ -71,6 +71,34 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void WorkbenchInspectorCanDetectAndRestoreSceneVisibility()
+        {
+            var root = new GameObject("Rock Workbench Scene Visibility Test");
+            try
+            {
+                var authoring = root.AddComponent<TopDown3DRockWorkbenchAuthoring>();
+                Assert.That(
+                    TopDown3DRockWorkbenchAuthoringEditor.IsHiddenInScene(authoring),
+                    Is.False);
+
+                SceneVisibilityManager.instance.Hide(root, true);
+                Assert.That(
+                    TopDown3DRockWorkbenchAuthoringEditor.IsHiddenInScene(authoring),
+                    Is.True);
+
+                TopDown3DRockWorkbenchAuthoringEditor.ShowInScene(authoring);
+                Assert.That(
+                    TopDown3DRockWorkbenchAuthoringEditor.IsHiddenInScene(authoring),
+                    Is.False);
+            }
+            finally
+            {
+                SceneVisibilityManager.instance.Show(root, true);
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
         public void FormationControlsClampToSafeAuthoringRanges()
         {
             var root = new GameObject("Rock Formation Control Test");

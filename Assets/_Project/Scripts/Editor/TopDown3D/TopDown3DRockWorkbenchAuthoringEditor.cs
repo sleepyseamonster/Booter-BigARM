@@ -57,6 +57,17 @@ namespace BooterBigArm.Editor
             EditorGUILayout.HelpBox(
                 "Choose the broad shape, then click Generate New Rock. Every result stays editable in the Scene.",
                 MessageType.Info);
+            if (IsHiddenInScene(authoring))
+            {
+                EditorGUILayout.HelpBox(
+                    "This Rock Workbench is hidden by Unity's Scene Visibility control. "
+                    + "Its generated mesh still exists, so Unity may show only the selection outline.",
+                    MessageType.Warning);
+                if (GUILayout.Button("Show Rock In Scene"))
+                {
+                    ShowInScene(authoring);
+                }
+            }
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("generatedOverallScale"),
@@ -127,6 +138,19 @@ namespace BooterBigArm.Editor
                 true,
                 EditorStyles.foldoutHeader);
             if (showAdvanced) DrawAdvancedControls(authoring);
+        }
+
+        internal static bool IsHiddenInScene(TopDown3DRockWorkbenchAuthoring authoring)
+        {
+            return authoring != null
+                && SceneVisibilityManager.instance.IsHidden(authoring.gameObject);
+        }
+
+        internal static void ShowInScene(TopDown3DRockWorkbenchAuthoring authoring)
+        {
+            if (authoring == null) return;
+            SceneVisibilityManager.instance.Show(authoring.gameObject, true);
+            SceneView.RepaintAll();
         }
 
         private void DrawAdvancedControls(TopDown3DRockWorkbenchAuthoring authoring)
