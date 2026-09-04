@@ -99,6 +99,58 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void FormationGenerationRestoresSceneVisibility()
+        {
+            var previousSelection = Selection.activeObject;
+            var root = new GameObject("Rock Formation Scene Visibility Test");
+            try
+            {
+                var formation = root.AddComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                formation.Configure(
+                    AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath),
+                    781223);
+                var serialized = new SerializedObject(formation);
+                serialized.FindProperty("formationArchetype").enumValueIndex =
+                    (int)TopDown3DRockFormationArchetype.SmallRidgePillars;
+                serialized.FindProperty("generatedOverallSize").floatValue = 8f;
+                serialized.FindProperty("generatedHeight").floatValue = 3f;
+                serialized.FindProperty("memberVoxelSize").floatValue = 0.16f;
+                serialized.FindProperty("fusedVoxelSize").floatValue = 0.4f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                SceneVisibilityManager.instance.Hide(root, true);
+                Assert.That(
+                    TopDown3DRockWorkbenchFormationEditor.IsHiddenInScene(formation),
+                    Is.True);
+
+                TopDown3DRockWorkbenchFormationGenerator.GenerateIntoFormation(
+                    formation,
+                    formation.FormationSeed);
+
+                Assert.That(
+                    TopDown3DRockWorkbenchFormationEditor.IsHiddenInScene(formation),
+                    Is.False);
+                Assert.That(
+                    TopDown3DRockWorkbenchFormationPreview.TryBuildNow(formation, out var error),
+                    Is.True,
+                    error);
+                Assert.That(root.GetComponent<MeshRenderer>().enabled, Is.True);
+                Assert.That(root.GetComponent<MeshRenderer>().sharedMaterial, Is.Not.Null);
+                Assert.That(root.GetComponent<MeshFilter>().sharedMesh, Is.Not.Null);
+                Assert.That(root.GetComponent<MeshCollider>().sharedMesh, Is.Not.Null);
+            }
+            finally
+            {
+                SceneVisibilityManager.instance.Show(root, true);
+                Selection.activeObject = previousSelection;
+                var formation = root.GetComponent<TopDown3DRockWorkbenchFormationAuthoring>();
+                if (formation != null && formation.GeneratedMesh != null)
+                    Object.DestroyImmediate(formation.GeneratedMesh);
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
         public void FormationControlsClampToSafeAuthoringRanges()
         {
             var root = new GameObject("Rock Formation Control Test");

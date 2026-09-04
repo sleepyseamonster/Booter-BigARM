@@ -19,6 +19,17 @@ namespace BooterBigArm.Editor
         {
             var formation = (TopDown3DRockWorkbenchFormationAuthoring)target;
             EditorGUILayout.LabelField("Rock Formation Generator", EditorStyles.boldLabel);
+            if (IsHiddenInScene(formation))
+            {
+                EditorGUILayout.HelpBox(
+                    "This Rock Formation Workbench is hidden by Unity's Scene Visibility control. "
+                    + "Its generated mesh still exists, so Unity may show only the selection outline and its shadow.",
+                    MessageType.Warning);
+                if (GUILayout.Button("Show Formation In Scene"))
+                {
+                    ShowInScene(formation);
+                }
+            }
 
             serializedObject.Update();
             EditorGUI.BeginChangeCheck();
@@ -144,6 +155,21 @@ namespace BooterBigArm.Editor
 
             if (GUILayout.Button("Rebuild Formation Mesh"))
                 TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, true);
+        }
+
+        internal static bool IsHiddenInScene(
+            TopDown3DRockWorkbenchFormationAuthoring formation)
+        {
+            return formation != null
+                && SceneVisibilityManager.instance.IsHidden(formation.gameObject);
+        }
+
+        internal static void ShowInScene(
+            TopDown3DRockWorkbenchFormationAuthoring formation)
+        {
+            if (formation == null) return;
+            SceneVisibilityManager.instance.Show(formation.gameObject, true);
+            SceneView.RepaintAll();
         }
 
         private static void DrawTessellationDetail(SerializedProperty voxelSize)

@@ -1033,6 +1033,11 @@ namespace BooterBigArm.Editor
         {
             if (formation == null) return;
 
+            // Scene visibility is editor-only state and can outlive a regenerated preview.
+            // Always surface the root before replacing its members so a successful build
+            // cannot appear as only a selection outline and cast shadow.
+            TopDown3DRockWorkbenchFormationEditor.ShowInScene(formation);
+
             const string undoName = "Generate Rock Formation";
             Undo.IncrementCurrentGroup();
             Undo.SetCurrentGroupName(undoName);
