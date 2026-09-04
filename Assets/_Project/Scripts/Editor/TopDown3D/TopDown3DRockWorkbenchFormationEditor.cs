@@ -400,8 +400,8 @@ namespace BooterBigArm.Editor
                             member,
                             renderer,
                             formationSize,
-                            formation.FormationSeed,
-                            formation.transform.position,
+                            formation.SurfaceFieldSeed,
+                            formation.SurfaceFieldOrigin,
                             formation.LongFractures,
                             formation.FractureSpacing);
                     }
@@ -505,8 +505,8 @@ namespace BooterBigArm.Editor
                 members[0],
                 rendererRoot,
                 formationSize,
-                formation.FormationSeed,
-                formation.transform.position,
+                formation.SurfaceFieldSeed,
+                formation.SurfaceFieldOrigin,
                 formation.LongFractures,
                 formation.FractureSpacing,
                 formation.JoinStyle == TopDown3DRockFormationJoinStyle.FusedGeologicalSeams
@@ -647,6 +647,8 @@ namespace BooterBigArm.Editor
             {
                 var hash = 17;
                 hash = hash * 31 + formation.FormationSeed;
+                hash = hash * 31 + formation.SurfaceFieldSeed;
+                hash = hash * 31 + formation.SurfaceFieldOrigin.GetHashCode();
                 hash = hash * 31 + (int)formation.FormationArchetype;
                 hash = hash * 31 + (int)formation.JoinStyle;
                 hash = hash * 31 + formation.UpdateCollider.GetHashCode();

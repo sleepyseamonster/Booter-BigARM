@@ -2,6 +2,8 @@
 
 The Rock Formation Workbench is the editor-only bridge between one generated rock and a future procedural canyon or cave system. It groups several existing Rock Workbenches without discarding their editable source volumes.
 
+Accepted formations can now be composed into a larger `Rock Landmark Workbench`. See [ROCK_LANDMARK_WORKBENCH.md](./ROCK_LANDMARK_WORKBENCH.md) for the next authoring tier, including deterministic spire complexes and non-destructive capture of hand-arranged formations.
+
 ## Reference-driven shape rules
 
 The current direction uses four visible ideas from the supplied formation references:
@@ -67,6 +69,8 @@ The workbench deliberately keeps three deterministic levels separate:
 1. Editable weathered-block, wedge, and tapered-stone volumes are smoothly combined into one base rock.
 2. Completed base rocks receive formation-level position, rotation, scale, and composition roles.
 3. The grouped rock fields are sampled into one exterior formation shell while member boundaries remain available for seams.
+
+The separate Rock Landmark Workbench adds a fourth level above this hierarchy. It arranges complete formation workbenches as crown, shoulder, apron, and outlier roles while leaving all three lower levels editable.
 
 The `Connected Outcrop` planner starts with one visibly dominant, partially buried anchor mass. It reserves a seeded open wedge in the surrounding members, braces both sides of that wedge with attached buttresses, and distributes the remaining pillars and supports around the other directions. This produces a readable entrance-like crevice without turning the whole formation into a one-sided wall. When complexity permits, an overlapping crown sits opposite the opening. Small, low talus rocks attach to outer structural members instead of collecting inside the core, which gives the base a wider debris transition while keeping the fused shell connected.
 

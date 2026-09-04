@@ -124,6 +124,26 @@ namespace BooterBigArm.TopDown3D
                     14)
         };
         public int FormationSeed => formationSeed;
+        public int SurfaceFieldSeed
+        {
+            get
+            {
+                var landmark = GetComponentInParent<TopDown3DRockLandmarkAuthoring>();
+                return landmark != null && landmark.ShareGeologicalField
+                    ? landmark.LandmarkSeed
+                    : FormationSeed;
+            }
+        }
+        public Vector3 SurfaceFieldOrigin
+        {
+            get
+            {
+                var landmark = GetComponentInParent<TopDown3DRockLandmarkAuthoring>();
+                return landmark != null && landmark.ShareGeologicalField
+                    ? landmark.transform.position
+                    : transform.position;
+            }
+        }
         public TopDown3DRockFormationJoinStyle JoinStyle => joinStyle;
         public bool AutoRebuild => autoRebuild;
         public bool UpdateCollider => updateCollider;
