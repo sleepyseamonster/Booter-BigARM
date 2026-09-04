@@ -119,6 +119,711 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &7515578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7515579}
+  - component: {fileID: 7515580}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7515579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7515578}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.25047797, y: -0.000000119209275, z: 0.19659133, w: 0.9479518}
+  m_LocalPosition: {x: -2.122, y: 3.51, z: -2.137}
+  m_LocalScale: {x: 0.5625762, y: 0.5625762, z: 0.5625762}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 28.352, y: 6.425, z: 25.057}
+--- !u!114 &7515580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7515578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &43639135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 43639136}
+  - component: {fileID: 43639137}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (13)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &43639136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43639135}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 2.59, y: 1.65, z: 1.14}
+  m_LocalScale: {x: 1.0039384, y: 1.0039384, z: 1.0039384}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &43639137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43639135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &80471178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 80471179}
+  - component: {fileID: 80471180}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &80471179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80471178}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 1.82, y: 2.96, z: 0.67}
+  m_LocalScale: {x: 0.8442118, y: 0.8442118, z: 0.8442118}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &80471180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80471178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &92096998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 92096999}
+  - component: {fileID: 92097000}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (32)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &92096999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92096998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 0.18, y: 3.81, z: 0.85}
+  m_LocalScale: {x: 0.5625762, y: 1.0160747, z: 0.5625762}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &92097000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92096998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &121057152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 121057153}
+  - component: {fileID: 121057154}
+  m_Layer: 0
+  m_Name: Wedge Volume 4 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &121057153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121057152}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.10152717, z: -0, w: 0.99483275}
+  m_LocalPosition: {x: -0.65, y: 1.75, z: 0.87}
+  m_LocalScale: {x: 1.9940526, y: 1.2441294, z: 1.6280965}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: 11.654, z: 0}
+--- !u!114 &121057154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121057152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 1
+  shapeSeed: 270289234
+--- !u!1 &131965993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131965994}
+  - component: {fileID: 131965995}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (44)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &131965994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131965993}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 2.44, y: 6.58, z: 2.63}
+  m_LocalScale: {x: 0.93329316, y: 1.6856306, z: 0.93329316}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &131965995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131965993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &142497162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142497163}
+  - component: {fileID: 142497164}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &142497163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142497162}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.35, y: 3.31, z: -0.51}
+  m_LocalScale: {x: 0.8863, y: 0.8863, z: 0.8863}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &142497164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142497162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &164983473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 164983474}
+  - component: {fileID: 164983475}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (46)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &164983474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164983473}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 3.4, y: 2.96, z: 2.26}
+  m_LocalScale: {x: 0.8442118, y: 1.5247399, z: 0.8442118}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &164983475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164983473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &251751871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 251751872}
+  - component: {fileID: 251751873}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &251751872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251751871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.24, y: 1.37, z: 2.34}
+  m_LocalScale: {x: 0.8863, y: 0.8863, z: 0.8863}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &251751873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251751871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &300290025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 300290026}
+  - component: {fileID: 300290027}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (42)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &300290026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300290025}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 2.44, y: 4.56, z: 2.63}
+  m_LocalScale: {x: 0.8442118, y: 1.5247399, z: 0.8442118}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &300290027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300290025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &305215358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 305215359}
+  - component: {fileID: 305215360}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (34)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &305215359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305215358}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 3.25, y: 3.83, z: 4.2}
+  m_LocalScale: {x: 0.5625762, y: 1.0160747, z: 0.5625762}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &305215360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305215358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &314955053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 314955054}
+  - component: {fileID: 314955055}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (49)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &314955054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314955053}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 1.72, y: 1.98, z: -0.41}
+  m_LocalScale: {x: 0.7747789, y: 1.3993362, z: 0.7747789}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &314955055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314955053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &324158648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 324158649}
+  - component: {fileID: 324158650}
+  m_Layer: 0
+  m_Name: Tapered Stone Volume 3 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &324158649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324158648}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.44084746, z: -0, w: 0.89758205}
+  m_LocalPosition: {x: -0.64, y: 1.5374477, z: 3.85}
+  m_LocalScale: {x: 2.3796053, y: 2.2235103, z: 3.0368285}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: -52.316, z: 0}
+--- !u!114 &324158650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324158648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 2
+  shapeSeed: -516153028
+--- !u!1 &355394761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355394762}
+  - component: {fileID: 355394763}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &355394762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355394761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 0.95, y: 4.37, z: 1.21}
+  m_LocalScale: {x: 0.3797044, y: 0.3797044, z: 0.3797044}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &355394763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355394761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &371253777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 371253778}
+  - component: {fileID: 371253779}
+  m_Layer: 0
+  m_Name: Wedge Volume 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &371253778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371253777}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7034462, z: 0, w: 0.7107485}
+  m_LocalPosition: {x: -2.949, y: 1.75, z: -2.12}
+  m_LocalScale: {x: 1.9940526, y: 0.68884456, z: 1.6280965}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &371253779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371253777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 1
+  shapeSeed: 270289234
 --- !u!1 &377980088
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,17 +852,17 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 1, g: 0.82, b: 0.64, a: 1}
-  m_Intensity: 1.15
+  m_Color: {r: 1, g: 0.9142737, b: 0.7971698, a: 1}
+  m_Intensity: 2.36
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.707
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -210,13 +915,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 377980088}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3477229, y: -0.22585355, z: 0.08669706, w: 0.9058491}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.08080999, y: -0.24108145, z: 0.02014819, w: 0.9669248}
+  m_LocalPosition: {x: 15.69, y: 5.48, z: -28.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.555, y: -28, z: 0}
 --- !u!114 &377980091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +932,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -246,6 +951,668 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &402777686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402777687}
+  - component: {fileID: 402777688}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (48)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402777687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402777686}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 3.69, y: 3.17, z: -0.29}
+  m_LocalScale: {x: 0.7747789, y: 1.3993362, z: 0.7747789}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &402777688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402777686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &477740873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 477740874}
+  - component: {fileID: 477740875}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (52)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &477740874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477740873}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: -1.72, y: 1.79, z: 4.44}
+  m_LocalScale: {x: 0.50230604, y: 0.9072202, z: 0.50230604}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &477740875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477740873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &509607927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 509607928}
+  - component: {fileID: 509607929}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (53)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &509607928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509607927}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: -3.31, y: 1.79, z: 5}
+  m_LocalScale: {x: 0.8845253, y: 1.5975505, z: 0.8845253}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &509607929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509607927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &510396306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 510396307}
+  - component: {fileID: 510396308}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &510396307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510396306}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 0.95, y: 3.14, z: 1.21}
+  m_LocalScale: {x: 0.5625762, y: 0.5625762, z: 0.5625762}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &510396308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510396306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &510727295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 510727296}
+  - component: {fileID: 510727297}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (17)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &510727296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510727295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 1.39, y: 1.92, z: -3.28}
+  m_LocalScale: {x: 1.4337668, y: 1.4337668, z: 1.4337668}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &510727297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510727295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &551602054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551602055}
+  - component: {fileID: 551602056}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (27)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &551602055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551602054}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.62765163, z: -0, w: 0.7784944}
+  m_LocalPosition: {x: 5.56, y: 1.37, z: 1.57}
+  m_LocalScale: {x: 0.8863, y: 1.6007558, z: 0.8863}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: -77.754, z: 0}
+--- !u!114 &551602056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551602054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &591999230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 591999231}
+  - component: {fileID: 591999232}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &591999231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591999230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: -0.58, y: 1.98, z: -3.4}
+  m_LocalScale: {x: 0.7747789, y: 0.7747789, z: 0.7747789}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &591999232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591999230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &596585110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 596585115}
+  - component: {fileID: 596585114}
+  - component: {fileID: 596585113}
+  - component: {fileID: 596585112}
+  - component: {fileID: 596585111}
+  m_Layer: 0
+  m_Name: Rock Formation Workbench
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &596585111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596585110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e1bc25ac17c406a8523cdd1b701cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockWorkbenchFormationAuthoring
+  formationArchetype: 2
+  generatedOverallSize: 13.2
+  generatedHeight: 8.4
+  generatedComplexity: 1
+  generatedVerticality: 1
+  rockMaterial: {fileID: 2100000, guid: 8f0d9ecf55df4febaf16c99e33f2258b, type: 2}
+  formationSeed: -1836872700
+  joinStyle: 2
+  autoRebuild: 1
+  updateCollider: 1
+  memberVoxelSize: 0.121
+  memberFusionSmoothness: 0.171
+  memberSurfaceRelaxation: 0.55
+  longFractures: 0.58
+  fractureSpacing: 6
+  fusedVoxelSize: 0.22
+  fusedJoinSoftness: 0.08
+  geologicalSeamWidth: 0.34
+  geologicalSeamStrength: 0.78
+--- !u!64 &596585112
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596585110}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
+--- !u!23 &596585113
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596585110}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8f0d9ecf55df4febaf16c99e33f2258b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &596585114
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596585110}
+  m_Mesh: {fileID: 0}
+--- !u!4 &596585115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596585110}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8783468, z: -0, w: 0.47802404}
+  m_LocalPosition: {x: 10.886, y: -11.26, z: -3.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 122.887, z: 0}
+--- !u!1 &628308669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 628308670}
+  - component: {fileID: 628308671}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (40)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &628308670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628308669}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 4.12, y: 2.41, z: 3.66}
+  m_LocalScale: {x: 1.0039384, y: 1.8132237, z: 1.0039384}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &628308671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628308669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &633175039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 633175040}
+  - component: {fileID: 633175041}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &633175040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633175039}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 1.02, y: 4.37, z: 1.27}
+  m_LocalScale: {x: 0.3797044, y: 0.3797044, z: 0.3797044}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &633175041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633175039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &633277141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 633277142}
+  - component: {fileID: 633277143}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (25)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &633277142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633277141}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: -0.18, y: 2.66, z: -1.77}
+  m_LocalScale: {x: 0.93329316, y: 0.93329316, z: 0.93329316}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &633277143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633277141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &650403821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 650403822}
+  - component: {fileID: 650403823}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (43)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &650403822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650403821}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 2.44, y: 5.33, z: 2.63}
+  m_LocalScale: {x: 0.8442118, y: 1.5247399, z: 0.8442118}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &650403823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650403821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
 --- !u!1 &701016671
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +1640,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e52f8f817ba440880ca1fae87af6bcd, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DLandscapeAuthoringSandbox
   worldSettings: {fileID: 11400000, guid: 05e0954f75e1049c2b66791f7615c4b8, type: 2}
   terrainMaterial: {fileID: 2100000, guid: e7ce6c68c4df84590a0e6dbe0cda5369, type: 2}
@@ -296,6 +1663,100 @@ Transform:
   - {fileID: 1258870709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &704337710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 704337711}
+  - component: {fileID: 704337712}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 6 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &704337711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704337710}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.05115306, y: -0.61119795, z: -0.22164175, w: 0.7580866}
+  m_LocalPosition: {x: 3.52, y: 1.2300005, z: 4.9}
+  m_LocalScale: {x: 2, y: 3.612221, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: -20.395, y: -74.68, z: -16.966}
+--- !u!114 &704337712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704337710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: 1716237203
+--- !u!1 &725577056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 725577057}
+  - component: {fileID: 725577058}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (20)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &725577057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725577056}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 1.575, y: 1.98, z: -5.163}
+  m_LocalScale: {x: 0.7747789, y: 0.7747789, z: 0.7747789}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &725577058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725577056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
 --- !u!1 &739167285
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,13 +1767,14 @@ GameObject:
   m_Component:
   - component: {fileID: 739167287}
   - component: {fileID: 739167286}
+  - component: {fileID: 739167288}
   m_Layer: 0
   m_Name: Authoring Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &739167286
 Camera:
   m_ObjectHideFlags: 0
@@ -379,6 +1841,755 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &739167288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739167285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
+--- !u!1 &748397866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748397867}
+  - component: {fileID: 748397868}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (54)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &748397867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748397866}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: -5.04, y: 2.01, z: 0.96}
+  m_LocalScale: {x: 0.7747789, y: 1.3993362, z: 0.7747789}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &748397868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748397866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &872100409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 872100410}
+  - component: {fileID: 872100411}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (45)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &872100410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872100409}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 2.12, y: 2.66, z: 1.22}
+  m_LocalScale: {x: 0.93329316, y: 1.6856306, z: 0.93329316}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &872100411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872100409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &910796084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910796085}
+  - component: {fileID: 910796086}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (14)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &910796085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910796084}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 1.82, y: 2.41, z: 0.67}
+  m_LocalScale: {x: 1.0039384, y: 1.0039384, z: 1.0039384}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &910796086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910796084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &926015060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 926015061}
+  - component: {fileID: 926015062}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (51)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &926015061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926015060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 5.36, y: 1.17, z: 8.09}
+  m_LocalScale: {x: 0.7747789, y: 1.3993362, z: 0.7747789}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &926015062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926015060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &930091769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 930091770}
+  - component: {fileID: 930091771}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &930091770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930091769}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: -2.122, y: 3.81, z: -2.137}
+  m_LocalScale: {x: 0.5625762, y: 0.5625762, z: 0.5625762}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &930091771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930091769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &932581851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932581852}
+  - component: {fileID: 932581853}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (36)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &932581852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932581851}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 3.32, y: 4.37, z: 4.26}
+  m_LocalScale: {x: 0.3797044, y: 0.6857881, z: 0.3797044}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &932581853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932581851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1020648851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1020648852}
+  - component: {fileID: 1020648853}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (11)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1020648852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020648851}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 1.02, y: 4.9, z: 1.27}
+  m_LocalScale: {x: 0.3797044, y: 0.3797044, z: 0.3797044}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &1020648853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020648851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1023588060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1023588061}
+  - component: {fileID: 1023588062}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1023588061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023588060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.21138309, z: 0, w: 0.9774033}
+  m_LocalPosition: {x: -0.074304044, y: 1.1542944, z: 0.0055223433}
+  m_LocalScale: {x: 3.2937284, y: 2.3085887, z: 3.8178577}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1023588062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023588060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: 1024072951
+--- !u!1 &1048806755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048806756}
+  - component: {fileID: 1048806757}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (38)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1048806756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048806755}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 2.61, y: 1.65, z: 7.19}
+  m_LocalScale: {x: 1.0039384, y: 1.8132237, z: 1.0039384}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &1048806757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048806755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1074900912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1074900913}
+  - component: {fileID: 1074900914}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (28)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1074900913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074900912}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.62765163, z: -0, w: 0.7784944}
+  m_LocalPosition: {x: 2.65, y: 3.31, z: 2.48}
+  m_LocalScale: {x: 0.8863, y: 1.6007558, z: 0.8863}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: -77.754, z: 0}
+--- !u!114 &1074900914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074900912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1149012216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1149012217}
+  - component: {fileID: 1149012218}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (35)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1149012217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149012216}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 3.25, y: 4.37, z: 4.2}
+  m_LocalScale: {x: 0.3797044, y: 0.6857881, z: 0.3797044}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &1149012218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149012216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1167425363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1167425364}
+  - component: {fileID: 1167425365}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (29)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1167425364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167425363}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.62765163, z: -0, w: 0.7784944}
+  m_LocalPosition: {x: 1.48, y: 3.08, z: 3.87}
+  m_LocalScale: {x: 0.8863, y: 1.6007558, z: 0.8863}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: -77.754, z: 0}
+--- !u!114 &1167425365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167425363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1167648642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1167648643}
+  - component: {fileID: 1167648644}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (12)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1167648643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167648642}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 0.31, y: 1.65, z: 4.2}
+  m_LocalScale: {x: 1.0039384, y: 1.0039384, z: 1.0039384}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &1167648644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167648642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1213934524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1213934525}
+  - component: {fileID: 1213934526}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1213934525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213934524}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.1789361, y: 0.00000017881392, z: -0.14044054, w: 0.9737856}
+  m_LocalPosition: {x: 1.2200148, y: 1.2300005, z: 1.9100122}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: -20.395, y: 3.074, z: -16.966}
+--- !u!114 &1213934526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213934524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: 1716237203
+--- !u!1 &1216728155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216728156}
+  - component: {fileID: 1216728157}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (18)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1216728156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216728155}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 1.39, y: 3.17, z: -3.28}
+  m_LocalScale: {x: 0.7747789, y: 0.7747789, z: 0.7747789}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &1216728157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216728155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
 --- !u!1 &1258870708
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,12 +2632,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48d4e17daed04dd9b44c771369e50820, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockFormationAuthoring
   rockMeshCatalog: {fileID: 0}
   rockMaterial: {fileID: 2100000, guid: ed16b59818c6b46d3b621f19650e57ec, type: 2}
   legacyRockLibrarySource: {fileID: 11400000, guid: 05e0954f75e1049c2b66791f7615c4b8, type: 2}
-  authoringSeed: 1257360457
+  authoringSeed: 172057746
   style: 0
   minimumMemberCount: 4
   maximumMemberCount: 9
@@ -438,6 +2649,767 @@ MonoBehaviour:
   autoFusionPreferenceInitialized: 1
   fusionStatus: Fused 1 overlapping rock cluster(s).
   generatedMembersRoot: {fileID: 0}
+--- !u!1 &1279579814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279579815}
+  - component: {fileID: 1279579816}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (24)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1279579815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279579814}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 0.14, y: 6.58, z: -0.36}
+  m_LocalScale: {x: 0.93329316, y: 0.93329316, z: 0.93329316}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &1279579816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279579814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1344214310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344214311}
+  - component: {fileID: 1344214312}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344214311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344214310}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.82, y: 3.08, z: 0.88}
+  m_LocalScale: {x: 0.8863, y: 0.8863, z: 0.8863}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1344214312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344214310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1429372119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1429372120}
+  - component: {fileID: 1429372121}
+  m_Layer: 0
+  m_Name: Tapered Stone Volume 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1429372120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429372119}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.2201714, z: 0, w: 0.97546124}
+  m_LocalPosition: {x: -2.94, y: 1.5374477, z: 0.86}
+  m_LocalScale: {x: 2.3796053, y: 1.2311043, z: 3.0368285}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1429372121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429372119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 2
+  shapeSeed: -516153028
+--- !u!1 &1484773101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1484773102}
+  - component: {fileID: 1484773103}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1484773102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484773101}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.25047797, y: -0.000000119209275, z: 0.19659133, w: 0.9479518}
+  m_LocalPosition: {x: -2.122, y: 2.51, z: -2.137}
+  m_LocalScale: {x: 0.7061241, y: 0.7061241, z: 0.7061241}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 28.352, y: 6.425, z: 25.057}
+--- !u!114 &1484773103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484773101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1496162628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1496162629}
+  - component: {fileID: 1496162630}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (39)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1496162629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496162628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 4.89, y: 1.65, z: 4.13}
+  m_LocalScale: {x: 1.0039384, y: 1.8132237, z: 1.0039384}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &1496162630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496162628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1526473184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1526473185}
+  - component: {fileID: 1526473186}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (50)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1526473185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526473184}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 3.88, y: 1.98, z: -2.17}
+  m_LocalScale: {x: 0.7747789, y: 1.3993362, z: 0.7747789}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &1526473186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526473184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1545458756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1545458757}
+  - component: {fileID: 1545458758}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1545458757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545458756}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 0.95, y: 3.83, z: 1.21}
+  m_LocalScale: {x: 0.5625762, y: 0.5625762, z: 0.5625762}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &1545458758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545458756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1624200806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1624200808}
+  - component: {fileID: 1624200807}
+  m_Layer: 0
+  m_Name: Rock Landmark Workbench
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1624200807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624200806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421d9a4b77fb4f88a54ca06a53ba72ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockLandmarkAuthoring
+  landmarkArchetype: 0
+  generatedWidth: 32
+  generatedHeight: 12
+  generatedAsymmetry: 0.68
+  approachOpening: 0.34
+  rockMaterial: {fileID: 0}
+  landmarkSeed: 752263846
+  shareGeologicalField: 1
+  conformToTerrain: 1
+  memberVoxelSize: 0.12
+  memberFusionSmoothness: 0.17
+  memberSurfaceRelaxation: 0.55
+--- !u!4 &1624200808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624200806}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.36, y: -9.98565, z: 5.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1728037345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1728037346}
+  - component: {fileID: 1728037347}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (55)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1728037346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728037345}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.35, y: 3.31, z: -0.51}
+  m_LocalScale: {x: 2.6089013, y: 0.941162, z: 0.941162}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1728037347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728037345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1808204510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1808204511}
+  - component: {fileID: 1808204512}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 2 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1808204511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808204510}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.59814465, z: -0, w: 0.8013882}
+  m_LocalPosition: {x: 3.26, y: 1.5318743, z: 2.58}
+  m_LocalScale: {x: 2.9934058, y: 3.8583052, z: 3.803372}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: -73.474, z: 0}
+--- !u!114 &1808204512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808204510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -1320375456
+--- !u!1 &1841397765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1841397766}
+  - component: {fileID: 1841397767}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1841397766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841397765}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.26, y: 1.37, z: -1.42}
+  m_LocalScale: {x: 0.8863, y: 0.8863, z: 0.8863}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1841397767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841397765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1865142993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865142994}
+  - component: {fileID: 1865142995}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (21)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1865142994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865142993}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 3.06, y: 1.17, z: 5.1}
+  m_LocalScale: {x: 0.7747789, y: 0.7747789, z: 0.7747789}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &1865142995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865142993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1865410091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865410092}
+  - component: {fileID: 1865410093}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (30)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1865410092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865410091}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.07160507, y: -0.59498334, z: 0.31025848, w: 0.7379752}
+  m_LocalPosition: {x: 0.18, y: 2.51, z: 0.85}
+  m_LocalScale: {x: 0.7061241, y: 1.2753382, z: 0.7061241}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 28.352, y: -71.329, z: 25.057}
+--- !u!114 &1865410093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865410091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1867813060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1867813061}
+  - component: {fileID: 1867813062}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (16)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1867813061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867813060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 1.1, y: 2.96, z: -0.73}
+  m_LocalScale: {x: 0.8442118, y: 0.8442118, z: 0.8442118}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &1867813062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867813060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1894687550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1894687551}
+  - component: {fileID: 1894687552}
+  m_Layer: 0
+  m_Name: Tapered Stone Volume 5 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1894687551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894687550}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.39374128, z: -0, w: 0.9192214}
+  m_LocalPosition: {x: 0.36, y: 1.5864742, z: 0.89}
+  m_LocalScale: {x: 1.0561559, y: 1.1787227, z: 0.98603505}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: -46.375, z: 0}
+--- !u!114 &1894687552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894687550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 2
+  shapeSeed: -1402767151
+--- !u!1 &1896565236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1896565237}
+  - component: {fileID: 1896565238}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (37)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1896565237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896565236}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 3.32, y: 4.9, z: 4.26}
+  m_LocalScale: {x: 0.3797044, y: 0.6857881, z: 0.3797044}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &1896565238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896565236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
 --- !u!1 &1908017536
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,28 +3440,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56fcad4e5f864215af7bea84c59f29e9, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockWorkbenchAuthoring
   rockMaterial: {fileID: 2100000, guid: 8f0d9ecf55df4febaf16c99e33f2258b, type: 2}
-  voxelSize: 0.15
-  fusionSmoothness: 0.784
+  voxelSize: 0.5
+  fusionSmoothness: 0.657
+  surfaceRelaxation: 0.45
   autoRebuild: 1
   showSourceVolumes: 1
   updateCollider: 1
-  geologyScale: 1.1
-  surfaceVariation: 0.72
-  crackAmount: 0.42
-  sideGrit: 0.3
-  undersideShale: 1
-  sideShalePatches: 0.36
-  topShalePatches: 0.42
-  wornShine: 0.2
-  generationSeed: 1407368051
+  geologyScale: 2.4
+  surfaceVariation: 0.346
+  crackAmount: 0.36
+  sideGrit: 0.417
+  undersideShale: 0.905
+  sideShalePatches: 0
+  topShalePatches: 0
+  wornShine: 0.099
+  generationSeed: -121341264
   generatedOverallSize: {x: 2.38, y: 4.33, z: 1.93}
-  generatedOverallScale: 2.84
-  generatedVerticality: 0.827
-  generatedAsymmetry: 0
-  generatedOverlap: 0
+  generatedOverallScale: 5.12
+  generatedHeight: 11.8
+  generatedVerticality: 1
+  generatedAsymmetry: 0.438
+  generatedOverlap: 0.389
+  generatedSilhouetteProfile: 0
 --- !u!64 &1908017538
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -577,13 +3552,608 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1908017536}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9, y: -11.48, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.8992798, z: -0, w: 0.43737397}
+  m_LocalPosition: {x: 12.66, y: -12.03, z: 0.07216976}
+  m_LocalScale: {x: 1, y: 0.6045108, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1023588061}
+  - {fileID: 2073078206}
+  - {fileID: 2061915614}
+  - {fileID: 1808204511}
+  - {fileID: 1429372120}
+  - {fileID: 324158649}
+  - {fileID: 371253778}
+  - {fileID: 121057153}
+  - {fileID: 1946567690}
+  - {fileID: 1894687551}
+  - {fileID: 1213934525}
+  - {fileID: 704337711}
+  - {fileID: 251751872}
+  - {fileID: 1965667478}
+  - {fileID: 1841397766}
+  - {fileID: 551602055}
+  - {fileID: 142497163}
+  - {fileID: 1728037346}
+  - {fileID: 1074900913}
+  - {fileID: 1344214311}
+  - {fileID: 1167425364}
+  - {fileID: 1484773102}
+  - {fileID: 1865410092}
+  - {fileID: 7515579}
+  - {fileID: 2119984501}
+  - {fileID: 930091770}
+  - {fileID: 92096999}
+  - {fileID: 510396307}
+  - {fileID: 2080812152}
+  - {fileID: 1545458757}
+  - {fileID: 305215359}
+  - {fileID: 355394762}
+  - {fileID: 1149012217}
+  - {fileID: 633175040}
+  - {fileID: 932581852}
+  - {fileID: 477740874}
+  - {fileID: 509607928}
+  - {fileID: 1020648852}
+  - {fileID: 1896565237}
+  - {fileID: 1167648643}
+  - {fileID: 1048806756}
+  - {fileID: 43639136}
+  - {fileID: 1496162629}
+  - {fileID: 910796085}
+  - {fileID: 628308670}
+  - {fileID: 80471179}
+  - {fileID: 2143422769}
+  - {fileID: 2080184982}
+  - {fileID: 300290026}
+  - {fileID: 2070941763}
+  - {fileID: 650403822}
+  - {fileID: 1279579815}
+  - {fileID: 131965994}
+  - {fileID: 633277142}
+  - {fileID: 872100410}
+  - {fileID: 1867813061}
+  - {fileID: 164983474}
+  - {fileID: 510727296}
+  - {fileID: 1960121564}
+  - {fileID: 1216728156}
+  - {fileID: 402777687}
+  - {fileID: 591999231}
+  - {fileID: 314955054}
+  - {fileID: 725577057}
+  - {fileID: 1526473185}
+  - {fileID: 1865142994}
+  - {fileID: 926015061}
+  - {fileID: 748397867}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 128.127, z: 0}
+--- !u!1 &1946567689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946567690}
+  - component: {fileID: 1946567691}
+  m_Layer: 0
+  m_Name: Tapered Stone Volume 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1946567690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946567689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.27042502, z: 0, w: 0.9627411}
+  m_LocalPosition: {x: -1.94, y: 1.5864742, z: -2.1}
+  m_LocalScale: {x: 1.0561559, y: 0.6526305, z: 0.98603505}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1908017541}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1946567691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946567689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 2
+  shapeSeed: -1402767151
+--- !u!1 &1960121563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1960121564}
+  - component: {fileID: 1960121565}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (47)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1960121564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960121563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 3.69, y: 1.92, z: -0.29}
+  m_LocalScale: {x: 1.4337668, y: 2.5895412, z: 1.4337668}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &1960121565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960121563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &1965667477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1965667478}
+  - component: {fileID: 1965667479}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (26)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1965667478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965667477}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.62765163, z: -0, w: 0.7784944}
+  m_LocalPosition: {x: 6.54, y: 1.37, z: 5.33}
+  m_LocalScale: {x: 0.8863, y: 1.6007558, z: 0.8863}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: -77.754, z: 0}
+--- !u!114 &1965667479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965667477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &2061915613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2061915614}
+  - component: {fileID: 2061915615}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2061915614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061915613}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.037340105, z: 0, w: 0.9993026}
+  m_LocalPosition: {x: 0.95773673, y: 1.5318743, z: -0.40603855}
+  m_LocalScale: {x: 2.9934058, y: 2.136251, z: 3.803372}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2061915615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061915613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -1320375456
+--- !u!1 &2070941762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2070941763}
+  - component: {fileID: 2070941764}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (23)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2070941763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070941762}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 0.14, y: 5.33, z: -0.36}
+  m_LocalScale: {x: 0.8442118, y: 0.8442118, z: 0.8442118}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &2070941764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070941762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &2073078205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2073078206}
+  - component: {fileID: 2073078207}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2073078206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073078205}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.44890785, z: -0, w: 0.89357805}
+  m_LocalPosition: {x: 2.23, y: 1.1542944, z: 3}
+  m_LocalScale: {x: 3.2937284, y: 4.169566, z: 3.8178577}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 0, y: -53.347, z: 0}
+--- !u!114 &2073078207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073078205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: 1024072951
+--- !u!1 &2080184981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080184982}
+  - component: {fileID: 2080184983}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (22)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2080184982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080184981}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31989866, y: -0.038782414, z: 0.10430268, w: 0.9408941}
+  m_LocalPosition: {x: 0.14, y: 4.56, z: -0.36}
+  m_LocalScale: {x: 0.8442118, y: 0.8442118, z: 0.8442118}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -0.452, z: 12.498}
+--- !u!114 &2080184983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080184981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &2080812151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080812152}
+  - component: {fileID: 2080812153}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (33)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2080812152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080812151}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 3.25, y: 3.14, z: 4.2}
+  m_LocalScale: {x: 0.5625762, y: 1.0160747, z: 0.5625762}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &2080812153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080812151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1 &2119984500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2119984501}
+  - component: {fileID: 2119984502}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (31)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2119984501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119984500}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.07160507, y: -0.59498334, z: 0.31025848, w: 0.7379752}
+  m_LocalPosition: {x: 0.18, y: 3.51, z: 0.85}
+  m_LocalScale: {x: 0.5625762, y: 1.0160747, z: 0.5625762}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 28.352, y: -71.329, z: 25.057}
+--- !u!114 &2119984502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119984500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
+--- !u!1001 &2129077981
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1820010666187278166, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_Name
+      value: Full control
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587514235559230540, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.10798
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587514235559230540, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.48818
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587514235559230540, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.76671
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587514235559230540, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587514235559230540, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587514235559230540, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587514235559230540, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587514235559230540, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587514235559230540, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587514235559230540, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5afa9637f33ec491180ff52fa0c652c5, type: 3}
+--- !u!1 &2143422768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2143422769}
+  - component: {fileID: 2143422770}
+  m_Layer: 0
+  m_Name: Weathered Block Volume 7 (41)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2143422769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143422768}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18357389, y: -0.62074584, z: 0.2819838, w: 0.7081388}
+  m_LocalPosition: {x: 4.12, y: 2.96, z: 3.66}
+  m_LocalScale: {x: 0.8442118, y: 1.5247399, z: 0.8442118}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1908017541}
+  m_LocalEulerAnglesHint: {x: 37.595, y: -78.206, z: 12.498}
+--- !u!114 &2143422770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143422768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7a12feb980472ea1d4d77e032a2d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRockVolumeNode
+  contributesToRock: 1
+  sourceShape: 0
+  shapeSeed: -794195974
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -592,3 +4162,6 @@ SceneRoots:
   - {fileID: 377980090}
   - {fileID: 739167287}
   - {fileID: 1908017541}
+  - {fileID: 596585115}
+  - {fileID: 1624200808}
+  - {fileID: 2129077981}

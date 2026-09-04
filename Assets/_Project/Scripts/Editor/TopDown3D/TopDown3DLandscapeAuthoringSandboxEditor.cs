@@ -8,10 +8,19 @@ using BooterBigArm.TopDown3D;
 
 namespace BooterBigArm.Editor
 {
+    [InitializeOnLoad]
     [CustomEditor(typeof(TopDown3DLandscapeAuthoringSandbox))]
     public sealed class TopDown3DLandscapeAuthoringSandboxEditor : UnityEditor.Editor
     {
         private const string TerrainPreviewRootName = "__Generated Terrain Context";
+
+        static TopDown3DLandscapeAuthoringSandboxEditor()
+        {
+            EditorApplication.playModeStateChanged -= HandlePlayModeStateChanged;
+            EditorApplication.playModeStateChanged += HandlePlayModeStateChanged;
+            EditorApplication.delayCall -= RebuildLoadedTerrainContexts;
+            EditorApplication.delayCall += RebuildLoadedTerrainContexts;
+        }
 
         [MenuItem("Booter & BigARM/Top Down 3D/Open Landscape Authoring Sandbox")]
         public static void OpenOrCreateSandbox()
@@ -40,7 +49,7 @@ namespace BooterBigArm.Editor
             EditorGUILayout.Space();
             EditorGUILayout.HelpBox(
                 "Terrain Context is a temporary editor view built from the production terrain generator. "
-                + "It provides scale and lighting for authoring without becoming a second terrain asset.",
+                + "It provides scale, lighting, and a playable ground surface without becoming a second terrain asset.",
                 MessageType.Info);
 
             using (new EditorGUI.DisabledScope(sandbox.WorldSettings == null || sandbox.TerrainMaterial == null))
@@ -97,6 +106,8 @@ namespace BooterBigArm.Editor
                         mesh.hideFlags = HideFlags.DontSaveInEditor | HideFlags.DontUnloadUnusedAsset;
                         chunk.AddComponent<MeshFilter>().sharedMesh = mesh;
                         chunk.AddComponent<MeshRenderer>().sharedMaterial = sandbox.TerrainMaterial;
+                        chunk.AddComponent<TopDown3DGroundSurface>();
+                        chunk.AddComponent<MeshCollider>().sharedMesh = mesh;
                     }
                 }
             }
@@ -113,6 +124,12 @@ namespace BooterBigArm.Editor
             var existing = sandbox.transform.Find(TerrainPreviewRootName);
             if (existing == null) return;
 
+            var colliders = existing.GetComponentsInChildren<MeshCollider>(true);
+            for (var i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].sharedMesh = null;
+            }
+
             var filters = existing.GetComponentsInChildren<MeshFilter>(true);
             for (var i = 0; i < filters.Length; i++)
             {
@@ -124,6 +141,38 @@ namespace BooterBigArm.Editor
             }
 
             UnityEngine.Object.DestroyImmediate(existing.gameObject);
+        }
+
+        private static void HandlePlayModeStateChanged(PlayModeStateChange state)
+        {
+            if (state != PlayModeStateChange.ExitingEditMode
+                && state != PlayModeStateChange.EnteredPlayMode
+                && state != PlayModeStateChange.EnteredEditMode)
+            {
+                return;
+            }
+
+            RebuildLoadedTerrainContexts();
+        }
+
+        private static void RebuildLoadedTerrainContexts()
+        {
+            var sandboxes = UnityEngine.Object.FindObjectsByType<TopDown3DLandscapeAuthoringSandbox>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.None);
+            for (var i = 0; i < sandboxes.Length; i++)
+            {
+                var sandbox = sandboxes[i];
+                if (sandbox == null
+                    || !sandbox.gameObject.scene.IsValid()
+                    || sandbox.WorldSettings == null
+                    || sandbox.TerrainMaterial == null)
+                {
+                    continue;
+                }
+
+                BuildTerrainContext(sandbox);
+            }
         }
     }
 
