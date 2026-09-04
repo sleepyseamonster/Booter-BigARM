@@ -287,10 +287,28 @@ namespace BooterBigArm.Editor
             out TopDown3DRockWorkbenchBuildResult result,
             out string error)
         {
+            return TryBuild(
+                boxes,
+                requestedVoxelSize,
+                smoothness,
+                0f,
+                out result,
+                out error);
+        }
+
+        internal static bool TryBuild(
+            IReadOnlyList<TopDown3DRockWorkbenchBox> boxes,
+            float requestedVoxelSize,
+            float smoothness,
+            float surfaceRelaxation,
+            out TopDown3DRockWorkbenchBuildResult result,
+            out string error)
+        {
             return TryBuildInternal(
                 boxes,
                 requestedVoxelSize,
                 Mathf.Max(0f, smoothness),
+                Mathf.Clamp01(surfaceRelaxation),
                 point => Evaluate(boxes, point, smoothness),
                 null,
                 0f,
@@ -303,6 +321,25 @@ namespace BooterBigArm.Editor
             float requestedVoxelSize,
             float interGroupSmoothness,
             float seamWidth,
+            out TopDown3DRockWorkbenchBuildResult result,
+            out string error)
+        {
+            return TryBuildGrouped(
+                groups,
+                requestedVoxelSize,
+                interGroupSmoothness,
+                seamWidth,
+                0f,
+                out result,
+                out error);
+        }
+
+        internal static bool TryBuildGrouped(
+            IReadOnlyList<TopDown3DRockWorkbenchFieldGroup> groups,
+            float requestedVoxelSize,
+            float interGroupSmoothness,
+            float seamWidth,
+            float surfaceRelaxation,
             out TopDown3DRockWorkbenchBuildResult result,
             out string error)
         {
@@ -337,6 +374,7 @@ namespace BooterBigArm.Editor
                 boxes,
                 requestedVoxelSize,
                 paddingSmoothness,
+                Mathf.Clamp01(surfaceRelaxation),
                 point => EvaluateGroups(groups, point, interGroupSmoothness),
                 groups,
                 seamWidth,
@@ -348,6 +386,7 @@ namespace BooterBigArm.Editor
             IReadOnlyList<TopDown3DRockWorkbenchBox> boxes,
             float requestedVoxelSize,
             float paddingSmoothness,
+            float surfaceRelaxation,
             Func<Vector3, float> evaluateField,
             IReadOnlyList<TopDown3DRockWorkbenchFieldGroup> seamGroups,
             float seamWidth,
@@ -459,6 +498,13 @@ namespace BooterBigArm.Editor
             }
 
             var meshData = TopDown3DRockMeshTopology.Normalize(vertices, triangles);
+            if (surfaceRelaxation > 0.0001f)
+            {
+                meshData = RelaxSurface(
+                    meshData,
+                    surfaceRelaxation,
+                    voxelSize);
+            }
             var topology = TopDown3DRockMeshTopology.Validate(meshData);
             if (!topology.IsValid)
             {
@@ -476,6 +522,149 @@ namespace BooterBigArm.Editor
                     ? null
                     : BuildGeologicalSeamColors(meshData.Vertices, seamGroups, seamWidth));
             return true;
+        }
+
+        /// <summary>
+        /// Applies a bounded Taubin-style two-pass relaxation. The positive pass removes
+        /// voxel-scale spikes; the small negative pass and volume correction counter the
+        /// shrinkage of ordinary Laplacian smoothing. Triangle connectivity is unchanged.
+        /// </summary>
+        private static TopDown3DIndexedMeshData RelaxSurface(
+            TopDown3DIndexedMeshData mesh,
+            float amount,
+            float effectiveVoxelSize)
+        {
+            amount = Mathf.Clamp01(amount);
+            if (amount <= 0.0001f || mesh.Vertices.Length == 0) return mesh;
+
+            var original = mesh.Vertices;
+            var working = (Vector3[])original.Clone();
+            var scratch = new Vector3[working.Length];
+            var adjacency = BuildVertexAdjacency(working.Length, mesh.Triangles);
+            var originalMinimumY = FindMinimumY(original);
+            var originalVolume = Mathf.Abs((float)CalculateSignedVolume(original, mesh.Triangles));
+            var iterations = 1 + Mathf.RoundToInt(amount * 4f);
+            var lambda = 0.42f * amount;
+            var mu = -0.44f * amount;
+            var maximumStep = Mathf.Max(0.0001f, effectiveVoxelSize * 0.72f * amount);
+
+            for (var iteration = 0; iteration < iterations; iteration++)
+            {
+                ApplyRelaxationPass(working, scratch, adjacency, lambda, maximumStep);
+                Swap(ref working, ref scratch);
+                ApplyRelaxationPass(working, scratch, adjacency, mu, maximumStep);
+                Swap(ref working, ref scratch);
+            }
+
+            PreserveVolume(working, mesh.Triangles, originalVolume);
+            var groundCorrection = originalMinimumY - FindMinimumY(working);
+            if (Mathf.Abs(groundCorrection) > 0.000001f)
+            {
+                for (var index = 0; index < working.Length; index++)
+                    working[index].y += groundCorrection;
+            }
+
+            return new TopDown3DIndexedMeshData(working, mesh.Triangles);
+        }
+
+        private static List<int>[] BuildVertexAdjacency(int vertexCount, IReadOnlyList<int> triangles)
+        {
+            var adjacency = new List<int>[vertexCount];
+            for (var index = 0; index < vertexCount; index++) adjacency[index] = new List<int>(6);
+
+            for (var triangle = 0; triangle < triangles.Count; triangle += 3)
+            {
+                var a = triangles[triangle];
+                var b = triangles[triangle + 1];
+                var c = triangles[triangle + 2];
+                adjacency[a].Add(b);
+                adjacency[a].Add(c);
+                adjacency[b].Add(a);
+                adjacency[b].Add(c);
+                adjacency[c].Add(a);
+                adjacency[c].Add(b);
+            }
+
+            return adjacency;
+        }
+
+        private static void ApplyRelaxationPass(
+            IReadOnlyList<Vector3> source,
+            IList<Vector3> destination,
+            IReadOnlyList<List<int>> adjacency,
+            float strength,
+            float maximumStep)
+        {
+            for (var index = 0; index < source.Count; index++)
+            {
+                var neighbors = adjacency[index];
+                if (neighbors.Count == 0)
+                {
+                    destination[index] = source[index];
+                    continue;
+                }
+
+                var average = Vector3.zero;
+                for (var neighbor = 0; neighbor < neighbors.Count; neighbor++)
+                    average += source[neighbors[neighbor]];
+                average /= neighbors.Count;
+
+                var displacement = (average - source[index]) * strength;
+                if (displacement.sqrMagnitude > maximumStep * maximumStep)
+                    displacement = displacement.normalized * maximumStep;
+                destination[index] = source[index] + displacement;
+            }
+        }
+
+        private static void PreserveVolume(
+            IList<Vector3> vertices,
+            IReadOnlyList<int> triangles,
+            float originalVolume)
+        {
+            if (originalVolume <= 0.0000001f) return;
+            var relaxedVolume = Mathf.Abs((float)CalculateSignedVolume(vertices, triangles));
+            if (relaxedVolume <= 0.0000001f) return;
+
+            var scale = Mathf.Pow(originalVolume / relaxedVolume, 1f / 3f);
+            scale = Mathf.Clamp(scale, 0.95f, 1.05f);
+            if (Mathf.Abs(scale - 1f) <= 0.00001f) return;
+
+            var center = Vector3.zero;
+            for (var index = 0; index < vertices.Count; index++) center += vertices[index];
+            center /= vertices.Count;
+            for (var index = 0; index < vertices.Count; index++)
+                vertices[index] = center + (vertices[index] - center) * scale;
+        }
+
+        private static double CalculateSignedVolume(
+            IList<Vector3> vertices,
+            IReadOnlyList<int> triangles)
+        {
+            var volume = 0.0;
+            for (var triangle = 0; triangle < triangles.Count; triangle += 3)
+            {
+                var a = vertices[triangles[triangle]];
+                var b = vertices[triangles[triangle + 1]];
+                var c = vertices[triangles[triangle + 2]];
+                volume += Vector3.Dot(a, Vector3.Cross(b, c)) / 6.0;
+            }
+
+            return volume;
+        }
+
+        private static float FindMinimumY(IReadOnlyList<Vector3> vertices)
+        {
+            var minimum = float.PositiveInfinity;
+            for (var index = 0; index < vertices.Count; index++)
+                minimum = Mathf.Min(minimum, vertices[index].y);
+            return minimum;
+        }
+
+        private static void Swap(ref Vector3[] first, ref Vector3[] second)
+        {
+            var temporary = first;
+            first = second;
+            second = temporary;
         }
 
         private static void PolygonizeTetrahedron(

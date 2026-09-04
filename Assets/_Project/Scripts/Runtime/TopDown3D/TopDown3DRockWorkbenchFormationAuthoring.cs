@@ -58,6 +58,8 @@ namespace BooterBigArm.TopDown3D
         private float memberVoxelSize = 0.075f;
         [SerializeField, Range(0f, 0.35f), InspectorName("Rock Smoothing"), Tooltip("Rounds the blends between the editable source masses inside every member rock. This does not move or merge separate rocks.")]
         private float memberFusionSmoothness = 0.11f;
+        [SerializeField, Range(0f, 1f), Tooltip("Relaxes each completed rock surface after meshing to remove voxel-scale teeth and stair steps while preserving volume and ground contact.")]
+        private float memberSurfaceRelaxation = 0.55f;
 
         [Header("Formation Fractures")]
         [SerializeField, Range(0f, 1f), Tooltip("Strength of a few long fractures projected coherently over the entire formation.")]
@@ -126,7 +128,10 @@ namespace BooterBigArm.TopDown3D
         public bool AutoRebuild => autoRebuild;
         public bool UpdateCollider => updateCollider;
         public float MemberVoxelSize => Mathf.Clamp(memberVoxelSize, 0.025f, 0.18f);
+        public float MemberTessellationDetail =>
+            TopDown3DRockWorkbenchAuthoring.VoxelSizeToTessellationDetail(MemberVoxelSize);
         public float MemberFusionSmoothness => Mathf.Clamp(memberFusionSmoothness, 0f, 0.35f);
+        public float MemberSurfaceRelaxation => Mathf.Clamp01(memberSurfaceRelaxation);
         public float LongFractures => Mathf.Clamp01(longFractures);
         public float FractureSpacing => Mathf.Clamp(fractureSpacing, 1.5f, 16f);
         public float FusedVoxelSize => Mathf.Max(0.04f, fusedVoxelSize);

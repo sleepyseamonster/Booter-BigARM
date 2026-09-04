@@ -84,6 +84,7 @@ namespace BooterBigArm.Tests
                 serialized.FindProperty("fractureSpacing").floatValue = 99f;
                 serialized.FindProperty("memberVoxelSize").floatValue = -2f;
                 serialized.FindProperty("memberFusionSmoothness").floatValue = 7f;
+                serialized.FindProperty("memberSurfaceRelaxation").floatValue = 7f;
                 serialized.FindProperty("fusedVoxelSize").floatValue = -2f;
                 serialized.FindProperty("fusedJoinSoftness").floatValue = 7f;
                 serialized.FindProperty("geologicalSeamWidth").floatValue = -3f;
@@ -100,6 +101,7 @@ namespace BooterBigArm.Tests
                 Assert.That(formation.FractureSpacing, Is.EqualTo(16f));
                 Assert.That(formation.MemberVoxelSize, Is.EqualTo(0.025f));
                 Assert.That(formation.MemberFusionSmoothness, Is.EqualTo(0.35f));
+                Assert.That(formation.MemberSurfaceRelaxation, Is.EqualTo(1f));
                 Assert.That(formation.FusedVoxelSize, Is.EqualTo(0.04f));
                 Assert.That(formation.FusedJoinSoftness, Is.EqualTo(0.5f));
                 Assert.That(formation.GeologicalSeamWidth, Is.EqualTo(0.08f));
@@ -109,6 +111,24 @@ namespace BooterBigArm.Tests
             {
                 Object.DestroyImmediate(root);
             }
+        }
+
+        [Test]
+        public void TessellationDetailMapsOneToCoarseAndFiveToFine()
+        {
+            Assert.That(
+                TopDown3DRockWorkbenchAuthoring.TessellationDetailToVoxelSize(1f),
+                Is.EqualTo(TopDown3DRockWorkbenchAuthoring.CoarsestVoxelSize).Within(0.000001f));
+            Assert.That(
+                TopDown3DRockWorkbenchAuthoring.TessellationDetailToVoxelSize(5f),
+                Is.EqualTo(TopDown3DRockWorkbenchAuthoring.FinestVoxelSize).Within(0.000001f));
+            Assert.That(
+                TopDown3DRockWorkbenchAuthoring.TessellationDetailToVoxelSize(4f),
+                Is.LessThan(TopDown3DRockWorkbenchAuthoring.TessellationDetailToVoxelSize(3f)));
+            Assert.That(
+                TopDown3DRockWorkbenchAuthoring.VoxelSizeToTessellationDetail(
+                    TopDown3DRockWorkbenchAuthoring.TessellationDetailToVoxelSize(3.4f)),
+                Is.EqualTo(3.4f).Within(0.0001f));
         }
 
         [Test]
@@ -440,6 +460,7 @@ namespace BooterBigArm.Tests
                     (int)TopDown3DRockFormationArchetype.ScatteredRocks;
                 serialized.FindProperty("memberVoxelSize").floatValue = 0.064f;
                 serialized.FindProperty("memberFusionSmoothness").floatValue = 0.18f;
+                serialized.FindProperty("memberSurfaceRelaxation").floatValue = 0.72f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
                 TopDown3DRockWorkbenchFormationGenerator.GenerateIntoFormation(
@@ -452,6 +473,8 @@ namespace BooterBigArm.Tests
                     Mathf.Abs(member.VoxelSize - 0.064f) < 0.0001f), Is.True);
                 Assert.That(members.All(member =>
                     Mathf.Abs(member.FusionSmoothness - 0.18f) < 0.0001f), Is.True);
+                Assert.That(members.All(member =>
+                    Mathf.Abs(member.SurfaceRelaxation - 0.72f) < 0.0001f), Is.True);
 
                 var positions = members.Select(member => member.transform.localPosition).ToArray();
                 var sourceCounts = members.Select(member =>
@@ -459,6 +482,7 @@ namespace BooterBigArm.Tests
                 serialized.Update();
                 serialized.FindProperty("memberVoxelSize").floatValue = 0.12f;
                 serialized.FindProperty("memberFusionSmoothness").floatValue = 0.04f;
+                serialized.FindProperty("memberSurfaceRelaxation").floatValue = 0.31f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
                 TopDown3DRockWorkbenchFormationGenerator.ApplyMemberMeshSettings(formation);
 
@@ -466,6 +490,7 @@ namespace BooterBigArm.Tests
                 {
                     Assert.That(members[index].VoxelSize, Is.EqualTo(0.12f).Within(0.0001f));
                     Assert.That(members[index].FusionSmoothness, Is.EqualTo(0.04f).Within(0.0001f));
+                    Assert.That(members[index].SurfaceRelaxation, Is.EqualTo(0.31f).Within(0.0001f));
                     Assert.That(members[index].transform.localPosition, Is.EqualTo(positions[index]));
                     Assert.That(
                         members[index].GetComponentsInChildren<TopDown3DRockVolumeNode>(true).Length,
@@ -1736,6 +1761,75 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void SurfaceRelaxationReducesVoxelScaleRoughnessWithoutLiftingTheRock()
+        {
+            var root = new GameObject("Rock Workbench Relaxation Test");
+            try
+            {
+                var first = CreateBoxObject(
+                    root.transform,
+                    Vector3.zero,
+                    new Vector3(3.4f, 2.2f, 2.6f));
+                var second = CreateBoxObject(
+                    root.transform,
+                    new Vector3(1.25f, 0.58f, 0.15f),
+                    new Vector3(2.2f, 1.6f, 1.9f));
+                second.transform.localRotation = Quaternion.Euler(9f, 31f, -7f);
+                var boxes = new[]
+                {
+                    new TopDown3DRockWorkbenchBox(
+                        root.transform,
+                        first.transform,
+                        TopDown3DRockSourceShape.WeatheredBlock,
+                        2468),
+                    new TopDown3DRockWorkbenchBox(
+                        root.transform,
+                        second.transform,
+                        TopDown3DRockSourceShape.Wedge,
+                        1357)
+                };
+
+                Assert.That(
+                    TopDown3DRockWorkbenchMesher.TryBuild(
+                        boxes,
+                        0.16f,
+                        0.1f,
+                        0f,
+                        out var original,
+                        out var originalError),
+                    Is.True,
+                    originalError);
+                Assert.That(
+                    TopDown3DRockWorkbenchMesher.TryBuild(
+                        boxes,
+                        0.16f,
+                        0.1f,
+                        1f,
+                        out var relaxed,
+                        out var relaxedError),
+                    Is.True,
+                    relaxedError);
+
+                Assert.That(relaxed.Topology.IsValid, Is.True, relaxed.Topology.Error);
+                Assert.That(relaxed.ConnectedComponents, Is.EqualTo(original.ConnectedComponents));
+                Assert.That(relaxed.MeshData.Triangles, Is.EqualTo(original.MeshData.Triangles));
+                Assert.That(
+                    FindMinimumY(relaxed.MeshData.Vertices),
+                    Is.EqualTo(FindMinimumY(original.MeshData.Vertices)).Within(0.00001f));
+                Assert.That(
+                    SurfaceRoughness(relaxed.MeshData),
+                    Is.LessThan(SurfaceRoughness(original.MeshData)));
+                Assert.That(
+                    relaxed.Topology.SignedVolume / original.Topology.SignedVolume,
+                    Is.InRange(0.94d, 1.06d));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
         public void SeparatedBoxesReportTwoClosedSurfaceComponents()
         {
             var root = new GameObject("Rock Workbench Test");
@@ -2082,6 +2176,47 @@ namespace BooterBigArm.Tests
             TopDown3DRockFormationMemberPlan member)
         {
             return member.RockSize * Mathf.Max(member.LocalScale.x, member.LocalScale.z) * 0.43f;
+        }
+
+        private static float SurfaceRoughness(TopDown3DIndexedMeshData mesh)
+        {
+            var sums = new Vector3[mesh.Vertices.Length];
+            var counts = new int[mesh.Vertices.Length];
+            for (var triangle = 0; triangle < mesh.Triangles.Length; triangle += 3)
+            {
+                AccumulateNeighbor(mesh, sums, counts, mesh.Triangles[triangle], mesh.Triangles[triangle + 1]);
+                AccumulateNeighbor(mesh, sums, counts, mesh.Triangles[triangle + 1], mesh.Triangles[triangle + 2]);
+                AccumulateNeighbor(mesh, sums, counts, mesh.Triangles[triangle + 2], mesh.Triangles[triangle]);
+            }
+
+            var roughness = 0f;
+            for (var index = 0; index < mesh.Vertices.Length; index++)
+            {
+                if (counts[index] == 0) continue;
+                roughness += Vector3.Distance(mesh.Vertices[index], sums[index] / counts[index]);
+            }
+            return roughness / mesh.Vertices.Length;
+        }
+
+        private static void AccumulateNeighbor(
+            TopDown3DIndexedMeshData mesh,
+            IList<Vector3> sums,
+            IList<int> counts,
+            int first,
+            int second)
+        {
+            sums[first] += mesh.Vertices[second];
+            counts[first]++;
+            sums[second] += mesh.Vertices[first];
+            counts[second]++;
+        }
+
+        private static float FindMinimumY(IReadOnlyList<Vector3> vertices)
+        {
+            var minimum = float.PositiveInfinity;
+            for (var index = 0; index < vertices.Count; index++)
+                minimum = Mathf.Min(minimum, vertices[index].y);
+            return minimum;
         }
 
     }

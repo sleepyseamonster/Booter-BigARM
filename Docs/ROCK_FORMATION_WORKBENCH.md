@@ -52,8 +52,9 @@ The current formation categories are:
 ## Useful controls
 
 - `Formation Seed` changes the shared material and long-fracture placement reproducibly.
-- `Tessellation Size` changes the surface-grid size on every member rock without regenerating or repositioning the formation. Smaller values make finer silhouettes but take longer to rebuild.
+- `Tessellation Detail` is an intuitive 1–5 surface-sampling control applied to every member rock without regenerating or repositioning the formation. `1` rebuilds fastest; `5` produces the finest silhouette and costs the most editor time.
 - `Rock Smoothing` changes how softly the editable source masses blend inside every member rock. It does not fuse separate scattered rocks or move hand-arranged members.
+- `Surface Relaxation` is a separate post-mesh pass. It reduces voxel-scale teeth and stair steps after extraction, uses a shrink-resistant two-pass relaxation, and restores the original lowest ground-contact height. It does not change source-volume placement or triangle connectivity.
 - `Long Fractures` controls only the formation-scale fracture layer.
 - `Fracture Spacing` is the approximate physical spacing between long fracture planes.
 - `Fused Voxel Size` controls both single-shell modes. `Fused Join Softness` fully rounds Smooth Fused Preview and supplies only restrained contact smoothing to Fused Geological Seams.

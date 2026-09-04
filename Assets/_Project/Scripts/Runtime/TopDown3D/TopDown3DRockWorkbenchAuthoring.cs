@@ -21,12 +21,19 @@ namespace BooterBigArm.TopDown3D
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
     public sealed class TopDown3DRockWorkbenchAuthoring : MonoBehaviour
     {
+        public const float MinimumTessellationDetail = 1f;
+        public const float MaximumTessellationDetail = 5f;
+        public const float CoarsestVoxelSize = 0.18f;
+        public const float FinestVoxelSize = 0.025f;
+
         [Header("Preview")]
         [SerializeField] private Material rockMaterial;
         [SerializeField, Min(0.025f), Tooltip("Smaller voxels make a more detailed surface but take longer to rebuild.")]
         private float voxelSize = 0.1f;
         [SerializeField, Range(0f, 1f), Tooltip("Rounds and thickens the join between nearby source volumes. Zero produces a hard union.")]
         private float fusionSmoothness = 0.16f;
+        [SerializeField, Range(0f, 1f), Tooltip("Relaxes the finished triangle surface to remove voxel-scale teeth and stair steps while preserving the rock's volume and ground contact.")]
+        private float surfaceRelaxation = 0.45f;
         [SerializeField, Tooltip("Rebuild the preview shortly after a source volume or setting changes.")]
         private bool autoRebuild = true;
         [SerializeField, Tooltip("Show selectable wireframes for the source volumes in the Scene view.")]
@@ -79,7 +86,9 @@ namespace BooterBigArm.TopDown3D
 
         public Material RockMaterial => rockMaterial;
         public float VoxelSize => Mathf.Max(0.025f, voxelSize);
+        public float TessellationDetail => VoxelSizeToTessellationDetail(VoxelSize);
         public float FusionSmoothness => Mathf.Clamp(fusionSmoothness, 0f, 1f);
+        public float SurfaceRelaxation => Mathf.Clamp01(surfaceRelaxation);
         public bool AutoRebuild => autoRebuild;
         public bool ShowSourceVolumes => showSourceVolumes;
         public bool UpdateCollider => updateCollider;
@@ -116,6 +125,23 @@ namespace BooterBigArm.TopDown3D
         {
             var aspect = Mathf.Max(0.01f, height) / Mathf.Max(0.01f, width);
             return Mathf.Clamp01(Mathf.InverseLerp(0.35f, 2.5f, aspect));
+        }
+
+        public static float TessellationDetailToVoxelSize(float detail)
+        {
+            var normalized = Mathf.InverseLerp(
+                MinimumTessellationDetail,
+                MaximumTessellationDetail,
+                Mathf.Clamp(detail, MinimumTessellationDetail, MaximumTessellationDetail));
+            return CoarsestVoxelSize * Mathf.Pow(FinestVoxelSize / CoarsestVoxelSize, normalized);
+        }
+
+        public static float VoxelSizeToTessellationDetail(float size)
+        {
+            size = Mathf.Clamp(size, FinestVoxelSize, CoarsestVoxelSize);
+            var normalized = Mathf.Log(size / CoarsestVoxelSize)
+                / Mathf.Log(FinestVoxelSize / CoarsestVoxelSize);
+            return Mathf.Lerp(MinimumTessellationDetail, MaximumTessellationDetail, normalized);
         }
 
         public static int CalculateSourceMassCount(float width, float height)

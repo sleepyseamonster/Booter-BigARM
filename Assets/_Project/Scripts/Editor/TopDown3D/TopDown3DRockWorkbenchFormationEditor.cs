@@ -81,16 +81,17 @@ namespace BooterBigArm.Editor
             var connectionsChanged = EditorGUI.EndChangeCheck();
 
             EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(
-                serializedObject.FindProperty("memberVoxelSize"),
-                new GUIContent(
-                    "Tessellation Size",
-                    "Smaller values produce a finer, less stepped silhouette but rebuild more slowly."));
+            DrawTessellationDetail(serializedObject.FindProperty("memberVoxelSize"));
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("memberFusionSmoothness"),
                 new GUIContent(
                     "Rock Smoothing",
                     "Rounds the blends between source masses inside every member rock."));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("memberSurfaceRelaxation"),
+                new GUIContent(
+                    "Surface Relaxation",
+                    "Softens voxel-scale teeth and stair steps after the rock mesh is built while preserving volume and ground contact."));
             var memberMeshChanged = EditorGUI.EndChangeCheck();
 
             EditorGUI.BeginChangeCheck();
@@ -106,7 +107,7 @@ namespace BooterBigArm.Editor
                 TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, false);
             }
             EditorGUILayout.LabelField(
-                "Smaller tessellation is finer but slower. Smoothing changes the blends inside each rock.",
+                "Detail 5 is finest and slowest. Rock Smoothing blends source masses; Surface Relaxation cleans the finished mesh.",
                 EditorStyles.miniLabel);
 
             var members = formation.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
@@ -143,6 +144,25 @@ namespace BooterBigArm.Editor
 
             if (GUILayout.Button("Rebuild Formation Mesh"))
                 TopDown3DRockWorkbenchFormationPreview.RequestRebuild(formation, true);
+        }
+
+        private static void DrawTessellationDetail(SerializedProperty voxelSize)
+        {
+            var detail = TopDown3DRockWorkbenchAuthoring.VoxelSizeToTessellationDetail(
+                voxelSize.floatValue);
+            EditorGUI.BeginChangeCheck();
+            var adjustedDetail = EditorGUILayout.Slider(
+                new GUIContent(
+                    "Tessellation Detail",
+                    "Controls surface sampling detail for every member rock. 1 rebuilds fastest; 5 produces the finest silhouette."),
+                detail,
+                TopDown3DRockWorkbenchAuthoring.MinimumTessellationDetail,
+                TopDown3DRockWorkbenchAuthoring.MaximumTessellationDetail);
+            if (EditorGUI.EndChangeCheck())
+            {
+                voxelSize.floatValue = TopDown3DRockWorkbenchAuthoring.TessellationDetailToVoxelSize(
+                    adjustedDetail);
+            }
         }
 
         private static string GetArchetypeDescription(
@@ -445,12 +465,14 @@ namespace BooterBigArm.Editor
                     formation.FusedVoxelSize,
                     Mathf.Min(0.055f, formation.FusedJoinSoftness * 0.35f),
                     formation.GeologicalSeamWidth,
+                    formation.MemberSurfaceRelaxation,
                     out result,
                     out error)
                 : TopDown3DRockWorkbenchMesher.TryBuild(
                     boxes,
                     formation.FusedVoxelSize,
                     formation.FusedJoinSoftness,
+                    formation.MemberSurfaceRelaxation,
                     out result,
                     out error);
             if (!built)
@@ -632,6 +654,7 @@ namespace BooterBigArm.Editor
                 hash = hash * 31 + formation.FractureSpacing.GetHashCode();
                 hash = hash * 31 + formation.FusedVoxelSize.GetHashCode();
                 hash = hash * 31 + formation.FusedJoinSoftness.GetHashCode();
+                hash = hash * 31 + formation.MemberSurfaceRelaxation.GetHashCode();
                 hash = hash * 31 + formation.GeologicalSeamWidth.GetHashCode();
                 hash = hash * 31 + formation.GeologicalSeamStrength.GetHashCode();
                 hash = hash * 31 + (formation.RockMaterial == null

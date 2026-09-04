@@ -913,6 +913,8 @@ namespace BooterBigArm.Editor
                         formation.MemberVoxelSize;
                     serializedMember.FindProperty("fusionSmoothness").floatValue =
                         formation.MemberFusionSmoothness;
+                    serializedMember.FindProperty("surfaceRelaxation").floatValue =
+                        formation.MemberSurfaceRelaxation;
                     serializedMember.FindProperty("generatedOverallScale").floatValue = spec.RockSize;
                     serializedMember.FindProperty("generatedHeight").floatValue =
                         spec.RockSize * Mathf.Max(0.01f, spec.LocalScale.y);
@@ -953,6 +955,8 @@ namespace BooterBigArm.Editor
                     formation.MemberVoxelSize;
                 serializedMember.FindProperty("fusionSmoothness").floatValue =
                     formation.MemberFusionSmoothness;
+                serializedMember.FindProperty("surfaceRelaxation").floatValue =
+                    formation.MemberSurfaceRelaxation;
                 serializedMember.ApplyModifiedPropertiesWithoutUndo();
                 EditorUtility.SetDirty(member);
                 TopDown3DRockWorkbenchPreview.RequestRebuild(member, false);

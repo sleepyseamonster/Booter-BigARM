@@ -151,6 +151,7 @@ namespace BooterBigArm.Editor
                     boxes,
                     authoring.VoxelSize,
                     authoring.FusionSmoothness,
+                    authoring.SurfaceRelaxation,
                     out var result,
                     out var error))
             {
@@ -267,6 +268,7 @@ namespace BooterBigArm.Editor
                 var hash = 17;
                 hash = hash * 31 + authoring.VoxelSize.GetHashCode();
                 hash = hash * 31 + authoring.FusionSmoothness.GetHashCode();
+                hash = hash * 31 + authoring.SurfaceRelaxation.GetHashCode();
                 hash = hash * 31 + authoring.UpdateCollider.GetHashCode();
                 hash = hash * 31 + authoring.GeologyScale.GetHashCode();
                 hash = hash * 31 + authoring.SurfaceVariation.GetHashCode();

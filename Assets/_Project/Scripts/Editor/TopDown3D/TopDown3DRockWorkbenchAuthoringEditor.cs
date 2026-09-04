@@ -135,8 +135,9 @@ namespace BooterBigArm.Editor
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.LabelField("Mesh Preview", EditorStyles.boldLabel);
             DrawProperty("rockMaterial");
-            DrawProperty("voxelSize");
+            DrawTessellationDetail(serializedObject.FindProperty("voxelSize"));
             DrawProperty("fusionSmoothness");
+            DrawProperty("surfaceRelaxation");
             DrawProperty("autoRebuild");
             DrawProperty("updateCollider");
 
@@ -200,6 +201,25 @@ namespace BooterBigArm.Editor
                     if (GUILayout.Button("Clear Gallery"))
                         TopDown3DRockWorkbenchVariationGallery.ClearGallery();
                 }
+            }
+        }
+
+        private static void DrawTessellationDetail(SerializedProperty voxelSize)
+        {
+            var detail = TopDown3DRockWorkbenchAuthoring.VoxelSizeToTessellationDetail(
+                voxelSize.floatValue);
+            EditorGUI.BeginChangeCheck();
+            var adjustedDetail = EditorGUILayout.Slider(
+                new GUIContent(
+                    "Tessellation Detail",
+                    "Controls surface sampling detail. 1 rebuilds fastest; 5 produces the finest silhouette."),
+                detail,
+                TopDown3DRockWorkbenchAuthoring.MinimumTessellationDetail,
+                TopDown3DRockWorkbenchAuthoring.MaximumTessellationDetail);
+            if (EditorGUI.EndChangeCheck())
+            {
+                voxelSize.floatValue = TopDown3DRockWorkbenchAuthoring.TessellationDetailToVoxelSize(
+                    adjustedDetail);
             }
         }
 
