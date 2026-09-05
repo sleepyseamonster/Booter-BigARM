@@ -55,7 +55,8 @@ namespace BooterBigArm.Editor
             serializedObject.Update();
             EditorGUILayout.LabelField("Rock Generator", EditorStyles.boldLabel);
             EditorGUILayout.HelpBox(
-                "Choose the broad shape, then click Generate New Rock. Every result stays editable in the Scene.",
+                "Choose the broad shape, then click Generate New Rock. Every result stays editable in the Scene. "
+                + "This is the only rock-authoring workflow; new Grounded Geology stages will be added here automatically.",
                 MessageType.Info);
             if (IsHiddenInScene(authoring))
             {

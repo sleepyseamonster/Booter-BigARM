@@ -921,15 +921,23 @@ If any lock changes, the comparison set gets a new experiment ID.
 - managed/native temporary memory, cache weight, draw calls, batches, SetPass calls, overdraw diagnostic, and shader variant count;
 - unload/reload and reversed-order equality.
 
+### Authoring-surface decision — 2026-09-05
+
+- The existing Rock Workbench is the only user-facing rock-authoring surface.
+- `Generate New Rock` and `Update Current Rock With These Settings` must apply each approved Grounded Geology stage automatically. Authors must not operate a second integration window or manage comparison objects.
+- A/B/C comparisons remain internal engineering evidence for regression, scale, and quality decisions. They may be captured during development, but they are not part of the normal authoring workflow.
+- The current M1 compiler emits deterministic metadata and placeholder field descriptors only. Do not label existing rock meshes as physically integrated until the relevant field, reconstruction, material, and consumer milestones are implemented and verified.
+- Preserve editable source volumes, deterministic identity, source hierarchy safety, and the existing rollback boundaries while the automatic path is introduced milestone by milestone.
+- **M0 review outcome:** on 2026-09-05 the user confirmed that the baked A/B scale is correct. The comparison textures were not correct, so this accepts the scale conversion only; it is not material or texture proof. M8 remains open, and the automatic Rock Workbench path must preserve the current material plus per-rock renderer properties until an approved material integration replaces them.
+
 ### Approval loop
 
-1. Capture baseline A and baked-equivalent B.
-2. If B does not match A quantitatively, fix the experiment.
-3. User decides whether perceptual scale from A/B is worth preserving.
-4. Run C geometry density; user selects at most one interval.
-5. Run C material wavelength on approved geometry.
-6. Lock scale contract before terrain/sediment implementation.
-7. At every later milestone, show baseline versus integrated result from the fixed gameplay camera and two worst-case azimuths.
+1. Engineering captures and verifies baseline A and baked-equivalent B internally.
+2. If B does not match A quantitatively, fix the experiment before touching the authoring path.
+3. Lock the scale contract when automated equivalence and ordinary Rock Workbench visual review agree; do not require a separate comparison workflow from the user.
+4. Run geometry-density and material-wavelength studies internally, presenting only decision-relevant visible choices.
+5. Integrate each approved stage behind the existing Rock Workbench generation buttons.
+6. At every later milestone, retain baseline-versus-integrated proof from the fixed gameplay camera and two worst-case azimuths as engineering evidence.
 
 ## 15. Milestone sequence
 

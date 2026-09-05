@@ -268,7 +268,11 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
                 for (var i = 0; i < marker.OwnedMeshes.Count; i++)
                     Undo.RegisterCreatedObjectUndo(marker.OwnedMeshes[i], "Create Grounded Geology A/B Comparison");
                 Undo.RegisterCreatedObjectUndo(newRoot, "Create Grounded Geology A/B Comparison");
-                if (previousRoot != null) DestroyWithUndo(previousRoot);
+                if (previousRoot != null)
+                {
+                    RestoreSelectionBeforeDestroy(previousRoot, source);
+                    DestroyWithUndo(previousRoot);
+                }
                 Undo.CollapseUndoOperations(undoGroup);
                 preview = new GroundedGeologyComparisonPreview(newRoot, referenceA, targetB, metrics);
                 return true;
@@ -285,16 +289,24 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
             }
         }
 
-        public static void Cancel(GameObject root)
+        public static void Cancel(GameObject root, GameObject selectionFallback = null)
         {
             if (root != null && IsTemporary(root))
             {
+                RestoreSelectionBeforeDestroy(root, selectionFallback);
                 Undo.IncrementCurrentGroup();
                 var undoGroup = Undo.GetCurrentGroup();
                 Undo.SetCurrentGroupName("Cancel Grounded Geology A/B Comparison");
                 DestroyWithUndo(root);
                 Undo.CollapseUndoOperations(undoGroup);
             }
+        }
+
+        private static void RestoreSelectionBeforeDestroy(GameObject root, GameObject fallback)
+        {
+            var selected = Selection.activeGameObject;
+            if (selected == null || (selected != root && !selected.transform.IsChildOf(root.transform))) return;
+            Selection.activeGameObject = fallback;
         }
 
         public static bool IsTemporary(GameObject root)

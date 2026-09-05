@@ -8,8 +8,6 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
 {
     internal sealed class GroundedGeologyIntegrationWorkbench : EditorWindow
     {
-        private const string MenuRoot = "Booter & BigARM/Top Down 3D/";
-
         [SerializeField] private GameObject fixture;
         [SerializeField] private int seed = 1729;
         [SerializeField] private bool seedLocked = true;
@@ -28,8 +26,11 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
         private string status = "Select a generated Rock Workbench or Rock Formation Workbench to begin.";
         private MessageType statusType = MessageType.Info;
 
-        [MenuItem(MenuRoot + "Grounded Geology Preview")]
-        public static void Open()
+        /// <summary>
+        /// Internal calibration surface retained for engineering diagnostics and regression work.
+        /// Rock authors use the existing Rock Workbench rather than opening this window directly.
+        /// </summary>
+        internal static void OpenForDiagnostics()
         {
             var window = GetWindow<GroundedGeologyIntegrationWorkbench>("Grounded Geology");
             window.UseSelectionIfSupported();
@@ -204,7 +205,11 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
             comparison = null;
             result = null;
             snapshot = null;
-            if (root != null) GroundedGeologyComparisonBuilder.Cancel(root);
+            if (root != null)
+            {
+                var fallbackSelection = IsSupportedFixture(fixture) ? fixture : null;
+                GroundedGeologyComparisonBuilder.Cancel(root, fallbackSelection);
+            }
             status = "Preview cleared. Your source rock was not changed.";
             statusType = MessageType.Info;
         }
@@ -239,7 +244,7 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
             comparison = null;
             result = null;
             snapshot = null;
-            status = "The temporary preview was removed. Select a rock and click Preview Integration to make another.";
+            status = "The temporary preview was removed. Select a rock and create another side-by-side preview.";
             statusType = MessageType.Info;
         }
 

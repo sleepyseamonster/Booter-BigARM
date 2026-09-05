@@ -172,16 +172,19 @@ namespace BooterBigArm.Tests.WorldCreator.GroundedGeology
                 var root = preview.Root;
                 Assert.That(GroundedGeologyComparisonBuilder.IsTemporary(root), Is.True);
                 Assert.That(preview.IsAlive, Is.True);
+                Selection.activeGameObject = preview.TargetB;
 
-                GroundedGeologyComparisonBuilder.Cancel(root);
+                GroundedGeologyComparisonBuilder.Cancel(root, source);
 
                 Assert.That(root == null, Is.True);
                 Assert.That(preview.IsAlive, Is.False);
+                Assert.That(Selection.activeGameObject, Is.EqualTo(source));
                 Assert.That(ExistingWorkbenchFixtureAdapter.CaptureSourceHierarchySignature(source),
                     Is.EqualTo(sourceSignature));
             }
             finally
             {
+                Selection.activeGameObject = null;
                 Object.DestroyImmediate(source);
             }
         }
