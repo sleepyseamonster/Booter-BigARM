@@ -474,7 +474,7 @@ namespace BooterBigArm.Tests
         [TestCase(246813, 11, 16f, 0.55f, 0.5f)]
         [TestCase(975310, 15, 28f, 0.95f, 0.85f)]
         [TestCase(209753, 20, 30f, 1f, 1f)]
-        public void ScatteredFormationPlanBuildsSeparatedGroundedBoulders(
+        public void ScatteredFormationPlanBuildsSeparatedGroundedSimilarSizeRocks(
             int seed,
             int rockCount,
             float overallSize,
@@ -505,12 +505,24 @@ namespace BooterBigArm.Tests
             Assert.That(first.Any(member => member.Role == TopDown3DRockFormationMemberRole.Fragment),
                 Is.True);
 
-            var dominantFootprint = ScatteredFootprintRadius(first[0]);
+            var rockSizes = first.Select(member => member.RockSize).ToArray();
+            Assert.That(
+                rockSizes.Max(),
+                Is.LessThanOrEqualTo(rockSizes.Min() * 1.25f));
+            var footprints = first
+                .Select(ScatteredFootprintRadius)
+                .OrderBy(value => value)
+                .ToArray();
             var medianFootprint = first
                 .Select(ScatteredFootprintRadius)
                 .OrderBy(value => value)
                 .ElementAt(first.Count / 2);
-            Assert.That(dominantFootprint, Is.GreaterThan(medianFootprint * 1.25f));
+            Assert.That(
+                footprints[footprints.Length - 1],
+                Is.LessThanOrEqualTo(medianFootprint * 1.35f));
+            Assert.That(
+                footprints[0],
+                Is.GreaterThanOrEqualTo(medianFootprint * 0.68f));
             var averageBoulderSize = first
                 .Where(member => member.Role == TopDown3DRockFormationMemberRole.Boulder)
                 .Average(member => member.RockSize);
@@ -520,8 +532,15 @@ namespace BooterBigArm.Tests
             var averageFragmentSize = first
                 .Where(member => member.Role == TopDown3DRockFormationMemberRole.Fragment)
                 .Average(member => member.RockSize);
-            Assert.That(averageBoulderSize, Is.GreaterThan(averageSlabSize * 1.35f));
-            Assert.That(averageSlabSize, Is.GreaterThan(averageFragmentSize * 1.35f));
+            var roleAverages = new[]
+            {
+                averageBoulderSize,
+                averageSlabSize,
+                averageFragmentSize
+            };
+            Assert.That(
+                roleAverages.Max(),
+                Is.LessThanOrEqualTo(roleAverages.Min() * 1.18f));
 
             for (var index = 0; index < first.Count; index++)
             {
@@ -531,9 +550,9 @@ namespace BooterBigArm.Tests
                 Assert.That(repeat[index].RockSize, Is.EqualTo(first[index].RockSize));
                 Assert.That(repeat[index].Seed, Is.EqualTo(first[index].Seed));
                 Assert.That(repeat[index].Role, Is.EqualTo(first[index].Role));
-                Assert.That(
-                    first[index].LocalScale.y,
-                    Is.LessThan(Mathf.Max(first[index].LocalScale.x, first[index].LocalScale.z)));
+                Assert.That(first[index].LocalScale.x, Is.InRange(0.9f, 1.14f));
+                Assert.That(first[index].LocalScale.y, Is.InRange(0.65f, 1.15f));
+                Assert.That(first[index].LocalScale.z, Is.InRange(0.9f, 1.12f));
 
                 var supportCoverage = TopDown3DRockWorkbenchFormationGenerator
                     .CalculateGroundSupportCoverage(
@@ -576,35 +595,15 @@ namespace BooterBigArm.Tests
                 .Select(TopDown3DRockWorkbenchFormationGenerator.ChooseMemberSilhouetteProfile)
                 .ToArray();
 
-            Assert.That(profiles.Distinct().Count(), Is.GreaterThanOrEqualTo(3));
-            Assert.That(plan
-                .Where(member => member.Role == TopDown3DRockFormationMemberRole.Slab)
-                .All(member =>
-                {
-                    var profile = TopDown3DRockWorkbenchFormationGenerator
-                        .ChooseMemberSilhouetteProfile(member);
-                    return profile == TopDown3DRockSilhouetteProfile.Slab
-                        || profile == TopDown3DRockSilhouetteProfile.BrokenSlab;
-                }), Is.True);
-            Assert.That(plan
-                .Where(member => member.Role == TopDown3DRockFormationMemberRole.Boulder)
-                .All(member =>
-                {
-                    var profile = TopDown3DRockWorkbenchFormationGenerator
-                        .ChooseMemberSilhouetteProfile(member);
-                    return profile == TopDown3DRockSilhouetteProfile.Boulder
-                        || profile == TopDown3DRockSilhouetteProfile.FracturedBoulder
-                        || profile == TopDown3DRockSilhouetteProfile.BlockyMonolith;
-                }), Is.True);
-            Assert.That(plan
-                .Where(member => member.Role == TopDown3DRockFormationMemberRole.Fragment)
-                .All(member =>
-                {
-                    var profile = TopDown3DRockWorkbenchFormationGenerator
-                        .ChooseMemberSilhouetteProfile(member);
-                    return profile == TopDown3DRockSilhouetteProfile.AngularChunk
-                        || profile == TopDown3DRockSilhouetteProfile.Shard;
-                }), Is.True);
+            Assert.That(profiles.Distinct().Count(), Is.GreaterThanOrEqualTo(5));
+            Assert.That(plan.Select(member => member.Seed).Distinct().Count(), Is.EqualTo(plan.Count));
+            Assert.That(plan.Select(member => (
+                    member.LocalScale,
+                    member.Verticality,
+                    member.Lopsidedness,
+                    member.Compaction))
+                .Distinct()
+                .Count(), Is.EqualTo(plan.Count));
         }
 
         [Test]
@@ -880,7 +879,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void ScatteredFormationPreviewKeepsBouldersSeparate()
+        public void ScatteredFormationPreviewKeepsRocksSeparate()
         {
             var previousSelection = Selection.activeObject;
             var root = new GameObject("Scattered Formation Preview Test");

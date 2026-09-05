@@ -227,7 +227,7 @@ namespace BooterBigArm.Editor
             return archetype switch
             {
                 TopDown3DRockFormationArchetype.ScatteredRocks =>
-                    "Generates a loose field of separate, partially buried boulders with uneven spacing and a strong size hierarchy. Every rock remains editable.",
+                    "Generates a loose field of separate, similarly sized rocks with varied silhouettes, proportions, weathering, and uneven spacing. Every rock remains editable.",
                 TopDown3DRockFormationArchetype.PileOfRocks =>
                     "Generates a compact, all-sided mound with broad base stones, an overlapping middle shelf, cap rocks, and retained crevices. Every rock remains editable.",
                 TopDown3DRockFormationArchetype.SmallRidgePillars =>
@@ -471,7 +471,7 @@ namespace BooterBigArm.Editor
                 formation.SetPreviewState(
                     null,
                     formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks
-                        ? $"SCATTERED ROCKS: {members.Length} separate editable boulders share one geological material field."
+                        ? $"SCATTERED ROCKS: {members.Length} separate editable rocks share one geological material field."
                         : $"NATURAL SEAMS: {members.Length} editable rock meshes share one geological pattern and long-fracture field.");
                 RepaintViews();
                 return true;
