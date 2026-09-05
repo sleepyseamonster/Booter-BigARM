@@ -206,8 +206,15 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
                 return false;
             }
 
-            var sourceFilter = source.GetComponentInChildren<MeshFilter>(true);
-            if (sourceFilter == null || sourceFilter.sharedMesh == null)
+            var sourceFilters = source.GetComponentsInChildren<MeshFilter>(true);
+            var hasGeneratedMesh = false;
+            for (var i = 0; i < sourceFilters.Length; i++)
+            {
+                if (sourceFilters[i].sharedMesh == null) continue;
+                hasGeneratedMesh = true;
+                break;
+            }
+            if (!hasGeneratedMesh)
             {
                 error = "The fixture has no generated mesh to compare. Rebuild its existing workbench preview first.";
                 return false;

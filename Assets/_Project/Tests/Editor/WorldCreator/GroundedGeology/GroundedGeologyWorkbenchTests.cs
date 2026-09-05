@@ -126,6 +126,37 @@ namespace BooterBigArm.Tests.WorldCreator.GroundedGeology
         }
 
         [Test]
+        public void Comparison_AcceptsGeneratedMeshWhenAnEarlierFilterIsEmpty()
+        {
+            var source = new GameObject("Grounded Geology Nested Mesh Test");
+            GroundedGeologyComparisonPreview preview = null;
+            try
+            {
+                source.AddComponent<TopDown3DRockWorkbenchAuthoring>();
+                var emptyFilter = new GameObject("Empty Preview Slot");
+                emptyFilter.transform.SetParent(source.transform, false);
+                emptyFilter.AddComponent<MeshFilter>();
+                var generatedSurface = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                generatedSurface.name = "Generated Preview Surface";
+                generatedSurface.transform.SetParent(source.transform, false);
+
+                Assert.That(GroundedGeologyComparisonBuilder.TryBuild(
+                    source,
+                    0.1f,
+                    null,
+                    out preview,
+                    out var error), Is.True, error);
+                Assert.That(preview.Metrics.IsEquivalent(0.00001f), Is.True);
+            }
+            finally
+            {
+                if (preview != null && preview.Root != null)
+                    Object.DestroyImmediate(preview.Root);
+                Object.DestroyImmediate(source);
+            }
+        }
+
+        [Test]
         public void TemporaryComparison_CancelRemovesPreviewAndPreservesSource()
         {
             var source = CreateRockFixture("Grounded Geology Cancel Test");

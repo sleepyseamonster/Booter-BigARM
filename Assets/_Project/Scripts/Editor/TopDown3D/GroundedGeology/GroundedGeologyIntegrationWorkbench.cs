@@ -1,3 +1,4 @@
+using BooterBigArm.TopDown3D;
 using BooterBigArm.TopDown3D.WorldCreator;
 using BooterBigArm.TopDown3D.WorldCreator.GroundedGeology;
 using UnityEditor;
@@ -7,6 +8,8 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
 {
     internal sealed class GroundedGeologyIntegrationWorkbench : EditorWindow
     {
+        private const string MenuRoot = "Booter & BigARM/Top Down 3D/";
+
         [SerializeField] private GameObject fixture;
         [SerializeField] private int seed = 1729;
         [SerializeField] private bool seedLocked = true;
@@ -22,10 +25,29 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
         private GroundedGeologyComparisonPreview comparison;
         private string status = "Select an existing workbench fixture. Nothing is generated automatically.";
 
-        [MenuItem("Booter & BigARM/Top Down 3D/Grounded Geology Integration Workbench")]
+        [MenuItem(MenuRoot + "Grounded Geology Integration Workbench")]
         public static void Open()
         {
             GetWindow<GroundedGeologyIntegrationWorkbench>("Grounded Geology");
+        }
+
+        [MenuItem(MenuRoot + "Create Grounded Geology Comparison From Selection")]
+        public static void CreateComparisonFromSelection()
+        {
+            var window = GetWindow<GroundedGeologyIntegrationWorkbench>("Grounded Geology");
+            window.fixture = Selection.activeGameObject;
+            window.Regenerate();
+            window.Show();
+            window.Repaint();
+        }
+
+        [MenuItem(MenuRoot + "Create Grounded Geology Comparison From Selection", true)]
+        private static bool CanCreateComparisonFromSelection()
+        {
+            var selected = Selection.activeGameObject;
+            return selected != null
+                && (selected.GetComponent<TopDown3DRockWorkbenchAuthoring>() != null
+                    || selected.GetComponent<TopDown3DRockWorkbenchFormationAuthoring>() != null);
         }
 
         private void OnGUI()
