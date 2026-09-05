@@ -176,6 +176,7 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
         public GameObject ReferenceA { get; }
         public GameObject TargetB { get; }
         public GroundedGeologyABMetrics Metrics { get; }
+        public bool IsAlive => Root != null && ReferenceA != null && TargetB != null;
     }
 
     /// <summary>
@@ -184,7 +185,7 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
     /// </summary>
     internal static class GroundedGeologyComparisonBuilder
     {
-        internal const string TemporaryRootName = "Grounded Geology Comparison (Temporary, Non-Canon)";
+        internal const string TemporaryRootName = "Grounded Geology Preview (Temporary - Not Saved)";
 
         public static bool TryBuild(
             GameObject source,
@@ -228,14 +229,14 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
             try
             {
                 var referenceA = UnityEngine.Object.Instantiate(source, newRoot.transform, false);
-                referenceA.name = $"A - Reference Root {physicalBakeFactor:0.###}";
+                referenceA.name = "A - Original Rock (Reference)";
                 PrepareClone(referenceA);
                 referenceA.transform.localPosition = Vector3.zero;
                 referenceA.transform.localRotation = Quaternion.identity;
                 referenceA.transform.localScale = Vector3.one * physicalBakeFactor;
 
                 var targetB = UnityEngine.Object.Instantiate(source, newRoot.transform, false);
-                targetB.name = "B - Unit Root Meter-Baked Target";
+                targetB.name = "B - Grounded Geology (Unit Scale)";
                 PrepareClone(targetB);
                 targetB.transform.localPosition = Vector3.zero;
                 targetB.transform.localRotation = Quaternion.identity;

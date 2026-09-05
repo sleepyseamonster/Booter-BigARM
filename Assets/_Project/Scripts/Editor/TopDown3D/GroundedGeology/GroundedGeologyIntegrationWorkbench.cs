@@ -19,83 +19,124 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
         [SerializeField] private GroundedGeologyFieldKind fieldView =
             GroundedGeologyFieldKind.FootprintSpine;
         [SerializeField] private int cameraIndex;
+        [SerializeField] private bool advancedSettingsExpanded;
+        [SerializeField] private bool technicalDetailsExpanded;
 
         private GroundedGeologyFixtureSnapshot snapshot;
         private GroundedGeologyResult result;
         private GroundedGeologyComparisonPreview comparison;
-        private string status = "Select an existing workbench fixture. Nothing is generated automatically.";
+        private string status = "Select a generated Rock Workbench or Rock Formation Workbench to begin.";
+        private MessageType statusType = MessageType.Info;
 
-        [MenuItem(MenuRoot + "Grounded Geology Integration Workbench")]
+        [MenuItem(MenuRoot + "Grounded Geology Preview")]
         public static void Open()
         {
-            GetWindow<GroundedGeologyIntegrationWorkbench>("Grounded Geology");
-        }
-
-        [MenuItem(MenuRoot + "Create Grounded Geology Comparison From Selection")]
-        public static void CreateComparisonFromSelection()
-        {
             var window = GetWindow<GroundedGeologyIntegrationWorkbench>("Grounded Geology");
-            window.fixture = Selection.activeGameObject;
-            window.Regenerate();
+            window.UseSelectionIfSupported();
             window.Show();
             window.Repaint();
         }
 
-        [MenuItem(MenuRoot + "Create Grounded Geology Comparison From Selection", true)]
-        private static bool CanCreateComparisonFromSelection()
+        private void OnEnable()
         {
-            var selected = Selection.activeGameObject;
-            return selected != null
-                && (selected.GetComponent<TopDown3DRockWorkbenchAuthoring>() != null
-                    || selected.GetComponent<TopDown3DRockWorkbenchFormationAuthoring>() != null);
+            Undo.undoRedoPerformed += HandleExternalPreviewChange;
+            EditorApplication.hierarchyChanged += HandleExternalPreviewChange;
+        }
+
+        private void OnSelectionChange()
+        {
+            if (!HasActivePreview) UseSelectionIfSupported();
+            Repaint();
         }
 
         private void OnGUI()
         {
-            EditorGUILayout.HelpBox(
-                "TEMPORARY / NON-CANON M0-M2 SHELL\n"
-                + "This window reads existing fixtures and creates disposable comparison objects. "
-                + "It does not alter World Creator, terrain, production scenes, source workbenches, or catalogs.",
-                MessageType.Warning);
+            ReconcilePreviewLifecycle();
 
-            fixture = (GameObject)EditorGUILayout.ObjectField(
-                "Existing Fixture Root",
+            EditorGUILayout.LabelField("Grounded Geology Preview", EditorStyles.boldLabel);
+            EditorGUILayout.HelpBox(
+                "1. Select a generated Rock Workbench in the Hierarchy.\n"
+                + "2. Click Create Side-by-Side Preview.\n"
+                + "3. Check that A and B have the same size and silhouette.\n\n"
+                + "This preview is temporary. It does not change or save the source rock.",
+                MessageType.Info);
+
+            EditorGUI.BeginChangeCheck();
+            var selectedFixture = (GameObject)EditorGUILayout.ObjectField(
+                "Source Rock",
                 fixture,
                 typeof(GameObject),
                 true);
-            using (new EditorGUILayout.HorizontalScope())
+            if (EditorGUI.EndChangeCheck())
             {
-                seed = EditorGUILayout.IntField("Seed", seed);
-                seedLocked = GUILayout.Toggle(seedLocked, "Lock Seed", GUILayout.Width(88f));
-                using (new EditorGUI.DisabledScope(seedLocked))
+                fixture = selectedFixture;
+                if (IsSupportedFixture(fixture))
                 {
-                    if (GUILayout.Button("New Seed", GUILayout.Width(82f)))
-                        seed = unchecked(seed * 1103515245 + 12345);
+                    status = HasActivePreview
+                        ? "Source changed. Refresh the side-by-side preview when you are ready."
+                        : "Source ready. Create the side-by-side preview.";
+                    statusType = MessageType.Info;
+                }
+                else
+                {
+                    status = fixture == null
+                        ? "Select a generated Rock Workbench or Rock Formation Workbench to begin."
+                        : "That object is not a Rock Workbench root. Select the parent workbench object.";
+                    statusType = MessageType.Warning;
                 }
             }
 
-            haloMeters = Mathf.Max(0f, EditorGUILayout.FloatField("Bounds Halo (m)", haloMeters));
-            quality = (GroundedGeologyResolutionQuality)EditorGUILayout.EnumPopup("Resolution", quality);
-            fieldView = DrawSingleFieldPopup(fieldView);
-            DrawReviewEnvironment();
+            advancedSettingsExpanded = EditorGUILayout.Foldout(
+                advancedSettingsExpanded,
+                "Advanced Settings",
+                true);
+            if (advancedSettingsExpanded) DrawAdvancedSettings();
 
+            EditorGUILayout.Space();
             using (new EditorGUILayout.HorizontalScope())
             {
-                if (GUILayout.Button("Regenerate Reference Metadata + A/B")) Regenerate();
-                using (new EditorGUI.DisabledScope(comparison == null || comparison.Root == null))
+                using (new EditorGUI.DisabledScope(!IsSupportedFixture(fixture)))
                 {
-                    if (GUILayout.Button("Cancel", GUILayout.Width(72f))) CancelPreview();
+                    var actionLabel = HasActivePreview
+                        ? "Refresh Side-by-Side Preview"
+                        : "Create Side-by-Side Preview";
+                    if (GUILayout.Button(actionLabel, GUILayout.Height(30f))) Regenerate();
+                }
+                using (new EditorGUI.DisabledScope(!HasActivePreview))
+                {
+                    if (GUILayout.Button("Clear Preview", GUILayout.Width(100f), GUILayout.Height(30f)))
+                        CancelPreview();
                 }
             }
 
             EditorGUILayout.Space();
-            EditorGUILayout.HelpBox(status, MessageType.Info);
-            DrawDiagnostics();
-            DrawComparisonSlots();
+            EditorGUILayout.HelpBox(status, statusType);
+            if (HasActivePreview)
+            {
+                EditorGUILayout.Space();
+                EditorGUILayout.LabelField("Preview Ready", EditorStyles.boldLabel);
+                EditorGUILayout.LabelField("A", "Original rock reference");
+                EditorGUILayout.LabelField("B", "Grounded Geology unit-scale preview");
+                EditorGUILayout.HelpBox(
+                    "If A and B look the same, the integration setup is working. "
+                    + "The automated size, geometry, and collider checks have already passed.",
+                    MessageType.Info);
+                technicalDetailsExpanded = EditorGUILayout.Foldout(
+                    technicalDetailsExpanded,
+                    "Technical Details",
+                    true);
+                if (technicalDetailsExpanded)
+                {
+                    DrawDiagnostics();
+                    DrawComparisonSlots();
+                }
+            }
         }
 
         private void OnDisable()
         {
+            Undo.undoRedoPerformed -= HandleExternalPreviewChange;
+            EditorApplication.hierarchyChanged -= HandleExternalPreviewChange;
             CancelPreview();
         }
 
@@ -109,6 +150,7 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
                     out var captureError))
             {
                 status = captureError;
+                statusType = MessageType.Warning;
                 return;
             }
 
@@ -127,37 +169,100 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
                     GroundedGeologyResolutionProfile.ForQuality(quality),
                     GroundedGeologyFieldKind.All);
                 var newResult = GroundedGeologyReferenceCompiler.Compile(input);
+                var previousRoot = HasActivePreview ? comparison.Root : null;
                 if (!GroundedGeologyComparisonBuilder.TryBuild(
                         fixture,
                         newSnapshot.PhysicalBakeFactor,
-                        comparison != null ? comparison.Root : null,
+                        previousRoot,
                         out var newComparison,
                         out var comparisonError))
                 {
                     status = comparisonError;
+                    statusType = MessageType.Error;
                     return;
                 }
 
                 snapshot = newSnapshot;
                 result = newResult;
                 comparison = newComparison;
-                status = "Reference metadata and temporary A/B geometry regenerated. "
-                    + "Automated equivalence passed; visual acceptance remains user-owned.";
+                status = "READY — A and B match in the automated geometry and collider checks. "
+                    + "Compare them visually in the Scene view. Nothing was saved.";
+                statusType = MessageType.Info;
+                Selection.activeGameObject = newComparison.TargetB;
+                EditorGUIUtility.PingObject(newComparison.TargetB);
             }
             catch (System.Exception exception)
             {
-                status = "Generation stopped without replacing the previous preview: " + exception.Message;
+                status = "Preview could not be created: " + exception.Message;
+                statusType = MessageType.Error;
             }
         }
 
         private void CancelPreview()
         {
-            if (comparison != null && comparison.Root != null)
-                GroundedGeologyComparisonBuilder.Cancel(comparison.Root);
+            var root = comparison != null ? comparison.Root : null;
             comparison = null;
             result = null;
             snapshot = null;
-            status = "Temporary preview canceled. The source fixture was not changed.";
+            if (root != null) GroundedGeologyComparisonBuilder.Cancel(root);
+            status = "Preview cleared. Your source rock was not changed.";
+            statusType = MessageType.Info;
+        }
+
+        private bool HasActivePreview => comparison != null && comparison.IsAlive;
+
+        private static bool IsSupportedFixture(GameObject candidate)
+        {
+            return candidate != null
+                && (candidate.GetComponent<TopDown3DRockWorkbenchAuthoring>() != null
+                    || candidate.GetComponent<TopDown3DRockWorkbenchFormationAuthoring>() != null);
+        }
+
+        private void UseSelectionIfSupported()
+        {
+            var selected = Selection.activeGameObject;
+            if (!IsSupportedFixture(selected)) return;
+            fixture = selected;
+            status = "Source ready. Create the side-by-side preview.";
+            statusType = MessageType.Info;
+        }
+
+        private void HandleExternalPreviewChange()
+        {
+            ReconcilePreviewLifecycle();
+            Repaint();
+        }
+
+        private void ReconcilePreviewLifecycle()
+        {
+            if (comparison == null || comparison.IsAlive) return;
+            comparison = null;
+            result = null;
+            snapshot = null;
+            status = "The temporary preview was removed. Select a rock and click Preview Integration to make another.";
+            statusType = MessageType.Info;
+        }
+
+        private void DrawAdvancedSettings()
+        {
+            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+            {
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    seed = EditorGUILayout.IntField("Seed", seed);
+                    seedLocked = GUILayout.Toggle(seedLocked, "Lock Seed", GUILayout.Width(88f));
+                    using (new EditorGUI.DisabledScope(seedLocked))
+                    {
+                        if (GUILayout.Button("New Seed", GUILayout.Width(82f)))
+                            seed = unchecked(seed * 1103515245 + 12345);
+                    }
+                }
+
+                haloMeters = Mathf.Max(0f, EditorGUILayout.FloatField("Bounds Halo (m)", haloMeters));
+                quality = (GroundedGeologyResolutionQuality)EditorGUILayout.EnumPopup("Resolution", quality);
+                fieldView = DrawSingleFieldPopup(fieldView);
+                DrawReviewEnvironment();
+            }
         }
 
         private void DrawReviewEnvironment()
@@ -197,7 +302,7 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
             if (result.Resolution.WasCapped)
                 EditorGUILayout.HelpBox("Resolution was reduced by the axis or sample budget.", MessageType.Warning);
             EditorGUILayout.LabelField("Field View", fieldView + " (placeholder / reference-only)");
-            if (comparison != null)
+            if (HasActivePreview)
             {
                 EditorGUILayout.LabelField(
                     "A/B Maximum Sample Delta",
@@ -209,11 +314,10 @@ namespace BooterBigArm.Editor.WorldCreator.GroundedGeology
         private static void DrawComparisonSlots()
         {
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("A / B / C Review Slots", EditorStyles.boldLabel);
-            EditorGUILayout.LabelField("A", "Approved individual-rock appearance at visual root 0.1");
-            EditorGUILayout.LabelField("B", "Unit-root target with the 0.1 factor baked into meter geometry");
-            EditorGUILayout.LabelField("C Geometry", "Draft 24 / Standard 40 / Approval 64 (selection pending)");
-            EditorGUILayout.LabelField("C Material", "Meter wavelength interval pending; no material integration in this batch");
+            EditorGUILayout.LabelField("Comparison Study", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("A — Original", "Approved rock appearance at its reference scale");
+            EditorGUILayout.LabelField("B — Integrated", "Same rock with physical size baked into unit-scale geometry");
+            EditorGUILayout.LabelField("Future C Studies", "Geometry and material quality choices are not active yet");
         }
 
         private static GroundedGeologyFieldKind DrawSingleFieldPopup(GroundedGeologyFieldKind current)

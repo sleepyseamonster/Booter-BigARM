@@ -171,15 +171,44 @@ namespace BooterBigArm.Tests.WorldCreator.GroundedGeology
                     out var error), Is.True, error);
                 var root = preview.Root;
                 Assert.That(GroundedGeologyComparisonBuilder.IsTemporary(root), Is.True);
+                Assert.That(preview.IsAlive, Is.True);
 
                 GroundedGeologyComparisonBuilder.Cancel(root);
 
                 Assert.That(root == null, Is.True);
+                Assert.That(preview.IsAlive, Is.False);
                 Assert.That(ExistingWorkbenchFixtureAdapter.CaptureSourceHierarchySignature(source),
                     Is.EqualTo(sourceSignature));
             }
             finally
             {
+                Object.DestroyImmediate(source);
+            }
+        }
+
+        [Test]
+        public void TemporaryComparison_DestroyedChildMakesPreviewSafelyInactive()
+        {
+            var source = CreateRockFixture("Grounded Geology Destroyed Child Test");
+            GroundedGeologyComparisonPreview preview = null;
+            try
+            {
+                Assert.That(GroundedGeologyComparisonBuilder.TryBuild(
+                    source,
+                    0.1f,
+                    null,
+                    out preview,
+                    out var error), Is.True, error);
+
+                Object.DestroyImmediate(preview.TargetB);
+
+                Assert.DoesNotThrow(() => _ = preview.IsAlive);
+                Assert.That(preview.IsAlive, Is.False);
+            }
+            finally
+            {
+                if (preview != null && preview.Root != null)
+                    Object.DestroyImmediate(preview.Root);
                 Object.DestroyImmediate(source);
             }
         }
