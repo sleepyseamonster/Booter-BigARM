@@ -1396,7 +1396,7 @@ namespace BooterBigArm.Tests
                 0.7f,
                 0.65f);
 
-            Assert.That(first.Count, Is.EqualTo(6));
+            Assert.That(first.Count, Is.EqualTo(4));
             Assert.That(second.Count, Is.EqualTo(first.Count));
             for (var index = 0; index < first.Count; index++)
             {
@@ -1430,9 +1430,9 @@ namespace BooterBigArm.Tests
                 TopDown3DRockSilhouetteProfile.FracturedBoulder,
                 0.68f);
 
-            Assert.That(first.Count, Is.EqualTo(10));
+            Assert.That(first.Count, Is.EqualTo(6));
             Assert.That(first.Count(spec => spec.Operation == TopDown3DRockVolumeOperation.Additive),
-                Is.EqualTo(8));
+                Is.EqualTo(4));
             Assert.That(first.Count(spec => spec.Operation == TopDown3DRockVolumeOperation.Subtractive),
                 Is.EqualTo(2));
             Assert.That(first
@@ -1625,26 +1625,68 @@ namespace BooterBigArm.Tests
                 height.floatValue = 0.5f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
                 Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(new Vector3(1f, 0.5f, 1f)));
-                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(5));
+                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(2));
 
                 serialized.Update();
                 width.floatValue = 4f;
                 height.floatValue = 3f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
                 Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(new Vector3(4f, 3f, 4f)));
-                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(5));
+                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(2));
 
                 serialized.Update();
                 width.floatValue = 1f;
                 height.floatValue = 20f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
                 Assert.That(authoring.GeneratedOverallSize, Is.EqualTo(new Vector3(1f, 20f, 1f)));
-                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(10));
+                Assert.That(authoring.GeneratedCubeCount, Is.EqualTo(4));
             }
             finally
             {
                 Object.DestroyImmediate(root);
             }
+        }
+
+        [Test]
+        public void TallReferenceRockUsesThreeStoneMassesPlusSeparateFractureCuts()
+        {
+            const int referenceSeed = -121341264;
+            const float referenceWidth = 5.12f;
+            const float referenceHeight = 11.8f;
+            var massCount = TopDown3DRockWorkbenchAuthoring.CalculateSourceMassCount(
+                referenceWidth,
+                referenceHeight);
+            var plan = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                referenceSeed,
+                massCount,
+                new Vector3(referenceWidth, referenceHeight, referenceWidth),
+                TopDown3DRockWorkbenchAuthoring.CalculateAspectVerticality(
+                    referenceWidth,
+                    referenceHeight),
+                0.438f,
+                0.389f,
+                TopDown3DRockWorkbenchBaseRockGenerator.ResolveDarkDesertSilhouetteProfile(
+                    referenceSeed),
+                0.68f);
+
+            Assert.That(massCount, Is.EqualTo(3));
+            Assert.That(plan.Count(spec =>
+                spec.Operation == TopDown3DRockVolumeOperation.Additive), Is.EqualTo(3));
+            Assert.That(plan.Count(spec =>
+                spec.Operation == TopDown3DRockVolumeOperation.Subtractive), Is.EqualTo(2));
+            Assert.That(plan[0].Role, Is.EqualTo(TopDown3DRockWorkbenchMassRole.Core));
+            Assert.That(plan.Skip(1).Take(2).All(spec =>
+                spec.Role != TopDown3DRockWorkbenchMassRole.Core), Is.True);
+            var coreSpan = Mathf.Max(
+                plan[0].LocalScale.x,
+                Mathf.Max(plan[0].LocalScale.y, plan[0].LocalScale.z));
+            Assert.That(plan
+                .Where(spec => spec.Operation == TopDown3DRockVolumeOperation.Additive)
+                .Skip(1)
+                .All(spec => Mathf.Max(
+                    spec.LocalScale.x,
+                    Mathf.Max(spec.LocalScale.y, spec.LocalScale.z)) >= coreSpan * 0.35f),
+                Is.True);
         }
 
         [Test]

@@ -100,7 +100,7 @@ namespace BooterBigArm.Editor
             }
 
             EditorGUILayout.LabelField(
-                $"Uses {authoring.GeneratedCubeCount} stone masses + "
+                $"Uses {authoring.GeneratedCubeCount} compact stone masses + "
                 + $"{authoring.GeneratedFractureCount} editable fracture cuts",
                 EditorStyles.miniLabel);
             if (GUILayout.Button("Generate New Rock", GUILayout.Height(34f)))

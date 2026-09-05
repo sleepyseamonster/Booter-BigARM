@@ -58,7 +58,7 @@ namespace BooterBigArm.Editor
                 TopDown3DRockSilhouetteProfile.Auto,
             float majorFractures = 0f)
         {
-            cubeCount = Mathf.Clamp(cubeCount, 5, 10);
+            cubeCount = Mathf.Clamp(cubeCount, 2, 4);
             overallSize = new Vector3(
                 Mathf.Max(0.5f, overallSize.x),
                 Mathf.Max(0.5f, overallSize.y),
@@ -157,7 +157,7 @@ namespace BooterBigArm.Editor
                     sourceShape = TopDown3DRockSourceShape.Wedge;
                 }
                 else if (silhouetteProfile == TopDown3DRockSilhouetteProfile.Boulder
-                         && cubeCount >= 5
+                         && cubeCount >= 3
                          && index == supportCount + 1)
                 {
                     sourceShape = TopDown3DRockSourceShape.TaperedStone;
@@ -828,8 +828,8 @@ namespace BooterBigArm.Editor
         {
             var progress = roleCount <= 1 ? 0f : roleIndex / (float)(roleCount - 1);
             var ratio = role == TopDown3DRockWorkbenchMassRole.Support
-                ? Mathf.Lerp(0.72f, 0.48f, progress)
-                : Mathf.Lerp(0.4f, 0.25f, progress);
+                ? Mathf.Lerp(0.78f, 0.64f, progress)
+                : Mathf.Lerp(0.68f, 0.58f, progress);
             var horizontalVariation = Mathf.Lerp(0.025f, 0.28f, asymmetry);
             var verticalVariation = Mathf.Lerp(0.02f, 0.22f, asymmetry);
             var verticalRatio = ratio * (role == TopDown3DRockWorkbenchMassRole.Support

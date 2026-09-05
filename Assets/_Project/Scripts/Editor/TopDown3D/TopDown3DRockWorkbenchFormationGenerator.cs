@@ -1242,6 +1242,23 @@ namespace BooterBigArm.Editor
                 member.LocalPosition,
                 Quaternion.LookRotation(forward.normalized, surfaceNormal));
             var supportDistance = CalculateStableSupportDistance(aligned, surfaceNormal);
+            var supportDistances = CollectGroundSupportDistances(aligned, surfaceNormal);
+            supportDistances.Sort();
+            if (supportDistances.Count > 1)
+            {
+                // Keep burial from swallowing compact rocks whose few large masses have
+                // tightly grouped underside probes. At least one fifth of the sampled
+                // underside remains above the terrain while the lowest contacts stay seated.
+                var firstVisibleIndex = Mathf.Clamp(
+                    Mathf.FloorToInt(supportDistances.Count * 0.8f),
+                    1,
+                    supportDistances.Count - 1);
+                var maximumSeatingDepth = supportDistances[firstVisibleIndex] - 0.0002f;
+                burialDepth = Mathf.Min(
+                    Mathf.Max(0f, burialDepth),
+                    maximumSeatingDepth - supportDistance);
+            }
+
             var groundedPosition = surfacePoint
                 - surfaceNormal * (supportDistance + Mathf.Max(0f, burialDepth));
             return WithLocalPose(aligned, groundedPosition, aligned.LocalRotation);

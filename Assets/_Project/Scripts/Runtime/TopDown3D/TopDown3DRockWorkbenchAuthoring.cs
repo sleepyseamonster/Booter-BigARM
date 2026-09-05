@@ -178,12 +178,13 @@ namespace BooterBigArm.TopDown3D
         {
             width = Mathf.Max(0.01f, width);
             height = Mathf.Max(0.01f, height);
+            var physicalSpan = Mathf.Sqrt(
+                width * width * 0.55f
+                + height * height * 0.45f);
             return Mathf.Clamp(
-                Mathf.CeilToInt(Mathf.Sqrt(
-                    width * width * 0.55f
-                    + height * height * 0.45f) * 0.85f) + 1,
-                5,
-                10);
+                Mathf.RoundToInt(physicalSpan * 0.22f) + 1,
+                2,
+                4);
         }
 
         public static int CalculateFractureCount(float amount)
