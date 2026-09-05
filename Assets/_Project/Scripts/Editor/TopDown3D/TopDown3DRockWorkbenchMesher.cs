@@ -22,6 +22,7 @@ namespace BooterBigArm.Editor
         private readonly float wedgeOffset;
         private readonly float taperedTopX;
         private readonly float taperedTopZ;
+        private readonly TopDown3DRockVolumeOperation operation;
 
         internal TopDown3DRockWorkbenchBox(Transform root, Transform box)
             : this(root, box, TopDown3DRockSourceShape.WeatheredBlock, 0)
@@ -38,6 +39,23 @@ namespace BooterBigArm.Editor
             Transform box,
             TopDown3DRockSourceShape sourceShape,
             int shapeSeed)
+            : this(
+                root,
+                box,
+                sourceShape,
+                shapeSeed,
+                TopDown3DRockVolumeOperation.Additive,
+                0.5f)
+        {
+        }
+
+        internal TopDown3DRockWorkbenchBox(
+            Transform root,
+            Transform box,
+            TopDown3DRockSourceShape sourceShape,
+            int shapeSeed,
+            TopDown3DRockVolumeOperation operation,
+            float edgeDamage)
         {
             if (root == null) throw new ArgumentNullException(nameof(root));
             if (box == null) throw new ArgumentNullException(nameof(box));
@@ -68,17 +86,21 @@ namespace BooterBigArm.Editor
 
             Bounds = bounds;
 
+            this.operation = operation;
+            edgeDamage = Mathf.Clamp01(edgeDamage);
             var randomState = unchecked((uint)shapeSeed) ^ 0xA511E9B3u;
-            roundRadius = Mathf.Lerp(0.07f, 0.11f, Next01(ref randomState));
+            roundRadius = sourceShape == TopDown3DRockSourceShape.FractureCut
+                ? 0.025f
+                : Mathf.Lerp(0.045f, 0.105f, Next01(ref randomState));
             taperX = Mathf.Lerp(0.035f, 0.09f, Next01(ref randomState));
             taperZ = Mathf.Lerp(0.035f, 0.09f, Next01(ref randomState));
 
             var startingCorner = (int)(NextUInt(ref randomState) & 7u);
             var cornerStride = ((int)(NextUInt(ref randomState) & 3u) * 2) + 1;
-            cornerCut0 = CreateCornerCut(ref randomState, startingCorner);
-            cornerCut1 = CreateCornerCut(ref randomState, (startingCorner + cornerStride) & 7);
-            cornerCut2 = CreateCornerCut(ref randomState, (startingCorner + cornerStride * 2) & 7);
-            cornerCut3 = CreateCornerCut(ref randomState, (startingCorner + cornerStride * 3) & 7);
+            cornerCut0 = CreateCornerCut(ref randomState, startingCorner, edgeDamage);
+            cornerCut1 = CreateCornerCut(ref randomState, (startingCorner + cornerStride) & 7, edgeDamage);
+            cornerCut2 = CreateCornerCut(ref randomState, (startingCorner + cornerStride * 2) & 7, edgeDamage);
+            cornerCut3 = CreateCornerCut(ref randomState, (startingCorner + cornerStride * 3) & 7, edgeDamage);
 
             this.sourceShape = sourceShape;
             var shapeState = unchecked((uint)shapeSeed) ^ 0xC13FA9A9u;
@@ -89,12 +111,14 @@ namespace BooterBigArm.Editor
         }
 
         internal Bounds Bounds { get; }
+        internal bool IsSubtractive => operation == TopDown3DRockVolumeOperation.Subtractive;
 
         internal float Evaluate(Vector3 rootLocalPoint)
         {
             var localPoint = rootToBox.MultiplyPoint3x4(rootLocalPoint);
             var height = Mathf.Clamp01(localPoint.y + 0.5f);
             var upperTaper = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.52f, 1f, height));
+            if (sourceShape == TopDown3DRockSourceShape.FractureCut) upperTaper = 0f;
             var halfExtents = new Vector3(
                 0.5f - taperX * upperTaper,
                 0.5f,
@@ -127,10 +151,13 @@ namespace BooterBigArm.Editor
                     EvaluateTaperedSide(localPoint.z, localPoint.y, taperedTopZ));
             }
 
-            rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut0, localPoint));
-            rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut1, localPoint));
-            rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut2, localPoint));
-            rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut3, localPoint));
+            if (sourceShape != TopDown3DRockSourceShape.FractureCut)
+            {
+                rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut0, localPoint));
+                rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut1, localPoint));
+                rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut2, localPoint));
+                rockDistance = Mathf.Max(rockDistance, EvaluateCut(cornerCut3, localPoint));
+            }
             return rockDistance * distanceScale;
         }
 
@@ -144,18 +171,24 @@ namespace BooterBigArm.Editor
                 / Mathf.Sqrt(1f + taper * taper);
         }
 
-        private static Vector4 CreateCornerCut(ref uint randomState, int corner)
+        private static Vector4 CreateCornerCut(
+            ref uint randomState,
+            int corner,
+            float edgeDamage)
         {
             var normal = new Vector3(
                 ((corner & 1) == 0 ? -1f : 1f) * Mathf.Lerp(0.72f, 1f, Next01(ref randomState)),
                 ((corner & 2) == 0 ? -1f : 1f) * Mathf.Lerp(0.72f, 1f, Next01(ref randomState)),
                 ((corner & 4) == 0 ? -1f : 1f) * Mathf.Lerp(0.72f, 1f, Next01(ref randomState)));
             normal.Normalize();
+            var damagedDistance = Mathf.Lerp(0.56f, 0.5f, edgeDamage)
+                + Next01(ref randomState) * Mathf.Lerp(0.1f, 0.12f, edgeDamage);
+            var cutDistance = Mathf.Lerp(0.74f, damagedDistance, edgeDamage);
             return new Vector4(
                 normal.x,
                 normal.y,
                 normal.z,
-                Mathf.Lerp(0.56f, 0.66f, Next01(ref randomState)));
+                cutDistance);
         }
 
         private static float EvaluateCut(Vector4 cut, Vector3 point)
@@ -360,6 +393,11 @@ namespace BooterBigArm.Editor
                     error = $"Rock group {groupIndex + 1} has no enabled cube volumes.";
                     return false;
                 }
+                if (FindFirstAdditive(group.Boxes) < 0)
+                {
+                    error = $"Rock group {groupIndex + 1} has fracture cuts but no additive stone volumes.";
+                    return false;
+                }
 
                 for (var boxIndex = 0; boxIndex < group.Boxes.Count; boxIndex++)
                     boxes.Add(group.Boxes[boxIndex]);
@@ -400,9 +438,20 @@ namespace BooterBigArm.Editor
                 error = "Add at least one enabled cube volume.";
                 return false;
             }
+            var firstAdditive = FindFirstAdditive(boxes);
+            if (firstAdditive < 0)
+            {
+                error = "Add at least one additive stone volume. Fracture cuts cannot build a rock by themselves.";
+                return false;
+            }
 
-            var bounds = boxes[0].Bounds;
-            for (var i = 1; i < boxes.Count; i++) bounds.Encapsulate(boxes[i].Bounds);
+            // A cutter may intentionally extend well outside the stone. It must not enlarge
+            // the sampling grid and silently lower the effective rock resolution.
+            var bounds = boxes[firstAdditive].Bounds;
+            for (var i = firstAdditive + 1; i < boxes.Count; i++)
+            {
+                if (!boxes[i].IsSubtractive) bounds.Encapsulate(boxes[i].Bounds);
+            }
 
             requestedVoxelSize = Mathf.Max(0.025f, requestedVoxelSize);
             paddingSmoothness = Mathf.Max(0f, paddingSmoothness);
@@ -803,11 +852,20 @@ namespace BooterBigArm.Editor
             Vector3 point,
             float smoothness)
         {
-            var distance = boxes[0].Evaluate(point);
-            for (var i = 1; i < boxes.Count; i++)
+            var firstAdditive = FindFirstAdditive(boxes);
+            if (firstAdditive < 0) return float.PositiveInfinity;
+
+            var distance = boxes[firstAdditive].Evaluate(point);
+            for (var i = firstAdditive + 1; i < boxes.Count; i++)
             {
+                if (boxes[i].IsSubtractive) continue;
                 var next = boxes[i].Evaluate(point);
                 distance = SmoothMinimum(distance, next, smoothness);
+            }
+            for (var i = 0; i < boxes.Count; i++)
+            {
+                if (!boxes[i].IsSubtractive) continue;
+                distance = Mathf.Max(distance, -boxes[i].Evaluate(point));
             }
 
             return distance;
@@ -834,16 +892,36 @@ namespace BooterBigArm.Editor
             TopDown3DRockWorkbenchFieldGroup group,
             Vector3 point)
         {
-            var distance = group.Boxes[0].Evaluate(point);
-            for (var boxIndex = 1; boxIndex < group.Boxes.Count; boxIndex++)
+            var firstAdditive = FindFirstAdditive(group.Boxes);
+            if (firstAdditive < 0) return float.PositiveInfinity;
+
+            var distance = group.Boxes[firstAdditive].Evaluate(point);
+            for (var boxIndex = firstAdditive + 1; boxIndex < group.Boxes.Count; boxIndex++)
             {
+                if (group.Boxes[boxIndex].IsSubtractive) continue;
                 distance = SmoothMinimum(
                     distance,
                     group.Boxes[boxIndex].Evaluate(point),
                     group.Smoothness);
             }
+            for (var boxIndex = 0; boxIndex < group.Boxes.Count; boxIndex++)
+            {
+                if (!group.Boxes[boxIndex].IsSubtractive) continue;
+                distance = Mathf.Max(distance, -group.Boxes[boxIndex].Evaluate(point));
+            }
 
             return distance;
+        }
+
+        private static int FindFirstAdditive(
+            IReadOnlyList<TopDown3DRockWorkbenchBox> boxes)
+        {
+            if (boxes == null) return -1;
+            for (var index = 0; index < boxes.Count; index++)
+            {
+                if (!boxes[index].IsSubtractive) return index;
+            }
+            return -1;
         }
 
         private static Color32[] BuildGeologicalSeamColors(

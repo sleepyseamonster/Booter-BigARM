@@ -10,7 +10,16 @@ namespace BooterBigArm.TopDown3D
         Slab,
         AngularChunk,
         SplitLobe,
-        Shard
+        Shard,
+        FracturedBoulder,
+        BlockyMonolith,
+        BrokenSlab
+    }
+
+    public enum TopDown3DRockSurfacePreset
+    {
+        NeutralWeathered,
+        DarkFracturedDesert
     }
 
     /// <summary>
@@ -77,9 +86,22 @@ namespace BooterBigArm.TopDown3D
         private float generatedAsymmetry = 0.65f;
         [SerializeField, Range(0f, 1f), InspectorName("Compaction"), Tooltip("Zero preserves distinct overlapping lobes. One pulls the masses tightly together into a dense fused body.")]
         private float generatedOverlap = 0.62f;
+        [SerializeField, Range(0f, 1f), InspectorName("Major Fractures"), Tooltip("Adds one to three editable subtractive cuts that break the silhouette and create deep structural joints.")]
+        private float generatedMajorFractures = 0.68f;
+        [SerializeField, Range(0f, 1f), InspectorName("Edge Damage"), Tooltip("Controls how strongly corners and exposed edges are chipped by the implicit stone volumes.")]
+        private float generatedEdgeDamage = 0.58f;
         [SerializeField, HideInInspector]
         private TopDown3DRockSilhouetteProfile generatedSilhouetteProfile =
             TopDown3DRockSilhouetteProfile.Auto;
+
+        [Header("Material Family")]
+        [SerializeField, Tooltip("Selects a coherent material response while preserving per-rock seeded variation.")]
+        private TopDown3DRockSurfacePreset surfacePreset =
+            TopDown3DRockSurfacePreset.DarkFracturedDesert;
+        [SerializeField, Range(0f, 1f), Tooltip("Controls restrained per-rock charcoal, blue-gray, and warm-black variation without creating material instances.")]
+        private float colorVariation = 0.62f;
+        [SerializeField, ColorUsage(false, false), Tooltip("Environmental dust deposited on upward-facing rock surfaces.")]
+        private Color environmentDustColor = new Color(0.48f, 0.31f, 0.18f, 1f);
 
         [NonSerialized] private Mesh generatedMesh;
         [NonSerialized] private string previewStatus = "Waiting for a preview build.";
@@ -116,8 +138,16 @@ namespace BooterBigArm.TopDown3D
             GeneratedHeight);
         public float GeneratedAsymmetry => Mathf.Clamp01(generatedAsymmetry);
         public float GeneratedOverlap => Mathf.Clamp01(generatedOverlap);
+        public float GeneratedMajorFractures => Mathf.Clamp01(generatedMajorFractures);
+        public int GeneratedFractureCount => GeneratedHeight / GeneratedWidth > 4f
+            ? 0
+            : CalculateFractureCount(GeneratedMajorFractures);
+        public float GeneratedEdgeDamage => Mathf.Clamp01(generatedEdgeDamage);
         public TopDown3DRockSilhouetteProfile GeneratedSilhouetteProfile =>
             generatedSilhouetteProfile;
+        public TopDown3DRockSurfacePreset SurfacePreset => surfacePreset;
+        public float ColorVariation => Mathf.Clamp01(colorVariation);
+        public Color EnvironmentDustColor => environmentDustColor;
         public Mesh GeneratedMesh => generatedMesh;
         public string PreviewStatus => previewStatus;
 
@@ -154,6 +184,14 @@ namespace BooterBigArm.TopDown3D
                     + height * height * 0.45f) * 0.85f) + 1,
                 5,
                 10);
+        }
+
+        public static int CalculateFractureCount(float amount)
+        {
+            amount = Mathf.Clamp01(amount);
+            if (amount <= 0.001f) return 0;
+            if (amount < 0.46f) return 1;
+            return amount < 0.84f ? 2 : 3;
         }
 
         public void Configure(Material material)

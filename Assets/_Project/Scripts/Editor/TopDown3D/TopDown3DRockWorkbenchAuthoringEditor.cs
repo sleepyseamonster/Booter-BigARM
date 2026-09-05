@@ -82,6 +82,12 @@ namespace BooterBigArm.Editor
                 serializedObject.FindProperty("generatedOverlap"),
                 new GUIContent("Compaction"));
             EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("generatedMajorFractures"),
+                new GUIContent("Major Fractures"));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("generatedEdgeDamage"),
+                new GUIContent("Edge Damage"));
+            EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("showSourceVolumes"),
                 new GUIContent("Show Editing Volumes"));
             var settingsChanged = EditorGUI.EndChangeCheck();
@@ -94,7 +100,8 @@ namespace BooterBigArm.Editor
             }
 
             EditorGUILayout.LabelField(
-                $"Uses {authoring.GeneratedCubeCount} editable source masses",
+                $"Uses {authoring.GeneratedCubeCount} stone masses + "
+                + $"{authoring.GeneratedFractureCount} editable fracture cuts",
                 EditorStyles.miniLabel);
             if (GUILayout.Button("Generate New Rock", GUILayout.Height(34f)))
             {
@@ -167,6 +174,9 @@ namespace BooterBigArm.Editor
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Surface", EditorStyles.boldLabel);
+            DrawProperty("surfacePreset");
+            DrawProperty("colorVariation");
+            DrawProperty("environmentDustColor");
             DrawProperty("geologyScale");
             DrawProperty("surfaceVariation");
             DrawProperty("crackAmount");
@@ -187,14 +197,18 @@ namespace BooterBigArm.Editor
             using (new EditorGUILayout.HorizontalScope())
             {
                 if (GUILayout.Button("Add Editing Volume")) AddVolume(authoring, true);
+                if (GUILayout.Button("Add Fracture Cut")) AddFractureVolume(authoring, true);
+            }
+            using (new EditorGUILayout.HorizontalScope())
+            {
                 if (GUILayout.Button("Rebuild Mesh"))
                     TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
-            }
-            if (GUILayout.Button("Clear Preview Mesh"))
-            {
-                TopDown3DRockWorkbenchPreview.ClearPreview(
-                    authoring,
-                    "Preview cleared. Source volumes were preserved.");
+                if (GUILayout.Button("Clear Preview Mesh"))
+                {
+                    TopDown3DRockWorkbenchPreview.ClearPreview(
+                        authoring,
+                        "Preview cleared. Source volumes were preserved.");
+                }
             }
 
             EditorGUILayout.Space();
@@ -301,6 +315,33 @@ namespace BooterBigArm.Editor
             TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
         }
 
+        internal static void AddFractureVolume(
+            TopDown3DRockWorkbenchAuthoring authoring,
+            bool selectVolume)
+        {
+            if (authoring == null) return;
+
+            var existing = authoring.GetComponentsInChildren<TopDown3DRockVolumeNode>(true);
+            var volumeObject = new GameObject($"Fracture Cut Volume {existing.Length + 1}");
+            Undo.RegisterCreatedObjectUndo(volumeObject, "Add Rock Fracture Cut");
+            Undo.SetTransformParent(volumeObject.transform, authoring.transform, "Parent Rock Fracture Cut");
+            volumeObject.transform.localPosition = new Vector3(0f, authoring.GeneratedHeight * 0.56f, 0f);
+            volumeObject.transform.localRotation = Quaternion.Euler(0f, 35f, 8f);
+            volumeObject.transform.localScale = new Vector3(
+                Mathf.Max(0.08f, authoring.GeneratedWidth * 0.045f),
+                authoring.GeneratedHeight * 0.72f,
+                authoring.GeneratedWidth * 0.62f);
+            var node = Undo.AddComponent<TopDown3DRockVolumeNode>(volumeObject);
+            node.SetSourceShape(TopDown3DRockSourceShape.FractureCut);
+            node.SetOperation(TopDown3DRockVolumeOperation.Subtractive);
+            node.SetShapeSeed(TopDown3DRockWorkbenchBaseRockGenerator.DeriveVolumeShapeSeed(
+                authoring.GenerationSeed,
+                existing.Length));
+            EditorUtility.SetDirty(node);
+            if (selectVolume) Selection.activeGameObject = volumeObject;
+            TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
+        }
+
         [DrawGizmo(GizmoType.NonSelected | GizmoType.Selected | GizmoType.Pickable)]
         private static void DrawVolumeGizmo(TopDown3DRockVolumeNode node, GizmoType gizmoType)
         {
@@ -310,7 +351,9 @@ namespace BooterBigArm.Editor
 
             var selected = (gizmoType & GizmoType.Selected) != 0;
             Gizmos.color = node.ContributesToRock
-                ? selected ? new Color(0.3f, 0.95f, 1f, 1f) : new Color(0.2f, 0.75f, 1f, 0.75f)
+                ? node.Operation == TopDown3DRockVolumeOperation.Subtractive
+                    ? selected ? new Color(1f, 0.48f, 0.18f, 1f) : new Color(1f, 0.34f, 0.12f, 0.72f)
+                    : selected ? new Color(0.3f, 0.95f, 1f, 1f) : new Color(0.2f, 0.75f, 1f, 0.75f)
                 : new Color(0.5f, 0.5f, 0.5f, 0.55f);
             Gizmos.matrix = node.transform.localToWorldMatrix;
             switch (node.SourceShape)
@@ -602,13 +645,17 @@ namespace BooterBigArm.Editor
             var workbench = node.GetComponentInParent<TopDown3DRockWorkbenchAuthoring>();
             EditorGUILayout.Space();
             EditorGUILayout.HelpBox(
-                "Choose a source shape, then use this object's Transform to position, rotate, and scale it. The rendered rock belongs to the parent Rock Workbench.",
+                "Additive volumes build stone. Subtractive fracture volumes carve it. Use this object's Transform to position, rotate, and scale the editable volume.",
                 MessageType.Info);
             using (new EditorGUI.DisabledScope(workbench == null))
             {
                 if (GUILayout.Button("Add Another Source Volume"))
                 {
                     TopDown3DRockWorkbenchAuthoringEditor.AddVolume(workbench, true);
+                }
+                if (GUILayout.Button("Add Fracture Cut"))
+                {
+                    TopDown3DRockWorkbenchAuthoringEditor.AddFractureVolume(workbench, true);
                 }
                 if (GUILayout.Button("Select Rock Workbench")) Selection.activeGameObject = workbench.gameObject;
             }

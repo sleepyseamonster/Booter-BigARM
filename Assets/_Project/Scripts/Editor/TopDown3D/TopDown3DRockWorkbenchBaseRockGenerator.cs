@@ -21,13 +21,16 @@ namespace BooterBigArm.Editor
             Vector3 localScale,
             TopDown3DRockWorkbenchMassRole role,
             TopDown3DRockSourceShape sourceShape =
-                TopDown3DRockSourceShape.WeatheredBlock)
+                TopDown3DRockSourceShape.WeatheredBlock,
+            TopDown3DRockVolumeOperation operation =
+                TopDown3DRockVolumeOperation.Additive)
         {
             LocalPosition = localPosition;
             LocalRotation = localRotation;
             LocalScale = localScale;
             Role = role;
             SourceShape = sourceShape;
+            Operation = operation;
         }
 
         internal Vector3 LocalPosition { get; }
@@ -35,6 +38,7 @@ namespace BooterBigArm.Editor
         internal Vector3 LocalScale { get; }
         internal TopDown3DRockWorkbenchMassRole Role { get; }
         internal TopDown3DRockSourceShape SourceShape { get; }
+        internal TopDown3DRockVolumeOperation Operation { get; }
     }
 
     /// <summary>
@@ -51,7 +55,8 @@ namespace BooterBigArm.Editor
             float asymmetry,
             float overlap,
             TopDown3DRockSilhouetteProfile silhouetteProfile =
-                TopDown3DRockSilhouetteProfile.Auto)
+                TopDown3DRockSilhouetteProfile.Auto,
+            float majorFractures = 0f)
         {
             cubeCount = Mathf.Clamp(cubeCount, 5, 10);
             overallSize = new Vector3(
@@ -200,7 +205,13 @@ namespace BooterBigArm.Editor
                     sourceShape));
             }
 
-            return FitPlanToSizeAndGround(raw, overallSize);
+            var fitted = FitPlanToSizeAndGround(raw, overallSize);
+            return AddFractureCuts(
+                fitted,
+                seed,
+                overallSize,
+                silhouetteProfile,
+                majorFractures);
         }
 
         internal static int CreateNewSeed(int currentSeed)
@@ -244,6 +255,12 @@ namespace BooterBigArm.Editor
                     if (node != null) Undo.DestroyObjectImmediate(node.gameObject);
                 }
 
+                var silhouetteProfile = authoring.GeneratedSilhouetteProfile;
+                if (silhouetteProfile == TopDown3DRockSilhouetteProfile.Auto
+                    && authoring.SurfacePreset == TopDown3DRockSurfacePreset.DarkFracturedDesert)
+                {
+                    silhouetteProfile = ResolveDarkDesertSilhouetteProfile(seed);
+                }
                 var plan = CreatePlan(
                     seed,
                     authoring.GeneratedCubeCount,
@@ -251,7 +268,8 @@ namespace BooterBigArm.Editor
                     authoring.GeneratedVerticality,
                     authoring.GeneratedAsymmetry,
                     authoring.GeneratedOverlap,
-                    authoring.GeneratedSilhouetteProfile);
+                    silhouetteProfile,
+                    authoring.GeneratedMajorFractures);
                 for (var index = 0; index < plan.Count; index++)
                 {
                     var spec = plan[index];
@@ -264,6 +282,7 @@ namespace BooterBigArm.Editor
                     volumeObject.transform.localScale = spec.LocalScale;
                     var node = Undo.AddComponent<TopDown3DRockVolumeNode>(volumeObject);
                     node.SetSourceShape(spec.SourceShape);
+                    node.SetOperation(spec.Operation);
                     node.SetShapeSeed(DeriveVolumeShapeSeed(seed, index));
                     EditorUtility.SetDirty(node);
                 }
@@ -279,17 +298,104 @@ namespace BooterBigArm.Editor
             }
         }
 
+        private static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> AddFractureCuts(
+            IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> stone,
+            int seed,
+            Vector3 overallSize,
+            TopDown3DRockSilhouetteProfile silhouetteProfile,
+            float majorFractures)
+        {
+            var fractureCount = TopDown3DRockWorkbenchAuthoring.CalculateFractureCount(
+                majorFractures);
+            if (fractureCount == 0) return stone;
+
+            var result = new List<TopDown3DRockWorkbenchVolumeSpec>(
+                stone.Count + fractureCount);
+            result.AddRange(stone);
+            var random = new System.Random(seed ^ unchecked((int)0x6A09E667));
+            var horizontalSize = Mathf.Max(
+                0.5f,
+                Mathf.Min(overallSize.x, overallSize.z));
+            var height = Mathf.Max(0.5f, overallSize.y);
+            if (height / horizontalSize > 4f) return stone;
+            var thickness = Mathf.Max(
+                0.11f,
+                horizontalSize * Mathf.Lerp(0.028f, 0.06f, Mathf.Clamp01(majorFractures)));
+
+            for (var index = 0; index < fractureCount; index++)
+            {
+                var heading = NextRange(random, 0f, 360f);
+                var radians = heading * Mathf.Deg2Rad;
+                var outward = new Vector3(Mathf.Sin(radians), 0f, Mathf.Cos(radians));
+                var topCut = index == fractureCount - 1
+                    && (fractureCount >= 3
+                        || silhouetteProfile == TopDown3DRockSilhouetteProfile.BrokenSlab);
+                Vector3 position;
+                Vector3 scale;
+                Quaternion rotation;
+                if (topCut)
+                {
+                    position = outward * NextRange(
+                        random,
+                        -horizontalSize * 0.08f,
+                        horizontalSize * 0.08f);
+                    position.y = height * NextRange(random, 0.83f, 0.91f);
+                    scale = new Vector3(
+                        thickness * NextRange(random, 0.78f, 1.18f),
+                        height * NextRange(random, 0.28f, 0.42f),
+                        horizontalSize * NextRange(random, 0.46f, 0.68f));
+                    rotation = Quaternion.Euler(
+                        NextRange(random, -8f, 8f),
+                        heading,
+                        NextRange(random, -12f, 12f));
+                }
+                else
+                {
+                    position = outward * horizontalSize * NextRange(random, 0.31f, 0.38f);
+                    position.y = height * NextRange(random, 0.44f, 0.58f);
+                    scale = new Vector3(
+                        thickness * NextRange(random, 0.82f, 1.22f),
+                        height * NextRange(random, 0.58f, 0.88f),
+                        horizontalSize * NextRange(random, 0.42f, 0.56f));
+                    rotation = Quaternion.Euler(
+                        NextRange(random, -7f, 7f),
+                        heading,
+                        NextRange(random, -20f, 20f));
+                }
+
+                result.Add(new TopDown3DRockWorkbenchVolumeSpec(
+                    position,
+                    rotation,
+                    scale,
+                    TopDown3DRockWorkbenchMassRole.Detail,
+                    TopDown3DRockSourceShape.FractureCut,
+                    TopDown3DRockVolumeOperation.Subtractive));
+            }
+
+            return result;
+        }
+
         internal static Bounds CalculateBounds(IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> plan)
         {
             if (plan == null || plan.Count == 0) return new Bounds(Vector3.zero, Vector3.zero);
 
-            var first = plan[0];
+            var firstIndex = -1;
+            for (var index = 0; index < plan.Count; index++)
+            {
+                if (plan[index].Operation != TopDown3DRockVolumeOperation.Additive) continue;
+                firstIndex = index;
+                break;
+            }
+            if (firstIndex < 0) return new Bounds(Vector3.zero, Vector3.zero);
+
+            var first = plan[firstIndex];
             var firstExtents = GetRotatedExtents(first.LocalRotation, first.LocalScale);
             var min = first.LocalPosition - firstExtents;
             var max = first.LocalPosition + firstExtents;
-            for (var index = 1; index < plan.Count; index++)
+            for (var index = firstIndex + 1; index < plan.Count; index++)
             {
                 var spec = plan[index];
+                if (spec.Operation != TopDown3DRockVolumeOperation.Additive) continue;
                 var extents = GetRotatedExtents(spec.LocalRotation, spec.LocalScale);
                 min = Vector3.Min(min, spec.LocalPosition - extents);
                 max = Vector3.Max(max, spec.LocalPosition + extents);
@@ -316,7 +422,8 @@ namespace BooterBigArm.Editor
                         : spec.LocalRotation,
                     spec.LocalScale,
                     spec.Role,
-                    spec.SourceShape));
+                    spec.SourceShape,
+                    spec.Operation));
             }
 
             if (independentWidthAndHeight)
@@ -350,7 +457,8 @@ namespace BooterBigArm.Editor
                     spec.LocalRotation,
                     spec.LocalScale,
                     spec.Role,
-                    spec.SourceShape);
+                    spec.SourceShape,
+                    spec.Operation);
             }
             return fitted;
         }
@@ -367,7 +475,8 @@ namespace BooterBigArm.Editor
                     spec.LocalRotation,
                     Vector3.Scale(spec.LocalScale, correction),
                     spec.Role,
-                    spec.SourceShape);
+                    spec.SourceShape,
+                    spec.Operation);
             }
         }
 
@@ -407,6 +516,20 @@ namespace BooterBigArm.Editor
                     return role == TopDown3DRockWorkbenchMassRole.Support
                         ? TopDown3DRockSourceShape.TaperedStone
                         : TopDown3DRockSourceShape.Wedge;
+                case TopDown3DRockSilhouetteProfile.FracturedBoulder:
+                    return index % 3 == 0
+                        ? TopDown3DRockSourceShape.WeatheredBlock
+                        : index % 2 == 0
+                            ? TopDown3DRockSourceShape.Wedge
+                            : TopDown3DRockSourceShape.TaperedStone;
+                case TopDown3DRockSilhouetteProfile.BlockyMonolith:
+                    return index % 3 == 2
+                        ? TopDown3DRockSourceShape.Wedge
+                        : TopDown3DRockSourceShape.WeatheredBlock;
+                case TopDown3DRockSilhouetteProfile.BrokenSlab:
+                    return index % 3 == 1
+                        ? TopDown3DRockSourceShape.WeatheredBlock
+                        : TopDown3DRockSourceShape.Wedge;
             }
 
             var shapeSeed = DeriveVolumeShapeSeed(seed ^ unchecked((int)0x5F356495), index);
@@ -436,6 +559,16 @@ namespace BooterBigArm.Editor
                 + unchecked((uint)profileSeed) % 5u);
         }
 
+        internal static TopDown3DRockSilhouetteProfile ResolveDarkDesertSilhouetteProfile(
+            int seed)
+        {
+            var profileSeed = DeriveVolumeShapeSeed(
+                seed ^ unchecked((int)0x510E527F),
+                0);
+            return (TopDown3DRockSilhouetteProfile)(1
+                + unchecked((uint)profileSeed) % 8u);
+        }
+
         private static float GetProfileVerticality(
             float verticality,
             TopDown3DRockSilhouetteProfile silhouetteProfile)
@@ -450,6 +583,12 @@ namespace BooterBigArm.Editor
                     return Mathf.Lerp(verticality, 0.3f, 0.5f);
                 case TopDown3DRockSilhouetteProfile.Shard:
                     return Mathf.Lerp(0.35f, 1f, verticality);
+                case TopDown3DRockSilhouetteProfile.FracturedBoulder:
+                    return Mathf.Lerp(verticality, 0.48f, 0.32f);
+                case TopDown3DRockSilhouetteProfile.BlockyMonolith:
+                    return Mathf.Lerp(0.62f, 1f, verticality);
+                case TopDown3DRockSilhouetteProfile.BrokenSlab:
+                    return verticality * 0.22f;
                 default:
                     return verticality;
             }
@@ -476,6 +615,15 @@ namespace BooterBigArm.Editor
                 case TopDown3DRockSilhouetteProfile.Shard:
                     center = new Vector3(0.86f, Mathf.Lerp(0.72f, 1.95f, verticality), 0.76f);
                     break;
+                case TopDown3DRockSilhouetteProfile.FracturedBoulder:
+                    center = new Vector3(1.5f, Mathf.Lerp(0.9f, 1.48f, verticality), 1.34f);
+                    break;
+                case TopDown3DRockSilhouetteProfile.BlockyMonolith:
+                    center = new Vector3(1.04f, Mathf.Lerp(1.38f, 2.12f, verticality), 0.96f);
+                    break;
+                case TopDown3DRockSilhouetteProfile.BrokenSlab:
+                    center = new Vector3(1.92f, Mathf.Lerp(0.42f, 0.68f, verticality), 1.24f);
+                    break;
                 default:
                     center = new Vector3(1.42f, Mathf.Lerp(0.72f, 1.58f, verticality), 1.28f);
                     break;
@@ -497,6 +645,11 @@ namespace BooterBigArm.Editor
                 case TopDown3DRockSilhouetteProfile.AngularChunk:
                 case TopDown3DRockSilhouetteProfile.Shard:
                     return TopDown3DRockSourceShape.TaperedStone;
+                case TopDown3DRockSilhouetteProfile.BrokenSlab:
+                    return TopDown3DRockSourceShape.Wedge;
+                case TopDown3DRockSilhouetteProfile.FracturedBoulder:
+                case TopDown3DRockSilhouetteProfile.BlockyMonolith:
+                    return TopDown3DRockSourceShape.WeatheredBlock;
                 default:
                     return TopDown3DRockSourceShape.WeatheredBlock;
             }
@@ -539,6 +692,20 @@ namespace BooterBigArm.Editor
                         support ? 0.9f : 0.78f,
                         support ? 1.28f : 1.04f,
                         support ? 0.86f : 0.74f));
+                case TopDown3DRockSilhouetteProfile.FracturedBoulder:
+                    return Vector3.Scale(childScale, support
+                        ? new Vector3(1.16f, 1.02f, 1.12f)
+                        : new Vector3(0.82f, 0.78f, 0.8f));
+                case TopDown3DRockSilhouetteProfile.BlockyMonolith:
+                    return Vector3.Scale(childScale, new Vector3(
+                        support ? 0.92f : 0.72f,
+                        support ? 1.3f : 0.92f,
+                        support ? 0.88f : 0.7f));
+                case TopDown3DRockSilhouetteProfile.BrokenSlab:
+                    return Vector3.Scale(childScale, new Vector3(
+                        support ? NextRange(random, 1.16f, 1.48f) : 0.84f,
+                        support ? 0.52f : 0.4f,
+                        support ? NextRange(random, 0.9f, 1.24f) : 0.7f));
                 default:
                     return Vector3.Scale(childScale, support
                         ? new Vector3(1.08f, 1f, 1.04f)
@@ -560,6 +727,12 @@ namespace BooterBigArm.Editor
                     return Mathf.Lerp(overlap, 0.52f, 0.35f);
                 case TopDown3DRockSilhouetteProfile.Shard:
                     return Mathf.Lerp(overlap, 0.68f, 0.55f);
+                case TopDown3DRockSilhouetteProfile.FracturedBoulder:
+                    return Mathf.Lerp(overlap, 0.56f, 0.4f);
+                case TopDown3DRockSilhouetteProfile.BlockyMonolith:
+                    return Mathf.Lerp(overlap, 0.64f, 0.42f);
+                case TopDown3DRockSilhouetteProfile.BrokenSlab:
+                    return Mathf.Lerp(overlap, 0.76f, 0.62f);
                 default:
                     return overlap;
             }
@@ -615,6 +788,7 @@ namespace BooterBigArm.Editor
             {
                 TopDown3DRockSourceShape.Wedge => "Wedge",
                 TopDown3DRockSourceShape.TaperedStone => "Tapered Stone",
+                TopDown3DRockSourceShape.FractureCut => "Fracture Cut",
                 _ => "Weathered Block"
             };
         }

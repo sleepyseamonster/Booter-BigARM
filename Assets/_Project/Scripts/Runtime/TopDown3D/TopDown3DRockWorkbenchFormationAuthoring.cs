@@ -62,6 +62,19 @@ namespace BooterBigArm.TopDown3D
         private float memberFusionSmoothness = 0.11f;
         [SerializeField, Range(0f, 1f), Tooltip("Relaxes each completed rock surface after meshing to remove voxel-scale teeth and stair steps while preserving volume and ground contact.")]
         private float memberSurfaceRelaxation = 0.55f;
+        [SerializeField, Range(0f, 1f), Tooltip("Adds editable subtractive joints to independent Scattered Rocks members. Connected formations preserve their structural joins.")]
+        private float memberMajorFractures = 0.68f;
+        [SerializeField, Range(0f, 1f), Tooltip("Controls deterministic chipping on member-rock corners and exposed edges.")]
+        private float memberEdgeDamage = 0.58f;
+
+        [Header("Member Rock Material")]
+        [SerializeField, Tooltip("Selects the shared geological material family while retaining deterministic per-rock variation.")]
+        private TopDown3DRockSurfacePreset memberSurfacePreset =
+            TopDown3DRockSurfacePreset.DarkFracturedDesert;
+        [SerializeField, Range(0f, 1f), Tooltip("Controls restrained charcoal, blue-gray, and warm-black variation between member rocks.")]
+        private float memberColorVariation = 0.62f;
+        [SerializeField, ColorUsage(false, false), Tooltip("Environmental dust deposited on upward-facing member-rock surfaces.")]
+        private Color memberDustColor = new Color(0.48f, 0.31f, 0.18f, 1f);
 
         [Header("Formation Fractures")]
         [SerializeField, Range(0f, 1f), Tooltip("Strength of a few long fractures projected coherently over the entire formation.")]
@@ -168,6 +181,11 @@ namespace BooterBigArm.TopDown3D
             TopDown3DRockWorkbenchAuthoring.VoxelSizeToTessellationDetail(MemberVoxelSize);
         public float MemberFusionSmoothness => Mathf.Clamp(memberFusionSmoothness, 0f, 0.35f);
         public float MemberSurfaceRelaxation => Mathf.Clamp01(memberSurfaceRelaxation);
+        public float MemberMajorFractures => Mathf.Clamp01(memberMajorFractures);
+        public float MemberEdgeDamage => Mathf.Clamp01(memberEdgeDamage);
+        public TopDown3DRockSurfacePreset MemberSurfacePreset => memberSurfacePreset;
+        public float MemberColorVariation => Mathf.Clamp01(memberColorVariation);
+        public Color MemberDustColor => memberDustColor;
         public float LongFractures => Mathf.Clamp01(longFractures);
         public float FractureSpacing => Mathf.Clamp(fractureSpacing, 1.5f, 16f);
         public float FusedVoxelSize => Mathf.Max(0.04f, fusedVoxelSize);

@@ -33,8 +33,9 @@ namespace BooterBigArm.Editor
 
             serializedObject.Update();
             EditorGUI.BeginChangeCheck();
+            var archetypeProperty = serializedObject.FindProperty("formationArchetype");
             EditorGUILayout.PropertyField(
-                serializedObject.FindProperty("formationArchetype"),
+                archetypeProperty,
                 new GUIContent("Formation Type"));
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("generatedOverallSize"),
@@ -42,11 +43,31 @@ namespace BooterBigArm.Editor
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("generatedHeight"),
                 new GUIContent("Height", "Physical formation height in meters, independent from width."));
+            var usesEditableFractureCuts =
+                (TopDown3DRockFormationArchetype)archetypeProperty.enumValueIndex
+                == TopDown3DRockFormationArchetype.ScatteredRocks;
+            using (new EditorGUI.DisabledScope(!usesEditableFractureCuts))
+            {
+                EditorGUILayout.PropertyField(
+                    serializedObject.FindProperty("memberMajorFractures"),
+                    new GUIContent(
+                        "Major Fractures",
+                        "Editable subtractive cuts for independent scattered rocks."));
+            }
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("memberEdgeDamage"),
+                new GUIContent("Edge Damage"));
             var generatorSettingsChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
 
             EditorGUILayout.HelpBox(GetArchetypeDescription(formation.FormationArchetype),
                 MessageType.Info);
+            if (!usesEditableFractureCuts)
+            {
+                EditorGUILayout.LabelField(
+                    "Connected formations preserve structural joins; use Long Cracks for formation-scale fractures.",
+                    EditorStyles.miniLabel);
+            }
             EditorGUILayout.LabelField(
                 $"Will generate {formation.GeneratedRockCount} editable rocks; detail scales automatically",
                 EditorStyles.miniLabel);
@@ -103,6 +124,15 @@ namespace BooterBigArm.Editor
                 new GUIContent(
                     "Surface Relaxation",
                     "Softens voxel-scale teeth and stair steps after the rock mesh is built while preserving volume and ground contact."));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("memberSurfacePreset"),
+                new GUIContent("Rock Material Family"));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("memberColorVariation"),
+                new GUIContent("Rock Color Variation"));
+            EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("memberDustColor"),
+                new GUIContent("Environmental Dust Color"));
             var memberMeshChanged = EditorGUI.EndChangeCheck();
 
             EditorGUI.BeginChangeCheck();
@@ -472,7 +502,9 @@ namespace BooterBigArm.Editor
                         formation.transform,
                         node.transform,
                         node.SourceShape,
-                        node.ShapeSeed);
+                        node.ShapeSeed,
+                        node.Operation,
+                        member.GeneratedEdgeDamage);
                     boxes.Add(box);
                     memberBoxes.Add(box);
                 }

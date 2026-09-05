@@ -511,6 +511,17 @@ namespace BooterBigArm.Tests
                 .OrderBy(value => value)
                 .ElementAt(first.Count / 2);
             Assert.That(dominantFootprint, Is.GreaterThan(medianFootprint * 1.25f));
+            var averageBoulderSize = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.Boulder)
+                .Average(member => member.RockSize);
+            var averageSlabSize = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.Slab)
+                .Average(member => member.RockSize);
+            var averageFragmentSize = first
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.Fragment)
+                .Average(member => member.RockSize);
+            Assert.That(averageBoulderSize, Is.GreaterThan(averageSlabSize * 1.35f));
+            Assert.That(averageSlabSize, Is.GreaterThan(averageFragmentSize * 1.35f));
 
             for (var index = 0; index < first.Count; index++)
             {
@@ -568,9 +579,23 @@ namespace BooterBigArm.Tests
             Assert.That(profiles.Distinct().Count(), Is.GreaterThanOrEqualTo(3));
             Assert.That(plan
                 .Where(member => member.Role == TopDown3DRockFormationMemberRole.Slab)
-                .All(member => TopDown3DRockWorkbenchFormationGenerator
-                    .ChooseMemberSilhouetteProfile(member)
-                    == TopDown3DRockSilhouetteProfile.Slab), Is.True);
+                .All(member =>
+                {
+                    var profile = TopDown3DRockWorkbenchFormationGenerator
+                        .ChooseMemberSilhouetteProfile(member);
+                    return profile == TopDown3DRockSilhouetteProfile.Slab
+                        || profile == TopDown3DRockSilhouetteProfile.BrokenSlab;
+                }), Is.True);
+            Assert.That(plan
+                .Where(member => member.Role == TopDown3DRockFormationMemberRole.Boulder)
+                .All(member =>
+                {
+                    var profile = TopDown3DRockWorkbenchFormationGenerator
+                        .ChooseMemberSilhouetteProfile(member);
+                    return profile == TopDown3DRockSilhouetteProfile.Boulder
+                        || profile == TopDown3DRockSilhouetteProfile.FracturedBoulder
+                        || profile == TopDown3DRockSilhouetteProfile.BlockyMonolith;
+                }), Is.True);
             Assert.That(plan
                 .Where(member => member.Role == TopDown3DRockFormationMemberRole.Fragment)
                 .All(member =>
@@ -1065,7 +1090,7 @@ namespace BooterBigArm.Tests
                 {
                     Assert.That(
                         member.GetComponentsInChildren<TopDown3DRockVolumeNode>(true).Length,
-                        Is.EqualTo(member.GeneratedCubeCount));
+                        Is.EqualTo(member.GeneratedCubeCount + member.GeneratedFractureCount));
                     Assert.That(member.ShowSourceVolumes, Is.False);
                 }
                 Assert.That(members.Any(member => member.name.StartsWith("Core Rock")), Is.True);
@@ -1384,6 +1409,176 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void MajorFracturesCreateDeterministicEditableSubtractiveCuts()
+        {
+            var first = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                424242,
+                8,
+                new Vector3(5f, 4.2f, 5f),
+                0.55f,
+                0.72f,
+                0.64f,
+                TopDown3DRockSilhouetteProfile.FracturedBoulder,
+                0.68f);
+            var repeat = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
+                424242,
+                8,
+                new Vector3(5f, 4.2f, 5f),
+                0.55f,
+                0.72f,
+                0.64f,
+                TopDown3DRockSilhouetteProfile.FracturedBoulder,
+                0.68f);
+
+            Assert.That(first.Count, Is.EqualTo(10));
+            Assert.That(first.Count(spec => spec.Operation == TopDown3DRockVolumeOperation.Additive),
+                Is.EqualTo(8));
+            Assert.That(first.Count(spec => spec.Operation == TopDown3DRockVolumeOperation.Subtractive),
+                Is.EqualTo(2));
+            Assert.That(first
+                .Where(spec => spec.Operation == TopDown3DRockVolumeOperation.Subtractive)
+                .All(spec => spec.SourceShape == TopDown3DRockSourceShape.FractureCut), Is.True);
+
+            for (var index = 0; index < first.Count; index++)
+            {
+                Assert.That(repeat[index].LocalPosition, Is.EqualTo(first[index].LocalPosition));
+                Assert.That(repeat[index].LocalRotation, Is.EqualTo(first[index].LocalRotation));
+                Assert.That(repeat[index].LocalScale, Is.EqualTo(first[index].LocalScale));
+                Assert.That(repeat[index].Operation, Is.EqualTo(first[index].Operation));
+            }
+
+            var allBounds = TopDown3DRockWorkbenchBaseRockGenerator.CalculateBounds(first);
+            var additiveOnly = first
+                .Where(spec => spec.Operation == TopDown3DRockVolumeOperation.Additive)
+                .ToArray();
+            var additiveBounds = TopDown3DRockWorkbenchBaseRockGenerator.CalculateBounds(additiveOnly);
+            Assert.That(allBounds.center, Is.EqualTo(additiveBounds.center));
+            Assert.That(allBounds.size, Is.EqualTo(additiveBounds.size));
+            Assert.That(allBounds.min.y, Is.EqualTo(0f).Within(0.001f));
+        }
+
+        [Test]
+        public void DarkDesertMaterialFamilyVariesPerRockWithoutMaterialInstances()
+        {
+            var root = new GameObject("Dark Desert Material Family Test");
+            try
+            {
+                var authoring = root.AddComponent<TopDown3DRockWorkbenchAuthoring>();
+                var renderer = root.GetComponent<MeshRenderer>();
+                var material = AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath);
+                authoring.Configure(material);
+                renderer.sharedMaterial = material;
+
+                authoring.SetGenerationSeed(10101);
+                TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(
+                    authoring,
+                    renderer,
+                    new Vector3(4f, 3f, 4f),
+                    10101,
+                    Vector3.zero,
+                    0f,
+                    1f);
+                var first = new MaterialPropertyBlock();
+                renderer.GetPropertyBlock(first);
+
+                authoring.SetGenerationSeed(20202);
+                TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(
+                    authoring,
+                    renderer,
+                    new Vector3(4f, 3f, 4f),
+                    20202,
+                    Vector3.zero,
+                    0f,
+                    1f);
+                var second = new MaterialPropertyBlock();
+                renderer.GetPropertyBlock(second);
+
+                var baseColorId = Shader.PropertyToID("_BaseColor");
+                var crackColorId = Shader.PropertyToID("_CrackColor");
+                var dustColorId = Shader.PropertyToID("_DustColor");
+                Assert.That(second.GetColor(baseColorId), Is.Not.EqualTo(first.GetColor(baseColorId)));
+                Assert.That(second.GetColor(crackColorId).maxColorComponent, Is.LessThan(0.03f));
+                var dust = second.GetColor(dustColorId);
+                Assert.That(dust.r, Is.EqualTo(authoring.EnvironmentDustColor.r).Within(0.0001f));
+                Assert.That(dust.g, Is.EqualTo(authoring.EnvironmentDustColor.g).Within(0.0001f));
+                Assert.That(dust.b, Is.EqualTo(authoring.EnvironmentDustColor.b).Within(0.0001f));
+                Assert.That(dust.a, Is.EqualTo(authoring.EnvironmentDustColor.a).Within(0.0001f));
+                Assert.That(second.GetFloat(Shader.PropertyToID("_SmoothnessMax")), Is.LessThan(0.2f));
+                Assert.That(renderer.sharedMaterial, Is.SameAs(material));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void SubtractiveFractureCutsCarveAClosedConnectedRockSurface()
+        {
+            var root = new GameObject("Subtractive Fracture Mesher Test");
+            try
+            {
+                var mass = CreateBoxObject(
+                    root.transform,
+                    new Vector3(0f, 1.5f, 0f),
+                    new Vector3(4f, 3f, 4f));
+                var cut = CreateBoxObject(
+                    root.transform,
+                    new Vector3(1.85f, 2f, 0f),
+                    new Vector3(0.6f, 2.4f, 2.8f));
+                cut.transform.localRotation = Quaternion.Euler(0f, 16f, -8f);
+                var intactBoxes = new[]
+                {
+                    new TopDown3DRockWorkbenchBox(
+                        root.transform,
+                        mass.transform,
+                        TopDown3DRockSourceShape.WeatheredBlock,
+                        13579,
+                        TopDown3DRockVolumeOperation.Additive,
+                        0.58f)
+                };
+                var fracturedBoxes = new[]
+                {
+                    intactBoxes[0],
+                    new TopDown3DRockWorkbenchBox(
+                        root.transform,
+                        cut.transform,
+                        TopDown3DRockSourceShape.FractureCut,
+                        24680,
+                        TopDown3DRockVolumeOperation.Subtractive,
+                        0.58f)
+                };
+
+                Assert.That(
+                    TopDown3DRockWorkbenchMesher.TryBuild(
+                        intactBoxes,
+                        0.14f,
+                        0.1f,
+                        out var intact,
+                        out var intactError),
+                    Is.True,
+                    intactError);
+                Assert.That(
+                    TopDown3DRockWorkbenchMesher.TryBuild(
+                        fracturedBoxes,
+                        0.14f,
+                        0.1f,
+                        out var fractured,
+                        out var fracturedError),
+                    Is.True,
+                    fracturedError);
+                Assert.That(fractured.Topology.IsValid, Is.True, fractured.Topology.Error);
+                Assert.That(fractured.ConnectedComponents, Is.EqualTo(1));
+                Assert.That(fractured.Topology.SignedVolume, Is.LessThan(intact.Topology.SignedVolume));
+                Assert.That(fractured.Topology.TriangleCount, Is.Not.EqualTo(intact.Topology.TriangleCount));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
         public void BaseRockPlanChangesWhenTheSeedChanges()
         {
             var first = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
@@ -1637,7 +1832,7 @@ namespace BooterBigArm.Tests
                     Assert.That(positions.Add(item.transform.localPosition), Is.True);
                     Assert.That(
                         item.GetComponentsInChildren<TopDown3DRockVolumeNode>(true).Length,
-                        Is.EqualTo(item.GeneratedCubeCount));
+                        Is.EqualTo(item.GeneratedCubeCount + item.GeneratedFractureCount));
                     Assert.That(TopDown3DRockWorkbenchVariationGallery.IsGalleryItem(item), Is.True);
                 }
 
@@ -1870,7 +2065,10 @@ namespace BooterBigArm.Tests
                          TopDown3DRockSilhouetteProfile.Slab,
                          TopDown3DRockSilhouetteProfile.AngularChunk,
                          TopDown3DRockSilhouetteProfile.SplitLobe,
-                         TopDown3DRockSilhouetteProfile.Shard
+                         TopDown3DRockSilhouetteProfile.Shard,
+                         TopDown3DRockSilhouetteProfile.FracturedBoulder,
+                         TopDown3DRockSilhouetteProfile.BlockyMonolith,
+                         TopDown3DRockSilhouetteProfile.BrokenSlab
                      })
             {
                 plans.Add(profile, TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
@@ -1893,6 +2091,12 @@ namespace BooterBigArm.Tests
                 Is.EqualTo(TopDown3DRockSourceShape.WeatheredBlock));
             Assert.That(plans[TopDown3DRockSilhouetteProfile.Shard][0].SourceShape,
                 Is.EqualTo(TopDown3DRockSourceShape.TaperedStone));
+            Assert.That(plans[TopDown3DRockSilhouetteProfile.FracturedBoulder][0].SourceShape,
+                Is.EqualTo(TopDown3DRockSourceShape.WeatheredBlock));
+            Assert.That(plans[TopDown3DRockSilhouetteProfile.BlockyMonolith][0].SourceShape,
+                Is.EqualTo(TopDown3DRockSourceShape.WeatheredBlock));
+            Assert.That(plans[TopDown3DRockSilhouetteProfile.BrokenSlab][0].SourceShape,
+                Is.EqualTo(TopDown3DRockSourceShape.Wedge));
             Assert.That(
                 Volume(plans[TopDown3DRockSilhouetteProfile.SplitLobe][1].LocalScale),
                 Is.GreaterThan(Volume(
@@ -1915,7 +2119,10 @@ namespace BooterBigArm.Tests
                              TopDown3DRockSilhouetteProfile.Slab,
                              TopDown3DRockSilhouetteProfile.AngularChunk,
                              TopDown3DRockSilhouetteProfile.SplitLobe,
-                             TopDown3DRockSilhouetteProfile.Shard
+                             TopDown3DRockSilhouetteProfile.Shard,
+                             TopDown3DRockSilhouetteProfile.FracturedBoulder,
+                             TopDown3DRockSilhouetteProfile.BlockyMonolith,
+                             TopDown3DRockSilhouetteProfile.BrokenSlab
                          })
                 {
                     while (root.transform.childCount > 0)
@@ -1984,15 +2191,24 @@ namespace BooterBigArm.Tests
                 TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(authoring, 8675309);
 
                 var generated = root.GetComponentsInChildren<TopDown3DRockVolumeNode>(true);
+                var expectedProfile = authoring.GeneratedSilhouetteProfile;
+                if (expectedProfile == TopDown3DRockSilhouetteProfile.Auto &&
+                    authoring.SurfacePreset == TopDown3DRockSurfacePreset.DarkFracturedDesert)
+                {
+                    expectedProfile = TopDown3DRockWorkbenchBaseRockGenerator.ResolveDarkDesertSilhouetteProfile(
+                        8675309);
+                }
                 var expected = TopDown3DRockWorkbenchBaseRockGenerator.CreatePlan(
                     8675309,
                     authoring.GeneratedCubeCount,
                     authoring.GeneratedOverallSize,
                     authoring.GeneratedVerticality,
                     authoring.GeneratedAsymmetry,
-                    authoring.GeneratedOverlap);
+                    authoring.GeneratedOverlap,
+                    expectedProfile,
+                    authoring.GeneratedMajorFractures);
                 Assert.That(authoring.GenerationSeed, Is.EqualTo(8675309));
-                Assert.That(generated.Length, Is.EqualTo(authoring.GeneratedCubeCount));
+                Assert.That(generated.Length, Is.EqualTo(expected.Count));
                 var shapeSeeds = new HashSet<int>();
                 for (var index = 0; index < generated.Length; index++)
                 {
@@ -2001,6 +2217,7 @@ namespace BooterBigArm.Tests
                     Assert.That(node.transform.parent, Is.EqualTo(root.transform));
                     Assert.That(node.name, Does.EndWith($"Volume {index + 1}"));
                     Assert.That(node.SourceShape, Is.EqualTo(expected[index].SourceShape));
+                    Assert.That(node.Operation, Is.EqualTo(expected[index].Operation));
                     Assert.That(
                         node.ShapeSeed,
                         Is.EqualTo(TopDown3DRockWorkbenchBaseRockGenerator.DeriveVolumeShapeSeed(8675309, index)));

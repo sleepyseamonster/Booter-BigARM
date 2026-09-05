@@ -25,6 +25,14 @@ namespace BooterBigArm.Editor
         private static readonly int SideShalePatchesId = Shader.PropertyToID("_SideShalePatchAmount");
         private static readonly int TopShalePatchesId = Shader.PropertyToID("_TopShalePatchAmount");
         private static readonly int WornShineId = Shader.PropertyToID("_WornSmoothnessBoost");
+        private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
+        private static readonly int CrackColorId = Shader.PropertyToID("_CrackColor");
+        private static readonly int MineralColorId = Shader.PropertyToID("_MineralColor");
+        private static readonly int DustColorId = Shader.PropertyToID("_DustColor");
+        private static readonly int SmoothnessMinId = Shader.PropertyToID("_SmoothnessMin");
+        private static readonly int SmoothnessMaxId = Shader.PropertyToID("_SmoothnessMax");
+        private static readonly int NormalStrengthId = Shader.PropertyToID("_NormalStrength");
+        private static readonly int MacroStrengthId = Shader.PropertyToID("_MacroStrength");
         private static readonly Dictionary<int, PreviewState> States = new Dictionary<int, PreviewState>();
         private static double nextScanTime;
 
@@ -163,7 +171,9 @@ namespace BooterBigArm.Editor
                     authoring.transform,
                     node.transform,
                     node.SourceShape,
-                    node.ShapeSeed));
+                    node.ShapeSeed,
+                    node.Operation,
+                    authoring.GeneratedEdgeDamage));
             }
 
             if (!TopDown3DRockWorkbenchMesher.TryBuild(
@@ -251,7 +261,64 @@ namespace BooterBigArm.Editor
             materialProperties.SetFloat(FormationFractureAmountId, formationFractureAmount);
             materialProperties.SetFloat(FormationFractureSpacingId, formationFractureSpacing);
             materialProperties.SetFloat(GeologicalSeamAmountId, Mathf.Clamp01(geologicalSeamAmount));
+            ApplyMaterialFamily(authoring, renderer, materialProperties);
             renderer.SetPropertyBlock(materialProperties);
+        }
+
+        private static void ApplyMaterialFamily(
+            TopDown3DRockWorkbenchAuthoring authoring,
+            MeshRenderer renderer,
+            MaterialPropertyBlock properties)
+        {
+            var material = renderer.sharedMaterial;
+            if (authoring.SurfacePreset == TopDown3DRockSurfacePreset.NeutralWeathered)
+            {
+                properties.SetColor(BaseColorId, ReadMaterialColor(material, "_BaseColor", Color.white));
+                properties.SetColor(CrackColorId, ReadMaterialColor(material, "_CrackColor", new Color(0.12f, 0.085f, 0.06f, 1f)));
+                properties.SetColor(MineralColorId, ReadMaterialColor(material, "_MineralColor", new Color(0.48f, 0.42f, 0.34f, 1f)));
+                properties.SetColor(DustColorId, authoring.EnvironmentDustColor);
+                properties.SetFloat(SmoothnessMinId, ReadMaterialFloat(material, "_SmoothnessMin", 0.04f));
+                properties.SetFloat(SmoothnessMaxId, ReadMaterialFloat(material, "_SmoothnessMax", 0.3f));
+                properties.SetFloat(NormalStrengthId, ReadMaterialFloat(material, "_NormalStrength", 0.75f));
+                properties.SetFloat(MacroStrengthId, ReadMaterialFloat(material, "_MacroStrength", 0.1f));
+                return;
+            }
+
+            var variation = authoring.ColorVariation;
+            var cool = SeedToUnitFloat(authoring.GenerationSeed ^ unchecked((int)0x3C6EF372));
+            var value = SeedToUnitFloat(authoring.GenerationSeed ^ unchecked((int)0xBB67AE85));
+            var warmCharcoal = new Color(0.42f, 0.385f, 0.34f, 1f);
+            var coolCharcoal = new Color(0.315f, 0.335f, 0.35f, 1f);
+            var charcoal = Color.Lerp(warmCharcoal, coolCharcoal, cool);
+            var brightness = Mathf.Lerp(0.78f, 1.12f, value);
+            charcoal = Color.Lerp(
+                new Color(0.375f, 0.37f, 0.355f, 1f),
+                charcoal * brightness,
+                variation);
+            charcoal.a = 1f;
+
+            properties.SetColor(BaseColorId, charcoal);
+            properties.SetColor(CrackColorId, new Color(0.018f, 0.015f, 0.013f, 1f));
+            properties.SetColor(MineralColorId, new Color(0.58f, 0.51f, 0.41f, 1f));
+            properties.SetColor(DustColorId, authoring.EnvironmentDustColor);
+            properties.SetFloat(SmoothnessMinId, 0.015f);
+            properties.SetFloat(SmoothnessMaxId, 0.14f);
+            properties.SetFloat(NormalStrengthId, 1.08f);
+            properties.SetFloat(MacroStrengthId, Mathf.Lerp(0.12f, 0.2f, variation));
+        }
+
+        private static Color ReadMaterialColor(Material material, string property, Color fallback)
+        {
+            return material != null && material.HasProperty(property)
+                ? material.GetColor(property)
+                : fallback;
+        }
+
+        private static float ReadMaterialFloat(Material material, string property, float fallback)
+        {
+            return material != null && material.HasProperty(property)
+                ? material.GetFloat(property)
+                : fallback;
         }
 
         private static void DestroyGeneratedMesh(TopDown3DRockWorkbenchAuthoring authoring)
@@ -289,6 +356,10 @@ namespace BooterBigArm.Editor
                 hash = hash * 31 + authoring.FusionSmoothness.GetHashCode();
                 hash = hash * 31 + authoring.SurfaceRelaxation.GetHashCode();
                 hash = hash * 31 + authoring.UpdateCollider.GetHashCode();
+                hash = hash * 31 + authoring.GeneratedEdgeDamage.GetHashCode();
+                hash = hash * 31 + (int)authoring.SurfacePreset;
+                hash = hash * 31 + authoring.ColorVariation.GetHashCode();
+                hash = hash * 31 + authoring.EnvironmentDustColor.GetHashCode();
                 hash = hash * 31 + authoring.GeologyScale.GetHashCode();
                 hash = hash * 31 + authoring.SurfaceVariation.GetHashCode();
                 hash = hash * 31 + authoring.CrackAmount.GetHashCode();
@@ -306,6 +377,7 @@ namespace BooterBigArm.Editor
                     hash = hash * 31 + node.GetInstanceID();
                     hash = hash * 31 + node.ContributesToRock.GetHashCode();
                     hash = hash * 31 + (int)node.SourceShape;
+                    hash = hash * 31 + (int)node.Operation;
                     hash = hash * 31 + node.ShapeSeed;
                     hash = hash * 31 + node.gameObject.activeInHierarchy.GetHashCode();
                     var matrix = authoring.transform.worldToLocalMatrix * node.transform.localToWorldMatrix;

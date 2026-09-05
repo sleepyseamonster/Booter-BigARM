@@ -419,22 +419,35 @@ namespace BooterBigArm.Editor
 
             var random = new System.Random(seed);
             var baseRockSize = Mathf.Clamp(
-                overallSize * Mathf.Lerp(0.09f, 0.115f, complexity),
-                0.48f,
-                3.45f);
+                overallSize * Mathf.Lerp(0.075f, 0.1f, complexity),
+                0.52f,
+                3.1f);
             var halfWidth = Mathf.Max(
                 overallSize * 0.46f,
-                baseRockSize * Mathf.Sqrt(rockCount) * 1.08f);
+                baseRockSize * Mathf.Sqrt(rockCount) * 1.18f);
             var halfDepth = halfWidth * NextRange(random, 0.68f, 0.92f);
             var fieldHeading = NextRange(random, 0f, Mathf.PI * 2f);
             var clearance = Mathf.Max(
-                0.16f,
+                0.12f,
                 overallSize * Mathf.Lerp(0.035f, 0.022f, complexity));
-            var dominantCount = rockCount >= 12 ? 2 : 1;
+            var dominantCount = Mathf.Clamp(Mathf.CeilToInt(rockCount * 0.1f), 1, 2);
             var slabCount = Mathf.Clamp(
-                Mathf.RoundToInt((rockCount - dominantCount) * 0.38f),
+                Mathf.RoundToInt((rockCount - dominantCount) * 0.28f),
                 2,
-                5);
+                Mathf.Min(6, rockCount - dominantCount - 1));
+            var clusterCount = rockCount >= 16 ? 3 : rockCount >= 9 ? 2 : 1;
+            var along = new Vector2(Mathf.Cos(fieldHeading), Mathf.Sin(fieldHeading));
+            var across = new Vector2(-along.y, along.x);
+            var clusterCenters = new List<Vector2>(clusterCount);
+            for (var cluster = 0; cluster < clusterCount; cluster++)
+            {
+                var t = clusterCount <= 1
+                    ? 0f
+                    : Mathf.Lerp(-0.34f, 0.34f, cluster / (float)(clusterCount - 1));
+                clusterCenters.Add(
+                    along * (t * halfWidth)
+                    + across * NextRange(random, -halfDepth * 0.24f, halfDepth * 0.24f));
+            }
             var positions = new List<Vector2>(rockCount);
             var footprintRadii = new List<float>(rockCount);
             var plan = new List<TopDown3DRockFormationMemberPlan>(rockCount);
@@ -449,52 +462,86 @@ namespace BooterBigArm.Editor
                 {
                     role = TopDown3DRockFormationMemberRole.Boulder;
                     rockSize = baseRockSize * (index == 0
-                        ? NextRange(random, 1.34f, 1.68f)
-                        : NextRange(random, 1.08f, 1.34f));
+                        ? NextRange(random, 1.86f, 2.34f)
+                        : NextRange(random, 1.5f, 1.92f));
                     scale = new Vector3(
-                        NextRange(random, 1.08f, 1.44f),
-                        Mathf.Lerp(0.58f, 0.98f, verticality)
+                        NextRange(random, 1.02f, 1.42f),
+                        Mathf.Lerp(0.68f, 1.2f, verticality)
                             * NextRange(random, 0.9f, 1.1f),
-                        NextRange(random, 0.96f, 1.36f));
+                        NextRange(random, 0.92f, 1.34f));
                     memberVerticality = Mathf.Clamp01(
-                        0.16f + verticality * 0.42f + NextRange(random, -0.08f, 0.12f));
+                        0.24f + verticality * 0.48f + NextRange(random, -0.08f, 0.12f));
                 }
                 else if (index < dominantCount + slabCount)
                 {
                     role = TopDown3DRockFormationMemberRole.Slab;
-                    rockSize = baseRockSize * NextRange(random, 0.82f, 1.16f);
+                    rockSize = baseRockSize * NextRange(random, 0.82f, 1.2f);
                     scale = new Vector3(
-                        NextRange(random, 1.16f, 1.72f),
-                        Mathf.Lerp(0.38f, 0.7f, verticality)
+                        NextRange(random, 0.92f, 1.58f),
+                        Mathf.Lerp(0.44f, 0.82f, verticality)
                             * NextRange(random, 0.86f, 1.06f),
-                        NextRange(random, 0.78f, 1.22f));
+                        NextRange(random, 0.78f, 1.28f));
                     memberVerticality = Mathf.Clamp01(
-                        0.08f + verticality * 0.24f + NextRange(random, -0.04f, 0.1f));
+                        0.12f + verticality * 0.3f + NextRange(random, -0.04f, 0.12f));
                 }
                 else
                 {
                     role = TopDown3DRockFormationMemberRole.Fragment;
-                    rockSize = baseRockSize * NextRange(random, 0.58f, 0.9f);
+                    rockSize = baseRockSize * NextRange(random, 0.28f, 0.62f);
                     scale = new Vector3(
-                        NextRange(random, 0.84f, 1.26f),
-                        Mathf.Lerp(0.42f, 0.76f, verticality)
+                        NextRange(random, 0.72f, 1.34f),
+                        Mathf.Lerp(0.34f, 0.68f, verticality)
                             * NextRange(random, 0.86f, 1.06f),
-                        NextRange(random, 0.8f, 1.24f));
+                        NextRange(random, 0.68f, 1.3f));
                     memberVerticality = Mathf.Clamp01(
-                        0.12f + verticality * 0.3f + NextRange(random, -0.06f, 0.12f));
+                        0.08f + verticality * 0.24f + NextRange(random, -0.06f, 0.1f));
                 }
 
-                rockSize = Mathf.Clamp(rockSize, 0.45f, 5.8f);
+                rockSize = Mathf.Clamp(rockSize, 0.28f, 6.4f);
                 var footprintRadius = rockSize * Mathf.Max(scale.x, scale.z) * 0.43f;
-                var horizontal = FindScatteredPosition(
-                    random,
-                    positions,
-                    footprintRadii,
-                    footprintRadius,
-                    halfWidth,
-                    halfDepth,
-                    fieldHeading,
-                    clearance);
+                Vector2 horizontal;
+                if (index < dominantCount)
+                {
+                    horizontal = FindClusteredScatteredPosition(
+                        random,
+                        positions,
+                        footprintRadii,
+                        footprintRadius,
+                        clusterCenters[index % clusterCount],
+                        halfWidth * 0.08f,
+                        halfDepth * 0.08f,
+                        halfWidth,
+                        halfDepth,
+                        fieldHeading,
+                        clearance);
+                }
+                else
+                {
+                    var outlier = index == rockCount - 1 || random.NextDouble() < 0.12;
+                    var clusterIndex = (index - dominantCount) % clusterCount;
+                    horizontal = outlier
+                        ? FindScatteredPosition(
+                            random,
+                            positions,
+                            footprintRadii,
+                            footprintRadius,
+                            halfWidth,
+                            halfDepth,
+                            fieldHeading,
+                            clearance)
+                        : FindClusteredScatteredPosition(
+                            random,
+                            positions,
+                            footprintRadii,
+                            footprintRadius,
+                            clusterCenters[clusterIndex],
+                            halfWidth * (role == TopDown3DRockFormationMemberRole.Fragment ? 0.22f : 0.3f),
+                            halfDepth * (role == TopDown3DRockFormationMemberRole.Fragment ? 0.2f : 0.27f),
+                            halfWidth,
+                            halfDepth,
+                            fieldHeading,
+                            clearance);
+                }
                 positions.Add(horizontal);
                 footprintRadii.Add(footprintRadius);
 
@@ -511,7 +558,9 @@ namespace BooterBigArm.Editor
                     role);
                 plan.Add(GroundScatteredMember(
                     member,
-                    NextRange(random, 0.02f, 0.06f)));
+                    role == TopDown3DRockFormationMemberRole.Fragment
+                        ? NextRange(random, 0.075f, 0.12f)
+                        : NextRange(random, 0.045f, 0.09f)));
             }
 
             return plan;
@@ -1034,6 +1083,62 @@ namespace BooterBigArm.Editor
             return plan;
         }
 
+        private static Vector2 FindClusteredScatteredPosition(
+            System.Random random,
+            IReadOnlyList<Vector2> positions,
+            IReadOnlyList<float> footprintRadii,
+            float footprintRadius,
+            Vector2 center,
+            float spreadAlong,
+            float spreadAcross,
+            float halfWidth,
+            float halfDepth,
+            float heading,
+            float clearance)
+        {
+            var bestPosition = center;
+            var bestGap = float.NegativeInfinity;
+            for (var attempt = 0; attempt < 96; attempt++)
+            {
+                var radius = Mathf.Sqrt((float)random.NextDouble());
+                var angle = NextRange(random, 0f, Mathf.PI * 2f);
+                var local = new Vector2(
+                    Mathf.Cos(angle) * radius * spreadAlong,
+                    Mathf.Sin(angle) * radius * spreadAcross);
+                var cosine = Mathf.Cos(heading);
+                var sine = Mathf.Sin(heading);
+                var candidate = center + new Vector2(
+                    local.x * cosine - local.y * sine,
+                    local.x * sine + local.y * cosine);
+
+                var minimumGap = float.PositiveInfinity;
+                for (var index = 0; index < positions.Count; index++)
+                {
+                    var gap = Vector2.Distance(candidate, positions[index])
+                        - footprintRadius
+                        - footprintRadii[index];
+                    minimumGap = Mathf.Min(minimumGap, gap);
+                }
+
+                if (positions.Count == 0 || minimumGap >= clearance) return candidate;
+                if (minimumGap <= bestGap) continue;
+                bestGap = minimumGap;
+                bestPosition = candidate;
+            }
+
+            return bestGap >= clearance
+                ? bestPosition
+                : FindScatteredPosition(
+                    random,
+                    positions,
+                    footprintRadii,
+                    footprintRadius,
+                    halfWidth,
+                    halfDepth,
+                    heading,
+                    clearance);
+        }
+
         private static Vector2 FindScatteredPosition(
             System.Random random,
             IReadOnlyList<Vector2> positions,
@@ -1293,8 +1398,20 @@ namespace BooterBigArm.Editor
                         spec.RockSize * Mathf.Max(0.01f, spec.LocalScale.y);
                     serializedMember.FindProperty("generatedAsymmetry").floatValue = spec.Lopsidedness;
                     serializedMember.FindProperty("generatedOverlap").floatValue = spec.Compaction;
+                    serializedMember.FindProperty("generatedMajorFractures").floatValue =
+                        formation.FormationArchetype == TopDown3DRockFormationArchetype.ScatteredRocks
+                            ? formation.MemberMajorFractures
+                            : 0f;
+                    serializedMember.FindProperty("generatedEdgeDamage").floatValue =
+                        formation.MemberEdgeDamage;
                     serializedMember.FindProperty("generatedSilhouetteProfile").enumValueIndex =
                         (int)ChooseMemberSilhouetteProfile(spec);
+                    serializedMember.FindProperty("surfacePreset").enumValueIndex =
+                        (int)formation.MemberSurfacePreset;
+                    serializedMember.FindProperty("colorVariation").floatValue =
+                        formation.MemberColorVariation;
+                    serializedMember.FindProperty("environmentDustColor").colorValue =
+                        formation.MemberDustColor;
                     serializedMember.FindProperty("showSourceVolumes").boolValue = false;
                     serializedMember.ApplyModifiedPropertiesWithoutUndo();
                     TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(member, spec.Seed);
@@ -1330,6 +1447,14 @@ namespace BooterBigArm.Editor
                     formation.MemberFusionSmoothness;
                 serializedMember.FindProperty("surfaceRelaxation").floatValue =
                     formation.MemberSurfaceRelaxation;
+                serializedMember.FindProperty("generatedEdgeDamage").floatValue =
+                    formation.MemberEdgeDamage;
+                serializedMember.FindProperty("surfacePreset").enumValueIndex =
+                    (int)formation.MemberSurfacePreset;
+                serializedMember.FindProperty("colorVariation").floatValue =
+                    formation.MemberColorVariation;
+                serializedMember.FindProperty("environmentDustColor").colorValue =
+                    formation.MemberDustColor;
                 serializedMember.ApplyModifiedPropertiesWithoutUndo();
                 EditorUtility.SetDirty(member);
                 TopDown3DRockWorkbenchPreview.RequestRebuild(member, false);
@@ -1653,37 +1778,41 @@ namespace BooterBigArm.Editor
                     // silhouette vocabulary is evaluated in loose and piled formations.
                     return TopDown3DRockSilhouetteProfile.Boulder;
                 case TopDown3DRockFormationMemberRole.Boulder:
-                    if (variation == 0u) return TopDown3DRockSilhouetteProfile.Boulder;
+                    if (variation == 0u)
+                        return TopDown3DRockSilhouetteProfile.FracturedBoulder;
                     return variation == 1u
-                        ? TopDown3DRockSilhouetteProfile.SplitLobe
-                        : TopDown3DRockSilhouetteProfile.AngularChunk;
+                        ? TopDown3DRockSilhouetteProfile.BlockyMonolith
+                        : TopDown3DRockSilhouetteProfile.Boulder;
                 case TopDown3DRockFormationMemberRole.Slab:
-                    return TopDown3DRockSilhouetteProfile.Slab;
+                    return variation == 0u
+                        ? TopDown3DRockSilhouetteProfile.Slab
+                        : TopDown3DRockSilhouetteProfile.BrokenSlab;
                 case TopDown3DRockFormationMemberRole.Fragment:
                     return variation == 0u
                         ? TopDown3DRockSilhouetteProfile.Shard
                         : TopDown3DRockSilhouetteProfile.AngularChunk;
                 case TopDown3DRockFormationMemberRole.PileBase:
                     return variation == 0u
-                        ? TopDown3DRockSilhouetteProfile.SplitLobe
-                        : TopDown3DRockSilhouetteProfile.Slab;
+                        ? TopDown3DRockSilhouetteProfile.FracturedBoulder
+                        : TopDown3DRockSilhouetteProfile.BrokenSlab;
                 case TopDown3DRockFormationMemberRole.PileMiddle:
-                    if (variation == 0u) return TopDown3DRockSilhouetteProfile.Boulder;
+                    if (variation == 0u)
+                        return TopDown3DRockSilhouetteProfile.FracturedBoulder;
                     return variation == 1u
                         ? TopDown3DRockSilhouetteProfile.AngularChunk
                         : TopDown3DRockSilhouetteProfile.SplitLobe;
                 case TopDown3DRockFormationMemberRole.PileCap:
                     return variation == 0u
                         ? TopDown3DRockSilhouetteProfile.AngularChunk
-                        : TopDown3DRockSilhouetteProfile.Slab;
+                        : TopDown3DRockSilhouetteProfile.BrokenSlab;
                 case TopDown3DRockFormationMemberRole.RidgeBody:
                     return variation == 0u
                         ? TopDown3DRockSilhouetteProfile.SplitLobe
                         : TopDown3DRockSilhouetteProfile.Slab;
                 case TopDown3DRockFormationMemberRole.RidgePillar:
                     return variation == 0u
-                        ? TopDown3DRockSilhouetteProfile.AngularChunk
-                        : TopDown3DRockSilhouetteProfile.Shard;
+                        ? TopDown3DRockSilhouetteProfile.BlockyMonolith
+                        : TopDown3DRockSilhouetteProfile.AngularChunk;
                 case TopDown3DRockFormationMemberRole.RidgeTalus:
                     return variation == 0u
                         ? TopDown3DRockSilhouetteProfile.Slab
@@ -1694,8 +1823,8 @@ namespace BooterBigArm.Editor
                         : TopDown3DRockSilhouetteProfile.Slab;
                 case TopDown3DRockFormationMemberRole.HoodooPillar:
                     return variation == 0u
-                        ? TopDown3DRockSilhouetteProfile.AngularChunk
-                        : TopDown3DRockSilhouetteProfile.SplitLobe;
+                        ? TopDown3DRockSilhouetteProfile.BlockyMonolith
+                        : TopDown3DRockSilhouetteProfile.FracturedBoulder;
                 case TopDown3DRockFormationMemberRole.HoodooCap:
                     return variation == 0u
                         ? TopDown3DRockSilhouetteProfile.Slab

@@ -6,7 +6,14 @@ namespace BooterBigArm.TopDown3D
     {
         WeatheredBlock,
         Wedge,
-        TaperedStone
+        TaperedStone,
+        FractureCut
+    }
+
+    public enum TopDown3DRockVolumeOperation
+    {
+        Additive,
+        Subtractive
     }
 
     /// <summary>
@@ -21,16 +28,24 @@ namespace BooterBigArm.TopDown3D
         private bool contributesToRock = true;
         [SerializeField, InspectorName("Source Shape"), Tooltip("Controls the implicit stone volume contributed to the parent rock.")]
         private TopDown3DRockSourceShape sourceShape = TopDown3DRockSourceShape.WeatheredBlock;
+        [SerializeField, Tooltip("Additive volumes build the stone. Subtractive volumes carve deep structural fractures from it.")]
+        private TopDown3DRockVolumeOperation operation = TopDown3DRockVolumeOperation.Additive;
         [SerializeField, HideInInspector]
         private int shapeSeed;
 
         public bool ContributesToRock => contributesToRock;
         public TopDown3DRockSourceShape SourceShape => sourceShape;
+        public TopDown3DRockVolumeOperation Operation => operation;
         public int ShapeSeed => shapeSeed;
 
         public void SetSourceShape(TopDown3DRockSourceShape shape)
         {
             sourceShape = shape;
+        }
+
+        public void SetOperation(TopDown3DRockVolumeOperation value)
+        {
+            operation = value;
         }
 
         public void SetShapeSeed(int seed)
