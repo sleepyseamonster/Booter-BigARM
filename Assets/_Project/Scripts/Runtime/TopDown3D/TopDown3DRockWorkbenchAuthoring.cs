@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BooterBigArm.TopDown3D
 {
@@ -105,6 +106,7 @@ namespace BooterBigArm.TopDown3D
         // Version zero is the earlier standalone-rock scale. The one-time conversion
         // preserves the accepted 0.1-sized result while keeping reusable roots at unit scale.
         // Formation members are excluded because their physical scale belongs to the formation.
+        [FormerlySerializedAs("groundedGeologyPhysicalScaleVersion")]
         [SerializeField, HideInInspector]
         private int standalonePhysicalScaleVersion;
 
