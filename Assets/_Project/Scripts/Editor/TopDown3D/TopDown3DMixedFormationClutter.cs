@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using BooterBigArm.TopDown3D;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -11,6 +13,11 @@ namespace BooterBigArm.Editor
             MeshCollider[] terrain, TopDown3DRockWorkbenchAuthoring[] rocks)
         {
             if (sandbox.GroundClutter <= 0f || rocks.Length == 0) return;
+            const string textureFolder = "Assets/_Project/Art/Environment/Ground/SandDirt/";
+            var pebbleColor = AssetDatabase.LoadAssetAtPath<Texture2D>(textureFolder + "MixedGroundPebbles_Albedo.png");
+            var pebbleHeight = AssetDatabase.LoadAssetAtPath<Texture2D>(textureFolder + "MixedGroundPebbles_Height.png");
+            if (pebbleColor == null || pebbleHeight == null)
+                throw new InvalidOperationException("Mixed ground needs its pebble color and height textures.");
             var bounds = new List<Bounds>(rocks.Length);
             var area = rocks[0].GetComponent<MeshRenderer>().bounds;
             foreach (var rock in rocks)
@@ -45,6 +52,8 @@ namespace BooterBigArm.Editor
                 var properties = new MaterialPropertyBlock();
                 groundRenderer.GetPropertyBlock(properties);
                 properties.SetFloat("_PebbleDetail", 1f);
+                properties.SetTexture("_PebbleAlbedoMap", pebbleColor);
+                properties.SetTexture("_PebbleHeightMap", pebbleHeight);
                 groundRenderer.SetPropertyBlock(properties);
                 triangles.Add(ground, mesh.triangles);
                 colors.Add(ground, mesh.colors);

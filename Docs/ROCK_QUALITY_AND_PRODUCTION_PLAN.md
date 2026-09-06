@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** mixed-reference ground, sand, and pebble-detail authoring implemented on 2026-09-06; visual acceptance remains user-owned; blowing sand is next
+**Status:** rejected dot-pattern pebble detail replaced with generated gravel color/height textures on 2026-09-06; corrected appearance awaits user review before blowing sand
 
 ## Goal
 
@@ -166,7 +166,7 @@ Unity 6000.4.0f1 compilation passed in the isolated project copy. Source review 
 
 The existing mixed Inspector adds one Ground Clutter control (default 0.7). Update Rocks & Ground rebuilds in order: base terrain, seated rocks, deposited sand, then ground clutter. No rock or sand geometry tuning is part of this batch. Zero clutter removes both the material detail and sparse protruding stones on rebuild.
 
-Tiny pebbles use an analytic world-space material height pattern, not individual meshes or height guessed from albedo brightness. The same pattern drives charcoal pebble color, height-derived normals, parallax and smoothness/occlusion over the existing gravel textures. Pixel-footprint fading reduces distant shimmer. Standard and fast terrain shading both include this path. Sand coverage suppresses pebble detail. A UV2 proximity mask and an explicit renderer-only property enable this treatment only on the mixed authoring ground; the shader default is off, and production material assets remain unchanged. This produces material relief, not geometric displacement or pebble collision.
+The initial analytic pebble pattern was visually rejected: the user's screenshot showed evenly distributed dark dots instead of convincing gravel. That code is removed. Tiny pebbles now use new generated angular-gravel color and corresponding height textures: `MixedGroundPebbles_Albedo.png` and `MixedGroundPebbles_Height.png` under `Assets/_Project/Art/Environment/Ground/SandDirt/`. Source generation used the built-in image tool; full prompts and provenance are in [PebbleTexturePrompts_2026-09-06.md](./Evidence/WorldCreator/RockCompositionReference/PebbleTexturePrompts_2026-09-06.md). This is generated art, not measured scan data. A low-frequency patch mask breaks up coverage; shared world-space sampling keeps color and interpreted height together. Height supplies relief normals and subtle parallax, with restrained height-based smoothness/occlusion. Color retains mipmapped readability at distance while high-frequency relief fades with pixel footprint. Standard and fast terrain paths both use the textures. Sand coverage still suppresses the detail. The existing UV2 proximity mask and renderer-only bindings keep the change on mixed authoring ground; production material assets and the sparse real stones are unchanged. No image is used as a substitute for the actual scene, and in-game quality remains unverified until user review.
 
 Sparse 5.5–16 cm stones reuse the existing baked Pebble LOD2 families, with seeded placement, size and yaw. They are seated into the finished sand collider, avoid the large rocks' bounds, and are suppressed in strong sand coverage. At most 64 are combined into one disposable Surface Stones mesh rather than filling the hierarchy with individual pebbles. These small decorations have no colliders. Their material comes from the accepted reference rock, not a replacement palette.
 

@@ -36,6 +36,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
         _DetailFadeStart("Geological Detail Fade Start", Float) = 55
         _DetailFadeEnd("Geological Detail Fade End", Float) = 150
         _PebbleDetail("Pebble Detail", Range(0, 1)) = 0
+        [NoScaleOffset] _PebbleAlbedoMap("Pebble Gravel Color", 2D) = "gray" {}
+        [NoScaleOffset] _PebbleHeightMap("Pebble Gravel Height", 2D) = "black" {}
         _Smoothness("Smoothness", Range(0, 1)) = 0.18
         [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
@@ -135,6 +137,11 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float _Cull;
                 float _ZWrite;
             CBUFFER_END
+
+            TEXTURE2D(_PebbleAlbedoMap);
+            SAMPLER(sampler_PebbleAlbedoMap);
+            TEXTURE2D(_PebbleHeightMap);
+            SAMPLER(sampler_PebbleHeightMap);
 
             struct Attributes
             {
@@ -290,46 +297,39 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 return output;
             }
 
-            // One analytic height pattern drives colour, relief normals, parallax and roughness.
-            // UV2 admission is written only by mixed-ground authoring; production defaults to zero.
-            float4 PebbleRelief(float2 position)
+            // Matched image textures replace the rejected cell/dot pattern. Colour and height
+            // share the same world-space anti-tiling; normals are derivatives of that height.
+            float PebbleHeight(float2 position)
             {
-                const float cellSize = 0.08;
-                float2 cell = floor(position / cellSize);
-                float4 result = 0;
-                [unroll] for (int z = -1; z <= 1; z++)
-                [unroll] for (int x = -1; x <= 1; x++)
-                {
-                    float2 id = cell + float2(x, z);
-                    float h = Hash21(id + 17.3);
-                    float2 center = (id + 0.2 + 0.6 * float2(h, Hash21(id + 81.7))) * cellSize;
-                    float2 radius = lerp(float2(0.010, 0.009), float2(0.030, 0.024),
-                        float2(Hash21(id + 31.1), Hash21(id + 51.9)));
-                    float2 delta = position - center;
-                    float d = dot(delta / radius, delta / radius);
-                    float dome = saturate(1.0 - d);
-                    float peak = lerp(0.003, 0.012, h);
-                    float height = peak * dome * dome;
-                    if (height > result.x)
-                        result = float4(height, -4.0 * peak * dome * delta / (radius * radius), h);
-                }
-                return result;
+                return SampleAntiTiledHeight(position / 1.25, position, 7.0,
+                    TEXTURE2D_ARGS(_PebbleHeightMap, sampler_PebbleHeightMap));
             }
 
             void ApplyPebbles(float2 position, half3 view, float admission, float pixelFootprint,
                 inout half3 normal, inout SurfaceData surface)
             {
-                float amount = admission * (1.0 - smoothstep(0.015, 0.055, pixelFootprint));
+                float patch = smoothstep(0.22, 0.62, ValueNoise(position * 1.4 + 17.3));
+                float amount = admission * patch;
                 [branch] if (amount <= 0.001) return;
-                float4 pebble = PebbleRelief(position);
-                position += view.xz / max(abs(view.y), 0.3) * pebble.x * amount;
-                pebble = PebbleRelief(position);
-                float cover = smoothstep(0.0001, 0.0015, pebble.x) * amount;
-                surface.albedo = lerp(surface.albedo,
-                    half3(0.14, 0.13, 0.12) * lerp(0.7, 1.25, pebble.w), cover);
-                surface.smoothness = lerp(surface.smoothness, lerp(0.07, 0.17, pebble.w), cover);
-                surface.occlusion *= 1.0 - cover * 0.16;
-                normal = normalize(normal - half3(pebble.y, 0, pebble.z) * amount * normal.y);
+                float detail = 1.0 - smoothstep(0.02, 0.08, pixelFootprint);
+                float height = PebbleHeight(position);
+                position += view.xz / max(abs(view.y), 0.3) * max(0.0, height - 0.08) * 0.025 * detail;
+                height = PebbleHeight(position);
+                half3 albedo = SampleAntiTiled(position / 1.25, position, 7.0,
+                    TEXTURE2D_ARGS(_PebbleAlbedoMap, sampler_PebbleAlbedoMap));
+                float cover = smoothstep(0.075, 0.22, height) * amount;
+                surface.albedo = lerp(surface.albedo, albedo * _BaseColor.rgb, cover);
+                surface.smoothness = lerp(surface.smoothness, lerp(0.07, 0.15, saturate(height)), cover);
+                surface.occlusion *= 1.0 - cover * 0.08;
+                [branch] if (detail > 0.001)
+                {
+                    float step = max(0.0025, pixelFootprint * 0.5);
+                    float dx = (PebbleHeight(position + float2(step, 0))
+                        - PebbleHeight(position - float2(step, 0))) * 0.025 / (2.0 * step);
+                    float dz = (PebbleHeight(position + float2(0, step))
+                        - PebbleHeight(position - float2(0, step))) * 0.025 / (2.0 * step);
+                    normal = normalize(normal - half3(dx, 0, dz) * amount * detail * normal.y);
+                }
             }
 
             half4 TerrainFragment(Varyings input) : SV_Target
