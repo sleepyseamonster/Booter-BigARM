@@ -27,13 +27,13 @@ namespace BooterBigArm.Editor
                 if (bounds.min.y > floor + 0.15f || bounds.max.y <= floor + 0.01f) continue;
                 // The widest part of the rock can sit well above its buried base. Anchor the
                 // bank to a mesh cross-section near ground contact, not the whole renderer box.
-                var contact = ContactFootprint(rock, bounds, floor, sandbox.SandBuildup);
+                var contact = ContactFootprint(rock, bounds, floor, sandbox.SandBuildup, out var contactEdges);
                 center = new Vector2(contact.center.x, contact.center.z);
                 var source = new TopDown3DDustDepositionPlanner.AuthoredObstruction(
-                    center, new Vector2(contact.extents.x, contact.extents.z), bounds.max.y - floor);
+                    center, new Vector2(contact.extents.x, contact.extents.z), bounds.max.y - floor, contactEdges);
                 sources.Add(source);
                 var radius = Mathf.Min(source.HalfSize.x, source.HalfSize.y);
-                var extent = source.HalfSize * (1f + 0.85f / radius)
+                var extent = source.HalfSize * (1f + 1.25f / radius)
                     + Vector2.one * (sandbox.WorldSettings.DustWakeLength + 0.3f);
                 var sourceInfluence = new Bounds(new Vector3(center.x, 0f, center.y),
                     new Vector3(extent.x * 2f, 2f, extent.y * 2f));
@@ -62,7 +62,7 @@ namespace BooterBigArm.Editor
                 if (!tile.Intersects(influence)) continue;
                 // Integer subdivisions preserve the exact original triangle planes. Sand needs
                 // finer geometry than the large-scale ground; only nearby tiles are refined.
-                var subdivisions = Mathf.Max(1, Mathf.CeilToInt(tile.Step / 0.15f));
+                var subdivisions = Mathf.Max(1, Mathf.CeilToInt(tile.Step / 0.1f));
                 var quads = (tile.Resolution - 1) * subdivisions;
                 var size = quads + 1;
                 var step = tile.Step / subdivisions;
@@ -137,22 +137,29 @@ namespace BooterBigArm.Editor
         }
 
         private static Bounds ContactFootprint(TopDown3DRockWorkbenchAuthoring rock,
-            Bounds bounds, float floor, float buildup)
+            Bounds bounds, float floor, float buildup, out Vector2[] contactEdges)
         {
             var mesh = rock.GetComponent<MeshFilter>().sharedMesh;
             var vertices = mesh.vertices;
             var matrix = rock.transform.localToWorldMatrix;
             for (var i = 0; i < vertices.Length; i++) vertices[i] = matrix.MultiplyPoint3x4(vertices[i]);
-            var level = Mathf.Clamp(floor + Mathf.Min(buildup * 0.35f, (bounds.max.y - floor) * 0.2f),
+            // Sample near the expected berm crest, so it can cover the lower face rather
+            // than banking against an oval detached from the visible rock surface.
+            var level = Mathf.Clamp(floor + Mathf.Min(buildup, (bounds.max.y - floor) * 0.7f) * 0.65f,
                 bounds.min.y + 0.001f, bounds.max.y - 0.001f);
             var found = false;
             var footprint = new Bounds();
+            var edges = new List<Vector2>();
+            var crossings = new List<Vector2>(3);
             void IncludeCrossing(Vector3 a, Vector3 b)
             {
                 if ((a.y < level && b.y < level) || (a.y > level && b.y > level)) return;
                 var dy = b.y - a.y;
                 if (Mathf.Abs(dy) < 0.000001f) return;
                 var point = Vector3.Lerp(a, b, (level - a.y) / dy);
+                var planar = new Vector2(point.x, point.z);
+                if (crossings.Count == 0 || (crossings[0] - planar).sqrMagnitude > 0.00000001f)
+                    crossings.Add(planar);
                 if (!found) { footprint = new Bounds(point, Vector3.zero); found = true; }
                 else footprint.Encapsulate(point);
             }
@@ -162,11 +169,18 @@ namespace BooterBigArm.Editor
                 var a = vertices[triangles[i]];
                 var b = vertices[triangles[i + 1]];
                 var c = vertices[triangles[i + 2]];
+                crossings.Clear();
                 IncludeCrossing(a, b);
                 IncludeCrossing(b, c);
                 IncludeCrossing(c, a);
+                if (crossings.Count >= 2)
+                {
+                    edges.Add(crossings[0]);
+                    edges.Add(crossings[1]);
+                }
             }
-            if (!found) throw new InvalidOperationException($"Cannot locate the sand-contact contour of {rock.name}.");
+            if (!found || edges.Count < 2) throw new InvalidOperationException($"Cannot locate the sand-contact contour of {rock.name}.");
+            contactEdges = edges.ToArray();
             return footprint;
         }
 

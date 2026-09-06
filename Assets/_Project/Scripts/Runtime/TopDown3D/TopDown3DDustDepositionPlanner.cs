@@ -102,16 +102,43 @@ namespace BooterBigArm.TopDown3D
         /// <summary>Frozen, already-seated authored rock base; never obtained by recursively planning rocks.</summary>
         public readonly struct AuthoredObstruction
         {
-            public AuthoredObstruction(Vector2 center, Vector2 halfSize, float exposedHeight)
+            public AuthoredObstruction(Vector2 center, Vector2 halfSize, float exposedHeight,
+                Vector2[] contactEdges = null)
             {
                 Center = center;
                 HalfSize = new Vector2(Mathf.Max(0.05f, halfSize.x), Mathf.Max(0.05f, halfSize.y));
                 ExposedHeight = Mathf.Max(0f, exposedHeight);
+                this.contactEdges = contactEdges == null ? null : (Vector2[])contactEdges.Clone();
             }
 
             public Vector2 Center { get; }
             public Vector2 HalfSize { get; }
             public float ExposedHeight { get; }
+            private readonly Vector2[] contactEdges;
+
+            internal float DistanceOutside(Vector2 position)
+            {
+                if (contactEdges == null || contactEdges.Length < 2)
+                {
+                    var delta = position - Center;
+                    return Mathf.Max(0f, new Vector2(delta.x / HalfSize.x, delta.y / HalfSize.y).magnitude - 1f)
+                        * Mathf.Min(HalfSize.x, HalfSize.y);
+                }
+                var inside = false;
+                var distanceSquared = float.PositiveInfinity;
+                for (var i = 0; i + 1 < contactEdges.Length; i += 2)
+                {
+                    var a = contactEdges[i];
+                    var b = contactEdges[i + 1];
+                    var edge = b - a;
+                    var nearest = a + edge * Mathf.Clamp01(Vector2.Dot(position - a, edge)
+                        / Mathf.Max(edge.sqrMagnitude, 0.000001f));
+                    distanceSquared = Mathf.Min(distanceSquared, (position - nearest).sqrMagnitude);
+                    if ((a.y > position.y) != (b.y > position.y)
+                        && position.x < a.x + (position.y - a.y) * edge.x / edge.y) inside = !inside;
+                }
+                return inside ? 0f : Mathf.Sqrt(distanceSquared);
+            }
         }
 
         public static TopDown3DDustDepositionSample SampleAuthoredDeposit(
@@ -123,6 +150,7 @@ namespace BooterBigArm.TopDown3D
         {
             var strongest = 0f;
             var height = 0f;
+            var secondHeight = 0f;
             var wind = DirectionFromTurns(material.PrevailingWindDirection);
             var acrossWind = new Vector2(-wind.y, wind.x);
             var slopeGate = 1f - SmoothStepRange(settings.MaximumDustDepositionSlope * 0.7f,
@@ -136,14 +164,22 @@ namespace BooterBigArm.TopDown3D
                 if (source.ExposedHeight <= 0.01f) continue;
                 var delta = position - source.Center;
                 var radius = Mathf.Min(source.HalfSize.x, source.HalfSize.y);
-                var radial = new Vector2(delta.x / source.HalfSize.x, delta.y / source.HalfSize.y).magnitude;
-                var edgeDistance = Mathf.Max(0f, radial - 1f) * radius;
-                var skirtWidth = Mathf.Clamp(source.ExposedHeight * 0.8f + 0.1f, 0.14f, 0.55f);
+                var bankHeight = Mathf.Min(buildup, source.ExposedHeight * 0.7f);
+                var skirtWidth = Mathf.Clamp(bankHeight * 2.4f + 0.18f, 0.25f, 1.25f);
+                // Cheap rejection before measuring the triangle-section contour.
+                var reach = Mathf.Max(skirtWidth, settings.DustWakeLength) + 0.5f;
+                if (Mathf.Abs(delta.x) > source.HalfSize.x + reach
+                    || Mathf.Abs(delta.y) > source.HalfSize.y + reach) continue;
+                var edgeDistance = source.DistanceOutside(position);
                 var along = Vector2.Dot(delta, wind);
                 var across = Mathf.Abs(Vector2.Dot(delta, acrossWind));
                 var lee = SmoothStepRange(-radius, radius, along);
-                var skirt = (1f - SmoothStepRange(0f, skirtWidth, edgeDistance))
-                    * Mathf.Lerp(0.22f, 0.8f, lee);
+                var irregularity = FractalNoise(settings.WorldSeed ^ 4739,
+                    position.x * 1.7f + source.Center.x, position.y * 1.7f + source.Center.y);
+                var contactStrength = Mathf.Lerp(0.35f, 1f, SmoothStepRange(0.2f, 0.7f, irregularity))
+                    * Mathf.Lerp(0.75f, 1f, lee);
+                // Highest at contact, descending outward with a gentle toe. Not a detached ring.
+                var skirt = Mathf.Pow(Mathf.Clamp01(1f - edgeDistance / skirtWidth), 1.6f) * contactStrength;
                 var length = Mathf.Min(settings.DustWakeLength,
                     Mathf.Max(0.65f, source.ExposedHeight * 4f + radius));
                 var farFade = 1f - SmoothStepRange(length * 0.2f, length, along);
@@ -151,13 +187,16 @@ namespace BooterBigArm.TopDown3D
                     * settings.DustWakeWidthMultiplier * Mathf.Sqrt(farFade);
                 var wake = SmoothStepRange(0f, radius, along) * farFade
                     * (1f - SmoothStepRange(width * 0.2f, Mathf.Max(0.001f, width), across));
-                var weight = Mathf.Max(skirt, wake) * slopeGate * supply;
+                var weight = Mathf.Max(skirt, wake * 0.3f) * slopeGate * Mathf.Lerp(0.85f, 1f, supply);
                 strongest = Mathf.Max(strongest, weight);
-                // Maximum, not sum: touching rocks must not create towering additive mounds.
-                height = Mathf.Max(height, weight * Mathf.Min(buildup, source.ExposedHeight * 0.95f));
+                var candidate = weight * bankHeight;
+                if (candidate > height) { secondHeight = height; height = candidate; }
+                else secondHeight = Mathf.Max(secondHeight, candidate);
             }
+            // A bounded join fills narrow shared pockets without summing an entire pile's banks.
+            height += secondHeight * 0.18f * (1f - Mathf.Clamp01(height / Mathf.Max(0.001f, buildup)));
             return new TopDown3DDustDepositionSample(
-                strongest * Mathf.Clamp01(buildup / 0.12f), height, strongest,
+                Mathf.Clamp01(strongest * 1.6f) * Mathf.Clamp01(buildup / 0.12f), height, strongest,
                 checked((float)material.Position.Vertical), material.WindExposure, material.Erosion, material.Deposit);
         }
 
