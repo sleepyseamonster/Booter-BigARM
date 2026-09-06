@@ -30,6 +30,14 @@ namespace BooterBigArm.TopDown3D
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
     public sealed class TopDown3DRockWorkbenchAuthoring : MonoBehaviour
     {
+        public const int CurrentStandalonePhysicalScaleVersion = 1;
+        public const float LegacyStandalonePhysicalBake = 0.1f;
+        public const float MinimumStandaloneRockWidth = 0.075f;
+        public const float MaximumStandaloneRockWidth = 1.2f;
+        public const float MinimumStandaloneRockHeight = 0.05f;
+        public const float MaximumStandaloneRockHeight = 3f;
+        public const float FinestStandaloneRockVoxelSize = 0.0025f;
+        public const float CoarsestStandaloneRockVoxelSize = 0.018f;
         public const float MinimumTessellationDetail = 1f;
         public const float MaximumTessellationDetail = 5f;
         public const float CoarsestVoxelSize = 0.18f;
@@ -94,6 +102,12 @@ namespace BooterBigArm.TopDown3D
         private TopDown3DRockSilhouetteProfile generatedSilhouetteProfile =
             TopDown3DRockSilhouetteProfile.Auto;
 
+        // Version zero is the earlier standalone-rock scale. The one-time conversion
+        // preserves the accepted 0.1-sized result while keeping reusable roots at unit scale.
+        // Formation members are excluded because their physical scale belongs to the formation.
+        [SerializeField, HideInInspector]
+        private int standalonePhysicalScaleVersion;
+
         [Header("Material Family")]
         [SerializeField, Tooltip("Selects a coherent material response while preserving per-rock seeded variation.")]
         private TopDown3DRockSurfacePreset surfacePreset =
@@ -107,9 +121,25 @@ namespace BooterBigArm.TopDown3D
         [NonSerialized] private string previewStatus = "Waiting for a preview build.";
 
         public Material RockMaterial => rockMaterial;
-        public float VoxelSize => Mathf.Max(0.025f, voxelSize);
-        public float TessellationDetail => VoxelSizeToTessellationDetail(VoxelSize);
-        public float FusionSmoothness => Mathf.Clamp(fusionSmoothness, 0f, 1f);
+        public bool IsFormationMember =>
+            GetComponentInParent<TopDown3DRockWorkbenchFormationAuthoring>(true) != null;
+        public bool UsesStandaloneMeterScale =>
+            !IsFormationMember
+            && standalonePhysicalScaleVersion >= CurrentStandalonePhysicalScaleVersion;
+        public bool NeedsStandalonePhysicalScaleUpgrade =>
+            !IsFormationMember && !UsesStandaloneMeterScale;
+        public float PendingStandalonePhysicalScaleFactor =>
+            NeedsStandalonePhysicalScaleUpgrade ? LegacyStandalonePhysicalBake : 1f;
+        public float VoxelSize => UsesStandaloneMeterScale
+            ? Mathf.Max(FinestStandaloneRockVoxelSize, voxelSize)
+            : Mathf.Max(FinestVoxelSize, voxelSize);
+        public float TessellationDetail => UsesStandaloneMeterScale
+            ? StandaloneVoxelSizeToTessellationDetail(VoxelSize)
+            : VoxelSizeToTessellationDetail(VoxelSize);
+        public float FusionSmoothness => Mathf.Clamp(
+            fusionSmoothness,
+            0f,
+            UsesStandaloneMeterScale ? 0.1f : 1f);
         public float SurfaceRelaxation => Mathf.Clamp01(surfaceRelaxation);
         public bool AutoRebuild => autoRebuild;
         public bool ShowSourceVolumes => showSourceVolumes;
@@ -123,8 +153,18 @@ namespace BooterBigArm.TopDown3D
         public float TopShalePatches => Mathf.Clamp01(topShalePatches);
         public float WornShine => Mathf.Clamp(wornShine, 0f, 0.5f);
         public int GenerationSeed => generationSeed;
-        public float GeneratedWidth => Mathf.Clamp(generatedOverallScale, 0.75f, 12f);
-        public float GeneratedHeight => Mathf.Clamp(generatedHeight, 0.5f, 30f);
+        public float GeneratedWidth => UsesStandaloneMeterScale
+            ? Mathf.Clamp(
+                generatedOverallScale,
+                MinimumStandaloneRockWidth,
+                MaximumStandaloneRockWidth)
+            : Mathf.Clamp(generatedOverallScale, 0.75f, 12f);
+        public float GeneratedHeight => UsesStandaloneMeterScale
+            ? Mathf.Clamp(
+                generatedHeight,
+                MinimumStandaloneRockHeight,
+                MaximumStandaloneRockHeight)
+            : Mathf.Clamp(generatedHeight, 0.5f, 30f);
         public float GeneratedOverallScale => GeneratedWidth;
         public int GeneratedCubeCount => CalculateSourceMassCount(
             GeneratedWidth,
@@ -174,6 +214,28 @@ namespace BooterBigArm.TopDown3D
             return Mathf.Lerp(MinimumTessellationDetail, MaximumTessellationDetail, normalized);
         }
 
+        public static float StandaloneTessellationDetailToVoxelSize(float detail)
+        {
+            var normalized = Mathf.InverseLerp(
+                MinimumTessellationDetail,
+                MaximumTessellationDetail,
+                Mathf.Clamp(detail, MinimumTessellationDetail, MaximumTessellationDetail));
+            return CoarsestStandaloneRockVoxelSize * Mathf.Pow(
+                FinestStandaloneRockVoxelSize / CoarsestStandaloneRockVoxelSize,
+                normalized);
+        }
+
+        public static float StandaloneVoxelSizeToTessellationDetail(float size)
+        {
+            size = Mathf.Clamp(
+                size,
+                FinestStandaloneRockVoxelSize,
+                CoarsestStandaloneRockVoxelSize);
+            var normalized = Mathf.Log(size / CoarsestStandaloneRockVoxelSize)
+                / Mathf.Log(FinestStandaloneRockVoxelSize / CoarsestStandaloneRockVoxelSize);
+            return Mathf.Lerp(MinimumTessellationDetail, MaximumTessellationDetail, normalized);
+        }
+
         public static int CalculateSourceMassCount(float width, float height)
         {
             width = Mathf.Max(0.01f, width);
@@ -203,6 +265,23 @@ namespace BooterBigArm.TopDown3D
         public void SetGenerationSeed(int seed)
         {
             generationSeed = seed;
+        }
+
+        /// <summary>
+        /// Converts an earlier standalone workbench to the accepted physical rock size.
+        /// The factor is baked into meter-valued settings once; the reusable root remains unit scale.
+        /// </summary>
+        public bool ApplyStandalonePhysicalScale()
+        {
+            if (!NeedsStandalonePhysicalScaleUpgrade) return false;
+
+            generatedOverallSize *= LegacyStandalonePhysicalBake;
+            generatedOverallScale *= LegacyStandalonePhysicalBake;
+            generatedHeight *= LegacyStandalonePhysicalBake;
+            voxelSize *= LegacyStandalonePhysicalBake;
+            fusionSmoothness *= LegacyStandalonePhysicalBake;
+            standalonePhysicalScaleVersion = CurrentStandalonePhysicalScaleVersion;
+            return true;
         }
 
         public void SetPreviewState(Mesh mesh, string status)

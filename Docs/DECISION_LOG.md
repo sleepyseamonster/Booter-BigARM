@@ -16,6 +16,18 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:**
 - **Supersedes:** none / link to prior entry
 
+## 2026-09-05 — Visual-First Rock Production Recovery
+
+- **Status:** accepted
+- **Decision owner:** user, with sequence managed by Gottspan
+- **Question:** Should rock quality continue through the new Grounded Geology runtime platform and A/B Integration Workbench, or return to the established production path?
+- **Decision:** Retire the separate Grounded Geology platform and comparison workflow. Use one direct path: Rock Workbench, user-shaped Golden Rock, deterministic editor recipe, existing production rock baker, existing LOD/collider/material catalog, and existing World Creator placement. Stop before recipe capture and family rollout until the user supplies and accepts the hand-shaped Golden Rock.
+- **Why:** The experimental platform duplicated existing runtime authorities, made ordinary rock creation harder to understand, and did not preserve the correct project material in its comparison output. The existing editor-baked catalog architecture already supplies the correct runtime boundary. The accepted `0.1` visual size remains valid and is baked into meter-valued standalone-rock settings with a unit-scale reusable root.
+- **Evidence:** Live architecture and worktree reassessment, the user's report that scale was correct but A/B textures were not, and the existing landscape plan's editor-baked catalog decision.
+- **Controlling files updated:** `Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md`, `Docs/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md`, `Docs/ROCK_FORMATION_WORKBENCH.md`, `Docs/DOCS_INDEX.md`, and the Rock Workbench authoring/editor implementation.
+- **Consequences / follow-up:** Runtime geology contracts, Integration Workbench code, and their tests are removed. The user now shapes one Golden Rock in the normal hierarchy. Gottspan waits at that gate; production recipe capture, baking, catalog expansion, formations, and terrain integration remain deferred.
+- **Supersedes:** the 2026-09-05 Grounded Geology implementation proposal; it does not supersede the 2026-08-14 Shared Geological Surface Authority.
+
 ## 2026-08-12 — Repo And Unity Project Management Model
 
 - **Status:** accepted

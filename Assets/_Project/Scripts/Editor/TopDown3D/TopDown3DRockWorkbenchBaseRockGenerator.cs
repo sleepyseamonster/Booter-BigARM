@@ -47,6 +47,8 @@ namespace BooterBigArm.Editor
     /// </summary>
     internal static class TopDown3DRockWorkbenchBaseRockGenerator
     {
+        internal const string SourceGroupName = "Rock Shape (Edit These)";
+
         internal static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> CreatePlan(
             int seed,
             int cubeCount,
@@ -60,9 +62,9 @@ namespace BooterBigArm.Editor
         {
             cubeCount = Mathf.Clamp(cubeCount, 2, 4);
             overallSize = new Vector3(
-                Mathf.Max(0.5f, overallSize.x),
-                Mathf.Max(0.5f, overallSize.y),
-                Mathf.Max(0.5f, overallSize.z));
+                Mathf.Max(0.05f, overallSize.x),
+                Mathf.Max(0.05f, overallSize.y),
+                Mathf.Max(0.05f, overallSize.z));
             verticality = Mathf.Clamp01(verticality);
             asymmetry = Mathf.Clamp01(asymmetry);
             overlap = Mathf.Clamp01(overlap);
@@ -247,13 +249,22 @@ namespace BooterBigArm.Editor
             try
             {
                 Undo.RecordObject(authoring, undoName);
+                authoring.ApplyStandalonePhysicalScale();
                 authoring.SetGenerationSeed(seed);
+
+                if (!authoring.IsFormationMember)
+                {
+                    Undo.RecordObject(authoring.transform, undoName);
+                    authoring.transform.localScale = Vector3.one;
+                }
 
                 var existing = authoring.GetComponentsInChildren<TopDown3DRockVolumeNode>(true);
                 foreach (var node in existing)
                 {
                     if (node != null) Undo.DestroyObjectImmediate(node.gameObject);
                 }
+
+                var sourceGroup = GetOrCreateSourceGroup(authoring, undoName);
 
                 var silhouetteProfile = authoring.GeneratedSilhouetteProfile;
                 if (silhouetteProfile == TopDown3DRockSilhouetteProfile.Auto
@@ -273,10 +284,9 @@ namespace BooterBigArm.Editor
                 for (var index = 0; index < plan.Count; index++)
                 {
                     var spec = plan[index];
-                    var volumeObject = new GameObject(
-                        $"{GetShapeLabel(spec.SourceShape)} Volume {index + 1}");
+                    var volumeObject = new GameObject(GetVolumeName(spec, index));
                     Undo.RegisterCreatedObjectUndo(volumeObject, undoName);
-                    Undo.SetTransformParent(volumeObject.transform, authoring.transform, undoName);
+                    Undo.SetTransformParent(volumeObject.transform, sourceGroup, undoName);
                     volumeObject.transform.localPosition = spec.LocalPosition;
                     volumeObject.transform.localRotation = spec.LocalRotation;
                     volumeObject.transform.localScale = spec.LocalScale;
@@ -298,6 +308,31 @@ namespace BooterBigArm.Editor
             }
         }
 
+        internal static Transform GetOrCreateSourceGroup(
+            TopDown3DRockWorkbenchAuthoring authoring,
+            string undoName)
+        {
+            if (authoring == null) return null;
+            for (var index = 0; index < authoring.transform.childCount; index++)
+            {
+                var child = authoring.transform.GetChild(index);
+                if (child.name != SourceGroupName) continue;
+                Undo.RecordObject(child, undoName);
+                child.localPosition = Vector3.zero;
+                child.localRotation = Quaternion.identity;
+                child.localScale = Vector3.one;
+                return child;
+            }
+
+            var groupObject = new GameObject(SourceGroupName);
+            Undo.RegisterCreatedObjectUndo(groupObject, undoName);
+            Undo.SetTransformParent(groupObject.transform, authoring.transform, undoName);
+            groupObject.transform.localPosition = Vector3.zero;
+            groupObject.transform.localRotation = Quaternion.identity;
+            groupObject.transform.localScale = Vector3.one;
+            return groupObject.transform;
+        }
+
         private static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> AddFractureCuts(
             IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> stone,
             int seed,
@@ -314,12 +349,12 @@ namespace BooterBigArm.Editor
             result.AddRange(stone);
             var random = new System.Random(seed ^ unchecked((int)0x6A09E667));
             var horizontalSize = Mathf.Max(
-                0.5f,
+                0.05f,
                 Mathf.Min(overallSize.x, overallSize.z));
-            var height = Mathf.Max(0.5f, overallSize.y);
+            var height = Mathf.Max(0.05f, overallSize.y);
             if (height / horizontalSize > 4f) return stone;
             var thickness = Mathf.Max(
-                0.11f,
+                0.011f,
                 horizontalSize * Mathf.Lerp(0.028f, 0.06f, Mathf.Clamp01(majorFractures)));
 
             for (var index = 0; index < fractureCount; index++)
@@ -791,6 +826,22 @@ namespace BooterBigArm.Editor
                 TopDown3DRockSourceShape.FractureCut => "Fracture Cut",
                 _ => "Weathered Block"
             };
+        }
+
+        private static string GetVolumeName(
+            TopDown3DRockWorkbenchVolumeSpec spec,
+            int index)
+        {
+            if (spec.Operation == TopDown3DRockVolumeOperation.Subtractive)
+                return $"Fracture Cut Volume {index + 1}";
+
+            var role = spec.Role switch
+            {
+                TopDown3DRockWorkbenchMassRole.Core => "Core",
+                TopDown3DRockWorkbenchMassRole.Support => "Support",
+                _ => "Detail"
+            };
+            return $"{role} {GetShapeLabel(spec.SourceShape)} Volume {index + 1}";
         }
 
         private static int ChooseParentIndex(

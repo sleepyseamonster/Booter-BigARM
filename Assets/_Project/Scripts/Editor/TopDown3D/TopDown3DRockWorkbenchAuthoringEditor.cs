@@ -53,11 +53,19 @@ namespace BooterBigArm.Editor
             UpgradeLegacyMaterial(authoring);
 
             serializedObject.Update();
-            EditorGUILayout.LabelField("Rock Generator", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("Rock Workbench", EditorStyles.boldLabel);
             EditorGUILayout.HelpBox(
-                "Choose the broad shape, then click Generate New Rock. Every result stays editable in the Scene. "
-                + "This is the only rock-authoring workflow; new Grounded Geology stages will be added here automatically.",
+                "Set the physical size and broad shape, then generate. The project rock material, mesh, "
+                + "and collider update automatically. Expand 'Rock Shape (Edit These)' in the Hierarchy "
+                + "only when you want to shape the rock by hand.",
                 MessageType.Info);
+            if (authoring.NeedsStandalonePhysicalScaleUpgrade)
+            {
+                EditorGUILayout.HelpBox(
+                    "This is an older standalone rock. Generate or regenerate it once to preserve its accepted size "
+                    + "with a clean (1, 1, 1) root scale.",
+                    MessageType.Warning);
+            }
             if (IsHiddenInScene(authoring))
             {
                 EditorGUILayout.HelpBox(
@@ -70,12 +78,30 @@ namespace BooterBigArm.Editor
                 }
             }
             EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(
-                serializedObject.FindProperty("generatedOverallScale"),
-                new GUIContent("Width", "Physical width and depth in meters."));
-            EditorGUILayout.PropertyField(
-                serializedObject.FindProperty("generatedHeight"),
-                new GUIContent("Height", "Physical vertical height in meters, independent from width."));
+            if (authoring.IsFormationMember)
+            {
+                EditorGUILayout.PropertyField(
+                    serializedObject.FindProperty("generatedOverallScale"),
+                    new GUIContent("Width", "Physical width and depth in meters."));
+                EditorGUILayout.PropertyField(
+                    serializedObject.FindProperty("generatedHeight"),
+                    new GUIContent("Height", "Physical vertical height in meters, independent from width."));
+            }
+            else
+            {
+                DrawPhysicalDimension(
+                    serializedObject.FindProperty("generatedOverallScale"),
+                    authoring,
+                    new GUIContent("Width", "Physical width and depth in meters."),
+                    TopDown3DRockWorkbenchAuthoring.MinimumStandaloneRockWidth,
+                    TopDown3DRockWorkbenchAuthoring.MaximumStandaloneRockWidth);
+                DrawPhysicalDimension(
+                    serializedObject.FindProperty("generatedHeight"),
+                    authoring,
+                    new GUIContent("Height", "Physical vertical height in meters, independent from width."),
+                    TopDown3DRockWorkbenchAuthoring.MinimumStandaloneRockHeight,
+                    TopDown3DRockWorkbenchAuthoring.MaximumStandaloneRockHeight);
+            }
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("generatedAsymmetry"),
                 new GUIContent("Lopsidedness"));
@@ -100,17 +126,13 @@ namespace BooterBigArm.Editor
                 SceneView.RepaintAll();
             }
 
-            EditorGUILayout.LabelField(
-                $"Uses {authoring.GeneratedCubeCount} compact stone masses + "
-                + $"{authoring.GeneratedFractureCount} editable fracture cuts",
-                EditorStyles.miniLabel);
             if (GUILayout.Button("Generate New Rock", GUILayout.Height(34f)))
             {
                 TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
                     authoring,
                     TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(authoring.GenerationSeed));
             }
-            if (GUILayout.Button("Update Current Rock With These Settings"))
+            if (GUILayout.Button("Regenerate This Rock"))
             {
                 TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
                     authoring,
@@ -118,27 +140,12 @@ namespace BooterBigArm.Editor
             }
 
             EditorGUILayout.Space();
-            using (new EditorGUI.DisabledScope(
-                       !TopDown3DRockWorkbenchFormationEditor.CanCreateFromSelection))
-            {
-                if (GUILayout.Button("Create Formation From Selected Rocks"))
-                {
-                    TopDown3DRockWorkbenchFormationEditor.CreateFromSelectedRocks();
-                    GUIUtility.ExitGUI();
-                }
-            }
-            EditorGUILayout.LabelField(
-                "Select two or more rocks to enable formation creation.",
-                EditorStyles.miniLabel);
-
-            EditorGUILayout.Space();
-            var statusType = authoring.PreviewStatus.IndexOf("invalid", StringComparison.OrdinalIgnoreCase) >= 0
-                || authoring.PreviewStatus.IndexOf("could not", StringComparison.OrdinalIgnoreCase) >= 0
-                ? MessageType.Error
-                : authoring.PreviewStatus.IndexOf("disconnected", StringComparison.OrdinalIgnoreCase) >= 0
-                    ? MessageType.Warning
-                    : MessageType.None;
-            EditorGUILayout.HelpBox(authoring.PreviewStatus, statusType);
+            var statusType = GetStatusType(authoring.PreviewStatus);
+            EditorGUILayout.HelpBox(
+                statusType == MessageType.Info && authoring.GeneratedMesh != null
+                    ? "Rock ready. The visible mesh, collider, and project rock material are current."
+                    : authoring.PreviewStatus,
+                statusType);
 
             showAdvanced = EditorGUILayout.Foldout(
                 showAdvanced,
@@ -146,6 +153,35 @@ namespace BooterBigArm.Editor
                 true,
                 EditorStyles.foldoutHeader);
             if (showAdvanced) DrawAdvancedControls(authoring);
+        }
+
+        private static void DrawPhysicalDimension(
+            SerializedProperty property,
+            TopDown3DRockWorkbenchAuthoring authoring,
+            GUIContent label,
+            float minimum,
+            float maximum)
+        {
+            var factor = authoring.PendingStandalonePhysicalScaleFactor;
+            var valueMeters = Mathf.Clamp(property.floatValue * factor, minimum, maximum);
+            var adjustedMeters = EditorGUILayout.Slider(label, valueMeters, minimum, maximum);
+            if (!Mathf.Approximately(adjustedMeters, valueMeters))
+                property.floatValue = adjustedMeters / factor;
+        }
+
+        private static MessageType GetStatusType(string status)
+        {
+            if (string.IsNullOrWhiteSpace(status)) return MessageType.Info;
+            if (status.IndexOf("invalid", StringComparison.OrdinalIgnoreCase) >= 0
+                || status.IndexOf("could not", StringComparison.OrdinalIgnoreCase) >= 0
+                || status.IndexOf("failed", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                return MessageType.Error;
+            }
+
+            return status.IndexOf("disconnected", StringComparison.OrdinalIgnoreCase) >= 0
+                ? MessageType.Warning
+                : MessageType.Info;
         }
 
         internal static bool IsHiddenInScene(TopDown3DRockWorkbenchAuthoring authoring)
@@ -167,8 +203,10 @@ namespace BooterBigArm.Editor
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.LabelField("Mesh Preview", EditorStyles.boldLabel);
             DrawProperty("rockMaterial");
-            DrawTessellationDetail(serializedObject.FindProperty("voxelSize"));
-            DrawProperty("fusionSmoothness");
+            DrawTessellationDetail(serializedObject.FindProperty("voxelSize"), authoring);
+            DrawPhysicalFusionSmoothness(
+                serializedObject.FindProperty("fusionSmoothness"),
+                authoring);
             DrawProperty("surfaceRelaxation");
             DrawProperty("autoRebuild");
             DrawProperty("updateCollider");
@@ -193,6 +231,12 @@ namespace BooterBigArm.Editor
             {
                 TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, false);
             }
+
+            EditorGUILayout.LabelField(
+                $"Shape recipe: {authoring.GeneratedCubeCount} stone masses + "
+                + $"{authoring.GeneratedFractureCount} fracture cuts",
+                EditorStyles.miniLabel);
+            EditorGUILayout.HelpBox(authoring.PreviewStatus, GetStatusType(authoring.PreviewStatus));
 
             EditorGUILayout.Space();
             using (new EditorGUILayout.HorizontalScope())
@@ -241,12 +285,50 @@ namespace BooterBigArm.Editor
                         TopDown3DRockWorkbenchVariationGallery.ClearGallery();
                 }
             }
+
+            EditorGUILayout.Space();
+            using (new EditorGUI.DisabledScope(
+                       !TopDown3DRockWorkbenchFormationEditor.CanCreateFromSelection))
+            {
+                if (GUILayout.Button("Create Formation From Selected Rocks"))
+                {
+                    TopDown3DRockWorkbenchFormationEditor.CreateFromSelectedRocks();
+                    GUIUtility.ExitGUI();
+                }
+            }
+            EditorGUILayout.LabelField(
+                "Select two or more rocks to enable formation creation.",
+                EditorStyles.miniLabel);
         }
 
-        private static void DrawTessellationDetail(SerializedProperty voxelSize)
+        private static void DrawTessellationDetail(
+            SerializedProperty voxelSize,
+            TopDown3DRockWorkbenchAuthoring authoring)
         {
-            var detail = TopDown3DRockWorkbenchAuthoring.VoxelSizeToTessellationDetail(
-                voxelSize.floatValue);
+            if (authoring.IsFormationMember)
+            {
+                var formationDetail = TopDown3DRockWorkbenchAuthoring.VoxelSizeToTessellationDetail(
+                    voxelSize.floatValue);
+                EditorGUI.BeginChangeCheck();
+                var adjustedFormationDetail = EditorGUILayout.Slider(
+                    new GUIContent(
+                        "Tessellation Detail",
+                        "Controls surface sampling detail. 1 rebuilds fastest; 5 produces the finest silhouette."),
+                    formationDetail,
+                    TopDown3DRockWorkbenchAuthoring.MinimumTessellationDetail,
+                    TopDown3DRockWorkbenchAuthoring.MaximumTessellationDetail);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    voxelSize.floatValue = TopDown3DRockWorkbenchAuthoring.TessellationDetailToVoxelSize(
+                        adjustedFormationDetail);
+                }
+                return;
+            }
+
+            var factor = authoring.PendingStandalonePhysicalScaleFactor;
+            var valueMeters = voxelSize.floatValue * factor;
+            var detail = TopDown3DRockWorkbenchAuthoring.StandaloneVoxelSizeToTessellationDetail(
+                valueMeters);
             EditorGUI.BeginChangeCheck();
             var adjustedDetail = EditorGUILayout.Slider(
                 new GUIContent(
@@ -257,9 +339,33 @@ namespace BooterBigArm.Editor
                 TopDown3DRockWorkbenchAuthoring.MaximumTessellationDetail);
             if (EditorGUI.EndChangeCheck())
             {
-                voxelSize.floatValue = TopDown3DRockWorkbenchAuthoring.TessellationDetailToVoxelSize(
-                    adjustedDetail);
+                voxelSize.floatValue =
+                    TopDown3DRockWorkbenchAuthoring.StandaloneTessellationDetailToVoxelSize(
+                        adjustedDetail) / factor;
             }
+        }
+
+        private static void DrawPhysicalFusionSmoothness(
+            SerializedProperty smoothness,
+            TopDown3DRockWorkbenchAuthoring authoring)
+        {
+            if (authoring.IsFormationMember)
+            {
+                EditorGUILayout.PropertyField(smoothness);
+                return;
+            }
+
+            var factor = authoring.PendingStandalonePhysicalScaleFactor;
+            var valueMeters = Mathf.Clamp(smoothness.floatValue * factor, 0f, 0.1f);
+            var adjustedMeters = EditorGUILayout.Slider(
+                new GUIContent(
+                    "Fusion Smoothness",
+                    "Physical blend width in meters between overlapping stone masses."),
+                valueMeters,
+                0f,
+                0.1f);
+            if (!Mathf.Approximately(adjustedMeters, valueMeters))
+                smoothness.floatValue = adjustedMeters / factor;
         }
 
         private void DrawProperty(string name)
@@ -303,7 +409,10 @@ namespace BooterBigArm.Editor
             var existing = authoring.GetComponentsInChildren<TopDown3DRockVolumeNode>(true);
             var volumeObject = new GameObject($"Weathered Block Volume {existing.Length + 1}");
             Undo.RegisterCreatedObjectUndo(volumeObject, "Add Rock Source Volume");
-            Undo.SetTransformParent(volumeObject.transform, authoring.transform, "Parent Rock Source Volume");
+            var sourceGroup = TopDown3DRockWorkbenchBaseRockGenerator.GetOrCreateSourceGroup(
+                authoring,
+                "Add Rock Source Volume");
+            Undo.SetTransformParent(volumeObject.transform, sourceGroup, "Parent Rock Source Volume");
             volumeObject.transform.localPosition = new Vector3(existing.Length * 1.2f, 0f, 0f);
             volumeObject.transform.localRotation = Quaternion.identity;
             volumeObject.transform.localScale = new Vector3(2f, 2f, 2f);
@@ -325,7 +434,10 @@ namespace BooterBigArm.Editor
             var existing = authoring.GetComponentsInChildren<TopDown3DRockVolumeNode>(true);
             var volumeObject = new GameObject($"Fracture Cut Volume {existing.Length + 1}");
             Undo.RegisterCreatedObjectUndo(volumeObject, "Add Rock Fracture Cut");
-            Undo.SetTransformParent(volumeObject.transform, authoring.transform, "Parent Rock Fracture Cut");
+            var sourceGroup = TopDown3DRockWorkbenchBaseRockGenerator.GetOrCreateSourceGroup(
+                authoring,
+                "Add Rock Fracture Cut");
+            Undo.SetTransformParent(volumeObject.transform, sourceGroup, "Parent Rock Fracture Cut");
             volumeObject.transform.localPosition = new Vector3(0f, authoring.GeneratedHeight * 0.56f, 0f);
             volumeObject.transform.localRotation = Quaternion.Euler(0f, 35f, 8f);
             volumeObject.transform.localScale = new Vector3(

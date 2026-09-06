@@ -38,6 +38,8 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [ROCK_QUALITY_AND_PRODUCTION_PLAN.md](./ROCK_QUALITY_AND_PRODUCTION_PLAN.md)
+  The active visual-first sequence from one user-shaped Golden Rock through the existing editor baker, catalog, and World Creator placement path.
 - [WORLD_CREATOR_ARCHITECTURE_PLAN.md](./WORLD_CREATOR_ARCHITECTURE_PLAN.md)
   The approved hybrid causal world-compiler architecture, migration sequence, first vertical slice, and evidence gates subordinate to the World Creator Charter.
 - [WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md](./WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md)
@@ -54,6 +56,8 @@ These should be treated as the source of truth unless they are intentionally rev
   The live Level A and Level B inventory for closing the protected-spike blockers, accepting CP-06, preparing CP-07, and later authorizing production 3D asset work.
 - [ISOMETRIC_DIRECTION_BRIEF.md](./ISOMETRIC_DIRECTION_BRIEF.md)
   The historical working contract for the completed protected isometric conversion spike; it remains evidence rather than current production direction.
+- [GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md](./GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md)
+  Superseded notice for the retired runtime Grounded Geology and separate Integration Workbench proposal.
 
 ## Implementation Standards And Seams
 
