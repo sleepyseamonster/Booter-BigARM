@@ -16,13 +16,29 @@ namespace BooterBigArm.Editor
             const string textureFolder = "Assets/_Project/Art/Environment/Ground/SandDirt/";
             var pebbleColor = AssetDatabase.LoadAssetAtPath<Texture2D>(textureFolder + "MixedGroundPebbles_Albedo.png");
             var pebbleHeight = AssetDatabase.LoadAssetAtPath<Texture2D>(textureFolder + "MixedGroundPebbles_Height.png");
+            var nearColor = AssetDatabase.LoadAssetAtPath<Texture2D>(textureFolder + "NearRockPebbles_Albedo.png");
+            var nearHeight = AssetDatabase.LoadAssetAtPath<Texture2D>(textureFolder + "NearRockPebbles_Height.png");
+            if (nearColor == null || nearHeight == null)
+                throw new InvalidOperationException("Near-rock pebbles need their independent color and height maps.");
             if (pebbleColor == null || pebbleHeight == null)
                 throw new InvalidOperationException("Mixed ground needs its pebble color and height textures.");
             var bounds = new List<Bounds>(rocks.Length);
+            var rockTints = new List<Color>(rocks.Length);
+            var rockMaterial = rocks[0].GetComponent<MeshRenderer>().sharedMaterial;
+            var rockColorMap = rockMaterial != null && rockMaterial.HasProperty("_BaseMap")
+                ? rockMaterial.GetTexture("_BaseMap") : null;
+            if (rockColorMap == null)
+                throw new InvalidOperationException("Rock-colored pebbles require the reference rock's base-color texture.");
             foreach (var rock in rocks)
             {
-                var rockBounds = rock.GetComponent<MeshRenderer>().bounds;
+                var rockRenderer = rock.GetComponent<MeshRenderer>();
+                var rockBounds = rockRenderer.bounds;
                 bounds.Add(rockBounds);
+                var rockProperties = new MaterialPropertyBlock();
+                rockRenderer.GetPropertyBlock(rockProperties);
+                var tint = rockProperties.HasColor("_BaseColor") ? rockProperties.GetColor("_BaseColor")
+                    : rockRenderer.sharedMaterial.GetColor("_BaseColor");
+                rockTints.Add(QualitySettings.activeColorSpace == ColorSpace.Linear ? tint.linear : tint);
             }
             float Coverage(Vector3 point)
             {
@@ -42,16 +58,40 @@ namespace BooterBigArm.Editor
                 var mesh = ground.sharedMesh;
                 var vertices = mesh.vertices;
                 var mask = mesh.uv2;
+                var rockLayer = new Vector4[vertices.Length];
                 if (mask.Length != vertices.Length) mask = new Vector2[vertices.Length];
                 for (var i = 0; i < vertices.Length; i++)
-                    mask[i].x = Coverage(ground.transform.TransformPoint(vertices[i]));
+                {
+                    var point = ground.transform.TransformPoint(vertices[i]);
+                    mask[i].x = Coverage(point);
+                    // Carry the nearest tint outside the visible mask too, so interpolation
+                    // fades coverage rather than blending the boundary color toward black.
+                    var closest = float.PositiveInfinity;
+                    for (var r = 0; r < bounds.Count; r++)
+                    {
+                        var rock = bounds[r];
+                        if (rock.min.y > point.y + 0.2f) continue;
+                        var dx = Mathf.Max(0f, Mathf.Abs(point.x - rock.center.x) - rock.extents.x);
+                        var dz = Mathf.Max(0f, Mathf.Abs(point.z - rock.center.z) - rock.extents.z);
+                        var distance = Mathf.Sqrt(dx * dx + dz * dz);
+                        if (distance >= closest) continue;
+                        closest = distance;
+                        var tint = rockTints[r];
+                        rockLayer[i] = new Vector4(tint.r, tint.g, tint.b,
+                            Mathf.SmoothStep(1f, 0f, Mathf.Clamp01(distance / 0.6f)) * sandbox.GroundClutter);
+                    }
+                }
                 mesh.SetUVs(1, mask);
+                mesh.SetUVs(2, rockLayer);
                 var groundRenderer = ground.GetComponent<MeshRenderer>();
                 var properties = new MaterialPropertyBlock();
                 groundRenderer.GetPropertyBlock(properties);
                 properties.SetFloat("_PebbleDetail", 1f);
                 properties.SetTexture("_PebbleAlbedoMap", pebbleColor);
                 properties.SetTexture("_PebbleHeightMap", pebbleHeight);
+                properties.SetTexture("_RockPebbleColorMap", rockColorMap);
+                properties.SetTexture("_NearRockPebbleAlbedoMap", nearColor);
+                properties.SetTexture("_NearRockPebbleHeightMap", nearHeight);
                 groundRenderer.SetPropertyBlock(properties);
                 triangles.Add(ground, mesh.triangles);
                 colors.Add(ground, mesh.colors);
