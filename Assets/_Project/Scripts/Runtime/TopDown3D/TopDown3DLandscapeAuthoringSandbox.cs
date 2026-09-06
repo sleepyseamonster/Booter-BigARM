@@ -16,13 +16,15 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Vector2Int centerChunk;
         [SerializeField, Range(0, 2)] private int terrainRadiusInChunks = 1;
         [SerializeField] private GameObject rockReference;
-        [SerializeField, Range(0f, 0.15f)] private float rockBurial = 0.035f;
-        [SerializeField, Range(0f, 0.3f)] private float maximumRockBurial = 0.15f;
+        [SerializeField, Range(0f, 1f)] private float rockBurial = 0.035f;
+        [SerializeField, Range(0f, 1f)] private float maximumRockBurial = 0.6f;
+        [SerializeField, HideInInspector] private int burialRangeVersion;
         [SerializeField, Range(0f, 35f)] private float maximumRockTilt = 20f;
 
         public GameObject RockReference => rockReference;
-        public float RockBurial => Mathf.Clamp(rockBurial, 0f, 0.15f);
-        public float MaximumRockBurial => Mathf.Clamp(maximumRockBurial, RockBurial, 0.3f);
+        public float RockBurial => Mathf.Clamp01(rockBurial);
+        public float MaximumRockBurial => Mathf.Clamp(
+            burialRangeVersion == 0 ? Mathf.Max(0.6f, maximumRockBurial) : maximumRockBurial, RockBurial, 1f);
         public float MaximumRockTilt => Mathf.Clamp(maximumRockTilt, 0f, 35f);
 
         public TopDown3DWorldSettings WorldSettings => worldSettings;
@@ -47,6 +49,21 @@ namespace BooterBigArm.TopDown3D
         public void ConfigureRockReference(GameObject reference)
         {
             rockReference = reference;
+            UpgradeBurialRange();
+        }
+
+        private void OnValidate()
+        {
+            if (rockReference != null) UpgradeBurialRange();
+        }
+
+        private void UpgradeBurialRange()
+        {
+            if (burialRangeVersion != 0) return;
+            // Apply the requested deeper default to existing setups as well as new ones.
+            // Preserve the shallow endpoint, and never repeat this after the user tunes it.
+            maximumRockBurial = Mathf.Max(0.6f, maximumRockBurial);
+            burialRangeVersion = 1;
         }
     }
 }

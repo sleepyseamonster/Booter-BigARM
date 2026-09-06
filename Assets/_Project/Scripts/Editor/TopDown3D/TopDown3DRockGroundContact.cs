@@ -124,7 +124,7 @@ namespace BooterBigArm.Editor
                     var j = order[n];
                     // Narrow the sampling range for small rocks rather than clipping samples,
                     // which would pile up probability at the deep extreme.
-                    var deep = Mathf.Min(maximumBurial, members[j].Bounds.size.y * 0.45f);
+                    var deep = Mathf.Min(maximumBurial, members[j].Bounds.size.y * 0.9f);
                     var shallow = Mathf.Min(minimumBurial, deep);
                     var depth = SampleBurial(members[j].Seed, shallow, deep);
                     var displacement = lifts[j] - depth;
@@ -155,8 +155,8 @@ namespace BooterBigArm.Editor
 
         internal static float SampleBurial(int seed, float minimum, float maximum)
         {
-            minimum = Mathf.Clamp(minimum, 0f, 0.3f);
-            maximum = Mathf.Clamp(maximum, minimum, 0.3f);
+            minimum = Mathf.Clamp01(minimum);
+            maximum = Mathf.Clamp(maximum, minimum, 1f);
             // Same bounded bell-shaped construction as the accepted body-size distribution.
             // Local integer state only: independent of editor/global random state and terrain tile.
             var state = unchecked((uint)seed ^ 0xA511E9B3u);

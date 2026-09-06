@@ -54,10 +54,21 @@ namespace BooterBigArm.Editor
                 EditorGUILayout.LabelField("Mixed Formation Ground", EditorStyles.boldLabel);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("centerChunk"),
                     new GUIContent("Terrain Location"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("rockBurial"),
-                    new GUIContent("Shallow Burial (m)", "Rare shallow extreme of each rock's bell-curve burial."));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("maximumRockBurial"),
-                    new GUIContent("Deep Burial (m)", "Rare deep extreme. Most rocks sit near the middle; small rocks retain visible height."));
+                var shallowProperty = serializedObject.FindProperty("rockBurial");
+                var deepProperty = serializedObject.FindProperty("maximumRockBurial");
+                var shallow = sandbox.RockBurial;
+                var deep = sandbox.MaximumRockBurial;
+                EditorGUI.BeginChangeCheck();
+                EditorGUILayout.MinMaxSlider(new GUIContent("Burial Range (m)",
+                    "Shallow to deep. Each rock samples a bell curve between the two handles; extremes are rare."),
+                    ref shallow, ref deep, 0f, 1f);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    shallowProperty.floatValue = shallow;
+                    deepProperty.floatValue = deep;
+                }
+                EditorGUILayout.LabelField($"Shallow {shallow:0.000} m  —  Deep {deep:0.000} m",
+                    EditorStyles.miniLabel);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("maximumRockTilt"),
                     new GUIContent("Maximum Ground Tilt"));
                 EditorGUILayout.HelpBox(
@@ -67,7 +78,7 @@ namespace BooterBigArm.Editor
             }
             else
             {
-                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt");
+                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt", "burialRangeVersion");
             }
             serializedObject.ApplyModifiedProperties();
 
