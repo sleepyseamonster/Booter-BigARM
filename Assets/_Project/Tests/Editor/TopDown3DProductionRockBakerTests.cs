@@ -66,6 +66,52 @@ namespace BooterBigArm.Tests
             }
         }
 
+        [TestCase(TopDown3DNaturalObjectShape.Slab)]
+        [TestCase(TopDown3DNaturalObjectShape.Nodule)]
+        public void ApprovedRole_PreservesSourceTopologyGroundPlaneAndNormalDirections(
+            TopDown3DNaturalObjectShape shape)
+        {
+            var source = new Mesh
+            {
+                name = "BrokenWorld_Boulder_00_LOD0",
+                vertices = new[]
+                {
+                    new Vector3(-1f, -0.2f, 0f),
+                    new Vector3(1f, -0.2f, 0f),
+                    new Vector3(0f, 1f, 1f)
+                },
+                triangles = new[] { 0, 1, 2 }
+            };
+            source.RecalculateNormals();
+            source.RecalculateBounds();
+            var original = source.vertices;
+            var first = TopDown3DProductionRockBaker.BuildApprovedRoleMesh(source, shape);
+            var second = TopDown3DProductionRockBaker.BuildApprovedRoleMesh(source, shape);
+            try
+            {
+                CollectionAssert.AreEqual(original, source.vertices, "Authoring source must remain intact.");
+                CollectionAssert.AreEqual(source.triangles, first.triangles);
+                CollectionAssert.AreEqual(first.vertices, second.vertices);
+                CollectionAssert.AreEqual(first.normals, second.normals);
+                Assert.That(first.bounds.min.y, Is.LessThan(0f), "Keep the buried base below y = 0.");
+                Assert.That(first.bounds.max.y, Is.GreaterThan(0f));
+                var vertices = first.vertices;
+                var expectedNormal = Vector3.Cross(
+                    vertices[1] - vertices[0], vertices[2] - vertices[0]).normalized;
+                foreach (var normal in first.normals)
+                {
+                    Assert.That(normal.sqrMagnitude, Is.EqualTo(1f).Within(0.0001f));
+                    Assert.That(Vector3.Dot(normal, expectedNormal), Is.GreaterThan(0.9999f));
+                }
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(first);
+                UnityEngine.Object.DestroyImmediate(second);
+                UnityEngine.Object.DestroyImmediate(source);
+            }
+        }
+
         [Test]
         public void CatalogLookup_NormalizesPlannerVariantsToBakedFamilies()
         {

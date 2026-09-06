@@ -24,6 +24,12 @@ namespace BooterBigArm.Editor
         private const float ApprovedFamilyHorizontalSpan = 2f;
         private const int ApprovedFamilySeedSalt = unchecked((int)0x6A09E667);
         private static readonly float[] ApprovedFamilyVoxelSizes = { 0.045f, 0.09f, 0.18f };
+        private static readonly TopDown3DNaturalObjectShape[] ApprovedShapes =
+        {
+            TopDown3DNaturalObjectShape.Boulder,
+            TopDown3DNaturalObjectShape.Slab,
+            TopDown3DNaturalObjectShape.Nodule
+        };
 
         [MenuItem("Booter & BigARM/Build Approved Rocks Into World Creator", false, 2)]
         public static void BakeApprovedFromMenu()
@@ -36,9 +42,9 @@ namespace BooterBigArm.Editor
                 : "use the saved approved source recipe";
             if (!EditorUtility.DisplayDialog(
                     "Build Approved Rocks Into World Creator",
-                    $"This will {sourceDescription}, update only the three production Boulder mesh slots, "
+                    $"This will {sourceDescription}, update the Boulder, Slab, and Nodule families, "
                     + "and carry the approved layered rock surface into the existing production materials. "
-                    + "World placement, streaming, and saved-object identity will not change.",
+                    + "The existing world generator will place the updated shapes automatically.",
                     "Build Approved Rocks",
                     "Cancel"))
             {
@@ -51,6 +57,11 @@ namespace BooterBigArm.Editor
         public static void BakeApprovedFromCli()
         {
             BakeApprovedFamily(null);
+        }
+
+        internal static bool UsesApprovedRestingPose(TopDown3DNaturalObjectShape shape)
+        {
+            return Array.IndexOf(ApprovedShapes, shape) >= 0;
         }
 
         internal static void BakeApprovedFamily(TopDown3DRockWorkbenchAuthoring source)
@@ -82,25 +93,31 @@ namespace BooterBigArm.Editor
                      variant++)
                 {
                     var recipeVariant = recipe.Variants[variant];
-                    var meshes = BakeApprovedFamilyAsset(recipe, recipeVariant, variant);
-                    var colliderBounds = meshes.Lod0.bounds;
-                    colliderBounds.size = Vector3.Scale(
-                        colliderBounds.size,
-                        new Vector3(0.9f, 0.94f, 0.9f));
-                    var family = new TopDown3DNaturalMeshFamily();
-                    family.Configure(
-                        GetStableId(TopDown3DNaturalObjectShape.Boulder, variant),
-                        TopDown3DNaturalObjectShape.Boulder,
-                        variant,
-                        meshes.Lod0,
-                        meshes.Lod1,
-                        meshes.Lod2,
-                        colliderBounds,
-                        Lod0ScreenHeight,
-                        Lod1ScreenHeight,
-                        Lod2ScreenHeight);
-                    catalog.ReplaceBakedMeshFamily(family);
-                    bakedCount++;
+                    var boulder = BakeApprovedFamilyAsset(recipe, recipeVariant, variant);
+                    foreach (var shape in ApprovedShapes)
+                    {
+                        var meshes = shape == TopDown3DNaturalObjectShape.Boulder
+                            ? boulder
+                            : BakeApprovedRoleAsset(boulder, shape, variant);
+                        var colliderBounds = meshes.Lod0.bounds;
+                        colliderBounds.size = Vector3.Scale(
+                            colliderBounds.size,
+                            new Vector3(0.9f, 0.94f, 0.9f));
+                        var family = new TopDown3DNaturalMeshFamily();
+                        family.Configure(
+                            GetStableId(shape, variant),
+                            shape,
+                            variant,
+                            meshes.Lod0,
+                            meshes.Lod1,
+                            meshes.Lod2,
+                            colliderBounds,
+                            Lod0ScreenHeight,
+                            Lod1ScreenHeight,
+                            Lod2ScreenHeight);
+                        catalog.ReplaceBakedMeshFamily(family);
+                        bakedCount++;
+                    }
                 }
 
                 SynchronizeApprovedProductionMaterials(recipe);
@@ -118,13 +135,13 @@ namespace BooterBigArm.Editor
             if (errors.Count > 0)
             {
                 throw new InvalidOperationException(
-                    "Approved Boulder family bake failed validation:\n- "
+                    "Approved rock family bake failed validation:\n- "
                     + string.Join("\n- ", errors));
             }
 
             Debug.Log(
-                $"Built {bakedCount} approved Boulder variants from {ApprovedRecipePath} into the existing "
-                + "World Creator catalog. The other 24 production mesh slots were preserved.");
+                $"Built {bakedCount} approved Boulder, Slab, and Nodule variants from {ApprovedRecipePath} "
+                + "into the existing World Creator catalog. The other 18 production mesh slots were preserved.");
         }
 
         [MenuItem("Booter & BigARM/Top Down 3D/Advanced/Rebuild Legacy Production Rock Catalog")]
@@ -567,6 +584,59 @@ namespace BooterBigArm.Editor
                 UpsertMesh(basePath + "_LOD0.asset", generated.Lod0),
                 UpsertMesh(basePath + "_LOD1.asset", generated.Lod1),
                 UpsertMesh(basePath + "_LOD2.asset", generated.Lod2));
+        }
+
+        private static BakedMeshSet BakeApprovedRoleAsset(
+            BakedMeshSet boulder,
+            TopDown3DNaturalObjectShape shape,
+            int variant)
+        {
+            var basePath = $"{OutputFolder}/BrokenWorld_{shape}_{variant:00}";
+            return new BakedMeshSet(
+                UpsertMesh(basePath + "_LOD0.asset", BuildApprovedRoleMesh(boulder.Lod0, shape)),
+                UpsertMesh(basePath + "_LOD1.asset", BuildApprovedRoleMesh(boulder.Lod1, shape)),
+                UpsertMesh(basePath + "_LOD2.asset", BuildApprovedRoleMesh(boulder.Lod2, shape)));
+        }
+
+        internal static Mesh BuildApprovedRoleMesh(Mesh source, TopDown3DNaturalObjectShape shape)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            Vector3 scale;
+            switch (shape)
+            {
+                case TopDown3DNaturalObjectShape.Slab:
+                    scale = new Vector3(1.15f, 0.55f, 0.85f);
+                    break;
+                case TopDown3DNaturalObjectShape.Nodule:
+                    scale = new Vector3(0.85f, 1.1f, 0.85f);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(shape), shape, "Unsupported approved rock role.");
+            }
+
+            // Derive every LOD from the same accepted stone. Scale around the recipe's
+            // ground plane so its buried base survives; never alter the source mesh.
+            var mesh = UnityEngine.Object.Instantiate(source);
+            mesh.name = source.name.Replace("Boulder", shape.ToString());
+            mesh.hideFlags = HideFlags.None;
+            var vertices = mesh.vertices;
+            var normals = mesh.normals;
+            var tangents = mesh.tangents;
+            var inverseScale = new Vector3(1f / scale.x, 1f / scale.y, 1f / scale.z);
+            for (var index = 0; index < vertices.Length; index++)
+                vertices[index] = Vector3.Scale(vertices[index], scale);
+            for (var index = 0; index < normals.Length; index++)
+                normals[index] = Vector3.Scale(normals[index], inverseScale).normalized;
+            for (var index = 0; index < tangents.Length; index++)
+            {
+                var direction = Vector3.Scale((Vector3)tangents[index], scale).normalized;
+                tangents[index] = new Vector4(direction.x, direction.y, direction.z, tangents[index].w);
+            }
+            mesh.vertices = vertices;
+            mesh.normals = normals;
+            mesh.tangents = tangents;
+            mesh.RecalculateBounds();
+            return mesh;
         }
 
         private static BakedMeshSet BuildApprovedMeshSet(

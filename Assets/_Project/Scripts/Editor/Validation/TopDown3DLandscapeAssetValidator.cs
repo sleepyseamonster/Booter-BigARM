@@ -183,7 +183,7 @@ namespace BooterBigArm.Editor
                     errors.Add($"{family.StableId} LOD{lod} has invalid bounds.");
                 }
 
-                if (family.Shape == TopDown3DNaturalObjectShape.Boulder)
+                if (TopDown3DProductionRockBaker.UsesApprovedRestingPose(family.Shape))
                 {
                     if (bounds.min.y > 0.001f)
                     {

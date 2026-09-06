@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** active; representative production Boulder family ready for in-world visual acceptance
+**Status:** step 6 bounded family expansion implemented on 2026-09-06; ready for user review
 
 ## Goal
 
@@ -99,4 +99,12 @@ Source review and compile safety can show that the tool is coherent. They cannot
 
 ## Current stop condition
 
-Capture the accepted source grammar as editor-only recipe data, bake only the three existing `Boulder` variant slots, and carry the accepted layered material into the current production material references. Preserve the other 24 mesh slots and all runtime placement, chunk, stable-identity, and persisted-delta contracts. Stop when that representative family is available through World Creator and wait for the user's in-world visual acceptance before expanding the catalog, formations, distribution, or terrain-contact treatment.
+Steps 3–5 are implemented: the saved `ApprovedBoulderFamilyRecipe.asset` captures the accepted source, the existing baker emits three Boulder variants with LODs and collider bounds, and World Creator consumes those catalog slots. Subsequent user-directed corrections preserved recipe burial, unified the rock surface color, and increased formation burial and distribution (`d3cc446`). These are implementation facts; visual acceptance remains user-owned.
+
+On 2026-09-06 the user directed continuation of the plan. The next bounded step is to extend the accepted grammar into the existing `Slab` and `Nodule` roles, which still use older mesh shapes alongside the approved Boulders. Use the same saved source and existing **Build Approved Rocks Into World Creator** command. Slabs lower and broaden the accepted mass; nodules make it more compact. Apply the same derivation to all three LODs around the source ground plane, retaining fractures, seeded variation, burial, and source geometry. These are initial derived shapes for user review, not new hand-authored reference rocks.
+
+Scope is nine existing catalog slots: three variants each of Boulder, Slab, and Nodule. Keep existing mesh GUIDs and catalog IDs, derive collider bounds from the new meshes, and preserve the other 18 slots. World seeds, chunk ownership, generation versions, unload/reload, and persisted-delta schemas remain unchanged. Mesh-bound placement can adjust to the new silhouettes through the existing planner; no new runtime authority is introduced.
+
+Stop when these three roles are baked into the current catalog and the simple build command reproduces them. Validate compilation, mesh/LOD/collider references, source preservation, and transformed normals. Leave appearance to the user. Do not advance to formations, landmarks, further density tuning, or terrain systems in this batch; composition is the following plan step once this family set is visually settled.
+
+Implementation checkpoint: the existing command now bakes all nine slots. Six Slab/Nodule variants (18 LOD assets) and their catalog collider bounds were updated; Boulder geometry, all mesh GUIDs, the source recipe, and production materials were preserved. Unity 6000.4.0f1 compiled and baked successfully in an isolated copy, including the catalog/LOD validator. The five focused baker checks and five canonical formation checks passed. No gameplay or visual test was run. The next user-facing work is formation composition with this small family set, after visual review; further individual-rock tuning is not the automatic next step.
