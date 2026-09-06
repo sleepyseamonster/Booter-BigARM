@@ -19,14 +19,11 @@ namespace BooterBigArm.Editor
             if (pebbleColor == null || pebbleHeight == null)
                 throw new InvalidOperationException("Mixed ground needs its pebble color and height textures.");
             var bounds = new List<Bounds>(rocks.Length);
-            var area = rocks[0].GetComponent<MeshRenderer>().bounds;
             foreach (var rock in rocks)
             {
                 var rockBounds = rock.GetComponent<MeshRenderer>().bounds;
                 bounds.Add(rockBounds);
-                area.Encapsulate(rockBounds);
             }
-            area.Expand(3f);
             float Coverage(Vector3 point)
             {
                 var closest = float.PositiveInfinity;
@@ -62,48 +59,87 @@ namespace BooterBigArm.Editor
             var catalog = sandbox.WorldSettings.NaturalObjectCatalog;
             if (catalog == null) return;
             var instances = new List<CombineInstance>();
-            const float spacing = 0.4f;
-            for (var z = Mathf.FloorToInt(area.min.z / spacing); z <= Mathf.CeilToInt(area.max.z / spacing); z++)
-            for (var x = Mathf.FloorToInt(area.min.x / spacing); x <= Mathf.CeilToInt(area.max.x / spacing); x++)
+            bool GroundAt(Vector3 point, out RaycastHit hit, out MeshCollider supportingGround)
             {
-                var seed = unchecked(sandbox.WorldSettings.WorldSeed ^ x * 73856093 ^ z * 19349663);
-                var point = new Vector3((x + Unit(seed)) * spacing, 0f, (z + Unit(seed ^ 1717)) * spacing);
-                // Denser real stones without changing the accepted texture coverage or sizes.
-                var chance = Coverage(point) * 0.48f;
-                if (instances.Count >= 192 || Unit(seed ^ 7171) > chance) continue;
-                var hitGround = false;
-                var hit = default(RaycastHit);
-                MeshCollider supportingGround = null;
                 foreach (var ground in terrain)
                 {
                     var box = ground.bounds;
+                    if (point.x < box.min.x || point.x > box.max.x
+                        || point.z < box.min.z || point.z > box.max.z) continue;
                     var start = new Vector3(point.x, box.max.y + 1f, point.z);
                     if (!ground.Raycast(new Ray(start, Vector3.down), out hit, box.size.y + 2f)) continue;
                     supportingGround = ground;
-                    hitGround = true;
-                    break;
+                    return true;
                 }
-                if (!hitGround || hit.normal.y < 0.85f) continue;
+                hit = default;
+                supportingGround = null;
+                return false;
+            }
+
+            // Seed irregular pockets from individual ground-contact rocks, not a world grid.
+            // Upper pile members must not project extra clutter clusters onto the ground below.
+            var clusters = new List<(Vector3 Center, int Seed)>();
+            for (var rockIndex = 0; rockIndex < rocks.Length; rockIndex++)
+            {
+                var box = bounds[rockIndex];
+                if (!GroundAt(box.center, out var floor, out _) || box.min.y > floor.point.y + 0.18f) continue;
+                var rockSeed = unchecked(sandbox.WorldSettings.WorldSeed ^ rocks[rockIndex].GenerationSeed
+                    ^ rockIndex * 486187739);
+                var firstAngle = Unit(rockSeed ^ 5171) * Mathf.PI * 2f;
+                for (var pocket = 0; pocket < 2; pocket++)
+                {
+                    var seed = unchecked(rockSeed ^ (pocket + 1) * 19349663);
+                    var angle = firstAngle + pocket * Mathf.Lerp(2.1f, 4.1f, Unit(seed ^ 6262));
+                    var direction = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+                    var edge = Mathf.Min(box.extents.x / Mathf.Max(0.001f, Mathf.Abs(direction.x)),
+                        box.extents.z / Mathf.Max(0.001f, Mathf.Abs(direction.z)));
+                    clusters.Add((box.center + direction * (edge + Mathf.Lerp(0.08f, 0.22f, Unit(seed))), seed));
+                }
+            }
+            var placed = new List<Vector4>();
+            // Round-robin attempts give every pocket a chance before the shared mesh cap.
+            for (var attempt = 0; attempt < 18 && instances.Count < 192; attempt++)
+            foreach (var cluster in clusters)
+            {
+                if (instances.Count >= 192) break;
+                var seed = unchecked(cluster.Seed ^ (attempt + 1) * 73856093);
+                if (Unit(seed ^ 7171) > sandbox.GroundClutter * 0.85f) continue;
+                float Bell(int salt) => (Unit(seed ^ salt) + Unit(seed ^ (salt + 7919))
+                    + Unit(seed ^ (salt + 15401))) / 3f;
+                var spread = Mathf.Lerp(0.3f, 0.55f, Unit(cluster.Seed ^ 8383));
+                var point = cluster.Center + new Vector3((Bell(1171) - 0.5f) * spread * 2f, 0f,
+                    (Bell(2171) - 0.5f) * spread * 2f);
+                var sizeClass = Unit(seed ^ 1515);
+                var size = sizeClass < 0.55f ? Mathf.Lerp(0.07f, 0.16f, Bell(1919))
+                    : sizeClass < 0.85f ? Mathf.Lerp(0.16f, 0.28f, Bell(1919))
+                    : Mathf.Lerp(0.28f, 0.42f, Bell(1919));
+                if (!GroundAt(point, out var hit, out var supportingGround) || hit.normal.y < 0.85f) continue;
                 var indices = triangles[supportingGround];
                 var tint = colors[supportingGround];
                 var t = hit.triangleIndex * 3;
                 var bary = hit.barycentricCoordinate;
                 var sand = tint[indices[t]].r * bary.x + tint[indices[t + 1]].r * bary.y
                     + tint[indices[t + 2]].r * bary.z;
-                if (Unit(seed ^ 9091) < Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.5f, 0.85f, sand))) continue;
+                // Sand hides some chips, not every cluster next to a deposited skirt.
+                var sandWeight = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.5f, 0.85f, sand));
+                if (Unit(seed ^ 9091) < sandWeight * (sizeClass < 0.55f ? 0.55f : 0.3f)) continue;
                 var occupied = false;
                 foreach (var rock in bounds)
                 {
                     var exclusion = rock;
-                    exclusion.Expand(0.14f);
-                    if (exclusion.Contains(hit.point + Vector3.up * 0.04f)) { occupied = true; break; }
+                    exclusion.Expand(size * 0.6f);
+                    if (exclusion.Contains(hit.point + Vector3.up * size * 0.2f)) { occupied = true; break; }
+                }
+                foreach (var previous in placed)
+                {
+                    var delta = new Vector2(hit.point.x - previous.x, hit.point.z - previous.z);
+                    var separation = (size + previous.w) * 0.36f;
+                    if (delta.sqrMagnitude < separation * separation) { occupied = true; break; }
                 }
                 if (occupied || !catalog.TryGetMeshFamily(TopDown3DNaturalObjectShape.Pebble,
                         (int)(Unit(seed ^ 3131) * 2.999f), out var family)) continue;
-                var source = family.Lod2;
+                var source = size > 0.25f && family.Lod1 != null ? family.Lod1 : family.Lod2;
                 if (source == null) continue;
-                var size = Mathf.Lerp(0.055f, 0.16f,
-                    (Unit(seed ^ 1919) + Unit(seed ^ 2929) + Unit(seed ^ 3939)) / 3f);
                 var dimensions = source.bounds.size;
                 var scale = size / Mathf.Max(dimensions.x, dimensions.y, dimensions.z);
                 var rotation = Quaternion.FromToRotation(Vector3.up, hit.normal)
@@ -112,8 +148,9 @@ namespace BooterBigArm.Editor
                     * Matrix4x4.Translate(-source.bounds.center);
                 var bottom = float.PositiveInfinity;
                 foreach (var vertex in source.vertices) bottom = Mathf.Min(bottom, shape.MultiplyPoint3x4(vertex).y);
-                var pose = Matrix4x4.Translate(hit.point + Vector3.up * (-bottom - size * 0.22f)) * shape;
+                var pose = Matrix4x4.Translate(hit.point + Vector3.up * (-bottom - size * Mathf.Lerp(0.22f, 0.34f, sandWeight))) * shape;
                 instances.Add(new CombineInstance { mesh = source, transform = parent.worldToLocalMatrix * pose });
+                placed.Add(new Vector4(hit.point.x, hit.point.y, hit.point.z, size));
             }
             if (instances.Count == 0) return;
             var output = new Mesh { name = "Mixed Surface Stones", indexFormat = IndexFormat.UInt32,
