@@ -55,17 +55,19 @@ namespace BooterBigArm.Editor
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("centerChunk"),
                     new GUIContent("Terrain Location"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("rockBurial"),
-                    new GUIContent("Rock Burial (m)", "Sets the burial of each touching group without flattening its stack."));
+                    new GUIContent("Shallow Burial (m)", "Rare shallow extreme of each rock's bell-curve burial."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("maximumRockBurial"),
+                    new GUIContent("Deep Burial (m)", "Rare deep extreme. Most rocks sit near the middle; small rocks retain visible height."));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("maximumRockTilt"),
                     new GUIContent("Maximum Ground Tilt"));
                 EditorGUILayout.HelpBox(
-                    "Fits a copy of your mixed reference to production terrain. Touching rocks move together. "
+                    "Each ground-contact rock receives stable bell-curve burial. Stacked rocks follow their supports. "
                     + "The saved reference and the original scene rocks stay intact. This authoring view clears in Play Mode.",
                     MessageType.Info);
             }
             else
             {
-                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockTilt");
+                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt");
             }
             serializedObject.ApplyModifiedProperties();
 
@@ -234,14 +236,15 @@ namespace BooterBigArm.Editor
                 for (var i = 0; i < vertices.Length; i++)
                     vertices[i] = rock.transform.TransformPoint(vertices[i]);
                 members.Add(new TopDown3DRockGroundContact.Member(
-                    rock.transform.position, rock.transform.rotation, renderer.bounds, vertices));
+                    rock.transform.position, rock.transform.rotation, renderer.bounds, vertices,
+                    unchecked(rock.GenerationSeed ^ (members.Count * 486187739))));
                 TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(
                     rock, renderer, filter.sharedMesh.bounds.size, rock.GenerationSeed, Vector3.zero, 0f, 6f);
             }
             var poses = TopDown3DRockGroundContact.Fit(members,
                 point => GroundAt(point).point.y,
                 point => GroundAt(point).normal,
-                sandbox.RockBurial, sandbox.MaximumRockTilt);
+                sandbox.RockBurial, sandbox.MaximumRockBurial, sandbox.MaximumRockTilt);
             for (var i = 0; i < rocks.Length; i++)
                 rocks[i].transform.SetPositionAndRotation(poses[i].Position, poses[i].Rotation);
             foreach (var child in copy.GetComponentsInChildren<Transform>(true))

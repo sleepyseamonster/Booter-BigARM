@@ -17,10 +17,12 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0, 2)] private int terrainRadiusInChunks = 1;
         [SerializeField] private GameObject rockReference;
         [SerializeField, Range(0f, 0.15f)] private float rockBurial = 0.035f;
+        [SerializeField, Range(0f, 0.3f)] private float maximumRockBurial = 0.15f;
         [SerializeField, Range(0f, 35f)] private float maximumRockTilt = 20f;
 
         public GameObject RockReference => rockReference;
         public float RockBurial => Mathf.Clamp(rockBurial, 0f, 0.15f);
+        public float MaximumRockBurial => Mathf.Clamp(maximumRockBurial, RockBurial, 0.3f);
         public float MaximumRockTilt => Mathf.Clamp(maximumRockTilt, 0f, 35f);
 
         public TopDown3DWorldSettings WorldSettings => worldSettings;
