@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** family expansion implemented; mixed pile/scatter composition accepted on 2026-09-06, awaiting saved editable scene source
+**Status:** accepted mixed composition captured from the saved prototype on 2026-09-06; mixed ground-contact pass is next
 
 ## Goal
 
@@ -119,6 +119,21 @@ The user requests three distinct composition types:
 - **Mixed pile and scatter:** preserve this accepted arrangement as the reference, including the compact center and outlying rocks.
 - **Rock pile:** tighter concentration and more supported stacking than the mixed reference.
 
-At capture time the screenshot showed an unsaved `TopDown3DPrototype*` scene, and the prototype file on disk contained no Rock Workbench objects. The screenshots are preserved; the exact editable arrangement is not yet captured. First save the scene in Unity, then inspect and preserve the actual member transforms and source volumes. Do not reconstruct exact geometry or dimensions from the screenshots, regenerate the user's members, or move the reference to the sandbox automatically.
+The user subsequently saved the prototype and clarified that **open scatter and rock pile will be hand-built separately by the user**. Do not derive or generate those references automatically. Only the mixed composition is active now.
 
-After source preservation, use the mixed reference for one complete rock-and-ground patch: slope-aware contact, sand accumulation, then gravel/pebble material depth and sparse protruding mesh stones. The open-scatter and pile variants should derive from the existing composition path while keeping the accepted source intact. Keep world identity, chunk ownership, streaming, and saved deltas in the current runtime owners. Tiny embedded clutter is material detail; substantial terrain height changes must agree with collision. Visible blowing sand follows the settled ground treatment. The next implementation brief must name this bounded patch and its terrain/material integration before edits; no broad catalog expansion or new geology platform is implied.
+The saved source has been preserved as [MixedPileScatterReference.prefab](../Assets/_Project/Art/Environment/Rocks/Source/MixedPileScatterReference.prefab), with persistent meshes in [MixedPileScatterReferenceMeshes.asset](../Assets/_Project/Art/Environment/Rocks/Source/MixedPileScatterReferenceMeshes.asset). It contains 19 independently editable Rock Workbench members and 38 source volumes. Its rendered bounds are approximately 5.6705 m wide, 6.9391 m long, and 1.1584 m high, centered at `(1.5698, 0.5064, -1.6461)` in the original prototype frame. The prefab root is identity-transformed and tagged `EditorOnly`: this is an authoring reference, not a new runtime formation or production mesh family.
+
+Capture used the saved scene in an isolated Unity copy, cloned the source members without regeneration, and baked their existing source volumes for persistent reference visibility. Reload validation compared all member authoring settings, descendant transforms, active states, and source-volume settings, and checked mesh/collider reference agreement. The original prototype scene and its unrelated saved changes were not rewritten or included in the capture commit. Do not reconstruct exact geometry or dimensions from the screenshots, regenerate the user's members, or move the reference to the sandbox automatically.
+
+## Next bounded batch: mixed formation ground contact
+
+Use the mixed reference for one complete rock-and-ground patch. Ground contact comes first, followed by deposited sand, gravel/pebble material depth with sparse protruding mesh stones, and finally visible blowing sand. The current batch begins with the following integration constraints:
+
+- Preserve the central pile's supported vertical relationships and the outlying rocks' spacing. Adapt ground-contact groups to the slope; do not ground every stacked member independently or overwrite the accepted reference.
+- Keep `TopDown3DWorldGenerator` as the adapter to the existing World Creator surface query. Rock plans already depend on that query, so terrain sampling must not recursively ask the same rock planner for its own height. Establish the base-ground/contact ordering before adding rock-driven sand heights.
+- Use the existing semantic wind and surface-material inputs for ground coverage. The currently disabled deposited-dust decorator is a visual overlay without collision; simply enabling it does not satisfy the ground-contact outcome.
+- Any substantial deposited-sand height must feed the same surface used for terrain rendering, normals, collision, and subsequent placement. Keep world seed/version ownership, absolute coordinates, chunk borders, unload/reload, and persisted deltas in the current runtime owners.
+- Tiny embedded gravel belongs in coordinated ground color, height, normal, and roughness textures; reserve sparse meshes for visible protrusions. Extend the existing terrain material instead of introducing a separate clutter world or duplicating materials by formation.
+- Expose only controls needed to shape this mixed patch in the existing authoring workflow. The captured prefab remains the untouched reference; do not add an A/B panel or generate the user's future scatter/pile examples.
+
+The next stop condition is one mixed composition seated convincingly against the ground with its central stack intact, followed by coherent sand and clutter treatment. Source and compile checks verify implementation safety; appearance remains user-owned. No broad catalog expansion or new geology platform is implied.
