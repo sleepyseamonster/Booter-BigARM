@@ -20,12 +20,14 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0f, 1f)] private float maximumRockBurial = 0.6f;
         [SerializeField, HideInInspector] private int burialRangeVersion;
         [SerializeField, Range(0f, 35f)] private float maximumRockTilt = 20f;
+        [SerializeField, Range(0f, 0.5f)] private float sandBuildup = 0.18f;
 
         public GameObject RockReference => rockReference;
         public float RockBurial => Mathf.Clamp01(rockBurial);
         public float MaximumRockBurial => Mathf.Clamp(
             burialRangeVersion == 0 ? Mathf.Max(0.6f, maximumRockBurial) : maximumRockBurial, RockBurial, 1f);
         public float MaximumRockTilt => Mathf.Clamp(maximumRockTilt, 0f, 35f);
+        public float SandBuildup => Mathf.Clamp(sandBuildup, 0f, 0.5f);
 
         public TopDown3DWorldSettings WorldSettings => worldSettings;
         public Material TerrainMaterial => terrainMaterial;

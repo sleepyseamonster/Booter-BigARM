@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** mixed-reference ground-contact authoring implemented on 2026-09-06; visual acceptance remains user-owned; deposited sand is next
+**Status:** mixed-reference ground contact and deposited-sand authoring implemented on 2026-09-06; visual acceptance remains user-owned; pebble detail is next
 
 ## Goal
 
@@ -147,3 +147,15 @@ The displayed terrain uses the production World Creator near-representation comp
 The source prefab, its persistent meshes, original scene rocks, production catalog, and runtime generation are unchanged. The temporary copy disables automatic remeshing and retains the saved material settings. This batch adds no world-identity/version changes, streaming ownership, or persisted deltas: it is editor-only authoring against the existing world surface. Production formation placement still requires a later integration step; the preview is not shipped placement.
 
 Source review and Unity 6000.4.0f1 compilation succeeded in an isolated project copy. No visual, gameplay, or automated test suite was run. The next implementation batch is deposited sand around this same mixed patch, respecting the shared height/collision constraints above, followed by pebble material depth and sparse protrusions. Do not generate the user's future open-scatter or pile references.
+
+### Deposited sand on the mixed authoring patch — implementation checkpoint
+
+Done for this batch means the existing mixed hierarchy control builds localized sand skirts and leeward tails around seated rocks, with a single Sand Buildup control, matching ground mesh/collision, and the existing terrain material. Extend the existing deposition planner with an explicit authored-obstruction input; do not call procedural rock planning from surface sampling. The sequence is immutable base terrain, rock grounding, frozen exposed-base constraints, then deposited height and material coverage. Do not re-ground the same rocks on their own deposit.
+
+Use current canonical material/wind semantics and absolute positions. Refinement interpolates the existing production triangles instead of inventing another base surface. Shared coordinates evaluate the same deposit across tile boundaries. The source formation stays immutable. All modified geometry is disposable editor context, removed on clear/rebuild/play; runtime world versions, generated identities, chunk streaming and persisted deltas remain unchanged in this authoring-only batch. Production adoption is not implied. Check source and compile in the isolated Unity copy; visual acceptance remains user-owned. Pebble assets, blowing sand, new formation examples, and further tilt tuning are outside this batch.
+
+Implemented: the existing mixed Inspector now has Sand Buildup (0–0.5 m, default 0.18 m) and Update Rocks & Ground. Grounding runs first. Exposed ground-contact rock bounds then become frozen inputs to the existing dust-deposition planner's authored sampling entry point. It uses canonical prevailing wind, sediment supply, deposit, erosion, and slope semantics for low skirts and tapered leeward tails. Deposits combine by maximum rather than stacking additive mounds; upper, suspended pile members do not receive their own ground collars. Buildup is limited by exposed rock height to retain some of small stones' visible silhouette.
+
+Only nearby disposable terrain tiles are refined to approximately 0.15 m spacing. Their base positions/materials interpolate the production triangle mesh; deposited height, shading normals, and existing terrain sand/gravel/strata weights are applied together. The renderer and MeshCollider share the resulting mesh. No separate overlay, new material, texture, collider surface, or automatic rock re-grounding is introduced. Zero Sand Buildup plus Update Rocks & Ground restores the base terrain, and rebuilding starts from the source rather than accumulating deformation.
+
+Unity 6000.4.0f1 compilation passed in the isolated project copy. Source review covered ordering, mesh ownership, source preservation and boundary sampling; no automated, gameplay or visual tests were run. Runtime production use remains deferred. Next is coordinated pebble/gravel material depth with sparse protruding stones in this same patch, then visible blowing sand; do not resume tilt tuning or generate the user's remaining hand-built examples.

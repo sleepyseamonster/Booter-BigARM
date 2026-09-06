@@ -71,6 +71,8 @@ namespace BooterBigArm.Editor
                     EditorStyles.miniLabel);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("maximumRockTilt"),
                     new GUIContent("Maximum Ground Tilt"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("sandBuildup"),
+                    new GUIContent("Sand Buildup (m)", "Deposited sand around exposed rock bases. Zero removes the sand treatment."));
                 EditorGUILayout.HelpBox(
                     "Each ground-contact rock receives stable bell-curve burial. Stacked rocks follow their supports. "
                     + "The saved reference and the original scene rocks stay intact. This authoring view clears in Play Mode.",
@@ -78,7 +80,7 @@ namespace BooterBigArm.Editor
             }
             else
             {
-                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt", "burialRangeVersion");
+                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt", "burialRangeVersion", "sandBuildup");
             }
             serializedObject.ApplyModifiedProperties();
 
@@ -90,7 +92,7 @@ namespace BooterBigArm.Editor
 
             using (new EditorGUI.DisabledScope(sandbox.WorldSettings == null || sandbox.TerrainMaterial == null))
             {
-                if (GUILayout.Button(sandbox.RockReference != null ? "Update Ground Contact" : "Build Terrain Context"))
+                if (GUILayout.Button(sandbox.RockReference != null ? "Update Rocks & Ground" : "Build Terrain Context"))
                 {
                     BuildTerrainContext(sandbox);
                 }
@@ -260,6 +262,7 @@ namespace BooterBigArm.Editor
                 rocks[i].transform.SetPositionAndRotation(poses[i].Position, poses[i].Rotation);
             foreach (var child in copy.GetComponentsInChildren<Transform>(true))
                 child.gameObject.hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable;
+            TopDown3DMixedFormationSand.Apply(sandbox, ground, rocks);
         }
 
         internal static void ClearTerrainContext(TopDown3DLandscapeAuthoringSandbox sandbox)

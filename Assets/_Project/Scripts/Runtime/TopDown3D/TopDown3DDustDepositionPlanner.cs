@@ -99,6 +99,68 @@ namespace BooterBigArm.TopDown3D
     {
         private const float MinimumVisibleWeight = 0.025f;
 
+        /// <summary>Frozen, already-seated authored rock base; never obtained by recursively planning rocks.</summary>
+        public readonly struct AuthoredObstruction
+        {
+            public AuthoredObstruction(Vector2 center, Vector2 halfSize, float exposedHeight)
+            {
+                Center = center;
+                HalfSize = new Vector2(Mathf.Max(0.05f, halfSize.x), Mathf.Max(0.05f, halfSize.y));
+                ExposedHeight = Mathf.Max(0f, exposedHeight);
+            }
+
+            public Vector2 Center { get; }
+            public Vector2 HalfSize { get; }
+            public float ExposedHeight { get; }
+        }
+
+        public static TopDown3DDustDepositionSample SampleAuthoredDeposit(
+            TopDown3DWorldSettings settings,
+            WorldSurfaceMaterialSample material,
+            Vector2 position,
+            IReadOnlyList<AuthoredObstruction> obstructions,
+            float buildup)
+        {
+            var strongest = 0f;
+            var height = 0f;
+            var wind = DirectionFromTurns(material.PrevailingWindDirection);
+            var acrossWind = new Vector2(-wind.y, wind.x);
+            var slopeGate = 1f - SmoothStepRange(settings.MaximumDustDepositionSlope * 0.7f,
+                settings.MaximumDustDepositionSlope, material.SlopeDegrees);
+            var supply = Mathf.Lerp(0.55f, 1f, material.Sediment)
+                * Mathf.Lerp(0.7f, 1f, material.Deposit)
+                * Mathf.Lerp(1f, 0.72f, material.WindExposure * material.Erosion);
+            if (buildup <= 0f || slopeGate <= 0f || obstructions == null) return default;
+            foreach (var source in obstructions)
+            {
+                if (source.ExposedHeight <= 0.01f) continue;
+                var delta = position - source.Center;
+                var radius = Mathf.Min(source.HalfSize.x, source.HalfSize.y);
+                var radial = new Vector2(delta.x / source.HalfSize.x, delta.y / source.HalfSize.y).magnitude;
+                var edgeDistance = Mathf.Max(0f, radial - 1f) * radius;
+                var skirtWidth = Mathf.Clamp(source.ExposedHeight * 1.3f + 0.18f, 0.22f, 0.85f);
+                var along = Vector2.Dot(delta, wind);
+                var across = Mathf.Abs(Vector2.Dot(delta, acrossWind));
+                var lee = SmoothStepRange(-radius, radius, along);
+                var skirt = (1f - SmoothStepRange(0f, skirtWidth, edgeDistance))
+                    * Mathf.Lerp(0.22f, 0.8f, lee);
+                var length = Mathf.Min(settings.DustWakeLength,
+                    Mathf.Max(0.65f, source.ExposedHeight * 4f + radius));
+                var farFade = 1f - SmoothStepRange(length * 0.2f, length, along);
+                var width = Mathf.Max(source.HalfSize.x, source.HalfSize.y)
+                    * settings.DustWakeWidthMultiplier * Mathf.Sqrt(farFade);
+                var wake = SmoothStepRange(0f, radius, along) * farFade
+                    * (1f - SmoothStepRange(width * 0.2f, Mathf.Max(0.001f, width), across));
+                var weight = Mathf.Max(skirt, wake) * slopeGate * supply;
+                strongest = Mathf.Max(strongest, weight);
+                // Maximum, not sum: touching rocks must not create towering additive mounds.
+                height = Mathf.Max(height, weight * Mathf.Min(buildup, source.ExposedHeight * 0.65f));
+            }
+            return new TopDown3DDustDepositionSample(
+                strongest * Mathf.Clamp01(buildup / 0.12f), height, strongest,
+                checked((float)material.Position.Vertical), material.WindExposure, material.Erosion, material.Deposit);
+        }
+
         public static TopDown3DDustDepositionPlan BuildPlan(
             TopDown3DWorldSettings settings,
             TopDown3DWorldGenerator generator,
