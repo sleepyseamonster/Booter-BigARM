@@ -70,6 +70,7 @@ namespace BooterBigArm.Editor
                 var normals = new Vector3[vertices.Length];
                 var colors = new Color[vertices.Length];
                 var uvs = new Vector2[vertices.Length];
+                var bankMasks = new Vector2[vertices.Length];
                 var triangles = new int[quads * quads * 6];
                 var visible = false;
                 for (var z = 0; z < size; z++)
@@ -102,6 +103,9 @@ namespace BooterBigArm.Editor
                         colors[index] = new Color(Mathf.Lerp(basis.Color.r, 1f, coverage),
                             basis.Color.g * (1f - coverage), basis.Color.b * (1f - coverage), basis.Color.a);
                         uvs[index] = point / sandbox.WorldSettings.ChunkSize;
+                        // Dedicated deposit-depth mask, independent of the terrain's broad sand biome weight.
+                        bankMasks[index] = new Vector2(0f, Mathf.SmoothStep(0f, 1f,
+                            Mathf.Clamp01(deposit.Height / 0.25f)));
                     }
                 }
                 if (!visible) continue;
@@ -128,6 +132,7 @@ namespace BooterBigArm.Editor
                 mesh.SetNormals(normals);
                 mesh.SetColors(colors);
                 mesh.SetUVs(0, uvs);
+                mesh.SetUVs(1, bankMasks);
                 mesh.SetTriangles(triangles, 0, true);
                 mesh.RecalculateBounds();
                 // Renderer and ground queries see the very same displaced triangles.

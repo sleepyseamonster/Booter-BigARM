@@ -41,9 +41,10 @@ namespace BooterBigArm.Editor
             {
                 var mesh = ground.sharedMesh;
                 var vertices = mesh.vertices;
-                var mask = new Vector2[vertices.Length];
+                var mask = mesh.uv2;
+                if (mask.Length != vertices.Length) mask = new Vector2[vertices.Length];
                 for (var i = 0; i < vertices.Length; i++)
-                    mask[i] = new Vector2(Coverage(ground.transform.TransformPoint(vertices[i])), 0f);
+                    mask[i].x = Coverage(ground.transform.TransformPoint(vertices[i]));
                 mesh.SetUVs(1, mask);
                 var groundRenderer = ground.GetComponent<MeshRenderer>();
                 var properties = new MaterialPropertyBlock();

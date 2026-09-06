@@ -161,7 +161,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 half3 normalWS : TEXCOORD1;
                 half fogFactor : TEXCOORD2;
                 half4 geologyWeights : TEXCOORD3;
-                half clutter : TEXCOORD4;
+                half2 clutter : TEXCOORD4;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
             };
@@ -295,7 +295,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 output.normalWS = normals.normalWS;
                 output.fogFactor = ComputeFogFactor(positions.positionCS.z);
                 output.geologyWeights = input.color;
-                output.clutter = input.clutter.x;
+                output.clutter = input.clutter;
                 return output;
             }
 
@@ -435,6 +435,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                         farMipLevel,
                         TEXTURE2D_ARGS(_RockyMap, sampler_RockyMap));
 
+                    // Authoring bank mask retains sand detail while bringing it into the local earth palette.
+                    farSweptAlbedo = lerp(farSweptAlbedo, farBaseAlbedo, input.clutter.y * 0.55);
                     half3 farAlbedo = lerp(farBaseAlbedo, farSweptAlbedo, sweptMask);
                     farAlbedo = lerp(farAlbedo, farGravelAlbedo, gravelMask);
                     farAlbedo = lerp(farAlbedo, farRockyAlbedo, rockyMask);
@@ -468,7 +470,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     farInputData.shadowMask = half4(1.0, 1.0, 1.0, 1.0);
 
                     ApplyPebbles(groundPosition, viewDirectionWS,
-                        input.clutter * _PebbleDetail * (1.0 - smoothstep(0.55, 0.9, sandSignal)), pixelFootprint,
+                        input.clutter.x * _PebbleDetail * (1.0 - 0.85 * smoothstep(0.25, 0.9, input.clutter.y)), pixelFootprint,
                         farInputData.normalWS, farSurfaceData);
                     half4 farColor = UniversalFragmentPBR(farInputData, farSurfaceData);
                     farColor.rgb = MixFog(farColor.rgb, input.fogFactor);
@@ -637,6 +639,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     rockyHeight,
                     rockyCenterBlend);
 
+                sweptAlbedo = lerp(sweptAlbedo, baseAlbedo, input.clutter.y * 0.55);
+                sweptTransitionAlbedo = lerp(sweptTransitionAlbedo, baseAlbedo, input.clutter.y * 0.55);
                 half3 albedo = lerp(baseAlbedo, sweptTransitionAlbedo, sweptTransitionMask);
                 albedo = lerp(albedo, sweptAlbedo, sweptMask);
                 albedo = lerp(albedo, gravelTransitionAlbedo, gravelTransitionMask);
@@ -690,7 +694,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 inputData.shadowMask = half4(1.0, 1.0, 1.0, 1.0);
 
                 ApplyPebbles(groundPosition, viewDirectionWS,
-                    input.clutter * _PebbleDetail * (1.0 - smoothstep(0.55, 0.9, sandSignal)), pixelFootprint,
+                    input.clutter.x * _PebbleDetail * (1.0 - 0.85 * smoothstep(0.25, 0.9, input.clutter.y)), pixelFootprint,
                     inputData.normalWS, surfaceData);
                 half4 color = UniversalFragmentPBR(inputData, surfaceData);
                 color.rgb = MixFog(color.rgb, input.fogFactor);
