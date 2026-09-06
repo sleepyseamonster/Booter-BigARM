@@ -25,8 +25,12 @@ namespace BooterBigArm.Editor
                 var floor = SampleBase(tiles, center).Height;
                 // A suspended upper member is supported by the pile, not a separate ground collar.
                 if (bounds.min.y > floor + 0.15f || bounds.max.y <= floor + 0.01f) continue;
+                // The widest part of the rock can sit well above its buried base. Anchor the
+                // bank to a mesh cross-section near ground contact, not the whole renderer box.
+                var contact = ContactFootprint(rock, bounds, floor, sandbox.SandBuildup);
+                center = new Vector2(contact.center.x, contact.center.z);
                 var source = new TopDown3DDustDepositionPlanner.AuthoredObstruction(
-                    center, new Vector2(bounds.extents.x, bounds.extents.z), bounds.max.y - floor);
+                    center, new Vector2(contact.extents.x, contact.extents.z), bounds.max.y - floor);
                 sources.Add(source);
                 var radius = Mathf.Min(source.HalfSize.x, source.HalfSize.y);
                 var extent = source.HalfSize * (1f + 0.85f / radius)
@@ -130,6 +134,40 @@ namespace BooterBigArm.Editor
                 tile.Collider.sharedMesh = mesh;
             }
             Physics.SyncTransforms();
+        }
+
+        private static Bounds ContactFootprint(TopDown3DRockWorkbenchAuthoring rock,
+            Bounds bounds, float floor, float buildup)
+        {
+            var mesh = rock.GetComponent<MeshFilter>().sharedMesh;
+            var vertices = mesh.vertices;
+            var matrix = rock.transform.localToWorldMatrix;
+            for (var i = 0; i < vertices.Length; i++) vertices[i] = matrix.MultiplyPoint3x4(vertices[i]);
+            var level = Mathf.Clamp(floor + Mathf.Min(buildup * 0.35f, (bounds.max.y - floor) * 0.2f),
+                bounds.min.y + 0.001f, bounds.max.y - 0.001f);
+            var found = false;
+            var footprint = new Bounds();
+            void IncludeCrossing(Vector3 a, Vector3 b)
+            {
+                if ((a.y < level && b.y < level) || (a.y > level && b.y > level)) return;
+                var dy = b.y - a.y;
+                if (Mathf.Abs(dy) < 0.000001f) return;
+                var point = Vector3.Lerp(a, b, (level - a.y) / dy);
+                if (!found) { footprint = new Bounds(point, Vector3.zero); found = true; }
+                else footprint.Encapsulate(point);
+            }
+            var triangles = mesh.triangles;
+            for (var i = 0; i < triangles.Length; i += 3)
+            {
+                var a = vertices[triangles[i]];
+                var b = vertices[triangles[i + 1]];
+                var c = vertices[triangles[i + 2]];
+                IncludeCrossing(a, b);
+                IncludeCrossing(b, c);
+                IncludeCrossing(c, a);
+            }
+            if (!found) throw new InvalidOperationException($"Cannot locate the sand-contact contour of {rock.name}.");
+            return footprint;
         }
 
         private static Surface SampleBase(List<BaseTile> tiles, Vector2 point)

@@ -138,7 +138,7 @@ namespace BooterBigArm.TopDown3D
                 var radius = Mathf.Min(source.HalfSize.x, source.HalfSize.y);
                 var radial = new Vector2(delta.x / source.HalfSize.x, delta.y / source.HalfSize.y).magnitude;
                 var edgeDistance = Mathf.Max(0f, radial - 1f) * radius;
-                var skirtWidth = Mathf.Clamp(source.ExposedHeight * 1.3f + 0.18f, 0.22f, 0.85f);
+                var skirtWidth = Mathf.Clamp(source.ExposedHeight * 0.8f + 0.1f, 0.14f, 0.55f);
                 var along = Vector2.Dot(delta, wind);
                 var across = Mathf.Abs(Vector2.Dot(delta, acrossWind));
                 var lee = SmoothStepRange(-radius, radius, along);
@@ -154,7 +154,7 @@ namespace BooterBigArm.TopDown3D
                 var weight = Mathf.Max(skirt, wake) * slopeGate * supply;
                 strongest = Mathf.Max(strongest, weight);
                 // Maximum, not sum: touching rocks must not create towering additive mounds.
-                height = Mathf.Max(height, weight * Mathf.Min(buildup, source.ExposedHeight * 0.65f));
+                height = Mathf.Max(height, weight * Mathf.Min(buildup, source.ExposedHeight * 0.95f));
             }
             return new TopDown3DDustDepositionSample(
                 strongest * Mathf.Clamp01(buildup / 0.12f), height, strongest,

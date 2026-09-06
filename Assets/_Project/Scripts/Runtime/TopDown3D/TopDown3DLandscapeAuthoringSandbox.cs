@@ -20,14 +20,16 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0f, 1f)] private float maximumRockBurial = 0.6f;
         [SerializeField, HideInInspector] private int burialRangeVersion;
         [SerializeField, Range(0f, 35f)] private float maximumRockTilt = 20f;
-        [SerializeField, Range(0f, 0.5f)] private float sandBuildup = 0.18f;
+        // Legacy initializer is doubled once below, for both existing and new mixed setups.
+        [SerializeField, Range(0f, 1f)] private float sandBuildup = 0.18f;
+        [SerializeField, HideInInspector] private int sandBuildupVersion;
 
         public GameObject RockReference => rockReference;
         public float RockBurial => Mathf.Clamp01(rockBurial);
         public float MaximumRockBurial => Mathf.Clamp(
             burialRangeVersion == 0 ? Mathf.Max(0.6f, maximumRockBurial) : maximumRockBurial, RockBurial, 1f);
         public float MaximumRockTilt => Mathf.Clamp(maximumRockTilt, 0f, 35f);
-        public float SandBuildup => Mathf.Clamp(sandBuildup, 0f, 0.5f);
+        public float SandBuildup => Mathf.Clamp01(sandBuildupVersion == 0 ? sandBuildup * 2f : sandBuildup);
 
         public TopDown3DWorldSettings WorldSettings => worldSettings;
         public Material TerrainMaterial => terrainMaterial;
@@ -52,11 +54,21 @@ namespace BooterBigArm.TopDown3D
         {
             rockReference = reference;
             UpgradeBurialRange();
+            UpgradeSandBuildup();
         }
 
         private void OnValidate()
         {
-            if (rockReference != null) UpgradeBurialRange();
+            if (rockReference == null) return;
+            UpgradeBurialRange();
+            UpgradeSandBuildup();
+        }
+
+        private void UpgradeSandBuildup()
+        {
+            if (sandBuildupVersion != 0) return;
+            sandBuildup = Mathf.Clamp01(sandBuildup * 2f);
+            sandBuildupVersion = 1;
         }
 
         private void UpgradeBurialRange()
