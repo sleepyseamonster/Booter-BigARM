@@ -73,6 +73,16 @@ MonoBehaviour:
     sinkDepth: 0.22
     maximumTilt: 18
     footprintRadius: 0.15
+  - stableId: approved-boulder-scatter
+    layer: 1
+    rockSizeTier: 0
+    shape: 3
+    weight: 2.5
+    uniformScaleRange: {x: 0.22, y: 0.58}
+    proportions: {x: 1, y: 0.82, z: 1}
+    sinkDepth: 0.2
+    maximumTilt: 22
+    footprintRadius: 0.22
   - stableId: gravel-chip
     layer: 0
     rockSizeTier: 0

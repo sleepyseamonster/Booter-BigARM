@@ -39,9 +39,10 @@ MonoBehaviour:
   naturalObjectCatalog: {fileID: 11400000, guid: 03ec8052e2404ee19712ee02d05deb23, type: 2}
   naturalObjectGenerationVersion: 3
   physicalRockGenerationVersion: 7
+  physicalRockAdditionalBurialFraction: 0.12
   resourceCatalog: {fileID: 11400000, guid: 70f7abf6fb143476ca72d1f9eba36e18, type: 2}
   resourceGenerationVersion: 1
-  scatterObjectsPerChunk: 22
+  scatterObjectsPerChunk: 30
   groundDetailsPerChunk: 72
   clutterClusterFrequency: 0.08
   clutterClusterStrength: 0.9

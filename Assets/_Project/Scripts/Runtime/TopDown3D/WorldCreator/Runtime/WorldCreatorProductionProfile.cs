@@ -28,7 +28,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         [SerializeField, Min(1)] private int coordinateVersion = 1;
         [SerializeField, Min(1)] private int landformVersion = CurrentLandformVersion;
         [SerializeField, Min(1)] private int materialVersion = 1;
-        [SerializeField, Min(1)] private int decorationVersion = 1;
+        [SerializeField, Min(1)] private int decorationVersion = 2;
         [SerializeField, Min(1)] private int resourceVersion = 1;
         [SerializeField, Min(1)] private int siteVersion = CurrentSiteVersion;
 

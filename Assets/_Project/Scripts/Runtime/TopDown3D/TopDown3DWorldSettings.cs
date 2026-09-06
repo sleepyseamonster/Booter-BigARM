@@ -23,10 +23,16 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DNaturalObjectCatalog naturalObjectCatalog;
         [SerializeField, Min(1)] private int naturalObjectGenerationVersion = 3;
         [SerializeField, Min(1)] private int physicalRockGenerationVersion = 7;
+        [Header("Physical Rock Placement")]
+        [SerializeField, Range(0f, 0.3f)]
+        [Tooltip(
+            "How far complete rock formations sit into the terrain. "
+            + "Each formation varies automatically while all of its rocks stay together.")]
+        private float physicalRockAdditionalBurialFraction = 0.12f;
         [Header("Interactive Resources")]
         [SerializeField] private TopDown3DResourceCatalog resourceCatalog;
         [SerializeField, Min(1)] private int resourceGenerationVersion = 1;
-        [SerializeField, Range(0, 64)] private int scatterObjectsPerChunk = 22;
+        [SerializeField, Range(0, 64)] private int scatterObjectsPerChunk = 30;
         [SerializeField, Range(0, 160)] private int groundDetailsPerChunk = 72;
         [SerializeField, Min(0.0001f)] private float clutterClusterFrequency = 0.08f;
         [SerializeField, Range(0f, 1f)] private float clutterClusterStrength = 0.9f;
@@ -115,6 +121,7 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DNaturalObjectCatalog NaturalObjectCatalog => naturalObjectCatalog;
         public int NaturalObjectGenerationVersion => naturalObjectGenerationVersion;
         public int PhysicalRockGenerationVersion => physicalRockGenerationVersion;
+        public float PhysicalRockAdditionalBurialFraction => physicalRockAdditionalBurialFraction;
         public TopDown3DResourceCatalog ResourceCatalog => resourceCatalog;
         public int ResourceGenerationVersion => resourceGenerationVersion;
         public int ScatterObjectsPerChunk => scatterObjectsPerChunk;
@@ -218,6 +225,10 @@ namespace BooterBigArm.TopDown3D
             propsPerChunk = Mathf.Clamp(propsPerChunk, 0f, 4f);
             naturalObjectGenerationVersion = Mathf.Max(1, naturalObjectGenerationVersion);
             physicalRockGenerationVersion = Mathf.Max(1, physicalRockGenerationVersion);
+            physicalRockAdditionalBurialFraction = Mathf.Clamp(
+                physicalRockAdditionalBurialFraction,
+                0f,
+                0.3f);
             resourceGenerationVersion = Mathf.Max(1, resourceGenerationVersion);
             scatterObjectsPerChunk = Mathf.Clamp(scatterObjectsPerChunk, 0, 64);
             groundDetailsPerChunk = Mathf.Clamp(groundDetailsPerChunk, 0, 160);

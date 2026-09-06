@@ -13,6 +13,8 @@ namespace BooterBigArm.TopDown3D
     internal static class TopDown3DGeologicalRockAdapter
     {
         private const int PlacementAttempts = 10;
+        private const float MaximumAdditionalBurialDepth = 0.45f;
+        private const ulong AdditionalBurialSalt = 0xA54FF53AUL;
         private static readonly ProfilerMarker PlanMarker =
             new ProfilerMarker("TopDown3D.World.PlanGeologicalRocks");
 
@@ -130,6 +132,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             if (members.Count == 0) return false;
+            LowerFormationForGroundContact(settings, source.Id, members);
             GetEnvelope(members, out var envelopeCenter, out var envelopeRadius, out var height);
             var root = members[0];
             var reservationSpan = source.ReservationScale == WorldRockReservationScale.LandformAnchor
@@ -155,6 +158,45 @@ namespace BooterBigArm.TopDown3D
                 envelopeRadius,
                 height);
             return true;
+        }
+
+        private static void LowerFormationForGroundContact(
+            TopDown3DWorldSettings settings,
+            WorldFeatureId formationId,
+            IList<TopDown3DRockFormationMember> members)
+        {
+            if (members.Count == 0 || settings.PhysicalRockAdditionalBurialFraction <= 0f)
+                return;
+
+            var variation = Mathf.Lerp(
+                0.65f,
+                1.35f,
+                Stable01(formationId, AdditionalBurialSalt));
+            var burialDepth = Mathf.Min(
+                members[0].WorldBounds.size.y
+                    * settings.PhysicalRockAdditionalBurialFraction
+                    * variation,
+                MaximumAdditionalBurialDepth);
+            var offset = Vector3.down * burialDepth;
+            for (var memberIndex = 0; memberIndex < members.Count; memberIndex++)
+            {
+                var member = members[memberIndex];
+                var bounds = member.WorldBounds;
+                bounds.center += offset;
+                members[memberIndex] = new TopDown3DRockFormationMember(
+                    member.StableId,
+                    member.DefinitionStableId,
+                    member.Tier,
+                    member.Shape,
+                    member.Variant,
+                    member.Position + offset,
+                    member.Rotation,
+                    member.Scale,
+                    member.MemberIndex,
+                    member.ParentIndex,
+                    member.SupportRadius,
+                    bounds);
+            }
         }
 
         private static bool TryPlaceMember(

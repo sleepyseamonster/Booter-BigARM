@@ -132,7 +132,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
     /// </summary>
     public sealed class WorldRockFormationPlanner
     {
-        public const double FormationReservationSpan = 44d;
+        public const double FormationReservationSpan = 32d;
         public const double LandformReservationSpan = 96d;
         private static readonly WorldSeedNamespace FormationNamespace =
             new WorldSeedNamespace(WorldVersionDomain.Decoration, "geological-rock-formations");
