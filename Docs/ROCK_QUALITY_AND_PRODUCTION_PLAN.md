@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** step 6 bounded family expansion implemented on 2026-09-06; ready for user review
+**Status:** family expansion implemented; mixed pile/scatter composition accepted on 2026-09-06, awaiting saved editable scene source
 
 ## Goal
 
@@ -97,7 +97,7 @@ Derive a small, purposeful family set from the accepted grammar. Then tune distr
 
 Source review and compile safety can show that the tool is coherent. They cannot approve appearance. The user owns Scene/Game visual acceptance and hands-on testing. No automated screenshot, A/B scaffold, or test count substitutes for the Golden Rock decision.
 
-## Current stop condition
+## Completed family expansion
 
 Steps 3–5 are implemented: the saved `ApprovedBoulderFamilyRecipe.asset` captures the accepted source, the existing baker emits three Boulder variants with LODs and collider bounds, and World Creator consumes those catalog slots. Subsequent user-directed corrections preserved recipe burial, unified the rock surface color, and increased formation burial and distribution (`d3cc446`). These are implementation facts; visual acceptance remains user-owned.
 
@@ -108,3 +108,17 @@ Scope is nine existing catalog slots: three variants each of Boulder, Slab, and 
 Stop when these three roles are baked into the current catalog and the simple build command reproduces them. Validate compilation, mesh/LOD/collider references, source preservation, and transformed normals. Leave appearance to the user. Do not advance to formations, landmarks, further density tuning, or terrain systems in this batch; composition is the following plan step once this family set is visually settled.
 
 Implementation checkpoint: the existing command now bakes all nine slots. Six Slab/Nodule variants (18 LOD assets) and their catalog collider bounds were updated; Boulder geometry, all mesh GUIDs, the source recipe, and production materials were preserved. Unity 6000.4.0f1 compiled and baked successfully in an isolated copy, including the catalog/LOD validator. The five focused baker checks and five canonical formation checks passed. No gameplay or visual test was run. The next user-facing work is formation composition with this small family set, after visual review; further individual-rock tuning is not the automatic next step.
+
+## Accepted composition and current stop condition
+
+On 2026-09-06 the user built and accepted a mixed pile/scatter arrangement in `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`, not the sandbox. The supplied [top view](./Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Top_2026-09-06.png) and [side view](./Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Side_2026-09-06.png) are retained as visual authoring references. They show a dense, raised central group, smaller satellite pairs, isolated stones, unequal spacing, and open ground between groups. This is acceptance of the rock composition; sand, slope integration, and clutter are still to be developed.
+
+The user requests three distinct composition types:
+
+- **Open scatter:** more separation and exposed ground between individual rocks and small groups.
+- **Mixed pile and scatter:** preserve this accepted arrangement as the reference, including the compact center and outlying rocks.
+- **Rock pile:** tighter concentration and more supported stacking than the mixed reference.
+
+At capture time the screenshot showed an unsaved `TopDown3DPrototype*` scene, and the prototype file on disk contained no Rock Workbench objects. The screenshots are preserved; the exact editable arrangement is not yet captured. First save the scene in Unity, then inspect and preserve the actual member transforms and source volumes. Do not reconstruct exact geometry or dimensions from the screenshots, regenerate the user's members, or move the reference to the sandbox automatically.
+
+After source preservation, use the mixed reference for one complete rock-and-ground patch: slope-aware contact, sand accumulation, then gravel/pebble material depth and sparse protruding mesh stones. The open-scatter and pile variants should derive from the existing composition path while keeping the accepted source intact. Keep world identity, chunk ownership, streaming, and saved deltas in the current runtime owners. Tiny embedded clutter is material detail; substantial terrain height changes must agree with collision. Visible blowing sand follows the settled ground treatment. The next implementation brief must name this bounded patch and its terrain/material integration before edits; no broad catalog expansion or new geology platform is implied.
