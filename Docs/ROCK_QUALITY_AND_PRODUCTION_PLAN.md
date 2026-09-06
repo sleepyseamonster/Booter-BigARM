@@ -1,10 +1,18 @@
 # Rock Quality And Production Plan
 
-**Status:** user accepted the improved gravel on 2026-09-06. Subtle blowing sand added to the same mixed-formation editor preview; motion awaits user visual review.
+**Status:** user accepted the improved gravel and deferred blowing sand on 2026-09-06. Blowing sand is off. Next: preserve the mixed patch's current ground settings, then prepare production integration through the existing world owners.
 
 ## Goal
 
 Create excellent, readable rocks through one simple Unity hierarchy workflow, then translate the accepted shape language into deterministic editor-baked production assets for the procedural world.
+
+## Current next step — blowing sand deferred, 2026-09-06
+
+The user directed that blowing sand remain off and work move on. Its earlier 0.35 default is superseded by zero, with a one-time reset of existing preview settings. The slider remains available for later opt-in; animation acceptance is no longer a gate for the static patch. Rock shape, arrangement, burial, deposited sand, and clutter are not retuned.
+
+First preserve the approved mixed patch's actual serialized authoring settings alongside its already captured source formation. Read-only inspection found no Mixed Formation Ground root or its burial/sand/clutter fields in the saved TopDown3D scene files at this checkpoint. The user must save the current scene before an exact capture; do not infer Inspector values from screenshots or substitute defaults. Do not overwrite the live scene from a batch-mode copy.
+
+After capture, scope the production handoff around the existing World Creator formation planner, baked catalog, and terrain representation pipeline: retain authored member/support relationships and stable member IDs; fit rocks to immutable base ground; derive deposited heights and clutter from the frozen placed rocks; share the final surface between rendering and collision. Check chunk ownership/border evaluation and unload/reload before enabling production placement. Any generation-version or persisted-delta compatibility change must be explicitly identified, not silently folded into visual tuning. This is the next integration direction, not a claim that the editor patch already ships. No new runtime world authority, automatic scatter/pile reference, or further blowing-sand work is authorized by this handoff.
 
 Crimson Desert is the primary visual model. Horizon Forbidden West supports artist-readable authoring and terrain integration. Path of Exile 2 supports elevated-camera silhouette and material readability. These references guide quality and composition; their assets are not copied.
 

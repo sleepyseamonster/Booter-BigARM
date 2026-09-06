@@ -24,7 +24,8 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0f, 1f)] private float sandBuildup = 0.18f;
         [SerializeField, HideInInspector] private int sandBuildupVersion;
         [SerializeField, Range(0f, 1f)] private float groundClutter = 0.7f;
-        [SerializeField, Range(0f, 1f)] private float blowingSand = 0.35f;
+        [SerializeField, Range(0f, 1f)] private float blowingSand;
+        [SerializeField, HideInInspector] private bool blowingSandOffDefaultApplied;
 
         public GameObject RockReference => rockReference;
         public float RockBurial => Mathf.Clamp01(rockBurial);
@@ -33,7 +34,7 @@ namespace BooterBigArm.TopDown3D
         public float MaximumRockTilt => Mathf.Clamp(maximumRockTilt, 0f, 35f);
         public float SandBuildup => Mathf.Clamp01(sandBuildupVersion == 0 ? sandBuildup * 2f : sandBuildup);
         public float GroundClutter => Mathf.Clamp01(groundClutter);
-        public float BlowingSand => Mathf.Clamp01(blowingSand);
+        public float BlowingSand => blowingSandOffDefaultApplied ? Mathf.Clamp01(blowingSand) : 0f;
 
         public TopDown3DWorldSettings WorldSettings => worldSettings;
         public Material TerrainMaterial => terrainMaterial;
@@ -59,6 +60,7 @@ namespace BooterBigArm.TopDown3D
             rockReference = reference;
             UpgradeBurialRange();
             UpgradeSandBuildup();
+            ApplyBlowingSandOffDefault();
         }
 
         private void OnValidate()
@@ -66,6 +68,16 @@ namespace BooterBigArm.TopDown3D
             if (rockReference == null) return;
             UpgradeBurialRange();
             UpgradeSandBuildup();
+            ApplyBlowingSandOffDefault();
+        }
+
+        private void ApplyBlowingSandOffDefault()
+        {
+            if (blowingSandOffDefaultApplied) return;
+            // User deferred this effect. Turn existing previews off once, without
+            // preventing an explicit future opt-in through the existing slider.
+            blowingSand = 0f;
+            blowingSandOffDefaultApplied = true;
         }
 
         private void UpgradeSandBuildup()
