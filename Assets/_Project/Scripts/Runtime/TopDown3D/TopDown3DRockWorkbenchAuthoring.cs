@@ -34,6 +34,8 @@ namespace BooterBigArm.TopDown3D
         public const int GoldenRockSeed = 2126351350;
         public const float GoldenRockWidth = 1f;
         public const float GoldenRockBodyLength = 0.75f;
+        public const float MinimumGeneratedRockDimension = 0.2f;
+        public const float MaximumGeneratedRockDimension = 1.2f;
         public const int CurrentStandalonePhysicalScaleVersion = 1;
         public const float LegacyStandalonePhysicalBake = 0.1f;
         public const float MinimumStandaloneRockWidth = 0.075f;
@@ -306,6 +308,22 @@ namespace BooterBigArm.TopDown3D
         public void SetGenerationSeed(int seed)
         {
             generationSeed = seed;
+        }
+
+        public void SetGeneratedDimensions(float width, float bodyLength)
+        {
+            generatedOverallScale = Mathf.Clamp(
+                width,
+                MinimumStandaloneRockWidth,
+                MaximumStandaloneRockWidth);
+            generatedHeight = Mathf.Clamp(
+                bodyLength,
+                MinimumStandaloneRockHeight,
+                MaximumStandaloneRockHeight);
+            generatedOverallSize = new Vector3(
+                generatedOverallScale,
+                generatedHeight,
+                generatedOverallScale);
         }
 
         /// <summary>

@@ -56,6 +56,9 @@ namespace BooterBigArm.Editor
         private const float MaximumGoldenRockBurialFraction = 0.12f;
         private const int GoldenRockYawSalt = unchecked((int)0xD1B54A35);
         private const int GoldenRockBurialSalt = unchecked((int)0x94D049BB);
+        private const int StandaloneWidthSalt = unchecked((int)0xA24BAED4);
+        private const int StandaloneBodyLengthSalt = unchecked((int)0x9FB21C65);
+        private const int DimensionBellSampleCount = 3;
 
         internal static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> CreatePlan(
             int seed,
@@ -230,6 +233,16 @@ namespace BooterBigArm.Editor
             return seed == currentSeed ? unchecked(seed ^ (int)0x9E3779B9) : seed;
         }
 
+        internal static void GenerateNewIntoWorkbench(
+            TopDown3DRockWorkbenchAuthoring authoring)
+        {
+            if (authoring == null) return;
+            GenerateIntoWorkbench(
+                authoring,
+                CreateNewSeed(authoring.GenerationSeed),
+                true);
+        }
+
         internal static int DeriveVolumeShapeSeed(int generationSeed, int volumeIndex)
         {
             unchecked
@@ -248,6 +261,14 @@ namespace BooterBigArm.Editor
             TopDown3DRockWorkbenchAuthoring authoring,
             int seed)
         {
+            GenerateIntoWorkbench(authoring, seed, false);
+        }
+
+        private static void GenerateIntoWorkbench(
+            TopDown3DRockWorkbenchAuthoring authoring,
+            int seed,
+            bool randomizeStandaloneDimensions)
+        {
             if (authoring == null) return;
 
             const string undoName = "Generate Base Rock";
@@ -259,6 +280,11 @@ namespace BooterBigArm.Editor
                 Undo.RecordObject(authoring, undoName);
                 authoring.ApplyStandalonePhysicalScale();
                 authoring.SetGenerationSeed(seed);
+                if (randomizeStandaloneDimensions && !authoring.IsFormationMember)
+                {
+                    var dimensions = CreateBellCurvedStandaloneDimensions(seed);
+                    authoring.SetGeneratedDimensions(dimensions.x, dimensions.y);
+                }
 
                 if (!authoring.IsFormationMember)
                 {
@@ -317,6 +343,29 @@ namespace BooterBigArm.Editor
             {
                 Undo.CollapseUndoOperations(undoGroup);
             }
+        }
+
+        private static Vector2 CreateBellCurvedStandaloneDimensions(int seed)
+        {
+            return new Vector2(
+                SampleBellCurvedDimension(seed, StandaloneWidthSalt),
+                SampleBellCurvedDimension(seed, StandaloneBodyLengthSalt));
+        }
+
+        private static float SampleBellCurvedDimension(int seed, int salt)
+        {
+            var normalized = 0f;
+            for (var sample = 0; sample < DimensionBellSampleCount; sample++)
+            {
+                normalized += HashToUnitFloat(
+                    DeriveVolumeShapeSeed(seed ^ salt, sample));
+            }
+
+            normalized /= DimensionBellSampleCount;
+            return Mathf.Lerp(
+                TopDown3DRockWorkbenchAuthoring.MinimumGeneratedRockDimension,
+                TopDown3DRockWorkbenchAuthoring.MaximumGeneratedRockDimension,
+                normalized);
         }
 
         internal static Transform GetOrCreateSourceGroup(

@@ -41,10 +41,7 @@ namespace BooterBigArm.Editor
                 authoring.ConfigureGoldenRockDefaults();
                 rootObject.GetComponent<MeshRenderer>().sharedMaterial = material;
 
-                TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
-                    authoring,
-                    TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(
-                        authoring.GenerationSeed));
+                TopDown3DRockWorkbenchBaseRockGenerator.GenerateNewIntoWorkbench(authoring);
                 Selection.activeGameObject = rootObject;
                 TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
             }
@@ -62,9 +59,12 @@ namespace BooterBigArm.Editor
             serializedObject.Update();
             EditorGUILayout.LabelField("Rock Workbench", EditorStyles.boldLabel);
             EditorGUILayout.HelpBox(
-                "Set the physical size and broad shape, then generate. The project rock material, mesh, "
-                + "and collider update automatically. Expand 'Rock Shape (Edit These)' in the Hierarchy "
-                + "only when you want to shape the rock by hand.",
+                authoring.IsFormationMember
+                    ? "Set the physical size and broad shape, then generate. The project rock material, mesh, "
+                      + "and collider update automatically."
+                    : "Generate New Rock creates a seeded size, shape, facing, and ground depth. Edit the Body "
+                      + "values when you want a specific size, then use Regenerate This Rock. Expand 'Rock Shape "
+                      + "(Edit These)' only when you want to shape the rock by hand.",
                 MessageType.Info);
             if (authoring.NeedsStandalonePhysicalScaleUpgrade)
             {
@@ -131,6 +131,10 @@ namespace BooterBigArm.Editor
             if (!authoring.IsFormationMember)
             {
                 EditorGUILayout.LabelField(
+                    "New Rock Size",
+                    "Bell curve — 0.2 to 1.2 m per dimension",
+                    EditorStyles.miniLabel);
+                EditorGUILayout.LabelField(
                     "Resting Pose",
                     "Automatic — Seeded turn & ground depth",
                     EditorStyles.miniLabel);
@@ -146,9 +150,7 @@ namespace BooterBigArm.Editor
 
             if (GUILayout.Button("Generate New Rock", GUILayout.Height(34f)))
             {
-                TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
-                    authoring,
-                    TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(authoring.GenerationSeed));
+                TopDown3DRockWorkbenchBaseRockGenerator.GenerateNewIntoWorkbench(authoring);
             }
             if (GUILayout.Button("Regenerate This Rock"))
             {
