@@ -68,8 +68,9 @@ namespace BooterBigArm.Editor
             {
                 var seed = unchecked(sandbox.WorldSettings.WorldSeed ^ x * 73856093 ^ z * 19349663);
                 var point = new Vector3((x + Unit(seed)) * spacing, 0f, (z + Unit(seed ^ 1717)) * spacing);
-                var chance = Coverage(point) * 0.16f;
-                if (instances.Count >= 64 || Unit(seed ^ 7171) > chance) continue;
+                // Denser real stones without changing the accepted texture coverage or sizes.
+                var chance = Coverage(point) * 0.48f;
+                if (instances.Count >= 192 || Unit(seed ^ 7171) > chance) continue;
                 var hitGround = false;
                 var hit = default(RaycastHit);
                 MeshCollider supportingGround = null;

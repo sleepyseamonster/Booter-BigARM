@@ -299,12 +299,49 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 return output;
             }
 
-            // Matched image textures replace the rejected cell/dot pattern. Colour and height
-            // share the same world-space anti-tiling; normals are derivatives of that height.
+            // Local stochastic tiles: each world-space corner has its own rotation/offset.
+            // Shared transforms and weights keep colour and height aligned. Explicit rotated
+            // gradients avoid incorrect mip selection at hashed tile boundaries.
+            float4 SamplePebbleTiles(float2 position, TEXTURE2D_PARAM(textureMap, sampler_textureMap))
+            {
+                float2 uv = position / 1.25;
+                float2 cell = floor(uv);
+                float2 blend = frac(uv);
+                blend = blend * blend * (3.0 - 2.0 * blend);
+                float2 gradientX = ddx(uv);
+                float2 gradientY = ddy(uv);
+                float4 result = 0;
+                float total = 0;
+                [unroll]
+                for (int y = 0; y < 2; y++)
+                {
+                    [unroll]
+                    for (int x = 0; x < 2; x++)
+                    {
+                        float2 id = cell + float2(x, y);
+                        float angle = Hash21(id + 7.13) * 6.2831853;
+                        float sine, cosine;
+                        sincos(angle, sine, cosine);
+                        float2x2 rotation = float2x2(cosine, -sine, sine, cosine);
+                        float2 offset = float2(Hash21(id + 19.71), Hash21(id + 43.29));
+                        float2 tileUv = mul(rotation, uv - id) + offset;
+                        float weight = (x == 0 ? 1.0 - blend.x : blend.x)
+                            * (y == 0 ? 1.0 - blend.y : blend.y);
+                        // Favor one tile away from transitions to retain sharp pebble shapes.
+                        weight *= weight;
+                        result += SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap, tileUv,
+                            mul(rotation, gradientX), mul(rotation, gradientY)) * weight;
+                        total += weight;
+                    }
+                }
+                return result / max(total, 0.0001);
+            }
+
+            // Normals are derivatives of the same blended height, including tile rotation.
             float PebbleHeight(float2 position)
             {
-                return SampleAntiTiledHeight(position / 1.25, position, 7.0,
-                    TEXTURE2D_ARGS(_PebbleHeightMap, sampler_PebbleHeightMap));
+                return SamplePebbleTiles(position,
+                    TEXTURE2D_ARGS(_PebbleHeightMap, sampler_PebbleHeightMap)).r;
             }
 
             void ApplyPebbles(float2 position, half3 view, float admission, float pixelFootprint,
@@ -317,8 +354,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float height = PebbleHeight(position);
                 position += view.xz / max(abs(view.y), 0.3) * max(0.0, height - 0.08) * 0.025 * detail;
                 height = PebbleHeight(position);
-                half3 albedo = SampleAntiTiled(position / 1.25, position, 7.0,
-                    TEXTURE2D_ARGS(_PebbleAlbedoMap, sampler_PebbleAlbedoMap));
+                half3 albedo = SamplePebbleTiles(position,
+                    TEXTURE2D_ARGS(_PebbleAlbedoMap, sampler_PebbleAlbedoMap)).rgb;
                 float cover = smoothstep(0.075, 0.22, height) * amount;
                 surface.albedo = lerp(surface.albedo, albedo * _BaseColor.rgb, cover);
                 surface.smoothness = lerp(surface.smoothness, lerp(0.07, 0.15, saturate(height)), cover);
