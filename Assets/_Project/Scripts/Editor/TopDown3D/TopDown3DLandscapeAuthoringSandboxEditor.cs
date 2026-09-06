@@ -1,10 +1,14 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using BooterBigArm.TopDown3D;
+using BooterBigArm.TopDown3D.WorldCreator;
 
 namespace BooterBigArm.Editor
 {
@@ -13,6 +17,8 @@ namespace BooterBigArm.Editor
     public sealed class TopDown3DLandscapeAuthoringSandboxEditor : UnityEditor.Editor
     {
         private const string TerrainPreviewRootName = "__Generated Terrain Context";
+        internal const string MixedReferencePath =
+            "Assets/_Project/Art/Environment/Rocks/Source/MixedPileScatterReference.prefab";
 
         static TopDown3DLandscapeAuthoringSandboxEditor()
         {
@@ -41,20 +47,37 @@ namespace BooterBigArm.Editor
 
         public override void OnInspectorGUI()
         {
+            var sandbox = (TopDown3DLandscapeAuthoringSandbox)target;
             serializedObject.Update();
-            DrawPropertiesExcluding(serializedObject, "m_Script");
+            if (sandbox.RockReference != null)
+            {
+                EditorGUILayout.LabelField("Mixed Formation Ground", EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("centerChunk"),
+                    new GUIContent("Terrain Location"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("rockBurial"),
+                    new GUIContent("Rock Burial (m)", "Sets the burial of each touching group without flattening its stack."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("maximumRockTilt"),
+                    new GUIContent("Maximum Ground Tilt"));
+                EditorGUILayout.HelpBox(
+                    "Fits a copy of your mixed reference to production terrain. Touching rocks move together. "
+                    + "The saved reference and the original scene rocks stay intact. This authoring view clears in Play Mode.",
+                    MessageType.Info);
+            }
+            else
+            {
+                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockTilt");
+            }
             serializedObject.ApplyModifiedProperties();
 
-            var sandbox = (TopDown3DLandscapeAuthoringSandbox)target;
             EditorGUILayout.Space();
-            EditorGUILayout.HelpBox(
+            if (sandbox.RockReference == null) EditorGUILayout.HelpBox(
                 "Terrain Context is a temporary editor view built from the production terrain generator. "
                 + "It provides scale, lighting, and a playable ground surface without becoming a second terrain asset.",
                 MessageType.Info);
 
             using (new EditorGUI.DisabledScope(sandbox.WorldSettings == null || sandbox.TerrainMaterial == null))
             {
-                if (GUILayout.Button("Build Terrain Context"))
+                if (GUILayout.Button(sandbox.RockReference != null ? "Update Ground Contact" : "Build Terrain Context"))
                 {
                     BuildTerrainContext(sandbox);
                 }
@@ -66,6 +89,33 @@ namespace BooterBigArm.Editor
             }
         }
 
+        [MenuItem("Booter & BigARM/Create Mixed Formation Ground", false, 3)]
+        public static void CreateMixedFormationGround()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode)
+                throw new InvalidOperationException("Create the mixed ground setup outside Play Mode.");
+            var reference = AssetDatabase.LoadAssetAtPath<GameObject>(MixedReferencePath);
+            if (reference == null) throw new InvalidOperationException("The saved mixed formation reference is missing.");
+            var scene = SceneManager.GetActiveScene();
+            var context = scene.GetRootGameObjects()
+                .Select(root => root.GetComponent<TopDown3DLandscapeAuthoringSandbox>())
+                .FirstOrDefault(candidate => candidate != null && candidate.RockReference == reference);
+            if (context == null)
+            {
+                var root = new GameObject("Mixed Formation Ground");
+                Undo.RegisterCreatedObjectUndo(root, "Create Mixed Formation Ground");
+                root.tag = "EditorOnly";
+                context = Undo.AddComponent<TopDown3DLandscapeAuthoringSandbox>(root);
+                context.Configure(
+                    AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(TopDown3DPrototypeBuilder.WorldSettingsPath),
+                    AssetDatabase.LoadAssetAtPath<Material>(TopDown3DPrototypeBuilder.TerrainMaterialPath),
+                    null, new Vector2Int(1, 0));
+                context.ConfigureRockReference(reference);
+            }
+            BuildTerrainContext(context);
+            Selection.activeGameObject = context.gameObject;
+        }
+
         internal static void BuildTerrainContext(TopDown3DLandscapeAuthoringSandbox sandbox)
         {
             if (sandbox == null) throw new ArgumentNullException(nameof(sandbox));
@@ -75,6 +125,14 @@ namespace BooterBigArm.Editor
                 throw new InvalidOperationException("Landscape authoring needs the production terrain material.");
 
             ClearTerrainContext(sandbox);
+            if (sandbox.RockReference != null && EditorApplication.isPlayingOrWillChangePlaymode)
+                return;
+            if (sandbox.RockReference != null
+                && (sandbox.transform.position != Vector3.zero
+                    || sandbox.transform.rotation != Quaternion.identity
+                    || sandbox.transform.lossyScale != Vector3.one))
+                throw new InvalidOperationException(
+                    "Keep Mixed Formation Ground at zero position/rotation and unit scale. Use Terrain Location to move it.");
             var contextRoot = new GameObject(TerrainPreviewRootName)
             {
                 hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable
@@ -85,6 +143,10 @@ namespace BooterBigArm.Editor
             {
                 var settings = sandbox.WorldSettings;
                 var generator = new TopDown3DWorldGenerator(settings);
+                var authority = generator.Authority;
+                var compiler = sandbox.RockReference == null ? null : new WorldRepresentationCompiler(
+                    authority.Query, authority.Materials, new WorldRepresentationBufferPool(1),
+                    authority.Profile.CreateRepresentationProfile(), authority.SourceFingerprint);
                 var radius = sandbox.TerrainRadiusInChunks;
                 var center = sandbox.CenterChunk;
                 for (var z = -radius; z <= radius; z++)
@@ -102,7 +164,19 @@ namespace BooterBigArm.Editor
                             0f,
                             coordinate.y * settings.ChunkSize);
 
-                        var mesh = TopDown3DChunkMeshBuilder.BuildMesh(settings, generator, coordinate);
+                        Mesh mesh;
+                        if (compiler == null)
+                        {
+                            mesh = TopDown3DChunkMeshBuilder.BuildMesh(settings, generator, coordinate);
+                        }
+                        else
+                        {
+                            var key = new WorldRepresentationKey(authority.Identity, authority.CoordinateModel,
+                                WorldRepresentationTier.Near, coordinate.x, coordinate.y, settings.ChunkSize);
+                            using (var representation = compiler.BuildAsync(key, CancellationToken.None)
+                                .GetAwaiter().GetResult())
+                                mesh = TopDown3DChunkMeshBuilder.BuildMesh(representation, chunk.name);
+                        }
                         mesh.hideFlags = HideFlags.DontSaveInEditor | HideFlags.DontUnloadUnusedAsset;
                         chunk.AddComponent<MeshFilter>().sharedMesh = mesh;
                         chunk.AddComponent<MeshRenderer>().sharedMaterial = sandbox.TerrainMaterial;
@@ -110,12 +184,68 @@ namespace BooterBigArm.Editor
                         chunk.AddComponent<MeshCollider>().sharedMesh = mesh;
                     }
                 }
+                if (sandbox.RockReference != null)
+                    BuildGroundedReference(sandbox, contextRoot.transform);
             }
             catch
             {
                 ClearTerrainContext(sandbox);
                 throw;
             }
+        }
+
+        private static void BuildGroundedReference(
+            TopDown3DLandscapeAuthoringSandbox sandbox, Transform contextRoot)
+        {
+            // Sample the displayed collision triangles, not a finer continuous query that can
+            // differ between mesh vertices. Only these terrain colliders can support the copy.
+            var ground = contextRoot.GetComponentsInChildren<MeshCollider>();
+            Physics.SyncTransforms();
+            RaycastHit GroundAt(Vector3 point)
+            {
+                foreach (var collider in ground)
+                {
+                    var bounds = collider.bounds;
+                    if (point.x < bounds.min.x || point.x > bounds.max.x
+                        || point.z < bounds.min.z || point.z > bounds.max.z) continue;
+                    var origin = new Vector3(point.x, bounds.max.y + 1f, point.z);
+                    if (collider.Raycast(new Ray(origin, Vector3.down), out var hit, bounds.size.y + 2f))
+                        return hit;
+                }
+                throw new InvalidOperationException("The mixed reference extends beyond its terrain context.");
+            }
+            var copy = UnityEngine.Object.Instantiate(sandbox.RockReference, contextRoot, false);
+            copy.name = "Mixed Rocks — Grounded Copy";
+            copy.transform.localPosition += new Vector3(
+                sandbox.CenterChunk.x * sandbox.WorldSettings.ChunkSize, 0f,
+                sandbox.CenterChunk.y * sandbox.WorldSettings.ChunkSize);
+            var rocks = copy.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+            var members = new List<TopDown3DRockGroundContact.Member>(rocks.Length);
+            foreach (var rock in rocks)
+            {
+                var filter = rock.GetComponent<MeshFilter>();
+                var renderer = rock.GetComponent<MeshRenderer>();
+                if (filter == null || filter.sharedMesh == null || renderer == null)
+                    throw new InvalidOperationException($"{rock.name} has no captured reference mesh.");
+                var serialized = new SerializedObject(rock);
+                serialized.FindProperty("autoRebuild").boolValue = false;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+                var vertices = filter.sharedMesh.vertices;
+                for (var i = 0; i < vertices.Length; i++)
+                    vertices[i] = rock.transform.TransformPoint(vertices[i]);
+                members.Add(new TopDown3DRockGroundContact.Member(
+                    rock.transform.position, rock.transform.rotation, renderer.bounds, vertices));
+                TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(
+                    rock, renderer, filter.sharedMesh.bounds.size, rock.GenerationSeed, Vector3.zero, 0f, 6f);
+            }
+            var poses = TopDown3DRockGroundContact.Fit(members,
+                point => GroundAt(point).point.y,
+                point => GroundAt(point).normal,
+                sandbox.RockBurial, sandbox.MaximumRockTilt);
+            for (var i = 0; i < rocks.Length; i++)
+                rocks[i].transform.SetPositionAndRotation(poses[i].Position, poses[i].Rotation);
+            foreach (var child in copy.GetComponentsInChildren<Transform>(true))
+                child.gameObject.hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable;
         }
 
         internal static void ClearTerrainContext(TopDown3DLandscapeAuthoringSandbox sandbox)

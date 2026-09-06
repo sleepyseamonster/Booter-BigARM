@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** accepted mixed composition captured from the saved prototype on 2026-09-06; mixed ground-contact pass is next
+**Status:** mixed-reference ground-contact authoring implemented on 2026-09-06; visual acceptance remains user-owned; deposited sand is next
 
 ## Goal
 
@@ -137,3 +137,13 @@ Use the mixed reference for one complete rock-and-ground patch. Ground contact c
 - Expose only controls needed to shape this mixed patch in the existing authoring workflow. The captured prefab remains the untouched reference; do not add an A/B panel or generate the user's future scatter/pile examples.
 
 The next stop condition is one mixed composition seated convincingly against the ground with its central stack intact, followed by coherent sand and clutter treatment. Source and compile checks verify implementation safety; appearance remains user-owned. No broad catalog expansion or new geology platform is implied.
+
+### Ground-contact implementation checkpoint — 2026-09-06
+
+`Booter & BigARM > Create Mixed Formation Ground` creates one EditorOnly hierarchy root in the active scene, reusing the existing landscape terrain-context component. The Inspector exposes Terrain Location (chunk coordinates), Rock Burial, Maximum Ground Tilt, and Update Ground Contact. It starts one chunk east of the original reference to avoid overlapping the original rocks. Save the scene after creating the setup; its disposable ground and rock copy rebuild on editor reload and are removed in Play Mode.
+
+The displayed terrain uses the production World Creator near-representation compiler, including production material packing and a matching mesh collider. Contact fitting samples those actual terrain collision triangles. Bounds-based contact groups move rigidly: the central stack and touching satellite pairs retain their internal arrangement, while separated groups find their own ground height. Burial defaults to 0.035 m and slope tilt is capped at 20 degrees. This is a conservative contact heuristic, not a rock physics simulation.
+
+The source prefab, its persistent meshes, original scene rocks, production catalog, and runtime generation are unchanged. The temporary copy disables automatic remeshing and retains the saved material settings. This batch adds no world-identity/version changes, streaming ownership, or persisted deltas: it is editor-only authoring against the existing world surface. Production formation placement still requires a later integration step; the preview is not shipped placement.
+
+Source review and Unity 6000.4.0f1 compilation succeeded in an isolated project copy. No visual, gameplay, or automated test suite was run. The next implementation batch is deposited sand around this same mixed patch, respecting the shared height/collision constraints above, followed by pebble material depth and sparse protrusions. Do not generate the user's future open-scatter or pile references.
