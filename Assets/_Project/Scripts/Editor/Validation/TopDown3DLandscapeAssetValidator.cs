@@ -183,7 +183,20 @@ namespace BooterBigArm.Editor
                     errors.Add($"{family.StableId} LOD{lod} has invalid bounds.");
                 }
 
-                if (Mathf.Abs(bounds.min.y) > 0.001f)
+                if (family.Shape == TopDown3DNaturalObjectShape.Boulder)
+                {
+                    if (bounds.min.y > 0.001f)
+                    {
+                        errors.Add(
+                            $"{family.StableId} LOD{lod} resting geometry begins above the ground plane.");
+                    }
+                    else if (bounds.min.y < -bounds.size.y * 0.2f)
+                    {
+                        errors.Add(
+                            $"{family.StableId} LOD{lod} burial exceeds the approved resting-depth envelope.");
+                    }
+                }
+                else if (Mathf.Abs(bounds.min.y) > 0.001f)
                 {
                     errors.Add($"{family.StableId} LOD{lod} pivot must sit on the ground plane.");
                 }

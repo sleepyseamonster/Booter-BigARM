@@ -586,9 +586,12 @@ namespace BooterBigArm.Editor
                 }
 
                 var normalizationScale = ApprovedFamilyHorizontalSpan / horizontalSpan;
+                // The recipe's local y = 0 plane is the ground plane established by the
+                // Workbench. Preserve it so the seeded burial depth survives production baking.
+                // Only horizontal centering belongs to mesh normalization.
                 var sourceOrigin = new Vector3(
                     sourceBounds.center.x,
-                    sourceBounds.min.y,
+                    0f,
                     sourceBounds.center.z);
                 var boxes = new List<TopDown3DRockWorkbenchBox>(recipeVariant.Volumes.Count);
                 for (var index = 0; index < recipeVariant.Volumes.Count; index++)
@@ -631,7 +634,7 @@ namespace BooterBigArm.Editor
 
                         var mesh = result.CreateMesh($"BrokenWorld_Boulder_{variant:00}_LOD{lod}");
                         mesh.hideFlags = HideFlags.None;
-                        GroundAndCenterMesh(mesh);
+                        CenterMeshHorizontally(mesh);
                         var triangleCount = mesh.triangles.Length / 3;
                         if (triangleCount < previousTriangleCount)
                         {
@@ -697,11 +700,11 @@ namespace BooterBigArm.Editor
                 Mathf.Abs(right.z) + Mathf.Abs(up.z) + Mathf.Abs(forward.z));
         }
 
-        private static void GroundAndCenterMesh(Mesh mesh)
+        private static void CenterMeshHorizontally(Mesh mesh)
         {
             mesh.RecalculateBounds();
             var bounds = mesh.bounds;
-            var offset = new Vector3(bounds.center.x, bounds.min.y, bounds.center.z);
+            var offset = new Vector3(bounds.center.x, 0f, bounds.center.z);
             var vertices = mesh.vertices;
             for (var index = 0; index < vertices.Length; index++)
                 vertices[index] -= offset;

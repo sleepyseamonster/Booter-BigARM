@@ -421,7 +421,17 @@ namespace BooterBigArm.Tests
                         Assert.That(mesh.vertexCount, Is.GreaterThan(0).And.LessThan(600));
                         Assert.That(mesh.triangles.Length % 3, Is.Zero);
                         Assert.That(mesh.bounds.size.sqrMagnitude, Is.GreaterThan(0f));
-                        Assert.That(mesh.bounds.min.y, Is.GreaterThanOrEqualTo(-0.0001f));
+                        if (shape == TopDown3DNaturalObjectShape.Boulder)
+                        {
+                            Assert.That(mesh.bounds.min.y, Is.LessThanOrEqualTo(0.001f));
+                            Assert.That(
+                                mesh.bounds.min.y,
+                                Is.GreaterThanOrEqualTo(-mesh.bounds.size.y * 0.2f));
+                        }
+                        else
+                        {
+                            Assert.That(mesh.bounds.min.y, Is.GreaterThanOrEqualTo(-0.0001f));
+                        }
                         Assert.That(mesh.normals.Length, Is.EqualTo(mesh.vertexCount));
                         AssertFiniteUnitNormals(mesh);
                     }
