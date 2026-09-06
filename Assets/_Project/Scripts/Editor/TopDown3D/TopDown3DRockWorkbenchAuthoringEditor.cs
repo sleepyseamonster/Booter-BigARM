@@ -38,12 +38,12 @@ namespace BooterBigArm.Editor
                 GameObjectUtility.SetParentAndAlign(rootObject, command.context as GameObject);
                 var authoring = Undo.AddComponent<TopDown3DRockWorkbenchAuthoring>(rootObject);
                 authoring.Configure(material);
+                authoring.ConfigureGoldenRockDefaults();
                 rootObject.GetComponent<MeshRenderer>().sharedMaterial = material;
 
                 TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
                     authoring,
-                    TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(
-                        authoring.GenerationSeed));
+                    authoring.GenerationSeed);
                 Selection.activeGameObject = rootObject;
                 TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
             }
@@ -98,13 +98,17 @@ namespace BooterBigArm.Editor
                 DrawPhysicalDimension(
                     serializedObject.FindProperty("generatedOverallScale"),
                     authoring,
-                    new GUIContent("Width", "Physical width and depth in meters."),
+                    new GUIContent(
+                        "Body Width",
+                        "Width of the source body in meters before the automatic resting pose."),
                     TopDown3DRockWorkbenchAuthoring.MinimumStandaloneRockWidth,
                     TopDown3DRockWorkbenchAuthoring.MaximumStandaloneRockWidth);
                 DrawPhysicalDimension(
                     serializedObject.FindProperty("generatedHeight"),
                     authoring,
-                    new GUIContent("Height", "Physical vertical height in meters, independent from width."),
+                    new GUIContent(
+                        "Body Length",
+                        "Long dimension of the source body in meters before the automatic resting pose."),
                     TopDown3DRockWorkbenchAuthoring.MinimumStandaloneRockHeight,
                     TopDown3DRockWorkbenchAuthoring.MaximumStandaloneRockHeight);
             }
@@ -123,6 +127,13 @@ namespace BooterBigArm.Editor
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("showSourceVolumes"),
                 new GUIContent("Show Editing Volumes"));
+            if (!authoring.IsFormationMember)
+            {
+                EditorGUILayout.LabelField(
+                    "Resting Pose",
+                    "Automatic — Golden Rock",
+                    EditorStyles.miniLabel);
+            }
             var settingsChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
 

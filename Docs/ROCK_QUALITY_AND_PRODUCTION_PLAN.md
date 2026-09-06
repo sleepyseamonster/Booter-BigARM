@@ -1,12 +1,27 @@
 # Rock Quality And Production Plan
 
-**Status:** active recovery plan
+**Status:** active; Golden Rock calibration implemented and awaiting visual confirmation
 
 ## Goal
 
 Create excellent, readable rocks through one simple Unity hierarchy workflow, then translate the accepted shape language into deterministic editor-baked production assets for the procedural world.
 
 Crimson Desert is the primary visual model. Horizon Forbidden West supports artist-readable authoring and terrain integration. Path of Exile 2 supports elevated-camera silhouette and material readability. These references guide quality and composition; their assets are not copied.
+
+## Accepted Golden Rock calibration
+
+On 2026-09-05 the user selected a good standalone rock and supplied front, reverse, and top-down views. The useful result came from a two-mass `Blocky Monolith` seed laid almost fully onto its side, with a smaller secondary tilt. The root edit was evidence of a missing generator posture, not a reusable transform requirement.
+
+Captured authoring values:
+
+- seed `2126351350`;
+- body dimensions `0.925 m` wide by `1.12 m` long before the resting-pose bake;
+- lopsidedness `0`, compaction `0`, major fractures `0`, edge damage `0.617`;
+- former root rotation approximately `(-18.374, 147.048, -85.817)` degrees;
+- fusion smoothness `0.0657`, surface relaxation `0.45`;
+- Dark Fractured Desert material with geology scale `2.4`, surface variation `0.346`, crack amount `0.36`, side grit `0.417`, underside shale `0.905`, side/top shale patches `0`, and worn shine `0.099`.
+
+The generator now bakes that rotation into the editable source volumes and performs a second grounding pass afterward. The Workbench root returns to zero rotation and unit scale. This preserves the raised shoulder and sloped body while preventing the post-generation root rotation from pushing the lower contour below flat terrain.
 
 ## Done
 
@@ -52,7 +67,7 @@ The Rock Workbench is an editor authoring tool, not a runtime world system. Its 
 
 ### 2. User builds the Golden Rock — stop gate
 
-The user generates or regenerates one rock, then hand-adjusts the source volumes until the rock demonstrates the intended visual language. This is the first mandatory stop. Architecture work must wait for that authored reference rather than guessing the final shape grammar.
+The user has supplied the first Golden Rock. The remaining gate is a direct visual comparison of the regenerated, locally posed version against the accepted views. Architecture work must wait for that confirmation rather than rolling the calibration across production assets.
 
 The Golden Rock should answer only these visible questions:
 
@@ -84,4 +99,4 @@ Source review and compile safety can show that the tool is coherent. They cannot
 
 ## Current stop condition
 
-Stop as soon as the simplified Rock Workbench is ready for the user to produce or hand-shape the Golden Rock. Wait for that input before recipe capture, production-family baking, catalog rollout, formations, or terrain integration.
+Stop after the selected Golden Rock can be regenerated with an identity root and post-pose grounding. Wait for the user's visual confirmation before recipe capture, production-family baking, catalog rollout, formations, or terrain integration.

@@ -48,6 +48,10 @@ namespace BooterBigArm.Editor
     internal static class TopDown3DRockWorkbenchBaseRockGenerator
     {
         internal const string SourceGroupName = "Rock Shape (Edit These)";
+        private static readonly Quaternion GoldenRockRestingRotation = Quaternion.Euler(
+            -18.374f,
+            147.048f,
+            -85.817f);
 
         internal static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> CreatePlan(
             int seed,
@@ -255,6 +259,7 @@ namespace BooterBigArm.Editor
                 if (!authoring.IsFormationMember)
                 {
                     Undo.RecordObject(authoring.transform, undoName);
+                    authoring.transform.localRotation = Quaternion.identity;
                     authoring.transform.localScale = Vector3.one;
                 }
 
@@ -281,6 +286,8 @@ namespace BooterBigArm.Editor
                     authoring.GeneratedOverlap,
                     silhouetteProfile,
                     authoring.GeneratedMajorFractures);
+                if (!authoring.IsFormationMember)
+                    plan = ApplyGoldenRockRestingPose(plan);
                 for (var index = 0; index < plan.Count; index++)
                 {
                     var spec = plan[index];
@@ -331,6 +338,43 @@ namespace BooterBigArm.Editor
             groupObject.transform.localRotation = Quaternion.identity;
             groupObject.transform.localScale = Vector3.one;
             return groupObject.transform;
+        }
+
+        /// <summary>
+        /// Bakes the user-approved sideways resting pose into editable source transforms, then
+        /// grounds the rotated additive bounds. The Rock Workbench root can therefore stay at
+        /// zero rotation and unit scale without burying the lower silhouette below a flat surface.
+        /// </summary>
+        internal static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> ApplyGoldenRockRestingPose(
+            IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> plan)
+        {
+            if (plan == null || plan.Count == 0) return plan;
+
+            var rotated = new List<TopDown3DRockWorkbenchVolumeSpec>(plan.Count);
+            foreach (var spec in plan)
+            {
+                rotated.Add(new TopDown3DRockWorkbenchVolumeSpec(
+                    GoldenRockRestingRotation * spec.LocalPosition,
+                    GoldenRockRestingRotation * spec.LocalRotation,
+                    spec.LocalScale,
+                    spec.Role,
+                    spec.SourceShape,
+                    spec.Operation));
+            }
+
+            var groundOffset = -CalculateBounds(rotated).min.y;
+            for (var index = 0; index < rotated.Count; index++)
+            {
+                var spec = rotated[index];
+                rotated[index] = new TopDown3DRockWorkbenchVolumeSpec(
+                    spec.LocalPosition + Vector3.up * groundOffset,
+                    spec.LocalRotation,
+                    spec.LocalScale,
+                    spec.Role,
+                    spec.SourceShape,
+                    spec.Operation);
+            }
+            return rotated;
         }
 
         private static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> AddFractureCuts(

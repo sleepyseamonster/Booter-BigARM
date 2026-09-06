@@ -26,6 +26,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Evidence:** Live architecture and worktree reassessment, the user's report that scale was correct but A/B textures were not, and the existing landscape plan's editor-baked catalog decision.
 - **Controlling files updated:** `Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md`, `Docs/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md`, `Docs/ROCK_FORMATION_WORKBENCH.md`, `Docs/DOCS_INDEX.md`, and the Rock Workbench authoring/editor implementation.
 - **Consequences / follow-up:** Runtime geology contracts, Integration Workbench code, and their tests are removed. The user now shapes one Golden Rock in the normal hierarchy. Gottspan waits at that gate; production recipe capture, baking, catalog expansion, formations, and terrain integration remain deferred.
+- **Golden Rock update:** The user accepted seed `2126351350` as the first good reference after resizing it to `0.925 × 1.12 m` and rotating the root approximately `(-18.374, 147.048, -85.817)` degrees. That rotation is now treated as a generated resting pose: it is baked into source volumes and followed by local re-grounding, while the reusable root remains identity. Production rollout still waits for comparison of the regenerated result.
 - **Supersedes:** the 2026-09-05 Grounded Geology implementation proposal; it does not supersede the 2026-08-14 Shared Geological Surface Authority.
 
 ## 2026-08-12 — Repo And Unity Project Management Model

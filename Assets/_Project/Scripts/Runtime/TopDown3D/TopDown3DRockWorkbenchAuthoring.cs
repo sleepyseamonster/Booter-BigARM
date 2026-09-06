@@ -31,6 +31,9 @@ namespace BooterBigArm.TopDown3D
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
     public sealed class TopDown3DRockWorkbenchAuthoring : MonoBehaviour
     {
+        public const int GoldenRockSeed = 2126351350;
+        public const float GoldenRockWidth = 0.925f;
+        public const float GoldenRockBodyLength = 1.12f;
         public const int CurrentStandalonePhysicalScaleVersion = 1;
         public const float LegacyStandalonePhysicalBake = 0.1f;
         public const float MinimumStandaloneRockWidth = 0.075f;
@@ -262,6 +265,42 @@ namespace BooterBigArm.TopDown3D
         public void Configure(Material material)
         {
             rockMaterial = material;
+        }
+
+        /// <summary>
+        /// Applies the user-approved Golden Rock as the starting language for a new standalone
+        /// workbench. Generation bakes its resting pose into source geometry, so these values do
+        /// not require a rotated or scaled reusable root.
+        /// </summary>
+        public void ConfigureGoldenRockDefaults()
+        {
+            generationSeed = GoldenRockSeed;
+            generatedOverallSize = new Vector3(
+                GoldenRockWidth,
+                GoldenRockBodyLength,
+                GoldenRockWidth);
+            generatedOverallScale = GoldenRockWidth;
+            generatedHeight = GoldenRockBodyLength;
+            generatedAsymmetry = 0f;
+            generatedOverlap = 0f;
+            generatedMajorFractures = 0f;
+            generatedEdgeDamage = 0.617f;
+            generatedSilhouetteProfile = TopDown3DRockSilhouetteProfile.BlockyMonolith;
+
+            voxelSize = 0.05f;
+            fusionSmoothness = 0.0657f;
+            surfaceRelaxation = 0.45f;
+            geologyScale = 2.4f;
+            surfaceVariation = 0.346f;
+            crackAmount = 0.36f;
+            sideGrit = 0.417f;
+            undersideShale = 0.905f;
+            sideShalePatches = 0f;
+            topShalePatches = 0f;
+            wornShine = 0.099f;
+            surfacePreset = TopDown3DRockSurfacePreset.DarkFracturedDesert;
+            colorVariation = 0.62f;
+            standalonePhysicalScaleVersion = CurrentStandalonePhysicalScaleVersion;
         }
 
         public void SetGenerationSeed(int seed)
