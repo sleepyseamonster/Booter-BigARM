@@ -357,14 +357,16 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
             }
 
             void ApplyPebbles(float2 position, half3 view, float admission, float pixelFootprint,
-                inout half3 normal, inout SurfaceData surface, bool rockLayer, half3 rockTint)
+                inout half3 normal, inout SurfaceData surface, bool rockLayer, half3 rockTint, half3 groundNormal)
             {
-                float patch = smoothstep(0.22, 0.62, ValueNoise(position * 1.4 + 17.3));
+                float patch = rockLayer ? 1.0 : smoothstep(0.22, 0.62, ValueNoise(position * 1.4 + 17.3));
                 float amount = admission * patch;
                 [branch] if (amount <= 0.001) return;
                 float detail = 1.0 - smoothstep(0.02, 0.08, pixelFootprint);
                 float height = PebbleHeight(position, rockLayer);
-                position += view.xz / max(abs(view.y), 0.3) * max(0.0, height - 0.08) * 0.025 * detail;
+                // The top layer is a restrained surface detail, not a second parallax surface.
+                if (!rockLayer)
+                    position += view.xz / max(abs(view.y), 0.3) * max(0.0, height - 0.08) * 0.025 * detail;
                 height = PebbleHeight(position, rockLayer);
                 half3 albedo = SamplePebbleTiles(position,
                     TEXTURE2D_ARGS(_PebbleAlbedoMap, sampler_PebbleAlbedoMap)).rgb;
@@ -377,19 +379,45 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     albedo = SamplePebbleTiles(position,
                         TEXTURE2D_ARGS(_RockPebbleColorMap, sampler_RockPebbleColorMap)).rgb * rockTint * variation;
                 }
-                float cover = smoothstep(0.075, 0.22, height) * amount;
+                float cover = (rockLayer ? smoothstep(0.16, 0.3, height)
+                    : smoothstep(0.075, 0.22, height)) * amount;
                 surface.albedo = lerp(surface.albedo, rockLayer ? albedo : albedo * _BaseColor.rgb, cover);
                 surface.smoothness = lerp(surface.smoothness, lerp(0.07, 0.15, saturate(height)), cover);
-                surface.occlusion *= 1.0 - cover * 0.08;
+                if (rockLayer) surface.occlusion = lerp(surface.occlusion, 0.98, cover);
+                else surface.occlusion *= 1.0 - cover * 0.08;
                 [branch] if (detail > 0.001)
                 {
                     float step = max(0.0025, pixelFootprint * 0.5);
+                    float relief = rockLayer ? 0.006 : 0.025;
                     float dx = (PebbleHeight(position + float2(step, 0), rockLayer)
-                        - PebbleHeight(position - float2(step, 0), rockLayer)) * 0.025 / (2.0 * step);
+                        - PebbleHeight(position - float2(step, 0), rockLayer)) * relief / (2.0 * step);
                     float dz = (PebbleHeight(position + float2(0, step), rockLayer)
-                        - PebbleHeight(position - float2(0, step), rockLayer)) * 0.025 / (2.0 * step);
-                    normal = normalize(normal - half3(dx, 0, dz) * amount * detail * normal.y);
+                        - PebbleHeight(position - float2(0, step), rockLayer)) * relief / (2.0 * step);
+                    if (rockLayer)
+                    {
+                        float2 slope = float2(dx, dz);
+                        slope *= min(1.0, 0.45 / max(length(slope), 0.0001));
+                        half3 pebbleNormal = normalize(groundNormal - half3(slope.x, 0, slope.y) * groundNormal.y);
+                        normal = normalize(lerp(normal, pebbleNormal, cover * detail));
+                    }
+                    else normal = normalize(normal - half3(dx, 0, dz) * amount * detail * normal.y);
                 }
+            }
+
+            void ApplyPebbleLayers(float2 position, half3 view, half2 clutter, half4 rockPebbles,
+                float pixelFootprint, half3 groundNormal, inout half3 normal, inout SurfaceData surface)
+            {
+                // Give each pocket a dominant surface. Do not stack two full relief fields.
+                float pocket = smoothstep(0.42, 0.76, ValueNoise(position * 2.1 + 38.7))
+                    * rockPebbles.a * _PebbleDetail;
+                float bank = smoothstep(0.25, 0.9, clutter.y);
+                normal = normalize(lerp(normal, groundNormal, max(bank * 0.7, pocket * 0.85)));
+                ApplyPebbles(position, view, clutter.x * _PebbleDetail
+                    * (1.0 - 0.85 * bank) * (1.0 - 0.85 * pocket), pixelFootprint,
+                    normal, surface, false, half3(1, 1, 1), groundNormal);
+                // Remains on top of sand, but only in sparse pockets near rock bases.
+                ApplyPebbles(position + float2(21.71, -13.29), view, pocket * 0.75, pixelFootprint,
+                    normal, surface, true, rockPebbles.rgb, groundNormal);
             }
 
             half4 TerrainFragment(Varyings input) : SV_Target
@@ -490,12 +518,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     farInputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
                     farInputData.shadowMask = half4(1.0, 1.0, 1.0, 1.0);
 
-                    ApplyPebbles(groundPosition, viewDirectionWS,
-                        input.clutter.x * _PebbleDetail * (1.0 - 0.85 * smoothstep(0.25, 0.9, input.clutter.y)), pixelFootprint,
-                        farInputData.normalWS, farSurfaceData, false, half3(1, 1, 1));
-                    ApplyPebbles(groundPosition + float2(21.71, -13.29), viewDirectionWS,
-                        input.rockPebbles.a * _PebbleDetail,
-                        pixelFootprint, farInputData.normalWS, farSurfaceData, true, input.rockPebbles.rgb);
+                    ApplyPebbleLayers(groundPosition, viewDirectionWS, input.clutter, input.rockPebbles,
+                        pixelFootprint, geometricNormalWS, farInputData.normalWS, farSurfaceData);
                     half4 farColor = UniversalFragmentPBR(farInputData, farSurfaceData);
                     farColor.rgb = MixFog(farColor.rgb, input.fogFactor);
                     return farColor;
@@ -717,12 +741,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
                 inputData.shadowMask = half4(1.0, 1.0, 1.0, 1.0);
 
-                ApplyPebbles(groundPosition, viewDirectionWS,
-                    input.clutter.x * _PebbleDetail * (1.0 - 0.85 * smoothstep(0.25, 0.9, input.clutter.y)), pixelFootprint,
-                    inputData.normalWS, surfaceData, false, half3(1, 1, 1));
-                ApplyPebbles(groundPosition + float2(21.71, -13.29), viewDirectionWS,
-                    input.rockPebbles.a * _PebbleDetail,
-                    pixelFootprint, inputData.normalWS, surfaceData, true, input.rockPebbles.rgb);
+                ApplyPebbleLayers(groundPosition, viewDirectionWS, input.clutter, input.rockPebbles,
+                    pixelFootprint, geometricNormalWS, inputData.normalWS, surfaceData);
                 half4 color = UniversalFragmentPBR(inputData, surfaceData);
                 color.rgb = MixFog(color.rgb, input.fogFactor);
                 return color;
