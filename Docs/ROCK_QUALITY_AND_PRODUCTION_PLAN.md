@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** active; Golden Rock calibration implemented and awaiting visual confirmation
+**Status:** active; Golden Rock language accepted, seeded placement variation awaiting visual confirmation
 
 ## Goal
 
@@ -10,18 +10,18 @@ Crimson Desert is the primary visual model. Horizon Forbidden West supports arti
 
 ## Accepted Golden Rock calibration
 
-On 2026-09-05 the user selected a good standalone rock and supplied front, reverse, and top-down views. The useful result came from a two-mass `Blocky Monolith` seed laid almost fully onto its side, with a smaller secondary tilt. The root edit was evidence of a missing generator posture, not a reusable transform requirement.
+On 2026-09-05 the user selected a good standalone rock and supplied front, reverse, and top-down views. The useful result came from a two-mass `Blocky Monolith` seed laid almost fully onto its side, with a smaller secondary tilt. The root edit was evidence of a missing generator posture, not a reusable transform requirement. After generating a wider set, the user confirmed that this grammar consistently produces liked rocks.
 
 Captured authoring values:
 
 - seed `2126351350`;
-- body dimensions `0.925 m` wide by `1.12 m` long before the resting-pose bake;
-- lopsidedness `0`, compaction `0`, major fractures `0`, edge damage `0.617`;
+- current starting dimensions `1 m` wide by `0.75 m` long before the resting-pose bake;
+- lopsidedness `0`, compaction `0`, major fractures `0`, edge damage `1`;
 - former root rotation approximately `(-18.374, 147.048, -85.817)` degrees;
 - fusion smoothness `0.0657`, surface relaxation `0.45`;
 - Dark Fractured Desert material with geology scale `2.4`, surface variation `0.346`, crack amount `0.36`, side grit `0.417`, underside shale `0.905`, side/top shale patches `0`, and worn shine `0.099`.
 
-The generator now bakes that rotation into the editable source volumes and performs a second grounding pass afterward. The Workbench root returns to zero rotation and unit scale. This preserves the raised shoulder and sloped body while preventing the post-generation root rotation from pushing the lower contour below flat terrain.
+The generator now bakes that rotation into the editable source volumes and performs a second grounding pass afterward. Creating a Workbench assigns a fresh seed; each seed receives a stable random turn around the vertical axis and a restrained burial depth of four to twelve percent of its posed height. The Workbench root returns to zero rotation and unit scale. This preserves the raised shoulder and sloped body, avoids a repeated facing direction, and produces controlled contact variation without manual root edits.
 
 ## Done
 
@@ -67,7 +67,7 @@ The Rock Workbench is an editor authoring tool, not a runtime world system. Its 
 
 ### 2. User builds the Golden Rock — stop gate
 
-The user has supplied the first Golden Rock. The remaining gate is a direct visual comparison of the regenerated, locally posed version against the accepted views. Architecture work must wait for that confirmation rather than rolling the calibration across production assets.
+The user has accepted the Golden Rock shape language across multiple generated seeds. The remaining refinement gate is a direct visual check of the new seeded facing and burial-depth variation. Production recipe capture can begin after that check.
 
 The Golden Rock should answer only these visible questions:
 
@@ -99,4 +99,4 @@ Source review and compile safety can show that the tool is coherent. They cannot
 
 ## Current stop condition
 
-Stop after the selected Golden Rock can be regenerated with an identity root and post-pose grounding. Wait for the user's visual confirmation before recipe capture, production-family baking, catalog rollout, formations, or terrain integration.
+Stop after generated standalone rocks show varied seed-stable facing and restrained contact depth with identity roots. Wait for the user's visual confirmation before recipe capture, production-family baking, catalog rollout, formations, or terrain integration.

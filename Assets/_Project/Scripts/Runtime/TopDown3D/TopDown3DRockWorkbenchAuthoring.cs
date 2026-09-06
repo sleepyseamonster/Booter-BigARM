@@ -32,8 +32,8 @@ namespace BooterBigArm.TopDown3D
     public sealed class TopDown3DRockWorkbenchAuthoring : MonoBehaviour
     {
         public const int GoldenRockSeed = 2126351350;
-        public const float GoldenRockWidth = 0.925f;
-        public const float GoldenRockBodyLength = 1.12f;
+        public const float GoldenRockWidth = 1f;
+        public const float GoldenRockBodyLength = 0.75f;
         public const int CurrentStandalonePhysicalScaleVersion = 1;
         public const float LegacyStandalonePhysicalBake = 0.1f;
         public const float MinimumStandaloneRockWidth = 0.075f;
@@ -284,7 +284,7 @@ namespace BooterBigArm.TopDown3D
             generatedAsymmetry = 0f;
             generatedOverlap = 0f;
             generatedMajorFractures = 0f;
-            generatedEdgeDamage = 0.617f;
+            generatedEdgeDamage = 1f;
             generatedSilhouetteProfile = TopDown3DRockSilhouetteProfile.BlockyMonolith;
 
             voxelSize = 0.05f;

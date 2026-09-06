@@ -43,7 +43,8 @@ namespace BooterBigArm.Editor
 
                 TopDown3DRockWorkbenchBaseRockGenerator.GenerateIntoWorkbench(
                     authoring,
-                    authoring.GenerationSeed);
+                    TopDown3DRockWorkbenchBaseRockGenerator.CreateNewSeed(
+                        authoring.GenerationSeed));
                 Selection.activeGameObject = rootObject;
                 TopDown3DRockWorkbenchPreview.RequestRebuild(authoring, true);
             }
@@ -131,7 +132,7 @@ namespace BooterBigArm.Editor
             {
                 EditorGUILayout.LabelField(
                     "Resting Pose",
-                    "Automatic — Golden Rock",
+                    "Automatic — Seeded turn & ground depth",
                     EditorStyles.miniLabel);
             }
             var settingsChanged = EditorGUI.EndChangeCheck();

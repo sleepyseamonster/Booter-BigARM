@@ -52,6 +52,10 @@ namespace BooterBigArm.Editor
             -18.374f,
             147.048f,
             -85.817f);
+        private const float MinimumGoldenRockBurialFraction = 0.04f;
+        private const float MaximumGoldenRockBurialFraction = 0.12f;
+        private const int GoldenRockYawSalt = unchecked((int)0xD1B54A35);
+        private const int GoldenRockBurialSalt = unchecked((int)0x94D049BB);
 
         internal static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> CreatePlan(
             int seed,
@@ -287,7 +291,7 @@ namespace BooterBigArm.Editor
                     silhouetteProfile,
                     authoring.GeneratedMajorFractures);
                 if (!authoring.IsFormationMember)
-                    plan = ApplyGoldenRockRestingPose(plan);
+                    plan = ApplyGoldenRockRestingPose(plan, seed);
                 for (var index = 0; index < plan.Count; index++)
                 {
                     var spec = plan[index];
@@ -341,28 +345,37 @@ namespace BooterBigArm.Editor
         }
 
         /// <summary>
-        /// Bakes the user-approved sideways resting pose into editable source transforms, then
-        /// grounds the rotated additive bounds. The Rock Workbench root can therefore stay at
-        /// zero rotation and unit scale without burying the lower silhouette below a flat surface.
+        /// Bakes the user-approved sideways resting pose and a seed-stable vertical-axis turn into
+        /// editable source transforms, then grounds the rotated additive bounds with a restrained
+        /// seed-stable burial depth. The Workbench root can stay at zero rotation and unit scale.
         /// </summary>
         internal static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> ApplyGoldenRockRestingPose(
-            IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> plan)
+            IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> plan,
+            int seed)
         {
             if (plan == null || plan.Count == 0) return plan;
 
+            var yaw = CalculateGoldenRockYaw(seed);
+            var restingRotation = Quaternion.AngleAxis(yaw, Vector3.up)
+                * GoldenRockRestingRotation;
             var rotated = new List<TopDown3DRockWorkbenchVolumeSpec>(plan.Count);
             foreach (var spec in plan)
             {
                 rotated.Add(new TopDown3DRockWorkbenchVolumeSpec(
-                    GoldenRockRestingRotation * spec.LocalPosition,
-                    GoldenRockRestingRotation * spec.LocalRotation,
+                    restingRotation * spec.LocalPosition,
+                    restingRotation * spec.LocalRotation,
                     spec.LocalScale,
                     spec.Role,
                     spec.SourceShape,
                     spec.Operation));
             }
 
-            var groundOffset = -CalculateBounds(rotated).min.y;
+            var bounds = CalculateBounds(rotated);
+            var burialFraction = Mathf.Lerp(
+                MinimumGoldenRockBurialFraction,
+                MaximumGoldenRockBurialFraction,
+                HashToUnitFloat(DeriveVolumeShapeSeed(seed ^ GoldenRockBurialSalt, 0)));
+            var groundOffset = -bounds.min.y - bounds.size.y * burialFraction;
             for (var index = 0; index < rotated.Count; index++)
             {
                 var spec = rotated[index];
@@ -375,6 +388,17 @@ namespace BooterBigArm.Editor
                     spec.Operation);
             }
             return rotated;
+        }
+
+        private static float CalculateGoldenRockYaw(int seed)
+        {
+            var seedTurn = HashToUnitFloat(
+                DeriveVolumeShapeSeed(seed ^ GoldenRockYawSalt, 0));
+            var referenceTurn = HashToUnitFloat(
+                DeriveVolumeShapeSeed(
+                    TopDown3DRockWorkbenchAuthoring.GoldenRockSeed ^ GoldenRockYawSalt,
+                    0));
+            return Mathf.Repeat((seedTurn - referenceTurn) * 360f, 360f);
         }
 
         private static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> AddFractureCuts(
