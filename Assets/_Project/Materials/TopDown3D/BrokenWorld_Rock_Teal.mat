@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BrokenWorld_Rock_Teal
-  m_Shader: {fileID: 4800000, guid: bb6ab32215b0404da4ab1285ed54a931, type: 3}
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -26,31 +26,101 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: de42c6aefd444f12ac00d9217950d445, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _LusterMask:
-        m_Texture: {fileID: 2800000, guid: 9ca0e305c79142fd8e66f2ef40d1b944, type: 3}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 292a27b2824314784a6b75109bbabb3a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: de42c6aefd444f12ac00d9217950d445, type: 3}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 34cc25eb0e7054c8495a69ad06770d5d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8961b29ef723142b99c11c29da019f52, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
     - _Cull: 2
     - _Cutoff: 0.5
-    - _LusterMetallic: 0.35
-    - _LusterSmoothness: 0.94
-    - _LusterStrength: 1
-    - _RockMetersPerTile: 0.85
-    - _Smoothness: 0.14
+    - _DustAmount: 0.15
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.1
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.1696
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.21593048
+    - _SideGritAmount: 0.417
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
     - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
     - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.905
+    - _WornSmoothnessBoost: 0.099
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.2671255, g: 0.34200776, b: 0.35015634, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.48, g: 0.31, b: 0.18, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.51, b: 0.41, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 2, g: 1.25, b: 2, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

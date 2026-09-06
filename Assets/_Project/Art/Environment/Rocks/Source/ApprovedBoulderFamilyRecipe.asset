@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbdb2b32cfbe644a2be270f848003bdf, type: 3}
+  m_Name: ApprovedBoulderFamilyRecipe
+  m_EditorClassIdentifier: BooterBigArm.Editor::BooterBigArm.Editor.TopDown3DApprovedRockFamilyRecipe
+  recipeVersion: 1
+  stableId: approved-boulder-family
+  sourceMaterial: {fileID: 2100000, guid: 8f0d9ecf55df4febaf16c99e33f2258b, type: 2}
+  silhouetteProfile: 7
+  surfacePreset: 1
+  previewVoxelSize: 0.05
+  fusionSmoothness: 0.0657
+  surfaceRelaxation: 0.45
+  edgeDamage: 1
+  geologyScale: 2.4
+  surfaceVariation: 0.346
+  crackAmount: 0.36
+  sideGrit: 0.417
+  undersideShale: 0.905
+  sideShalePatches: 0
+  topShalePatches: 0
+  wornShine: 0.099
+  colorVariation: 0.62
+  environmentDustColor: {r: 0.48, g: 0.31, b: 0.18, a: 1}
+  variants:
+  - stableId: approved-boulder-00
+    variant: 0
+    generationSeed: 2126351350
+    bodyWidth: 1
+    bodyLength: 0.75
+    volumes:
+    - name: Core Mass 1
+      role: 0
+      localPosition: {x: -0.3029579, y: 0.52107465, z: -0.15252185}
+      localRotation: {x: -0.6820994, y: 0.6160879, z: 0.011341253, w: 0.39376068}
+      localScale: {x: 0.82910347, y: 0.6761656, z: 0.7498415}
+      sourceShape: 0
+      operation: 0
+      shapeSeed: -1414301041
+    - name: Support Mass 2
+      role: 1
+      localPosition: {x: -0.24582094, y: 0.5366924, z: -0.35985106}
+      localRotation: {x: -0.68200773, y: 0.6134263, z: 0.015927432, w: 0.39789435}
+      localScale: {x: 0.61275566, y: 0.7017896, z: 0.52076215}
+      sourceShape: 0
+      operation: 0
+      shapeSeed: -1128502573
+  - stableId: approved-boulder-01
+    variant: 1
+    generationSeed: -346006759
+    bodyWidth: 0.66825736
+    bodyLength: 0.60848314
+    volumes:
+    - name: Core Mass 1
+      role: 0
+      localPosition: {x: 0.1740861, y: 0.3360744, z: -0.17823131}
+      localRotation: {x: 0.47325277, y: -0.019050587, z: 0.4913451, w: -0.7309233}
+      localScale: {x: 0.5183941, y: 0.499943, z: 0.49343157}
+      sourceShape: 0
+      operation: 0
+      shapeSeed: 1970628227
+    - name: Support Mass 2
+      role: 1
+      localPosition: {x: 0.21914026, y: 0.22559382, z: -0.29159394}
+      localRotation: {x: 0.47006768, y: -0.023773614, z: 0.4943931, w: -0.7307849}
+      localScale: {x: 0.37250742, y: 0.50812334, z: 0.33820423}
+      sourceShape: 0
+      operation: 0
+      shapeSeed: -1886240899
+  - stableId: approved-boulder-02
+    variant: 2
+    generationSeed: 362337
+    bodyWidth: 0.64600056
+    bodyLength: 0.55279005
+    volumes:
+    - name: Core Mass 1
+      role: 0
+      localPosition: {x: 0.21242175, y: 0.30619797, z: -0.06027007}
+      localRotation: {x: 0.22891079, y: 0.096381396, z: 0.6426415, w: -0.7247913}
+      localScale: {x: 0.5604961, y: 0.44189733, z: 0.5391553}
+      sourceShape: 0
+      operation: 0
+      shapeSeed: -462382165
+    - name: Support Mass 2
+      role: 1
+      localPosition: {x: 0.35717955, y: 0.24397527, z: 0.0706371}
+      localRotation: {x: 0.21481276, y: 0.08051982, z: 0.6474903, w: -0.7267244}
+      localScale: {x: 0.3898674, y: 0.44426432, z: 0.37213936}
+      sourceShape: 0
+      operation: 0
+      shapeSeed: -1412799894

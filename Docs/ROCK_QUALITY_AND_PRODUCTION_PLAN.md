@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** active; Golden Rock language accepted, seeded size and placement variation awaiting visual confirmation
+**Status:** active; representative production Boulder family ready for in-world visual acceptance
 
 ## Goal
 
@@ -21,7 +21,7 @@ Captured authoring values:
 - fusion smoothness `0.0657`, surface relaxation `0.45`;
 - Dark Fractured Desert material with geology scale `2.4`, surface variation `0.346`, crack amount `0.36`, side grit `0.417`, underside shale `0.905`, side/top shale patches `0`, and worn shine `0.099`.
 
-The generator now bakes that rotation into the editable source volumes and performs a second grounding pass afterward. Creating a Workbench assigns a fresh seed. Width and body length are independently sampled from `0.2–1.2 m` using the mean of three seeded uniform samples: the distribution is bounded and bell-shaped around `0.7 m`, so the middle is common and either limit is rare. Each seed also receives a stable random turn around the vertical axis and a restrained burial depth of four to twelve percent of its posed height. The Workbench root returns to zero rotation and unit scale. This preserves the raised shoulder and sloped body, avoids a repeated facing direction, and produces controlled size/contact variation without manual root edits.
+The generator now bakes that rotation into the editable source volumes and performs a second grounding pass afterward. Creating a Workbench assigns a fresh seed. Width and body length are independently sampled from `0.2–1.2 m` using the mean of three seeded uniform samples: the distribution is bounded and bell-shaped around `0.7 m`, so the middle is common and either limit is rare. Each seed also receives a stable random turn around the vertical axis and a restrained burial depth of four to twelve percent of its posed height. The Workbench root returns to zero rotation and unit scale. This preserves the raised shoulder and sloped body, avoids a repeated facing direction, and produces controlled size/contact variation without manual root edits. The user visually accepted this combined result on 2026-09-05, completing the Golden Rock gate.
 
 ## Done
 
@@ -67,7 +67,7 @@ The Rock Workbench is an editor authoring tool, not a runtime world system. Its 
 
 ### 2. User builds the Golden Rock — stop gate
 
-The user has accepted the Golden Rock shape language across multiple generated seeds. The remaining refinement gate is a direct visual check of the new bounded size distribution, seeded facing, and burial-depth variation. Production recipe capture can begin after that check.
+Complete. The user accepted the Golden Rock shape language, bounded size distribution, seeded facing, and burial-depth variation across multiple generated rocks on 2026-09-05.
 
 The Golden Rock should answer only these visible questions:
 
@@ -99,4 +99,4 @@ Source review and compile safety can show that the tool is coherent. They cannot
 
 ## Current stop condition
 
-Stop after generated standalone rocks show bounded bell-shaped body dimensions, varied seed-stable facing, and restrained contact depth with identity roots. Wait for the user's visual confirmation before recipe capture, production-family baking, catalog rollout, formations, or terrain integration.
+Capture the accepted source grammar as editor-only recipe data, bake only the three existing `Boulder` variant slots, and carry the accepted layered material into the current production material references. Preserve the other 24 mesh slots and all runtime placement, chunk, stable-identity, and persisted-delta contracts. Stop when that representative family is available through World Creator and wait for the user's in-world visual acceptance before expanding the catalog, formations, distribution, or terrain-contact treatment.

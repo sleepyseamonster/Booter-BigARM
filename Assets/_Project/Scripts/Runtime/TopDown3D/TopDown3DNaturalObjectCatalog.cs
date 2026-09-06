@@ -260,6 +260,36 @@ namespace BooterBigArm.TopDown3D
             lod0DataLookup = null;
         }
 
+        /// <summary>
+        /// Replaces one existing shape/variant slot without disturbing the other baked families.
+        /// Representative-family approval can therefore progress incrementally while the catalog
+        /// keeps its complete runtime topology and stable lookup keys.
+        /// </summary>
+        internal void ReplaceBakedMeshFamily(TopDown3DNaturalMeshFamily replacement)
+        {
+            if (replacement == null) throw new ArgumentNullException(nameof(replacement));
+
+            var replacementKey = GetMeshFamilyKey(replacement.Shape, replacement.Variant);
+            for (var index = 0; index < meshFamilies.Count; index++)
+            {
+                var existing = meshFamilies[index];
+                if (existing == null
+                    || GetMeshFamilyKey(existing.Shape, existing.Variant) != replacementKey)
+                {
+                    continue;
+                }
+
+                meshFamilies[index] = replacement;
+                meshFamilyLookup = null;
+                lod0DataLookup = null;
+                return;
+            }
+
+            meshFamilies.Add(replacement);
+            meshFamilyLookup = null;
+            lod0DataLookup = null;
+        }
+
         internal static int NormalizeMeshVariant(int variant)
         {
             var positive = variant == int.MinValue ? int.MaxValue : Mathf.Abs(variant);

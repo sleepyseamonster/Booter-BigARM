@@ -160,6 +160,23 @@ namespace BooterBigArm.Editor
             }
 
             EditorGUILayout.Space();
+            if (GUILayout.Button("Use This Rock Style In World Creator", GUILayout.Height(28f)))
+            {
+                if (EditorUtility.DisplayDialog(
+                        "Use This Rock Style In World Creator",
+                        "Capture this Workbench as the approved source, build three deterministic Boulder variants, "
+                        + "and update only those slots in the existing World Creator catalog?",
+                        "Build Approved Rocks",
+                        "Cancel"))
+                {
+                    TopDown3DProductionRockBaker.BakeApprovedFamily(authoring);
+                }
+            }
+            EditorGUILayout.LabelField(
+                "This leaves world placement, streaming, and saved-object identity unchanged.",
+                EditorStyles.miniLabel);
+
+            EditorGUILayout.Space();
             var statusType = GetStatusType(authoring.PreviewStatus);
             EditorGUILayout.HelpBox(
                 statusType == MessageType.Info && authoring.GeneratedMesh != null

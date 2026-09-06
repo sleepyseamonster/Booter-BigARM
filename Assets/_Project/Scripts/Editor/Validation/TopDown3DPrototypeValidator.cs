@@ -374,6 +374,13 @@ namespace BooterBigArm.Editor
 
         private static void ValidateRockMaterial(ICollection<string> errors)
         {
+            if (AssetDatabase.LoadAssetAtPath<TopDown3DApprovedRockFamilyRecipe>(
+                    TopDown3DProductionRockBaker.ApprovedRecipePath) != null)
+            {
+                TopDown3DProductionRockBaker.CollectApprovedProductionMaterialErrors(errors);
+                return;
+            }
+
             ValidateRockMaterial(
                 TopDown3DPrototypeBuilder.RockMaterialPath,
                 TopDown3DPrototypeBuilder.RockAlbedoPath,

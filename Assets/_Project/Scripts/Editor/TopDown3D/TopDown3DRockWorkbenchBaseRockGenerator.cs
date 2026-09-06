@@ -301,23 +301,11 @@ namespace BooterBigArm.Editor
 
                 var sourceGroup = GetOrCreateSourceGroup(authoring, undoName);
 
-                var silhouetteProfile = authoring.GeneratedSilhouetteProfile;
-                if (silhouetteProfile == TopDown3DRockSilhouetteProfile.Auto
-                    && authoring.SurfacePreset == TopDown3DRockSurfacePreset.DarkFracturedDesert)
-                {
-                    silhouetteProfile = ResolveDarkDesertSilhouetteProfile(seed);
-                }
-                var plan = CreatePlan(
+                var plan = CreatePlanForAuthoring(
+                    authoring,
                     seed,
-                    authoring.GeneratedCubeCount,
-                    authoring.GeneratedOverallSize,
-                    authoring.GeneratedVerticality,
-                    authoring.GeneratedAsymmetry,
-                    authoring.GeneratedOverlap,
-                    silhouetteProfile,
-                    authoring.GeneratedMajorFractures);
-                if (!authoring.IsFormationMember)
-                    plan = ApplyGoldenRockRestingPose(plan, seed);
+                    authoring.GeneratedWidth,
+                    authoring.GeneratedHeight);
                 for (var index = 0; index < plan.Count; index++)
                 {
                     var spec = plan[index];
@@ -345,7 +333,7 @@ namespace BooterBigArm.Editor
             }
         }
 
-        private static Vector2 CreateBellCurvedStandaloneDimensions(int seed)
+        internal static Vector2 CreateBellCurvedStandaloneDimensions(int seed)
         {
             return new Vector2(
                 SampleBellCurvedDimension(seed, StandaloneWidthSalt),
@@ -366,6 +354,45 @@ namespace BooterBigArm.Editor
                 TopDown3DRockWorkbenchAuthoring.MinimumGeneratedRockDimension,
                 TopDown3DRockWorkbenchAuthoring.MaximumGeneratedRockDimension,
                 normalized);
+        }
+
+        /// <summary>
+        /// Centralizes the deterministic source-volume grammar used by both the hierarchy
+        /// Workbench and the editor-only production recipe capture. Keeping this seam shared
+        /// prevents a baked family from drifting away from the rock the user approved.
+        /// </summary>
+        internal static IReadOnlyList<TopDown3DRockWorkbenchVolumeSpec> CreatePlanForAuthoring(
+            TopDown3DRockWorkbenchAuthoring authoring,
+            int seed,
+            float bodyWidth,
+            float bodyLength)
+        {
+            if (authoring == null)
+            {
+                throw new ArgumentNullException(nameof(authoring));
+            }
+
+            bodyWidth = Mathf.Max(0.05f, bodyWidth);
+            bodyLength = Mathf.Max(0.05f, bodyLength);
+            var silhouetteProfile = authoring.GeneratedSilhouetteProfile;
+            if (silhouetteProfile == TopDown3DRockSilhouetteProfile.Auto
+                && authoring.SurfacePreset == TopDown3DRockSurfacePreset.DarkFracturedDesert)
+            {
+                silhouetteProfile = ResolveDarkDesertSilhouetteProfile(seed);
+            }
+
+            var plan = CreatePlan(
+                seed,
+                TopDown3DRockWorkbenchAuthoring.CalculateSourceMassCount(bodyWidth, bodyLength),
+                new Vector3(bodyWidth, bodyLength, bodyWidth),
+                TopDown3DRockWorkbenchAuthoring.CalculateAspectVerticality(bodyWidth, bodyLength),
+                authoring.GeneratedAsymmetry,
+                authoring.GeneratedOverlap,
+                silhouetteProfile,
+                authoring.GeneratedMajorFractures);
+            return authoring.IsFormationMember
+                ? plan
+                : ApplyGoldenRockRestingPose(plan, seed);
         }
 
         internal static Transform GetOrCreateSourceGroup(

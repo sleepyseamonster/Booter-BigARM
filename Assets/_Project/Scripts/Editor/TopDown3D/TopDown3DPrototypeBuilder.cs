@@ -198,6 +198,12 @@ namespace BooterBigArm.Editor
                 "BrokenWorld_Rock_Teal",
                 TealRockAlbedoPath,
                 TealRockLusterMaskPath);
+            if (TopDown3DProductionRockBaker.SynchronizeApprovedProductionMaterialsFromSavedRecipe())
+            {
+                rockMaterial = AssetDatabase.LoadAssetAtPath<Material>(RockMaterialPath);
+                darkRockMaterial = AssetDatabase.LoadAssetAtPath<Material>(DarkRockMaterialPath);
+                tealRockMaterial = AssetDatabase.LoadAssetAtPath<Material>(TealRockMaterialPath);
+            }
             var fineGrayClutterMaterial = EnsureFineGrayClutterMaterial();
             var naturalObjectCatalog = AssetDatabase.LoadAssetAtPath<TopDown3DNaturalObjectCatalog>(
                 NaturalObjectCatalogPath);
