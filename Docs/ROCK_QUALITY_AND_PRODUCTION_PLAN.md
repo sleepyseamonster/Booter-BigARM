@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** generated gravel color/height textures installed; Metal lighting-variant sampler overflow repaired on 2026-09-06. Appearance awaits user review before blowing sand.
+**Status:** user accepted the improved gravel on 2026-09-06. Subtle blowing sand added to the same mixed-formation editor preview; motion awaits user visual review.
 
 ## Goal
 
@@ -181,3 +181,13 @@ The user's next screenshot and live editor log exposed a missed keyword combinat
 Compatible terrain texture maps now share four sampler states: terrain color, rocky height, rocky normal, and pebble color/height. Texture resources, sRGB/linear interpretation, and the existing compatible repeat/filter settings are preserved. No textures, lighting features, rock placement, scene settings, or material assets were removed or retuned. This changes rendering resource usage only; deterministic world identity, streaming, generated-object identity, authored constraints, and persisted deltas remain unchanged.
 
 `LayeredTerrainShaderValidator.CompileLightingVariants` now explicitly warms six variants: basic, the reported failing combination, and that combination with additional-light shadows and linear fog, each in standard and fast mode. Unity 6000.4.0f1 completed the isolated Metal compiler check with six warmed variants, no shader errors, and process exit 0 (`/tmp/booter-terrain-sampler-fix.log`). No scene or gameplay tests were run. This establishes compilation, not live visual acceptance; review the restored pebble appearance before proceeding to blowing sand.
+
+### Blowing sand authoring checkpoint — 2026-09-06
+
+The user accepted the improved pebble screenshot and authorized this next slice. Done for this batch means low drifting sand in the existing mixed preview, one control, and unchanged approved rock/ground/clutter appearance beneath it. A new atmosphere system, terrain shader changes, production streaming integration, and the separate hand-built pile/scatter examples are out of scope.
+
+Mixed Formation Ground now exposes **Blowing Sand**, default 0.35, range 0–1. It changes live in Scene view; zero hides the effect without rebuilding terrain. Update Rocks & Ground reconstructs the preview when ground settings change. One disposable child uses 64 paused particles driven at up to 24 Hz, reusing the existing soft dust texture/material helpers and rust tint. No new image assets or shader samplers are introduced. Paths run at roughly 0.45–0.85 m/s with gentle lateral movement, soft lifetime fades and an opacity gust. Their centers follow cached final-ground collision samples about 6.5 cm above the surface. Expanded rock footprints suppress particles and a short downwind mask reduces flow in shelter. This is a bounded visual heuristic, not airflow, erosion, or collision simulation; close side-view contact remains subject to visual review.
+
+World seed and chunk coordinates deterministically generate the path layout; each path samples the same semantic prevailing wind used by deposited sand. Editor elapsed time animates presentation only, with no persisted phase or gameplay delta. The accepted source formation constrains the patch footprint and occlusion. Clearing, rebuilding, closing the scene, domain reload, or entering Play Mode releases the preview and its owned material/texture. Disabled owners stop displaying sand. Runtime world versions, entity identity, chunk streaming owners, and save data are untouched; production integration remains later work after this patch is accepted.
+
+Verification: source review and isolated Unity 6000.4.0f1 import/C# compilation passed, with exit 0. The existing six terrain lighting variants also warmed on Metal without shader errors (`/tmp/booter-blowing-sand-final-compile.log`). Batch mode deliberately does not instantiate this editor-only particle preview; motion/rendering is not verified by compilation. No gameplay, visual, or automated test suite was run. Stop for user motion/readability review before extending the effect or integrating the formation into production generation.
