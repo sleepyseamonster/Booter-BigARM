@@ -13,6 +13,12 @@ namespace BooterBigArm.Editor
             "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat";
         private bool showAdvanced;
 
+        [MenuItem("Booter & BigARM/Create Rock Workbench", false, 1)]
+        private static void CreateWorkbenchFromMainMenu()
+        {
+            CreateWorkbench(new MenuCommand(null));
+        }
+
         [MenuItem("GameObject/Booter & BigARM/Top Down 3D/New Random Rock", false, 20)]
         private static void CreateWorkbench(MenuCommand command)
         {

@@ -44,7 +44,7 @@ The Rock Workbench is an editor authoring tool, not a runtime world system. Its 
 
 ### 1. Recover one authoring path
 
-- Keep `GameObject > Booter & BigARM > Top Down 3D > New Random Rock` as the creation path.
+- Use the direct top-level `Booter & BigARM > Create Rock Workbench` command. Keep `GameObject > Booter & BigARM > Top Down 3D > New Random Rock` as the hierarchy shortcut.
 - Keep the normal Inspector limited to physical size, lopsidedness, compaction, major fractures, edge damage, editing-volume visibility, and the two generation actions.
 - Put manual source objects beneath `Rock Shape (Edit These)`.
 - Bake the accepted standalone-rock `0.1` size into meter-valued settings once and keep the reusable root at `(1, 1, 1)`.

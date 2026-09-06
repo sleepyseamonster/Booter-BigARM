@@ -19,6 +19,10 @@ These are general visual principles only. No source game assets are copied into 
 
 Create a complete random rock with:
 
+`Booter & BigARM > Create Rock Workbench`
+
+The same command remains available from the Hierarchy-oriented menu at:
+
 `GameObject > Booter & BigARM > Top Down 3D > New Random Rock`
 
 The main Rock Inspector intentionally shows only `Width`, `Height`, `Lopsidedness`, `Compaction`, `Major Fractures`, `Edge Damage`, and `Show Editing Volumes`. `Width` controls both horizontal axes while `Height` controls the vertical axis independently. Click `Generate New Rock` for a new seed or `Regenerate This Rock` to preserve the current seed. Mesh, collider, material, detailed surface, seed-gallery, formation, and repair controls are under `Advanced`.
