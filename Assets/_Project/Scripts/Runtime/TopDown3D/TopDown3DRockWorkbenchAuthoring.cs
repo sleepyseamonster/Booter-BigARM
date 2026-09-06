@@ -34,7 +34,7 @@ namespace BooterBigArm.TopDown3D
         public const int GoldenRockSeed = 2126351350;
         public const float GoldenRockWidth = 1f;
         public const float GoldenRockBodyLength = 0.75f;
-        public const float MinimumGeneratedRockDimension = 0.2f;
+        public const float MinimumGeneratedRockDimension = 0.3f;
         public const float MaximumGeneratedRockDimension = 1.2f;
         public const int CurrentStandalonePhysicalScaleVersion = 1;
         public const float LegacyStandalonePhysicalBake = 0.1f;
