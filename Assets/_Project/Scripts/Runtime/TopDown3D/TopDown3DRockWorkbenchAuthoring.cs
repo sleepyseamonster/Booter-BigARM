@@ -295,13 +295,14 @@ namespace BooterBigArm.TopDown3D
             geologyScale = 2.4f;
             surfaceVariation = 0.346f;
             crackAmount = 0.36f;
-            sideGrit = 0.417f;
-            undersideShale = 0.905f;
+            sideGrit = 0.22f;
+            undersideShale = 0.2f;
             sideShalePatches = 0f;
             topShalePatches = 0f;
             wornShine = 0.099f;
             surfacePreset = TopDown3DRockSurfacePreset.DarkFracturedDesert;
             colorVariation = 0.62f;
+            environmentDustColor = new Color(0.32f, 0.3f, 0.28f, 1f);
             standalonePhysicalScaleVersion = CurrentStandalonePhysicalScaleVersion;
         }
 

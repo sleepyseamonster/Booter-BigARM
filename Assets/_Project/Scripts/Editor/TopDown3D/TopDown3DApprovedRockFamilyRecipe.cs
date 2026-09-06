@@ -111,14 +111,14 @@ namespace BooterBigArm.Editor
         [SerializeField, Min(0.01f)] private float geologyScale = 2.4f;
         [SerializeField, Range(0f, 1f)] private float surfaceVariation = 0.346f;
         [SerializeField, Range(0f, 1f)] private float crackAmount = 0.36f;
-        [SerializeField, Range(0f, 1f)] private float sideGrit = 0.417f;
-        [SerializeField, Range(0f, 1f)] private float undersideShale = 0.905f;
+        [SerializeField, Range(0f, 1f)] private float sideGrit = 0.22f;
+        [SerializeField, Range(0f, 1f)] private float undersideShale = 0.2f;
         [SerializeField, Range(0f, 1f)] private float sideShalePatches;
         [SerializeField, Range(0f, 1f)] private float topShalePatches;
         [SerializeField, Range(0f, 0.5f)] private float wornShine = 0.099f;
         [SerializeField, Range(0f, 1f)] private float colorVariation = 0.62f;
         [SerializeField] private Color environmentDustColor =
-            new Color(0.48f, 0.31f, 0.18f, 1f);
+            new Color(0.32f, 0.3f, 0.28f, 1f);
         [SerializeField] private List<TopDown3DApprovedRockRecipeVariant> variants =
             new List<TopDown3DApprovedRockRecipeVariant>();
 

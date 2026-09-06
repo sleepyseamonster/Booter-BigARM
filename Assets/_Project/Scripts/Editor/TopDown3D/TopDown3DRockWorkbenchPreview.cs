@@ -304,7 +304,7 @@ namespace BooterBigArm.Editor
             properties.SetFloat(SmoothnessMinId, 0.015f);
             properties.SetFloat(SmoothnessMaxId, 0.14f);
             properties.SetFloat(NormalStrengthId, 1.08f);
-            properties.SetFloat(MacroStrengthId, Mathf.Lerp(0.12f, 0.2f, variation));
+            properties.SetFloat(MacroStrengthId, Mathf.Lerp(0.04f, 0.075f, variation));
         }
 
         private static Color ReadMaterialColor(Material material, string property, Color fallback)

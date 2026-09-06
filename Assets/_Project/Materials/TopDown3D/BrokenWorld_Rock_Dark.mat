@@ -30,7 +30,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BottomBaseMap:
-        m_Texture: {fileID: 2800000, guid: 292a27b2824314784a6b75109bbabb3a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BottomNormalMap:
@@ -46,7 +46,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GritBaseMap:
-        m_Texture: {fileID: 2800000, guid: 34cc25eb0e7054c8495a69ad06770d5d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GritNormalMap:
@@ -66,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TopBaseMap:
-        m_Texture: {fileID: 2800000, guid: 8961b29ef723142b99c11c29da019f52, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TopNormalMap:
@@ -87,22 +87,22 @@ Material:
     - _CrackMetersPerTile: 3.2
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DustAmount: 0.15
+    - _DustAmount: 0.06
     - _DustSharpness: 5
     - _FormationFractureAmount: 0
     - _FormationFractureSpacing: 6
     - _GeologicalSeamAmount: 0
     - _GritMetersPerTile: 0.7
     - _GritNormalStrength: 1.35
-    - _HeightColorStrength: 0.1
+    - _HeightColorStrength: 0.04
     - _MacroScale: 7.5
-    - _MacroStrength: 0.1696
+    - _MacroStrength: 0.0617
     - _MineralShine: 0.32
     - _NormalStrength: 1.08
     - _OcclusionStrength: 0.75
     - _RockMetersPerTile: 2.4
     - _RockSeed01: 0.42790392
-    - _SideGritAmount: 0.417
+    - _SideGritAmount: 0.22
     - _SideShalePatchAmount: 0
     - _SmoothnessMax: 0.14
     - _SmoothnessMin: 0.015
@@ -112,13 +112,13 @@ Material:
     - _TopBlendStart: 0.42
     - _TopShalePatchAmount: 0
     - _TriplanarSharpness: 4
-    - _UndersideShaleAmount: 0.905
+    - _UndersideShaleAmount: 0.2
     - _WornSmoothnessBoost: 0.099
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.24868993, g: 0.24635889, b: 0.2383627, a: 1}
     - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
-    - _DustColor: {r: 0.48, g: 0.31, b: 0.18, a: 1}
+    - _DustColor: {r: 0.32, g: 0.3, b: 0.28, a: 1}
     - _MineralColor: {r: 0.58, g: 0.51, b: 0.41, a: 1}
     - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
     - _RockSize: {r: 2, g: 1.25, b: 2, a: 0}

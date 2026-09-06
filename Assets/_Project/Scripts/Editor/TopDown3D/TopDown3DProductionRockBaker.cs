@@ -861,7 +861,7 @@ namespace BooterBigArm.Editor
             SetMaterialFloat(target, "_SmoothnessMin", 0.015f);
             SetMaterialFloat(target, "_SmoothnessMax", 0.14f);
             SetMaterialFloat(target, "_NormalStrength", 1.08f);
-            SetMaterialFloat(target, "_MacroStrength", Mathf.Lerp(0.12f, 0.2f, recipe.ColorVariation));
+            SetMaterialFloat(target, "_MacroStrength", Mathf.Lerp(0.04f, 0.075f, recipe.ColorVariation));
             SetMaterialFloat(
                 target,
                 "_RockSeed01",

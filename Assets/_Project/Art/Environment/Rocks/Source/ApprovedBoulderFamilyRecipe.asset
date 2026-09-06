@@ -24,13 +24,13 @@ MonoBehaviour:
   geologyScale: 2.4
   surfaceVariation: 0.346
   crackAmount: 0.36
-  sideGrit: 0.417
-  undersideShale: 0.905
+  sideGrit: 0.22
+  undersideShale: 0.2
   sideShalePatches: 0
   topShalePatches: 0
   wornShine: 0.099
   colorVariation: 0.62
-  environmentDustColor: {r: 0.48, g: 0.31, b: 0.18, a: 1}
+  environmentDustColor: {r: 0.32, g: 0.3, b: 0.28, a: 1}
   variants:
   - stableId: approved-boulder-00
     variant: 0
