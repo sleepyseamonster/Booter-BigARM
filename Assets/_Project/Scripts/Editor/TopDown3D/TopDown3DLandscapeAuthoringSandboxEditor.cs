@@ -73,6 +73,8 @@ namespace BooterBigArm.Editor
                     new GUIContent("Maximum Ground Tilt"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("sandBuildup"),
                     new GUIContent("Sand Buildup (m)", "Deposited sand around exposed rock bases. Zero removes the sand treatment."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("groundClutter"),
+                    new GUIContent("Ground Clutter", "Pebble surface relief and sparse protruding stones. Sand hides the buried detail."));
                 EditorGUILayout.HelpBox(
                     "Each ground-contact rock receives stable bell-curve burial. Stacked rocks follow their supports. "
                     + "The saved reference and the original scene rocks stay intact. This authoring view clears in Play Mode.",
@@ -80,7 +82,7 @@ namespace BooterBigArm.Editor
             }
             else
             {
-                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt", "burialRangeVersion", "sandBuildup", "sandBuildupVersion");
+                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt", "burialRangeVersion", "sandBuildup", "sandBuildupVersion", "groundClutter");
             }
             serializedObject.ApplyModifiedProperties();
 
@@ -263,6 +265,7 @@ namespace BooterBigArm.Editor
             foreach (var child in copy.GetComponentsInChildren<Transform>(true))
                 child.gameObject.hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable;
             TopDown3DMixedFormationSand.Apply(sandbox, ground, rocks);
+            TopDown3DMixedFormationClutter.Apply(sandbox, contextRoot, ground, rocks);
         }
 
         internal static void ClearTerrainContext(TopDown3DLandscapeAuthoringSandbox sandbox)

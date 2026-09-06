@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** mixed-reference ground contact and deposited-sand authoring implemented on 2026-09-06; visual acceptance remains user-owned; pebble detail is next
+**Status:** mixed-reference ground, sand, and pebble-detail authoring implemented on 2026-09-06; visual acceptance remains user-owned; blowing sand is next
 
 ## Goal
 
@@ -161,3 +161,15 @@ Only nearby disposable terrain tiles are refined to approximately 0.15 m spacing
 The user then requested that the higher sand sit closer to the rocks. Sand footprints now come from triangle-edge intersections at a low horizontal cross-section of each seated rock, rather than the full renderer bounding box. This follows the exposed base more closely when the rock is widest above ground. The local skirt width is narrowed from 0.22–0.85 m to 0.14–0.55 m; directional tails remain. The original formation, rock placement, burial distribution and tilt are untouched.
 
 Unity 6000.4.0f1 compilation passed in the isolated project copy. Source review covered ordering, mesh ownership, source preservation and boundary sampling; no automated, gameplay or visual tests were run. Runtime production use remains deferred. Next is coordinated pebble/gravel material depth with sparse protruding stones in this same patch, then visible blowing sand; do not resume tilt tuning or generate the user's remaining hand-built examples.
+
+### Pebble and gravel detail — authoring implementation
+
+The existing mixed Inspector adds one Ground Clutter control (default 0.7). Update Rocks & Ground rebuilds in order: base terrain, seated rocks, deposited sand, then ground clutter. No rock or sand geometry tuning is part of this batch. Zero clutter removes both the material detail and sparse protruding stones on rebuild.
+
+Tiny pebbles use an analytic world-space material height pattern, not individual meshes or height guessed from albedo brightness. The same pattern drives charcoal pebble color, height-derived normals, parallax and smoothness/occlusion over the existing gravel textures. Pixel-footprint fading reduces distant shimmer. Standard and fast terrain shading both include this path. Sand coverage suppresses pebble detail. A UV2 proximity mask and an explicit renderer-only property enable this treatment only on the mixed authoring ground; the shader default is off, and production material assets remain unchanged. This produces material relief, not geometric displacement or pebble collision.
+
+Sparse 5.5–16 cm stones reuse the existing baked Pebble LOD2 families, with seeded placement, size and yaw. They are seated into the finished sand collider, avoid the large rocks' bounds, and are suppressed in strong sand coverage. At most 64 are combined into one disposable Surface Stones mesh rather than filling the hierarchy with individual pebbles. These small decorations have no colliders. Their material comes from the accepted reference rock, not a replacement palette.
+
+This remains editor-only: world seed plus fixed spatial cells controls the small-stone placement, absolute coordinates control the material pattern, and the same source inputs rebuild deterministically. Clear/rebuild/play removes all disposable geometry. Production generation versions, entity identities, chunk ownership, and persisted deltas are unchanged; runtime integration remains a later step. Source formation, materials with pre-existing user edits, and both user scenes remain untouched. Blowing sand and the user's separate hand-built scatter/pile examples are excluded from this batch.
+
+Verification: Unity 6000.4.0f1 compiled the C# candidate and explicitly compiled both standard and fast terrain passes on Metal in the isolated project copy. No gameplay, visual, or automated test suite was run. Placement density, material readability and camera-distance appearance remain user-owned acceptance. Next is visible blowing sand in this same patch, without reopening rock shape or tilt tuning.

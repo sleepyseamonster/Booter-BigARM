@@ -23,6 +23,7 @@ namespace BooterBigArm.TopDown3D
         // Legacy initializer is doubled once below, for both existing and new mixed setups.
         [SerializeField, Range(0f, 1f)] private float sandBuildup = 0.18f;
         [SerializeField, HideInInspector] private int sandBuildupVersion;
+        [SerializeField, Range(0f, 1f)] private float groundClutter = 0.7f;
 
         public GameObject RockReference => rockReference;
         public float RockBurial => Mathf.Clamp01(rockBurial);
@@ -30,6 +31,7 @@ namespace BooterBigArm.TopDown3D
             burialRangeVersion == 0 ? Mathf.Max(0.6f, maximumRockBurial) : maximumRockBurial, RockBurial, 1f);
         public float MaximumRockTilt => Mathf.Clamp(maximumRockTilt, 0f, 35f);
         public float SandBuildup => Mathf.Clamp01(sandBuildupVersion == 0 ? sandBuildup * 2f : sandBuildup);
+        public float GroundClutter => Mathf.Clamp01(groundClutter);
 
         public TopDown3DWorldSettings WorldSettings => worldSettings;
         public Material TerrainMaterial => terrainMaterial;
