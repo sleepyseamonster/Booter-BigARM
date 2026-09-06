@@ -11,6 +11,8 @@ Both maps share the same world-space sampling. Albedo imports as sRGB; height im
 
 Validation: the isolated Unity 6000.4.0f1 editor completed imports, C# compilation, and explicit standard/fast terrain-pass compilation on Metal without shader errors. That editor stalled during final Mono cleanup and was terminated after the successful compiler message; this was not a clean process exit. No live scene, gameplay, or visual test was performed.
 
+Validation follow-up: the original standard/fast compile check missed the instanced, cascaded-shadow, additional-light, soft-shadow combination. That variant exceeded the sampler limit after these maps were added. On 2026-09-06 compatible texture sampler states were shared without changing either image. The expanded compiler-only check warmed six standard/fast lighting variants on Metal, including the reported failure, with no shader errors and exit 0. Log: `/tmp/booter-terrain-sampler-fix.log`. Live visual acceptance remains user-owned.
+
 ## Color texture prompt
 
 Use case: photorealistic-natural

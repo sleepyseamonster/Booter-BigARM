@@ -1,6 +1,6 @@
 # Rock Quality And Production Plan
 
-**Status:** rejected dot-pattern pebble detail replaced with generated gravel color/height textures on 2026-09-06; corrected appearance awaits user review before blowing sand
+**Status:** generated gravel color/height textures installed; Metal lighting-variant sampler overflow repaired on 2026-09-06. Appearance awaits user review before blowing sand.
 
 ## Goal
 
@@ -173,3 +173,11 @@ Sparse 5.5–16 cm stones reuse the existing baked Pebble LOD2 families, with se
 This remains editor-only: world seed plus fixed spatial cells controls the small-stone placement, absolute coordinates control the material pattern, and the same source inputs rebuild deterministically. Clear/rebuild/play removes all disposable geometry. Production generation versions, entity identities, chunk ownership, and persisted deltas are unchanged; runtime integration remains a later step. Source formation, materials with pre-existing user edits, and both user scenes remain untouched. Blowing sand and the user's separate hand-built scatter/pile examples are excluded from this batch.
 
 Verification: Unity 6000.4.0f1 compiled the C# candidate and explicitly compiled both standard and fast terrain passes on Metal in the isolated project copy. No gameplay, visual, or automated test suite was run. Placement density, material readability and camera-distance appearance remain user-owned acceptance. Next is visible blowing sand in this same patch, without reopening rock shape or tilt tuning.
+
+### Terrain shader sampler repair — 2026-09-06
+
+The user's next screenshot and live editor log exposed a missed keyword combination: instancing, cascaded main-light shadows, additional lights, and soft shadows exceeded Metal's 16-sampler limit. The earlier standard/fast pass check did not cover that lighting combination. The pebble maps had brought the terrain's independent sampler declarations to 16 before URP's lighting samplers were counted.
+
+Compatible terrain texture maps now share four sampler states: terrain color, rocky height, rocky normal, and pebble color/height. Texture resources, sRGB/linear interpretation, and the existing compatible repeat/filter settings are preserved. No textures, lighting features, rock placement, scene settings, or material assets were removed or retuned. This changes rendering resource usage only; deterministic world identity, streaming, generated-object identity, authored constraints, and persisted deltas remain unchanged.
+
+`LayeredTerrainShaderValidator.CompileLightingVariants` now explicitly warms six variants: basic, the reported failing combination, and that combination with additional-light shadows and linear fog, each in standard and fast mode. Unity 6000.4.0f1 completed the isolated Metal compiler check with six warmed variants, no shader errors, and process exit 0 (`/tmp/booter-terrain-sampler-fix.log`). No scene or gameplay tests were run. This establishes compilation, not live visual acceptance; review the restored pebble appearance before proceeding to blowing sand.

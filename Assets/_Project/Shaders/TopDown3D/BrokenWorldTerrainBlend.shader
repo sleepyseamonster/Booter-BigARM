@@ -81,33 +81,35 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
             TEXTURE2D(_BaseMap);
+            // Share compatible repeat/filter states. Independent texture resources do not
+            // need independent samplers; reserve headroom for URP lights and shadow maps.
             SAMPLER(sampler_BaseMap);
             TEXTURE2D(_SweptSandMap);
-            SAMPLER(sampler_SweptSandMap);
+            #define sampler_SweptSandMap sampler_BaseMap
             TEXTURE2D(_SweptSandTransitionMap);
-            SAMPLER(sampler_SweptSandTransitionMap);
+            #define sampler_SweptSandTransitionMap sampler_BaseMap
             TEXTURE2D(_GravelMap);
-            SAMPLER(sampler_GravelMap);
+            #define sampler_GravelMap sampler_BaseMap
             TEXTURE2D(_GravelTransitionMap);
-            SAMPLER(sampler_GravelTransitionMap);
+            #define sampler_GravelTransitionMap sampler_BaseMap
             TEXTURE2D(_RockyMap);
-            SAMPLER(sampler_RockyMap);
+            #define sampler_RockyMap sampler_BaseMap
             TEXTURE2D(_RockyMidTransitionMap);
-            SAMPLER(sampler_RockyMidTransitionMap);
+            #define sampler_RockyMidTransitionMap sampler_BaseMap
             TEXTURE2D(_RockyTransitionMap);
-            SAMPLER(sampler_RockyTransitionMap);
+            #define sampler_RockyTransitionMap sampler_BaseMap
             TEXTURE2D(_RockyHeightMap);
             SAMPLER(sampler_RockyHeightMap);
             TEXTURE2D(_RockyNormalMap);
             SAMPLER(sampler_RockyNormalMap);
             TEXTURE2D(_RockyMidTransitionHeightMap);
-            SAMPLER(sampler_RockyMidTransitionHeightMap);
+            #define sampler_RockyMidTransitionHeightMap sampler_RockyHeightMap
             TEXTURE2D(_RockyMidTransitionNormalMap);
-            SAMPLER(sampler_RockyMidTransitionNormalMap);
+            #define sampler_RockyMidTransitionNormalMap sampler_RockyNormalMap
             TEXTURE2D(_RockyTransitionHeightMap);
-            SAMPLER(sampler_RockyTransitionHeightMap);
+            #define sampler_RockyTransitionHeightMap sampler_RockyHeightMap
             TEXTURE2D(_RockyTransitionNormalMap);
-            SAMPLER(sampler_RockyTransitionNormalMap);
+            #define sampler_RockyTransitionNormalMap sampler_RockyNormalMap
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseMap_ST;
@@ -141,7 +143,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
             TEXTURE2D(_PebbleAlbedoMap);
             SAMPLER(sampler_PebbleAlbedoMap);
             TEXTURE2D(_PebbleHeightMap);
-            SAMPLER(sampler_PebbleHeightMap);
+            #define sampler_PebbleHeightMap sampler_PebbleAlbedoMap
 
             struct Attributes
             {
