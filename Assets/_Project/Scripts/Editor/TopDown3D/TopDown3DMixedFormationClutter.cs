@@ -137,15 +137,23 @@ namespace BooterBigArm.Editor
                     var separation = (size + previous.w) * 0.36f;
                     if (delta.sqrMagnitude < separation * separation) { occupied = true; break; }
                 }
-                if (occupied || !catalog.TryGetMeshFamily(TopDown3DNaturalObjectShape.Pebble,
+                if (occupied || !catalog.TryGetMeshFamily(TopDown3DNaturalObjectShape.Nodule,
                         (int)(Unit(seed ^ 3131) * 2.999f), out var family)) continue;
-                var source = size > 0.25f && family.Lod1 != null ? family.Lod1 : family.Lod2;
+                // Approved irregular geometry and smooth normals, not the old polygonal pebble prisms.
+                // LOD2 retains the softened silhouette while bounding this editor preview's mesh cost.
+                var source = family.Lod2;
                 if (source == null) continue;
                 var dimensions = source.bounds.size;
-                var scale = size / Mathf.Max(dimensions.x, dimensions.y, dimensions.z);
+                var scale = size / Mathf.Max(0.001f, Mathf.Max(dimensions.x, dimensions.z));
+                var heightRatio = sizeClass < 0.55f ? Mathf.Lerp(0.32f, 0.5f, Bell(5151))
+                    : sizeClass < 0.85f ? Mathf.Lerp(0.5f, 0.7f, Bell(5151))
+                    : Mathf.Lerp(0.75f, 0.95f, Bell(5151));
+                var verticalScale = size * heightRatio / Mathf.Max(0.001f, dimensions.y);
                 var rotation = Quaternion.FromToRotation(Vector3.up, hit.normal)
                     * Quaternion.Euler(0f, Unit(seed ^ 4141) * 360f, 0f);
-                var shape = Matrix4x4.TRS(Vector3.zero, rotation, new Vector3(scale, scale * 0.65f, scale))
+                var shape = Matrix4x4.TRS(Vector3.zero, rotation,
+                    new Vector3(scale * Mathf.Lerp(0.85f, 1f, Unit(seed ^ 6161)), verticalScale,
+                        scale * Mathf.Lerp(0.85f, 1f, Unit(seed ^ 8181))))
                     * Matrix4x4.Translate(-source.bounds.center);
                 var bottom = float.PositiveInfinity;
                 foreach (var vertex in source.vertices) bottom = Mathf.Min(bottom, shape.MultiplyPoint3x4(vertex).y);
