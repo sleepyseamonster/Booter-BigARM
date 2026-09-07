@@ -10,7 +10,8 @@ namespace BooterBigArm.Editor
     internal static class TopDown3DMixedFormationClutter
     {
         internal static void Apply(TopDown3DLandscapeAuthoringSandbox sandbox, Transform parent,
-            MeshCollider[] terrain, TopDown3DRockWorkbenchAuthoring[] rocks)
+            MeshCollider[] terrain, TopDown3DRockWorkbenchAuthoring[] rocks,
+            IReadOnlyList<TopDown3DDustDepositionPlanner.AuthoredObstruction> groundContacts)
         {
             if (sandbox.GroundClutter <= 0f || rocks.Length == 0) return;
             const string textureFolder = "Assets/_Project/Art/Environment/Ground/SandDirt/";
@@ -42,14 +43,24 @@ namespace BooterBigArm.Editor
             }
             float Coverage(Vector3 point)
             {
+                // Use the sand's actual mesh slices, not world-axis renderer rectangles.
+                // The existing UV2.y deposit mask still lets sand cover this gravel in the shader.
+                var position = new Vector2(point.x, point.z);
                 var closest = float.PositiveInfinity;
-                foreach (var rock in bounds)
+                foreach (var contact in groundContacts)
                 {
-                    var dx = Mathf.Max(0f, Mathf.Abs(point.x - rock.center.x) - rock.extents.x);
-                    var dz = Mathf.Max(0f, Mathf.Abs(point.z - rock.center.z) - rock.extents.z);
-                    closest = Mathf.Min(closest, Mathf.Sqrt(dx * dx + dz * dz));
+                    // Cheap rejection only; the visible boundary is always contour-derived.
+                    var delta = position - contact.Center;
+                    if (Mathf.Abs(delta.x) > contact.HalfSize.x + 1.8f
+                        || Mathf.Abs(delta.y) > contact.HalfSize.y + 1.8f) continue;
+                    closest = Mathf.Min(closest, contact.DistanceOutside(position));
                 }
-                return Mathf.SmoothStep(1f, 0f, Mathf.Clamp01(closest / 1.5f)) * sandbox.GroundClutter;
+                var seed = sandbox.WorldSettings.WorldSeed ^ 18457;
+                var variation = Mathf.PerlinNoise(
+                    point.x * 0.65f + point.z * 0.31f + (seed & 1023),
+                    point.z * 0.65f - point.x * 0.31f + ((seed >> 10) & 1023));
+                var reach = Mathf.Lerp(1.2f, 1.8f, variation);
+                return Mathf.SmoothStep(1f, 0f, Mathf.Clamp01(closest / reach)) * sandbox.GroundClutter;
             }
             var formationBounds = bounds[0];
             for (var r = 1; r < bounds.Count; r++) formationBounds.Encapsulate(bounds[r]);

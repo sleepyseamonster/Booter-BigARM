@@ -1,6 +1,14 @@
 # Rock Quality And Production Plan
 
-**Status:** first whole-formation naturalism implementation completed 2026-09-06; awaiting user visual review. Pebble/POM experiments are deferred rather than allowed to drive the composition. Production integration remains deferred.
+**Status:** first whole-formation naturalism pass accepted by the user; 2026-09-07 follow-up corrects box-shaped gravel/sand boundaries, pending visual review. Pebble/POM experiments and production integration remain deferred.
+
+## Contact-boundary correction — 2026-09-07
+
+User screenshots identified rectilinear smooth-sand lanes and rough-gravel borders. The original gravel coverage still measured distance from world-axis renderer boxes, while sand already used mesh cross-sections. The editor sand pass now returns its frozen ground-contact contours to the gravel pass. Gravel measures distance from those same contours, with seeded, continuous world-space edge reach varying from 1.2–1.8 m. Bounding boxes only reject distant queries; they no longer define this visible mask. Existing deposited-depth UV2.y suppression remains in the shader so sand and gravel retain their layering relationship. Suspended and fully buried members do not create independent gravel collars. Contact extraction also runs with zero sand buildup, without displacing terrain.
+
+Scope preserves authored/source rocks, bank heights, terrain geometry/collision, fragment placement, textures, lighting, serialized settings and the disabled top pebble layer. This remains an editor preview correction: world identity, streaming/unload, generated IDs and persisted runtime deltas are unchanged. No new controls or production integration. Stop at user review via **Mixed Formation Ground → Update Rocks & Ground**.
+
+Verification: isolated Unity 6000.4.0f1 C# import/compilation and six Metal terrain variants passed, exit 0 (`/tmp/booter-contour-gravel-compile.log`). Source review checked the sole caller, empty-contact behavior, zero-sand behavior, bounded contour queries and unchanged deposit masks. No gameplay tests, visual acceptance or performance proof claimed. User scene/material edits remain untouched.
 
 ## Goal
 

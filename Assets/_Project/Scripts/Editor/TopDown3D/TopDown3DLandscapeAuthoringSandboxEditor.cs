@@ -270,8 +270,8 @@ namespace BooterBigArm.Editor
                 rocks[i].transform.SetPositionAndRotation(poses[i].Position, poses[i].Rotation);
             foreach (var child in copy.GetComponentsInChildren<Transform>(true))
                 child.gameObject.hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable;
-            TopDown3DMixedFormationSand.Apply(sandbox, ground, rocks);
-            TopDown3DMixedFormationClutter.Apply(sandbox, contextRoot, ground, rocks);
+            var groundContacts = TopDown3DMixedFormationSand.Apply(sandbox, ground, rocks);
+            TopDown3DMixedFormationClutter.Apply(sandbox, contextRoot, ground, rocks, groundContacts);
             TopDown3DMixedFormationBlowingSand.Apply(sandbox, contextRoot, ground, rocks);
         }
 

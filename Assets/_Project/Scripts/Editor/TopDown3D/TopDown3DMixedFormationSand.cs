@@ -10,10 +10,9 @@ namespace BooterBigArm.Editor
     /// <summary>Deposits sand into disposable authoring terrain, never a second overlay/collider.</summary>
     internal static class TopDown3DMixedFormationSand
     {
-        internal static void Apply(TopDown3DLandscapeAuthoringSandbox sandbox,
+        internal static IReadOnlyList<TopDown3DDustDepositionPlanner.AuthoredObstruction> Apply(TopDown3DLandscapeAuthoringSandbox sandbox,
             MeshCollider[] terrain, TopDown3DRockWorkbenchAuthoring[] rocks)
         {
-            if (sandbox.SandBuildup <= 0f) return;
             var tiles = new List<BaseTile>(terrain.Length);
             foreach (var collider in terrain) tiles.Add(new BaseTile(collider));
             var sources = new List<TopDown3DDustDepositionPlanner.AuthoredObstruction>();
@@ -40,7 +39,8 @@ namespace BooterBigArm.Editor
                 if (sources.Count == 1) influence = sourceInfluence;
                 else influence.Encapsulate(sourceInfluence);
             }
-            if (sources.Count == 0) return;
+            // Gravel uses these same frozen ground contacts, including when sand is disabled.
+            if (sources.Count == 0 || sandbox.SandBuildup <= 0f) return sources;
 
             var generator = new TopDown3DWorldGenerator(sandbox.WorldSettings);
             var cache = new Dictionary<Vector2, TopDown3DDustDepositionSample>();
@@ -139,6 +139,7 @@ namespace BooterBigArm.Editor
                 tile.Collider.sharedMesh = mesh;
             }
             Physics.SyncTransforms();
+            return sources;
         }
 
         private static Bounds ContactFootprint(TopDown3DRockWorkbenchAuthoring rock,
