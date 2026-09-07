@@ -37,6 +37,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
         _DetailFadeEnd("Geological Detail Fade End", Float) = 150
         _PebbleDetail("Pebble Detail", Range(0, 1)) = 0
         _NearRockPebbleDepth("Near-rock Pebble POM Depth (m)", Range(0, 0.04)) = 0
+        [HideInInspector] _NearRockPebbleFormation("Pebble Formation XZ Center/Extents", Vector) = (0,0,0,0)
+        [HideInInspector] _NearRockPebbleDensity("Whole Pebble Density", Range(0,1)) = 0
         [NoScaleOffset] _PebbleAlbedoMap("Pebble Gravel Color", 2D) = "gray" {}
         [NoScaleOffset] _PebbleHeightMap("Pebble Gravel Height", 2D) = "black" {}
         [NoScaleOffset] _RockPebbleColorMap("Near-rock Pebble Color", 2D) = "gray" {}
@@ -138,6 +140,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float _DetailFadeEnd;
                 float _PebbleDetail;
                 float _NearRockPebbleDepth;
+                float4 _NearRockPebbleFormation;
+                float _NearRockPebbleDensity;
                 float _Smoothness;
                 float _Cutoff;
                 float _Surface;
@@ -356,10 +360,62 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     TEXTURE2D_ARGS(textureMap, sampler_textureMap));
             }
 
+            float PebbleFormationDistance(float2 position)
+            {
+                return length(max(abs(position - _NearRockPebbleFormation.xy)
+                    - _NearRockPebbleFormation.zw, 0.0));
+            }
+
+            // Isolated complete stones in the existing 1254px paired source images.
+            // Coordinates are pixel centers from the top-left; no bitmap is changed.
+            float3 PebbleSourceRegion(int index)
+            {
+                if (index == 0) return float3(99, 149, 72);
+                if (index == 1) return float3(459, 82, 86);
+                if (index == 2) return float3(529, 477, 80);
+                if (index == 3) return float3(479, 684, 66);
+                if (index == 4) return float3(596, 906, 76);
+                if (index == 5) return float3(83, 1196, 80);
+                if (index == 6) return float3(518, 626, 60);
+                return float3(339, 603, 65);
+            }
+
+            float4 SampleWholePebble(float2 position, float2 positionDx, float2 positionDy,
+                TEXTURE2D_PARAM(textureMap, sampler_textureMap))
+            {
+                const float spacing = 0.18;
+                float2 id = floor(position / spacing);
+                float2 center = (id + 0.5) * spacing
+                    + (float2(Hash21(id + 29.17), Hash21(id + 63.91)) - 0.5) * 0.04;
+                // Select at the stone center, never at its individual pixels. Membership
+                // therefore stays identical for its color, height, normal and POM samples.
+                float envelope = 0.65 * (1.0 - smoothstep(0.0, 2.5, PebbleFormationDistance(center)));
+                float pocket = smoothstep(0.42, 0.76, ValueNoise(center * 2.1 + 38.7));
+                float probability = smoothstep(0.04, 0.38, pocket * envelope * _NearRockPebbleDensity);
+                [branch] if (Hash21(id + 101.37) >= probability) return 0;
+                float diameter = lerp(0.055, 0.125, Hash21(id + 17.81));
+                float sine, cosine;
+                sincos(Hash21(id + 7.13) * 6.2831853, sine, cosine);
+                float2x2 rotation = float2x2(cosine, -sine, sine, cosine);
+                float2 local = mul(rotation, position - center) / diameter;
+                // Supports fit inside their jittered cell, so no stone is cut at a cell seam.
+                [branch] if (dot(local, local) >= 0.25) return 0;
+                float3 region = PebbleSourceRegion((int)(Hash21(id + 53.29) * 8.0));
+                float2 uv = float2(region.x, 1254.0 - region.y) / 1254.0 + local * region.z / 1254.0;
+                float2 gradientX = mul(rotation, positionDx) * region.z / (1254.0 * diameter);
+                float2 gradientY = mul(rotation, positionDy) * region.z / (1254.0 * diameter);
+                // Guard the crop's black margin against neighboring source stones at mip levels.
+                float border = 1.0 - smoothstep(0.43, 0.50, length(local));
+                return SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap, uv, gradientX, gradientY) * border;
+            }
+
             float NearPebbleHeight(float2 position, float2 positionDx, float2 positionDy)
             {
-                return saturate(SamplePebbleTilesGrad(position, positionDx, positionDy,
-                    TEXTURE2D_ARGS(_NearRockPebbleHeightMap, sampler_PebbleAlbedoMap)).r);
+                float height = SampleWholePebble(position, positionDx, positionDy,
+                    TEXTURE2D_ARGS(_NearRockPebbleHeightMap, sampler_PebbleAlbedoMap)).r;
+                // Normalize the interpreted source range to use the requested depth; do not
+                // blend multiple height layouts or cut off crowns to reduce density.
+                return saturate((height - 0.03) / 0.65);
             }
 
             float2 TraceNearPebbles(float2 position, float2 ray, float depth,
@@ -423,7 +479,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 half3 albedo;
                 if (rockLayer)
                 {
-                    half3 newDetail = SamplePebbleTilesGrad(position, positionDx, positionDy,
+                    half3 newDetail = SampleWholePebble(position, positionDx, positionDy,
                         TEXTURE2D_ARGS(_NearRockPebbleAlbedoMap, sampler_PebbleAlbedoMap)).rgb;
                     // Keep the rock's palette; the independent albedo supplies local mineral variation.
                     half variation = clamp(dot(newDetail, half3(0.2126, 0.7152, 0.0722)) / 0.18, 0.7, 1.3);
@@ -432,12 +488,10 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 }
                 else albedo = SamplePebbleTiles(position,
                     TEXTURE2D_ARGS(_PebbleAlbedoMap, sampler_PebbleAlbedoMap)).rgb;
-                // Taper top-layer area, not stone opacity: low admission erodes height islands.
-                // Only a narrow silhouette edge blends; the surviving centers stay opaque.
-                float stoneThreshold = lerp(1.04, 0.20, saturate(amount));
+                // Membership is decided per whole stone. Only its actual silhouette blends.
                 float edgeWidth = clamp(pixelFootprint * 2.0, 0.02, 0.04);
                 float cover = rockLayer
-                    ? smoothstep(stoneThreshold - edgeWidth, stoneThreshold + edgeWidth, height)
+                    ? smoothstep(0.015, 0.015 + edgeWidth, height)
                     : smoothstep(0.075, 0.22, height) * amount;
                 surface.albedo = lerp(surface.albedo, rockLayer ? albedo : albedo * _BaseColor.rgb, cover);
                 surface.smoothness = lerp(surface.smoothness, lerp(0.07, 0.15, saturate(height)), cover);
@@ -483,19 +537,17 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
             void ApplyPebbleLayers(float2 position, half3 view, half2 clutter, half4 rockPebbles,
                 float pixelFootprint, half3 groundNormal, inout half3 normal, inout SurfaceData surface)
             {
-                // Give each pocket a dominant surface. Do not stack two full relief fields.
-                float pocket = smoothstep(0.42, 0.76, ValueNoise(position * 2.1 + 38.7))
-                    * rockPebbles.a * _PebbleDetail;
-                // The old multiplicative mask plus 0.75 cap left even pebble centers sandy.
-                // Preserve the pocket support, but make its interior opaque rock material.
-                pocket = smoothstep(0.04, 0.38, pocket);
+                // Original gravel remains in gaps; complete top stones replace it locally.
                 float bank = smoothstep(0.25, 0.9, clutter.y);
                 normal = normalize(lerp(normal, groundNormal, bank * 0.7));
                 ApplyPebbles(position, view, clutter.x * _PebbleDetail
                     * (1.0 - 0.85 * bank), pixelFootprint,
                     normal, surface, false, half3(1, 1, 1), groundNormal);
-                // Remains on top of sand, but only in sparse pockets near rock bases.
-                ApplyPebbles(position + float2(21.71, -13.29), view, pocket, pixelFootprint,
+                // Pad the broad cull for view-ray movement above the sand plane. Individual
+                // membership uses the unshifted formation envelope at each stone center.
+                float wholeStoneAdmission = PebbleFormationDistance(position) <= 2.8
+                    ? _NearRockPebbleDensity * _PebbleDetail : 0.0;
+                ApplyPebbles(position, view, wholeStoneAdmission, pixelFootprint,
                     normal, surface, true, rockPebbles.rgb, groundNormal);
             }
 

@@ -103,6 +103,9 @@ namespace BooterBigArm.Editor
                 groundRenderer.GetPropertyBlock(properties);
                 properties.SetFloat("_PebbleDetail", 1f);
                 properties.SetFloat("_NearRockPebbleDepth", sandbox.PebbleDepth);
+                properties.SetFloat("_NearRockPebbleDensity", sandbox.GroundClutter);
+                properties.SetVector("_NearRockPebbleFormation", new Vector4(formationBounds.center.x,
+                    formationBounds.center.z, formationBounds.extents.x, formationBounds.extents.z));
                 properties.SetTexture("_PebbleAlbedoMap", pebbleColor);
                 properties.SetTexture("_PebbleHeightMap", pebbleHeight);
                 properties.SetTexture("_RockPebbleColorMap", rockColorMap);
