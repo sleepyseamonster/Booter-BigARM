@@ -616,7 +616,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                         TEXTURE2D_ARGS(_RockyMap, sampler_RockyMap));
 
                     // Authoring bank mask retains sand detail while bringing it into the local earth palette.
-                    farSweptAlbedo = lerp(farSweptAlbedo, farBaseAlbedo, input.clutter.y * 0.55);
+                    farSweptAlbedo = lerp(farSweptAlbedo, farBaseAlbedo, input.clutter.y * 0.8);
                     half3 farAlbedo = lerp(farBaseAlbedo, farSweptAlbedo, sweptMask);
                     farAlbedo = lerp(farAlbedo, farGravelAlbedo, gravelMask);
                     farAlbedo = lerp(farAlbedo, farRockyAlbedo, rockyMask);
@@ -818,8 +818,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     rockyHeight,
                     rockyCenterBlend);
 
-                sweptAlbedo = lerp(sweptAlbedo, baseAlbedo, input.clutter.y * 0.55);
-                sweptTransitionAlbedo = lerp(sweptTransitionAlbedo, baseAlbedo, input.clutter.y * 0.55);
+                sweptAlbedo = lerp(sweptAlbedo, baseAlbedo, input.clutter.y * 0.8);
+                sweptTransitionAlbedo = lerp(sweptTransitionAlbedo, baseAlbedo, input.clutter.y * 0.8);
                 half3 albedo = lerp(baseAlbedo, sweptTransitionAlbedo, sweptTransitionMask);
                 albedo = lerp(albedo, sweptAlbedo, sweptMask);
                 albedo = lerp(albedo, gravelTransitionAlbedo, gravelTransitionMask);

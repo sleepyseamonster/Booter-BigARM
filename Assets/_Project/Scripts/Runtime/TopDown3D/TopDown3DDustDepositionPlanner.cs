@@ -151,6 +151,8 @@ namespace BooterBigArm.TopDown3D
             var strongest = 0f;
             var height = 0f;
             var secondHeight = 0f;
+            var broadSupport = 0f;
+            var secondSupport = 0f;
             var wind = DirectionFromTurns(material.PrevailingWindDirection);
             var acrossWind = new Vector2(-wind.y, wind.x);
             var slopeGate = 1f - SmoothStepRange(settings.MaximumDustDepositionSlope * 0.7f,
@@ -165,9 +167,9 @@ namespace BooterBigArm.TopDown3D
                 var delta = position - source.Center;
                 var radius = Mathf.Min(source.HalfSize.x, source.HalfSize.y);
                 var bankHeight = Mathf.Min(buildup, source.ExposedHeight * 0.7f);
-                var skirtWidth = Mathf.Clamp(bankHeight * 2.4f + 0.18f, 0.25f, 1.25f);
+                var skirtWidth = Mathf.Clamp(bankHeight * 4f + 0.4f, 0.45f, 1.8f);
                 // Cheap rejection before measuring the triangle-section contour.
-                var reach = Mathf.Max(skirtWidth, settings.DustWakeLength) + 0.5f;
+                var reach = Mathf.Max(skirtWidth * 2f, settings.DustWakeLength) + 0.5f;
                 if (Mathf.Abs(delta.x) > source.HalfSize.x + reach
                     || Mathf.Abs(delta.y) > source.HalfSize.y + reach) continue;
                 var edgeDistance = source.DistanceOutside(position);
@@ -176,8 +178,10 @@ namespace BooterBigArm.TopDown3D
                 var lee = SmoothStepRange(-radius, radius, along);
                 var irregularity = FractalNoise(settings.WorldSeed ^ 4739,
                     position.x * 1.7f + source.Center.x, position.y * 1.7f + source.Center.y);
-                var contactStrength = Mathf.Lerp(0.35f, 1f, SmoothStepRange(0.2f, 0.7f, irregularity))
-                    * Mathf.Lerp(0.75f, 1f, lee);
+                var sourceVariation = FractalNoise(settings.WorldSeed ^ 9199,
+                    source.Center.x * 0.83f, source.Center.y * 0.83f);
+                var contactStrength = Mathf.Lerp(0.12f, 1f, SmoothStepRange(0.2f, 0.7f, irregularity))
+                    * Mathf.Lerp(0.12f, 1f, lee) * Mathf.Lerp(0.45f, 1f, sourceVariation);
                 // Highest at contact, descending outward with a gentle toe. Not a detached ring.
                 var skirt = Mathf.Pow(Mathf.Clamp01(1f - edgeDistance / skirtWidth), 1.6f) * contactStrength;
                 var length = Mathf.Min(settings.DustWakeLength,
@@ -187,7 +191,13 @@ namespace BooterBigArm.TopDown3D
                     * settings.DustWakeWidthMultiplier * Mathf.Sqrt(farFade);
                 var wake = SmoothStepRange(0f, radius, along) * farFade
                     * (1f - SmoothStepRange(width * 0.2f, Mathf.Max(0.001f, width), across));
-                var weight = Mathf.Max(skirt, wake * 0.3f) * slopeGate * Mathf.Lerp(0.85f, 1f, supply);
+                var weight = Mathf.Max(skirt, wake * 0.6f) * slopeGate * Mathf.Lerp(0.7f, 1f, supply);
+                // Low shared sediment only where two neighboring rock influences meet.
+                // This connects a group without adding a broad pedestal beneath each member.
+                var support = Mathf.Pow(Mathf.Clamp01(1f - edgeDistance / (skirtWidth * 2f)), 2f)
+                    * Mathf.Lerp(0.2f, 1f, lee) * slopeGate;
+                if (support > broadSupport) { secondSupport = broadSupport; broadSupport = support; }
+                else secondSupport = Mathf.Max(secondSupport, support);
                 strongest = Mathf.Max(strongest, weight);
                 var candidate = weight * bankHeight;
                 if (candidate > height) { secondHeight = height; height = candidate; }
@@ -195,8 +205,9 @@ namespace BooterBigArm.TopDown3D
             }
             // A bounded join fills narrow shared pockets without summing an entire pile's banks.
             height += secondHeight * 0.18f * (1f - Mathf.Clamp01(height / Mathf.Max(0.001f, buildup)));
+            height = Mathf.Min(buildup, height + buildup * 0.25f * broadSupport * secondSupport);
             return new TopDown3DDustDepositionSample(
-                Mathf.Clamp01(strongest * 1.6f) * Mathf.Clamp01(buildup / 0.12f), height, strongest,
+                Mathf.Clamp01(height / Mathf.Max(0.12f, buildup)) * 0.85f, height, strongest,
                 checked((float)material.Position.Vertical), material.WindExposure, material.Erosion, material.Deposit);
         }
 

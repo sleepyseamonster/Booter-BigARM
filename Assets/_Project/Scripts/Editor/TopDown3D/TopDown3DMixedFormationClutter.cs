@@ -63,7 +63,7 @@ namespace BooterBigArm.Editor
                     Mathf.Clamp01(Mathf.Sqrt(dx * dx + dz * dz) / 2.5f));
             }
             var triangles = new Dictionary<MeshCollider, int[]>();
-            var colors = new Dictionary<MeshCollider, Color[]>();
+            var depositMasks = new Dictionary<MeshCollider, Vector2[]>();
             foreach (var ground in terrain)
             {
                 var mesh = ground.sharedMesh;
@@ -103,7 +103,8 @@ namespace BooterBigArm.Editor
                 groundRenderer.GetPropertyBlock(properties);
                 properties.SetFloat("_PebbleDetail", 1f);
                 properties.SetFloat("_NearRockPebbleDepth", sandbox.PebbleDepth);
-                properties.SetFloat("_NearRockPebbleDensity", sandbox.GroundClutter);
+                // Rejected grid-stamp experiment stays off during whole-formation review.
+                properties.SetFloat("_NearRockPebbleDensity", 0f);
                 properties.SetVector("_NearRockPebbleFormation", new Vector4(formationBounds.center.x,
                     formationBounds.center.z, formationBounds.extents.x, formationBounds.extents.z));
                 properties.SetTexture("_PebbleAlbedoMap", pebbleColor);
@@ -113,7 +114,7 @@ namespace BooterBigArm.Editor
                 properties.SetTexture("_NearRockPebbleHeightMap", nearHeight);
                 groundRenderer.SetPropertyBlock(properties);
                 triangles.Add(ground, mesh.triangles);
-                colors.Add(ground, mesh.colors);
+                depositMasks.Add(ground, mask);
             }
 
             var catalog = sandbox.WorldSettings.NaturalObjectCatalog;
@@ -146,7 +147,8 @@ namespace BooterBigArm.Editor
                 var rockSeed = unchecked(sandbox.WorldSettings.WorldSeed ^ rocks[rockIndex].GenerationSeed
                     ^ rockIndex * 486187739);
                 var firstAngle = Unit(rockSeed ^ 5171) * Mathf.PI * 2f;
-                for (var pocket = 0; pocket < 2; pocket++)
+                var pocketCount = 1 + Mathf.Min(2, (int)(Unit(rockSeed ^ 9292) * 3f));
+                for (var pocket = 0; pocket < pocketCount; pocket++)
                 {
                     var seed = unchecked(rockSeed ^ (pocket + 1) * 19349663);
                     var angle = firstAngle + pocket * Mathf.Lerp(2.1f, 4.1f, Unit(seed ^ 6262));
@@ -166,22 +168,24 @@ namespace BooterBigArm.Editor
                 if (Unit(seed ^ 7171) > sandbox.GroundClutter * 0.85f) continue;
                 float Bell(int salt) => (Unit(seed ^ salt) + Unit(seed ^ (salt + 7919))
                     + Unit(seed ^ (salt + 15401))) / 3f;
-                var spread = Mathf.Lerp(0.3f, 0.55f, Unit(cluster.Seed ^ 8383));
+                var spread = Mathf.Lerp(0.22f, 0.75f, Unit(cluster.Seed ^ 8383));
                 var point = cluster.Center + new Vector3((Bell(1171) - 0.5f) * spread * 2f, 0f,
                     (Bell(2171) - 0.5f) * spread * 2f);
-                var sizeClass = Unit(seed ^ 1515);
+                // Give each group a chance to establish intermediate fragments before chips
+                // consume its space. Subsequent attempts fill the size transition irregularly.
+                var sizeClass = attempt < 2 ? 0.92f : Unit(seed ^ 1515);
                 var size = sizeClass < 0.55f ? Mathf.Lerp(0.07f, 0.16f, Bell(1919))
-                    : sizeClass < 0.85f ? Mathf.Lerp(0.16f, 0.28f, Bell(1919))
-                    : Mathf.Lerp(0.28f, 0.42f, Bell(1919));
+                    : sizeClass < 0.85f ? Mathf.Lerp(0.16f, 0.32f, Bell(1919))
+                    : Mathf.Lerp(0.30f, 0.58f, Bell(1919));
                 if (!GroundAt(point, out var hit, out var supportingGround) || hit.normal.y < 0.85f) continue;
                 var indices = triangles[supportingGround];
-                var tint = colors[supportingGround];
+                var deposit = depositMasks[supportingGround];
                 var t = hit.triangleIndex * 3;
                 var bary = hit.barycentricCoordinate;
-                var sand = tint[indices[t]].r * bary.x + tint[indices[t + 1]].r * bary.y
-                    + tint[indices[t + 2]].r * bary.z;
+                var sand = deposit[indices[t]].y * bary.x + deposit[indices[t + 1]].y * bary.y
+                    + deposit[indices[t + 2]].y * bary.z;
                 // Sand hides some chips, not every cluster next to a deposited skirt.
-                var sandWeight = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.5f, 0.85f, sand));
+                var sandWeight = Mathf.Clamp01(sand);
                 if (Unit(seed ^ 9091) < sandWeight * (sizeClass < 0.55f ? 0.55f : 0.3f)) continue;
                 var occupied = false;
                 foreach (var rock in bounds)
@@ -193,7 +197,7 @@ namespace BooterBigArm.Editor
                 foreach (var previous in placed)
                 {
                     var delta = new Vector2(hit.point.x - previous.x, hit.point.z - previous.z);
-                    var separation = (size + previous.w) * 0.36f;
+                    var separation = (size + previous.w) * Mathf.Lerp(0.26f, 0.4f, Unit(seed ^ 12121));
                     if (delta.sqrMagnitude < separation * separation) { occupied = true; break; }
                 }
                 if (occupied || !catalog.TryGetMeshFamily(TopDown3DNaturalObjectShape.Nodule,
@@ -231,6 +235,19 @@ namespace BooterBigArm.Editor
             renderer.sharedMaterial = rocks[0].GetComponent<MeshRenderer>().sharedMaterial;
             TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(rocks[0], renderer, Vector3.one * 0.12f,
                 sandbox.WorldSettings.WorldSeed, Vector3.zero, 0f, 6f);
+            ApplyFormationReadability(renderer);
+        }
+
+        internal static void ApplyFormationReadability(MeshRenderer renderer)
+        {
+            // Applied once after canonical rock properties on each disposable rebuild.
+            // Do not edit the authored rock settings, shared material or project lighting.
+            var properties = new MaterialPropertyBlock();
+            renderer.GetPropertyBlock(properties);
+            var tint = properties.HasColor("_BaseColor") ? properties.GetColor("_BaseColor")
+                : renderer.sharedMaterial.GetColor("_BaseColor");
+            properties.SetColor("_BaseColor", new Color(tint.r * 1.12f, tint.g * 1.12f, tint.b * 1.12f, tint.a));
+            renderer.SetPropertyBlock(properties);
         }
 
         private static float Unit(int seed)

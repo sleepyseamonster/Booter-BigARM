@@ -1,10 +1,28 @@
 # Rock Quality And Production Plan
 
-**Status:** user accepted the improved gravel and deferred blowing sand on 2026-09-06. Blowing sand is off. Current bounded step: explore POM depth on the independent near-rock pebble layer, then obtain user visual feedback before resuming the mixed patch's production handoff.
+**Status:** first whole-formation naturalism implementation completed 2026-09-06; awaiting user visual review. Pebble/POM experiments are deferred rather than allowed to drive the composition. Production integration remains deferred.
 
 ## Goal
 
 Create excellent, readable rocks through one simple Unity hierarchy workflow, then translate the accepted shape language into deterministic editor-baked production assets for the procedural world.
+
+## Active implementation plan — whole-formation naturalism reset, 2026-09-06
+
+Source of truth: user-authored mixed reference and current whole-shot review; retain the central pile/outlying composition, accepted width of the surrounding treatment, red-earth palette, burial controls and immutable reference. Working visual premise: related broken rock fragments partly covered by directional sediment. This is provisional art direction, not new world canon.
+
+1. **Remove the distraction:** disable the rejected top pebble stamping/POM layer in the mixed preview. Preserve its maps and implementation for future work, but make its deferred state explicit in the existing Inspector. Keep the original gravel and mesh stones.
+2. **Connect rocks to ground:** replace similarly strong circular collars with directional, uneven contact banks and longer lower sediment tails. Blend shallow sediment between neighboring influence regions without summing every pile member into a mound. Continue sampling immutable base ground and using identical displaced rendering/collision triangles. Do not move/rebuild authored rocks or change support fitting.
+3. **Bridge size ranges:** place larger intermediate fragments first, vary pocket count/width, and allow closer natural contacts among fragments. Drive burial/exclusion from actual deposited-depth UV data rather than broad terrain biome color. Keep seeded authoring, bounded instance count and one combined mesh; no new gameplay objects.
+4. **Improve readability without relighting the project:** reduce the strong pale-bank color separation using the existing red-earth sample. Apply a modest matching base-color lift only to disposable grounded rocks and their mesh fragments. Preserve source materials, sky, light, exposure and scene settings. Judge further lighting changes only after seeing this pass.
+5. **Stop and review the whole formation:** no new pebble texture pass or POM expansion until large forms, contacts, sand and intermediate fragments read together. User owns visual/play assessment; no automated gameplay tests. If further progress requires hand-authored arrangement or material decisions, stop for that input.
+
+Architecture boundaries: this is the existing editor mixed-formation adapter and its authored-deposit entry point, not production rollout. World seed/version, stable authored member identities, chunk ownership/unload/reload and persisted runtime deltas stay unchanged. Shared world-space deposit queries and existing tile-boundary sampling remain; no new world authority. Procedural preview fragments can change deterministically under the new rules without modifying saved-world identities. Materials and the four dirty user scene/material files are outside edit scope.
+
+Done means: the above scoped implementation is present, the plan describes actual behavior, relevant Unity C#/Metal compilation passes in the existing isolated mirror, task-only changes are committed locally, and the user receives the existing hierarchy action to review it. It does not mean naturalism or performance is visually proven. No source-art requests are required for this first pass. No push, scene overwrite, camera/lighting changes or broad refactor.
+
+Implementation checkpoint: steps 1–4 are in source. The top stamping layer binds density zero and its Inspector depth control is disabled/labeled deferred. Authored sand uses wider directional contact influence, per-source variation, stronger low wakes and a bounded shallow join between the two strongest neighboring influences. Bank material coverage follows deposited height. Fragment groups now have 1–3 pockets, varied widths, large-first attempts (30–58 cm), smaller 7–32 cm pieces, and varied spacing; the 192-instance cap is unchanged. Actual UV2 deposit depth drives fragment sand rejection/burial instead of biome redness. Disposable rock/fragment base-color RGB is lifted 12 percent after canonical properties are assigned; shared materials and alpha are untouched. Sand banks blend up to 80 percent toward local red earth instead of 55 percent. The geological shapes and support-fit implementation are untouched.
+
+Verification/stop: isolated Unity 6000.4.0f1 import/C# compilation and six standard/fast Metal terrain variants passed, exit 0 (`/tmp/booter-formation-naturalism-compile.log`). Source checks confirmed the modified authored-deposit function has only the mixed editor caller, renderer/collider still use the same mesh, and no source scenes/materials or generation versions changed. No automated gameplay/test suite, visual or performance check was run. Next user action: Mixed Formation Ground → Update Rocks & Ground, then review the entire formation from the same camera. Stop here; no further pebble work, source arrangement edits or relighting until that feedback.
 
 ## Current next step — blowing sand deferred, 2026-09-06
 

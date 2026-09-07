@@ -33,7 +33,7 @@ namespace BooterBigArm.Editor
                     center, new Vector2(contact.extents.x, contact.extents.z), bounds.max.y - floor, contactEdges);
                 sources.Add(source);
                 var radius = Mathf.Min(source.HalfSize.x, source.HalfSize.y);
-                var extent = source.HalfSize * (1f + 1.25f / radius)
+                var extent = source.HalfSize * (1f + 3.6f / Mathf.Max(0.01f, radius))
                     + Vector2.one * (sandbox.WorldSettings.DustWakeLength + 0.3f);
                 var sourceInfluence = new Bounds(new Vector3(center.x, 0f, center.y),
                     new Vector3(extent.x * 2f, 2f, extent.y * 2f));
