@@ -432,7 +432,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 }
                 else albedo = SamplePebbleTiles(position,
                     TEXTURE2D_ARGS(_PebbleAlbedoMap, sampler_PebbleAlbedoMap)).rgb;
-                float cover = (rockLayer ? smoothstep(0.16, 0.3, height)
+                // Solid stone interiors replace sand instead of looking like translucent stains.
+                // Retain a soft edge and leave the low height-field gaps as exposed sand.
+                float cover = (rockLayer ? smoothstep(0.16, 0.24, height)
                     : smoothstep(0.075, 0.22, height)) * amount;
                 surface.albedo = lerp(surface.albedo, rockLayer ? albedo : albedo * _BaseColor.rgb, cover);
                 surface.smoothness = lerp(surface.smoothness, lerp(0.07, 0.15, saturate(height)), cover);
@@ -441,7 +443,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 [branch] if (detail > 0.001)
                 {
                     float step = max(0.0025, pixelFootprint * 0.5);
-                    float relief = rockLayer ? max(0.006, pomDepth) : 0.025;
+                    float relief = rockLayer ? max(0.012, pomDepth) : 0.025;
                     float dx, dz;
                     if (rockLayer)
                     {
@@ -460,7 +462,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     if (rockLayer)
                     {
                         float2 slope = float2(dx, dz);
-                        float slopeLimit = lerp(0.45, 1.5, saturate(pomDepth / 0.015));
+                        float slopeLimit = lerp(0.85, 1.8, saturate(pomDepth / 0.015));
                         slope *= min(1.0, slopeLimit / max(length(slope), 0.0001));
                         half3 pebbleNormal = normalize(groundNormal - half3(slope.x, 0, slope.y) * groundNormal.y);
                         normal = normalize(lerp(normal, pebbleNormal, cover * detail));
@@ -475,13 +477,16 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 // Give each pocket a dominant surface. Do not stack two full relief fields.
                 float pocket = smoothstep(0.42, 0.76, ValueNoise(position * 2.1 + 38.7))
                     * rockPebbles.a * _PebbleDetail;
+                // The old multiplicative mask plus 0.75 cap left even pebble centers sandy.
+                // Preserve the pocket support, but make its interior opaque rock material.
+                pocket = smoothstep(0.04, 0.38, pocket);
                 float bank = smoothstep(0.25, 0.9, clutter.y);
                 normal = normalize(lerp(normal, groundNormal, max(bank * 0.7, pocket * 0.85)));
                 ApplyPebbles(position, view, clutter.x * _PebbleDetail
                     * (1.0 - 0.85 * bank) * (1.0 - 0.85 * pocket), pixelFootprint,
                     normal, surface, false, half3(1, 1, 1), groundNormal);
                 // Remains on top of sand, but only in sparse pockets near rock bases.
-                ApplyPebbles(position + float2(21.71, -13.29), view, pocket * 0.75, pixelFootprint,
+                ApplyPebbles(position + float2(21.71, -13.29), view, pocket, pixelFootprint,
                     normal, surface, true, rockPebbles.rgb, groundNormal);
             }
 
