@@ -1,6 +1,14 @@
 # Rock Quality And Production Plan
 
-**Status:** first whole-formation naturalism pass accepted by the user; 2026-09-07 follow-up corrects box-shaped gravel/sand boundaries, pending visual review. Pebble/POM experiments and production integration remain deferred.
+**Status:** first whole-formation naturalism pass accepted by the user; 2026-09-07 follow-ups correct gravel boundaries and raised sand ridges, pending visual review. Pebble/POM experiments and production integration remain deferred.
+
+## Raised-sand correction — 2026-09-07
+
+User clarified that the raised sand itself forms grid-like lanes, not just material boundaries. This supersedes the naturalism pass's deliberate shallow joins. In the authored-deposit calculation, remove second-bank and broad-overlap height additions; retain maximum rather than additive overlap. Replace position-sampled lattice noise in contact height with smooth source-oriented lobes around the actual contact contour. Narrow the outer toes while retaining the existing buildup-height cap, slope/supply gates and rock-height limit. Wind tails now curve, vary length by source, taper continuously without a flat middle, and have lower amplitude (0.35 versus 0.6) to leave low spaces between contacts. Source variation remains deterministic; no noise is overlaid on terrain height to camouflage ridges.
+
+Scope: only `SampleAuthoredDeposit`, currently consumed by the editor mixed-formation sand adapter. Runtime `BuildPlan`, base terrain, authored rock transforms, gravel textures/masks, fragment algorithm, scene settings and controls are unchanged. Rendering and collision still share the resulting displaced terrain mesh. Clutter seating follows that corrected surface as before. No world-seed/version, chunk ownership/streaming, stable-ID or persisted-delta changes. This is a bounded preview geometry correction, not production rollout. User reviews with **Mixed Formation Ground → Update Rocks & Ground**; compilation is not visual proof.
+
+Verification: isolated Unity 6000.4.0f1 import/C# compilation and six Metal terrain variants passed, exit 0 (`/tmp/booter-raised-sand-compile.log`). Source review checked zero buildup, bounded height, finite tail widths/length denominator, continuous lobe wrap, unchanged shared tile sampling and the sole editor caller. No gameplay or visual tests were run; user scene/material changes remain untouched.
 
 ## Contact-boundary correction — 2026-09-07
 

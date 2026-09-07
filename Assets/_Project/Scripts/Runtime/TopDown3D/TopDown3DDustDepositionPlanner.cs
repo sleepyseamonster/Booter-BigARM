@@ -150,9 +150,6 @@ namespace BooterBigArm.TopDown3D
         {
             var strongest = 0f;
             var height = 0f;
-            var secondHeight = 0f;
-            var broadSupport = 0f;
-            var secondSupport = 0f;
             var wind = DirectionFromTurns(material.PrevailingWindDirection);
             var acrossWind = new Vector2(-wind.y, wind.x);
             var slopeGate = 1f - SmoothStepRange(settings.MaximumDustDepositionSlope * 0.7f,
@@ -174,38 +171,37 @@ namespace BooterBigArm.TopDown3D
                     || Mathf.Abs(delta.y) > source.HalfSize.y + reach) continue;
                 var edgeDistance = source.DistanceOutside(position);
                 var along = Vector2.Dot(delta, wind);
-                var across = Mathf.Abs(Vector2.Dot(delta, acrossWind));
+                var across = Vector2.Dot(delta, acrossWind);
                 var lee = SmoothStepRange(-radius, radius, along);
-                var irregularity = FractalNoise(settings.WorldSeed ^ 4739,
-                    position.x * 1.7f + source.Center.x, position.y * 1.7f + source.Center.y);
                 var sourceVariation = FractalNoise(settings.WorldSeed ^ 9199,
                     source.Center.x * 0.83f, source.Center.y * 0.83f);
-                var contactStrength = Mathf.Lerp(0.12f, 1f, SmoothStepRange(0.2f, 0.7f, irregularity))
+                var bend = FractalNoise(settings.WorldSeed ^ 4739,
+                    source.Center.x * 0.71f, source.Center.y * 0.71f) * 2f - 1f;
+                // Smooth lobes around the contact, not world-grid noise embossed into height.
+                // The center singularity is flattened inside the rock's footprint.
+                var angle = Mathf.Atan2(across, along);
+                var lobe = 0.5f + 0.5f * Mathf.Cos(angle * 2f + sourceVariation * Mathf.PI * 2f);
+                lobe = Mathf.Lerp(0.5f, lobe, SmoothStepRange(0f, radius, delta.magnitude));
+                var contactStrength = Mathf.Lerp(0.55f, 1f, lobe)
                     * Mathf.Lerp(0.12f, 1f, lee) * Mathf.Lerp(0.45f, 1f, sourceVariation);
                 // Highest at contact, descending outward with a gentle toe. Not a detached ring.
-                var skirt = Mathf.Pow(Mathf.Clamp01(1f - edgeDistance / skirtWidth), 1.6f) * contactStrength;
+                var toeWidth = skirtWidth * Mathf.Lerp(0.55f, 0.9f, lobe);
+                var skirt = Mathf.Pow(Mathf.Clamp01(1f - edgeDistance / toeWidth), 1.6f) * contactStrength;
                 var length = Mathf.Min(settings.DustWakeLength,
-                    Mathf.Max(0.65f, source.ExposedHeight * 4f + radius));
-                var farFade = 1f - SmoothStepRange(length * 0.2f, length, along);
+                    Mathf.Max(0.65f, source.ExposedHeight * 4f + radius)) * Mathf.Lerp(0.65f, 1f, sourceVariation);
+                var progress = Mathf.Clamp01(along / Mathf.Max(0.001f, length));
+                var farFade = 1f - SmoothStepRange(0f, 1f, progress);
                 var width = Mathf.Max(source.HalfSize.x, source.HalfSize.y)
                     * settings.DustWakeWidthMultiplier * Mathf.Sqrt(farFade);
+                // A low curved tail narrows to zero; neighboring rocks need not be connected.
+                var centerline = bend * length * 0.3f * progress * progress;
                 var wake = SmoothStepRange(0f, radius, along) * farFade
-                    * (1f - SmoothStepRange(width * 0.2f, Mathf.Max(0.001f, width), across));
-                var weight = Mathf.Max(skirt, wake * 0.6f) * slopeGate * Mathf.Lerp(0.7f, 1f, supply);
-                // Low shared sediment only where two neighboring rock influences meet.
-                // This connects a group without adding a broad pedestal beneath each member.
-                var support = Mathf.Pow(Mathf.Clamp01(1f - edgeDistance / (skirtWidth * 2f)), 2f)
-                    * Mathf.Lerp(0.2f, 1f, lee) * slopeGate;
-                if (support > broadSupport) { secondSupport = broadSupport; broadSupport = support; }
-                else secondSupport = Mathf.Max(secondSupport, support);
+                    * (1f - SmoothStepRange(0f, Mathf.Max(0.001f, width), Mathf.Abs(across - centerline)));
+                var weight = Mathf.Max(skirt, wake * 0.35f) * slopeGate * Mathf.Lerp(0.7f, 1f, supply);
                 strongest = Mathf.Max(strongest, weight);
-                var candidate = weight * bankHeight;
-                if (candidate > height) { secondHeight = height; height = candidate; }
-                else secondHeight = Mathf.Max(secondHeight, candidate);
+                height = Mathf.Max(height, weight * bankHeight);
             }
-            // A bounded join fills narrow shared pockets without summing an entire pile's banks.
-            height += secondHeight * 0.18f * (1f - Mathf.Clamp01(height / Mathf.Max(0.001f, buildup)));
-            height = Mathf.Min(buildup, height + buildup * 0.25f * broadSupport * secondSupport);
+            // Overlap may share a bank, but never adds a raised bridge between members.
             return new TopDown3DDustDepositionSample(
                 Mathf.Clamp01(height / Mathf.Max(0.12f, buildup)) * 0.85f, height, strongest,
                 checked((float)material.Position.Vertical), material.WindExposure, material.Erosion, material.Deposit);
