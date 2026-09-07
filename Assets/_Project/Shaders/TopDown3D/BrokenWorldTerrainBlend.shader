@@ -409,7 +409,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 // Vertical relief over the local sloping sand plane, not over a flat world plane.
                 float facing = dot(groundNormal, view);
                 float pomDepth = rockLayer ? _NearRockPebbleDepth * detail
-                    * smoothstep(0.15, 0.4, facing) * smoothstep(0.0, 0.2, amount) : 0.0;
+                    * smoothstep(0.15, 0.4, facing) : 0.0;
                 [branch] if (pomDepth > 0.00001)
                     position = TraceNearPebbles(position, view.xz * groundNormal.y / max(facing, 0.15),
                         pomDepth, positionDx, positionDy);
@@ -432,13 +432,22 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 }
                 else albedo = SamplePebbleTiles(position,
                     TEXTURE2D_ARGS(_PebbleAlbedoMap, sampler_PebbleAlbedoMap)).rgb;
-                // Solid stone interiors replace sand instead of looking like translucent stains.
-                // Retain a soft edge and leave the low height-field gaps as exposed sand.
-                float cover = (rockLayer ? smoothstep(0.16, 0.24, height)
-                    : smoothstep(0.075, 0.22, height)) * amount;
+                // Taper top-layer area, not stone opacity: low admission erodes height islands.
+                // Only a narrow silhouette edge blends; the surviving centers stay opaque.
+                float stoneThreshold = lerp(1.04, 0.20, saturate(amount));
+                float edgeWidth = clamp(pixelFootprint * 2.0, 0.02, 0.04);
+                float cover = rockLayer
+                    ? smoothstep(stoneThreshold - edgeWidth, stoneThreshold + edgeWidth, height)
+                    : smoothstep(0.075, 0.22, height) * amount;
                 surface.albedo = lerp(surface.albedo, rockLayer ? albedo : albedo * _BaseColor.rgb, cover);
                 surface.smoothness = lerp(surface.smoothness, lerp(0.07, 0.15, saturate(height)), cover);
-                if (rockLayer) surface.occlusion = lerp(surface.occlusion, 0.98, cover);
+                if (rockLayer)
+                {
+                    surface.occlusion = lerp(surface.occlusion, 0.98, cover);
+                    // Underlying gravel normals must not show through opaque top stones,
+                    // including when their own fine relief fades at distance.
+                    normal = normalize(lerp(normal, groundNormal, cover));
+                }
                 else surface.occlusion *= 1.0 - cover * 0.08;
                 [branch] if (detail > 0.001)
                 {
@@ -481,9 +490,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 // Preserve the pocket support, but make its interior opaque rock material.
                 pocket = smoothstep(0.04, 0.38, pocket);
                 float bank = smoothstep(0.25, 0.9, clutter.y);
-                normal = normalize(lerp(normal, groundNormal, max(bank * 0.7, pocket * 0.85)));
+                normal = normalize(lerp(normal, groundNormal, bank * 0.7));
                 ApplyPebbles(position, view, clutter.x * _PebbleDetail
-                    * (1.0 - 0.85 * bank) * (1.0 - 0.85 * pocket), pixelFootprint,
+                    * (1.0 - 0.85 * bank), pixelFootprint,
                     normal, surface, false, half3(1, 1, 1), groundNormal);
                 // Remains on top of sand, but only in sparse pockets near rock bases.
                 ApplyPebbles(position + float2(21.71, -13.29), view, pocket, pixelFootprint,
