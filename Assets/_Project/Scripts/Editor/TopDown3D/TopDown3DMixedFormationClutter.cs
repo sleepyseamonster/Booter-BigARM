@@ -51,6 +51,17 @@ namespace BooterBigArm.Editor
                 }
                 return Mathf.SmoothStep(1f, 0f, Mathf.Clamp01(closest / 1.5f)) * sandbox.GroundClutter;
             }
+            var formationBounds = bounds[0];
+            for (var r = 1; r < bounds.Count; r++) formationBounds.Encapsulate(bounds[r]);
+            float FormationCoverage(Vector3 point)
+            {
+                // Fill the spaces between authored members, then taper beyond the formation.
+                // World-space shader pockets break this envelope into irregular patches.
+                var dx = Mathf.Max(0f, Mathf.Abs(point.x - formationBounds.center.x) - formationBounds.extents.x);
+                var dz = Mathf.Max(0f, Mathf.Abs(point.z - formationBounds.center.z) - formationBounds.extents.z);
+                return 0.65f * Mathf.SmoothStep(1f, 0f,
+                    Mathf.Clamp01(Mathf.Sqrt(dx * dx + dz * dz) / 2.5f));
+            }
             var triangles = new Dictionary<MeshCollider, int[]>();
             var colors = new Dictionary<MeshCollider, Color[]>();
             foreach (var ground in terrain)
@@ -67,19 +78,23 @@ namespace BooterBigArm.Editor
                     // Carry the nearest tint outside the visible mask too, so interpolation
                     // fades coverage rather than blending the boundary color toward black.
                     var closest = float.PositiveInfinity;
+                    var closestGroundRock = float.PositiveInfinity;
+                    var nearestTint = rockTints[0];
                     for (var r = 0; r < bounds.Count; r++)
                     {
                         var rock = bounds[r];
-                        if (rock.min.y > point.y + 0.2f) continue;
                         var dx = Mathf.Max(0f, Mathf.Abs(point.x - rock.center.x) - rock.extents.x);
                         var dz = Mathf.Max(0f, Mathf.Abs(point.z - rock.center.z) - rock.extents.z);
                         var distance = Mathf.Sqrt(dx * dx + dz * dz);
+                        if (rock.min.y <= point.y + 0.2f)
+                            closestGroundRock = Mathf.Min(closestGroundRock, distance);
                         if (distance >= closest) continue;
                         closest = distance;
-                        var tint = rockTints[r];
-                        rockLayer[i] = new Vector4(tint.r, tint.g, tint.b,
-                            Mathf.SmoothStep(1f, 0f, Mathf.Clamp01(distance / 0.6f)) * sandbox.GroundClutter);
+                        nearestTint = rockTints[r];
                     }
+                    var nearRock = Mathf.SmoothStep(1f, 0f, Mathf.Clamp01(closestGroundRock / 0.6f));
+                    var coverage = Mathf.Max(nearRock, FormationCoverage(point)) * sandbox.GroundClutter;
+                    rockLayer[i] = new Vector4(nearestTint.r, nearestTint.g, nearestTint.b, coverage);
                 }
                 mesh.SetUVs(1, mask);
                 mesh.SetUVs(2, rockLayer);

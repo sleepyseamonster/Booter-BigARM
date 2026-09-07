@@ -428,7 +428,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     // Keep the rock's palette; the independent albedo supplies local mineral variation.
                     half variation = clamp(dot(newDetail, half3(0.2126, 0.7152, 0.0722)) / 0.18, 0.7, 1.3);
                     albedo = SamplePebbleTilesGrad(position, positionDx, positionDy,
-                        TEXTURE2D_ARGS(_RockPebbleColorMap, sampler_RockPebbleColorMap)).rgb * rockTint * variation;
+                        TEXTURE2D_ARGS(_RockPebbleColorMap, sampler_RockPebbleColorMap)).rgb * rockTint * variation * 1.3;
                 }
                 else albedo = SamplePebbleTiles(position,
                     TEXTURE2D_ARGS(_PebbleAlbedoMap, sampler_PebbleAlbedoMap)).rgb;
