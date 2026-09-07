@@ -77,6 +77,8 @@ namespace BooterBigArm.Editor
                     new GUIContent("Ground Clutter", "Pebble surface relief and sparse protruding stones. Sand hides the buried detail."));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("blowingSand"),
                     new GUIContent("Blowing Sand", "Low drifting sand in Scene view. Updates live; zero turns it off. Uses the ground's wind direction."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("pebbleDepth"),
+                    new GUIContent("Pebble Depth (m)", "Apparent raised depth of the rock-colored pebbles above sand. Zero keeps normal-only detail. Click Update Rocks & Ground to apply. Does not change collision."));
                 EditorGUILayout.HelpBox(
                     "Each ground-contact rock receives stable bell-curve burial. Stacked rocks follow their supports. "
                     + "The saved reference and the original scene rocks stay intact. This authoring view clears in Play Mode.",
@@ -84,7 +86,7 @@ namespace BooterBigArm.Editor
             }
             else
             {
-                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt", "burialRangeVersion", "sandBuildup", "sandBuildupVersion", "groundClutter", "blowingSand");
+                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt", "burialRangeVersion", "sandBuildup", "sandBuildupVersion", "groundClutter", "blowingSand", "pebbleDepth");
             }
             serializedObject.ApplyModifiedProperties();
 

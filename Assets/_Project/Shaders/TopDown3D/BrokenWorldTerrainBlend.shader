@@ -36,6 +36,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
         _DetailFadeStart("Geological Detail Fade Start", Float) = 55
         _DetailFadeEnd("Geological Detail Fade End", Float) = 150
         _PebbleDetail("Pebble Detail", Range(0, 1)) = 0
+        _NearRockPebbleDepth("Near-rock Pebble POM Depth (m)", Range(0, 0.04)) = 0
         [NoScaleOffset] _PebbleAlbedoMap("Pebble Gravel Color", 2D) = "gray" {}
         [NoScaleOffset] _PebbleHeightMap("Pebble Gravel Height", 2D) = "black" {}
         [NoScaleOffset] _RockPebbleColorMap("Near-rock Pebble Color", 2D) = "gray" {}
@@ -136,6 +137,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float _DetailFadeStart;
                 float _DetailFadeEnd;
                 float _PebbleDetail;
+                float _NearRockPebbleDepth;
                 float _Smoothness;
                 float _Cutoff;
                 float _Surface;
@@ -312,14 +314,15 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
             // Local stochastic tiles: each world-space corner has its own rotation/offset.
             // Shared transforms and weights keep colour and height aligned. Explicit rotated
             // gradients avoid incorrect mip selection at hashed tile boundaries.
-            float4 SamplePebbleTiles(float2 position, TEXTURE2D_PARAM(textureMap, sampler_textureMap))
+            float4 SamplePebbleTilesGrad(float2 position, float2 positionDx, float2 positionDy,
+                TEXTURE2D_PARAM(textureMap, sampler_textureMap))
             {
                 float2 uv = position / 1.25;
                 float2 cell = floor(uv);
                 float2 blend = frac(uv);
                 blend = blend * blend * (3.0 - 2.0 * blend);
-                float2 gradientX = ddx(uv);
-                float2 gradientY = ddy(uv);
+                float2 gradientX = positionDx / 1.25;
+                float2 gradientY = positionDy / 1.25;
                 float4 result = 0;
                 float total = 0;
                 [unroll]
@@ -347,6 +350,44 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 return result / max(total, 0.0001);
             }
 
+            float4 SamplePebbleTiles(float2 position, TEXTURE2D_PARAM(textureMap, sampler_textureMap))
+            {
+                return SamplePebbleTilesGrad(position, ddx(position), ddy(position),
+                    TEXTURE2D_ARGS(textureMap, sampler_textureMap));
+            }
+
+            float NearPebbleHeight(float2 position, float2 positionDx, float2 positionDy)
+            {
+                return saturate(SamplePebbleTilesGrad(position, positionDx, positionDy,
+                    TEXTURE2D_ARGS(_NearRockPebbleHeightMap, sampler_PebbleAlbedoMap)).r);
+            }
+
+            float2 TraceNearPebbles(float2 position, float2 ray, float depth,
+                float2 positionDx, float2 positionDy)
+            {
+                // Trace from the top of a raised height field toward the existing sand surface.
+                // Fixed input gradients remain valid across divergent per-pixel march counts.
+                float previous = 0.0;
+                float current = 0.0;
+                [loop] for (int sampleIndex = 0; sampleIndex <= 24; sampleIndex++)
+                {
+                    current = sampleIndex / 24.0;
+                    float level = 1.0 - current;
+                    if (NearPebbleHeight(position + ray * depth * level, positionDx, positionDy) >= level)
+                        break;
+                    previous = current;
+                }
+                [unroll] for (int refine = 0; refine < 3; refine++)
+                {
+                    float middle = (previous + current) * 0.5;
+                    float level = 1.0 - middle;
+                    if (NearPebbleHeight(position + ray * depth * level, positionDx, positionDy) >= level)
+                        current = middle;
+                    else previous = middle;
+                }
+                return position + ray * depth * (1.0 - (previous + current) * 0.5);
+            }
+
             // Normals are derivatives of the same blended height, including tile rotation.
             float PebbleHeight(float2 position, bool rockLayer)
             {
@@ -359,26 +400,38 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
             void ApplyPebbles(float2 position, half3 view, float admission, float pixelFootprint,
                 inout half3 normal, inout SurfaceData surface, bool rockLayer, half3 rockTint, half3 groundNormal)
             {
+                float2 positionDx = ddx(position);
+                float2 positionDy = ddy(position);
                 float patch = rockLayer ? 1.0 : smoothstep(0.22, 0.62, ValueNoise(position * 1.4 + 17.3));
                 float amount = admission * patch;
                 [branch] if (amount <= 0.001) return;
                 float detail = 1.0 - smoothstep(0.02, 0.08, pixelFootprint);
-                float height = PebbleHeight(position, rockLayer);
-                // The top layer is a restrained surface detail, not a second parallax surface.
+                // Vertical relief over the local sloping sand plane, not over a flat world plane.
+                float facing = dot(groundNormal, view);
+                float pomDepth = rockLayer ? _NearRockPebbleDepth * detail
+                    * smoothstep(0.15, 0.4, facing) * smoothstep(0.0, 0.2, amount) : 0.0;
+                [branch] if (pomDepth > 0.00001)
+                    position = TraceNearPebbles(position, view.xz * groundNormal.y / max(facing, 0.15),
+                        pomDepth, positionDx, positionDy);
+                float height = rockLayer ? NearPebbleHeight(position, positionDx, positionDy)
+                    : PebbleHeight(position, false);
                 if (!rockLayer)
+                {
                     position += view.xz / max(abs(view.y), 0.3) * max(0.0, height - 0.08) * 0.025 * detail;
-                height = PebbleHeight(position, rockLayer);
-                half3 albedo = SamplePebbleTiles(position,
-                    TEXTURE2D_ARGS(_PebbleAlbedoMap, sampler_PebbleAlbedoMap)).rgb;
+                    height = PebbleHeight(position, false);
+                }
+                half3 albedo;
                 if (rockLayer)
                 {
-                    half3 newDetail = SamplePebbleTiles(position,
+                    half3 newDetail = SamplePebbleTilesGrad(position, positionDx, positionDy,
                         TEXTURE2D_ARGS(_NearRockPebbleAlbedoMap, sampler_PebbleAlbedoMap)).rgb;
                     // Keep the rock's palette; the independent albedo supplies local mineral variation.
                     half variation = clamp(dot(newDetail, half3(0.2126, 0.7152, 0.0722)) / 0.18, 0.7, 1.3);
-                    albedo = SamplePebbleTiles(position,
+                    albedo = SamplePebbleTilesGrad(position, positionDx, positionDy,
                         TEXTURE2D_ARGS(_RockPebbleColorMap, sampler_RockPebbleColorMap)).rgb * rockTint * variation;
                 }
+                else albedo = SamplePebbleTiles(position,
+                    TEXTURE2D_ARGS(_PebbleAlbedoMap, sampler_PebbleAlbedoMap)).rgb;
                 float cover = (rockLayer ? smoothstep(0.16, 0.3, height)
                     : smoothstep(0.075, 0.22, height)) * amount;
                 surface.albedo = lerp(surface.albedo, rockLayer ? albedo : albedo * _BaseColor.rgb, cover);
@@ -388,15 +441,27 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 [branch] if (detail > 0.001)
                 {
                     float step = max(0.0025, pixelFootprint * 0.5);
-                    float relief = rockLayer ? 0.006 : 0.025;
-                    float dx = (PebbleHeight(position + float2(step, 0), rockLayer)
-                        - PebbleHeight(position - float2(step, 0), rockLayer)) * relief / (2.0 * step);
-                    float dz = (PebbleHeight(position + float2(0, step), rockLayer)
-                        - PebbleHeight(position - float2(0, step), rockLayer)) * relief / (2.0 * step);
+                    float relief = rockLayer ? max(0.006, pomDepth) : 0.025;
+                    float dx, dz;
+                    if (rockLayer)
+                    {
+                        dx = (NearPebbleHeight(position + float2(step, 0), positionDx, positionDy)
+                            - NearPebbleHeight(position - float2(step, 0), positionDx, positionDy)) * relief / (2.0 * step);
+                        dz = (NearPebbleHeight(position + float2(0, step), positionDx, positionDy)
+                            - NearPebbleHeight(position - float2(0, step), positionDx, positionDy)) * relief / (2.0 * step);
+                    }
+                    else
+                    {
+                        dx = (PebbleHeight(position + float2(step, 0), false)
+                            - PebbleHeight(position - float2(step, 0), false)) * relief / (2.0 * step);
+                        dz = (PebbleHeight(position + float2(0, step), false)
+                            - PebbleHeight(position - float2(0, step), false)) * relief / (2.0 * step);
+                    }
                     if (rockLayer)
                     {
                         float2 slope = float2(dx, dz);
-                        slope *= min(1.0, 0.45 / max(length(slope), 0.0001));
+                        float slopeLimit = lerp(0.45, 1.5, saturate(pomDepth / 0.015));
+                        slope *= min(1.0, slopeLimit / max(length(slope), 0.0001));
                         half3 pebbleNormal = normalize(groundNormal - half3(slope.x, 0, slope.y) * groundNormal.y);
                         normal = normalize(lerp(normal, pebbleNormal, cover * detail));
                     }

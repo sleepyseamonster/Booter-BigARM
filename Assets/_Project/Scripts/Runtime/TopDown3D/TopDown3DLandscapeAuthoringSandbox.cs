@@ -24,6 +24,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0f, 1f)] private float sandBuildup = 0.18f;
         [SerializeField, HideInInspector] private int sandBuildupVersion;
         [SerializeField, Range(0f, 1f)] private float groundClutter = 0.7f;
+        [SerializeField, Range(0f, 0.04f)] private float pebbleDepth = 0.015f;
         [SerializeField, Range(0f, 1f)] private float blowingSand;
         [SerializeField, HideInInspector] private bool blowingSandOffDefaultApplied;
 
@@ -34,6 +35,7 @@ namespace BooterBigArm.TopDown3D
         public float MaximumRockTilt => Mathf.Clamp(maximumRockTilt, 0f, 35f);
         public float SandBuildup => Mathf.Clamp01(sandBuildupVersion == 0 ? sandBuildup * 2f : sandBuildup);
         public float GroundClutter => Mathf.Clamp01(groundClutter);
+        public float PebbleDepth => Mathf.Clamp(pebbleDepth, 0f, 0.04f);
         public float BlowingSand => blowingSandOffDefaultApplied ? Mathf.Clamp01(blowingSand) : 0f;
 
         public TopDown3DWorldSettings WorldSettings => worldSettings;

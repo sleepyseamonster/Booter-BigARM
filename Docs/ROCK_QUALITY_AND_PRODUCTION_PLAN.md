@@ -1,12 +1,16 @@
 # Rock Quality And Production Plan
 
-**Status:** user accepted the improved gravel and deferred blowing sand on 2026-09-06. Blowing sand is off. Next: preserve the mixed patch's current ground settings, then prepare production integration through the existing world owners.
+**Status:** user accepted the improved gravel and deferred blowing sand on 2026-09-06. Blowing sand is off. Current bounded step: explore POM depth on the independent near-rock pebble layer, then obtain user visual feedback before resuming the mixed patch's production handoff.
 
 ## Goal
 
 Create excellent, readable rocks through one simple Unity hierarchy workflow, then translate the accepted shape language into deterministic editor-baked production assets for the procedural world.
 
 ## Current next step — blowing sand deferred, 2026-09-06
+
+Near-rock POM exploration (2026-09-06): implement only the independent rock-colored top pebble layer; preserve source formation, sand banks, original gravel, and real clutter. `Mixed Formation Ground > Pebble Depth (m)` defaults to 0.015 m, ranges 0–0.04 m, and is applied with Update Rocks & Ground. Zero retains the preceding normal-only treatment. A bounded 24-step height-field trace plus three refinements finds apparent raised relief above the local sand plane; color, coverage and normal derivatives use the same hit coordinates and original explicit texture gradients. Relief fades with pixel footprint and grazing angle, and outside existing near-rock pockets. No new texture or sampler state is introduced. This is virtual surface relief, not mesh displacement: no silhouette expansion, depth-buffer displacement, physical collision or extra shadow-map/self-shadow pass. Four-way anti-repeat height blending can still soften shapes; source height accuracy and visual/performance acceptance remain open. The existing shared terrain shader defaults POM off; only the editor adapter supplies depth. World seed, chunk streaming/unload, generated identities, authored member constraints and persisted runtime deltas are unchanged. No production rollout, new workbench, scene save, or automated gameplay test is included. Stop after compiler checks and a user-facing handoff for visual review.
+
+POM verification: isolated Unity 6000.4.0f1 import/C# compilation and six standard/fast Metal terrain lighting variants passed, exit 0 (`/tmp/booter-near-pebble-pom-compile.log`). Source review covered zero-depth bypass, bounded marching, explicit gradients inside divergent loops, shared samplers, and matched surface sampling. No automated test suite, gameplay, visual acceptance, or performance measurement was run. Four pre-existing user scene/material edits remain untouched.
 
 Layer-cleanup verification: isolated Unity 6000.4.0f1 warmed six standard/fast Metal terrain lighting variants without shader errors and exited 0 (`/tmp/booter-pebble-layer-cleanup-compile.log`). No gameplay, live visual, or automated test suite was run. Scene/material user edits remain untouched.
 
