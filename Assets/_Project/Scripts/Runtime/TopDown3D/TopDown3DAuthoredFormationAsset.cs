@@ -44,6 +44,7 @@ namespace BooterBigArm.TopDown3D
                 if (members.Length == 0) return false;
                 foreach (var member in members)
                 {
+                    if (member == null || member.Mesh == null || member.Material == null) return false;
                     if (member.BakedVariants.Count != TopDown3DNaturalObjectCatalog.MeshVariantsPerShape) return false;
                     foreach (var variant in member.BakedVariants)
                         if (variant == null || !variant.IsComplete) return false;

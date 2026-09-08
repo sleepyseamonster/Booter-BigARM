@@ -120,15 +120,34 @@ namespace BooterBigArm.TopDown3D
                     memberObject.transform.SetParent(root.transform, true);
                     memberObject.transform.SetPositionAndRotation(member.Position, member.Rotation);
                     memberObject.transform.localScale = member.Scale;
-                    var family = catalog.GetRequiredMeshFamily(
+                    var family = member.AuthoredFamily ?? catalog.GetRequiredMeshFamily(
                         member.Shape,
                         member.Variant);
                     var collider = memberObject.AddComponent<BoxCollider>();
                     collider.center = family.ColliderCenter;
                     collider.size = family.ColliderSize;
+                    if (member.AuthoredFamily != null)
+                    {
+                        var lods = new LOD[3];
+                        for (var lod = 0; lod < 3; lod++)
+                        {
+                            var child = new GameObject($"LOD{lod}");
+                            child.transform.SetParent(memberObject.transform, false);
+                            child.AddComponent<MeshFilter>().sharedMesh = family.GetLod(lod);
+                            var renderer = child.AddComponent<MeshRenderer>();
+                            renderer.sharedMaterial = member.AuthoredMaterial;
+                            var threshold = lod == 0 ? family.Lod0ScreenHeight
+                                : lod == 1 ? family.Lod1ScreenHeight : family.Lod2ScreenHeight;
+                            lods[lod] = new LOD(threshold, new Renderer[] { renderer });
+                        }
+                        var group = memberObject.AddComponent<LODGroup>();
+                        group.SetLODs(lods);
+                        group.RecalculateBounds();
+                    }
                 }
 
-                CreateFormationLods(chunk, root, catalog, material, formation);
+                if (formation.Members[0].AuthoredFamily == null)
+                    CreateFormationLods(chunk, root, catalog, material, formation);
                 root.AddComponent<TopDown3DTraversalObstacle>();
             }
         }

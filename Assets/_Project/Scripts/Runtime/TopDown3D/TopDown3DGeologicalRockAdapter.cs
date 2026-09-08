@@ -69,6 +69,14 @@ namespace BooterBigArm.TopDown3D
                 settings.ClearSpawnRadius);
             for (var i = 0; i < plans.Count; i++)
             {
+                if (settings.MixedFormationTemplate != null
+                    && plans[i].ReservationScale == WorldRockReservationScale.Formation
+                    && plans[i].CompositionGoal == WorldRockCompositionGoal.BrokenStack)
+                {
+                    if (TopDown3DAuthoredFormationPlacement.TryBuild(settings, generator, plans[i],
+                        spawnExclusionCenter, out var mixed)) output.Add(mixed);
+                    continue;
+                }
                 if (TryRealize(settings, generator, catalog, plans[i], out var formation))
                     output.Add(formation);
             }
@@ -451,7 +459,7 @@ namespace BooterBigArm.TopDown3D
             return (value << count) | (value >> (64 - count));
         }
 
-        private static int FoldLegacyCell(double cell)
+        internal static int FoldLegacyCell(double cell)
         {
             // RootKey remains a compatibility/debug carrier. WorldFeatureId is the identity authority.
             var value = checked((long)cell);

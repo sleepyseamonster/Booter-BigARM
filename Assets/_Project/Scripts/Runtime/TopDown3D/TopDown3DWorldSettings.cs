@@ -21,6 +21,9 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0f, 4f)] private float propsPerChunk = 1.7f;
         [Header("Natural Objects")]
         [SerializeField] private TopDown3DNaturalObjectCatalog naturalObjectCatalog;
+        [Tooltip("Optional baked mixed template. Leave unassigned until streamed ground treatment and save-version rollout are ready.")]
+        [SerializeField] private TopDown3DAuthoredFormationAsset mixedFormationTemplate;
+        public TopDown3DAuthoredFormationAsset MixedFormationTemplate => mixedFormationTemplate;
         [SerializeField, Min(1)] private int naturalObjectGenerationVersion = 3;
         [SerializeField, Min(1)] private int physicalRockGenerationVersion = 7;
         [Header("Physical Rock Placement")]

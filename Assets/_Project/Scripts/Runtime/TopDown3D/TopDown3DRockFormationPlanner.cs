@@ -68,7 +68,9 @@ namespace BooterBigArm.TopDown3D
             int memberIndex,
             int parentIndex,
             float supportRadius,
-            Bounds worldBounds)
+            Bounds worldBounds,
+            TopDown3DNaturalMeshFamily authoredFamily = null,
+            Material authoredMaterial = null)
         {
             StableId = stableId;
             DefinitionStableId = definitionStableId;
@@ -82,6 +84,8 @@ namespace BooterBigArm.TopDown3D
             ParentIndex = parentIndex;
             SupportRadius = supportRadius;
             WorldBounds = worldBounds;
+            AuthoredFamily = authoredFamily;
+            AuthoredMaterial = authoredMaterial;
         }
 
         public string StableId { get; }
@@ -96,6 +100,8 @@ namespace BooterBigArm.TopDown3D
         public int ParentIndex { get; }
         public float SupportRadius { get; }
         public Bounds WorldBounds { get; }
+        public TopDown3DNaturalMeshFamily AuthoredFamily { get; }
+        public Material AuthoredMaterial { get; }
 
         public bool Equals(TopDown3DRockFormationMember other)
         {
@@ -110,7 +116,9 @@ namespace BooterBigArm.TopDown3D
                 && MemberIndex == other.MemberIndex
                 && ParentIndex == other.ParentIndex
                 && SupportRadius.Equals(other.SupportRadius)
-                && WorldBounds.Equals(other.WorldBounds);
+                && WorldBounds.Equals(other.WorldBounds)
+                && ReferenceEquals(AuthoredFamily, other.AuthoredFamily)
+                && AuthoredMaterial == other.AuthoredMaterial;
         }
 
         public override bool Equals(object obj)

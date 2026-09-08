@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BooterBigArm.Editor
+namespace BooterBigArm.TopDown3D
 {
     /// <summary>Fits an authored arrangement to an existing surface without changing its source geometry.</summary>
     internal static class TopDown3DRockGroundContact
