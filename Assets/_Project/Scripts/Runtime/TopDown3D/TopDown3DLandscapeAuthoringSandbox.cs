@@ -16,6 +16,10 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Vector2Int centerChunk;
         [SerializeField, Range(0, 2)] private int terrainRadiusInChunks = 1;
         [SerializeField] private GameObject rockReference;
+        [SerializeField, HideInInspector] private bool variationEnabled;
+        [SerializeField, HideInInspector] private int variationSeed;
+        public bool VariationEnabled => variationEnabled;
+        public int VariationSeed => variationSeed;
         [SerializeField, Range(0f, 1f)] private float rockBurial = 0.035f;
         [SerializeField, Range(0f, 1f)] private float maximumRockBurial = 0.6f;
         [SerializeField, HideInInspector] private int burialRangeVersion;

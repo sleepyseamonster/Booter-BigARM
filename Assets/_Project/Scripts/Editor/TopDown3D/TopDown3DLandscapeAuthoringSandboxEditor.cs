@@ -71,12 +71,14 @@ namespace BooterBigArm.Editor
                     EditorStyles.miniLabel);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("maximumRockTilt"),
                     new GUIContent("Maximum Ground Tilt"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("sandBuildup"),
-                    new GUIContent("Sand Buildup (m)", "Deposited sand around exposed rock bases. Zero removes the sand treatment."));
+                using (new EditorGUI.DisabledScope(sandbox.VariationEnabled))
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("sandBuildup"),
+                        new GUIContent("Sand Buildup (m)", "Excluded from rock variations while the raised-sand issue is unresolved."));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("groundClutter"),
                     new GUIContent("Ground Clutter", "Pebble surface relief and sparse protruding stones. Sand hides the buried detail."));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("blowingSand"),
-                    new GUIContent("Blowing Sand", "Low drifting sand in Scene view. Updates live; zero turns it off. Uses the ground's wind direction."));
+                using (new EditorGUI.DisabledScope(sandbox.VariationEnabled))
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("blowingSand"),
+                        new GUIContent("Blowing Sand", "Excluded from rock variations."));
                 using (new EditorGUI.DisabledScope(true))
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("pebbleDepth"),
                         new GUIContent("Pebble Depth — Deferred", "The rejected textured-pebble experiment is off while we review the whole formation. Its settings are preserved."));
@@ -90,6 +92,32 @@ namespace BooterBigArm.Editor
                 DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt", "burialRangeVersion", "sandBuildup", "sandBuildupVersion", "groundClutter", "blowingSand", "pebbleDepth");
             }
             serializedObject.ApplyModifiedProperties();
+
+            if (sandbox.RockReference != null)
+            {
+                EditorGUILayout.LabelField(sandbox.VariationEnabled
+                    ? $"Rock Variation {sandbox.VariationSeed} — sand excluded"
+                    : "Original Arrangement", EditorStyles.boldLabel);
+                using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode
+                    || sandbox.WorldSettings == null || sandbox.TerrainMaterial == null))
+                {
+                    if (GUILayout.Button("Generate New Variation"))
+                    {
+                        serializedObject.Update();
+                        serializedObject.FindProperty("variationEnabled").boolValue = true;
+                        serializedObject.FindProperty("variationSeed").intValue = unchecked(sandbox.VariationSeed + 1);
+                        serializedObject.ApplyModifiedProperties();
+                        BuildTerrainContext(sandbox);
+                    }
+                    if (sandbox.VariationEnabled && GUILayout.Button("Restore Original Arrangement"))
+                    {
+                        serializedObject.Update();
+                        serializedObject.FindProperty("variationEnabled").boolValue = false;
+                        serializedObject.ApplyModifiedProperties();
+                        BuildTerrainContext(sandbox);
+                    }
+                }
+            }
 
             EditorGUILayout.Space();
             if (sandbox.RockReference == null) EditorGUILayout.HelpBox(
@@ -251,6 +279,30 @@ namespace BooterBigArm.Editor
                 sandbox.CenterChunk.x * sandbox.WorldSettings.ChunkSize, 0f,
                 sandbox.CenterChunk.y * sandbox.WorldSettings.ChunkSize);
             var rocks = copy.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+            if (sandbox.VariationEnabled)
+            {
+                var template = AssetDatabase.LoadAssetAtPath<TopDown3DAuthoredFormationAsset>(
+                    TopDown3DMixedFormationAssetBaker.OutputPath);
+                if (template == null) throw new InvalidOperationException("Save / Update Reusable Mixed Formation first.");
+                var sourcePath = AssetDatabase.GetAssetPath(sandbox.RockReference);
+                if (template.SourceRevision != AssetDatabase.GetAssetDependencyHash(sourcePath).ToString())
+                    throw new InvalidOperationException("The saved reference changed. Save / Update Reusable Mixed Formation first.");
+                var sourceRocks = sandbox.RockReference.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+                var variations = TopDown3DAuthoredFormationVariation.Generate(template, sandbox.VariationSeed);
+                var byId = new Dictionary<string, int>();
+                for (var i = 0; i < template.Members.Count; i++) byId.Add(template.Members[i].SourceId, i);
+                for (var i = 0; i < rocks.Length; i++)
+                {
+                    AssetDatabase.TryGetGUIDAndLocalFileIdentifier(sourceRocks[i], out string guid, out long localId);
+                    var pose = copy.transform.localToWorldMatrix * variations[byId[guid + ":" + localId]];
+                    rocks[i].transform.SetPositionAndRotation(pose.GetColumn(3), pose.rotation);
+                    // Captured workbench members have positive TRS transforms; divide out their parent scale.
+                    var parentScale = rocks[i].transform.parent.lossyScale;
+                    var scale = pose.lossyScale;
+                    rocks[i].transform.localScale = new Vector3(scale.x / parentScale.x,
+                        scale.y / parentScale.y, scale.z / parentScale.z);
+                }
+            }
             var members = new List<TopDown3DRockGroundContact.Member>(rocks.Length);
             foreach (var rock in rocks)
             {
@@ -266,7 +318,8 @@ namespace BooterBigArm.Editor
                     vertices[i] = rock.transform.TransformPoint(vertices[i]);
                 members.Add(new TopDown3DRockGroundContact.Member(
                     rock.transform.position, rock.transform.rotation, renderer.bounds, vertices,
-                    unchecked(rock.GenerationSeed ^ (members.Count * 486187739))));
+                    unchecked(rock.GenerationSeed ^ (members.Count * 486187739)
+                        ^ (sandbox.VariationEnabled ? sandbox.VariationSeed : 0))));
                 TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(
                     rock, renderer, filter.sharedMesh.bounds.size, rock.GenerationSeed, Vector3.zero, 0f, 6f);
                 TopDown3DMixedFormationClutter.ApplyFormationReadability(renderer);
@@ -279,9 +332,10 @@ namespace BooterBigArm.Editor
                 rocks[i].transform.SetPositionAndRotation(poses[i].Position, poses[i].Rotation);
             foreach (var child in copy.GetComponentsInChildren<Transform>(true))
                 child.gameObject.hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable;
-            var groundContacts = TopDown3DMixedFormationSand.Apply(sandbox, ground, rocks);
+            var groundContacts = TopDown3DMixedFormationSand.Apply(sandbox, ground, rocks, !sandbox.VariationEnabled);
             TopDown3DMixedFormationClutter.Apply(sandbox, contextRoot, ground, rocks, groundContacts);
-            TopDown3DMixedFormationBlowingSand.Apply(sandbox, contextRoot, ground, rocks);
+            if (!sandbox.VariationEnabled)
+                TopDown3DMixedFormationBlowingSand.Apply(sandbox, contextRoot, ground, rocks);
         }
 
         internal static void ClearTerrainContext(TopDown3DLandscapeAuthoringSandbox sandbox)

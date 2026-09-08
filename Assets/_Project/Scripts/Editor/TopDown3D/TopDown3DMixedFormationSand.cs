@@ -11,8 +11,9 @@ namespace BooterBigArm.Editor
     internal static class TopDown3DMixedFormationSand
     {
         internal static IReadOnlyList<TopDown3DDustDepositionPlanner.AuthoredObstruction> Apply(TopDown3DLandscapeAuthoringSandbox sandbox,
-            MeshCollider[] terrain, TopDown3DRockWorkbenchAuthoring[] rocks)
+            MeshCollider[] terrain, TopDown3DRockWorkbenchAuthoring[] rocks, bool includeSand = true)
         {
+            var buildup = includeSand ? sandbox.SandBuildup : 0f;
             var tiles = new List<BaseTile>(terrain.Length);
             foreach (var collider in terrain) tiles.Add(new BaseTile(collider));
             var sources = new List<TopDown3DDustDepositionPlanner.AuthoredObstruction>();
@@ -26,7 +27,7 @@ namespace BooterBigArm.Editor
                 if (bounds.min.y > floor + 0.15f || bounds.max.y <= floor + 0.01f) continue;
                 // The widest part of the rock can sit well above its buried base. Anchor the
                 // bank to a mesh cross-section near ground contact, not the whole renderer box.
-                var contact = ContactFootprint(rock, bounds, floor, sandbox.SandBuildup, out var contactEdges);
+                var contact = ContactFootprint(rock, bounds, floor, buildup, out var contactEdges);
                 center = new Vector2(contact.center.x, contact.center.z);
                 var source = new TopDown3DDustDepositionPlanner.AuthoredObstruction(
                     center, new Vector2(contact.extents.x, contact.extents.z), bounds.max.y - floor, contactEdges);
@@ -40,7 +41,7 @@ namespace BooterBigArm.Editor
                 else influence.Encapsulate(sourceInfluence);
             }
             // Gravel uses these same frozen ground contacts, including when sand is disabled.
-            if (sources.Count == 0 || sandbox.SandBuildup <= 0f) return sources;
+            if (sources.Count == 0 || buildup <= 0f) return sources;
 
             var generator = new TopDown3DWorldGenerator(sandbox.WorldSettings);
             var cache = new Dictionary<Vector2, TopDown3DDustDepositionSample>();
@@ -52,7 +53,7 @@ namespace BooterBigArm.Editor
                     new AbsoluteWorldPosition(position.x, 0d, position.y), out var material, out var error))
                     throw new InvalidOperationException(error);
                 var deposit = TopDown3DDustDepositionPlanner.SampleAuthoredDeposit(
-                    sandbox.WorldSettings, material, position, sources, sandbox.SandBuildup);
+                    sandbox.WorldSettings, material, position, sources, buildup);
                 cache.Add(position, deposit);
                 return deposit;
             }
