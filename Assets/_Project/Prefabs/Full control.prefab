@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc9f535c6a27140ce8d26aea9db17e93, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCameraRig
   target: {fileID: 5146292745711778787}
   input: {fileID: 6009872370928017867}
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78d1850598ba3464398e6091f2ae5f15, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInputRouter
   inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   gameplayMapName: Gameplay
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e29ec082ef5242aa925700b4ded70ef, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerMotor
   input: {fileID: 6009872370928017867}
   cameraBasis: {fileID: 489094435807210501}
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9b27e4322ca4d12869a3308c00f74e7, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver
   humanoidPrefab: {fileID: 100004, guid: 20d97ea0953936148b25caa82b5e14f9, type: 3}
   visualLocalPosition: {x: 0, y: -1.24, z: 0}
@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2966ee41ba2f43aaa16a69b18e27cf36, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerInventory
   itemCatalog: {fileID: 11400000, guid: e7deba06225b5461689bc97bc37877dc, type: 2}
   capacity: 16
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83b6a75603aa462cb5e0288f90a44885, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInteractionController
   motor: {fileID: 2073339337588906612}
   scanRadius: 4
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ace4ecab60b4e69a6e88a3d1cd81636, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerActionController
   input: {fileID: 6009872370928017867}
   interaction: {fileID: 5520321055103750675}
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b324f5e9b7ac4afa8a594bd5c25ddc6a, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DSurvivalVitals
   settings: {fileID: 11400000, guid: 1e605735dac54df5a05928f378cd6842, type: 2}
   health: 100
@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90ecf2858e6943a9bfcd3add2d775fc9, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DFootstepDust
   minimumParticlesPerStep: 10
   maximumParticlesPerStep: 20
