@@ -1,6 +1,16 @@
 # Rock Quality And Production Plan
 
-**Status:** user accepted combined formation/individual-shape variations. A new sand-only bank pass is enabled for those variations, awaiting visual review; the previous grid-like sand remains rejected. Reusable capture is implemented; streamed placement and pebble/POM experiments remain deferred.
+**Status:** user accepted combined formation/individual-shape variations and the reintroduced sand banks (2026-09-08: "its perfect we can move on"). Visual iteration is paused at this accepted baseline, not permanently locked. Next is production preparation/integration through the existing baker, mesh catalog and World Creator placement. Pebble/POM experiments remain deferred.
+
+## Next sequence — production integration, 2026-09-08
+
+User acceptance closes the current appearance-review gate. Do not further tune rock shapes, layout or sand as incidental integration work. Preserve the immutable source and existing iteration controls. The current runtime adapter still realizes canonical reservations using catalog mesh families and three LODs; the authored template, preview shape-regeneration mesher and sand/clutter treatment are not connected to that path yet.
+
+1. Prepare runtime-ready mesh choices from the accepted workbench recipe through the existing editor bake/LOD/collider/material pipeline. Preserve the authored member envelope and material treatment. Do not run the editor mesher during chunk loading or introduce another rock platform. Retain the ability to rebake as art evolves.
+2. Consume the mixed template and shared variation planner downstream of canonical world reservations. Keep reservation/chunk ownership, spawn exclusions and deterministic world identity authoritative; derive member identities from reservation plus captured source identity, not scene order. Use support-aware terrain fitting and keep generated shape selection repeatable across unload/reload. Any decoration-version or persisted-delta compatibility change must be explicit before enabling it.
+3. Integrate accepted contact sand, gravel and mesh clutter against the same terrain representation/collision surface, including neighboring-chunk influence. No detached baked terrain patch, duplicate collider or second height authority. Preserve the existing terrain-location and authoring workflow.
+
+Each item is a bounded implementation batch, with relevant source/import/compiler verification and user-owned visual/gameplay review. This planning update does not claim baking, world placement or streaming integration is complete. No new hand-built pile/scatter references are required for the mixed-formation path.
 
 ## Sand reintroduction — single contact banks, 2026-09-07
 
