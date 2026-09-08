@@ -93,13 +93,34 @@ namespace BooterBigArm.Editor
             }
             serializedObject.ApplyModifiedProperties();
 
+            var validPlacement = HasValidPlacement(sandbox);
+            if (!validPlacement)
+            {
+                EditorGUILayout.HelpBox("This ground preview uses world coordinates. Its workbench Transform "
+                    + "has been moved, rotated or scaled. Reset the workbench below, then use Terrain Location "
+                    + "to choose the ground area. Your saved rock template is not changed.", MessageType.Warning);
+                var parent = sandbox.transform.parent;
+                var canReset = parent == null || (parent.lossyScale - Vector3.one).sqrMagnitude < 0.000001f;
+                using (new EditorGUI.DisabledScope(!canReset || EditorApplication.isPlayingOrWillChangePlaymode))
+                    if (GUILayout.Button("Reset Workbench Transform"))
+                    {
+                        Undo.RecordObject(sandbox.transform, "Reset Mixed Formation Ground Transform");
+                        sandbox.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                        sandbox.transform.localScale = Vector3.one;
+                        EditorUtility.SetDirty(sandbox.transform);
+                        validPlacement = HasValidPlacement(sandbox);
+                    }
+                if (!canReset) EditorGUILayout.HelpBox("The parent is scaled. Move this workbench to the scene root "
+                    + "before resetting it; the tool will not change your parent or hierarchy automatically.", MessageType.Info);
+            }
+
             if (sandbox.RockReference != null)
             {
                 EditorGUILayout.LabelField(sandbox.VariationEnabled
                     ? $"Rock Variation {sandbox.VariationSeed} — sand excluded"
                     : "Original Arrangement", EditorStyles.boldLabel);
                 using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode
-                    || sandbox.WorldSettings == null || sandbox.TerrainMaterial == null))
+                    || !validPlacement || sandbox.WorldSettings == null || sandbox.TerrainMaterial == null))
                 {
                     if (GUILayout.Button("Generate New Variation"))
                     {
@@ -125,7 +146,7 @@ namespace BooterBigArm.Editor
                 + "It provides scale, lighting, and a playable ground surface without becoming a second terrain asset.",
                 MessageType.Info);
 
-            using (new EditorGUI.DisabledScope(sandbox.WorldSettings == null || sandbox.TerrainMaterial == null))
+            using (new EditorGUI.DisabledScope(!validPlacement || sandbox.WorldSettings == null || sandbox.TerrainMaterial == null))
             {
                 if (GUILayout.Button(sandbox.RockReference != null ? "Update Rocks & Ground" : "Build Terrain Context"))
                 {
@@ -175,6 +196,14 @@ namespace BooterBigArm.Editor
             Selection.activeGameObject = context.gameObject;
         }
 
+        private static bool HasValidPlacement(TopDown3DLandscapeAuthoringSandbox sandbox)
+        {
+            return sandbox.RockReference == null
+                || (sandbox.transform.position.sqrMagnitude < 0.000001f
+                    && Quaternion.Angle(sandbox.transform.rotation, Quaternion.identity) < 0.001f
+                    && (sandbox.transform.lossyScale - Vector3.one).sqrMagnitude < 0.000001f);
+        }
+
         internal static void BuildTerrainContext(TopDown3DLandscapeAuthoringSandbox sandbox)
         {
             if (sandbox == null) throw new ArgumentNullException(nameof(sandbox));
@@ -183,15 +212,12 @@ namespace BooterBigArm.Editor
             if (sandbox.TerrainMaterial == null)
                 throw new InvalidOperationException("Landscape authoring needs the production terrain material.");
 
-            ClearTerrainContext(sandbox);
             if (sandbox.RockReference != null && EditorApplication.isPlayingOrWillChangePlaymode)
                 return;
-            if (sandbox.RockReference != null
-                && (sandbox.transform.position != Vector3.zero
-                    || sandbox.transform.rotation != Quaternion.identity
-                    || sandbox.transform.lossyScale != Vector3.one))
-                throw new InvalidOperationException(
-                    "Keep Mixed Formation Ground at zero position/rotation and unit scale. Use Terrain Location to move it.");
+            // Automatic reloads must also preserve the existing preview on invalid placement.
+            // The Inspector exposes an explicit undoable reset; never reset user transforms here.
+            if (!HasValidPlacement(sandbox)) return;
+            ClearTerrainContext(sandbox);
             var contextRoot = new GameObject(TerrainPreviewRootName)
             {
                 hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable
