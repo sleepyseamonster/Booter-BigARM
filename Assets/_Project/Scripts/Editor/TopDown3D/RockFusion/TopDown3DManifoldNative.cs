@@ -104,6 +104,29 @@ namespace BooterBigArm.TopDown3D
                     return false;
                 }
 
+                // Recheck the actual float-representable surface, not only the native
+                // double result: a collapsed narrow connection must not hide a split.
+                using (var converted = CreateManifold(result))
+                {
+                    if (NativeMethods.manifold_status(converted.DangerousGetHandle()) != ManifoldError.NoError)
+                    {
+                        error = "Float-converted union is not a closed manifold.";
+                        result = null;
+                        return false;
+                    }
+
+                    using (var components = Decompose(converted))
+                    {
+                        if (ToInt(NativeMethods.manifold_manifold_vec_length(
+                            components.DangerousGetHandle())) != 1)
+                        {
+                            error = "Float-converted union is not a single connected component.";
+                            result = null;
+                            return false;
+                        }
+                    }
+                }
+
                 return true;
             }
             catch (DllNotFoundException exception)
@@ -285,7 +308,7 @@ namespace BooterBigArm.TopDown3D
                     triangles[i] = checked((int)nativeTriangles[i]);
                 }
 
-                result = TopDown3DRockMeshTopology.Normalize(vertices, triangles);
+                result = NormalizeConvertedMesh(vertices, triangles);
                 return true;
             }
             finally
@@ -300,6 +323,31 @@ namespace BooterBigArm.TopDown3D
                     Marshal.FreeHGlobal(propertiesPointer);
                 }
             }
+        }
+
+        internal static TopDown3DIndexedMeshData NormalizeConvertedMesh(
+            IReadOnlyList<Vector3> vertices,
+            IReadOnlyList<int> triangles)
+        {
+            var normalized = TopDown3DRockMeshTopology.Normalize(vertices, triangles);
+            var retained = new List<int>(normalized.Triangles.Length);
+            for (var i = 0; i < normalized.Triangles.Length; i += 3)
+            {
+                var a = normalized.Triangles[i];
+                var b = normalized.Triangles[i + 1];
+                var c = normalized.Triangles[i + 2];
+                // Distinct native doubles can become the exact same Unity float position.
+                // Remove only faces collapsed by that exact weld, never near-zero slivers.
+                // The caller still requires closed, positive-volume manifold topology.
+                if (a == b || b == c || c == a) continue;
+                retained.Add(a);
+                retained.Add(b);
+                retained.Add(c);
+            }
+
+            return retained.Count == normalized.Triangles.Length
+                ? normalized
+                : TopDown3DRockMeshTopology.Normalize(normalized.Vertices, retained);
         }
 
         private static bool TryToFloat(double value, out float converted)

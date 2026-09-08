@@ -2,6 +2,14 @@
 
 Status: superseded for production runtime on 2026-08-14 by `Docs/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md`. The proved Manifold work remains an isolated editor-side asset-baking experiment and historical evidence; chunk streaming and gameplay must not depend on native Boolean fusion. Its checked-in binaries are now enabled only for the macOS Editor and excluded from Standalone players. The placement, identity, topology, and validation findings below remain useful input to the production rock-asset pipeline.
 
+## Editor extraction precision repair — 2026-09-08
+
+The detailed approved rock catalog exposed a native-output conversion edge case: distinct double-precision positions can round to the exact same Unity float position. Exact-position welding then leaves a face with repeated indices and no representable area. Extraction now removes only those collapsed faces before the unchanged closed-manifold and positive-volume checks. The converted float surface is also rechecked through Manifold for validity and exactly one connected component, so a collapsed narrow connection cannot hide a split. It does not use an epsilon weld, remove representable narrow triangles, relax validation, add a fallback, or change source meshes, placement, identity, materials or player code.
+
+Regression coverage includes exact face collapse, preservation of representable slivers, rejection of an open surface, and the seeded `ExtraLarge:4:-4` parent edge that exposed the defect. The existing seeded fusion corpus remains intact. The baked-family regression also follows the canonical approved-recipe resting-pose and decreasing-LOD rules for Boulder, Slab and Nodule; the original 600-vertex cap remains on the older procedural primitives. This is not a new performance budget or a claim of runtime activation.
+
+The 48-formation corpus has a test-local 15-minute timeout instead of Unity's default three minutes. With the detailed approved meshes, the legacy planner fixture plus fusion completed in about 585 seconds during validation (about 39 seconds in measured fusion work), exceeding the runner limit despite completing its geometry assertions. No sample range, formation count, assertion, or global timeout was reduced or disabled. This editor-test cost is not a measured gameplay performance result.
+
 ## Objective
 
 Replace the visual construction path for intersecting multi-member physical rock formations so every successful formation is rendered as one connected, watertight exterior mesh without internal overlapping shells. Preserve deterministic placement, stable root/member identity, root-chunk ownership, materials, shadows, dust envelopes, traversal behavior, and one box collider per member.

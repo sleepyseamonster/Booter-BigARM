@@ -413,15 +413,24 @@ namespace BooterBigArm.Tests
                 for (var variant = 0; variant < TopDown3DNaturalObjectCatalog.MeshVariantsPerShape; variant++)
                 {
                     var family = catalog.GetRequiredMeshFamily(shape, variant);
+                    var usesApprovedRecipe = BooterBigArm.Editor.TopDown3DProductionRockBaker
+                        .UsesApprovedRestingPose(shape);
+                    var previousTriangleCount = int.MaxValue;
                     for (var lodIndex = 0; lodIndex < 3; lodIndex++)
                     {
                         var mesh = family.GetLod(lodIndex);
                         Assert.That(mesh, Is.Not.Null);
                         Assert.That(mesh.isReadable, Is.True);
-                        Assert.That(mesh.vertexCount, Is.GreaterThan(0).And.LessThan(600));
+                        Assert.That(mesh.vertexCount, Is.GreaterThan(0));
+                        // The 600-vertex cap belongs to the original procedural primitives,
+                        // not the accepted workbench-baked Boulder/Slab/Nodule recipes.
+                        if (!usesApprovedRecipe)
+                            Assert.That(mesh.vertexCount, Is.LessThan(600));
                         Assert.That(mesh.triangles.Length % 3, Is.Zero);
+                        Assert.That(mesh.triangles.Length, Is.GreaterThan(0).And.LessThan(previousTriangleCount));
+                        previousTriangleCount = mesh.triangles.Length;
                         Assert.That(mesh.bounds.size.sqrMagnitude, Is.GreaterThan(0f));
-                        if (shape == TopDown3DNaturalObjectShape.Boulder)
+                        if (usesApprovedRecipe)
                         {
                             Assert.That(mesh.bounds.min.y, Is.LessThanOrEqualTo(0.001f));
                             Assert.That(

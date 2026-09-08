@@ -2250,12 +2250,21 @@ namespace BooterBigArm.Tests
                     authoring.GeneratedMajorFractures);
                 Assert.That(authoring.GenerationSeed, Is.EqualTo(8675309));
                 Assert.That(generated.Length, Is.EqualTo(expected.Count));
+                Assert.That(oldVolume == null, Is.True, "Generation must replace the old source volume.");
+                var sourceGroup = root.transform.Find(
+                    TopDown3DRockWorkbenchBaseRockGenerator.SourceGroupName);
+                Assert.That(sourceGroup, Is.Not.Null);
+                Assert.That(sourceGroup.parent, Is.SameAs(root.transform));
+                Assert.That(sourceGroup.localPosition, Is.EqualTo(Vector3.zero));
+                Assert.That(sourceGroup.localRotation, Is.EqualTo(Quaternion.identity));
+                Assert.That(sourceGroup.localScale, Is.EqualTo(Vector3.one));
+                Assert.That(sourceGroup.childCount, Is.EqualTo(expected.Count));
                 var shapeSeeds = new HashSet<int>();
                 for (var index = 0; index < generated.Length; index++)
                 {
                     var node = generated[index];
                     Assert.That(node, Is.Not.Null);
-                    Assert.That(node.transform.parent, Is.EqualTo(root.transform));
+                    Assert.That(node.transform.parent, Is.SameAs(sourceGroup));
                     Assert.That(node.name, Does.EndWith($"Volume {index + 1}"));
                     Assert.That(node.SourceShape, Is.EqualTo(expected[index].SourceShape));
                     Assert.That(node.Operation, Is.EqualTo(expected[index].Operation));

@@ -59,6 +59,62 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void NativeFloatConversion_RemovesOnlyExactlyCollapsedFaces()
+        {
+            var cube = CreateCube(Vector3.zero);
+            var vertices = cube.Vertices.Concat(new[] { cube.Vertices[0] }).ToArray();
+            var triangles = cube.Triangles.Concat(new[] { 0, 8, 1 }).ToArray();
+            var expected = TopDown3DRockMeshTopology.Normalize(cube.Vertices, cube.Triangles);
+            var result = TopDown3DManifoldNative.NormalizeConvertedMesh(vertices, triangles);
+
+            Assert.That(result.Vertices, Is.EqualTo(expected.Vertices));
+            Assert.That(result.Triangles, Is.EqualTo(expected.Triangles));
+            var report = TopDown3DRockMeshTopology.Validate(result);
+            Assert.That(report.IsValid, Is.True, report.Error);
+            Assert.That(report.SignedVolume, Is.EqualTo(1d).Within(1e-9));
+        }
+
+        [Test]
+        public void NativeFloatConversion_PreservesRepresentableSlivers()
+        {
+            var cube = CreateCube(Vector3.zero);
+            var vertices = cube.Vertices.Concat(new[] { cube.Vertices[0] + Vector3.up * 0.000001f }).ToArray();
+            var triangles = cube.Triangles.Concat(new[] { 0, 8, 1 }).ToArray();
+            var result = TopDown3DManifoldNative.NormalizeConvertedMesh(vertices, triangles);
+
+            Assert.That(result.Triangles.Length, Is.EqualTo(triangles.Length));
+            Assert.That(result.Vertices.Length, Is.EqualTo(vertices.Length));
+        }
+
+        [Test]
+        public void NativeFloatConversion_DoesNotHideAnOpenSurface()
+        {
+            var cube = CreateCube(Vector3.zero);
+            var triangles = cube.Triangles.Skip(3).Concat(new[] { 0, 0, 1 }).ToArray();
+            var result = TopDown3DManifoldNative.NormalizeConvertedMesh(cube.Vertices, triangles);
+
+            Assert.That(TopDown3DRockMeshTopology.Validate(result).IsValid, Is.False);
+        }
+
+        [Test]
+        public void SeededPrecisionBoundary_ProducesAClosedUnion()
+        {
+            var settings = LoadSettings();
+            var formation = TopDown3DRockFormationPlanner.BuildPhysicalFormations(
+                    settings, new TopDown3DWorldGenerator(settings), settings.NaturalObjectCatalog,
+                    new Vector2Int(3, -3), DistantExclusion)
+                .First(candidate => candidate.StableId.EndsWith(":ExtraLarge:4:-4"));
+            var root = formation.Members[0];
+            var solids = TopDown3DRockFormationMeshBuilder.PrepareUnionSolids(
+                formation, settings.NaturalObjectCatalog,
+                Matrix4x4.TRS(root.Position, root.Rotation, Vector3.one).inverse);
+
+            Assert.That(TopDown3DManifoldNative.TryUnionMany(
+                new[] { solids[0], solids[1] }, out var result, out _, out var error), Is.True, error);
+            Assert.That(TopDown3DRockMeshTopology.Validate(result).IsValid, Is.True);
+        }
+
+        [Test]
         public void FusionWorker_DropsCompletionAfterChunkInvalidation()
         {
             using (var service = new TopDown3DRockFusionService())
@@ -126,6 +182,9 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        // Detailed approved meshes make the unchanged legacy-planner fixture expensive.
+        // Keep all 48 formations and every assertion; only override the runner's 3-minute default.
+        [Timeout(15 * 60 * 1000)]
         public void SeededMultiMemberFormations_FuseDeterministicallyIntoOneComponent()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
