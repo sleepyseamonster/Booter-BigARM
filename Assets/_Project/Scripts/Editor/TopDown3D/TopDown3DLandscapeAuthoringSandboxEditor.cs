@@ -71,9 +71,8 @@ namespace BooterBigArm.Editor
                     EditorStyles.miniLabel);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("maximumRockTilt"),
                     new GUIContent("Maximum Ground Tilt"));
-                using (new EditorGUI.DisabledScope(sandbox.VariationEnabled))
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("sandBuildup"),
-                        new GUIContent("Sand Buildup (m)", "Excluded from rock variations while the raised-sand issue is unresolved."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("sandBuildup"),
+                    new GUIContent("Sand Buildup (m)", "Rock-hugging sand banks. Update Rocks & Ground applies changes without changing the variation seed. Zero removes buildup."));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("groundClutter"),
                     new GUIContent("Ground Clutter", "Pebble surface relief and sparse protruding stones. Sand hides the buried detail."));
                 using (new EditorGUI.DisabledScope(sandbox.VariationEnabled))
@@ -117,7 +116,7 @@ namespace BooterBigArm.Editor
             if (sandbox.RockReference != null)
             {
                 EditorGUILayout.LabelField(sandbox.VariationEnabled
-                    ? $"Rock Variation {sandbox.VariationSeed} — sand excluded"
+                    ? $"Rock Variation {sandbox.VariationSeed}"
                     : "Original Arrangement", EditorStyles.boldLabel);
                 using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode
                     || !validPlacement || sandbox.WorldSettings == null || sandbox.TerrainMaterial == null))
@@ -162,7 +161,7 @@ namespace BooterBigArm.Editor
             {
                 EditorGUILayout.Space();
                 EditorGUILayout.HelpBox("Reusable capture preserves the saved reference rocks and surfaces. "
-                    + "Sand remains unresolved and is excluded. World placement is not enabled yet.", MessageType.Info);
+                    + "Terrain, sand and clutter are preview treatments, not part of this capture. World placement is not enabled yet.", MessageType.Info);
                 using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode))
                     if (GUILayout.Button("Save / Update Reusable Mixed Formation"))
                         TopDown3DMixedFormationAssetBaker.Bake(sandbox.RockReference);
@@ -363,7 +362,7 @@ namespace BooterBigArm.Editor
                         rocks[i].GenerationSeed ^ sandbox.VariationSeed * 486187739 ^ i * 16777619));
             foreach (var child in copy.GetComponentsInChildren<Transform>(true))
                 child.gameObject.hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable;
-            var groundContacts = TopDown3DMixedFormationSand.Apply(sandbox, ground, rocks, !sandbox.VariationEnabled);
+            var groundContacts = TopDown3DMixedFormationSand.Apply(sandbox, ground, rocks);
             TopDown3DMixedFormationClutter.Apply(sandbox, contextRoot, ground, rocks, groundContacts);
             if (!sandbox.VariationEnabled)
                 TopDown3DMixedFormationBlowingSand.Apply(sandbox, contextRoot, ground, rocks);

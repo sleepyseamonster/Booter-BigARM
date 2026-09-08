@@ -1,6 +1,16 @@
 # Rock Quality And Production Plan
 
-**Status:** user rejected the latest raised-sand result and asked to move on. Sand-grid issue remains unresolved; it is not an accepted production baseline. Reusable mixed-formation capture is now implemented as the first production-preparation step; streamed placement remains next. Pebble/POM experiments remain deferred.
+**Status:** user accepted combined formation/individual-shape variations. A new sand-only bank pass is enabled for those variations, awaiting visual review; the previous grid-like sand remains rejected. Reusable capture is implemented; streamed placement and pebble/POM experiments remain deferred.
+
+## Sand reintroduction — single contact banks, 2026-09-07
+
+Preserve accepted rock shape generation, transforms, size envelopes, layout seeds and grounding. Replace the rejected authored sand model only: one continuous contact bank per rock instead of separate contact/tail maxima and angular lobes. Exact mesh-contour distance holds the bank against the rock; farther out, a radial-distance blend rounds the toe rather than extending straight faces into long lanes. A continuous wind-facing width/height bias gives a shorter upwind toe and longer lee toe. Seeded per-source strength remains, but no sampled lattice noise or two-lobe angular pattern is embossed into height. Compact influence and a smooth falloff leave open ground between separated rocks.
+
+Across rocks, a cubic-height-weighted mean replaces hard maximum ownership: it is bounded by the strongest contributing bank and adds no height at overlap. No additive joins, detached wind ridges, new textures, lighting edits or terrain-resolution changes. Same displaced mesh remains renderer/collider truth; no post-sand rock refitting occurs. Clutter continues following that surface. This is an authored-preview calculation only; runtime world versions, IDs, streaming and persisted deltas are unchanged.
+
+Sand Buildup is enabled again for variations, using its existing saved value; zero removes it. **Update Rocks & Ground** reproduces the current rock seed while applying sand changes. Blowing sand stays excluded from variations. The reusable capture still contains rocks only. Stop after compilation and handoff for user visual review, not another automatic visual tuning loop.
+
+Verification: isolated Unity 6000.4.0f1 compilation and six Metal shader variants passed (`/tmp/booter-sand-aprons.log`). Source review checked zero buildup, bounded overlap height, smooth zero-height falloff, unchanged fitting order and no edits to accepted variation/shape planners. User-owned scenes/materials remain untouched. No gameplay or visual tests were performed; the grid issue is not declared visually resolved.
 
 ## Production preparation — reusable mixed reference, 2026-09-07
 

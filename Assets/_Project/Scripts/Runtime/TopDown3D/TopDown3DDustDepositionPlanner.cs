@@ -149,9 +149,9 @@ namespace BooterBigArm.TopDown3D
             float buildup)
         {
             var strongest = 0f;
-            var height = 0f;
+            var weightedHeight = 0f;
+            var totalWeight = 0f;
             var wind = DirectionFromTurns(material.PrevailingWindDirection);
-            var acrossWind = new Vector2(-wind.y, wind.x);
             var slopeGate = 1f - SmoothStepRange(settings.MaximumDustDepositionSlope * 0.7f,
                 settings.MaximumDustDepositionSlope, material.SlopeDegrees);
             var supply = Mathf.Lerp(0.55f, 1f, material.Sediment)
@@ -162,46 +162,38 @@ namespace BooterBigArm.TopDown3D
             {
                 if (source.ExposedHeight <= 0.01f) continue;
                 var delta = position - source.Center;
-                var radius = Mathf.Min(source.HalfSize.x, source.HalfSize.y);
+                var radius = Mathf.Sqrt(source.HalfSize.x * source.HalfSize.y);
                 var bankHeight = Mathf.Min(buildup, source.ExposedHeight * 0.7f);
-                var skirtWidth = Mathf.Clamp(bankHeight * 4f + 0.4f, 0.45f, 1.8f);
+                var skirtWidth = Mathf.Clamp(bankHeight * 2.4f + 0.22f, 0.25f, 1.2f);
                 // Cheap rejection before measuring the triangle-section contour.
                 var reach = Mathf.Max(skirtWidth * 2f, settings.DustWakeLength) + 0.5f;
                 if (Mathf.Abs(delta.x) > source.HalfSize.x + reach
                     || Mathf.Abs(delta.y) > source.HalfSize.y + reach) continue;
                 var edgeDistance = source.DistanceOutside(position);
                 var along = Vector2.Dot(delta, wind);
-                var across = Vector2.Dot(delta, acrossWind);
-                var lee = SmoothStepRange(-radius, radius, along);
+                // A single directional apron, not separate ridge/tail fields competing at a seam.
+                var direction = along / Mathf.Sqrt(delta.sqrMagnitude + radius * radius);
+                var lee = Mathf.Clamp01(0.5f + direction * 0.5f);
                 var sourceVariation = FractalNoise(settings.WorldSeed ^ 9199,
                     source.Center.x * 0.83f, source.Center.y * 0.83f);
-                var bend = FractalNoise(settings.WorldSeed ^ 4739,
-                    source.Center.x * 0.71f, source.Center.y * 0.71f) * 2f - 1f;
-                // Smooth lobes around the contact, not world-grid noise embossed into height.
-                // The center singularity is flattened inside the rock's footprint.
-                var angle = Mathf.Atan2(across, along);
-                var lobe = 0.5f + 0.5f * Mathf.Cos(angle * 2f + sourceVariation * Mathf.PI * 2f);
-                lobe = Mathf.Lerp(0.5f, lobe, SmoothStepRange(0f, radius, delta.magnitude));
-                var contactStrength = Mathf.Lerp(0.55f, 1f, lobe)
-                    * Mathf.Lerp(0.12f, 1f, lee) * Mathf.Lerp(0.45f, 1f, sourceVariation);
-                // Highest at contact, descending outward with a gentle toe. Not a detached ring.
-                var toeWidth = skirtWidth * Mathf.Lerp(0.55f, 0.9f, lobe);
-                var skirt = Mathf.Pow(Mathf.Clamp01(1f - edgeDistance / toeWidth), 1.6f) * contactStrength;
-                var length = Mathf.Min(settings.DustWakeLength,
-                    Mathf.Max(0.65f, source.ExposedHeight * 4f + radius)) * Mathf.Lerp(0.65f, 1f, sourceVariation);
-                var progress = Mathf.Clamp01(along / Mathf.Max(0.001f, length));
-                var farFade = 1f - SmoothStepRange(0f, 1f, progress);
-                var width = Mathf.Max(source.HalfSize.x, source.HalfSize.y)
-                    * settings.DustWakeWidthMultiplier * Mathf.Sqrt(farFade);
-                // A low curved tail narrows to zero; neighboring rocks need not be connected.
-                var centerline = bend * length * 0.3f * progress * progress;
-                var wake = SmoothStepRange(0f, radius, along) * farFade
-                    * (1f - SmoothStepRange(0f, Mathf.Max(0.001f, width), Mathf.Abs(across - centerline)));
-                var weight = Mathf.Max(skirt, wake * 0.35f) * slopeGate * Mathf.Lerp(0.7f, 1f, supply);
+                var toeWidth = skirtWidth * Mathf.Lerp(0.7f, 1.5f, lee);
+                // Preserve the exact contact, but do not extrude straight rock faces all the way
+                // into the outer sand. Blend toward a radial toe with no world-axis alignment.
+                var roundDistance = Mathf.Max(0f, delta.magnitude - radius);
+                var rounded = Mathf.Lerp(edgeDistance, Mathf.Max(edgeDistance, roundDistance),
+                    SmoothStepRange(0f, toeWidth * 0.55f, edgeDistance));
+                var skirt = 1f - SmoothStepRange(0f, toeWidth, rounded);
+                var weight = skirt * Mathf.Lerp(0.65f, 1f, lee) * Mathf.Lerp(0.85f, 1f, sourceVariation)
+                    * slopeGate * Mathf.Lerp(0.7f, 1f, supply);
                 strongest = Mathf.Max(strongest, weight);
-                height = Mathf.Max(height, weight * bankHeight);
+                // Smooth weighted mean stays below the tallest bank. Unlike max(), it does not
+                // introduce a hard ownership crease; unlike summing, it cannot build a bridge.
+                var normalizedHeight = weight * bankHeight / buildup;
+                var influenceWeight = normalizedHeight * normalizedHeight * normalizedHeight;
+                weightedHeight += normalizedHeight * influenceWeight;
+                totalWeight += influenceWeight;
             }
-            // Overlap may share a bank, but never adds a raised bridge between members.
+            var height = totalWeight > 0f ? buildup * weightedHeight / totalWeight : 0f;
             return new TopDown3DDustDepositionSample(
                 Mathf.Clamp01(height / Mathf.Max(0.12f, buildup)) * 0.85f, height, strongest,
                 checked((float)material.Position.Vertical), material.WindExposure, material.Erosion, material.Deposit);
