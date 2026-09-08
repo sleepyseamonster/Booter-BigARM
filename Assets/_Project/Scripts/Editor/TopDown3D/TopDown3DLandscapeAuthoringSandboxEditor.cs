@@ -163,8 +163,15 @@ namespace BooterBigArm.Editor
                 EditorGUILayout.HelpBox("Reusable capture preserves the saved reference rocks and surfaces. "
                     + "Terrain, sand and clutter are preview treatments, not part of this capture. World placement is not enabled yet.", MessageType.Info);
                 using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode))
+                {
                     if (GUILayout.Button("Save / Update Reusable Mixed Formation"))
                         TopDown3DMixedFormationAssetBaker.Bake(sandbox.RockReference);
+                    if (GUILayout.Button("Build Gameplay Rock Meshes"))
+                        TopDown3DMixedFormationAssetBaker.BakeGameplay(sandbox.RockReference);
+                }
+                EditorGUILayout.HelpBox("Build Gameplay Rock Meshes captures the saved reference and prepares "
+                    + "three shape choices per rock with distance-detail meshes. It does not change this preview or enable world placement. "
+                    + "Recapturing the reference requires rebuilding its gameplay meshes.", MessageType.Info);
             }
         }
 

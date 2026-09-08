@@ -10,7 +10,15 @@ namespace BooterBigArm.Editor
         internal static void Apply(TopDown3DRockWorkbenchAuthoring rock, int seed)
         {
             var filter = rock.GetComponent<MeshFilter>();
-            var targetBounds = filter.sharedMesh.bounds;
+            var mesh = BuildMesh(rock, seed, filter.sharedMesh.bounds);
+            mesh.hideFlags = HideFlags.DontSaveInEditor | HideFlags.DontUnloadUnusedAsset;
+            rock.GetComponent<MeshCollider>().sharedMesh = mesh;
+            filter.sharedMesh = mesh;
+        }
+
+        internal static Mesh BuildMesh(TopDown3DRockWorkbenchAuthoring rock, int seed,
+            Bounds targetBounds, float voxelMultiplier = 1f)
+        {
             // Use the workbench recipe/mesher, not its interactive command (which changes
             // selection, transforms and Undo). Never replace the saved source volumes.
             var temporary = new GameObject("Temporary rock shape recipe") { hideFlags = HideFlags.HideAndDontSave };
@@ -32,7 +40,7 @@ namespace BooterBigArm.Editor
                         spec.SourceShape, TopDown3DRockWorkbenchBaseRockGenerator.DeriveVolumeShapeSeed(seed, i),
                         spec.Operation, rock.GeneratedEdgeDamage));
                 }
-                if (!TopDown3DRockWorkbenchMesher.TryBuild(boxes, rock.VoxelSize, rock.FusionSmoothness,
+                if (!TopDown3DRockWorkbenchMesher.TryBuild(boxes, rock.VoxelSize * voxelMultiplier, rock.FusionSmoothness,
                     rock.SurfaceRelaxation, out var result, out var error))
                     throw new InvalidOperationException($"Cannot regenerate {rock.name}: {error}");
                 mesh = result.CreateMesh(rock.name + " — Shape Variation");
@@ -48,11 +56,9 @@ namespace BooterBigArm.Editor
                 mesh.RecalculateNormals();
                 mesh.RecalculateTangents();
                 mesh.RecalculateBounds();
-                mesh.hideFlags = HideFlags.DontSaveInEditor | HideFlags.DontUnloadUnusedAsset;
-                // Materials, surface seed, pose and fitting are deliberately untouched.
-                rock.GetComponent<MeshCollider>().sharedMesh = mesh;
-                filter.sharedMesh = mesh;
-                mesh = null; // The disposable context now owns it and clears it on rebuild.
+                var output = mesh;
+                mesh = null; // Caller owns the mesh, either as disposable preview or persistent bake.
+                return output;
             }
             finally
             {

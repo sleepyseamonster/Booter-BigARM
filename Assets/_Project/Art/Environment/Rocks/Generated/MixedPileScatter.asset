@@ -1271,6 +1271,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:1150986892043253008:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 4118bb6b0673149ab85a40cab8686ab4, type: 2}
+      lod1: {fileID: -6411613167122394312, guid: 4118bb6b0673149ab85a40cab8686ab4, type: 2}
+      lod2: {fileID: -1488659241856826256, guid: 4118bb6b0673149ab85a40cab8686ab4, type: 2}
+      colliderCenter: {x: 0.0011028498, y: 0.23377134, z: -0.49410513}
+      colliderSize: {x: 0.5685581, y: 0.522903, z: 1.0090132}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:1150986892043253008:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: -8892011476047304229, guid: 4118bb6b0673149ab85a40cab8686ab4, type: 2}
+      lod1: {fileID: 5798300897005063295, guid: 4118bb6b0673149ab85a40cab8686ab4, type: 2}
+      lod2: {fileID: 8070000916337412420, guid: 4118bb6b0673149ab85a40cab8686ab4, type: 2}
+      colliderCenter: {x: 0.0011028498, y: 0.23377134, z: -0.49410513}
+      colliderSize: {x: 0.5685581, y: 0.522903, z: 1.0090132}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:1150986892043253008:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 573532049406679488, guid: 4118bb6b0673149ab85a40cab8686ab4, type: 2}
+      lod1: {fileID: -2661204662811406336, guid: 4118bb6b0673149ab85a40cab8686ab4, type: 2}
+      lod2: {fileID: 5499351765772389494, guid: 4118bb6b0673149ab85a40cab8686ab4, type: 2}
+      colliderCenter: {x: 0.0011028498, y: 0.23377134, z: -0.49410513}
+      colliderSize: {x: 0.5685581, y: 0.522903, z: 1.0090132}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:1521652057226066234
     mesh: {fileID: 5496090280211144975, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: 5373685215320826902}
@@ -1291,6 +1325,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:1521652057226066234:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 4f0816800a4c24698b7ef52311ada060, type: 2}
+      lod1: {fileID: 3243338964558467392, guid: 4f0816800a4c24698b7ef52311ada060, type: 2}
+      lod2: {fileID: -1723497585512991416, guid: 4f0816800a4c24698b7ef52311ada060, type: 2}
+      colliderCenter: {x: 0.32277805, y: 0.27332985, z: -0.041572794}
+      colliderSize: {x: 0.7532363, y: 0.58685434, z: 0.6121224}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:1521652057226066234:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: -717693813349382433, guid: 4f0816800a4c24698b7ef52311ada060, type: 2}
+      lod1: {fileID: 6280225278229073364, guid: 4f0816800a4c24698b7ef52311ada060, type: 2}
+      lod2: {fileID: 3518403254405359534, guid: 4f0816800a4c24698b7ef52311ada060, type: 2}
+      colliderCenter: {x: 0.32277805, y: 0.27332985, z: -0.041572794}
+      colliderSize: {x: 0.7532363, y: 0.58685434, z: 0.6121224}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:1521652057226066234:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 8106976236364827686, guid: 4f0816800a4c24698b7ef52311ada060, type: 2}
+      lod1: {fileID: -7677919479258061927, guid: 4f0816800a4c24698b7ef52311ada060, type: 2}
+      lod2: {fileID: 447043341118032171, guid: 4f0816800a4c24698b7ef52311ada060, type: 2}
+      colliderCenter: {x: 0.32277805, y: 0.27332985, z: -0.041572794}
+      colliderSize: {x: 0.7532363, y: 0.58685434, z: 0.6121224}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:2095623723120966889
     mesh: {fileID: -4268344436299219939, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: 6142420148890684971}
@@ -1311,6 +1379,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:2095623723120966889:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: bbd6b55c917a840c4a6cae126494d0f8, type: 2}
+      lod1: {fileID: 3671962987404858368, guid: bbd6b55c917a840c4a6cae126494d0f8, type: 2}
+      lod2: {fileID: 6281350441531881898, guid: bbd6b55c917a840c4a6cae126494d0f8, type: 2}
+      colliderCenter: {x: -0.28742063, y: 0.36844054, z: 0.04677412}
+      colliderSize: {x: 0.67674434, y: 0.8169181, z: 0.7903883}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:2095623723120966889:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 399347300627595961, guid: bbd6b55c917a840c4a6cae126494d0f8, type: 2}
+      lod1: {fileID: -6962959777158515685, guid: bbd6b55c917a840c4a6cae126494d0f8, type: 2}
+      lod2: {fileID: -7913905724183174099, guid: bbd6b55c917a840c4a6cae126494d0f8, type: 2}
+      colliderCenter: {x: -0.28742063, y: 0.36844054, z: 0.04677412}
+      colliderSize: {x: 0.67674434, y: 0.8169181, z: 0.7903883}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:2095623723120966889:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: -7049340331332484661, guid: bbd6b55c917a840c4a6cae126494d0f8, type: 2}
+      lod1: {fileID: -4553860222410527258, guid: bbd6b55c917a840c4a6cae126494d0f8, type: 2}
+      lod2: {fileID: 1615528015115678897, guid: bbd6b55c917a840c4a6cae126494d0f8, type: 2}
+      colliderCenter: {x: -0.28742063, y: 0.36844054, z: 0.04677412}
+      colliderSize: {x: 0.67674434, y: 0.8169181, z: 0.7903883}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:2865284188754207889
     mesh: {fileID: -7825198937633738370, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: 8536780270866482215}
@@ -1331,6 +1433,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:2865284188754207889:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: c23616b597d904c669051e7df166011f, type: 2}
+      lod1: {fileID: 4569234391555951163, guid: c23616b597d904c669051e7df166011f, type: 2}
+      lod2: {fileID: -6751832679809051863, guid: c23616b597d904c669051e7df166011f, type: 2}
+      colliderCenter: {x: 0.22730488, y: 0.38566133, z: -0.21251443}
+      colliderSize: {x: 1.0814686, y: 0.8988705, z: 0.92969865}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:2865284188754207889:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 3687299501771471135, guid: c23616b597d904c669051e7df166011f, type: 2}
+      lod1: {fileID: -6367537383653460113, guid: c23616b597d904c669051e7df166011f, type: 2}
+      lod2: {fileID: 1904191723931355119, guid: c23616b597d904c669051e7df166011f, type: 2}
+      colliderCenter: {x: 0.22730488, y: 0.38566133, z: -0.21251443}
+      colliderSize: {x: 1.0814686, y: 0.8988705, z: 0.92969865}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:2865284188754207889:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: -6931687827176915320, guid: c23616b597d904c669051e7df166011f, type: 2}
+      lod1: {fileID: -5728023208935440441, guid: c23616b597d904c669051e7df166011f, type: 2}
+      lod2: {fileID: -8960368566906737689, guid: c23616b597d904c669051e7df166011f, type: 2}
+      colliderCenter: {x: 0.22730488, y: 0.38566133, z: -0.21251443}
+      colliderSize: {x: 1.0814686, y: 0.8988705, z: 0.92969865}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:3028943882912581895
     mesh: {fileID: 6969563498405533857, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: 3521454486880029877}
@@ -1351,6 +1487,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:3028943882912581895:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 45357f8ba571e4fd3a4d252b9e13a94c, type: 2}
+      lod1: {fileID: 4336163048469412273, guid: 45357f8ba571e4fd3a4d252b9e13a94c, type: 2}
+      lod2: {fileID: 158011273385697641, guid: 45357f8ba571e4fd3a4d252b9e13a94c, type: 2}
+      colliderCenter: {x: -0.507617, y: 0.32562914, z: -0.047105536}
+      colliderSize: {x: 1.0996168, y: 0.7270512, z: 0.81858516}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:3028943882912581895:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: -2752730063444532562, guid: 45357f8ba571e4fd3a4d252b9e13a94c, type: 2}
+      lod1: {fileID: 8123388945067965035, guid: 45357f8ba571e4fd3a4d252b9e13a94c, type: 2}
+      lod2: {fileID: 762777776485288825, guid: 45357f8ba571e4fd3a4d252b9e13a94c, type: 2}
+      colliderCenter: {x: -0.507617, y: 0.32562914, z: -0.047105536}
+      colliderSize: {x: 1.0996168, y: 0.7270512, z: 0.81858516}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:3028943882912581895:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 7550584791067921670, guid: 45357f8ba571e4fd3a4d252b9e13a94c, type: 2}
+      lod1: {fileID: -1386352374598336314, guid: 45357f8ba571e4fd3a4d252b9e13a94c, type: 2}
+      lod2: {fileID: 7908983036283809890, guid: 45357f8ba571e4fd3a4d252b9e13a94c, type: 2}
+      colliderCenter: {x: -0.507617, y: 0.32562914, z: -0.047105536}
+      colliderSize: {x: 1.0996168, y: 0.7270512, z: 0.81858516}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:3102713788719176482
     mesh: {fileID: 2096970615325176280, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: -4997083613364144246}
@@ -1371,6 +1541,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:3102713788719176482:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 18ed28812676e4380b02cdf0b0eff481, type: 2}
+      lod1: {fileID: 278013652495035138, guid: 18ed28812676e4380b02cdf0b0eff481, type: 2}
+      lod2: {fileID: -4280228163218057399, guid: 18ed28812676e4380b02cdf0b0eff481, type: 2}
+      colliderCenter: {x: 0.28043252, y: 0.26528108, z: -0.124111935}
+      colliderSize: {x: 0.7492639, y: 0.55977035, z: 0.73771024}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:3102713788719176482:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: -432162548273839996, guid: 18ed28812676e4380b02cdf0b0eff481, type: 2}
+      lod1: {fileID: 7664128004611229087, guid: 18ed28812676e4380b02cdf0b0eff481, type: 2}
+      lod2: {fileID: -7901186816106304063, guid: 18ed28812676e4380b02cdf0b0eff481, type: 2}
+      colliderCenter: {x: 0.28043252, y: 0.26528108, z: -0.124111935}
+      colliderSize: {x: 0.7492639, y: 0.55977035, z: 0.73771024}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:3102713788719176482:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: -8435155369643656276, guid: 18ed28812676e4380b02cdf0b0eff481, type: 2}
+      lod1: {fileID: -9064573130674383533, guid: 18ed28812676e4380b02cdf0b0eff481, type: 2}
+      lod2: {fileID: 6434145061579413336, guid: 18ed28812676e4380b02cdf0b0eff481, type: 2}
+      colliderCenter: {x: 0.28043252, y: 0.26528108, z: -0.124111935}
+      colliderSize: {x: 0.7492639, y: 0.55977035, z: 0.73771024}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:3879729785316184908
     mesh: {fileID: 509156951505979857, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: -1198894598726655855}
@@ -1391,6 +1595,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:3879729785316184908:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: c057566a961274d5b8b6093a41e7ce4e, type: 2}
+      lod1: {fileID: -3671347745385604230, guid: c057566a961274d5b8b6093a41e7ce4e, type: 2}
+      lod2: {fileID: -4686298956817929265, guid: c057566a961274d5b8b6093a41e7ce4e, type: 2}
+      colliderCenter: {x: -0.074861094, y: 0.263025, z: -0.45960397}
+      colliderSize: {x: 0.66672194, y: 0.5236498, z: 1.0400978}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:3879729785316184908:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: -3781888846322115284, guid: c057566a961274d5b8b6093a41e7ce4e, type: 2}
+      lod1: {fileID: -8175388266371948770, guid: c057566a961274d5b8b6093a41e7ce4e, type: 2}
+      lod2: {fileID: 1138329063520873262, guid: c057566a961274d5b8b6093a41e7ce4e, type: 2}
+      colliderCenter: {x: -0.074861094, y: 0.263025, z: -0.45960397}
+      colliderSize: {x: 0.66672194, y: 0.5236498, z: 1.0400978}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:3879729785316184908:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 6788136535784849638, guid: c057566a961274d5b8b6093a41e7ce4e, type: 2}
+      lod1: {fileID: -1006090249305510640, guid: c057566a961274d5b8b6093a41e7ce4e, type: 2}
+      lod2: {fileID: -7064834822062248840, guid: c057566a961274d5b8b6093a41e7ce4e, type: 2}
+      colliderCenter: {x: -0.074861094, y: 0.263025, z: -0.45960397}
+      colliderSize: {x: 0.66672194, y: 0.5236498, z: 1.0400978}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:426897649273724261
     mesh: {fileID: -4113845763791579558, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: 4397547017316064518}
@@ -1411,6 +1649,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:426897649273724261:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 2aeb5fba1bf824682a5ed6b5d1257ef4, type: 2}
+      lod1: {fileID: 1460823755219592521, guid: 2aeb5fba1bf824682a5ed6b5d1257ef4, type: 2}
+      lod2: {fileID: -8789243586125599088, guid: 2aeb5fba1bf824682a5ed6b5d1257ef4, type: 2}
+      colliderCenter: {x: -0.19046745, y: 0.251013, z: -0.05742813}
+      colliderSize: {x: 0.48553854, y: 0.6380163, z: 0.5964469}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:426897649273724261:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 1332173650264174566, guid: 2aeb5fba1bf824682a5ed6b5d1257ef4, type: 2}
+      lod1: {fileID: 6995803145056691969, guid: 2aeb5fba1bf824682a5ed6b5d1257ef4, type: 2}
+      lod2: {fileID: 2368609694552708186, guid: 2aeb5fba1bf824682a5ed6b5d1257ef4, type: 2}
+      colliderCenter: {x: -0.19046745, y: 0.251013, z: -0.05742813}
+      colliderSize: {x: 0.48553854, y: 0.6380163, z: 0.5964469}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:426897649273724261:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 8433416105913982457, guid: 2aeb5fba1bf824682a5ed6b5d1257ef4, type: 2}
+      lod1: {fileID: 546168488082608775, guid: 2aeb5fba1bf824682a5ed6b5d1257ef4, type: 2}
+      lod2: {fileID: -2216180726302637563, guid: 2aeb5fba1bf824682a5ed6b5d1257ef4, type: 2}
+      colliderCenter: {x: -0.19046745, y: 0.251013, z: -0.05742813}
+      colliderSize: {x: 0.48553854, y: 0.6380163, z: 0.5964469}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:4718420270806457474
     mesh: {fileID: 5356019050927670038, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: 1967710901845333893}
@@ -1431,6 +1703,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:4718420270806457474:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 6424ad9e4ef3f43e7b296631d62a8c63, type: 2}
+      lod1: {fileID: 2530991250001683944, guid: 6424ad9e4ef3f43e7b296631d62a8c63, type: 2}
+      lod2: {fileID: -4677365143314116312, guid: 6424ad9e4ef3f43e7b296631d62a8c63, type: 2}
+      colliderCenter: {x: -0.1159288, y: 0.40775657, z: -0.23183471}
+      colliderSize: {x: 0.7676471, y: 0.89287245, z: 0.638592}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:4718420270806457474:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 1683017388296860228, guid: 6424ad9e4ef3f43e7b296631d62a8c63, type: 2}
+      lod1: {fileID: -4717698307769559541, guid: 6424ad9e4ef3f43e7b296631d62a8c63, type: 2}
+      lod2: {fileID: -1949923347880715113, guid: 6424ad9e4ef3f43e7b296631d62a8c63, type: 2}
+      colliderCenter: {x: -0.1159288, y: 0.40775657, z: -0.23183471}
+      colliderSize: {x: 0.7676471, y: 0.89287245, z: 0.638592}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:4718420270806457474:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 5575425165026009840, guid: 6424ad9e4ef3f43e7b296631d62a8c63, type: 2}
+      lod1: {fileID: -4349199828726640485, guid: 6424ad9e4ef3f43e7b296631d62a8c63, type: 2}
+      lod2: {fileID: 2476206427292643625, guid: 6424ad9e4ef3f43e7b296631d62a8c63, type: 2}
+      colliderCenter: {x: -0.1159288, y: 0.40775657, z: -0.23183471}
+      colliderSize: {x: 0.7676471, y: 0.89287245, z: 0.638592}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:5298140864328685715
     mesh: {fileID: -566917865646162943, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: 2499088887108925240}
@@ -1451,6 +1757,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:5298140864328685715:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 4ef87e2291d924a5b9a944ffc69af0d4, type: 2}
+      lod1: {fileID: -3174956496923970194, guid: 4ef87e2291d924a5b9a944ffc69af0d4, type: 2}
+      lod2: {fileID: -8792584829359932763, guid: 4ef87e2291d924a5b9a944ffc69af0d4, type: 2}
+      colliderCenter: {x: -0.15146235, y: 0.21657602, z: -0.2625092}
+      colliderSize: {x: 0.5621393, y: 0.52573144, z: 0.65197664}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:5298140864328685715:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 3594036000666731381, guid: 4ef87e2291d924a5b9a944ffc69af0d4, type: 2}
+      lod1: {fileID: 8714595144164932995, guid: 4ef87e2291d924a5b9a944ffc69af0d4, type: 2}
+      lod2: {fileID: -1998417215234457007, guid: 4ef87e2291d924a5b9a944ffc69af0d4, type: 2}
+      colliderCenter: {x: -0.15146235, y: 0.21657602, z: -0.2625092}
+      colliderSize: {x: 0.5621393, y: 0.52573144, z: 0.65197664}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:5298140864328685715:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 3769495700147756704, guid: 4ef87e2291d924a5b9a944ffc69af0d4, type: 2}
+      lod1: {fileID: -3045475342121869344, guid: 4ef87e2291d924a5b9a944ffc69af0d4, type: 2}
+      lod2: {fileID: -226222986891616225, guid: 4ef87e2291d924a5b9a944ffc69af0d4, type: 2}
+      colliderCenter: {x: -0.15146235, y: 0.21657602, z: -0.2625092}
+      colliderSize: {x: 0.5621393, y: 0.52573144, z: 0.65197664}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:5810115796739824190
     mesh: {fileID: 4300000, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: -831398514785351611}
@@ -1471,6 +1811,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:5810115796739824190:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 1014ee8433b3343b0a56be815097515c, type: 2}
+      lod1: {fileID: 2954326019147916403, guid: 1014ee8433b3343b0a56be815097515c, type: 2}
+      lod2: {fileID: -5316965310047595442, guid: 1014ee8433b3343b0a56be815097515c, type: 2}
+      colliderCenter: {x: 0.31388122, y: 0.5469749, z: 0.30532616}
+      colliderSize: {x: 1.3356024, y: 1.0772424, z: 1.1244727}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:5810115796739824190:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 9131774233994823204, guid: 1014ee8433b3343b0a56be815097515c, type: 2}
+      lod1: {fileID: 4564662558604864924, guid: 1014ee8433b3343b0a56be815097515c, type: 2}
+      lod2: {fileID: 8006665832971385585, guid: 1014ee8433b3343b0a56be815097515c, type: 2}
+      colliderCenter: {x: 0.31388122, y: 0.5469749, z: 0.30532616}
+      colliderSize: {x: 1.3356024, y: 1.0772424, z: 1.1244727}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:5810115796739824190:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 1300129927437319078, guid: 1014ee8433b3343b0a56be815097515c, type: 2}
+      lod1: {fileID: -1787531069853718518, guid: 1014ee8433b3343b0a56be815097515c, type: 2}
+      lod2: {fileID: -4489343226751172685, guid: 1014ee8433b3343b0a56be815097515c, type: 2}
+      colliderCenter: {x: 0.31388122, y: 0.5469749, z: 0.30532616}
+      colliderSize: {x: 1.3356024, y: 1.0772424, z: 1.1244727}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:6130746680607118270
     mesh: {fileID: -5958950452351165318, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: -8604006315782718149}
@@ -1491,6 +1865,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:6130746680607118270:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: f993d6556c6b04ef2a84ba32941869bd, type: 2}
+      lod1: {fileID: 1878842181917586027, guid: f993d6556c6b04ef2a84ba32941869bd, type: 2}
+      lod2: {fileID: 339863738998867491, guid: f993d6556c6b04ef2a84ba32941869bd, type: 2}
+      colliderCenter: {x: 0.36724085, y: 0.22934175, z: -0.034128606}
+      colliderSize: {x: 0.7619451, y: 0.48323232, z: 0.47885823}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:6130746680607118270:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 5984608110781559374, guid: f993d6556c6b04ef2a84ba32941869bd, type: 2}
+      lod1: {fileID: -1903865701441735054, guid: f993d6556c6b04ef2a84ba32941869bd, type: 2}
+      lod2: {fileID: -4402904535933322760, guid: f993d6556c6b04ef2a84ba32941869bd, type: 2}
+      colliderCenter: {x: 0.36724085, y: 0.22934175, z: -0.034128606}
+      colliderSize: {x: 0.7619451, y: 0.48323232, z: 0.47885823}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:6130746680607118270:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 139341484344229152, guid: f993d6556c6b04ef2a84ba32941869bd, type: 2}
+      lod1: {fileID: -7063529873618930436, guid: f993d6556c6b04ef2a84ba32941869bd, type: 2}
+      lod2: {fileID: 8257867794286804709, guid: f993d6556c6b04ef2a84ba32941869bd, type: 2}
+      colliderCenter: {x: 0.36724085, y: 0.22934175, z: -0.034128606}
+      colliderSize: {x: 0.7619451, y: 0.48323232, z: 0.47885823}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:7002632165540063005
     mesh: {fileID: 6361755493435453912, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: 513919457139729367}
@@ -1511,6 +1919,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7002632165540063005:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: e372287a00ef64680b1b66b45ec57ccf, type: 2}
+      lod1: {fileID: -6082902665375787073, guid: e372287a00ef64680b1b66b45ec57ccf, type: 2}
+      lod2: {fileID: 6798335760092132783, guid: e372287a00ef64680b1b66b45ec57ccf, type: 2}
+      colliderCenter: {x: -0.18391946, y: 0.4151893, z: -0.10620035}
+      colliderSize: {x: 0.9283163, y: 0.85926133, z: 0.8153124}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7002632165540063005:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: -5687700821900233315, guid: e372287a00ef64680b1b66b45ec57ccf, type: 2}
+      lod1: {fileID: 257408074191737571, guid: e372287a00ef64680b1b66b45ec57ccf, type: 2}
+      lod2: {fileID: 6299051636165306080, guid: e372287a00ef64680b1b66b45ec57ccf, type: 2}
+      colliderCenter: {x: -0.18391946, y: 0.4151893, z: -0.10620035}
+      colliderSize: {x: 0.9283163, y: 0.85926133, z: 0.8153124}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7002632165540063005:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 126646144101926796, guid: e372287a00ef64680b1b66b45ec57ccf, type: 2}
+      lod1: {fileID: -8187414873253448580, guid: e372287a00ef64680b1b66b45ec57ccf, type: 2}
+      lod2: {fileID: 5100611943574882130, guid: e372287a00ef64680b1b66b45ec57ccf, type: 2}
+      colliderCenter: {x: -0.18391946, y: 0.4151893, z: -0.10620035}
+      colliderSize: {x: 0.9283163, y: 0.85926133, z: 0.8153124}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:729920268808993540
     mesh: {fileID: -6808800877071851533, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: -6554990757217733595}
@@ -1531,6 +1973,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:729920268808993540:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: ab868aa05495f42c5854ed61406e043e, type: 2}
+      lod1: {fileID: -1762126971437067, guid: ab868aa05495f42c5854ed61406e043e, type: 2}
+      lod2: {fileID: -2416435185739357803, guid: ab868aa05495f42c5854ed61406e043e, type: 2}
+      colliderCenter: {x: -0.50761706, y: 0.32562917, z: -0.047105595}
+      colliderSize: {x: 1.0996169, y: 0.72705114, z: 0.8185853}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:729920268808993540:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 8481420146889491009, guid: ab868aa05495f42c5854ed61406e043e, type: 2}
+      lod1: {fileID: -1227897299716974223, guid: ab868aa05495f42c5854ed61406e043e, type: 2}
+      lod2: {fileID: 2880650938002200900, guid: ab868aa05495f42c5854ed61406e043e, type: 2}
+      colliderCenter: {x: -0.50761706, y: 0.32562917, z: -0.047105595}
+      colliderSize: {x: 1.0996169, y: 0.72705114, z: 0.8185853}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:729920268808993540:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: -1135096146278337603, guid: ab868aa05495f42c5854ed61406e043e, type: 2}
+      lod1: {fileID: -4464621002280213947, guid: ab868aa05495f42c5854ed61406e043e, type: 2}
+      lod2: {fileID: -4970267519117855779, guid: ab868aa05495f42c5854ed61406e043e, type: 2}
+      colliderCenter: {x: -0.50761706, y: 0.32562917, z: -0.047105595}
+      colliderSize: {x: 1.0996169, y: 0.72705114, z: 0.8185853}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:7468270735601262223
     mesh: {fileID: 3592622455532428398, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: -6990997533102346712}
@@ -1551,6 +2027,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7468270735601262223:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 7fe052009ecbf4fb3a2d78d576184157, type: 2}
+      lod1: {fileID: 5225413611551779224, guid: 7fe052009ecbf4fb3a2d78d576184157, type: 2}
+      lod2: {fileID: -7463370565074820078, guid: 7fe052009ecbf4fb3a2d78d576184157, type: 2}
+      colliderCenter: {x: -0.42741257, y: 0.34374753, z: -0.21892782}
+      colliderSize: {x: 1.0911814, y: 0.83306736, z: 0.9849843}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7468270735601262223:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 3653290452203362270, guid: 7fe052009ecbf4fb3a2d78d576184157, type: 2}
+      lod1: {fileID: 7419715958187252101, guid: 7fe052009ecbf4fb3a2d78d576184157, type: 2}
+      lod2: {fileID: 6351502065063571798, guid: 7fe052009ecbf4fb3a2d78d576184157, type: 2}
+      colliderCenter: {x: -0.42741257, y: 0.34374753, z: -0.21892782}
+      colliderSize: {x: 1.0911814, y: 0.83306736, z: 0.9849843}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7468270735601262223:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: -1598851086820137762, guid: 7fe052009ecbf4fb3a2d78d576184157, type: 2}
+      lod1: {fileID: -3562387860232286493, guid: 7fe052009ecbf4fb3a2d78d576184157, type: 2}
+      lod2: {fileID: 5481581116385671068, guid: 7fe052009ecbf4fb3a2d78d576184157, type: 2}
+      colliderCenter: {x: -0.42741257, y: 0.34374753, z: -0.21892782}
+      colliderSize: {x: 1.0911814, y: 0.83306736, z: 0.9849843}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:7498146560403674845
     mesh: {fileID: 5865570306196951798, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: -444101787038927402}
@@ -1571,6 +2081,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7498146560403674845:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 5da927a85c9c8429d80e190251e334ac, type: 2}
+      lod1: {fileID: -5237486522752575280, guid: 5da927a85c9c8429d80e190251e334ac, type: 2}
+      lod2: {fileID: -3835148033978278999, guid: 5da927a85c9c8429d80e190251e334ac, type: 2}
+      colliderCenter: {x: 0.019634552, y: 0.24163039, z: -0.27814}
+      colliderSize: {x: 0.49328804, y: 0.48538247, z: 0.6081277}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7498146560403674845:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 4929197038990360322, guid: 5da927a85c9c8429d80e190251e334ac, type: 2}
+      lod1: {fileID: -7930794110243034198, guid: 5da927a85c9c8429d80e190251e334ac, type: 2}
+      lod2: {fileID: -3964729463509968098, guid: 5da927a85c9c8429d80e190251e334ac, type: 2}
+      colliderCenter: {x: 0.019634552, y: 0.24163039, z: -0.27814}
+      colliderSize: {x: 0.49328804, y: 0.48538247, z: 0.6081277}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7498146560403674845:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 2595273636232937058, guid: 5da927a85c9c8429d80e190251e334ac, type: 2}
+      lod1: {fileID: -27656347132203840, guid: 5da927a85c9c8429d80e190251e334ac, type: 2}
+      lod2: {fileID: -4989262854784461622, guid: 5da927a85c9c8429d80e190251e334ac, type: 2}
+      colliderCenter: {x: 0.019634552, y: 0.24163039, z: -0.27814}
+      colliderSize: {x: 0.49328804, y: 0.48538247, z: 0.6081277}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:7805525471755447516
     mesh: {fileID: 5503190878383381545, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: -1734640789663464897}
@@ -1591,6 +2135,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7805525471755447516:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 9d434dabeaca64f9da48804d990d326b, type: 2}
+      lod1: {fileID: 1654232668860474430, guid: 9d434dabeaca64f9da48804d990d326b, type: 2}
+      lod2: {fileID: -8868159575500650400, guid: 9d434dabeaca64f9da48804d990d326b, type: 2}
+      colliderCenter: {x: -0.5076171, y: 0.32562917, z: -0.04710555}
+      colliderSize: {x: 1.0996168, y: 0.72705114, z: 0.81858534}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7805525471755447516:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: 8201521551620724778, guid: 9d434dabeaca64f9da48804d990d326b, type: 2}
+      lod1: {fileID: -8691974118238820829, guid: 9d434dabeaca64f9da48804d990d326b, type: 2}
+      lod2: {fileID: 777161507492904936, guid: 9d434dabeaca64f9da48804d990d326b, type: 2}
+      colliderCenter: {x: -0.5076171, y: 0.32562917, z: -0.04710555}
+      colliderSize: {x: 1.0996168, y: 0.72705114, z: 0.81858534}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:7805525471755447516:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: -7560650706598673334, guid: 9d434dabeaca64f9da48804d990d326b, type: 2}
+      lod1: {fileID: -6615642505219065475, guid: 9d434dabeaca64f9da48804d990d326b, type: 2}
+      lod2: {fileID: -1930062386434612350, guid: 9d434dabeaca64f9da48804d990d326b, type: 2}
+      colliderCenter: {x: -0.5076171, y: 0.32562917, z: -0.04710555}
+      colliderSize: {x: 1.0996168, y: 0.72705114, z: 0.81858534}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:8317877889614339471
     mesh: {fileID: 1878452480382152362, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: -1853966614391549026}
@@ -1611,6 +2189,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:8317877889614339471:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: e6ae8ae98b31040c4a28577aef6e0ebb, type: 2}
+      lod1: {fileID: 84424814788605240, guid: e6ae8ae98b31040c4a28577aef6e0ebb, type: 2}
+      lod2: {fileID: 2102882576518219373, guid: e6ae8ae98b31040c4a28577aef6e0ebb, type: 2}
+      colliderCenter: {x: -0.507617, y: 0.3256292, z: -0.04710561}
+      colliderSize: {x: 1.099617, y: 0.7270512, z: 0.8185853}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:8317877889614339471:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: -2977002522619069577, guid: e6ae8ae98b31040c4a28577aef6e0ebb, type: 2}
+      lod1: {fileID: 6569285941647324298, guid: e6ae8ae98b31040c4a28577aef6e0ebb, type: 2}
+      lod2: {fileID: -6418052568212379216, guid: e6ae8ae98b31040c4a28577aef6e0ebb, type: 2}
+      colliderCenter: {x: -0.507617, y: 0.3256292, z: -0.04710561}
+      colliderSize: {x: 1.099617, y: 0.7270512, z: 0.8185853}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:8317877889614339471:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 5320790002296261283, guid: e6ae8ae98b31040c4a28577aef6e0ebb, type: 2}
+      lod1: {fileID: 6311769623239893644, guid: e6ae8ae98b31040c4a28577aef6e0ebb, type: 2}
+      lod2: {fileID: 2538003702515164621, guid: e6ae8ae98b31040c4a28577aef6e0ebb, type: 2}
+      colliderCenter: {x: -0.507617, y: 0.3256292, z: -0.04710561}
+      colliderSize: {x: 1.099617, y: 0.7270512, z: 0.8185853}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
   - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:9033177721814652778
     mesh: {fileID: 8312904008125604030, guid: bd857adea107d42669053ae9036bc05d, type: 2}
     material: {fileID: -4033421766978767358}
@@ -1631,6 +2243,40 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    bakedVariants:
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:9033177721814652778:shape:0
+      shape: 3
+      variant: 0
+      lod0: {fileID: 4300000, guid: 6968ef7bdf69b4f0d9dcde14e4c060f2, type: 2}
+      lod1: {fileID: 3657028731881564071, guid: 6968ef7bdf69b4f0d9dcde14e4c060f2, type: 2}
+      lod2: {fileID: 7178855568167668426, guid: 6968ef7bdf69b4f0d9dcde14e4c060f2, type: 2}
+      colliderCenter: {x: 0.103236824, y: 0.43549407, z: -0.29770923}
+      colliderSize: {x: 0.8217458, y: 0.9849031, z: 0.7811365}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:9033177721814652778:shape:1
+      shape: 3
+      variant: 1
+      lod0: {fileID: -5341745737450972496, guid: 6968ef7bdf69b4f0d9dcde14e4c060f2, type: 2}
+      lod1: {fileID: 8326857242066273081, guid: 6968ef7bdf69b4f0d9dcde14e4c060f2, type: 2}
+      lod2: {fileID: -9012815968794744635, guid: 6968ef7bdf69b4f0d9dcde14e4c060f2, type: 2}
+      colliderCenter: {x: 0.103236824, y: 0.43549407, z: -0.29770923}
+      colliderSize: {x: 0.8217458, y: 0.9849031, z: 0.7811365}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
+    - stableId: cdf2a535a70e74d22981b0b4f16aeca5:9033177721814652778:shape:2
+      shape: 3
+      variant: 2
+      lod0: {fileID: 8061160215506998621, guid: 6968ef7bdf69b4f0d9dcde14e4c060f2, type: 2}
+      lod1: {fileID: -8649532648863429578, guid: 6968ef7bdf69b4f0d9dcde14e4c060f2, type: 2}
+      lod2: {fileID: 2850204513275916500, guid: 6968ef7bdf69b4f0d9dcde14e4c060f2, type: 2}
+      colliderCenter: {x: 0.103236824, y: 0.43549407, z: -0.29770923}
+      colliderSize: {x: 0.8217458, y: 0.9849031, z: 0.7811365}
+      lod0ScreenHeight: 0.24
+      lod1ScreenHeight: 0.085
+      lod2ScreenHeight: 0.015
 --- !u!21 &513919457139729367
 Material:
   serializedVersion: 8

@@ -989,7 +989,7 @@ namespace BooterBigArm.Editor
             return new BakedMeshSet(lod0, lod1, lod2);
         }
 
-        private static Mesh UpsertMesh(string assetPath, Mesh generated)
+        internal static Mesh UpsertMesh(string assetPath, Mesh generated)
         {
             var assets = AssetDatabase.LoadAllAssetsAtPath(assetPath);
             for (var i = 0; i < assets.Length; i++)
