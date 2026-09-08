@@ -109,6 +109,15 @@ namespace BooterBigArm.Editor
             {
                 ClearTerrainContext(sandbox);
             }
+            if (sandbox.RockReference != null)
+            {
+                EditorGUILayout.Space();
+                EditorGUILayout.HelpBox("Reusable capture preserves the saved reference rocks and surfaces. "
+                    + "Sand remains unresolved and is excluded. World placement is not enabled yet.", MessageType.Info);
+                using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode))
+                    if (GUILayout.Button("Save / Update Reusable Mixed Formation"))
+                        TopDown3DMixedFormationAssetBaker.Bake(sandbox.RockReference);
+            }
         }
 
         [MenuItem("Booter & BigARM/Create Mixed Formation Ground", false, 3)]

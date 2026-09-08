@@ -1,6 +1,18 @@
 # Rock Quality And Production Plan
 
-**Status:** first whole-formation naturalism pass accepted by the user; 2026-09-07 follow-ups correct gravel boundaries and raised sand ridges, pending visual review. Pebble/POM experiments and production integration remain deferred.
+**Status:** user rejected the latest raised-sand result and asked to move on. Sand-grid issue remains unresolved; it is not an accepted production baseline. Reusable mixed-formation capture is now implemented as the first production-preparation step; streamed placement remains next. Pebble/POM experiments remain deferred.
+
+## Production preparation — reusable mixed reference, 2026-09-07
+
+Bounded sequence: (1) convert the saved authored composition into updateable runtime data; (2) fit that data through the existing world formation owner and ground/support solver; (3) integrate accepted ground treatment and clutter with shared terrain ownership. Do not ship the rejected sand while progressing. Do not create the user's future separate pile/scatter examples.
+
+Step 1 implementation: **Mixed Formation Ground → Save / Update Reusable Mixed Formation** reads only the saved `MixedPileScatterReference.prefab`, never disposable preview objects or unsaved scene rocks. It writes `Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset`: 19 member mesh references, source-relative matrices, canonical surface settings in material subassets, source GUID/dependency revision and per-member GUID/local-file identity. Recapture retains the asset and existing member material identities. The original editable prefab/meshes remain untouched. Existing source mesh assets are referenced, not independently copied or optimized; this is not an LOD-ready production catalog entry. No scene is saved, instantiated or enabled by capture.
+
+Architecture: member source IDs do not substitute for generated world IDs. Step 2 must derive placement/member identity from the existing world reservation plus source identity, maintain chunk ownership and persisted delta behavior, and apply support-aware fitting without flattening the hand-built pile. No new world random stream, seed/version, save schema or streaming behavior is introduced in step 1. Ground treatment, terrain tiles, sand, clutter and editor authoring scripts are deliberately excluded from this asset. No claim of runtime placement, slope correctness or unload/reload completion is made.
+
+Done for this slice: capture and recapture compile/run in the isolated Unity project; the asset and hierarchy action are available, with explicit next integration boundary. Hands-on review remains user-owned. No new source-art input is required yet.
+
+Verification: Unity 6000.4.0f1 C# compilation plus capture and recapture completed with exit 0 (`/tmp/booter-mixed-capture.log`, `/tmp/booter-mixed-recapture.log`). Recaptured output contains 19 members and 19 material subassets, not a second set. Source review confirms matrix preservation, stable asset-based member keys, persistent mesh validation and no scene writes. No gameplay, streaming, performance or visual checks were performed.
 
 ## Raised-sand correction — 2026-09-07
 

@@ -1,0 +1,2749 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &-8604006315782718149
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 6130746680607118270
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.9231908
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.39630842, g: 0.39653656, b: 0.38806635, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.7619451, g: 0.48323232, b: 0.47885823, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &-6990997533102346712
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 7468270735601262223
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.14422067
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.4003439, g: 0.378521, b: 0.34672996, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 1.0911814, g: 0.83306736, b: 0.9849843, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &-6554990757217733595
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 729920268808993540
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.39894167
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.36866987, g: 0.3648685, b: 0.3526845, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 1.0996169, g: 0.72705114, b: 0.8185853, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &-4997083613364144246
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 3102713788719176482
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.6253192
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.46506792, g: 0.44072282, b: 0.40502366, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.7492639, g: 0.55977035, b: 0.73771024, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &-4033421766978767358
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 9033177721814652778
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.24611528
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.37103343, g: 0.37677422, b: 0.37460256, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.8217458, g: 0.9849031, b: 0.7811365, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &-1853966614391549026
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 8317877889614339471
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.39894167
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.36866987, g: 0.3648685, b: 0.3526845, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 1.099617, g: 0.7270512, b: 0.8185853, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &-1734640789663464897
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 7805525471755447516
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.39894167
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.36866987, g: 0.3648685, b: 0.3526845, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 1.0996168, g: 0.72705114, b: 0.81858534, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &-1198894598726655855
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 3879729785316184908
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.42877904
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.47768104, g: 0.45212787, b: 0.41491187, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.66672194, g: 0.5236498, b: 1.0400978, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &-831398514785351611
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 5810115796739824190
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.7237214
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.4203665, g: 0.42216447, b: 0.41488457, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockSize: {r: 1.3356024, g: 1.0772424, b: 1.1244727, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &-444101787038927402
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 7498146560403674845
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.016096713
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.41509756, g: 0.4046538, b: 0.38457212, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.49328804, g: 0.48538247, b: 0.6081277, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9afb1db788e4f06b82678dd7412673, type: 3}
+  m_Name: MixedPileScatter
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DAuthoredFormationAsset
+  sourceGuid: cdf2a535a70e74d22981b0b4f16aeca5
+  sourceRevision: c21edcd08f2fe6c272a7f2657c1b574e
+  members:
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:1150986892043253008
+    mesh: {fileID: -4030622920052108126, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: 8742244266035646466}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0.52
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -0.13
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:1521652057226066234
+    mesh: {fileID: 5496090280211144975, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: 5373685215320826902}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: -0.324
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -0.313
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:2095623723120966889
+    mesh: {fileID: -4268344436299219939, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: 6142420148890684971}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 3.18
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -0.42
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:2865284188754207889
+    mesh: {fileID: -7825198937633738370, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: 8536780270866482215}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: -0.952
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -1.601
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:3028943882912581895
+    mesh: {fileID: 6969563498405533857, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: 3521454486880029877}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0.79
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -4.52
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:3102713788719176482
+    mesh: {fileID: 2096970615325176280, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: -4997083613364144246}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 3.75
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -1.16
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:3879729785316184908
+    mesh: {fileID: 509156951505979857, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: -1198894598726655855}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: -0.175
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -1.562
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:426897649273724261
+    mesh: {fileID: -4113845763791579558, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: 4397547017316064518}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 1.02
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -4.76
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:4718420270806457474
+    mesh: {fileID: 5356019050927670038, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: 1967710901845333893}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0.499
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0.547
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:5298140864328685715
+    mesh: {fileID: -566917865646162943, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: 2499088887108925240}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: -0.51
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 1.76
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:5810115796739824190
+    mesh: {fileID: 4300000, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: -831398514785351611}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: -0.009
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -0.488
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:6130746680607118270
+    mesh: {fileID: -5958950452351165318, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: -8604006315782718149}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -4.83
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:7002632165540063005
+    mesh: {fileID: 6361755493435453912, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: 513919457139729367}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0.997
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0.548
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:729920268808993540
+    mesh: {fileID: -6808800877071851533, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: -6554990757217733595}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0.315
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0.109
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:7468270735601262223
+    mesh: {fileID: 3592622455532428398, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: -6990997533102346712}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 2.52
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -3.038
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:7498146560403674845
+    mesh: {fileID: 5865570306196951798, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: -444101787038927402}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0.23
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -0.56
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:7805525471755447516
+    mesh: {fileID: 5503190878383381545, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: -1734640789663464897}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 1.25
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -0.181
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:8317877889614339471
+    mesh: {fileID: 1878452480382152362, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: -1853966614391549026}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 2.826
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 1.345
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - sourceId: cdf2a535a70e74d22981b0b4f16aeca5:9033177721814652778
+    mesh: {fileID: 8312904008125604030, guid: bd857adea107d42669053ae9036bc05d, type: 2}
+    material: {fileID: -4033421766978767358}
+    localPose:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 1.046
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: -0.84
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+--- !u!21 &513919457139729367
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 7002632165540063005
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.100744374
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.36248395, g: 0.3544442, b: 0.33791217, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.9283163, g: 0.85926133, b: 0.8153124, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &1967710901845333893
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 4718420270806457474
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.9076847
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.44038394, g: 0.41694382, b: 0.3826751, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.7676471, g: 0.89287245, b: 0.638592, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &2499088887108925240
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 5298140864328685715
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.51903623
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.35588837, g: 0.3552431, b: 0.3466326, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.5621393, g: 0.52573144, b: 0.65197664, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &3521454486880029877
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 3028943882912581895
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.39894167
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.36866987, g: 0.3648685, b: 0.3526845, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 1.0996168, g: 0.7270512, b: 0.81858516, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &4397547017316064518
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 426897649273724261
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.3896905
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.40379962, g: 0.3826732, b: 0.35154954, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.48553854, g: 0.6380163, b: 0.5964469, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &5373685215320826902
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 1521652057226066234
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.04499561
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.4519778, g: 0.43955407, b: 0.4166734, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.7532363, g: 0.58685434, b: 0.6121224, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &6142420148890684971
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 2095623723120966889
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.20974888
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.41043258, g: 0.4126035, b: 0.40590847, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.67674434, g: 0.8169181, b: 0.7903883, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &8536780270866482215
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 2865284188754207889
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.055424873
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.3375025, g: 0.34275818, b: 0.34072256, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 1.0814686, g: 0.8988705, b: 0.92969865, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!21 &8742244266035646466
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rock 1150986892043253008
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: 1bcc0142ca9c444f98ffd36fd884a4d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: dcf5112ecf4b14b2ab794f61f7845bd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 2800000, guid: 88f5c8dfd857743e9a713d6db4266668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: cad78ffc4d8b24970bffd832fcb6d359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 06fbb1c98194b4e80a78444d2278996a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: ba38d4b58f0f342439a2a768416257ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 0661050c16431481eac77b3f07dc3c2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 1.5
+    - _CrackAmount: 0.36
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0.06
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 1.35
+    - _HeightColorStrength: 0.04
+    - _MacroScale: 7.5
+    - _MacroStrength: 0.0617
+    - _MineralShine: 0.32
+    - _NormalStrength: 1.08
+    - _OcclusionStrength: 0.75
+    - _RockMetersPerTile: 2.4
+    - _RockSeed01: 0.22162636
+    - _SideGritAmount: 0.22
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 0.14
+    - _SmoothnessMin: 0.015
+    - _Surface: 0
+    - _SurfacePatchStrength: 0.346
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0.2
+    - _WornSmoothnessBoost: 0.099
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.45218617, g: 0.43079865, b: 0.39846557, a: 1}
+    - _CrackColor: {r: 0.018, g: 0.015, b: 0.013, a: 1}
+    - _DustColor: {r: 0.31999996, g: 0.29999998, b: 0.27999997, a: 1}
+    - _MineralColor: {r: 0.58, g: 0.50999993, b: 0.40999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 0.5685581, g: 0.522903, b: 1.0090132, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
