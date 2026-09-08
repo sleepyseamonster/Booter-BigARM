@@ -356,6 +356,11 @@ namespace BooterBigArm.Editor
                 sandbox.RockBurial, sandbox.MaximumRockBurial, sandbox.MaximumRockTilt);
             for (var i = 0; i < rocks.Length; i++)
                 rocks[i].transform.SetPositionAndRotation(poses[i].Position, poses[i].Rotation);
+            // Shape changes happen after placement: do not refit gaps/overlaps introduced by new silhouettes.
+            if (sandbox.VariationEnabled)
+                for (var i = 0; i < rocks.Length; i++)
+                    TopDown3DMixedFormationShapeVariation.Apply(rocks[i], unchecked(
+                        rocks[i].GenerationSeed ^ sandbox.VariationSeed * 486187739 ^ i * 16777619));
             foreach (var child in copy.GetComponentsInChildren<Transform>(true))
                 child.gameObject.hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable;
             var groundContacts = TopDown3DMixedFormationSand.Apply(sandbox, ground, rocks, !sandbox.VariationEnabled);
