@@ -1,0 +1,7 @@
+# Local generated build and asset-cache output
+/build/
+/out/
+/.cache/
+
+# Developer-specific CMake settings
+/CMakeUserPresets.json

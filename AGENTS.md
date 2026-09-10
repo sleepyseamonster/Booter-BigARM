@@ -2,6 +2,13 @@
 
 This file defines the operating rules for work inside this Unity repository.
 
+## Separate Work Areas
+
+- New proprietary-engine work lives exclusively under [Engine/](./Engine/README.md). Load [Engine/AGENTS.md](./Engine/AGENTS.md) and its direction document before working there.
+- The user has selected regular third-person presentation for the new engine. The Unity/top-down implementation rules below describe the preserved Unity work area; they do not prescribe the new engine's architecture or camera.
+- Keep new-engine implementation, documentation, dependencies and build outputs inside `Engine/`. Existing Unity files remain reference-only during new-engine tasks unless the user explicitly includes them.
+- Shared ownership, Git safety and user-authority rules still apply across the repository. Root routing links may be maintained when needed to keep the two areas discoverable.
+
 ## Repo Management Authority
 
 - Gottspan is the canonical repo manager and Unity project manager for this repository.

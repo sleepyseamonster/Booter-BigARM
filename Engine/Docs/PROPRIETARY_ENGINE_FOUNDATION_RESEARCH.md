@@ -2,7 +2,7 @@
 
 Research date: 2026-09-09, America/Phoenix.
 
-Status: research and proposed implementation sequence. The user has directed a move toward a proprietary engine, standard third-person presentation, and the open Greater Wasteland. Library selections below are recommendations, not an implemented or benchmarked stack.
+Status: research and proposed implementation sequence. [DIRECTION.md](./DIRECTION.md) controls the accepted new-engine direction and work boundary. The user has directed a move toward a proprietary engine, standard third-person presentation, and the open Greater Wasteland. Library selections below are recommendations, not an implemented or benchmarked stack.
 
 ## Recommendation
 
@@ -25,9 +25,9 @@ The current user brief controls:
 - Windows PC is the intended game platform. Work currently happens on Mac, but Windows development is an acceptable alternative.
 - Research the technology and construction sequence before implementation.
 
-The existing [world systems standard](./WORLD_SYSTEMS_STANDARD.md), [World Creator charter](./WORLD_CREATOR_CHARTER.md), [architecture plan](./WORLD_CREATOR_ARCHITECTURE_PLAN.md), and [rock production plan](./ROCK_QUALITY_AND_PRODUCTION_PLAN.md) preserve useful constraints and reference work. Their Unity-specific implementation prescriptions do not dictate the new engine. The old top-down language and canyon-focused descriptions must not override this task's explicit brief.
+The existing [world systems standard](../../Docs/WORLD_SYSTEMS_STANDARD.md), [World Creator charter](../../Docs/WORLD_CREATOR_CHARTER.md), [architecture plan](../../Docs/WORLD_CREATOR_ARCHITECTURE_PLAN.md), and [rock production plan](../../Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md) preserve useful constraints and reference work. Their Unity-specific implementation prescriptions do not dictate the new engine. The old top-down language and canyon-focused descriptions must not override this task's explicit brief.
 
-The final geographic coordinate system remains deliberately undefined in the charter. An engineering coordinate representation must not silently invent the world's canonical map, axes, regional boundaries, or wrapping rules. [Lorekeeper](./Agents/Lorekeeper/README.md) remains the route for relevant world context; the Arc & Dust repository remains reference-only.
+The final geographic coordinate system remains deliberately undefined in the charter. An engineering coordinate representation must not silently invent the world's canonical map, axes, regional boundaries, or wrapping rules. [Lorekeeper](../../Docs/Agents/Lorekeeper/README.md) remains the route for relevant world context; the Arc & Dust repository remains reference-only.
 
 Done for this research: a recommended stack, credible alternatives, ownership boundaries, a platform policy, a staged construction plan, and explicit unresolved proof. Out of scope: installations, engine implementation, Unity asset migration, purchases, account setup, external publication, and gameplay smoke testing.
 
@@ -171,7 +171,7 @@ The required procedural concerns apply as follows:
 | Persisted runtime deltas | Keep edits and player changes separate from regenerable geometry; version recipes and saves; caches may be rebuilt |
 | Coordinate precision | Keep durable location identity separate from camera-local render coordinates; leave the final geographical model replaceable |
 
-These are proposed translations of the project's existing [world systems contracts](./WORLD_SYSTEMS_STANDARD.md), not implemented behavior. An isolated rendering fixture can omit chunks, but must be labeled a fixture rather than become the production world's ownership model.
+These are proposed translations of the project's existing [world systems contracts](../../Docs/WORLD_SYSTEMS_STANDARD.md), not implemented behavior. An isolated rendering fixture can omit chunks, but must be labeled a fixture rather than become the production world's ownership model.
 
 Identical seeds alone do not guarantee bit-identical floating-point meshes on ARM and x64. Specify exactness for IDs and discrete decisions, define tolerances or canonical baking where appropriate for geometry, and verify on both architectures before promising cross-platform output equivalence. Likewise, deterministic generation and deterministic physics are separate requirements; Jolt documents limits on its simulation determinism. [Jolt design considerations](https://github.com/jrouwe/JoltPhysics).
 
@@ -202,7 +202,7 @@ Performance reports must name hardware, backend, build configuration, resolution
 - **Content quality:** a previously accepted top-down rock appearance is reference evidence, not third-person approval. Close views add surface, scale, ground-contact and collision requirements.
 - **Asset ownership:** Unity-specific data and third-party content need individual portability checks. No bulk migration is implied.
 - **Product target:** Windows hardware, minimum OS, resolution, frame-time goal, game distribution requirements and final visual reference remain open. Do not invent a minimum spec from the Mac's capabilities.
-- **Project location:** a separate engine repository is recommended for clean builds and ownership, but this research does not create or choose a permanent repository name or location.
+- **Project location — resolved by user direction:** new work lives in `Engine/` inside this repository. It has its own instructions and documentation; the existing Unity project remains in place. A separate repository is not the selected arrangement.
 - **Schedule:** no credible parity date is established. Estimate the next stage after its predecessor supplies build and integration evidence.
 
 A new engine does not need every possible subsystem before it can do useful work. The appropriate first commitment is a reproducible native application with rendering, diagnostics and a small authoring surface. The rock generator then supplies a concrete reason to extend it.
@@ -224,5 +224,5 @@ All external references were inspected during this research, except where explic
 
 - Local documentation links and Markdown code fences were checked; the report is routed from the docs index.
 - The repository health check found required files, Unity metadata pairing and generated-file tracking checks intact. Its whitespace check failed on the pre-existing edited Unity scene, outside this documentation task; that scene was left untouched.
-- Only this report and its docs-index entry belong to the research change. Existing material and scene edits remain outside the commit.
+- The original research commit changed only this report and its docs-index entry. The report now lives under `Engine/Docs/`; existing material and scene edits remain outside new-engine work.
 - No engine build, runtime test, GPU benchmark, visual acceptance or Windows proof is claimed.
