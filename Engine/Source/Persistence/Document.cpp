@@ -62,9 +62,11 @@ Json readDocument(const std::filesystem::path& path,std::string_view kind,unsign
     input.read(bytes.data(),static_cast<std::streamsize>(bytes.size())); bytes.resize(size_t(input.gcount()));
     if (input.bad()) throw std::runtime_error("Document read failed");
     const auto document=parseBounded(bytes);
-    if (!document.is_object() || document.size()!=3 || document.at("kind")!=kind ||
-        !document.at("version").is_number_unsigned() || document.at("version")!=version || !document.at("payload").is_object())
-        throw std::runtime_error("Unsupported document kind, version or envelope");
+    if (!document.is_object() || document.size()!=3 || !document.at("kind").is_string() ||
+        !document.at("version").is_number_unsigned() || !document.at("payload").is_object())
+        throw std::runtime_error("Invalid document envelope");
+    if(document.at("kind")!=kind || document.at("version")!=version)
+        throw DocumentCompatibilityError("Unsupported document kind or version");
     return document.at("payload");
 }
 void writeDocument(const std::filesystem::path& path,std::string_view kind,const Json& payload,unsigned version) {

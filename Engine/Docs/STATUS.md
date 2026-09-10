@@ -1,5 +1,7 @@
 # Current Engine Handoff
 
+**Paused at the user’s request (2026-09-10).** [The P21 world-save library checkpoint](./WORLD_SAVE_CHECKPOINT.md) is verified and committed with this handoff. Do not continue implementation until the user resumes. Application world-save integration remains the next step.
+
 Updated 2026-09-10, America/Phoenix. The first-pass shared document/identity foundation (P01) and linear HDR/display pipeline (P02) are implemented and technically verified on the current Mac. Portable builds (P07) are complete on Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
 
 ## Current Result
@@ -21,6 +23,8 @@ The [texture-system research](../Research/TEXTURE_SYSTEM_RESEARCH.md), [implemen
 Recommendation: existing bimg primitives with engine-owned semantic mip generation, uncompressed KTX 1 first, then shared runtime resources and one rock/ground material pair. Compression follows comparisons against uncompressed references. That research batch added no runtime texture loader or GPU texture proof. OR-2/P02 is now complete; P03 texture cooking/residency is complete; P04/P05 sun and surface rendering are now implemented.
 
 ## Current Evidence
+
+P21 is **in progress**: immutable world-save generations and streaming rock tombstones have [focused native proof](../Evidence/P21-checkpoint-native/result.json). Both apps build, but the new save/profile/UI path is not wired into them. See [the paused checkpoint](./WORLD_SAVE_CHECKPOINT.md) for the exact resume point.
 
 P20 adds [live bounded region streaming](./STREAMING_FIRST_PASS_RESULT.md), shared by both apps: asynchronous terrain generation, shared rock buffers, real region colliders, safe waiting, visibility and retirement. [Focused native cases](../Evidence/P20-runtime/result.json) and [the Metal load/retire/return check](../Evidence/P20-render/result.json) passed. Next: P21 persistent world deltas, then P22 origin/integration handling.
 

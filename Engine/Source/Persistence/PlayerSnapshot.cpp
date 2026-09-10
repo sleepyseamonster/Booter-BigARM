@@ -36,6 +36,8 @@ void validateSnapshot(const PlayerSnapshot& s) {
     for(float x:s.velocity)if(!std::isfinite(x)||std::abs(x)>100)throw std::invalid_argument("Invalid saved velocity");
     if(!std::isfinite(s.yaw)||std::abs(s.yaw)>100000||!std::isfinite(s.cameraYaw)||std::abs(s.cameraYaw)>100000||!std::isfinite(s.cameraPitch)||s.cameraPitch<-.15f||s.cameraPitch>1.4f||!std::isfinite(s.cameraDistance)||s.cameraDistance<2.5f||s.cameraDistance>8||s.ticks>UINT64_MAX-1024)throw std::invalid_argument("Invalid saved camera/time");
 }
+void saveSnapshotFile(const std::filesystem::path& path,const PlayerSnapshot& s){validateSnapshot(s);writeDocument(path,"engine.player-snapshot",encode(s,1));}
+PlayerSnapshot loadSnapshotFile(const std::filesystem::path& path){const auto p=readDocument(path,"engine.player-snapshot");if(p.at("generation")!=1)throw std::runtime_error("Invalid enclosed player generation");return decode(p);}
 SnapshotRead loadSnapshot(const std::filesystem::path& profile){return readSlots(profile).result;}
 void saveSnapshot(const std::filesystem::path& profile,const PlayerSnapshot& value) {
     validateSnapshot(value);std::filesystem::create_directories(profile);

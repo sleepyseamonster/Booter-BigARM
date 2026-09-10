@@ -1,15 +1,20 @@
 #include "Rendering/StreamingScene.h"
 #include <cmath>
 namespace engine {
-StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain,RockRecipe rock,PlacementConstraints constraints):runtime_(runtime){
+StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain,RockRecipe rock,PlacementConstraints constraints,WorldDeltas deltas):runtime_(runtime){
     stream_=std::make_unique<RegionStream>(terrain,rock,std::move(constraints),[this](const RegionContent& content){
         const auto region=content.terrain.region;const auto offset=WorldPosition{region,{}}.relativeTo({},256,4096);
         Resident prepared;prepared.terrain=std::make_unique<RenderModel>(content.terrain.mesh);
+        auto existing=residents_.find({region.x,region.z});
+        if(existing!=residents_.end()){
+            runtime_.physics().replaceMesh(existing->second.collider,content.collision);
+            existing->second.terrain=std::move(prepared.terrain);return RegionReadiness{true,true};
+        }
         const auto collider=runtime_.physics().mesh(content.terrain.id.text(),offset,content.collision);
         prepared.collider=collider;
         try{residents_.emplace(RegionKey{region.x,region.z},std::move(prepared));}catch(...){runtime_.physics().remove(collider);throw;}
         return RegionReadiness{true,true};
-    },[this](Region region){retire(region);});
+    },[this](Region region){retire(region);},std::move(deltas));
     for(size_t variant=0;variant<4;++variant)for(const auto& lod:stream_->rocks()[variant].lods)rockModels_[variant].push_back(std::make_unique<RenderModel>(lod.mesh));
     runtime_.streamingGuard([this](PhysicsVector from,PhysicsVector to){
         // Origin rebasing and region-aware player saves follow in P21/P22.
@@ -19,6 +24,12 @@ StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain
 }
 StreamingScene::~StreamingScene(){runtime_.streamingGuard({});stream_.reset();}
 void StreamingScene::retire(Region region){auto it=residents_.find({region.x,region.z});if(it!=residents_.end()){runtime_.physics().remove(it->second.collider);residents_.erase(it);}}
+bool StreamingScene::removeNearest(float maximumDistance){
+    if(!std::isfinite(maximumDistance)||maximumDistance<=0||maximumDistance>32)throw std::invalid_argument("Invalid rock editing range");
+    std::optional<GeneratedId> chosen;float nearest=maximumDistance;const auto feet=runtime_.feet();
+    for(const auto& [_,slot]:stream_->slots())if(slot.content)for(const auto& p:slot.content->terrain.rocks){if(stream_->deltas().removed(p.id.region,p.id.member))continue;const auto local=p.position.relativeTo({},256,4096);const auto distance=std::hypot(local[0]-feet[0],local[2]-feet[2]);if(distance<nearest){nearest=distance;chosen=p.id;}}
+    return chosen&&stream_->removeRock(*chosen);
+}
 void StreamingScene::update(){const auto p=runtime_.feet();anchors({{{{},{p[0],p[1],p[2]}},0}});}
 void StreamingScene::anchors(const std::vector<StreamAnchor>& a){stream_->update(a);}
 bool StreamingScene::readyAt(PhysicsVector p)const{return stream_->collisionReady({{},{p[0],p[1],p[2]}},{{},{p[0],p[1],p[2]}},1);}

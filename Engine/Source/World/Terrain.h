@@ -8,6 +8,10 @@ struct TerrainRecipe {
     uint32_t version=1,amplitudeMm=6000;
     bool operator==(const TerrainRecipe&)const=default;
 };
+struct WorldConfiguration {
+    TerrainRecipe terrain;RockRecipe rock;PlacementConstraints constraints;
+    bool operator==(const WorldConfiguration&)const=default;
+};
 struct TerrainSample {float height=0;std::array<float,3> normal{0,1,0};};
 struct RockPlacement {GeneratedId id;WorldPosition position;float yaw=0,footprint=0;};
 struct LandmarkAnchor {std::string id;WorldPosition position;float radius=0;};

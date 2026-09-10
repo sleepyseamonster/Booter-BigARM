@@ -9,6 +9,7 @@ struct Region { int64_t x=0, z=0; bool operator==(const Region&) const = default
 struct WorldPosition {
     Region region;
     std::array<double,3> local{};
+    bool operator==(const WorldPosition&)const=default;
     WorldPosition normalized(double regionSpan) const;
     std::array<float,3> relativeTo(const WorldPosition& origin,double regionSpan,double maxDistance) const;
 };

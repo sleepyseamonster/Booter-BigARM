@@ -514,8 +514,11 @@
       ],
       "owner_module": "Persistence/World",
       "proof": "Depletion/unload/restart, interrupted multi-file saves and compatibility",
-      "state": "planned",
-      "evidence": [],
+      "state": "in_progress",
+      "evidence": [
+        "Docs/WORLD_SAVE_CHECKPOINT.md",
+        "Evidence/P21-checkpoint-native/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

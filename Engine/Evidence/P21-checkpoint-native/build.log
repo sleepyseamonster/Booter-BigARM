@@ -1,0 +1,115 @@
+[  0%] Building CXX object CMakeFiles/engine_core.dir/Source/Core/WorldIdentity.cpp.o
+[  0%] Building CXX object CMakeFiles/engine_core.dir/Source/Persistence/Document.cpp.o
+[  6%] Built target ozz_base
+[ 13%] Built target ozz_animation
+[ 20%] Built target ozz_animation_offline
+[ 86%] Built target Jolt
+[ 86%] Built target engine_physics
+[ 86%] Linking CXX static library libengine_core.a
+[ 86%] Built target engine_core
+[ 86%] Building CXX object CMakeFiles/engine_texture_data.dir/Source/Assets/TextureCatalog.cpp.o
+[ 86%] Building CXX object CMakeFiles/engine_simulation.dir/Source/Simulation/Actions.cpp.o
+[ 86%] Building CXX object CMakeFiles/engine_simulation.dir/Source/Simulation/World.cpp.o
+[ 86%] Linking CXX static library libengine_texture_data.a
+[ 86%] Linking CXX static library libengine_simulation.a
+[ 86%] Built target engine_texture_data
+[ 86%] Built target engine_simulation
+[ 86%] Building CXX object CMakeFiles/engine_animation.dir/Source/Animation/Model.cpp.o
+[ 86%] Linking CXX static library libengine_animation.a
+[ 86%] Built target engine_animation
+[ 86%] Building CXX object CMakeFiles/engine_game.dir/Source/Game/CalibrationRuntime.cpp.o
+[ 86%] Building CXX object CMakeFiles/engine_game.dir/Source/Persistence/PlayerSnapshot.cpp.o
+[ 86%] Building CXX object CMakeFiles/engine_world.dir/Source/World/Placement.cpp.o
+[ 86%] Building CXX object CMakeFiles/engine_world.dir/Source/World/Rocks/RockGenerator.cpp.o
+[ 86%] Building CXX object CMakeFiles/engine_world.dir/Source/World/Rocks/RockAsset.cpp.o
+[ 93%] Linking CXX static library libengine_game.a
+[ 93%] Built target engine_game
+[ 93%] Building CXX object CMakeFiles/engine_world.dir/Source/World/Terrain.cpp.o
+[ 93%] Building CXX object CMakeFiles/engine_world.dir/Source/World/Streaming/RegionStream.cpp.o
+[ 93%] Linking CXX static library libengine_world.a
+[ 93%] Built target engine_world
+[100%] Building CXX object CMakeFiles/engine_world_save.dir/Source/Persistence/WorldSave.cpp.o
+[100%] Linking CXX static library libengine_world_save.a
+[100%] Built target engine_world_save
+[100%] Building CXX object CMakeFiles/engine_world_save_tests.dir/Tests/WorldSaveTests.cpp.o
+[100%] Linking CXX executable engine_world_save_tests
+[100%] Built target engine_world_save_tests
+[  1%] Built target ozz_base
+[  1%] Built target engine_core
+[  2%] Built target bx
+[  2%] Built target engine_miniaudio
+[ 13%] Built target Jolt
+[ 13%] Built target spirv-cross
+[ 32%] Built target SDL3-static
+[ 37%] Built target glslang
+[ 38%] Built target engine_texture_data
+[ 39%] Built target bimg
+[ 39%] Built target engine_simulation
+[ 40%] Building CXX object CMakeFiles/engine_state.dir/Source/Runtime/InspectionDocument.cpp.o
+[ 41%] Built target ozz_animation
+[ 41%] Built target engine_physics
+[ 41%] Built target engine_audio
+[ 41%] Built target engine_imgui
+[ 41%] Built target engine_platform
+[ 43%] Built target bgfx
+[ 44%] Built target ozz_animation_offline
+[ 44%] Built target engine_animation
+[ 44%] Built target engine_world
+[ 64%] Built target spirv-opt
+[ 65%] Built target engine_game
+[ 66%] Built target engine_world_save
+[ 96%] Built target tint
+[ 96%] Linking CXX static library libengine_state.a
+[ 96%] Built target engine_state
+[ 97%] Built target shaderc
+[ 98%] Built target engine_rendering
+[100%] Built target engine_shaders
+[100%] Building CXX object CMakeFiles/engine_stream_scene.dir/Source/Rendering/StreamingScene.cpp.o
+[100%] Linking CXX static library libengine_stream_scene.a
+[100%] Built target engine_stream_scene
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Tools/RockWorkbench.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Apps/Workbench/main.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/TextureChecks.cpp.o
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Apps/Workbench/main.cpp:1:
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Rendering/StreamingScene.h:4:
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/World/Streaming/RegionStream.h:4:
+/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Core/BoundedJobs.h:93:10: warning: misleading indentation; statement is not part of the previous 'for' [-Wmisleading-indentation]
+   93 |         }return {};
+      |          ^
+/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Core/BoundedJobs.h:91:9: note: previous statement is here
+   91 |         for(const auto& e:entries_)if(e->done&&!e->cancelled->load()&&budget.admit(e->bytes)){
+      |         ^
+1 warning generated.
+[100%] Linking CXX executable engine_workbench
+[100%] Built target engine_workbench
+[  0%] Built target engine_core
+[  1%] Built target bx
+[  2%] Built target ozz_base
+[  2%] Built target engine_miniaudio
+[  2%] Built target spirv-cross
+[  6%] Built target glslang
+[ 17%] Built target Jolt
+[ 20%] Built target bimg
+[ 20%] Built target engine_texture_data
+[ 26%] Built target engine_state
+[ 40%] Built target SDL3-static
+[ 40%] Built target engine_simulation
+[ 41%] Built target ozz_animation
+[ 41%] Built target engine_physics
+[ 41%] Built target engine_audio
+[ 41%] Built target engine_platform
+[ 60%] Built target spirv-opt
+[ 62%] Built target bgfx
+[ 64%] Built target ozz_animation_offline
+[ 64%] Built target engine_animation
+[ 66%] Built target engine_rendering
+[ 66%] Built target engine_game
+[ 66%] Built target engine_world
+[ 67%] Built target engine_world_save
+[ 67%] Built target engine_stream_scene
+[ 97%] Built target tint
+[ 98%] Built target shaderc
+[100%] Built target engine_shaders
+[100%] Building CXX object CMakeFiles/engine_player.dir/Apps/Game/main.cpp.o
+[100%] Linking CXX executable engine_player
+[100%] Built target engine_player

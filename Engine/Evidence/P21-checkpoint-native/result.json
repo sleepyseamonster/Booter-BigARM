@@ -1,0 +1,47 @@
+{
+  "command": [
+    "build/foundation/engine_world_save_tests",
+    "out/P21-checkpoint-tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/CMakeLists.txt",
+    " M Engine/Source/Core/WorldIdentity.h",
+    " M Engine/Source/Persistence/Document.cpp",
+    " M Engine/Source/Persistence/Document.h",
+    " M Engine/Source/Persistence/PlayerSnapshot.cpp",
+    " M Engine/Source/Persistence/PlayerSnapshot.h",
+    " M Engine/Source/Rendering/StreamingScene.cpp",
+    " M Engine/Source/Rendering/StreamingScene.h",
+    " M Engine/Source/World/Placement.h",
+    " M Engine/Source/World/Streaming/RegionStream.cpp",
+    " M Engine/Source/World/Streaming/RegionStream.h",
+    " M Engine/Source/World/Terrain.h",
+    "?? Engine/Source/Persistence/WorldSave.cpp",
+    "?? Engine/Source/Persistence/WorldSave.h",
+    "?? Engine/Source/World/WorldDeltas.h",
+    "?? Engine/Tests/WorldSaveTests.cpp"
+  ],
+  "duration_seconds": 0.774,
+  "exit_code": 0,
+  "git_head": "bfc2e4779f304e506d21d2248144331f24ef0f1d",
+  "input_sha256_after": {
+    "Source/Persistence/WorldSave.cpp": "b1100e82e705630f0eb515a77c5cbcdd05a942398fdf48e2e5ef7ac61d8f69d5",
+    "Source/World/Streaming/RegionStream.cpp": "8837a74bcf0270a889e7c3a6c817e5b9ed89c517a061f1f325468587c0a053c7",
+    "Tests/WorldSaveTests.cpp": "f093e3d4586bfdd35a046706c439a57dfc310294faa6743108237f1a96be04f8",
+    "build/foundation/engine_world_save_tests": "5026f5a34ffe9c8fd287f0289cc6ade7ce0516db3be6aebc19e7194276534d75"
+  },
+  "input_sha256_before": {
+    "Source/Persistence/WorldSave.cpp": "b1100e82e705630f0eb515a77c5cbcdd05a942398fdf48e2e5ef7ac61d8f69d5",
+    "Source/World/Streaming/RegionStream.cpp": "8837a74bcf0270a889e7c3a6c817e5b9ed89c517a061f1f325468587c0a053c7",
+    "Tests/WorldSaveTests.cpp": "f093e3d4586bfdd35a046706c439a57dfc310294faa6743108237f1a96be04f8",
+    "build/foundation/engine_world_save_tests": "5026f5a34ffe9c8fd287f0289cc6ade7ce0516db3be6aebc19e7194276534d75"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "0ace0815479b374af7c4ce8e07ff331fbcd46abe088edbddfdbf5576c56b16f7",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T19:37:22.852756+00:00",
+  "timeout_seconds": 60.0
+}

@@ -2,6 +2,7 @@
 #include "World/Terrain.h"
 #include "World/Rocks/RockAsset.h"
 #include "Core/BoundedJobs.h"
+#include "World/WorldDeltas.h"
 #include <map>
 namespace engine {
 using RegionKey=std::pair<int64_t,int64_t>;
@@ -28,9 +29,11 @@ class RegionStream {
 public:
     using Attach=std::function<RegionReadiness(const RegionContent&)>;
     using Detach=std::function<void(Region)>;
-    RegionStream(TerrainRecipe,RockRecipe,PlacementConstraints,Attach,Detach);
+    RegionStream(TerrainRecipe,RockRecipe,PlacementConstraints,Attach,Detach,WorldDeltas={});
     ~RegionStream();
     void update(const std::vector<StreamAnchor>&);
+    bool removeRock(const GeneratedId&);
+    const WorldDeltas& deltas()const{return deltas_;}
     bool collisionReady(WorldPosition from,WorldPosition to,float radius=.5f)const;
     const std::map<RegionKey,RegionSlot>& slots()const{return slots_;}
     const std::array<RockAsset,4>& rocks()const{return *rocks_;}
@@ -38,6 +41,7 @@ public:
     uint64_t retired()const{return retired_;}
     BoundedJobs<RegionContent>::Stats jobStats(){return jobs_.stats();}
 private:
+    WorldDeltas deltas_;
     TerrainRecipe terrain_;RockRecipe recipe_;PlacementConstraints constraints_;
     std::shared_ptr<std::array<RockAsset,4>> rocks_;
     Attach attach_;Detach detach_;
