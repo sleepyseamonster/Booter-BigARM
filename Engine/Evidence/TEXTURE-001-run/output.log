@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Research/Experiments/TEXTURE-001/probe.py", line 125, in <module>
+    main()
+    ~~~~^^
+  File "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Research/Experiments/TEXTURE-001/probe.py", line 69, in main
+    convert(fmt.lower() + ("-linear" if linear else "-color"), checker, fmt,
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            ["--mips"] + (["--linear"] if linear else []))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Research/Experiments/TEXTURE-001/probe.py", line 61, in convert
+    info = json.loads(run([inspector, dest]).stdout)
+                      ~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Research/Experiments/TEXTURE-001/probe.py", line 49, in run
+    raise RuntimeError(log[-1])
+RuntimeError: {'argv': ['/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect', '/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/rgba8-color.ktx2'], 'exit_code': 4, 'stdout': '', 'stderr': ''}

@@ -1,0 +1,30 @@
+{
+  "command": [
+    "cmake",
+    "-S",
+    "Research/Experiments/TEXTURE-001",
+    "-B",
+    "build/texture-research",
+    "-DCMAKE_BUILD_TYPE=Release"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "?? Engine/Research/Experiments/TEXTURE-001/"
+  ],
+  "duration_seconds": 2.091,
+  "exit_code": 0,
+  "git_head": "df7f0c98d2bed845592373561920fab11a86f3d4",
+  "input_sha256_after": {
+    "Research/Experiments/TEXTURE-001/CMakeLists.txt": "7334900be3e1b3e95fb96503b7d48a70a1d5d4d71684547d06fba58e64c68b33"
+  },
+  "input_sha256_before": {
+    "Research/Experiments/TEXTURE-001/CMakeLists.txt": "7334900be3e1b3e95fb96503b7d48a70a1d5d4d71684547d06fba58e64c68b33"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "5c48af14efd87a35a2fa7a70034fcbcff5223945e1344e61a839b2f21ae4a7aa",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T15:34:02.991113+00:00",
+  "timeout_seconds": 600
+}

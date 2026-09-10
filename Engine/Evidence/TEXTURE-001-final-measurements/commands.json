@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "commands": [
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/checker.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/rgba8-color.ktx",
+        "-t",
+        "RGBA8",
+        "--validate",
+        "--mips"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/rgba8-color.ktx"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"width\":32,\"height\":32,\"format\":\"RGBA8\",\"srgb\":true,\"mips\":[{\"width\":32,\"height\":32,\"mean\":[127.5,127.5,127.5,255],\"first\":[0,0,0,255]},{\"width\":16,\"height\":16,\"mean\":[127,127,127,255],\"first\":[127,127,127,255]},{\"width\":8,\"height\":8,\"mean\":[127,127,127,255],\"first\":[127,127,127,255]},{\"width\":4,\"height\":4,\"mean\":[127,127,127,255],\"first\":[127,127,127,255]},{\"width\":2,\"height\":2,\"mean\":[127,127,127,255],\"first\":[127,127,127,255]},{\"width\":1,\"height\":1,\"mean\":[127,127,127,255],\"first\":[127,127,127,255]}]}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/checker.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/rgba8-linear.ktx",
+        "-t",
+        "RGBA8",
+        "--validate",
+        "--mips",
+        "--linear"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/rgba8-linear.ktx"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"width\":32,\"height\":32,\"format\":\"RGBA8\",\"srgb\":false,\"mips\":[{\"width\":32,\"height\":32,\"mean\":[127.5,127.5,127.5,255],\"first\":[0,0,0,255]},{\"width\":16,\"height\":16,\"mean\":[127,127,127,255],\"first\":[127,127,127,255]},{\"width\":8,\"height\":8,\"mean\":[127,127,127,255],\"first\":[127,127,127,255]},{\"width\":4,\"height\":4,\"mean\":[127,127,127,255],\"first\":[127,127,127,255]},{\"width\":2,\"height\":2,\"mean\":[127,127,127,255],\"first\":[127,127,127,255]},{\"width\":1,\"height\":1,\"mean\":[127,127,127,255],\"first\":[127,127,127,255]}]}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/checker.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/bc7-color.ktx",
+        "-t",
+        "BC7",
+        "--validate",
+        "--mips"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/bc7-color.ktx"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"width\":32,\"height\":32,\"format\":\"BC7\",\"srgb\":true,\"mips\":[{\"width\":32,\"height\":32,\"mean\":[127.5,127.5,127.5,255],\"first\":[0,0,0,255]},{\"width\":16,\"height\":16,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":8,\"height\":8,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":4,\"height\":4,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":4,\"height\":4,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":4,\"height\":4,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]}]}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/checker.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/bc7-linear.ktx",
+        "-t",
+        "BC7",
+        "--validate",
+        "--mips",
+        "--linear"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/bc7-linear.ktx"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"width\":32,\"height\":32,\"format\":\"BC7\",\"srgb\":false,\"mips\":[{\"width\":32,\"height\":32,\"mean\":[127.5,127.5,127.5,255],\"first\":[0,0,0,255]},{\"width\":16,\"height\":16,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":8,\"height\":8,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":4,\"height\":4,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":4,\"height\":4,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":4,\"height\":4,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]}]}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/checker.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/bc4-color.ktx",
+        "-t",
+        "BC4",
+        "--validate",
+        "--mips"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/bc4-color.ktx"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"width\":32,\"height\":32,\"format\":\"BC4\",\"srgb\":false,\"mips\":[{\"width\":32,\"height\":32,\"mean\":[127.5,0,0,255],\"first\":[0,0,0,255]},{\"width\":16,\"height\":16,\"mean\":[127,0,0,255],\"first\":[127,0,0,255]},{\"width\":8,\"height\":8,\"mean\":[127,0,0,255],\"first\":[127,0,0,255]},{\"width\":4,\"height\":4,\"mean\":[127,0,0,255],\"first\":[127,0,0,255]},{\"width\":4,\"height\":4,\"mean\":[127,0,0,255],\"first\":[127,0,0,255]},{\"width\":4,\"height\":4,\"mean\":[127,0,0,255],\"first\":[127,0,0,255]}]}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/checker.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/bc4-linear.ktx",
+        "-t",
+        "BC4",
+        "--validate",
+        "--mips",
+        "--linear"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/bc4-linear.ktx"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"width\":32,\"height\":32,\"format\":\"BC4\",\"srgb\":false,\"mips\":[{\"width\":32,\"height\":32,\"mean\":[127.5,0,0,255],\"first\":[0,0,0,255]},{\"width\":16,\"height\":16,\"mean\":[127,0,0,255],\"first\":[127,0,0,255]},{\"width\":8,\"height\":8,\"mean\":[127,0,0,255],\"first\":[127,0,0,255]},{\"width\":4,\"height\":4,\"mean\":[127,0,0,255],\"first\":[127,0,0,255]},{\"width\":4,\"height\":4,\"mean\":[127,0,0,255],\"first\":[127,0,0,255]},{\"width\":4,\"height\":4,\"mean\":[127,0,0,255],\"first\":[127,0,0,255]}]}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/normal.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/normal-bc5.ktx",
+        "-t",
+        "BC5",
+        "--validate",
+        "--normalmap",
+        "--mips"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/normal-bc5.ktx"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"width\":32,\"height\":32,\"format\":\"BC5\",\"srgb\":false,\"mips\":[{\"width\":32,\"height\":32,\"mean\":[127.5,128,0,255],\"first\":[51,128,0,255]},{\"width\":16,\"height\":16,\"mean\":[128,128,0,255],\"first\":[128,128,0,255]},{\"width\":8,\"height\":8,\"mean\":[128,128,0,255],\"first\":[128,128,0,255]},{\"width\":4,\"height\":4,\"mean\":[128,128,0,255],\"first\":[128,128,0,255]},{\"width\":4,\"height\":4,\"mean\":[128,128,0,255],\"first\":[128,128,0,255]},{\"width\":4,\"height\":4,\"mean\":[128,128,0,255],\"first\":[128,128,0,255]}]}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/checker.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/ktx2-dispatch.ktx2",
+        "-t",
+        "RGBA8",
+        "--validate"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/ktx2-dispatch.ktx2"
+      ],
+      "exit_code": 4,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/checker.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/repeat-bc7-linear.ktx",
+        "-t",
+        "BC7",
+        "--validate",
+        "--mips",
+        "--linear"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/repeat-bc7-linear.ktx"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"width\":32,\"height\":32,\"format\":\"BC7\",\"srgb\":false,\"mips\":[{\"width\":32,\"height\":32,\"mean\":[127.5,127.5,127.5,255],\"first\":[0,0,0,255]},{\"width\":16,\"height\":16,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":8,\"height\":8,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":4,\"height\":4,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":4,\"height\":4,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]},{\"width\":4,\"height\":4,\"mean\":[188,189,189,255],\"first\":[188,189,189,255]}]}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/MixedGroundPebbles_Height.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/real-npot-height-bc4.ktx",
+        "-t",
+        "BC4",
+        "--validate",
+        "--linear",
+        "--mips"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/texture_inspect",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/real-npot-height-bc4.ktx"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"width\":1256,\"height\":1256,\"format\":\"BC4\",\"srgb\":false,\"mips\":[{\"width\":1256,\"height\":1256,\"mean\":[51.2373,0,0,255],\"first\":[32,0,0,255]},{\"width\":628,\"height\":628,\"mean\":[50.7907,0,0,255],\"first\":[21,0,0,255]},{\"width\":316,\"height\":316,\"mean\":[50.3116,0,0,255],\"first\":[22,0,0,255]},{\"width\":160,\"height\":160,\"mean\":[49.7839,0,0,255],\"first\":[61,0,0,255]},{\"width\":80,\"height\":80,\"mean\":[49.2911,0,0,255],\"first\":[75,0,0,255]},{\"width\":40,\"height\":40,\"mean\":[48.9394,0,0,255],\"first\":[63,0,0,255]},{\"width\":20,\"height\":20,\"mean\":[48.6025,0,0,255],\"first\":[42,0,0,255]},{\"width\":12,\"height\":12,\"mean\":[48.2708,0,0,255],\"first\":[41,0,0,255]},{\"width\":4,\"height\":4,\"mean\":[47.0625,0,0,255],\"first\":[41,0,0,255]},{\"width\":4,\"height\":4,\"mean\":[48.5,0,0,255],\"first\":[41,0,0,255]},{\"width\":4,\"height\":4,\"mean\":[48.6875,0,0,255],\"first\":[44,0,0,255]}]}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/texture-research/dependencies/cmake/bimg/texturec",
+        "-f",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/invalid.png",
+        "-o",
+        "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/texture-research/invalid.ktx2"
+      ],
+      "exit_code": 1,
+      "stdout": "Error:\nFailed to create output: 'Unrecognized image format.'\n\n",
+      "stderr": ""
+    }
+  ]
+}

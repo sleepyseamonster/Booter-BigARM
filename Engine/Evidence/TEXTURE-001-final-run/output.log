@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "proof": "Offline CPU conversion and decode only; no GPU or Windows proof",
+  "tool_sha256": "7739d378af47b52eb2610bee0a701c2eb79dcaadba3678a43f13d1b3c086c1b2",
+  "inspector_sha256": "9f0009ba9426d1c893f82706364db256e3319130544db47212ea1482bffd745f",
+  "source_lock_sha256": "6b65f60e3afcf8798480b565ab9ec27664a914b589c311250354500b66fef060",
+  "surface_manifest_sha256": "d9be746267603a77a487f63bb981acc44a9f01b51afbfe31ca4c0979c7d0e81b",
+  "linear_mip_semantic_pass": {
+    "rgba8": true,
+    "bc7": false,
+    "bc4": true
+  },
+  "srgb_mip_semantic_pass": {
+    "rgba8": false,
+    "bc7": true
+  },
+  "repeated_bc7_conversion_identical": true,
+  "invalid_input_rejected": true,
+  "ktx2_generic_parser_exit": 4,
+  "memory_estimates": {
+    "png_disk_bytes": 78609936,
+    "all_rgba8_full_mips_bytes": 228928400,
+    "rgba8_plus_r8_height_full_mips_bytes": 203769383,
+    "bc7_bc5_bc4_aligned_full_mips_bytes": 53091848,
+    "scope": "All 38 textures; no allocator overhead, temporary buffers or residency claim"
+  }
+}

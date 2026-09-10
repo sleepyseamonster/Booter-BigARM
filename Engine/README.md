@@ -16,6 +16,7 @@ The native application renders a perspective fixture and interactive inspector o
 | Exact dependencies, licenses and integration findings | [Research index](./Research/README.md) |
 | Historical rock visuals and setting context | [Reference collection](./References/README.md) |
 | Transferred rock/ground textures and material mappings | [Surface library](./Assets/SurfaceLibrary/README.md) |
+| Texture formats, cooking, loading and material sequence | [Texture research](./Research/TEXTURE_SYSTEM_RESEARCH.md), [implementation plan](./Docs/TEXTURE_SYSTEM_PLAN.md) |
 | Environment checks, source preparation and experiment receipts | [Preparation tools](./Tools/README.md) |
 | Repeatable working procedures | [Dependency evaluation](./SOPs/EVALUATE_DEPENDENCY.md), [experiments](./SOPs/RUN_EXPERIMENT.md), [handoffs](./SOPs/SESSION_HANDOFF.md) |
 

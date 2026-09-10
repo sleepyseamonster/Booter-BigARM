@@ -1,0 +1,1142 @@
+{
+  "schema_version": 1,
+  "proof": "Offline CPU conversion and decode only; no GPU or Windows proof",
+  "tool_sha256": "7739d378af47b52eb2610bee0a701c2eb79dcaadba3678a43f13d1b3c086c1b2",
+  "inspector_sha256": "9f0009ba9426d1c893f82706364db256e3319130544db47212ea1482bffd745f",
+  "source_lock_sha256": "6b65f60e3afcf8798480b565ab9ec27664a914b589c311250354500b66fef060",
+  "surface_manifest_sha256": "d9be746267603a77a487f63bb981acc44a9f01b51afbfe31ca4c0979c7d0e81b",
+  "cases": [
+    {
+      "name": "rgba8-color",
+      "input": "out/texture-research/checker.png",
+      "source_sha256_before": "edbe1a8db9ee8da40abcd58d6b4706b55e20edde79782bea6ae5e06abf615cf1",
+      "output_sha256": "3fb7b8051071b9426edfa3a3a3be3c9f45472a4f537782b88d393b823d72347e",
+      "output_bytes": 5548,
+      "flags": [
+        "--mips"
+      ],
+      "decoded": {
+        "width": 32,
+        "height": 32,
+        "format": "RGBA8",
+        "srgb": true,
+        "mips": [
+          {
+            "width": 32,
+            "height": 32,
+            "mean": [
+              127.5,
+              127.5,
+              127.5,
+              255
+            ],
+            "first": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 16,
+            "height": 16,
+            "mean": [
+              127,
+              127,
+              127,
+              255
+            ],
+            "first": [
+              127,
+              127,
+              127,
+              255
+            ]
+          },
+          {
+            "width": 8,
+            "height": 8,
+            "mean": [
+              127,
+              127,
+              127,
+              255
+            ],
+            "first": [
+              127,
+              127,
+              127,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              127,
+              127,
+              127,
+              255
+            ],
+            "first": [
+              127,
+              127,
+              127,
+              255
+            ]
+          },
+          {
+            "width": 2,
+            "height": 2,
+            "mean": [
+              127,
+              127,
+              127,
+              255
+            ],
+            "first": [
+              127,
+              127,
+              127,
+              255
+            ]
+          },
+          {
+            "width": 1,
+            "height": 1,
+            "mean": [
+              127,
+              127,
+              127,
+              255
+            ],
+            "first": [
+              127,
+              127,
+              127,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "rgba8-linear",
+      "input": "out/texture-research/checker.png",
+      "source_sha256_before": "edbe1a8db9ee8da40abcd58d6b4706b55e20edde79782bea6ae5e06abf615cf1",
+      "output_sha256": "d7f15f2184efb60b44b58dc3c055298794c495f1754a629d8e2aaf9eb6612232",
+      "output_bytes": 5548,
+      "flags": [
+        "--mips",
+        "--linear"
+      ],
+      "decoded": {
+        "width": 32,
+        "height": 32,
+        "format": "RGBA8",
+        "srgb": false,
+        "mips": [
+          {
+            "width": 32,
+            "height": 32,
+            "mean": [
+              127.5,
+              127.5,
+              127.5,
+              255
+            ],
+            "first": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 16,
+            "height": 16,
+            "mean": [
+              127,
+              127,
+              127,
+              255
+            ],
+            "first": [
+              127,
+              127,
+              127,
+              255
+            ]
+          },
+          {
+            "width": 8,
+            "height": 8,
+            "mean": [
+              127,
+              127,
+              127,
+              255
+            ],
+            "first": [
+              127,
+              127,
+              127,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              127,
+              127,
+              127,
+              255
+            ],
+            "first": [
+              127,
+              127,
+              127,
+              255
+            ]
+          },
+          {
+            "width": 2,
+            "height": 2,
+            "mean": [
+              127,
+              127,
+              127,
+              255
+            ],
+            "first": [
+              127,
+              127,
+              127,
+              255
+            ]
+          },
+          {
+            "width": 1,
+            "height": 1,
+            "mean": [
+              127,
+              127,
+              127,
+              255
+            ],
+            "first": [
+              127,
+              127,
+              127,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "bc7-color",
+      "input": "out/texture-research/checker.png",
+      "source_sha256_before": "edbe1a8db9ee8da40abcd58d6b4706b55e20edde79782bea6ae5e06abf615cf1",
+      "output_sha256": "fb9857b3c7a018392ca45b44d72fe06ad670e613d158a2a6a4f885d4f666a3b5",
+      "output_bytes": 1480,
+      "flags": [
+        "--mips"
+      ],
+      "decoded": {
+        "width": 32,
+        "height": 32,
+        "format": "BC7",
+        "srgb": true,
+        "mips": [
+          {
+            "width": 32,
+            "height": 32,
+            "mean": [
+              127.5,
+              127.5,
+              127.5,
+              255
+            ],
+            "first": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 16,
+            "height": 16,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 8,
+            "height": 8,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "bc7-linear",
+      "input": "out/texture-research/checker.png",
+      "source_sha256_before": "edbe1a8db9ee8da40abcd58d6b4706b55e20edde79782bea6ae5e06abf615cf1",
+      "output_sha256": "d92ff173feacabf30fea288e88364e975eef44c0120038d7fbedeca6297ecb41",
+      "output_bytes": 1480,
+      "flags": [
+        "--mips",
+        "--linear"
+      ],
+      "decoded": {
+        "width": 32,
+        "height": 32,
+        "format": "BC7",
+        "srgb": false,
+        "mips": [
+          {
+            "width": 32,
+            "height": 32,
+            "mean": [
+              127.5,
+              127.5,
+              127.5,
+              255
+            ],
+            "first": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 16,
+            "height": 16,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 8,
+            "height": 8,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "bc4-color",
+      "input": "out/texture-research/checker.png",
+      "source_sha256_before": "edbe1a8db9ee8da40abcd58d6b4706b55e20edde79782bea6ae5e06abf615cf1",
+      "output_sha256": "aa6a0eb546cba3da6790e68527a60f49aa252fe18ca9d795b6ef00094ab97653",
+      "output_bytes": 784,
+      "flags": [
+        "--mips"
+      ],
+      "decoded": {
+        "width": 32,
+        "height": 32,
+        "format": "BC4",
+        "srgb": false,
+        "mips": [
+          {
+            "width": 32,
+            "height": 32,
+            "mean": [
+              127.5,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 16,
+            "height": 16,
+            "mean": [
+              127,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              127,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 8,
+            "height": 8,
+            "mean": [
+              127,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              127,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              127,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              127,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              127,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              127,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              127,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              127,
+              0,
+              0,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "bc4-linear",
+      "input": "out/texture-research/checker.png",
+      "source_sha256_before": "edbe1a8db9ee8da40abcd58d6b4706b55e20edde79782bea6ae5e06abf615cf1",
+      "output_sha256": "aa6a0eb546cba3da6790e68527a60f49aa252fe18ca9d795b6ef00094ab97653",
+      "output_bytes": 784,
+      "flags": [
+        "--mips",
+        "--linear"
+      ],
+      "decoded": {
+        "width": 32,
+        "height": 32,
+        "format": "BC4",
+        "srgb": false,
+        "mips": [
+          {
+            "width": 32,
+            "height": 32,
+            "mean": [
+              127.5,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 16,
+            "height": 16,
+            "mean": [
+              127,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              127,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 8,
+            "height": 8,
+            "mean": [
+              127,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              127,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              127,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              127,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              127,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              127,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              127,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              127,
+              0,
+              0,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "normal-bc5",
+      "input": "out/texture-research/normal.png",
+      "source_sha256_before": "abf8cdecfd2bd5ad2fae844d66866607861e955b33dc595a5b6c6897083ee21b",
+      "output_sha256": "99c106c41a35e290c2cf11ac1a521c65ad989372849eb50f41dbbbadaf4ff4af",
+      "output_bytes": 1480,
+      "flags": [
+        "--normalmap",
+        "--mips"
+      ],
+      "decoded": {
+        "width": 32,
+        "height": 32,
+        "format": "BC5",
+        "srgb": false,
+        "mips": [
+          {
+            "width": 32,
+            "height": 32,
+            "mean": [
+              127.5,
+              128,
+              0,
+              255
+            ],
+            "first": [
+              51,
+              128,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 16,
+            "height": 16,
+            "mean": [
+              128,
+              128,
+              0,
+              255
+            ],
+            "first": [
+              128,
+              128,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 8,
+            "height": 8,
+            "mean": [
+              128,
+              128,
+              0,
+              255
+            ],
+            "first": [
+              128,
+              128,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              128,
+              128,
+              0,
+              255
+            ],
+            "first": [
+              128,
+              128,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              128,
+              128,
+              0,
+              255
+            ],
+            "first": [
+              128,
+              128,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              128,
+              128,
+              0,
+              255
+            ],
+            "first": [
+              128,
+              128,
+              0,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "repeat-bc7-linear",
+      "input": "out/texture-research/checker.png",
+      "source_sha256_before": "edbe1a8db9ee8da40abcd58d6b4706b55e20edde79782bea6ae5e06abf615cf1",
+      "output_sha256": "d92ff173feacabf30fea288e88364e975eef44c0120038d7fbedeca6297ecb41",
+      "output_bytes": 1480,
+      "flags": [
+        "--mips",
+        "--linear"
+      ],
+      "decoded": {
+        "width": 32,
+        "height": 32,
+        "format": "BC7",
+        "srgb": false,
+        "mips": [
+          {
+            "width": 32,
+            "height": 32,
+            "mean": [
+              127.5,
+              127.5,
+              127.5,
+              255
+            ],
+            "first": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 16,
+            "height": 16,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 8,
+            "height": 8,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              188,
+              189,
+              189,
+              255
+            ],
+            "first": [
+              188,
+              189,
+              189,
+              255
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "real-npot-height-bc4",
+      "input": "Assets/SurfaceLibrary/Textures/Ground/SandDirt/MixedGroundPebbles_Height.png",
+      "source_sha256_before": "a365bcafbdff108bcc2b8a9832cbbdfcad6f33860d8085160ae97e5d5a3e06a9",
+      "output_sha256": "17a91c9b7e23db9a4554590d2bc469bf7a11fa2e14f5f89c938d800cf0ed7e51",
+      "output_bytes": 1053092,
+      "flags": [
+        "--linear",
+        "--mips"
+      ],
+      "decoded": {
+        "width": 1256,
+        "height": 1256,
+        "format": "BC4",
+        "srgb": false,
+        "mips": [
+          {
+            "width": 1256,
+            "height": 1256,
+            "mean": [
+              51.2373,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              32,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 628,
+            "height": 628,
+            "mean": [
+              50.7907,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              21,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 316,
+            "height": 316,
+            "mean": [
+              50.3116,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              22,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 160,
+            "height": 160,
+            "mean": [
+              49.7839,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              61,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 80,
+            "height": 80,
+            "mean": [
+              49.2911,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              75,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 40,
+            "height": 40,
+            "mean": [
+              48.9394,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              63,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 20,
+            "height": 20,
+            "mean": [
+              48.6025,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              42,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 12,
+            "height": 12,
+            "mean": [
+              48.2708,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              41,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              47.0625,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              41,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              48.5,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              41,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "width": 4,
+            "height": 4,
+            "mean": [
+              48.6875,
+              0,
+              0,
+              255
+            ],
+            "first": [
+              44,
+              0,
+              0,
+              255
+            ]
+          }
+        ]
+      },
+      "source_sha256_after": "a365bcafbdff108bcc2b8a9832cbbdfcad6f33860d8085160ae97e5d5a3e06a9"
+    }
+  ],
+  "linear_mip_semantic_pass": {
+    "rgba8": true,
+    "bc7": false,
+    "bc4": true
+  },
+  "srgb_mip_semantic_pass": {
+    "rgba8": false,
+    "bc7": true
+  },
+  "repeated_bc7_conversion_identical": true,
+  "invalid_input_rejected": true,
+  "ktx2_generic_parser_exit": 4,
+  "memory_estimates": {
+    "png_disk_bytes": 78609936,
+    "all_rgba8_full_mips_bytes": 228928400,
+    "rgba8_plus_r8_height_full_mips_bytes": 203769383,
+    "bc7_bc5_bc4_aligned_full_mips_bytes": 53091848,
+    "scope": "All 38 textures; no allocator overhead, temporary buffers or residency claim"
+  }
+}

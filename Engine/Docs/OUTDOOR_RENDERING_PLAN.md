@@ -19,6 +19,8 @@ Keep Mac as the main development machine while practical. Switch daily developme
 
 The user directed reuse of the existing rock and ground textures on 2026-09-10. The [surface library](../Assets/SurfaceLibrary/README.md) contains verified copies and source material mappings for OR-4. Use these assets when extending beyond simple calibration fixtures; preserve their recorded channel packing and authored bindings. The transfer itself does not complete texture loading, material implementation or visual acceptance.
 
+The [texture research](../Research/TEXTURE_SYSTEM_RESEARCH.md) and [staged implementation plan](./TEXTURE_SYSTEM_PLAN.md) now define OR-4's cooking/loading/material path. The offline experiment found format-dependent mip errors in the pinned texturec and a separate KTX2 parser requirement. Begin with engine-owned semantic mip generation and uncompressed KTX 1 references; gate later compression against those references. This research does not change the OR-2 → OR-3 → OR-4 milestone order or complete any pending renderer step.
+
 ## First Batch Contract
 
 OR-1 is done when nonuniformly scaled/rotated surfaces retain normals perpendicular to their surfaces, generated reference meshes have outward winding and nondegenerate triangles, and native GPU captures demonstrate correct culling and order-independent opaque depth. Retain the existing inspector/input/resize/resource/error checks. Audit color handling now but implement its correction in OR-2; do not add shadows in this batch.

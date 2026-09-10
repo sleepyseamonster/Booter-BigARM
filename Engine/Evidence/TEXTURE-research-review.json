@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "purpose": "Texture research closeout; file hashes exclude this receipt itself",
+  "git_head_before_commit": "df7f0c98d2bed845592373561920fab11a86f3d4",
+  "candidate_sha256": {
+    "Engine/Docs/OUTDOOR_RENDERING_PLAN.md": "934553bcffc0ab56ed833123532f7d41b90186ad4bdeccfcbe2fc7a0f2e8edf7",
+    "Engine/Docs/STATUS.md": "bf33aa8507357110c1e9e7639ffb5dde79ec0a1db7c39b6af552bb9861ff4f2d",
+    "Engine/Docs/TEXTURE_SYSTEM_PLAN.md": "337addc1bd186ccba54b243b448c7e8386d9533a12575ba774a20794c6276058",
+    "Engine/Evidence/TEXTURE-001-build/output.log": "0a9ba5676e3bfcf5fb501c1e798337ce37ac5908b6f3659ffa6b314c6c20f542",
+    "Engine/Evidence/TEXTURE-001-build/result.json": "c3820f4b9d79aaae221bd1af12e2a6cd8cd81fb91624d7174715c4b82316efcd",
+    "Engine/Evidence/TEXTURE-001-configure/output.log": "5c48af14efd87a35a2fa7a70034fcbcff5223945e1344e61a839b2f21ae4a7aa",
+    "Engine/Evidence/TEXTURE-001-configure/result.json": "62a0e03e45ead08925787492b4bb000744d9aca4d740d0d7d5eb3f8813063ac1",
+    "Engine/Evidence/TEXTURE-001-final-measurements/commands.json": "3ac5d0428f698842fbb565db35b1ec4d780113b70881fb9ddcb02b1bddd8b0af",
+    "Engine/Evidence/TEXTURE-001-final-measurements/measurements.json": "705de3deca32c7d81aba1a6a83905d64e3a7114b82f7ec5ab83be150d8b88624",
+    "Engine/Evidence/TEXTURE-001-final-run/output.log": "f80ea68e68461d2510ded6a1073ecdfb61b1d5da59634a31b1ced2ab083e7073",
+    "Engine/Evidence/TEXTURE-001-final-run/result.json": "0937fe0891e96d5fda8c57c7e7646dedb49081edc36b7689a0480564be22b7e6",
+    "Engine/Evidence/TEXTURE-001-measurements-ktx/commands.json": "3ac5d0428f698842fbb565db35b1ec4d780113b70881fb9ddcb02b1bddd8b0af",
+    "Engine/Evidence/TEXTURE-001-measurements-ktx/measurements.json": "b98fe9dbc8973dc2ae36791d6034ef157f2504a9c0f08bbda04a1c252aa960de",
+    "Engine/Evidence/TEXTURE-001-run-ktx/output.log": "c51c3f87abd29ec99cd67ef511c09db834120d13d0163710332764a11f7319f1",
+    "Engine/Evidence/TEXTURE-001-run-ktx/result.json": "255967465b5689ee55f5cfe2bf9b7a540b4585bb8b8ddede682ebe859bcc7de4",
+    "Engine/Evidence/TEXTURE-001-run/output.log": "10d0ce72d58f478226ff1e45e80baff52a9260641033f4459e570569785918e6",
+    "Engine/Evidence/TEXTURE-001-run/result.json": "eff4c26199dcfd80e3fa268bf0eae58c933d901fdc8e4b01f67301a998ca29ef",
+    "Engine/Evidence/TEXTURE-001-sources.json": "beed5089d6d78619d69c5c8fb4807bff0297b91d28be76bee2cbab1c420cbee9",
+    "Engine/Evidence/TEXTURE-research-assets/output.log": "37be3e449f74fe07406f0fd1c924425024915b965c618c35b5028f35121dcebb",
+    "Engine/Evidence/TEXTURE-research-assets/result.json": "068edeb17933d6d9fc2320c15fd1c344e0b4ec96aa61dce8ec1bed3688441625",
+    "Engine/Evidence/TEXTURE-research-workspace/output.log": "43045b3af7cb8c0747a26212c83c8fecc57beb1f9f66da0f9853c64724ddf323",
+    "Engine/Evidence/TEXTURE-research-workspace/result.json": "30fd94ed28e637703222b4a3163f03bd7ef6420cc12a7a9f33f42e43b59f1c04",
+    "Engine/README.md": "794f5b1e5061d5c8d2b3f6dbebbb86269715de81e03e55c7edcc16c04eff1912",
+    "Engine/Research/Experiments/TEXTURE-001/CMakeLists.txt": "7334900be3e1b3e95fb96503b7d48a70a1d5d4d71684547d06fba58e64c68b33",
+    "Engine/Research/Experiments/TEXTURE-001/README.md": "0b58b6213c5400acb229584789b45a1df2b517ed00cc4a5140e4af63ddc313db",
+    "Engine/Research/Experiments/TEXTURE-001/inspect.cpp": "f5d90a7958346a009af1133c42c7f6072ce0f9aa4b618f112b938c771eac1390",
+    "Engine/Research/Experiments/TEXTURE-001/probe.py": "cdf8234839df5ec0dd8ca65772da7f8c41709881cf40cb10cf8bd14610eb5153",
+    "Engine/Research/README.md": "f693667dd24582957b630878ec76d68563f04ce2e88b0b5b141aa748e7150ba0",
+    "Engine/Research/TEXTURE_SYSTEM_RESEARCH.md": "80319490f38d3623f1ff8383aff0df24c187031c1fc7d8294ba168dc03aa7e4d",
+    "Engine/SOPs/COOK_AND_VERIFY_TEXTURES.md": "3f140c256dd8dd69340a87fe6c4942f4c9ba87d8e1abfdb84c3a91d18056780d"
+  },
+  "preserved_unrelated_sha256": {
+    "Assets/_Project/Materials/TopDown3D/FineGray_Clutter.mat": "d2f93b90a1bc0caa574591521c0a7a8d7243c6a2696194d1be210f59ffcdbbed",
+    "Assets/_Project/Materials/TopDown3D/Greybox_Booter.mat": "2476fc402094126f4af68951a4be13c6c4525071faa831d125ab75d6b0ed51b3",
+    "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity": "02b4cc840875b56c3cf4265bb5bcd97254527b26145e0a7b4c6ec5ea4ac47506"
+  },
+  "checks": {
+    "offline_tool_build": "passed",
+    "final_probe_collection": "passed; RGBA8 color and BC7 linear semantic failures are retained research findings",
+    "pinned_source_integrity": "six trees verified",
+    "asset_integrity": "43 copies, 186 bindings, 102 source files verified",
+    "workspace_docs_json_links": "passed",
+    "engine_diff_whitespace": "passed"
+  },
+  "proof_limit": "No runtime code change, GPU texture validation, Windows execution or visual acceptance. No push."
+}

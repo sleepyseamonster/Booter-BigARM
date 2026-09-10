@@ -1,0 +1,35 @@
+{
+  "command": [
+    "cmake",
+    "--build",
+    "build/texture-research",
+    "--target",
+    "texturec",
+    "texture_inspect",
+    "--parallel",
+    "4"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "?? Engine/Evidence/TEXTURE-001-configure/",
+    "?? Engine/Research/Experiments/TEXTURE-001/"
+  ],
+  "duration_seconds": 19.469,
+  "exit_code": 0,
+  "git_head": "df7f0c98d2bed845592373561920fab11a86f3d4",
+  "input_sha256_after": {
+    "Research/Experiments/TEXTURE-001/CMakeLists.txt": "7334900be3e1b3e95fb96503b7d48a70a1d5d4d71684547d06fba58e64c68b33",
+    "Research/Experiments/TEXTURE-001/inspect.cpp": "f5d90a7958346a009af1133c42c7f6072ce0f9aa4b618f112b938c771eac1390"
+  },
+  "input_sha256_before": {
+    "Research/Experiments/TEXTURE-001/CMakeLists.txt": "7334900be3e1b3e95fb96503b7d48a70a1d5d4d71684547d06fba58e64c68b33",
+    "Research/Experiments/TEXTURE-001/inspect.cpp": "f5d90a7958346a009af1133c42c7f6072ce0f9aa4b618f112b938c771eac1390"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "0a9ba5676e3bfcf5fb501c1e798337ce37ac5908b6f3659ffa6b314c6c20f542",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T15:34:20.705268+00:00",
+  "timeout_seconds": 600
+}

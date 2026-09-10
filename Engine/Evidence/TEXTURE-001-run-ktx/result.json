@@ -1,0 +1,37 @@
+{
+  "command": [
+    "python3",
+    "Research/Experiments/TEXTURE-001/probe.py",
+    "--out",
+    "Evidence/TEXTURE-001-measurements-ktx"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "?? Engine/Evidence/TEXTURE-001-build/",
+    "?? Engine/Evidence/TEXTURE-001-configure/",
+    "?? Engine/Evidence/TEXTURE-001-run/",
+    "?? Engine/Research/Experiments/TEXTURE-001/"
+  ],
+  "duration_seconds": 1.09,
+  "exit_code": 0,
+  "git_head": "df7f0c98d2bed845592373561920fab11a86f3d4",
+  "input_sha256_after": {
+    "Assets/SurfaceLibrary/manifest.json": "d9be746267603a77a487f63bb981acc44a9f01b51afbfe31ca4c0979c7d0e81b",
+    "Research/Experiments/TEXTURE-001/inspect.cpp": "f5d90a7958346a009af1133c42c7f6072ce0f9aa4b618f112b938c771eac1390",
+    "Research/Experiments/TEXTURE-001/probe.py": "ba0837ec68221710c54d4c4addaa5b27e06ee3e7c60253495e1ba6c9261125b1",
+    "Research/probe-lock.json": "6b65f60e3afcf8798480b565ab9ec27664a914b589c311250354500b66fef060"
+  },
+  "input_sha256_before": {
+    "Assets/SurfaceLibrary/manifest.json": "d9be746267603a77a487f63bb981acc44a9f01b51afbfe31ca4c0979c7d0e81b",
+    "Research/Experiments/TEXTURE-001/inspect.cpp": "f5d90a7958346a009af1133c42c7f6072ce0f9aa4b618f112b938c771eac1390",
+    "Research/Experiments/TEXTURE-001/probe.py": "ba0837ec68221710c54d4c4addaa5b27e06ee3e7c60253495e1ba6c9261125b1",
+    "Research/probe-lock.json": "6b65f60e3afcf8798480b565ab9ec27664a914b589c311250354500b66fef060"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "c51c3f87abd29ec99cd67ef511c09db834120d13d0163710332764a11f7319f1",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T15:36:45.666850+00:00",
+  "timeout_seconds": 600
+}
