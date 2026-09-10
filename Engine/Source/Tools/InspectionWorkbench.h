@@ -6,7 +6,7 @@ namespace engine {
 class InspectionWorkbench {
 public:
     InspectionWorkbench(const FixtureState&,const std::filesystem::path&);
-    void draw(FixtureState&,bool enabled);
+    void draw(FixtureState&,bool enabled,bool visible=true);
 private:
     EditHistory<FixtureState> history_;
     std::array<char,512> path_{};

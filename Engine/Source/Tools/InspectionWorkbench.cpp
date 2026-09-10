@@ -3,11 +3,11 @@
 #include <cstdio>
 namespace engine {
 InspectionWorkbench::InspectionWorkbench(const FixtureState& state,const std::filesystem::path& path):history_(state){if(path.string().size()>=path_.size())throw std::invalid_argument("Inspection path too long");std::snprintf(path_.data(),path_.size(),"%s",path.string().c_str());}
-void InspectionWorkbench::draw(FixtureState& state,bool enabled) {
+void InspectionWorkbench::draw(FixtureState& state,bool enabled,bool visible) {
     const auto adopt=[](const FixtureState&){};
     const auto& io=ImGui::GetIO();
     if(enabled&&!ImGui::IsAnyItemActive()&&!io.MouseDown[0]&&!io.MouseDown[1]&&!io.MouseDown[2])history_.apply(state,adopt);
-    if(!ImGui::CollapsingHeader("Inspection document"))return;
+    if(!visible||!ImGui::CollapsingHeader("Inspection document"))return;
     ImGui::BeginDisabled(!enabled);
     if(ImGui::Button("Undo settings")){history_.undo(adopt);state=history_.value();}ImGui::SameLine();
     if(ImGui::Button("Redo settings")){history_.redo(adopt);state=history_.value();}

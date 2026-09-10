@@ -23,7 +23,7 @@ void RockWorkbench::undo(){history_.undo([&](const auto& r){rebuild(r);});draft_
 void RockWorkbench::redo(){history_.redo([&](const auto& r){rebuild(r);});draft_=history_.value();}
 const RenderModel* RockWorkbench::model(float distance)const{return models_.at(forcedLod<0?rockLod(asset_,distance):std::min(size_t(forcedLod),models_.size()-1)).get();}
 void RockWorkbench::drawControls(bool characterMode) {
-    ImGui::SetNextWindowPos({ImGui::GetIO().DisplaySize.x-365,20},ImGuiCond_FirstUseEver);ImGui::SetNextWindowSize({345,560},ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowPos({ImGui::GetIO().DisplaySize.x-365,54},ImGuiCond_FirstUseEver);ImGui::SetNextWindowSize({345,560},ImGuiCond_FirstUseEver);
     ImGui::Begin("Native rock recipe");ImGui::Text("%zu LODs | %zu triangles | %.1f KiB",asset_.lods.size(),asset_.lods[0].mesh.indices.size()/3,asset_.bytes/1024.f);
     if(characterMode)ImGui::TextWrapped("Disable character mode to edit this rock.");
     ImGui::BeginDisabled(characterMode);

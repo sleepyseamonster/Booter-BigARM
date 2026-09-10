@@ -31,6 +31,7 @@
 #include "Animation/AnimationPlayer.h"
 #include "Tools/RockWorkbench.h"
 #include "Tools/InspectionWorkbench.h"
+#include "Tools/EngineMenu.h"
 
 namespace {
 struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
@@ -90,9 +91,13 @@ struct TextureControls {
 struct SimulationControls { bool enabled=false,paused=false,grounded=false;uint64_t ticks=0;double dropped=0; };
 struct ButtonPosition { float x=0,y=0; };
 ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds,TextureControls& textures,SimulationControls& simulation,engine::InspectionWorkbench& documents,bool technical) {
-    ImGui::SetNextWindowPos(ImVec2(20,20),ImGuiCond_Always);
-    ImGui::SetNextWindowSize(ImVec2(310,std::min(650.0f,ImGui::GetIO().DisplaySize.y-40.0f)),ImGuiCond_Always);
-    ImGui::Begin("Engine foundation",nullptr,ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse);
+    engine::EngineMenu menu;
+    if(!menu.visible) {
+        documents.draw(state,!technical&&!simulation.enabled,false);
+        state.constrain();
+        if(simulation.enabled)state.distance=std::min(state.distance,8.0f);
+        return {menu.button.x,menu.button.y};
+    }
     ImGui::PushItemWidth(150);
     ImGui::TextUnformatted("BOOTER & BIGARM");
     ImGui::TextDisabled("Perspective inspection fixture");
@@ -160,7 +165,6 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     }
     documents.draw(state,!technical&&!simulation.enabled);
     ImGui::PopItemWidth();
-    ImGui::End();
     state.constrain();
     if(simulation.enabled) state.distance=std::min(state.distance,8.0f);
     return button;
@@ -316,6 +320,11 @@ int run(Options options) {
             // Deterministic UI injection is confined to the explicit technical verification mode.
             if (verify) {
                 io.AddFocusEvent(true);
+                if(frame>=30&&frame<=32)io.AddMousePosEvent(button.x,button.y);
+                if(frame==31)io.AddMouseButtonEvent(0,true);
+                if(frame==32)io.AddMouseButtonEvent(0,false);
+                if(frame==55)io.AddKeyEvent(ImGuiKey_Escape,true);
+                if(frame==56)io.AddKeyEvent(ImGuiKey_Escape,false);
                 if (frame==35 || frame==36 || frame==37) io.AddMousePosEvent(button.x,button.y);
                 if (frame==36) io.AddMouseButtonEvent(0,true);
                 if (frame==37) io.AddMouseButtonEvent(0,false);
