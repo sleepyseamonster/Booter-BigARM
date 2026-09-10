@@ -6,6 +6,8 @@ Revision 2, rewritten 2026-09-10 after the requested whole-engine analysis and [
 
 The user's 2026-09-10 clarification is a **base engine skeleton**: connected, minimal working systems before subsystem depth or polish. Implement one supported path per required capability, verify that path once, and proceed to integration. Fix actual failures; defer optional source formats, stress campaigns, advanced visuals and production tooling. The production/gameplay milestones below remain the future roadmap and do not expand the immediate skeleton acceptance target. [Direction](./DIRECTION.md) controls this depth limit.
 
+The first user-facing milestone is the completed native rock generator, clarified during P18/P19. P14–P17 now implement its core loop; finish its runnable package and handoff before P20 live streaming. This delivery priority does not remove remaining engine systems from the roadmap.
+
 ## 1. What we are building
 
 A game-specific C++ engine for regular third-person Booter & BigARM: readable open wasteland, generated terrain and rocks, grounded traversal, a physically persistent companion, durable player consequences, useful content tools and a Windows player build. Mac remains the daily development platform while practical. Canyons are deferred.

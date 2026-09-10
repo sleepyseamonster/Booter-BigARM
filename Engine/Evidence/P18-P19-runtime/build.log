@@ -1,0 +1,22 @@
+[  0%] Built target engine_core
+[ 25%] Built target ozz_base
+[ 25%] Built target engine_texture_data
+[ 50%] Built target ozz_animation
+[ 75%] Built target ozz_animation_offline
+[100%] Built target engine_animation
+[100%] Building CXX object CMakeFiles/engine_world.dir/Source/World/Terrain.cpp.o
+[100%] Linking CXX static library libengine_world.a
+[100%] Built target engine_world
+[100%] Building CXX object CMakeFiles/engine_terrain_jobs_tests.dir/Tests/TerrainJobsTests.cpp.o
+[100%] Linking CXX executable engine_terrain_jobs_tests
+[100%] Built target engine_terrain_jobs_tests
+[  0%] Built target engine_core
+[ 25%] Built target ozz_base
+[ 25%] Built target engine_texture_data
+[ 50%] Built target ozz_animation
+[ 75%] Built target ozz_animation_offline
+[100%] Built target engine_animation
+[100%] Built target engine_world
+[100%] Building CXX object CMakeFiles/engine_terrain_cook.dir/Apps/TerrainCooker/main.cpp.o
+[100%] Linking CXX executable engine_terrain_cook
+[100%] Built target engine_terrain_cook

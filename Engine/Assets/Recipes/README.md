@@ -12,3 +12,5 @@ build/foundation/engine_workbench --model out/rocks/example/model.json
 ```
 
 Choose a new cook directory each time. The result contains the existing engine model format, a recipe copy and a rock identity/bounds/surface sidecar. The current workbench reads the generated model for inspection; material/collision/LOD adapters and live recipe editing follow next. The placement fixture is consumed by the placement API; it is not yet a populated or streamed world.
+
+`wasteland-terrain.json` supplies the provisional seed/amplitude for the CPU open-ground generator. The [terrain result](../../Docs/TERRAIN_JOBS_RESULT.md) documents placement, corridor and streaming limits.

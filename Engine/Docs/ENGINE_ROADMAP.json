@@ -438,8 +438,12 @@
       ],
       "owner_module": "World",
       "proof": "Borders/negative coordinates/placement identity/exclusions and route classes",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/TERRAIN_JOBS_RESULT.md",
+        "Evidence/P18-P19-runtime/result.json",
+        "Evidence/P18-terrain-cook/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {
@@ -457,8 +461,12 @@
       ],
       "owner_module": "Core/Assets",
       "proof": "Out-of-order/cancel/oversized work, finite queues and shutdown drain",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/TERRAIN_JOBS_RESULT.md",
+        "Evidence/P18-P19-runtime/result.json",
+        "Evidence/P18-terrain-cook/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

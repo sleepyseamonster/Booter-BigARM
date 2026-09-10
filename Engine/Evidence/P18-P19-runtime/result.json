@@ -1,0 +1,38 @@
+{
+  "command": [
+    "build/foundation/engine_terrain_jobs_tests",
+    "out/P18-P19-tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/CMakeLists.txt",
+    "?? Engine/Apps/TerrainCooker/",
+    "?? Engine/Assets/Recipes/wasteland-terrain.json",
+    "?? Engine/Source/Core/BoundedJobs.h",
+    "?? Engine/Source/World/Terrain.cpp",
+    "?? Engine/Source/World/Terrain.h",
+    "?? Engine/Tests/TerrainJobsTests.cpp"
+  ],
+  "duration_seconds": 0.565,
+  "exit_code": 0,
+  "git_head": "c36a6af7ea574a874da3701cfc90d895808e47ee",
+  "input_sha256_after": {
+    "Source/Core/BoundedJobs.h": "a9f3ee2fd966966b9f20c1460a7655de31f361b1a60177879513ae40fbf5f74f",
+    "Source/World/Terrain.cpp": "8b388112e5667bea80b3c63330627061bd3edce812a3778e706548d04fa3ac58",
+    "Tests/TerrainJobsTests.cpp": "467aae1aa3444f295b56b241a81f3f4c5aed54bffc8f5ac5e683b24472ad6f80",
+    "build/foundation/engine_terrain_jobs_tests": "a0ebc31bcafc7b276a7bfe3660f6458250beee44efc58674314b14877bbad655"
+  },
+  "input_sha256_before": {
+    "Source/Core/BoundedJobs.h": "a9f3ee2fd966966b9f20c1460a7655de31f361b1a60177879513ae40fbf5f74f",
+    "Source/World/Terrain.cpp": "8b388112e5667bea80b3c63330627061bd3edce812a3778e706548d04fa3ac58",
+    "Tests/TerrainJobsTests.cpp": "467aae1aa3444f295b56b241a81f3f4c5aed54bffc8f5ac5e683b24472ad6f80",
+    "build/foundation/engine_terrain_jobs_tests": "a0ebc31bcafc7b276a7bfe3660f6458250beee44efc58674314b14877bbad655"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "fb6deb7e81178480740d2e61e5190f10c955e3252d13b98b4c6c3020d30c43a3",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T19:05:29.746857+00:00",
+  "timeout_seconds": 30.0
+}

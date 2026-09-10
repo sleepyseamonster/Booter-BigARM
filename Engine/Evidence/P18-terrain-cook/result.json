@@ -1,0 +1,44 @@
+{
+  "command": [
+    "build/foundation/engine_terrain_cook",
+    "Assets/Recipes/wasteland-terrain.json",
+    "Assets/Recipes/wasteland-rock.json",
+    "Assets/Recipes/wasteland-placement.json",
+    "out/terrain/calibration-001",
+    "-1",
+    "0"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/CMakeLists.txt",
+    "?? Engine/Apps/TerrainCooker/",
+    "?? Engine/Assets/Recipes/wasteland-terrain.json",
+    "?? Engine/Evidence/P18-P19-runtime/",
+    "?? Engine/Source/Core/BoundedJobs.h",
+    "?? Engine/Source/World/Terrain.cpp",
+    "?? Engine/Source/World/Terrain.h",
+    "?? Engine/Tests/TerrainJobsTests.cpp"
+  ],
+  "duration_seconds": 0.351,
+  "exit_code": 0,
+  "git_head": "c36a6af7ea574a874da3701cfc90d895808e47ee",
+  "input_sha256_after": {
+    "Assets/Recipes/wasteland-placement.json": "6c173a1ddb5e389251d11dff5a08736cf75eb61535b5b9ce29a88ded233f61d9",
+    "Assets/Recipes/wasteland-rock.json": "0c664f92b14d0a39c5d0ee9db271800bcc635756f6151bfc5f66eac63b526821",
+    "Assets/Recipes/wasteland-terrain.json": "5f4b7cddc14a4a223dc32a9b5472227f2bce99ffae40f1cae60ac60a47279305",
+    "build/foundation/engine_terrain_cook": "8979c0bbcb4afaf454f4646df1ed7af5bbae1536f03e0995be67a8d98cdd73fb"
+  },
+  "input_sha256_before": {
+    "Assets/Recipes/wasteland-placement.json": "6c173a1ddb5e389251d11dff5a08736cf75eb61535b5b9ce29a88ded233f61d9",
+    "Assets/Recipes/wasteland-rock.json": "0c664f92b14d0a39c5d0ee9db271800bcc635756f6151bfc5f66eac63b526821",
+    "Assets/Recipes/wasteland-terrain.json": "5f4b7cddc14a4a223dc32a9b5472227f2bce99ffae40f1cae60ac60a47279305",
+    "build/foundation/engine_terrain_cook": "8979c0bbcb4afaf454f4646df1ed7af5bbae1536f03e0995be67a8d98cdd73fb"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "302b9905dc0d041401ec5fa83cb021f0996f25408e0253369dd75b9276fadcb5",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T19:05:51.381965+00:00",
+  "timeout_seconds": 30.0
+}

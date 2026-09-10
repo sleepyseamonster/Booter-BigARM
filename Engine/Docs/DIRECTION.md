@@ -18,6 +18,10 @@ The initial foundation should establish a reproducible executable, graphics, inp
 
 Clarified by the user on 2026-09-10: “we just need a base skeleton of an engine.” Build the smallest working version of each necessary subsystem and connect it to the shared runtime. Once that path works, move on. Advanced import coverage, visual polish, production tools, tuning and broad hardening are later work. Use focused checks to catch broken integration; do not turn each subsystem into repeated testing or perfection cycles. The long-range roadmap remains a reference, not a requirement to finish production features before the skeleton is usable.
 
+## First user-facing milestone
+
+On 2026-09-10 the user clarified that the first milestone should be a completed rock generator. Deliver the working native generation/material/collision/LOD/edit/save loop as a convenient runnable workbench before expanding into live world streaming. The terrain/job foundation already underway may finish; it does not shift the first deliverable to a whole streamed world. Continue at skeleton depth.
+
 ## Platform
 
 Windows PC is the intended game platform. The user clarified on 2026-09-09 that Mac should remain the primary development machine for as long as practical. Introduce native Windows testing during the outdoor rendering milestone without requiring a daily-workstation switch. Move primary development when meaningful compatibility effort or target-specific debugging/performance work warrants it; the user permits that move. Do not constrain the Windows game to preserve Mac development. Specific PC hardware and performance targets remain open.
