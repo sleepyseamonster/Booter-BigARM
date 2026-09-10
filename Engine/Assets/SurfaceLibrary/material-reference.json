@@ -1,0 +1,3419 @@
+{
+  "schema_version": 1,
+  "purpose": "Serialized Unity material reference only; not an engine material format or a shader port.",
+  "materials": [
+    {
+      "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_DepositedDust.mat",
+      "source_file_id": "2100000",
+      "name": "BrokenWorld_DepositedDust",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldDepositedDust.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldsanddirtalbedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_MainTex": {
+          "asset_key": "textures/ground/sanddirt/brokenworldsanddirtalbedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_Lightmaps": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_LightmapsInd": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_ShadowMasks": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_EdgeFeather": 0.34,
+        "_EdgeTone": 0.86,
+        "_MetersPerTile": 3.5,
+        "_Opacity": 0.72,
+        "_Smoothness": 0.07,
+        "_Surface": 0.0,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+      "source_file_id": "2100000",
+      "name": "BrokenWorld_Rock_Dark",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.42790392,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.24868993,
+          "g": 0.24635889,
+          "b": 0.2383627,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.32,
+          "g": 0.3,
+          "b": 0.28,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.51,
+          "b": 0.41,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 2.0,
+          "g": 1.25,
+          "b": 2.0,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+      "source_file_id": "2100000",
+      "name": "BrokenWorld_Rock_Teal",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.21593048,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.2671255,
+          "g": 0.34200776,
+          "b": 0.35015634,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.32,
+          "g": 0.3,
+          "b": 0.28,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.51,
+          "b": 0.41,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 2.0,
+          "g": 1.25,
+          "b": 2.0,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+      "source_file_id": "2100000",
+      "name": "Greybox_Rock",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.9509201,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.37147972,
+          "g": 0.36835408,
+          "b": 0.35694176,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.32,
+          "g": 0.3,
+          "b": 0.28,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.51,
+          "b": 0.41,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 2.0,
+          "g": 1.25,
+          "b": 2.0,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+      "source_file_id": "2100000",
+      "name": "Greybox_Terrain",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldTerrainBlend.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldsanddirtalbedo",
+          "scale": {
+            "x": 6.0,
+            "y": 6.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BumpMap": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GravelMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldgravelalbedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GravelTransitionMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldgraveltransitionalbedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_RockyMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldmixedrockyalbedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_RockyHeightMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldmixedrockyheight",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_RockyNormalMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldmixedrockynormal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_RockyMidTransitionMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldrockymidtransitionalbedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_RockyMidTransitionHeightMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldrockymidtransitionheight",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_RockyMidTransitionNormalMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldrockymidtransitionnormal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_RockyTransitionMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldrockytransitionalbedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_RockyTransitionHeightMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldrockytransitionheight",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_RockyTransitionNormalMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldrockytransitionnormal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_DetailAlbedoMap": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_DetailMask": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_DetailNormalMap": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_EmissionMap": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_MainTex": {
+          "asset_key": "textures/ground/sanddirt/brokenworldsanddirtalbedo",
+          "scale": {
+            "x": 6.0,
+            "y": 6.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_MetallicGlossMap": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_OcclusionMap": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_ParallaxMap": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SpecGlossMap": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SweptSandMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldsweptsandalbedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SweptSandTransitionMap": {
+          "asset_key": "textures/ground/sanddirt/brokenworldsweptsandtransitionalbedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_Lightmaps": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_LightmapsInd": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "unity_ShadowMasks": {
+          "asset_key": null,
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_AddPrecomputedVelocity": 0.0,
+        "_AlphaClip": 0.0,
+        "_AlphaToMask": 0.0,
+        "_Blend": 0.0,
+        "_BlendModePreserveSpecular": 1.0,
+        "_BlendWidth": 0.11,
+        "_BaseMetersPerTile": 3.0,
+        "_BumpScale": 1.0,
+        "_ClearCoatMask": 0.0,
+        "_ClearCoatSmoothness": 0.0,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DetailAlbedoMapScale": 1.0,
+        "_DetailNormalMapScale": 1.0,
+        "_DetailFadeEnd": 150.0,
+        "_DetailFadeStart": 55.0,
+        "_DstBlend": 0.0,
+        "_DstBlendAlpha": 0.0,
+        "_EnvironmentReflections": 1.0,
+        "_GravelMetersPerTile": 2.25,
+        "_GravelStrength": 0.92,
+        "_GravelThreshold": 0.66,
+        "_RockyMetersPerTile": 3.0,
+        "_RockyHeightScale": 0.055,
+        "_RockyNormalStrength": 0.9,
+        "_RockyReliefOcclusion": 0.16,
+        "_RockyStrength": 0.96,
+        "_RockyThreshold": 0.62,
+        "_GlossMapScale": 0.0,
+        "_Glossiness": 0.18,
+        "_GlossyReflections": 0.0,
+        "_Metallic": 0.0,
+        "_OcclusionStrength": 1.0,
+        "_Parallax": 0.005,
+        "_PatchFrequency": 0.035,
+        "_QueueOffset": 0.0,
+        "_ReceiveShadows": 1.0,
+        "_Smoothness": 0.18,
+        "_SmoothnessTextureChannel": 0.0,
+        "_SpecularHighlights": 1.0,
+        "_SrcBlend": 1.0,
+        "_SrcBlendAlpha": 1.0,
+        "_Surface": 0.0,
+        "_SweptSandMetersPerTile": 4.0,
+        "_SweptSandStrength": 1.0,
+        "_SweptSandThreshold": 0.64,
+        "_TransitionWidth": 0.13,
+        "_WorkflowMode": 1.0,
+        "_XRMotionVectorsPass": 1.0,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_EmissionColor": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "_SpecColor": {
+          "r": 0.19999996,
+          "g": 0.19999996,
+          "b": 0.19999996,
+          "a": 1.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+      "source_file_id": "2100000",
+      "name": "RockWorkbench_NeutralPBR",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.42,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.06,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 0.75,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 1.1,
+        "_RockSeed01": 0.0,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.36,
+        "_SmoothnessMax": 0.3,
+        "_SmoothnessMin": 0.04,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.72,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.42,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.2,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.11999995,
+          "g": 0.08499997,
+          "b": 0.059999965,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.32,
+          "g": 0.3,
+          "b": 0.28,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.47999996,
+          "g": 0.41999996,
+          "b": 0.33999997,
+          "a": 1.0
+        },
+        "_RockSize": {
+          "r": 4.0,
+          "g": 3.0,
+          "b": 3.5,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "source_file_id": "513919457139729367",
+      "name": "Rock 7002632165540063005",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.100744374,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.36248395,
+          "g": 0.3544442,
+          "b": 0.33791217,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.31999996,
+          "g": 0.29999998,
+          "b": 0.27999997,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.50999993,
+          "b": 0.40999997,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 0.9283163,
+          "g": 0.85926133,
+          "b": 0.8153124,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "source_file_id": "1967710901845333893",
+      "name": "Rock 4718420270806457474",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.9076847,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.44038394,
+          "g": 0.41694382,
+          "b": 0.3826751,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.31999996,
+          "g": 0.29999998,
+          "b": 0.27999997,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.50999993,
+          "b": 0.40999997,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 0.7676471,
+          "g": 0.89287245,
+          "b": 0.638592,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "source_file_id": "2499088887108925240",
+      "name": "Rock 5298140864328685715",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.51903623,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.35588837,
+          "g": 0.3552431,
+          "b": 0.3466326,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.31999996,
+          "g": 0.29999998,
+          "b": 0.27999997,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.50999993,
+          "b": 0.40999997,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 0.5621393,
+          "g": 0.52573144,
+          "b": 0.65197664,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "source_file_id": "3521454486880029877",
+      "name": "Rock 3028943882912581895",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.39894167,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.36866987,
+          "g": 0.3648685,
+          "b": 0.3526845,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.31999996,
+          "g": 0.29999998,
+          "b": 0.27999997,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.50999993,
+          "b": 0.40999997,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 1.0996168,
+          "g": 0.7270512,
+          "b": 0.81858516,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "source_file_id": "4397547017316064518",
+      "name": "Rock 426897649273724261",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.3896905,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.40379962,
+          "g": 0.3826732,
+          "b": 0.35154954,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.31999996,
+          "g": 0.29999998,
+          "b": 0.27999997,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.50999993,
+          "b": 0.40999997,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 0.48553854,
+          "g": 0.6380163,
+          "b": 0.5964469,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "source_file_id": "5373685215320826902",
+      "name": "Rock 1521652057226066234",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.04499561,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.4519778,
+          "g": 0.43955407,
+          "b": 0.4166734,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.31999996,
+          "g": 0.29999998,
+          "b": 0.27999997,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.50999993,
+          "b": 0.40999997,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 0.7532363,
+          "g": 0.58685434,
+          "b": 0.6121224,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "source_file_id": "6142420148890684971",
+      "name": "Rock 2095623723120966889",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.20974888,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.41043258,
+          "g": 0.4126035,
+          "b": 0.40590847,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.31999996,
+          "g": 0.29999998,
+          "b": 0.27999997,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.50999993,
+          "b": 0.40999997,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 0.67674434,
+          "g": 0.8169181,
+          "b": 0.7903883,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "source_file_id": "8536780270866482215",
+      "name": "Rock 2865284188754207889",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.055424873,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.3375025,
+          "g": 0.34275818,
+          "b": 0.34072256,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.31999996,
+          "g": 0.29999998,
+          "b": 0.27999997,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.50999993,
+          "b": 0.40999997,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 1.0814686,
+          "g": 0.8988705,
+          "b": 0.92969865,
+          "a": 0.0
+        }
+      }
+    },
+    {
+      "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "source_file_id": "8742244266035646466",
+      "name": "Rock 1150986892043253008",
+      "shader_reference": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "textures": {
+        "_BaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_BottomSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_CrackMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_GritSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_NormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_SurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopBaseMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopNormalMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        "_TopSurfaceMap": {
+          "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+          "scale": {
+            "x": 1.0,
+            "y": 1.0
+          },
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "floats": {
+        "_BottomBlendEnd": 0.5,
+        "_BottomBlendStart": 0.08,
+        "_BottomMetersPerTile": 0.9,
+        "_BottomNormalStrength": 1.5,
+        "_CrackAmount": 0.36,
+        "_CrackMetersPerTile": 3.2,
+        "_Cull": 2.0,
+        "_Cutoff": 0.5,
+        "_DustAmount": 0.06,
+        "_DustSharpness": 5.0,
+        "_FormationFractureAmount": 0.0,
+        "_FormationFractureSpacing": 6.0,
+        "_GeologicalSeamAmount": 0.0,
+        "_GritMetersPerTile": 0.7,
+        "_GritNormalStrength": 1.35,
+        "_HeightColorStrength": 0.04,
+        "_MacroScale": 7.5,
+        "_MacroStrength": 0.0617,
+        "_MineralShine": 0.32,
+        "_NormalStrength": 1.08,
+        "_OcclusionStrength": 0.75,
+        "_RockMetersPerTile": 2.4,
+        "_RockSeed01": 0.22162636,
+        "_SideGritAmount": 0.22,
+        "_SideShalePatchAmount": 0.0,
+        "_SmoothnessMax": 0.14,
+        "_SmoothnessMin": 0.015,
+        "_Surface": 0.0,
+        "_SurfacePatchStrength": 0.346,
+        "_TopBlendEnd": 0.72,
+        "_TopBlendStart": 0.42,
+        "_TopShalePatchAmount": 0.0,
+        "_TriplanarSharpness": 4.0,
+        "_UndersideShaleAmount": 0.2,
+        "_WornSmoothnessBoost": 0.099,
+        "_ZWrite": 1.0
+      },
+      "colors_and_vectors": {
+        "_BaseColor": {
+          "r": 0.45218617,
+          "g": 0.43079865,
+          "b": 0.39846557,
+          "a": 1.0
+        },
+        "_CrackColor": {
+          "r": 0.018,
+          "g": 0.015,
+          "b": 0.013,
+          "a": 1.0
+        },
+        "_DustColor": {
+          "r": 0.31999996,
+          "g": 0.29999998,
+          "b": 0.27999997,
+          "a": 1.0
+        },
+        "_MineralColor": {
+          "r": 0.58,
+          "g": 0.50999993,
+          "b": 0.40999997,
+          "a": 1.0
+        },
+        "_RockOriginWS": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_RockSize": {
+          "r": 0.5685581,
+          "g": 0.522903,
+          "b": 1.0090132,
+          "a": 0.0
+        }
+      }
+    }
+  ]
+}

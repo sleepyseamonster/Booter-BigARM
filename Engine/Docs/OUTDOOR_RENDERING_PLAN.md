@@ -17,6 +17,8 @@ Provide a repeatable outdoor inspection scene in which known geometry responds p
 
 Keep Mac as the main development machine while practical. Switch daily development only when compatibility effort materially impedes progress or target-specific debugging/performance work requires Windows. Passing Mac checks never closes the Windows checkpoint.
 
+The user directed reuse of the existing rock and ground textures on 2026-09-10. The [surface library](../Assets/SurfaceLibrary/README.md) contains verified copies and source material mappings for OR-4. Use these assets when extending beyond simple calibration fixtures; preserve their recorded channel packing and authored bindings. The transfer itself does not complete texture loading, material implementation or visual acceptance.
+
 ## First Batch Contract
 
 OR-1 is done when nonuniformly scaled/rotated surfaces retain normals perpendicular to their surfaces, generated reference meshes have outward winding and nondegenerate triangles, and native GPU captures demonstrate correct culling and order-independent opaque depth. Retain the existing inspector/input/resize/resource/error checks. Audit color handling now but implement its correction in OR-2; do not add shadows in this batch.

@@ -14,6 +14,8 @@ The [source rock production plan](../../Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md
 
 ## Technical Retrieval Map
 
+The actual rock/ground texture images and material-reference mappings are now copied into the [surface library](../Assets/SurfaceLibrary/README.md). They are separate from the historical screenshots above and are not yet loaded by the engine renderer.
+
 | Manifest ID | Use | Portability limit |
 |---|---|---|
 | `formation-data` | Source/member composition and serialized settings | Unity-specific serialization and mesh/material references |

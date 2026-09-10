@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "result": "passed",
+  "assets": 43,
+  "counts": {
+    "texture": 38,
+    "source_art": 5
+  },
+  "bytes": 101692582,
+  "material_records": 15,
+  "resolved_texture_bindings": 186,
+  "unchanged_source_files": 102,
+  "proof_limit": "Byte integrity, PNG chunk checks/PSD header, inventory and serialized references; not shader porting, full image decoding or engine visual parity."
+}

@@ -1,6 +1,6 @@
 # Current Engine Handoff
 
-Updated 2026-09-09, America/Phoenix. The first application foundation and OR-1 geometry correctness batch are implemented and technically verified on the current Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
+Updated 2026-09-10, America/Phoenix. The first application foundation and OR-1 geometry correctness batch are implemented and technically verified on the current Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
 
 ## Current Result
 
@@ -9,6 +9,8 @@ The standalone C++ executable opens an SDL window, renders a perspective mesh an
 OR-1 adds a cube/sloped-solid/sphere selector, independent XYZ scale and world-normal display. Inverse-transpose normal transforms correct lighting directions under nonuniform scale; outward winding, backface culling and opaque depth ordering have bounded technical evidence. See [the geometry result](./OUTDOOR_GEOMETRY_RESULT.md) for exact comparisons and limits.
 
 This is a foundation fixture. It has no generated rocks, character controller, physics, shadows, PBR, world streaming or save format. The perspective inspection camera is not final third-person character-following behavior. The neutral scale marker and local coordinates are provisional.
+
+The [surface library](../Assets/SurfaceLibrary/README.md) now preserves 38 existing rock/ground textures and five source-art files inside `Engine/`, plus 15 textured material reference records and importer/channel mappings. [Transfer verification](../Evidence/SURFACE-transfer-final/result.json) passed: all 43 copies match their source hashes, 186 serialized texture bindings resolve, and 102 original image/metadata/material/shader/code files remained unchanged. No scene-texture loader or material shader port is implemented by this transfer.
 
 Start with [run instructions](./RUN_FOUNDATION.md), [the outdoor plan](./OUTDOOR_RENDERING_PLAN.md), and [the latest result audit](./OUTDOOR_GEOMETRY_RESULT.md).
 

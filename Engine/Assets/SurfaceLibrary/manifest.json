@@ -1,0 +1,3256 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-09-10T14:53:32.649066+00:00",
+  "source_git_head": "ae9d3c85e2844b0473f5225c6f728fdb335abd35",
+  "scope": "Existing rock and ground PNG textures plus associated editable source images; no Unity scenes, meshes, materials or meta files are runtime assets.",
+  "asset_key_contract": "Collection-local named keys for future material references, not finalized runtime asset IDs or world object IDs.",
+  "counts": {
+    "texture": 38,
+    "source_art": 5
+  },
+  "total_bytes": 101692582,
+  "assets": [
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldgravelalbedo",
+      "path": "Textures/Ground/SandDirt/BrokenWorldGravelAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelAlbedo.png",
+      "origin_unity_guid": "354db7cf45544c04949e454b51dbc722",
+      "sha256": "db2ea1a2b54d11c0e45d01f6c33e9870c03b863de222b5f40da48d54b254f968",
+      "bytes": 2189653,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_GravelMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldgraveltransitionalbedo",
+      "path": "Textures/Ground/SandDirt/BrokenWorldGravelTransitionAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelTransitionAlbedo.png",
+      "origin_unity_guid": "f72dd2217b4147049d4f8cf3937f0d86",
+      "sha256": "6b627be22f0fc68014ffe5b4b9a78a1309fe9b36a02080956a1a6b50b6b1b80c",
+      "bytes": 2155399,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_GravelTransitionMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldmixedrockyalbedo",
+      "path": "Textures/Ground/SandDirt/BrokenWorldMixedRockyAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyAlbedo.png",
+      "origin_unity_guid": "0dedf1b44a434bc49327c0e9c859ef8b",
+      "sha256": "4b7092223214288f389ff8b2bf1357ec82bd0e1c9f11f1b4f39f6c89647173d9",
+      "bytes": 1898600,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_RockyMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldmixedrockyheight",
+      "path": "Textures/Ground/SandDirt/BrokenWorldMixedRockyHeight.png",
+      "category": "texture",
+      "role": "height",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyHeight.png",
+      "origin_unity_guid": "c95558d6879544d9b235e08b54f3b037",
+      "sha256": "85394767d5d512431426ea25b27322865f84f53cacb47b5b25e4cc6307b8425c",
+      "bytes": 714767,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 0,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_RockyHeightMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldmixedrockynormal",
+      "path": "Textures/Ground/SandDirt/BrokenWorldMixedRockyNormal.png",
+      "category": "texture",
+      "role": "normal",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyNormal.png",
+      "origin_unity_guid": "45a6b29719594cd4b9586762dcbfa3fd",
+      "sha256": "974b2715f089879afc89d2a868590f9d692b2b643f38b7bd05f4c292c86c6e38",
+      "bytes": 1677242,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "1",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_RockyNormalMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldrockymidtransitionalbedo",
+      "path": "Textures/Ground/SandDirt/BrokenWorldRockyMidTransitionAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionAlbedo.png",
+      "origin_unity_guid": "316eb4895ff340b6b677b727b709e15e",
+      "sha256": "8266fa421d683cc19c396f2788a9b98075ed0b5c0754087c9a3d9da81df931dc",
+      "bytes": 1979910,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "1024",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_RockyMidTransitionMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldrockymidtransitionheight",
+      "path": "Textures/Ground/SandDirt/BrokenWorldRockyMidTransitionHeight.png",
+      "category": "texture",
+      "role": "height",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionHeight.png",
+      "origin_unity_guid": "46b0b1be2b6d466aa504e57246b6c474",
+      "sha256": "0b3e372db201f3cb395cf9aa6375476f33f6f1581b7633516dd0e6d0e8444f83",
+      "bytes": 856390,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 0,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "1024",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_RockyMidTransitionHeightMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldrockymidtransitionnormal",
+      "path": "Textures/Ground/SandDirt/BrokenWorldRockyMidTransitionNormal.png",
+      "category": "texture",
+      "role": "normal",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionNormal.png",
+      "origin_unity_guid": "6cd9336e12654a09a9676cc73d459bf8",
+      "sha256": "17cc0beb83c95d7a64d41ab419e57e8d30db8c5a55cc2f1cac0c72d8132f1ec2",
+      "bytes": 1763941,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "1",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "1024",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_RockyMidTransitionNormalMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldrockytransitionalbedo",
+      "path": "Textures/Ground/SandDirt/BrokenWorldRockyTransitionAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionAlbedo.png",
+      "origin_unity_guid": "38ebe0750fc44f48811f01a97b024742",
+      "sha256": "214995602fa935f569ca9e61017afb0757facdd700bf22760fd86edabe81565b",
+      "bytes": 1971818,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_RockyTransitionMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldrockytransitionheight",
+      "path": "Textures/Ground/SandDirt/BrokenWorldRockyTransitionHeight.png",
+      "category": "texture",
+      "role": "height",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionHeight.png",
+      "origin_unity_guid": "c93a7d4db08b4f3eb3a6c874a1bb0468",
+      "sha256": "60c5aa8b0008dfa14f3f091eb6d46f2dc26f86b108440504858f200205aa917e",
+      "bytes": 793936,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 0,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_RockyTransitionHeightMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldrockytransitionnormal",
+      "path": "Textures/Ground/SandDirt/BrokenWorldRockyTransitionNormal.png",
+      "category": "texture",
+      "role": "normal",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionNormal.png",
+      "origin_unity_guid": "503dafeb5ab643fd9fbc1e8c11cccbfd",
+      "sha256": "03e801238f0f602e1bc53c24324ddea5319172eb3c6b3cb5b5f56d3f4198b83c",
+      "bytes": 1951465,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "1",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_RockyTransitionNormalMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldsanddirtalbedo",
+      "path": "Textures/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png",
+      "origin_unity_guid": "b5dd278998704d3ab61837378b1a151a",
+      "sha256": "53f8f5bb5584bbca5ebfa0ffa6328a98a39d4265b3d34f7b2e392df6fc1552fd",
+      "bytes": 1883666,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_DepositedDust.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_DepositedDust",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_DepositedDust.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_DepositedDust",
+          "property": "_MainTex"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_MainTex"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldsweptsandalbedo",
+      "path": "Textures/Ground/SandDirt/BrokenWorldSweptSandAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSweptSandAlbedo.png",
+      "origin_unity_guid": "58cc08e58bc64101be1b7f546838bc15",
+      "sha256": "101205e5c683842536a5b7af9727e51fce862730f572b1d04e9dfaee849702f9",
+      "bytes": 1947501,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_SweptSandMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/brokenworldsweptsandtransitionalbedo",
+      "path": "Textures/Ground/SandDirt/BrokenWorldSweptSandTransitionAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSweptSandTransitionAlbedo.png",
+      "origin_unity_guid": "a3a177ed53934ba4b9087ea2adea50a5",
+      "sha256": "b765f5506f284be9626e928ae541a6c7361423d035a86026d25fcc2246ecae2a",
+      "bytes": 1999338,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Terrain",
+          "property": "_SweptSandTransitionMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/mixedgroundpebbles_albedo",
+      "path": "Textures/Ground/SandDirt/MixedGroundPebbles_Albedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/MixedGroundPebbles_Albedo.png",
+      "origin_unity_guid": "9c271467dba904bbd85eae82c1ef47ca",
+      "sha256": "ebfba258f1e611bc0476fd919e5ff456426bc89e0425acc913da6d23b9d88e59",
+      "bytes": 3605954,
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "0",
+        "filterMode": "2",
+        "aniso": "8",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/mixedgroundpebbles_height",
+      "path": "Textures/Ground/SandDirt/MixedGroundPebbles_Height.png",
+      "category": "texture",
+      "role": "height",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/MixedGroundPebbles_Height.png",
+      "origin_unity_guid": "c1f32abdc427c4bb9ab2b25d1f66be5d",
+      "sha256": "a365bcafbdff108bcc2b8a9832cbbdfcad6f33860d8085160ae97e5d5a3e06a9",
+      "bytes": 2704671,
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "0",
+        "filterMode": "2",
+        "aniso": "8",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/nearrockpebbles_albedo",
+      "path": "Textures/Ground/SandDirt/NearRockPebbles_Albedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/NearRockPebbles_Albedo.png",
+      "origin_unity_guid": "79798ad9a0cb4fada23d04e3da9ac81c",
+      "sha256": "03d355a49aadc06e5c69dd06b043ebb0ff15e40f10bba9c9f56a30519c937e6c",
+      "bytes": 3308888,
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": null,
+        "convertToNormalMap": null,
+        "enableMipMap": "1",
+        "streamingMipmaps": null,
+        "filterMode": "2",
+        "aniso": "8",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": null,
+        "ignorePngGamma": null,
+        "swizzle": null
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/ground/sanddirt/nearrockpebbles_height",
+      "path": "Textures/Ground/SandDirt/NearRockPebbles_Height.png",
+      "category": "texture",
+      "role": "height",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/NearRockPebbles_Height.png",
+      "origin_unity_guid": "131870ef70cd40b7b4cce8204f9d234e",
+      "sha256": "b553805cc72abc39549119f4ba30527dd5bfc41e23d637ae3aaa98f3fa343c29",
+      "bytes": 1342277,
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": null,
+        "convertToNormalMap": null,
+        "enableMipMap": "1",
+        "streamingMipmaps": null,
+        "filterMode": "2",
+        "aniso": "8",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": null,
+        "ignorePngGamma": null,
+        "swizzle": null
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/brokenworldrocksurfacealbedo",
+      "path": "Textures/Rocks/BrokenWorldRockSurfaceAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceAlbedo.png",
+      "origin_unity_guid": "ec39ecd00a484b979590e7c8e272c6a4",
+      "sha256": "3642f4f96cd95226ba7636b355aabdfc0b8040d643f350be24e35f25d5e8098c",
+      "bytes": 2034424,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/brokenworldrocksurfacedarkalbedo",
+      "path": "Textures/Rocks/BrokenWorldRockSurfaceDarkAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceDarkAlbedo.png",
+      "origin_unity_guid": "7f23b1c0fc5f4a13be40f069ed867a3f",
+      "sha256": "e5419c63626e6074a9984659c711cd8ceb4d3218ae545ea10e1fca444ae59bf4",
+      "bytes": 1825946,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/brokenworldrocksurfacetealalbedo",
+      "path": "Textures/Rocks/BrokenWorldRockSurfaceTealAlbedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealAlbedo.png",
+      "origin_unity_guid": "de42c6aefd444f12ac00d9217950d445",
+      "sha256": "be2e973b44524df7ae6d181cea159c1f12a34ddf45e008cb3ec6fb115d51850a",
+      "bytes": 2131590,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/brokenworldrocksurfaceteallustermask",
+      "path": "Textures/Rocks/BrokenWorldRockSurfaceTealLusterMask.png",
+      "category": "texture",
+      "role": "mask",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealLusterMask.png",
+      "origin_unity_guid": "9ca0e305c79142fd8e66f2ef40d1b944",
+      "sha256": "7a1d63dad6c8980e9a3caf683304d04a64f9176146df689a5634d00e6df21c43",
+      "bytes": 138618,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 0,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "1024",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchCrack_Mask.png",
+      "category": "texture",
+      "role": "mask",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchCrack_Mask.png",
+      "origin_unity_guid": "88f5c8dfd857743e9a713d6db4266668",
+      "sha256": "08e5dadfc550b3d2b079cf9fea68123e93eb27c671e8faa593912f905e6e44ed",
+      "bytes": 631778,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 6,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_CrackMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_CrackMap"
+        }
+      ],
+      "channels": {
+        "R": "crack",
+        "G": "halo",
+        "B": "deposit",
+        "A": "writer uses 1"
+      }
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_albedo",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchGrit_Albedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Albedo.png",
+      "origin_unity_guid": "34cc25eb0e7054c8495a69ad06770d5d",
+      "sha256": "37051bf612d74a49ab4e226e846283a071ea33357cf381a51b4e68bfc74f47aa",
+      "bytes": 1955304,
+      "format": "PNG",
+      "width": 1229,
+      "height": 1229,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchGrit_Normal.png",
+      "category": "texture",
+      "role": "normal",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Normal.png",
+      "origin_unity_guid": "cad78ffc4d8b24970bffd832fcb6d359",
+      "sha256": "9cb01495f11c5c3d33040db45d81294c7419a3f5bbc80aee8052cd9d7c33f022",
+      "bytes": 3222721,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 6,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "1",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_GritNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_GritNormalMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchGrit_Surface.png",
+      "category": "texture",
+      "role": "packed_surface",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Surface.png",
+      "origin_unity_guid": "06fbb1c98194b4e80a78444d2278996a",
+      "sha256": "7981fc0b167fe53f34340d86eb5ae92511941350312894e3317962ff0129dc8a",
+      "bytes": 2875132,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 6,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_GritSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_GritSurfaceMap"
+        }
+      ],
+      "channels": {
+        "R": "ambient occlusion",
+        "G": "roughness",
+        "B": "height",
+        "A": "writer uses 1; not sampled by rock shader"
+      }
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_albedo",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.png",
+      "origin_unity_guid": "8fc4a67fc546840e49a0ae8ec31852a3",
+      "sha256": "01718802610a6efb1180aaef4ecd1aa842306759d31ebcbc36fdb9fc0f3058a1",
+      "bytes": 1901180,
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_TopBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_BaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_BottomBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_GritBaseMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_TopBaseMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "sourceart/rocks/workbench/layered/rockworkbenchside_albedo",
+      "path": "SourceArt/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.psd",
+      "category": "source_art",
+      "role": "source_art",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.psd",
+      "origin_unity_guid": "8fd6bc212a97348008ce6a70ca54dec8",
+      "sha256": "11e4d346d8ce25a009aa4626b96573bb307b9cb410b6af4ef85d7ea94825e736",
+      "bytes": 11015438,
+      "format": "PSD",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "channels": 4,
+      "color_mode": 3,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "8",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "0",
+        "streamingMipmaps": "0",
+        "filterMode": "1",
+        "aniso": "1",
+        "wrapU": "1",
+        "wrapV": "1",
+        "wrapW": "1",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "1",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_normal",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchSide_Normal.png",
+      "category": "texture",
+      "role": "normal",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Normal.png",
+      "origin_unity_guid": "ba38d4b58f0f342439a2a768416257ca",
+      "sha256": "745f27f388a8214d2095784b367c3f5cbad093f0ac19141e3b5c59a6f768476e",
+      "bytes": 2898390,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 6,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "1",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_NormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_NormalMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchside_surface",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchSide_Surface.png",
+      "category": "texture",
+      "role": "packed_surface",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Surface.png",
+      "origin_unity_guid": "0661050c16431481eac77b3f07dc3c2a",
+      "sha256": "1ab84e3185fecc32e70d18830dc2c8ce23ba4ceacd088853760af9b570a4cc3c",
+      "bytes": 2624905,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 6,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_SurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_SurfaceMap"
+        }
+      ],
+      "channels": {
+        "R": "ambient occlusion",
+        "G": "roughness",
+        "B": "height",
+        "A": "writer uses 1; not sampled by rock shader"
+      }
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_albedo",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchTop_Albedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Albedo.png",
+      "origin_unity_guid": "8961b29ef723142b99c11c29da019f52",
+      "sha256": "9412107509697ade178c89af2607b8d769ace0f772a7863e78e5622c04e5528c",
+      "bytes": 1846082,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_normal",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchTop_Normal.png",
+      "category": "texture",
+      "role": "normal",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Normal.png",
+      "origin_unity_guid": "2c1ecfe16e8824742a208ec882e43938",
+      "sha256": "0e4d9272fabc2e65a04ad0e81a199498bb5bf33c7dee2b55fd0c1ad5d4f1d8df",
+      "bytes": 2747916,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 6,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "1",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_TopNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_TopNormalMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchtop_surface",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchTop_Surface.png",
+      "category": "texture",
+      "role": "packed_surface",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Surface.png",
+      "origin_unity_guid": "445451f53f62a4c7dac4b94247dfe1ef",
+      "sha256": "fee7bffc3d51b74b6acb5f1bf3b78a828619ef63c26bf41e654a1520026fc5d7",
+      "bytes": 2556848,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 6,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_TopSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_TopSurfaceMap"
+        }
+      ],
+      "channels": {
+        "R": "ambient occlusion",
+        "G": "roughness",
+        "B": "height",
+        "A": "writer uses 1; not sampled by rock shader"
+      }
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_albedo",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchUnderside_Albedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Albedo.png",
+      "origin_unity_guid": "292a27b2824314784a6b75109bbabb3a",
+      "sha256": "dd6029fb28d5030402f5cd9c3ba8ea55718d092bdc31c357ed86d989784e3371",
+      "bytes": 1662828,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchUnderside_Normal.png",
+      "category": "texture",
+      "role": "normal",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Normal.png",
+      "origin_unity_guid": "1bcc0142ca9c444f98ffd36fd884a4d8",
+      "sha256": "d45fbc43f1d24bdc8c66e89564d84432fb04793a8e2ae1fc1eba94b79ea8e2a0",
+      "bytes": 2845561,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 6,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "1",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_BottomNormalMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_BottomNormalMap"
+        }
+      ]
+    },
+    {
+      "asset_key": "textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+      "path": "Textures/Rocks/Workbench/Layered/RockWorkbenchUnderside_Surface.png",
+      "category": "texture",
+      "role": "packed_surface",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Surface.png",
+      "origin_unity_guid": "dcf5112ecf4b14b2ab794f61f7845bd3",
+      "sha256": "d2715b07ee807a2ad81c2a01308113bb6e6145b094817125725afb057e1d55d9",
+      "bytes": 2293620,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 6,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Dark",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+          "source_file_id": "2100000",
+          "material": "BrokenWorld_Rock_Teal",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+          "source_file_id": "2100000",
+          "material": "Greybox_Rock",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+          "source_file_id": "2100000",
+          "material": "RockWorkbench_NeutralPBR",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "513919457139729367",
+          "material": "Rock 7002632165540063005",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "1967710901845333893",
+          "material": "Rock 4718420270806457474",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "2499088887108925240",
+          "material": "Rock 5298140864328685715",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "3521454486880029877",
+          "material": "Rock 3028943882912581895",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "4397547017316064518",
+          "material": "Rock 426897649273724261",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "5373685215320826902",
+          "material": "Rock 1521652057226066234",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "6142420148890684971",
+          "material": "Rock 2095623723120966889",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8536780270866482215",
+          "material": "Rock 2865284188754207889",
+          "property": "_BottomSurfaceMap"
+        },
+        {
+          "source_repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+          "source_file_id": "8742244266035646466",
+          "material": "Rock 1150986892043253008",
+          "property": "_BottomSurfaceMap"
+        }
+      ],
+      "channels": {
+        "R": "ambient occlusion",
+        "G": "roughness",
+        "B": "height",
+        "A": "writer uses 1; not sampled by rock shader"
+      }
+    },
+    {
+      "asset_key": "sourceart/rocks/workbench/layered/source/rockworkbenchgrit_source",
+      "path": "SourceArt/Rocks/Workbench/Layered/Source/RockWorkbenchGrit_Source.png",
+      "category": "source_art",
+      "role": "source_art",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchGrit_Source.png",
+      "origin_unity_guid": "cfebaf33cd8ff465abd6476f5eaa7991",
+      "sha256": "74e73901a2db8fd6f09a99b0162e36e7ebc09a85506930f79b9b01b933731658",
+      "bytes": 3253205,
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "8",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "0",
+        "streamingMipmaps": "0",
+        "filterMode": "1",
+        "aniso": "1",
+        "wrapU": "1",
+        "wrapV": "1",
+        "wrapW": "1",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "1",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "sourceart/rocks/workbench/layered/source/rockworkbenchside_source",
+      "path": "SourceArt/Rocks/Workbench/Layered/Source/RockWorkbenchSide_Source.png",
+      "category": "source_art",
+      "role": "source_art",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchSide_Source.png",
+      "origin_unity_guid": "f376508d9398442bf937e44604b87be2",
+      "sha256": "fd47e3722b5dbb999e9401c392b98035a5dfd0bd10fe6e766434eb159775b649",
+      "bytes": 2982319,
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "8",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "0",
+        "streamingMipmaps": "0",
+        "filterMode": "1",
+        "aniso": "1",
+        "wrapU": "1",
+        "wrapV": "1",
+        "wrapW": "1",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "1",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "sourceart/rocks/workbench/layered/source/rockworkbenchtop_source",
+      "path": "SourceArt/Rocks/Workbench/Layered/Source/RockWorkbenchTop_Source.png",
+      "category": "source_art",
+      "role": "source_art",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchTop_Source.png",
+      "origin_unity_guid": "ff8fe9f3587d649c5b9f2f043275ffa0",
+      "sha256": "3484a74d14e3e47220952180bea61571cda5b0f562f04333333ac2b15190e2e5",
+      "bytes": 2925400,
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "8",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "0",
+        "streamingMipmaps": "0",
+        "filterMode": "1",
+        "aniso": "1",
+        "wrapU": "1",
+        "wrapV": "1",
+        "wrapW": "1",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "1",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "sourceart/rocks/workbench/layered/source/rockworkbenchunderside_source",
+      "path": "SourceArt/Rocks/Workbench/Layered/Source/RockWorkbenchUnderside_Source.png",
+      "category": "source_art",
+      "role": "source_art",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchUnderside_Source.png",
+      "origin_unity_guid": "04f734fa62a7046219b1b044b2c7bb5e",
+      "sha256": "1dbe25fdd90fa934b67046215c2ea9c1c1220b7dcef081cfe98c992a1c3bf7e5",
+      "bytes": 2906284,
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "8",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "0",
+        "streamingMipmaps": "0",
+        "filterMode": "1",
+        "aniso": "1",
+        "wrapU": "1",
+        "wrapV": "1",
+        "wrapW": "1",
+        "nPOTScale": "0",
+        "maxTextureSize": "2048",
+        "alphaIsTransparency": "1",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/workbench/rockworkbenchneutral_albedo",
+      "path": "Textures/Rocks/Workbench/RockWorkbenchNeutral_Albedo.png",
+      "category": "texture",
+      "role": "base_color",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Albedo.png",
+      "origin_unity_guid": "e8c8299c81934848831cad9771708a2c",
+      "sha256": "fe090743a10cf652f935a7c35f9f91291dd9e42511525e58d66538a226d2f2e6",
+      "bytes": 1927025,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "1",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "1024",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/workbench/rockworkbenchneutral_normal",
+      "path": "Textures/Rocks/Workbench/RockWorkbenchNeutral_Normal.png",
+      "category": "texture",
+      "role": "normal",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Normal.png",
+      "origin_unity_guid": "5c8ef02ab76c43b7be5b0523f7a4f024",
+      "sha256": "4e94f09f2be3541ab60688cabec0ac54c10d21de01dbcacc7474fb64e12a44c5",
+      "bytes": 2832892,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "1",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "1024",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": []
+    },
+    {
+      "asset_key": "textures/rocks/workbench/rockworkbenchneutral_surface",
+      "path": "Textures/Rocks/Workbench/RockWorkbenchNeutral_Surface.png",
+      "category": "texture",
+      "role": "packed_surface",
+      "origin_repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Surface.png",
+      "origin_unity_guid": "21ad982da8fb4bd682790d770d634b54",
+      "sha256": "2286389e445fb3ee12f550f14209cc2faffd5ab3b99f6785af2aa1fee911f040",
+      "bytes": 2911760,
+      "format": "PNG",
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 6,
+      "interlaced": false,
+      "unity_importer_reference": {
+        "sRGBTexture": "0",
+        "textureType": "0",
+        "flipGreenChannel": "0",
+        "convertToNormalMap": "0",
+        "enableMipMap": "1",
+        "streamingMipmaps": "1",
+        "filterMode": "1",
+        "aniso": "4",
+        "wrapU": "0",
+        "wrapV": "0",
+        "wrapW": "0",
+        "nPOTScale": "0",
+        "maxTextureSize": "1024",
+        "alphaIsTransparency": "0",
+        "ignorePngGamma": "0",
+        "swizzle": "50462976"
+      },
+      "engine_readiness": "source_only_not_loaded_by_renderer",
+      "material_references": [],
+      "channels": {
+        "R": "ambient occlusion",
+        "G": "roughness",
+        "B": "height",
+        "A": "writer uses 1; not sampled by rock shader"
+      }
+    }
+  ],
+  "source_records": [
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelAlbedo.png",
+      "sha256": "db2ea1a2b54d11c0e45d01f6c33e9870c03b863de222b5f40da48d54b254f968",
+      "bytes": 2189653
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelAlbedo.png.meta",
+      "sha256": "2bc027fd86d68873ea413596e8117e3959e55a32565941fdda11fae6bbcd241d",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelTransitionAlbedo.png",
+      "sha256": "6b627be22f0fc68014ffe5b4b9a78a1309fe9b36a02080956a1a6b50b6b1b80c",
+      "bytes": 2155399
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelTransitionAlbedo.png.meta",
+      "sha256": "94c46a63685d53c6a2683715225905185c618b9d1f9587a1c207807aef7cf418",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyAlbedo.png",
+      "sha256": "4b7092223214288f389ff8b2bf1357ec82bd0e1c9f11f1b4f39f6c89647173d9",
+      "bytes": 1898600
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyAlbedo.png.meta",
+      "sha256": "210b6eae7e77593d180c41585dfa1ce6526e6024c23ab73fbd58ff4306c5ed2b",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyHeight.png",
+      "sha256": "85394767d5d512431426ea25b27322865f84f53cacb47b5b25e4cc6307b8425c",
+      "bytes": 714767
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyHeight.png.meta",
+      "sha256": "ab399a5ad27a7f4c97c35d20382fba2eae2d01b85d56593e6ee5a6dbcbec01f0",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyNormal.png",
+      "sha256": "974b2715f089879afc89d2a868590f9d692b2b643f38b7bd05f4c292c86c6e38",
+      "bytes": 1677242
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyNormal.png.meta",
+      "sha256": "9699f960ecbea5f7364c544c89239d24d7aa600add1011c58979470c7aa62958",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionAlbedo.png",
+      "sha256": "8266fa421d683cc19c396f2788a9b98075ed0b5c0754087c9a3d9da81df931dc",
+      "bytes": 1979910
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionAlbedo.png.meta",
+      "sha256": "8a3072f0005f94fa9567b35fb2110dfb8d498eab6aa0f1ff54a3d51493c77617",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionHeight.png",
+      "sha256": "0b3e372db201f3cb395cf9aa6375476f33f6f1581b7633516dd0e6d0e8444f83",
+      "bytes": 856390
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionHeight.png.meta",
+      "sha256": "e86d35ae1423f860c730780b22a9bee8bc005377cbcc57073f6821303bab6cc6",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionNormal.png",
+      "sha256": "17cc0beb83c95d7a64d41ab419e57e8d30db8c5a55cc2f1cac0c72d8132f1ec2",
+      "bytes": 1763941
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionNormal.png.meta",
+      "sha256": "b669ad54ab3ca04d189110561554250510ccef90729c0c104c3f5a3e07dd324b",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionAlbedo.png",
+      "sha256": "214995602fa935f569ca9e61017afb0757facdd700bf22760fd86edabe81565b",
+      "bytes": 1971818
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionAlbedo.png.meta",
+      "sha256": "3b35229a66cf639750d35145150bd54622af226f7024882fadb655a5da5e0e21",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionHeight.png",
+      "sha256": "60c5aa8b0008dfa14f3f091eb6d46f2dc26f86b108440504858f200205aa917e",
+      "bytes": 793936
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionHeight.png.meta",
+      "sha256": "53184f04b353d6d303bbdda512d243ee7d5458d921cc5b889bc98a1206d99f9f",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionNormal.png",
+      "sha256": "03e801238f0f602e1bc53c24324ddea5319172eb3c6b3cb5b5f56d3f4198b83c",
+      "bytes": 1951465
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionNormal.png.meta",
+      "sha256": "40403c00d8610cb87625f35172d4f6a4c64fd49d81609351ac242d0eb7f7c66c",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png",
+      "sha256": "53f8f5bb5584bbca5ebfa0ffa6328a98a39d4265b3d34f7b2e392df6fc1552fd",
+      "bytes": 1883666
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png.meta",
+      "sha256": "66d1216da7db78def88971eae6ed08dcbb7dfdb729960d09d285bbd2f88d8bf7",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSweptSandAlbedo.png",
+      "sha256": "101205e5c683842536a5b7af9727e51fce862730f572b1d04e9dfaee849702f9",
+      "bytes": 1947501
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSweptSandAlbedo.png.meta",
+      "sha256": "de87a7524ad5fb4469d0b73bf0b1283629cd7c1fcb91d7cb8de5d807f4306ddc",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSweptSandTransitionAlbedo.png",
+      "sha256": "b765f5506f284be9626e928ae541a6c7361423d035a86026d25fcc2246ecae2a",
+      "bytes": 1999338
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSweptSandTransitionAlbedo.png.meta",
+      "sha256": "a0543d1beeb4cd3eb5912df6fa10ad0e1faf282b34498fb77625110d8e0da774",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/MixedGroundPebbles_Albedo.png",
+      "sha256": "ebfba258f1e611bc0476fd919e5ff456426bc89e0425acc913da6d23b9d88e59",
+      "bytes": 3605954
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/MixedGroundPebbles_Albedo.png.meta",
+      "sha256": "42100ec7e17a1ba410944c9e932af379cdfb1bcdcc1ff29e267ae5019ff96ed8",
+      "bytes": 3649
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/MixedGroundPebbles_Height.png",
+      "sha256": "a365bcafbdff108bcc2b8a9832cbbdfcad6f33860d8085160ae97e5d5a3e06a9",
+      "bytes": 2704671
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/MixedGroundPebbles_Height.png.meta",
+      "sha256": "afa24adcc47c2a789611e106f94fa3d00d478e78830bba5fe848b97f417613e8",
+      "bytes": 3646
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/NearRockPebbles_Albedo.png",
+      "sha256": "03d355a49aadc06e5c69dd06b043ebb0ff15e40f10bba9c9f56a30519c937e6c",
+      "bytes": 3308888
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/NearRockPebbles_Albedo.png.meta",
+      "sha256": "015eca63e39aa8d54cf87b8171d16c11f59a92b095458061eb6b86042e556172",
+      "bytes": 577
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/NearRockPebbles_Height.png",
+      "sha256": "b553805cc72abc39549119f4ba30527dd5bfc41e23d637ae3aaa98f3fa343c29",
+      "bytes": 1342277
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Ground/SandDirt/NearRockPebbles_Height.png.meta",
+      "sha256": "f95055af899cb0f9ce252791a9f438ffc4e853772dd54ba6b5b2716938195f6d",
+      "bytes": 577
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceAlbedo.png",
+      "sha256": "3642f4f96cd95226ba7636b355aabdfc0b8040d643f350be24e35f25d5e8098c",
+      "bytes": 2034424
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceAlbedo.png.meta",
+      "sha256": "7542c967fc6d10602504f29874f6be64ec1e9186d99d7cc36bdfb73489f3da88",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceDarkAlbedo.png",
+      "sha256": "e5419c63626e6074a9984659c711cd8ceb4d3218ae545ea10e1fca444ae59bf4",
+      "bytes": 1825946
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceDarkAlbedo.png.meta",
+      "sha256": "07eae98f2659a8fc3f3e7d7c60a205fc0c811e1b4c1f2a19eaad7b4e3950f76c",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealAlbedo.png",
+      "sha256": "be2e973b44524df7ae6d181cea159c1f12a34ddf45e008cb3ec6fb115d51850a",
+      "bytes": 2131590
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealAlbedo.png.meta",
+      "sha256": "f23222f5c6ae53d262907bd9db46641b94c587290069f56a984c8969a37574c6",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealLusterMask.png",
+      "sha256": "7a1d63dad6c8980e9a3caf683304d04a64f9176146df689a5634d00e6df21c43",
+      "bytes": 138618
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealLusterMask.png.meta",
+      "sha256": "08d2d0f3ad0b385c4d1f9793d7139022a55648453a02207bd4d0c78837ea8401",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchCrack_Mask.png",
+      "sha256": "08e5dadfc550b3d2b079cf9fea68123e93eb27c671e8faa593912f905e6e44ed",
+      "bytes": 631778
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchCrack_Mask.png.meta",
+      "sha256": "73be466bcde458167c93d39732c013d3b28cd1d9880040a581c2d61640e7ea31",
+      "bytes": 3677
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Albedo.png",
+      "sha256": "37051bf612d74a49ab4e226e846283a071ea33357cf381a51b4e68bfc74f47aa",
+      "bytes": 1955304
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Albedo.png.meta",
+      "sha256": "5ca0ef1bf96122b11d0316ced1f09ef3b2405ba1f46a4ae3dbf6a4b72ccdff1a",
+      "bytes": 3643
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Normal.png",
+      "sha256": "9cb01495f11c5c3d33040db45d81294c7419a3f5bbc80aee8052cd9d7c33f022",
+      "bytes": 3222721
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Normal.png.meta",
+      "sha256": "6a84bd4dee34ee8b36ad646e1efd813d3157b1892adc8100047478f965766042",
+      "bytes": 3643
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Surface.png",
+      "sha256": "7981fc0b167fe53f34340d86eb5ae92511941350312894e3317962ff0129dc8a",
+      "bytes": 2875132
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Surface.png.meta",
+      "sha256": "308cd64e34cc62f0188802dc01d5c27882376be1d3cd96818e086dae13c01eaf",
+      "bytes": 3672
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.png",
+      "sha256": "01718802610a6efb1180aaef4ecd1aa842306759d31ebcbc36fdb9fc0f3058a1",
+      "bytes": 1901180
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.png.meta",
+      "sha256": "cf39f221e235c482bb15a0a8d3a264d8eaefbac04ba38eebbee0b4a576dd2be7",
+      "bytes": 3646
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.psd",
+      "sha256": "11e4d346d8ce25a009aa4626b96573bb307b9cb410b6af4ef85d7ea94825e736",
+      "bytes": 11015438
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.psd.meta",
+      "sha256": "ed91ae490eddf1d06305f7a3d6c7f536e42530cc09589b20a37e10071e753c18",
+      "bytes": 979141
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Normal.png",
+      "sha256": "745f27f388a8214d2095784b367c3f5cbad093f0ac19141e3b5c59a6f768476e",
+      "bytes": 2898390
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Normal.png.meta",
+      "sha256": "c304ae0a190e6b27339c9c45dd4e065711daed22dbd221628127c0e9f4f25f43",
+      "bytes": 3643
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Surface.png",
+      "sha256": "1ab84e3185fecc32e70d18830dc2c8ce23ba4ceacd088853760af9b570a4cc3c",
+      "bytes": 2624905
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Surface.png.meta",
+      "sha256": "3c09ea925cafc7546c820747a57d7f40de1968f958352aea8f44df6d2ab0e941",
+      "bytes": 3672
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Albedo.png",
+      "sha256": "9412107509697ade178c89af2607b8d769ace0f772a7863e78e5622c04e5528c",
+      "bytes": 1846082
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Albedo.png.meta",
+      "sha256": "6a044f125932564f83dd1cc3ab9ad2f5f6fca9e53ac81bcb5fad496d043f8cdc",
+      "bytes": 3640
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Normal.png",
+      "sha256": "0e4d9272fabc2e65a04ad0e81a199498bb5bf33c7dee2b55fd0c1ad5d4f1d8df",
+      "bytes": 2747916
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Normal.png.meta",
+      "sha256": "6aeb3c3a19d3bceba28cc0c09e69bbcf2462f45b05fabb57044cdf6b83cc3794",
+      "bytes": 3640
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Surface.png",
+      "sha256": "fee7bffc3d51b74b6acb5f1bf3b78a828619ef63c26bf41e654a1520026fc5d7",
+      "bytes": 2556848
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Surface.png.meta",
+      "sha256": "cbc00985b81267c7a4793242c6d80952f10ec74c8a3c7171ca3db8de69c6f7c4",
+      "bytes": 3669
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Albedo.png",
+      "sha256": "dd6029fb28d5030402f5cd9c3ba8ea55718d092bdc31c357ed86d989784e3371",
+      "bytes": 1662828
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Albedo.png.meta",
+      "sha256": "098d83ac964bfb62c1df3b043238235ac46d425fbde8700db609cbaf6d337bf2",
+      "bytes": 3661
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Normal.png",
+      "sha256": "d45fbc43f1d24bdc8c66e89564d84432fb04793a8e2ae1fc1eba94b79ea8e2a0",
+      "bytes": 2845561
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Normal.png.meta",
+      "sha256": "6394f03f0f49c253e9c907220c10a601462ade67ae85f45655a78393f33ab2dc",
+      "bytes": 3661
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Surface.png",
+      "sha256": "d2715b07ee807a2ad81c2a01308113bb6e6145b094817125725afb057e1d55d9",
+      "bytes": 2293620
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Surface.png.meta",
+      "sha256": "86337e1aad040c559f7f3eb3f7d775ee47b2eb9e9b12ccf1974dd289fd0b7ae6",
+      "bytes": 3684
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchGrit_Source.png",
+      "sha256": "74e73901a2db8fd6f09a99b0162e36e7ebc09a85506930f79b9b01b933731658",
+      "bytes": 3253205
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchGrit_Source.png.meta",
+      "sha256": "5fbea67ea24331f6ae13a54c4124bb5f41f0544eb06f627f135523eac1b21707",
+      "bytes": 3646
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchSide_Source.png",
+      "sha256": "fd47e3722b5dbb999e9401c392b98035a5dfd0bd10fe6e766434eb159775b649",
+      "bytes": 2982319
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchSide_Source.png.meta",
+      "sha256": "d65b963111bd7ef616ce5f113612c4c1d13113df01dbf995bb47288c466c86ee",
+      "bytes": 3643
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchTop_Source.png",
+      "sha256": "3484a74d14e3e47220952180bea61571cda5b0f562f04333333ac2b15190e2e5",
+      "bytes": 2925400
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchTop_Source.png.meta",
+      "sha256": "bbc9b409eb8bdc81e06f6a0ac74642203182c4765d7f6628d3cc147b330bd7a6",
+      "bytes": 3640
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchUnderside_Source.png",
+      "sha256": "1dbe25fdd90fa934b67046215c2ea9c1c1220b7dcef081cfe98c992a1c3bf7e5",
+      "bytes": 2906284
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchUnderside_Source.png.meta",
+      "sha256": "7681e68ce8537697afc63a7dc8a2cc7a15a41c83b0d36118f7b67406b63ba1b1",
+      "bytes": 3661
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Albedo.png",
+      "sha256": "fe090743a10cf652f935a7c35f9f91291dd9e42511525e58d66538a226d2f2e6",
+      "bytes": 1927025
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Albedo.png.meta",
+      "sha256": "85bab0e6cbc18e52fdd65710fd09a41d7afb33a37c5a467ac146541e82f51674",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Normal.png",
+      "sha256": "4e94f09f2be3541ab60688cabec0ac54c10d21de01dbcacc7474fb64e12a44c5",
+      "bytes": 2832892
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Normal.png.meta",
+      "sha256": "2559e49673a05935ef9723e551f26f24c68359da1f166e6f05a419919de8a0dd",
+      "bytes": 2318
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Surface.png",
+      "sha256": "2286389e445fb3ee12f550f14209cc2faffd5ab3b99f6785af2aa1fee911f040",
+      "bytes": 2911760
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Surface.png.meta",
+      "sha256": "6700f76611876f5ce7ab35df0ebf8dbfcf4693a75a0d03424c339950422606e1",
+      "bytes": 2344
+    },
+    {
+      "repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_DepositedDust.mat",
+      "sha256": "204cfdb61e803a7c9f02a30cb9f436434f23d123cc79746aa34b579e6c2daa84",
+      "bytes": 1740
+    },
+    {
+      "repo_path": "Assets/_Project/Shaders/TopDown3D/BrokenWorldDepositedDust.shader",
+      "sha256": "9f040fbf5ad56d266e3b0dae83fc2025532911868c9a7502a382c2ff7816d85f",
+      "bytes": 7692
+    },
+    {
+      "repo_path": "Assets/_Project/Shaders/TopDown3D/BrokenWorldDepositedDust.shader.meta",
+      "sha256": "801806c65bb7b56506846e7a60239fd4bc38554c75f15e9373ec8c7a91a35223",
+      "bytes": 201
+    },
+    {
+      "repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+      "sha256": "ebc618700afcd8820436655f3af9e462f68fe2404f8becb715afeb1fb0c4ab26",
+      "bytes": 4306
+    },
+    {
+      "repo_path": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader",
+      "sha256": "49e9cce6cfb5e9e42ec07502bb3649e7e10d6bd0ae73d0d69f194c6890b218eb",
+      "bytes": 32552
+    },
+    {
+      "repo_path": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader.meta",
+      "sha256": "9163896ca213d8ea69c71f56cff0b255659d028bed61364e72192c71ea2d1615",
+      "bytes": 201
+    },
+    {
+      "repo_path": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Teal.mat",
+      "sha256": "8484989238fc3c8d3388132c5ae244ec5b8b10127357eb6e506a1325cc8d9ff7",
+      "bytes": 4306
+    },
+    {
+      "repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat",
+      "sha256": "e8ae90d9fb0654fea5b23484907277e0edb6c1a10fdc4769e51fc0dae510e7d9",
+      "bytes": 4754
+    },
+    {
+      "repo_path": "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+      "sha256": "10eb96e3752d96c4167a638f52c29fe9e015403c3e208eb181f5d5d2b819160c",
+      "bytes": 6715
+    },
+    {
+      "repo_path": "Assets/_Project/Shaders/TopDown3D/BrokenWorldTerrainBlend.shader",
+      "sha256": "d8b427da61714835730fd6a1cfdd7cc730c914b9389c95ec0e13d16d4be1773f",
+      "bytes": 47925
+    },
+    {
+      "repo_path": "Assets/_Project/Shaders/TopDown3D/BrokenWorldTerrainBlend.shader.meta",
+      "sha256": "df27d4d5696c2278d09a2511ec102e90a9e0e2fb19a60dae923b5968bfa7cbf8",
+      "bytes": 201
+    },
+    {
+      "repo_path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+      "sha256": "acf031c58a2b9e08fc88f749ad6372524fc57fa2cb025b0fcbd3ec375bbc4eb4",
+      "bytes": 4160
+    },
+    {
+      "repo_path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "sha256": "838f7a376b7b03ae0d01a04aac914665cfeec55536e293d17466d673bfa55e4a",
+      "bytes": 125570
+    },
+    {
+      "repo_path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DRockWorkbenchTextureBuilder.cs",
+      "sha256": "b98fa548e43157ac665e7c3553e9df8e805a7281db1565dad72d9d258323a5fa",
+      "bytes": 21467
+    },
+    {
+      "repo_path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DMixedFormationClutter.cs",
+      "sha256": "3c3eb59746bf29691ab335bb33397350cb3be9e230c1c3b1724b668fac7449b1",
+      "bytes": 17334
+    },
+    {
+      "repo_path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DPrototypeBuilder.cs",
+      "sha256": "34aa5495e38890f4318c5be7f54d3fd431fee4645576b35eb74d8712992d88d9",
+      "bytes": 42899
+    }
+  ],
+  "limitations": [
+    "Images copied byte-for-byte; renderer integration and visual parity are unverified.",
+    "Serialized material references do not prove live scene assignment or runtime property-block overrides.",
+    "Unreferenced family variants are retained without promotion to the accepted material baseline.",
+    "Origin is the existing project checkout; no new external content was downloaded."
+  ]
+}

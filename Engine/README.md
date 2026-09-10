@@ -15,6 +15,7 @@ The native application renders a perspective fixture and interactive inspector o
 | Language, libraries and renderer comparison | [Foundation survey](./Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) |
 | Exact dependencies, licenses and integration findings | [Research index](./Research/README.md) |
 | Historical rock visuals and setting context | [Reference collection](./References/README.md) |
+| Transferred rock/ground textures and material mappings | [Surface library](./Assets/SurfaceLibrary/README.md) |
 | Environment checks, source preparation and experiment receipts | [Preparation tools](./Tools/README.md) |
 | Repeatable working procedures | [Dependency evaluation](./SOPs/EVALUATE_DEPENDENCY.md), [experiments](./SOPs/RUN_EXPERIMENT.md), [handoffs](./SOPs/SESSION_HANDOFF.md) |
 

@@ -1,0 +1,44 @@
+{
+  "command": [
+    "python3",
+    "Tools/check_workspace.py"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Docs/OUTDOOR_RENDERING_PLAN.md",
+    " M Engine/Docs/STATUS.md",
+    " M Engine/README.md",
+    " M Engine/References/README.md",
+    " M Engine/Tools/README.md",
+    "?? Engine/Assets/",
+    "?? Engine/Evidence/SURFACE-transfer-final/",
+    "?? Engine/Evidence/SURFACE-transfer/",
+    "?? Engine/Tools/verify_surface_assets.py"
+  ],
+  "duration_seconds": 0.129,
+  "exit_code": 0,
+  "git_head": "ae9d3c85e2844b0473f5225c6f728fdb335abd35",
+  "input_sha256_after": {
+    "Assets/SurfaceLibrary/README.md": "32b0a61d39d121ba36699f6a59f3a8c18222a8811fc36b050c3116a739d33f39",
+    "Docs/OUTDOOR_RENDERING_PLAN.md": "880a1a2d168094b1a55b72b0151d09a3f229a3fb3bbf72a25c18192701532104",
+    "Docs/STATUS.md": "b48bfe3080cc509170e311619bbdfd5a104af84b200fb089641890a67b2f6177",
+    "README.md": "b80fc98e6990c3198c261c02a9dfe5e4453f094f81a23d8f63690feccb9eb554",
+    "References/README.md": "97964d52e5ea4b9731d889a684dc3ace87aa71dc63174027f648a31332ed6eeb",
+    "Tools/README.md": "05cc6509a42a601eb859778acc3a6089c5755e1b27cbc1395572d4171723878d"
+  },
+  "input_sha256_before": {
+    "Assets/SurfaceLibrary/README.md": "32b0a61d39d121ba36699f6a59f3a8c18222a8811fc36b050c3116a739d33f39",
+    "Docs/OUTDOOR_RENDERING_PLAN.md": "880a1a2d168094b1a55b72b0151d09a3f229a3fb3bbf72a25c18192701532104",
+    "Docs/STATUS.md": "b48bfe3080cc509170e311619bbdfd5a104af84b200fb089641890a67b2f6177",
+    "README.md": "b80fc98e6990c3198c261c02a9dfe5e4453f094f81a23d8f63690feccb9eb554",
+    "References/README.md": "97964d52e5ea4b9731d889a684dc3ace87aa71dc63174027f648a31332ed6eeb",
+    "Tools/README.md": "05cc6509a42a601eb859778acc3a6089c5755e1b27cbc1395572d4171723878d"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "e81d1b0a69344279f7322030f3ac780e9f5c8cf9e7dfe104bbd1c7066f2cbc8f",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T15:03:08.709295+00:00",
+  "timeout_seconds": 600
+}
