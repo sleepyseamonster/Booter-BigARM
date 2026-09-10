@@ -1,0 +1,4 @@
+step peak=0.252882 stop x=4.38
+slope steep=0 x=2.31604 y=1.20169
+slope steep=1 x=-0.228673 y=5.32907e-14
+PASS: Jolt bodies/queries/contact lifetime, capsule slopes/steps/jump/ground loss, camera obstruction and fixed-rate motion

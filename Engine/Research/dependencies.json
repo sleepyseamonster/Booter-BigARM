@@ -52,11 +52,12 @@
     },
     {
       "id": "jolt",
-      "status": "proposed",
-      "revision": null,
+      "status": "selected",
+      "revision": "e77f175595e64cb44218cc9d9d56fc365ad0e36a",
       "source": "https://github.com/jrouwe/JoltPhysics",
-      "license_record": null,
-      "purpose": "Collision stage"
+      "license_record": "Licenses/jolt.txt",
+      "purpose": "Bounded single-owner collision, queries and CharacterVirtual integration; native Mac technical cases passed, Windows pending",
+      "version_label": "5.6.0"
     },
     {
       "id": "glm",

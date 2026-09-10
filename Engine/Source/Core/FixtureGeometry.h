@@ -13,6 +13,7 @@ Matrix4 normalMatrix(const Matrix4& model);
 FixtureMesh fixtureCube();
 FixtureMesh fixtureSlopedSolid();
 FixtureMesh fixtureSphere();
+FixtureMesh fixtureCapsule();
 // Independent flat-normal reference: recompute normals from transformed edges.
 FixtureMesh bakeFlatReference(const FixtureMesh& mesh, const Matrix4& model);
 }

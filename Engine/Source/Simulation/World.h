@@ -35,6 +35,8 @@ public:
     std::vector<EntitySnapshot> ordered() const;
     void enqueue(WorldCommand);
     void step(double seconds);
+    // Adopt an authoritative physics result after step; preserve prior pose for presentation.
+    void setSimulatedPose(EntityToken,Pose);
     size_t size() const;
     uint64_t appliedCommands() const;
     uint64_t rejectedCommands() const;

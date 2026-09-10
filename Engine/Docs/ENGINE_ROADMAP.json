@@ -225,8 +225,11 @@
       ],
       "owner_module": "Physics",
       "proof": "Body lifetime, callback order, static surfaces and CharacterVirtual query policy",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Evidence/P09-P10-runtime/result.json",
+        "Docs/COLLISION_CHARACTER_RESULT.md"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {
@@ -243,8 +246,11 @@
       ],
       "owner_module": "Game/Camera",
       "proof": "Slope/step/ground/obstruction/input technical checks; user feel separate",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Evidence/P09-P10-runtime/result.json",
+        "Docs/COLLISION_CHARACTER_RESULT.md"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

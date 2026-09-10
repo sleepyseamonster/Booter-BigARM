@@ -30,7 +30,7 @@ struct SurfaceTextures {
     bool packedSurface=true;
     bgfx::TextureHandle albedo=BGFX_INVALID_HANDLE, normal=BGFX_INVALID_HANDLE, surface=BGFX_INVALID_HANDLE;
 };
-struct ScenePlacement { std::array<float,3> offset{}; };
+struct ScenePlacement { std::array<float,3> offset{},eye{},target{};bool physicalCharacter=false; };
 struct SceneSurfaces { SurfaceTextures rock, ground; };
 class Renderer {
 public:
@@ -63,7 +63,7 @@ private:
     bgfx::UniformHandle shadowMatrix_ = BGFX_INVALID_HANDLE, shadowOptions_ = BGFX_INVALID_HANDLE, shadowSampler_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle eye_ = BGFX_INVALID_HANDLE, surfaceParams_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle albedoSampler_ = BGFX_INVALID_HANDLE, normalSampler_ = BGFX_INVALID_HANDLE, surfaceSampler_ = BGFX_INVALID_HANDLE;
-    std::array<bgfx::VertexBufferHandle, 4> meshes_{{BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE}};
+    std::array<bgfx::VertexBufferHandle, 5> meshes_{{BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE}};
     bgfx::UniformHandle material_ = BGFX_INVALID_HANDLE, light_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle normal_ = BGFX_INVALID_HANDLE, options_ = BGFX_INVALID_HANDLE;
 };

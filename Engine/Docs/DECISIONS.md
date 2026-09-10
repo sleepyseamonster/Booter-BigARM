@@ -10,7 +10,7 @@ Update this record when evidence changes a decision. Keep the rationale and repl
 | D-04 | Accepted; clarified | Windows product target; Mac remains primary development while practical; Windows testing is a separate checkpoint | User clarification, 2026-09-09; supersedes optional-only Mac wording |
 | D-05 | Accepted for foundation | C++20 and CMake | Native fresh build and final fixture checks; broader engine evolution remains open |
 | D-06 | Accepted for foundation | Pinned SDL3, bgfx and Dear ImGui | Real Metal scene/inspector verified; Windows, advanced renderer requirements and shipping readiness remain open |
-| D-07 | Proposed | Jolt when collision enters scope | Character/collision and streamed resource experiment later |
+| D-07 | Accepted first-pass collision | Jolt 5.6.0 for bounded collision, queries and CharacterVirtual | [Native collision/controller cases](./COLLISION_CHARACTER_RESULT.md); streamed readiness, worker scheduling and Windows remain later work |
 | D-08 | Accepted for foundation | Direct pinned upstream CMake sources with archive/content verification | One acquisition path for the fixture; revisit packaging/vcpkg when distribution or wider dependencies require it |
 | D-09 | Open | Target Windows PC, minimum specification and frame-time budget | User/hardware evidence; do not extrapolate from the Mac |
 | D-10 | Open | Camera feel, visual quality and final asset scale | User review after a functioning fixture |

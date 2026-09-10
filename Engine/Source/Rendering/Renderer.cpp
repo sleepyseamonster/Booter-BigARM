@@ -177,9 +177,9 @@ Matrix4 subjectTransform(const FixtureState& state) {
 }
 void Renderer::rebuildMesh() {
     const auto sloped=fixtureSlopedSolid();
-    const std::array<FixtureMesh,4> data{fixtureCube(),sloped,fixtureSphere(),
-        bakeFlatReference(sloped,subjectTransform(geometryProofState()))};
-    std::array<bgfx::VertexBufferHandle,4> replacement{{BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE}};
+    const std::array<FixtureMesh,5> data{fixtureCube(),sloped,fixtureSphere(),
+        bakeFlatReference(sloped,subjectTransform(geometryProofState())),fixtureCapsule()};
+    std::array<bgfx::VertexBufferHandle,5> replacement{{BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE}};
     bgfx::VertexLayout layout;
     layout.begin().add(bgfx::Attrib::Position,3,bgfx::AttribType::Float).add(bgfx::Attrib::Normal,3,bgfx::AttribType::Float).end();
     try {
@@ -193,15 +193,18 @@ void Renderer::rebuildMesh() {
     }
     for (auto handle : meshes_) if (bgfx::isValid(handle)) bgfx::destroy(handle);
     meshes_=replacement;
-    const char* names[]={"Reference cube", "Reference sloped solid", "Reference sphere", "CPU-baked flat-normal reference"};
+    const char* names[]={"Reference cube", "Reference sloped solid", "Reference sphere", "CPU-baked flat-normal reference","Character capsule"};
     for (size_t i=0;i<meshes_.size();++i) bgfx::setName(meshes_[i],names[i]);
 }
 void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibration, const TexturePreview* preview, const SceneSurfaces* surfaces, const ScenePlacement* placement) {
     auto eye=state.eye();
     const auto offset=placement?placement->offset:std::array<float,3>{};
     for(size_t i=0;i<3;++i) eye[i]+=offset[i];
+    const bool physical=placement && placement->physicalCharacter;
+    if(physical) eye=placement->eye;
+    const auto target=physical?placement->target:std::array<float,3>{offset[0],.85f+offset[1],offset[2]};
     float view[16], projection[16];
-    bx::mtxLookAt(view,{eye[0],eye[1],eye[2]},{offset[0],0.85f+offset[1],offset[2]},{0,1,0},bx::Handedness::Right);
+    bx::mtxLookAt(view,{eye[0],eye[1],eye[2]},{target[0],target[1],target[2]},{0,1,0},bx::Handedness::Right);
     bx::mtxProj(projection,state.fieldOfView,float(width_)/float(height_),0.1f,100.0f,
         bgfx::getCaps()->homogeneousDepth,bx::Handedness::Right);
     // reset clears view framebuffer bindings; restore ownership on every frame.
@@ -257,8 +260,10 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     bx::mtxSRT(groundTransform.data(),20,.1f,20,0,0,0,0,-.05f,0);
     bx::mtxSRT(markerTransform.data(),.35f,1.8f,.35f,0,0,0,2.1f,.9f,0);
     auto subject=subjectTransform(state);
+    if(physical) bx::mtxSRT(subject.data(),1,1,1,0,state.objectYaw,0,0,.75f,0);
     for(size_t i=0;i<3;++i) subject[12+i]+=offset[i];
     const bool baked=check==GeometryCheck::BakedReference;
+    const int subjectMesh=physical?4:(baked?3:state.mesh);
     if (baked) bx::mtxIdentity(subject.data());
     if (state.shadows && !state.showNormals && !calibration && !preview) {
         bgfx::setViewFrameBuffer(views::shadow,shadow_);
@@ -270,7 +275,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
             bgfx::setState(BGFX_STATE_WRITE_R|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_CULL_CW);
             bgfx::submit(views::shadow,shadowProgram_);
         };
-        cast(0,groundTransform);cast(baked?3:state.mesh,subject);cast(0,markerTransform);
+        cast(0,groundTransform);cast(subjectMesh,subject);cast(0,markerTransform);
     }
     const auto* rock=surfaces?&surfaces->rock:nullptr;
     const auto* soil=surfaces?&surfaces->ground:nullptr;
@@ -287,9 +292,9 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         bgfx::setVertexBuffer(0,fullscreen_); bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A);
         bgfx::submit(views::scene,calibrationProgram_);
     } else if (check==GeometryCheck::ReverseOrder) {
-        submit(0,markerTransform,marker); submit(state.mesh,subject,color,rock); submit(0,groundTransform,ground,soil);
+        submit(0,markerTransform,marker); submit(subjectMesh,subject,color,rock); submit(0,groundTransform,ground,soil);
     } else {
-        submit(0,groundTransform,ground,soil); submit(baked?3:state.mesh,subject,color,rock); submit(0,markerTransform,marker);
+        submit(0,groundTransform,ground,soil); submit(subjectMesh,subject,color,rock); submit(0,markerTransform,marker);
     }
     const float display[]={state.exposure,state.showNormals && !calibration && !preview?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,0};
     bgfx::setViewRect(views::display,0,0,uint16_t(width_),uint16_t(height_));

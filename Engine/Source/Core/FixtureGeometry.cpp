@@ -1,5 +1,6 @@
 #include "Core/FixtureGeometry.h"
 #include <cmath>
+#include <algorithm>
 #include <stdexcept>
 
 namespace engine {
@@ -73,6 +74,25 @@ FixtureMesh fixtureSphere() {
         if (r>0) triangle(mesh,a,b,c,true);
         if (r<rings-1) triangle(mesh,b,d,c,true);
     }
+    return mesh;
+}
+FixtureMesh fixtureCapsule() {
+    constexpr int rings=17,segments=32;
+    constexpr float pi=3.14159265358979323846f;
+    auto point=[](int ring,int segment)->V {
+        if(ring==0) return {0,.9f,0};
+        if(ring==rings) return {0,-.9f,0};
+        const float latitude=pi*float(ring<=8?ring:ring-1)/16;
+        const float longitude=2*pi*float(segment%segments)/segments;
+        return {.35f*std::sin(latitude)*std::cos(longitude),.35f*std::cos(latitude)+(ring<=8?.55f:-.55f),.35f*std::sin(latitude)*std::sin(longitude)};
+    };
+    FixtureMesh mesh;
+    for(int r=0;r<rings;++r) for(int s=0;s<segments;++s) {
+        const auto a=point(r,s),b=point(r,s+1),c=point(r+1,s),d=point(r+1,s+1);
+        if(r>0) triangle(mesh,a,b,c);
+        if(r<rings-1) triangle(mesh,b,d,c);
+    }
+    for(auto& v:mesh) {const auto n=normalized({v.x,v.y-std::clamp(v.y,-.55f,.55f),v.z});v.nx=n[0];v.ny=n[1];v.nz=n[2];}
     return mesh;
 }
 FixtureMesh bakeFlatReference(const FixtureMesh& mesh,const Matrix4& model) {

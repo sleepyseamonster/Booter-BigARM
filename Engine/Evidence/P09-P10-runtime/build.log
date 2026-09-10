@@ -1,0 +1,31 @@
+[  0%] Built target engine_core
+[  2%] Built target bx
+[ 23%] Built target SDL3-static
+[ 24%] Built target spirv-cross
+[ 35%] Built target Jolt
+[ 37%] Built target bimg
+[ 42%] Built target glslang
+[ 42%] Built target engine_texture_data
+[ 42%] Built target engine_state
+[ 42%] Built target engine_simulation
+[ 42%] Built target engine_imgui
+[ 42%] Building CXX object CMakeFiles/engine_physics.dir/Source/Physics/PhysicsWorld.cpp.o
+[ 44%] Built target bgfx
+[ 64%] Built target spirv-opt
+[ 96%] Built target tint
+[ 97%] Built target shaderc
+[ 98%] Built target engine_shaders
+[ 98%] Linking CXX static library libengine_physics.a
+[ 98%] Built target engine_physics
+[ 98%] Built target engine_game
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Apps/Workbench/main.cpp.o
+[100%] Linking CXX executable engine_workbench
+ld: warning: ignoring duplicate libraries: 'bgfx/cmake/bx/libbx.a'
+[100%] Built target engine_workbench
+[  0%] Built target engine_core
+[  0%] Built target engine_simulation
+[100%] Built target Jolt
+[100%] Built target engine_physics
+[100%] Built target engine_game
+[100%] Linking CXX executable engine_physics_tests
+[100%] Built target engine_physics_tests

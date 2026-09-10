@@ -114,6 +114,11 @@ void World::step(double seconds) {
         next.position=next.position.normalized(w.span);t.current=next;
     }
 }
+void World::setSimulatedPose(EntityToken token,Pose pose) {
+    auto& w=*impl_;pose=checkedPose(pose,w.span);
+    if(!w.valid(token)) throw std::invalid_argument("Expired simulated entity");
+    const auto e=entt::entity(token.entity);w.registry.get<Transform>(e).current=pose;w.registry.get<Velocity>(e).value={};
+}
 size_t World::size() const {return impl_->identities.size();}
 uint64_t World::appliedCommands() const {return impl_->applied;}
 uint64_t World::rejectedCommands() const {return impl_->rejected;}

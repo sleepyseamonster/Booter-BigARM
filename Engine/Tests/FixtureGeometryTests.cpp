@@ -39,6 +39,7 @@ int main() {
         checkMesh(engine::fixtureCube(),36);
         checkMesh(engine::fixtureSlopedSolid(),12);
         checkMesh(engine::fixtureSphere(),32*30*3,true);
+        checkMesh(engine::fixtureCapsule(),32*32*3);
         // An affine shear, nonuniform scale and translation exercise more than axis-aligned normals.
         engine::Matrix4 model{2,0,0,0, .7f,3,0,0, .3f,.2f,.5f,0, 8,-2,5,1};
         const auto normal=engine::normalMatrix(model);

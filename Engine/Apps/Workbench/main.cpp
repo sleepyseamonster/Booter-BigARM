@@ -21,6 +21,9 @@
 #include "Platform/ActionInput.h"
 #include "Simulation/FixedClock.h"
 #include "Simulation/World.h"
+#include "Physics/CharacterController.h"
+#include "Game/ThirdPersonCamera.h"
+#include "Game/Locomotion.h"
 
 namespace {
 struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings; bool buildInfo=false, lightingVerify=false; };
@@ -65,7 +68,7 @@ struct TextureControls {
     int selected=0,loaded=-1,channel=0;float lod=0,repeat=1;bool enabled=false;
     std::string error;
 };
-struct SimulationControls { bool enabled=false,paused=false;engine::FixedClock clock; };
+struct SimulationControls { bool enabled=false,paused=false,grounded=false;engine::FixedClock clock; };
 struct ButtonPosition { float x=0,y=0; };
 ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds,TextureControls& textures,SimulationControls& simulation) {
     ImGui::SetNextWindowPos(ImVec2(20,20),ImGuiCond_Always);
@@ -103,7 +106,7 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     }
     ImGui::Separator();
     ImGui::TextUnformatted("Camera");
-    ImGui::SliderFloat("Distance",&state.distance,2.5f,30.0f,"%.1f m");
+    ImGui::SliderFloat("Distance",&state.distance,2.5f,simulation.enabled?8.0f:30.0f,"%.1f m");
     ImGui::SliderFloat("Field of view",&state.fieldOfView,30.0f,90.0f,"%.0f deg");
     if (ImGui::Button("Reset view")) { state.yaw=0.65f; state.pitch=0.28f; state.distance=7.5f; state.fieldOfView=55.0f; }
     ImGui::Separator();
@@ -128,15 +131,17 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
         if (!textures.error.empty()) ImGui::TextWrapped("%s",textures.error.c_str());
     }
     if(ImGui::CollapsingHeader("Shared simulation")) {
-        ImGui::Checkbox("Simulate proxy",&simulation.enabled);
+        ImGui::Checkbox("Enable character",&simulation.enabled);
         ImGui::Checkbox("Paused",&simulation.paused);
         ImGui::Text("Tick: %llu",static_cast<unsigned long long>(simulation.clock.ticks()));
+        ImGui::Text("Grounded: %s",simulation.grounded?"yes":"no");
         ImGui::Text("Dropped time: %.3f s",simulation.clock.droppedSeconds());
-        ImGui::TextWrapped("WASD / left stick: free proxy motion. P / Start: pause. Physics and character motor are next.");
+        ImGui::TextWrapped("WASD / left stick: move. Space / South: jump. Shift / stick click: run. Right drag / right stick: camera. P / Start: pause.");
     }
     ImGui::PopItemWidth();
     ImGui::End();
     state.constrain();
+    if(simulation.enabled) state.distance=std::min(state.distance,8.0f);
     return button;
 }
 int run(Options options) {
@@ -210,8 +215,12 @@ int run(Options options) {
     engine::ActionInput actionInput(actions);
     SimulationControls simulation;
     engine::World world;
-    const auto proxy=world.create("authored:calibration:proxy",{{{0,0},{0,.75,0}},0});
-    uint64_t commandSequence=0;
+    const auto proxy=world.create("authored:calibration:proxy");
+    engine::PhysicsWorld physics;
+    physics.box("authored:calibration:ground",{0,-.05f,0},{10,.05f,10});
+    physics.box("authored:calibration:marker",{2.1f,.9f,0},{.175f,.9f,.175f});
+    engine::CharacterController character(physics,"authored:calibration:proxy",{0,0,0});
+    engine::ThirdPersonCamera camera;
     bool clicked=false,orbited=false,resized=false,closed=false;
     unsigned baselineBuffers=0,finalBuffers=0;
     {
@@ -285,10 +294,15 @@ int run(Options options) {
             actions.gameplay(simulation.enabled && !simulation.paused && !io.WantCaptureKeyboard);
             simulation.clock.advance(double(milliseconds)/1000.0,technical || !simulation.enabled || simulation.paused || !focused,[&](double dt,uint64_t) {
                 const auto input=actions.takeTick();
-                double x=input[size_t(engine::Action::MoveX)].value,z=input[size_t(engine::Action::MoveZ)].value;
-                const double length=std::max(1.0,std::sqrt(x*x+z*z));
-                engine::WorldCommand command;command.sequence=++commandSequence;command.target=proxy;
-                command.velocity={2*x/length,0,2*z/length};world.enqueue(command);world.step(dt);
+                state.yaw-=input[size_t(engine::Action::LookX)].value*float(dt)*2;
+                state.pitch+=input[size_t(engine::Action::LookY)].value*float(dt)*1.5f;state.constrain();
+                const auto intent=engine::locomotionIntent(input,state.yaw);
+                world.step(dt);character.step(float(dt),intent.velocity,intent.jump);physics.step(float(dt));
+                const auto feet=character.position();
+                if(std::abs(intent.velocity[0])+std::abs(intent.velocity[2])>.01f) state.objectYaw=std::atan2(-intent.velocity[0],-intent.velocity[2]);
+                world.setSimulatedPose(proxy,{{{0,0},{feet[0],feet[1],feet[2]}},state.objectYaw});
+                simulation.grounded=character.grounded();
+                physics.takeContacts(); // No gameplay contact consumer until the game runtime is integrated.
             });
             engine::ScenePlacement placement;
             if(simulation.enabled) {
@@ -296,7 +310,9 @@ int run(Options options) {
                 const auto current=entity.current.position.relativeTo({},world.regionSpan(),4096);
                 const auto previous=entity.previous.position.relativeTo({},world.regionSpan(),4096);
                 for(size_t i=0;i<3;++i) placement.offset[i]=previous[i]+float(simulation.clock.alpha())*(current[i]-previous[i]);
-                placement.offset[1]-=.75f;
+                const auto frame=camera.update(physics,placement.offset,state.yaw,state.pitch,state.distance,milliseconds/1000.0f,character.body());
+                placement.eye=frame.eye;placement.target=frame.target;placement.physicalCharacter=true;
+                placement.offset[1]+=.15f; // Capsule center is 0.9 m above feet; fixture base center is 0.75 m.
             }
             engine::TexturePreview preview;
             const bool showTexture=!records.empty() && textureControls.enabled && (!verify || frame>=350);

@@ -1,0 +1,27 @@
+{
+  "result": "passed",
+  "platform": "macOS native",
+  "proof": "Native Jolt/controller/camera cases and related geometry/simulation checks; compiled workbench integration",
+  "input_sha256": {
+    "build/foundation/engine_workbench": "0330df06388d7459c70bed60e0bfe7fec0d2c37bcaaa5b5fe52ea2a2cc65e9b4",
+    "build/foundation/engine_physics_tests": "af0331b982c3fa7a0d1c5d08fbb797350d4f85d9f91f5a1a09928455b27b2f36",
+    "Research/runtime-lock.json": "5951a59e4dccdb896a605fa389af11152ebb47651072441bb025825dc207ddc2",
+    "CMakeLists.txt": "b2a7225e48db7e2b8e81d32b4db41f96df829efaab56605d20e365d3cfd3d755",
+    "CMake/Physics.cmake": "bf3e7c5d74d0dc2884a40259c00abe786c0ec7d1f21b2463a058096780eba248",
+    "Apps/Workbench/main.cpp": "98da6b230c050cadcf2306276a1a5f0c323be550387763651e96f02157c3f029",
+    "Tests/PhysicsTests.cpp": "8aa9b2ba23d060e49ee091eb770bbbc229b4d394c3a75d68f7ef7e8f3d7ede32",
+    "Source/Physics/CharacterController.h": "3e90e0a9e32361b5dc7aeb9deaaab5b734dc50d1eb1d0590007f4f7858bde1dd",
+    "Source/Physics/PhysicsWorld.cpp": "044bc2d67c68ce813eb2c7f5902f711ad7f5bb61c41b9daebc13d53f28e68043",
+    "Source/Physics/PhysicsWorld.h": "00bef5d43d6a5d00b4e0846555b30fbbf2c04dce4c3b1e54b020aba09e67a2eb",
+    "Source/Game/Locomotion.h": "f7b10588c31f0adae894d5ea32dda5df36b9563e38d537d1c292a3709054885d",
+    "Source/Game/ThirdPersonCamera.cpp": "768418a93334216a93e075515c275c52ffc9705fef462c75f8a951c67000cd36",
+    "Source/Game/ThirdPersonCamera.h": "7d85c766aff1f83a6b276c95dc468d29b4fce4c19fbe9f405d474de437f51c18"
+  },
+  "logs": [
+    "build.log",
+    "physics-tests.log",
+    "related-tests.log",
+    "sources.log"
+  ],
+  "limits": "No gameplay smoke, physical-device, graphical character acceptance, Windows or target-PC performance proof."
+}
