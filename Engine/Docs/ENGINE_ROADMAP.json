@@ -340,8 +340,11 @@
       ],
       "owner_module": "World",
       "proof": "Deterministic constraints and two-agent clearance/route preservation",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/NATIVE_ROCK_FOUNDATION_RESULT.md",
+        "Evidence/P14-P15-generation/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {
@@ -349,8 +352,7 @@
       "milestone": "M3",
       "title": "Versioned CPU rock generation",
       "depends_on": [
-        "P14",
-        "P06"
+        "P14"
       ],
       "capabilities": [
         "CAP-04",
@@ -358,8 +360,12 @@
       ],
       "owner_module": "World/Rocks",
       "proof": "Recipe/seed/order/identity/geometry invariants and invalid input",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/NATIVE_ROCK_FOUNDATION_RESULT.md",
+        "Evidence/P14-P15-generation/result.json",
+        "Evidence/P15-rock-cook/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {
@@ -390,7 +396,8 @@
       "title": "Rock workbench authoring loop",
       "depends_on": [
         "P16",
-        "P13"
+        "P13",
+        "P06"
       ],
       "capabilities": [
         "CAP-15",

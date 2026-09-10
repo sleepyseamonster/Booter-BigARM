@@ -1,0 +1,23 @@
+[ 25%] Built target engine_core
+[ 50%] Built target ozz_base
+[ 50%] Built target engine_texture_data
+[ 75%] Built target ozz_animation
+[100%] Built target ozz_animation_offline
+[100%] Built target engine_animation
+[100%] Building CXX object CMakeFiles/engine_world.dir/Source/World/Placement.cpp.o
+[100%] Building CXX object CMakeFiles/engine_world.dir/Source/World/Rocks/RockGenerator.cpp.o
+[100%] Linking CXX static library libengine_world.a
+[100%] Built target engine_world
+[100%] Building CXX object CMakeFiles/engine_world_tests.dir/Tests/WorldGenerationTests.cpp.o
+[100%] Linking CXX executable engine_world_tests
+[100%] Built target engine_world_tests
+[ 25%] Built target engine_core
+[ 50%] Built target ozz_base
+[ 50%] Built target engine_texture_data
+[ 75%] Built target ozz_animation
+[100%] Built target ozz_animation_offline
+[100%] Built target engine_animation
+[100%] Built target engine_world
+[100%] Building CXX object CMakeFiles/engine_rock_cook.dir/Apps/RockCooker/main.cpp.o
+[100%] Linking CXX executable engine_rock_cook
+[100%] Built target engine_rock_cook

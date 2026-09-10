@@ -28,6 +28,8 @@ The 24 capability rows in [the audit](../Research/ENGINE_SYSTEM_AUDIT.md) are th
 
 This document authorizes no release, purchase, account change, destructive cleanup or external publication by itself. Routine engineering decisions and work sequencing are the agent's responsibility under the user's continuing task authority. Final creative choices remain the user's.
 
+Implementation sequencing clarification, 2026-09-10: P15's CPU recipe/geometry path consumes core documents and P14 placement contracts, not workbench edit commands. P06 is therefore a direct prerequisite of P17's live authoring loop instead of P15. P06 remains required and will be integrated with the workbench batch; no command, save/reload or UI requirement is removed. This keeps UI work from blocking independent CPU generation while preserving the final integration gate.
+
 ## 3. Architecture and invariants
 
 ```mermaid

@@ -1,0 +1,34 @@
+{
+  "command": [
+    "build/foundation/engine_rock_cook",
+    "Assets/Recipes/wasteland-rock.json",
+    "out/rocks/wasteland-001"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/CMakeLists.txt",
+    "?? Engine/Apps/RockCooker/",
+    "?? Engine/Assets/Recipes/",
+    "?? Engine/Evidence/P14-P15-generation/",
+    "?? Engine/Source/World/",
+    "?? Engine/Tests/WorldGenerationTests.cpp"
+  ],
+  "duration_seconds": 0.492,
+  "exit_code": 0,
+  "git_head": "f31af06bc974adeadfc07771efdacb1609594c0d",
+  "input_sha256_after": {
+    "Assets/Recipes/wasteland-rock.json": "0c664f92b14d0a39c5d0ee9db271800bcc635756f6151bfc5f66eac63b526821",
+    "build/foundation/engine_rock_cook": "4f3844d83635c8be2c8d58dadaa8f9e884a225e9201557081b586f06b38a44ae"
+  },
+  "input_sha256_before": {
+    "Assets/Recipes/wasteland-rock.json": "0c664f92b14d0a39c5d0ee9db271800bcc635756f6151bfc5f66eac63b526821",
+    "build/foundation/engine_rock_cook": "4f3844d83635c8be2c8d58dadaa8f9e884a225e9201557081b586f06b38a44ae"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "08d22156d1598e186cba628424551c056a69597127f928386662e418b5500d61",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T18:42:11.365094+00:00",
+  "timeout_seconds": 30.0
+}

@@ -1,0 +1,39 @@
+{
+  "command": [
+    "build/foundation/engine_world_tests",
+    "Assets/Recipes/wasteland-rock.json",
+    "out/P14-P15-tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/CMakeLists.txt",
+    "?? Engine/Apps/RockCooker/",
+    "?? Engine/Assets/Recipes/",
+    "?? Engine/Source/World/",
+    "?? Engine/Tests/WorldGenerationTests.cpp"
+  ],
+  "duration_seconds": 0.5,
+  "exit_code": 0,
+  "git_head": "f31af06bc974adeadfc07771efdacb1609594c0d",
+  "input_sha256_after": {
+    "Assets/Recipes/wasteland-rock.json": "0c664f92b14d0a39c5d0ee9db271800bcc635756f6151bfc5f66eac63b526821",
+    "Source/World/Placement.cpp": "621cc2d8e33e31e8f62aa79dbb6a30f7c120135de9bb8f4c2d2eecb58379d89a",
+    "Source/World/Rocks/RockGenerator.cpp": "e9a4057ca080f3ea65e525f7d81ee2cd0871985004f1c0dc9fe9c3c363d2e9a1",
+    "Tests/WorldGenerationTests.cpp": "09782ba3938eca80de2e05f72e14cbb2b04b394e5b68482ed86c61efbd950f26",
+    "build/foundation/engine_world_tests": "27acd3f1c39eaf840e10050cafb435fa29c53f78321be3072aec20febf5f74a8"
+  },
+  "input_sha256_before": {
+    "Assets/Recipes/wasteland-rock.json": "0c664f92b14d0a39c5d0ee9db271800bcc635756f6151bfc5f66eac63b526821",
+    "Source/World/Placement.cpp": "621cc2d8e33e31e8f62aa79dbb6a30f7c120135de9bb8f4c2d2eecb58379d89a",
+    "Source/World/Rocks/RockGenerator.cpp": "e9a4057ca080f3ea65e525f7d81ee2cd0871985004f1c0dc9fe9c3c363d2e9a1",
+    "Tests/WorldGenerationTests.cpp": "09782ba3938eca80de2e05f72e14cbb2b04b394e5b68482ed86c61efbd950f26",
+    "build/foundation/engine_world_tests": "27acd3f1c39eaf840e10050cafb435fa29c53f78321be3072aec20febf5f74a8"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "76e007e777029e892fcfb644a2d25b095ff3fb33b72a1e5f9d9ef9e02c3f37fd",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T18:41:34.048147+00:00",
+  "timeout_seconds": 30.0
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "engine.placement-constraints",
+  "version": 1,
+  "payload": {
+    "profiles": [
+      {"id": "player", "radius": 0.35, "height": 1.8, "max_slope": 45, "max_step": 0.35},
+      {"id": "companion", "radius": 1.1, "height": 2.4, "max_slope": 25, "max_step": 0.25}
+    ],
+    "exclusions": [
+      {"id": "authored:calibration:spawn", "center": {"region": [0, 0], "local": [0, 0, 0]}, "radius": 3}
+    ],
+    "routes": [
+      {"id": "authored:calibration:traversal-route", "start": {"region": [-1, 0], "local": [240, 0, 0]}, "end": {"region": [0, 0], "local": [16, 0, 0]}, "half_width": 1, "agents": 3}
+    ]
+  }
+}
