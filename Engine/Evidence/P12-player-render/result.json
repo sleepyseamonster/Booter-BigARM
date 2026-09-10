@@ -1,0 +1,52 @@
+{
+  "command": [
+    "build/foundation/engine_player",
+    "--model",
+    "out/models/calibration/model.json",
+    "--capture",
+    "Evidence/P12-player-capture"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Research/license-manifest.json",
+    " M Engine/Research/runtime-lock.json",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    "?? Engine/Apps/Game/",
+    "?? Engine/CMake/Audio.cmake",
+    "?? Engine/Evidence/P12-runtime/",
+    "?? Engine/Research/Licenses/miniaudio.txt",
+    "?? Engine/Source/Audio/",
+    "?? Engine/Source/Game/CalibrationRuntime.cpp",
+    "?? Engine/Source/Game/CalibrationRuntime.h",
+    "?? Engine/Tests/CalibrationTests.cpp"
+  ],
+  "duration_seconds": 1.235,
+  "exit_code": 0,
+  "git_head": "57f8ef2cb0e9a60f84b8c3d43a76b43c32a46d1f",
+  "input_sha256_after": {
+    "Apps/Game/main.cpp": "1309497d3079a059ed64d5e3d6b3e8b3447e49f6d313dce8612c59cb9c7fb427",
+    "Source/Game/CalibrationRuntime.cpp": "9e5bf7a5ce8e0db59b1181b27d2e5ce52ad019318afc7c4b9c8cfa2fc3598865",
+    "Source/Rendering/Renderer.cpp": "99ef3f9cd4b2ea6f074ef9eae9fe20514b571c19de5b576d0df7a720c2719eed",
+    "build/foundation/engine_player": "c324d82d233e4c94599a32ac6f13e527cdbc5f9273bfe8c47460b853df271750",
+    "out/models/calibration/mesh.bin": "d43019cce3c24d5a83cdf7535da445a068418ef9ebc95c37df88a73ebbdbfd7a",
+    "out/models/calibration/model.json": "5185d8e098019a663f26db5bb029ae225399c0ad49557b88fdf56b0e23fa1696"
+  },
+  "input_sha256_before": {
+    "Apps/Game/main.cpp": "1309497d3079a059ed64d5e3d6b3e8b3447e49f6d313dce8612c59cb9c7fb427",
+    "Source/Game/CalibrationRuntime.cpp": "9e5bf7a5ce8e0db59b1181b27d2e5ce52ad019318afc7c4b9c8cfa2fc3598865",
+    "Source/Rendering/Renderer.cpp": "99ef3f9cd4b2ea6f074ef9eae9fe20514b571c19de5b576d0df7a720c2719eed",
+    "build/foundation/engine_player": "c324d82d233e4c94599a32ac6f13e527cdbc5f9273bfe8c47460b853df271750",
+    "out/models/calibration/mesh.bin": "d43019cce3c24d5a83cdf7535da445a068418ef9ebc95c37df88a73ebbdbfd7a",
+    "out/models/calibration/model.json": "5185d8e098019a663f26db5bb029ae225399c0ad49557b88fdf56b0e23fa1696"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "fe00fa1eba1b2129d12c3480d520fbe13f77ae29a3e98405dad892c8f45e72bd",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T18:24:48.709155+00:00",
+  "timeout_seconds": 45.0
+}

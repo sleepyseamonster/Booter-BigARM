@@ -262,7 +262,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     };
     const float ground[4]={0.28f,0.31f,0.34f,1};
     const float color[4]={state.color[0],state.color[1],state.color[2],1};
-    const float marker[4]={0.33f,0.67f,0.64f,1};
+    const float marker[4]={placement&&placement->markerActive?.9f:.33f,placement&&placement->markerActive?.7f:.67f,placement&&placement->markerActive?.15f:.64f,1};
     Matrix4 groundTransform, markerTransform;
     bx::mtxSRT(groundTransform.data(),20,.1f,20,0,0,0,0,-.05f,0);
     bx::mtxSRT(markerTransform.data(),.35f,1.8f,.35f,0,0,0,2.1f,.9f,0);

@@ -88,3 +88,7 @@ build/foundation/engine_workbench --model out/models/calibration/model.json
 The model panel previews clips and blends. Enable **Shared simulation → Enable character** to attach the proxy to the existing capsule motor and third-person camera. The first two clips are the temporary idle/walk mapping in character mode; the calibration asset supplies those clips in that order. Pause/focus policy stops the simulation animation clock. Source glTF files are consumed only by the offline cooker; the workbench reads the engine's cooked model document and mesh payload.
 
 See [the model/animation result](./MODEL_ANIMATION_RESULT.md) for the accepted import profile and remaining work. A cooker output directory is immutable: choose a new directory for a new cook. `Tools/make_character_fixture.py` regenerates the repository-owned source proxy.
+
+## Player skeleton
+
+`build/foundation/engine_player --model out/models/calibration/model.json` launches the separate player using the same runtime as workbench character mode. Add `--silent` for no audio device. E toggles the nearby marker; the overlay shows controls and state. [Player details and current limits](./PLAYER_RUNTIME_RESULT.md). P13 will add snapshots and a relocatable package.

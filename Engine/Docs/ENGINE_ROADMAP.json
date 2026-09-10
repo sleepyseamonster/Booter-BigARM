@@ -296,8 +296,12 @@
       ],
       "owner_module": "Game/Workbench/Audio",
       "proof": "Same runtime in both apps, animation/motor and cue integration, cleanup",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/PLAYER_RUNTIME_RESULT.md",
+        "Evidence/P12-runtime/result.json",
+        "Evidence/P12-player-render/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

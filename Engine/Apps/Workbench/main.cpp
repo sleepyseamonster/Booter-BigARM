@@ -23,7 +23,8 @@
 #include "Simulation/World.h"
 #include "Physics/CharacterController.h"
 #include "Game/ThirdPersonCamera.h"
-#include "Game/Locomotion.h"
+#include "Game/CalibrationRuntime.h"
+#include "Audio/Audio.h"
 #include "Animation/AnimationPlayer.h"
 
 namespace {
@@ -71,7 +72,7 @@ struct TextureControls {
     int selected=0,loaded=-1,channel=0;float lod=0,repeat=1;bool enabled=false;
     std::string error;
 };
-struct SimulationControls { bool enabled=false,paused=false,grounded=false;engine::FixedClock clock; };
+struct SimulationControls { bool enabled=false,paused=false,grounded=false;uint64_t ticks=0;double dropped=0; };
 struct ButtonPosition { float x=0,y=0; };
 ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds,TextureControls& textures,SimulationControls& simulation) {
     ImGui::SetNextWindowPos(ImVec2(20,20),ImGuiCond_Always);
@@ -136,10 +137,10 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     if(ImGui::CollapsingHeader("Shared simulation")) {
         ImGui::Checkbox("Enable character",&simulation.enabled);
         ImGui::Checkbox("Paused",&simulation.paused);
-        ImGui::Text("Tick: %llu",static_cast<unsigned long long>(simulation.clock.ticks()));
+        ImGui::Text("Tick: %llu",static_cast<unsigned long long>(simulation.ticks));
         ImGui::Text("Grounded: %s",simulation.grounded?"yes":"no");
-        ImGui::Text("Dropped time: %.3f s",simulation.clock.droppedSeconds());
-        ImGui::TextWrapped("WASD / left stick: move. Space / South: jump. Shift / stick click: run. Right drag / right stick: camera. P / Start: pause.");
+        ImGui::Text("Dropped time: %.3f s",simulation.dropped);
+        ImGui::TextWrapped("WASD / left stick: move. Space / South: jump. Shift / stick click: run. Right drag / right stick: camera. P / Start: pause. E: toggle nearby marker.");
     }
     ImGui::PopItemWidth();
     ImGui::End();
@@ -192,7 +193,7 @@ int run(Options options) {
         renderModel=std::make_unique<engine::RenderModel>(*modelData);
     }
     if(animationVerify && modelData->clips.size()<2)throw std::runtime_error("Animation verification requires two clips");
-    double animationSeconds=0;float walkBlend=0,previewBlend=0;int previewClip=0;bool animationPlaying=true;
+    double animationSeconds=0;float previewBlend=0;int previewClip=0;bool animationPlaying=true;
     engine::TextureStore textures;
     if (verify && !records.empty()) {
         const auto result=engine::verifyTextureStore(textures,records.at(0));
@@ -230,13 +231,8 @@ int run(Options options) {
     if(!options.bindings.empty()) engine::loadBindings(options.bindings,actions);
     engine::ActionInput actionInput(actions);
     SimulationControls simulation;
-    engine::World world;
-    const auto proxy=world.create("authored:calibration:proxy");
-    engine::PhysicsWorld physics;
-    physics.box("authored:calibration:ground",{0,-.05f,0},{10,.05f,10});
-    physics.box("authored:calibration:marker",{2.1f,.9f,0},{.175f,.9f,.175f});
-    engine::CharacterController character(physics,"authored:calibration:proxy",{0,0,0});
-    engine::ThirdPersonCamera camera;
+    engine::CalibrationRuntime runtime(modelData);
+    std::unique_ptr<engine::Audio> audio;bool audioAttempted=false;
     bool clicked=false,orbited=false,resized=false,closed=false;
     unsigned baselineBuffers=0,finalBuffers=0;
     {
@@ -260,7 +256,7 @@ int run(Options options) {
             }
             if (!running) break;
             int width=0,height=0; window.pixels(width,height);
-            if (width<=0 || height<=0 || (SDL_GetWindowFlags(window.get())&SDL_WINDOW_MINIMIZED)) { actions.focus(false);simulation.clock.advance(0,true,[](double,uint64_t){});last=std::chrono::steady_clock::now();SDL_Delay(16); continue; }
+            if (width<=0 || height<=0 || (SDL_GetWindowFlags(window.get())&SDL_WINDOW_MINIMIZED)) { actions.focus(false);runtime.advance(0,true,actions,state.yaw,state.pitch);last=std::chrono::steady_clock::now();SDL_Delay(16); continue; }
             renderer.resize(width,height);
             ImGui_ImplSDL3_NewFrame();
             auto& io=ImGui::GetIO();
@@ -316,36 +312,24 @@ int run(Options options) {
                     }
                     if(modelData->clips.size()>1)ImGui::SliderFloat("Blend to next clip",&previewBlend,0,1);
                 }
-                ImGui::TextUnformatted(simulation.enabled?"Animation follows character movement":"Model pose preview");ImGui::End();
+                ImGui::TextUnformatted(simulation.enabled?"Animation follows character movement":"Model pose preview");
+                if(simulation.enabled)ImGui::Text("Marker: %s | %s",runtime.targetActive()?"on":"off",runtime.canInteract()?"E to interact":"out of reach");ImGui::End();
             }
             const bool focused=(SDL_GetWindowFlags(window.get())&SDL_WINDOW_INPUT_FOCUS)!=0;
             actions.focus(focused);actionInput.sample();
             if(actions.consume(engine::Action::Pause).pressed) simulation.paused=!simulation.paused;
             actions.gameplay(simulation.enabled && !simulation.paused && !io.WantCaptureKeyboard);
-            simulation.clock.advance(double(milliseconds)/1000.0,technical || !simulation.enabled || simulation.paused || !focused,[&](double dt,uint64_t) {
-                const auto input=actions.takeTick();
-                state.yaw-=input[size_t(engine::Action::LookX)].value*float(dt)*2;
-                state.pitch+=input[size_t(engine::Action::LookY)].value*float(dt)*1.5f;state.constrain();
-                const auto intent=engine::locomotionIntent(input,state.yaw);
-                world.step(dt);character.step(float(dt),intent.velocity,intent.jump);physics.step(float(dt));
-                const auto feet=character.position();
-                animationSeconds+=dt;
-                const auto velocity=std::sqrt(intent.velocity[0]*intent.velocity[0]+intent.velocity[2]*intent.velocity[2]);
-                walkBlend+=std::clamp((velocity>.01f?1.f:0.f)-walkBlend,-float(dt)*5,float(dt)*5);
-                if(std::abs(intent.velocity[0])+std::abs(intent.velocity[2])>.01f) state.objectYaw=std::atan2(-intent.velocity[0],-intent.velocity[2]);
-                world.setSimulatedPose(proxy,{{{0,0},{feet[0],feet[1],feet[2]}},state.objectYaw});
-                simulation.grounded=character.grounded();
-                physics.takeContacts(); // No gameplay contact consumer until the game runtime is integrated.
-            });
+            runtime.advance(double(milliseconds)/1000.0,technical||!simulation.enabled||simulation.paused||!focused,actions,state.yaw,state.pitch);
+            simulation.grounded=runtime.grounded();simulation.ticks=runtime.clock().ticks();simulation.dropped=runtime.clock().droppedSeconds();
+            if(simulation.enabled&&!technical&&!audioAttempted) {
+                audioAttempted=true;try{audio=std::make_unique<engine::Audio>();}catch(const std::exception& error){std::cerr<<error.what()<<"; continuing silently\n";}
+            }
+            for(const auto& cue:runtime.takeCues())if(audio)audio->cue(cue.sequence);
             engine::ScenePlacement placement;
             if(simulation.enabled) {
-                const auto entity=*world.snapshot(proxy);
-                const auto current=entity.current.position.relativeTo({},world.regionSpan(),4096);
-                const auto previous=entity.previous.position.relativeTo({},world.regionSpan(),4096);
-                for(size_t i=0;i<3;++i) placement.offset[i]=previous[i]+float(simulation.clock.alpha())*(current[i]-previous[i]);
-                const auto frame=camera.update(physics,placement.offset,state.yaw,state.pitch,state.distance,milliseconds/1000.0f,character.body());
-                placement.eye=frame.eye;placement.target=frame.target;placement.physicalCharacter=true;
-                placement.offset[1]+=.15f; // Capsule center is 0.9 m above feet; fixture base center is 0.75 m.
+                const auto frame=runtime.present(state.yaw,state.pitch,state.distance,std::min(milliseconds/1000.f,.1f));
+                placement.offset=frame.feet;placement.offset[1]+=.15f;placement.eye=frame.eye;placement.target=frame.target;
+                placement.physicalCharacter=true;placement.pose=frame.palette;placement.markerActive=runtime.targetActive();state.objectYaw=frame.yaw;
             }
             if(animation) {
                 placement.model=renderModel.get();
@@ -353,11 +337,12 @@ int run(Options options) {
                     placement.pose=frame<15?&animation->rest():&animation->sample(1,.25);
                     placement.cpuReference=(frame>=30&&frame<45)||frame>=60;
                     if(frame==30||frame==60)renderModel->bakeReference(*modelData,*placement.pose);
-                } else if(modelData->clips.empty())placement.pose=&animation->rest();
+                } else if(simulation.enabled) { /* Shared runtime supplied the pose. */ }
+                else if(modelData->clips.empty())placement.pose=&animation->rest();
                 else {
                     if(!simulation.enabled && animationPlaying)animationSeconds+=std::min(double(milliseconds)/1000.0,.1);
                     const size_t clip=simulation.enabled?0:size_t(previewClip);
-                    placement.pose=&animation->sample(clip,animationSeconds,modelData->clips.size()>1?(clip+1)%modelData->clips.size():SIZE_MAX,simulation.enabled?walkBlend:previewBlend);
+                    placement.pose=&animation->sample(clip,animationSeconds,modelData->clips.size()>1?(clip+1)%modelData->clips.size():SIZE_MAX,previewBlend);
                 }
             }
             engine::TexturePreview preview;

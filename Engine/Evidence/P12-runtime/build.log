@@ -1,0 +1,87 @@
+[  0%] Building C object CMakeFiles/engine_miniaudio.dir/Source/Audio/Miniaudio.c.o
+[  0%] Built target engine_core
+[  7%] Built target ozz_base
+[  7%] Built target engine_simulation
+[  7%] Built target engine_texture_data
+[ 14%] Built target ozz_animation
+[ 21%] Built target ozz_animation_offline
+[ 21%] Built target engine_animation
+[ 92%] Built target Jolt
+[ 92%] Built target engine_physics
+[ 92%] Building CXX object CMakeFiles/engine_game.dir/Source/Game/CalibrationRuntime.cpp.o
+[ 92%] Linking CXX static library libengine_game.a
+[ 92%] Built target engine_game
+[ 92%] Linking C static library libengine_miniaudio.a
+[ 92%] Built target engine_miniaudio
+[ 92%] Building CXX object CMakeFiles/engine_audio.dir/Source/Audio/Audio.cpp.o
+[100%] Linking CXX static library libengine_audio.a
+[100%] Built target engine_audio
+[100%] Building CXX object CMakeFiles/engine_calibration_tests.dir/Tests/CalibrationTests.cpp.o
+[100%] Linking CXX executable engine_calibration_tests
+[100%] Built target engine_calibration_tests
+[  0%] Built target engine_core
+[  1%] Built target ozz_base
+[  3%] Built target bx
+[  3%] Built target engine_miniaudio
+[  4%] Built target spirv-cross
+[ 15%] Built target Jolt
+[ 20%] Built target glslang
+[ 22%] Built target bimg
+[ 22%] Built target engine_texture_data
+[ 22%] Built target engine_state
+[ 22%] Built target engine_simulation
+[ 23%] Built target ozz_animation
+[ 23%] Built target engine_physics
+[ 24%] Built target engine_audio
+[ 26%] Built target bgfx
+[ 28%] Built target ozz_animation_offline
+[ 28%] Built target engine_animation
+[ 28%] Built target engine_game
+[ 48%] Built target SDL3-static
+[ 48%] Building CXX object CMakeFiles/engine_platform.dir/Source/Platform/ActionInput.cpp.o
+[ 48%] Building CXX object CMakeFiles/engine_platform.dir/Source/Platform/Window.cpp.o
+[ 66%] Built target spirv-opt
+[ 66%] Linking CXX static library libengine_platform.a
+[ 66%] Built target engine_platform
+[ 66%] Building CXX object CMakeFiles/engine_rendering.dir/Source/Rendering/TextureStore.cpp.o
+[ 66%] Building CXX object CMakeFiles/engine_rendering.dir/Source/Rendering/RenderModel.cpp.o
+[ 66%] Building CXX object CMakeFiles/engine_rendering.dir/Source/Rendering/Renderer.cpp.o
+[ 97%] Built target tint
+[ 98%] Built target shaderc
+[100%] Built target engine_shaders
+[100%] Linking CXX static library libengine_rendering.a
+[100%] Built target engine_rendering
+[100%] Building CXX object CMakeFiles/engine_player.dir/Apps/Game/main.cpp.o
+[100%] Linking CXX executable engine_player
+[100%] Built target engine_player
+[  0%] Built target engine_core
+[  2%] Built target bx
+[  3%] Built target ozz_base
+[  3%] Built target engine_miniaudio
+[ 23%] Built target SDL3-static
+[ 24%] Built target spirv-cross
+[ 35%] Built target Jolt
+[ 37%] Built target bimg
+[ 37%] Built target engine_texture_data
+[ 41%] Built target glslang
+[ 41%] Built target engine_state
+[ 41%] Built target engine_simulation
+[ 42%] Built target ozz_animation
+[ 42%] Built target engine_physics
+[ 43%] Built target engine_audio
+[ 61%] Built target spirv-opt
+[ 62%] Built target engine_imgui
+[ 62%] Built target engine_platform
+[ 64%] Built target bgfx
+[ 65%] Built target ozz_animation_offline
+[ 65%] Built target engine_animation
+[ 65%] Built target engine_game
+[ 65%] Built target engine_rendering
+[ 96%] Built target tint
+[ 97%] Built target shaderc
+[ 98%] Built target engine_shaders
+[ 98%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/InspectorRenderer.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/TextureChecks.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Apps/Workbench/main.cpp.o
+[100%] Linking CXX executable engine_workbench
+[100%] Built target engine_workbench

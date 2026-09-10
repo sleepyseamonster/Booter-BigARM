@@ -1,0 +1,45 @@
+{
+  "command": [
+    "build/foundation/engine_calibration_tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Research/license-manifest.json",
+    " M Engine/Research/runtime-lock.json",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    "?? Engine/Apps/Game/",
+    "?? Engine/CMake/Audio.cmake",
+    "?? Engine/Research/Licenses/miniaudio.txt",
+    "?? Engine/Source/Audio/",
+    "?? Engine/Source/Game/CalibrationRuntime.cpp",
+    "?? Engine/Source/Game/CalibrationRuntime.h",
+    "?? Engine/Tests/CalibrationTests.cpp"
+  ],
+  "duration_seconds": 0.433,
+  "exit_code": 0,
+  "git_head": "57f8ef2cb0e9a60f84b8c3d43a76b43c32a46d1f",
+  "input_sha256_after": {
+    "Source/Audio/Audio.cpp": "b8f32c2b1f5673f52b81eb6b0273304925332605ed1c1669111a65cb8677f5ab",
+    "Source/Game/CalibrationRuntime.cpp": "9e5bf7a5ce8e0db59b1181b27d2e5ce52ad019318afc7c4b9c8cfa2fc3598865",
+    "Source/Game/CalibrationRuntime.h": "b6164fbd50d76d514a6abd523d5834d4bcbed392e31df67a3f306ff1f1e57d5b",
+    "Tests/CalibrationTests.cpp": "82064c3a5c808036fb6c575cd71ff9e897f336eff9085d96e54cf62e62f4a233",
+    "build/foundation/engine_calibration_tests": "39983cfc29693974afe830682daadd4a07a20b0160a7d63d18403fe506b6e7b0"
+  },
+  "input_sha256_before": {
+    "Source/Audio/Audio.cpp": "b8f32c2b1f5673f52b81eb6b0273304925332605ed1c1669111a65cb8677f5ab",
+    "Source/Game/CalibrationRuntime.cpp": "9e5bf7a5ce8e0db59b1181b27d2e5ce52ad019318afc7c4b9c8cfa2fc3598865",
+    "Source/Game/CalibrationRuntime.h": "b6164fbd50d76d514a6abd523d5834d4bcbed392e31df67a3f306ff1f1e57d5b",
+    "Tests/CalibrationTests.cpp": "82064c3a5c808036fb6c575cd71ff9e897f336eff9085d96e54cf62e62f4a233",
+    "build/foundation/engine_calibration_tests": "39983cfc29693974afe830682daadd4a07a20b0160a7d63d18403fe506b6e7b0"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "3eb46c0dfcbf74848fc3ec7c186e2ec931e89eb23d4b5917f529e761e202881a",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T18:24:29.455443+00:00",
+  "timeout_seconds": 30.0
+}

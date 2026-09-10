@@ -29,6 +29,8 @@ Foundation selections were made under the user's implementation authority on 202
 
 | D-19 | Accepted first-pass asset/animation integration | Restricted glTF/GLB via fastgltf 0.9.0 + pinned simdjson 3.12.3; engine-owned cooked format, ozz 0.16.0 sampling/blending and GPU skinning | [Model and animation result](./MODEL_ANIMATION_RESULT.md); scalar materials, rigid node scale, 64 joints; wider source profiles/shared compiled-resource caching remain later work |
 
+| D-20 | Accepted first-pass audio integration | miniaudio 0.11.25 as the shared playback owner; one generated PCM cue and sequence deduplication | [Player skeleton result](./PLAYER_RUNTIME_RESULT.md); offline mixer proved, speaker/device transitions and spatial audio remain open |
+
 ## Decision Procedure
 
 A new entry names the requirement, alternatives actually considered, selected option or unresolved question, evidence paths, material limitations and next review trigger. Use `proposed`, `accepted`, `rejected`, `superseded`, `open` or `deferred`. A library version pinned for an experiment is not an accepted production architecture.
