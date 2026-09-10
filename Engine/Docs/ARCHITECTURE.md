@@ -1,6 +1,6 @@
 # Proposed Engine Ownership Boundaries
 
-Planning contract, not implemented runtime. The [requirements](./REQUIREMENTS.md) and [accepted direction](./DIRECTION.md) control scope.
+Ownership contract. The initial document/identity and scene/display boundaries are now implemented; see [the first-pass runtime result](./FIRST_PASS_RUNTIME.md). The broader systems below remain planned. The [requirements](./REQUIREMENTS.md) and [accepted direction](./DIRECTION.md) control scope.
 
 Expanded 2026-09-10: [the whole-engine master plan](./FOUNDATION_PLAN.md) defines the complete runtime/application architecture and implementation packages; [the architecture research](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) records library boundaries. The contracts below remain applicable to all later systems. Workbench and Game consume one runtime; fixture state must not become the permanent world model.
 

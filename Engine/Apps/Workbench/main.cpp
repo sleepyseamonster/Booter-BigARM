@@ -2,6 +2,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include "Core/FixtureState.h"
+#include "Runtime/InspectionDocument.h"
 #include "Platform/Window.h"
 #include "Rendering/Renderer.h"
 #include "Rendering/InspectorRenderer.h"
@@ -17,14 +18,18 @@
 #include <algorithm>
 
 namespace {
-struct Options { std::filesystem::path shaders=ENGINE_SHADER_DIRECTORY, verify; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection; bool buildInfo=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
-        if ((arg=="--verify" || arg=="--shaders") && i+1<argc) {
-            if (arg=="--verify") options.verify=argv[++i]; else options.shaders=argv[++i];
-        } else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--verify new-output-directory]");
+        if ((arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection") && i+1<argc) {
+            if (arg=="--verify") options.verify=argv[++i];
+            else if (arg=="--inspection") options.inspection=argv[++i];
+            else if (arg=="--save-inspection") options.saveInspection=argv[++i];
+            else options.shaders=argv[++i];
+        } else if (arg=="--build-info") options.buildInfo=true;
+        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--verify new-output-directory]");
     }
     return options;
 }
@@ -70,6 +75,7 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     ImGui::TextUnformatted("Lighting");
     ImGui::SliderAngle("Direction",&state.lightAzimuth,-180,180);
     ImGui::SliderFloat("Intensity",&state.lightIntensity,0.0f,1.5f,"%.2f");
+    ImGui::SliderFloat("Exposure",&state.exposure,-4.0f,4.0f,"%.1f stops");
     ImGui::Separator();
     ImGui::TextUnformatted("Camera");
     ImGui::SliderFloat("Distance",&state.distance,2.5f,30.0f,"%.1f m");
@@ -89,20 +95,34 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     state.constrain();
     return button;
 }
-int run(const Options& options) {
+int run(Options options) {
+    std::cout << "Engine build " << ENGINE_BUILD_ID << " | compiler " <<
+#ifdef _MSC_VER
+        "MSVC " << _MSC_VER
+#else
+        __VERSION__
+#endif
+        << '\n';
+    if (options.buildInfo) return 0;
+    engine::FixtureState state;
+    if (!options.inspection.empty()) engine::loadInspection(options.inspection,state);
     const bool verify=!options.verify.empty();
     if (verify) {
         if (std::filesystem::exists(options.verify)) throw std::runtime_error("Verification output exists; choose a new directory");
         std::filesystem::create_directories(options.verify);
     }
     SDLSession session;
+    if (options.shaders.empty()) {
+        const char* base=SDL_GetBasePath();
+        if (!base) throw std::runtime_error("Cannot locate executable assets");
+        options.shaders=std::filesystem::path(base)/"Shaders";
+    }
     engine::Window window(verify);
     engine::Renderer renderer;
     renderer.start(window,options.shaders);
     const std::string backend=renderer.name();
     bool clicked=false,orbited=false,resized=false,closed=false;
     unsigned baselineBuffers=0,finalBuffers=0;
-    engine::FixtureState state;
     {
         UIContext context(window.get());
         engine::InspectorRenderer ui;
@@ -111,7 +131,7 @@ int run(const Options& options) {
         ButtonPosition button;
         auto last=std::chrono::steady_clock::now();
         for (unsigned frame=0;running;++frame) {
-            if (verify && frame>300) throw std::runtime_error("Verification exceeded frame limit");
+            if (verify && frame>380) throw std::runtime_error("Verification exceeded frame limit");
             SDL_Event event;
             float dx=0,dy=0,wheel=0;
             while (SDL_PollEvent(&event)) {
@@ -147,7 +167,7 @@ int run(const Options& options) {
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.draw(state,geometryCheck); ui.draw(ImGui::GetDrawData());
+            renderer.draw(state,geometryCheck,verify && frame>=265); ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -170,7 +190,13 @@ int run(const Options& options) {
                     constexpr const char* names[]={"normals.png","baked.png","unculled.png","front-cull.png","reverse-order.png","sphere.png"};
                     capture(names[(frame-165)/15]);
                 }
-                if (frame==260) { SDL_Event quit{}; quit.type=SDL_EVENT_QUIT; if (!SDL_PushEvent(&quit)) throw std::runtime_error("Cannot inject close event"); }
+                if (frame==260) { state.showNormals=false; state.exposure=0; }
+                if (frame==275) capture("color-linear.png");
+                if (frame==280) state.exposure=-2;
+                if (frame==295) capture("color-hdr.png");
+                if (frame>=300 && frame<320) renderer.resize(frame%2?1000:996,680);
+                if (frame==330) capture("color-restored.png");
+                if (frame==345) { SDL_Event quit{}; quit.type=SDL_EVENT_QUIT; if (!SDL_PushEvent(&quit)) throw std::runtime_error("Cannot inject close event"); }
             }
             bgfx::frame();
             if (verify) SDL_Delay(10);
@@ -178,9 +204,10 @@ int run(const Options& options) {
         ui.stop();
     }
     renderer.stop();
+    if (!options.saveInspection.empty()) engine::saveInspection(options.saveInspection,state);
     if (verify) {
         const bool success=clicked && orbited && resized && closed && baselineBuffers==finalBuffers &&
-            renderer.callbacks.captures==10 && renderer.callbacks.errors==0;
+            renderer.callbacks.captures==13 && renderer.callbacks.errors==0;
         std::ofstream report(options.verify/"verification.json");
         report << "{\n  \"schema_version\": 1,\n  \"backend\": \"" << backend
                << "\",\n  \"inspector_click\": " << (clicked?"true":"false")

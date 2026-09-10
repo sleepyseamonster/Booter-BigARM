@@ -85,10 +85,15 @@ def main():
     parser.add_argument("--fetch", action="store_true", help="Allow downloads into Engine/.cache")
     parser.add_argument("--output", default=".cache/probe-sources/inventory.json")
     args = parser.parse_args()
-    lock = json.loads((ROOT / "Research/probe-lock.json").read_text())
+    lock_paths = [ROOT / "Research/probe-lock.json", ROOT / "Research/runtime-lock.json"]
+    locks = [json.loads(path.read_text()) for path in lock_paths]
     try:
-        packages = [prepare(package, args.fetch) for package in lock["packages"]]
+        specifications = [package for lock in locks for package in lock["packages"]]
+        if len({package["name"] for package in specifications}) != len(specifications):
+            raise ValueError("Duplicate dependency across locks")
+        packages = [prepare(package, args.fetch) for package in specifications]
         result = {"schema_version": 1, "lock_sha256": sha((ROOT / "Research/probe-lock.json").read_bytes()),
+                  "locks": {path.name: sha(path.read_bytes()) for path in lock_paths},
                   "packages": packages, "proof_limit": "Archive/content verification only; not a build or license clearance"}
         write_json(args.output, result)
     except (ValueError, OSError) as error:

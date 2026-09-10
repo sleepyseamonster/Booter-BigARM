@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {"name": "mac-dev", "generator": "Unix Makefiles", "binaryDir": "${sourceDir}/build/foundation", "cacheVariables": {"CMAKE_BUILD_TYPE": "Release"}},
+    {"name": "core", "generator": "Unix Makefiles", "binaryDir": "${sourceDir}/build/core", "cacheVariables": {"CMAKE_BUILD_TYPE": "Release", "ENGINE_BUILD_WORKBENCH": "OFF"}},
+    {"name": "windows-dev", "generator": "Visual Studio 17 2022", "architecture": "x64", "binaryDir": "${sourceDir}/build/windows"}
+  ],
+  "buildPresets": [
+    {"name": "mac-dev", "configurePreset": "mac-dev", "jobs": 4},
+    {"name": "core", "configurePreset": "core", "jobs": 4},
+    {"name": "windows-dev", "configurePreset": "windows-dev", "configuration": "Release", "jobs": 4}
+  ],
+  "testPresets": [
+    {"name": "mac-dev", "configurePreset": "mac-dev", "output": {"outputOnFailure": true}},
+    {"name": "core", "configurePreset": "core", "output": {"outputOnFailure": true}},
+    {"name": "windows-dev", "configurePreset": "windows-dev", "configuration": "Release", "output": {"outputOnFailure": true}}
+  ]
+}

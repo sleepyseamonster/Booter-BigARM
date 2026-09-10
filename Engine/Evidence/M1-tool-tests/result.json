@@ -1,0 +1,61 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "Tools/tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMake/Shaders.cmake",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Research/dependencies.json",
+    " M Engine/Research/license-manifest.json",
+    " M Engine/Source/Core/FixtureState.cpp",
+    " M Engine/Source/Core/FixtureState.h",
+    " M Engine/Source/Rendering/InspectorRenderer.cpp",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Tools/prepare_probe.py",
+    " M Engine/Tools/verify_foundation.py",
+    "?? Engine/CMakePresets.json",
+    "?? Engine/Evidence/M1-clean-build-final/",
+    "?? Engine/Evidence/M1-clean-build/",
+    "?? Engine/Evidence/M1-clean-configure/",
+    "?? Engine/Evidence/M1-native-01/",
+    "?? Engine/Evidence/M1-native-final/",
+    "?? Engine/Research/Licenses/nlohmann_json.txt",
+    "?? Engine/Research/runtime-lock.json",
+    "?? Engine/Shaders/fs_calibration.sc",
+    "?? Engine/Shaders/fs_display.sc",
+    "?? Engine/Shaders/vs_fullscreen.sc",
+    "?? Engine/Source/Core/Color.h",
+    "?? Engine/Source/Core/WorldIdentity.cpp",
+    "?? Engine/Source/Core/WorldIdentity.h",
+    "?? Engine/Source/Persistence/",
+    "?? Engine/Source/Runtime/",
+    "?? Engine/Tests/CoreTests.cpp",
+    "?? Engine/Tools/tests/test_color_evidence.py"
+  ],
+  "duration_seconds": 1.58,
+  "exit_code": 0,
+  "git_head": "8bb65b50b443e1f241a3a11997b34690437426bb",
+  "input_sha256_after": {
+    "Tools/tests/test_color_evidence.py": "afd8b076cd362970a93d364938620ae525f8ef78054a81ed006cf23b07d6059d",
+    "Tools/verify_foundation.py": "c4b7e7b209f4f89f281f7486be72e12da76c7592eab8fead8e8ddde19c8d5bee"
+  },
+  "input_sha256_before": {
+    "Tools/tests/test_color_evidence.py": "afd8b076cd362970a93d364938620ae525f8ef78054a81ed006cf23b07d6059d",
+    "Tools/verify_foundation.py": "c4b7e7b209f4f89f281f7486be72e12da76c7592eab8fead8e8ddde19c8d5bee"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "a36cfdbd38321ba7388b3a0c9a4f524e2752e7623a9e6eeeb082f6a19fa7832d",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T16:28:03.279363+00:00",
+  "timeout_seconds": 600
+}

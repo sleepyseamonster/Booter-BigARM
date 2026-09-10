@@ -4,7 +4,7 @@ This is the working home for the proprietary engine and regular third-person gam
 
 Start with [current status and next step](./Docs/STATUS.md), then [accepted direction](./Docs/DIRECTION.md) and [the working agreement](./AGENTS.md).
 
-The native application renders a perspective fixture and interactive inspector on Metal, with corrected geometry normals and selectable reference shapes. [Build and run it](./Docs/RUN_FOUNDATION.md), or review [the latest verified result and limitations](./Docs/OUTDOOR_GEOMETRY_RESULT.md).
+The native application renders a perspective fixture and interactive inspector on Metal, with corrected geometry, a linear HDR/display pipeline, versioned inspection documents and executable-relative assets. See [the first-pass runtime foundation](./Docs/FIRST_PASS_RUNTIME.md). [Build and run it](./Docs/RUN_FOUNDATION.md), or review [the latest verified result and limitations](./Docs/OUTDOOR_GEOMETRY_RESULT.md).
 
 | Need | Durable home |
 |---|---|

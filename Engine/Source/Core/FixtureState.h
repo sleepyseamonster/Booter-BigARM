@@ -15,6 +15,7 @@ struct FixtureState {
     std::array<float, 3> color{0.68f, 0.39f, 0.22f};
     float lightAzimuth = 0.8f;
     float lightIntensity = 0.85f;
+    float exposure = 0.0f;
     void orbit(float dx, float dy, bool captured);
     void zoom(float wheel, bool captured);
     void constrain();

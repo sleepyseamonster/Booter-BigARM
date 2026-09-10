@@ -24,8 +24,8 @@ void InspectorRenderer::start(const std::filesystem::path& shaders) {
     io.Fonts->SetTexID(ImTextureID(font_.idx)+1);
     io.BackendRendererName="BooterBigARM_bgfx_fixed_atlas";
     io.BackendFlags|=ImGuiBackendFlags_RendererHasVtxOffset;
-    bgfx::setViewName(1,"Inspector");
-    bgfx::setViewMode(1,bgfx::ViewMode::Sequential);
+    bgfx::setViewName(2,"Inspector");
+    bgfx::setViewMode(2,bgfx::ViewMode::Sequential);
 }
 void InspectorRenderer::draw(ImDrawData* data) {
     const int width=int(data->DisplaySize.x*data->FramebufferScale.x);
@@ -35,8 +35,8 @@ void InspectorRenderer::draw(ImDrawData* data) {
     float projection[16];
     bx::mtxOrtho(projection,data->DisplayPos.x,data->DisplayPos.x+data->DisplaySize.x,
         data->DisplayPos.y+data->DisplaySize.y,data->DisplayPos.y,0,1000,0,bgfx::getCaps()->homogeneousDepth);
-    bgfx::setViewRect(1,0,0,uint16_t(width),uint16_t(height));
-    bgfx::setViewTransform(1,nullptr,projection);
+    bgfx::setViewRect(2,0,0,uint16_t(width),uint16_t(height));
+    bgfx::setViewTransform(2,nullptr,projection);
     for (const ImDrawList* list : data->CmdLists) {
         const uint32_t vertices=uint32_t(list->VtxBuffer.Size),indices=uint32_t(list->IdxBuffer.Size);
         if (!vertices || !indices) continue;
@@ -66,7 +66,7 @@ void InspectorRenderer::draw(ImDrawData* data) {
             bgfx::setTexture(0,sampler_,font_);
             bgfx::setVertexBuffer(0,&vb,command.VtxOffset,vertices-command.VtxOffset);
             bgfx::setIndexBuffer(&ib,command.IdxOffset,command.ElemCount);
-            bgfx::submit(1,program_);
+            bgfx::submit(2,program_);
         }
     }
 }

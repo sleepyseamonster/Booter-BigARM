@@ -56,8 +56,11 @@
       ],
       "owner_module": "Core/Assets/Persistence",
       "proof": "Core isolation, identity and bounded document/error/replacement cases",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Evidence/M1-boundary-tests/result.json",
+        "Docs/FIRST_PASS_RUNTIME.md"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {
@@ -72,8 +75,11 @@
       ],
       "owner_module": "Rendering/Shaders",
       "proof": "Known-value GPU color, UI composition and resize evidence",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Evidence/M1-final-verification/result.json",
+        "Evidence/M1-tool-tests/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {
@@ -164,8 +170,13 @@
       ],
       "owner_module": "CMake/Tools/Platform",
       "proof": "Fresh configure, build, relative runtime paths and explicit failure logs",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Evidence/M1-clean-build-final/result.json",
+        "Evidence/M1-boundary-build/result.json",
+        "Evidence/M1-package-final/result.json",
+        "Evidence/M1-final-verification/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

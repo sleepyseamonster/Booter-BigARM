@@ -32,7 +32,7 @@ public:
     Renderer& operator=(const Renderer&) = delete;
     void start(const Window&, const std::filesystem::path& shaders);
     void resize(int width, int height);
-    void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None);
+    void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None, bool calibration = false);
     void rebuildMesh();
     void stop();
     const char* name() const;
@@ -40,8 +40,13 @@ public:
     int height() const { return height_; }
     CaptureCallbacks callbacks;
 private:
+    void resizeTargets(int width,int height);
     bool started_ = false;
     int width_ = 0, height_ = 0;
+    bgfx::FrameBufferHandle scene_ = BGFX_INVALID_HANDLE;
+    bgfx::ProgramHandle displayProgram_ = BGFX_INVALID_HANDLE, calibrationProgram_ = BGFX_INVALID_HANDLE;
+    bgfx::VertexBufferHandle fullscreen_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle display_ = BGFX_INVALID_HANDLE, sceneSampler_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle program_ = BGFX_INVALID_HANDLE;
     std::array<bgfx::VertexBufferHandle, 4> meshes_{{BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE}};
     bgfx::UniformHandle material_ = BGFX_INVALID_HANDLE, light_ = BGFX_INVALID_HANDLE;

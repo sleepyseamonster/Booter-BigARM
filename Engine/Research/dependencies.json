@@ -108,11 +108,11 @@
     },
     {
       "id": "nlohmann_json",
-      "status": "proposed",
-      "revision": null,
+      "status": "selected",
+      "revision": "55f93686c01528224f448c19128836e7df245f72",
       "source": "https://github.com/nlohmann/json",
-      "license_record": null,
-      "purpose": "Preferred bounded structured document parser at P01; schemas and transactions remain engine-owned"
+      "license_record": "Licenses/nlohmann_json.txt",
+      "purpose": "Bounded versioned engine documents; engine owns validation, atomic replacement and schema evolution"
     },
     {
       "id": "ozz_animation",

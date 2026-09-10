@@ -1,5 +1,6 @@
 #include "Rendering/Renderer.h"
 #include "Core/FixtureGeometry.h"
+#include "Core/Color.h"
 #include <bx/math.h>
 #include <cstdio>
 #include <cstdlib>
@@ -88,15 +89,51 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders)
     normal_ = bgfx::createUniform("u_normalMatrix", bgfx::UniformType::Mat4);
     options_ = bgfx::createUniform("u_sceneOptions", bgfx::UniformType::Vec4);
     if (!bgfx::isValid(normal_) || !bgfx::isValid(options_)) throw std::runtime_error("Geometry uniform allocation failed");
+    displayProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_display.bin");
+    calibrationProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_calibration.bin");
+    display_=bgfx::createUniform("u_display",bgfx::UniformType::Vec4);
+    sceneSampler_=bgfx::createUniform("s_scene",bgfx::UniformType::Sampler);
+    struct FullscreenVertex { float x,y,z,u,v; };
+    const FullscreenVertex vertices[]={{-1,-1,0,0,1},{3,-1,0,2,1},{-1,3,0,0,-1}};
+    bgfx::VertexLayout layout;
+    layout.begin().add(bgfx::Attrib::Position,3,bgfx::AttribType::Float).add(bgfx::Attrib::TexCoord0,2,bgfx::AttribType::Float).end();
+    fullscreen_=bgfx::createVertexBuffer(bgfx::copy(vertices,sizeof(vertices)),layout);
+    if (!bgfx::isValid(display_) || !bgfx::isValid(sceneSampler_) || !bgfx::isValid(fullscreen_))
+        throw std::runtime_error("Display resources failed");
+    resizeTargets(width_,height_);
+    bgfx::setViewMode(1,bgfx::ViewMode::Sequential);
+    bgfx::setViewName(1,"Linear HDR to SDR display");
     rebuildMesh();
     // Preserve submission order for the depth-order diagnostic; this is a small fixture.
     bgfx::setViewMode(0, bgfx::ViewMode::Sequential);
     bgfx::setViewName(0, "Perspective fixture");
     std::cout << "RENDERER " << name() << " framebuffer=" << width_ << 'x' << height_ << '\n';
 }
+void Renderer::resizeTargets(int width,int height) {
+    const uint64_t flags=BGFX_TEXTURE_RT|BGFX_SAMPLER_U_CLAMP|BGFX_SAMPLER_V_CLAMP|BGFX_SAMPLER_MIN_POINT|BGFX_SAMPLER_MAG_POINT;
+    if (!bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::RGBA16F,flags) ||
+        !bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT))
+        throw std::runtime_error("RGBA16F scene/depth targets unsupported");
+    bgfx::TextureHandle attachments[]={BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE};
+    bgfx::FrameBufferHandle next=BGFX_INVALID_HANDLE;
+    try {
+        attachments[0]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
+        attachments[1]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT);
+        if (!bgfx::isValid(attachments[0]) || !bgfx::isValid(attachments[1])) throw std::runtime_error("Scene target allocation failed");
+        next=bgfx::createFrameBuffer(2,attachments,true);
+        if (!bgfx::isValid(next)) throw std::runtime_error("Scene framebuffer allocation failed");
+    } catch (...) {
+        for (auto texture:attachments) if (bgfx::isValid(texture)) bgfx::destroy(texture);
+        throw;
+    }
+    if (bgfx::isValid(scene_)) bgfx::destroy(scene_);
+    scene_=next;
+    bgfx::setViewFrameBuffer(0,scene_);
+}
 void Renderer::resize(int width, int height) {
     if (width <= 0 || height <= 0 || (width == width_ && height == height_)) return;
     if (width > 65535 || height > 65535) throw std::runtime_error("Framebuffer exceeds view limits");
+    resizeTargets(width,height);
     bgfx::SwapChain swap;
     swap.width = uint32_t(width); swap.height = uint32_t(height);
     bgfx::reset(BGFX_RESET_VSYNC, &swap);
@@ -132,14 +169,18 @@ void Renderer::rebuildMesh() {
     const char* names[]={"Reference cube", "Reference sloped solid", "Reference sphere", "CPU-baked flat-normal reference"};
     for (size_t i=0;i<meshes_.size();++i) bgfx::setName(meshes_[i],names[i]);
 }
-void Renderer::draw(const FixtureState& state, GeometryCheck check) {
+void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibration) {
     const auto eye=state.eye();
     float view[16], projection[16];
     bx::mtxLookAt(view,{eye[0],eye[1],eye[2]},{0,0.85f,0},{0,1,0},bx::Handedness::Right);
     bx::mtxProj(projection,state.fieldOfView,float(width_)/float(height_),0.1f,100.0f,
         bgfx::getCaps()->homogeneousDepth,bx::Handedness::Right);
+    // reset clears view framebuffer bindings; restore ownership on every frame.
+    bgfx::setViewFrameBuffer(0,scene_);
     bgfx::setViewRect(0,0,0,uint16_t(width_),uint16_t(height_));
-    bgfx::setViewClear(0,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,0x1c2532ff,1.0f,0);
+    const float clear[]={srgbToLinear(28.0f/255),srgbToLinear(37.0f/255),srgbToLinear(50.0f/255),1};
+    bgfx::setPaletteColor(0,clear);
+    bgfx::setViewClear(0,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,1.0f,0,uint8_t(0));
     bgfx::setViewTransform(0,view,projection);
     bgfx::touch(0);
     const float light[4]={std::sin(state.lightAzimuth),0.9f,std::cos(state.lightAzimuth),state.lightIntensity};
@@ -151,7 +192,8 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check) {
         const auto normal=normalMatrix(transform);
         bgfx::setTransform(transform.data());
         bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
-        bgfx::setUniform(material_,color); bgfx::setUniform(light_,light);
+        const float linear[]={srgbToLinear(color[0]),srgbToLinear(color[1]),srgbToLinear(color[2]),color[3]};
+        bgfx::setUniform(material_,linear); bgfx::setUniform(light_,light);
         bgfx::setUniform(normal_,normal.data()); bgfx::setUniform(options_,options);
         bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA|cull);
         bgfx::submit(0,program_);
@@ -165,15 +207,34 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check) {
     auto subject=subjectTransform(state);
     const bool baked=check==GeometryCheck::BakedReference;
     if (baked) bx::mtxIdentity(subject.data());
-    if (check==GeometryCheck::ReverseOrder) {
+    if (calibration) {
+        const float display[]={0,0,0,0};
+        bgfx::setUniform(display_,display);
+        bgfx::setVertexBuffer(0,fullscreen_); bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A);
+        bgfx::submit(0,calibrationProgram_);
+    } else if (check==GeometryCheck::ReverseOrder) {
         submit(0,markerTransform,marker); submit(state.mesh,subject,color); submit(0,groundTransform,ground);
     } else {
         submit(0,groundTransform,ground); submit(baked?3:state.mesh,subject,color); submit(0,markerTransform,marker);
     }
+    const float display[]={state.exposure,state.showNormals && !calibration?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,0};
+    bgfx::setViewRect(1,0,0,uint16_t(width_),uint16_t(height_));
+    bgfx::setUniform(display_,display);
+    bgfx::setTexture(0,sceneSampler_,bgfx::getTexture(scene_));
+    bgfx::setVertexBuffer(0,fullscreen_); bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A);
+    bgfx::submit(1,displayProgram_);
 }
 const char* Renderer::name() const { return bgfx::getRendererName(bgfx::getRendererType()); }
 void Renderer::stop() {
     if (!started_) return;
+    if (bgfx::isValid(scene_)) bgfx::destroy(scene_);
+    if (bgfx::isValid(displayProgram_)) bgfx::destroy(displayProgram_);
+    if (bgfx::isValid(calibrationProgram_)) bgfx::destroy(calibrationProgram_);
+    if (bgfx::isValid(fullscreen_)) bgfx::destroy(fullscreen_);
+    if (bgfx::isValid(display_)) bgfx::destroy(display_);
+    if (bgfx::isValid(sceneSampler_)) bgfx::destroy(sceneSampler_);
+    scene_=BGFX_INVALID_HANDLE; displayProgram_=BGFX_INVALID_HANDLE; calibrationProgram_=BGFX_INVALID_HANDLE;
+    fullscreen_=BGFX_INVALID_HANDLE; display_=BGFX_INVALID_HANDLE; sceneSampler_=BGFX_INVALID_HANDLE;
     for (auto handle : meshes_) if (bgfx::isValid(handle)) bgfx::destroy(handle);
     if (bgfx::isValid(program_)) bgfx::destroy(program_);
     if (bgfx::isValid(material_)) bgfx::destroy(material_);

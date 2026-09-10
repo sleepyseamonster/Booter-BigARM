@@ -18,6 +18,7 @@ void FixtureState::constrain() {
     distance = std::clamp(distance, 2.5f, 30.0f);
     fieldOfView = std::clamp(fieldOfView, 30.0f, 90.0f);
     mesh = std::clamp(mesh, 0, 2);
+    exposure=std::isfinite(exposure)?std::clamp(exposure,-4.0f,4.0f):0.0f;
     if (!std::isfinite(objectYaw)) objectYaw = 0;
     for (float& scale : objectScale) scale = std::isfinite(scale)?std::clamp(scale,0.2f,3.0f):1.5f;
 }

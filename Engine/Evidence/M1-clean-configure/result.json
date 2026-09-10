@@ -1,0 +1,58 @@
+{
+  "command": [
+    "cmake",
+    "-S",
+    ".",
+    "-B",
+    "build/firstpass-clean",
+    "-DCMAKE_BUILD_TYPE=Release"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMake/Shaders.cmake",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Research/dependencies.json",
+    " M Engine/Research/license-manifest.json",
+    " M Engine/Source/Core/FixtureState.cpp",
+    " M Engine/Source/Core/FixtureState.h",
+    " M Engine/Source/Rendering/InspectorRenderer.cpp",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Tools/prepare_probe.py",
+    " M Engine/Tools/verify_foundation.py",
+    "?? Engine/CMakePresets.json",
+    "?? Engine/Evidence/M1-native-01/",
+    "?? Engine/Research/Licenses/nlohmann_json.txt",
+    "?? Engine/Research/runtime-lock.json",
+    "?? Engine/Shaders/fs_calibration.sc",
+    "?? Engine/Shaders/fs_display.sc",
+    "?? Engine/Shaders/vs_fullscreen.sc",
+    "?? Engine/Source/Core/Color.h",
+    "?? Engine/Source/Core/WorldIdentity.cpp",
+    "?? Engine/Source/Core/WorldIdentity.h",
+    "?? Engine/Source/Persistence/",
+    "?? Engine/Source/Runtime/",
+    "?? Engine/Tests/CoreTests.cpp"
+  ],
+  "duration_seconds": 46.512,
+  "exit_code": 0,
+  "git_head": "8bb65b50b443e1f241a3a11997b34690437426bb",
+  "input_sha256_after": {
+    "CMake/Shaders.cmake": "f2375e2e50579e16387c121ea68dac9854f281b250494942c651080edd1a71a7",
+    "CMakeLists.txt": "5d882ab07efcaced384bbdb5d23a96fe0868e5a9cd4f29116fda5fd853da7396",
+    "Research/runtime-lock.json": "d3bc8c61e3ae2295b957e26cc078ee18e959abfc22d8251d3e18533acc61f6e3"
+  },
+  "input_sha256_before": {
+    "CMake/Shaders.cmake": "f2375e2e50579e16387c121ea68dac9854f281b250494942c651080edd1a71a7",
+    "CMakeLists.txt": "5d882ab07efcaced384bbdb5d23a96fe0868e5a9cd4f29116fda5fd853da7396",
+    "Research/runtime-lock.json": "d3bc8c61e3ae2295b957e26cc078ee18e959abfc22d8251d3e18533acc61f6e3"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "7dda618a0f6c4762631fbe92335f9858809988b43c0d662d56fb8d7bc367e1d5",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T16:25:28.417690+00:00",
+  "timeout_seconds": 600
+}

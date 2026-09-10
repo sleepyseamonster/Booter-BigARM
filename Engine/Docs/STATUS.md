@@ -1,6 +1,6 @@
 # Current Engine Handoff
 
-Updated 2026-09-10, America/Phoenix. The first application foundation and OR-1 geometry correctness batch are implemented and technically verified on the current Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
+Updated 2026-09-10, America/Phoenix. The first-pass shared document/identity foundation (P01) and linear HDR/display pipeline (P02) are implemented and technically verified on the current Mac. Portable builds (P07) are complete on Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
 
 ## Current Result
 
@@ -8,21 +8,25 @@ The standalone C++ executable opens an SDL window, renders a perspective mesh an
 
 OR-1 adds a cube/sloped-solid/sphere selector, independent XYZ scale and world-normal display. Inverse-transpose normal transforms correct lighting directions under nonuniform scale; outward winding, backface culling and opaque depth ordering have bounded technical evidence. See [the geometry result](./OUTDOOR_GEOMETRY_RESULT.md) for exact comparisons and limits.
 
-This is a foundation fixture. It has no generated rocks, character controller, physics, shadows, PBR, world streaming or save format. The perspective inspection camera is not final third-person character-following behavior. The neutral scale marker and local coordinates are provisional.
+P01/P02 add UI-independent core libraries, structural generated-object IDs, negative/large region coordinates, strict versioned inspection documents with atomic replacement, linear RGBA16F scene rendering, exposure and a separate display-space inspector. See [the implementation result](./FIRST_PASS_RUNTIME.md). This remains a foundation fixture: generated rocks, character control, physics, shadows, PBR, streaming and player saves are still ahead. The perspective inspection camera is not final third-person character-following behavior. The neutral scale marker and local coordinates are provisional.
 
 The [surface library](../Assets/SurfaceLibrary/README.md) now preserves 38 existing rock/ground textures and five source-art files inside `Engine/`, plus 15 textured material reference records and importer/channel mappings. [Transfer verification](../Evidence/SURFACE-transfer-final/result.json) passed: all 43 copies match their source hashes, 186 serialized texture bindings resolve, and 102 original image/metadata/material/shader/code files remained unchanged. No scene-texture loader or material shader port is implemented by this transfer.
 
-Start with [run instructions](./RUN_FOUNDATION.md), [the outdoor plan](./OUTDOOR_RENDERING_PLAN.md), and [the latest result audit](./OUTDOOR_GEOMETRY_RESULT.md).
+Start with [run instructions](./RUN_FOUNDATION.md), [the master plan](./FOUNDATION_PLAN.md), and [the first-pass runtime result](./FIRST_PASS_RUNTIME.md).
 
 ## Texture Research Result
 
 The [texture-system research](../Research/TEXTURE_SYSTEM_RESEARCH.md), [implementation plan](./TEXTURE_SYSTEM_PLAN.md) and [cooking/verification SOP](../SOPs/COOK_AND_VERIFY_TEXTURES.md) are complete as research preparation. TEXTURE-001 built the pinned offline texture tool on Mac and retained [final measurements](../Evidence/TEXTURE-001-final-measurements/measurements.json). It found that stock mip generation produces incorrect numerical BC7 averages and incorrect RGBA8 color averages for the tested checker. KTX 1 works through the generic parser; tool-produced KTX2 needs a different parser/upload integration.
 
-Recommendation: existing bimg primitives with engine-owned semantic mip generation, uncompressed KTX 1 first, then shared runtime resources and one rock/ground material pair. Compression follows comparisons against uncompressed references. No new dependency pins, runtime texture loader, material shader, GPU texture proof or Windows result was added. OR-2 remains next.
+Recommendation: existing bimg primitives with engine-owned semantic mip generation, uncompressed KTX 1 first, then shared runtime resources and one rock/ground material pair. Compression follows comparisons against uncompressed references. That research batch added no runtime texture loader or GPU texture proof. OR-2/P02 is now complete; P03 texture cooking/residency and P04 shadows are ready.
 
 ## Current Evidence
 
-The [reviewed OR-1 build](../Evidence/OR1-build-reviewed/result.json), [two native test executables](../Evidence/OR1-native-tests-final/result.json), [16 tool tests](../Evidence/OR1-tool-tests/result.json), and [final native GPU verification](../Evidence/OR1-verification-final/result.json) passed. Normal/reference, cull/unculled and reversed-order comparisons each had zero differences above the rounding threshold across 163,200 sampled scene pixels. Opposite culling changed 111,802 pixels; 7,983 visible reference samples guard against empty-image passes. Twenty four-mesh replacements kept vertex buffers at 8; ten captures had no errors. Current executable, shaders and source hashes are bound to this verification.
+[Core/document tests](../Evidence/M1-boundary-tests/result.json), [29 tool/oracle tests](../Evidence/M1-tool-tests/result.json) and [installed-package Metal verification](../Evidence/M1-final-verification/result.json) pass. Thirteen GPU captures retain the geometry checks, match all eight color bands at both exposures and after repeated target replacement, and keep the inspector independent of scene exposure. The installed workbench launches from an unrelated Engine-local working directory without source-relative shaders. [A fresh native build](../Evidence/M1-clean-build-final/result.json), [boundary correction](../Evidence/M1-boundary-tests/result.json) and [15-file local package](../Evidence/M1-package-final/package.json) are recorded. W01/W02/W03 remain unverified.
+
+## Historical Geometry Evidence
+
+The [reviewed OR-1 build](../Evidence/OR1-build-reviewed/result.json), [two native test executables](../Evidence/OR1-native-tests-final/result.json), [16 tool tests](../Evidence/OR1-tool-tests/result.json), and [final native GPU verification](../Evidence/OR1-verification-final/result.json) passed. Normal/reference, cull/unculled and reversed-order comparisons each had zero differences above the rounding threshold across 163,200 sampled scene pixels. Opposite culling changed 111,802 pixels; 7,983 visible reference samples guard against empty-image passes. Twenty four-mesh replacements kept vertex buffers at 8; ten captures had no errors. The OR-1 executable, shaders and source hashes are bound to that historical verification; current binaries use the M1 receipts above.
 
 ## Original Application Evidence
 
@@ -51,13 +55,13 @@ The initial build reports upstream shader-compiler deprecation/unknown-warning d
 
 ## Whole-Engine Plan and Next Milestone
 
-The user requested complete engine planning and autonomous technical sequencing on 2026-09-10. The [rewritten master implementation plan](./FOUNDATION_PLAN.md) now covers eight milestones from the reusable foundation through a supported Windows candidate. The [system audit](../Research/ENGINE_SYSTEM_AUDIT.md) covers 24 capabilities; [research](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) records preferred integrations; [the retained draft and audit](./ENGINE_PLAN_AUDIT.md) explain the rewrite. The [roadmap index](./ENGINE_ROADMAP.json) contains 37 implementation packages and three native Windows gates. All are planned, not implemented.
+The user requested complete engine planning and autonomous technical sequencing on 2026-09-10. The [rewritten master implementation plan](./FOUNDATION_PLAN.md) now covers eight milestones from the reusable foundation through a supported Windows candidate. The [system audit](../Research/ENGINE_SYSTEM_AUDIT.md) covers 24 capabilities; [research](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) records preferred integrations; [the retained draft and audit](./ENGINE_PLAN_AUDIT.md) explain the rewrite. The [roadmap index](./ENGINE_ROADMAP.json) contains 37 implementation packages and three native Windows gates. P01/P02/P07 are implemented; use the index for the remaining package states.
 
 [Plan structure/coverage](../Evidence/ENGINE-plan-structure/result.json), [seven focused planning-tool tests](../Evidence/ENGINE-plan-tool-tests/result.json) and [workspace documentation checks](../Evidence/ENGINE-plan-workspace/result.json) passed. These establish planning consistency and tool behavior only; no runtime rebuild, gameplay test or new GPU check was needed for this planning batch.
 
-**Current program milestone: M1, reusable outdoor foundation. Next ready package: P01**, the minimal shared runtime/document/identity boundary. Follow with P02, the OR-2 color contract. P07 build/path work can proceed independently once P01 is ready; texture cooking and shadow work then converge on shared materials and inspection. Use the master dependency graph instead of making the user choose each basic subsystem. OR-2 remains the next renderer feature, within this broader foundation batch.
+**Current program milestone: M1, reusable outdoor foundation.** The active user goal is autonomous implementation of a coherent first engine pass. P01/P02/P07 are complete on Mac. Next are P03 semantic textures and shared residency, P04 directional shadows, then P05 materials; P08 simulation is also ready. Continue coherent packages without asking the user to select routine engine subsystems. Rendering polish is not the next task.
 
-When implementation is requested, read the relevant master-plan package and run `python3 Tools/check_engine_plan.py`. Complete coherent ready work with evidence, update the index/status, and proceed within task authority. Product/creative review, actual Windows access, external writes and destructive actions keep their existing boundaries. This planning task added no runtime feature or dependency installation.
+The master plan remains the long-range program; completing this foundation batch does not complete the user's whole-engine goal. Product/creative, native Windows, external-action and destructive-operation boundaries remain explicit.
 
 Mac remains the main development machine while practical. W01/W02/W03 define native Windows build, GPU/input and product-workload evidence; none is complete. Final hardware budgets, feel, accepted content and release decisions remain open. Canyons and final geographic coordinates remain deferred.
 

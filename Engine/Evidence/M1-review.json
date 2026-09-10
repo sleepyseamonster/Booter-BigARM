@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "completed_packages": [
+    "P01",
+    "P02",
+    "P07"
+  ],
+  "verified_receipts": [
+    "M1-clean-build-final",
+    "M1-boundary-build",
+    "M1-boundary-tests",
+    "M1-core-tests",
+    "M1-tool-tests",
+    "M1-package-final",
+    "M1-final-verification/run"
+  ],
+  "native_pixel_result": "M1-final-verification/result.json",
+  "package_manifest_matches_current_sources_and_payload": true,
+  "preserved_unity_sha256": {
+    "Assets/_Project/Materials/TopDown3D/FineGray_Clutter.mat": "d2f93b90a1bc0caa574591521c0a7a8d7243c6a2696194d1be210f59ffcdbbed",
+    "Assets/_Project/Materials/TopDown3D/Greybox_Booter.mat": "2476fc402094126f4af68951a4be13c6c4525071faa831d125ab75d6b0ed51b3",
+    "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity": "02b4cc840875b56c3cf4265bb5bcd97254527b26145e0a7b4c6ec5ea4ac47506"
+  },
+  "audit_findings_resolved": [
+    "Framebuffer binding must be restored after reset",
+    "Negative subnormal coordinate must remain in prior region"
+  ],
+  "remaining": "Whole-engine goal remains active. P03 textures, P04 shadows and P08 simulation ready; Windows hardware unverified. No push or gameplay smoke test."
+}

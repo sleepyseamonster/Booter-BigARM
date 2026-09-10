@@ -20,6 +20,9 @@ Update this record when evidence changes a decision. Keep the rationale and repl
 | D-14 | Accepted planning direction | Whole-engine roadmap and agent-owned routine technical sequencing | User request, 2026-09-10; [rewritten master plan](./FOUNDATION_PLAN.md) expands the earlier F1–F4 horizon. Product, creative and external-action boundaries remain. |
 | D-15 | Proposed engineering integrations | EnTT, bounded JSON documents, Jolt, glTF/fastgltf, meshoptimizer, ozz, Recast/Detour, miniaudio and RmlUi at their first consuming stage | [Whole-engine research](../Research/ENGINE_ARCHITECTURE_RESEARCH.md); exact pins, notices and compatibility proof required on adoption. No installation or new runtime selection claimed by planning. |
 
+| D-16 | Accepted first-pass integration | nlohmann JSON 3.12.0 for bounded typed engine documents; preserve the original cohort and extend its acquisition path through runtime-lock.json | [Runtime boundary and failure cases](./FIRST_PASS_RUNTIME.md); multi-file saves/migration remain later work |
+| D-17 | Accepted first-pass rendering | Linear RGBA16F scene, explicit exposure, one SDR sRGB encode, display-space inspector | [Measured Metal pixels](../Evidence/M1-final-verification/result.json); final tone mapping and native Windows/HDR-display proof remain open |
+
 Foundation selections were made under the user's implementation authority on 2026-09-09, following [the application result](./FOUNDATION_RESULT.md). These supersede the earlier proposals for this bounded milestone; they do not establish final game performance, complete engine architecture or shipping readiness.
 
 ## Decision Procedure

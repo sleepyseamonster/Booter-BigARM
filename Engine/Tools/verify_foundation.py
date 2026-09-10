@@ -120,19 +120,44 @@ def check_geometry(captures):
     return comparisons
 
 
+def check_color(captures):
+    linear = [0, .0031308, .2158605, .5, 1, 2, .1, .75]
+    def encode(v):
+        return round(255*min(1, 12.92*v if v <= .0031308 else 1.055*v**(1/2.4)-.055))
+    result = {}
+    for name, exposure in [("color-linear", 0), ("color-hdr", -2), ("color-restored", -2)]:
+        w, h, c, rows = captures[name]
+        # Bottom margin is outside the inspector; every stripe traversed the scene target.
+        observed = [list(rows[h-8][int(w*(i+.5)/8)*c:int(w*(i+.5)/8)*c+3]) for i in range(8)]
+        expected = [encode(value*2**exposure) for value in linear]
+        if any(abs(channel-target)>2 for pixel,target in zip(observed,expected) for channel in pixel):
+            raise ValueError(f"Linear/display calibration failed: {name}: {observed}, expected {expected}")
+        result[name] = {"observed_rgb": observed, "expected_gray": expected, "exposure": exposure}
+    # Opaque inspector title background must remain independent of scene exposure.
+    def ui_pixel(name):
+        w,h,c,rows=captures[name]
+        scale=w/1000
+        x,y=round(300*scale),round(30*scale)
+        return rows[y][x*c:x*c+3]
+    if ui_pixel("color-linear") != ui_pixel("color-hdr"):
+        raise ValueError("UI changed with scene exposure")
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--executable", required=True)
     parser.add_argument("--shaders", required=True)
+    parser.add_argument("--portable", action="store_true", help="Use executable-relative shaders and launch from a separate directory")
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
     executable, shaders, out = inside(args.executable), inside(args.shaders), inside(args.out)
     if not executable.is_file() or out.exists():
         parser.error("Executable must exist and output directory must be new")
     command = [sys.executable, str(ROOT/"Tools/record.py"), "--out", str(out/"run"), "--timeout", "120"]
-    for path in [executable, ROOT/"CMakeLists.txt", ROOT/"Research/probe-lock.json", Path(__file__)]:
+    for path in [executable, ROOT/"CMakeLists.txt", ROOT/"Research/probe-lock.json", ROOT/"Research/runtime-lock.json", Path(__file__)]:
         command += ["--input", str(path)]
-    for name in ["vs_scene.bin", "fs_scene.bin", "vs_inspector.bin", "fs_inspector.bin"]:
+    for name in ["vs_scene.bin", "fs_scene.bin", "vs_inspector.bin", "fs_inspector.bin", "vs_fullscreen.bin", "fs_display.bin", "fs_calibration.bin"]:
         path = shaders/name
         if not path.is_file():
             parser.error("Missing compiled shader: " + str(path))
@@ -141,13 +166,19 @@ def main():
         for path in sorted((ROOT/folder).rglob("*")):
             if path.is_file():
                 command += ["--input", str(path)]
-    command += ["--", str(executable), "--shaders", str(shaders), "--verify", str(out/"captures")]
+    if args.portable:
+        cwd=ROOT/".cache/portable-launch-cwd"
+        cwd.mkdir(exist_ok=True)
+        command += ["--cwd",str(cwd)]
+    command += ["--", str(executable), "--verify", str(out/"captures"), "--save-inspection",str(out/"inspection.json")]
+    if not args.portable:
+        command += ["--shaders",str(shaders)]
     subprocess.run(command, cwd=ROOT, check=True)
     report = json.loads((out/"captures/verification.json").read_text())
     if not report["passed"]:
         raise ValueError("Application verification failed")
     captures = {name: png(out/"captures"/(name+".png")) for name in
-        ["baseline", "material", "orbit", "resized", "normals", "baked", "unculled", "front-cull", "reverse-order", "sphere"]}
+        ["baseline", "material", "orbit", "resized", "normals", "baked", "unculled", "front-cull", "reverse-order", "sphere", "color-linear", "color-hdr", "color-restored"]}
     changed, blue = changed_scene(captures["baseline"], captures["material"])
     orbit_changed, _ = changed_scene(captures["material"], captures["orbit"])
     if changed < 500 or blue < 500 or orbit_changed < 500:
@@ -155,6 +186,7 @@ def main():
     if captures["resized"][:2] == captures["baseline"][:2]:
         raise ValueError("Resize did not change captured framebuffer dimensions")
     geometry = check_geometry(captures)
+    color = check_color(captures)
     negative = []
     for name, arguments, expected in [
         ("missing-shaders", ["--shaders", str(out/"absent-shaders")], "Missing shader:"),
@@ -170,7 +202,7 @@ def main():
         negative.append(name)
     result = {"schema_version": 1, "result": "passed", "backend": report["backend"],
         "material_changed_sampled_pixels": changed, "became_blue_sampled_pixels": blue,
-        "orbit_changed_sampled_pixels": orbit_changed, "geometry_comparisons": geometry, "expected_failures": negative,
+        "orbit_changed_sampled_pixels": orbit_changed, "geometry_comparisons": geometry, "linear_display_checks": color, "portable_paths": args.portable, "expected_failures": negative,
         "captures": {name: {"width": value[0], "height": value[1],
             "sha256": hashlib.sha256((out/"captures"/(name+".png")).read_bytes()).hexdigest()}
             for name, value in captures.items()},

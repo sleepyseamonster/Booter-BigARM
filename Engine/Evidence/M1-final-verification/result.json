@@ -1,0 +1,270 @@
+{
+  "backend": "Metal",
+  "became_blue_sampled_pixels": 31162,
+  "captures": {
+    "baked": {
+      "height": 1360,
+      "sha256": "dbb869b9e49f5d9d0ec7d02bfe352609380971f14ec1183d90facfffe3b8248a",
+      "width": 2000
+    },
+    "baseline": {
+      "height": 1440,
+      "sha256": "cf4c9b9c87d0d0af81ccb768ebc672896858d4699d81a09250d43cb3e47620f6",
+      "width": 2240
+    },
+    "color-hdr": {
+      "height": 1360,
+      "sha256": "24789ff32e594e418638b3a07d904c4a8797a1715a15cba48a1cc8380f9cdb21",
+      "width": 2000
+    },
+    "color-linear": {
+      "height": 1360,
+      "sha256": "2a1dc6ac7daea21633a81857067d93a07223e32accab9f08d313ccb72395607c",
+      "width": 2000
+    },
+    "color-restored": {
+      "height": 1360,
+      "sha256": "9f37dd34cd3d511f6e315ef14b30eca6228e86073823254263643c9cac47afb6",
+      "width": 2000
+    },
+    "front-cull": {
+      "height": 1360,
+      "sha256": "26b2407927ec7841ad19c63e7087bbdd7c1a254012599573a798af3864ca8185",
+      "width": 2000
+    },
+    "material": {
+      "height": 1440,
+      "sha256": "f9d3b6142433aa357297a377ee6e415ecb979de08acf20725460f4d64d303be5",
+      "width": 2240
+    },
+    "normals": {
+      "height": 1360,
+      "sha256": "7019108ba74e667c9a6579d068f6121675ee6c2a73d71ea7bb78179485d37d19",
+      "width": 2000
+    },
+    "orbit": {
+      "height": 1440,
+      "sha256": "a61979b1b892116b759ffc211555da00e0c628799d8248eefbf257c4e8374a24",
+      "width": 2240
+    },
+    "resized": {
+      "height": 1360,
+      "sha256": "081e1fc2c72eb05b2e36cfd8d4a4b24d700415a9ac991c8cf0a3a126620026c3",
+      "width": 2000
+    },
+    "reverse-order": {
+      "height": 1360,
+      "sha256": "332c9893ce2a9d7172f04da10db1546cc4c4a1632269f25ff2987b8ee61ea150",
+      "width": 2000
+    },
+    "sphere": {
+      "height": 1360,
+      "sha256": "538c1f0d3d24be40f47fa697082da613baa46071ce5b215e3e849ade6f697ea4",
+      "width": 2000
+    },
+    "unculled": {
+      "height": 1360,
+      "sha256": "6ae9a3d2063e33fb0a3f120746713ea992115562104e179d10517cc2459095ca",
+      "width": 2000
+    }
+  },
+  "expected_failures": [
+    "missing-shaders",
+    "invalid-argument"
+  ],
+  "geometry_comparisons": {
+    "baked": {
+      "different": 0,
+      "normal_subject": 7983,
+      "samples": 163200
+    },
+    "front-cull": {
+      "different": 111802,
+      "normal_subject": 7983,
+      "samples": 163200
+    },
+    "reverse-order": {
+      "different": 0,
+      "normal_subject": 7983,
+      "samples": 163200
+    },
+    "unculled": {
+      "different": 0,
+      "normal_subject": 7983,
+      "samples": 163200
+    }
+  },
+  "linear_display_checks": {
+    "color-hdr": {
+      "expected_gray": [
+        0,
+        3,
+        66,
+        99,
+        137,
+        188,
+        44,
+        120
+      ],
+      "exposure": -2,
+      "observed_rgb": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          66,
+          66,
+          66
+        ],
+        [
+          99,
+          99,
+          99
+        ],
+        [
+          137,
+          137,
+          137
+        ],
+        [
+          188,
+          188,
+          188
+        ],
+        [
+          44,
+          44,
+          44
+        ],
+        [
+          120,
+          120,
+          120
+        ]
+      ]
+    },
+    "color-linear": {
+      "expected_gray": [
+        0,
+        10,
+        128,
+        188,
+        255,
+        255,
+        89,
+        225
+      ],
+      "exposure": 0,
+      "observed_rgb": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          10,
+          10,
+          10
+        ],
+        [
+          128,
+          128,
+          128
+        ],
+        [
+          188,
+          188,
+          188
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          89,
+          89,
+          89
+        ],
+        [
+          225,
+          225,
+          225
+        ]
+      ]
+    },
+    "color-restored": {
+      "expected_gray": [
+        0,
+        3,
+        66,
+        99,
+        137,
+        188,
+        44,
+        120
+      ],
+      "exposure": -2,
+      "observed_rgb": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          66,
+          66,
+          66
+        ],
+        [
+          99,
+          99,
+          99
+        ],
+        [
+          137,
+          137,
+          137
+        ],
+        [
+          188,
+          188,
+          188
+        ],
+        [
+          44,
+          44,
+          44
+        ],
+        [
+          120,
+          120,
+          120
+        ]
+      ]
+    }
+  },
+  "material_changed_sampled_pixels": 31162,
+  "orbit_changed_sampled_pixels": 33466,
+  "portable_paths": true,
+  "proof_limit": "Native technical checks and GPU pixel changes; not physical input, gameplay, final visual acceptance or target-PC performance.",
+  "result": "passed",
+  "schema_version": 1
+}

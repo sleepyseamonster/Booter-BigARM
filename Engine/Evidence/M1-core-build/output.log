@@ -1,0 +1,11 @@
+[  7%] Building CXX object CMakeFiles/engine_core.dir/Source/Core/WorldIdentity.cpp.o
+[ 15%] Linking CXX static library libengine_core.a
+[ 23%] Built target engine_core
+[ 53%] Built target engine_state
+[ 61%] Linking CXX executable engine_state_tests
+[ 69%] Linking CXX executable engine_geometry_tests
+[ 76%] Building CXX object CMakeFiles/engine_core_tests.dir/Tests/CoreTests.cpp.o
+[ 84%] Built target engine_state_tests
+[ 92%] Built target engine_geometry_tests
+[100%] Linking CXX executable engine_core_tests
+[100%] Built target engine_core_tests

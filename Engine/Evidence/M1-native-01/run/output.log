@@ -1,0 +1,58 @@
+Engine build 0.1.0-d3bc8c61e3ae2295b957e26cc078ee18e959abfc22d8251d3e18533acc61f6e3 | compiler Apple LLVM 21.0.0 (clang-2100.1.1.101)
+RENDERER Metal framebuffer=2240x1440
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/baseline.png 2240x1440
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/material.png 2240x1440
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/orbit.png 2240x1440
+RESIZE 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/resized.png 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/normals.png 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/baked.png 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/unculled.png 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/front-cull.png 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/reverse-order.png 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/sphere.png 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/color-linear.png 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/color-hdr.png 2000x1360
+RESIZE 996x680
+RESIZE 2000x1360
+RESIZE 1000x680
+RESIZE 2000x1360
+RESIZE 996x680
+RESIZE 2000x1360
+RESIZE 1000x680
+RESIZE 2000x1360
+RESIZE 996x680
+RESIZE 2000x1360
+RESIZE 1000x680
+RESIZE 2000x1360
+RESIZE 996x680
+RESIZE 2000x1360
+RESIZE 1000x680
+RESIZE 2000x1360
+RESIZE 996x680
+RESIZE 2000x1360
+RESIZE 1000x680
+RESIZE 2000x1360
+RESIZE 996x680
+RESIZE 2000x1360
+RESIZE 1000x680
+RESIZE 2000x1360
+RESIZE 996x680
+RESIZE 2000x1360
+RESIZE 1000x680
+RESIZE 2000x1360
+RESIZE 996x680
+RESIZE 2000x1360
+RESIZE 1000x680
+RESIZE 2000x1360
+RESIZE 996x680
+RESIZE 2000x1360
+RESIZE 1000x680
+RESIZE 2000x1360
+RESIZE 996x680
+RESIZE 2000x1360
+RESIZE 1000x680
+RESIZE 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/M1-native-01/captures/color-restored.png 2000x1360
+SHUTDOWN renderer resources released
+PASS: GPU fixture, inspector click, camera event, resize, 20 mesh rebuilds, close and cleanup

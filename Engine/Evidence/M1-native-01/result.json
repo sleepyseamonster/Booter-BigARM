@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "result": "failed",
+  "failure": "Independent geometry pixel oracle found no visible sloped-normal reference after resize; reset had cleared the scene framebuffer binding.",
+  "event_receipt": "run/result.json",
+  "superseded_by": "../M1-native-final/result.json"
+}

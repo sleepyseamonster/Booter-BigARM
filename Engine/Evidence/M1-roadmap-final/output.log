@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "errors": [],
+  "packages": 40,
+  "capabilities": 24,
+  "ready_local": [
+    "P03",
+    "P04",
+    "P08"
+  ],
+  "ready_windows": [
+    "W01"
+  ],
+  "proof_limit": "Plan graph, coverage and evidence-file presence only; not implementation, creative acceptance or runtime verification."
+}
