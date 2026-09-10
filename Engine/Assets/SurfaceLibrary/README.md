@@ -1,6 +1,6 @@
 # Rock and Ground Surface Library
 
-Transferred 2026-09-10 at the user's direction from the preserved Unity work area. These are byte-for-byte copies of existing project images, ready for the new engine's future texture/material pipeline. No image was regenerated, recolored, resized or repacked.
+Transferred 2026-09-10 at the user's direction from the preserved Unity work area. These are byte-for-byte copies of existing project images, preserved as the new engine's texture/material sources. No image was regenerated, recolored, resized or repacked.
 
 ## Contents
 
@@ -46,6 +46,6 @@ The first command needs only the engine collection. The second also reads the pr
 
 The manifest's collection keys identify these assets independently of GPU handles; runtime asset IDs are not finalized. The transfer creates no world objects, seeds, chunk state, authored geography or persisted gameplay deltas. Future materials should share texture resources across generated rocks and chunk lifetimes without making GPU handles into persistent IDs.
 
-The original image files and Unity settings remain untouched. Source provenance here is the existing project checkout; no external asset acquisition occurred. The engine currently has no scene-texture loader, so these files are collected assets rather than integrated rendering output. Color handling remains next, followed by the planned lighting and material work.
+The original image files and Unity settings remain untouched. Source provenance here is the existing project checkout; no external asset acquisition occurred. The initial transfer preserved the assets; the native renderer now consumes a subset through its texture pipeline and triplanar shader. The full Unity layered material response still needs porting; see the [current concept-transfer audit](../../Docs/UNITY_ROCK_CONCEPT_TRANSFER.md).
 
 P03 now supplies [semantic recipes, cooking and shared GPU previews](../../Docs/TEXTURE_PIPELINE_RESULT.md). Runtime IDs use a `surface/` namespace over collection keys. The sources and historical bindings above remain unchanged; PBR material interpretation is separate work.
