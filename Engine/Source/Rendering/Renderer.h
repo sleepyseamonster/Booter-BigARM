@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/FixtureState.h"
 #include "Platform/Window.h"
+#include "Rendering/RenderModel.h"
 #include <bgfx/bgfx.h>
 #include <atomic>
 #include <filesystem>
@@ -30,7 +31,7 @@ struct SurfaceTextures {
     bool packedSurface=true;
     bgfx::TextureHandle albedo=BGFX_INVALID_HANDLE, normal=BGFX_INVALID_HANDLE, surface=BGFX_INVALID_HANDLE;
 };
-struct ScenePlacement { std::array<float,3> offset{},eye{},target{};bool physicalCharacter=false; };
+struct ScenePlacement { std::array<float,3> offset{},eye{},target{};bool physicalCharacter=false;const RenderModel* model=nullptr;const std::vector<SkinMatrix>* pose=nullptr;bool cpuReference=false; };
 struct SceneSurfaces { SurfaceTextures rock, ground; };
 class Renderer {
 public:
@@ -57,6 +58,8 @@ private:
     bgfx::ProgramHandle displayProgram_ = BGFX_INVALID_HANDLE, calibrationProgram_ = BGFX_INVALID_HANDLE;
     bgfx::VertexBufferHandle fullscreen_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle display_ = BGFX_INVALID_HANDLE, sceneSampler_ = BGFX_INVALID_HANDLE;
+    bgfx::ProgramHandle skinProgram_=BGFX_INVALID_HANDLE,skinShadowProgram_=BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle joints_=BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle program_ = BGFX_INVALID_HANDLE;
     bgfx::FrameBufferHandle shadow_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle shadowProgram_ = BGFX_INVALID_HANDLE;

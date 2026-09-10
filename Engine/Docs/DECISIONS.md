@@ -27,6 +27,8 @@ Update this record when evidence changes a decision. Keep the rationale and repl
 
 Foundation selections were made under the user's implementation authority on 2026-09-09, following [the application result](./FOUNDATION_RESULT.md). These supersede the earlier proposals for this bounded milestone; they do not establish final game performance, complete engine architecture or shipping readiness.
 
+| D-19 | Accepted first-pass asset/animation integration | Restricted glTF/GLB via fastgltf 0.9.0 + pinned simdjson 3.12.3; engine-owned cooked format, ozz 0.16.0 sampling/blending and GPU skinning | [Model and animation result](./MODEL_ANIMATION_RESULT.md); scalar materials, rigid node scale, 64 joints; wider source profiles/shared compiled-resource caching remain later work |
+
 ## Decision Procedure
 
 A new entry names the requirement, alternatives actually considered, selected option or unresolved question, evidence paths, material limitations and next review trigger. Use `proposed`, `accepted`, `rejected`, `superseded`, `open` or `deferred`. A library version pinned for an experiment is not an accepted production architecture.

@@ -4,7 +4,7 @@ This executable is the first application/rendering fixture. See [the implementat
 
 ## Build
 
-From `Engine/`, with Python 3.9+, CMake 3.20+ and the platform's native C++ toolchain:
+From `Engine/`, with Python 3.9+, CMake 3.24+ and the platform's native C++ toolchain:
 
 ```sh
 python3 Tools/prepare_probe.py --fetch
@@ -49,7 +49,7 @@ Generated world identity, chunk streaming and persisted deltas are not implement
 
 ## First-pass documents and local packages
 
-The [runtime foundation](./FIRST_PASS_RUNTIME.md) adds strict inspection documents, linear display conversion and portable shader lookup. From Engine, CMake 3.21 or newer supports the checked-in presets (the direct CMake command path still supports 3.20):
+The [runtime foundation](./FIRST_PASS_RUNTIME.md) adds strict inspection documents, linear display conversion and portable shader lookup. From Engine, CMake 3.24 or newer supports the checked-in presets and the animation dependency:
 
 ```sh
 python3 Tools/prepare_probe.py --fetch
@@ -75,3 +75,16 @@ python3 Tools/verify_foundation.py --executable out/my-workbench/bin/engine_work
 The extra color captures preserve the existing geometry checks, measure eight known linear values at two exposures and recheck after target replacement. The inspector remains outside the scene display transform. These checks do not establish physical input, artistic acceptance, gameplay, Windows compatibility or target-PC performance.
 
 The workbench also exposes the [shared simulation proxy and named input bindings](./SIMULATION_FOUNDATION_RESULT.md). [Collision and the capsule motor](./COLLISION_CHARACTER_RESULT.md) now drive character mode; animation and the player app follow.
+
+## Imported models and animation
+
+From `Engine/`, cook a supported glTF/GLB once into a new output directory, then load it:
+
+```sh
+build/foundation/engine_model_cook Assets/Models/Calibration/character.glb out/models/calibration
+build/foundation/engine_workbench --model out/models/calibration/model.json
+```
+
+The model panel previews clips and blends. Enable **Shared simulation → Enable character** to attach the proxy to the existing capsule motor and third-person camera. The first two clips are the temporary idle/walk mapping in character mode; the calibration asset supplies those clips in that order. Pause/focus policy stops the simulation animation clock. Source glTF files are consumed only by the offline cooker; the workbench reads the engine's cooked model document and mesh payload.
+
+See [the model/animation result](./MODEL_ANIMATION_RESULT.md) for the accepted import profile and remaining work. A cooker output directory is immutable: choose a new directory for a new cook. `Tools/make_character_fixture.py` regenerates the repository-owned source proxy.

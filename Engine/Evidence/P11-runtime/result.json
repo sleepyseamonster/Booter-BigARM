@@ -1,0 +1,35 @@
+{
+  "result": "passed",
+  "platform": "macOS native",
+  "proof": "Native restricted GLB/glTF cooking, skeleton/clip sampling and blending, static transforms and input rejection; compiled workbench/GPU shaders",
+  "test_command": "ctest --test-dir Engine/build/foundation -R '^model_import_animation$' --output-on-failure",
+  "cook_result": {
+    "vertices": 168,
+    "indices": 252,
+    "joints": 7,
+    "clips": 2
+  },
+  "input_sha256": {
+    "build/foundation/engine_animation_tests": "f1e3326db104b832b8524a4a4a2435b1d8578ffd31a47995b0c55ecc386110c2",
+    "build/foundation/engine_model_cook": "3b7983c7c24c46663a98da5db0451f103145edf3f346c55be8b200294f9d1c8e",
+    "Research/runtime-lock.json": "e8137eeb1a6d17847340ef823321abdca25651f5f475b33013544cb707df4f98",
+    "CMakeLists.txt": "758c1ac9270e9e9f4e2fabdd99417a4eb6b21dc9040791f891380da7238b8425",
+    "CMake/Animation.cmake": "21cf04aa1f571aea58e4135aead84c7725de31c6450c0ef5d0e77a96df508226",
+    "Tests/AnimationTests.cpp": "9f53f55acc4c53dd44f18d8d701a3764e50142c0db31670e39bb72ec11033a8a",
+    "Assets/Models/Calibration/character.glb": "1e351abaea90913b2bf40d5a9e2ba61dee2d5e0046cf4d9ef655dc20882e11ab",
+    "out/models/calibration/model.json": "5185d8e098019a663f26db5bb029ae225399c0ad49557b88fdf56b0e23fa1696",
+    "out/models/calibration/mesh.bin": "d43019cce3c24d5a83cdf7535da445a068418ef9ebc95c37df88a73ebbdbfd7a",
+    "Source/Animation/AnimationPlayer.cpp": "50ef9543773f8e61f7e8b896c1c6c46896965be30e4eb48db3038bd6021423ab",
+    "Source/Animation/AnimationPlayer.h": "98f65bc5051f870addfcfe906d691922379cb7fb8a0229cad841d55281c74ee6",
+    "Source/Animation/Model.cpp": "3a51fb5d92573d350a682c833b35da7f47d7d2c71c3f911daaa260a7b56f5a98",
+    "Source/Animation/Model.h": "86a8255c33325095f729190760a2ff4c65abc1a59a3e426337364b8403ff3eca",
+    "Source/Assets/GltfImport.cpp": "b7d32f2e57463e8c9eaaadb1f1ccc17b424bf9a3f9554eaabea66d567dd21568",
+    "Source/Assets/GltfImport.h": "443c9709d14750eae6f326772bdbf0977570d3d3af48d9d2e9b0013179ba9da4"
+  },
+  "logs": [
+    "build.log",
+    "render-build.log",
+    "tests.log"
+  ],
+  "limits": "No gameplay smoke, physical controller, Windows or final art acceptance; GPU comparison has its separate P11-animation receipt."
+}

@@ -24,15 +24,18 @@
 #include "Physics/CharacterController.h"
 #include "Game/ThirdPersonCamera.h"
 #include "Game/Locomotion.h"
+#include "Animation/AnimationPlayer.h"
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings; bool buildInfo=false, lightingVerify=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model; bool buildInfo=false, lightingVerify=false, animationVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
-        if ((arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
-            if (arg=="--verify-lighting") { options.lightingVerify=true;options.verify=argv[++i]; }
+        if ((arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
+            if (arg=="--model") options.model=argv[++i];
+            else if (arg=="--verify-animation") {options.animationVerify=true;options.verify=argv[++i];}
+            else if (arg=="--verify-lighting") { options.lightingVerify=true;options.verify=argv[++i]; }
             else if (arg=="--verify") options.verify=argv[++i];
             else if (arg=="--inspection") options.inspection=argv[++i];
             else if (arg=="--save-inspection") options.saveInspection=argv[++i];
@@ -41,7 +44,7 @@ Options parse(int argc,char** argv) {
             else if (arg=="--save-bindings") options.saveBindings=argv[++i];
             else options.shaders=argv[++i];
         } else if (arg=="--build-info") options.buildInfo=true;
-        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--verify new-output-directory] [--verify-lighting new-output-directory]");
+        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
     }
     return options;
 }
@@ -156,7 +159,10 @@ int run(Options options) {
     engine::FixtureState state;
     if (!options.inspection.empty()) engine::loadInspection(options.inspection,state);
     const bool technical=!options.verify.empty();
-    const bool verify=technical && !options.lightingVerify;
+    const bool verify=technical && !options.lightingVerify && !options.animationVerify;
+    const bool animationVerify=options.animationVerify;
+    if(animationVerify && options.model.empty())throw std::runtime_error("Animation verification requires --model");
+    if(options.animationVerify && options.lightingVerify)throw std::runtime_error("Choose one verification mode");
     const bool lightingVerify=options.lightingVerify;
     if (technical) {
         if (std::filesystem::exists(options.verify)) throw std::runtime_error("Verification output exists; choose a new directory");
@@ -177,6 +183,16 @@ int run(Options options) {
     renderer.start(window,options.shaders);
     const std::string backend=renderer.name();
     const auto records=options.catalog.empty()?std::vector<engine::TextureRecord>{}:engine::loadTextureCatalog(options.catalog);
+    std::shared_ptr<const engine::ModelData> modelData;
+    std::unique_ptr<engine::AnimationPlayer> animation;
+    std::unique_ptr<engine::RenderModel> renderModel;
+    if(!options.model.empty()) {
+        modelData=std::make_shared<engine::ModelData>(engine::loadModel(options.model));
+        animation=std::make_unique<engine::AnimationPlayer>(modelData);
+        renderModel=std::make_unique<engine::RenderModel>(*modelData);
+    }
+    if(animationVerify && modelData->clips.size()<2)throw std::runtime_error("Animation verification requires two clips");
+    double animationSeconds=0;float walkBlend=0,previewBlend=0;int previewClip=0;bool animationPlaying=true;
     engine::TextureStore textures;
     if (verify && !records.empty()) {
         const auto result=engine::verifyTextureStore(textures,records.at(0));
@@ -287,7 +303,21 @@ int run(Options options) {
                 if(frame==105) {state.exposure=0;state.shadowBias=.008f;state.yaw=-.6f;}
             }
             if (verify && frame==350) textureControls.enabled=true;
+            if(animationVerify) {state=engine::FixtureState{};state.surfaceTextures=false;state.shadows=true;state.yaw=.6f;state.pitch=.35f;state.distance=4;state.showNormals=frame>=45;}
             button=inspector(state,renderer,milliseconds,textureControls,simulation);
+            if(animation && !animationVerify) {
+                ImGui::Begin("Model animation");
+                ImGui::Text("%zu joints | %zu clips",modelData->joints.size(),modelData->clips.size());
+                if(!modelData->clips.empty() && !simulation.enabled) {
+                    ImGui::Checkbox("Play",&animationPlaying);
+                    if(ImGui::BeginCombo("Clip",modelData->clips[size_t(previewClip)].name.c_str())) {
+                        for(size_t i=0;i<modelData->clips.size();++i)if(ImGui::Selectable(modelData->clips[i].name.c_str(),previewClip==int(i))) {previewClip=int(i);animationSeconds=0;}
+                        ImGui::EndCombo();
+                    }
+                    if(modelData->clips.size()>1)ImGui::SliderFloat("Blend to next clip",&previewBlend,0,1);
+                }
+                ImGui::TextUnformatted(simulation.enabled?"Animation follows character movement":"Model pose preview");ImGui::End();
+            }
             const bool focused=(SDL_GetWindowFlags(window.get())&SDL_WINDOW_INPUT_FOCUS)!=0;
             actions.focus(focused);actionInput.sample();
             if(actions.consume(engine::Action::Pause).pressed) simulation.paused=!simulation.paused;
@@ -299,6 +329,9 @@ int run(Options options) {
                 const auto intent=engine::locomotionIntent(input,state.yaw);
                 world.step(dt);character.step(float(dt),intent.velocity,intent.jump);physics.step(float(dt));
                 const auto feet=character.position();
+                animationSeconds+=dt;
+                const auto velocity=std::sqrt(intent.velocity[0]*intent.velocity[0]+intent.velocity[2]*intent.velocity[2]);
+                walkBlend+=std::clamp((velocity>.01f?1.f:0.f)-walkBlend,-float(dt)*5,float(dt)*5);
                 if(std::abs(intent.velocity[0])+std::abs(intent.velocity[2])>.01f) state.objectYaw=std::atan2(-intent.velocity[0],-intent.velocity[2]);
                 world.setSimulatedPose(proxy,{{{0,0},{feet[0],feet[1],feet[2]}},state.objectYaw});
                 simulation.grounded=character.grounded();
@@ -313,6 +346,19 @@ int run(Options options) {
                 const auto frame=camera.update(physics,placement.offset,state.yaw,state.pitch,state.distance,milliseconds/1000.0f,character.body());
                 placement.eye=frame.eye;placement.target=frame.target;placement.physicalCharacter=true;
                 placement.offset[1]+=.15f; // Capsule center is 0.9 m above feet; fixture base center is 0.75 m.
+            }
+            if(animation) {
+                placement.model=renderModel.get();
+                if(animationVerify) {
+                    placement.pose=frame<15?&animation->rest():&animation->sample(1,.25);
+                    placement.cpuReference=(frame>=30&&frame<45)||frame>=60;
+                    if(frame==30||frame==60)renderModel->bakeReference(*modelData,*placement.pose);
+                } else if(modelData->clips.empty())placement.pose=&animation->rest();
+                else {
+                    if(!simulation.enabled && animationPlaying)animationSeconds+=std::min(double(milliseconds)/1000.0,.1);
+                    const size_t clip=simulation.enabled?0:size_t(previewClip);
+                    placement.pose=&animation->sample(clip,animationSeconds,modelData->clips.size()>1?(clip+1)%modelData->clips.size():SIZE_MAX,simulation.enabled?walkBlend:previewBlend);
+                }
             }
             engine::TexturePreview preview;
             const bool showTexture=!records.empty() && textureControls.enabled && (!verify || frame>=350);
@@ -329,7 +375,7 @@ int run(Options options) {
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces,simulation.enabled?&placement:nullptr); ui.draw(ImGui::GetDrawData());
+            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation)?&placement:nullptr); if(!animationVerify)ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -364,6 +410,13 @@ int run(Options options) {
                 }
                 if ((frame==345 && records.empty()) || (frame==480 && !records.empty())) { SDL_Event quit{}; quit.type=SDL_EVENT_QUIT; if (!SDL_PushEvent(&quit)) throw std::runtime_error("Cannot inject close event"); }
             }
+            if(animationVerify) {
+                if(frame>=10&&frame<=70&&(frame-10)%15==0) {
+                    constexpr const char* names[]={"rest.png","gpu-walk.png","cpu-walk.png","gpu-normals.png","cpu-normals.png"};
+                    bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/names[(frame-10)/15]).string().c_str());
+                }
+                if(frame==80)running=false;
+            }
             if(lightingVerify) {
                 if(frame>=10 && frame<=115 && (frame-10)%15==0) {
                     constexpr const char* names[]={"unshadowed.png","shadowed.png","sun-moved.png","surfaces.png","flat-normal.png","smooth.png","exposure.png","camera-bias.png"};
@@ -378,8 +431,14 @@ int run(Options options) {
     }
     if(!options.saveBindings.empty()) engine::saveBindings(options.saveBindings,actions);
     texture.reset();for(auto& lease:surfaceLeases)lease.reset();textures.stop();
+    renderModel.reset();animation.reset();
     renderer.stop();
     if (!options.saveInspection.empty()) engine::saveInspection(options.saveInspection,state);
+    if(animationVerify) {
+        const bool passed=renderer.callbacks.captures==5&&renderer.callbacks.errors==0;
+        engine::writeDocument(options.verify/"animation.json","engine.animation-verification",{{"backend",backend},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"passed",passed}});
+        if(!passed)throw std::runtime_error("Animation render capture failed");
+    }
     if(lightingVerify) {
         const bool passed=renderer.callbacks.captures==8 && renderer.callbacks.errors==0;
         engine::writeDocument(options.verify/"lighting.json","engine.lighting-verification",{{"backend",backend},{"captures",renderer.callbacks.captures.load()},

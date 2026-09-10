@@ -83,6 +83,9 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders)
     if (!bgfx::init(init)) throw std::runtime_error("Requested GPU backend failed to initialize");
     started_ = true;
     if (bgfx::getRendererType() != init.type) throw std::runtime_error("Unexpected GPU backend");
+    skinProgram_=loadProgram(shaders,"vs_skin.bin","fs_scene.bin");
+    skinShadowProgram_=loadProgram(shaders,"vs_skin_shadow.bin","fs_shadow.bin");
+    joints_=bgfx::createUniform("u_joints",bgfx::UniformType::Mat4,64);
     program_ = loadProgram(shaders, "vs_scene.bin", "fs_scene.bin");
     shadowProgram_=loadProgram(shaders,"vs_shadow.bin","fs_shadow.bin");
     shadowMatrix_=bgfx::createUniform("u_shadowMatrix",bgfx::UniformType::Mat4);
@@ -200,6 +203,9 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     auto eye=state.eye();
     const auto offset=placement?placement->offset:std::array<float,3>{};
     for(size_t i=0;i<3;++i) eye[i]+=offset[i];
+    const auto* model=placement?placement->model:nullptr;
+    if(model && (!placement->pose||placement->pose->size()!=model->jointCount))throw std::runtime_error("Skin pose does not match model");
+    const bool gpuSkin=model && !placement->cpuReference;
     const bool physical=placement && placement->physicalCharacter;
     if(physical) eye=placement->eye;
     const auto target=physical?placement->target:std::array<float,3>{offset[0],.85f+offset[1],offset[2]};
@@ -234,11 +240,12 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     auto submit=[&](int mesh,const Matrix4& transform,const float* color,const SurfaceTextures* surface=nullptr) {
         const auto normal=normalMatrix(transform);
         bgfx::setTransform(transform.data());
-        bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
-        const bool textured=surface && state.surfaceTextures && bgfx::isValid(surface->albedo) && bgfx::isValid(surface->normal) && bgfx::isValid(surface->surface);
-        const float linear[]={textured?1.0f:srgbToLinear(color[0]),textured?1.0f:srgbToLinear(color[1]),textured?1.0f:srgbToLinear(color[2]),color[3]};
+        if(mesh<0) {model->bind(placement->cpuReference);if(gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
+        else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
+        const bool textured=mesh>=0 && surface && state.surfaceTextures && bgfx::isValid(surface->albedo) && bgfx::isValid(surface->normal) && bgfx::isValid(surface->surface);
+        const float linear[]={mesh<0?model->color[0]:(textured?1.0f:srgbToLinear(color[0])),mesh<0?model->color[1]:(textured?1.0f:srgbToLinear(color[1])),mesh<0?model->color[2]:(textured?1.0f:srgbToLinear(color[2])),color[3]};
         const float options[]={state.showNormals?1.0f:0.0f,textured?1.0f:0.0f,state.textureScale,state.ambient};
-        const float params[]={state.roughness,state.metallic,state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
+        const float params[]={mesh<0?model->roughness:state.roughness,mesh<0?model->metallic:state.metallic,state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
         bgfx::setUniform(material_,linear); bgfx::setUniform(light_,light);
         bgfx::setUniform(shadowMatrix_,shadowMatrix);bgfx::setUniform(shadowOptions_,shadowOptions);
         bgfx::setUniform(eye_,eyePosition);bgfx::setUniform(surfaceParams_,params);
@@ -251,7 +258,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         }
         bgfx::setUniform(normal_,normal.data()); bgfx::setUniform(options_,options);
         bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA|cull);
-        bgfx::submit(views::scene,program_);
+        bgfx::submit(views::scene,mesh<0&&gpuSkin?skinProgram_:program_);
     };
     const float ground[4]={0.28f,0.31f,0.34f,1};
     const float color[4]={state.color[0],state.color[1],state.color[2],1};
@@ -261,9 +268,10 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     bx::mtxSRT(markerTransform.data(),.35f,1.8f,.35f,0,0,0,2.1f,.9f,0);
     auto subject=subjectTransform(state);
     if(physical) bx::mtxSRT(subject.data(),1,1,1,0,state.objectYaw,0,0,.75f,0);
+    if(model) bx::mtxSRT(subject.data(),1,1,1,0,state.objectYaw,0,0,physical?-.15f:0,0);
     for(size_t i=0;i<3;++i) subject[12+i]+=offset[i];
     const bool baked=check==GeometryCheck::BakedReference;
-    const int subjectMesh=physical?4:(baked?3:state.mesh);
+    const int subjectMesh=model?-1:(physical?4:(baked?3:state.mesh));
     if (baked) bx::mtxIdentity(subject.data());
     if (state.shadows && !state.showNormals && !calibration && !preview) {
         bgfx::setViewFrameBuffer(views::shadow,shadow_);
@@ -271,9 +279,11 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         bgfx::setViewClear(views::shadow,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,0xffffffff,1.0f,0);
         bgfx::setViewTransform(views::shadow,lightView,lightProjection);
         auto cast=[&](int mesh,const Matrix4& transform) {
-            bgfx::setTransform(transform.data());bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
+            bgfx::setTransform(transform.data());
+            if(mesh<0) {model->bind(placement->cpuReference);if(gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
+            else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
             bgfx::setState(BGFX_STATE_WRITE_R|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_CULL_CW);
-            bgfx::submit(views::shadow,shadowProgram_);
+            bgfx::submit(views::shadow,mesh<0&&gpuSkin?skinShadowProgram_:shadowProgram_);
         };
         cast(0,groundTransform);cast(subjectMesh,subject);cast(0,markerTransform);
     }
@@ -306,6 +316,10 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
 const char* Renderer::name() const { return bgfx::getRendererName(bgfx::getRendererType()); }
 void Renderer::stop() {
     if (!started_) return;
+    if(bgfx::isValid(skinProgram_))bgfx::destroy(skinProgram_);
+    if(bgfx::isValid(skinShadowProgram_))bgfx::destroy(skinShadowProgram_);
+    if(bgfx::isValid(joints_))bgfx::destroy(joints_);
+    skinProgram_=BGFX_INVALID_HANDLE;skinShadowProgram_=BGFX_INVALID_HANDLE;joints_=BGFX_INVALID_HANDLE;
     if(bgfx::isValid(shadow_)) bgfx::destroy(shadow_);
     if(bgfx::isValid(shadowProgram_)) bgfx::destroy(shadowProgram_);
     shadow_=BGFX_INVALID_HANDLE;shadowProgram_=BGFX_INVALID_HANDLE;

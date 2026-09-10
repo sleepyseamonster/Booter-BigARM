@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.24)
 project(BooterBigARMEngine VERSION 0.1.0 LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -27,6 +27,7 @@ add_library(engine_simulation Source/Simulation/Actions.cpp Source/Simulation/Wo
 target_include_directories(engine_simulation PUBLIC Source)
 target_include_directories(engine_simulation SYSTEM PRIVATE "${DEPS}/entt/src")
 target_link_libraries(engine_simulation PUBLIC engine_core)
+include(CMake/Animation.cmake)
 include(CMake/Physics.cmake)
 add_library(engine_game Source/Game/ThirdPersonCamera.cpp)
 target_include_directories(engine_game PUBLIC Source)
@@ -60,8 +61,8 @@ target_include_directories(engine_imgui PUBLIC "${IMGUI_DIR}" "${IMGUI_DIR}/back
 target_link_libraries(engine_imgui PUBLIC SDL3::SDL3-static)
 include(CMake/Shaders.cmake)
 add_executable(engine_workbench Apps/Workbench/main.cpp Source/Platform/Window.cpp Source/Platform/ActionInput.cpp
-    Source/Rendering/Renderer.cpp Source/Rendering/InspectorRenderer.cpp Source/Rendering/TextureStore.cpp Source/Rendering/TextureChecks.cpp)
-target_link_libraries(engine_workbench PRIVATE engine_state engine_texture_data engine_game engine_imgui bgfx bx)
+    Source/Rendering/Renderer.cpp Source/Rendering/RenderModel.cpp Source/Rendering/InspectorRenderer.cpp Source/Rendering/TextureStore.cpp Source/Rendering/TextureChecks.cpp)
+target_link_libraries(engine_workbench PRIVATE engine_state engine_texture_data engine_animation engine_game engine_imgui bgfx bx)
 target_include_directories(engine_workbench PRIVATE Source)
 target_compile_definitions(engine_workbench PRIVATE ENGINE_BUILD_ID="${PROJECT_VERSION}-${RUNTIME_LOCK_HASH}")
 add_dependencies(engine_workbench engine_shaders)
@@ -102,3 +103,7 @@ add_test(NAME fixed_simulation_actions COMMAND engine_simulation_tests "${CMAKE_
 add_executable(engine_physics_tests Tests/PhysicsTests.cpp)
 target_link_libraries(engine_physics_tests PRIVATE engine_game)
 add_test(NAME collision_character_camera COMMAND engine_physics_tests)
+
+add_executable(engine_animation_tests Tests/AnimationTests.cpp)
+target_link_libraries(engine_animation_tests PRIVATE engine_model_import)
+add_test(NAME model_import_animation COMMAND engine_animation_tests "${CMAKE_CURRENT_SOURCE_DIR}/Assets/Models/Calibration/character.glb" "${CMAKE_CURRENT_BINARY_DIR}/animation-test-data")

@@ -1,0 +1,29 @@
+[  0%] Built target engine_simdjson
+[  0%] Built target engine_core
+[ 25%] Built target ozz_base
+[ 25%] Built target engine_texture_data
+[ 25%] Built target fastgltf
+[ 50%] Built target ozz_animation
+[ 75%] Built target ozz_animation_offline
+[100%] Building CXX object CMakeFiles/engine_animation.dir/Source/Animation/AnimationPlayer.cpp.o
+[100%] Building CXX object CMakeFiles/engine_animation.dir/Source/Animation/Model.cpp.o
+[100%] Linking CXX static library libengine_animation.a
+[100%] Built target engine_animation
+[100%] Building CXX object CMakeFiles/engine_model_import.dir/Source/Assets/GltfImport.cpp.o
+[100%] Linking CXX static library libengine_model_import.a
+[100%] Built target engine_model_import
+[100%] Building CXX object CMakeFiles/engine_animation_tests.dir/Tests/AnimationTests.cpp.o
+[100%] Linking CXX executable engine_animation_tests
+[100%] Built target engine_animation_tests
+[  0%] Built target engine_simdjson
+[  0%] Built target engine_core
+[ 25%] Built target ozz_base
+[ 25%] Built target engine_texture_data
+[ 25%] Built target fastgltf
+[ 50%] Built target ozz_animation
+[ 75%] Built target ozz_animation_offline
+[100%] Built target engine_animation
+[100%] Built target engine_model_import
+[100%] Building CXX object CMakeFiles/engine_model_cook.dir/Apps/ModelCooker/main.cpp.o
+[100%] Linking CXX executable engine_model_cook
+[100%] Built target engine_model_cook

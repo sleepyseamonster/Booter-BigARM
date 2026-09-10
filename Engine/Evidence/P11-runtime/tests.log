@@ -1,0 +1,19 @@
+Start testing: Sep 10 11:11 MST
+----------------------------------------------------------
+7/7 Testing: model_import_animation
+7/7 Test: model_import_animation
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/foundation/engine_animation_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Assets/Models/Calibration/character.glb" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/foundation/animation-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/foundation
+"model_import_animation" start time: Sep 10 11:11 MST
+Output:
+----------------------------------------------------------
+PASS: GLB/glTF cook, skin hierarchy/bind pose, clip sampling/blending, static transforms and bounded rejection
+<end of output>
+Test time =   0.55 sec
+----------------------------------------------------------
+Test Passed.
+"model_import_animation" end time: Sep 10 11:11 MST
+"model_import_animation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 10 11:11 MST

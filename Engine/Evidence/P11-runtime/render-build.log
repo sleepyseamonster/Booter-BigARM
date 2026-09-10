@@ -1,0 +1,45 @@
+[  0%] Built target engine_core
+[  1%] Built target ozz_base
+[  2%] Built target bx
+[ 21%] Built target SDL3-static
+[ 23%] Built target spirv-cross
+[ 34%] Built target Jolt
+[ 38%] Built target glslang
+[ 39%] Built target engine_texture_data
+[ 41%] Built target bimg
+[ 41%] Built target engine_state
+[ 42%] Built target engine_simulation
+[ 42%] Built target engine_physics
+[ 43%] Built target engine_imgui
+[ 45%] Built target ozz_animation
+[ 45%] Built target engine_game
+[ 47%] Built target bgfx
+[ 48%] Built target ozz_animation_offline
+[ 67%] Built target spirv-opt
+[ 68%] Built target engine_animation
+[ 98%] Built target tint
+[ 98%] Built target shaderc
+[ 98%] Generating Shaders/fs_scene.bin
+[ 98%] Generating Shaders/vs_skin.bin
+[ 98%] Generating Shaders/vs_skin_shadow.bin
+[ 98%] Generating Shaders/vs_scene.bin
+[ 98%] Generating Shaders/fs_shadow.bin
+[ 98%] Generating Shaders/vs_inspector.bin
+[ 98%] Generating Shaders/vs_shadow.bin
+[100%] Generating Shaders/fs_inspector.bin
+[100%] Generating Shaders/fs_calibration.bin
+[100%] Generating Shaders/vs_fullscreen.bin
+[100%] Generating Shaders/fs_display.bin
+[100%] Generating Shaders/fs_texture_preview.bin
+[100%] Built target engine_shaders
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Platform/Window.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Platform/ActionInput.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Apps/Workbench/main.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/Renderer.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/RenderModel.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/InspectorRenderer.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/TextureStore.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/TextureChecks.cpp.o
+[100%] Linking CXX executable engine_workbench
+ld: warning: ignoring duplicate libraries: 'bgfx/cmake/bx/libbx.a', 'libengine_texture_data.a'
+[100%] Built target engine_workbench

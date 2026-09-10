@@ -14,6 +14,10 @@ Research and build the engine foundation before extending the rock generator. Th
 
 The initial foundation should establish a reproducible executable, graphics, input, diagnostics, resource ownership and development tools. A complete gameplay loop or finished landscape is not the first milestone.
 
+## Current implementation depth
+
+Clarified by the user on 2026-09-10: “we just need a base skeleton of an engine.” Build the smallest working version of each necessary subsystem and connect it to the shared runtime. Once that path works, move on. Advanced import coverage, visual polish, production tools, tuning and broad hardening are later work. Use focused checks to catch broken integration; do not turn each subsystem into repeated testing or perfection cycles. The long-range roadmap remains a reference, not a requirement to finish production features before the skeleton is usable.
+
 ## Platform
 
 Windows PC is the intended game platform. The user clarified on 2026-09-09 that Mac should remain the primary development machine for as long as practical. Introduce native Windows testing during the outdoor rendering milestone without requiring a daily-workstation switch. Move primary development when meaningful compatibility effort or target-specific debugging/performance work warrants it; the user permits that move. Do not constrain the Windows game to preserve Mac development. Specific PC hardware and performance targets remain open.

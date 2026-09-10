@@ -268,8 +268,12 @@
       ],
       "owner_module": "Assets/Animation/Rendering/Tools",
       "proof": "Proxy import, skin/clip/transforms and unsupported-data rejection",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/MODEL_ANIMATION_RESULT.md",
+        "Evidence/P11-runtime/result.json",
+        "Evidence/P11-animation/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

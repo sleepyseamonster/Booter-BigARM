@@ -1,0 +1,19 @@
+{
+  "backend": "Metal",
+  "comparisons": {
+    "deformation": {
+      "changed_over_3": 8556,
+      "samples": 358560
+    },
+    "lit_and_shadow_reference": {
+      "changed_over_3": 0,
+      "samples": 358560
+    },
+    "normal_reference": {
+      "changed_over_3": 0,
+      "samples": 358560
+    }
+  },
+  "limits": "One calibration proxy on Mac Metal; render-only, no gameplay, Windows or final art acceptance.",
+  "result": "passed"
+}

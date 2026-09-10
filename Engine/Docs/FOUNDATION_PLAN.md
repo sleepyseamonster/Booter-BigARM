@@ -2,6 +2,10 @@
 
 Revision 2, rewritten 2026-09-10 after the requested whole-engine analysis and [V1 audit](./ENGINE_PLAN_AUDIT.md). This is the primary implementation roadmap for Engine. It supersedes the earlier foundation plan that ended at streamed terrain. [Direction](./DIRECTION.md) controls product intent; [STATUS.md](./STATUS.md) controls current implementation/evidence. The [system audit](../Research/ENGINE_SYSTEM_AUDIT.md), [research update](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) and [work-package record](./ENGINE_ROADMAP.json) support this plan.
 
+## Current execution target
+
+The user's 2026-09-10 clarification is a **base engine skeleton**: connected, minimal working systems before subsystem depth or polish. Implement one supported path per required capability, verify that path once, and proceed to integration. Fix actual failures; defer optional source formats, stress campaigns, advanced visuals and production tooling. The production/gameplay milestones below remain the future roadmap and do not expand the immediate skeleton acceptance target. [Direction](./DIRECTION.md) controls this depth limit.
+
 ## 1. What we are building
 
 A game-specific C++ engine for regular third-person Booter & BigARM: readable open wasteland, generated terrain and rocks, grounded traversal, a physically persistent companion, durable player consequences, useful content tools and a Windows player build. Mac remains the daily development platform while practical. Canyons are deferred.
@@ -18,7 +22,7 @@ The engine grows through these representative workloads. Completing every future
 
 ## 2. Current baseline and scope
 
-M0 is the existing native fixture and research baseline: C++20/CMake/SDL3/bgfx/bimg/bx/ImGui, Metal fixture, inspector, OR-1 geometry proof, transferred rock/ground sources and texture research. D3D11 code exists but native Windows proof is pending. No game runtime, physics, animation, terrain generator, native rock generator, world streaming, save system or player package is implemented yet.
+At this plan’s original audit, M0 was the native fixture and research baseline: C++20/CMake/SDL3/bgfx/bimg/bx/ImGui, Metal fixture, inspector, OR-1 geometry proof, transferred rock/ground sources and texture research. D3D11 code exists but native Windows proof is pending. That historical audit preceded implementation. Shared runtime, physics, animation and other completed packages are now tracked in [STATUS.md](./STATUS.md); use that live handoff rather than this original baseline for current capability claims.
 
 The 24 capability rows in [the audit](../Research/ENGINE_SYSTEM_AUDIT.md) are the complete current coverage checklist. The native work remains inside Engine; preserved Unity and Arc & Dust are references. Old top-down/2D/canyon assumptions do not carry over. Infinite-world language means procedural continuity with bounded active residency and checked coordinate ranges, not an infinitely allocated world.
 
