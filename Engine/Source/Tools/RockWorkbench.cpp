@@ -3,14 +3,19 @@
 #include <cstdio>
 #include <algorithm>
 namespace engine {
-RockWorkbench::RockWorkbench(const std::filesystem::path& path,CalibrationRuntime& runtime):runtime_(runtime),history_(loadRockRecipe(path)),draft_(history_.value()) {
+RockWorkbench::RockWorkbench(const std::filesystem::path& path,CalibrationRuntime& runtime,const std::filesystem::path& library):runtime_(runtime),history_(loadRockRecipe(path)),draft_(history_.value()) {
     if(path.string().size()>=path_.size())throw std::invalid_argument("Recipe path too long");std::snprintf(path_.data(),path_.size(),"%s",path.string().c_str());rebuild(history_.value());
     const auto output=(path.parent_path()/"Exports/rock-001").string();if(output.size()>=exportPath_.size())throw std::invalid_argument("Export path too long");std::snprintf(exportPath_.data(),exportPath_.size(),"%s",output.c_str());
+    if(!library.empty())for(const auto& entry:std::filesystem::directory_iterator(library))if(entry.is_regular_file()&&entry.path().extension()==".json"){
+        if(presets_.size()==32)throw std::runtime_error("Rock library supports up to 32 presets");presets_.push_back(entry.path());
+    }
+    std::sort(presets_.begin(),presets_.end());
 }
 void RockWorkbench::rebuild(const RockRecipe& recipe) {
     auto next=buildRockAsset(recipe,{1,recipe.version,{},0,"rock"});std::vector<std::unique_ptr<RenderModel>> models;
     for(const auto& lod:next.lods)models.push_back(std::make_unique<RenderModel>(lod.mesh));
-    runtime_.setRock(next.lods[0].id,next.collision,offset);
+    // This authored preview slot survives recipe/generator changes; exported mesh IDs remain generated.
+    runtime_.setRock("authored:workbench:rock",next.collision,offset);
     asset_=std::move(next);models_=std::move(models);
 }
 void RockWorkbench::apply(const RockRecipe& next){history_.apply(next,[&](const auto& r){rebuild(r);});draft_=history_.value();}
@@ -22,6 +27,13 @@ void RockWorkbench::drawControls(bool characterMode) {
     ImGui::Begin("Native rock recipe");ImGui::Text("%zu LODs | %zu triangles | %.1f KiB",asset_.lods.size(),asset_.lods[0].mesh.indices.size()/3,asset_.bytes/1024.f);
     if(characterMode)ImGui::TextWrapped("Disable character mode to edit this rock.");
     ImGui::BeginDisabled(characterMode);
+    auto run=[&](auto&& action){try{action();error_.clear();}catch(const std::exception& e){error_=e.what();}};
+    if(!presets_.empty()&&ImGui::BeginCombo("Rock preset","Choose a rock...")){
+        for(const auto& file:presets_)if(ImGui::Selectable(file.stem().string().c_str()))run([&]{apply(loadRockRecipe(file));forcedLod=0;});
+        ImGui::EndCombo();
+    }
+    ImGui::Text("Shape generator: v%u",draft_.version);
+    if(!presets_.empty())ImGui::TextWrapped("Presets replace the preview. Save recipe keeps your working copy; originals remain in the library.");
     ImGui::InputScalar("Seed",ImGuiDataType_U64,&draft_.seed);
     int radii[3]={int(draft_.radiiMm[0]),int(draft_.radiiMm[1]),int(draft_.radiiMm[2])};if(ImGui::SliderInt3("Radii (mm)",radii,100,5000))for(size_t i=0;i<3;++i)draft_.radiiMm[i]=uint32_t(radii[i]);
     int detail=int(draft_.subdivisions),distortion=int(draft_.distortionPermille),band=int(draft_.bandPermille),count=int(draft_.bands);
@@ -29,7 +41,6 @@ void RockWorkbench::drawControls(bool characterMode) {
     if(ImGui::SliderInt("Irregularity",&distortion,0,250))draft_.distortionPermille=uint32_t(distortion);
     if(ImGui::SliderInt("Band strength",&band,0,150))draft_.bandPermille=uint32_t(band);
     if(ImGui::SliderInt("Bands",&count,1,32))draft_.bands=uint32_t(count);
-    auto run=[&](auto&& action){try{action();error_.clear();}catch(const std::exception& e){error_=e.what();}};
     if(ImGui::Button("Apply recipe"))run([&]{apply(draft_);});ImGui::SameLine();
     if(ImGui::Button("Undo"))run([&]{undo();});ImGui::SameLine();if(ImGui::Button("Redo"))run([&]{redo();});
     ImGui::InputText("File",path_.data(),path_.size());

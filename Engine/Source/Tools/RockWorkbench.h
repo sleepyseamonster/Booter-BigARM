@@ -6,7 +6,7 @@
 namespace engine {
 class RockWorkbench {
 public:
-    RockWorkbench(const std::filesystem::path&,CalibrationRuntime&);
+    RockWorkbench(const std::filesystem::path&,CalibrationRuntime&,const std::filesystem::path& library={});
     void drawControls(bool characterMode);
     const RenderModel* model(float cameraDistance)const;
     void apply(const RockRecipe&);
@@ -26,5 +26,6 @@ private:
     std::array<char,512> path_{},exportPath_{};
     std::string exportStatus_;
     std::string error_;
+    std::vector<std::filesystem::path> presets_;
 };
 }

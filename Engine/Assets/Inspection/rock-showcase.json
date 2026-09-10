@@ -1,0 +1,36 @@
+{
+  "kind": "engine.inspection",
+  "version": 1,
+  "payload": {
+    "yaw": 0.68,
+    "pitch": 0.22,
+    "distance": 6.3,
+    "fov": 45.0,
+    "object_yaw": 0.0,
+    "mesh": 0,
+    "scale": [
+      1.5,
+      1.5,
+      1.5
+    ],
+    "normals": false,
+    "color_srgb": [
+      0.68,
+      0.39,
+      0.22
+    ],
+    "light_azimuth": -0.8,
+    "light_intensity": 1.5,
+    "exposure": 1.1,
+    "lighting": {
+      "shadows": true,
+      "shadow_bias": 0.0015,
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "normal_strength": 0.4,
+      "texture_scale": 0.42,
+      "ambient": 0.65,
+      "surface_textures": true
+    }
+  }
+}

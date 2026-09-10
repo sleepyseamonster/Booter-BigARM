@@ -1,0 +1,17 @@
+{
+  "kind": "engine.rock-recipe",
+  "version": 1,
+  "payload": {
+    "generator_version": 2,
+    "seed": 2903,
+    "subdivisions": 4,
+    "radii_mm": [
+      2100,
+      650,
+      1250
+    ],
+    "distortion_permille": 125,
+    "band_permille": 55,
+    "bands": 4
+  }
+}

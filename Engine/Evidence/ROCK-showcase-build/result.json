@@ -1,0 +1,58 @@
+{
+  "command": [
+    "cmake",
+    "--build",
+    "build/foundation",
+    "--target",
+    "engine_workbench",
+    "engine_player",
+    "engine_rock_cook",
+    "engine_world_tests",
+    "engine_rock_workbench_tests",
+    "-j",
+    "6"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Source/Tools/RockWorkbench.cpp",
+    " M Engine/Source/Tools/RockWorkbench.h",
+    " M Engine/Source/World/Rocks/RockGenerator.cpp",
+    " M Engine/Tests/WorldGenerationTests.cpp",
+    " M Engine/Tools/Packaging/Launch-Rock-Generator.cmd",
+    " M Engine/Tools/Packaging/Launch-Rock-Generator.command",
+    " M Engine/Tools/package_workbench.py",
+    "?? Engine/Assets/Inspection/",
+    "?? Engine/Assets/RockPresets/",
+    "?? Engine/Evidence/ROCK-art-adapters/",
+    "?? Engine/Evidence/ROCK-art-native/"
+  ],
+  "duration_seconds": 12.761,
+  "exit_code": 0,
+  "git_head": "a65e889f462c339b225e347a283b2b2e14696142",
+  "input_sha256_after": {
+    "Apps/Workbench/main.cpp": "3b785f9943e2cb8728373168111f3ba73d5de02a44e4e8712493935bea47ad78",
+    "Source/Rendering/Renderer.cpp": "c5dd6f8fd68c496412003c0d5fef98a7e9f7a5d1905ab22685cd2a7392190107",
+    "Source/Rendering/Renderer.h": "d11f91bc3cccb53180f4599daf3ea61800e39e0726bb3068f3d6f908bde9d6c6",
+    "Source/Tools/RockWorkbench.cpp": "693e3511a1d5a7503a1b3ed112cf1a3cbc73e9b4cddc1c56fe401fd45c140bff",
+    "Source/Tools/RockWorkbench.h": "45d40159408dee8c073b81d8a1903437b2f23c9713120c66e9a909eee94d2438",
+    "Source/World/Rocks/RockGenerator.cpp": "4c3c06a544011f8fdba0afee7f1e553574ab2d298fde32892bca214a0c8437ce"
+  },
+  "input_sha256_before": {
+    "Apps/Workbench/main.cpp": "3b785f9943e2cb8728373168111f3ba73d5de02a44e4e8712493935bea47ad78",
+    "Source/Rendering/Renderer.cpp": "c5dd6f8fd68c496412003c0d5fef98a7e9f7a5d1905ab22685cd2a7392190107",
+    "Source/Rendering/Renderer.h": "d11f91bc3cccb53180f4599daf3ea61800e39e0726bb3068f3d6f908bde9d6c6",
+    "Source/Tools/RockWorkbench.cpp": "693e3511a1d5a7503a1b3ed112cf1a3cbc73e9b4cddc1c56fe401fd45c140bff",
+    "Source/Tools/RockWorkbench.h": "45d40159408dee8c073b81d8a1903437b2f23c9713120c66e9a909eee94d2438",
+    "Source/World/Rocks/RockGenerator.cpp": "4c3c06a544011f8fdba0afee7f1e553574ab2d298fde32892bca214a0c8437ce"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "de5306cb6116fa27a43ea4a6d2cf4e23d7c153a0dec6af0d2ef6c39c17d7c25a",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T21:50:52.675499+00:00",
+  "timeout_seconds": 180.0
+}

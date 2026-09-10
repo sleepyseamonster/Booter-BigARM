@@ -20,8 +20,11 @@ def main():
     parser.add_argument('--catalog',help='Optional cooked catalog copied into executable-relative Assets')
     parser.add_argument('--model',help='Optional cooked model manifest for the standalone player')
     parser.add_argument('--rock',help='Native recipe; adds a rock-generator launcher and writable working copy')
+    parser.add_argument('--rock-library',help='Optional directory of editable native rock presets')
+    parser.add_argument('--inspection',help='Optional first-launch camera and lighting preset')
     args=parser.parse_args()
     if args.rock and not args.catalog:parser.error('--rock requires the cooked material catalog')
+    if (args.rock_library or args.inspection) and not args.rock:parser.error('Rock presets/inspection require --rock')
     build,out=inside(args.build),inside(args.out)
     if out.exists() or not (build/'CMakeCache.txt').is_file():
         parser.error('Build must be configured and package destination must be new')
@@ -69,6 +72,18 @@ def main():
         if document.get('kind')!='engine.rock-recipe' or document.get('version')!=1:raise ValueError('Unsupported rock recipe')
         destination=out/'bin/Assets/Recipes';destination.mkdir(parents=True)
         shutil.copyfile(recipe,destination/'rock.json')
+        if args.rock_library:
+            presets=sorted(inside(args.rock_library).glob('*.json'))
+            if not 1<=len(presets)<=32:raise ValueError('Rock library requires one to 32 recipes')
+            library=out/'bin/Assets/RockPresets';library.mkdir()
+            for preset in presets:
+                data=json.loads(inside(preset).read_text())
+                if data.get('kind')!='engine.rock-recipe' or data.get('version')!=1:raise ValueError('Unsupported preset document')
+                shutil.copyfile(preset,library/preset.name)
+        if args.inspection:
+            inspection=inside(args.inspection);data=json.loads(inspection.read_text())
+            if data.get('kind')!='engine.inspection' or data.get('version')!=1:raise ValueError('Unsupported inspection document')
+            shutil.copyfile(inspection,out/'bin/Assets/inspection.json')
         windows=executable.suffix=='.exe'
         name='Launch-Rock-Generator.cmd' if windows else 'Launch-Rock-Generator.command'
         shutil.copyfile(ROOT/'Tools/Packaging'/name,out/name)
@@ -83,6 +98,8 @@ Open **Launch-Rock-Generator.command** on Mac (the .cmd launcher is for a future
 4. Choose a new **Export directory**, then **Export rock** to write the accepted mesh, normals, bounds, triangle surface classes and recipe in the engine format.
 
 The launcher creates UserData/rock.json on first use and never replaces it on later launches. Inspection settings save on normal exit. Defaults remain under bin/Assets. Exports default to UserData/Exports/rock-001; choose a new name for another export. Apply draft edits before saving or exporting. Closing without Save recipe discards unsaved recipe edits.
+
+When a preset library is included, use **Rock preset** in the right panel to switch examples. This changes the preview; **Save recipe** writes your working copy and leaves library originals intact. A bundled inspection preset supplies first-launch lighting and framing, then your saved settings take over.
 
 The model is a technical rock generator, not final geological art. Three basic detail levels and collision support are present. Exports contain the highest-detail static mesh and recipe, not embedded textures or a baked collision file. The workbench uses bundled triplanar textures; other applications need their own material binding. Changing the LOD preview does not change exported geometry.
 

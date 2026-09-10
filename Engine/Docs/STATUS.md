@@ -1,6 +1,6 @@
 # Current Engine Handoff
 
-**Resumed at the user’s request (2026-09-10).** P21 world persistence is connected to both apps and verified as a first pass. See [world-save application integration](./WORLD_SAVE_APPLICATION_RESULT.md). Next: P22 working-origin handling and bounded streamed integration.
+**Latest user-directed work (2026-09-10):** [three improved native rock presets](./ROCK_SHOWCASE.md) are generated, rendered, exported and packaged at `out/rock-showcase-v2/`. The user redirected attention from origin shifting to making rocks look better. P21 world persistence remains complete as a first pass; P22 and other foundation packages remain planned. No origin-shift or gameplay expansion was started in this art pass.
 
 Updated 2026-09-10, America/Phoenix. The first-pass shared document/identity foundation (P01) and linear HDR/display pipeline (P02) are implemented and technically verified on the current Mac. Portable builds (P07) are complete on Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
 

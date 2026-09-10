@@ -1,0 +1,51 @@
+{
+  "command": [
+    "build/foundation/engine_world_tests",
+    "Assets/Recipes/wasteland-rock.json",
+    "out/ROCK-showcase-tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Source/Tools/RockWorkbench.cpp",
+    " M Engine/Source/Tools/RockWorkbench.h",
+    " M Engine/Source/World/Rocks/RockGenerator.cpp",
+    " M Engine/Tests/WorldGenerationTests.cpp",
+    " M Engine/Tools/Packaging/Launch-Rock-Generator.cmd",
+    " M Engine/Tools/Packaging/Launch-Rock-Generator.command",
+    " M Engine/Tools/package_workbench.py",
+    "?? Engine/Assets/Inspection/",
+    "?? Engine/Assets/RockPresets/",
+    "?? Engine/Evidence/ROCK-art-adapters/",
+    "?? Engine/Evidence/ROCK-art-native/",
+    "?? Engine/Evidence/ROCK-showcase-build/"
+  ],
+  "duration_seconds": 0.04,
+  "exit_code": 0,
+  "git_head": "a65e889f462c339b225e347a283b2b2e14696142",
+  "input_sha256_after": {
+    "Assets/RockPresets/01-Weathered-Boulder.json": "b1f6a9ef22a3f78e9eabc2ddc5662e51c61c92746a144fd1d88c0509e98670fb",
+    "Assets/RockPresets/02-Layered-Slab.json": "93f1d020f551bf4cb4219089333c318d759ae510f409e4f3b1d7376f74ad8870",
+    "Assets/RockPresets/03-Windworn-Outcrop.json": "df3821c5e36a7f113194f01d48969169505b7f00c790f2a50ebf0c5079a91e20",
+    "Source/World/Rocks/RockGenerator.cpp": "4c3c06a544011f8fdba0afee7f1e553574ab2d298fde32892bca214a0c8437ce",
+    "Tests/WorldGenerationTests.cpp": "cbbfb4e69e856264f252fa13a526b64612628257eb1eac667d94be3159aab4fb",
+    "build/foundation/engine_world_tests": "0af36ec71dc223f4b68d8d14e551ec638b3ab59e59244ead935856c878a89d52"
+  },
+  "input_sha256_before": {
+    "Assets/RockPresets/01-Weathered-Boulder.json": "b1f6a9ef22a3f78e9eabc2ddc5662e51c61c92746a144fd1d88c0509e98670fb",
+    "Assets/RockPresets/02-Layered-Slab.json": "93f1d020f551bf4cb4219089333c318d759ae510f409e4f3b1d7376f74ad8870",
+    "Assets/RockPresets/03-Windworn-Outcrop.json": "df3821c5e36a7f113194f01d48969169505b7f00c790f2a50ebf0c5079a91e20",
+    "Source/World/Rocks/RockGenerator.cpp": "4c3c06a544011f8fdba0afee7f1e553574ab2d298fde32892bca214a0c8437ce",
+    "Tests/WorldGenerationTests.cpp": "cbbfb4e69e856264f252fa13a526b64612628257eb1eac667d94be3159aab4fb",
+    "build/foundation/engine_world_tests": "0af36ec71dc223f4b68d8d14e551ec638b3ab59e59244ead935856c878a89d52"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "76e007e777029e892fcfb644a2d25b095ff3fb33b72a1e5f9d9ef9e02c3f37fd",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T21:51:24.476368+00:00",
+  "timeout_seconds": 30.0
+}

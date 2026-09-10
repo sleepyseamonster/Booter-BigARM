@@ -36,6 +36,20 @@ int main(int argc,char** argv)try{
     saveRockRecipe(root/"recipe.json",recipe);require(loadRockRecipe(root/"recipe.json")==recipe,"Integer recipe roundtrip");
     const auto asset=root/"model";if(std::filesystem::exists(asset))std::filesystem::remove_all(asset);saveModel(asset,a.mesh);const auto loaded=loadModel(asset/"model.json");require(loaded.indices==a.mesh.indices&&loaded.vertices.size()==a.mesh.vertices.size(),"Generated rock uses existing asset path");
     auto bad=recipe;bad.subdivisions=99;rejects([&]{generateRock(bad,id);});bad=recipe;bad.version=0;rejects([&]{generateRock(bad,id);});
+    // The art presets exercise the new version without changing legacy fixture output.
+    const auto library=std::filesystem::path(argv[1]).parent_path().parent_path()/"RockPresets";
+    size_t presets=0;
+    for(const auto& file:std::filesystem::directory_iterator(library))if(file.path().extension()==".json"){
+        const auto v2=loadRockRecipe(file.path());require(v2.version==2,"Showcase must explicitly opt into v2");
+        const GeneratedId preview{1,2,{},0,"rock"};const auto high=generateRock(v2,preview);
+        topology(high);require(same(high,generateRock(v2,preview)),"V2 recipe generation must repeat exactly");
+        require(high.minimum[1]==0&&high.mesh.indices.size()==6144,"V2 grounding and 2048 triangle budget");
+        for(const auto& vertex:high.mesh.vertices){float length=0;for(float x:vertex.normal)length+=x*x;require(std::abs(length-1)<.0001f,"V2 smooth normals must stay normalized");}
+        auto lower=v2;lower.subdivisions-=1;const auto low=generateRock(lower,preview);topology(low);require(low.id==high.id&&low.minimum[1]==0,"V2 LOD identity and grounding");
+        saveRockRecipe(root/"v2.json",v2);require(loadRockRecipe(root/"v2.json")==v2,"V2 document roundtrip");
+        ++presets;
+    }
+    require(presets==3,"Expected three authored rock examples");require(same(a,generateRock(recipe,id)),"V2 evaluation changed legacy geometry");
     PlacementConstraints c;c.routes.push_back({"authored:route",{{-1,0},{250,0,0}},{{0,0},{6,0,0}},1,1});
     const WorldPosition near{{0,0},{0,0,2}};
     require(placementAllowed(c,near,.5f),"Player-only route reserves player clearance");c.routes[0].agents=3;require(!placementAllowed(c,near,.5f),"Shared route reserves larger companion clearance");

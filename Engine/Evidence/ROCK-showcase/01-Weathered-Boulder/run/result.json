@@ -1,0 +1,56 @@
+{
+  "command": [
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/rock-showcase-v2/Launch-Rock-Generator.command",
+    "--rock",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/rock-showcase-v2/bin/Assets/RockPresets/01-Weathered-Boulder.json",
+    "--capture-rock",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/ROCK-showcase/01-Weathered-Boulder/captures"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Source/Tools/RockWorkbench.cpp",
+    " M Engine/Source/Tools/RockWorkbench.h",
+    " M Engine/Source/World/Rocks/RockGenerator.cpp",
+    " M Engine/Tests/WorldGenerationTests.cpp",
+    " M Engine/Tools/Packaging/Launch-Rock-Generator.cmd",
+    " M Engine/Tools/Packaging/Launch-Rock-Generator.command",
+    " M Engine/Tools/package_workbench.py",
+    "?? Engine/Assets/Inspection/",
+    "?? Engine/Assets/RockPresets/",
+    "?? Engine/Evidence/ROCK-art-adapters/",
+    "?? Engine/Evidence/ROCK-art-native/",
+    "?? Engine/Evidence/ROCK-showcase-build/",
+    "?? Engine/Evidence/ROCK-showcase-native/"
+  ],
+  "duration_seconds": 3.031,
+  "exit_code": 0,
+  "git_head": "a65e889f462c339b225e347a283b2b2e14696142",
+  "input_sha256_after": {
+    "Source/Rendering/Renderer.cpp": "c5dd6f8fd68c496412003c0d5fef98a7e9f7a5d1905ab22685cd2a7392190107",
+    "Source/Tools/RockWorkbench.cpp": "693e3511a1d5a7503a1b3ed112cf1a3cbc73e9b4cddc1c56fe401fd45c140bff",
+    "Source/World/Rocks/RockGenerator.cpp": "4c3c06a544011f8fdba0afee7f1e553574ab2d298fde32892bca214a0c8437ce",
+    "out/rock-showcase-v2/Launch-Rock-Generator.command": "14f16e67de1bad6b056fd65696e9d8dc869924f14ee5642c1d3e7d358ce4beec",
+    "out/rock-showcase-v2/bin/Assets/RockPresets/01-Weathered-Boulder.json": "b1f6a9ef22a3f78e9eabc2ddc5662e51c61c92746a144fd1d88c0509e98670fb",
+    "out/rock-showcase-v2/bin/Assets/inspection.json": "6d74b7d1b3e3c60478921188dae3174f656ac82a4d96c8cd09afb7627fce6c9f",
+    "out/rock-showcase-v2/bin/engine_workbench": "06b20047b1890138532235b2f715bac2339a1c41a798bcfb85db9c47a66c222e"
+  },
+  "input_sha256_before": {
+    "Source/Rendering/Renderer.cpp": "c5dd6f8fd68c496412003c0d5fef98a7e9f7a5d1905ab22685cd2a7392190107",
+    "Source/Tools/RockWorkbench.cpp": "693e3511a1d5a7503a1b3ed112cf1a3cbc73e9b4cddc1c56fe401fd45c140bff",
+    "Source/World/Rocks/RockGenerator.cpp": "4c3c06a544011f8fdba0afee7f1e553574ab2d298fde32892bca214a0c8437ce",
+    "out/rock-showcase-v2/Launch-Rock-Generator.command": "14f16e67de1bad6b056fd65696e9d8dc869924f14ee5642c1d3e7d358ce4beec",
+    "out/rock-showcase-v2/bin/Assets/RockPresets/01-Weathered-Boulder.json": "b1f6a9ef22a3f78e9eabc2ddc5662e51c61c92746a144fd1d88c0509e98670fb",
+    "out/rock-showcase-v2/bin/Assets/inspection.json": "6d74b7d1b3e3c60478921188dae3174f656ac82a4d96c8cd09afb7627fce6c9f",
+    "out/rock-showcase-v2/bin/engine_workbench": "06b20047b1890138532235b2f715bac2339a1c41a798bcfb85db9c47a66c222e"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "9da254817528b6548a7011aab92bbf7f516fc9a28cf77b2c2070c3afc40c6012",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T21:51:44.427994+00:00",
+  "timeout_seconds": 60.0
+}

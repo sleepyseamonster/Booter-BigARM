@@ -1,0 +1,37 @@
+{
+  "result": "passed",
+  "package": "out/rock-showcase-v2",
+  "package_files_verified": 42,
+  "working_recipe_preserved": true,
+  "preset_count": 3,
+  "native_captures": [
+    {
+      "backend": "Metal",
+      "captures": 1,
+      "gpu_errors": 0,
+      "passed": true,
+      "real_surfaces": true,
+      "recipe": "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/rock-showcase-v2/bin/Assets/RockPresets/01-Weathered-Boulder.json",
+      "simulation_advanced": false
+    },
+    {
+      "backend": "Metal",
+      "captures": 1,
+      "gpu_errors": 0,
+      "passed": true,
+      "real_surfaces": true,
+      "recipe": "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/rock-showcase-v2/bin/Assets/RockPresets/02-Layered-Slab.json",
+      "simulation_advanced": false
+    },
+    {
+      "backend": "Metal",
+      "captures": 1,
+      "gpu_errors": 0,
+      "passed": true,
+      "real_surfaces": true,
+      "recipe": "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/rock-showcase-v2/bin/Assets/RockPresets/03-Windworn-Outcrop.json",
+      "simulation_advanced": false
+    }
+  ],
+  "limits": "Native Mac Metal preset captures and exact accepted mesh exports; screenshot appearance visually reviewed. No gameplay, Windows or population-performance proof."
+}

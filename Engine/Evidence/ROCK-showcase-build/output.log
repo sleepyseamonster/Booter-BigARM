@@ -1,0 +1,105 @@
+[  0%] Built target engine_miniaudio
+[  0%] Built target engine_core
+[  2%] Built target ozz_base
+[  2%] Built target bx
+[  3%] Built target spirv-cross
+[  5%] Built target bimg
+[ 10%] Built target glslang
+[ 10%] Built target engine_texture_data
+[ 10%] Built target engine_state
+[ 10%] Built target engine_simulation
+[ 10%] Built target engine_audio
+[ 11%] Built target ozz_animation
+[ 31%] Built target SDL3-static
+[ 31%] Built target engine_imgui
+[ 32%] Built target ozz_animation_offline
+[ 34%] Built target bgfx
+[ 34%] Built target engine_platform
+[ 45%] Built target Jolt
+[ 45%] Built target engine_animation
+[ 47%] Built target engine_physics
+[ 47%] Building CXX object CMakeFiles/engine_rendering.dir/Source/Rendering/Renderer.cpp.o
+[ 47%] Built target engine_world
+[ 47%] Built target engine_game
+[ 48%] Built target engine_world_save
+[ 66%] Built target spirv-opt
+[ 97%] Built target tint
+[ 98%] Built target shaderc
+[100%] Built target engine_shaders
+[100%] Linking CXX static library libengine_rendering.a
+[100%] Built target engine_rendering
+[100%] Building CXX object CMakeFiles/engine_stream_scene.dir/Source/Rendering/StreamingScene.cpp.o
+[100%] Linking CXX static library libengine_stream_scene.a
+[100%] Built target engine_stream_scene
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Apps/Workbench/main.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/InspectorRenderer.cpp.o
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Apps/Workbench/main.cpp:1:
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Rendering/StreamingScene.h:4:
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/World/Streaming/RegionStream.h:4:
+/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Core/BoundedJobs.h:93:10: warning: misleading indentation; statement is not part of the previous 'for' [-Wmisleading-indentation]
+   93 |         }return {};
+      |          ^
+/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Core/BoundedJobs.h:91:9: note: previous statement is here
+   91 |         for(const auto& e:entries_)if(e->done&&!e->cancelled->load()&&budget.admit(e->bytes)){
+      |         ^
+1 warning generated.
+[100%] Linking CXX executable engine_workbench
+[100%] Built target engine_workbench
+[  0%] Built target engine_miniaudio
+[  0%] Built target engine_core
+[  1%] Built target bx
+[  2%] Built target ozz_base
+[  3%] Built target spirv-cross
+[  5%] Built target bimg
+[ 10%] Built target glslang
+[ 10%] Built target engine_texture_data
+[ 10%] Built target engine_state
+[ 10%] Built target engine_simulation
+[ 10%] Built target engine_audio
+[ 11%] Built target ozz_animation
+[ 31%] Built target SDL3-static
+[ 33%] Built target bgfx
+[ 34%] Built target ozz_animation_offline
+[ 34%] Built target engine_platform
+[ 34%] Built target engine_animation
+[ 45%] Built target Jolt
+[ 45%] Built target engine_world
+[ 47%] Built target engine_physics
+[ 47%] Built target engine_rendering
+[ 47%] Built target engine_game
+[ 48%] Built target engine_world_save
+[ 48%] Built target engine_stream_scene
+[ 66%] Built target spirv-opt
+[ 97%] Built target tint
+[ 98%] Built target shaderc
+[100%] Built target engine_shaders
+[100%] Building CXX object CMakeFiles/engine_player.dir/Apps/Game/main.cpp.o
+[100%] Linking CXX executable engine_player
+[100%] Built target engine_player
+[  0%] Built target engine_core
+[ 25%] Built target ozz_base
+[ 25%] Built target engine_texture_data
+[ 50%] Built target ozz_animation
+[ 75%] Built target ozz_animation_offline
+[ 75%] Built target engine_animation
+[ 75%] Built target engine_world
+[100%] Built target engine_rock_cook
+[  0%] Built target engine_core
+[ 33%] Built target ozz_base
+[ 33%] Built target engine_texture_data
+[ 66%] Built target ozz_animation
+[100%] Built target ozz_animation_offline
+[100%] Built target engine_animation
+[100%] Built target engine_world
+[100%] Built target engine_world_tests
+[  0%] Built target engine_core
+[  7%] Built target ozz_base
+[  7%] Built target engine_state
+[  7%] Built target engine_texture_data
+[ 14%] Built target ozz_animation
+[ 21%] Built target ozz_animation_offline
+[ 21%] Built target engine_animation
+[ 21%] Built target engine_world
+[ 92%] Built target Jolt
+[100%] Built target engine_physics
+[100%] Built target engine_rock_workbench_tests

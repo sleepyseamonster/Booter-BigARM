@@ -1,0 +1,41 @@
+{
+  "command": [
+    "build/foundation/engine_rock_workbench_tests",
+    "out/ROCK-art-adapters"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/Source/Tools/RockWorkbench.cpp",
+    " M Engine/Source/Tools/RockWorkbench.h",
+    " M Engine/Source/World/Rocks/RockGenerator.cpp",
+    " M Engine/Tests/WorldGenerationTests.cpp",
+    " M Engine/Tools/Packaging/Launch-Rock-Generator.cmd",
+    " M Engine/Tools/Packaging/Launch-Rock-Generator.command",
+    " M Engine/Tools/package_workbench.py",
+    "?? Engine/Assets/Inspection/",
+    "?? Engine/Assets/RockPresets/",
+    "?? Engine/Evidence/ROCK-art-boulder-draft/",
+    "?? Engine/Evidence/ROCK-art-native/"
+  ],
+  "duration_seconds": 0.452,
+  "exit_code": 0,
+  "git_head": "a65e889f462c339b225e347a283b2b2e14696142",
+  "input_sha256_after": {
+    "Source/Tools/RockWorkbench.cpp": "693e3511a1d5a7503a1b3ed112cf1a3cbc73e9b4cddc1c56fe401fd45c140bff",
+    "Source/World/Rocks/RockGenerator.cpp": "4c3c06a544011f8fdba0afee7f1e553574ab2d298fde32892bca214a0c8437ce",
+    "build/foundation/engine_rock_workbench_tests": "551a98faf638001fb30f027652fd8d544ac999ce82df78cd4927bf4ec400cd28"
+  },
+  "input_sha256_before": {
+    "Source/Tools/RockWorkbench.cpp": "693e3511a1d5a7503a1b3ed112cf1a3cbc73e9b4cddc1c56fe401fd45c140bff",
+    "Source/World/Rocks/RockGenerator.cpp": "4c3c06a544011f8fdba0afee7f1e553574ab2d298fde32892bca214a0c8437ce",
+    "build/foundation/engine_rock_workbench_tests": "551a98faf638001fb30f027652fd8d544ac999ce82df78cd4927bf4ec400cd28"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "534563804e0327edaed0edcd00308dacb413ef5671969b406b80f3f7c2485a66",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T21:48:34.598665+00:00",
+  "timeout_seconds": 30.0
+}

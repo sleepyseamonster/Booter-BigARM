@@ -4,6 +4,7 @@
 #include <bit>
 #include <cmath>
 #include <numeric>
+#include <map>
 namespace engine {
 namespace {
 uint64_t mix(uint64_t v){v+=0x9e3779b97f4a7c15ULL;v=(v^(v>>30))*0xbf58476d1ce4e5b9ULL;v=(v^(v>>27))*0x94d049bb133111ebULL;return v^(v>>31);}
@@ -15,7 +16,7 @@ V unit(V v){const float len=std::sqrt(dot(v,v));if(len<1e-8f)throw std::runtime_
 uint32_t integer(const Json& p,const char* key,uint32_t maximum){const auto& n=p.at(key);if(!n.is_number_unsigned()||n>maximum)throw std::runtime_error("Invalid integer rock parameter");return n.get<uint32_t>();}
 }
 void validateRecipe(const RockRecipe& r) {
-    if(r.version!=1||r.subdivisions>4||r.distortionPermille>250||r.bandPermille>150||r.bands<1||r.bands>32)throw std::invalid_argument("Unsupported rock recipe version or parameters");
+    if((r.version!=1&&r.version!=2)||r.subdivisions>4||r.distortionPermille>250||r.bandPermille>150||r.bands<1||r.bands>32)throw std::invalid_argument("Unsupported rock recipe version or parameters");
     for(auto radius:r.radiiMm)if(radius<100||radius>20000)throw std::invalid_argument("Rock radii must be 100 to 20000 mm");
 }
 void saveRockRecipe(const std::filesystem::path& path,const RockRecipe& r) {
@@ -23,7 +24,7 @@ void saveRockRecipe(const std::filesystem::path& path,const RockRecipe& r) {
 }
 RockRecipe loadRockRecipe(const std::filesystem::path& path) {
     const auto p=readDocument(path,"engine.rock-recipe");if(p.size()!=7||!p.at("seed").is_number_unsigned()||!p.at("radii_mm").is_array()||p.at("radii_mm").size()!=3)throw std::runtime_error("Invalid rock recipe fields");
-    RockRecipe r;r.seed=p.at("seed").get<uint64_t>();r.version=integer(p,"generator_version",1);r.subdivisions=integer(p,"subdivisions",4);r.distortionPermille=integer(p,"distortion_permille",250);r.bandPermille=integer(p,"band_permille",150);r.bands=integer(p,"bands",32);
+    RockRecipe r;r.seed=p.at("seed").get<uint64_t>();r.version=integer(p,"generator_version",2);r.subdivisions=integer(p,"subdivisions",4);r.distortionPermille=integer(p,"distortion_permille",250);r.bandPermille=integer(p,"band_permille",150);r.bands=integer(p,"bands",32);
     for(size_t i=0;i<3;++i){const auto& v=p.at("radii_mm")[i];if(!v.is_number_unsigned()||v>20000)throw std::runtime_error("Invalid rock radius");r.radiiMm[i]=v.get<uint32_t>();}
     validateRecipe(r);return r;
 }
@@ -37,10 +38,34 @@ RockResult generateRock(const RockRecipe& r,const GeneratedId& identity) {
     mesh.nodes.push_back({});mesh.joints={0};mesh.inverseBind={{{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1}}};mesh.baseColor={.32f,.26f,.2f,1};mesh.roughness=.9f;mesh.metallic=0;
     uint64_t seed=mix(r.seed);for(uint64_t value:{identity.seed,uint64_t(identity.region.x),uint64_t(identity.region.z),identity.member})seed=mix(seed^mix(value));
     const V radii{r.radiiMm[0]/1000.f,r.radiiMm[1]/1000.f,r.radiiMm[2]/1000.f};
+    // V2 uses broad seeded fracture planes and coherent relief instead of independent
+    // vertex noise. The field is sampled identically at every detail level.
+    auto random=[&](uint64_t index){return float(mix(seed+index)>>40)/float(0xffffff);};
+    std::array<V,10> planes{};std::array<float,10> distances{};
+    if(r.version==2)for(size_t i=0;i<planes.size();++i){
+        const float angle=random(i*3+40)*6.2831853f;
+        planes[i]=unit({std::cos(angle),random(i*3+41)*1.6f-.8f,std::sin(angle)});
+        distances[i]=.82f+random(i*3+42)*.24f;
+    }
     auto point=[&](int x,int y,int z) {
         // Reduced integer directions keep shared octant edges and coarser vertices identical.
         const int divisor=std::gcd(std::gcd(std::abs(x),std::abs(y)),std::abs(z));x/=divisor;y/=divisor;z/=divisor;
         V v=unit({float(x),float(y),float(z)});
+        if(r.version==2){
+            // A rounded block gives broad shoulders, rather than a pointed octahedron.
+            const float power=3.4f;
+            float radius=std::pow(std::pow(std::abs(v[0]),power)+std::pow(std::abs(v[1]),power)+std::pow(std::abs(v[2]),power),-1.f/power);
+            for(size_t i=0;i<planes.size();++i){const float projection=dot(v,planes[i]);if(projection>0)radius=std::min(radius,distances[i]/projection);}
+            const float phase=random(11)*6.2831853f;
+            const float broad=std::sin(v[0]*3.2f+v[1]*1.7f+phase)*std::cos(v[2]*2.8f-v[1]*1.3f+phase*.7f);
+            const float detail=std::sin(v[0]*8.1f-v[2]*5.7f+phase)*std::sin(v[1]*6.3f+v[2]*4.1f);
+            const float strata=std::sin((v[1]+.12f*v[0]-.08f*v[2])*float(r.bands)*3.14159265f+phase);
+            radius*=1+(r.distortionPermille/1000.f)*(broad*.65f+detail*.12f)+(r.bandPermille/1000.f)*strata*.45f;
+            V p{v[0]*radius,v[1]*radius,v[2]*radius};
+            // Lean and taper the mass slightly; the underside is anchored after sampling.
+            p[0]+=.10f*p[1]*std::sin(phase);p[2]+=.07f*p[1]*std::cos(phase);
+            return V{p[0]*radii[0],p[1]*radii[1]+radii[1],p[2]*radii[2]};
+        }
         const uint64_t random=mix(seed^mix(uint64_t(x))^std::rotl(mix(uint64_t(y)),21)^std::rotl(mix(uint64_t(z)),42));
         const float noise=float(random>>40)/float(0xffffff)*2-1;
         const float weight=1-v[1]*v[1];
@@ -65,6 +90,23 @@ RockResult generateRock(const RockRecipe& r,const GeneratedId& identity) {
     for(int sx:{-1,1})for(int sy:{-1,1})for(int sz:{-1,1}) {
         auto p=[&](int i,int j){return point(sx*i,sy*j,sz*(n-i-j));};
         for(int i=0;i<n;++i)for(int j=0;j<n-i;++j){triangle(p(i,j),p(i+1,j),p(i,j+1));if(i+j<n-1)triangle(p(i+1,j),p(i+1,j+1),p(i,j+1));}
+    }
+    if(r.version==2){
+        const float base=result.minimum[1];
+        for(auto& vertex:mesh.vertices)vertex.position[1]-=base;
+        result.minimum[1]=0;result.maximum[1]-=base;
+        // Share normals at exactly shared positions, retaining hard fracture creases.
+        std::map<V,std::vector<V>> incident;
+        for(size_t i=0;i<mesh.vertices.size();i+=3){
+            const auto area=cross(subtract(mesh.vertices[i+1].position,mesh.vertices[i].position),subtract(mesh.vertices[i+2].position,mesh.vertices[i].position));
+            for(size_t j=0;j<3;++j)incident[mesh.vertices[i+j].position].push_back(area);
+        }
+        for(auto& vertex:mesh.vertices){
+            V sum{};for(const auto& area:incident.at(vertex.position))if(dot(unit(area),vertex.normal)>.72f)for(size_t j=0;j<3;++j)sum[j]+=area[j];
+            vertex.normal=unit(sum);const auto n=vertex.normal;
+            const auto tangent=unit(std::abs(n[1])<.9f?cross({0,1,0},n):cross({1,0,0},n));
+            vertex.tangent={tangent[0],tangent[1],tangent[2],1};
+        }
     }
     validateModel(mesh);return result;
 }

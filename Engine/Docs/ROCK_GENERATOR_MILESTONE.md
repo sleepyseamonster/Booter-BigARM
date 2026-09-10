@@ -2,6 +2,8 @@
 
 The first-pass technical rock-generator milestone is delivered on Mac, 2026-09-10. It generates native rocks, displays the existing rock/ground textures with lighting and shadows, keeps collision on the highest-detail mesh, previews basic detail levels, edits recipes with undo/redo, saves/reloads them, and exports the exact accepted static mesh. This is the usable skeleton milestone; final geological art, gameplay feel and native Windows acceptance remain open.
 
+The user subsequently requested a visual authoring pass. [The updated rock showcase](./ROCK_SHOWCASE.md) contains three version-2 presets and a new package; the original milestone package below remains preserved.
+
 ## Start here
 
 The local package is `Engine/out/rock-generator/`. Double-click **Launch-Rock-Generator.command** inside it. Keep the package in a writable folder. The package contains the executable, shaders, four required cooked material textures, an optional animated character proxy, the native rock cooker, notices and `START-HERE.md`. It launches without Unity or source-relative assets.

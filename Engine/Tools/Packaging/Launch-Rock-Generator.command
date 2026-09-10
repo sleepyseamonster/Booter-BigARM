@@ -8,6 +8,11 @@ fi
 set -- --rock "$package_dir/UserData/rock.json" --save-inspection "$package_dir/UserData/inspection.json" "$@"
 if [ -f "$package_dir/UserData/inspection.json" ]; then
     set -- --inspection "$package_dir/UserData/inspection.json" "$@"
+elif [ -f "$package_dir/bin/Assets/inspection.json" ]; then
+    set -- --inspection "$package_dir/bin/Assets/inspection.json" "$@"
+fi
+if [ -d "$package_dir/bin/Assets/RockPresets" ]; then
+    set -- --rock-library "$package_dir/bin/Assets/RockPresets" "$@"
 fi
 if [ -f "$package_dir/bin/Assets/Models/Calibration/model.json" ]; then
     set -- --model "$package_dir/bin/Assets/Models/Calibration/model.json" "$@"
