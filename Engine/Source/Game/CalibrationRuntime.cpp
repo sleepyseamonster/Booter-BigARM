@@ -4,12 +4,14 @@
 #include <cmath>
 #include <utility>
 namespace engine {
-CalibrationRuntime::CalibrationRuntime(std::shared_ptr<const ModelData> model)
-    :character_(physics_,"authored:calibration:proxy",{0,0,0}),model_(std::move(model)) {
-    player_=world_.create("authored:calibration:proxy");
+CalibrationRuntime::CalibrationRuntime(std::shared_ptr<const ModelData> model,const PlayerSnapshot& initial)
+    :character_(physics_,"authored:calibration:proxy",initial.feet),clock_(initial.ticks),model_(std::move(model)) {
+    validateSnapshot(initial);yaw_=initial.yaw;targetActive_=initial.markerActive;
+    player_=world_.create("authored:calibration:proxy",{{{0,0},{initial.feet[0],initial.feet[1],initial.feet[2]}},initial.yaw});
     target_=world_.create("authored:calibration:marker",{{{0,0},{2.1,.9,0}},0});
     physics_.box("authored:calibration:ground",{0,-.05f,0},{10,.05f,10});
     physics_.box("authored:calibration:marker",{2.1f,.9f,0},{.175f,.9f,.175f});
+    character_.restore(initial.feet,initial.velocity);
     if(model_)animation_=std::make_unique<AnimationPlayer>(model_);
 }
 bool CalibrationRuntime::canInteract() const {
@@ -26,6 +28,7 @@ void CalibrationRuntime::tick(double seconds,const ActionFrame& input,float came
     const auto intent=locomotionIntent(input,cameraYaw);
     const auto before=character_.position();
     world_.step(seconds);character_.step(float(seconds),intent.velocity,intent.jump);physics_.step(float(seconds));
+    if(character_.position()[1]<-20)character_.restore({0,0,0});
     const auto feet=character_.position();
     const float moved=std::hypot(feet[0]-before[0],feet[2]-before[2]);
     walkBlend_+=std::clamp((moved>.01f*float(seconds)?1.f:0.f)-walkBlend_,-float(seconds)*5,float(seconds)*5);
@@ -52,6 +55,9 @@ CalibrationFrame CalibrationRuntime::present(float yaw,float pitch,float distanc
     result.eye=camera.eye;result.target=camera.target;result.yaw=yaw_;
     if(animation_)result.palette=model_->clips.empty()?&animation_->rest():&animation_->sample(0,clock_.seconds(),model_->clips.size()>1?1:SIZE_MAX,walkBlend_);
     return result;
+}
+PlayerSnapshot CalibrationRuntime::snapshot(float cameraYaw,float cameraPitch,float cameraDistance) const {
+    PlayerSnapshot s;s.feet=character_.position();s.velocity=character_.velocity();s.yaw=yaw_;s.cameraYaw=cameraYaw;s.cameraPitch=cameraPitch;s.cameraDistance=std::clamp(cameraDistance,2.5f,8.f);s.markerActive=targetActive_;s.ticks=clock_.ticks();validateSnapshot(s);return s;
 }
 std::vector<CalibrationCue> CalibrationRuntime::takeCues(){return std::exchange(cues_,{});}
 }

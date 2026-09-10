@@ -1,0 +1,45 @@
+{
+  "command": [
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/player-skeleton/bin/engine_player",
+    "--profile",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/P13-snapshot-tests/package-profile",
+    "--capture",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/P13-package-capture"
+  ],
+  "cwd_relative_to_engine": "out/P13-unrelated-cwd",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Game/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Source/Game/CalibrationRuntime.cpp",
+    " M Engine/Source/Game/CalibrationRuntime.h",
+    " M Engine/Source/Physics/CharacterController.h",
+    " M Engine/Source/Physics/PhysicsWorld.cpp",
+    " M Engine/Source/Simulation/FixedClock.h",
+    " M Engine/Tools/package_workbench.py",
+    "?? Engine/Evidence/P13-runtime/",
+    "?? Engine/Evidence/P13-snapshots/",
+    "?? Engine/Source/Persistence/PlayerSnapshot.cpp",
+    "?? Engine/Source/Persistence/PlayerSnapshot.h",
+    "?? Engine/Tests/SnapshotTests.cpp"
+  ],
+  "duration_seconds": 1.853,
+  "exit_code": 0,
+  "git_head": "1b3d1b50e3f77d5b002f4f77444b939669bee7d7",
+  "input_sha256_after": {
+    "out/P13-snapshot-tests/package-profile/snapshot-a.json": "70965fca6c26bb50c78c5732bbbff4ae1d21255955e6b6208fed110ea50fcbee",
+    "out/player-skeleton/bin/engine_player": "153809e5118f040ab42e1ad9681f2e71fb2c1f7fafaf5bc7838c578d97deafd6",
+    "out/player-skeleton/package.json": "0b6147738c7dea49d392bd67464359320917f9d677e30eb9f758d27de560902f"
+  },
+  "input_sha256_before": {
+    "out/P13-snapshot-tests/package-profile/snapshot-a.json": "70965fca6c26bb50c78c5732bbbff4ae1d21255955e6b6208fed110ea50fcbee",
+    "out/player-skeleton/bin/engine_player": "153809e5118f040ab42e1ad9681f2e71fb2c1f7fafaf5bc7838c578d97deafd6",
+    "out/player-skeleton/package.json": "0b6147738c7dea49d392bd67464359320917f9d677e30eb9f758d27de560902f"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "2264ce7568e26191fb49c85994c0eb873ceb1c27ae082e2da570d4f3c4c706c0",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T18:32:03.545950+00:00",
+  "timeout_seconds": 45.0
+}

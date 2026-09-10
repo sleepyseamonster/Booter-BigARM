@@ -16,19 +16,22 @@ struct SDLSession {
     ~SDLSession(){SDL_Quit();}
 };
 int run(int argc,char** argv) {
-    std::filesystem::path model,shaders,capture;bool silent=false;
+    std::filesystem::path model,shaders,capture,profile;bool silent=false;
     for(int i=1;i<argc;++i) {
         const std::string arg=argv[i];
         if(arg=="--silent")silent=true;
-        else if((arg=="--model"||arg=="--shaders"||arg=="--capture")&&i+1<argc) {
-            if(arg=="--model")model=argv[++i];else if(arg=="--shaders")shaders=argv[++i];else capture=argv[++i];
-        } else throw std::runtime_error("Usage: engine_player --model model.json [--shaders directory] [--silent] [--capture new-directory]");
+        else if((arg=="--model"||arg=="--shaders"||arg=="--capture"||arg=="--profile")&&i+1<argc) {
+            if(arg=="--model")model=argv[++i];else if(arg=="--shaders")shaders=argv[++i];else if(arg=="--profile")profile=argv[++i];else capture=argv[++i];
+        } else throw std::runtime_error("Usage: engine_player --model model.json [--shaders directory] [--silent] [--profile directory] [--capture new-directory]");
     }
     const bool technical=!capture.empty();
     if(technical){if(std::filesystem::exists(capture))throw std::runtime_error("Capture directory already exists");std::filesystem::create_directories(capture);}
     SDLSession session;const auto base=std::filesystem::path(SDL_GetBasePath());
     if(shaders.empty())shaders=base/"Shaders";
     if(model.empty())model=base/"Assets/Models/Calibration/model.json";
+    if(profile.empty()&&!technical)profile=base/"UserData";
+    const auto loaded=profile.empty()?engine::SnapshotRead{}:engine::loadSnapshot(profile);
+    const auto initial=loaded.value.value_or(engine::PlayerSnapshot{});
     const auto data=std::make_shared<engine::ModelData>(engine::loadModel(model));
     engine::Window window(technical);SDL_SetWindowTitle(window.get(),"Booter & BigARM | Player skeleton");
     engine::Renderer renderer;renderer.start(window,shaders);
@@ -38,19 +41,27 @@ int run(int argc,char** argv) {
         engine::TextureStore textures;
         auto albedo=textures.fallback(engine::TextureRole::Color),normal=textures.fallback(engine::TextureRole::Normal),surface=textures.fallback(engine::TextureRole::Surface);
         engine::SceneSurfaces surfaces;surfaces.rock={false,textures.resolve(albedo.token()),textures.resolve(normal.token()),textures.resolve(surface.token())};surfaces.ground=surfaces.rock;
-        engine::CalibrationRuntime runtime(data);
+        engine::CalibrationRuntime runtime(data,initial);
         engine::Actions actions;engine::ActionInput input(actions);
         std::unique_ptr<engine::Audio> audio;
         if(!silent&&!technical)try{audio=std::make_unique<engine::Audio>();}catch(const std::exception& error){std::cerr<<error.what()<<"; continuing silently\n";}
-        engine::FixtureState state;state.distance=5;state.pitch=.3f;state.surfaceTextures=false;
+        engine::FixtureState state;state.distance=initial.cameraDistance;state.pitch=initial.cameraPitch;state.yaw=initial.cameraYaw;state.surfaceTextures=false;
+        uint64_t saveAttemptTick=initial.ticks;std::string saveStatus=loaded.recovered?"Recovered last valid snapshot":(loaded.value?"Snapshot restored":"New session");
+        auto save=[&] {
+            if(technical)return;
+            saveAttemptTick=runtime.clock().ticks();
+            try{engine::saveSnapshot(profile,runtime.snapshot(state.yaw,state.pitch,state.distance));saveAttemptTick=runtime.clock().ticks();saveStatus="Saved";}
+            catch(const std::exception& error){saveStatus=error.what();std::cerr<<"Save failed: "<<error.what()<<'\n';}
+        };
         bool running=true,paused=false;auto last=std::chrono::steady_clock::now();
         bgfx::setDebug(BGFX_DEBUG_TEXT);
         for(unsigned frame=0;running;++frame) {
-            SDL_Event event;float dx=0,dy=0,wheel=0;
+            SDL_Event event;float dx=0,dy=0,wheel=0;bool saveRequested=false;
             while(SDL_PollEvent(&event)) {
                 input.event(event);
                 if(event.type==SDL_EVENT_QUIT||event.type==SDL_EVENT_WINDOW_CLOSE_REQUESTED)running=false;
                 if(event.type==SDL_EVENT_KEY_DOWN&&event.key.key==SDLK_ESCAPE)running=false;
+                if(event.type==SDL_EVENT_KEY_DOWN&&event.key.key==SDLK_F5&&!event.key.repeat)saveRequested=true;
                 if(event.type==SDL_EVENT_MOUSE_MOTION&&(event.motion.state&SDL_BUTTON_RMASK)){dx+=event.motion.xrel;dy+=event.motion.yrel;}
                 if(event.type==SDL_EVENT_MOUSE_WHEEL)wheel+=event.wheel.y;
             }
@@ -64,6 +75,7 @@ int run(int argc,char** argv) {
             actions.gameplay(!suspended);
             if(!suspended){state.orbit(dx,dy,false);state.zoom(wheel,false);}
             runtime.advance(seconds,suspended,actions,state.yaw,state.pitch);
+            if(saveRequested||runtime.clock().ticks()-saveAttemptTick>=600)save();
             for(const auto& cue:runtime.takeCues())if(audio)audio->cue(cue.sequence);
             if(width<=0||height<=0||(flags&SDL_WINDOW_MINIMIZED)){SDL_Delay(16);continue;}
             renderer.resize(width,height);
@@ -73,21 +85,23 @@ int run(int argc,char** argv) {
             renderer.draw(state,engine::GeometryCheck::None,false,nullptr,&surfaces,&placement);
             bgfx::dbgTextClear();bgfx::dbgTextPrintf(2,2,0x0f,"BOOTER & BIGARM - ENGINE SKELETON");
             bgfx::dbgTextPrintf(2,4,0x07,"WASD: move  Space: jump  Shift: run  Right drag: camera");
-            bgfx::dbgTextPrintf(2,5,0x07,"E: interact  P/Start: pause  Esc: exit");
+            bgfx::dbgTextPrintf(2,5,0x07,"E: interact  F5: save  P/Start: pause  Esc: exit");
             bgfx::dbgTextPrintf(2,7,0x0f,"%s",paused?"Paused":(!focused&&!technical?"Paused while window is inactive":""));
             bgfx::dbgTextPrintf(2,9,0x0b,"%s",runtime.canInteract()?"E - toggle calibration marker":"Move near the marker to interact");
             bgfx::dbgTextPrintf(2,10,0x07,"Marker: %s | Audio: %s",runtime.targetActive()?"on":"off",audio?"on":"silent");
+            bgfx::dbgTextPrintf(2,12,0x07,"%s",saveStatus.c_str());
             if(technical&&frame==20)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(capture/"player.png").string().c_str());
             bgfx::frame();
             if(technical&&frame==30)running=false;
             if(technical)SDL_Delay(10);
         }
+        save();
         albedo.reset();normal.reset();surface.reset();textures.stop();
     }
     renderer.stop();
     if(technical) {
         const bool passed=renderer.callbacks.captures==1&&renderer.callbacks.errors==0;
-        engine::writeDocument(capture/"player.json","engine.player-render",{{"passed",passed},{"backend",backend},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"simulation_advanced",false}});
+        engine::writeDocument(capture/"player.json","engine.player-render",{{"passed",passed},{"backend",backend},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"simulation_advanced",false},{"snapshot_loaded",loaded.value.has_value()},{"snapshot_generation",loaded.generation},{"recovered",loaded.recovered},{"marker_active",initial.markerActive},{"feet",initial.feet}});
         if(!passed)throw std::runtime_error("Player render capture failed");
     }
     return 0;

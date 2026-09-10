@@ -1,0 +1,42 @@
+{
+  "command": [
+    "build/foundation/engine_snapshot_tests",
+    "out/P13-snapshot-tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Game/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Source/Game/CalibrationRuntime.cpp",
+    " M Engine/Source/Game/CalibrationRuntime.h",
+    " M Engine/Source/Physics/CharacterController.h",
+    " M Engine/Source/Physics/PhysicsWorld.cpp",
+    " M Engine/Source/Simulation/FixedClock.h",
+    " M Engine/Tools/package_workbench.py",
+    "?? Engine/Source/Persistence/PlayerSnapshot.cpp",
+    "?? Engine/Source/Persistence/PlayerSnapshot.h",
+    "?? Engine/Tests/SnapshotTests.cpp"
+  ],
+  "duration_seconds": 0.731,
+  "exit_code": 0,
+  "git_head": "1b3d1b50e3f77d5b002f4f77444b939669bee7d7",
+  "input_sha256_after": {
+    "Source/Game/CalibrationRuntime.cpp": "8dc2f87ce17d35dde2bee3bf5f65e6a76cbfd6d1c28c81f5c40479a5640c64c2",
+    "Source/Persistence/PlayerSnapshot.cpp": "45dc46fef74938023cc1dc0c459a4dfda0006de3e46fe0dfe7e8d3484626252c",
+    "Tests/SnapshotTests.cpp": "a14ab905ac31122f679a32ec4259b0f7d57bdf26adf2fbe19ad55c0dd3ad41fd",
+    "build/foundation/engine_snapshot_tests": "82d1b8a47275015955fc62699a386a2a5a6dcd93f49298255ceeee8edd2e6194"
+  },
+  "input_sha256_before": {
+    "Source/Game/CalibrationRuntime.cpp": "8dc2f87ce17d35dde2bee3bf5f65e6a76cbfd6d1c28c81f5c40479a5640c64c2",
+    "Source/Persistence/PlayerSnapshot.cpp": "45dc46fef74938023cc1dc0c459a4dfda0006de3e46fe0dfe7e8d3484626252c",
+    "Tests/SnapshotTests.cpp": "a14ab905ac31122f679a32ec4259b0f7d57bdf26adf2fbe19ad55c0dd3ad41fd",
+    "build/foundation/engine_snapshot_tests": "82d1b8a47275015955fc62699a386a2a5a6dcd93f49298255ceeee8edd2e6194"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "b04489ce406732f957351aed9682373aba09b2f808de1a612d8e7f257245cae3",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T18:31:42.709055+00:00",
+  "timeout_seconds": 30.0
+}

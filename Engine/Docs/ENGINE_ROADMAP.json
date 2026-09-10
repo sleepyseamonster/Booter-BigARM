@@ -317,8 +317,12 @@
       ],
       "owner_module": "Persistence/Tools",
       "proof": "Restart, interrupted snapshot and source-independent package launch",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/PLAYER_SNAPSHOT_PACKAGE_RESULT.md",
+        "Evidence/P13-snapshots/result.json",
+        "Evidence/P13-package-launch/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

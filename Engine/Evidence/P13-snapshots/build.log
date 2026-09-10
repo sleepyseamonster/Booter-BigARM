@@ -1,0 +1,90 @@
+[  0%] Built target engine_core
+[  7%] Built target ozz_base
+[  7%] Built target engine_simulation
+[  7%] Built target engine_texture_data
+[ 15%] Built target ozz_animation
+[ 23%] Built target ozz_animation_offline
+[ 23%] Built target engine_animation
+[100%] Built target Jolt
+[100%] Building CXX object CMakeFiles/engine_physics.dir/Source/Physics/PhysicsWorld.cpp.o
+[100%] Linking CXX static library libengine_physics.a
+[100%] Built target engine_physics
+[100%] Building CXX object CMakeFiles/engine_game.dir/Source/Persistence/PlayerSnapshot.cpp.o
+[100%] Building CXX object CMakeFiles/engine_game.dir/Source/Game/CalibrationRuntime.cpp.o
+[100%] Linking CXX static library libengine_game.a
+[100%] Built target engine_game
+[100%] Building CXX object CMakeFiles/engine_snapshot_tests.dir/Tests/SnapshotTests.cpp.o
+[100%] Linking CXX executable engine_snapshot_tests
+[100%] Built target engine_snapshot_tests
+[  0%] Built target engine_miniaudio
+[  0%] Built target engine_core
+[  7%] Built target ozz_base
+[  7%] Built target engine_audio
+[  7%] Built target engine_texture_data
+[  7%] Built target engine_simulation
+[ 14%] Built target ozz_animation
+[ 21%] Built target ozz_animation_offline
+[ 21%] Built target engine_animation
+[ 92%] Built target Jolt
+[ 92%] Built target engine_physics
+[ 92%] Built target engine_game
+[100%] Building CXX object CMakeFiles/engine_calibration_tests.dir/Tests/CalibrationTests.cpp.o
+[100%] Linking CXX executable engine_calibration_tests
+[100%] Built target engine_calibration_tests
+[  0%] Built target engine_core
+[  1%] Built target ozz_base
+[  3%] Built target bx
+[  3%] Built target engine_miniaudio
+[  4%] Built target spirv-cross
+[ 16%] Built target Jolt
+[ 20%] Built target glslang
+[ 21%] Built target bimg
+[ 21%] Built target engine_texture_data
+[ 21%] Built target engine_state
+[ 21%] Built target engine_simulation
+[ 22%] Built target ozz_animation
+[ 22%] Built target engine_physics
+[ 22%] Built target engine_audio
+[ 25%] Built target bgfx
+[ 26%] Built target ozz_animation_offline
+[ 26%] Built target engine_animation
+[ 26%] Built target engine_game
+[ 47%] Built target SDL3-static
+[ 47%] Built target engine_platform
+[ 47%] Built target engine_rendering
+[ 65%] Built target spirv-opt
+[ 97%] Built target tint
+[ 98%] Built target shaderc
+[100%] Built target engine_shaders
+[100%] Building CXX object CMakeFiles/engine_player.dir/Apps/Game/main.cpp.o
+[100%] Linking CXX executable engine_player
+[100%] Built target engine_player
+[  0%] Built target engine_core
+[  2%] Built target bx
+[  3%] Built target ozz_base
+[  3%] Built target engine_miniaudio
+[ 23%] Built target SDL3-static
+[ 25%] Built target spirv-cross
+[ 36%] Built target Jolt
+[ 37%] Built target bimg
+[ 37%] Built target engine_texture_data
+[ 42%] Built target glslang
+[ 42%] Built target engine_state
+[ 42%] Built target engine_simulation
+[ 43%] Built target ozz_animation
+[ 43%] Built target engine_physics
+[ 43%] Built target engine_audio
+[ 44%] Built target engine_imgui
+[ 44%] Built target engine_platform
+[ 62%] Built target spirv-opt
+[ 63%] Built target ozz_animation_offline
+[ 65%] Built target bgfx
+[ 65%] Built target engine_animation
+[ 65%] Built target engine_rendering
+[ 65%] Built target engine_game
+[ 97%] Built target tint
+[ 98%] Built target shaderc
+[100%] Built target engine_shaders
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Apps/Workbench/main.cpp.o
+[100%] Linking CXX executable engine_workbench
+[100%] Built target engine_workbench

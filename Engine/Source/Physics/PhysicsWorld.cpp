@@ -271,6 +271,11 @@ void CharacterController::step(float seconds,PhysicsVector horizontal,bool jump)
     c.ExtendedUpdate(seconds,w.system.GetGravity(),settings,w.system.GetDefaultBroadPhaseLayerFilter(dynamicLayer),w.system.GetDefaultLayerFilter(dynamicLayer),{},{},w.allocator);
     if(c.GetMaxHitsExceeded()) throw std::runtime_error("Character contact query capacity exceeded");
 }
+void CharacterController::restore(PhysicsVector feet,PhysicsVector velocity) {
+    bounded(feet);bounded(velocity,100);auto& c=*impl_->character;auto& w=*impl_->world;
+    c.SetPosition(vec(feet));c.SetLinearVelocity(vec(velocity));
+    c.RefreshContacts(w.system.GetDefaultBroadPhaseLayerFilter(dynamicLayer),w.system.GetDefaultLayerFilter(dynamicLayer),{},{},w.allocator);
+}
 PhysicsVector CharacterController::position() const {return array(impl_->character->GetPosition());}
 PhysicsVector CharacterController::velocity() const {return array(impl_->character->GetLinearVelocity());}
 bool CharacterController::grounded() const {return impl_->character->GetGroundState()==JPH::CharacterBase::EGroundState::OnGround;}

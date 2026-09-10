@@ -1,5 +1,6 @@
 #pragma once
 #include "Simulation/World.h"
+#include "Persistence/PlayerSnapshot.h"
 #include "Simulation/Actions.h"
 #include "Simulation/FixedClock.h"
 #include "Physics/CharacterController.h"
@@ -15,9 +16,10 @@ struct CalibrationCue {uint64_t sequence=0;std::string source;};
 // Shared by player and workbench. UI and audio consume state/events, never own it.
 class CalibrationRuntime {
 public:
-    explicit CalibrationRuntime(std::shared_ptr<const ModelData> model={});
+    explicit CalibrationRuntime(std::shared_ptr<const ModelData> model={},const PlayerSnapshot& initial={});
     void advance(double seconds,bool paused,Actions&,float& cameraYaw,float& cameraPitch);
     CalibrationFrame present(float cameraYaw,float cameraPitch,float distance,float seconds);
+    PlayerSnapshot snapshot(float cameraYaw,float cameraPitch,float cameraDistance) const;
     std::vector<CalibrationCue> takeCues();
     bool canInteract() const;
     bool targetActive() const {return targetActive_;}

@@ -7,6 +7,7 @@
 namespace engine {
 class FixedClock {
 public:
+    explicit FixedClock(uint64_t initialTicks=0):ticks_(initialTicks) {}
     static constexpr double step=1.0/60.0;
     static constexpr unsigned maxCatchUp=4;
     template<class Tick> unsigned advance(double seconds,bool paused,Tick&& tick) {

@@ -11,6 +11,7 @@ public:
     CharacterController(const CharacterController&)=delete;
     CharacterController& operator=(const CharacterController&)=delete;
     void step(float seconds,PhysicsVector horizontalVelocity,bool jump);
+    void restore(PhysicsVector feet,PhysicsVector velocity={});
     PhysicsVector position() const;
     PhysicsVector velocity() const;
     bool grounded() const;
