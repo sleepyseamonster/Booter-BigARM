@@ -2,6 +2,7 @@
 #include "Physics/PhysicsWorld.h"
 #include "Runtime/EditHistory.h"
 #include "Runtime/InspectionDocument.h"
+#include "Persistence/Document.h"
 #include <algorithm>
 #include <cmath>
 #include <fstream>
@@ -31,10 +32,15 @@ int main(int argc,char** argv)try{
     auto invalid=changed;invalid.subdivisions=99;rejects([&]{history.apply(invalid,prepare);});require(history.value()==changed&&query()==editedHeight,"Failed edit preserves document and collision");
     rejects([&]{physics.replaceMesh(body,{});});require(query()==editedHeight&&physics.size()==1,"Failed mesh replacement preserves body");
     saveRockRecipe(root/"rock.json",history.value());require(loadRockRecipe(root/"rock.json")==changed,"Authored recipe save/reload");
+    auto exported=root/"exported-rock";for(unsigned index=1;std::filesystem::exists(exported);++index)exported=root/("exported-rock-"+std::to_string(index));saveRockResult(exported,asset.lods.front(),history.value());const auto exportedMesh=loadModel(exported/"model.json");
+    require(exportedMesh.indices==asset.lods.front().mesh.indices&&exportedMesh.vertices.size()==asset.lods.front().mesh.vertices.size(),"Export topology differs from accepted preview");
+    for(size_t i=0;i<exportedMesh.vertices.size();++i)require(exportedMesh.vertices[i].position==asset.lods.front().mesh.vertices[i].position&&exportedMesh.vertices[i].normal==asset.lods.front().mesh.vertices[i].normal,"Export geometry differs from accepted preview");
+    require(loadRockRecipe(exported/"recipe.json")==history.value()&&readDocument(exported/"rock.json","engine.rock-result").at("id")==asset.lods.front().id,"Export recipe or identity mismatch");
+    rejects([&]{saveRockResult(exported,asset.lods.front(),history.value());});
     FixtureState original;EditHistory<FixtureState> settings(original);auto next=original;next.exposure=1;next.yaw=1.2f;const auto accept=[](const FixtureState&){};
     settings.apply(next,accept);saveInspection(root/"inspection.json",settings.value());FixtureState loaded;loadInspection(root/"inspection.json",loaded);require(loaded==next,"Saved inspection reproduces all fields");
     settings.undo(accept);require(settings.value()==original,"Inspection command undo");settings.redo(accept);require(settings.value()==next,"Inspection command redo");
     {std::ofstream f(root/"bad-inspection.json");f<<"{}";}rejects([&]{loadInspection(root/"bad-inspection.json",loaded);});require(loaded==next,"Invalid reload preserves settings");
     physics.remove(body);require(physics.size()==0,"Collision unload releases body");
-    std::cout<<"PASS: LOD identity/anchors, render-triangle collision agreement, edit/undo/redo and failed-edit preservation, inspection save/reload; bytes="<<asset.bytes<<'\n';return 0;
+    std::cout<<"PASS: LOD identity/anchors, render-triangle collision agreement, edit/undo/redo and failed-edit preservation, inspection save/reload, exact accepted mesh export and overwrite rejection; bytes="<<asset.bytes<<'\n';return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

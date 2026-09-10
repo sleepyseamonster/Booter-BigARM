@@ -27,6 +27,10 @@ RockRecipe loadRockRecipe(const std::filesystem::path& path) {
     for(size_t i=0;i<3;++i){const auto& v=p.at("radii_mm")[i];if(!v.is_number_unsigned()||v>20000)throw std::runtime_error("Invalid rock radius");r.radiiMm[i]=v.get<uint32_t>();}
     validateRecipe(r);return r;
 }
+void saveRockResult(const std::filesystem::path& directory,const RockResult& rock,const RockRecipe& recipe) {
+    validateRecipe(recipe);saveModel(directory,rock.mesh);saveRockRecipe(directory/"recipe.json",recipe);
+    writeDocument(directory/"rock.json","engine.rock-result",{{"id",rock.id},{"minimum",rock.minimum},{"maximum",rock.maximum},{"footprint_radius",rock.footprintRadius},{"triangle_surfaces",rock.surfaces},{"model","model.json"}});
+}
 RockResult generateRock(const RockRecipe& r,const GeneratedId& identity) {
     validateRecipe(r);if(identity.generator!="rock"||identity.generatorVersion!=r.version)throw std::invalid_argument("Rock generator identity/version mismatch");
     RockResult result;result.id=identity.text();auto& mesh=result.mesh;

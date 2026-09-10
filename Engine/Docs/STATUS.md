@@ -22,7 +22,9 @@ Recommendation: existing bimg primitives with engine-owned semantic mip generati
 
 ## Current Evidence
 
-P18/P19 add [open terrain and bounded CPU generation jobs](./TERRAIN_JOBS_RESULT.md). [The combined native check](../Evidence/P18-P19-runtime/result.json) and [terrain cook](../Evidence/P18-terrain-cook/result.json) passed. Live terrain rendering/streaming remains unimplemented. The user clarified that the first deliverable is the completed rock generator: next finish its runnable workbench package and handoff before starting P20.
+**First user-facing milestone delivered:** [the runnable native rock generator](./ROCK_GENERATOR_MILESTONE.md) is packaged at `out/rock-generator/`. The launcher opens the recipe and textures, preserves a working copy, and the workbench now exports its accepted mesh directly. [Native export/document checks](../Evidence/ROCK-delivery-native/result.json) and [the packaged Metal launch](../Evidence/ROCK-delivery-package/result.json) passed. Next: P20 live region readiness/residency at skeleton depth.
+
+P18/P19 add [open terrain and bounded CPU generation jobs](./TERRAIN_JOBS_RESULT.md). [The combined native check](../Evidence/P18-P19-runtime/result.json) and [terrain cook](../Evidence/P18-terrain-cook/result.json) passed. Live terrain rendering/streaming remains unimplemented. The requested rock-generator package and handoff are now delivered; P20 live streaming is next.
 
 P06/P16/P17 add [live rock editing, document history and render/collision/LOD adapters](./ROCK_WORKBENCH_RESULT.md). [One combined CPU check](../Evidence/P06-P16-P17-runtime/result.json) and [one six-capture Metal pass](../Evidence/P16-P17-render/result.json) passed. Edits rebuild the preview and its stable collider; undo restores the original image, with no net buffer growth. P18/P19 now supply the CPU terrain/jobs foundation. Rock-generator delivery comes before P20 live streaming.
 
@@ -77,7 +79,7 @@ The initial build reports upstream shader-compiler deprecation/unknown-warning d
 
 ## Whole-Engine Plan and Next Milestone
 
-**Execution depth:** the user clarified that the immediate goal is a base engine skeleton. Connect minimal working subsystems, then move on; advanced features, polish and production hardening remain later work. P06/P16/P17 inspection commands, rock adapters and live workbench editing are complete as first passes. P18/P19 terrain and bounded jobs are also implemented. Next is the rock-generator package/handoff, then P20 live streaming.
+**Execution depth:** the user clarified that the immediate goal is a base engine skeleton. Connect minimal working subsystems, then move on; advanced features, polish and production hardening remain later work. P06/P16/P17 inspection commands, rock adapters and live workbench editing are complete as first passes. P18/P19 terrain and bounded jobs are also implemented. The rock-generator package/handoff is now delivered. Next is P20 live streaming.
 
 The user requested complete engine planning and autonomous technical sequencing on 2026-09-10. The [rewritten master implementation plan](./FOUNDATION_PLAN.md) now covers eight milestones from the reusable foundation through a supported Windows candidate. The [system audit](../Research/ENGINE_SYSTEM_AUDIT.md) covers 24 capabilities; [research](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) records preferred integrations; [the retained draft and audit](./ENGINE_PLAN_AUDIT.md) explain the rewrite. The [roadmap index](./ENGINE_ROADMAP.json) contains 37 implementation packages and three native Windows gates. P01 through P19 are implemented as bounded first passes; use the index for the remaining package states.
 

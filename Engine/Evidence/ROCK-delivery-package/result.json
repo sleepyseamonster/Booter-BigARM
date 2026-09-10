@@ -1,0 +1,43 @@
+{
+  "comparisons": {
+    "edit": {
+      "changed_over_3": 32258,
+      "samples": 358560
+    },
+    "lod1": {
+      "changed_over_3": 17799,
+      "samples": 358560
+    },
+    "lod2": {
+      "changed_over_3": 13553,
+      "samples": 358560
+    },
+    "opposite": {
+      "changed_over_3": 213255,
+      "samples": 358560
+    },
+    "undo": {
+      "changed_over_3": 0,
+      "samples": 358560
+    }
+  },
+  "limits": "One Mac Metal rock and edit/undo sequence; no gameplay, Windows, final-art or population-performance claim.",
+  "native": {
+    "backend": "Metal",
+    "captures": 6,
+    "gpu_errors": 0,
+    "indices_after": 7,
+    "indices_before": 7,
+    "passed": true,
+    "real_surfaces": true,
+    "vertices_after": 14,
+    "vertices_before": 14
+  },
+  "package_checks": {
+    "existing_recipe_preserved": true,
+    "inspection_saved": true,
+    "inventory_files": 38,
+    "launch_from_unrelated_cwd": true
+  },
+  "result": "passed"
+}

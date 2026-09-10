@@ -24,7 +24,7 @@ The model argument is optional; without it character mode uses the capsule proxy
 
 The **Inspection document** section groups completed camera/slider gestures into history and saves or reloads lighting, material and camera settings. The buttons are compiled UI paths; the evidence below exercises their document/command implementations, not automated mouse clicks. Character mode can use the rock collider, but hands-on traversal and control feel remain user-owned.
 
-The earlier `out/player-skeleton/` package predates this batch. Use `build/foundation/engine_workbench` for these controls; the player app has not gained a rock-recipe CLI in this batch.
+The [rock-generator delivery](./ROCK_GENERATOR_MILESTONE.md) now packages these controls at `out/rock-generator/` and adds direct accepted-mesh export. The earlier `out/player-skeleton/` remains historical; the player app has not gained a rock-recipe CLI.
 
 ## Focused evidence and limits
 

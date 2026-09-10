@@ -1,0 +1,39 @@
+{
+  "command": [
+    "build/foundation/engine_rock_workbench_tests",
+    "out/ROCK-delivery-tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/RockCooker/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Source/Tools/RockWorkbench.cpp",
+    " M Engine/Source/Tools/RockWorkbench.h",
+    " M Engine/Source/World/Rocks/RockGenerator.cpp",
+    " M Engine/Source/World/Rocks/RockGenerator.h",
+    " M Engine/Tests/RockWorkbenchTests.cpp",
+    " M Engine/Tools/package_workbench.py",
+    " M Engine/Tools/verify_rock_workbench.py",
+    "?? Engine/Tools/Packaging/"
+  ],
+  "duration_seconds": 0.511,
+  "exit_code": 0,
+  "git_head": "81caf0b42453472f62540202ecf39d89409b01cd",
+  "input_sha256_after": {
+    "Source/World/Rocks/RockGenerator.cpp": "3aa480f9a0ec1113d3dc9e5cef8bd819841236bdca98dcb83da5c45041e699c5",
+    "Tests/RockWorkbenchTests.cpp": "f0fd2988e5761d77731118a40ab9fac06b8c2d7f5d7b61f12480aa67cc8a994c",
+    "build/foundation/engine_rock_workbench_tests": "a64e1afee3cea363651357abade932f92d55eb593486732141bf595de58195fc"
+  },
+  "input_sha256_before": {
+    "Source/World/Rocks/RockGenerator.cpp": "3aa480f9a0ec1113d3dc9e5cef8bd819841236bdca98dcb83da5c45041e699c5",
+    "Tests/RockWorkbenchTests.cpp": "f0fd2988e5761d77731118a40ab9fac06b8c2d7f5d7b61f12480aa67cc8a994c",
+    "build/foundation/engine_rock_workbench_tests": "a64e1afee3cea363651357abade932f92d55eb593486732141bf595de58195fc"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "534563804e0327edaed0edcd00308dacb413ef5671969b406b80f3f7c2485a66",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T19:11:50.817759+00:00",
+  "timeout_seconds": 30.0
+}

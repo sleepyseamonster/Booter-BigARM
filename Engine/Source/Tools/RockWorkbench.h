@@ -23,7 +23,8 @@ private:
     RockRecipe draft_;
     RockAsset asset_;
     std::vector<std::unique_ptr<RenderModel>> models_;
-    std::array<char,512> path_{};
+    std::array<char,512> path_{},exportPath_{};
+    std::string exportStatus_;
     std::string error_;
 };
 }

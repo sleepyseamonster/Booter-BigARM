@@ -5,6 +5,7 @@
 namespace engine {
 RockWorkbench::RockWorkbench(const std::filesystem::path& path,CalibrationRuntime& runtime):runtime_(runtime),history_(loadRockRecipe(path)),draft_(history_.value()) {
     if(path.string().size()>=path_.size())throw std::invalid_argument("Recipe path too long");std::snprintf(path_.data(),path_.size(),"%s",path.string().c_str());rebuild(history_.value());
+    const auto output=(path.parent_path()/"Exports/rock-001").string();if(output.size()>=exportPath_.size())throw std::invalid_argument("Export path too long");std::snprintf(exportPath_.data(),exportPath_.size(),"%s",output.c_str());
 }
 void RockWorkbench::rebuild(const RockRecipe& recipe) {
     auto next=buildRockAsset(recipe,{1,recipe.version,{},0,"rock"});std::vector<std::unique_ptr<RenderModel>> models;
@@ -17,7 +18,7 @@ void RockWorkbench::undo(){history_.undo([&](const auto& r){rebuild(r);});draft_
 void RockWorkbench::redo(){history_.redo([&](const auto& r){rebuild(r);});draft_=history_.value();}
 const RenderModel* RockWorkbench::model(float distance)const{return models_.at(forcedLod<0?rockLod(asset_,distance):std::min(size_t(forcedLod),models_.size()-1)).get();}
 void RockWorkbench::drawControls(bool characterMode) {
-    ImGui::SetNextWindowPos({ImGui::GetIO().DisplaySize.x-365,20},ImGuiCond_FirstUseEver);ImGui::SetNextWindowSize({345,460},ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowPos({ImGui::GetIO().DisplaySize.x-365,20},ImGuiCond_FirstUseEver);ImGui::SetNextWindowSize({345,560},ImGuiCond_FirstUseEver);
     ImGui::Begin("Native rock recipe");ImGui::Text("%zu LODs | %zu triangles | %.1f KiB",asset_.lods.size(),asset_.lods[0].mesh.indices.size()/3,asset_.bytes/1024.f);
     if(characterMode)ImGui::TextWrapped("Disable character mode to edit this rock.");
     ImGui::BeginDisabled(characterMode);
@@ -34,6 +35,10 @@ void RockWorkbench::drawControls(bool characterMode) {
     ImGui::InputText("File",path_.data(),path_.size());
     if(ImGui::Button("Save recipe"))run([&]{saveRockRecipe(path_.data(),history_.value());});ImGui::SameLine();
     if(ImGui::Button("Reload"))run([&]{apply(loadRockRecipe(path_.data()));});
+    ImGui::InputText("Export directory",exportPath_.data(),exportPath_.size());
+    if(ImGui::Button("Export rock"))run([&]{exportStatus_.clear();saveRockResult(exportPath_.data(),asset_.lods.front(),history_.value());exportStatus_="Exported accepted rock to "+std::string(exportPath_.data());});
+    ImGui::TextWrapped("Export writes the accepted highest-detail mesh and recipe. Choose a new directory for each export.");
+    if(!exportStatus_.empty())ImGui::TextWrapped("%s",exportStatus_.c_str());
     ImGui::EndDisabled();
     ImGui::SliderInt("LOD (-1 = auto)",&forcedLod,-1,int(models_.size()-1));
     ImGui::TextWrapped("Collision keeps the highest detail. Orbit to inspect; enable character mode to walk around the rock.");

@@ -20,5 +20,6 @@ struct RockResult {
 void validateRecipe(const RockRecipe&);
 void saveRockRecipe(const std::filesystem::path&,const RockRecipe&);
 RockRecipe loadRockRecipe(const std::filesystem::path&);
+void saveRockResult(const std::filesystem::path& newDirectory,const RockResult&,const RockRecipe&);
 RockResult generateRock(const RockRecipe&,const GeneratedId&);
 }

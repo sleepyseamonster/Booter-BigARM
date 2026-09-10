@@ -6,7 +6,7 @@ Revision 2, rewritten 2026-09-10 after the requested whole-engine analysis and [
 
 The user's 2026-09-10 clarification is a **base engine skeleton**: connected, minimal working systems before subsystem depth or polish. Implement one supported path per required capability, verify that path once, and proceed to integration. Fix actual failures; defer optional source formats, stress campaigns, advanced visuals and production tooling. The production/gameplay milestones below remain the future roadmap and do not expand the immediate skeleton acceptance target. [Direction](./DIRECTION.md) controls this depth limit.
 
-The first user-facing milestone is the completed native rock generator, clarified during P18/P19. P14–P17 now implement its core loop; finish its runnable package and handoff before P20 live streaming. This delivery priority does not remove remaining engine systems from the roadmap.
+The first user-facing milestone is the completed native rock generator, clarified during P18/P19. P14–P17 implement its core loop, and the [runnable package/handoff](./ROCK_GENERATOR_MILESTONE.md) is now delivered. P20 live streaming follows. This delivery priority does not remove remaining engine systems from the roadmap.
 
 ## 1. What we are building
 
