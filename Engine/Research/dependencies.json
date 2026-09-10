@@ -97,6 +97,54 @@
       "source": "https://github.com/zeux/meshoptimizer",
       "license_record": null,
       "purpose": "Mesh preparation"
+    },
+    {
+      "id": "entt",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/skypjack/entt",
+      "license_record": null,
+      "purpose": "Preferred transient component storage at P08; engine owns stable IDs, schedule and persistence"
+    },
+    {
+      "id": "nlohmann_json",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/nlohmann/json",
+      "license_record": null,
+      "purpose": "Preferred bounded structured document parser at P01; schemas and transactions remain engine-owned"
+    },
+    {
+      "id": "ozz_animation",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/guillaumeblanc/ozz-animation",
+      "license_record": null,
+      "purpose": "Preferred runtime clip sampling/blending at P11; offline tool dependencies evaluated separately"
+    },
+    {
+      "id": "recast_navigation",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/recastnavigation/recastnavigation",
+      "license_record": null,
+      "purpose": "Preferred detailed navigation tiles at P23; macro travel and BigARM ownership remain engine-owned"
+    },
+    {
+      "id": "miniaudio",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/mackron/miniaudio",
+      "license_record": null,
+      "purpose": "Preferred sole playback owner; first cue P12, spatial/event/bus integration P26"
+    },
+    {
+      "id": "rmlui",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/mikke89/RmlUi",
+      "license_record": null,
+      "purpose": "Preferred player UI at P26; bounded bgfx adapter and controller/text integration require proof"
     }
   ]
 }

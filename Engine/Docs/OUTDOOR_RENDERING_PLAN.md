@@ -2,6 +2,8 @@
 
 Planned 2026-09-09 under the user's continuing implementation authority. This extends the completed [application fixture](./FOUNDATION_RESULT.md) before the rock workbench. [Direction](./DIRECTION.md) controls product scope; live source and retained receipts control implementation claims.
 
+Scheduling update 2026-09-10: [the whole-engine master plan](./FOUNDATION_PLAN.md) now owns program order. OR-2–OR-5 map to P02/P04/P05/P06, with P03 supplying textures. Independent core/document/build/cooker work may proceed alongside renderer work when its prerequisites are met. OR labels remain completion contracts; they are not a requirement to finish each unrelated workstream serially.
+
 ## Done and Scope
 
 Provide a repeatable outdoor inspection scene in which known geometry responds predictably to camera, sun and material changes. Establish correct surfaces, useful cast/self shadows, basic materials, ambient illumination, saved inspection settings and measured rendering cost before judging generated rocks. This is a bounded inspection area, not a renderer for the entire wasteland.
@@ -19,7 +21,7 @@ Keep Mac as the main development machine while practical. Switch daily developme
 
 The user directed reuse of the existing rock and ground textures on 2026-09-10. The [surface library](../Assets/SurfaceLibrary/README.md) contains verified copies and source material mappings for OR-4. Use these assets when extending beyond simple calibration fixtures; preserve their recorded channel packing and authored bindings. The transfer itself does not complete texture loading, material implementation or visual acceptance.
 
-The [texture research](../Research/TEXTURE_SYSTEM_RESEARCH.md) and [staged implementation plan](./TEXTURE_SYSTEM_PLAN.md) now define OR-4's cooking/loading/material path. The offline experiment found format-dependent mip errors in the pinned texturec and a separate KTX2 parser requirement. Begin with engine-owned semantic mip generation and uncompressed KTX 1 references; gate later compression against those references. This research does not change the OR-2 → OR-3 → OR-4 milestone order or complete any pending renderer step.
+The [texture research](../Research/TEXTURE_SYSTEM_RESEARCH.md) and [staged implementation plan](./TEXTURE_SYSTEM_PLAN.md) define OR-4's cooking/loading/material path. The offline experiment found format-dependent mip errors in the pinned texturec and a separate KTX2 parser requirement. Begin with engine-owned semantic mip generation and uncompressed KTX 1 references; gate later compression against those references. Color precedes lighting/material judgment; texture cooking need not wait for shadow implementation. No pending renderer step is completed by this research.
 
 ## First Batch Contract
 

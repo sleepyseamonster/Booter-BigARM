@@ -5,6 +5,7 @@ Run with Python 3.9 or newer from `Engine/`. These tools use only the standard l
 ```sh
 python3 Tools/doctor.py
 python3 Tools/check_workspace.py
+python3 Tools/check_engine_plan.py
 python3 Tools/prepare_probe.py --fetch
 python3 -m unittest discover -s Tools/tests -v
 python3 Tools/record.py --out Evidence/my-check --input Docs/DIRECTION.md -- python3 Tools/check_workspace.py
@@ -14,6 +15,7 @@ On Windows use `python` if that is the installed command. Use a Visual Studio De
 
 - `doctor.py` reports availability, not build readiness. `--output Evidence/environment.json` explicitly saves the inventory inside this folder.
 - `check_workspace.py` checks links, JSON syntax, obvious Unity code references and tracked generated output. External documentation links are reported as references. It does not prove the complete runtime dependency graph, Internet-link availability or architecture correctness.
+- `check_engine_plan.py` checks the [master plan](../Docs/FOUNDATION_PLAN.md) against its derived package index and system-audit capability rows. It detects dependency cycles, missing coverage/prerequisites, unsupported completion claims without evidence references and removed Windows gates, then reports ready local/Windows work. Evidence-file presence is not validation of runtime behavior or creative acceptance. Focused tests: `python3 -m unittest discover -s Tools/tests -p test_engine_plan.py -v`.
 - `record.py` runs an explicit argument list with no shell interpretation. Use `--input` for the exact source/lock files a result depends on. It records nonzero exit results, timeouts and launch failures, and refuses to overwrite a previous evidence directory. A changed input makes the invocation unsuccessful even if the process exits zero.
 - `prepare_probe.py` verifies pinned source archives and extracted content. `--fetch` permits missing archive downloads into the ignored cache; it never installs globally or overwrites a modified source tree. It rejects archive traversal and link members.
 - `verify_surface_assets.py` checks the [surface library](../Assets/SurfaceLibrary/README.md): copied-image hashes, PNG chunks/PSD headers, inventory and material texture references. Optional `--sources` also compares the preserved Unity source hashes; default verification needs only `Engine/`. Both modes are read-only and do not establish rendered material parity.

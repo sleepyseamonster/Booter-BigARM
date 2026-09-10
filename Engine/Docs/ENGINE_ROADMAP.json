@@ -1,0 +1,835 @@
+{
+  "schema_version": 1,
+  "plan_revision": 2,
+  "authority": "Docs/FOUNDATION_PLAN.md",
+  "purpose": "Derived dependency and coverage index. Status handoff is Docs/STATUS.md; this is not runtime proof or external-action authority.",
+  "baseline": "M0 is the existing Mac fixture/research evidence. All implementation packages below are planned, not completed.",
+  "milestones": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7",
+    "M8"
+  ],
+  "capability_ids": [
+    "CAP-01",
+    "CAP-02",
+    "CAP-03",
+    "CAP-04",
+    "CAP-05",
+    "CAP-06",
+    "CAP-07",
+    "CAP-08",
+    "CAP-09",
+    "CAP-10",
+    "CAP-11",
+    "CAP-12",
+    "CAP-13",
+    "CAP-14",
+    "CAP-15",
+    "CAP-16",
+    "CAP-17",
+    "CAP-18",
+    "CAP-19",
+    "CAP-20",
+    "CAP-21",
+    "CAP-22",
+    "CAP-23",
+    "CAP-24"
+  ],
+  "work_packages": [
+    {
+      "id": "P01",
+      "milestone": "M1",
+      "title": "Core documents, identities and runtime boundary",
+      "depends_on": [],
+      "capabilities": [
+        "CAP-03",
+        "CAP-04",
+        "CAP-05",
+        "CAP-06",
+        "CAP-17",
+        "CAP-22"
+      ],
+      "owner_module": "Core/Assets/Persistence",
+      "proof": "Core isolation, identity and bounded document/error/replacement cases",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P02",
+      "milestone": "M1",
+      "title": "Linear color and display contract",
+      "depends_on": [
+        "P01"
+      ],
+      "capabilities": [
+        "CAP-08"
+      ],
+      "owner_module": "Rendering/Shaders",
+      "proof": "Known-value GPU color, UI composition and resize evidence",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P03",
+      "milestone": "M1",
+      "title": "Semantic texture cooking and shared resources",
+      "depends_on": [
+        "P01",
+        "P02"
+      ],
+      "capabilities": [
+        "CAP-05",
+        "CAP-06",
+        "CAP-07"
+      ],
+      "owner_module": "Assets/Rendering/Tools",
+      "proof": "Independent semantic mip oracles, validation, sharing and lifetime",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P04",
+      "milestone": "M1",
+      "title": "Directional sun shadows",
+      "depends_on": [
+        "P02"
+      ],
+      "capabilities": [
+        "CAP-08"
+      ],
+      "owner_module": "Rendering/Shaders",
+      "proof": "Cast/self shadow, moving light/camera, bias and resource cases",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P05",
+      "milestone": "M1",
+      "title": "First opaque materials and ambient",
+      "depends_on": [
+        "P03",
+        "P04"
+      ],
+      "capabilities": [
+        "CAP-07",
+        "CAP-08",
+        "CAP-10"
+      ],
+      "owner_module": "Rendering/Assets",
+      "proof": "Real rock/ground bindings and channel/normal/exposure GPU evidence",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P06",
+      "milestone": "M1",
+      "title": "Inspection documents and presets",
+      "depends_on": [
+        "P01",
+        "P05"
+      ],
+      "capabilities": [
+        "CAP-17",
+        "CAP-22",
+        "CAP-23"
+      ],
+      "owner_module": "Workbench/Persistence",
+      "proof": "Saved settings reproduce the scene; failed edits retain valid state",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P07",
+      "milestone": "M1",
+      "title": "Build profiles, paths and diagnostics",
+      "depends_on": [
+        "P01"
+      ],
+      "capabilities": [
+        "CAP-01",
+        "CAP-02",
+        "CAP-23",
+        "CAP-24"
+      ],
+      "owner_module": "CMake/Tools/Platform",
+      "proof": "Fresh configure, build, relative runtime paths and explicit failure logs",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P08",
+      "milestone": "M2",
+      "title": "Fixed simulation, components and actions",
+      "depends_on": [
+        "P01",
+        "P07"
+      ],
+      "capabilities": [
+        "CAP-02",
+        "CAP-03",
+        "CAP-04"
+      ],
+      "owner_module": "Runtime/Platform",
+      "proof": "Tick/focus/remap/lifetime/ordered-command technical checks",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P09",
+      "milestone": "M2",
+      "title": "Jolt collision and queries",
+      "depends_on": [
+        "P08"
+      ],
+      "capabilities": [
+        "CAP-11"
+      ],
+      "owner_module": "Physics",
+      "proof": "Body lifetime, callback order, static surfaces and CharacterVirtual query policy",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P10",
+      "milestone": "M2",
+      "title": "Third-person motor and obstruction camera",
+      "depends_on": [
+        "P09"
+      ],
+      "capabilities": [
+        "CAP-02",
+        "CAP-11",
+        "CAP-12"
+      ],
+      "owner_module": "Game/Camera",
+      "proof": "Slope/step/ground/obstruction/input technical checks; user feel separate",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P11",
+      "milestone": "M2",
+      "title": "Mesh, skin and animation asset path",
+      "depends_on": [
+        "P03",
+        "P08"
+      ],
+      "capabilities": [
+        "CAP-06",
+        "CAP-09",
+        "CAP-13"
+      ],
+      "owner_module": "Assets/Animation/Rendering/Tools",
+      "proof": "Proxy import, skin/clip/transforms and unsupported-data rejection",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P12",
+      "milestone": "M2",
+      "title": "Shared runtime player calibration",
+      "depends_on": [
+        "P05",
+        "P10",
+        "P11"
+      ],
+      "capabilities": [
+        "CAP-03",
+        "CAP-12",
+        "CAP-13",
+        "CAP-19",
+        "CAP-20",
+        "CAP-21",
+        "CAP-22"
+      ],
+      "owner_module": "Game/Workbench/Audio",
+      "proof": "Same runtime in both apps, animation/motor and cue integration, cleanup",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P13",
+      "milestone": "M2",
+      "title": "Snapshot recovery and portable technical player",
+      "depends_on": [
+        "P12"
+      ],
+      "capabilities": [
+        "CAP-17",
+        "CAP-24"
+      ],
+      "owner_module": "Persistence/Tools",
+      "proof": "Restart, interrupted snapshot and source-independent package launch",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P14",
+      "milestone": "M3",
+      "title": "Traversal and authored placement contracts",
+      "depends_on": [
+        "P01",
+        "P09"
+      ],
+      "capabilities": [
+        "CAP-04",
+        "CAP-14",
+        "CAP-18"
+      ],
+      "owner_module": "World",
+      "proof": "Deterministic constraints and two-agent clearance/route preservation",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P15",
+      "milestone": "M3",
+      "title": "Versioned CPU rock generation",
+      "depends_on": [
+        "P14",
+        "P06"
+      ],
+      "capabilities": [
+        "CAP-04",
+        "CAP-15"
+      ],
+      "owner_module": "World/Rocks",
+      "proof": "Recipe/seed/order/identity/geometry invariants and invalid input",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P16",
+      "milestone": "M3",
+      "title": "Rock LOD, materials and collision adapters",
+      "depends_on": [
+        "P15",
+        "P11",
+        "P05"
+      ],
+      "capabilities": [
+        "CAP-05",
+        "CAP-07",
+        "CAP-09",
+        "CAP-11",
+        "CAP-15"
+      ],
+      "owner_module": "World/Rendering/Physics",
+      "proof": "Silhouette, LOD, surface agreement and bounded rebuild evidence",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P17",
+      "milestone": "M3",
+      "title": "Rock workbench authoring loop",
+      "depends_on": [
+        "P16",
+        "P13"
+      ],
+      "capabilities": [
+        "CAP-15",
+        "CAP-17",
+        "CAP-22"
+      ],
+      "owner_module": "Workbench",
+      "proof": "Undo/save/reload/generation round trips and resource baseline",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P18",
+      "milestone": "M4",
+      "title": "Open terrain and macro constrained placement",
+      "depends_on": [
+        "P14",
+        "P15"
+      ],
+      "capabilities": [
+        "CAP-04",
+        "CAP-14",
+        "CAP-15",
+        "CAP-18"
+      ],
+      "owner_module": "World",
+      "proof": "Borders/negative coordinates/placement identity/exclusions and route classes",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P19",
+      "milestone": "M4",
+      "title": "Bounded jobs and resource admission",
+      "depends_on": [
+        "P08",
+        "P03"
+      ],
+      "capabilities": [
+        "CAP-05",
+        "CAP-16",
+        "CAP-23"
+      ],
+      "owner_module": "Core/Assets",
+      "proof": "Out-of-order/cancel/oversized work, finite queues and shutdown drain",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P20",
+      "milestone": "M4",
+      "title": "Multi-anchor region readiness and residency",
+      "depends_on": [
+        "P18",
+        "P19",
+        "P16"
+      ],
+      "capabilities": [
+        "CAP-05",
+        "CAP-09",
+        "CAP-11",
+        "CAP-14",
+        "CAP-16",
+        "CAP-18"
+      ],
+      "owner_module": "World/Streaming",
+      "proof": "Per-representation readiness, lifecycle, hysteresis and shared ownership",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P21",
+      "milestone": "M4",
+      "title": "Persistent region deltas and save generations",
+      "depends_on": [
+        "P13",
+        "P20"
+      ],
+      "capabilities": [
+        "CAP-04",
+        "CAP-17",
+        "CAP-19"
+      ],
+      "owner_module": "Persistence/World",
+      "proof": "Depletion/unload/restart, interrupted multi-file saves and compatibility",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P22",
+      "milestone": "M4",
+      "title": "Streamed traversal integration corpus",
+      "depends_on": [
+        "P21",
+        "P17"
+      ],
+      "capabilities": [
+        "CAP-09",
+        "CAP-14",
+        "CAP-16",
+        "CAP-17",
+        "CAP-23"
+      ],
+      "owner_module": "Tools/Tests/Runtime",
+      "proof": "Repeated streaming, precision/phase, memory plateau and timing tails",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P23",
+      "milestone": "M5",
+      "title": "Detailed navigation tiles",
+      "depends_on": [
+        "P14",
+        "P20"
+      ],
+      "capabilities": [
+        "CAP-11",
+        "CAP-18"
+      ],
+      "owner_module": "Navigation",
+      "proof": "Two agent profiles, tile border/version/lifetime and obstacle queries",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P24",
+      "milestone": "M5",
+      "title": "BigARM detailed and coarse travel",
+      "depends_on": [
+        "P23",
+        "P21"
+      ],
+      "capabilities": [
+        "CAP-04",
+        "CAP-16",
+        "CAP-17",
+        "CAP-18",
+        "CAP-19"
+      ],
+      "owner_module": "Game/World",
+      "proof": "Single time owner, true position, re-entry/save and no teleport",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P25",
+      "milestone": "M5",
+      "title": "Interactions, salvage and finite cargo",
+      "depends_on": [
+        "P13",
+        "P12"
+      ],
+      "capabilities": [
+        "CAP-17",
+        "CAP-19"
+      ],
+      "owner_module": "Game",
+      "proof": "Range/presence, target identity, idempotent transfer and persistence",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P26",
+      "milestone": "M5",
+      "title": "Player UI and spatial audio",
+      "depends_on": [
+        "P12",
+        "P25"
+      ],
+      "capabilities": [
+        "CAP-02",
+        "CAP-06",
+        "CAP-20",
+        "CAP-21"
+      ],
+      "owner_module": "UI/Audio",
+      "proof": "Focus/text/buses/cue limits, event lifetime and device transitions",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P27",
+      "milestone": "M5",
+      "title": "Companion action and regroup integration",
+      "depends_on": [
+        "P24",
+        "P25",
+        "P26"
+      ],
+      "capabilities": [
+        "CAP-18",
+        "CAP-19",
+        "CAP-20",
+        "CAP-21"
+      ],
+      "owner_module": "Game",
+      "proof": "Physical regroup with action/cargo continuity and readable failure",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P28",
+      "milestone": "M6",
+      "title": "First pressure, carry and craft rules",
+      "depends_on": [
+        "P27",
+        "P22"
+      ],
+      "capabilities": [
+        "CAP-03",
+        "CAP-17",
+        "CAP-19"
+      ],
+      "owner_module": "Game",
+      "proof": "Fixed-time rules, pause, item conservation and recipe persistence",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P29",
+      "milestone": "M6",
+      "title": "Threat, encounters and animation events",
+      "depends_on": [
+        "P28",
+        "P11"
+      ],
+      "capabilities": [
+        "CAP-11",
+        "CAP-13",
+        "CAP-18",
+        "CAP-19",
+        "CAP-20"
+      ],
+      "owner_module": "Game/World",
+      "proof": "Spawn/death/hit/event ordering and no duplicated persistent outcomes",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P30",
+      "milestone": "M6",
+      "title": "Integrated survival expedition",
+      "depends_on": [
+        "P29"
+      ],
+      "capabilities": [
+        "CAP-12",
+        "CAP-16",
+        "CAP-17",
+        "CAP-18",
+        "CAP-19",
+        "CAP-20",
+        "CAP-21",
+        "CAP-23"
+      ],
+      "owner_module": "Game/Tools",
+      "proof": "Focused state/lifecycle evidence; creative and hands-on acceptance separate",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P31",
+      "milestone": "M7",
+      "title": "Production content authoring",
+      "depends_on": [
+        "P17",
+        "P30"
+      ],
+      "capabilities": [
+        "CAP-06",
+        "CAP-14",
+        "CAP-15",
+        "CAP-22"
+      ],
+      "owner_module": "Workbench/Tools",
+      "proof": "Representative content edited/imported/validated without source edits",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P32",
+      "milestone": "M7",
+      "title": "Measured rendering and animation quality",
+      "depends_on": [
+        "P22",
+        "P05"
+      ],
+      "capabilities": [
+        "CAP-07",
+        "CAP-08",
+        "CAP-09",
+        "CAP-10",
+        "CAP-13"
+      ],
+      "owner_module": "Rendering/Animation",
+      "proof": "Larger-area shadows, dust/effects/contact and justified quality improvements",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P33",
+      "milestone": "M7",
+      "title": "Accessibility, localization and settings",
+      "depends_on": [
+        "P26",
+        "P30"
+      ],
+      "capabilities": [
+        "CAP-02",
+        "CAP-20",
+        "CAP-21"
+      ],
+      "owner_module": "UI/Audio/Platform",
+      "proof": "Rebinding/readability/non-ASCII/captions/motion/device tests",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P34",
+      "milestone": "M7",
+      "title": "Windows budgets and quality tiers",
+      "depends_on": [
+        "P31",
+        "P32",
+        "P33",
+        "W02"
+      ],
+      "capabilities": [
+        "CAP-05",
+        "CAP-07",
+        "CAP-09",
+        "CAP-16",
+        "CAP-23"
+      ],
+      "owner_module": "Tools/Runtime",
+      "proof": "Declared hardware workload, attributable timings/memory and compression comparisons",
+      "state": "planned",
+      "evidence": [],
+      "environment": "windows"
+    },
+    {
+      "id": "P35",
+      "milestone": "M8",
+      "title": "Install, update and support diagnostics",
+      "depends_on": [
+        "P13",
+        "P34",
+        "W02"
+      ],
+      "capabilities": [
+        "CAP-01",
+        "CAP-17",
+        "CAP-23",
+        "CAP-24"
+      ],
+      "owner_module": "Platform/Tools",
+      "proof": "Clean Windows package, writable paths, upgrade/rollback and diagnostics",
+      "state": "planned",
+      "evidence": [],
+      "environment": "windows"
+    },
+    {
+      "id": "P36",
+      "milestone": "M8",
+      "title": "Save and content migration",
+      "depends_on": [
+        "P21",
+        "P35"
+      ],
+      "capabilities": [
+        "CAP-04",
+        "CAP-17",
+        "CAP-24"
+      ],
+      "owner_module": "Persistence/Tools",
+      "proof": "Old-version migration, interruption recovery and last-good retention",
+      "state": "planned",
+      "evidence": [],
+      "environment": "mac_or_platform_independent"
+    },
+    {
+      "id": "P37",
+      "milestone": "M8",
+      "title": "Exact supported Windows candidate",
+      "depends_on": [
+        "P36",
+        "P33",
+        "W03"
+      ],
+      "capabilities": [
+        "CAP-01",
+        "CAP-23",
+        "CAP-24"
+      ],
+      "owner_module": "Tools/Release",
+      "proof": "Source-to-package evidence, notices, known issues and exact candidate identity",
+      "state": "planned",
+      "evidence": [],
+      "environment": "windows"
+    },
+    {
+      "id": "W01",
+      "milestone": "M1",
+      "title": "Native Windows foundation build",
+      "depends_on": [
+        "P07"
+      ],
+      "capabilities": [
+        "CAP-01",
+        "CAP-23",
+        "CAP-24"
+      ],
+      "owner_module": "Platform/Tools",
+      "proof": "Native compiler/shader build and portable fixture launch",
+      "state": "planned",
+      "evidence": [],
+      "environment": "windows"
+    },
+    {
+      "id": "W02",
+      "milestone": "M2",
+      "title": "Native Windows GPU and input checkpoint",
+      "depends_on": [
+        "W01",
+        "P05",
+        "P10",
+        "P12"
+      ],
+      "capabilities": [
+        "CAP-01",
+        "CAP-02",
+        "CAP-07",
+        "CAP-08",
+        "CAP-11",
+        "CAP-12",
+        "CAP-13",
+        "CAP-23"
+      ],
+      "owner_module": "Platform/Rendering",
+      "proof": "Actual D3D11 GPU, physical input, color/skin/shadow/resource evidence",
+      "state": "planned",
+      "evidence": [],
+      "environment": "windows"
+    },
+    {
+      "id": "W03",
+      "milestone": "M8",
+      "title": "Target Windows workload and package checkpoint",
+      "depends_on": [
+        "W02",
+        "P34",
+        "P35",
+        "P36"
+      ],
+      "capabilities": [
+        "CAP-01",
+        "CAP-17",
+        "CAP-23",
+        "CAP-24"
+      ],
+      "owner_module": "Tools/Release",
+      "proof": "Declared target profiles, package/recovery and performance evidence",
+      "state": "planned",
+      "evidence": [],
+      "environment": "windows"
+    }
+  ]
+}

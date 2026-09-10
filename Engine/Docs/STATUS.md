@@ -49,11 +49,17 @@ Windows source/build branches are present but have not been executed on Windows.
 
 The initial build reports upstream shader-compiler deprecation/unknown-warning diagnostics and duplicate bx linkage warnings. They were retained, not suppressed. No game performance claim follows from this fixture's frame interval or its passing checks.
 
-## Next Milestone
+## Whole-Engine Plan and Next Milestone
 
-OR-2 is next: define and implement explicit linear lighting and display conversion, verify known color/illumination values, and define the HDR/exposure/UI composition boundary. OR-1 geometry is complete. Continue with sun/shadows, basic materials/ambient and repeatable inspection settings as ordered in [the outdoor plan](./OUTDOOR_RENDERING_PLAN.md). Rock recipes/generation begin after these rendering prerequisites.
+The user requested complete engine planning and autonomous technical sequencing on 2026-09-10. The [rewritten master implementation plan](./FOUNDATION_PLAN.md) now covers eight milestones from the reusable foundation through a supported Windows candidate. The [system audit](../Research/ENGINE_SYSTEM_AUDIT.md) covers 24 capabilities; [research](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) records preferred integrations; [the retained draft and audit](./ENGINE_PLAN_AUDIT.md) explain the rewrite. The [roadmap index](./ENGINE_ROADMAP.json) contains 37 implementation packages and three native Windows gates. All are planned, not implemented.
 
-Mac remains the main development machine while practical. Native Windows verification is a separate checkpoint during this milestone and remains required before target-PC claims; it does not require switching daily development now. Final hardware budgets, camera feel and accepted close-view visual targets remain open. Canyons, final geographic coordinates and broader gameplay remain deferred.
+[Plan structure/coverage](../Evidence/ENGINE-plan-structure/result.json), [seven focused planning-tool tests](../Evidence/ENGINE-plan-tool-tests/result.json) and [workspace documentation checks](../Evidence/ENGINE-plan-workspace/result.json) passed. These establish planning consistency and tool behavior only; no runtime rebuild, gameplay test or new GPU check was needed for this planning batch.
+
+**Current program milestone: M1, reusable outdoor foundation. Next ready package: P01**, the minimal shared runtime/document/identity boundary. Follow with P02, the OR-2 color contract. P07 build/path work can proceed independently once P01 is ready; texture cooking and shadow work then converge on shared materials and inspection. Use the master dependency graph instead of making the user choose each basic subsystem. OR-2 remains the next renderer feature, within this broader foundation batch.
+
+When implementation is requested, read the relevant master-plan package and run `python3 Tools/check_engine_plan.py`. Complete coherent ready work with evidence, update the index/status, and proceed within task authority. Product/creative review, actual Windows access, external writes and destructive actions keep their existing boundaries. This planning task added no runtime feature or dependency installation.
+
+Mac remains the main development machine while practical. W01/W02/W03 define native Windows build, GPU/input and product-workload evidence; none is complete. Final hardware budgets, feel, accepted content and release decisions remain open. Canyons and final geographic coordinates remain deferred.
 
 ## Preparation History
 

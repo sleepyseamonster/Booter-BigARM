@@ -6,6 +6,8 @@ This folder is the exclusive working area for the proprietary engine and new gam
 
 Load [README.md](./README.md), [Docs/STATUS.md](./Docs/STATUS.md), [Docs/DIRECTION.md](./Docs/DIRECTION.md), and task-relevant requirements or research. Do not default to auditing or repairing the Unity project when the task concerns this folder.
 
+For implementation sequencing, use [Docs/FOUNDATION_PLAN.md](./Docs/FOUNDATION_PLAN.md), the whole-engine master plan, and its [work-package index](./Docs/ENGINE_ROADMAP.json). The user has delegated routine technical sequencing: implement coherent ready packages within current task authority instead of asking which basic engine subsystem is needed next. Preserve product/creative, external-action and destructive-operation authority boundaries. Detailed outdoor/texture plans supply proof contracts, not competing master roadmaps.
+
 ## Sources and Ownership
 
 - The current user instruction controls; [Docs/DIRECTION.md](./Docs/DIRECTION.md) records accepted direction for new work.

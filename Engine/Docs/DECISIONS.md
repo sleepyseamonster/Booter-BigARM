@@ -17,6 +17,8 @@ Update this record when evidence changes a decision. Keep the rationale and repl
 | D-11 | Deferred | Final world coordinates, geology parameters and survival terminology alignment | User creative authority; no foundation dependency |
 | D-12 | Accepted for foundation | Official SDL3 ImGui platform backend plus a project-owned fixed-atlas bgfx adapter | GPU output, clipping and injected inspector interaction verified; dynamic fonts, custom UI textures and multi-viewports deferred |
 | D-13 | Accepted for next milestone | Complete bounded outdoor rendering before the rock workbench | User's foundation-first direction and continuing authority, 2026-09-09; [OR-1 through OR-5](./OUTDOOR_RENDERING_PLAN.md) replace immediate rock implementation as the next step |
+| D-14 | Accepted planning direction | Whole-engine roadmap and agent-owned routine technical sequencing | User request, 2026-09-10; [rewritten master plan](./FOUNDATION_PLAN.md) expands the earlier F1–F4 horizon. Product, creative and external-action boundaries remain. |
+| D-15 | Proposed engineering integrations | EnTT, bounded JSON documents, Jolt, glTF/fastgltf, meshoptimizer, ozz, Recast/Detour, miniaudio and RmlUi at their first consuming stage | [Whole-engine research](../Research/ENGINE_ARCHITECTURE_RESEARCH.md); exact pins, notices and compatibility proof required on adoption. No installation or new runtime selection claimed by planning. |
 
 Foundation selections were made under the user's implementation authority on 2026-09-09, following [the application result](./FOUNDATION_RESULT.md). These supersede the earlier proposals for this bounded milestone; they do not establish final game performance, complete engine architecture or shipping readiness.
 

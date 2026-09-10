@@ -29,6 +29,8 @@ The user requested separation from Unity within this repository and then instruc
 
 ## Decision Status
 
+On 2026-09-10 the user requested whole-engine analysis, a complete implementation plan, its audit and rewrite, and agent-owned technical sequencing. [The master plan](./FOUNDATION_PLAN.md) records that program. Routine engine requirements and implementation order should be managed by the agent; the user remains the creative/product authority. Planning does not claim that later capabilities or proposed libraries are implemented.
+
 Accepted: proprietary engine, regular third person, open Greater Wasteland rock workload, deferred canyons, Windows target, preferred Mac development while practical, and `Engine/` as the working area in this repository.
 
 Selected for the current application foundation under the user's implementation authority: C++20, CMake and the pinned SDL3/bgfx/Dear ImGui cohort. The native Metal result is recorded in [STATUS.md](./STATUS.md); Windows and broader production suitability remain open. Jolt and later supporting components in [the foundation research](./PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) remain proposed. [DECISIONS.md](./DECISIONS.md) records selection scope and review triggers.

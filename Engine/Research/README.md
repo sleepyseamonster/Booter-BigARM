@@ -5,6 +5,9 @@ The [foundation survey](../Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) remai
 The cohort first pinned for EXP-001 is now also used by the [application foundation](../Docs/FOUNDATION_RESULT.md). The historical lock filename and content are retained so experiment hashes stay meaningful. The dependency inventory records the current selection scope.
 
 - [Stack audit](./STACK_AUDIT.md): requirements, integration findings and remaining proof.
+- [Whole-engine system audit](./ENGINE_SYSTEM_AUDIT.md): 24 capability areas, live source evidence and cross-system risks.
+- [Whole-engine architecture research](./ENGINE_ARCHITECTURE_RESEARCH.md): preferred integrations, ownership, simulation/persistence/navigation and platform decisions.
+- [Master plan and rewrite audit](../Docs/FOUNDATION_PLAN.md): complete implementation program; [audit findings](../Docs/ENGINE_PLAN_AUDIT.md) and retained first draft.
 - [Texture-system research](./TEXTURE_SYSTEM_RESEARCH.md): asset/channel audit, tested mip/compiler limitations, runtime format and ownership recommendations.
 - [TEXTURE-001 offline experiment](./Experiments/TEXTURE-001/README.md): reproducible numerical evidence using the pinned texture tools.
 - [Dependency inventory](./dependencies.json): proposed versus experiment-only components.

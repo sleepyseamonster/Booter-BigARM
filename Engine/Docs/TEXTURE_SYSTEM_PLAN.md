@@ -4,7 +4,7 @@ Prepared 2026-09-10 from the [texture research](../Research/TEXTURE_SYSTEM_RESEA
 
 ## Sequence and done condition
 
-**Next implementation batch is OR-2: the color contract.** Then OR-3 sun/shadows, followed by the texture/material stages below within OR-4. The offline cooker can be developed independently once its color convention is fixed; it must not be mistaken for completed GPU materials. Complete these stages before judging the rock generator's material quality. No Windows workstation switch is required to start.
+Scheduling update 2026-09-10: [the whole-engine master plan](./FOUNDATION_PLAN.md) controls implementation. OR-2 is the next renderer feature inside M1, preceded by the shared core/document boundary P01. T1/T2 map to P03, T3 to P05, compression to the measured quality gate, and T5 to rock/world integration. The offline cooker can proceed once its color convention is fixed, independently of shadow implementation; it must not be mistaken for completed GPU materials. No Windows workstation switch is required to start.
 
 OR-4 texture support is done when one transferred rock material and one ground material render through shared, validated texture resources with correct color/channels/normals, complete mipmaps, bounded lifetime behavior and reproducible inspection evidence. This does not require full Unity appearance parity or all 38 images loaded together.
 

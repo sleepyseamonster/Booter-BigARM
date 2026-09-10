@@ -2,6 +2,8 @@
 
 Planning contract, not implemented runtime. The [requirements](./REQUIREMENTS.md) and [accepted direction](./DIRECTION.md) control scope.
 
+Expanded 2026-09-10: [the whole-engine master plan](./FOUNDATION_PLAN.md) defines the complete runtime/application architecture and implementation packages; [the architecture research](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) records library boundaries. The contracts below remain applicable to all later systems. Workbench and Game consume one runtime; fixture state must not become the permanent world model.
+
 ```mermaid
 flowchart LR
     Recipe[Versioned recipe document] --> Generator[World and rock core]
@@ -20,6 +22,8 @@ flowchart LR
 | Owner | Owns | Must not own |
 |---|---|---|
 | Core | IDs, resource lifetime primitives, logging, scheduling interfaces | Game canon or platform GPU objects |
+| Runtime simulation | Fixed ticks, transient entities/components, transform authority and ordered commands | UI widgets as authoritative game state or permanent IDs derived from ECS indices |
+| Asset catalog/cooker | Logical asset IDs, source provenance, versioned import recipes, content keys and validated payloads | Player save deltas or silently rewriting original source art |
 | Platform adapter | Events, window, OS paths, device notifications | Movement rules or editable recipe state |
 | Recipe document | Validated settings, version, edit history and dirty state | Live renderer/physics handles |
 | World/rock core | Deterministic planning and CPU results | Window/UI access or GPU submission |
@@ -28,6 +32,10 @@ flowchart LR
 | Collision adapter | Shapes and physical/query resources | A second terrain surface that disagrees with generated data |
 | Persistence | Versioned durable deltas and atomic document writes | Transient pointers, handles or every regenerable mesh |
 | Workbench | Commands applied to the document, selection and diagnostics | A second recipe copy that drifts from saved data |
+| Navigation and coarse travel | Agent profiles, versioned routes/tiles and detailed/coarse traversal handoff | Teleport recovery or deleting a companion when rendering unloads |
+| Game systems | Interactions, finite inventory/cargo, pressure, tasks and persistent consequences | Renderer handles, raw platform input or competing save writers |
+| Animation | Skeleton/clip evaluation and pose output; explicit root-motion/event ownership | Unconditionally moving physics actors independently of the motor |
+| Audio and player UI | Presentation of shared state, bounded cue lifetime, settings and input focus | Duplicated inventory/task state or hidden authoritative changes |
 
 ## Critical Lifecycles
 
@@ -50,3 +58,5 @@ Use camera-local floating-point coordinates for rendering while keeping durable 
 ## Initial Module Layout
 
 Only create modules when needed: `Source/Core`, `Source/Platform`, `Source/Rendering`, `Source/World`, `Apps/Workbench`, `Tests`, and `Tools`. Third-party implementation stays in ignored build/cache locations, with source/version/license records tracked separately. The preparation experiment under `Research/Experiments` is disposable evidence, not the production module layout.
+
+Add `Source/Runtime`, `Source/Assets`, `Source/Persistence`, `Source/Physics`, `Source/Animation`, `Source/Navigation`, `Source/Audio`, `Source/UI`, `Source/Game` and `Apps/Game` at their first actual consumer as ordered by the master plan. These are planned ownership boundaries, not instructions to scaffold every empty module now.

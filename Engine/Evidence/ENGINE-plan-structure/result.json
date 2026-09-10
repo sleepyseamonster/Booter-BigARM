@@ -1,0 +1,52 @@
+{
+  "command": [
+    "python3",
+    "Tools/check_engine_plan.py"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/AGENTS.md",
+    " M Engine/Docs/ARCHITECTURE.md",
+    " M Engine/Docs/DECISIONS.md",
+    " M Engine/Docs/DIRECTION.md",
+    " M Engine/Docs/FOUNDATION_PLAN.md",
+    " M Engine/Docs/OUTDOOR_RENDERING_PLAN.md",
+    " M Engine/Docs/REQUIREMENTS.md",
+    " M Engine/Docs/STATUS.md",
+    " M Engine/Docs/TEXTURE_SYSTEM_PLAN.md",
+    " M Engine/README.md",
+    " M Engine/Research/README.md",
+    " M Engine/Research/dependencies.json",
+    " M Engine/SOPs/SESSION_HANDOFF.md",
+    " M Engine/Tools/README.md",
+    "?? Engine/Docs/ENGINE_PLAN_AUDIT.md",
+    "?? Engine/Docs/ENGINE_ROADMAP.json",
+    "?? Engine/Docs/Planning/",
+    "?? Engine/Research/ENGINE_ARCHITECTURE_RESEARCH.md",
+    "?? Engine/Research/ENGINE_SYSTEM_AUDIT.md",
+    "?? Engine/Tools/check_engine_plan.py",
+    "?? Engine/Tools/tests/test_engine_plan.py"
+  ],
+  "duration_seconds": 0.041,
+  "exit_code": 0,
+  "git_head": "f19e5503bb0f0a5e46436ce7fdb107b59c034e87",
+  "input_sha256_after": {
+    "Docs/ENGINE_ROADMAP.json": "ceda0f414489726e958f93ffdb32976a8757c121e4c87a72de338ed118d48021",
+    "Docs/FOUNDATION_PLAN.md": "0c4730028d1d3d0a45a9a68c22957f2958266d7005e25e9ff6f787abb9639f67",
+    "Research/ENGINE_SYSTEM_AUDIT.md": "8662f45868f279df589ba97a9a719c5825df7bdb8c1be088cb1129655c724a03",
+    "Tools/check_engine_plan.py": "472a8e3f739caed9bb1eec51ce9506260ca6848283954bf96dec7704d6855142"
+  },
+  "input_sha256_before": {
+    "Docs/ENGINE_ROADMAP.json": "ceda0f414489726e958f93ffdb32976a8757c121e4c87a72de338ed118d48021",
+    "Docs/FOUNDATION_PLAN.md": "0c4730028d1d3d0a45a9a68c22957f2958266d7005e25e9ff6f787abb9639f67",
+    "Research/ENGINE_SYSTEM_AUDIT.md": "8662f45868f279df589ba97a9a719c5825df7bdb8c1be088cb1129655c724a03",
+    "Tools/check_engine_plan.py": "472a8e3f739caed9bb1eec51ce9506260ca6848283954bf96dec7704d6855142"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "e4c6655054818937da5f15cc7384dd06f5e5932bf25bd315ab59bc2347eaf591",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T16:09:57.452023+00:00",
+  "timeout_seconds": 600
+}
