@@ -107,6 +107,8 @@ These describe current repo state rather than durable design truth.
 
 These are intentionally non-canonical. They preserve ideas, research, or working context that may later be refined, replaced, or discarded.
 
+- [PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md](./PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md)
+  Research for the user-directed proprietary engine, standard third-person view and open Greater Wasteland rock workbench; proposed language, libraries, Windows-first platform policy and foundation evidence gates. No engine implementation is claimed.
 - [WORLD_GEN_REFERENCE_NOTES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_GEN_REFERENCE_NOTES.md)
   Distilled world-generation ideas from exploratory discussion.
 - [UNITY_TILEMAP_PROCGEN_REFERENCE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/UNITY_TILEMAP_PROCGEN_REFERENCE.md)
