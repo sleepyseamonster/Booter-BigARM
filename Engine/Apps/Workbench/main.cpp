@@ -25,19 +25,21 @@
 #include "Physics/CharacterController.h"
 #include "Game/ThirdPersonCamera.h"
 #include "Game/CalibrationRuntime.h"
+#include "Game/WorldSession.h"
 #include "Audio/Audio.h"
 #include "Animation/AnimationPlayer.h"
 #include "Tools/RockWorkbench.h"
 #include "Tools/InspectionWorkbench.h"
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints; bool buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile; bool buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
-        if ((arg=="--terrain" || arg=="--stream-rock" || arg=="--constraints" || arg=="--verify-stream" || arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
-            if(arg=="--terrain")options.terrain=argv[++i];
+        if ((arg=="--world-profile" || arg=="--terrain" || arg=="--stream-rock" || arg=="--constraints" || arg=="--verify-stream" || arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
+            if(arg=="--world-profile")options.worldProfile=argv[++i];
+            else if(arg=="--terrain")options.terrain=argv[++i];
             else if(arg=="--stream-rock")options.streamRock=argv[++i];
             else if(arg=="--constraints")options.constraints=argv[++i];
             else if(arg=="--verify-stream"){options.streamVerify=true;options.verify=argv[++i];}
@@ -54,7 +56,7 @@ Options parse(int argc,char** argv) {
             else if (arg=="--save-bindings") options.saveBindings=argv[++i];
             else options.shaders=argv[++i];
         } else if (arg=="--build-info") options.buildInfo=true;
-        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--terrain recipe.json] [--stream-rock recipe.json] [--constraints file.json] [--verify-stream new-directory] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
+        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--terrain recipe.json] [--world-profile directory] [--stream-rock recipe.json] [--constraints file.json] [--verify-stream new-directory] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
     }
     return options;
 }
@@ -183,7 +185,14 @@ int run(Options options) {
         if (std::filesystem::exists(options.verify)) throw std::runtime_error("Verification output exists; choose a new directory");
         std::filesystem::create_directories(options.verify);
     }
+    if(options.terrain.empty()&&(!options.worldProfile.empty()||!options.streamRock.empty()||!options.constraints.empty()))throw std::runtime_error("World options require --terrain");
     SDLSession session;
+    std::unique_ptr<engine::WorldSession> worldSession;
+    if(!options.terrain.empty()) {
+        if(options.worldProfile.empty()&&!technical)options.worldProfile=std::filesystem::path(SDL_GetBasePath())/"UserData/World";
+        worldSession=std::make_unique<engine::WorldSession>(options.worldProfile,engine::WorldConfiguration{engine::loadTerrainRecipe(options.terrain),options.streamRock.empty()?engine::RockRecipe{}:engine::loadRockRecipe(options.streamRock),options.constraints.empty()?engine::PlacementConstraints{}:engine::loadConstraints(options.constraints)});
+        const auto& player=worldSession->initial().player;state.yaw=player.cameraYaw;state.pitch=player.cameraPitch;state.distance=player.cameraDistance;
+    }
     if (options.shaders.empty()) {
         const char* base=SDL_GetBasePath();
         if (!base) throw std::runtime_error("Cannot locate executable assets");
@@ -245,15 +254,23 @@ int run(Options options) {
     if(!options.bindings.empty()) engine::loadBindings(options.bindings,actions);
     engine::ActionInput actionInput(actions);
     SimulationControls simulation;
-    engine::CalibrationRuntime runtime(modelData);
+    engine::CalibrationRuntime runtime(modelData,worldSession?worldSession->initial().player:engine::PlayerSnapshot{});
     std::unique_ptr<engine::RockWorkbench> rock;
     if(!options.rock.empty())rock=std::make_unique<engine::RockWorkbench>(options.rock,runtime);
     engine::InspectionWorkbench documents(state,!options.inspection.empty()?options.inspection:(!options.saveInspection.empty()?options.saveInspection:std::filesystem::path(SDL_GetBasePath())/"inspection.json"));
     std::unique_ptr<engine::StreamingScene> streaming;
-    if(!options.terrain.empty()){
-        streaming=std::make_unique<engine::StreamingScene>(runtime,engine::loadTerrainRecipe(options.terrain),options.streamRock.empty()?engine::RockRecipe{}:engine::loadRockRecipe(options.streamRock),options.constraints.empty()?engine::PlacementConstraints{}:engine::loadConstraints(options.constraints));
+    if(worldSession){
+        const auto& saved=worldSession->initial();streaming=std::make_unique<engine::StreamingScene>(runtime,saved.configuration.terrain,saved.configuration.rock,saved.configuration.constraints,saved.deltas);
         simulation.enabled=true;
     }
+    uint64_t saveAttemptTick=runtime.clock().ticks();
+    std::string worldStatus=worldSession?(worldSession->recovered()?"Recovered complete world save":(worldSession->restored()?"World restored":"New world")):"";
+    auto saveWorld=[&] {
+        if(!worldSession||technical)return;
+        saveAttemptTick=runtime.clock().ticks();
+        try{worldSession->save(runtime,state.yaw,state.pitch,state.distance,streaming->deltas());worldStatus="World saved (generation "+std::to_string(worldSession->generation())+")";}
+        catch(const std::exception& error){worldStatus=error.what();std::cerr<<"World save failed: "<<error.what()<<'\n';}
+    };
     unsigned streamPhase=0,streamStable=0,streamVertices=0,streamIndices=0,streamFinalVertices=0,streamFinalIndices=0;uint64_t streamRetired=0;bool streamDone=false;
     unsigned rockBaselineVertices=0,rockBaselineIndices=0,rockFinalVertices=0,rockFinalIndices=0;
     const auto originalRecipe=rock?rock->recipe():engine::RockRecipe{};
@@ -270,13 +287,14 @@ int run(Options options) {
         for (unsigned frame=0;running;++frame) {
             if (technical && frame>530) throw std::runtime_error("Verification exceeded frame limit");
             SDL_Event event;
-            float dx=0,dy=0,wheel=0;
+            float dx=0,dy=0,wheel=0;bool saveRequested=false,removeRequested=false;
             while (SDL_PollEvent(&event)) {
                 ImGui_ImplSDL3_ProcessEvent(&event);
                 actionInput.event(event);
                 if (event.type==SDL_EVENT_QUIT || event.type==SDL_EVENT_WINDOW_CLOSE_REQUESTED) { running=false; closed=true; }
                 if (event.type==SDL_EVENT_MOUSE_MOTION && (event.motion.state & SDL_BUTTON_RMASK)) { dx+=event.motion.xrel; dy+=event.motion.yrel; }
                 if (event.type==SDL_EVENT_MOUSE_WHEEL) wheel+=event.wheel.y;
+                if (event.type==SDL_EVENT_KEY_DOWN && event.key.key==SDLK_F5 && !event.key.repeat && !ImGui::GetIO().WantCaptureKeyboard)saveRequested=true;
                 if (event.type==SDL_EVENT_KEY_DOWN && event.key.key==SDLK_ESCAPE && !ImGui::GetIO().WantCaptureKeyboard) running=false;
             }
             if (!running) break;
@@ -356,9 +374,21 @@ int run(Options options) {
             if(streaming){
                 if(streamVerify)streaming->anchors({{{{streamPhase==1?4:0,0},{32,0,32}},0}});
                 else streaming->update();
-                if(!streamVerify){ImGui::Begin("World streaming");ImGui::Text("%zu regions | %.1f MiB CPU",streaming->stream().slots().size(),streaming->stream().residentBytes()/1048576.f);ImGui::TextWrapped(runtime.waitingForWorld()?"Waiting for ground collision":"World ready around player");for(const auto& [_,slot]:streaming->stream().slots())if(!slot.error.empty())ImGui::TextWrapped("%s",slot.error.c_str());ImGui::End();}
+                if(!streamVerify){
+                    ImGui::Begin("World streaming");
+                    ImGui::Text("%zu regions | %.1f MiB CPU",streaming->stream().slots().size(),streaming->stream().residentBytes()/1048576.f);
+                    ImGui::TextWrapped(runtime.waitingForWorld()?"Waiting for ground collision":"World ready around player");
+                    ImGui::BeginDisabled(technical);
+                    removeRequested=ImGui::Button("Remove nearby rock");ImGui::SameLine();
+                    saveRequested=ImGui::Button("Save world (F5)")||saveRequested;
+                    ImGui::EndDisabled();
+                    ImGui::TextWrapped("%s",worldStatus.c_str());
+                    for(const auto& [_,slot]:streaming->stream().slots())if(!slot.error.empty())ImGui::TextWrapped("%s",slot.error.c_str());ImGui::End();
+                }
             }
             runtime.advance(double(milliseconds)/1000.0,technical||!simulation.enabled||simulation.paused||!focused,actions,state.yaw,state.pitch);
+            if(removeRequested)try{worldStatus=streaming->removeNearest()?"Rock removed; save to keep this change":"No rock within 8 metres";}catch(const std::exception& error){worldStatus=error.what();}
+            if(saveRequested||runtime.clock().ticks()-saveAttemptTick>=600)saveWorld();
             simulation.grounded=runtime.grounded();simulation.ticks=runtime.clock().ticks();simulation.dropped=runtime.clock().droppedSeconds();
             if(simulation.enabled&&!technical&&!audioAttempted) {
                 audioAttempted=true;try{audio=std::make_unique<engine::Audio>();}catch(const std::exception& error){std::cerr<<error.what()<<"; continuing silently\n";}
@@ -476,6 +506,7 @@ int run(Options options) {
     }
     if(!options.saveBindings.empty()) engine::saveBindings(options.saveBindings,actions);
     texture.reset();for(auto& lease:surfaceLeases)lease.reset();textures.stop();
+    saveWorld();
     streaming.reset();rock.reset();renderModel.reset();animation.reset();
     renderer.stop();
     if (!options.saveInspection.empty()) engine::saveInspection(options.saveInspection,state);

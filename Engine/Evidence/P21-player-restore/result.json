@@ -1,0 +1,56 @@
+{
+  "command": [
+    "build/foundation/engine_player",
+    "--silent",
+    "--model",
+    "out/models/calibration/model.json",
+    "--world-profile",
+    "out/P21-application-session/world",
+    "--terrain",
+    "out/P21-application-session/world/world-gen-3/terrain.json",
+    "--stream-rock",
+    "out/P21-application-session/world/world-gen-3/rock.json",
+    "--constraints",
+    "out/P21-application-session/world/world-gen-3/constraints.json",
+    "--capture",
+    "Evidence/P21-player-restore/captures"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Game/main.cpp",
+    " M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMakeLists.txt",
+    "?? Engine/Evidence/P21-application-build/",
+    "?? Engine/Evidence/P21-session-create/",
+    "?? Engine/Evidence/P21-session-restore/",
+    "?? Engine/Source/Game/WorldSession.cpp",
+    "?? Engine/Source/Game/WorldSession.h",
+    "?? Engine/Tests/WorldSessionTests.cpp"
+  ],
+  "duration_seconds": 1.463,
+  "exit_code": 0,
+  "git_head": "5eeea2b37c213609b1f79db55da322e968383287",
+  "input_sha256_after": {
+    "Apps/Game/main.cpp": "b5e14a4e599ae44c0086e9293d5a2ef9ecd8072a988b0b69fea7ad28336abdf8",
+    "Source/Game/WorldSession.cpp": "04b1310a4eeaf0c9111e889b6610c1d47ec8afd9c7ac1acbd68e0934f6b9ed0f",
+    "build/foundation/engine_player": "00cf07db6d82dd1e6166800544e185dd68e13bacd11573d74aec2fe17947c260",
+    "out/P21-application-session/world/world-gen-3/commit.json": "48cb4062e4a008cadf38d6672e301e4244fd986b97239fc9c823982ef698b6b6",
+    "out/P21-application-session/world/world-gen-3/deltas.json": "f2e023790b42fa1244e4056e84521b3e1111139c9c579570e440b3f4859281ba",
+    "out/P21-application-session/world/world-gen-3/player.json": "62a7406ae0d8632cec551662cd3aec39357d0a210d780974b5e7ab7cbcc7de24"
+  },
+  "input_sha256_before": {
+    "Apps/Game/main.cpp": "b5e14a4e599ae44c0086e9293d5a2ef9ecd8072a988b0b69fea7ad28336abdf8",
+    "Source/Game/WorldSession.cpp": "04b1310a4eeaf0c9111e889b6610c1d47ec8afd9c7ac1acbd68e0934f6b9ed0f",
+    "build/foundation/engine_player": "00cf07db6d82dd1e6166800544e185dd68e13bacd11573d74aec2fe17947c260",
+    "out/P21-application-session/world/world-gen-3/commit.json": "48cb4062e4a008cadf38d6672e301e4244fd986b97239fc9c823982ef698b6b6",
+    "out/P21-application-session/world/world-gen-3/deltas.json": "f2e023790b42fa1244e4056e84521b3e1111139c9c579570e440b3f4859281ba",
+    "out/P21-application-session/world/world-gen-3/player.json": "62a7406ae0d8632cec551662cd3aec39357d0a210d780974b5e7ab7cbcc7de24"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "77e13efb233d42728cad6244520ace6a8b811df4468bf947cdf58ab1c8b2802b",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T20:06:45.956622+00:00",
+  "timeout_seconds": 60.0
+}

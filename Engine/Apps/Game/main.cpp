@@ -7,6 +7,7 @@
 #include "Rendering/TextureStore.h"
 #include "Rendering/StreamingScene.h"
 #include "Game/CalibrationRuntime.h"
+#include "Game/WorldSession.h"
 #include "Audio/Audio.h"
 #include "Persistence/Document.h"
 #include <chrono>
@@ -17,22 +18,28 @@ struct SDLSession {
     ~SDLSession(){SDL_Quit();}
 };
 int run(int argc,char** argv) {
-    std::filesystem::path model,shaders,capture,profile,terrain,streamRock,constraints;bool silent=false;
+    std::filesystem::path model,shaders,capture,profile,worldProfile,terrain,streamRock,constraints;bool silent=false;
     for(int i=1;i<argc;++i) {
         const std::string arg=argv[i];
         if(arg=="--silent")silent=true;
-        else if((arg=="--terrain"||arg=="--stream-rock"||arg=="--constraints"||arg=="--model"||arg=="--shaders"||arg=="--capture"||arg=="--profile")&&i+1<argc) {
-            if(arg=="--terrain")terrain=argv[++i];else if(arg=="--stream-rock")streamRock=argv[++i];else if(arg=="--constraints")constraints=argv[++i];else if(arg=="--model")model=argv[++i];else if(arg=="--shaders")shaders=argv[++i];else if(arg=="--profile")profile=argv[++i];else capture=argv[++i];
-        } else throw std::runtime_error("Usage: engine_player --model model.json [--shaders directory] [--silent] [--profile directory] [--terrain recipe.json] [--stream-rock recipe.json] [--constraints file.json] [--capture new-directory]");
+        else if((arg=="--world-profile"||arg=="--terrain"||arg=="--stream-rock"||arg=="--constraints"||arg=="--model"||arg=="--shaders"||arg=="--capture"||arg=="--profile")&&i+1<argc) {
+            if(arg=="--world-profile")worldProfile=argv[++i];else if(arg=="--terrain")terrain=argv[++i];else if(arg=="--stream-rock")streamRock=argv[++i];else if(arg=="--constraints")constraints=argv[++i];else if(arg=="--model")model=argv[++i];else if(arg=="--shaders")shaders=argv[++i];else if(arg=="--profile")profile=argv[++i];else capture=argv[++i];
+        } else throw std::runtime_error("Usage: engine_player --model model.json [--shaders directory] [--silent] [--profile calibration-directory] [--world-profile world-directory] [--terrain recipe.json] [--stream-rock recipe.json] [--constraints file.json] [--capture new-directory]");
     }
+    if(terrain.empty()&&(!worldProfile.empty()||!streamRock.empty()||!constraints.empty()))throw std::runtime_error("World options require --terrain");
+    if(!terrain.empty()&&!profile.empty())throw std::runtime_error("Use --world-profile with --terrain; --profile is for calibration snapshots");
     const bool technical=!capture.empty();
     if(technical){if(std::filesystem::exists(capture))throw std::runtime_error("Capture directory already exists");std::filesystem::create_directories(capture);}
     SDLSession session;const auto base=std::filesystem::path(SDL_GetBasePath());
     if(shaders.empty())shaders=base/"Shaders";
     if(model.empty())model=base/"Assets/Models/Calibration/model.json";
-    if(profile.empty()&&!technical)profile=base/"UserData";
+    std::unique_ptr<engine::WorldSession> worldSession;
+    if(!terrain.empty()) {
+        if(worldProfile.empty()&&!technical)worldProfile=base/"UserData/World";
+        worldSession=std::make_unique<engine::WorldSession>(worldProfile,engine::WorldConfiguration{engine::loadTerrainRecipe(terrain),streamRock.empty()?engine::RockRecipe{}:engine::loadRockRecipe(streamRock),constraints.empty()?engine::PlacementConstraints{}:engine::loadConstraints(constraints)});
+    } else if(profile.empty()&&!technical)profile=base/"UserData";
     const auto loaded=profile.empty()?engine::SnapshotRead{}:engine::loadSnapshot(profile);
-    const auto initial=loaded.value.value_or(engine::PlayerSnapshot{});
+    const auto initial=worldSession?worldSession->initial().player:loaded.value.value_or(engine::PlayerSnapshot{});
     const auto data=std::make_shared<engine::ModelData>(engine::loadModel(model));
     engine::Window window(technical);SDL_SetWindowTitle(window.get(),"Booter & BigARM | Player skeleton");
     engine::Renderer renderer;renderer.start(window,shaders);
@@ -44,16 +51,20 @@ int run(int argc,char** argv) {
         engine::SceneSurfaces surfaces;surfaces.rock={false,textures.resolve(albedo.token()),textures.resolve(normal.token()),textures.resolve(surface.token())};surfaces.ground=surfaces.rock;
         engine::CalibrationRuntime runtime(data,initial);
         std::unique_ptr<engine::StreamingScene> streaming;
-        if(!terrain.empty())streaming=std::make_unique<engine::StreamingScene>(runtime,engine::loadTerrainRecipe(terrain),streamRock.empty()?engine::RockRecipe{}:engine::loadRockRecipe(streamRock),constraints.empty()?engine::PlacementConstraints{}:engine::loadConstraints(constraints));
+        if(worldSession){const auto& saved=worldSession->initial();streaming=std::make_unique<engine::StreamingScene>(runtime,saved.configuration.terrain,saved.configuration.rock,saved.configuration.constraints,saved.deltas);}
         engine::Actions actions;engine::ActionInput input(actions);
         std::unique_ptr<engine::Audio> audio;
         if(!silent&&!technical)try{audio=std::make_unique<engine::Audio>();}catch(const std::exception& error){std::cerr<<error.what()<<"; continuing silently\n";}
         engine::FixtureState state;state.distance=initial.cameraDistance;state.pitch=initial.cameraPitch;state.yaw=initial.cameraYaw;state.surfaceTextures=false;
-        uint64_t saveAttemptTick=initial.ticks;std::string saveStatus=loaded.recovered?"Recovered last valid snapshot":(loaded.value?"Snapshot restored":"New session");
+        uint64_t saveAttemptTick=initial.ticks;std::string saveStatus=worldSession?(worldSession->recovered()?"Recovered complete world save":(worldSession->restored()?"World restored":"New world")):loaded.recovered?"Recovered last valid snapshot":(loaded.value?"Snapshot restored":"New session");
         auto save=[&] {
             if(technical)return;
             saveAttemptTick=runtime.clock().ticks();
-            try{engine::saveSnapshot(profile,runtime.snapshot(state.yaw,state.pitch,state.distance));saveAttemptTick=runtime.clock().ticks();saveStatus="Saved";}
+            try{
+                if(worldSession)worldSession->save(runtime,state.yaw,state.pitch,state.distance,streaming->deltas());
+                else engine::saveSnapshot(profile,runtime.snapshot(state.yaw,state.pitch,state.distance));
+                saveStatus=worldSession?"World saved (generation "+std::to_string(worldSession->generation())+")":"Saved";
+            }
             catch(const std::exception& error){saveStatus=error.what();std::cerr<<"Save failed: "<<error.what()<<'\n';}
         };
         bool running=true,paused=false;auto last=std::chrono::steady_clock::now();
@@ -108,7 +119,7 @@ int run(int argc,char** argv) {
     renderer.stop();
     if(technical) {
         const bool passed=renderer.callbacks.captures==1&&renderer.callbacks.errors==0;
-        engine::writeDocument(capture/"player.json","engine.player-render",{{"passed",passed},{"backend",backend},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"simulation_advanced",false},{"snapshot_loaded",loaded.value.has_value()},{"snapshot_generation",loaded.generation},{"recovered",loaded.recovered},{"marker_active",initial.markerActive},{"feet",initial.feet}});
+        engine::writeDocument(capture/"player.json","engine.player-render",{{"passed",passed},{"backend",backend},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"simulation_advanced",false},{"snapshot_loaded",worldSession?worldSession->restored():loaded.value.has_value()},{"snapshot_generation",worldSession?worldSession->generation():loaded.generation},{"recovered",worldSession?worldSession->recovered():loaded.recovered},{"world_profile",bool(worldSession)},{"changed_regions",worldSession?worldSession->initial().deltas.removedRocks.size():0},{"marker_active",initial.markerActive},{"feet",initial.feet}});
         if(!passed)throw std::runtime_error("Player render capture failed");
     }
     return 0;

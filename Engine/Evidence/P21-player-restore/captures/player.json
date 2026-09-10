@@ -1,0 +1,22 @@
+{
+  "kind": "engine.player-render",
+  "payload": {
+    "backend": "Metal",
+    "captures": 1,
+    "changed_regions": 1,
+    "feet": [
+      200.3984375,
+      4.0,
+      10.1015625
+    ],
+    "gpu_errors": 0,
+    "marker_active": true,
+    "passed": true,
+    "recovered": false,
+    "simulation_advanced": false,
+    "snapshot_generation": 3,
+    "snapshot_loaded": true,
+    "world_profile": true
+  },
+  "version": 1
+}

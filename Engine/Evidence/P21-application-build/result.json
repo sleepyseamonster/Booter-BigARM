@@ -1,0 +1,48 @@
+{
+  "command": [
+    "cmake",
+    "--build",
+    "build/foundation",
+    "--target",
+    "engine_world_session_tests",
+    "engine_workbench",
+    "engine_player",
+    "-j",
+    "6"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Game/main.cpp",
+    " M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMakeLists.txt",
+    "?? Engine/Source/Game/WorldSession.cpp",
+    "?? Engine/Source/Game/WorldSession.h",
+    "?? Engine/Tests/WorldSessionTests.cpp"
+  ],
+  "duration_seconds": 15.855,
+  "exit_code": 0,
+  "git_head": "5eeea2b37c213609b1f79db55da322e968383287",
+  "input_sha256_after": {
+    "Apps/Game/main.cpp": "b5e14a4e599ae44c0086e9293d5a2ef9ecd8072a988b0b69fea7ad28336abdf8",
+    "Apps/Workbench/main.cpp": "065a03c586f8a34da9c5ae3405035c321e855589399cd32dc380485b5160b1f4",
+    "CMakeLists.txt": "7bab76af179f1af0b6e065754951aa127a29bebedbe76c443f4e70c3fba77e80",
+    "Source/Game/WorldSession.cpp": "04b1310a4eeaf0c9111e889b6610c1d47ec8afd9c7ac1acbd68e0934f6b9ed0f",
+    "Source/Game/WorldSession.h": "3679d0f6c392007b2d35c1534a8ec523368f77ceb35d52dd417df4a9cd0c4f4a",
+    "Tests/WorldSessionTests.cpp": "26a4754af5480d1ea3c5b915624f1c4322c1fcd67727f7041be41b0e2e84e2d9"
+  },
+  "input_sha256_before": {
+    "Apps/Game/main.cpp": "b5e14a4e599ae44c0086e9293d5a2ef9ecd8072a988b0b69fea7ad28336abdf8",
+    "Apps/Workbench/main.cpp": "065a03c586f8a34da9c5ae3405035c321e855589399cd32dc380485b5160b1f4",
+    "CMakeLists.txt": "7bab76af179f1af0b6e065754951aa127a29bebedbe76c443f4e70c3fba77e80",
+    "Source/Game/WorldSession.cpp": "04b1310a4eeaf0c9111e889b6610c1d47ec8afd9c7ac1acbd68e0934f6b9ed0f",
+    "Source/Game/WorldSession.h": "3679d0f6c392007b2d35c1534a8ec523368f77ceb35d52dd417df4a9cd0c4f4a",
+    "Tests/WorldSessionTests.cpp": "26a4754af5480d1ea3c5b915624f1c4322c1fcd67727f7041be41b0e2e84e2d9"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "dcb90f4a40d9cda5b9c83f5578002bd3c88c8d10dc1f5d1927b74f203ebedba8",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T20:05:47.028055+00:00",
+  "timeout_seconds": 180.0
+}

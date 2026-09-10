@@ -1,0 +1,55 @@
+{
+  "result": "passed",
+  "checks": {
+    "create_and_separate_process_restore": true,
+    "stable_removed_identity": true,
+    "player_process_restored_same_position": true,
+    "player_process_restored_same_generation": true,
+    "player_loaded_world_delta": true,
+    "metal_capture": true,
+    "profile_members_unchanged_by_render": true
+  },
+  "create": {
+    "feet": [
+      200.3984375,
+      4.0,
+      10.1015625
+    ],
+    "generation": 2,
+    "mode": "create",
+    "passed": true,
+    "removed_id": "generated:v1:rock:1049:1:0:0:12",
+    "ticks": 42
+  },
+  "restore": {
+    "feet": [
+      200.3984375,
+      4.0,
+      10.1015625
+    ],
+    "generation": 3,
+    "mode": "restore",
+    "passed": true,
+    "removed_id": "generated:v1:rock:1049:1:0:0:12",
+    "ticks": 42
+  },
+  "player": {
+    "backend": "Metal",
+    "captures": 1,
+    "changed_regions": 1,
+    "feet": [
+      200.3984375,
+      4.0,
+      10.1015625
+    ],
+    "gpu_errors": 0,
+    "marker_active": true,
+    "passed": true,
+    "recovered": false,
+    "simulation_advanced": false,
+    "snapshot_generation": 3,
+    "snapshot_loaded": true,
+    "world_profile": true
+  },
+  "limits": "Shared application session tested across separate native processes with real Jolt collision; actual player restore and one Metal capture. Workbench save/remove controls compiled and source-reviewed, not clicked. No gameplay, Windows, power-loss, nonzero-origin or production performance proof."
+}

@@ -1,6 +1,6 @@
-# World Persistence Checkpoint — Paused
+# World Persistence Checkpoint — Historical
 
-The user requested a good stopping point on 2026-09-10. This is a verified P21 library checkpoint, not completed application integration. Stop here until the user resumes work.
+The user requested a good stopping point on 2026-09-10. This is a verified P21 library checkpoint, not completed application integration. The user subsequently resumed; [application integration is now delivered](./WORLD_SAVE_APPLICATION_RESULT.md). The sections below retain the library-checkpoint evidence and its original boundaries.
 
 ## Implemented
 
@@ -18,8 +18,8 @@ The streaming adapter exposes nearest-rock removal and delta retrieval for the n
 
 Both app targets and the new test executable build. This checkpoint adds no graphical verification or gameplay smoke test. Windows lease behavior, abrupt-process/power-loss cases, origin rebasing and app-level save/restart remain unverified. The native test injects an exception between member writes; it does not claim an actual machine crash.
 
-## Resume point
+## Original resume point (now completed)
 
-P21 remains `in_progress`. On explicit resumption, wire `loadWorldSave`/`saveWorld` and the delta-aware streaming constructor into both apps, preserving the existing single-rock workbench and player-only calibration profiles. Capture player/world state together at a main-thread boundary, keep the expected generation in the session, and expose a small workbench action for removing a nearby rock and saving the world. Finish configuration/version handling and one focused app-level restart check. P22 then handles the working origin and broader integration; do not start another subsystem before closing this save path.
+At this checkpoint P21 remained `in_progress`. The subsequent integration followed this sequence: wire `loadWorldSave`/`saveWorld` and the delta-aware streaming constructor into both apps, preserving the existing single-rock workbench and player-only calibration profiles. Capture player/world state together at a main-thread boundary, keep the expected generation in the session, and expose a small workbench action for removing a nearby rock and saving the world. Finish configuration/version handling and one focused app-level restart check. P22 then handles the working origin and broader integration; do not start another subsystem before closing this save path.
 
 The full engine goal remains incomplete. This checkpoint does not change its scope or mark it achieved.
