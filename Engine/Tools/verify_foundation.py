@@ -144,12 +144,43 @@ def check_color(captures):
     return result
 
 
+def check_textures(captures,catalog):
+    def sample(name,u,v):
+        w,h,c,rows=captures[name];x,y=int(w*u),int(h*v)
+        return list(rows[y][x*c:x*c+3])
+    checks=[("texture-color",.4,.25,[255,0,0]),("texture-color",.8,.25,[0,255,0]),
+            ("texture-color",.4,.75,[0,0,255]),("texture-color",.8,.75,[255,255,255]),
+            ("texture-mip",.6,.6,[188,188,188]),("texture-normal",.4,.5,[128,128,255]),
+            ("texture-normal",.8,.5,[255,128,128]),("texture-surface",.7,.5,[128,128,128])]
+    observations=[]
+    for name,u,v,expected in checks:
+        observed=sample(name,u,v)
+        if max(abs(a-b) for a,b in zip(observed,expected))>2:
+            raise ValueError(f"Texture GPU calibration failed: {name}: {observed}, expected {expected}")
+        observations.append({"capture":name,"uv":[u,v],"expected":expected,"observed":observed})
+    # Compare original transferred PNG bytes against texture sampling through the display pipeline.
+    sources={"texture-rock":"Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.png",
+             "texture-ground":"Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png"}
+    for name,path in sources.items():
+        sw,sh,sc,srows=png(ROOT/path);w,h,c,rows=captures[name]
+        matched=0
+        for u,v in [(0.37,.23),(.43,.64),(.56,.34),(.67,.78),(.79,.43),(.87,.66)]:
+            x,y=int(w*u),int(h*v);sx,sy=int((x+.5)*sw/w),int((y+.5)*sh/h)
+            expected=srows[sy][sx*sc:sx*sc+3];observed=rows[y][x*c:x*c+3]
+            if max(abs(a-b) for a,b in zip(observed,expected))>2:
+                raise ValueError(f"Transferred texture pixels disagree: {name}: {list(observed)}, expected {list(expected)}")
+            matched+=1
+        observations.append({"capture":name,"source":path,"matched_source_samples":matched})
+    return {"observations":observations,"catalog_sha256":hashlib.sha256(catalog.read_bytes()).hexdigest()}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--executable", required=True)
     parser.add_argument("--shaders", required=True)
     parser.add_argument("--portable", action="store_true", help="Use executable-relative shaders and launch from a separate directory")
     parser.add_argument("--out", required=True)
+    parser.add_argument("--catalog", help="Cooked texture catalog for native texture verification")
     args = parser.parse_args()
     executable, shaders, out = inside(args.executable), inside(args.shaders), inside(args.out)
     if not executable.is_file() or out.exists():
@@ -157,11 +188,19 @@ def main():
     command = [sys.executable, str(ROOT/"Tools/record.py"), "--out", str(out/"run"), "--timeout", "120"]
     for path in [executable, ROOT/"CMakeLists.txt", ROOT/"Research/probe-lock.json", ROOT/"Research/runtime-lock.json", Path(__file__)]:
         command += ["--input", str(path)]
-    for name in ["vs_scene.bin", "fs_scene.bin", "vs_inspector.bin", "fs_inspector.bin", "vs_fullscreen.bin", "fs_display.bin", "fs_calibration.bin"]:
+    for name in ["vs_scene.bin", "fs_scene.bin", "vs_inspector.bin", "fs_inspector.bin", "vs_fullscreen.bin", "fs_display.bin", "fs_calibration.bin", "fs_texture_preview.bin"]:
         path = shaders/name
         if not path.is_file():
             parser.error("Missing compiled shader: " + str(path))
         command += ["--input", str(path)]
+    if args.catalog:
+        catalog=inside(args.catalog)
+        command += ["--input",str(catalog)]
+        for source in ["Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.png",
+                       "Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png"]:
+            command += ["--input",str(ROOT/source)]
+        for row in json.loads(catalog.read_text())["payload"]["textures"]:
+            command += ["--input",str(inside(catalog.parent/row["file"]))]
     for folder in ["Apps", "Source", "Shaders"]:
         for path in sorted((ROOT/folder).rglob("*")):
             if path.is_file():
@@ -173,12 +212,17 @@ def main():
     command += ["--", str(executable), "--verify", str(out/"captures"), "--save-inspection",str(out/"inspection.json")]
     if not args.portable:
         command += ["--shaders",str(shaders)]
+    if args.catalog and not (args.portable and catalog == (executable.parent/"Assets/catalog.json").resolve()):
+        command += ["--catalog",str(catalog)]
     subprocess.run(command, cwd=ROOT, check=True)
     report = json.loads((out/"captures/verification.json").read_text())
     if not report["passed"]:
         raise ValueError("Application verification failed")
     captures = {name: png(out/"captures"/(name+".png")) for name in
         ["baseline", "material", "orbit", "resized", "normals", "baked", "unculled", "front-cull", "reverse-order", "sphere", "color-linear", "color-hdr", "color-restored"]}
+    if args.catalog:
+        captures.update({name:png(out/"captures"/(name+".png")) for name in
+            ["texture-color","texture-mip","texture-normal","texture-surface","texture-rock","texture-ground"]})
     changed, blue = changed_scene(captures["baseline"], captures["material"])
     orbit_changed, _ = changed_scene(captures["material"], captures["orbit"])
     if changed < 500 or blue < 500 or orbit_changed < 500:
@@ -187,6 +231,7 @@ def main():
         raise ValueError("Resize did not change captured framebuffer dimensions")
     geometry = check_geometry(captures)
     color = check_color(captures)
+    textures = check_textures(captures,catalog) if args.catalog else None
     negative = []
     for name, arguments, expected in [
         ("missing-shaders", ["--shaders", str(out/"absent-shaders")], "Missing shader:"),
@@ -202,7 +247,7 @@ def main():
         negative.append(name)
     result = {"schema_version": 1, "result": "passed", "backend": report["backend"],
         "material_changed_sampled_pixels": changed, "became_blue_sampled_pixels": blue,
-        "orbit_changed_sampled_pixels": orbit_changed, "geometry_comparisons": geometry, "linear_display_checks": color, "portable_paths": args.portable, "expected_failures": negative,
+        "orbit_changed_sampled_pixels": orbit_changed, "geometry_comparisons": geometry, "linear_display_checks": color, "texture_checks": textures, "portable_paths": args.portable, "expected_failures": negative,
         "captures": {name: {"width": value[0], "height": value[1],
             "sha256": hashlib.sha256((out/"captures"/(name+".png")).read_bytes()).hexdigest()}
             for name, value in captures.items()},

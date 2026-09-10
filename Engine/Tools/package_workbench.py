@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import subprocess
+import shutil
 from common import ROOT, inside, write_json
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -15,14 +16,27 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--build',required=True)
     parser.add_argument('--out',required=True)
+    parser.add_argument('--catalog',help='Optional cooked catalog copied into executable-relative Assets')
     args=parser.parse_args()
     build,out=inside(args.build),inside(args.out)
     if out.exists() or not (build/'CMakeCache.txt').is_file():
         parser.error('Build must be configured and package destination must be new')
     subprocess.run(['cmake','--install',str(build),'--config','Release','--prefix',str(out)],check=True,cwd=ROOT)
     executable=out/'bin'/('engine_workbench.exe' if (out/'bin/engine_workbench.exe').exists() else 'engine_workbench')
-    if not executable.is_file() or len(list((out/'bin/Shaders').glob('*.bin')))<7:
+    if not executable.is_file() or not all((out/'bin/Shaders'/(p.stem+'.bin')).is_file() for p in (ROOT/'Shaders').glob('*.sc') if p.name.startswith(('vs_','fs_'))):
         raise ValueError('Incomplete installed workbench')
+    if args.catalog:
+        catalog=inside(args.catalog)
+        records=json.loads(catalog.read_text())["payload"]["textures"]
+        asset_root=out/'bin/Assets';asset_root.mkdir()
+        shutil.copyfile(catalog,asset_root/'catalog.json')
+        for row in records:
+            source=inside(catalog.parent/row['file'])
+            destination=asset_root/row['file']
+            if asset_root.resolve() not in destination.resolve().parents:raise ValueError('Catalog path escapes package assets')
+            destination.parent.mkdir(parents=True,exist_ok=True)
+            if sha(source)!=row['sha256']:raise ValueError('Cooked catalog hash mismatch')
+            shutil.copyfile(source,destination)
     payload={p.relative_to(out).as_posix():sha(p) for p in sorted(out.rglob('*')) if p.is_file()}
     sources={p.relative_to(ROOT).as_posix():sha(p) for folder in ['Source','Apps','Shaders','CMake']
              for p in sorted((ROOT/folder).rglob('*')) if p.is_file()}

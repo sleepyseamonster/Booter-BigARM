@@ -1,0 +1,47 @@
+{
+  "command": [
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/foundation/engine_workbench",
+    "--unknown"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMake/Shaders.cmake",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Tools/package_workbench.py",
+    " M Engine/Tools/verify_foundation.py",
+    "?? Engine/Apps/TextureCooker/",
+    "?? Engine/Assets/TextureRecipes/",
+    "?? Engine/Evidence/P03-cook-a/",
+    "?? Engine/Evidence/P03-cook-b/",
+    "?? Engine/Evidence/P03-cooking.json",
+    "?? Engine/Evidence/P03-native-corrected/",
+    "?? Engine/Evidence/P03-native-initial/",
+    "?? Engine/Shaders/fs_texture_preview.sc",
+    "?? Engine/Source/Assets/",
+    "?? Engine/Source/Rendering/TextureChecks.cpp",
+    "?? Engine/Source/Rendering/TextureChecks.h",
+    "?? Engine/Source/Rendering/TextureStore.cpp",
+    "?? Engine/Source/Rendering/TextureStore.h",
+    "?? Engine/Tests/TextureTests.cpp",
+    "?? Engine/Tools/cook_textures.py"
+  ],
+  "duration_seconds": 0.028,
+  "exit_code": 1,
+  "git_head": "82bb85f79c79c545b4a340b984d029a14b38126d",
+  "input_sha256_after": {
+    "build/foundation/engine_workbench": "581327228de59ddc99c6956be01a882ec9f6f28afb18e3afb9c16d09dbf363a6"
+  },
+  "input_sha256_before": {
+    "build/foundation/engine_workbench": "581327228de59ddc99c6956be01a882ec9f6f28afb18e3afb9c16d09dbf363a6"
+  },
+  "inputs_unchanged": true,
+  "outcome": "failed",
+  "output_sha256": "236e5ba7424d3f57a3e52af08d3715ebbb1ab7e0a934cf10cc781b1a0e63763e",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T16:55:17.477349+00:00",
+  "timeout_seconds": 30.0
+}

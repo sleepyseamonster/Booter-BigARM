@@ -89,6 +89,10 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders)
     normal_ = bgfx::createUniform("u_normalMatrix", bgfx::UniformType::Mat4);
     options_ = bgfx::createUniform("u_sceneOptions", bgfx::UniformType::Vec4);
     if (!bgfx::isValid(normal_) || !bgfx::isValid(options_)) throw std::runtime_error("Geometry uniform allocation failed");
+    textureProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_texture_preview.bin");
+    textureOptions_=bgfx::createUniform("u_textureOptions",bgfx::UniformType::Vec4);
+    previewSampler_=bgfx::createUniform("s_preview",bgfx::UniformType::Sampler);
+    if (!bgfx::isValid(textureOptions_) || !bgfx::isValid(previewSampler_)) throw std::runtime_error("Texture preview resources failed");
     displayProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_display.bin");
     calibrationProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_calibration.bin");
     display_=bgfx::createUniform("u_display",bgfx::UniformType::Vec4);
@@ -169,7 +173,7 @@ void Renderer::rebuildMesh() {
     const char* names[]={"Reference cube", "Reference sloped solid", "Reference sphere", "CPU-baked flat-normal reference"};
     for (size_t i=0;i<meshes_.size();++i) bgfx::setName(meshes_[i],names[i]);
 }
-void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibration) {
+void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibration, const TexturePreview* preview) {
     const auto eye=state.eye();
     float view[16], projection[16];
     bx::mtxLookAt(view,{eye[0],eye[1],eye[2]},{0,0.85f,0},{0,1,0},bx::Handedness::Right);
@@ -207,7 +211,14 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     auto subject=subjectTransform(state);
     const bool baked=check==GeometryCheck::BakedReference;
     if (baked) bx::mtxIdentity(subject.data());
-    if (calibration) {
+    if (preview && bgfx::isValid(preview->texture)) {
+        const float options[]={preview->lod,preview->channel,preview->srgb?1.0f:0.0f,preview->repeat};
+        const float display[]={0,0,0,0};bgfx::setUniform(display_,display);
+        bgfx::setUniform(textureOptions_,options);
+        bgfx::setTexture(0,previewSampler_,preview->texture,BGFX_SAMPLER_MIN_POINT|BGFX_SAMPLER_MAG_POINT|BGFX_SAMPLER_MIP_POINT);
+        bgfx::setVertexBuffer(0,fullscreen_);bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A);
+        bgfx::submit(0,textureProgram_);
+    } else if (calibration) {
         const float display[]={0,0,0,0};
         bgfx::setUniform(display_,display);
         bgfx::setVertexBuffer(0,fullscreen_); bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A);
@@ -217,7 +228,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     } else {
         submit(0,groundTransform,ground); submit(baked?3:state.mesh,subject,color); submit(0,markerTransform,marker);
     }
-    const float display[]={state.exposure,state.showNormals && !calibration?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,0};
+    const float display[]={state.exposure,state.showNormals && !calibration && !preview?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,0};
     bgfx::setViewRect(1,0,0,uint16_t(width_),uint16_t(height_));
     bgfx::setUniform(display_,display);
     bgfx::setTexture(0,sceneSampler_,bgfx::getTexture(scene_));
@@ -227,6 +238,10 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
 const char* Renderer::name() const { return bgfx::getRendererName(bgfx::getRendererType()); }
 void Renderer::stop() {
     if (!started_) return;
+    if (bgfx::isValid(textureProgram_)) bgfx::destroy(textureProgram_);
+    if (bgfx::isValid(textureOptions_)) bgfx::destroy(textureOptions_);
+    if (bgfx::isValid(previewSampler_)) bgfx::destroy(previewSampler_);
+    textureProgram_=BGFX_INVALID_HANDLE;textureOptions_=BGFX_INVALID_HANDLE;previewSampler_=BGFX_INVALID_HANDLE;
     if (bgfx::isValid(scene_)) bgfx::destroy(scene_);
     if (bgfx::isValid(displayProgram_)) bgfx::destroy(displayProgram_);
     if (bgfx::isValid(calibrationProgram_)) bgfx::destroy(calibrationProgram_);

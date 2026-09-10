@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "recipes": [
+    {
+      "id": "diagnostic/color",
+      "source": "Assets/TextureRecipes/Fixtures/color.png",
+      "role": "mask",
+      "transfer": "linear",
+      "channels": "crack_halo_deposit_alpha",
+      "alpha": "independent_linear",
+      "normal_green": "positive_y",
+      "dimensions": "preserve",
+      "filter": "area_box_v1",
+      "edge": "repeat",
+      "format": "rgba8_ktx1"
+    }
+  ]
+}

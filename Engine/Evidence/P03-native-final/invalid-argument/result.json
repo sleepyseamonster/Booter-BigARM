@@ -1,0 +1,58 @@
+{
+  "command": [
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/textured-workbench/bin/engine_workbench",
+    "--unknown"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMake/Shaders.cmake",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Tools/package_workbench.py",
+    " M Engine/Tools/tests/test_engine_plan.py",
+    " M Engine/Tools/verify_foundation.py",
+    "?? Engine/Apps/TextureCooker/",
+    "?? Engine/Assets/TextureRecipes/",
+    "?? Engine/Evidence/P03-build-final/",
+    "?? Engine/Evidence/P03-cook-a/",
+    "?? Engine/Evidence/P03-cook-b/",
+    "?? Engine/Evidence/P03-cook-final-a/",
+    "?? Engine/Evidence/P03-cook-final-b/",
+    "?? Engine/Evidence/P03-cooking-final.json",
+    "?? Engine/Evidence/P03-cooking.json",
+    "?? Engine/Evidence/P03-key-variants/",
+    "?? Engine/Evidence/P03-native-corrected/",
+    "?? Engine/Evidence/P03-native-final/",
+    "?? Engine/Evidence/P03-native-initial/",
+    "?? Engine/Evidence/P03-native-tests/",
+    "?? Engine/Evidence/P03-package/",
+    "?? Engine/Evidence/P03-tool-tests/",
+    "?? Engine/Shaders/fs_texture_preview.sc",
+    "?? Engine/Source/Assets/",
+    "?? Engine/Source/Rendering/TextureChecks.cpp",
+    "?? Engine/Source/Rendering/TextureChecks.h",
+    "?? Engine/Source/Rendering/TextureStore.cpp",
+    "?? Engine/Source/Rendering/TextureStore.h",
+    "?? Engine/Tests/TextureTests.cpp",
+    "?? Engine/Tools/cook_textures.py",
+    "?? Engine/Tools/tests/test_texture_pipeline.py"
+  ],
+  "duration_seconds": 0.025,
+  "exit_code": 1,
+  "git_head": "82bb85f79c79c545b4a340b984d029a14b38126d",
+  "input_sha256_after": {
+    "out/textured-workbench/bin/engine_workbench": "e82af3bcf78ccd03e861a94d697e460a0854360799287b60599cc8bdab28a12a"
+  },
+  "input_sha256_before": {
+    "out/textured-workbench/bin/engine_workbench": "e82af3bcf78ccd03e861a94d697e460a0854360799287b60599cc8bdab28a12a"
+  },
+  "inputs_unchanged": true,
+  "outcome": "failed",
+  "output_sha256": "236e5ba7424d3f57a3e52af08d3715ebbb1ab7e0a934cf10cc781b1a0e63763e",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T17:01:42.993097+00:00",
+  "timeout_seconds": 30.0
+}

@@ -1,0 +1,57 @@
+{
+  "command": [
+    "python3",
+    "Tools/cook_textures.py",
+    "--cooker",
+    "build/foundation/engine_texture_cook",
+    "--recipes",
+    "Assets/TextureRecipes/library.json",
+    "--out",
+    "out/surfaces-a"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMake/Shaders.cmake",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Tools/package_workbench.py",
+    " M Engine/Tools/verify_foundation.py",
+    "?? Engine/Apps/TextureCooker/",
+    "?? Engine/Assets/TextureRecipes/",
+    "?? Engine/Evidence/P03-native-initial/",
+    "?? Engine/Shaders/fs_texture_preview.sc",
+    "?? Engine/Source/Assets/",
+    "?? Engine/Source/Rendering/TextureChecks.cpp",
+    "?? Engine/Source/Rendering/TextureChecks.h",
+    "?? Engine/Source/Rendering/TextureStore.cpp",
+    "?? Engine/Source/Rendering/TextureStore.h",
+    "?? Engine/Tests/TextureTests.cpp",
+    "?? Engine/Tools/cook_textures.py"
+  ],
+  "duration_seconds": 4.694,
+  "exit_code": 0,
+  "git_head": "82bb85f79c79c545b4a340b984d029a14b38126d",
+  "input_sha256_after": {
+    "Apps/TextureCooker/main.cpp": "f5478da263a93a9c0ce56ea6855d177f0fca73bdfc71be6be9acd30e8702207a",
+    "Assets/TextureRecipes/library.json": "0d5768f6dbea64388d3c9957844da3cdc2bd230f1cfb7df96de9c055858f999e",
+    "Source/Assets/TextureData.cpp": "9122edc572fafb26c3d3faf0b06002ba2cc36d65880c5f875d21785f33b14663",
+    "Tools/cook_textures.py": "8827b327a7564a8e6305acf348533e33741bc4709b7ac4cd59500287317831ac",
+    "build/foundation/engine_texture_cook": "b6100cc4dd72c9dd74beeb1ef0f994e6b6edbf38eee8ef00e5c3d045305aac19"
+  },
+  "input_sha256_before": {
+    "Apps/TextureCooker/main.cpp": "f5478da263a93a9c0ce56ea6855d177f0fca73bdfc71be6be9acd30e8702207a",
+    "Assets/TextureRecipes/library.json": "0d5768f6dbea64388d3c9957844da3cdc2bd230f1cfb7df96de9c055858f999e",
+    "Source/Assets/TextureData.cpp": "9122edc572fafb26c3d3faf0b06002ba2cc36d65880c5f875d21785f33b14663",
+    "Tools/cook_textures.py": "8827b327a7564a8e6305acf348533e33741bc4709b7ac4cd59500287317831ac",
+    "build/foundation/engine_texture_cook": "b6100cc4dd72c9dd74beeb1ef0f994e6b6edbf38eee8ef00e5c3d045305aac19"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "e88292bee69c077b106a10a9517b301b1e29000f7f327159ad677235bb79a0ee",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T16:53:28.673937+00:00",
+  "timeout_seconds": 600
+}

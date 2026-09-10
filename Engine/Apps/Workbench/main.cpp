@@ -3,6 +3,8 @@
 #include <SDL3/SDL_main.h>
 #include "Core/FixtureState.h"
 #include "Runtime/InspectionDocument.h"
+#include "Rendering/TextureStore.h"
+#include "Rendering/TextureChecks.h"
 #include "Platform/Window.h"
 #include "Rendering/Renderer.h"
 #include "Rendering/InspectorRenderer.h"
@@ -18,18 +20,19 @@
 #include <algorithm>
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection; bool buildInfo=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog; bool buildInfo=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
-        if ((arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection") && i+1<argc) {
+        if ((arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
             if (arg=="--verify") options.verify=argv[++i];
             else if (arg=="--inspection") options.inspection=argv[++i];
             else if (arg=="--save-inspection") options.saveInspection=argv[++i];
+            else if (arg=="--catalog") options.catalog=argv[++i];
             else options.shaders=argv[++i];
         } else if (arg=="--build-info") options.buildInfo=true;
-        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--verify new-output-directory]");
+        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--verify new-output-directory]");
     }
     return options;
 }
@@ -51,8 +54,13 @@ struct UIContext {
     }
     ~UIContext() { if (platform) ImGui_ImplSDL3_Shutdown(); ImGui::DestroyContext(); }
 };
+struct TextureControls {
+    const std::vector<engine::TextureRecord>* records=nullptr;
+    int selected=0,loaded=-1,channel=0;float lod=0,repeat=1;bool enabled=true;
+    std::string error;
+};
 struct ButtonPosition { float x=0,y=0; };
-ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds) {
+ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds,TextureControls& textures) {
     ImGui::SetNextWindowPos(ImVec2(20,20),ImGuiCond_Always);
     ImGui::SetNextWindowSize(ImVec2(310,std::min(650.0f,ImGui::GetIO().DisplaySize.y-40.0f)),ImGuiCond_Always);
     ImGui::Begin("Engine foundation",nullptr,ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse);
@@ -90,6 +98,18 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     ImGui::Text("Textures: %u",stats->numTextures);
     ImGui::Separator();
     ImGui::TextWrapped("Right drag: orbit  |  Wheel: distance\nTurquoise marker: 1.8 m tall\nTemporary scale and local coordinates");
+    if (textures.records && !textures.records->empty() && ImGui::CollapsingHeader("Texture inspection",ImGuiTreeNodeFlags_DefaultOpen)) {
+        ImGui::Checkbox("Preview texture",&textures.enabled);
+        if (ImGui::BeginCombo("Asset",textures.records->at(size_t(textures.selected)).id.c_str())) {
+            for (int i=0;i<int(textures.records->size());++i)
+                if (ImGui::Selectable(textures.records->at(size_t(i)).id.c_str(),i==textures.selected)) {textures.selected=i;textures.lod=0;}
+            ImGui::EndCombo();
+        }
+        ImGui::SliderFloat("Mip level",&textures.lod,0,float(textures.records->at(size_t(textures.selected)).mips-1),"%.0f");
+        ImGui::Combo("Channel",&textures.channel,"RGB\0R\0G\0B\0Alpha\0");
+        ImGui::SliderFloat("UV repeats",&textures.repeat,1,8,"%.1f");
+        if (!textures.error.empty()) ImGui::TextWrapped("%s",textures.error.c_str());
+    }
     ImGui::PopItemWidth();
     ImGui::End();
     state.constrain();
@@ -117,10 +137,22 @@ int run(Options options) {
         if (!base) throw std::runtime_error("Cannot locate executable assets");
         options.shaders=std::filesystem::path(base)/"Shaders";
     }
+    if (options.catalog.empty()) {
+        const char* base=SDL_GetBasePath();
+        if (base && std::filesystem::exists(std::filesystem::path(base)/"Assets/catalog.json")) options.catalog=std::filesystem::path(base)/"Assets/catalog.json";
+    }
     engine::Window window(verify);
     engine::Renderer renderer;
     renderer.start(window,options.shaders);
     const std::string backend=renderer.name();
+    const auto records=options.catalog.empty()?std::vector<engine::TextureRecord>{}:engine::loadTextureCatalog(options.catalog);
+    engine::TextureStore textures;
+    engine::TextureLease texture;
+    TextureControls textureControls;textureControls.records=&records;
+    if (verify && !records.empty()) {
+        const auto result=engine::verifyTextureStore(textures,records.at(0));
+        engine::writeDocument(options.verify/"texture-resources.json","engine.texture-verification",result);
+    }
     bool clicked=false,orbited=false,resized=false,closed=false;
     unsigned baselineBuffers=0,finalBuffers=0;
     {
@@ -131,7 +163,7 @@ int run(Options options) {
         ButtonPosition button;
         auto last=std::chrono::steady_clock::now();
         for (unsigned frame=0;running;++frame) {
-            if (verify && frame>380) throw std::runtime_error("Verification exceeded frame limit");
+            if (verify && frame>530) throw std::runtime_error("Verification exceeded frame limit");
             SDL_Event event;
             float dx=0,dy=0,wheel=0;
             while (SDL_PollEvent(&event)) {
@@ -161,13 +193,37 @@ int run(Options options) {
             state.orbit(dx,dy,io.WantCaptureMouse); state.zoom(wheel,io.WantCaptureMouse);
             if (verify && frame==155) state=engine::geometryProofState();
             if (verify && frame==230) state.mesh=2;
-            button=inspector(state,renderer,milliseconds);
+            if (verify && frame>=350 && !records.empty()) {
+                auto select=[&](const char* id) {
+                    const auto found=std::find_if(records.begin(),records.end(),[&](const auto& r){return r.id==id;});
+                    if (found==records.end()) throw std::runtime_error("Missing texture verification asset");
+                    textureControls.selected=int(found-records.begin());textureControls.lod=0;textureControls.channel=0;
+                };
+                state.exposure=0;state.showNormals=false;
+                if (frame==350) select("diagnostic/color");
+                if (frame==375) textureControls.lod=2;
+                if (frame==395) select("diagnostic/normal");
+                if (frame==415) {select("diagnostic/surface");textureControls.channel=2;}
+                if (frame==435) select("surface/textures/rocks/workbench/layered/rockworkbenchside_albedo");
+                if (frame==455) select("surface/textures/ground/sanddirt/brokenworldsanddirtalbedo");
+            }
+            button=inspector(state,renderer,milliseconds,textureControls);
+            engine::TexturePreview preview;
+            const bool showTexture=!records.empty() && textureControls.enabled && (!verify || frame>=350);
+            if (showTexture) {
+                const auto& record=records.at(size_t(textureControls.selected));
+                if (textureControls.loaded!=textureControls.selected) {
+                    try {texture=textures.acquire(record);textureControls.loaded=textureControls.selected;textureControls.error.clear();}
+                    catch(const std::exception& error) {textureControls.error=error.what();if(verify)throw;}
+                }
+                if (textureControls.loaded>=0) preview={textures.resolve(texture.token()),textureControls.lod,float(textureControls.channel),records.at(size_t(textureControls.loaded)).srgb,textureControls.repeat};
+            }
             ImGui::Render();
             engine::GeometryCheck geometryCheck=engine::GeometryCheck::None;
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.draw(state,geometryCheck,verify && frame>=265); ui.draw(ImGui::GetDrawData());
+            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr); ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -196,18 +252,23 @@ int run(Options options) {
                 if (frame==295) capture("color-hdr.png");
                 if (frame>=300 && frame<320) renderer.resize(frame%2?1000:996,680);
                 if (frame==330) capture("color-restored.png");
-                if (frame==345) { SDL_Event quit{}; quit.type=SDL_EVENT_QUIT; if (!SDL_PushEvent(&quit)) throw std::runtime_error("Cannot inject close event"); }
+                if (!records.empty() && frame>=365 && frame<=465 && (frame-365)%20==0) {
+                    constexpr const char* names[]={"texture-color.png","texture-mip.png","texture-normal.png","texture-surface.png","texture-rock.png","texture-ground.png"};
+                    capture(names[(frame-365)/20]);
+                }
+                if ((frame==345 && records.empty()) || (frame==480 && !records.empty())) { SDL_Event quit{}; quit.type=SDL_EVENT_QUIT; if (!SDL_PushEvent(&quit)) throw std::runtime_error("Cannot inject close event"); }
             }
             bgfx::frame();
             if (verify) SDL_Delay(10);
         }
         ui.stop();
     }
+    texture.reset();textures.stop();
     renderer.stop();
     if (!options.saveInspection.empty()) engine::saveInspection(options.saveInspection,state);
     if (verify) {
         const bool success=clicked && orbited && resized && closed && baselineBuffers==finalBuffers &&
-            renderer.callbacks.captures==13 && renderer.callbacks.errors==0;
+            renderer.callbacks.captures==(records.empty()?13u:19u) && renderer.callbacks.errors==0;
         std::ofstream report(options.verify/"verification.json");
         report << "{\n  \"schema_version\": 1,\n  \"backend\": \"" << backend
                << "\",\n  \"inspector_click\": " << (clicked?"true":"false")

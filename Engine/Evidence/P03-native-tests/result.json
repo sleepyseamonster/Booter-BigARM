@@ -1,0 +1,58 @@
+{
+  "command": [
+    "ctest",
+    "--test-dir",
+    "build/foundation",
+    "--output-on-failure"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMake/Shaders.cmake",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Tools/package_workbench.py",
+    " M Engine/Tools/tests/test_engine_plan.py",
+    " M Engine/Tools/verify_foundation.py",
+    "?? Engine/Apps/TextureCooker/",
+    "?? Engine/Assets/TextureRecipes/",
+    "?? Engine/Evidence/P03-build-final/",
+    "?? Engine/Evidence/P03-cook-a/",
+    "?? Engine/Evidence/P03-cook-b/",
+    "?? Engine/Evidence/P03-cooking.json",
+    "?? Engine/Evidence/P03-native-corrected/",
+    "?? Engine/Evidence/P03-native-initial/",
+    "?? Engine/Shaders/fs_texture_preview.sc",
+    "?? Engine/Source/Assets/",
+    "?? Engine/Source/Rendering/TextureChecks.cpp",
+    "?? Engine/Source/Rendering/TextureChecks.h",
+    "?? Engine/Source/Rendering/TextureStore.cpp",
+    "?? Engine/Source/Rendering/TextureStore.h",
+    "?? Engine/Tests/TextureTests.cpp",
+    "?? Engine/Tools/cook_textures.py",
+    "?? Engine/Tools/tests/test_texture_pipeline.py"
+  ],
+  "duration_seconds": 1.467,
+  "exit_code": 0,
+  "git_head": "82bb85f79c79c545b4a340b984d029a14b38126d",
+  "input_sha256_after": {
+    "build/foundation/engine_core_tests": "a48d850eb8f5bf6e69527eef31b5850313b414f59d2bf3a4d8aff407f82011ca",
+    "build/foundation/engine_geometry_tests": "328f857b2eece01a6e6b1f02baf9c0f7ada44d1dca4dc1164bf860e39d7a0d10",
+    "build/foundation/engine_state_tests": "75077622c1d785e4329adb615f32362c32117c9ca43870ac14d9448c3ce6996e",
+    "build/foundation/engine_texture_tests": "8ad6e1e4aed0d544d4229748cf765d1c35484b924669dcc589e6fb1a35773f9b"
+  },
+  "input_sha256_before": {
+    "build/foundation/engine_core_tests": "a48d850eb8f5bf6e69527eef31b5850313b414f59d2bf3a4d8aff407f82011ca",
+    "build/foundation/engine_geometry_tests": "328f857b2eece01a6e6b1f02baf9c0f7ada44d1dca4dc1164bf860e39d7a0d10",
+    "build/foundation/engine_state_tests": "75077622c1d785e4329adb615f32362c32117c9ca43870ac14d9448c3ce6996e",
+    "build/foundation/engine_texture_tests": "8ad6e1e4aed0d544d4229748cf765d1c35484b924669dcc589e6fb1a35773f9b"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "148201eb1d074b728e11950189c7768904d344c8a4399a941e55b6db310c3ddc",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T16:58:45.347145+00:00",
+  "timeout_seconds": 600
+}

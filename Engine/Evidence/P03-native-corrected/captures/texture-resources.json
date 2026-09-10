@@ -1,0 +1,15 @@
+{
+  "kind": "engine.texture-verification",
+  "payload": {
+    "bytes_after": 0,
+    "failure_preserves_prior": true,
+    "fallback_roles": 5,
+    "gpu_textures_after": 3,
+    "gpu_textures_before": 3,
+    "passed": true,
+    "replacement_cycles": 100,
+    "shared_references": 2,
+    "stale_tokens_rejected": true
+  },
+  "version": 1
+}

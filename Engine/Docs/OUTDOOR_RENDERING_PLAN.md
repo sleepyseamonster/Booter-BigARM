@@ -13,7 +13,7 @@ Provide a repeatable outdoor inspection scene in which known geometry responds p
 | OR-1 — Geometry correctness | Inverse-transpose normals; known cube, sloped solid and sphere; winding/culling and depth checks; CPU geometry tests and native GPU comparisons | Complete on Mac; [result and limits](./OUTDOOR_GEOMETRY_RESULT.md) |
 | OR-2 — Color contract | Explicit linear lighting and display conversion; known color/illumination checks; define the HDR, exposure and UI composition boundary | Complete on Mac; [linear/HDR/display proof](./FIRST_PASS_RUNTIME.md) |
 | OR-3 — Sun and shadows | One directional sun and bounded shadow map; cast/self shadows, bias and edge behavior; moving-light/camera evidence | Pending |
-| OR-4 — Materials and ambient | Base color, roughness and normal textures; minimal owned asset fixtures/loading; ambient/environment illumination and consistent exposure | Pending; no broad asset catalog |
+| OR-4 — Materials and ambient | Base color, roughness and normal textures; minimal owned asset fixtures/loading; ambient/environment illumination and consistent exposure | Pending PBR/ambient; [P03 catalog and residency](./TEXTURE_PIPELINE_RESULT.md) are implemented |
 | OR-5 — Repeatable inspection | Save/reload camera, light and material settings; neutral and low-angle inspection presets; CPU/GPU measurements with backend and resolution | Pending |
 | Windows checkpoint | Native configure, compile, shader compilation, launch and technical captures on a Windows PC during this milestone | Pending hardware access; does not require moving daily development off Mac |
 

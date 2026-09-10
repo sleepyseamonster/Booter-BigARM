@@ -1,6 +1,6 @@
 # Texture and Material Implementation Plan
 
-Prepared 2026-09-10 from the [texture research](../Research/TEXTURE_SYSTEM_RESEARCH.md) and TEXTURE-001 evidence. This is a plan, not implemented texture support. The [outdoor rendering plan](./OUTDOOR_RENDERING_PLAN.md) remains the milestone authority.
+Prepared 2026-09-10 from the [texture research](../Research/TEXTURE_SYSTEM_RESEARCH.md) and TEXTURE-001 evidence. T1/T2 are now implemented; see [the texture pipeline result](./TEXTURE_PIPELINE_RESULT.md). Remaining stages are planned. The [outdoor rendering plan](./OUTDOOR_RENDERING_PLAN.md) remains the milestone authority.
 
 ## Sequence and done condition
 
@@ -48,4 +48,4 @@ Deferred: full layered shader parity, terrain/pebble parallax, automatic texture
 
 ## Plan audit
 
-The research closes the initial tool/format uncertainty without changing the selected stack. Stock mip generation is specifically excluded because of measured semantic failures. Source images remain immutable; recipes and content keys make conversions reviewable. The first renderer slice has one rock and one ground material, avoiding a premature port of every layered shader. Each stage has independent numerical/resource evidence and an explicit stop point. Current implementation status: OR-1 and OR-2/P02 are complete on Mac; texture cooking/residency and materials remain pending.
+The research closes the initial tool/format uncertainty without changing the selected stack. Stock mip generation is specifically excluded because of measured semantic failures. Source images remain immutable; recipes and content keys make conversions reviewable. The first renderer slice has one rock and one ground material, avoiding a premature port of every layered shader. Each stage has independent numerical/resource evidence and an explicit stop point. Current implementation status: OR-1, OR-2/P02 and P03/T1/T2 are complete on Mac; PBR materials remain pending.

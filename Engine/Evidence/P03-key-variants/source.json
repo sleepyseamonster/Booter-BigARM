@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "recipes": [
+    {
+      "id": "diagnostic/color",
+      "source": "Assets/TextureRecipes/Fixtures/normal.png",
+      "role": "base_color",
+      "transfer": "srgb",
+      "channels": "srgb_rgb_linear_alpha",
+      "alpha": "independent_linear",
+      "normal_green": "positive_y",
+      "dimensions": "preserve",
+      "filter": "area_box_v1",
+      "edge": "repeat",
+      "format": "rgba8_ktx1"
+    }
+  ]
+}

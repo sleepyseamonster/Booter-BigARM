@@ -40,6 +40,7 @@ class EnginePlanTests(unittest.TestCase):
         next(row for row in self.data["work_packages"] if row["id"] == "P01")["state"] = "planned"
         row = next(row for row in self.data["work_packages"] if row["id"] == "P02")
         row["state"] = "complete"
+        row["evidence"] = []  # Exercise missing evidence even after P02 has actually completed.
         errors = self.inspect()["errors"]
         self.assertTrue(any("without evidence" in item for item in errors))
         self.assertTrue(any("before prerequisites" in item for item in errors))

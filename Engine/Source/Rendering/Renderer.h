@@ -24,6 +24,7 @@ public:
     void captureEnd() override {}
     void captureFrame(const void*, uint32_t) override {}
 };
+struct TexturePreview { bgfx::TextureHandle texture=BGFX_INVALID_HANDLE;float lod=0,channel=0;bool srgb=false;float repeat=1; };
 class Renderer {
 public:
     Renderer() = default;
@@ -32,7 +33,7 @@ public:
     Renderer& operator=(const Renderer&) = delete;
     void start(const Window&, const std::filesystem::path& shaders);
     void resize(int width, int height);
-    void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None, bool calibration = false);
+    void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None, bool calibration = false, const TexturePreview* preview = nullptr);
     void rebuildMesh();
     void stop();
     const char* name() const;
@@ -43,6 +44,8 @@ private:
     void resizeTargets(int width,int height);
     bool started_ = false;
     int width_ = 0, height_ = 0;
+    bgfx::ProgramHandle textureProgram_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle textureOptions_ = BGFX_INVALID_HANDLE, previewSampler_ = BGFX_INVALID_HANDLE;
     bgfx::FrameBufferHandle scene_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle displayProgram_ = BGFX_INVALID_HANDLE, calibrationProgram_ = BGFX_INVALID_HANDLE;
     bgfx::VertexBufferHandle fullscreen_ = BGFX_INVALID_HANDLE;

@@ -1,0 +1,451 @@
+{
+  "backend": "Metal",
+  "became_blue_sampled_pixels": 31162,
+  "captures": {
+    "baked": {
+      "height": 1360,
+      "sha256": "7d94cc8d826421ec2f836db9c328e6159126bab39e023daae5d3c4135d987a50",
+      "width": 2000
+    },
+    "baseline": {
+      "height": 1440,
+      "sha256": "a290ed37b3192ea0b6756c8c4f076c2ecd0546660823e33032c18796665ff162",
+      "width": 2240
+    },
+    "color-hdr": {
+      "height": 1360,
+      "sha256": "4d9e493086bfd037c63744357e0325881691a46c40ee1c76bab06f60b9a31cad",
+      "width": 2000
+    },
+    "color-linear": {
+      "height": 1360,
+      "sha256": "a767d6ab810c6a25e4f05245112b04a294ee50e4668552860259e7bf6062a4b0",
+      "width": 2000
+    },
+    "color-restored": {
+      "height": 1360,
+      "sha256": "45801d9054dc540b9d2fe4e33c9a42e56d972f5fd51684bdcc8737cba03b2f47",
+      "width": 2000
+    },
+    "front-cull": {
+      "height": 1360,
+      "sha256": "45a5055688f8ab4425b97fbac8d134905859f61ddc2fcab6e796da2a492e9aa2",
+      "width": 2000
+    },
+    "material": {
+      "height": 1440,
+      "sha256": "33bfbc2b409004c7c300d33433dce60a2e9549a51c0bc92ceb774b62261f6ee0",
+      "width": 2240
+    },
+    "normals": {
+      "height": 1360,
+      "sha256": "b3e7390a6a41f8c6340223b4338fd30f778ffd2935e72e7310177fcc39d0e3c9",
+      "width": 2000
+    },
+    "orbit": {
+      "height": 1440,
+      "sha256": "51ab0622f5fc1b7b1a88e63c7a7cca0c307b35ba3e0e7f769988b28da5075f17",
+      "width": 2240
+    },
+    "resized": {
+      "height": 1360,
+      "sha256": "25e8d57eea5d3ca927e79a26b9510ad444feb1dd58c0ee4c4a062909a8ead503",
+      "width": 2000
+    },
+    "reverse-order": {
+      "height": 1360,
+      "sha256": "4fd90b68b26e57be94b7e08235157309e0b262ee97999ec10d44e4fabab5ef26",
+      "width": 2000
+    },
+    "sphere": {
+      "height": 1360,
+      "sha256": "7186eac08b403fcd67eff9ccaf74d786a372dc01a45fb5c9957f90d3a1daac7e",
+      "width": 2000
+    },
+    "texture-color": {
+      "height": 1360,
+      "sha256": "c30f9cc2d8689442bbfcc43dc346c5da42c25a2bdf191db38f0c94702ab059fa",
+      "width": 2000
+    },
+    "texture-ground": {
+      "height": 1360,
+      "sha256": "5163439408ffc11631b1d2ca8266b566d7f484e09799cd2f1a1d8bedcdb1c421",
+      "width": 2000
+    },
+    "texture-mip": {
+      "height": 1360,
+      "sha256": "dc9f1720abdca4c754c8deed44e72f47b58b18abaa74a9a015b7f423557e43d9",
+      "width": 2000
+    },
+    "texture-normal": {
+      "height": 1360,
+      "sha256": "6447fdd97a8750731d1b1bf51648c8fc888470502217109687b5f09ef903b1d7",
+      "width": 2000
+    },
+    "texture-rock": {
+      "height": 1360,
+      "sha256": "4e1779c2164d37f77eb9a94da4ff6be7fa728fe4f45cc56cbf6689845ecd7d10",
+      "width": 2000
+    },
+    "texture-surface": {
+      "height": 1360,
+      "sha256": "2f6d39d518c5fe533d03692100fab8a876b9749607c9ce748f5b5bf8a70b3676",
+      "width": 2000
+    },
+    "unculled": {
+      "height": 1360,
+      "sha256": "97957e9c25a727d9f641a875d2c44539b378b3b452ace253c7d6019ac35c00f5",
+      "width": 2000
+    }
+  },
+  "expected_failures": [
+    "missing-shaders",
+    "invalid-argument"
+  ],
+  "geometry_comparisons": {
+    "baked": {
+      "different": 0,
+      "normal_subject": 7983,
+      "samples": 163200
+    },
+    "front-cull": {
+      "different": 111802,
+      "normal_subject": 7983,
+      "samples": 163200
+    },
+    "reverse-order": {
+      "different": 0,
+      "normal_subject": 7983,
+      "samples": 163200
+    },
+    "unculled": {
+      "different": 0,
+      "normal_subject": 7983,
+      "samples": 163200
+    }
+  },
+  "linear_display_checks": {
+    "color-hdr": {
+      "expected_gray": [
+        0,
+        3,
+        66,
+        99,
+        137,
+        188,
+        44,
+        120
+      ],
+      "exposure": -2,
+      "observed_rgb": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          66,
+          66,
+          66
+        ],
+        [
+          99,
+          99,
+          99
+        ],
+        [
+          137,
+          137,
+          137
+        ],
+        [
+          188,
+          188,
+          188
+        ],
+        [
+          44,
+          44,
+          44
+        ],
+        [
+          120,
+          120,
+          120
+        ]
+      ]
+    },
+    "color-linear": {
+      "expected_gray": [
+        0,
+        10,
+        128,
+        188,
+        255,
+        255,
+        89,
+        225
+      ],
+      "exposure": 0,
+      "observed_rgb": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          10,
+          10,
+          10
+        ],
+        [
+          128,
+          128,
+          128
+        ],
+        [
+          188,
+          188,
+          188
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          89,
+          89,
+          89
+        ],
+        [
+          225,
+          225,
+          225
+        ]
+      ]
+    },
+    "color-restored": {
+      "expected_gray": [
+        0,
+        3,
+        66,
+        99,
+        137,
+        188,
+        44,
+        120
+      ],
+      "exposure": -2,
+      "observed_rgb": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          66,
+          66,
+          66
+        ],
+        [
+          99,
+          99,
+          99
+        ],
+        [
+          137,
+          137,
+          137
+        ],
+        [
+          188,
+          188,
+          188
+        ],
+        [
+          44,
+          44,
+          44
+        ],
+        [
+          120,
+          120,
+          120
+        ]
+      ]
+    }
+  },
+  "material_changed_sampled_pixels": 31162,
+  "orbit_changed_sampled_pixels": 33466,
+  "portable_paths": true,
+  "proof_limit": "Native technical checks and GPU pixel changes; not physical input, gameplay, final visual acceptance or target-PC performance.",
+  "result": "passed",
+  "schema_version": 1,
+  "texture_checks": {
+    "catalog_sha256": "eed166926feaa75f48c30c967add21f1c34d2b80e57091f5148d30fb25154ee7",
+    "observations": [
+      {
+        "capture": "texture-color",
+        "expected": [
+          255,
+          0,
+          0
+        ],
+        "observed": [
+          255,
+          0,
+          0
+        ],
+        "uv": [
+          0.4,
+          0.25
+        ]
+      },
+      {
+        "capture": "texture-color",
+        "expected": [
+          0,
+          255,
+          0
+        ],
+        "observed": [
+          0,
+          255,
+          0
+        ],
+        "uv": [
+          0.8,
+          0.25
+        ]
+      },
+      {
+        "capture": "texture-color",
+        "expected": [
+          0,
+          0,
+          255
+        ],
+        "observed": [
+          0,
+          0,
+          255
+        ],
+        "uv": [
+          0.4,
+          0.75
+        ]
+      },
+      {
+        "capture": "texture-color",
+        "expected": [
+          255,
+          255,
+          255
+        ],
+        "observed": [
+          255,
+          255,
+          255
+        ],
+        "uv": [
+          0.8,
+          0.75
+        ]
+      },
+      {
+        "capture": "texture-mip",
+        "expected": [
+          188,
+          188,
+          188
+        ],
+        "observed": [
+          188,
+          188,
+          188
+        ],
+        "uv": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "capture": "texture-normal",
+        "expected": [
+          128,
+          128,
+          255
+        ],
+        "observed": [
+          128,
+          128,
+          255
+        ],
+        "uv": [
+          0.4,
+          0.5
+        ]
+      },
+      {
+        "capture": "texture-normal",
+        "expected": [
+          255,
+          128,
+          128
+        ],
+        "observed": [
+          255,
+          128,
+          128
+        ],
+        "uv": [
+          0.8,
+          0.5
+        ]
+      },
+      {
+        "capture": "texture-surface",
+        "expected": [
+          128,
+          128,
+          128
+        ],
+        "observed": [
+          128,
+          128,
+          128
+        ],
+        "uv": [
+          0.7,
+          0.5
+        ]
+      },
+      {
+        "capture": "texture-rock",
+        "matched_source_samples": 6,
+        "source": "Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.png"
+      },
+      {
+        "capture": "texture-ground",
+        "matched_source_samples": 6,
+        "source": "Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png"
+      }
+    ]
+  }
+}

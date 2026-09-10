@@ -47,3 +47,5 @@ The first command needs only the engine collection. The second also reads the pr
 The manifest's collection keys identify these assets independently of GPU handles; runtime asset IDs are not finalized. The transfer creates no world objects, seeds, chunk state, authored geography or persisted gameplay deltas. Future materials should share texture resources across generated rocks and chunk lifetimes without making GPU handles into persistent IDs.
 
 The original image files and Unity settings remain untouched. Source provenance here is the existing project checkout; no external asset acquisition occurred. The engine currently has no scene-texture loader, so these files are collected assets rather than integrated rendering output. Color handling remains next, followed by the planned lighting and material work.
+
+P03 now supplies [semantic recipes, cooking and shared GPU previews](../../Docs/TEXTURE_PIPELINE_RESULT.md). Runtime IDs use a `surface/` namespace over collection keys. The sources and historical bindings above remain unchanged; PBR material interpretation is separate work.

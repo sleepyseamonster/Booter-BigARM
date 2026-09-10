@@ -97,8 +97,12 @@
       ],
       "owner_module": "Assets/Rendering/Tools",
       "proof": "Independent semantic mip oracles, validation, sharing and lifetime",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Evidence/P03-native-final/result.json",
+        "Evidence/P03-native-tests/result.json",
+        "Evidence/P03-accepted-cooking.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {
