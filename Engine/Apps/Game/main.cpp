@@ -5,6 +5,7 @@
 #include "Platform/ActionInput.h"
 #include "Rendering/Renderer.h"
 #include "Rendering/TextureStore.h"
+#include "Rendering/StreamingScene.h"
 #include "Game/CalibrationRuntime.h"
 #include "Audio/Audio.h"
 #include "Persistence/Document.h"
@@ -16,13 +17,13 @@ struct SDLSession {
     ~SDLSession(){SDL_Quit();}
 };
 int run(int argc,char** argv) {
-    std::filesystem::path model,shaders,capture,profile;bool silent=false;
+    std::filesystem::path model,shaders,capture,profile,terrain,streamRock,constraints;bool silent=false;
     for(int i=1;i<argc;++i) {
         const std::string arg=argv[i];
         if(arg=="--silent")silent=true;
-        else if((arg=="--model"||arg=="--shaders"||arg=="--capture"||arg=="--profile")&&i+1<argc) {
-            if(arg=="--model")model=argv[++i];else if(arg=="--shaders")shaders=argv[++i];else if(arg=="--profile")profile=argv[++i];else capture=argv[++i];
-        } else throw std::runtime_error("Usage: engine_player --model model.json [--shaders directory] [--silent] [--profile directory] [--capture new-directory]");
+        else if((arg=="--terrain"||arg=="--stream-rock"||arg=="--constraints"||arg=="--model"||arg=="--shaders"||arg=="--capture"||arg=="--profile")&&i+1<argc) {
+            if(arg=="--terrain")terrain=argv[++i];else if(arg=="--stream-rock")streamRock=argv[++i];else if(arg=="--constraints")constraints=argv[++i];else if(arg=="--model")model=argv[++i];else if(arg=="--shaders")shaders=argv[++i];else if(arg=="--profile")profile=argv[++i];else capture=argv[++i];
+        } else throw std::runtime_error("Usage: engine_player --model model.json [--shaders directory] [--silent] [--profile directory] [--terrain recipe.json] [--stream-rock recipe.json] [--constraints file.json] [--capture new-directory]");
     }
     const bool technical=!capture.empty();
     if(technical){if(std::filesystem::exists(capture))throw std::runtime_error("Capture directory already exists");std::filesystem::create_directories(capture);}
@@ -42,6 +43,8 @@ int run(int argc,char** argv) {
         auto albedo=textures.fallback(engine::TextureRole::Color),normal=textures.fallback(engine::TextureRole::Normal),surface=textures.fallback(engine::TextureRole::Surface);
         engine::SceneSurfaces surfaces;surfaces.rock={false,textures.resolve(albedo.token()),textures.resolve(normal.token()),textures.resolve(surface.token())};surfaces.ground=surfaces.rock;
         engine::CalibrationRuntime runtime(data,initial);
+        std::unique_ptr<engine::StreamingScene> streaming;
+        if(!terrain.empty())streaming=std::make_unique<engine::StreamingScene>(runtime,engine::loadTerrainRecipe(terrain),streamRock.empty()?engine::RockRecipe{}:engine::loadRockRecipe(streamRock),constraints.empty()?engine::PlacementConstraints{}:engine::loadConstraints(constraints));
         engine::Actions actions;engine::ActionInput input(actions);
         std::unique_ptr<engine::Audio> audio;
         if(!silent&&!technical)try{audio=std::make_unique<engine::Audio>();}catch(const std::exception& error){std::cerr<<error.what()<<"; continuing silently\n";}
@@ -74,6 +77,7 @@ int run(int argc,char** argv) {
             const bool suspended=technical||paused||!focused||(flags&SDL_WINDOW_MINIMIZED)||width<=0||height<=0;
             actions.gameplay(!suspended);
             if(!suspended){state.orbit(dx,dy,false);state.zoom(wheel,false);}
+            if(streaming)streaming->update();
             runtime.advance(seconds,suspended,actions,state.yaw,state.pitch);
             if(saveRequested||runtime.clock().ticks()-saveAttemptTick>=600)save();
             for(const auto& cue:runtime.takeCues())if(audio)audio->cue(cue.sequence);
@@ -82,6 +86,7 @@ int run(int argc,char** argv) {
             const auto view=runtime.present(state.yaw,state.pitch,state.distance,float(std::min(seconds,.1)));
             engine::ScenePlacement placement;placement.physicalCharacter=true;placement.offset=view.feet;placement.offset[1]+=.15f;
             placement.eye=view.eye;placement.target=view.target;placement.model=&mesh;placement.pose=view.palette;placement.markerActive=runtime.targetActive();state.objectYaw=view.yaw;
+            if(streaming){placement.streamedWorld=true;placement.instances=&streaming->instances(view.eye);}
             renderer.draw(state,engine::GeometryCheck::None,false,nullptr,&surfaces,&placement);
             bgfx::dbgTextClear();bgfx::dbgTextPrintf(2,2,0x0f,"BOOTER & BIGARM - ENGINE SKELETON");
             bgfx::dbgTextPrintf(2,4,0x07,"WASD: move  Space: jump  Shift: run  Right drag: camera");
@@ -90,12 +95,14 @@ int run(int argc,char** argv) {
             bgfx::dbgTextPrintf(2,9,0x0b,"%s",runtime.canInteract()?"E - toggle calibration marker":"Move near the marker to interact");
             bgfx::dbgTextPrintf(2,10,0x07,"Marker: %s | Audio: %s",runtime.targetActive()?"on":"off",audio?"on":"silent");
             bgfx::dbgTextPrintf(2,12,0x07,"%s",saveStatus.c_str());
+            if(streaming)bgfx::dbgTextPrintf(2,14,0x07,"%zu regions | %s",streaming->stream().slots().size(),runtime.waitingForWorld()?"Waiting for ground collision":"World ready");
             if(technical&&frame==20)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(capture/"player.png").string().c_str());
             bgfx::frame();
             if(technical&&frame==30)running=false;
             if(technical)SDL_Delay(10);
         }
         save();
+        streaming.reset();
         albedo.reset();normal.reset();surface.reset();textures.stop();
     }
     renderer.stop();

@@ -1,3 +1,4 @@
+#include "Rendering/StreamingScene.h"
 #define SDL_MAIN_HANDLED
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
@@ -30,13 +31,17 @@
 #include "Tools/InspectionWorkbench.h"
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock; bool buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints; bool buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
-        if ((arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
-            if(arg=="--rock")options.rock=argv[++i];
+        if ((arg=="--terrain" || arg=="--stream-rock" || arg=="--constraints" || arg=="--verify-stream" || arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
+            if(arg=="--terrain")options.terrain=argv[++i];
+            else if(arg=="--stream-rock")options.streamRock=argv[++i];
+            else if(arg=="--constraints")options.constraints=argv[++i];
+            else if(arg=="--verify-stream"){options.streamVerify=true;options.verify=argv[++i];}
+            else if(arg=="--rock")options.rock=argv[++i];
             else if(arg=="--verify-rock"){options.rockVerify=true;options.verify=argv[++i];}
             else if (arg=="--model") options.model=argv[++i];
             else if (arg=="--verify-animation") {options.animationVerify=true;options.verify=argv[++i];}
@@ -49,7 +54,7 @@ Options parse(int argc,char** argv) {
             else if (arg=="--save-bindings") options.saveBindings=argv[++i];
             else options.shaders=argv[++i];
         } else if (arg=="--build-info") options.buildInfo=true;
-        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
+        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--terrain recipe.json] [--stream-rock recipe.json] [--constraints file.json] [--verify-stream new-directory] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
     }
     return options;
 }
@@ -165,12 +170,14 @@ int run(Options options) {
     engine::FixtureState state;
     if (!options.inspection.empty()) engine::loadInspection(options.inspection,state);
     const bool technical=!options.verify.empty();
-    const bool verify=technical && !options.lightingVerify && !options.animationVerify && !options.rockVerify;
-    const bool rockVerify=options.rockVerify;
+    const bool verify=technical && !options.lightingVerify && !options.animationVerify && !options.rockVerify && !options.streamVerify;
+    const bool rockVerify=options.rockVerify,streamVerify=options.streamVerify;
+    if(streamVerify&&options.terrain.empty())throw std::runtime_error("Stream verification requires --terrain");
+    if(!options.terrain.empty()&&!options.rock.empty())throw std::runtime_error("Choose terrain streaming or the single-rock workbench");
     if(rockVerify&&options.rock.empty())throw std::runtime_error("Rock verification requires --rock");
     const bool animationVerify=options.animationVerify;
     if(animationVerify && options.model.empty())throw std::runtime_error("Animation verification requires --model");
-    if(int(options.animationVerify)+int(options.lightingVerify)+int(options.rockVerify)>1)throw std::runtime_error("Choose one verification mode");
+    if(int(options.animationVerify)+int(options.lightingVerify)+int(options.rockVerify)+int(options.streamVerify)>1)throw std::runtime_error("Choose one verification mode");
     const bool lightingVerify=options.lightingVerify;
     if (technical) {
         if (std::filesystem::exists(options.verify)) throw std::runtime_error("Verification output exists; choose a new directory");
@@ -242,6 +249,12 @@ int run(Options options) {
     std::unique_ptr<engine::RockWorkbench> rock;
     if(!options.rock.empty())rock=std::make_unique<engine::RockWorkbench>(options.rock,runtime);
     engine::InspectionWorkbench documents(state,!options.inspection.empty()?options.inspection:(!options.saveInspection.empty()?options.saveInspection:std::filesystem::path(SDL_GetBasePath())/"inspection.json"));
+    std::unique_ptr<engine::StreamingScene> streaming;
+    if(!options.terrain.empty()){
+        streaming=std::make_unique<engine::StreamingScene>(runtime,engine::loadTerrainRecipe(options.terrain),options.streamRock.empty()?engine::RockRecipe{}:engine::loadRockRecipe(options.streamRock),options.constraints.empty()?engine::PlacementConstraints{}:engine::loadConstraints(options.constraints));
+        simulation.enabled=true;
+    }
+    unsigned streamPhase=0,streamStable=0,streamVertices=0,streamIndices=0,streamFinalVertices=0,streamFinalIndices=0;uint64_t streamRetired=0;bool streamDone=false;
     unsigned rockBaselineVertices=0,rockBaselineIndices=0,rockFinalVertices=0,rockFinalIndices=0;
     const auto originalRecipe=rock?rock->recipe():engine::RockRecipe{};
     std::unique_ptr<engine::Audio> audio;bool audioAttempted=false;
@@ -340,6 +353,11 @@ int run(Options options) {
             actions.focus(focused);actionInput.sample();
             if(actions.consume(engine::Action::Pause).pressed) simulation.paused=!simulation.paused;
             actions.gameplay(simulation.enabled && !simulation.paused && !io.WantCaptureKeyboard);
+            if(streaming){
+                if(streamVerify)streaming->anchors({{{{streamPhase==1?4:0,0},{32,0,32}},0}});
+                else streaming->update();
+                if(!streamVerify){ImGui::Begin("World streaming");ImGui::Text("%zu regions | %.1f MiB CPU",streaming->stream().slots().size(),streaming->stream().residentBytes()/1048576.f);ImGui::TextWrapped(runtime.waitingForWorld()?"Waiting for ground collision":"World ready around player");for(const auto& [_,slot]:streaming->stream().slots())if(!slot.error.empty())ImGui::TextWrapped("%s",slot.error.c_str());ImGui::End();}
+            }
             runtime.advance(double(milliseconds)/1000.0,technical||!simulation.enabled||simulation.paused||!focused,actions,state.yaw,state.pitch);
             simulation.grounded=runtime.grounded();simulation.ticks=runtime.clock().ticks();simulation.dropped=runtime.clock().droppedSeconds();
             if(simulation.enabled&&!technical&&!audioAttempted) {
@@ -377,12 +395,16 @@ int run(Options options) {
                 if (textureControls.loaded>=0) preview={textures.resolve(texture.token()),textureControls.lod,float(textureControls.channel),records.at(size_t(textureControls.loaded)).srgb,textureControls.repeat};
             }
             if(rock){float distance=state.distance;if(simulation.enabled){float squared=0;for(size_t i=0;i<3;++i){const float delta=placement.eye[i]-engine::RockWorkbench::offset[i];squared+=delta*delta;}distance=std::sqrt(squared);}placement.rock=rock->model(distance);placement.rockOffset=engine::RockWorkbench::offset;}
+            if(streaming){
+                if(streamVerify){const float shift=streamPhase==1?1024.f:0.f;placement.physicalCharacter=true;placement.eye={32+shift,18,52};placement.target={32+shift,0,24};}
+                placement.streamedWorld=true;placement.instances=&streaming->instances(placement.physicalCharacter?placement.eye:state.eye());
+            }
             ImGui::Render();
             engine::GeometryCheck geometryCheck=engine::GeometryCheck::None;
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock)?&placement:nullptr); if(!animationVerify&&!rockVerify)ui.draw(ImGui::GetDrawData());
+            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock||streaming)?&placement:nullptr); if(!animationVerify&&!rockVerify&&!streamVerify)ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -437,6 +459,16 @@ int run(Options options) {
                 }
                 if(frame==125) running=false;
             }
+            if(streamVerify){
+                if(frame>900)throw std::runtime_error("Stream verification timed out");
+                bool ready=streaming->stream().slots().size()==9;for(const auto& [_,slot]:streaming->stream().slots())ready=ready&&slot.ready.render&&slot.ready.collision;
+                streamStable=ready?streamStable+1:0;
+                if(streamStable==10){const char* name=streamPhase==0?"origin.png":(streamPhase==1?"distant.png":"returned.png");bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/name).string().c_str());
+                    if(streamPhase==0){streamVertices=bgfx::getStats()->numVertexBuffers;streamIndices=bgfx::getStats()->numIndexBuffers;}
+                    if(streamPhase==2){streamFinalVertices=bgfx::getStats()->numVertexBuffers;streamFinalIndices=bgfx::getStats()->numIndexBuffers;streamRetired=streaming->stream().retired();streamDone=true;}
+                }
+                if(streamStable==15){if(streamDone)running=false;else{++streamPhase;streamStable=0;}}
+            }
             bgfx::frame();
             if (technical) SDL_Delay(10);
         }
@@ -444,9 +476,12 @@ int run(Options options) {
     }
     if(!options.saveBindings.empty()) engine::saveBindings(options.saveBindings,actions);
     texture.reset();for(auto& lease:surfaceLeases)lease.reset();textures.stop();
-    rock.reset();renderModel.reset();animation.reset();
+    streaming.reset();rock.reset();renderModel.reset();animation.reset();
     renderer.stop();
     if (!options.saveInspection.empty()) engine::saveInspection(options.saveInspection,state);
+    if(streamVerify){const bool passed=streamDone&&renderer.callbacks.captures==3&&renderer.callbacks.errors==0&&streamVertices==streamFinalVertices&&streamIndices==streamFinalIndices&&streamRetired>=18;
+        engine::writeDocument(options.verify/"stream.json","engine.stream-verification",{{"passed",passed},{"backend",backend},{"real_surfaces",materialAvailable},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"vertices_before",streamVertices},{"vertices_after",streamFinalVertices},{"indices_before",streamIndices},{"indices_after",streamFinalIndices},{"retired_regions",streamRetired},{"simulation_advanced",false}});
+        if(!passed)throw std::runtime_error("Stream capture/resource check failed");}
     if(rockVerify) {
         const bool passed=renderer.callbacks.captures==6&&renderer.callbacks.errors==0&&rockBaselineVertices==rockFinalVertices&&rockBaselineIndices==rockFinalIndices;
         engine::writeDocument(options.verify/"rock.json","engine.rock-verification",{{"passed",passed},{"backend",backend},{"real_surfaces",materialAvailable},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"vertices_before",rockBaselineVertices},{"vertices_after",rockFinalVertices},{"indices_before",rockBaselineIndices},{"indices_after",rockFinalIndices}});

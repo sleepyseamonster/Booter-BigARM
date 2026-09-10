@@ -1,0 +1,27 @@
+{
+  "comparisons": {
+    "distant": {
+      "changed_over_3": 160314,
+      "samples": 358560
+    },
+    "returned": {
+      "changed_over_3": 0,
+      "samples": 358560
+    }
+  },
+  "limits": "Mac Metal load/retire/return with technical anchors; no gameplay, companion, world save, origin rebasing or Windows claim.",
+  "native": {
+    "backend": "Metal",
+    "captures": 3,
+    "gpu_errors": 0,
+    "indices_after": 24,
+    "indices_before": 24,
+    "passed": true,
+    "real_surfaces": true,
+    "retired_regions": 18,
+    "simulation_advanced": false,
+    "vertices_after": 31,
+    "vertices_before": 31
+  },
+  "result": "passed"
+}

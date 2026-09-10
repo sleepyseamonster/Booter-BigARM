@@ -1,0 +1,42 @@
+{
+  "command": [
+    "build/foundation/engine_region_stream_tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Game/main.cpp",
+    " M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Source/Game/CalibrationRuntime.cpp",
+    " M Engine/Source/Game/CalibrationRuntime.h",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    "?? Engine/Source/Core/Visibility.h",
+    "?? Engine/Source/Rendering/StreamingScene.cpp",
+    "?? Engine/Source/Rendering/StreamingScene.h",
+    "?? Engine/Source/World/Streaming/",
+    "?? Engine/Tests/RegionStreamTests.cpp"
+  ],
+  "duration_seconds": 1.028,
+  "exit_code": 0,
+  "git_head": "1c0979c5270816cfe155d2bd5ab6e28a4bc2baf8",
+  "input_sha256_after": {
+    "Source/Game/CalibrationRuntime.cpp": "044f37f5ac184d7593150faaf5acb172e39fdbed3f41eeba275ef7e5245d538f",
+    "Source/World/Streaming/RegionStream.cpp": "50cb004003e120dd46c11bc6d18e42be35a6cfdd27314dc64b3176d59779c4be",
+    "Tests/RegionStreamTests.cpp": "3728ee45946b12c63671d8a9f63a2c38189d0c67a203459ed973959896765739",
+    "build/foundation/engine_region_stream_tests": "622bf232d68077dd903caa9a622381dc4ae278e4be50ff4dd85a874e2d89d6fc"
+  },
+  "input_sha256_before": {
+    "Source/Game/CalibrationRuntime.cpp": "044f37f5ac184d7593150faaf5acb172e39fdbed3f41eeba275ef7e5245d538f",
+    "Source/World/Streaming/RegionStream.cpp": "50cb004003e120dd46c11bc6d18e42be35a6cfdd27314dc64b3176d59779c4be",
+    "Tests/RegionStreamTests.cpp": "3728ee45946b12c63671d8a9f63a2c38189d0c67a203459ed973959896765739",
+    "build/foundation/engine_region_stream_tests": "622bf232d68077dd903caa9a622381dc4ae278e4be50ff4dd85a874e2d89d6fc"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "3fc4147c7c953ba30daaa94c59fd80e9e06c97076bbd23013a84aabd9e5fc6b4",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T19:24:10.539074+00:00",
+  "timeout_seconds": 60.0
+}

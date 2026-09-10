@@ -106,3 +106,7 @@ build/foundation/engine_workbench --rock Assets/Recipes/wasteland-rock.json --ca
 Use Apply, Undo/Redo and Save/Reload in the recipe panel. Save writes the accepted recipe to the displayed path; choose a working path to preserve the source fixture. Inspection settings have their own document controls. Recipe editing requires character simulation to be disabled. See [the result and limits](./ROCK_WORKBENCH_RESULT.md). The prior portable package does not contain this batch.
 
 The [first rock-generator milestone](./ROCK_GENERATOR_MILESTONE.md) now has a ready package at `out/rock-generator/`. Double-click its `Launch-Rock-Generator.command` on Mac. It opens the working recipe and materials, supports direct mesh export, and keeps edits in its UserData folder.
+
+## Streamed terrain
+
+The current build now supports [live terrain/rock streaming in both apps](./STREAMING_FIRST_PASS_RESULT.md). Use the documented `--terrain`, `--stream-rock` and `--constraints` arguments; the workbench also accepts the existing material catalog. The dedicated rock-generator package remains the earlier milestone. World deltas and origin rebasing are still next-stage work.

@@ -1,0 +1,17 @@
+{
+  "kind": "engine.stream-verification",
+  "payload": {
+    "backend": "Metal",
+    "captures": 3,
+    "gpu_errors": 0,
+    "indices_after": 24,
+    "indices_before": 24,
+    "passed": true,
+    "real_surfaces": true,
+    "retired_regions": 18,
+    "simulation_advanced": false,
+    "vertices_after": 31,
+    "vertices_before": 31
+  },
+  "version": 1
+}

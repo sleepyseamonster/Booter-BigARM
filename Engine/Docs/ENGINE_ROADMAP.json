@@ -491,8 +491,12 @@
       ],
       "owner_module": "World/Streaming",
       "proof": "Per-representation readiness, lifecycle, hysteresis and shared ownership",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/STREAMING_FIRST_PASS_RESULT.md",
+        "Evidence/P20-runtime/result.json",
+        "Evidence/P20-render/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

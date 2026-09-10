@@ -2,6 +2,7 @@
 #include "Rendering/RenderViews.h"
 #include "Core/FixtureGeometry.h"
 #include "Core/Color.h"
+#include "Core/Visibility.h"
 #include <bx/math.h>
 #include <cstdio>
 #include <cstdlib>
@@ -203,6 +204,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     auto eye=state.eye();
     const auto* rockModel=placement?placement->rock:nullptr;
     const bool physical=placement && placement->physicalCharacter;
+    const bool streamed=placement&&placement->streamedWorld;
     const bool rockOnly=rockModel&&!physical;
     const auto offset=rockOnly?placement->rockOffset:(placement?placement->offset:std::array<float,3>{});
     for(size_t i=0;i<3;++i) eye[i]+=offset[i];
@@ -213,8 +215,9 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     const auto target=physical?placement->target:std::array<float,3>{offset[0],.85f+offset[1],offset[2]};
     float view[16], projection[16];
     bx::mtxLookAt(view,{eye[0],eye[1],eye[2]},{target[0],target[1],target[2]},{0,1,0},bx::Handedness::Right);
-    bx::mtxProj(projection,state.fieldOfView,float(width_)/float(height_),0.1f,100.0f,
+    bx::mtxProj(projection,state.fieldOfView,float(width_)/float(height_),0.1f,streamed?600.0f:100.0f,
         bgfx::getCaps()->homogeneousDepth,bx::Handedness::Right);
+    float viewProjection[16];bx::mtxMul(viewProjection,view,projection);
     // reset clears view framebuffer bindings; restore ownership on every frame.
     bgfx::setViewFrameBuffer(views::scene,scene_);
     bgfx::setViewRect(views::scene,0,0,uint16_t(width_),uint16_t(height_));
@@ -226,8 +229,9 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     const float light[4]={std::sin(state.lightAzimuth),0.9f,std::cos(state.lightAzimuth),state.lightIntensity};
     float lightView[16],lightProjection[16],lightViewProjection[16],shadowMatrix[16];
     const auto lightDirection=bx::normalize(bx::Vec3{light[0],light[1],light[2]});
-    const auto lightEye=bx::mul(lightDirection,20.0f);
-    bx::mtxLookAt(lightView,lightEye,{0,0,0},{0,1,0},bx::Handedness::Right);
+    const bx::Vec3 lightCenter=streamed?bx::Vec3{target[0],target[1],target[2]}:bx::Vec3{0,0,0};
+    const auto lightEye=bx::add(lightCenter,bx::mul(lightDirection,20.0f));
+    bx::mtxLookAt(lightView,lightEye,lightCenter,{0,1,0},bx::Handedness::Right);
     bx::mtxOrtho(lightProjection,-12,12,-12,12,0.1f,45.0f,0,bgfx::getCaps()->homogeneousDepth,bx::Handedness::Right);
     const auto* caps=bgfx::getCaps();
     const float crop[]={0.5f,0,0,0, 0,caps->originBottomLeft?0.5f:-0.5f,0,0,
@@ -239,10 +243,10 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     uint64_t cull=BGFX_STATE_CULL_CW; // Authored fixture triangles are outward CCW.
     if (check==GeometryCheck::Unculled) cull=0;
     if (check==GeometryCheck::FrontCull) cull=BGFX_STATE_CULL_CCW;
-    auto submit=[&](int mesh,const Matrix4& transform,const float* color,const SurfaceTextures* surface=nullptr) {
+    auto submit=[&](int mesh,const Matrix4& transform,const float* color,const SurfaceTextures* surface=nullptr,const RenderModel* instanceModel=nullptr) {
         const auto normal=normalMatrix(transform);
         bgfx::setTransform(transform.data());
-        const auto* resource=mesh==-2?rockModel:model;
+        const auto* resource=mesh==-3?instanceModel:(mesh==-2?rockModel:model);
         if(mesh<0) {resource->bind(mesh==-1&&placement->cpuReference);if(mesh==-1&&gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
         else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
         const bool textured=mesh!=-1 && surface && state.surfaceTextures && bgfx::isValid(surface->albedo) && bgfx::isValid(surface->normal) && bgfx::isValid(surface->surface);
@@ -282,15 +286,19 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         bgfx::setViewRect(views::shadow,0,0,2048,2048);
         bgfx::setViewClear(views::shadow,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,0xffffffff,1.0f,0);
         bgfx::setViewTransform(views::shadow,lightView,lightProjection);
-        auto cast=[&](int mesh,const Matrix4& transform) {
+        auto cast=[&](int mesh,const Matrix4& transform,const RenderModel* instanceModel=nullptr) {
             bgfx::setTransform(transform.data());
-            const auto* resource=mesh==-2?rockModel:model;
+            const auto* resource=mesh==-3?instanceModel:(mesh==-2?rockModel:model);
             if(mesh<0) {resource->bind(mesh==-1&&placement->cpuReference);if(mesh==-1&&gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
             else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
             bgfx::setState(BGFX_STATE_WRITE_R|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_CULL_CW);
             bgfx::submit(views::shadow,mesh==-1&&gpuSkin?skinShadowProgram_:shadowProgram_);
         };
-        cast(0,groundTransform);if(!rockOnly)cast(subjectMesh,subject);cast(0,markerTransform);if(rockModel)cast(-2,rockTransform);
+        if(!streamed)cast(0,groundTransform);if(!rockOnly)cast(subjectMesh,subject);cast(0,markerTransform);if(rockModel)cast(-2,rockTransform);
+        if(placement&&placement->instances)for(const auto& instance:*placement->instances){
+            const float dx=instance.boundsCenter[0]-target[0],dz=instance.boundsCenter[2]-target[2];if(std::hypot(dx,dz)>24+instance.boundsRadius)continue;
+            Matrix4 transform;bx::mtxSRT(transform.data(),1,1,1,0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);cast(-3,transform,instance.model);
+        }
     }
     const auto* rock=surfaces?&surfaces->rock:nullptr;
     const auto* soil=surfaces?&surfaces->ground:nullptr;
@@ -307,9 +315,13 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         bgfx::setVertexBuffer(0,fullscreen_); bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A);
         bgfx::submit(views::scene,calibrationProgram_);
     } else if (check==GeometryCheck::ReverseOrder) {
-        submit(0,markerTransform,marker); if(!rockOnly)submit(subjectMesh,subject,color,rock); submit(0,groundTransform,ground,soil);if(rockModel)submit(-2,rockTransform,color,rock);
+        submit(0,markerTransform,marker); if(!rockOnly)submit(subjectMesh,subject,color,rock); if(!streamed)submit(0,groundTransform,ground,soil);if(rockModel)submit(-2,rockTransform,color,rock);
     } else {
-        submit(0,groundTransform,ground,soil); if(!rockOnly)submit(subjectMesh,subject,color,rock); submit(0,markerTransform,marker);if(rockModel)submit(-2,rockTransform,color,rock);
+        if(!streamed)submit(0,groundTransform,ground,soil); if(!rockOnly)submit(subjectMesh,subject,color,rock); submit(0,markerTransform,marker);if(rockModel)submit(-2,rockTransform,color,rock);
+    }
+    if(!preview&&!calibration&&placement&&placement->instances)for(const auto& instance:*placement->instances){
+        if(!visibleSphere(viewProjection,instance.boundsCenter,instance.boundsRadius,bgfx::getCaps()->homogeneousDepth))continue;
+        Matrix4 transform;bx::mtxSRT(transform.data(),1,1,1,0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);submit(-3,transform,color,instance.ground?soil:rock,instance.model);
     }
     const float display[]={state.exposure,state.showNormals && !calibration && !preview?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,0};
     bgfx::setViewRect(views::display,0,0,uint16_t(width_),uint16_t(height_));

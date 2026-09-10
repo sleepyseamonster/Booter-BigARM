@@ -1,0 +1,89 @@
+[  0%] Built target engine_core
+[  0%] Built target ozz_base
+[  5%] Built target engine_simulation
+[  5%] Built target engine_texture_data
+[ 11%] Built target ozz_animation
+[ 23%] Built target ozz_animation_offline
+[ 29%] Built target engine_animation
+[ 35%] Building CXX object CMakeFiles/engine_world.dir/Source/World/Streaming/RegionStream.cpp.o
+[ 94%] Built target Jolt
+[ 94%] Built target engine_physics
+[100%] Built target engine_game
+[100%] Linking CXX static library libengine_world.a
+[100%] Built target engine_world
+[100%] Building CXX object CMakeFiles/engine_region_stream_tests.dir/Tests/RegionStreamTests.cpp.o
+[100%] Linking CXX executable engine_region_stream_tests
+[100%] Built target engine_region_stream_tests
+[  0%] Built target engine_core
+[  0%] Built target ozz_base
+[  1%] Built target bx
+[  1%] Built target engine_miniaudio
+[  1%] Built target spirv-cross
+[  4%] Built target glslang
+[ 23%] Built target SDL3-static
+[ 34%] Built target Jolt
+[ 36%] Built target bimg
+[ 37%] Built target engine_texture_data
+[ 38%] Built target engine_state
+[ 38%] Built target engine_simulation
+[ 40%] Built target ozz_animation
+[ 40%] Built target engine_physics
+[ 40%] Built target engine_audio
+[ 40%] Built target engine_imgui
+[ 40%] Built target engine_platform
+[ 42%] Built target bgfx
+[ 44%] Built target ozz_animation_offline
+[ 45%] Built target engine_animation
+[ 46%] Built target engine_game
+[ 47%] Built target engine_rendering
+[ 48%] Built target engine_world
+[ 48%] Building CXX object CMakeFiles/engine_stream_scene.dir/Source/Rendering/StreamingScene.cpp.o
+[ 67%] Built target spirv-opt
+[ 97%] Built target tint
+[ 98%] Built target shaderc
+[100%] Built target engine_shaders
+[100%] Linking CXX static library libengine_stream_scene.a
+[100%] Built target engine_stream_scene
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Apps/Workbench/main.cpp.o
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Apps/Workbench/main.cpp:1:
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Rendering/StreamingScene.h:4:
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/World/Streaming/RegionStream.h:4:
+/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Core/BoundedJobs.h:93:10: warning: misleading indentation; statement is not part of the previous 'for' [-Wmisleading-indentation]
+   93 |         }return {};
+      |          ^
+/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Core/BoundedJobs.h:91:9: note: previous statement is here
+   91 |         for(const auto& e:entries_)if(e->done&&!e->cancelled->load()&&budget.admit(e->bytes)){
+      |         ^
+1 warning generated.
+[100%] Linking CXX executable engine_workbench
+[100%] Built target engine_workbench
+[  0%] Built target engine_core
+[  1%] Built target bx
+[  1%] Built target ozz_base
+[  1%] Built target engine_miniaudio
+[  1%] Built target spirv-cross
+[  4%] Built target glslang
+[ 15%] Built target Jolt
+[ 17%] Built target bimg
+[ 36%] Built target SDL3-static
+[ 37%] Built target engine_texture_data
+[ 38%] Built target engine_state
+[ 38%] Built target engine_simulation
+[ 40%] Built target ozz_animation
+[ 40%] Built target engine_physics
+[ 40%] Built target engine_audio
+[ 40%] Built target engine_platform
+[ 42%] Built target bgfx
+[ 44%] Built target ozz_animation_offline
+[ 45%] Built target engine_animation
+[ 64%] Built target spirv-opt
+[ 65%] Built target engine_game
+[ 67%] Built target engine_world
+[ 67%] Built target engine_rendering
+[ 67%] Built target engine_stream_scene
+[ 97%] Built target tint
+[ 98%] Built target shaderc
+[100%] Built target engine_shaders
+[100%] Building CXX object CMakeFiles/engine_player.dir/Apps/Game/main.cpp.o
+[100%] Linking CXX executable engine_player
+[100%] Built target engine_player

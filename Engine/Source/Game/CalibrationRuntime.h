@@ -6,6 +6,7 @@
 #include "Physics/CharacterController.h"
 #include "Game/ThirdPersonCamera.h"
 #include "Animation/AnimationPlayer.h"
+#include <functional>
 namespace engine {
 struct CalibrationFrame {
     PhysicsVector feet{},eye{},target{};
@@ -24,6 +25,10 @@ public:
     std::vector<CalibrationCue> takeCues();
     bool canInteract() const;
     bool targetActive() const {return targetActive_;}
+    PhysicsVector feet()const{return character_.position();}
+    PhysicsWorld& physics(){return physics_;}
+    void streamingGuard(std::function<bool(PhysicsVector,PhysicsVector)>);
+    bool waitingForWorld()const{return waitingForWorld_;}
     bool grounded() const {return character_.grounded();}
     const FixedClock& clock() const {return clock_;}
     const World& world() const {return world_;}
@@ -34,7 +39,9 @@ private:
     CharacterController character_;
     ThirdPersonCamera camera_;
     EntityToken player_,target_;
-    BodyToken rockBody_;
+    BodyToken rockBody_,groundBody_;
+    std::function<bool(PhysicsVector,PhysicsVector)> streamingGuard_;
+    bool waitingForWorld_=false;
     std::string rockId_;
     PhysicsVector rockOffset_{};
     FixedClock clock_;
