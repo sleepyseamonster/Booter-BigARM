@@ -16,6 +16,14 @@ struct FixtureState {
     float lightAzimuth = 0.8f;
     float lightIntensity = 0.85f;
     float exposure = 0.0f;
+    bool shadows = true;
+    float shadowBias = 0.0015f;
+    float roughness = 0.7f;
+    float metallic = 0.0f;
+    float normalStrength = 1.0f;
+    float textureScale = 1.0f;
+    float ambient = 0.3f;
+    bool surfaceTextures = true;
     void orbit(float dx, float dy, bool captured);
     void zoom(float wheel, bool captured);
     void constrain();

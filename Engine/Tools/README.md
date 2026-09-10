@@ -25,3 +25,5 @@ On Windows use `python` if that is the installed command. Use a Visual Studio De
 - Evidence output and CWD are confined to `Engine/`; the command itself is not sandboxed. Choose trusted commands and avoid passing credentials or commands that print secrets. On POSIX, timeout kills the process group; on Windows it kills the immediate process, so do not use it as a Windows build-tree cancellation manager.
 
 Only promote logs worth retaining into tracked `Evidence/`. Use `.cache/` for scratch/test receipts. Evidence never substitutes for reading the result and stating its proof limits.
+
+For a short sun/material rendering check, use `python3 Tools/verify_lighting.py --catalog out/surfaces-accepted-a/catalog.json --out Evidence/lighting-new` from Engine. It captures eight lighting states without repeating cooking, packaging or resource stress loops. See [the rendering result](../Docs/SUN_AND_SURFACE_RESULT.md).

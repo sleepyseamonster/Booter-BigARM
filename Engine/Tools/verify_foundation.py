@@ -188,7 +188,7 @@ def main():
     command = [sys.executable, str(ROOT/"Tools/record.py"), "--out", str(out/"run"), "--timeout", "120"]
     for path in [executable, ROOT/"CMakeLists.txt", ROOT/"Research/probe-lock.json", ROOT/"Research/runtime-lock.json", Path(__file__)]:
         command += ["--input", str(path)]
-    for name in ["vs_scene.bin", "fs_scene.bin", "vs_inspector.bin", "fs_inspector.bin", "vs_fullscreen.bin", "fs_display.bin", "fs_calibration.bin", "fs_texture_preview.bin"]:
+    for name in ["vs_scene.bin", "fs_scene.bin", "vs_shadow.bin", "fs_shadow.bin", "vs_inspector.bin", "fs_inspector.bin", "vs_fullscreen.bin", "fs_display.bin", "fs_calibration.bin", "fs_texture_preview.bin"]:
         path = shaders/name
         if not path.is_file():
             parser.error("Missing compiled shader: " + str(path))

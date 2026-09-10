@@ -13,7 +13,7 @@ cmake --build build/foundation --config Release --target engine_workbench engine
 ctest --test-dir build/foundation -C Release --output-on-failure
 ```
 
-Configuration verifies the exact dependency archives and source content. It never downloads silently. The build compiles bgfx's shaderc and then our four shaders. First-time shader-tool compilation is larger than rebuilding the application. Build output is ignored. No global package installation is required by these commands.
+Configuration verifies the exact dependency archives and source content. It never downloads silently. The build compiles bgfx's shaderc and then the engine shaders. First-time shader-tool compilation is larger than rebuilding the application. Build output is ignored. No global package installation is required by these commands.
 
 Mac uses the available Makefiles generator, SDL's Metal view and bgfx Metal. On Windows run from a Visual Studio development environment; use `python` if that is the installed command. The Windows path uses D3D11 and shader model 5.0. Platform code is not Windows proof; consult the status page before claiming a tested Windows build.
 
@@ -23,9 +23,9 @@ Mac: `build/foundation/engine_workbench`. With a Windows multi-configuration gen
 
 The window opens without requesting foreground activation. Click it to interact. Right-drag outside the inspector orbits the inspection subject; the wheel changes distance. Inspector controls change object rotation/color, light direction/intensity and camera settings. The turquoise column is a temporary 1.8-meter scale marker. Escape closes when the inspector is not capturing the keyboard; the window close control also exits.
 
-Expand **Geometry inspection** to select a cube, sloped solid or sphere, adjust positive XYZ scale independently, and display world-space normals as RGB. Nonuniform scaling uses an inverse-transpose normal matrix. The reference objects use outward counterclockwise winding and backface culling. Their fixed center means scale/shape edits can lift or intersect the ground; grounding and shadows are later work.
+Expand **Geometry inspection** to select a cube, sloped solid or sphere, adjust positive XYZ scale independently, and display world-space normals as RGB. Nonuniform scaling uses an inverse-transpose normal matrix. The reference objects use outward counterclockwise winding and backface culling. Their fixed center means scale/shape edits can lift or intersect the ground; grounding is later work; the sun-shadow pass uses these same transforms.
 
-The view is a perspective inspection camera. It does not implement character following, camera obstruction or final third-person controls. Materials use simple directional diffuse shading. Shadows, PBR, terrain, physics and gameplay are not part of this foundation fixture.
+The view is a perspective inspection camera. It does not implement character following, camera obstruction or final third-person controls. The first sun-shadow and opaque PBR material pass is available; see [surface bindings and lighting controls](./SUN_AND_SURFACE_RESULT.md). Terrain, physics and gameplay remain ahead.
 
 ## Technical Verification
 

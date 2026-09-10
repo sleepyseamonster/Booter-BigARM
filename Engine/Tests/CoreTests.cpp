@@ -38,6 +38,13 @@ int main(int argc,char** argv) {
         FixtureState retained; loadInspection(document,retained); require(retained.distance==11,"Writer contention retains prior document");
         std::filesystem::remove(document.string()+".writing");
         const auto valid=readDocument(document,"engine.inspection");
+        auto old=valid;old.erase("lighting");writeDocument(document,"engine.inspection",old);
+        loadInspection(document,loaded);require(loaded.shadows && loaded.roughness==.7f,"Old inspection receives lighting defaults");
+        auto badLighting=valid;badLighting["lighting"]["roughness"]=-1;writeDocument(document,"engine.inspection",badLighting);
+        rejects([&] {loadInspection(document,loaded);});require(loaded.roughness==.7f,"Bad lighting retains live state");
+        auto authored=loaded;authored.shadows=false;authored.roughness=.2f;authored.normalStrength=0;
+        saveInspection(document,authored);loadInspection(document,loaded);
+        require(!loaded.shadows && loaded.roughness==.2f && loaded.normalStrength==0,"Lighting settings roundtrip");
         auto invalid=valid; invalid["distance"]=-1; writeDocument(document,"engine.inspection",invalid);
         rejects([&] { loadInspection(document,loaded); }); require(loaded.distance==11,"Invalid candidate retains live state");
         writeDocument(document,"engine.inspection",valid,2); rejects([&] { loadInspection(document,loaded); });

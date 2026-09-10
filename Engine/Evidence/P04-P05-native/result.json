@@ -1,0 +1,8 @@
+{
+  "result": "passed",
+  "native_suites": 4,
+  "build": "build/foundation",
+  "build_log": "build.log",
+  "tests_log": "output.log",
+  "scope": "Incremental native build; state, geometry, documents/identity and semantic texture tests. Focused GPU proof is in P04-P05-lighting."
+}

@@ -3,7 +3,7 @@
   "plan_revision": 2,
   "authority": "Docs/FOUNDATION_PLAN.md",
   "purpose": "Derived dependency and coverage index. Status handoff is Docs/STATUS.md; this is not runtime proof or external-action authority.",
-  "baseline": "M0 is the existing Mac fixture/research evidence. All implementation packages below are planned, not completed.",
+  "baseline": "M0 is the original Mac fixture/research baseline. Work-package states below record current first-pass implementation; Windows gates remain open.",
   "milestones": [
     "M1",
     "M2",
@@ -117,8 +117,12 @@
       ],
       "owner_module": "Rendering/Shaders",
       "proof": "Cast/self shadow, moving light/camera, bias and resource cases",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Evidence/P04-P05-lighting/result.json",
+        "Evidence/P04-P05-native/result.json",
+        "Docs/SUN_AND_SURFACE_RESULT.md"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {
@@ -136,8 +140,12 @@
       ],
       "owner_module": "Rendering/Assets",
       "proof": "Real rock/ground bindings and channel/normal/exposure GPU evidence",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Evidence/P04-P05-lighting/result.json",
+        "Evidence/P04-P05-native/result.json",
+        "Docs/SUN_AND_SURFACE_RESULT.md"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

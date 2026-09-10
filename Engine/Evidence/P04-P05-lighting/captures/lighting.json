@@ -1,0 +1,11 @@
+{
+  "kind": "engine.lighting-verification",
+  "payload": {
+    "backend": "Metal",
+    "captures": 8,
+    "gpu_errors": 0,
+    "passed": true,
+    "real_surfaces": true
+  },
+  "version": 1
+}

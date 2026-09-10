@@ -1,0 +1,42 @@
+{
+  "backend": "Metal",
+  "comparisons": {
+    "camera_bias": {
+      "brighter": 12863,
+      "changed": 61193,
+      "darker": 21758
+    },
+    "cast_shadow": {
+      "brighter": 0,
+      "changed": 3130,
+      "darker": 3130
+    },
+    "exposure": {
+      "brighter": 0,
+      "changed": 125664,
+      "darker": 125664
+    },
+    "normal_mapping": {
+      "brighter": 156,
+      "changed": 284,
+      "darker": 128
+    },
+    "real_materials": {
+      "brighter": 107236,
+      "changed": 117548,
+      "darker": 10312
+    },
+    "roughness": {
+      "brighter": 1952,
+      "changed": 5143,
+      "darker": 2183
+    },
+    "sun_direction": {
+      "brighter": 3319,
+      "changed": 20965,
+      "darker": 17111
+    }
+  },
+  "limits": "Bounded fixture on this Mac; no Windows, gameplay, large-world shadow quality or final art acceptance.",
+  "result": "passed"
+}

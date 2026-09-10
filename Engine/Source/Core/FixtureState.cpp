@@ -19,6 +19,9 @@ void FixtureState::constrain() {
     fieldOfView = std::clamp(fieldOfView, 30.0f, 90.0f);
     mesh = std::clamp(mesh, 0, 2);
     exposure=std::isfinite(exposure)?std::clamp(exposure,-4.0f,4.0f):0.0f;
+    auto bound=[](float& v,float low,float high,float fallback) {v=std::isfinite(v)?std::clamp(v,low,high):fallback;};
+    bound(shadowBias,0,0.02f,0.0015f); bound(roughness,0.045f,1,0.7f);
+    bound(metallic,0,1,0); bound(normalStrength,0,2,1); bound(textureScale,0.1f,8,1); bound(ambient,0,1,0.3f);
     if (!std::isfinite(objectYaw)) objectYaw = 0;
     for (float& scale : objectScale) scale = std::isfinite(scale)?std::clamp(scale,0.2f,3.0f):1.5f;
 }

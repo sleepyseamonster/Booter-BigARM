@@ -25,6 +25,12 @@ public:
     void captureFrame(const void*, uint32_t) override {}
 };
 struct TexturePreview { bgfx::TextureHandle texture=BGFX_INVALID_HANDLE;float lod=0,channel=0;bool srgb=false;float repeat=1; };
+// Borrowed for a frame; TextureStore leases own the resources. No persistent GPU IDs.
+struct SurfaceTextures {
+    bool packedSurface=true;
+    bgfx::TextureHandle albedo=BGFX_INVALID_HANDLE, normal=BGFX_INVALID_HANDLE, surface=BGFX_INVALID_HANDLE;
+};
+struct SceneSurfaces { SurfaceTextures rock, ground; };
 class Renderer {
 public:
     Renderer() = default;
@@ -33,7 +39,7 @@ public:
     Renderer& operator=(const Renderer&) = delete;
     void start(const Window&, const std::filesystem::path& shaders);
     void resize(int width, int height);
-    void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None, bool calibration = false, const TexturePreview* preview = nullptr);
+    void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None, bool calibration = false, const TexturePreview* preview = nullptr, const SceneSurfaces* surfaces = nullptr);
     void rebuildMesh();
     void stop();
     const char* name() const;
@@ -51,6 +57,11 @@ private:
     bgfx::VertexBufferHandle fullscreen_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle display_ = BGFX_INVALID_HANDLE, sceneSampler_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle program_ = BGFX_INVALID_HANDLE;
+    bgfx::FrameBufferHandle shadow_ = BGFX_INVALID_HANDLE;
+    bgfx::ProgramHandle shadowProgram_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle shadowMatrix_ = BGFX_INVALID_HANDLE, shadowOptions_ = BGFX_INVALID_HANDLE, shadowSampler_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle eye_ = BGFX_INVALID_HANDLE, surfaceParams_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle albedoSampler_ = BGFX_INVALID_HANDLE, normalSampler_ = BGFX_INVALID_HANDLE, surfaceSampler_ = BGFX_INVALID_HANDLE;
     std::array<bgfx::VertexBufferHandle, 4> meshes_{{BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE}};
     bgfx::UniformHandle material_ = BGFX_INVALID_HANDLE, light_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle normal_ = BGFX_INVALID_HANDLE, options_ = BGFX_INVALID_HANDLE;

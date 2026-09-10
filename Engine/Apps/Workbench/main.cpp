@@ -20,19 +20,20 @@
 #include <algorithm>
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog; bool buildInfo=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog; bool buildInfo=false, lightingVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
-        if ((arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
-            if (arg=="--verify") options.verify=argv[++i];
+        if ((arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
+            if (arg=="--verify-lighting") { options.lightingVerify=true;options.verify=argv[++i]; }
+            else if (arg=="--verify") options.verify=argv[++i];
             else if (arg=="--inspection") options.inspection=argv[++i];
             else if (arg=="--save-inspection") options.saveInspection=argv[++i];
             else if (arg=="--catalog") options.catalog=argv[++i];
             else options.shaders=argv[++i];
         } else if (arg=="--build-info") options.buildInfo=true;
-        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--verify new-output-directory]");
+        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--verify new-output-directory] [--verify-lighting new-output-directory]");
     }
     return options;
 }
@@ -56,7 +57,7 @@ struct UIContext {
 };
 struct TextureControls {
     const std::vector<engine::TextureRecord>* records=nullptr;
-    int selected=0,loaded=-1,channel=0;float lod=0,repeat=1;bool enabled=true;
+    int selected=0,loaded=-1,channel=0;float lod=0,repeat=1;bool enabled=false;
     std::string error;
 };
 struct ButtonPosition { float x=0,y=0; };
@@ -84,6 +85,16 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     ImGui::SliderAngle("Direction",&state.lightAzimuth,-180,180);
     ImGui::SliderFloat("Intensity",&state.lightIntensity,0.0f,1.5f,"%.2f");
     ImGui::SliderFloat("Exposure",&state.exposure,-4.0f,4.0f,"%.1f stops");
+    if (ImGui::CollapsingHeader("Sun and surface")) {
+        ImGui::Checkbox("Cast shadows",&state.shadows);
+        ImGui::SliderFloat("Shadow bias",&state.shadowBias,0,0.02f,"%.4f");
+        ImGui::Checkbox("Use surface textures",&state.surfaceTextures);
+        ImGui::SliderFloat("Roughness",&state.roughness,0.045f,1,"%.2f");
+        ImGui::SliderFloat("Metallic",&state.metallic,0,1,"%.2f");
+        ImGui::SliderFloat("Normal strength",&state.normalStrength,0,2,"%.2f");
+        ImGui::SliderFloat("Texture repeats/m",&state.textureScale,0.1f,8,"%.2f");
+        ImGui::SliderFloat("Ambient fill",&state.ambient,0,1,"%.2f");
+    }
     ImGui::Separator();
     ImGui::TextUnformatted("Camera");
     ImGui::SliderFloat("Distance",&state.distance,2.5f,30.0f,"%.1f m");
@@ -126,8 +137,10 @@ int run(Options options) {
     if (options.buildInfo) return 0;
     engine::FixtureState state;
     if (!options.inspection.empty()) engine::loadInspection(options.inspection,state);
-    const bool verify=!options.verify.empty();
-    if (verify) {
+    const bool technical=!options.verify.empty();
+    const bool verify=technical && !options.lightingVerify;
+    const bool lightingVerify=options.lightingVerify;
+    if (technical) {
         if (std::filesystem::exists(options.verify)) throw std::runtime_error("Verification output exists; choose a new directory");
         std::filesystem::create_directories(options.verify);
     }
@@ -141,18 +154,44 @@ int run(Options options) {
         const char* base=SDL_GetBasePath();
         if (base && std::filesystem::exists(std::filesystem::path(base)/"Assets/catalog.json")) options.catalog=std::filesystem::path(base)/"Assets/catalog.json";
     }
-    engine::Window window(verify);
+    engine::Window window(technical);
     engine::Renderer renderer;
     renderer.start(window,options.shaders);
     const std::string backend=renderer.name();
     const auto records=options.catalog.empty()?std::vector<engine::TextureRecord>{}:engine::loadTextureCatalog(options.catalog);
     engine::TextureStore textures;
-    engine::TextureLease texture;
-    TextureControls textureControls;textureControls.records=&records;
     if (verify && !records.empty()) {
         const auto result=engine::verifyTextureStore(textures,records.at(0));
         engine::writeDocument(options.verify/"texture-resources.json","engine.texture-verification",result);
     }
+
+    engine::TextureLease texture;
+    bool materialAvailable=!records.empty();
+    std::array<engine::TextureLease,6> surfaceLeases;
+    auto acquireSurface=[&](size_t slot,const char* id,engine::TextureRole role) {
+        const auto found=std::find_if(records.begin(),records.end(),[&](const auto& record){return record.id==id;});
+        if (found==records.end()) {
+            if (*id) materialAvailable=false;
+            surfaceLeases[slot]=textures.fallback(role);
+        } else {
+            if(found->role!=role) throw std::runtime_error(std::string("Incorrect material texture role: ")+id);
+            surfaceLeases[slot]=textures.acquire(*found);
+        }
+        return textures.resolve(surfaceLeases[slot].token());
+    };
+    engine::SceneSurfaces surfaces;
+    surfaces.rock.albedo=acquireSurface(0,"surface/textures/rocks/workbench/layered/rockworkbenchside_albedo",engine::TextureRole::Color);
+    surfaces.rock.normal=acquireSurface(1,"surface/textures/rocks/workbench/layered/rockworkbenchside_normal",engine::TextureRole::Normal);
+    surfaces.rock.surface=acquireSurface(2,"surface/textures/rocks/workbench/layered/rockworkbenchside_surface",engine::TextureRole::Surface);
+    surfaces.ground.albedo=acquireSurface(3,"surface/textures/ground/sanddirt/brokenworldsanddirtalbedo",engine::TextureRole::Color);
+    surfaces.ground.normal=acquireSurface(4,"",engine::TextureRole::Normal);
+    surfaces.ground.surface=acquireSurface(5,"",engine::TextureRole::Surface);
+    // This source ground material has no paired normal/surface map. Use explicit
+    // neutral normal and scalar roughness rather than substituting another ground.
+    surfaces.ground.packedSurface=false;
+    if (!materialAvailable) state.surfaceTextures=false;
+    if(verify) state.surfaceTextures=false;
+    TextureControls textureControls;textureControls.records=&records;
     bool clicked=false,orbited=false,resized=false,closed=false;
     unsigned baselineBuffers=0,finalBuffers=0;
     {
@@ -163,7 +202,7 @@ int run(Options options) {
         ButtonPosition button;
         auto last=std::chrono::steady_clock::now();
         for (unsigned frame=0;running;++frame) {
-            if (verify && frame>530) throw std::runtime_error("Verification exceeded frame limit");
+            if (technical && frame>530) throw std::runtime_error("Verification exceeded frame limit");
             SDL_Event event;
             float dx=0,dy=0,wheel=0;
             while (SDL_PollEvent(&event)) {
@@ -207,6 +246,17 @@ int run(Options options) {
                 if (frame==435) select("surface/textures/rocks/workbench/layered/rockworkbenchside_albedo");
                 if (frame==455) select("surface/textures/ground/sanddirt/brokenworldsanddirtalbedo");
             }
+            if (lightingVerify) {
+                if(frame==0) {state=engine::FixtureState{};state.mesh=2;state.pitch=.6f;state.distance=6;state.surfaceTextures=false;state.shadows=false;}
+                if(frame==15) state.shadows=true;
+                if(frame==30) state.lightAzimuth=-.8f;
+                if(frame==45) {state.lightAzimuth=.8f;state.surfaceTextures=materialAvailable;state.roughness=1;}
+                if(frame==60) state.normalStrength=0;
+                if(frame==75) {state.normalStrength=1;state.roughness=.15f;}
+                if(frame==90) {state.roughness=1;state.exposure=-1;}
+                if(frame==105) {state.exposure=0;state.shadowBias=.008f;state.yaw=-.6f;}
+            }
+            if (verify && frame==350) textureControls.enabled=true;
             button=inspector(state,renderer,milliseconds,textureControls);
             engine::TexturePreview preview;
             const bool showTexture=!records.empty() && textureControls.enabled && (!verify || frame>=350);
@@ -223,7 +273,7 @@ int run(Options options) {
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr); ui.draw(ImGui::GetDrawData());
+            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces); ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -258,14 +308,27 @@ int run(Options options) {
                 }
                 if ((frame==345 && records.empty()) || (frame==480 && !records.empty())) { SDL_Event quit{}; quit.type=SDL_EVENT_QUIT; if (!SDL_PushEvent(&quit)) throw std::runtime_error("Cannot inject close event"); }
             }
+            if(lightingVerify) {
+                if(frame>=10 && frame<=115 && (frame-10)%15==0) {
+                    constexpr const char* names[]={"unshadowed.png","shadowed.png","sun-moved.png","surfaces.png","flat-normal.png","smooth.png","exposure.png","camera-bias.png"};
+                    bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/names[(frame-10)/15]).string().c_str());
+                }
+                if(frame==125) running=false;
+            }
             bgfx::frame();
-            if (verify) SDL_Delay(10);
+            if (technical) SDL_Delay(10);
         }
         ui.stop();
     }
-    texture.reset();textures.stop();
+    texture.reset();for(auto& lease:surfaceLeases)lease.reset();textures.stop();
     renderer.stop();
     if (!options.saveInspection.empty()) engine::saveInspection(options.saveInspection,state);
+    if(lightingVerify) {
+        const bool passed=renderer.callbacks.captures==8 && renderer.callbacks.errors==0;
+        engine::writeDocument(options.verify/"lighting.json","engine.lighting-verification",{{"backend",backend},{"captures",renderer.callbacks.captures.load()},
+            {"gpu_errors",renderer.callbacks.errors.load()},{"real_surfaces",materialAvailable},{"passed",passed}});
+        if(!passed) throw std::runtime_error("Lighting capture failed");
+    }
     if (verify) {
         const bool success=clicked && orbited && resized && closed && baselineBuffers==finalBuffers &&
             renderer.callbacks.captures==(records.empty()?13u:19u) && renderer.callbacks.errors==0;

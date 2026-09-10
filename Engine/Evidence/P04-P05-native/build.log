@@ -1,0 +1,33 @@
+[  1%] Built target engine_core
+[  2%] Built target bx
+[  3%] Built target spirv-cross
+[  8%] Built target glslang
+[  8%] Built target engine_texture_data
+[ 31%] Built target SDL3-static
+[ 32%] Built target bimg_decode
+[ 32%] Built target engine_state
+[ 32%] Built target engine_imgui
+[ 34%] Built target bimg
+[ 34%] Built target engine_state_tests
+[ 35%] Built target engine_geometry_tests
+[ 35%] Built target engine_texture_tests
+[ 35%] Built target engine_core_tests
+[ 36%] Built target engine_texture_cook
+[ 39%] Built target bgfx
+[ 60%] Built target spirv-opt
+[ 96%] Built target tint
+[ 97%] Built target shaderc
+[ 97%] Generating Shaders/fs_inspector.bin
+[ 97%] Generating Shaders/vs_fullscreen.bin
+[ 97%] Generating Shaders/vs_inspector.bin
+[ 97%] Generating Shaders/fs_scene.bin
+[ 97%] Generating Shaders/fs_calibration.bin
+[ 97%] Generating Shaders/fs_display.bin
+[ 98%] Generating Shaders/fs_texture_preview.bin
+[ 98%] Built target engine_shaders
+[ 98%] Building CXX object CMakeFiles/engine_workbench.dir/Apps/Workbench/main.cpp.o
+[ 98%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/InspectorRenderer.cpp.o
+[ 98%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/Renderer.cpp.o
+[ 98%] Linking CXX executable engine_workbench
+ld: warning: ignoring duplicate libraries: 'bgfx/cmake/bx/libbx.a'
+[100%] Built target engine_workbench
