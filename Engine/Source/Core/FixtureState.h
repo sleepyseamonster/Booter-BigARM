@@ -24,6 +24,7 @@ struct FixtureState {
     float textureScale = 1.0f;
     float ambient = 0.3f;
     bool surfaceTextures = true;
+    bool operator==(const FixtureState&)const=default;
     void orbit(float dx, float dy, bool captured);
     void zoom(float wheel, bool captured);
     void constrain();

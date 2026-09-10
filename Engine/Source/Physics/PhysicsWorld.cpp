@@ -145,8 +145,8 @@ BodyToken PhysicsWorld::capsule(std::string id,PhysicsVector center,float radius
     const JPH::RefConst<JPH::Shape> shape=half>0?static_cast<JPH::Shape*>(new JPH::CapsuleShape(half,radius)):static_cast<JPH::Shape*>(new JPH::SphereShape(radius));
     return impl_->adopt(std::move(id),shape,center,JPH::Quat::sIdentity(),dynamic);
 }
-BodyToken PhysicsWorld::mesh(std::string id,PhysicsVector offset,const std::vector<PhysicsVector>& vertices) {
-    impl_->checkId(id);bounded(offset);
+namespace {
+JPH::RefConst<JPH::Shape> triangleShape(const std::vector<PhysicsVector>& vertices) {
     if(vertices.empty() || vertices.size()%3 || vertices.size()>300000) throw std::invalid_argument("Expected bounded triangle triples");
     JPH::TriangleList triangles;triangles.reserve(vertices.size()/3);
     for(size_t i=0;i<vertices.size();i+=3) {
@@ -156,7 +156,18 @@ BodyToken PhysicsWorld::mesh(std::string id,PhysicsVector offset,const std::vect
     }
     const auto result=JPH::MeshShapeSettings(triangles).Create();
     if(result.HasError()) throw std::runtime_error(result.GetError().c_str());
-    return impl_->adopt(std::move(id),result.Get(),offset,JPH::Quat::sIdentity(),false);
+    return result.Get();
+}
+}
+BodyToken PhysicsWorld::mesh(std::string id,PhysicsVector offset,const std::vector<PhysicsVector>& vertices) {
+    impl_->checkId(id);bounded(offset);return impl_->adopt(std::move(id),triangleShape(vertices),offset,JPH::Quat::sIdentity(),false);
+}
+void PhysicsWorld::replaceMesh(BodyToken token,const std::vector<PhysicsVector>& vertices) {
+    if(!impl_->valid(token)||impl_->bodies.at(token.body).characterOwned)throw std::invalid_argument("Invalid mesh replacement owner");
+    auto& bodies=impl_->system.GetBodyInterface();const JPH::BodyID id(token.body);
+    if(bodies.GetMotionType(id)!=JPH::EMotionType::Static)throw std::invalid_argument("Mesh replacement requires a static body");
+    const auto shape=triangleShape(vertices); // Preserve old body/identity if preparation fails.
+    bodies.SetShape(id,shape,false,JPH::EActivation::DontActivate);
 }
 BodyToken PhysicsWorld::heightfield(std::string id,PhysicsVector offset,uint32_t side,float spacing,const std::vector<float>& heights) {
     impl_->checkId(id);bounded(offset);dimension(spacing);

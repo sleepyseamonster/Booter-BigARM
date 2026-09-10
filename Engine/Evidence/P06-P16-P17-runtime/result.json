@@ -1,0 +1,48 @@
+{
+  "command": [
+    "build/foundation/engine_rock_workbench_tests",
+    "out/P06-P16-P17-tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Source/Core/FixtureState.h",
+    " M Engine/Source/Game/CalibrationRuntime.cpp",
+    " M Engine/Source/Game/CalibrationRuntime.h",
+    " M Engine/Source/Physics/PhysicsWorld.cpp",
+    " M Engine/Source/Physics/PhysicsWorld.h",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    "?? Engine/Source/Runtime/EditHistory.h",
+    "?? Engine/Source/Tools/",
+    "?? Engine/Source/World/Rocks/RockAsset.cpp",
+    "?? Engine/Source/World/Rocks/RockAsset.h",
+    "?? Engine/Tests/RockWorkbenchTests.cpp",
+    "?? Engine/Tools/verify_rock_workbench.py"
+  ],
+  "duration_seconds": 0.564,
+  "exit_code": 0,
+  "git_head": "0ce148f5b4c4c7df8c7fbb201a27333e8ad070aa",
+  "input_sha256_after": {
+    "Source/Physics/PhysicsWorld.cpp": "98b139c7f443608c08d96354c11006683744729d985afbf4591663c18c854b15",
+    "Source/Runtime/EditHistory.h": "8c62b0ac15368de87e6b5917f1f4d1bbd2821b226f608d0ab9f61cd90e16d7f1",
+    "Source/World/Rocks/RockAsset.cpp": "ce2ee8c45525aa38f870f8b81356bf49a173428e87ab5982a0ecbb341671869e",
+    "Tests/RockWorkbenchTests.cpp": "6f9f22b63d2b97cb8784fa03096774d3d8b45e670009ff9fc4c526483f736615",
+    "build/foundation/engine_rock_workbench_tests": "ddc8af34a968eb39fe52f437bc41fc6304f2d0226ead471d9778df39cb049d77"
+  },
+  "input_sha256_before": {
+    "Source/Physics/PhysicsWorld.cpp": "98b139c7f443608c08d96354c11006683744729d985afbf4591663c18c854b15",
+    "Source/Runtime/EditHistory.h": "8c62b0ac15368de87e6b5917f1f4d1bbd2821b226f608d0ab9f61cd90e16d7f1",
+    "Source/World/Rocks/RockAsset.cpp": "ce2ee8c45525aa38f870f8b81356bf49a173428e87ab5982a0ecbb341671869e",
+    "Tests/RockWorkbenchTests.cpp": "6f9f22b63d2b97cb8784fa03096774d3d8b45e670009ff9fc4c526483f736615",
+    "build/foundation/engine_rock_workbench_tests": "ddc8af34a968eb39fe52f437bc41fc6304f2d0226ead471d9778df39cb049d77"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "6ab87364ac264c749191a55c860044c15847e29f096c7323fe58adbbb55bf193",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T18:54:18.641253+00:00",
+  "timeout_seconds": 30.0
+}

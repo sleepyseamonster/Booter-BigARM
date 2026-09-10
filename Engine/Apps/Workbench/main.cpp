@@ -26,15 +26,19 @@
 #include "Game/CalibrationRuntime.h"
 #include "Audio/Audio.h"
 #include "Animation/AnimationPlayer.h"
+#include "Tools/RockWorkbench.h"
+#include "Tools/InspectionWorkbench.h"
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model; bool buildInfo=false, lightingVerify=false, animationVerify=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock; bool buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
-        if ((arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
-            if (arg=="--model") options.model=argv[++i];
+        if ((arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
+            if(arg=="--rock")options.rock=argv[++i];
+            else if(arg=="--verify-rock"){options.rockVerify=true;options.verify=argv[++i];}
+            else if (arg=="--model") options.model=argv[++i];
             else if (arg=="--verify-animation") {options.animationVerify=true;options.verify=argv[++i];}
             else if (arg=="--verify-lighting") { options.lightingVerify=true;options.verify=argv[++i]; }
             else if (arg=="--verify") options.verify=argv[++i];
@@ -45,7 +49,7 @@ Options parse(int argc,char** argv) {
             else if (arg=="--save-bindings") options.saveBindings=argv[++i];
             else options.shaders=argv[++i];
         } else if (arg=="--build-info") options.buildInfo=true;
-        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
+        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
     }
     return options;
 }
@@ -74,7 +78,7 @@ struct TextureControls {
 };
 struct SimulationControls { bool enabled=false,paused=false,grounded=false;uint64_t ticks=0;double dropped=0; };
 struct ButtonPosition { float x=0,y=0; };
-ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds,TextureControls& textures,SimulationControls& simulation) {
+ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds,TextureControls& textures,SimulationControls& simulation,engine::InspectionWorkbench& documents,bool technical) {
     ImGui::SetNextWindowPos(ImVec2(20,20),ImGuiCond_Always);
     ImGui::SetNextWindowSize(ImVec2(310,std::min(650.0f,ImGui::GetIO().DisplaySize.y-40.0f)),ImGuiCond_Always);
     ImGui::Begin("Engine foundation",nullptr,ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse);
@@ -142,6 +146,7 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
         ImGui::Text("Dropped time: %.3f s",simulation.dropped);
         ImGui::TextWrapped("WASD / left stick: move. Space / South: jump. Shift / stick click: run. Right drag / right stick: camera. P / Start: pause. E: toggle nearby marker.");
     }
+    documents.draw(state,!technical&&!simulation.enabled);
     ImGui::PopItemWidth();
     ImGui::End();
     state.constrain();
@@ -160,10 +165,12 @@ int run(Options options) {
     engine::FixtureState state;
     if (!options.inspection.empty()) engine::loadInspection(options.inspection,state);
     const bool technical=!options.verify.empty();
-    const bool verify=technical && !options.lightingVerify && !options.animationVerify;
+    const bool verify=technical && !options.lightingVerify && !options.animationVerify && !options.rockVerify;
+    const bool rockVerify=options.rockVerify;
+    if(rockVerify&&options.rock.empty())throw std::runtime_error("Rock verification requires --rock");
     const bool animationVerify=options.animationVerify;
     if(animationVerify && options.model.empty())throw std::runtime_error("Animation verification requires --model");
-    if(options.animationVerify && options.lightingVerify)throw std::runtime_error("Choose one verification mode");
+    if(int(options.animationVerify)+int(options.lightingVerify)+int(options.rockVerify)>1)throw std::runtime_error("Choose one verification mode");
     const bool lightingVerify=options.lightingVerify;
     if (technical) {
         if (std::filesystem::exists(options.verify)) throw std::runtime_error("Verification output exists; choose a new directory");
@@ -232,6 +239,11 @@ int run(Options options) {
     engine::ActionInput actionInput(actions);
     SimulationControls simulation;
     engine::CalibrationRuntime runtime(modelData);
+    std::unique_ptr<engine::RockWorkbench> rock;
+    if(!options.rock.empty())rock=std::make_unique<engine::RockWorkbench>(options.rock,runtime);
+    engine::InspectionWorkbench documents(state,!options.inspection.empty()?options.inspection:(!options.saveInspection.empty()?options.saveInspection:std::filesystem::path(SDL_GetBasePath())/"inspection.json"));
+    unsigned rockBaselineVertices=0,rockBaselineIndices=0,rockFinalVertices=0,rockFinalIndices=0;
+    const auto originalRecipe=rock?rock->recipe():engine::RockRecipe{};
     std::unique_ptr<engine::Audio> audio;bool audioAttempted=false;
     bool clicked=false,orbited=false,resized=false,closed=false;
     unsigned baselineBuffers=0,finalBuffers=0;
@@ -300,7 +312,16 @@ int run(Options options) {
             }
             if (verify && frame==350) textureControls.enabled=true;
             if(animationVerify) {state=engine::FixtureState{};state.surfaceTextures=false;state.shadows=true;state.yaw=.6f;state.pitch=.35f;state.distance=4;state.showNormals=frame>=45;}
-            button=inspector(state,renderer,milliseconds,textureControls,simulation);
+            if(rockVerify) {
+                if(frame==0){state=engine::FixtureState{};state.distance=7;state.surfaceTextures=materialAvailable;rock->forcedLod=0;}
+                if(frame==15)rock->forcedLod=1;
+                if(frame==30)rock->forcedLod=2;
+                if(frame==45){rock->forcedLod=0;auto changed=originalRecipe;changed.radiiMm[1]+=600;rock->apply(changed);}
+                if(frame==60)rock->undo();
+                if(frame==75){auto invalid=originalRecipe;invalid.subdivisions=99;bool rejected=false;try{rock->apply(invalid);}catch(const std::exception&){rejected=true;}if(!rejected||rock->recipe()!=originalRecipe)throw std::runtime_error("Failed rock edit changed the document");state.yaw+=3.14159265f;}
+            }
+            button=inspector(state,renderer,milliseconds,textureControls,simulation,documents,technical);
+            if(rock&&!rockVerify)rock->drawControls(simulation.enabled);
             if(animation && !animationVerify) {
                 ImGui::Begin("Model animation");
                 ImGui::Text("%zu joints | %zu clips",modelData->joints.size(),modelData->clips.size());
@@ -355,12 +376,13 @@ int run(Options options) {
                 }
                 if (textureControls.loaded>=0) preview={textures.resolve(texture.token()),textureControls.lod,float(textureControls.channel),records.at(size_t(textureControls.loaded)).srgb,textureControls.repeat};
             }
+            if(rock){float distance=state.distance;if(simulation.enabled){float squared=0;for(size_t i=0;i<3;++i){const float delta=placement.eye[i]-engine::RockWorkbench::offset[i];squared+=delta*delta;}distance=std::sqrt(squared);}placement.rock=rock->model(distance);placement.rockOffset=engine::RockWorkbench::offset;}
             ImGui::Render();
             engine::GeometryCheck geometryCheck=engine::GeometryCheck::None;
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation)?&placement:nullptr); if(!animationVerify)ui.draw(ImGui::GetDrawData());
+            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock)?&placement:nullptr); if(!animationVerify&&!rockVerify)ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -395,6 +417,12 @@ int run(Options options) {
                 }
                 if ((frame==345 && records.empty()) || (frame==480 && !records.empty())) { SDL_Event quit{}; quit.type=SDL_EVENT_QUIT; if (!SDL_PushEvent(&quit)) throw std::runtime_error("Cannot inject close event"); }
             }
+            if(rockVerify) {
+                if(frame==10){rockBaselineVertices=bgfx::getStats()->numVertexBuffers;rockBaselineIndices=bgfx::getStats()->numIndexBuffers;}
+                if(frame==85){rockFinalVertices=bgfx::getStats()->numVertexBuffers;rockFinalIndices=bgfx::getStats()->numIndexBuffers;}
+                if(frame>=10&&frame<=85&&(frame-10)%15==0){constexpr const char* names[]={"lod0.png","lod1.png","lod2.png","edited.png","undo.png","opposite.png"};bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/names[(frame-10)/15]).string().c_str());}
+                if(frame==95)running=false;
+            }
             if(animationVerify) {
                 if(frame>=10&&frame<=70&&(frame-10)%15==0) {
                     constexpr const char* names[]={"rest.png","gpu-walk.png","cpu-walk.png","gpu-normals.png","cpu-normals.png"};
@@ -416,9 +444,14 @@ int run(Options options) {
     }
     if(!options.saveBindings.empty()) engine::saveBindings(options.saveBindings,actions);
     texture.reset();for(auto& lease:surfaceLeases)lease.reset();textures.stop();
-    renderModel.reset();animation.reset();
+    rock.reset();renderModel.reset();animation.reset();
     renderer.stop();
     if (!options.saveInspection.empty()) engine::saveInspection(options.saveInspection,state);
+    if(rockVerify) {
+        const bool passed=renderer.callbacks.captures==6&&renderer.callbacks.errors==0&&rockBaselineVertices==rockFinalVertices&&rockBaselineIndices==rockFinalIndices;
+        engine::writeDocument(options.verify/"rock.json","engine.rock-verification",{{"passed",passed},{"backend",backend},{"real_surfaces",materialAvailable},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"vertices_before",rockBaselineVertices},{"vertices_after",rockFinalVertices},{"indices_before",rockBaselineIndices},{"indices_after",rockFinalIndices}});
+        if(!passed)throw std::runtime_error("Rock capture/resource check failed");
+    }
     if(animationVerify) {
         const bool passed=renderer.callbacks.captures==5&&renderer.callbacks.errors==0;
         engine::writeDocument(options.verify/"animation.json","engine.animation-verification",{{"backend",backend},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"passed",passed}});

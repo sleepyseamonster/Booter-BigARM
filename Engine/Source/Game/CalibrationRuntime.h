@@ -19,6 +19,7 @@ public:
     explicit CalibrationRuntime(std::shared_ptr<const ModelData> model={},const PlayerSnapshot& initial={});
     void advance(double seconds,bool paused,Actions&,float& cameraYaw,float& cameraPitch);
     CalibrationFrame present(float cameraYaw,float cameraPitch,float distance,float seconds);
+    void setRock(const std::string& id,const std::vector<PhysicsVector>& triangles,PhysicsVector offset);
     PlayerSnapshot snapshot(float cameraYaw,float cameraPitch,float cameraDistance) const;
     std::vector<CalibrationCue> takeCues();
     bool canInteract() const;
@@ -33,6 +34,9 @@ private:
     CharacterController character_;
     ThirdPersonCamera camera_;
     EntityToken player_,target_;
+    BodyToken rockBody_;
+    std::string rockId_;
+    PhysicsVector rockOffset_{};
     FixedClock clock_;
     std::shared_ptr<const ModelData> model_;
     std::unique_ptr<AnimationPlayer> animation_;

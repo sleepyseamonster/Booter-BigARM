@@ -23,10 +23,10 @@ build/foundation/engine_rock_cook Assets/Recipes/wasteland-rock.json out/rocks/e
 build/foundation/engine_workbench --model out/rocks/example/model.json
 ```
 
-The optional four identity arguments are world seed, region X, region Z and member. Output directories must be new. The current generated example is `out/rocks/wasteland-001/`; the workbench's existing model loader can inspect it. Live recipe edits, material/collision adapters and LOD selection are the next package.
+The optional four identity arguments are world seed, region X, region Z and member. Output directories must be new. The current generated example is `out/rocks/wasteland-001/`; the workbench's existing model loader can inspect it. Live recipe edits, material/collision adapters and LOD selection are now implemented in the [workbench result](./ROCK_WORKBENCH_RESULT.md).
 
 [One combined native check](../Evidence/P14-P15-generation/result.json) passed for stable IDs, repeated/order-independent generation, seed edits, resolution identity, closed edges with opposite winding, nondegenerate normals, bounds/ground anchor, triangle semantics, cooked asset roundtrip, recipe roundtrip, negative-region constraints, two-agent route clearance, exclusions, order independence and invalid-input rejection. [The native cooker](../Evidence/P15-rock-cook/result.json) produced the 128-triangle example with its recipe and semantic sidecar. No new dependency, texture cook, gameplay smoke test, package cycle or rendering stress check was needed. GPU/collision/LOD integration is not claimed by these CPU results.
 
-P06 inspection commands remain unfinished. Their prerequisite moves from independent CPU generation to P17 live authoring, where they are consumed; the requirement remains in the roadmap.
+P06 inspection commands are now integrated with P17 live authoring. Their prerequisite moved from independent CPU generation to the consuming workbench batch; the requirement was retained and implemented.
 
-Next: P06/P16/P17 connect generated rocks to the existing material/physics adapters and a minimal live recipe workbench. Continue at skeleton depth rather than polishing procedural geology here.
+P06/P16/P17 now connect generated rocks to the material/physics adapters and a minimal live recipe workbench. Next: P18/P19 open terrain and bounded jobs. Continue at skeleton depth.

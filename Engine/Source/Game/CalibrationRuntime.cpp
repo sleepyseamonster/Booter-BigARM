@@ -56,6 +56,10 @@ CalibrationFrame CalibrationRuntime::present(float yaw,float pitch,float distanc
     if(animation_)result.palette=model_->clips.empty()?&animation_->rest():&animation_->sample(0,clock_.seconds(),model_->clips.size()>1?1:SIZE_MAX,walkBlend_);
     return result;
 }
+void CalibrationRuntime::setRock(const std::string& id,const std::vector<PhysicsVector>& triangles,PhysicsVector offset) {
+    if(rockId_.empty()){rockBody_=physics_.mesh(id,offset,triangles);rockId_=id;rockOffset_=offset;}
+    else {if(id!=rockId_||offset!=rockOffset_)throw std::invalid_argument("Rock replacement must preserve placement identity");physics_.replaceMesh(rockBody_,triangles);}
+}
 PlayerSnapshot CalibrationRuntime::snapshot(float cameraYaw,float cameraPitch,float cameraDistance) const {
     PlayerSnapshot s;s.feet=character_.position();s.velocity=character_.velocity();s.yaw=yaw_;s.cameraYaw=cameraYaw;s.cameraPitch=cameraPitch;s.cameraDistance=std::clamp(cameraDistance,2.5f,8.f);s.markerActive=targetActive_;s.ticks=clock_.ticks();validateSnapshot(s);return s;
 }

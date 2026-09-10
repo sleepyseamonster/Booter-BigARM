@@ -29,6 +29,7 @@ public:
     BodyToken box(std::string id,PhysicsVector center,PhysicsVector halfExtent,std::array<float,4> rotation={0,0,0,1});
     BodyToken capsule(std::string id,PhysicsVector center,float radius,float halfCylinder,bool dynamic=false);
     BodyToken mesh(std::string id,PhysicsVector offset,const std::vector<PhysicsVector>& triangles);
+    void replaceMesh(BodyToken,const std::vector<PhysicsVector>& triangles);
     BodyToken heightfield(std::string id,PhysicsVector offset,uint32_t side,float spacing,const std::vector<float>& heights);
     bool remove(BodyToken);
     std::optional<PhysicsVector> position(BodyToken) const;

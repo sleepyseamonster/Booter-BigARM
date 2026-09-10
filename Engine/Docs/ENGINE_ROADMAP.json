@@ -163,8 +163,12 @@
       ],
       "owner_module": "Workbench/Persistence",
       "proof": "Saved settings reproduce the scene; failed edits retain valid state",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/ROCK_WORKBENCH_RESULT.md",
+        "Evidence/P06-P16-P17-runtime/result.json",
+        "Evidence/P16-P17-render/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {
@@ -386,8 +390,12 @@
       ],
       "owner_module": "World/Rendering/Physics",
       "proof": "Silhouette, LOD, surface agreement and bounded rebuild evidence",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/ROCK_WORKBENCH_RESULT.md",
+        "Evidence/P06-P16-P17-runtime/result.json",
+        "Evidence/P16-P17-render/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {
@@ -406,8 +414,12 @@
       ],
       "owner_module": "Workbench",
       "proof": "Undo/save/reload/generation round trips and resource baseline",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/ROCK_WORKBENCH_RESULT.md",
+        "Evidence/P06-P16-P17-runtime/result.json",
+        "Evidence/P16-P17-render/result.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

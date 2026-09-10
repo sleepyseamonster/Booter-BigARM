@@ -201,12 +201,14 @@ void Renderer::rebuildMesh() {
 }
 void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibration, const TexturePreview* preview, const SceneSurfaces* surfaces, const ScenePlacement* placement) {
     auto eye=state.eye();
-    const auto offset=placement?placement->offset:std::array<float,3>{};
+    const auto* rockModel=placement?placement->rock:nullptr;
+    const bool physical=placement && placement->physicalCharacter;
+    const bool rockOnly=rockModel&&!physical;
+    const auto offset=rockOnly?placement->rockOffset:(placement?placement->offset:std::array<float,3>{});
     for(size_t i=0;i<3;++i) eye[i]+=offset[i];
     const auto* model=placement?placement->model:nullptr;
     if(model && (!placement->pose||placement->pose->size()!=model->jointCount))throw std::runtime_error("Skin pose does not match model");
     const bool gpuSkin=model && !placement->cpuReference;
-    const bool physical=placement && placement->physicalCharacter;
     if(physical) eye=placement->eye;
     const auto target=physical?placement->target:std::array<float,3>{offset[0],.85f+offset[1],offset[2]};
     float view[16], projection[16];
@@ -240,12 +242,13 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     auto submit=[&](int mesh,const Matrix4& transform,const float* color,const SurfaceTextures* surface=nullptr) {
         const auto normal=normalMatrix(transform);
         bgfx::setTransform(transform.data());
-        if(mesh<0) {model->bind(placement->cpuReference);if(gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
+        const auto* resource=mesh==-2?rockModel:model;
+        if(mesh<0) {resource->bind(mesh==-1&&placement->cpuReference);if(mesh==-1&&gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
         else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
-        const bool textured=mesh>=0 && surface && state.surfaceTextures && bgfx::isValid(surface->albedo) && bgfx::isValid(surface->normal) && bgfx::isValid(surface->surface);
-        const float linear[]={mesh<0?model->color[0]:(textured?1.0f:srgbToLinear(color[0])),mesh<0?model->color[1]:(textured?1.0f:srgbToLinear(color[1])),mesh<0?model->color[2]:(textured?1.0f:srgbToLinear(color[2])),color[3]};
+        const bool textured=mesh!=-1 && surface && state.surfaceTextures && bgfx::isValid(surface->albedo) && bgfx::isValid(surface->normal) && bgfx::isValid(surface->surface);
+        const float linear[]={textured?1.0f:(mesh<0?resource->color[0]:srgbToLinear(color[0])),textured?1.0f:(mesh<0?resource->color[1]:srgbToLinear(color[1])),textured?1.0f:(mesh<0?resource->color[2]:srgbToLinear(color[2])),color[3]};
         const float options[]={state.showNormals?1.0f:0.0f,textured?1.0f:0.0f,state.textureScale,state.ambient};
-        const float params[]={mesh<0?model->roughness:state.roughness,mesh<0?model->metallic:state.metallic,state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
+        const float params[]={mesh<0?resource->roughness:state.roughness,mesh<0?resource->metallic:state.metallic,state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
         bgfx::setUniform(material_,linear); bgfx::setUniform(light_,light);
         bgfx::setUniform(shadowMatrix_,shadowMatrix);bgfx::setUniform(shadowOptions_,shadowOptions);
         bgfx::setUniform(eye_,eyePosition);bgfx::setUniform(surfaceParams_,params);
@@ -258,12 +261,13 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         }
         bgfx::setUniform(normal_,normal.data()); bgfx::setUniform(options_,options);
         bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA|cull);
-        bgfx::submit(views::scene,mesh<0&&gpuSkin?skinProgram_:program_);
+        bgfx::submit(views::scene,mesh==-1&&gpuSkin?skinProgram_:program_);
     };
     const float ground[4]={0.28f,0.31f,0.34f,1};
     const float color[4]={state.color[0],state.color[1],state.color[2],1};
     const float marker[4]={placement&&placement->markerActive?.9f:.33f,placement&&placement->markerActive?.7f:.67f,placement&&placement->markerActive?.15f:.64f,1};
-    Matrix4 groundTransform, markerTransform;
+    Matrix4 groundTransform, markerTransform,rockTransform;
+    if(rockModel)bx::mtxSRT(rockTransform.data(),1,1,1,0,0,0,placement->rockOffset[0],placement->rockOffset[1],placement->rockOffset[2]);
     bx::mtxSRT(groundTransform.data(),20,.1f,20,0,0,0,0,-.05f,0);
     bx::mtxSRT(markerTransform.data(),.35f,1.8f,.35f,0,0,0,2.1f,.9f,0);
     auto subject=subjectTransform(state);
@@ -280,12 +284,13 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         bgfx::setViewTransform(views::shadow,lightView,lightProjection);
         auto cast=[&](int mesh,const Matrix4& transform) {
             bgfx::setTransform(transform.data());
-            if(mesh<0) {model->bind(placement->cpuReference);if(gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
+            const auto* resource=mesh==-2?rockModel:model;
+            if(mesh<0) {resource->bind(mesh==-1&&placement->cpuReference);if(mesh==-1&&gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
             else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
             bgfx::setState(BGFX_STATE_WRITE_R|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_CULL_CW);
-            bgfx::submit(views::shadow,mesh<0&&gpuSkin?skinShadowProgram_:shadowProgram_);
+            bgfx::submit(views::shadow,mesh==-1&&gpuSkin?skinShadowProgram_:shadowProgram_);
         };
-        cast(0,groundTransform);cast(subjectMesh,subject);cast(0,markerTransform);
+        cast(0,groundTransform);if(!rockOnly)cast(subjectMesh,subject);cast(0,markerTransform);if(rockModel)cast(-2,rockTransform);
     }
     const auto* rock=surfaces?&surfaces->rock:nullptr;
     const auto* soil=surfaces?&surfaces->ground:nullptr;
@@ -302,9 +307,9 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         bgfx::setVertexBuffer(0,fullscreen_); bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A);
         bgfx::submit(views::scene,calibrationProgram_);
     } else if (check==GeometryCheck::ReverseOrder) {
-        submit(0,markerTransform,marker); submit(subjectMesh,subject,color,rock); submit(0,groundTransform,ground,soil);
+        submit(0,markerTransform,marker); if(!rockOnly)submit(subjectMesh,subject,color,rock); submit(0,groundTransform,ground,soil);if(rockModel)submit(-2,rockTransform,color,rock);
     } else {
-        submit(0,groundTransform,ground,soil); submit(subjectMesh,subject,color,rock); submit(0,markerTransform,marker);
+        submit(0,groundTransform,ground,soil); if(!rockOnly)submit(subjectMesh,subject,color,rock); submit(0,markerTransform,marker);if(rockModel)submit(-2,rockTransform,color,rock);
     }
     const float display[]={state.exposure,state.showNormals && !calibration && !preview?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,0};
     bgfx::setViewRect(views::display,0,0,uint16_t(width_),uint16_t(height_));

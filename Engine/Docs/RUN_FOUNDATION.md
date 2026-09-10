@@ -94,3 +94,13 @@ See [the model/animation result](./MODEL_ANIMATION_RESULT.md) for the accepted i
 `build/foundation/engine_player --model out/models/calibration/model.json` launches the separate player using the same runtime as workbench character mode. Add `--silent` for no audio device. E toggles the nearby marker; the overlay shows controls and state. [Player details and current limits](./PLAYER_RUNTIME_RESULT.md). P13 now supplies snapshots and `out/player-skeleton/`; see [save and package instructions](./PLAYER_SNAPSHOT_PACKAGE_RESULT.md).
 
 The current packaged player launches with `out/player-skeleton/bin/engine_player --profile out/player-profile`. F5 saves; it also saves periodically and on normal exit. Startup restores the highest valid snapshot. The profile stays inside Engine for local development.
+
+## Live rock workbench
+
+From `Engine/`, launch the current build with the native recipe and existing cooked surfaces:
+
+```sh
+build/foundation/engine_workbench --rock Assets/Recipes/wasteland-rock.json --catalog out/surfaces-accepted-a/catalog.json --model out/models/calibration/model.json
+```
+
+Use Apply, Undo/Redo and Save/Reload in the recipe panel. Save writes the accepted recipe to the displayed path; choose a working path to preserve the source fixture. Inspection settings have their own document controls. Recipe editing requires character simulation to be disabled. See [the result and limits](./ROCK_WORKBENCH_RESULT.md). The prior portable package does not contain this batch.

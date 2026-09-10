@@ -1,0 +1,15 @@
+{
+  "kind": "engine.rock-verification",
+  "payload": {
+    "backend": "Metal",
+    "captures": 6,
+    "gpu_errors": 0,
+    "indices_after": 6,
+    "indices_before": 6,
+    "passed": true,
+    "real_surfaces": true,
+    "vertices_after": 13,
+    "vertices_before": 13
+  },
+  "version": 1
+}
