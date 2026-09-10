@@ -1,0 +1,22 @@
+{
+  "result": "passed",
+  "build": "Incremental Mac native workbench and simulation test",
+  "check": "ctest --test-dir Engine/build/foundation -R fixed_simulation_actions --output-on-failure",
+  "source_archive_verification": "Eight pinned dependencies including EnTT",
+  "input_sha256": {
+    "build/foundation/engine_workbench": "13fa9c5f010c86dce69ef59193a55f2e1daf29c71275308fbe30d3c9623977cf",
+    "build/foundation/engine_simulation_tests": "9bda45d5e3bf0f6208c5adebcb1314c3eb34322fe09e1ce407144e00184da015",
+    "Research/runtime-lock.json": "d7cc805c863083d55f4e32d64084ebb39b84febb2d1272ab9de3315a34c7356e",
+    "CMakeLists.txt": "f272b0d9586aba9cc3b9f47e7572ec6589c9d3fb32da22ca68878d38ee178832",
+    "Apps/Workbench/main.cpp": "0cac49299b05a33f32a07e95c3d4d5bdf708303167291af96b31e95fb236c55c",
+    "Tests/SimulationTests.cpp": "e59f2461a9f84b6ebd55ace50c840e78ee31a2f89369eaf88f8e8408ed806301",
+    "Source/Simulation/Actions.cpp": "391d5efe448f9161aaf403cc549b0e58f9352f65537e73f4b765662074c677df",
+    "Source/Simulation/Actions.h": "11df2f4c5dc108d732e8a2cfbd2afd85c8277af314a3586d77a5e53d1fa37d47",
+    "Source/Simulation/FixedClock.h": "98712b463c0ddf021d4deca4e0143ef22754a499bec7d60bcfce5f805c8d34c7",
+    "Source/Simulation/World.cpp": "ee199d24b22380e2d23c8bfc2c6be6b4c04f81af4db0c44d0463c04ce3afcef3",
+    "Source/Simulation/World.h": "f7990f7490f26afd31a3e53369a2368476dffd40dd51ab84875b60b6f4593e34",
+    "Source/Platform/ActionInput.cpp": "c951745b857c525c08b2e30c73f326ea8a70ce74c533b4de2e79838c96a26fbe",
+    "Source/Platform/ActionInput.h": "90e5128f77d7b90b7ba5c3bb2599c78e00f850993b56311c051e3d002bae2adb"
+  },
+  "limits": "Core runtime technical tests and compiled workbench integration; not physical-device, gameplay, physics or Windows proof."
+}

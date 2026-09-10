@@ -30,6 +30,7 @@ struct SurfaceTextures {
     bool packedSurface=true;
     bgfx::TextureHandle albedo=BGFX_INVALID_HANDLE, normal=BGFX_INVALID_HANDLE, surface=BGFX_INVALID_HANDLE;
 };
+struct ScenePlacement { std::array<float,3> offset{}; };
 struct SceneSurfaces { SurfaceTextures rock, ground; };
 class Renderer {
 public:
@@ -39,7 +40,7 @@ public:
     Renderer& operator=(const Renderer&) = delete;
     void start(const Window&, const std::filesystem::path& shaders);
     void resize(int width, int height);
-    void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None, bool calibration = false, const TexturePreview* preview = nullptr, const SceneSurfaces* surfaces = nullptr);
+    void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None, bool calibration = false, const TexturePreview* preview = nullptr, const SceneSurfaces* surfaces = nullptr, const ScenePlacement* placement = nullptr);
     void rebuildMesh();
     void stop();
     const char* name() const;

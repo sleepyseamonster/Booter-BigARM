@@ -18,19 +18,24 @@
 #include <string>
 #include <cmath>
 #include <algorithm>
+#include "Platform/ActionInput.h"
+#include "Simulation/FixedClock.h"
+#include "Simulation/World.h"
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog; bool buildInfo=false, lightingVerify=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings; bool buildInfo=false, lightingVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
-        if ((arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
+        if ((arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
             if (arg=="--verify-lighting") { options.lightingVerify=true;options.verify=argv[++i]; }
             else if (arg=="--verify") options.verify=argv[++i];
             else if (arg=="--inspection") options.inspection=argv[++i];
             else if (arg=="--save-inspection") options.saveInspection=argv[++i];
             else if (arg=="--catalog") options.catalog=argv[++i];
+            else if (arg=="--bindings") options.bindings=argv[++i];
+            else if (arg=="--save-bindings") options.saveBindings=argv[++i];
             else options.shaders=argv[++i];
         } else if (arg=="--build-info") options.buildInfo=true;
         else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--verify new-output-directory] [--verify-lighting new-output-directory]");
@@ -38,7 +43,7 @@ Options parse(int argc,char** argv) {
     return options;
 }
 struct SDLSession {
-    SDLSession() { SDL_SetMainReady(); if (!SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS)) throw std::runtime_error(SDL_GetError()); }
+    SDLSession() { SDL_SetMainReady(); if (!SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMEPAD)) throw std::runtime_error(SDL_GetError()); }
     ~SDLSession() { SDL_Quit(); }
 };
 struct UIContext {
@@ -60,8 +65,9 @@ struct TextureControls {
     int selected=0,loaded=-1,channel=0;float lod=0,repeat=1;bool enabled=false;
     std::string error;
 };
+struct SimulationControls { bool enabled=false,paused=false;engine::FixedClock clock; };
 struct ButtonPosition { float x=0,y=0; };
-ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds,TextureControls& textures) {
+ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds,TextureControls& textures,SimulationControls& simulation) {
     ImGui::SetNextWindowPos(ImVec2(20,20),ImGuiCond_Always);
     ImGui::SetNextWindowSize(ImVec2(310,std::min(650.0f,ImGui::GetIO().DisplaySize.y-40.0f)),ImGuiCond_Always);
     ImGui::Begin("Engine foundation",nullptr,ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse);
@@ -120,6 +126,13 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
         ImGui::Combo("Channel",&textures.channel,"RGB\0R\0G\0B\0Alpha\0");
         ImGui::SliderFloat("UV repeats",&textures.repeat,1,8,"%.1f");
         if (!textures.error.empty()) ImGui::TextWrapped("%s",textures.error.c_str());
+    }
+    if(ImGui::CollapsingHeader("Shared simulation")) {
+        ImGui::Checkbox("Simulate proxy",&simulation.enabled);
+        ImGui::Checkbox("Paused",&simulation.paused);
+        ImGui::Text("Tick: %llu",static_cast<unsigned long long>(simulation.clock.ticks()));
+        ImGui::Text("Dropped time: %.3f s",simulation.clock.droppedSeconds());
+        ImGui::TextWrapped("WASD / left stick: free proxy motion. P / Start: pause. Physics and character motor are next.");
     }
     ImGui::PopItemWidth();
     ImGui::End();
@@ -192,6 +205,13 @@ int run(Options options) {
     if (!materialAvailable) state.surfaceTextures=false;
     if(verify) state.surfaceTextures=false;
     TextureControls textureControls;textureControls.records=&records;
+    engine::Actions actions;
+    if(!options.bindings.empty()) engine::loadBindings(options.bindings,actions);
+    engine::ActionInput actionInput(actions);
+    SimulationControls simulation;
+    engine::World world;
+    const auto proxy=world.create("authored:calibration:proxy",{{{0,0},{0,.75,0}},0});
+    uint64_t commandSequence=0;
     bool clicked=false,orbited=false,resized=false,closed=false;
     unsigned baselineBuffers=0,finalBuffers=0;
     {
@@ -207,6 +227,7 @@ int run(Options options) {
             float dx=0,dy=0,wheel=0;
             while (SDL_PollEvent(&event)) {
                 ImGui_ImplSDL3_ProcessEvent(&event);
+                actionInput.event(event);
                 if (event.type==SDL_EVENT_QUIT || event.type==SDL_EVENT_WINDOW_CLOSE_REQUESTED) { running=false; closed=true; }
                 if (event.type==SDL_EVENT_MOUSE_MOTION && (event.motion.state & SDL_BUTTON_RMASK)) { dx+=event.motion.xrel; dy+=event.motion.yrel; }
                 if (event.type==SDL_EVENT_MOUSE_WHEEL) wheel+=event.wheel.y;
@@ -214,7 +235,7 @@ int run(Options options) {
             }
             if (!running) break;
             int width=0,height=0; window.pixels(width,height);
-            if (width<=0 || height<=0 || (SDL_GetWindowFlags(window.get())&SDL_WINDOW_MINIMIZED)) { SDL_Delay(16); continue; }
+            if (width<=0 || height<=0 || (SDL_GetWindowFlags(window.get())&SDL_WINDOW_MINIMIZED)) { actions.focus(false);simulation.clock.advance(0,true,[](double,uint64_t){});last=std::chrono::steady_clock::now();SDL_Delay(16); continue; }
             renderer.resize(width,height);
             ImGui_ImplSDL3_NewFrame();
             auto& io=ImGui::GetIO();
@@ -257,7 +278,26 @@ int run(Options options) {
                 if(frame==105) {state.exposure=0;state.shadowBias=.008f;state.yaw=-.6f;}
             }
             if (verify && frame==350) textureControls.enabled=true;
-            button=inspector(state,renderer,milliseconds,textureControls);
+            button=inspector(state,renderer,milliseconds,textureControls,simulation);
+            const bool focused=(SDL_GetWindowFlags(window.get())&SDL_WINDOW_INPUT_FOCUS)!=0;
+            actions.focus(focused);actionInput.sample();
+            if(actions.consume(engine::Action::Pause).pressed) simulation.paused=!simulation.paused;
+            actions.gameplay(simulation.enabled && !simulation.paused && !io.WantCaptureKeyboard);
+            simulation.clock.advance(double(milliseconds)/1000.0,technical || !simulation.enabled || simulation.paused || !focused,[&](double dt,uint64_t) {
+                const auto input=actions.takeTick();
+                double x=input[size_t(engine::Action::MoveX)].value,z=input[size_t(engine::Action::MoveZ)].value;
+                const double length=std::max(1.0,std::sqrt(x*x+z*z));
+                engine::WorldCommand command;command.sequence=++commandSequence;command.target=proxy;
+                command.velocity={2*x/length,0,2*z/length};world.enqueue(command);world.step(dt);
+            });
+            engine::ScenePlacement placement;
+            if(simulation.enabled) {
+                const auto entity=*world.snapshot(proxy);
+                const auto current=entity.current.position.relativeTo({},world.regionSpan(),4096);
+                const auto previous=entity.previous.position.relativeTo({},world.regionSpan(),4096);
+                for(size_t i=0;i<3;++i) placement.offset[i]=previous[i]+float(simulation.clock.alpha())*(current[i]-previous[i]);
+                placement.offset[1]-=.75f;
+            }
             engine::TexturePreview preview;
             const bool showTexture=!records.empty() && textureControls.enabled && (!verify || frame>=350);
             if (showTexture) {
@@ -273,7 +313,7 @@ int run(Options options) {
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces); ui.draw(ImGui::GetDrawData());
+            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces,simulation.enabled?&placement:nullptr); ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -320,6 +360,7 @@ int run(Options options) {
         }
         ui.stop();
     }
+    if(!options.saveBindings.empty()) engine::saveBindings(options.saveBindings,actions);
     texture.reset();for(auto& lease:surfaceLeases)lease.reset();textures.stop();
     renderer.stop();
     if (!options.saveInspection.empty()) engine::saveInspection(options.saveInspection,state);

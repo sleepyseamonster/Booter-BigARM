@@ -206,8 +206,11 @@
       ],
       "owner_module": "Runtime/Platform",
       "proof": "Tick/focus/remap/lifetime/ordered-command technical checks",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Evidence/P08-runtime/result.json",
+        "Docs/SIMULATION_FOUNDATION_RESULT.md"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

@@ -196,10 +196,12 @@ void Renderer::rebuildMesh() {
     const char* names[]={"Reference cube", "Reference sloped solid", "Reference sphere", "CPU-baked flat-normal reference"};
     for (size_t i=0;i<meshes_.size();++i) bgfx::setName(meshes_[i],names[i]);
 }
-void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibration, const TexturePreview* preview, const SceneSurfaces* surfaces) {
-    const auto eye=state.eye();
+void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibration, const TexturePreview* preview, const SceneSurfaces* surfaces, const ScenePlacement* placement) {
+    auto eye=state.eye();
+    const auto offset=placement?placement->offset:std::array<float,3>{};
+    for(size_t i=0;i<3;++i) eye[i]+=offset[i];
     float view[16], projection[16];
-    bx::mtxLookAt(view,{eye[0],eye[1],eye[2]},{0,0.85f,0},{0,1,0},bx::Handedness::Right);
+    bx::mtxLookAt(view,{eye[0],eye[1],eye[2]},{offset[0],0.85f+offset[1],offset[2]},{0,1,0},bx::Handedness::Right);
     bx::mtxProj(projection,state.fieldOfView,float(width_)/float(height_),0.1f,100.0f,
         bgfx::getCaps()->homogeneousDepth,bx::Handedness::Right);
     // reset clears view framebuffer bindings; restore ownership on every frame.
@@ -255,6 +257,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     bx::mtxSRT(groundTransform.data(),20,.1f,20,0,0,0,0,-.05f,0);
     bx::mtxSRT(markerTransform.data(),.35f,1.8f,.35f,0,0,0,2.1f,.9f,0);
     auto subject=subjectTransform(state);
+    for(size_t i=0;i<3;++i) subject[12+i]+=offset[i];
     const bool baked=check==GeometryCheck::BakedReference;
     if (baked) bx::mtxIdentity(subject.data());
     if (state.shadows && !state.showNormals && !calibration && !preview) {

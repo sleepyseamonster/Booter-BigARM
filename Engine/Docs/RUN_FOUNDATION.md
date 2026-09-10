@@ -73,3 +73,5 @@ python3 Tools/verify_foundation.py --executable out/my-workbench/bin/engine_work
 ```
 
 The extra color captures preserve the existing geometry checks, measure eight known linear values at two exposures and recheck after target replacement. The inspector remains outside the scene display transform. These checks do not establish physical input, artistic acceptance, gameplay, Windows compatibility or target-PC performance.
+
+The workbench also exposes the [shared simulation proxy and named input bindings](./SIMULATION_FOUNDATION_RESULT.md). Physics and the character motor remain the next implementation batch.
