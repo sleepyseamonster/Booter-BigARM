@@ -24,6 +24,7 @@ void FixtureState::constrain() {
     bound(metallic,0,1,0); bound(normalStrength,0,2,1); bound(textureScale,0.1f,8,1); bound(ambient,0,1,0.3f);
     if (!std::isfinite(objectYaw)) objectYaw = 0;
     for (float& scale : objectScale) scale = std::isfinite(scale)?std::clamp(scale,0.2f,3.0f):1.5f;
+    for(float& value:viewOffset)value=std::isfinite(value)?std::clamp(value,-4096.f,4096.f):0;
 }
 void FixtureState::orbit(float dx, float dy, bool captured) {
     if (captured) return;
@@ -36,10 +37,18 @@ void FixtureState::zoom(float wheel, bool captured) {
     distance -= wheel * 0.5f;
     constrain();
 }
+void FixtureState::pan(float dx,float dy,float viewportHeight,bool captured) {
+    if(captured||!std::isfinite(dx)||!std::isfinite(dy)||!std::isfinite(viewportHeight)||viewportHeight<=0)return;
+    const float scale=2*distance*std::tan(fieldOfView*0.00872664626f)/viewportHeight;
+    const std::array<float,3> right{std::cos(yaw),0,-std::sin(yaw)};
+    const std::array<float,3> up{-std::sin(yaw)*std::sin(pitch),std::cos(pitch),-std::cos(yaw)*std::sin(pitch)};
+    for(size_t i=0;i<3;++i)viewOffset[i]+=(-dx*right[i]+dy*up[i])*scale;
+    constrain();
+}
 std::array<float, 3> FixtureState::eye() const {
-    return {distance * std::cos(pitch) * std::sin(yaw),
-            0.85f + distance * std::sin(pitch),
-            distance * std::cos(pitch) * std::cos(yaw)};
+    return {viewOffset[0]+distance * std::cos(pitch) * std::sin(yaw),
+            viewOffset[1]+0.85f + distance * std::sin(pitch),
+            viewOffset[2]+distance * std::cos(pitch) * std::cos(yaw)};
 }
 bool clipRect(float x1, float y1, float x2, float y2, int width, int height, ClipRect& result) {
     if (width <= 0 || height <= 0 || width > 65535 || height > 65535 ||

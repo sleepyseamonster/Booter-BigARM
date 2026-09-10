@@ -1,0 +1,43 @@
+{
+  "command": [
+    "build/foundation/engine_rock_workbench_tests",
+    "out/scene-camera-documents"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/Docs/ROCK_GENERATOR_MILESTONE.md",
+    " M Engine/Docs/ROCK_SHOWCASE.md",
+    " M Engine/Docs/RUN_FOUNDATION.md",
+    " M Engine/Source/Core/FixtureState.cpp",
+    " M Engine/Source/Core/FixtureState.h",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Runtime/InspectionDocument.cpp",
+    " M Engine/Source/Tools/InspectionWorkbench.cpp",
+    " M Engine/Source/Tools/InspectionWorkbench.h",
+    " M Engine/Source/Tools/RockWorkbench.cpp",
+    " M Engine/Tests/FixtureStateTests.cpp",
+    " M Engine/Tests/RockWorkbenchTests.cpp",
+    " M Engine/Tools/package_workbench.py",
+    "?? Engine/Source/Core/SceneCameraControls.h",
+    "?? Engine/Source/Tools/EngineMenu.h"
+  ],
+  "duration_seconds": 0.566,
+  "exit_code": 0,
+  "git_head": "08ba31e68d65360db43eb3eabfaedcaef96d4894",
+  "input_sha256_after": {
+    "Source/Runtime/InspectionDocument.cpp": "568dcf51271f1b651d012506bc31e0d9ea82e8a482a3227cb9ff34a4f41815da",
+    "Tests/RockWorkbenchTests.cpp": "04cbb4bd80bb85696581277d832a80c6b4158eef7ca75a4ea19d547ca5796755"
+  },
+  "input_sha256_before": {
+    "Source/Runtime/InspectionDocument.cpp": "568dcf51271f1b651d012506bc31e0d9ea82e8a482a3227cb9ff34a4f41815da",
+    "Tests/RockWorkbenchTests.cpp": "04cbb4bd80bb85696581277d832a80c6b4158eef7ca75a4ea19d547ca5796755"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "534563804e0327edaed0edcd00308dacb413ef5671969b406b80f3f7c2485a66",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T22:08:42.048885+00:00",
+  "timeout_seconds": 60.0
+}

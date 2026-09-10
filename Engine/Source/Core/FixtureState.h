@@ -8,6 +8,7 @@ struct FixtureState {
     float pitch = 0.28f;
     float distance = 7.5f;
     float fieldOfView = 55.0f;
+    std::array<float,3> viewOffset{}; // Editor-only translation of eye and orbit pivot.
     float objectYaw = 0.0f;
     int mesh = 0;
     std::array<float, 3> objectScale{1.5f, 1.5f, 1.5f};
@@ -27,6 +28,7 @@ struct FixtureState {
     bool operator==(const FixtureState&)const=default;
     void orbit(float dx, float dy, bool captured);
     void zoom(float wheel, bool captured);
+    void pan(float dx, float dy, float viewportHeight, bool captured);
     void constrain();
     std::array<float, 3> eye() const;
 };

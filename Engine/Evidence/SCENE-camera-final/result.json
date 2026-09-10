@@ -1,0 +1,59 @@
+{
+  "command": [
+    "build/foundation/engine_workbench",
+    "--rock",
+    "Assets/RockPresets/01-Weathered-Boulder.json",
+    "--inspection",
+    "Assets/Inspection/rock-showcase.json",
+    "--catalog",
+    "out/surfaces-accepted-a/catalog.json",
+    "--verify-camera",
+    "Evidence/SCENE-camera-final/captures"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/Docs/ROCK_GENERATOR_MILESTONE.md",
+    " M Engine/Docs/ROCK_SHOWCASE.md",
+    " M Engine/Docs/RUN_FOUNDATION.md",
+    " M Engine/Source/Core/FixtureState.cpp",
+    " M Engine/Source/Core/FixtureState.h",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Runtime/InspectionDocument.cpp",
+    " M Engine/Source/Tools/InspectionWorkbench.cpp",
+    " M Engine/Source/Tools/InspectionWorkbench.h",
+    " M Engine/Source/Tools/RockWorkbench.cpp",
+    " M Engine/Tests/FixtureStateTests.cpp",
+    " M Engine/Tests/RockWorkbenchTests.cpp",
+    " M Engine/Tools/package_workbench.py",
+    "?? Engine/Evidence/SCENE-camera-debug/",
+    "?? Engine/Evidence/SCENE-camera-documents/",
+    "?? Engine/Evidence/SCENE-camera-native/",
+    "?? Engine/Evidence/SCENE-camera-state/",
+    "?? Engine/Source/Core/SceneCameraControls.h",
+    "?? Engine/Source/Tools/EngineMenu.h",
+    "?? Engine/UIUX/"
+  ],
+  "duration_seconds": 3.37,
+  "exit_code": 0,
+  "git_head": "08ba31e68d65360db43eb3eabfaedcaef96d4894",
+  "input_sha256_after": {
+    "Apps/Workbench/main.cpp": "cdbee76e19cab900dd89137b0fc85df68944dd56d078f78fcbf877870ad6fdf0",
+    "Source/Core/FixtureState.cpp": "e8436a42c0942acfead84f04adcf1aab1f969f97dc2af938a01d143ede69ca4e",
+    "Source/Core/SceneCameraControls.h": "93e4e145d4aa6cb09842694ac8ab3e64c6bfe5f29e2b1727e2a6aa925d138703",
+    "Source/Rendering/Renderer.cpp": "f78ae957a87e1eb7a9fe2e0185c5f530b8a08265b696e0d619f2e4b17abf76c8"
+  },
+  "input_sha256_before": {
+    "Apps/Workbench/main.cpp": "cdbee76e19cab900dd89137b0fc85df68944dd56d078f78fcbf877870ad6fdf0",
+    "Source/Core/FixtureState.cpp": "e8436a42c0942acfead84f04adcf1aab1f969f97dc2af938a01d143ede69ca4e",
+    "Source/Core/SceneCameraControls.h": "93e4e145d4aa6cb09842694ac8ab3e64c6bfe5f29e2b1727e2a6aa925d138703",
+    "Source/Rendering/Renderer.cpp": "f78ae957a87e1eb7a9fe2e0185c5f530b8a08265b696e0d619f2e4b17abf76c8"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "98035214c206c95dd8e62cacf4b72931ccf46d18e9ed3c68049e355f8871ccb7",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T22:10:32.273620+00:00",
+  "timeout_seconds": 60.0
+}

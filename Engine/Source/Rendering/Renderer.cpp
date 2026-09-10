@@ -213,7 +213,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     if(model && (!placement->pose||placement->pose->size()!=model->jointCount))throw std::runtime_error("Skin pose does not match model");
     const bool gpuSkin=model && !placement->cpuReference;
     if(physical) eye=placement->eye;
-    const auto target=physical?placement->target:std::array<float,3>{offset[0],(rockOnly?placement->rockFocusHeight:.85f)+offset[1],offset[2]};
+    const auto target=physical?placement->target:std::array<float,3>{offset[0]+state.viewOffset[0],(rockOnly?placement->rockFocusHeight:.85f)+offset[1]+state.viewOffset[1],offset[2]+state.viewOffset[2]};
     float view[16], projection[16];
     bx::mtxLookAt(view,{eye[0],eye[1],eye[2]},{target[0],target[1],target[2]},{0,1,0},bx::Handedness::Right);
     bx::mtxProj(projection,state.fieldOfView,float(width_)/float(height_),0.1f,streamed?600.0f:100.0f,

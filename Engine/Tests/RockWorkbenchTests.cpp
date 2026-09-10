@@ -37,8 +37,9 @@ int main(int argc,char** argv)try{
     for(size_t i=0;i<exportedMesh.vertices.size();++i)require(exportedMesh.vertices[i].position==asset.lods.front().mesh.vertices[i].position&&exportedMesh.vertices[i].normal==asset.lods.front().mesh.vertices[i].normal,"Export geometry differs from accepted preview");
     require(loadRockRecipe(exported/"recipe.json")==history.value()&&readDocument(exported/"rock.json","engine.rock-result").at("id")==asset.lods.front().id,"Export recipe or identity mismatch");
     rejects([&]{saveRockResult(exported,asset.lods.front(),history.value());});
-    FixtureState original;EditHistory<FixtureState> settings(original);auto next=original;next.exposure=1;next.yaw=1.2f;const auto accept=[](const FixtureState&){};
+    FixtureState original;EditHistory<FixtureState> settings(original);auto next=original;next.exposure=1;next.yaw=1.2f;next.viewOffset={1.25f,-.5f,2};const auto accept=[](const FixtureState&){};
     settings.apply(next,accept);saveInspection(root/"inspection.json",settings.value());FixtureState loaded;loadInspection(root/"inspection.json",loaded);require(loaded==next,"Saved inspection reproduces all fields");
+    auto legacy=readDocument(root/"inspection.json","engine.inspection");legacy.erase("view_offset");writeDocument(root/"legacy-inspection.json","engine.inspection",legacy);FixtureState old;loadInspection(root/"legacy-inspection.json",old);require(old.viewOffset==PhysicsVector{},"Older inspection files receive a centered view");
     settings.undo(accept);require(settings.value()==original,"Inspection command undo");settings.redo(accept);require(settings.value()==next,"Inspection command redo");
     {std::ofstream f(root/"bad-inspection.json");f<<"{}";}rejects([&]{loadInspection(root/"bad-inspection.json",loaded);});require(loaded==next,"Invalid reload preserves settings");
     physics.remove(body);require(physics.size()==0,"Collision unload releases body");

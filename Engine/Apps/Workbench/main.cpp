@@ -3,6 +3,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include "Core/FixtureState.h"
+#include "Core/SceneCameraControls.h"
 #include "Runtime/InspectionDocument.h"
 #include "Rendering/TextureStore.h"
 #include "Rendering/TextureChecks.h"
@@ -32,13 +33,14 @@
 #include "Tools/InspectionWorkbench.h"
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
-        if ((arg=="--rock-library" || arg=="--capture-rock" || arg=="--world-profile" || arg=="--terrain" || arg=="--stream-rock" || arg=="--constraints" || arg=="--verify-stream" || arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
-            if(arg=="--rock-library")options.rockLibrary=argv[++i];
+        if ((arg=="--verify-camera" || arg=="--rock-library" || arg=="--capture-rock" || arg=="--world-profile" || arg=="--terrain" || arg=="--stream-rock" || arg=="--constraints" || arg=="--verify-stream" || arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
+            if(arg=="--verify-camera"){options.cameraVerify=true;options.verify=argv[++i];}
+            else if(arg=="--rock-library")options.rockLibrary=argv[++i];
             else if(arg=="--capture-rock"){options.captureRock=argv[++i];options.verify=options.captureRock;}
             else if(arg=="--world-profile")options.worldProfile=argv[++i];
             else if(arg=="--terrain")options.terrain=argv[++i];
@@ -58,7 +60,7 @@ Options parse(int argc,char** argv) {
             else if (arg=="--save-bindings") options.saveBindings=argv[++i];
             else options.shaders=argv[++i];
         } else if (arg=="--build-info") options.buildInfo=true;
-        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--rock-library directory] [--capture-rock new-directory] [--terrain recipe.json] [--world-profile directory] [--stream-rock recipe.json] [--constraints file.json] [--verify-stream new-directory] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
+        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--rock-library directory] [--capture-rock new-directory] [--verify-camera new-directory] [--terrain recipe.json] [--world-profile directory] [--stream-rock recipe.json] [--constraints file.json] [--verify-stream new-directory] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
     }
     return options;
 }
@@ -125,7 +127,7 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     ImGui::TextUnformatted("Camera");
     ImGui::SliderFloat("Distance",&state.distance,2.5f,simulation.enabled?8.0f:30.0f,"%.1f m");
     ImGui::SliderFloat("Field of view",&state.fieldOfView,30.0f,90.0f,"%.0f deg");
-    if (ImGui::Button("Reset view")) { state.yaw=0.65f; state.pitch=0.28f; state.distance=7.5f; state.fieldOfView=55.0f; }
+    if (ImGui::Button("Reset view")) { state.yaw=0.65f; state.pitch=0.28f; state.distance=7.5f; state.fieldOfView=55.0f; state.viewOffset={}; }
     ImGui::Separator();
     ImGui::Text("%s | %d x %d",renderer.name(),renderer.width(),renderer.height());
     ImGui::Text("Frame interval: %.2f ms",milliseconds);
@@ -134,7 +136,8 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     ImGui::Text("Buffers: %u vertex / %u index",stats->numVertexBuffers,stats->numIndexBuffers);
     ImGui::Text("Textures: %u",stats->numTextures);
     ImGui::Separator();
-    ImGui::TextWrapped("Right drag: orbit  |  Wheel: distance\nTurquoise marker: 1.8 m tall\nTemporary scale and local coordinates");
+    ImGui::TextWrapped("Alt/Option + left drag: orbit\nSpace + left drag or middle drag: pan\nRight drag: orbit | Wheel: zoom | F: recenter");
+    if(!simulation.enabled&&ImGui::Button("Recenter view (F)"))state.viewOffset={};
     if (textures.records && !textures.records->empty() && ImGui::CollapsingHeader("Texture inspection",ImGuiTreeNodeFlags_DefaultOpen)) {
         ImGui::Checkbox("Preview texture",&textures.enabled);
         if (ImGui::BeginCombo("Asset",textures.records->at(size_t(textures.selected)).id.c_str())) {
@@ -176,14 +179,14 @@ int run(Options options) {
     const bool technical=!options.verify.empty();
     const bool captureRock=!options.captureRock.empty();
     if((captureRock||!options.rockLibrary.empty())&&options.rock.empty())throw std::runtime_error("Rock capture/library requires --rock");
-    const bool verify=technical && !options.lightingVerify && !options.animationVerify && !options.rockVerify && !options.streamVerify && !captureRock;
+    const bool verify=technical && !options.lightingVerify && !options.animationVerify && !options.rockVerify && !options.streamVerify && !captureRock && !options.cameraVerify;
     const bool rockVerify=options.rockVerify,streamVerify=options.streamVerify;
     if(streamVerify&&options.terrain.empty())throw std::runtime_error("Stream verification requires --terrain");
     if(!options.terrain.empty()&&!options.rock.empty())throw std::runtime_error("Choose terrain streaming or the single-rock workbench");
     if(rockVerify&&options.rock.empty())throw std::runtime_error("Rock verification requires --rock");
     const bool animationVerify=options.animationVerify;
     if(animationVerify && options.model.empty())throw std::runtime_error("Animation verification requires --model");
-    if(int(options.animationVerify)+int(options.lightingVerify)+int(options.rockVerify)+int(options.streamVerify)+int(captureRock)>1)throw std::runtime_error("Choose one verification mode");
+    if(int(options.animationVerify)+int(options.lightingVerify)+int(options.rockVerify)+int(options.streamVerify)+int(captureRock)+int(options.cameraVerify)>1)throw std::runtime_error("Choose one verification mode");
     const bool lightingVerify=options.lightingVerify;
     if (technical) {
         if (std::filesystem::exists(options.verify)) throw std::runtime_error("Verification output exists; choose a new directory");
@@ -257,6 +260,7 @@ int run(Options options) {
     engine::Actions actions;
     if(!options.bindings.empty()) engine::loadBindings(options.bindings,actions);
     engine::ActionInput actionInput(actions);
+    engine::SceneCameraControls sceneCamera;
     SimulationControls simulation;
     engine::CalibrationRuntime runtime(modelData,worldSession?worldSession->initial().player:engine::PlayerSnapshot{});
     std::unique_ptr<engine::RockWorkbench> rock;
@@ -281,6 +285,8 @@ int run(Options options) {
     std::unique_ptr<engine::Audio> audio;bool audioAttempted=false;
     bool clicked=false,orbited=false,resized=false,closed=false;
     unsigned baselineBuffers=0,finalBuffers=0;
+    const auto cameraBaseline=state;engine::FixtureState cameraOrbit,cameraPan;
+    std::array<bool,4> cameraChecks{};
     {
         UIContext context(window.get());
         engine::InspectorRenderer ui;
@@ -291,12 +297,12 @@ int run(Options options) {
         for (unsigned frame=0;running;++frame) {
             if (technical && frame>530) throw std::runtime_error("Verification exceeded frame limit");
             SDL_Event event;
-            float dx=0,dy=0,wheel=0;bool saveRequested=false,removeRequested=false;
+            float dx=0,dy=0,gameDx=0,gameDy=0,wheel=0;bool saveRequested=false,removeRequested=false;
             while (SDL_PollEvent(&event)) {
                 ImGui_ImplSDL3_ProcessEvent(&event);
                 actionInput.event(event);
                 if (event.type==SDL_EVENT_QUIT || event.type==SDL_EVENT_WINDOW_CLOSE_REQUESTED) { running=false; closed=true; }
-                if (event.type==SDL_EVENT_MOUSE_MOTION && (event.motion.state & SDL_BUTTON_RMASK)) { dx+=event.motion.xrel; dy+=event.motion.yrel; }
+                if (event.type==SDL_EVENT_MOUSE_MOTION) { dx+=event.motion.xrel; dy+=event.motion.yrel;if(event.motion.state&SDL_BUTTON_RMASK){gameDx+=event.motion.xrel;gameDy+=event.motion.yrel;} }
                 if (event.type==SDL_EVENT_MOUSE_WHEEL) wheel+=event.wheel.y;
                 if (event.type==SDL_EVENT_KEY_DOWN && event.key.key==SDLK_F5 && !event.key.repeat && !ImGui::GetIO().WantCaptureKeyboard)saveRequested=true;
                 if (event.type==SDL_EVENT_KEY_DOWN && event.key.key==SDLK_ESCAPE && !ImGui::GetIO().WantCaptureKeyboard) running=false;
@@ -314,11 +320,36 @@ int run(Options options) {
                 if (frame==36) io.AddMouseButtonEvent(0,true);
                 if (frame==37) io.AddMouseButtonEvent(0,false);
                 if (frame==65) io.AddMousePosEvent(800,300);
+                if (frame==65) io.AddMouseButtonEvent(1,true);
+                if (frame==69) io.AddMouseButtonEvent(1,false);
+            }
+            if(options.cameraVerify){
+                io.AddFocusEvent(true);io.AddMousePosEvent(560,300);
+                if(frame==12)io.AddKeyEvent(ImGuiMod_Alt,true);
+                if(frame==14||frame==27)io.AddMouseButtonEvent(0,true);
+                if(frame==18||frame==31)io.AddMouseButtonEvent(0,false);
+                if(frame==19)io.AddKeyEvent(ImGuiMod_Alt,false);
+                if(frame==25)io.AddKeyEvent(ImGuiKey_Space,true);
+                if(frame==32)io.AddKeyEvent(ImGuiKey_Space,false);
+                if(frame==38)io.AddMouseButtonEvent(2,true);
+                if(frame==42)io.AddMouseButtonEvent(2,false);
+                if(frame==48)io.AddKeyEvent(ImGuiKey_F,true);
+                if(frame==50)io.AddKeyEvent(ImGuiKey_F,false);
             }
             ImGui::NewFrame();
             const auto now=std::chrono::steady_clock::now();
             const float milliseconds=std::chrono::duration<float,std::milli>(now-last).count(); last=now;
-            state.orbit(dx,dy,io.WantCaptureMouse); state.zoom(wheel,io.WantCaptureMouse);
+            const bool cameraFocused=technical||(SDL_GetWindowFlags(window.get())&SDL_WINDOW_INPUT_FOCUS);
+            // Idle keyboard-navigation focus must not swallow the first viewport drag.
+            const bool sceneKeyboardCaptured=io.WantCaptureKeyboard&&(io.WantTextInput||ImGui::IsAnyItemActive());
+            const auto drag=sceneCamera.update(io.MouseDown[0],io.MouseDown[2],io.MouseDown[1],io.KeyAlt,ImGui::IsKeyDown(ImGuiKey_Space),io.WantCaptureMouse,sceneKeyboardCaptured,cameraFocused&&!simulation.enabled);
+            if(simulation.enabled)state.orbit(gameDx,gameDy,io.WantCaptureMouse||!cameraFocused);
+            else {
+                if(drag==engine::SceneDrag::Orbit)state.orbit(dx,dy,false);
+                if(drag==engine::SceneDrag::Pan){int logicalWidth=0,logicalHeight=0;SDL_GetWindowSize(window.get(),&logicalWidth,&logicalHeight);state.pan(dx,dy,float(logicalHeight),false);}
+                if(cameraFocused&&!io.WantCaptureKeyboard&&ImGui::IsKeyPressed(ImGuiKey_F,false))state.viewOffset={};
+            }
+            state.zoom(wheel,io.WantCaptureMouse||!cameraFocused);
             if (verify && frame==155) state=engine::geometryProofState();
             if (verify && frame==230) state.mesh=2;
             if (verify && frame>=350 && !records.empty()) {
@@ -493,6 +524,22 @@ int run(Options options) {
                 }
                 if(frame==125) running=false;
             }
+            if(options.cameraVerify){
+                // Exercise the production SDL motion -> ImGui gesture -> scene state path.
+                if(frame==15||frame==28||frame==39){
+                    SDL_Event motion{};motion.type=SDL_EVENT_MOUSE_MOTION;motion.motion.windowID=SDL_GetWindowID(window.get());
+                    motion.motion.x=560;motion.motion.y=300;motion.motion.xrel=40;motion.motion.yrel=20;
+                    if(!SDL_PushEvent(&motion))throw std::runtime_error("Cannot inject camera motion");
+                }
+                const char* capture=nullptr;
+                if(frame==10)capture="baseline.png";
+                if(frame==22){cameraOrbit=state;cameraChecks[0]=std::abs(state.yaw-cameraBaseline.yaw)>.1f&&state.viewOffset==cameraBaseline.viewOffset;capture="orbit.png";}
+                if(frame==35){cameraPan=state;cameraChecks[1]=state.yaw==cameraOrbit.yaw&&state.pitch==cameraOrbit.pitch&&state.distance==cameraOrbit.distance&&state.viewOffset!=cameraOrbit.viewOffset;capture="space-pan.png";}
+                if(frame==45){cameraChecks[2]=state.yaw==cameraPan.yaw&&state.pitch==cameraPan.pitch&&state.distance==cameraPan.distance&&state.viewOffset!=cameraPan.viewOffset;capture="middle-pan.png";}
+                if(frame==53){cameraChecks[3]=state.viewOffset==std::array<float,3>{}&&state.yaw==cameraPan.yaw;capture="recenter.png";}
+                if(capture)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/capture).string().c_str());
+                if(frame==60)running=false;
+            }
             if(captureRock){
                 if(frame==20){
                     engine::saveRockResult(options.captureRock/"export",rock->asset().lods.front(),rock->recipe());
@@ -521,6 +568,11 @@ int run(Options options) {
     streaming.reset();rock.reset();renderModel.reset();animation.reset();
     renderer.stop();
     if (!options.saveInspection.empty()) engine::saveInspection(options.saveInspection,state);
+    if(options.cameraVerify){
+        const bool passed=std::all_of(cameraChecks.begin(),cameraChecks.end(),[](bool value){return value;})&&renderer.callbacks.captures==5&&renderer.callbacks.errors==0;
+        engine::writeDocument(options.verify/"camera.json","engine.scene-camera-verification",{{"passed",passed},{"backend",backend},{"alt_left_orbit",cameraChecks[0]},{"space_left_pan",cameraChecks[1]},{"middle_pan",cameraChecks[2]},{"recenter",cameraChecks[3]},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"simulation_advanced",false}});
+        if(!passed)throw std::runtime_error("Scene camera input verification failed");
+    }
     if(captureRock){
         const bool passed=renderer.callbacks.captures==1&&renderer.callbacks.errors==0;
         engine::writeDocument(options.captureRock/"result.json","engine.rock-capture",{{"passed",passed},{"backend",backend},{"real_surfaces",materialAvailable},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"recipe",options.rock.string()},{"simulation_advanced",false}});

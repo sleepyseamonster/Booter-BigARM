@@ -11,7 +11,7 @@ The local package is `Engine/out/rock-generator/`. Double-click **Launch-Rock-Ge
 The launcher creates `UserData/rock.json` from the bundled example only on first use. Later launches preserve that file. Camera/lighting settings load from `UserData/inspection.json` when present and save on normal exit. The verifier removed only its own newly created UserData after checking the package, leaving the delivered package ready for a fresh first launch.
 
 1. Edit seed, radii, detail, irregularity or bands, then select **Apply recipe**.
-2. Right-drag to orbit; use the wheel to zoom. The left inspector controls lighting and materials.
+2. Alt/Option + left-drag or right-drag to orbit; Space + left-drag or middle-drag to pan; wheel to zoom; F to recenter. The left inspector controls lighting and materials.
 3. **Undo/Redo** restores accepted recipe states. **Save recipe** writes the accepted recipe; **Reload** reads the displayed file. Unsaved recipe edits do not survive exit.
 4. Choose a new **Export directory**, then **Export rock**. The default is `UserData/Exports/rock-001`; choose another name for later exports.
 

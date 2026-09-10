@@ -5,7 +5,7 @@
 namespace engine {
 namespace {
 Json encode(const FixtureState& s) {
-    return {{"yaw",s.yaw},{"pitch",s.pitch},{"distance",s.distance},{"fov",s.fieldOfView},
+    return {{"yaw",s.yaw},{"pitch",s.pitch},{"distance",s.distance},{"fov",s.fieldOfView},{"view_offset",s.viewOffset},
         {"object_yaw",s.objectYaw},{"mesh",s.mesh},{"scale",s.objectScale},{"normals",s.showNormals},
         {"color_srgb",s.color},{"light_azimuth",s.lightAzimuth},{"light_intensity",s.lightIntensity},{"exposure",s.exposure},
         {"lighting",{{"shadows",s.shadows},{"shadow_bias",s.shadowBias},{"roughness",s.roughness},{"metallic",s.metallic},
@@ -20,6 +20,7 @@ void validate(const FixtureState& s) {
     range(s.normalStrength,0,2);range(s.textureScale,.1f,8);range(s.ambient,0,1);
     for (float v:s.color) range(v,0,1);
     for (float v:s.objectScale) range(v,.2f,3);
+    for(float v:s.viewOffset)range(v,-4096,4096);
     if (s.mesh<0 || s.mesh>2) throw std::runtime_error("Unknown inspection mesh");
 }
 }
@@ -32,6 +33,7 @@ void loadInspection(const std::filesystem::path& path,FixtureState& state) {
     const auto expected=encode(next);
     // Additive v1 extension: old inspection documents receive explicit defaults.
     if (!p.contains("lighting")) p["lighting"]=expected.at("lighting");
+    if (!p.contains("view_offset")) p["view_offset"]=expected.at("view_offset");
     if (p.size()!=expected.size()) throw std::runtime_error("Inspection fields differ from schema");
     for (const auto& [key,value]:expected.items()) {
         const auto& input=p.at(key);
@@ -49,6 +51,7 @@ void loadInspection(const std::filesystem::path& path,FixtureState& state) {
     if (p.at("mesh")<0 || p.at("mesh")>2) throw std::runtime_error("Unknown inspection mesh");
     next.mesh=p.at("mesh"); next.objectScale=triple("scale"); next.showNormals=p.at("normals");
     next.color=triple("color_srgb"); next.lightAzimuth=p.at("light_azimuth"); next.lightIntensity=p.at("light_intensity");
+    next.viewOffset=triple("view_offset");
     next.exposure=p.at("exposure");
     const auto& lighting=p.at("lighting");
     const auto& defaults=expected.at("lighting");

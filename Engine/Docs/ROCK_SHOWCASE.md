@@ -2,7 +2,7 @@
 
 Created in the native generator on 2026-09-10 at the user's request for better-looking rocks. These are actual Metal workbench renders using our existing rock and ground textures.
 
-Open `Engine/out/rock-showcase-v2/Launch-Rock-Generator.command`. Choose **Rock preset** in the right-hand panel to switch between the examples. Right-drag to orbit; scroll to zoom. Change the seed or dimensions, **Apply recipe**, and **Save recipe** to keep the accepted result in your working copy. The source presets remain intact. **Undo/Redo** and **Export rock** use the same generated meshes as the preview.
+Open `Engine/out/rock-showcase-camera/Launch-Rock-Generator.command`. Choose **Rock preset** in the right-hand panel to switch between the examples. Alt/Option + left-drag or right-drag to orbit; Space + left-drag or middle-drag to pan; scroll to zoom; F to recenter. Change the seed or dimensions, **Apply recipe**, and **Save recipe** to keep the accepted result in your working copy. The source presets remain intact. **Undo/Redo** and **Export rock** use the same generated meshes as the preview.
 
 ## Weathered boulder
 

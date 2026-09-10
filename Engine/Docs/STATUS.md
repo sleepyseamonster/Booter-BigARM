@@ -1,6 +1,6 @@
 # Current Engine Handoff
 
-**Latest user-directed work (2026-09-10):** [three improved native rock presets](./ROCK_SHOWCASE.md) are generated, rendered, exported and packaged at `out/rock-showcase-v2/`. The user redirected attention from origin shifting to making rocks look better. P21 world persistence remains complete as a first pass; P22 and other foundation packages remain planned. No origin-shift or gameplay expansion was started in this art pass.
+**Latest user-directed work (2026-09-10):** [editor-style scene camera controls](./SCENE_CAMERA_CONTROLS.md) add Alt/Option + left-drag orbit, Space + left-drag or middle-drag pan, and F to recenter. The updated rock generator is packaged at `out/rock-showcase-camera/`. The [three native rock presets](./ROCK_SHOWCASE.md) remain available. P21 remains complete as a first pass; P22 and other foundation packages remain planned. No origin-shift or gameplay expansion was started.
 
 Updated 2026-09-10, America/Phoenix. The first-pass shared document/identity foundation (P01) and linear HDR/display pipeline (P02) are implemented and technically verified on the current Mac. Portable builds (P07) are complete on Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
 

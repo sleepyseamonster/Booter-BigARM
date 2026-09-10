@@ -93,7 +93,7 @@ def main():
 Open **Launch-Rock-Generator.command** on Mac (the .cmd launcher is for a future native Windows package). Keep the package in a writable folder. No Unity installation or source checkout is needed.
 
 1. Change the seed, radii, detail, irregularity or bands, then select **Apply recipe**.
-2. Right-drag to orbit; use the wheel to zoom. Lighting/material controls are in the left inspector.
+2. Alt/Option + left-drag or right-drag to orbit; Space + left-drag or middle-drag to pan; wheel to zoom; F to recenter. Lighting/material controls are in the left inspector.
 3. **Undo/Redo** restores accepted recipes. **Save recipe** saves the accepted recipe; **Reload** reads the displayed file.
 4. Choose a new **Export directory**, then **Export rock** to write the accepted mesh, normals, bounds, triangle surface classes and recipe in the engine format.
 

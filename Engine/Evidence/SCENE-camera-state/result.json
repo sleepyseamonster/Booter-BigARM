@@ -1,0 +1,46 @@
+{
+  "command": [
+    "build/foundation/engine_state_tests"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/Docs/ROCK_GENERATOR_MILESTONE.md",
+    " M Engine/Docs/ROCK_SHOWCASE.md",
+    " M Engine/Docs/RUN_FOUNDATION.md",
+    " M Engine/Source/Core/FixtureState.cpp",
+    " M Engine/Source/Core/FixtureState.h",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Runtime/InspectionDocument.cpp",
+    " M Engine/Source/Tools/InspectionWorkbench.cpp",
+    " M Engine/Source/Tools/InspectionWorkbench.h",
+    " M Engine/Source/Tools/RockWorkbench.cpp",
+    " M Engine/Tests/FixtureStateTests.cpp",
+    " M Engine/Tests/RockWorkbenchTests.cpp",
+    " M Engine/Tools/package_workbench.py",
+    "?? Engine/Evidence/SCENE-camera-documents/",
+    "?? Engine/Source/Core/SceneCameraControls.h",
+    "?? Engine/Source/Tools/EngineMenu.h",
+    "?? Engine/UIUX/"
+  ],
+  "duration_seconds": 0.365,
+  "exit_code": 0,
+  "git_head": "08ba31e68d65360db43eb3eabfaedcaef96d4894",
+  "input_sha256_after": {
+    "Source/Core/FixtureState.cpp": "e8436a42c0942acfead84f04adcf1aab1f969f97dc2af938a01d143ede69ca4e",
+    "Source/Core/SceneCameraControls.h": "93e4e145d4aa6cb09842694ac8ab3e64c6bfe5f29e2b1727e2a6aa925d138703",
+    "Tests/FixtureStateTests.cpp": "6f584430df7f90fc211e4ed21b6ce0c6317a5f758968b55f58455c838453f6ed"
+  },
+  "input_sha256_before": {
+    "Source/Core/FixtureState.cpp": "e8436a42c0942acfead84f04adcf1aab1f969f97dc2af938a01d143ede69ca4e",
+    "Source/Core/SceneCameraControls.h": "93e4e145d4aa6cb09842694ac8ab3e64c6bfe5f29e2b1727e2a6aa925d138703",
+    "Tests/FixtureStateTests.cpp": "6f584430df7f90fc211e4ed21b6ce0c6317a5f758968b55f58455c838453f6ed"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "9baa4c700a06bd653041933f7900dcd6728e8e5934f9794d40805d8fa8b21622",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T22:09:04.471393+00:00",
+  "timeout_seconds": 60.0
+}
