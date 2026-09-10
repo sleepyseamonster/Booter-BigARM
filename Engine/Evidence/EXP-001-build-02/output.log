@@ -1,0 +1,194 @@
+-- 
+-- SDL3 was configured with the following options:
+-- 
+-- Platform: Darwin-25.5.0
+-- 64-bit:   TRUE
+-- Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc
+-- Revision: SDL-3.4.16-HEAD-HASH-NOTFOUND
+-- Vendor:   
+-- 
+-- Subsystems:
+--   Audio:    ON
+--   Video:    ON
+--   GPU:      ON
+--   Render:   ON
+--   Camera:   ON
+--   Joystick: ON
+--   Haptic:   ON
+--   Hidapi:   ON
+--   Power:    ON
+--   Sensor:   ON
+--   Dialog:   ON
+--   Tray:     ON
+-- 
+-- Options:
+--   SDL_ALSA                    (Wanted: OFF): OFF
+--   SDL_ALSA_SHARED             (Wanted: OFF): OFF
+--   SDL_ALTIVEC                 (Wanted: OFF): OFF
+--   SDL_ARMNEON                 (Wanted: ON): ON
+--   SDL_ASAN                    (Wanted: OFF): OFF
+--   SDL_ASSEMBLY                (Wanted: ON): ON
+--   SDL_ASSERTIONS              (Wanted: auto): auto
+--   SDL_AVX                     (Wanted: OFF): OFF
+--   SDL_AVX2                    (Wanted: OFF): OFF
+--   SDL_AVX512F                 (Wanted: OFF): OFF
+--   SDL_BACKGROUNDING_SIGNAL    (Wanted: OFF): OFF
+--   SDL_CCACHE                  (Wanted: OFF): OFF
+--   SDL_CLANG_TIDY              (Wanted: OFF): OFF
+--   SDL_CLOCK_GETTIME           (Wanted: OFF): OFF
+--   SDL_COCOA                   (Wanted: ON): ON
+--   SDL_DBUS                    (Wanted: OFF): OFF
+--   SDL_DEPS_SHARED             (Wanted: ON): OFF
+--   SDL_DIRECTX                 (Wanted: OFF): OFF
+--   SDL_DISKAUDIO               (Wanted: ON): ON
+--   SDL_DLOPEN_NOTES            (Wanted: OFF): OFF
+--   SDL_DUMMYAUDIO              (Wanted: ON): ON
+--   SDL_DUMMYCAMERA             (Wanted: ON): ON
+--   SDL_DUMMYVIDEO              (Wanted: ON): ON
+--   SDL_EXAMPLES                (Wanted: OFF): OFF
+--   SDL_EXAMPLES_LINK_SHARED    (Wanted: OFF): OFF
+--   SDL_FOREGROUNDING_SIGNAL    (Wanted: OFF): OFF
+--   SDL_FRIBIDI                 (Wanted: OFF): OFF
+--   SDL_FRIBIDI_SHARED          (Wanted: OFF): OFF
+--   SDL_GCC_ATOMICS             (Wanted: ON): ON
+--   SDL_HIDAPI                  (Wanted: ON): ON
+--   SDL_HIDAPI_JOYSTICK         (Wanted: ON): ON
+--   SDL_HIDAPI_LIBUSB           (Wanted: ON): ON
+--   SDL_HIDAPI_LIBUSB_SHARED    (Wanted: ON): ON
+--   SDL_IBUS                    (Wanted: OFF): OFF
+--   SDL_INSTALL                 (Wanted: OFF): OFF
+--   SDL_INSTALL_TESTS           (Wanted: OFF): OFF
+--   SDL_JACK                    (Wanted: OFF): OFF
+--   SDL_JACK_SHARED             (Wanted: OFF): OFF
+--   SDL_KMSDRM                  (Wanted: OFF): OFF
+--   SDL_KMSDRM_SHARED           (Wanted: OFF): OFF
+--   SDL_LASX                    (Wanted: OFF): OFF
+--   SDL_LIBC                    (Wanted: ON): ON
+--   SDL_LIBICONV                (Wanted: OFF): OFF
+--   SDL_LIBTHAI                 (Wanted: OFF): OFF
+--   SDL_LIBTHAI_SHARED          (Wanted: OFF): OFF
+--   SDL_LIBUDEV                 (Wanted: ON): OFF
+--   SDL_LIBURING                (Wanted: OFF): OFF
+--   SDL_LSX                     (Wanted: OFF): OFF
+--   SDL_METAL                   (Wanted: ON): ON
+--   SDL_MMX                     (Wanted: OFF): OFF
+--   SDL_OFFSCREEN               (Wanted: ON): ON
+--   SDL_OPENGL                  (Wanted: ON): ON
+--   SDL_OPENGLES                (Wanted: ON): ON
+--   SDL_OPENVR                  (Wanted: OFF): OFF
+--   SDL_OSS                     (Wanted: OFF): OFF
+--   SDL_PIPEWIRE                (Wanted: OFF): OFF
+--   SDL_PIPEWIRE_SHARED         (Wanted: OFF): OFF
+--   SDL_PTHREADS                (Wanted: ON): ON
+--   SDL_PTHREADS_SEM            (Wanted: ON): ON
+--   SDL_PULSEAUDIO              (Wanted: OFF): OFF
+--   SDL_PULSEAUDIO_SHARED       (Wanted: OFF): OFF
+--   SDL_RENDER_D3D              (Wanted: OFF): OFF
+--   SDL_RENDER_D3D11            (Wanted: OFF): OFF
+--   SDL_RENDER_D3D12            (Wanted: OFF): OFF
+--   SDL_RENDER_GPU              (Wanted: ON): ON
+--   SDL_RENDER_METAL            (Wanted: ON): ON
+--   SDL_RENDER_VULKAN           (Wanted: ON): ON
+--   SDL_ROCKCHIP                (Wanted: OFF): OFF
+--   SDL_RPATH                   (Wanted: ON): OFF
+--   SDL_RPI                     (Wanted: OFF): OFF
+--   SDL_SNDIO                   (Wanted: OFF): OFF
+--   SDL_SNDIO_SHARED            (Wanted: OFF): OFF
+--   SDL_SSE                     (Wanted: OFF): OFF
+--   SDL_SSE2                    (Wanted: OFF): OFF
+--   SDL_SSE3                    (Wanted: OFF): OFF
+--   SDL_SSE4_1                  (Wanted: OFF): OFF
+--   SDL_SSE4_2                  (Wanted: OFF): OFF
+--   SDL_SYSTEM_ICONV            (Wanted: OFF): OFF
+--   SDL_TESTS                   (Wanted: OFF): OFF
+--   SDL_TESTS_LINK_SHARED       (Wanted: OFF): OFF
+--   SDL_UNINSTALL               (Wanted: OFF): OFF
+--   SDL_VIRTUAL_JOYSTICK        (Wanted: ON): ON
+--   SDL_VIVANTE                 (Wanted: OFF): OFF
+--   SDL_VULKAN                  (Wanted: ON): ON
+--   SDL_WASAPI                  (Wanted: OFF): OFF
+--   SDL_WAYLAND                 (Wanted: OFF): OFF
+--   SDL_WAYLAND_LIBDECOR        (Wanted: OFF): OFF
+--   SDL_WAYLAND_LIBDECOR_SHARED (Wanted: OFF): OFF
+--   SDL_WAYLAND_SHARED          (Wanted: OFF): OFF
+--   SDL_X11                     (Wanted: OFF): OFF
+--   SDL_X11_SHARED              (Wanted: OFF): OFF
+--   SDL_X11_XCURSOR             (Wanted: OFF): OFF
+--   SDL_X11_XDBE                (Wanted: OFF): OFF
+--   SDL_X11_XFIXES              (Wanted: OFF): OFF
+--   SDL_X11_XINPUT              (Wanted: OFF): OFF
+--   SDL_X11_XRANDR              (Wanted: OFF): OFF
+--   SDL_X11_XSCRNSAVER          (Wanted: OFF): OFF
+--   SDL_X11_XSHAPE              (Wanted: OFF): OFF
+--   SDL_X11_XSYNC               (Wanted: OFF): OFF
+--   SDL_X11_XTEST               (Wanted: OFF): OFF
+--   SDL_XINPUT                  (Wanted: OFF): OFF
+-- 
+--  Build Shared Library: OFF
+--  Build Static Library: ON
+--  Build libraries as Apple Framework: OFF
+-- 
+-- Enabled backends:
+--   Video drivers: cocoa dummy offscreen
+--   Render drivers: gpu metal ogl ogl_es2 vulkan
+--   GPU drivers: metal vulkan
+--   Audio drivers: coreaudio disk dummy
+--   Joystick drivers: hidapi iokit mfi virtual
+--   Camera drivers: coremedia dummy
+-- 
+-- If something was not detected, although the libraries
+-- were installed, then make sure you have set the
+-- CMAKE_C_FLAGS and CMAKE_PREFIX_PATH CMake variables correctly.
+-- 
+-- Configuring done (0.3s)
+-- Generating done (0.3s)
+-- Build files have been written to: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/.cache/probe-build
+[  7%] Built target bx
+[  7%] Building C object bgfx/cmake/bimg/CMakeFiles/bimg_decode.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/tinyexr/deps/miniz/miniz.c.o
+[  7%] Building CXX object CMakeFiles/probe_imgui.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bgfx/3rdparty/dear-imgui/imgui.cpp.o
+[  7%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_averages_and_directions.cpp.o
+[ 72%] Built target SDL3-static
+[ 72%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg_decode.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/src/image_decode.cpp.o
+[ 72%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg_decode.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/src/image_decode_wic.cpp.o
+[ 73%] Building CXX object CMakeFiles/probe_imgui.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bgfx/3rdparty/dear-imgui/imgui_draw.cpp.o
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/.cache/probe-sources/bgfx/3rdparty/dear-imgui/imgui_draw.cpp:136:
+/Users/worldbuilder/Desktop/Booter & BigARM/Engine/.cache/probe-sources/bgfx/3rdparty/dear-imgui/imstb_rectpack.h:1:10: fatal error: 'stb/stb_rect_pack.h' file not found
+    1 | #include <stb/stb_rect_pack.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+make[2]: *** [CMakeFiles/probe_imgui.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bgfx/3rdparty/dear-imgui/imgui_draw.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+[ 74%] Building C object bgfx/cmake/bimg/CMakeFiles/bimg_decode.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/dav1d/dav1d-amalgamated.c.o
+[ 75%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_block_sizes.cpp.o
+[ 75%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_color_quantize.cpp.o
+[ 75%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_color_unquantize.cpp.o
+make[1]: *** [CMakeFiles/probe_imgui.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[ 75%] Building C object bgfx/cmake/bimg/CMakeFiles/bimg_decode.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/dav1d/dav1d-bitdepth-8.c.o
+[ 75%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_compress_symbolic.cpp.o
+[ 75%] Building C object bgfx/cmake/bimg/CMakeFiles/bimg_decode.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/dav1d/dav1d-bitdepth-16.c.o
+[ 76%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_compute_variance.cpp.o
+[ 76%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_decompress_symbolic.cpp.o
+[ 77%] Building C object bgfx/cmake/bimg/CMakeFiles/bimg_decode.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/libavif/libavif-amalgamated.c.o
+[ 77%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_diagnostic_trace.cpp.o
+[ 78%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_entry.cpp.o
+[ 78%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_find_best_partitioning.cpp.o
+[ 78%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_ideal_endpoints_and_weights.cpp.o
+[ 78%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_image.cpp.o
+[ 79%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_integer_sequence.cpp.o
+[ 79%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_mathlib.cpp.o
+[ 79%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_mathlib_softfloat.cpp.o
+[ 79%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_partition_tables.cpp.o
+[ 80%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_percentile_tables.cpp.o
+[ 80%] Linking CXX static library libbimg_decode.a
+[ 80%] Built target bimg_decode
+[ 80%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_pick_best_endpoint_format.cpp.o
+[ 80%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_quantization.cpp.o
+[ 80%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_symbolic_physical.cpp.o
+[ 81%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_weight_align.cpp.o
+[ 81%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/astc-encoder/source/astcenc_weight_quant_xfer_tables.cpp.o
+[ 81%] Building C object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/3rdparty/tinyexr/deps/miniz/miniz.c.o
+[ 81%] Building CXX object bgfx/cmake/bimg/CMakeFiles/bimg.dir/Users/worldbuilder/Desktop/Booter_&_BigARM/Engine/.cache/probe-sources/bimg/src/image.cpp.o
+[ 82%] Linking CXX static library libbimg.a
+[ 82%] Built target bimg
+make: *** [all] Error 2

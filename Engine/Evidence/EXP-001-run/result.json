@@ -1,0 +1,48 @@
+{
+  "command": [
+    "ctest",
+    "--test-dir",
+    ".cache/probe-build",
+    "-C",
+    "Release",
+    "--output-on-failure",
+    "-V"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/.gitignore",
+    " M Engine/AGENTS.md",
+    " M Engine/Docs/DIRECTION.md",
+    "?? Engine/Docs/ARCHITECTURE.md",
+    "?? Engine/Docs/DECISIONS.md",
+    "?? Engine/Docs/FOUNDATION_PLAN.md",
+    "?? Engine/Docs/REQUIREMENTS.md",
+    "?? Engine/Evidence/",
+    "?? Engine/References/",
+    "?? Engine/Research/",
+    "?? Engine/SOPs/",
+    "?? Engine/Tools/"
+  ],
+  "duration_seconds": 1.12,
+  "exit_code": 0,
+  "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+  "input_sha256_after": {
+    ".cache/probe-build/integration_probe": "e407da2e0252c5d58ff2db189e8411a742ebc58cffe49a23bfdd3f1e7854efa7",
+    "Research/Experiments/IntegrationProbe/CMakeLists.txt": "e7ea6df68159ea6e97c95a1ec316983aeec166e57fc414c6dfd16317b68258fc",
+    "Research/Experiments/IntegrationProbe/main.cpp": "fc772609a6ee8dadbda31177ed8f0d7f1c90289cdfda3195cf715e957aab256f",
+    "Research/probe-lock.json": "6b65f60e3afcf8798480b565ab9ec27664a914b589c311250354500b66fef060"
+  },
+  "input_sha256_before": {
+    ".cache/probe-build/integration_probe": "e407da2e0252c5d58ff2db189e8411a742ebc58cffe49a23bfdd3f1e7854efa7",
+    "Research/Experiments/IntegrationProbe/CMakeLists.txt": "e7ea6df68159ea6e97c95a1ec316983aeec166e57fc414c6dfd16317b68258fc",
+    "Research/Experiments/IntegrationProbe/main.cpp": "fc772609a6ee8dadbda31177ed8f0d7f1c90289cdfda3195cf715e957aab256f",
+    "Research/probe-lock.json": "6b65f60e3afcf8798480b565ab9ec27664a914b589c311250354500b66fef060"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "404af28f572e5b88e5b10821550f48f47c4d9db3a250af8a4bee5a3f3ee6c1d7",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T04:51:15.061017+00:00",
+  "timeout_seconds": 60.0
+}

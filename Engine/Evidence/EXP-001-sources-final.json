@@ -1,0 +1,55 @@
+{
+  "lock_sha256": "6b65f60e3afcf8798480b565ab9ec27664a914b589c311250354500b66fef060",
+  "packages": [
+    {
+      "archive_sha256": "d246967187a4f37cc850608dbaf5cff9d1df4d731259903d25539755cdfcc657",
+      "content_tree_sha256": "67dc9b70102bebe7069ca6d41fe805d227a9dbbb9a20f585f6c96174a3fa795e",
+      "file_count": 2194,
+      "name": "sdl",
+      "revision": "fa2c02bb6e21974a89ea9824bc53c9932abe5f9c",
+      "verified": true
+    },
+    {
+      "archive_sha256": "492f73b35485bea634405eade89c92e3a87e49e5c86ab1e0e072249b716ee430",
+      "content_tree_sha256": "1a4cd6e19cf202df2fc5e98f0778030549c7ad60f31ddd7d8c6f01c5fe73fc69",
+      "file_count": 53,
+      "name": "bgfx_cmake",
+      "revision": "7cea9ab17c6dc8745cdc5df992145c514a129abb",
+      "verified": true
+    },
+    {
+      "archive_sha256": "c54ce3a4f0a4903192911e351d3f7b0a3bb6f195b46815f8464f3ceb9e2600d5",
+      "content_tree_sha256": "61b00dc3bcbfbff95c3dea79cb2b65c38c95b0c8c868fec492fca91632b20699",
+      "file_count": 5182,
+      "name": "bgfx",
+      "revision": "9b636df330c81e11c84595651a291b6c59fb7396",
+      "verified": true
+    },
+    {
+      "archive_sha256": "290f736a93960e17f26bc80179c702598231db3b0c34ac0b0f0d8a87ea1ad039",
+      "content_tree_sha256": "668cc698ca0154cb4504f729dad87074340fdb4aa05ad06f0e658fb15cbff40b",
+      "file_count": 356,
+      "name": "bimg",
+      "revision": "ddbeeae05779f84f97694553eb41605a60f86f0a",
+      "verified": true
+    },
+    {
+      "archive_sha256": "1c9cd3b2434904fe24b5079327999912b3ed737b106caf82f6678f1f6026568f",
+      "content_tree_sha256": "115d40d0680d80c225eb221494626b474fb899bc3dd4500935dbd1d7f76b777c",
+      "file_count": 197,
+      "name": "bx",
+      "revision": "98ad3bec2a7ee1a5cbabdcabc25252572dcb1d88",
+      "verified": true
+    },
+    {
+      "archive_sha256": "f30be7f3e2136615b1848a9afb72f6dfd8a60820ddf1c1a85997bf3b722e7cfc",
+      "content_tree_sha256": "6ae8067aae5b47368e5499ea05924b06d84dd819912c2867635dcf5e7ea09022",
+      "file_count": 281,
+      "name": "imgui",
+      "revision": "f1cc2ae15e53a861a874c3034aae6798fde194ab",
+      "verified": true
+    }
+  ],
+  "proof_limit": "Archive/content verification only; not a build or license clearance",
+  "schema_version": 1
+}

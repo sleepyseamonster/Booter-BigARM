@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "scope": "Primary component license copies for the experiment; not complete transitive shipping clearance",
+  "licenses": [
+    {
+      "id": "sdl",
+      "path": "Research/Licenses/sdl.txt",
+      "sha256": "1c040b8271b37e5076359f8fd54240e371114112924d2df81ef87c7d6a1dfdfd"
+    },
+    {
+      "id": "bgfx_cmake",
+      "path": "Research/Licenses/bgfx_cmake.txt",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "id": "bgfx",
+      "path": "Research/Licenses/bgfx.txt",
+      "sha256": "ac2e0d253b1584316a36a0fae1d4407fa3ebcb15f27021ab479b23d27f0c9c08"
+    },
+    {
+      "id": "bx",
+      "path": "Research/Licenses/bx.txt",
+      "sha256": "ac2e0d253b1584316a36a0fae1d4407fa3ebcb15f27021ab479b23d27f0c9c08"
+    },
+    {
+      "id": "bimg",
+      "path": "Research/Licenses/bimg.txt",
+      "sha256": "ac2e0d253b1584316a36a0fae1d4407fa3ebcb15f27021ab479b23d27f0c9c08"
+    },
+    {
+      "id": "imgui",
+      "path": "Research/Licenses/imgui.txt",
+      "sha256": "173506a2d6f7fb67990d257fb2507f188690eca39060c39469ae7bef43aae2a3"
+    }
+  ]
+}

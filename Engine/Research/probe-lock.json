@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "purpose": "EXP-001 bounded native integration probe; not production dependency selection",
+  "packages": [
+    {
+      "name": "sdl",
+      "repo": "libsdl-org/SDL",
+      "revision": "fa2c02bb6e21974a89ea9824bc53c9932abe5f9c",
+      "release": "3.4.16",
+      "url": "https://codeload.github.com/libsdl-org/SDL/tar.gz/fa2c02bb6e21974a89ea9824bc53c9932abe5f9c",
+      "sha256": "d246967187a4f37cc850608dbaf5cff9d1df4d731259903d25539755cdfcc657",
+      "bytes": 15859365
+    },
+    {
+      "name": "bgfx_cmake",
+      "repo": "bkaradzic/bgfx.cmake",
+      "revision": "7cea9ab17c6dc8745cdc5df992145c514a129abb",
+      "url": "https://codeload.github.com/bkaradzic/bgfx.cmake/tar.gz/7cea9ab17c6dc8745cdc5df992145c514a129abb",
+      "sha256": "492f73b35485bea634405eade89c92e3a87e49e5c86ab1e0e072249b716ee430",
+      "bytes": 34504
+    },
+    {
+      "name": "bgfx",
+      "repo": "bkaradzic/bgfx",
+      "revision": "9b636df330c81e11c84595651a291b6c59fb7396",
+      "url": "https://codeload.github.com/bkaradzic/bgfx/tar.gz/9b636df330c81e11c84595651a291b6c59fb7396",
+      "sha256": "c54ce3a4f0a4903192911e351d3f7b0a3bb6f195b46815f8464f3ceb9e2600d5",
+      "bytes": 124548283
+    },
+    {
+      "name": "bimg",
+      "repo": "bkaradzic/bimg",
+      "revision": "ddbeeae05779f84f97694553eb41605a60f86f0a",
+      "url": "https://codeload.github.com/bkaradzic/bimg/tar.gz/ddbeeae05779f84f97694553eb41605a60f86f0a",
+      "sha256": "290f736a93960e17f26bc80179c702598231db3b0c34ac0b0f0d8a87ea1ad039",
+      "bytes": 1500239
+    },
+    {
+      "name": "bx",
+      "repo": "bkaradzic/bx",
+      "revision": "98ad3bec2a7ee1a5cbabdcabc25252572dcb1d88",
+      "url": "https://codeload.github.com/bkaradzic/bx/tar.gz/98ad3bec2a7ee1a5cbabdcabc25252572dcb1d88",
+      "sha256": "1c9cd3b2434904fe24b5079327999912b3ed737b106caf82f6678f1f6026568f",
+      "bytes": 1530066
+    },
+    {
+      "name": "imgui",
+      "repo": "ocornut/imgui",
+      "revision": "f1cc2ae15e53a861a874c3034aae6798fde194ab",
+      "release": "1.92.9b",
+      "url": "https://codeload.github.com/ocornut/imgui/tar.gz/f1cc2ae15e53a861a874c3034aae6798fde194ab",
+      "sha256": "f30be7f3e2136615b1848a9afb72f6dfd8a60820ddf1c1a85997bf3b722e7cfc",
+      "bytes": 2124619
+    }
+  ]
+}

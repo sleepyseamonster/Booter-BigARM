@@ -1,0 +1,40 @@
+{
+  "command": [
+    "cmake",
+    "-S",
+    "Research/Experiments/IntegrationProbe",
+    "-B",
+    ".cache/probe-build",
+    "-DCMAKE_BUILD_TYPE=Release"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/.gitignore",
+    "?? Engine/Docs/ARCHITECTURE.md",
+    "?? Engine/Docs/DECISIONS.md",
+    "?? Engine/Docs/FOUNDATION_PLAN.md",
+    "?? Engine/Docs/REQUIREMENTS.md",
+    "?? Engine/Research/",
+    "?? Engine/Tools/"
+  ],
+  "duration_seconds": 46.246,
+  "exit_code": 0,
+  "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+  "input_sha256_after": {
+    "Research/Experiments/IntegrationProbe/CMakeLists.txt": "18814625386055cc8905875fce3fc279f152d9e36f5ab7c8f6c1cb6f77f17a04",
+    "Research/Experiments/IntegrationProbe/main.cpp": "a3059a83cbb59d36db6f28cee17accac1d56e3d4acc2854ebc7fe7acf89564b3",
+    "Research/probe-lock.json": "c6f8e4f013c7fb82f8472b40fc56a836d37768790deecdaaa4f0095c76f85051"
+  },
+  "input_sha256_before": {
+    "Research/Experiments/IntegrationProbe/CMakeLists.txt": "18814625386055cc8905875fce3fc279f152d9e36f5ab7c8f6c1cb6f77f17a04",
+    "Research/Experiments/IntegrationProbe/main.cpp": "a3059a83cbb59d36db6f28cee17accac1d56e3d4acc2854ebc7fe7acf89564b3",
+    "Research/probe-lock.json": "c6f8e4f013c7fb82f8472b40fc56a836d37768790deecdaaa4f0095c76f85051"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "f44e6f88b718d36e4fa6d2e6e69d9a5587f4a164d94fb73494c315aef0448fbf",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T04:39:14.776329+00:00",
+  "timeout_seconds": 600
+}

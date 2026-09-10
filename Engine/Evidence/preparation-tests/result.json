@@ -1,0 +1,48 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "Tools/tests",
+    "-v"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/.gitignore",
+    "?? Engine/Docs/ARCHITECTURE.md",
+    "?? Engine/Docs/DECISIONS.md",
+    "?? Engine/Docs/FOUNDATION_PLAN.md",
+    "?? Engine/Docs/REQUIREMENTS.md",
+    "?? Engine/Evidence/",
+    "?? Engine/References/",
+    "?? Engine/Research/",
+    "?? Engine/SOPs/",
+    "?? Engine/Tools/"
+  ],
+  "duration_seconds": 0.949,
+  "exit_code": 0,
+  "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+  "input_sha256_after": {
+    "Tools/check_workspace.py": "9369464ac883d7e8e19a1876e0dace4fa3d767552407b59be1919b93e9a4e2b2",
+    "Tools/common.py": "b797fd993a4c30effc3a9a593c7f9b6e61e98b0bc00971c569f6e6c186e35a14",
+    "Tools/prepare_probe.py": "29d555bc12aa12ea9cd4942d2a915d11ae01165cf03eb92cabcf790656e20c6d",
+    "Tools/record.py": "1a6d4e09b6e1e0c41152c98d15046953bb4d8238c0cdf72e2372b8f9308e1529",
+    "Tools/tests/test_preparation.py": "8b8e24efa3438a6fcd6614eb12f2e2c1df9f1d2ddf176b6d89ffa631ce482014"
+  },
+  "input_sha256_before": {
+    "Tools/check_workspace.py": "9369464ac883d7e8e19a1876e0dace4fa3d767552407b59be1919b93e9a4e2b2",
+    "Tools/common.py": "b797fd993a4c30effc3a9a593c7f9b6e61e98b0bc00971c569f6e6c186e35a14",
+    "Tools/prepare_probe.py": "29d555bc12aa12ea9cd4942d2a915d11ae01165cf03eb92cabcf790656e20c6d",
+    "Tools/record.py": "1a6d4e09b6e1e0c41152c98d15046953bb4d8238c0cdf72e2372b8f9308e1529",
+    "Tools/tests/test_preparation.py": "8b8e24efa3438a6fcd6614eb12f2e2c1df9f1d2ddf176b6d89ffa631ce482014"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "097bbdb85dfbcebd40144d40eaf6ba01166a6c51f9ccea177fb5919ad0512fb2",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T04:48:47.498110+00:00",
+  "timeout_seconds": 600
+}

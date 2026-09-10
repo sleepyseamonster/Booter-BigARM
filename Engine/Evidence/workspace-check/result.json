@@ -1,0 +1,45 @@
+{
+  "command": [
+    "python3",
+    "Tools/check_workspace.py"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/.gitignore",
+    " M Engine/AGENTS.md",
+    " M Engine/Docs/DIRECTION.md",
+    " M Engine/Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md",
+    " M Engine/README.md",
+    "?? Engine/.gitattributes",
+    "?? Engine/Docs/ARCHITECTURE.md",
+    "?? Engine/Docs/DECISIONS.md",
+    "?? Engine/Docs/FOUNDATION_PLAN.md",
+    "?? Engine/Docs/REQUIREMENTS.md",
+    "?? Engine/Docs/STATUS.md",
+    "?? Engine/Evidence/",
+    "?? Engine/References/",
+    "?? Engine/Research/",
+    "?? Engine/SOPs/",
+    "?? Engine/Tools/"
+  ],
+  "duration_seconds": 0.076,
+  "exit_code": 0,
+  "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+  "input_sha256_after": {
+    "Docs/STATUS.md": "75dc7f54032fb00796316b82c13c10575e109f0158c86e442d783927ca37ab8a",
+    "Research/STACK_AUDIT.md": "ebde7f219dd554a594fb1aee457fa0f507cec5544760c29d808fac520aa61a44",
+    "Tools/check_workspace.py": "9369464ac883d7e8e19a1876e0dace4fa3d767552407b59be1919b93e9a4e2b2"
+  },
+  "input_sha256_before": {
+    "Docs/STATUS.md": "75dc7f54032fb00796316b82c13c10575e109f0158c86e442d783927ca37ab8a",
+    "Research/STACK_AUDIT.md": "ebde7f219dd554a594fb1aee457fa0f507cec5544760c29d808fac520aa61a44",
+    "Tools/check_workspace.py": "9369464ac883d7e8e19a1876e0dace4fa3d767552407b59be1919b93e9a4e2b2"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "ed5f7a8973ff67fcb6575725372c80bbf39d10edfb6a3baeefe9729a68bef13e",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T04:54:57.942648+00:00",
+  "timeout_seconds": 600
+}

@@ -12,7 +12,7 @@ Treat **Windows PC as the product target**. Mac development is optional convenie
 
 The first implementation should establish the executable, build process, diagnostics, graphics, input, asset loading, and basic tooling. The rock workbench follows as its first real application. A complete general-purpose editor, full game, and large landscape are not prerequisites for that workbench.
 
-These recommendations reflect integration fit and scope, not measured superiority. No dependency was installed, sample compiled, renderer benchmarked, or new engine scaffold created during this research.
+These recommendations reflect integration fit and scope, not measured superiority. No dependency was installed, sample compiled, renderer benchmarked, or new engine scaffold created during the initial survey. Subsequent preparation and the bounded native integration probe are recorded in [the stack audit](../Research/STACK_AUDIT.md) and [current status](./STATUS.md); they do not establish production renderer readiness.
 
 ## 1. Scope and source of truth
 

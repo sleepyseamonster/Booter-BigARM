@@ -1,15 +1,21 @@
 # Booter & BigARM — New Engine
 
-This is the working home for the proprietary engine and the regular third-person version of Booter & BigARM. New work stays in this folder. The existing Unity project remains elsewhere in the same repository as reference.
+This is the working home for the proprietary engine and regular third-person game. Initial content is the rock generator for the open Greater Wasteland. Canyons are deferred. Windows PC is the product target; Mac development is optional.
 
-Start here:
+Start with [current status and next step](./Docs/STATUS.md), then [accepted direction](./Docs/DIRECTION.md) and [the working agreement](./AGENTS.md).
 
-- [Working agreement](./AGENTS.md)
-- [Accepted direction and scope](./Docs/DIRECTION.md)
-- [Engine foundation research and proposed construction sequence](./Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md)
+| Need | Durable home |
+|---|---|
+| What must be built and how we will judge it | [Requirements](./Docs/REQUIREMENTS.md) |
+| Accepted choices, proposals and unknowns | [Decision register](./Docs/DECISIONS.md) |
+| Component ownership and procedural-world contracts | [Architecture](./Docs/ARCHITECTURE.md) |
+| Ordered milestones and completion evidence | [Foundation plan](./Docs/FOUNDATION_PLAN.md) |
+| Language, libraries and renderer comparison | [Foundation survey](./Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) |
+| Exact dependencies, licenses and integration findings | [Research index](./Research/README.md) |
+| Historical rock visuals and setting context | [Reference collection](./References/README.md) |
+| Environment checks, source preparation and experiment receipts | [Preparation tools](./Tools/README.md) |
+| Repeatable working procedures | [Dependency evaluation](./SOPs/EVALUATE_DEPENDENCY.md), [experiments](./SOPs/RUN_EXPERIMENT.md), [handoffs](./SOPs/SESSION_HANDOFF.md) |
 
-Current state: direction, research and workspace separation are recorded. No engine runtime, dependency installation or build system has been implemented yet.
+The preparation package includes a small, isolated native compatibility probe. It is not the production engine, a rendered scene or a playable game. See the status page for the exact result and proof limits.
 
-The next implementation begins with a standalone engine foundation. The rock generator for the open Greater Wasteland is its first content workload; canyons remain deferred.
-
-Future source, tools, assets and tests will be created here as their implementation stages need them. `build/`, `out/` and `.cache/` are reserved for ignored generated output. Do not put new-engine content into the Unity `Assets/` tree.
+All new source, tools, assets, tests and documentation stay here. The existing Unity project remains a read-only reference for this work. `.cache/`, `build/` and `out/` hold ignored generated output; pinned acquisition instructions make dependency sources reproducible without committing their caches.

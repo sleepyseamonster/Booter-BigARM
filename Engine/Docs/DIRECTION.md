@@ -25,7 +25,7 @@ The user requested separation from Unity within this repository and then instruc
 - Keep all new-engine work here, including its documentation and future code, tools, assets, tests and build outputs.
 - Preserve the existing Unity project and its unrelated edits. Do not move or restructure Unity assets.
 - Read previous work only when it helps the current engine task; do not automatically continue Unity implementation plans.
-- Keep a single engine research document here. References to historical work are not runtime dependencies or competing copies of game canon.
+- Keep one overarching foundation survey here, with focused audits and experiment records linked from it. References to historical work are not runtime dependencies or competing copies of game canon.
 
 ## Decision Status
 

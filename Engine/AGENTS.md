@@ -4,7 +4,7 @@
 
 This folder is the exclusive working area for the proprietary engine and new game work. The user explicitly requested this separation on 2026-09-09. Keep the current Unity project in place; do not relocate it to create this boundary.
 
-Load [README.md](./README.md), [Docs/DIRECTION.md](./Docs/DIRECTION.md), and the task-relevant part of [the foundation research](./Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md). Do not default to auditing or repairing the Unity project when the task concerns this folder.
+Load [README.md](./README.md), [Docs/STATUS.md](./Docs/STATUS.md), [Docs/DIRECTION.md](./Docs/DIRECTION.md), and task-relevant requirements or research. Do not default to auditing or repairing the Unity project when the task concerns this folder.
 
 ## Sources and Ownership
 

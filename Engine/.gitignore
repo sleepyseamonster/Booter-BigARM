@@ -5,3 +5,7 @@
 
 # Developer-specific CMake settings
 /CMakeUserPresets.json
+
+# Python preparation-tool caches
+__pycache__/
+*.pyc

@@ -1,0 +1,46 @@
+{
+  "architecture": "arm64",
+  "engine_build_configured": false,
+  "interpretation": "Inventory only; a found compiler is not a successful build. Missing Ninja does not preclude another CMake generator. Windows MSVC may require a Developer Command Prompt.",
+  "observed_at_utc": "2026-09-10T04:48:48.999878+00:00",
+  "os_release": "25.5.0",
+  "platform": "Darwin",
+  "python": "3.13.2",
+  "schema_version": 1,
+  "tools": {
+    "clang++": {
+      "exit_code": 0,
+      "path": "/usr/bin/clang++",
+      "status": "available",
+      "version_output": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin"
+    },
+    "cmake": {
+      "exit_code": 0,
+      "path": "/opt/homebrew/bin/cmake",
+      "status": "available",
+      "version_output": "cmake version 3.28.1\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake)."
+    },
+    "git": {
+      "exit_code": 0,
+      "path": "/opt/homebrew/bin/git",
+      "status": "available",
+      "version_output": "git version 2.51.0"
+    },
+    "ninja": {
+      "path": null,
+      "status": "missing"
+    },
+    "xcodebuild": {
+      "exit_code": 0,
+      "path": "/usr/bin/xcodebuild",
+      "status": "available",
+      "version_output": "Xcode 26.6\nBuild version 17F113"
+    },
+    "xcrun": {
+      "exit_code": 0,
+      "path": "/usr/bin/xcrun",
+      "status": "available",
+      "version_output": "26.5"
+    }
+  }
+}

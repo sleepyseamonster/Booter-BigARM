@@ -1,0 +1,3 @@
+# Preserve original captured output and byte-hashed upstream notices on checkout.
+Evidence/**/output.log -text -whitespace
+Research/Licenses/*.txt -text -whitespace

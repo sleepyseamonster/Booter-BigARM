@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "id": "rock-side",
+      "source_repository": "current",
+      "path": "Docs/Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Side_2026-09-06.png",
+      "retrieved_at": "2026-09-09",
+      "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+      "source_dirty": false,
+      "sha256": "00d105c964fd73c3138f9baae37631d807615388b710dd31b405d4c4a2b3afac",
+      "status": "historical shape reference; predates final accepted sand treatment",
+      "collected_copy": "References/Visuals/MixedPileScatter_Side_2026-09-06.png"
+    },
+    {
+      "id": "rock-top",
+      "source_repository": "current",
+      "path": "Docs/Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Top_2026-09-06.png",
+      "retrieved_at": "2026-09-09",
+      "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+      "source_dirty": false,
+      "sha256": "b48a0a4866291ff6f754a8f858817cd5d7b4732afcf7717391329a04e52eef38",
+      "status": "historical layout reference; predates final accepted sand treatment",
+      "collected_copy": "References/Visuals/MixedPileScatter_Top_2026-09-06.png"
+    },
+    {
+      "id": "rock-acceptance",
+      "source_repository": "current",
+      "path": "Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md",
+      "retrieved_at": "2026-09-09",
+      "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+      "source_dirty": false,
+      "sha256": "1ae87d9b376392d7129493ed3ec52b697aaaf3098884ad82df018bcc87972e9e",
+      "status": "documented acceptance and integration history; not new-engine or third-person proof",
+      "collected_copy": null
+    },
+    {
+      "id": "formation-data",
+      "source_repository": "current",
+      "path": "Assets/_Project/Art/Environment/Rocks/Generated/MixedPileScatter.asset",
+      "retrieved_at": "2026-09-09",
+      "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+      "source_dirty": false,
+      "sha256": "838f7a376b7b03ae0d01a04aac914665cfeec55536e293d17466d673bfa55e4a",
+      "status": "Unity serialized composition; read-only source pointer, not an imported engine asset",
+      "collected_copy": null
+    },
+    {
+      "id": "shape-wrapper",
+      "source_repository": "current",
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DMixedFormationShapeVariation.cs",
+      "retrieved_at": "2026-09-09",
+      "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+      "source_dirty": false,
+      "sha256": "8a1adc671e6ac68e978a41eb2c1f752d2462a980b4b14a2904a12c275c06bec0",
+      "status": "Unity-dependent generator adapter; extract concepts selectively",
+      "collected_copy": null
+    },
+    {
+      "id": "formation-contract",
+      "source_repository": "current",
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DAuthoredFormationAsset.cs",
+      "retrieved_at": "2026-09-09",
+      "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+      "source_dirty": false,
+      "sha256": "0b4002cef3059268c99e56ca796580810eeea2a6e7d318ddd20e95f8039d5b1d",
+      "status": "Unity-dependent schema reference",
+      "collected_copy": null
+    },
+    {
+      "id": "sand-contact",
+      "source_repository": "current",
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DMixedFormationSand.cs",
+      "retrieved_at": "2026-09-09",
+      "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+      "source_dirty": false,
+      "sha256": "77c6fe0f840dadfa7763e26b992674be9ee35b9c1a07be3a60cb1bdc868fdb84",
+      "status": "contact/grounding algorithm reference; no automatic port",
+      "collected_copy": null
+    },
+    {
+      "id": "game-world",
+      "source_repository": "current",
+      "path": "Docs/WORLD_BASIS.md",
+      "retrieved_at": "2026-09-09",
+      "git_head": "6baaade7b11d7c824fe8c451f91a77e5d48a2df6",
+      "source_dirty": false,
+      "sha256": "e2c22e6bd0c72c57e9fcba7fd7a27d3e4e7cc89da62a946795ef220ff801a224",
+      "status": "game setting reference; old camera and initial terrain assumptions superseded for Engine",
+      "collected_copy": null
+    },
+    {
+      "id": "greater-wasteland",
+      "source_repository": "/Users/worldbuilder/Desktop/D&D Arc & Dust",
+      "path": "02-Arc-Dust-Worldbuilding/world/regions/greater-wasteland.md",
+      "retrieved_at": "2026-09-09",
+      "git_head": "0fb75754f4a634c63d6783fe8b8cc11635c0a87c",
+      "source_dirty": true,
+      "sha256": "82e7d3a1708702f1f2d72f69972c2065a40acfe02ec181e785cc4288b445975e",
+      "status": "source proposal; status stub; not accepted game canon",
+      "collected_copy": null
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "dependencies": [
+    {
+      "id": "sdl",
+      "status": "experiment",
+      "revision": "fa2c02bb6e21974a89ea9824bc53c9932abe5f9c",
+      "source": "https://github.com/libsdl-org/SDL/tree/fa2c02bb6e21974a89ea9824bc53c9932abe5f9c",
+      "license_record": "Licenses/sdl.txt",
+      "purpose": "EXP-001 source cohort; not production selection"
+    },
+    {
+      "id": "bgfx_cmake",
+      "status": "experiment",
+      "revision": "7cea9ab17c6dc8745cdc5df992145c514a129abb",
+      "source": "https://github.com/bkaradzic/bgfx.cmake/tree/7cea9ab17c6dc8745cdc5df992145c514a129abb",
+      "license_record": "Licenses/bgfx_cmake.txt",
+      "purpose": "EXP-001 source cohort; not production selection"
+    },
+    {
+      "id": "bgfx",
+      "status": "experiment",
+      "revision": "9b636df330c81e11c84595651a291b6c59fb7396",
+      "source": "https://github.com/bkaradzic/bgfx/tree/9b636df330c81e11c84595651a291b6c59fb7396",
+      "license_record": "Licenses/bgfx.txt",
+      "purpose": "EXP-001 source cohort; not production selection"
+    },
+    {
+      "id": "bimg",
+      "status": "experiment",
+      "revision": "ddbeeae05779f84f97694553eb41605a60f86f0a",
+      "source": "https://github.com/bkaradzic/bimg/tree/ddbeeae05779f84f97694553eb41605a60f86f0a",
+      "license_record": "Licenses/bimg.txt",
+      "purpose": "EXP-001 source cohort; not production selection"
+    },
+    {
+      "id": "bx",
+      "status": "experiment",
+      "revision": "98ad3bec2a7ee1a5cbabdcabc25252572dcb1d88",
+      "source": "https://github.com/bkaradzic/bx/tree/98ad3bec2a7ee1a5cbabdcabc25252572dcb1d88",
+      "license_record": "Licenses/bx.txt",
+      "purpose": "EXP-001 source cohort; not production selection"
+    },
+    {
+      "id": "imgui",
+      "status": "experiment",
+      "revision": "f1cc2ae15e53a861a874c3034aae6798fde194ab",
+      "version_label": "1.92.9b",
+      "source": "https://github.com/ocornut/imgui/tree/f1cc2ae15e53a861a874c3034aae6798fde194ab",
+      "license_record": "Licenses/imgui.txt",
+      "purpose": "CPU inspector data check; renderer adapter untested"
+    },
+    {
+      "id": "jolt",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/jrouwe/JoltPhysics",
+      "license_record": null,
+      "purpose": "Collision stage"
+    },
+    {
+      "id": "glm",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/g-truc/glm",
+      "license_record": null,
+      "purpose": "Math stage"
+    },
+    {
+      "id": "vcpkg",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/microsoft/vcpkg",
+      "license_record": null,
+      "purpose": "Production package strategy unresolved"
+    },
+    {
+      "id": "tracy",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/wolfpld/tracy",
+      "license_record": null,
+      "purpose": "Profiling integration"
+    },
+    {
+      "id": "fastgltf",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/spnda/fastgltf",
+      "license_record": null,
+      "purpose": "Asset pipeline"
+    },
+    {
+      "id": "meshoptimizer",
+      "status": "proposed",
+      "revision": null,
+      "source": "https://github.com/zeux/meshoptimizer",
+      "license_record": null,
+      "purpose": "Mesh preparation"
+    }
+  ]
+}
