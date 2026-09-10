@@ -1,0 +1,52 @@
+{
+  "command": [
+    "ctest",
+    "--test-dir",
+    "build/foundation",
+    "--output-on-failure"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Docs/STATUS.md",
+    "?? Engine/Apps/",
+    "?? Engine/CMake/",
+    "?? Engine/CMakeLists.txt",
+    "?? Engine/Docs/APPLICATION_FOUNDATION_PLAN.md",
+    "?? Engine/Docs/RUN_FOUNDATION.md",
+    "?? Engine/Evidence/F1-build-final/",
+    "?? Engine/Evidence/F1-build/",
+    "?? Engine/Evidence/F1-configure/",
+    "?? Engine/Evidence/F1-hardware.json",
+    "?? Engine/Evidence/F1-native-tests/",
+    "?? Engine/Evidence/F1-tool-tests-final/",
+    "?? Engine/Evidence/F1-tool-tests/",
+    "?? Engine/Evidence/F1-verification/",
+    "?? Engine/Shaders/",
+    "?? Engine/Source/",
+    "?? Engine/Tests/",
+    "?? Engine/Tools/tests/test_foundation_evidence.py",
+    "?? Engine/Tools/verify_foundation.py"
+  ],
+  "duration_seconds": 0.55,
+  "exit_code": 0,
+  "git_head": "d5583568402d7461bfa89f006fd2d243c8bbc30e",
+  "input_sha256_after": {
+    "Source/Core/FixtureState.cpp": "bdf5b165f58b2860ef59c3d114c1ec688eeaea32704e1bac291a6d0f5ebdef81",
+    "Source/Core/FixtureState.h": "ed2974cee0b0d8538a1e94d6d02d54009c64729122dacf03111f9eb39e842a69",
+    "Tests/FixtureStateTests.cpp": "d23b98643cd5c14940d851dfeed053a6f76772242e09f79c5c4ede3821725bc6",
+    "build/foundation/engine_state_tests": "dd621372c54110b531b9d806d82c5f44471ab4c95187884ec7998cc4e55759b6"
+  },
+  "input_sha256_before": {
+    "Source/Core/FixtureState.cpp": "bdf5b165f58b2860ef59c3d114c1ec688eeaea32704e1bac291a6d0f5ebdef81",
+    "Source/Core/FixtureState.h": "ed2974cee0b0d8538a1e94d6d02d54009c64729122dacf03111f9eb39e842a69",
+    "Tests/FixtureStateTests.cpp": "d23b98643cd5c14940d851dfeed053a6f76772242e09f79c5c4ede3821725bc6",
+    "build/foundation/engine_state_tests": "dd621372c54110b531b9d806d82c5f44471ab4c95187884ec7998cc4e55759b6"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "be1a73e294fb5060efccdf6f6420214deab0804283f77ca137f60fc5bfa12470",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T05:18:16.592680+00:00",
+  "timeout_seconds": 600
+}

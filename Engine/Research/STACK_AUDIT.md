@@ -1,6 +1,6 @@
 # Foundation Stack Audit
 
-Recorded 2026-09-09, America/Phoenix. Scope: preparation and EXP-001. The [foundation survey](../Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) contains the broader comparison; this audit tests the first candidate against concrete integration evidence. Production technology decisions remain proposed in [DECISIONS.md](../Docs/DECISIONS.md).
+Recorded 2026-09-09, America/Phoenix. Historical scope: preparation and EXP-001. The [foundation survey](../Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) contains the broader comparison; this audit tests the first candidate against concrete integration evidence. Subsequent real GPU evidence and bounded foundation selections are in [the application result](../Docs/FOUNDATION_RESULT.md) and [DECISIONS.md](../Docs/DECISIONS.md).
 
 ## Recommendation
 

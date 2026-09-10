@@ -1,0 +1,49 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "Tools/tests",
+    "-v"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Docs/STATUS.md",
+    "?? Engine/Apps/",
+    "?? Engine/CMake/",
+    "?? Engine/CMakeLists.txt",
+    "?? Engine/Docs/APPLICATION_FOUNDATION_PLAN.md",
+    "?? Engine/Docs/RUN_FOUNDATION.md",
+    "?? Engine/Evidence/F1-build/",
+    "?? Engine/Evidence/F1-configure/",
+    "?? Engine/Evidence/F1-hardware.json",
+    "?? Engine/Evidence/F1-tool-tests/",
+    "?? Engine/Shaders/",
+    "?? Engine/Source/",
+    "?? Engine/Tests/",
+    "?? Engine/Tools/tests/test_foundation_evidence.py",
+    "?? Engine/Tools/verify_foundation.py"
+  ],
+  "duration_seconds": 0.991,
+  "exit_code": 0,
+  "git_head": "d5583568402d7461bfa89f006fd2d243c8bbc30e",
+  "input_sha256_after": {
+    "Tools/tests/test_foundation_evidence.py": "6ed055a9ce108c396676402137a695aac15e017907d012a6582717102bc4115a",
+    "Tools/tests/test_preparation.py": "8b8e24efa3438a6fcd6614eb12f2e2c1df9f1d2ddf176b6d89ffa631ce482014",
+    "Tools/verify_foundation.py": "4cc847e1e42636f68c953880fb81fec6a82d416093b25781b19df0627e8abfd6"
+  },
+  "input_sha256_before": {
+    "Tools/tests/test_foundation_evidence.py": "6ed055a9ce108c396676402137a695aac15e017907d012a6582717102bc4115a",
+    "Tools/tests/test_preparation.py": "8b8e24efa3438a6fcd6614eb12f2e2c1df9f1d2ddf176b6d89ffa631ce482014",
+    "Tools/verify_foundation.py": "4cc847e1e42636f68c953880fb81fec6a82d416093b25781b19df0627e8abfd6"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "ccd360b69ae0f0b8adf1cff6cbb2efb921d10ae90455d3d867f788f3969505a9",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T05:14:39.720744+00:00",
+  "timeout_seconds": 600
+}

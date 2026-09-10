@@ -1,0 +1,44 @@
+{
+  "command": [
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/foundation/engine_workbench",
+    "--shaders",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/F1-verification/absent-shaders"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Docs/STATUS.md",
+    "?? Engine/Apps/",
+    "?? Engine/CMake/",
+    "?? Engine/CMakeLists.txt",
+    "?? Engine/Docs/APPLICATION_FOUNDATION_PLAN.md",
+    "?? Engine/Docs/RUN_FOUNDATION.md",
+    "?? Engine/Evidence/F1-build/",
+    "?? Engine/Evidence/F1-configure/",
+    "?? Engine/Evidence/F1-hardware.json",
+    "?? Engine/Evidence/F1-native-tests/",
+    "?? Engine/Evidence/F1-tool-tests-final/",
+    "?? Engine/Evidence/F1-tool-tests/",
+    "?? Engine/Evidence/F1-verification/",
+    "?? Engine/Shaders/",
+    "?? Engine/Source/",
+    "?? Engine/Tests/",
+    "?? Engine/Tools/tests/test_foundation_evidence.py",
+    "?? Engine/Tools/verify_foundation.py"
+  ],
+  "duration_seconds": 0.26,
+  "exit_code": 1,
+  "git_head": "d5583568402d7461bfa89f006fd2d243c8bbc30e",
+  "input_sha256_after": {
+    "build/foundation/engine_workbench": "740662aac7ad5a5f3d4d6ba9eb22b6ad4d1fd191b0967a606296c4af6ce0d74e"
+  },
+  "input_sha256_before": {
+    "build/foundation/engine_workbench": "740662aac7ad5a5f3d4d6ba9eb22b6ad4d1fd191b0967a606296c4af6ce0d74e"
+  },
+  "inputs_unchanged": true,
+  "outcome": "failed",
+  "output_sha256": "fe86347e7e04307497723cfa22fa1d27bd6dcb0267842b22ad08daa9a13b3664",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T05:16:39.981773+00:00",
+  "timeout_seconds": 30.0
+}

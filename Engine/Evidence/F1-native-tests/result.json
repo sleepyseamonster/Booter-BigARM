@@ -1,0 +1,49 @@
+{
+  "command": [
+    "ctest",
+    "--test-dir",
+    "build/foundation",
+    "--output-on-failure"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Docs/STATUS.md",
+    "?? Engine/Apps/",
+    "?? Engine/CMake/",
+    "?? Engine/CMakeLists.txt",
+    "?? Engine/Docs/APPLICATION_FOUNDATION_PLAN.md",
+    "?? Engine/Docs/RUN_FOUNDATION.md",
+    "?? Engine/Evidence/F1-build/",
+    "?? Engine/Evidence/F1-configure/",
+    "?? Engine/Evidence/F1-hardware.json",
+    "?? Engine/Evidence/F1-tool-tests-final/",
+    "?? Engine/Evidence/F1-tool-tests/",
+    "?? Engine/Shaders/",
+    "?? Engine/Source/",
+    "?? Engine/Tests/",
+    "?? Engine/Tools/tests/test_foundation_evidence.py",
+    "?? Engine/Tools/verify_foundation.py"
+  ],
+  "duration_seconds": 0.77,
+  "exit_code": 0,
+  "git_head": "d5583568402d7461bfa89f006fd2d243c8bbc30e",
+  "input_sha256_after": {
+    "Source/Core/FixtureState.cpp": "bdf5b165f58b2860ef59c3d114c1ec688eeaea32704e1bac291a6d0f5ebdef81",
+    "Source/Core/FixtureState.h": "1a6b0de74c83471136d90a49d6ebd44b42842d4c16d72ee72ed2d163a0c5e57a",
+    "Tests/FixtureStateTests.cpp": "d23b98643cd5c14940d851dfeed053a6f76772242e09f79c5c4ede3821725bc6",
+    "build/foundation/engine_state_tests": "953bd7280b0e7bd08ad9612ea66bb69085830c249bb9f76ee54d8b593b604103"
+  },
+  "input_sha256_before": {
+    "Source/Core/FixtureState.cpp": "bdf5b165f58b2860ef59c3d114c1ec688eeaea32704e1bac291a6d0f5ebdef81",
+    "Source/Core/FixtureState.h": "1a6b0de74c83471136d90a49d6ebd44b42842d4c16d72ee72ed2d163a0c5e57a",
+    "Tests/FixtureStateTests.cpp": "d23b98643cd5c14940d851dfeed053a6f76772242e09f79c5c4ede3821725bc6",
+    "build/foundation/engine_state_tests": "953bd7280b0e7bd08ad9612ea66bb69085830c249bb9f76ee54d8b593b604103"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "64230b79b5ebd3a31e82135132c4dc5a8e24743e1ec223b4f88fcb49191b1700",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T05:16:28.081560+00:00",
+  "timeout_seconds": 600
+}

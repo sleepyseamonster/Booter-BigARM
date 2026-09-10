@@ -1,0 +1,8 @@
+RENDERER Metal framebuffer=2240x1440
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/F1-verification/captures/baseline.png 2240x1440
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/F1-verification/captures/material.png 2240x1440
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/F1-verification/captures/orbit.png 2240x1440
+RESIZE 2000x1360
+CAPTURE /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/F1-verification/captures/resized.png 2000x1360
+SHUTDOWN renderer resources released
+PASS: GPU fixture, inspector click, camera event, resize, 20 mesh rebuilds, close and cleanup

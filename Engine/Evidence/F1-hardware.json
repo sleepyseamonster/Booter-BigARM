@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source_command": [
+    "system_profiler",
+    "SPDisplaysDataType",
+    "-json"
+  ],
+  "gpus": [
+    {
+      "model": "Apple M1 Max",
+      "cores": "24",
+      "metal_family": "spdisplays_metal4",
+      "displays": [
+        {
+          "pixels": "3456 x 2234",
+          "resolution": "1728 x 1117 @ 120.00Hz"
+        },
+        {
+          "pixels": "1920 x 1080",
+          "resolution": "1920 x 1080 @ 60.00Hz"
+        }
+      ]
+    }
+  ],
+  "retention": "Selected hardware fields only; raw inventory remains in ignored cache."
+}

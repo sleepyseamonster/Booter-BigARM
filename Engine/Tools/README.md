@@ -1,6 +1,6 @@
 # Preparation Tools
 
-Run with Python 3.9 or newer from `Engine/`. These tools use only the standard library. They do not install tools or launch Unity.
+Run with Python 3.9 or newer from `Engine/`. These tools use only the standard library. They do not install tools or launch Unity. `verify_foundation.py` launches our native application for bounded technical verification; see [the run instructions](../Docs/RUN_FOUNDATION.md).
 
 ```sh
 python3 Tools/doctor.py

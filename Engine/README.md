@@ -4,6 +4,8 @@ This is the working home for the proprietary engine and regular third-person gam
 
 Start with [current status and next step](./Docs/STATUS.md), then [accepted direction](./Docs/DIRECTION.md) and [the working agreement](./AGENTS.md).
 
+The first native application now renders a perspective fixture and interactive inspector on Metal. [Build and run it](./Docs/RUN_FOUNDATION.md), or review [the verified result and limitations](./Docs/FOUNDATION_RESULT.md).
+
 | Need | Durable home |
 |---|---|
 | What must be built and how we will judge it | [Requirements](./Docs/REQUIREMENTS.md) |
@@ -16,6 +18,6 @@ Start with [current status and next step](./Docs/STATUS.md), then [accepted dire
 | Environment checks, source preparation and experiment receipts | [Preparation tools](./Tools/README.md) |
 | Repeatable working procedures | [Dependency evaluation](./SOPs/EVALUATE_DEPENDENCY.md), [experiments](./SOPs/RUN_EXPERIMENT.md), [handoffs](./SOPs/SESSION_HANDOFF.md) |
 
-The preparation package includes a small, isolated native compatibility probe. It is not the production engine, a rendered scene or a playable game. See the status page for the exact result and proof limits.
+The application foundation is followed by the rock workbench, then streamed open space. The earlier isolated compatibility probe remains research history. Windows execution, character-following behavior and game content are still pending; see the status page for the exact proof boundaries.
 
 All new source, tools, assets, tests and documentation stay here. The existing Unity project remains a read-only reference for this work. `.cache/`, `build/` and `out/` hold ignored generated output; pinned acquisition instructions make dependency sources reproducible without committing their caches.

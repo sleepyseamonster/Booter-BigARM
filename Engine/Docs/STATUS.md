@@ -1,40 +1,44 @@
 # Current Engine Handoff
 
-Updated 2026-09-09, America/Phoenix. Accepted direction: proprietary engine, regular third-person game, Windows PC target, optional Mac development, open Greater Wasteland rock workload and deferred canyons. Work exclusively under `Engine/`.
+Updated 2026-09-09, America/Phoenix. The first application/rendering foundation is implemented and technically verified on the current Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
 
-## Completed Preparation
+## Current Result
 
-- Requirements, decision register, proposed ownership boundaries and staged foundation plan are linked from [the workspace index](../README.md).
-- Research now includes an exact six-component experiment cohort, checksums, primary license notices, inspected API/build findings and reproduction instructions.
-- Historical rock images and a source manifest preserve useful references. The collected images predate the final accepted Unity sand treatment and do not establish third-person quality. Lorekeeper's narrow world-context synthesis distinguishes source proposals from local game truth.
-- Five Python standard-library tools provide environment inventory, document checks, verified source preparation, bounded command receipts and shared output-path handling. Three SOPs define dependency evaluation, experiments and handoffs.
-- EXP-001 compiles and links C++20 with SDL3, bgfx and standalone Dear ImGui on the current Mac, then passes its headless technical check. This is an isolated compatibility executable, not a production engine foundation.
+The standalone C++ executable opens an SDL window, renders a perspective mesh and open ground through bgfx Metal, and displays an interactive Dear ImGui inspector. Object color/rotation, directional light and camera settings share one editable fixture state. Orbit/zoom respects UI input capture. Window resizing, a minimum usable window size, errors, resource cleanup and diagnostics are implemented.
 
-## Evidence
+This is a foundation fixture. It has no generated rocks, character controller, physics, shadows, PBR, world streaming or save format. The perspective inspection camera is not final third-person character-following behavior. The neutral scale marker and local coordinates are provisional.
 
-| Check | Observed result | Receipt |
+Start with [run instructions](./RUN_FOUNDATION.md), [the completed milestone plan](./APPLICATION_FOUNDATION_PLAN.md), and [the result audit](./FOUNDATION_RESULT.md).
+
+## Current Evidence
+
+| Check | Observed result | Evidence |
 |---|---|---|
-| Environment inventory | Apple arm64, Apple Clang 21, Xcode 26.6, SDK 26.5, CMake 3.28.1, Python 3.13.2; Ninja missing | [Inventory](../Evidence/environment-2026-09-09.json) |
-| Six pinned source trees | Archive and extracted-content verification, repeated after building | [Final source inventory](../Evidence/EXP-001-sources-final.json) |
-| Native compilation/link | Passed after three recorded failed attempts; incremental build with CMake regeneration | [Build 4](../Evidence/EXP-001-build-04/result.json), [failure explanations](../Research/STACK_AUDIT.md) |
-| Headless execution | 1/1 technical test passed: synthetic SDL events, bgfx Noop resource lifecycle, ImGui CPU draw data | [Run log](../Evidence/EXP-001-run/output.log), [receipt with executable hash](../Evidence/EXP-001-run/result.json) |
-| Preparation tool behavior | 12 tests passed: success/failure, timeout, input mutation, receipt protection, links and unsafe paths/archives | [Final test log](../Evidence/preparation-tests-final/output.log), [receipt](../Evidence/preparation-tests-final/result.json) |
-| Reference and evidence integrity | Six notices, nine source records, two collected images and seven log receipts match their hashes; three unrelated Unity files match their pre-task content | [Integrity snapshot](../Evidence/content-integrity.json) |
+| Fresh build configuration | Empty `build/foundation` directory configured successfully in about 46 seconds | [Configure receipt](../Evidence/F1-configure/result.json) |
+| Source-built native application and shaders | Initial full build passed in about 332 seconds; small inspection-driven UI corrections rebuilt in about 6 seconds | [Fresh build](../Evidence/F1-build/result.json), [final build](../Evidence/F1-build-final/result.json) |
+| Native state tests | Input capture, camera bounds/nonfinite state and scissor/framebuffer edge checks passed | [Final native tests](../Evidence/F1-native-tests-final/result.json) |
+| Tool tests | All 15 tests passed, including corrupt PNG rejection and excluding inspector-only image changes | [Tool tests](../Evidence/F1-tool-tests-final/result.json) |
+| Real GPU fixture | Metal on Apple M1 Max; inspector click, camera event, resize, 20 mesh replacements, close and cleanup passed | [Final verification](../Evidence/F1-verification-final/result.json), [application report](../Evidence/F1-verification-final/captures/verification.json) |
+| GPU output | Material and camera edits change scene pixels outside the inspector; 2240x1440 capture resized to 2000x1360 | [Baseline](../Evidence/F1-verification-final/captures/baseline.png), [material](../Evidence/F1-verification-final/captures/material.png), [orbit](../Evidence/F1-verification-final/captures/orbit.png), [resized](../Evidence/F1-verification-final/captures/resized.png) |
+| Failure handling | Missing shaders and invalid arguments fail with useful messages; shader startup failure releases the renderer | [Failure checks](../Evidence/F1-verification-final/result.json) |
+| Dependency integrity | Six pinned source archives and extracted trees verified after the build | [Final inventory](../Evidence/F1-sources-final.json) |
 
-Run `python3 Tools/check_workspace.py` for current document/record checks. Run commands and source hashes are retained; the large dependency and build caches are ignored. See [reproduction](../Research/Experiments/README.md). The final candidate has not been rebuilt from an empty build directory or tested on a separate clean checkout; no clean-machine claim is made.
+The fresh build used the current checkout's prepared, verified source cache; a separate clean machine was not tested. Final UI corrections reused the compiled dependency libraries. The final executable, shaders and source hashes are bound to the current verification receipt.
 
-## Boundaries and Unresolved Decisions
+## Selected Foundation Choices
 
-No real GPU backend, shader compiler, rendered inspector, native Windows build, physical input or gameplay was exercised. No production renderer, physics package or package manager has been selected. Jolt and the later asset/profiling libraries remain proposals. There is no runtime world generator or third-person controller yet.
+C++20, CMake and the pinned SDL3/bgfx/ImGui cohort are selected for this bounded foundation. Direct pinned upstream sources remain the build acquisition method here. The inspector renderer uses a fixed font atlas and the official SDL3 platform adapter. See [decisions](./DECISIONS.md) for scope and review triggers.
 
-The headless fixture has no world data: geographic identity, chunk streaming, generated-object IDs, authored world constraints and persisted runtime deltas are inapplicable to its library plumbing. Their future contracts are recorded in [architecture](./ARCHITECTURE.md); this experiment does not validate them.
+Windows source/build branches are present but have not been executed on Windows. Mac convenience remains bounded: no proprietary Metal backend was written, and upstream source trees were not patched. The next Windows check needs native hardware/toolchain access. Physical-device input, minimize/restore, cross-display DPI transitions, long-duration operation and user-owned creative/feel acceptance remain unverified.
 
-Target PC hardware, frame-time/resolution goals and visual/camera acceptance remain open. These affect later evaluation rather than preventing preparation. Mac compatibility work must remain bounded. Final world-map coordinates and canyon development remain deferred.
+The initial build reports upstream shader-compiler deprecation/unknown-warning diagnostics and duplicate bx linkage warnings. They were retained, not suppressed. No game performance claim follows from this fixture's frame interval or its passing checks.
 
-## Next Bounded Action
+## Next Milestone
 
-Begin F1/F2 with a small native application/rendering fixture using the pinned cohort as a candidate: window/input, perspective mesh, a pinned shader pipeline, actual inspector rendering, diagnostics, resize and clean shutdown. First establish a fresh build recipe. Use one neutral mesh on open ground, with temporary local scale/axes explicitly labeled. Record real GPU output and resource ownership before expanding into rock generation.
+Begin the representative rock workbench from [FOUNDATION_PLAN.md](./FOUNDATION_PLAN.md): define an editable, versioned recipe and stable member identity; implement deterministic CPU geometry independent of GPU handles; support recipe save/load and invalid-input errors; then add a replaceable preview with near/side/far inspection. Define identity/version and geometry tolerance contracts before generation. Collision/LOD enters when the representative rock workload requires it.
 
-Keep the ImGui adapter question explicit: EXP-001 uses its official core independently of bgfx's customized example integration. Verify a compatible adapter rather than assuming the headless result covers it. If the next step needs substantial Mac backend work, record the exact blocker and move development/testing to Windows as the user permits.
+Native Windows verification is an outstanding platform gate before target-PC claims. Final hardware budgets, camera feel and accepted close-view visual targets remain open. Canyons, final geographic coordinates and broader gameplay remain deferred.
 
-Continue with [FOUNDATION_PLAN.md](./FOUNDATION_PLAN.md), [DECISIONS.md](./DECISIONS.md) and [the experiment SOP](../SOPs/RUN_EXPERIMENT.md). Hands-on gameplay and creative acceptance remain user-owned. Unity files and the Arc & Dust source repository were not modified by this preparation work.
+## Preparation History
+
+The [research index](../Research/README.md), [reference collection](../References/README.md), [requirements](./REQUIREMENTS.md), [architecture](./ARCHITECTURE.md) and [SOPs](../SOPs/SESSION_HANDOFF.md) retain the preparation package. EXP-001 was the earlier headless compatibility probe; its result is not substituted for the real GPU evidence above. Historical rock screenshots still predate the accepted Unity sand treatment and are not the new game's visual acceptance baseline.

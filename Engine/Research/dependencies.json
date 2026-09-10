@@ -3,52 +3,52 @@
   "dependencies": [
     {
       "id": "sdl",
-      "status": "experiment",
+      "status": "selected",
       "revision": "fa2c02bb6e21974a89ea9824bc53c9932abe5f9c",
       "source": "https://github.com/libsdl-org/SDL/tree/fa2c02bb6e21974a89ea9824bc53c9932abe5f9c",
       "license_record": "Licenses/sdl.txt",
-      "purpose": "EXP-001 source cohort; not production selection"
+      "purpose": "Selected for native application foundation; Metal verified, Windows and shipping evaluation pending"
     },
     {
       "id": "bgfx_cmake",
-      "status": "experiment",
+      "status": "selected",
       "revision": "7cea9ab17c6dc8745cdc5df992145c514a129abb",
       "source": "https://github.com/bkaradzic/bgfx.cmake/tree/7cea9ab17c6dc8745cdc5df992145c514a129abb",
       "license_record": "Licenses/bgfx_cmake.txt",
-      "purpose": "EXP-001 source cohort; not production selection"
+      "purpose": "Selected for native application foundation; Metal verified, Windows and shipping evaluation pending"
     },
     {
       "id": "bgfx",
-      "status": "experiment",
+      "status": "selected",
       "revision": "9b636df330c81e11c84595651a291b6c59fb7396",
       "source": "https://github.com/bkaradzic/bgfx/tree/9b636df330c81e11c84595651a291b6c59fb7396",
       "license_record": "Licenses/bgfx.txt",
-      "purpose": "EXP-001 source cohort; not production selection"
+      "purpose": "Selected for native application foundation; Metal verified, Windows and shipping evaluation pending"
     },
     {
       "id": "bimg",
-      "status": "experiment",
+      "status": "selected",
       "revision": "ddbeeae05779f84f97694553eb41605a60f86f0a",
       "source": "https://github.com/bkaradzic/bimg/tree/ddbeeae05779f84f97694553eb41605a60f86f0a",
       "license_record": "Licenses/bimg.txt",
-      "purpose": "EXP-001 source cohort; not production selection"
+      "purpose": "Selected for native application foundation; Metal verified, Windows and shipping evaluation pending"
     },
     {
       "id": "bx",
-      "status": "experiment",
+      "status": "selected",
       "revision": "98ad3bec2a7ee1a5cbabdcabc25252572dcb1d88",
       "source": "https://github.com/bkaradzic/bx/tree/98ad3bec2a7ee1a5cbabdcabc25252572dcb1d88",
       "license_record": "Licenses/bx.txt",
-      "purpose": "EXP-001 source cohort; not production selection"
+      "purpose": "Selected for native application foundation; Metal verified, Windows and shipping evaluation pending"
     },
     {
       "id": "imgui",
-      "status": "experiment",
+      "status": "selected",
       "revision": "f1cc2ae15e53a861a874c3034aae6798fde194ab",
       "version_label": "1.92.9b",
       "source": "https://github.com/ocornut/imgui/tree/f1cc2ae15e53a861a874c3034aae6798fde194ab",
       "license_record": "Licenses/imgui.txt",
-      "purpose": "CPU inspector data check; renderer adapter untested"
+      "purpose": "Selected for native application foundation; Metal verified, Windows and shipping evaluation pending; official SDL3 platform backend and fixed-atlas project renderer"
     },
     {
       "id": "jolt",

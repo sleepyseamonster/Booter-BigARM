@@ -2,6 +2,8 @@
 
 The [foundation survey](../Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) remains the overall technology comparison. Focused work here answers particular open decisions rather than replacing it with another broad survey.
 
+The cohort first pinned for EXP-001 is now also used by the [application foundation](../Docs/FOUNDATION_RESULT.md). The historical lock filename and content are retained so experiment hashes stay meaningful. The dependency inventory records the current selection scope.
+
 - [Stack audit](./STACK_AUDIT.md): requirements, integration findings and remaining proof.
 - [Dependency inventory](./dependencies.json): proposed versus experiment-only components.
 - [Experiment source lock](./probe-lock.json): immutable revisions and archive checksums.

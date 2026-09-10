@@ -31,4 +31,4 @@ The user requested separation from Unity within this repository and then instruc
 
 Accepted: proprietary engine, regular third person, open Greater Wasteland rock workload, deferred canyons, Windows target, optional Mac development, and `Engine/` as the working area in this repository.
 
-Proposed: C++20, CMake, SDL3, bgfx, Jolt, Dear ImGui and the supporting stack described in [the foundation research](./PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md). These require a selected version set and implementation proof; this document does not claim they are installed or working.
+Selected for the current application foundation under the user's implementation authority: C++20, CMake and the pinned SDL3/bgfx/Dear ImGui cohort. The native Metal result is recorded in [STATUS.md](./STATUS.md); Windows and broader production suitability remain open. Jolt and later supporting components in [the foundation research](./PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) remain proposed. [DECISIONS.md](./DECISIONS.md) records selection scope and review triggers.

@@ -2,6 +2,8 @@
 
 Status: preparation package followed by bounded technical milestones. [Requirements](./REQUIREMENTS.md), [decisions](./DECISIONS.md) and [architecture](./ARCHITECTURE.md) define the plan. No deadline or production readiness is inferred from this document.
 
+Current progress: P0/P1 are complete. The first F1/F2 application/rendering slice is verified on Mac; [the result audit](./FOUNDATION_RESULT.md) names its limits, including pending native Windows evidence and richer rendering/authoring work. F3 is the next content milestone.
+
 | Stage | Scope | Completion evidence | Excluded |
 |---|---|---|---|
 | P0 — Preparation | Requirements, source/reference records, tools, SOPs and unresolved decisions | Workspace checks, meaningful tool tests, current environment receipt and an accurate handoff | Engine/game implementation |

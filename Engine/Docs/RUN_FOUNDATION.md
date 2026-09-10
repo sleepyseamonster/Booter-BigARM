@@ -1,0 +1,44 @@
+# Run the Engine Foundation
+
+This executable is the first application/rendering fixture. See [the implementation plan](./APPLICATION_FOUNDATION_PLAN.md) for its completion contract and [status](./STATUS.md) for actual evidence.
+
+## Build
+
+From `Engine/`, with Python 3.9+, CMake 3.20+ and the platform's native C++ toolchain:
+
+```sh
+python3 Tools/prepare_probe.py --fetch
+cmake -S . -B build/foundation -DCMAKE_BUILD_TYPE=Release
+cmake --build build/foundation --config Release --target engine_workbench engine_state_tests --parallel 4
+ctest --test-dir build/foundation -C Release --output-on-failure
+```
+
+Configuration verifies the exact dependency archives and source content. It never downloads silently. The build compiles bgfx's shaderc and then our four shaders. First-time shader-tool compilation is larger than rebuilding the application. Build output is ignored. No global package installation is required by these commands.
+
+Mac uses the available Makefiles generator, SDL's Metal view and bgfx Metal. On Windows run from a Visual Studio development environment; use `python` if that is the installed command. The Windows path uses D3D11 and shader model 5.0. Platform code is not Windows proof; consult the status page before claiming a tested Windows build.
+
+## Launch and Controls
+
+Mac: `build/foundation/engine_workbench`. With a Windows multi-configuration generator: `build/foundation/Release/engine_workbench.exe`. Shader paths default to the configured build directory; override with `--shaders <directory>` when needed. This is a development executable, not a relocatable shipping package.
+
+The window opens without requesting foreground activation. Click it to interact. Right-drag outside the inspector orbits the inspection subject; the wheel changes distance. Inspector controls change object rotation/color, light direction/intensity and camera settings. The turquoise column is a temporary 1.8-meter scale marker. Escape closes when the inspector is not capturing the keyboard; the window close control also exits.
+
+The view is a perspective inspection camera. It does not implement character following, camera obstruction or final third-person controls. Materials use simple directional diffuse shading. Shadows, PBR, terrain, physics and gameplay are not part of this foundation fixture.
+
+## Technical Verification
+
+Use a new output name each time:
+
+```sh
+python3 Tools/verify_foundation.py --executable build/foundation/engine_workbench --shaders build/foundation/Shaders --out Evidence/F1-verification-new
+```
+
+Adjust the executable path for Windows. Verification creates a non-focusable application window, injects a real inspector-button click through ImGui's input queue and an SDL camera event, changes window size, rebuilds a mesh twenty times, captures our GPU surface, checks sampled scene-pixel changes, then closes and checks two expected error paths. It does not capture the desktop or exercise gameplay. Automated input is not physical-device proof.
+
+Captures, application assertions and command receipts live together in the output directory. Inspect all three; no one alone establishes correct appearance. The PNG reader in the tool supports this fixture's noninterlaced RGB/RGBA8 screenshots and is not a general asset importer.
+
+## Current Implementation Limits
+
+The ImGui renderer uses a fixed font atlas and the official SDL3 platform backend. It supports clipping, framebuffer scale, alpha blending and vertex offsets. Custom image textures, dynamic font-atlas updates and multiple viewports are explicitly unsupported. The fixture's editable state is the single source of truth; settings are not saved yet.
+
+Generated world identity, chunk streaming and persisted deltas are not implemented. Repeated GPU mesh replacement validates one resource-lifetime prerequisite, not those world contracts. Frame timing shown in the inspector includes pacing; it is diagnostic information rather than a target-hardware performance benchmark.

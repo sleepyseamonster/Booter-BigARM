@@ -1,0 +1,35 @@
+{
+  "backend": "Metal",
+  "became_blue_sampled_pixels": 31162,
+  "captures": {
+    "baseline": {
+      "height": 1440,
+      "sha256": "b39daeb17aabece66c42d86b08b8a68209ede03af91a5269eb9d7eb465a2f892",
+      "width": 2240
+    },
+    "material": {
+      "height": 1440,
+      "sha256": "1ef0f32fa8b9f27f5f249337a1d81fcdcb66305cb58c1cf1827b92de8ea7512c",
+      "width": 2240
+    },
+    "orbit": {
+      "height": 1440,
+      "sha256": "22ee395e47cdd5ad255029d245a98b73bbdb0bfe7d593f8d62692f04218b0264",
+      "width": 2240
+    },
+    "resized": {
+      "height": 1360,
+      "sha256": "d099e23ecd0581fb59ff0ea93b03528df1a3385cc476295a7baddf20aa4b5cf2",
+      "width": 2000
+    }
+  },
+  "expected_failures": [
+    "missing-shaders",
+    "invalid-argument"
+  ],
+  "material_changed_sampled_pixels": 31162,
+  "orbit_changed_sampled_pixels": 34878,
+  "proof_limit": "Native technical checks and GPU pixel changes; not physical input, gameplay, final visual acceptance or target-PC performance.",
+  "result": "passed",
+  "schema_version": 1
+}
