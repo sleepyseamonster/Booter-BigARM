@@ -4,6 +4,8 @@ Research date: 2026-09-09, America/Phoenix.
 
 Status: research and proposed implementation sequence. [DIRECTION.md](./DIRECTION.md) controls the accepted new-engine direction and work boundary. The user has directed a move toward a proprietary engine, standard third-person presentation, and the open Greater Wasteland. Library selections below are recommendations, not an implemented or benchmarked stack.
 
+Later clarification on 2026-09-09: the user prefers Mac as the main development machine while practical, with Windows testing introduced separately. This supersedes the optional-convenience framing in the original survey below. Current implementation and sequence are in [STATUS.md](./STATUS.md) and [the outdoor rendering plan](./OUTDOOR_RENDERING_PLAN.md); retain the original survey as research history.
+
 ## Recommendation
 
 Build a game-specific engine in **C++20**, using **CMake**, **SDL3**, and an existing graphics library. Start the graphics evaluation with **bgfx**. Use **Jolt** for physics and **Dear ImGui** for development tools when those capabilities enter the foundation. Own the rock generator, world identity, streaming policy, runtime state, asset pipeline, renderer features, and authoring workflow.

@@ -1,0 +1,28 @@
+[  3%] Built target bx
+[  4%] Built target spirv-cross
+[  9%] Built target glslang
+[ 32%] Built target SDL3-static
+[ 32%] Building CXX object CMakeFiles/engine_state.dir/Source/Core/FixtureState.cpp.o
+[ 35%] Built target bimg
+[ 35%] Built target engine_imgui
+[ 38%] Built target bgfx
+[ 60%] Built target spirv-opt
+[ 60%] Linking CXX static library libengine_state.a
+[ 60%] Built target engine_state
+[ 97%] Built target tint
+[ 98%] Built target shaderc
+[100%] Built target engine_shaders
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Apps/Workbench/main.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/Renderer.cpp.o
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Source/Rendering/InspectorRenderer.cpp.o
+[100%] Linking CXX executable engine_workbench
+ld: warning: ignoring duplicate libraries: 'bgfx/cmake/bx/libbx.a'
+[100%] Built target engine_workbench
+Built target engine_state
+Building CXX object CMakeFiles/engine_state_tests.dir/Tests/FixtureStateTests.cpp.o
+Linking CXX executable engine_state_tests
+Built target engine_state_tests
+Built target engine_state
+Building CXX object CMakeFiles/engine_geometry_tests.dir/Tests/FixtureGeometryTests.cpp.o
+Linking CXX executable engine_geometry_tests
+Built target engine_geometry_tests

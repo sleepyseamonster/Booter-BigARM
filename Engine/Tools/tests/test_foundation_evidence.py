@@ -7,7 +7,7 @@ import sys
 
 TOOLS = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(TOOLS))
-from verify_foundation import png, changed_scene
+from verify_foundation import png, changed_scene, check_geometry
 
 
 def chunk(kind, payload):
@@ -49,6 +49,25 @@ class FoundationEvidenceChecks(unittest.TestCase):
     def test_dimension_mismatch_rejected(self):
         with self.assertRaisesRegex(ValueError,"different dimensions"):
             changed_scene((2,2,3,[]),(4,2,3,[]))
+
+    def test_geometry_oracle_rejects_empty_or_wrong_normals(self):
+        def solid(rgb):
+            return (100,100,3,[bytearray(rgb*100) for _ in range(100)])
+        good = solid([128,190,220])
+        names = ["normals","baked","unculled","front-cull","reverse-order"]
+        empty = {name: solid([0,0,0]) for name in names}
+        with self.assertRaisesRegex(ValueError,"Missing visible"):
+            check_geometry(empty)
+        captures = {name: good for name in names}
+        with self.assertRaisesRegex(ValueError,"Opposite face culling"):
+            check_geometry(captures)
+        captures["front-cull"] = solid([20,30,40])
+        check_geometry(captures)
+        for name in ["baked","unculled","reverse-order"]:
+            changed = dict(captures)
+            changed[name] = solid([150,160,170])
+            with self.assertRaisesRegex(ValueError,"Geometry comparison failed: " + name):
+                check_geometry(changed)
 
 
 if __name__ == "__main__":

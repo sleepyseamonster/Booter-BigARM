@@ -87,6 +87,39 @@ def changed_scene(a, b):
     return changed, became_blue
 
 
+def geometry_comparison(a, b):
+    """Measure scene disagreement, ignoring the inspector and small rounding noise."""
+    if a[:2] != b[:2]:
+        raise ValueError("Comparison captures have different dimensions")
+    width, height, ca, ra = a
+    _, _, cb, rb = b
+    compared = different = normal_subject = 0
+    for y in range(height//5, height*4//5, 2):
+        for x in range(width*2//5, width*4//5, 2):
+            pa, pb = ra[y][x*ca:x*ca+3], rb[y][x*cb:x*cb+3]
+            compared += 1
+            different += max(abs(p-q) for p, q in zip(pa,pb)) > 3
+            # Sloped front surfaces have positive Z and nonvertical Y normals.
+            # This excludes the background, upward ground and axis-aligned marker.
+            normal_subject += pa[2] > 170 and 135 < pa[1] < 245
+    return {"samples": compared, "different": different, "normal_subject": normal_subject}
+
+
+def check_geometry(captures):
+    reference = captures["normals"]
+    comparisons = {name: geometry_comparison(reference,captures[name])
+        for name in ["baked", "unculled", "front-cull", "reverse-order"]}
+    if comparisons["baked"]["normal_subject"] < 500:
+        raise ValueError("Missing visible sloped normal reference; empty images cannot prove geometry")
+    for name in ["baked", "unculled", "reverse-order"]:
+        # Permit narrow silhouette rasterization differences, not a shifted normal field.
+        if comparisons[name]["different"] > comparisons[name]["samples"]*0.002:
+            raise ValueError("Geometry comparison failed: " + name)
+    if comparisons["front-cull"]["different"] < 500:
+        raise ValueError("Opposite face culling did not change scene output")
+    return comparisons
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--executable", required=True)
@@ -113,13 +146,15 @@ def main():
     report = json.loads((out/"captures/verification.json").read_text())
     if not report["passed"]:
         raise ValueError("Application verification failed")
-    captures = {name: png(out/"captures"/(name+".png")) for name in ["baseline", "material", "orbit", "resized"]}
+    captures = {name: png(out/"captures"/(name+".png")) for name in
+        ["baseline", "material", "orbit", "resized", "normals", "baked", "unculled", "front-cull", "reverse-order", "sphere"]}
     changed, blue = changed_scene(captures["baseline"], captures["material"])
     orbit_changed, _ = changed_scene(captures["material"], captures["orbit"])
     if changed < 500 or blue < 500 or orbit_changed < 500:
         raise ValueError("GPU pixels do not substantiate the material/camera changes")
     if captures["resized"][:2] == captures["baseline"][:2]:
         raise ValueError("Resize did not change captured framebuffer dimensions")
+    geometry = check_geometry(captures)
     negative = []
     for name, arguments, expected in [
         ("missing-shaders", ["--shaders", str(out/"absent-shaders")], "Missing shader:"),
@@ -135,7 +170,7 @@ def main():
         negative.append(name)
     result = {"schema_version": 1, "result": "passed", "backend": report["backend"],
         "material_changed_sampled_pixels": changed, "became_blue_sampled_pixels": blue,
-        "orbit_changed_sampled_pixels": orbit_changed, "expected_failures": negative,
+        "orbit_changed_sampled_pixels": orbit_changed, "geometry_comparisons": geometry, "expected_failures": negative,
         "captures": {name: {"width": value[0], "height": value[1],
             "sha256": hashlib.sha256((out/"captures"/(name+".png")).read_bytes()).hexdigest()}
             for name, value in captures.items()},

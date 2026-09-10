@@ -3,6 +3,11 @@
 #include <cmath>
 
 namespace engine {
+FixtureState geometryProofState() {
+    FixtureState state;
+    state.mesh=1; state.objectScale={2.0f,0.65f,1.1f}; state.objectYaw=0.55f; state.showNormals=true;
+    return state;
+}
 void FixtureState::constrain() {
     if (!std::isfinite(yaw)) yaw = 0.65f;
     if (!std::isfinite(pitch)) pitch = 0.28f;
@@ -12,6 +17,9 @@ void FixtureState::constrain() {
     pitch = std::clamp(pitch, -0.15f, 1.25f);
     distance = std::clamp(distance, 2.5f, 30.0f);
     fieldOfView = std::clamp(fieldOfView, 30.0f, 90.0f);
+    mesh = std::clamp(mesh, 0, 2);
+    if (!std::isfinite(objectYaw)) objectYaw = 0;
+    for (float& scale : objectScale) scale = std::isfinite(scale)?std::clamp(scale,0.2f,3.0f):1.5f;
 }
 void FixtureState::orbit(float dx, float dy, bool captured) {
     if (captured) return;

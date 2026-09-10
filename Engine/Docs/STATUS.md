@@ -1,16 +1,24 @@
 # Current Engine Handoff
 
-Updated 2026-09-09, America/Phoenix. The first application/rendering foundation is implemented and technically verified on the current Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
+Updated 2026-09-09, America/Phoenix. The first application foundation and OR-1 geometry correctness batch are implemented and technically verified on the current Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
 
 ## Current Result
 
 The standalone C++ executable opens an SDL window, renders a perspective mesh and open ground through bgfx Metal, and displays an interactive Dear ImGui inspector. Object color/rotation, directional light and camera settings share one editable fixture state. Orbit/zoom respects UI input capture. Window resizing, a minimum usable window size, errors, resource cleanup and diagnostics are implemented.
 
+OR-1 adds a cube/sloped-solid/sphere selector, independent XYZ scale and world-normal display. Inverse-transpose normal transforms correct lighting directions under nonuniform scale; outward winding, backface culling and opaque depth ordering have bounded technical evidence. See [the geometry result](./OUTDOOR_GEOMETRY_RESULT.md) for exact comparisons and limits.
+
 This is a foundation fixture. It has no generated rocks, character controller, physics, shadows, PBR, world streaming or save format. The perspective inspection camera is not final third-person character-following behavior. The neutral scale marker and local coordinates are provisional.
 
-Start with [run instructions](./RUN_FOUNDATION.md), [the completed milestone plan](./APPLICATION_FOUNDATION_PLAN.md), and [the result audit](./FOUNDATION_RESULT.md).
+Start with [run instructions](./RUN_FOUNDATION.md), [the outdoor plan](./OUTDOOR_RENDERING_PLAN.md), and [the latest result audit](./OUTDOOR_GEOMETRY_RESULT.md).
 
 ## Current Evidence
+
+The [reviewed OR-1 build](../Evidence/OR1-build-reviewed/result.json), [two native test executables](../Evidence/OR1-native-tests-final/result.json), [16 tool tests](../Evidence/OR1-tool-tests/result.json), and [final native GPU verification](../Evidence/OR1-verification-final/result.json) passed. Normal/reference, cull/unculled and reversed-order comparisons each had zero differences above the rounding threshold across 163,200 sampled scene pixels. Opposite culling changed 111,802 pixels; 7,983 visible reference samples guard against empty-image passes. Twenty four-mesh replacements kept vertex buffers at 8; ten captures had no errors. Current executable, shaders and source hashes are bound to this verification.
+
+## Original Application Evidence
+
+The following receipts establish the earlier F1 slice. They are historical and do not identify the current executable after OR-1.
 
 | Check | Observed result | Evidence |
 |---|---|---|
@@ -23,7 +31,7 @@ Start with [run instructions](./RUN_FOUNDATION.md), [the completed milestone pla
 | Failure handling | Missing shaders and invalid arguments fail with useful messages; shader startup failure releases the renderer | [Failure checks](../Evidence/F1-verification-final/result.json) |
 | Dependency integrity | Six pinned source archives and extracted trees verified after the build | [Final inventory](../Evidence/F1-sources-final.json) |
 
-The fresh build used the current checkout's prepared, verified source cache; a separate clean machine was not tested. Final UI corrections reused the compiled dependency libraries. The final executable, shaders and source hashes are bound to the current verification receipt.
+The fresh F1 build used the checkout's prepared, verified source cache; a separate clean machine was not tested. Final F1 UI corrections reused the compiled dependency libraries. OR-1 also reused the existing dependency build and changed no dependency pins.
 
 ## Selected Foundation Choices
 
@@ -35,9 +43,9 @@ The initial build reports upstream shader-compiler deprecation/unknown-warning d
 
 ## Next Milestone
 
-Begin the representative rock workbench from [FOUNDATION_PLAN.md](./FOUNDATION_PLAN.md): define an editable, versioned recipe and stable member identity; implement deterministic CPU geometry independent of GPU handles; support recipe save/load and invalid-input errors; then add a replaceable preview with near/side/far inspection. Define identity/version and geometry tolerance contracts before generation. Collision/LOD enters when the representative rock workload requires it.
+OR-2 is next: define and implement explicit linear lighting and display conversion, verify known color/illumination values, and define the HDR/exposure/UI composition boundary. OR-1 geometry is complete. Continue with sun/shadows, basic materials/ambient and repeatable inspection settings as ordered in [the outdoor plan](./OUTDOOR_RENDERING_PLAN.md). Rock recipes/generation begin after these rendering prerequisites.
 
-Native Windows verification is an outstanding platform gate before target-PC claims. Final hardware budgets, camera feel and accepted close-view visual targets remain open. Canyons, final geographic coordinates and broader gameplay remain deferred.
+Mac remains the main development machine while practical. Native Windows verification is a separate checkpoint during this milestone and remains required before target-PC claims; it does not require switching daily development now. Final hardware budgets, camera feel and accepted close-view visual targets remain open. Canyons, final geographic coordinates and broader gameplay remain deferred.
 
 ## Preparation History
 

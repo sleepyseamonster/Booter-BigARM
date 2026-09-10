@@ -1,4 +1,5 @@
 #include "Rendering/Renderer.h"
+#include "Core/FixtureGeometry.h"
 #include <bx/math.h>
 #include <cstdio>
 #include <cstdlib>
@@ -84,7 +85,12 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders)
     material_ = bgfx::createUniform("u_material", bgfx::UniformType::Vec4);
     light_ = bgfx::createUniform("u_light", bgfx::UniformType::Vec4);
     if (!bgfx::isValid(material_) || !bgfx::isValid(light_)) throw std::runtime_error("Scene uniform allocation failed");
+    normal_ = bgfx::createUniform("u_normalMatrix", bgfx::UniformType::Mat4);
+    options_ = bgfx::createUniform("u_sceneOptions", bgfx::UniformType::Vec4);
+    if (!bgfx::isValid(normal_) || !bgfx::isValid(options_)) throw std::runtime_error("Geometry uniform allocation failed");
     rebuildMesh();
+    // Preserve submission order for the depth-order diagnostic; this is a small fixture.
+    bgfx::setViewMode(0, bgfx::ViewMode::Sequential);
     bgfx::setViewName(0, "Perspective fixture");
     std::cout << "RENDERER " << name() << " framebuffer=" << width_ << 'x' << height_ << '\n';
 }
@@ -97,30 +103,36 @@ void Renderer::resize(int width, int height) {
     width_ = width; height_ = height;
     std::cout << "RESIZE " << width_ << 'x' << height_ << '\n';
 }
+namespace {
+Matrix4 subjectTransform(const FixtureState& state) {
+    Matrix4 transform;
+    bx::mtxSRT(transform.data(),state.objectScale[0],state.objectScale[1],state.objectScale[2],
+        0,state.objectYaw,0,0,0.75f,0);
+    return transform;
+}
+}
 void Renderer::rebuildMesh() {
-    struct Vertex { float x,y,z,nx,ny,nz; };
-    std::vector<Vertex> vertices;
-    const float positions[6][4][3] = {
-        {{-0.5f,-0.5f,0.5f},{0.5f,-0.5f,0.5f},{0.5f,0.5f,0.5f},{-0.5f,0.5f,0.5f}},
-        {{0.5f,-0.5f,-0.5f},{-0.5f,-0.5f,-0.5f},{-0.5f,0.5f,-0.5f},{0.5f,0.5f,-0.5f}},
-        {{0.5f,-0.5f,0.5f},{0.5f,-0.5f,-0.5f},{0.5f,0.5f,-0.5f},{0.5f,0.5f,0.5f}},
-        {{-0.5f,-0.5f,-0.5f},{-0.5f,-0.5f,0.5f},{-0.5f,0.5f,0.5f},{-0.5f,0.5f,-0.5f}},
-        {{-0.5f,0.5f,0.5f},{0.5f,0.5f,0.5f},{0.5f,0.5f,-0.5f},{-0.5f,0.5f,-0.5f}},
-        {{-0.5f,-0.5f,-0.5f},{0.5f,-0.5f,-0.5f},{0.5f,-0.5f,0.5f},{-0.5f,-0.5f,0.5f}}};
-    const float normals[6][3] = {{0,0,1},{0,0,-1},{1,0,0},{-1,0,0},{0,1,0},{0,-1,0}};
-    for (int face=0; face<6; ++face) for (int index : {0,1,2,0,2,3}) {
-        const auto& p=positions[face][index]; const auto& n=normals[face];
-        vertices.push_back({p[0],p[1],p[2],n[0],n[1],n[2]});
-    }
+    const auto sloped=fixtureSlopedSolid();
+    const std::array<FixtureMesh,4> data{fixtureCube(),sloped,fixtureSphere(),
+        bakeFlatReference(sloped,subjectTransform(geometryProofState()))};
+    std::array<bgfx::VertexBufferHandle,4> replacement{{BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE}};
     bgfx::VertexLayout layout;
     layout.begin().add(bgfx::Attrib::Position,3,bgfx::AttribType::Float).add(bgfx::Attrib::Normal,3,bgfx::AttribType::Float).end();
-    auto replacement=bgfx::createVertexBuffer(bgfx::copy(vertices.data(), uint32_t(vertices.size()*sizeof(Vertex))),layout);
-    if (!bgfx::isValid(replacement)) throw std::runtime_error("Mesh allocation failed");
-    if (bgfx::isValid(mesh_)) bgfx::destroy(mesh_);
-    mesh_=replacement;
-    bgfx::setName(mesh_, "Fixture cube shared by ground/subject/scale marker");
+    try {
+        for (size_t i=0;i<data.size();++i) {
+            replacement[i]=bgfx::createVertexBuffer(bgfx::copy(data[i].data(),uint32_t(data[i].size()*sizeof(FixtureVertex))),layout);
+            if (!bgfx::isValid(replacement[i])) throw std::runtime_error("Mesh allocation failed");
+        }
+    } catch (...) {
+        for (auto handle : replacement) if (bgfx::isValid(handle)) bgfx::destroy(handle);
+        throw;
+    }
+    for (auto handle : meshes_) if (bgfx::isValid(handle)) bgfx::destroy(handle);
+    meshes_=replacement;
+    const char* names[]={"Reference cube", "Reference sloped solid", "Reference sphere", "CPU-baked flat-normal reference"};
+    for (size_t i=0;i<meshes_.size();++i) bgfx::setName(meshes_[i],names[i]);
 }
-void Renderer::draw(const FixtureState& state) {
+void Renderer::draw(const FixtureState& state, GeometryCheck check) {
     const auto eye=state.eye();
     float view[16], projection[16];
     bx::mtxLookAt(view,{eye[0],eye[1],eye[2]},{0,0.85f,0},{0,1,0},bx::Handedness::Right);
@@ -131,29 +143,45 @@ void Renderer::draw(const FixtureState& state) {
     bgfx::setViewTransform(0,view,projection);
     bgfx::touch(0);
     const float light[4]={std::sin(state.lightAzimuth),0.9f,std::cos(state.lightAzimuth),state.lightIntensity};
-    auto submit=[&](float sx,float sy,float sz,float x,float y,float z,float yaw,const float* color) {
-        float transform[16]; bx::mtxSRT(transform,sx,sy,sz,0,yaw,0,x,y,z);
-        bgfx::setTransform(transform);
-        bgfx::setVertexBuffer(0,mesh_);
+    const float options[4]={state.showNormals?1.0f:0.0f,0,0,0};
+    uint64_t cull=BGFX_STATE_CULL_CW; // Authored fixture triangles are outward CCW.
+    if (check==GeometryCheck::Unculled) cull=0;
+    if (check==GeometryCheck::FrontCull) cull=BGFX_STATE_CULL_CCW;
+    auto submit=[&](int mesh,const Matrix4& transform,const float* color) {
+        const auto normal=normalMatrix(transform);
+        bgfx::setTransform(transform.data());
+        bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
         bgfx::setUniform(material_,color); bgfx::setUniform(light_,light);
-        bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA);
+        bgfx::setUniform(normal_,normal.data()); bgfx::setUniform(options_,options);
+        bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA|cull);
         bgfx::submit(0,program_);
     };
     const float ground[4]={0.28f,0.31f,0.34f,1};
     const float color[4]={state.color[0],state.color[1],state.color[2],1};
     const float marker[4]={0.33f,0.67f,0.64f,1};
-    submit(20,0.1f,20,0,-0.05f,0,0,ground);
-    submit(1.5f,1.5f,1.5f,0,0.75f,0,state.objectYaw,color);
-    submit(0.35f,1.8f,0.35f,2.1f,0.9f,0,0,marker);
+    Matrix4 groundTransform, markerTransform;
+    bx::mtxSRT(groundTransform.data(),20,.1f,20,0,0,0,0,-.05f,0);
+    bx::mtxSRT(markerTransform.data(),.35f,1.8f,.35f,0,0,0,2.1f,.9f,0);
+    auto subject=subjectTransform(state);
+    const bool baked=check==GeometryCheck::BakedReference;
+    if (baked) bx::mtxIdentity(subject.data());
+    if (check==GeometryCheck::ReverseOrder) {
+        submit(0,markerTransform,marker); submit(state.mesh,subject,color); submit(0,groundTransform,ground);
+    } else {
+        submit(0,groundTransform,ground); submit(baked?3:state.mesh,subject,color); submit(0,markerTransform,marker);
+    }
 }
 const char* Renderer::name() const { return bgfx::getRendererName(bgfx::getRendererType()); }
 void Renderer::stop() {
     if (!started_) return;
-    if (bgfx::isValid(mesh_)) bgfx::destroy(mesh_);
+    for (auto handle : meshes_) if (bgfx::isValid(handle)) bgfx::destroy(handle);
     if (bgfx::isValid(program_)) bgfx::destroy(program_);
     if (bgfx::isValid(material_)) bgfx::destroy(material_);
     if (bgfx::isValid(light_)) bgfx::destroy(light_);
-    mesh_=BGFX_INVALID_HANDLE; program_=BGFX_INVALID_HANDLE;
+    if (bgfx::isValid(normal_)) bgfx::destroy(normal_);
+    if (bgfx::isValid(options_)) bgfx::destroy(options_);
+    for (auto& handle : meshes_) handle=BGFX_INVALID_HANDLE;
+    program_=BGFX_INVALID_HANDLE; normal_=BGFX_INVALID_HANDLE; options_=BGFX_INVALID_HANDLE;
     material_=BGFX_INVALID_HANDLE; light_=BGFX_INVALID_HANDLE;
     bgfx::frame(); bgfx::shutdown(); started_=false;
     std::cout << "SHUTDOWN renderer resources released\n";

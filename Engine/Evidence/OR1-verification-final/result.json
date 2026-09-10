@@ -1,0 +1,87 @@
+{
+  "backend": "Metal",
+  "became_blue_sampled_pixels": 31162,
+  "captures": {
+    "baked": {
+      "height": 1360,
+      "sha256": "14dea4911117b5c6cd5e0358100ddf02367e553dc688f898e4b44ee93e5a6b43",
+      "width": 2000
+    },
+    "baseline": {
+      "height": 1440,
+      "sha256": "9062f62f198e1adc4745f1bb33d58e1aa2bf3ae2827813c55f7c9ae9f7227c24",
+      "width": 2240
+    },
+    "front-cull": {
+      "height": 1360,
+      "sha256": "fec6bdf7ba38265872d73ab3f35586b82f0baf47c57dd08fb74158deecec078f",
+      "width": 2000
+    },
+    "material": {
+      "height": 1440,
+      "sha256": "1386332ee1c849ccfd802fb2f13a7f795b60a755c1031a40dcafb40f06628bb0",
+      "width": 2240
+    },
+    "normals": {
+      "height": 1360,
+      "sha256": "5594d82a62f99f348896fee90d3ee53bbffeb5684c464f5db75a9da564292bf8",
+      "width": 2000
+    },
+    "orbit": {
+      "height": 1440,
+      "sha256": "8e10517ee00901f171eaa218317a2b1fc0be31c8821f4c3bef28bd91a9fbef2a",
+      "width": 2240
+    },
+    "resized": {
+      "height": 1360,
+      "sha256": "e14884a22452108ecea78d15082abc684c20904f02c4c02f39f3e6effbf77000",
+      "width": 2000
+    },
+    "reverse-order": {
+      "height": 1360,
+      "sha256": "858acf53f287262688eedf2dbfd77cf290f61b040581f2512f4d71c4ce4f3efd",
+      "width": 2000
+    },
+    "sphere": {
+      "height": 1360,
+      "sha256": "3086621c3c502ec0e6ddd981dcee1866cb6b877f79402d5ebdf6f62f0067249d",
+      "width": 2000
+    },
+    "unculled": {
+      "height": 1360,
+      "sha256": "9da4c3d63d4461e7f345f915b392e3063aaac4059020ccac1ef97da8f672d979",
+      "width": 2000
+    }
+  },
+  "expected_failures": [
+    "missing-shaders",
+    "invalid-argument"
+  ],
+  "geometry_comparisons": {
+    "baked": {
+      "different": 0,
+      "normal_subject": 7983,
+      "samples": 163200
+    },
+    "front-cull": {
+      "different": 111802,
+      "normal_subject": 7983,
+      "samples": 163200
+    },
+    "reverse-order": {
+      "different": 0,
+      "normal_subject": 7983,
+      "samples": 163200
+    },
+    "unculled": {
+      "different": 0,
+      "normal_subject": 7983,
+      "samples": 163200
+    }
+  },
+  "material_changed_sampled_pixels": 31162,
+  "orbit_changed_sampled_pixels": 34878,
+  "proof_limit": "Native technical checks and GPU pixel changes; not physical input, gameplay, final visual acceptance or target-PC performance.",
+  "result": "passed",
+  "schema_version": 1
+}

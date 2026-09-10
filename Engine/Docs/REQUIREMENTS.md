@@ -6,7 +6,7 @@ Status: planning baseline. [DIRECTION.md](./DIRECTION.md) controls accepted prod
 |---|---|---|---|
 | R-01 | Standalone engine and all new work under `Engine/` | Foundation | Build without Unity assemblies, assets or editor processes; clean checkout instructions |
 | R-02 | Regular third-person viewing | Rendering fixture | Perspective camera, correct scale, close inspection and obstruction handling; user decides feel |
-| R-03 | Windows PC target; Mac development optional | Foundation | Native Windows compile and GPU execution before target claims; record hardware and backend |
+| R-03 | Windows PC target; prefer Mac development while practical | Foundation | Separate native Windows testing checkpoint; compile and GPU execution before target claims; record hardware and backend |
 | R-04 | Open Greater Wasteland rock workload; canyons deferred | All planning | Initial fixture uses simple open ground; no canyon generator or regional geography invented |
 | R-05 | Editable, versioned rock recipes | Workbench | Load/edit/save/reload preserves declared inputs; invalid recipes produce useful errors |
 | R-06 | Deterministic generation and stable identity | World/rock core | Same discrete inputs produce identical IDs; geometric tolerance/bitwise contract explicitly chosen |

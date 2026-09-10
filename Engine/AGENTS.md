@@ -17,7 +17,7 @@ Load [README.md](./README.md), [Docs/STATUS.md](./Docs/STATUS.md), [Docs/DIRECTI
 ## Technical Direction
 
 - Regular third-person, fully 3D. Do not inherit elevated top-down camera values or behavior. Exact camera and movement tuning remain open.
-- Windows PC is the product target. Mac development is optional and must not become a substantial compatibility project.
+- Windows PC is the product target. Keep Mac as the main development machine while practical; introduce Windows testing separately. Mac support must not become a substantial compatibility project.
 - Build the engine foundation first, then the rock generator/workbench for the open Greater Wasteland. Canyons are deferred.
 - Preserve procedural compatibility: deterministic world identity, stable generated-object IDs, chunk unload/reload, authored constraints and persisted runtime deltas. State how each applies before implementing a system; give a reason for any concern marked inapplicable.
 - Keep the geographic coordinate design replaceable; do not invent final world-map canon.

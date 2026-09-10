@@ -61,6 +61,11 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     if (ImGui::Button("Cool material",ImVec2(130,28))) state.color={0.18f,0.55f,0.85f};
     const auto min=ImGui::GetItemRectMin(),max=ImGui::GetItemRectMax();
     ButtonPosition button{(min.x+max.x)/2,(min.y+max.y)/2};
+    if (ImGui::CollapsingHeader("Geometry inspection")) {
+        ImGui::Combo("Shape",&state.mesh,"Cube\0Sloped solid\0Sphere\0");
+        ImGui::SliderFloat3("Scale XYZ",state.objectScale.data(),0.2f,3.0f,"%.2f");
+        ImGui::Checkbox("Show world normals",&state.showNormals);
+    }
     ImGui::Separator();
     ImGui::TextUnformatted("Lighting");
     ImGui::SliderAngle("Direction",&state.lightAzimuth,-180,180);
@@ -106,7 +111,7 @@ int run(const Options& options) {
         ButtonPosition button;
         auto last=std::chrono::steady_clock::now();
         for (unsigned frame=0;running;++frame) {
-            if (verify && frame>210) throw std::runtime_error("Verification exceeded frame limit");
+            if (verify && frame>300) throw std::runtime_error("Verification exceeded frame limit");
             SDL_Event event;
             float dx=0,dy=0,wheel=0;
             while (SDL_PollEvent(&event)) {
@@ -134,9 +139,15 @@ int run(const Options& options) {
             const auto now=std::chrono::steady_clock::now();
             const float milliseconds=std::chrono::duration<float,std::milli>(now-last).count(); last=now;
             state.orbit(dx,dy,io.WantCaptureMouse); state.zoom(wheel,io.WantCaptureMouse);
+            if (verify && frame==155) state=engine::geometryProofState();
+            if (verify && frame==230) state.mesh=2;
             button=inspector(state,renderer,milliseconds);
             ImGui::Render();
-            renderer.draw(state); ui.draw(ImGui::GetDrawData());
+            engine::GeometryCheck geometryCheck=engine::GeometryCheck::None;
+            constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
+                engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
+            if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
+            renderer.draw(state,geometryCheck); ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -155,7 +166,11 @@ int run(const Options& options) {
                     finalBuffers=bgfx::getStats()->numVertexBuffers;
                     capture("resized.png");
                 }
-                if (frame==175) { SDL_Event quit{}; quit.type=SDL_EVENT_QUIT; if (!SDL_PushEvent(&quit)) throw std::runtime_error("Cannot inject close event"); }
+                if (frame>=165 && frame<=240 && (frame-165)%15==0) {
+                    constexpr const char* names[]={"normals.png","baked.png","unculled.png","front-cull.png","reverse-order.png","sphere.png"};
+                    capture(names[(frame-165)/15]);
+                }
+                if (frame==260) { SDL_Event quit{}; quit.type=SDL_EVENT_QUIT; if (!SDL_PushEvent(&quit)) throw std::runtime_error("Cannot inject close event"); }
             }
             bgfx::frame();
             if (verify) SDL_Delay(10);
@@ -165,7 +180,7 @@ int run(const Options& options) {
     renderer.stop();
     if (verify) {
         const bool success=clicked && orbited && resized && closed && baselineBuffers==finalBuffers &&
-            renderer.callbacks.captures==4 && renderer.callbacks.errors==0;
+            renderer.callbacks.captures==10 && renderer.callbacks.errors==0;
         std::ofstream report(options.verify/"verification.json");
         report << "{\n  \"schema_version\": 1,\n  \"backend\": \"" << backend
                << "\",\n  \"inspector_click\": " << (clicked?"true":"false")

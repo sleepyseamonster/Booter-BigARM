@@ -1,0 +1,54 @@
+{
+  "command": [
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/foundation/engine_workbench",
+    "--shaders",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/OR1-verification-final/absent-shaders"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/AGENTS.md",
+    " M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Docs/DECISIONS.md",
+    " M Engine/Docs/DIRECTION.md",
+    " M Engine/Docs/FOUNDATION_PLAN.md",
+    " M Engine/Docs/STATUS.md",
+    " M Engine/README.md",
+    " M Engine/Shaders/fs_scene.sc",
+    " M Engine/Shaders/vs_scene.sc",
+    " M Engine/Source/Core/FixtureState.cpp",
+    " M Engine/Source/Core/FixtureState.h",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Tools/tests/test_foundation_evidence.py",
+    " M Engine/Tools/verify_foundation.py",
+    "?? Engine/Docs/OUTDOOR_RENDERING_PLAN.md",
+    "?? Engine/Evidence/OR1-build-final/",
+    "?? Engine/Evidence/OR1-build-reviewed/",
+    "?? Engine/Evidence/OR1-build/",
+    "?? Engine/Evidence/OR1-native-tests-final/",
+    "?? Engine/Evidence/OR1-native-tests/",
+    "?? Engine/Evidence/OR1-tool-tests/",
+    "?? Engine/Evidence/OR1-verification-final/",
+    "?? Engine/Evidence/OR1-verification/",
+    "?? Engine/Source/Core/FixtureGeometry.cpp",
+    "?? Engine/Source/Core/FixtureGeometry.h",
+    "?? Engine/Tests/FixtureGeometryTests.cpp"
+  ],
+  "duration_seconds": 0.241,
+  "exit_code": 1,
+  "git_head": "0514a2a0401d0f504c67d34bc32e14d44f8b8e1e",
+  "input_sha256_after": {
+    "build/foundation/engine_workbench": "325f369a766fa60708fa922fa57e917e21930b080b0e3de6aae48f3c54b9f7b7"
+  },
+  "input_sha256_before": {
+    "build/foundation/engine_workbench": "325f369a766fa60708fa922fa57e917e21930b080b0e3de6aae48f3c54b9f7b7"
+  },
+  "inputs_unchanged": true,
+  "outcome": "failed",
+  "output_sha256": "455d3bac36d6e01502fbb046532090d3be11eea340f0de7a335a47d3696163f5",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T06:30:48.860637+00:00",
+  "timeout_seconds": 30.0
+}

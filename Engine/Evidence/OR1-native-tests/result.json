@@ -1,0 +1,58 @@
+{
+  "command": [
+    "ctest",
+    "--test-dir",
+    "build/foundation",
+    "-C",
+    "Release",
+    "--output-on-failure"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/AGENTS.md",
+    " M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Docs/DECISIONS.md",
+    " M Engine/Docs/DIRECTION.md",
+    " M Engine/Docs/FOUNDATION_PLAN.md",
+    " M Engine/Docs/STATUS.md",
+    " M Engine/README.md",
+    " M Engine/Shaders/fs_scene.sc",
+    " M Engine/Shaders/vs_scene.sc",
+    " M Engine/Source/Core/FixtureState.cpp",
+    " M Engine/Source/Core/FixtureState.h",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Tools/tests/test_foundation_evidence.py",
+    " M Engine/Tools/verify_foundation.py",
+    "?? Engine/Docs/OUTDOOR_RENDERING_PLAN.md",
+    "?? Engine/Evidence/OR1-build-final/",
+    "?? Engine/Evidence/OR1-build/",
+    "?? Engine/Evidence/OR1-tool-tests/",
+    "?? Engine/Source/Core/FixtureGeometry.cpp",
+    "?? Engine/Source/Core/FixtureGeometry.h",
+    "?? Engine/Tests/FixtureGeometryTests.cpp"
+  ],
+  "duration_seconds": 0.833,
+  "exit_code": 0,
+  "git_head": "0514a2a0401d0f504c67d34bc32e14d44f8b8e1e",
+  "input_sha256_after": {
+    "Tests/FixtureGeometryTests.cpp": "8f0dff97ab8ba7388f78320b538dcb7178e6a1c06b27422ff0a7a64f31e4076f",
+    "Tests/FixtureStateTests.cpp": "d23b98643cd5c14940d851dfeed053a6f76772242e09f79c5c4ede3821725bc6",
+    "build/foundation/engine_geometry_tests": "4845c0104d7f04163688a5f77dad683b93f43a82a49d2e2ee653c9c2c901769a",
+    "build/foundation/engine_state_tests": "60f0b5cb6b53ebea17e8d8c92463d9e587e9e986676eae9f6cd4fc83814fe83d"
+  },
+  "input_sha256_before": {
+    "Tests/FixtureGeometryTests.cpp": "8f0dff97ab8ba7388f78320b538dcb7178e6a1c06b27422ff0a7a64f31e4076f",
+    "Tests/FixtureStateTests.cpp": "d23b98643cd5c14940d851dfeed053a6f76772242e09f79c5c4ede3821725bc6",
+    "build/foundation/engine_geometry_tests": "4845c0104d7f04163688a5f77dad683b93f43a82a49d2e2ee653c9c2c901769a",
+    "build/foundation/engine_state_tests": "60f0b5cb6b53ebea17e8d8c92463d9e587e9e986676eae9f6cd4fc83814fe83d"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "0d263346086bfe578219e410ce20ad34f019a10a2c87f3575b85a1a9d77fe778",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10T06:28:24.231821+00:00",
+  "timeout_seconds": 600
+}

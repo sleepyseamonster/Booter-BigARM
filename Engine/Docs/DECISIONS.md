@@ -6,8 +6,8 @@ Update this record when evidence changes a decision. Keep the rationale and repl
 |---|---|---|---|
 | D-01 | Accepted | Proprietary engine; regular third-person game | User, 2026-09-09 |
 | D-02 | Accepted | Work exclusively inside `Engine/` in the existing repository | User, 2026-09-09 |
-| D-03 | Accepted | Foundation first; open Greater Wasteland rock workbench next; canyons deferred | User, 2026-09-09 |
-| D-04 | Accepted | Windows product target; Mac development optional | User, 2026-09-09 |
+| D-03 | Accepted | Foundation first, including D-13 outdoor rendering; then open Greater Wasteland rock workbench; canyons deferred | User, 2026-09-09 |
+| D-04 | Accepted; clarified | Windows product target; Mac remains primary development while practical; Windows testing is a separate checkpoint | User clarification, 2026-09-09; supersedes optional-only Mac wording |
 | D-05 | Accepted for foundation | C++20 and CMake | Native fresh build and final fixture checks; broader engine evolution remains open |
 | D-06 | Accepted for foundation | Pinned SDL3, bgfx and Dear ImGui | Real Metal scene/inspector verified; Windows, advanced renderer requirements and shipping readiness remain open |
 | D-07 | Proposed | Jolt when collision enters scope | Character/collision and streamed resource experiment later |
@@ -16,6 +16,7 @@ Update this record when evidence changes a decision. Keep the rationale and repl
 | D-10 | Open | Camera feel, visual quality and final asset scale | User review after a functioning fixture |
 | D-11 | Deferred | Final world coordinates, geology parameters and survival terminology alignment | User creative authority; no foundation dependency |
 | D-12 | Accepted for foundation | Official SDL3 ImGui platform backend plus a project-owned fixed-atlas bgfx adapter | GPU output, clipping and injected inspector interaction verified; dynamic fonts, custom UI textures and multi-viewports deferred |
+| D-13 | Accepted for next milestone | Complete bounded outdoor rendering before the rock workbench | User's foundation-first direction and continuing authority, 2026-09-09; [OR-1 through OR-5](./OUTDOOR_RENDERING_PLAN.md) replace immediate rock implementation as the next step |
 
 Foundation selections were made under the user's implementation authority on 2026-09-09, following [the application result](./FOUNDATION_RESULT.md). These supersede the earlier proposals for this bounded milestone; they do not establish final game performance, complete engine architecture or shipping readiness.
 

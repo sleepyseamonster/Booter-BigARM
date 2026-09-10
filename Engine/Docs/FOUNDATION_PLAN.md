@@ -2,7 +2,7 @@
 
 Status: preparation package followed by bounded technical milestones. [Requirements](./REQUIREMENTS.md), [decisions](./DECISIONS.md) and [architecture](./ARCHITECTURE.md) define the plan. No deadline or production readiness is inferred from this document.
 
-Current progress: P0/P1 are complete. The first F1/F2 application/rendering slice is verified on Mac; [the result audit](./FOUNDATION_RESULT.md) names its limits, including pending native Windows evidence and richer rendering/authoring work. F3 is the next content milestone.
+Current progress: P0/P1 are complete. The first F1/F2 application/rendering slice is verified on Mac; [the result audit](./FOUNDATION_RESULT.md) names its limits. Complete the [outdoor rendering foundation](./OUTDOOR_RENDERING_PLAN.md) before F3. A visible mesh alone is insufficient to judge generated rocks.
 
 | Stage | Scope | Completion evidence | Excluded |
 |---|---|---|---|
@@ -10,10 +10,11 @@ Current progress: P0/P1 are complete. The first F1/F2 application/rendering slic
 | P1 — Compatibility experiment | One exact C++/SDL/bgfx/ImGui source cohort; compile and bounded technical execution | Source hashes and licenses, configuration/build/run receipts; describe Noop versus real GPU proof separately | Production architecture selection, gameplay smoke tests |
 | F1 — Application foundation | Selected build process, window/input, errors, shutdown and diagnostics | Fresh native build, resource/error-path checks, repeatable instructions | World generator and complete editor |
 | F2 — Rendering/authoring foundation | Mesh, perspective camera, material controls, inspector, reload and resize | GPU output and resource lifetime evidence; native Windows path when available | Canyon generation and visual parity claims from compile alone |
+| F2 outdoor extension | Correct geometry/color, directional shadows, basic materials/ambient and saved inspection settings | [OR-1 through OR-5](./OUTDOOR_RENDERING_PLAN.md), known-geometry comparisons, native Windows checkpoint and measured cost | Whole-wasteland renderer and advanced lighting |
 | F3 — Representative rock workload | Recipe document, CPU generation, mesh/material/LOD/collision preview | Determinism, saved recipe round-trip, malformed input, near/side/far review and measured workloads | Whole-world simulation and expanded gameplay |
 | F4 — Streamed open space | Region lifecycle, bounded generation/upload and durable overrides | Border/identity checks, cancellation, unload/reload, restart and memory behavior | Final geography and canyons |
 
-## Immediate Technical Experiment
+## Completed Compatibility Experiment History
 
 Use the source lock and experiment instructions under [Research/Experiments](../Research/Experiments/README.md). The first headless check can establish link compatibility, SDL event plumbing, bgfx resource calls through its Noop backend and ImGui draw-data creation. It must not be called a rendered inspector or GPU validation.
 

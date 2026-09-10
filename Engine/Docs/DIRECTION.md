@@ -16,7 +16,7 @@ The initial foundation should establish a reproducible executable, graphics, inp
 
 ## Platform
 
-Windows PC is the intended game platform. Development currently happens on Mac, but the user explicitly permits moving development to Windows. Do not invest substantially in Mac compatibility or constrain the Windows game to preserve Mac development. Specific PC hardware and performance targets remain open.
+Windows PC is the intended game platform. The user clarified on 2026-09-09 that Mac should remain the primary development machine for as long as practical. Introduce native Windows testing during the outdoor rendering milestone without requiring a daily-workstation switch. Move primary development when meaningful compatibility effort or target-specific debugging/performance work warrants it; the user permits that move. Do not constrain the Windows game to preserve Mac development. Specific PC hardware and performance targets remain open.
 
 ## Work Boundary
 
@@ -29,6 +29,6 @@ The user requested separation from Unity within this repository and then instruc
 
 ## Decision Status
 
-Accepted: proprietary engine, regular third person, open Greater Wasteland rock workload, deferred canyons, Windows target, optional Mac development, and `Engine/` as the working area in this repository.
+Accepted: proprietary engine, regular third person, open Greater Wasteland rock workload, deferred canyons, Windows target, preferred Mac development while practical, and `Engine/` as the working area in this repository.
 
 Selected for the current application foundation under the user's implementation authority: C++20, CMake and the pinned SDL3/bgfx/Dear ImGui cohort. The native Metal result is recorded in [STATUS.md](./STATUS.md); Windows and broader production suitability remain open. Jolt and later supporting components in [the foundation research](./PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) remain proposed. [DECISIONS.md](./DECISIONS.md) records selection scope and review triggers.

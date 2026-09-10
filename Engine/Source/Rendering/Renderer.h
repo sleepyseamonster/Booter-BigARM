@@ -6,6 +6,7 @@
 #include <filesystem>
 
 namespace engine {
+enum class GeometryCheck { None, Transformed, BakedReference, Unculled, FrontCull, ReverseOrder };
 bgfx::ProgramHandle loadProgram(const std::filesystem::path& directory, const char* vertex, const char* fragment);
 class CaptureCallbacks final : public bgfx::CallbackI {
 public:
@@ -31,7 +32,7 @@ public:
     Renderer& operator=(const Renderer&) = delete;
     void start(const Window&, const std::filesystem::path& shaders);
     void resize(int width, int height);
-    void draw(const FixtureState&);
+    void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None);
     void rebuildMesh();
     void stop();
     const char* name() const;
@@ -42,7 +43,8 @@ private:
     bool started_ = false;
     int width_ = 0, height_ = 0;
     bgfx::ProgramHandle program_ = BGFX_INVALID_HANDLE;
-    bgfx::VertexBufferHandle mesh_ = BGFX_INVALID_HANDLE;
+    std::array<bgfx::VertexBufferHandle, 4> meshes_{{BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE}};
     bgfx::UniformHandle material_ = BGFX_INVALID_HANDLE, light_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle normal_ = BGFX_INVALID_HANDLE, options_ = BGFX_INVALID_HANDLE;
 };
 }

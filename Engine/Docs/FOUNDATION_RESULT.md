@@ -2,6 +2,8 @@
 
 Recorded 2026-09-09. The [milestone plan](./APPLICATION_FOUNDATION_PLAN.md) is complete within its Mac technical-proof boundary. The [status page](./STATUS.md) links the final evidence and remaining platform/creative gates.
 
+This records the original F1 application slice. Later geometry corrections and their evidence are recorded separately in [the outdoor geometry result](./OUTDOOR_GEOMETRY_RESULT.md); the original receipts and limitations below describe F1 at its commit.
+
 ## Implemented Ownership
 
 - `Source/Core/FixtureState`: CPU settings, orbit bounds, input-capture policy and safe framebuffer clipping. It contains no renderer handles.
