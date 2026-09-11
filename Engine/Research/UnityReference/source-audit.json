@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-10",
+  "method": "Read-only source audit; no Unity GUI, compilation or runtime mutation",
+  "source_sha256": {
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DLandscapeAuthoringSandboxEditor.cs": "69c6fee3d377617274bd13748bdc5efac95a441108632464b038726b6ff0d366",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DMixedFormationShapeVariation.cs": "8a1adc671e6ac68e978a41eb2c1f752d2462a980b4b14a2904a12c275c06bec0",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DMixedFormationSand.cs": "77c6fe0f840dadfa7763e26b992674be9ee35b9c1a07be3a60cb1bdc868fdb84",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DMixedFormationClutter.cs": "3c3eb59746bf29691ab335bb33397350cb3be9e230c1c3b1724b668fac7449b1",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DRockWorkbenchBaseRockGenerator.cs": "775395a09cc18e009e13d7f68549ce4d0bb445a86523e01f2339be95315e4770",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DRockWorkbenchMesher.cs": "c0a07834d373be3dbde3d6770b9eeff8fc97fa30218b1b6327f18ba205bffe3e",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DMixedFormationAssetBaker.cs": "ed2c4f1147ce6a464c9f059c68c353da44e3572a3f832aacc57fba64a84efa5d",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustDepositionPlanner.cs": "22767ef58b72eba317f2c27b7eca89694633730f0a72aa9ded080f03ebc14cd2",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DRockGroundContact.cs": "1f1653fd8c938f4efc2365289d1a8df17aa3084547b632f5737ee211efad2d3a",
+    "Assets/_Project/Shaders/TopDown3D/BrokenWorldTerrainBlend.shader": "d8b427da61714835730fd6a1cfdd7cc730c914b9389c95ec0e13d16d4be1773f",
+    "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockWorkbenchPBR.shader": "49e9cce6cfb5e9e42ec07502bb3649e7e10d6bd0ae73d0d69f194c6890b218eb",
+    "Engine/Source/World/Rocks/RockVolumes.cpp": "2af53a5ad33a566d5c0115891c9c3e281d96de26cc841f17959f14276e782952",
+    "Engine/Source/World/Rocks/FormationComposition.cpp": "9a6b7f6364125ad9e0dcb3e420097fa4281ed069d6b61eb29954a7fc63863483",
+    "Engine/Source/Animation/Model.h": "86a8255c33325095f729190760a2ff4c65abc1a59a3e426337364b8403ff3eca",
+    "Engine/Source/World/Streaming/RegionStream.cpp": "3ab78be26944f46fa0cc800d989d84167b8fca7fdab4f712282118e2dace7370"
+  },
+  "screenshot": "User-supplied Screenshot 2026-09-10 at 10.04.15 PM.png; visible Terrain v2 label; exact build not inferred",
+  "native_baseline": "6fcf6ade1bde637e7ae0deb21a090e4596a4b3a0"
+}

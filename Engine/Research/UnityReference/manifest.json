@@ -1,0 +1,685 @@
+{
+  "schema_version": 1,
+  "collected": "2026-09-10",
+  "repo_head": "6fcf6ade1bde637e7ae0deb21a090e4596a4b3a0",
+  "purpose": "Historical research reference for Engine; no imported instruction or Unity implementation is active engine authority.",
+  "scope_searched": [
+    "Non-agent Docs markdown, research, technical standards, plans and evidence",
+    "Repository research filenames outside generated caches",
+    "Git history of superseded grounded-geology plan and deleted Docs paths",
+    "Four identified prior project research conversations",
+    "Agent-area markdown keyword scan for Crimson Desert, Marching Cubes, Dual Contouring, LOD research and POM: no additional matching research notes"
+  ],
+  "terminology": "No exact wandering cubes research title found. Marching Cubes/scalar-field meshing is the likely intended topic.",
+  "files": [
+    {
+      "source": "Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md",
+      "copy": "Documents/3D_CONVERSION_AUDIT_AND_CHECKLIST.md",
+      "sha256": "00e60bb8cc8c09172026c2956db70ea819bbf3aa13106022bf31652d6451ed0f",
+      "bytes": 69990,
+      "kind": "exact Unity document snapshot",
+      "category": "Historical camera and Unity rendering"
+    },
+    {
+      "source": "Docs/3D_CONVERSION_START_READINESS.md",
+      "copy": "Documents/3D_CONVERSION_START_READINESS.md",
+      "sha256": "5498211fee606a3c4541458c5235290b76de7490e519d67a0e00bc8ca89ec7d4",
+      "bytes": 19681,
+      "kind": "exact Unity document snapshot",
+      "category": "Historical camera and Unity rendering"
+    },
+    {
+      "source": "Docs/ART_ANIMATION_STARTER.md",
+      "copy": "Documents/ART_ANIMATION_STARTER.md",
+      "sha256": "004f63ca1b9ef476b552e507060d073932b6934acb5b665923cd9485aff61bc4",
+      "bytes": 4999,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/BIGARM_COMPANION_STANDARD.md",
+      "copy": "Documents/BIGARM_COMPANION_STANDARD.md",
+      "sha256": "8af7b252027253383d537e6f0953fcca480a2cbb03f121414bd99631d129fe64",
+      "bytes": 2884,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+      "copy": "Documents/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+      "sha256": "95a7e85bafe622d297e764291e5da0304c02e902db730419ee6fd2f08f0df16c",
+      "bytes": 64781,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_STATUS.md",
+      "copy": "Documents/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_STATUS.md",
+      "sha256": "9c5f3aaf11cff7701f7a2a44263b164557e0fdb2ea0b88fb9e8d2a083cb5e5dc",
+      "bytes": 1537,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/ConversionEvidence/LEGACY_BASELINE_2026-08-12.md",
+      "copy": "Documents/ConversionEvidence/LEGACY_BASELINE_2026-08-12.md",
+      "sha256": "0499badc5abe50eb1137899dc312ad5eece3bfd41168b8173311a550cd7a964c",
+      "bytes": 2223,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md",
+      "copy": "Documents/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md",
+      "sha256": "c34d86a4ced6464732af3c359e912836969e5af29a71d86a0c6aa1a272659f06",
+      "bytes": 7294,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md",
+      "copy": "Documents/ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md",
+      "sha256": "b0db633387bf9feee456554a9008dc9cc451470c7296b73aa5b1b5f6e8d2a31a",
+      "bytes": 6812,
+      "kind": "exact Unity document snapshot",
+      "category": "Historical camera and Unity rendering"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_0_READINESS_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_0_READINESS_2026-08-24.md",
+      "sha256": "14115b1123f513215dcbd3a30eec40d6b59433c03f2bb72a22a51b31eae6ce6b",
+      "bytes": 15783,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_10_FULL_CONTENT_REVIEW_BUILD_RECEIPT_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_10_FULL_CONTENT_REVIEW_BUILD_RECEIPT_2026-08-24.md",
+      "sha256": "8089789365eeec73c184808a4b5f35b943ad864363c21ac89cf11f1320b8615d",
+      "bytes": 4575,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_10_VERTICAL_SLICE_GATE_REPORT_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_10_VERTICAL_SLICE_GATE_REPORT_2026-08-24.md",
+      "sha256": "17bb56ab4f5493b85a640bfc408f755ac1e1a7297fb0b57492e80ece035cfc25",
+      "bytes": 8536,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_10_VISUAL_AND_TARGET_PROFILE_HANDOFF_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_10_VISUAL_AND_TARGET_PROFILE_HANDOFF_2026-08-24.md",
+      "sha256": "0c82e1f2a8f1d6342b17e151a05d162cc55cd8727c045a11d6091a13d900a846",
+      "bytes": 10279,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_6_PRECUTOVER_BASELINE_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_6_PRECUTOVER_BASELINE_2026-08-24.md",
+      "sha256": "dd34c761f34b3158044434591d0d455420640b083198c4d113d5611cd699202c",
+      "bytes": 2545,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_6_TOPOLOGY_V2_CUTOVER_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_6_TOPOLOGY_V2_CUTOVER_2026-08-24.md",
+      "sha256": "3771d38d9aae0d21f95961c13510f338b4752546eafb28f770f021dc791c591d",
+      "bytes": 5022,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_7_GEOLOGICAL_ROCK_EVOLUTION_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_7_GEOLOGICAL_ROCK_EVOLUTION_2026-08-24.md",
+      "sha256": "26858b7371b59d260cf03039200958148727ff0f03da3107c275adf59970c768",
+      "bytes": 3322,
+      "kind": "exact Unity document snapshot",
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_7_PRECUTOVER_BASELINE_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_7_PRECUTOVER_BASELINE_2026-08-24.md",
+      "sha256": "02cae608df2abaa33e19376b85e8f4fad09e1f27edbf87c222a79f94e2f4457a",
+      "bytes": 983,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_8_PRECUTOVER_BASELINE_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_8_PRECUTOVER_BASELINE_2026-08-24.md",
+      "sha256": "716a5515794fab72dab8280a53d81985bdf02022b6db93547416e818cc02b30c",
+      "bytes": 739,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_8_SEMANTIC_MATERIAL_AND_DUST_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_8_SEMANTIC_MATERIAL_AND_DUST_2026-08-24.md",
+      "sha256": "1c5707b78c509ec1580c9e39028c2b7df6b2565324ae03804b0f5fc6e06a6905",
+      "bytes": 3880,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_9_PERSISTENCE_AND_SAVED_PLACES_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_9_PERSISTENCE_AND_SAVED_PLACES_2026-08-24.md",
+      "sha256": "f3e44c3b5294549f7f07f88db5dfd40b18ad4d859d4e48fcfb2b4de243a45117",
+      "bytes": 3944,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/BATCH_9_PRECUTOVER_RESOURCE_BASELINE_2026-08-24.md",
+      "copy": "Documents/Evidence/WorldCreator/BATCH_9_PRECUTOVER_RESOURCE_BASELINE_2026-08-24.md",
+      "sha256": "054ceb5fd456706f57fcb5462542b48a71ec98c5a353aba5bf9e77e9d721a7da",
+      "bytes": 556,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/RockCompositionReference/NearRockPebbleTexturePrompts_2026-09-06.md",
+      "copy": "Documents/Evidence/WorldCreator/RockCompositionReference/NearRockPebbleTexturePrompts_2026-09-06.md",
+      "sha256": "1cfb9a9617e5650702d62b0ff58a92cddc67c50603b1417809a54264c9ab04dd",
+      "bytes": 3660,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/Evidence/WorldCreator/RockCompositionReference/PebbleTexturePrompts_2026-09-06.md",
+      "copy": "Documents/Evidence/WorldCreator/RockCompositionReference/PebbleTexturePrompts_2026-09-06.md",
+      "sha256": "2f5dee6f91f2b2a61f47b6b96e1b195636786961d4b50b75c00064d3d41e3c0f",
+      "bytes": 4455,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md",
+      "copy": "Documents/GAMEPLAY_ARCHITECTURE_BASELINES.md",
+      "sha256": "13989008d02eb35efeb1332956d853b6269ca206ca685a446faa620a1889a59f",
+      "bytes": 6671,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md",
+      "copy": "Documents/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md",
+      "sha256": "dd6b5f2c286f54f6f556176e56b05f014406790d131f554d25441efffae689e7",
+      "bytes": 1013,
+      "kind": "exact Unity document snapshot",
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "Docs/GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md",
+      "copy": "Documents/GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md",
+      "sha256": "6349f4963be5f2c018d15394c0563d8831038516d044f61fa632f5b3bb1ca38f",
+      "bytes": 10864,
+      "kind": "exact Unity document snapshot",
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "Docs/INPUT_ARCHITECTURE_STANDARD.md",
+      "copy": "Documents/INPUT_ARCHITECTURE_STANDARD.md",
+      "sha256": "c881f8b18887e5492455f10f745836974e60007753d060940f94cba997960239",
+      "bytes": 5629,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/INVENTORY_AND_ITEM_MANAGEMENT_SYSTEM.md",
+      "copy": "Documents/INVENTORY_AND_ITEM_MANAGEMENT_SYSTEM.md",
+      "sha256": "8f424df157ca068062430c9d5e572ed65091a3f30be8d32a1895591df7d4ea69",
+      "bytes": 17103,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/IRONSTONE_MINING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+      "copy": "Documents/IRONSTONE_MINING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+      "sha256": "06665746f77b7be2d8175be0dd3b599ce4aba656c7785afcab1e73b5241508f8",
+      "bytes": 45910,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md",
+      "copy": "Documents/IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md",
+      "sha256": "808f7259f8fb7fe37696adc6402083b24ecfb51b4977a44d81470d74478d60f3",
+      "bytes": 5145,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/ISOMETRIC_DIRECTION_BRIEF.md",
+      "copy": "Documents/ISOMETRIC_DIRECTION_BRIEF.md",
+      "sha256": "52e7e392673990abda5b29ed74d8b6b16493127c670f1b897955911b009d4be6",
+      "bytes": 6379,
+      "kind": "exact Unity document snapshot",
+      "category": "Historical camera and Unity rendering"
+    },
+    {
+      "source": "Docs/LEGACY_2D_BOUNDARY.md",
+      "copy": "Documents/LEGACY_2D_BOUNDARY.md",
+      "sha256": "a0fa4e7c6ba501ac06ee348d66ae31a106b0070bef1d4bb5daa699c362933909",
+      "bytes": 2070,
+      "kind": "exact Unity document snapshot",
+      "category": "Historical camera and Unity rendering"
+    },
+    {
+      "source": "Docs/MOVEMENT_CAMERA_STANDARD.md",
+      "copy": "Documents/MOVEMENT_CAMERA_STANDARD.md",
+      "sha256": "ad00bd5ecb1efdbdf272dc0aa5b13e30fa3116f84c9d4d97edcd924f6d18107f",
+      "bytes": 10421,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/PERFORMANCE_AUDIT_AND_OPTIMIZATION.md",
+      "copy": "Documents/PERFORMANCE_AUDIT_AND_OPTIMIZATION.md",
+      "sha256": "c7ce89e4f7aca839ad47e744d736ef8f938b6eac15a5935f888fcf4115820c9f",
+      "bytes": 14424,
+      "kind": "exact Unity document snapshot",
+      "category": "Terrain, streaming and performance"
+    },
+    {
+      "source": "Docs/PROCEDURAL_ESCARPMENT_SYSTEM.md",
+      "copy": "Documents/PROCEDURAL_ESCARPMENT_SYSTEM.md",
+      "sha256": "e63f044424160de04089d693910975bb99df566152f0d47f276aaaf6e0991437",
+      "bytes": 4596,
+      "kind": "exact Unity document snapshot",
+      "category": "Terrain, streaming and performance"
+    },
+    {
+      "source": "Docs/PROTOTYPE_UI_PLAN.md",
+      "copy": "Documents/PROTOTYPE_UI_PLAN.md",
+      "sha256": "c86eb4ab25ef5148de90b7205026888e01f8cfc0f1a57ed2a9343de49417fbfb",
+      "bytes": 1330,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/RESEARCH_PLAN.md",
+      "copy": "Documents/RESEARCH_PLAN.md",
+      "sha256": "5fc937f52a71c1ce5e907b1e2bad28aac25a668d1dadf8f068295b4bd1055616",
+      "bytes": 4766,
+      "kind": "exact Unity document snapshot",
+      "category": "Research context and technical evidence"
+    },
+    {
+      "source": "Docs/ROCK_FORMATION_MESH_FUSION_PLAN.md",
+      "copy": "Documents/ROCK_FORMATION_MESH_FUSION_PLAN.md",
+      "sha256": "0f303326ba5e690b47974977fb0f11dcbe08fd80df407d8788ea0756c24e24f7",
+      "bytes": 17110,
+      "kind": "exact Unity document snapshot",
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "Docs/ROCK_FORMATION_WORKBENCH.md",
+      "copy": "Documents/ROCK_FORMATION_WORKBENCH.md",
+      "sha256": "802f54f971a763f34a146d6f892abb093611c6006d2e9d062a24ca47a9b95f6b",
+      "bytes": 14344,
+      "kind": "exact Unity document snapshot",
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "Docs/ROCK_LANDMARK_WORKBENCH.md",
+      "copy": "Documents/ROCK_LANDMARK_WORKBENCH.md",
+      "sha256": "6bc840683123905adde130e86ad0f24edb410e2358a14bd99b08c4994f8137e7",
+      "bytes": 4442,
+      "kind": "exact Unity document snapshot",
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md",
+      "copy": "Documents/ROCK_QUALITY_AND_PRODUCTION_PLAN.md",
+      "sha256": "1ae87d9b376392d7129493ed3ec52b697aaaf3098884ad82df018bcc87972e9e",
+      "bytes": 76314,
+      "kind": "exact Unity document snapshot",
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "Docs/ROCK_WORKBENCH_LAYERED_MATERIAL.md",
+      "copy": "Documents/ROCK_WORKBENCH_LAYERED_MATERIAL.md",
+      "sha256": "c4c5e5d86209b76d639907b48f741d26f405af1241265f9491d1d575f3c43793",
+      "bytes": 6085,
+      "kind": "exact Unity document snapshot",
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "Docs/Research/CRIMSON_DESERT_GAMESCOM_DEV_2026_TECHNICAL_NOTES.md",
+      "copy": "Documents/Research/CRIMSON_DESERT_GAMESCOM_DEV_2026_TECHNICAL_NOTES.md",
+      "sha256": "13923975afc9ddfef60821a3a6f8467d168276171bd16a2fa624d6eeb77ce9e3",
+      "bytes": 12181,
+      "kind": "exact Unity document snapshot",
+      "category": "Crimson Desert"
+    },
+    {
+      "source": "Docs/RuleTileTemplates/RuleGroundRuleTileSheet.md",
+      "copy": "Documents/RuleTileTemplates/RuleGroundRuleTileSheet.md",
+      "sha256": "8f35cc3ed9cb9e56bcf7af80f04da95eaa2b3bd04dee99ed79e9acff1d463e9b",
+      "bytes": 636,
+      "kind": "exact Unity document snapshot",
+      "category": "Historical camera and Unity rendering"
+    },
+    {
+      "source": "Docs/SMART_TRAVERSAL_STANDARD.md",
+      "copy": "Documents/SMART_TRAVERSAL_STANDARD.md",
+      "sha256": "4faef20367ddc6ef923f4ccc6e71e24add8f419501946bc9988c4542ee433fd5",
+      "bytes": 3497,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/SURVIVAL_SYSTEM_STANDARD.md",
+      "copy": "Documents/SURVIVAL_SYSTEM_STANDARD.md",
+      "sha256": "a0902f6032d9615b38e98aceeb07555642ff30a49b0efb4ef32f9ccc7f4b38ed",
+      "bytes": 2903,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/TOP_DOWN_3D_FOUNDATION_PLAN.md",
+      "copy": "Documents/TOP_DOWN_3D_FOUNDATION_PLAN.md",
+      "sha256": "a2e63090c4207ee209f4eff70dd5cb60fe263f5176d0fc8f6fde28028baf8c08",
+      "bytes": 13781,
+      "kind": "exact Unity document snapshot",
+      "category": "Historical camera and Unity rendering"
+    },
+    {
+      "source": "Docs/TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md",
+      "copy": "Documents/TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md",
+      "sha256": "23d9ce50692428cb41dc795e9bbe958971315d08a7644a5cbd83eff9f8b6a5fd",
+      "bytes": 7425,
+      "kind": "exact Unity document snapshot",
+      "category": "Terrain, streaming and performance"
+    },
+    {
+      "source": "Docs/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md",
+      "copy": "Documents/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md",
+      "sha256": "c0d97f64c8ad1da2bd698bae44a292fe16aa8478dd3db489369064479f2804b3",
+      "bytes": 20083,
+      "kind": "exact Unity document snapshot",
+      "category": "Terrain, streaming and performance"
+    },
+    {
+      "source": "Docs/ThirdParty/Manifold/LICENSE",
+      "copy": "Documents/ThirdParty/Manifold/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357,
+      "kind": "exact Unity document snapshot",
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "Docs/ThirdParty/Manifold/README.md",
+      "copy": "Documents/ThirdParty/Manifold/README.md",
+      "sha256": "51a1c15a4e3684ef94d3be7f7b070d1fd86bb59766fcd55cd8e6c15b5b4d3859",
+      "bytes": 2763,
+      "kind": "exact Unity document snapshot",
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "Docs/UNITY_TILEMAP_PROCGEN_REFERENCE.md",
+      "copy": "Documents/UNITY_TILEMAP_PROCGEN_REFERENCE.md",
+      "sha256": "45e5780af03576c0a5e08b53265118cb3eeb9f9c389609dbe9e1ed3b5b46df46",
+      "bytes": 7802,
+      "kind": "exact Unity document snapshot",
+      "category": "Historical camera and Unity rendering"
+    },
+    {
+      "source": "Docs/URP_2D_STANDARD.md",
+      "copy": "Documents/URP_2D_STANDARD.md",
+      "sha256": "376c6f31df51e58b053a65ab8a0fae1d7f31453022d54d26e72bc7e493d72ffe",
+      "bytes": 3292,
+      "kind": "exact Unity document snapshot",
+      "category": "Historical camera and Unity rendering"
+    },
+    {
+      "source": "Docs/WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md",
+      "copy": "Documents/WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md",
+      "sha256": "01c2a3dba211e07c5374eb9b74b77c81010d3fcdf9d40dcc841653a8f6b96e8c",
+      "bytes": 42529,
+      "kind": "exact Unity document snapshot",
+      "category": "Gameplay and content systems"
+    },
+    {
+      "source": "Docs/WORLD_CREATOR_ARCHITECTURE_PLAN.md",
+      "copy": "Documents/WORLD_CREATOR_ARCHITECTURE_PLAN.md",
+      "sha256": "6ef7a933ebcf676dd1b9da34c5b83f3d87370744abfce43371a451cc255b1250",
+      "bytes": 57658,
+      "kind": "exact Unity document snapshot",
+      "category": "Terrain, streaming and performance"
+    },
+    {
+      "source": "Docs/WORLD_CREATOR_CHARTER.md",
+      "copy": "Documents/WORLD_CREATOR_CHARTER.md",
+      "sha256": "502cf88013728abfea7edd0d80c6cfc52001294f69c538b54437aaa78a048ecc",
+      "bytes": 19634,
+      "kind": "exact Unity document snapshot",
+      "category": "Terrain, streaming and performance"
+    },
+    {
+      "source": "Docs/WORLD_GEN_REFERENCE_NOTES.md",
+      "copy": "Documents/WORLD_GEN_REFERENCE_NOTES.md",
+      "sha256": "c7b6cdd7fda9e54cd742e827cbb08926ee6f379083f4b35a0b5d46d8c8431c90",
+      "bytes": 8211,
+      "kind": "exact Unity document snapshot",
+      "category": "Terrain, streaming and performance"
+    },
+    {
+      "source": "Docs/WORLD_GEN_RESEARCH_SUMMARY.md",
+      "copy": "Documents/WORLD_GEN_RESEARCH_SUMMARY.md",
+      "sha256": "7403b94bfd7a6d0743adc3b7b8ba09e48ac64557fce99bca49cb670690ea2150",
+      "bytes": 9997,
+      "kind": "exact Unity document snapshot",
+      "category": "Terrain, streaming and performance"
+    },
+    {
+      "source": "Docs/WORLD_SYSTEMS_STANDARD.md",
+      "copy": "Documents/WORLD_SYSTEMS_STANDARD.md",
+      "sha256": "c92ce7acdf68bc29fb622dbb3c39c2922362537bca79112ed658170d48457724",
+      "bytes": 7155,
+      "kind": "exact Unity document snapshot",
+      "category": "Terrain, streaming and performance"
+    },
+    {
+      "source": "git:3cdb6559ca719a78121ed3c42746617f33d1842f:Docs/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md",
+      "copy": "History/GROUNDED_GEOLOGY_3cdb655_SUPERSEDED.md",
+      "sha256": "4eb64a0423a368c3cdce133e05b5b03cc31f1e8e020b157fce7ea2056ddf628d",
+      "bytes": 99740,
+      "kind": "exact historical Git document",
+      "category": "Rocks, meshing, LOD and materials",
+      "status": "Superseded architecture; method reference only"
+    },
+    {
+      "source": "git:d37347c55e0d5ac01da1152e274674373e2abbfe:Docs/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md",
+      "copy": "History/GROUNDED_GEOLOGY_d37347c_SUPERSEDED.md",
+      "sha256": "04a7714fce3a90dae0ab472c71efba55a676088d4d53f6f6e8bc424a7289a6f8",
+      "bytes": 101341,
+      "kind": "exact historical Git document",
+      "category": "Rocks, meshing, LOD and materials",
+      "status": "Superseded architecture; method reference only"
+    },
+    {
+      "source": "rollout-2026-08-14T19-46-56-01a00350-b58f-7403-bc8e-14eaa9710860.jsonl",
+      "copy": "Recovered/CRIMSON_DESERT_GROUND_DETAIL_2026-08-14.md",
+      "sha256": "15ba1d28671957fb8fce70f20b8da4e39273e14e37278e00a3ad9180d9b9f205",
+      "bytes": 16011,
+      "kind": "selected historical assistant research",
+      "messages": [
+        {
+          "message_id": "msg_0b6c8242d315e2f4016a7fd4221c1887d1953e5c7428222028",
+          "index": 0,
+          "original_text_sha256": "297ace88019e013c3acae8a2885f8cc5c4d1ad092a676153e2d36c7c3dac7a95"
+        },
+        {
+          "message_id": "msg_0b6c8242d315e2f4016a7fd54d276087d198818f003aba50b5",
+          "index": 1,
+          "original_text_sha256": "ba7604e315e707fdb175d38ebed9460ecb8d428287d8f0f397bb06d343097d7c"
+        }
+      ],
+      "transforms": [
+        "Added archive notice",
+        "Removed internal memory citation block",
+        "Rendered historical tool citation markers as provenance notes"
+      ],
+      "category": "Crimson Desert"
+    },
+    {
+      "source": "rollout-2026-08-24T17-34-36-01a03657-273c-7751-bd1f-46eb87337c49.jsonl",
+      "copy": "Recovered/CRIMSON_DESERT_STREAMING_2026-08-24.md",
+      "sha256": "ca8cee9ec298e9bfecd649f43aaf98f967423df08ac6318837daedcdca78d851",
+      "bytes": 8222,
+      "kind": "selected historical assistant research",
+      "messages": [
+        {
+          "message_id": "msg_0e9c9d70759cd7f3016a8ce44e622c87d0997f52a65dd38a38",
+          "index": 0,
+          "original_text_sha256": "9bcaedf2e8fb11ad53086ad27eb44521a3066f12acd674693e7ac94678f65ac0"
+        },
+        {
+          "message_id": "msg_0e9c9d70759cd7f3016a95efa5b9ec87d0b1732c5106d7981c",
+          "index": 1,
+          "original_text_sha256": "7b3a40d7f21e3f8fc12c0bb2e77f62b2afa87ecb1880fd64826448ea19487f54"
+        }
+      ],
+      "transforms": [
+        "Added archive notice",
+        "Removed internal memory citation block",
+        "Rendered historical tool citation markers as provenance notes"
+      ],
+      "category": "Crimson Desert"
+    },
+    {
+      "source": "rollout-2026-09-01T14-56-37-01a05ef9-6585-7061-be9e-6326630a184e.jsonl",
+      "copy": "Recovered/ROCK_GENERATORS_AND_MARCHING_CUBES_2026-09-01.md",
+      "sha256": "c911037c1507516ec8d49a77a29aa5baccff4e005be474255d52a26427bc46cf",
+      "bytes": 8108,
+      "kind": "selected historical assistant research",
+      "messages": [
+        {
+          "message_id": "msg_000f5005d61b70a8016a974b0b097087d090871199a518673b",
+          "index": 0,
+          "original_text_sha256": "f2829c6a98dbd4825602da98d8786e3d23da70c764417db574ffba7a1ac44f94"
+        },
+        {
+          "message_id": "msg_000f5005d61b70a8016a974f60dd6c87d086ecdff8f1681f66",
+          "index": 1,
+          "original_text_sha256": "cedfdd2920a27997539d45300d91d5288b3cad471b00124c9170a14ccb2b5f6e"
+        }
+      ],
+      "transforms": [
+        "Added archive notice",
+        "Removed internal memory citation block",
+        "Rendered historical tool citation markers as provenance notes"
+      ],
+      "category": "Rocks, meshing, LOD and materials"
+    },
+    {
+      "source": "rollout-2026-09-03T16-59-36-01a069b6-b3aa-7d11-8e9c-176bafe97032.jsonl",
+      "copy": "Recovered/GROUNDED_GEOLOGY_RESEARCH_2026-09-03.md",
+      "sha256": "2f3afa2259f54c6428ce618eef7fe96a095125a5edb6e5dd33f6539d66e237c9",
+      "bytes": 30071,
+      "kind": "selected historical assistant research",
+      "messages": [
+        {
+          "message_id": "msg_04d2bda5b371b8f2016a9a0b55ff9c87d0a898c38f0d800004",
+          "index": 0,
+          "original_text_sha256": "81ab4ffb0c4e193334cf33c2ee4416a6127e87f61368e6d62619a31c8c32611f"
+        },
+        {
+          "message_id": "msg_04d2bda5b371b8f2016a9b57484a9087d0813bd98ff5193eb0",
+          "index": 10,
+          "original_text_sha256": "19bbc8644e3c83cf885afdead3dd4da12f208ed020498fe77b6f4a13b60c1848"
+        },
+        {
+          "message_id": "msg_04d2bda5b371b8f2016a9b8d59fae887d0a356e6b788dfb2b8",
+          "index": 14,
+          "original_text_sha256": "3d4d3896c9c4a0f48f5dbbf59dfafa392b3d8f428aec896c7e5d477d055ae4af"
+        },
+        {
+          "message_id": "msg_04d2bda5b371b8f2016a9b9933694c87d082728d4ca2140758",
+          "index": 15,
+          "original_text_sha256": "8da265adc09cbf8fac9d25582c5e4ae127ea2addd0f4bf58ce07964972706e0b"
+        }
+      ],
+      "transforms": [
+        "Added archive notice",
+        "Removed internal memory citation block",
+        "Rendered historical tool citation markers as provenance notes"
+      ],
+      "category": "Rocks, meshing, LOD and materials"
+    }
+  ],
+  "excluded_documents": [
+    {
+      "source": "Docs/AGENT_AND_UNITY_PRACTICES.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/BIGARM_CAPABILITIES.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/CODEX_EDITOR_STANDARD.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/DECISION_LOG.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/DOCS_INDEX.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/GIT_BATCHING_STANDARD.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/IMPLEMENTATION_SEQUENCE.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/PLAYTEST_LOG.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/PROJECT_BASELINE.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/PROJECT_STATUS.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/PROJECT_STRUCTURE.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/ROADMAP.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/UNITY_AUTOMATION.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/UNITY_PROJECT_STANDARDS.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    },
+    {
+      "source": "Docs/WORLD_BASIS.md",
+      "reason": "Governance, current operational log, routing, or product/canon context; not imported as engine research."
+    }
+  ],
+  "not_collected": [
+    "Unity assets and native dependency binaries",
+    "Personal/agent governance and unrelated conversations",
+    "External sites, VODs and third-party repositories were not downloaded",
+    "D&D Arc & Dust was not accessed"
+  ],
+  "originals_preserved": true
+}

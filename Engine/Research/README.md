@@ -4,6 +4,7 @@ The [foundation survey](../Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) remai
 
 The cohort first pinned for EXP-001 is now also used by the [application foundation](../Docs/FOUNDATION_RESULT.md). The historical lock filename and content are retained so experiment hashes stay meaningful. The dependency inventory records the current selection scope.
 
+- [Recovered Unity research library](./UnityReference/README.md): 65 historical documents/research records covering LOD, Marching Cubes, Crimson Desert, terrain/materials, streaming and gameplay; [transfer guide](./UnityReference/TRANSFER_GUIDE.md) and [current visual methods audit](./UnityReference/ENVIRONMENT_METHODS_AUDIT.md).
 - [Stack audit](./STACK_AUDIT.md): requirements, integration findings and remaining proof.
 - [Whole-engine system audit](./ENGINE_SYSTEM_AUDIT.md): 24 capability areas, live source evidence and cross-system risks.
 - [Whole-engine architecture research](./ENGINE_ARCHITECTURE_RESEARCH.md): preferred integrations, ownership, simulation/persistence/navigation and platform decisions.

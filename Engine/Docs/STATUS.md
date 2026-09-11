@@ -1,6 +1,8 @@
 # Current Engine Handoff
 
-**Latest user-directed work (2026-09-10):** [Unity formation composition and placement](./UNITY_FORMATION_PARITY_RESULT.md) adds native v4 outcrops, scatter, supported piles and ridges, streamed terrain-v3 groups and original ground transition textures. Open `out/unity-formation-parity/Launch-Wasteland.command` or `out/formation-workbench-v4/Launch-Rock-Generator.command`. Focused native/save checks, Metal streaming and all four authoring preset captures passed. Fused formation shells, seams, sand banks and clutter are the next gaps in this user-directed lane; origin shifting and Windows proof remain open.
+**Latest research collection (2026-09-10):** [Unity reference library](../Research/UnityReference/README.md) preserves 65 document/research records, including recovered conversation studies and superseded geology versions. The [visual methods audit](../Research/UnityReference/ENVIRONMENT_METHODS_AUDIT.md) revises the next step to silhouette grammar and shared ground contacts, then sand/gravel/debris. Whole-formation fusion is conditional; collection/audit added no runtime behavior.
+
+**Latest user-directed work (2026-09-10):** [Unity formation composition and placement](./UNITY_FORMATION_PARITY_RESULT.md) adds native v4 outcrops, scatter, supported piles and ridges, streamed terrain-v3 groups and original ground transition textures. Open `out/unity-formation-parity/Launch-Wasteland.command` or `out/formation-workbench-v4/Launch-Rock-Generator.command`. Focused native/save checks, Metal streaming and all four authoring preset captures passed. The new methods audit above orders the remaining gaps; origin shifting and Windows proof remain open.
 
 **Previous terrain pass:** the [wasteland terrain preview](./TERRAIN_PREVIEW_RESULT.md) introduced terrain v2, render LODs and seated v3 singles. Its package and evidence remain available for comparison.
 

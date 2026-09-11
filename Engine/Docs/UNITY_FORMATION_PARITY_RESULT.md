@@ -78,7 +78,9 @@ raised. More detail remains editable and may be rejected if the formation exceed
 capacity. The preview is sparse and visibly assembled, with block-like members and
 limited local shadows. It is not a Windows performance or final-art acceptance result.
 
-The next work in this same lane is formation-wide fused shells and geological seam
+**Sequence update:** the [subsequent source audit](../Research/UnityReference/ENVIRONMENT_METHODS_AUDIT.md) supersedes the priority in this paragraph: silhouettes and ground-contact dressing come first.
+
+The next work originally proposed in this same lane was formation-wide fused shells and geological seam
 masks, followed by the prototype's sand-contact banks and ground clutter. Per-member
 authoring, restrained lean, richer silhouettes and artist-controlled composition
 remain gaps. The current hosted assemblies are static geometry, not physically
