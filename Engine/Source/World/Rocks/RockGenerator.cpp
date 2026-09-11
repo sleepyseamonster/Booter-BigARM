@@ -16,9 +16,9 @@ V unit(V v){const float len=std::sqrt(dot(v,v));if(len<1e-8f)throw std::runtime_
 uint32_t integer(const Json& p,const char* key,uint32_t maximum){const auto& n=p.at(key);if(!n.is_number_unsigned()||n>maximum)throw std::runtime_error("Invalid integer rock parameter");return n.get<uint32_t>();}
 }
 void validateRecipe(const RockRecipe& r) {
-    if((r.version<1||r.version>3)||r.subdivisions>4||r.distortionPermille>250||r.bandPermille>150||r.bands<1||r.bands>32)throw std::invalid_argument("Unsupported rock recipe version or parameters");
-    if(r.version==3){
-        if(r.massCount<1||r.massCount>12||r.compaction>1000||r.asymmetry>1000||r.fractures>1000||r.edgeDamage>1000||r.formation>3||r.members<1||r.members>8||r.spacingMm<500||r.spacingMm>12000||r.volumes.size()>24)throw std::invalid_argument("Invalid fused rock controls");
+    if((r.version<1||r.version>4)||r.subdivisions>4||r.distortionPermille>250||r.bandPermille>150||r.bands<1||r.bands>32)throw std::invalid_argument("Unsupported rock recipe version or parameters");
+    if(r.version>=3){
+        if(r.massCount<1||r.massCount>12||r.compaction>1000||r.asymmetry>1000||r.fractures>1000||r.edgeDamage>1000||r.formation>(r.version==4?5u:3u)||r.members<1||r.members>(r.version==4?16u:8u)||r.spacingMm<500||r.spacingMm>12000||r.volumes.size()>24)throw std::invalid_argument("Invalid fused rock controls");
         for(auto value:{r.material.grit,r.material.shale,r.material.cracks,r.material.dust,r.material.variation,r.material.worn})if(value>1000)throw std::invalid_argument("Invalid rock material control");
         std::vector<uint32_t> ids;bool additive=r.volumes.empty();
         for(const auto& v:r.volumes){
@@ -32,7 +32,7 @@ void validateRecipe(const RockRecipe& r) {
 }
 void saveRockRecipe(const std::filesystem::path& path,const RockRecipe& r) {
     validateRecipe(r);Json p={{"generator_version",r.version},{"seed",r.seed},{"subdivisions",r.subdivisions},{"radii_mm",r.radiiMm},{"distortion_permille",r.distortionPermille},{"band_permille",r.bandPermille},{"bands",r.bands}};
-    if(r.version==3){
+    if(r.version>=3){
         p["shape"]={{"masses",r.massCount},{"compaction",r.compaction},{"asymmetry",r.asymmetry},{"fractures",r.fractures},{"edge_damage",r.edgeDamage}};
         p["formation"]={{"kind",r.formation},{"members",r.members},{"spacing_mm",r.spacingMm}};
         p["material"]={{"family",rockMaterialFamily},{"grit",r.material.grit},{"shale",r.material.shale},{"cracks",r.material.cracks},{"dust",r.material.dust},{"variation",r.material.variation},{"worn",r.material.worn}};
@@ -42,15 +42,15 @@ void saveRockRecipe(const std::filesystem::path& path,const RockRecipe& r) {
 }
 RockRecipe loadRockRecipe(const std::filesystem::path& path) {
     const auto p=readDocument(path,"engine.rock-recipe");
-    RockRecipe r;r.version=integer(p,"generator_version",3);
-    if(p.size()!=(r.version==3?11:7)||!p.at("seed").is_number_unsigned()||!p.at("radii_mm").is_array()||p.at("radii_mm").size()!=3)throw std::runtime_error("Invalid rock recipe fields");
+    RockRecipe r;r.version=integer(p,"generator_version",4);
+    if(p.size()!=(r.version>=3?11:7)||!p.at("seed").is_number_unsigned()||!p.at("radii_mm").is_array()||p.at("radii_mm").size()!=3)throw std::runtime_error("Invalid rock recipe fields");
     r.seed=p.at("seed").get<uint64_t>();r.subdivisions=integer(p,"subdivisions",4);r.distortionPermille=integer(p,"distortion_permille",250);r.bandPermille=integer(p,"band_permille",150);r.bands=integer(p,"bands",32);
     for(size_t i=0;i<3;++i){const auto& v=p.at("radii_mm")[i];if(!v.is_number_unsigned()||v>20000)throw std::runtime_error("Invalid rock radius");r.radiiMm[i]=v.get<uint32_t>();}
-    if(r.version==3){
+    if(r.version>=3){
         const auto& q=p.at("shape");const auto& f=p.at("formation");const auto& m=p.at("material");
         if(q.size()!=5||f.size()!=3||m.size()!=7||m.at("family")!=rockMaterialFamily||!p.at("volumes").is_array()||p.at("volumes").size()>24)throw std::runtime_error("Invalid v3 recipe fields");
         r.massCount=integer(q,"masses",12);r.compaction=integer(q,"compaction",1000);r.asymmetry=integer(q,"asymmetry",1000);r.fractures=integer(q,"fractures",1000);r.edgeDamage=integer(q,"edge_damage",1000);
-        r.formation=integer(f,"kind",3);r.members=integer(f,"members",8);r.spacingMm=integer(f,"spacing_mm",12000);
+        r.formation=integer(f,"kind",r.version==4?5:3);r.members=integer(f,"members",r.version==4?16:8);r.spacingMm=integer(f,"spacing_mm",12000);
         r.material={integer(m,"grit",1000),integer(m,"shale",1000),integer(m,"cracks",1000),integer(m,"dust",1000),integer(m,"variation",1000),integer(m,"worn",1000)};
         for(const auto& v:p.at("volumes")){
             if(v.size()!=5||!v.at("subtractive").is_boolean()||!v.at("yaw").is_number())throw std::runtime_error("Invalid source volume");
@@ -61,12 +61,12 @@ RockRecipe loadRockRecipe(const std::filesystem::path& path) {
 }
 void saveRockResult(const std::filesystem::path& directory,const RockResult& rock,const RockRecipe& recipe) {
     validateRecipe(recipe);saveModel(directory,rock.mesh);saveRockRecipe(directory/"recipe.json",recipe);
-    if(recipe.version==3)writeDocument(directory/"material.json","engine.rock-material",{{"family",rockMaterialFamily},{"base_textures",{"surface/textures/rocks/workbench/layered/rockworkbenchside_albedo","surface/textures/rocks/workbench/layered/rockworkbenchside_normal","surface/textures/rocks/workbench/layered/rockworkbenchside_surface"}},{"layer_textures",rockLayerTextureIds},{"controls",{{"grit",recipe.material.grit},{"shale",recipe.material.shale},{"cracks",recipe.material.cracks},{"dust",recipe.material.dust},{"variation",recipe.material.variation},{"worn",recipe.material.worn}}}});
+    if(recipe.version>=3)writeDocument(directory/"material.json","engine.rock-material",{{"family",rockMaterialFamily},{"base_textures",{"surface/textures/rocks/workbench/layered/rockworkbenchside_albedo","surface/textures/rocks/workbench/layered/rockworkbenchside_normal","surface/textures/rocks/workbench/layered/rockworkbenchside_surface"}},{"layer_textures",rockLayerTextureIds},{"controls",{{"grit",recipe.material.grit},{"shale",recipe.material.shale},{"cracks",recipe.material.cracks},{"dust",recipe.material.dust},{"variation",recipe.material.variation},{"worn",recipe.material.worn}}}});
     writeDocument(directory/"rock.json","engine.rock-result",{{"id",rock.id},{"minimum",rock.minimum},{"maximum",rock.maximum},{"footprint_radius",rock.footprintRadius},{"triangle_surfaces",rock.surfaces},{"member_ids",rock.memberIds},{"model","model.json"}});
 }
 RockResult generateRock(const RockRecipe& r,const GeneratedId& identity) {
     validateRecipe(r);if(identity.generator!="rock"||identity.generatorVersion!=r.version)throw std::invalid_argument("Rock generator identity/version mismatch");
-    if(r.version==3)return r.formation?generateRockFormation(r,identity,[](float,float){return 0.f;}):generateVolumeRock(r,identity);
+    if(r.version>=3)return r.formation?generateRockFormation(r,identity,[](float,float){return 0.f;}):generateVolumeRock(r,identity);
     RockResult result;result.id=identity.text();auto& mesh=result.mesh;
     mesh.nodes.push_back({});mesh.joints={0};mesh.inverseBind={{{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1}}};mesh.baseColor={.32f,.26f,.2f,1};mesh.roughness=.9f;mesh.metallic=0;
     uint64_t seed=mix(r.seed);for(uint64_t value:{identity.seed,uint64_t(identity.region.x),uint64_t(identity.region.z),identity.member})seed=mix(seed^mix(value));

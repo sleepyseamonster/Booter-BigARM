@@ -47,6 +47,15 @@ float rockPatch(vec3 p)
     // Coherent broad variation; a material seed changes patches without changing world IDs.
     return 0.5+0.5*sin(p.x*1.7+p.y*.8)*sin(p.z*1.3-p.y*1.1);
 }
+float terrainNoise(vec2 p)
+{
+    vec2 cell=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);
+    float a=fract(sin(dot(cell,vec2(127.1,311.7)))*43758.5453);
+    float b=fract(sin(dot(cell+vec2(1.0,0.0),vec2(127.1,311.7)))*43758.5453);
+    float c=fract(sin(dot(cell+vec2(0.0,1.0),vec2(127.1,311.7)))*43758.5453);
+    float d=fract(sin(dot(cell+vec2(1.0,1.0),vec2(127.1,311.7)))*43758.5453);
+    return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);
+}
 void main()
 {
     vec3 geometricNormal = normalize(v_normal);
@@ -130,7 +139,7 @@ void main()
             roughness=clamp(surface.g*u_surfaceParams.x-u_rockLayers[1].z*smoothstep(.55,.85,patch)*.25+crack*.08,0.045,1.0);
             roughness=mix(roughness,.95,dust);
         }
-        if(u_rockLayers[0].x>1.5)
+        if(u_rockLayers[0].x>1.5 && u_rockLayers[0].x<2.5)
         {
             // Shared world-space weights cross region boundaries without restarting.
             float broad=rockPatch(v_world*.065);
@@ -148,6 +157,34 @@ void main()
             normal=normalize(mix(geometricNormal,rockyNormal,rocky));
             albedo*=mix(.90,1.05,broad);
             roughness=mix(.96,.85,rocky);ao=1.0;
+        }
+        if(u_rockLayers[0].x>2.5)
+        {
+            vec2 world=v_world.xz;
+            vec2 warp=vec2(terrainNoise(world*.011+4.0),terrainNoise(world*.011+29.0))*24.0;
+            float slope=1.0-clamp(geometricNormal.y,0.0,1.0);
+            float deposit=clamp(terrainNoise((world+warp)*vec2(.006,.017))*1.1-slope*2.0,0.0,1.0);
+            float erosion=clamp(terrainNoise(world*.034+17.0)*.7+slope,0.0,1.0);
+            float exposure=clamp(terrainNoise((world-warp)*.024+71.0)*.6+slope*2.0,0.0,1.0);
+            float sand=smoothstep(.48,.78,deposit),sandEdge=clamp(smoothstep(.22,.52,deposit)-sand,0.0,1.0);
+            float gravel=smoothstep(.30,.62,erosion)*.92,gravelEdge=clamp(smoothstep(.14,.36,erosion)-gravel,0.0,1.0);
+            float rocky=smoothstep(.34,.72,exposure)*.96,rockyEdge=clamp(smoothstep(.16,.40,exposure)-rocky,0.0,1.0);
+            float sum=max(1.0,sand+sandEdge+gravel+gravelEdge+rocky+rockyEdge);
+            sand/=sum;sandEdge/=sum;gravel/=sum;gravelEdge/=sum;rocky/=sum;rockyEdge/=sum;
+            // Explicit source transitions bridge materials instead of blurring unrelated colors.
+            vec2 soilUV=world/3.0,sandUV=world/4.0,gravelUV=world/2.25;
+            albedo=texture2D(s_albedo,soilUV).rgb;
+            albedo=mix(albedo,texture2D(s_topNormal,sandUV).rgb,sandEdge);
+            albedo=mix(albedo,texture2D(s_topColor,sandUV).rgb,sand);
+            albedo=mix(albedo,texture2D(s_bottomNormal,gravelUV).rgb,gravelEdge);
+            albedo=mix(albedo,texture2D(s_bottomColor,gravelUV).rgb,gravel);
+            float rockyCoverage=clamp(rocky+rockyEdge,0.0,1.0);
+            vec3 rockColor=mix(texture2D(s_topSurface,soilUV).rgb,texture2D(s_gritColor,soilUV).rgb,rocky/max(rockyCoverage,.0001));
+            albedo=mix(albedo,rockColor,rockyCoverage);
+            vec3 n=texture2D(s_gritNormal,soilUV).xyz*2.0-1.0;
+            vec3 detail=vec3(n.x,0.0,n.y);detail-=geometricNormal*dot(detail,geometricNormal);
+            normal=normalize(geometricNormal+detail*rockyCoverage*u_surfaceParams.z*.9);
+            albedo*=mix(.92,1.05,terrainNoise(world*.008+4.0));roughness=.92;ao=1.0;
         }
 
     }

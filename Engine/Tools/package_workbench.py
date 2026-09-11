@@ -48,6 +48,8 @@ def main():
             if not required.issubset({row['id'] for row in records}):raise ValueError('Rock package requires the complete layered rock material family')
             if args.terrain:
                 ground={'surface/textures/ground/sanddirt/brokenworld'+suffix for suffix in ['sweptsandalbedo','gravelalbedo','mixedrockyalbedo','mixedrockynormal']}
+                if json.loads(inside(args.terrain).read_text())['payload']['version']>=3:
+                    ground.update('surface/textures/ground/sanddirt/brokenworld'+suffix for suffix in ['sweptsandtransitionalbedo', 'graveltransitionalbedo', 'rockytransitionalbedo'])
                 if not ground.issubset({row['id'] for row in records}):raise ValueError('Terrain package requires original ground blend maps')
             document['payload']['textures']=records
         asset_root=out/'bin/Assets';asset_root.mkdir()
@@ -100,7 +102,7 @@ def main():
 
 Open **Launch-Rock-Generator.command** on Mac (the .cmd launcher is for a future native Windows package). Keep the package in a writable folder. No Unity installation or source checkout is needed.
 
-1. Choose a **Rock preset** or select **Fused volumes v3**. Adjust seed/dimensions, fused shape, layered material or formation controls, then select **Apply recipe**. **Frame rock / formation** fits the accepted result in view.
+1. Choose a **Rock preset** or select **Geological formations v4**. Adjust seed/dimensions, fused shape, layered material or formation controls, then select **Apply recipe**. **Frame rock / formation** fits the accepted result in view.
 2. Alt/Option + left-drag or right-drag to orbit; Space + left-drag or middle-drag to pan; wheel to zoom; F to recenter. Lighting/material controls are in the left inspector.
 3. **Undo/Redo** restores accepted recipes. **Save recipe** saves the accepted recipe; **Reload** reads the displayed file.
 4. Choose a new **Export directory**, then **Export rock** to write the accepted mesh, normals, bounds, triangle surface classes and recipe in the engine format.
@@ -109,9 +111,9 @@ The launcher creates UserData/rock.json on first use and never replaces it on la
 
 When a preset library is included, use **Rock preset** in the right panel to switch examples. This changes the preview; **Save recipe** writes your working copy and leaves library originals intact. A bundled inspection preset supplies first-launch lighting and framing, then your saved settings take over.
 
-The model is a technical rock generator, not final geological art. Three basic detail levels and collision support are present. Exports contain the highest-detail static mesh and recipe, not embedded textures or a baked collision file. V3 also exports material bindings/controls and formation member IDs. All 38 transferred rock/ground textures are included in the cooked catalog; the Engine menu offers a texture inspector. V3 uses the layered rock family with grit, shale, cracks, dust and worn patches. In Source volumes, **Edit generated volumes** exposes individual mass/cut controls; **Return to seeded plan** resumes procedural planning. Disconnected chips are removed from each single rock. Formations are assembled static members on flat preview ground, with three LODs and a bounded collision mesh. The workbench uses bundled triplanar textures; other applications need their own material binding. Changing the LOD preview does not change exported geometry.
+The model is a technical rock generator, not final geological art. Three basic detail levels and collision support are present. Exports contain the highest-detail static mesh and recipe, not embedded textures or a baked collision file. V3 and V4 also export material bindings/controls and formation member IDs. V4 adds braced outcrops, scattered stones, supported layered piles and low ridges, using distinct member proportions and host contacts. All 38 transferred rock/ground textures are included in the cooked catalog; the Engine menu offers a texture inspector. V3 uses the layered rock family with grit, shale, cracks, dust and worn patches. In Source volumes, **Edit generated volumes** exposes individual mass/cut controls; **Return to seeded plan** resumes procedural planning. Disconnected chips are removed from each single rock. Formations are assembled static members on flat preview ground, with three LODs and a bounded collision mesh. The workbench uses bundled triplanar textures; other applications need their own material binding. Changing the LOD preview does not change exported geometry.
 
-Shared simulation can enable the third-person proxy to walk around the rock. Disable character mode to edit. Hands-on feel and creative acceptance are separate from technical verification. Live streaming and native Windows verification remain later engine work. This is a local development package, not a signed/notarized distribution release.
+Shared simulation can enable the third-person proxy to walk around the rock. Disable character mode to edit. Hands-on feel and creative acceptance are separate from technical verification. The separate wasteland preview streams formations. Native Windows verification remains open. This is a local development package, not a signed/notarized distribution release.
 """,encoding='utf-8')
     if args.terrain:
         destination=out/'bin/Assets/Recipes';destination.mkdir(parents=True,exist_ok=True)
@@ -134,19 +136,22 @@ Option/Alt + left-drag or right-drag orbits. Middle-drag or Space + left-drag pa
 Scroll zooms. The scene camera streams ground as you pan. The Wasteland terrain
 panel offers Scene camera, Character camera and a ground material blend toggle.
 Use the Engine menu for lighting/texture inspection. In character mode, WASD moves,
-Space jumps and right-drag orbits; Remove nearby rock and Save world preserve edits.
+Space jumps and right-drag orbits; Remove nearby formation/rock and Save world preserve edits.
 The character is a calibration proxy, with hands-on feel still to be assessed.
 
-Terrain v2 has continuous seeded relief, 4 m collision samples and three render
+Terrain v2/v3 has continuous seeded relief, 4 m collision samples and three render
 LODs (4/8/16 m), with edge skirts. It blends original dirt, swept sand, gravel and
-rocky textures. Shared v3 boulders are seated into the ground with 12 cm burial.
+rocky textures. V3 uses broad irregular masks and the original transition images.
+The bundled rock recipe controls placement: v3 singles or v4 composed groups.
+V4 groups include braced outcrops, scatter, supported layered piles and low ridges.
+Rendering and collision share seated member plans, with up to 12 cm burial.
 The scene has a bounded 3x3 active region neighborhood; distant edges and discrete
 LOD changes can be visible. Shadows cover only the existing small local sun volume.
 
 Recipes live under bin/Assets/Recipes. Changing them requires a new --world-profile
 path; mismatched existing profiles are rejected rather than silently altered.
-No sculpting, erosion, imported heightmaps, live multi-rock formations, origin
-shifting or native Windows verification is included in this first pass.
+No sculpting, erosion simulation, imported heightmaps, fused formation shells,
+sand banks, origin shifting or native Windows verification is included in this pass.
 """,encoding='utf-8')
     payload={p.relative_to(out).as_posix():sha(p) for p in sorted(out.rglob('*')) if p.is_file()}
     sources={p.relative_to(ROOT).as_posix():sha(p) for folder in ['Source','Apps','Shaders','CMake']

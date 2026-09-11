@@ -12,7 +12,7 @@ RockWorkbench::RockWorkbench(const std::filesystem::path& path,CalibrationRuntim
     std::sort(presets_.begin(),presets_.end());
 }
 void RockWorkbench::rebuild(const RockRecipe& recipe) {
-    if(recipe.version==3&&!layeredMaterialsAvailable_)throw std::runtime_error("Fused rocks require the complete layered texture catalog");
+    if(recipe.version>=3&&!layeredMaterialsAvailable_)throw std::runtime_error("Fused rocks require the complete layered texture catalog");
     auto next=buildRockAsset(recipe,{1,recipe.version,{},0,"rock"});std::vector<std::unique_ptr<RenderModel>> models;
     for(const auto& lod:next.lods)models.push_back(std::make_unique<RenderModel>(lod.mesh));
     // This authored preview slot survives recipe/generator changes; exported mesh IDs remain generated.
@@ -34,7 +34,7 @@ void RockWorkbench::drawControls(bool characterMode) {
         ImGui::EndCombo();
     }
     int generator=int(draft_.version)-1;
-    if(ImGui::Combo("Generator",&generator,"Classic v1\0Weathered v2\0Fused volumes v3\0"))draft_.version=uint32_t(generator+1);
+    if(ImGui::Combo("Generator",&generator,"Classic v1\0Weathered v2\0Fused volumes v3\0Geological formations v4\0"))draft_.version=uint32_t(generator+1);
 
     if(!presets_.empty())ImGui::TextWrapped("Presets replace the preview. Save recipe keeps your working copy; originals remain in the library.");
     ImGui::InputScalar("Seed",ImGuiDataType_U64,&draft_.seed);
@@ -44,7 +44,7 @@ void RockWorkbench::drawControls(bool characterMode) {
     if(ImGui::SliderInt("Irregularity",&distortion,0,250))draft_.distortionPermille=uint32_t(distortion);
     if(ImGui::SliderInt("Band strength",&band,0,150))draft_.bandPermille=uint32_t(band);
     if(ImGui::SliderInt("Bands",&count,1,32))draft_.bands=uint32_t(count);
-    if(draft_.version==3){
+    if(draft_.version>=3){
         auto knob=[](const char* label,uint32_t& value,int low=0,int high=1000){if(low==0&&high==1000){float v=value*.001f;if(ImGui::SliderFloat(label,&v,0,1,"%.2f"))value=uint32_t(v*1000+.5f);}else{int v=int(value);if(ImGui::SliderInt(label,&v,low,high))value=uint32_t(v);}};
         if(ImGui::CollapsingHeader("Fused shape",ImGuiTreeNodeFlags_DefaultOpen)){
             knob("Masses",draft_.massCount,1,12);knob("Compaction",draft_.compaction);knob("Lopsidedness",draft_.asymmetry);knob("Major fractures",draft_.fractures);knob("Edge damage",draft_.edgeDamage);
@@ -71,8 +71,8 @@ void RockWorkbench::drawControls(bool characterMode) {
             knob("Side grit",draft_.material.grit);knob("Shale",draft_.material.shale);knob("Cracks",draft_.material.cracks);knob("Dust",draft_.material.dust);knob("Surface variation",draft_.material.variation);knob("Worn shine",draft_.material.worn);
         }
         if(ImGui::CollapsingHeader("Formation")){
-            int kind=int(draft_.formation);if(ImGui::Combo("Layout",&kind,"Single rock\0Connected outcrop\0Scattered rocks\0Rock pile\0"))draft_.formation=uint32_t(kind);
-            if(draft_.formation){knob("Members",draft_.members,1,8);knob("Spacing (mm)",draft_.spacingMm,500,12000);}
+            int kind=int(draft_.formation);if(ImGui::Combo("Layout",&kind,draft_.version==4?"Single rock\0Connected outcrop\0Scattered rocks\0Supported pile\0Low ridge\0Mixed formations\0":"Single rock\0Connected outcrop\0Scattered rocks\0Rock pile\0"))draft_.formation=uint32_t(kind);
+            if(draft_.formation){knob("Members",draft_.members,1,draft_.version==4?16:8);knob("Spacing (mm)",draft_.spacingMm,500,12000);}
             ImGui::TextWrapped("The workbench seats members on its flat ground. Saved formation recipes retain deterministic member identities.");
         }
     }

@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-10",
+  "passed": true,
+  "packages": {
+    "unity-formation-parity": {
+      "payload_files": 75,
+      "package_sha256": "50ac125156f657cb10a3364a9f0eb2f3c0559827158129014fae796c01138a30",
+      "all_payload_hashes_match": true,
+      "all_source_hashes_match": true,
+      "textures": 41
+    },
+    "formation-workbench-v4": {
+      "payload_files": 78,
+      "package_sha256": "52f19b6a7dd6634e1f8ef1b49abf23aa7b7ecd049a12b558263a9d83ace295a1",
+      "all_payload_hashes_match": true,
+      "all_source_hashes_match": true,
+      "textures": 41
+    }
+  },
+  "source_files_unchanged_since_audit_hashes": true,
+  "native_build": "Workbench, player and focused native tests; Apple LLVM 21 / Metal",
+  "focused_checks": [
+    "formation parity native final",
+    "v3 fused topology and transfer regression",
+    "terrain_jobs",
+    "region_stream"
+  ],
+  "visual_inspection": [
+    "terrain origin",
+    "authoring pile",
+    "authoring ridge"
+  ],
+  "first_attempts": [
+    "Legacy executable was initially given a v2 preset but requires v3; corrected invocation passed.",
+    "Detail 2 with eight authored members exceeded the existing mesh budget. Defaults reduced to detail 1; final presets captured successfully."
+  ],
+  "limits": [
+    "No Unity GUI inspection",
+    "No Windows execution",
+    "No hands-on gameplay test",
+    "No final-art or exact Unity parity claim"
+  ]
+}

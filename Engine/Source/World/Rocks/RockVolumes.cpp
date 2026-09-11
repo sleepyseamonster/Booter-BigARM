@@ -62,7 +62,7 @@ RockResult generateVolumeRock(const RockRecipe& r,const GeneratedId& id){
     for(const auto& v:volumes)if(!v.subtractive){const float c=std::abs(std::cos(v.yaw)),s=std::abs(std::sin(v.yaw));const V extent{c*v.halfSize[0]+s*v.halfSize[2],v.halfSize[1],s*v.halfSize[0]+c*v.halfSize[2]};for(int a=0;a<3;++a){lo[a]=std::min(lo[a],v.center[a]-extent[a]);hi[a]=std::max(hi[a],v.center[a]+extent[a]);}}
     // Additive bounds only. Large subtractive tools must not coarsen the grid.
     const float padding=.2f+smoothing*float(volumes.size())*.25f;for(int a=0;a<3;++a){lo[a]-=padding;hi[a]+=padding;}
-    const auto span=sub(hi,lo);const float cell=*std::max_element(span.begin(),span.end())/float(12+8*r.subdivisions);
+    const auto span=sub(hi,lo);const float cell=*std::max_element(span.begin(),span.end())/float((r.version==4?10:12)+8*r.subdivisions);
     std::array<int,3> cells;V step;for(int a=0;a<3;++a){cells[a]=std::max(4,int(std::ceil(span[a]/cell)));step[a]=span[a]/cells[a];}
     const int nx=cells[0]+1,ny=cells[1]+1,nz=cells[2]+1;
     std::vector<V> points(size_t(nx*ny*nz));std::vector<float> values(points.size());

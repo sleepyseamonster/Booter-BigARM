@@ -4,7 +4,7 @@ This is the working home for the proprietary engine and regular third-person gam
 
 Start with [current status and next step](./Docs/STATUS.md), then [accepted direction](./Docs/DIRECTION.md) and [the working agreement](./AGENTS.md).
 
-[Open the first wasteland terrain preview](./Docs/TERRAIN_PREVIEW_RESULT.md), with streamed ground, original materials and generated boulders.
+[Open the updated wasteland and formation workbench](./Docs/UNITY_FORMATION_PARITY_RESULT.md), with streamed outcrops/piles, editable presets and original ground transitions.
 
 [See the three generated rock examples and open the updated workbench](./Docs/ROCK_SHOWCASE.md).
 

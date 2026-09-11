@@ -13,7 +13,7 @@ struct WorldConfiguration {
     bool operator==(const WorldConfiguration&)const=default;
 };
 struct TerrainSample {float height=0;std::array<float,3> normal{0,1,0};};
-struct RockPlacement {GeneratedId id;WorldPosition position;float yaw=0,footprint=0;};
+struct RockPlacement {GeneratedId id;WorldPosition position;float yaw=0,footprint=0;std::vector<RockFormationMember> members;};
 struct LandmarkAnchor {std::string id;WorldPosition position;float radius=0;};
 struct TerrainPatch {
     Region region;

@@ -3,10 +3,13 @@
 #include <cmath>
 #include <stdexcept>
 namespace engine {
+std::vector<RockFormationMember> planComposedFormation(const RockRecipe&,const GeneratedId&);
+RockResult generateComposedFormation(const RockRecipe&,const GeneratedId&,const std::function<float(float,float)>&);
 namespace {
 uint64_t mix(uint64_t x){x+=0x9e3779b97f4a7c15ULL;x=(x^(x>>30))*0xbf58476d1ce4e5b9ULL;x=(x^(x>>27))*0x94d049bb133111ebULL;return x^(x>>31);}
 }
 std::vector<RockFormationMember> planRockFormation(const RockRecipe& r,const GeneratedId& id,const std::function<float(float,float)>& ground){
+    if(r.version==4)return planComposedFormation(r,id);
     validateRecipe(r);std::vector<RockFormationMember> plan;
     const float space=r.spacingMm*.001f;
     for(uint32_t i=0;i<r.members;++i){
@@ -22,6 +25,7 @@ std::vector<RockFormationMember> planRockFormation(const RockRecipe& r,const Gen
     return plan;
 }
 RockResult generateRockFormation(const RockRecipe& r,const GeneratedId& id,const std::function<float(float,float)>& ground){
+    if(r.version==4)return generateComposedFormation(r,id,ground);
     auto single=r;single.formation=0;RockResult result;result.id=id.text();result.minimum={1e6f,1e6f,1e6f};result.maximum={-1e6f,-1e6f,-1e6f};
     for(auto member:planRockFormation(r,id,ground)){
         auto rock=generateVolumeRock(single,member.id);const float c=std::cos(member.yaw),s=std::sin(member.yaw);const uint32_t first=uint32_t(result.mesh.vertices.size());

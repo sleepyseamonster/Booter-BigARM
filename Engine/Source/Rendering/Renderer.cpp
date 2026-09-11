@@ -270,7 +270,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         }
         const bool layered=textured&&surface->layered;
         const auto material=surface?surface->material:RockMaterial{};
-        const float layers[12]={textured&&surface->terrainBlend?2.f:(layered?1.f:0.f),material.grit*.001f,material.shale*.001f,material.cracks*.001f,
+        const float layers[12]={textured&&surface->terrainBlend?(surface->terrainNatural?3.f:2.f):(layered?1.f:0.f),material.grit*.001f,material.shale*.001f,material.cracks*.001f,
             material.dust*.001f,material.variation*.001f,material.worn*.001f,surface?surface->seed:0.f,
             transform[12],transform[13],transform[14],0};
         bgfx::setUniform(layerParams_,layers,3);
@@ -309,7 +309,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         if(!streamed)cast(0,groundTransform);if(!rockOnly)cast(subjectMesh,subject);cast(0,markerTransform);if(rockModel)cast(-2,rockTransform);
         if(placement&&placement->instances)for(const auto& instance:*placement->instances){
             const float dx=instance.boundsCenter[0]-target[0],dz=instance.boundsCenter[2]-target[2];if(std::hypot(dx,dz)>24+instance.boundsRadius)continue;
-            Matrix4 transform;bx::mtxSRT(transform.data(),1,1,1,0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);cast(-3,transform,instance.model);
+            Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);cast(-3,transform,instance.model);
         }
     }
     const auto* rock=surfaces?&surfaces->rock:nullptr;
@@ -333,7 +333,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     }
     if(!preview&&!calibration&&placement&&placement->instances)for(const auto& instance:*placement->instances){
         if(!visibleSphere(viewProjection,instance.boundsCenter,instance.boundsRadius,bgfx::getCaps()->homogeneousDepth))continue;
-        Matrix4 transform;bx::mtxSRT(transform.data(),1,1,1,0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);submit(-3,transform,color,instance.ground?soil:rock,instance.model);
+        Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);submit(-3,transform,color,instance.ground?soil:rock,instance.model);
     }
     const float display[]={state.exposure,state.showNormals && !calibration && !preview?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,0};
     bgfx::setViewRect(views::display,0,0,uint16_t(width_),uint16_t(height_));

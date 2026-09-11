@@ -1,0 +1,39 @@
+{
+  "kind": "engine.rock-recipe",
+  "version": 1,
+  "payload": {
+    "generator_version": 4,
+    "seed": 1729,
+    "subdivisions": 1,
+    "radii_mm": [
+      1150,
+      900,
+      1000
+    ],
+    "distortion_permille": 155,
+    "band_permille": 45,
+    "bands": 6,
+    "shape": {
+      "masses": 4,
+      "compaction": 600,
+      "asymmetry": 500,
+      "fractures": 400,
+      "edge_damage": 550
+    },
+    "formation": {
+      "kind": 4,
+      "members": 8,
+      "spacing_mm": 1800
+    },
+    "material": {
+      "family": "wasteland-layered-v1",
+      "grit": 400,
+      "shale": 700,
+      "cracks": 360,
+      "dust": 60,
+      "variation": 300,
+      "worn": 200
+    },
+    "volumes": []
+  }
+}

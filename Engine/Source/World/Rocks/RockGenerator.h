@@ -18,7 +18,7 @@ struct RockRecipe {
     uint32_t distortionPermille=180,bandPermille=80,bands=5;
     // V3 normalized authoring volumes; empty means generate the seeded source plan.
     uint32_t massCount=6,compaction=620,asymmetry=650,fractures=500,edgeDamage=450;
-    uint32_t formation=0,members=4,spacingMm=2500; // single / outcrop / scattered / pile
+    uint32_t formation=0,members=4,spacingMm=2500; // single / outcrop / scattered / pile; v4 also ridge / mixed
     std::vector<RockVolume> volumes;
     RockMaterial material;
     bool operator==(const RockRecipe&)const=default;
@@ -34,7 +34,13 @@ struct RockResult {
 };
 std::vector<RockVolume> planRockVolumes(const RockRecipe&,const GeneratedId&);
 RockResult generateVolumeRock(const RockRecipe&,const GeneratedId&);
-struct RockFormationMember {GeneratedId id;std::array<float,3> offset{};float yaw=0,scale=1;};
+enum class FormationRole { Core, Buttress, Pillar, Talus, Slab, Fragment, Base, Middle, Cap };
+struct RockFormationMember {
+    GeneratedId id;std::array<float,3> offset{};float yaw=0,scale=1;
+    std::array<float,3> axes{1,1,1};uint32_t variant=0,host=UINT32_MAX;FormationRole role=FormationRole::Core;
+};
+std::array<float,3> formationPoint(const RockFormationMember&,std::array<float,3>);
+void seatRockFormation(std::vector<RockFormationMember>&,const std::array<const RockResult*,4>&,const std::function<float(float,float)>&);
 std::vector<RockFormationMember> planRockFormation(const RockRecipe&,const GeneratedId&,const std::function<float(float,float)>& ground);
 RockResult generateRockFormation(const RockRecipe&,const GeneratedId&,const std::function<float(float,float)>& ground);
 void validateRecipe(const RockRecipe&);

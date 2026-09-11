@@ -1,0 +1,13 @@
+{
+  "kind": "engine.rock-capture",
+  "payload": {
+    "backend": "Metal",
+    "captures": 1,
+    "gpu_errors": 0,
+    "passed": true,
+    "real_surfaces": true,
+    "recipe": "bin/Assets/RockPresets/01-Braced-Outcrop.json",
+    "simulation_advanced": false
+  },
+  "version": 1
+}

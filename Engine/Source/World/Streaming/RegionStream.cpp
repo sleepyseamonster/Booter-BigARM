@@ -11,7 +11,13 @@ uint64_t distance(Region a,Region b){return std::max(difference(a.x,b.x),differe
 RegionContent generate(const TerrainRecipe& terrain,const RockRecipe& recipe,const PlacementConstraints& constraints,Region region,const std::array<RockAsset,4>& rocks,const WorldDeltas& deltas,const JobCancellation& token){
     RegionContent c;c.terrain=generateTerrain(terrain,region,recipe,constraints,[&]{return token.cancelled();});
     std::erase_if(c.terrain.rocks,[&](const auto& p){return deltas.removed(region,p.id.member);});
-    if(terrain.version==2)for(auto& p:c.terrain.rocks){
+    std::array<const RockResult*,4> shapes;for(size_t i=0;i<4;++i)shapes[i]=&rocks[i].lods[0];
+    if(terrain.version>=2)for(auto& p:c.terrain.rocks){
+        if(!p.members.empty()){
+            seatRockFormation(p.members,shapes,[&](float x,float z){auto q=p.position;q.local[0]+=x;q.local[2]+=z;return terrainSample(terrain,q).height;});
+            // Members now have region-relative Y, while their XZ remain relative to the group.
+            continue;
+        }
         const auto& shape=rocks[p.id.member%4].lods[0];const float angle=p.yaw*.01745329252f,s=std::sin(angle),co=std::cos(angle);
         // Match a real support point against the collision surface. A small burial
         // hides uneven bases without lifting whole boulders above sloping ground.
@@ -21,8 +27,10 @@ RegionContent generate(const TerrainRecipe& terrain,const RockRecipe& recipe,con
             support=std::max(support,double(terrainSample(terrain,q).height-v[1]));}
         p.position.local[1]=support-.12;
     }
-    size_t count=c.terrain.collision.size();for(const auto& p:c.terrain.rocks)count+=rocks[p.id.member%4].collision.size();c.collision.reserve(count);c.collision.insert(c.collision.end(),c.terrain.collision.begin(),c.terrain.collision.end());
-    for(const auto& p:c.terrain.rocks){if(token.cancelled())throw std::runtime_error("Region generation cancelled");const float angle=p.yaw*.01745329252f,s=std::sin(angle),co=std::cos(angle);
+    size_t count=c.terrain.collision.size();for(const auto& p:c.terrain.rocks){if(p.members.empty())count+=rocks[p.id.member%4].collision.size();else for(const auto& m:p.members)count+=rocks[m.variant].collision.size();}c.collision.reserve(count);c.collision.insert(c.collision.end(),c.terrain.collision.begin(),c.terrain.collision.end());
+    for(const auto& p:c.terrain.rocks){
+        if(!p.members.empty()){for(const auto& member:p.members){if(token.cancelled())throw std::runtime_error("Region generation cancelled");for(const auto& v:rocks[member.variant].collision){auto q=formationPoint(member,v);q[0]+=float(p.position.local[0]);q[2]+=float(p.position.local[2]);c.collision.push_back(q);}}continue;}
+        if(token.cancelled())throw std::runtime_error("Region generation cancelled");const float angle=p.yaw*.01745329252f,s=std::sin(angle),co=std::cos(angle);
         for(const auto& v:rocks[p.id.member%4].collision)c.collision.push_back({float(p.position.local[0])+co*v[0]+s*v[2],float(p.position.local[1])+v[1],float(p.position.local[2])-s*v[0]+co*v[2]});
     }return c;
 }
@@ -30,10 +38,12 @@ RegionContent generate(const TerrainRecipe& terrain,const RockRecipe& recipe,con
 RegionStream::RegionStream(TerrainRecipe terrain,RockRecipe recipe,PlacementConstraints constraints,Attach attach,Detach detach,WorldDeltas deltas)
     :deltas_(std::move(deltas)),terrain_(terrain),recipe_(recipe),constraints_(std::move(constraints)),rocks_(std::make_shared<std::array<RockAsset,4>>()),attach_(std::move(attach)),detach_(std::move(detach)),jobs_([](const auto& c){return c.bytes();}){
     validateDeltas(deltas_);validateTerrainRecipe(terrain_);validateRecipe(recipe_);validateConstraints(constraints_);if(!attach_||!detach_)throw std::invalid_argument("Region adapters required");
-    for(size_t i=0;i<4;++i)(*rocks_)[i]=buildRockAsset(recipe_,{terrain_.seed,recipe_.version,{},i,"rock"});
+    if(recipe_.version==4&&recipe_.formation&&terrain_.version!=3)throw std::invalid_argument("Streamed formation groups require terrain version 3");
+    auto single=recipe_;if(single.version==4)single.formation=0;
+    for(size_t i=0;i<4;++i)(*rocks_)[i]=buildRockAsset(single,{terrain_.seed,recipe_.version,{},i,"rock"});
     // Reserve against the largest variant, not just the first seeded shape.
     size_t maximum=0;for(const auto& asset:*rocks_)maximum=std::max(maximum,asset.collision.size());
-    const auto slots=terrainRockSlots(terrain_);const auto cells=terrainCells(terrain_);
+    const auto slots=terrainRockSlots(terrain_)*(recipe_.version==4&&recipe_.formation?recipe_.members:1);const auto cells=terrainCells(terrain_);
     const size_t groundIndices=cells*cells*6;
     reservation_=2*(2*1024*1024+slots*maximum*sizeof(std::array<float,3>));
     if(groundIndices+slots*maximum>300000)throw std::invalid_argument("Streaming rock detail exceeds collider triangle capacity");
