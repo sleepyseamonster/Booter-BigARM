@@ -11,6 +11,16 @@ uint64_t distance(Region a,Region b){return std::max(difference(a.x,b.x),differe
 RegionContent generate(const TerrainRecipe& terrain,const RockRecipe& recipe,const PlacementConstraints& constraints,Region region,const std::array<RockAsset,4>& rocks,const WorldDeltas& deltas,const JobCancellation& token){
     RegionContent c;c.terrain=generateTerrain(terrain,region,recipe,constraints,[&]{return token.cancelled();});
     std::erase_if(c.terrain.rocks,[&](const auto& p){return deltas.removed(region,p.id.member);});
+    if(terrain.version==2)for(auto& p:c.terrain.rocks){
+        const auto& shape=rocks[p.id.member%4].lods[0];const float angle=p.yaw*.01745329252f,s=std::sin(angle),co=std::cos(angle);
+        // Match a real support point against the collision surface. A small burial
+        // hides uneven bases without lifting whole boulders above sloping ground.
+        double support=-1e30;
+        for(const auto& vertex:shape.mesh.vertices){const auto& v=vertex.position;auto q=p.position;
+            q.local[0]+=co*v[0]+s*v[2];q.local[2]+=-s*v[0]+co*v[2];
+            support=std::max(support,double(terrainSample(terrain,q).height-v[1]));}
+        p.position.local[1]=support-.12;
+    }
     size_t count=c.terrain.collision.size();for(const auto& p:c.terrain.rocks)count+=rocks[p.id.member%4].collision.size();c.collision.reserve(count);c.collision.insert(c.collision.end(),c.terrain.collision.begin(),c.terrain.collision.end());
     for(const auto& p:c.terrain.rocks){if(token.cancelled())throw std::runtime_error("Region generation cancelled");const float angle=p.yaw*.01745329252f,s=std::sin(angle),co=std::cos(angle);
         for(const auto& v:rocks[p.id.member%4].collision)c.collision.push_back({float(p.position.local[0])+co*v[0]+s*v[2],float(p.position.local[1])+v[1],float(p.position.local[2])-s*v[0]+co*v[2]});
@@ -21,9 +31,12 @@ RegionStream::RegionStream(TerrainRecipe terrain,RockRecipe recipe,PlacementCons
     :deltas_(std::move(deltas)),terrain_(terrain),recipe_(recipe),constraints_(std::move(constraints)),rocks_(std::make_shared<std::array<RockAsset,4>>()),attach_(std::move(attach)),detach_(std::move(detach)),jobs_([](const auto& c){return c.bytes();}){
     validateDeltas(deltas_);validateTerrainRecipe(terrain_);validateRecipe(recipe_);validateConstraints(constraints_);if(!attach_||!detach_)throw std::invalid_argument("Region adapters required");
     for(size_t i=0;i<4;++i)(*rocks_)[i]=buildRockAsset(recipe_,{terrain_.seed,recipe_.version,{},i,"rock"});
-    // Maximum 256 placements, plus terrain, with temporary construction headroom.
-    reservation_=2*(512*1024+256*(*rocks_)[0].collision.size()*sizeof(std::array<float,3>));
-    if(6144+256*(*rocks_)[0].collision.size()>300000)throw std::invalid_argument("Streaming rock detail exceeds collider triangle capacity");
+    // Reserve against the largest variant, not just the first seeded shape.
+    size_t maximum=0;for(const auto& asset:*rocks_)maximum=std::max(maximum,asset.collision.size());
+    const auto slots=terrainRockSlots(terrain_);const auto cells=terrainCells(terrain_);
+    const size_t groundIndices=cells*cells*6;
+    reservation_=2*(2*1024*1024+slots*maximum*sizeof(std::array<float,3>));
+    if(groundIndices+slots*maximum>300000)throw std::invalid_argument("Streaming rock detail exceeds collider triangle capacity");
     if(reservation_>16*1024*1024)throw std::invalid_argument("Streaming rock detail exceeds first-pass staging profile");
 }
 RegionStream::~RegionStream(){jobs_.shutdown();for(const auto& [_,slot]:slots_)if(slot.content)detach_(slot.region);}

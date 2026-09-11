@@ -25,6 +25,10 @@ struct TerrainPatch {
     std::vector<ReservedRoute> routes;
     size_t bytes()const;
 };
+uint32_t terrainCells(const TerrainRecipe&);
+uint32_t terrainRockSlots(const TerrainRecipe&);
+// Render-only decimation; full-resolution collision and queries never change with the camera.
+ModelData terrainRenderLod(const TerrainPatch&,uint32_t level);
 void validateTerrainRecipe(const TerrainRecipe&);
 void saveTerrainRecipe(const std::filesystem::path&,const TerrainRecipe&);
 TerrainRecipe loadTerrainRecipe(const std::filesystem::path&);

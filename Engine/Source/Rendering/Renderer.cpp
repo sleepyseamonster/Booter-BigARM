@@ -270,7 +270,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         }
         const bool layered=textured&&surface->layered;
         const auto material=surface?surface->material:RockMaterial{};
-        const float layers[12]={layered?1.f:0.f,material.grit*.001f,material.shale*.001f,material.cracks*.001f,
+        const float layers[12]={textured&&surface->terrainBlend?2.f:(layered?1.f:0.f),material.grit*.001f,material.shale*.001f,material.cracks*.001f,
             material.dust*.001f,material.variation*.001f,material.worn*.001f,surface?surface->seed:0.f,
             transform[12],transform[13],transform[14],0};
         bgfx::setUniform(layerParams_,layers,3);

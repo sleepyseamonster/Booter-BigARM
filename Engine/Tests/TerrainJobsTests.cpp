@@ -30,7 +30,7 @@ int main(int argc,char** argv)try{
     std::set<std::string> prior;for(const auto& p:base.rocks)prior.insert(p.id.text());for(const auto& p:authored.rocks)require(prior.contains(p.id.text()),"Constraint edit renumbered unaffected placements");
     auto changed=recipe;++changed.seed;const auto variant=generateTerrain(changed,{},rock,{});require(variant.mesh.vertices[16*33+16].position!=base.mesh.vertices[16*33+16].position,"Seed did not alter terrain");
     saveTerrainRecipe(std::filesystem::path(argv[1])/"recipe.json",recipe);require(loadTerrainRecipe(std::filesystem::path(argv[1])/"recipe.json")==recipe,"Terrain recipe roundtrip");
-    rejects([&]{generateTerrain(recipe,{},rock,{},[]{return true;});});rejects([&]{generateTerrain(recipe,{INT64_MAX,0},rock,{});});auto invalid=recipe;invalid.version=2;rejects([&]{generateTerrain(invalid,{},rock,{});});
+    rejects([&]{generateTerrain(recipe,{},rock,{},[]{return true;});});rejects([&]{generateTerrain(recipe,{INT64_MAX,0},rock,{});});auto invalid=recipe;invalid.version=3;rejects([&]{generateTerrain(invalid,{},rock,{});});
     // The real terrain consumer uses the same bounded CPU queue as the cooker.
     BoundedJobs<TerrainPatch> terrain([](const auto& p){return p.bytes();});require(bool(terrain.submit("region:0:0",1,2*1024*1024,[&](const auto& token){return generateTerrain(recipe,{},rock,{},[&]{return token.cancelled();});})),"Terrain admission failed");
     UploadAdmission upload;std::optional<BoundedJobs<TerrainPatch>::Completion> patch;until([&]{patch=terrain.takeReady(upload);return bool(patch);});require(patch->value&&patch->value->id==base.id&&patch->error.empty(),"Queued terrain result failed");require(terrain.stats().reservedBytes==0,"Taken terrain reservation leaked");

@@ -85,7 +85,7 @@ void main()
         detail -= geometricNormal * dot(detail,geometricNormal);
         float z = max(nx.z * weights.x + ny.z * weights.y + nz.z * weights.z,0.05);
         normal = normalize(geometricNormal * z + detail * u_surfaceParams.z);
-        if(u_rockLayers[0].x>0.5)
+        if(u_rockLayers[0].x>0.5 && u_rockLayers[0].x<1.5)
         {
             vec3 local=v_world-u_rockLayers[2].xyz;
             float patch=rockPatch(local+vec3(u_rockLayers[1].w*19.0));
@@ -129,6 +129,25 @@ void main()
             ao=surface.r*mix(1.0,.58,crack);
             roughness=clamp(surface.g*u_surfaceParams.x-u_rockLayers[1].z*smoothstep(.55,.85,patch)*.25+crack*.08,0.045,1.0);
             roughness=mix(roughness,.95,dust);
+        }
+        if(u_rockLayers[0].x>1.5)
+        {
+            // Shared world-space weights cross region boundaries without restarting.
+            float broad=rockPatch(v_world*.065);
+            float fine=rockPatch(v_world*.23+7.1);
+            float slope=1.0-clamp(geometricNormal.y,0.0,1.0);
+            float sand=1.0-smoothstep(.30,.62,broad+slope*1.8);
+            float rocky=smoothstep(.025,.18,slope)*.8+smoothstep(.61,.84,broad)*.65;
+            rocky=clamp(rocky,0.0,1.0)*(1.0-sand);
+            float gravel=(1.0-sand-rocky)*smoothstep(.30,.70,fine);
+            vec3 sandColor=texture2D(s_topColor,uvY*.65).rgb;
+            vec3 gravelColor=texture2D(s_bottomColor,uvY*1.3).rgb;
+            vec3 rockyColor=texture2D(s_gritColor,uvX).rgb*weights.x+texture2D(s_gritColor,uvY).rgb*weights.y+texture2D(s_gritColor,uvZ).rgb*weights.z;
+            albedo=albedo*(1.0-sand-rocky-gravel)+sandColor*sand+gravelColor*gravel+rockyColor*rocky;
+            vec3 rockyNormal=layerNormal(texture2D(s_gritNormal,uvX).rgb,texture2D(s_gritNormal,uvY).rgb,texture2D(s_gritNormal,uvZ).rgb,weights,signN,geometricNormal,u_surfaceParams.z);
+            normal=normalize(mix(geometricNormal,rockyNormal,rocky));
+            albedo*=mix(.90,1.05,broad);
+            roughness=mix(.96,.85,rocky);ao=1.0;
         }
 
     }

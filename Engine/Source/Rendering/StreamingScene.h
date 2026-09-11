@@ -16,7 +16,7 @@ public:
     const RegionStream& stream()const{return *stream_;}
     bool readyAt(PhysicsVector p)const;
 private:
-    struct Resident {std::unique_ptr<RenderModel> terrain;BodyToken collider;};
+    struct Resident {std::array<std::unique_ptr<RenderModel>,3> terrain;BodyToken collider;};
     void retire(Region);
     CalibrationRuntime& runtime_;
     std::map<RegionKey,Resident> residents_;

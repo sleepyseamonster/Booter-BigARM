@@ -4,7 +4,8 @@ namespace engine {
 StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain,RockRecipe rock,PlacementConstraints constraints,WorldDeltas deltas):runtime_(runtime){
     stream_=std::make_unique<RegionStream>(terrain,rock,std::move(constraints),[this](const RegionContent& content){
         const auto region=content.terrain.region;const auto offset=WorldPosition{region,{}}.relativeTo({},256,4096);
-        Resident prepared;prepared.terrain=std::make_unique<RenderModel>(content.terrain.mesh);
+        Resident prepared;if(content.terrain.id.generatorVersion==2){for(uint32_t level=0;level<3;++level)prepared.terrain[level]=std::make_unique<RenderModel>(terrainRenderLod(content.terrain,level));}
+        else prepared.terrain[0]=std::make_unique<RenderModel>(content.terrain.mesh);
         auto existing=residents_.find({region.x,region.z});
         if(existing!=residents_.end()){
             runtime_.physics().replaceMesh(existing->second.collider,content.collision);
@@ -38,7 +39,10 @@ const std::vector<RenderInstance>& StreamingScene::instances(std::array<float,3>
     for(const auto& [key,slot]:stream_->slots()){
         auto it=residents_.find(key);if(!slot.ready.render||it==residents_.end())continue;
         const auto offset=WorldPosition{slot.region,{}}.relativeTo({},256,4096);
-        instances_.push_back({it->second.terrain.get(),offset,{offset[0]+128,0,offset[2]+128},0,183,true});
+        // Use distance to the patch edge, keeping near ground at full collision resolution.
+        const float dx=std::max(0.f,std::abs(eye[0]-(offset[0]+128))-128),dz=std::max(0.f,std::abs(eye[2]-(offset[2]+128))-128);
+        const float distance=std::hypot(dx,dz);const uint32_t level=slot.content->terrain.id.generatorVersion==1?0:(distance<96?0:(distance<240?1:2));
+        instances_.push_back({it->second.terrain[level].get(),offset,{offset[0]+128,0,offset[2]+128},0,200,true});
         for(const auto& rock:slot.content->terrain.rocks){const auto position=rock.position.relativeTo({},256,4096);const float distance=std::hypot(std::hypot(position[0]-eye[0],position[2]-eye[2]),position[1]-eye[1]);const auto variant=rock.id.member%4;
             const auto& asset=stream_->rocks()[variant];const auto& shape=asset.lods[0];const float height=shape.maximum[1];const float radius=std::hypot(shape.footprintRadius,height*.5f);
             instances_.push_back({rockModels_[variant][rockLod(asset,distance)].get(),position,{position[0],position[1]+height*.5f,position[2]},rock.yaw*.01745329252f,radius,false});

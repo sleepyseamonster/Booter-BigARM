@@ -34,11 +34,12 @@
 #include "Tools/EngineMenu.h"
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool terrainPreview=false,buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
+        if(arg=="--terrain-preview"){options.terrainPreview=true;continue;}
         if ((arg=="--verify-camera" || arg=="--rock-library" || arg=="--capture-rock" || arg=="--world-profile" || arg=="--terrain" || arg=="--stream-rock" || arg=="--constraints" || arg=="--verify-stream" || arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
             if(arg=="--verify-camera"){options.cameraVerify=true;options.verify=argv[++i];}
             else if(arg=="--rock-library")options.rockLibrary=argv[++i];
@@ -61,7 +62,7 @@ Options parse(int argc,char** argv) {
             else if (arg=="--save-bindings") options.saveBindings=argv[++i];
             else options.shaders=argv[++i];
         } else if (arg=="--build-info") options.buildInfo=true;
-        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--rock-library directory] [--capture-rock new-directory] [--verify-camera new-directory] [--terrain recipe.json] [--world-profile directory] [--stream-rock recipe.json] [--constraints file.json] [--verify-stream new-directory] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
+        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--rock-library directory] [--capture-rock new-directory] [--verify-camera new-directory] [--terrain recipe.json] [--terrain-preview] [--world-profile directory] [--stream-rock recipe.json] [--constraints file.json] [--verify-stream new-directory] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
     }
     return options;
 }
@@ -185,6 +186,7 @@ int run(Options options) {
     if((captureRock||!options.rockLibrary.empty())&&options.rock.empty())throw std::runtime_error("Rock capture/library requires --rock");
     const bool verify=technical && !options.lightingVerify && !options.animationVerify && !options.rockVerify && !options.streamVerify && !captureRock && !options.cameraVerify;
     const bool rockVerify=options.rockVerify,streamVerify=options.streamVerify;
+    if(options.terrainPreview&&options.terrain.empty())throw std::runtime_error("Terrain preview requires --terrain");
     if(streamVerify&&options.terrain.empty())throw std::runtime_error("Stream verification requires --terrain");
     if(!options.terrain.empty()&&!options.rock.empty())throw std::runtime_error("Choose terrain streaming or the single-rock workbench");
     if(rockVerify&&options.rock.empty())throw std::runtime_error("Rock verification requires --rock");
@@ -202,7 +204,7 @@ int run(Options options) {
     if(!options.terrain.empty()) {
         if(options.worldProfile.empty()&&!technical)options.worldProfile=std::filesystem::path(SDL_GetBasePath())/"UserData/World";
         worldSession=std::make_unique<engine::WorldSession>(options.worldProfile,engine::WorldConfiguration{engine::loadTerrainRecipe(options.terrain),options.streamRock.empty()?engine::RockRecipe{}:engine::loadRockRecipe(options.streamRock),options.constraints.empty()?engine::PlacementConstraints{}:engine::loadConstraints(options.constraints)});
-        const auto& player=worldSession->initial().player;state.yaw=player.cameraYaw;state.pitch=player.cameraPitch;state.distance=player.cameraDistance;
+        if(worldSession->restored()&&!options.terrainPreview){const auto& player=worldSession->initial().player;state.yaw=player.cameraYaw;state.pitch=player.cameraPitch;state.distance=player.cameraDistance;}
     }
     if (options.shaders.empty()) {
         const char* base=SDL_GetBasePath();
@@ -236,7 +238,7 @@ int run(Options options) {
 
     engine::TextureLease texture;
     bool materialAvailable=!records.empty();
-    std::array<engine::TextureLease,16> surfaceLeases;
+    std::array<engine::TextureLease,20> surfaceLeases;
     auto acquireSurface=[&](size_t slot,const char* id,engine::TextureRole role) {
         const auto found=std::find_if(records.begin(),records.end(),[&](const auto& record){return record.id==id;});
         if (found==records.end()) {
@@ -262,6 +264,16 @@ int run(Options options) {
     for(size_t i=0;i<engine::rockLayerTextureIds.size();++i)surfaces.rock.layers[i]=acquireSurface(i+6,engine::rockLayerTextureIds[i],i==9?engine::TextureRole::Mask:(i%3==0?engine::TextureRole::Color:(i%3==1?engine::TextureRole::Normal:engine::TextureRole::Surface)));
     const bool layeredMaterialAvailable=materialAvailable;materialAvailable=baseMaterialAvailable;
 
+    if(worldSession&&worldSession->initial().configuration.terrain.version==2){
+        surfaces.ground.layers[0]=acquireSurface(16,"surface/textures/ground/sanddirt/brokenworldsweptsandalbedo",engine::TextureRole::Color);
+        surfaces.ground.layers[3]=acquireSurface(17,"surface/textures/ground/sanddirt/brokenworldgravelalbedo",engine::TextureRole::Color);
+        surfaces.ground.layers[6]=acquireSurface(18,"surface/textures/ground/sanddirt/brokenworldmixedrockyalbedo",engine::TextureRole::Color);
+        surfaces.ground.layers[7]=acquireSurface(19,"surface/textures/ground/sanddirt/brokenworldmixedrockynormal",engine::TextureRole::Normal);
+        if(!materialAvailable)throw std::runtime_error("Wasteland terrain requires the original ground texture family");
+        surfaces.ground.terrainBlend=true;
+        const auto& recipe=worldSession->initial().configuration.rock;
+        surfaces.rock.layered=recipe.version==3&&layeredMaterialAvailable;surfaces.rock.material=recipe.material;surfaces.rock.seed=float(recipe.seed%65536)/65536.f;
+    }
     if (!materialAvailable) state.surfaceTextures=false;
     if(verify) state.surfaceTextures=false;
     TextureControls textureControls;textureControls.records=&records;
@@ -277,7 +289,7 @@ int run(Options options) {
     std::unique_ptr<engine::StreamingScene> streaming;
     if(worldSession){
         const auto& saved=worldSession->initial();streaming=std::make_unique<engine::StreamingScene>(runtime,saved.configuration.terrain,saved.configuration.rock,saved.configuration.constraints,saved.deltas);
-        simulation.enabled=true;
+        simulation.enabled=!options.terrainPreview;
     }
     uint64_t saveAttemptTick=runtime.clock().ticks();
     std::string worldStatus=worldSession?(worldSession->recovered()?"Recovered complete world save":(worldSession->restored()?"World restored":"New world")):"";
@@ -425,13 +437,20 @@ int run(Options options) {
             actions.gameplay(simulation.enabled && !simulation.paused && !io.WantCaptureKeyboard);
             if(streaming){
                 if(streamVerify)streaming->anchors({{{{streamPhase==1?4:0,0},{32,0,32}},0}});
+                else if(!simulation.enabled){state.viewOffset[0]=std::clamp(state.viewOffset[0],-3500.f,3500.f);state.viewOffset[2]=std::clamp(state.viewOffset[2],-3500.f,3500.f);const auto eye=state.eye();streaming->anchors({{{{},{eye[0],eye[1],eye[2]}},0}});}
                 else streaming->update();
                 if(!streamVerify){
-                    ImGui::Begin("World streaming");
+                    ImGui::SetNextWindowPos(ImVec2(12,54),ImGuiCond_FirstUseEver);
+                    ImGui::Begin("Wasteland terrain");
+                    ImGui::TextUnformatted("Option/Alt + drag: orbit | Middle/Space + drag: pan");
+                    ImGui::Text("Terrain v%u | %u m samples",worldSession->initial().configuration.terrain.version,256/engine::terrainCells(worldSession->initial().configuration.terrain));
+                    if(ImGui::Button("Scene camera")){simulation.enabled=false;const auto p=runtime.feet();state.viewOffset={p[0],p[1],p[2]};state.distance=30;state.pitch=.28f;}
+                    ImGui::SameLine();if(ImGui::Button("Character camera")){simulation.enabled=true;state.distance=7;}
+                    if(worldSession->initial().configuration.terrain.version==2)ImGui::Checkbox("Blend ground materials",&surfaces.ground.terrainBlend);
                     ImGui::Text("%zu regions | %.1f MiB CPU",streaming->stream().slots().size(),streaming->stream().residentBytes()/1048576.f);
                     ImGui::TextWrapped(runtime.waitingForWorld()?"Waiting for ground collision":"World ready around player");
                     ImGui::BeginDisabled(technical);
-                    removeRequested=ImGui::Button("Remove nearby rock");ImGui::SameLine();
+                    ImGui::BeginDisabled(!simulation.enabled);removeRequested=ImGui::Button("Remove nearby rock");ImGui::EndDisabled();ImGui::SameLine();
                     saveRequested=ImGui::Button("Save world (F5)")||saveRequested;
                     ImGui::EndDisabled();
                     ImGui::TextWrapped("%s",worldStatus.c_str());
@@ -478,7 +497,7 @@ int run(Options options) {
             }
             if(rock){surfaces.rock.layered=rock->recipe().version==3&&layeredMaterialAvailable;surfaces.rock.material=rock->recipe().material;surfaces.rock.seed=float(rock->recipe().seed%65536)/65536.f;float distance=state.distance;if(simulation.enabled){float squared=0;for(size_t i=0;i<3;++i){const float delta=placement.eye[i]-engine::RockWorkbench::offset[i];squared+=delta*delta;}distance=std::sqrt(squared);}placement.rock=rock->model(distance);placement.rockOffset=engine::RockWorkbench::offset;placement.rockFocusHeight=(rock->asset().lods[0].minimum[1]+rock->asset().lods[0].maximum[1])*.5f;}
             if(streaming){
-                if(streamVerify){const float shift=streamPhase==1?1024.f:0.f;placement.physicalCharacter=true;placement.eye={32+shift,18,52};placement.target={32+shift,0,24};}
+                if(streamVerify){const float shift=streamPhase==1?1024.f:0.f;placement.physicalCharacter=true;const auto& terrain=worldSession->initial().configuration.terrain;const float ground=terrain.version==2?engine::terrainSample(terrain,{{streamPhase==1?4:0,0},{32,0,24}}).height:0;placement.eye={32+shift,ground+(terrain.version==2?7.f:18.f),52};placement.target={32+shift,ground+(terrain.version==2?1.f:0.f),24};}
                 placement.streamedWorld=true;placement.instances=&streaming->instances(placement.physicalCharacter?placement.eye:state.eye());
             }
             ImGui::Render();

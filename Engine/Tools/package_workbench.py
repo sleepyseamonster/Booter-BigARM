@@ -22,9 +22,14 @@ def main():
     parser.add_argument('--rock',help='Native recipe; adds a rock-generator launcher and writable working copy')
     parser.add_argument('--rock-library',help='Optional directory of editable native rock presets')
     parser.add_argument('--inspection',help='Optional first-launch camera and lighting preset')
+    parser.add_argument('--terrain',help='Terrain recipe for a standalone wasteland preview')
+    parser.add_argument('--stream-rock',help='Bounded rock recipe for terrain placement')
     args=parser.parse_args()
     if args.rock and not args.catalog:parser.error('--rock requires the cooked material catalog')
-    if (args.rock_library or args.inspection) and not args.rock:parser.error('Rock presets/inspection require --rock')
+    if args.rock_library and not args.rock:parser.error('Rock presets require --rock')
+    if args.inspection and not (args.rock or args.terrain):parser.error('Inspection requires --rock or --terrain')
+    if args.terrain and (args.rock or not args.stream_rock or not args.catalog or not args.inspection):parser.error('Terrain requires --stream-rock, --catalog, --inspection, and no --rock')
+    if args.stream_rock and not args.terrain:parser.error('--stream-rock requires --terrain')
     build,out=inside(args.build),inside(args.out)
     if out.exists() or not (build/'CMakeCache.txt').is_file():
         parser.error('Build must be configured and package destination must be new')
@@ -36,11 +41,14 @@ def main():
         catalog=inside(args.catalog)
         document=json.loads(catalog.read_text())
         records=document["payload"]["textures"]
-        if args.rock:
+        if args.rock or args.terrain:
             required={"surface/textures/rocks/workbench/layered/rockworkbenchside_"+suffix for suffix in ['albedo','normal','surface']}
             required.add('surface/textures/ground/sanddirt/brokenworldsanddirtalbedo')
             required.update('surface/textures/rocks/workbench/layered/rockworkbench'+name for name in ['top_normal','top_surface','underside_normal','underside_surface','grit_normal','grit_surface','crack_mask'])
             if not required.issubset({row['id'] for row in records}):raise ValueError('Rock package requires the complete layered rock material family')
+            if args.terrain:
+                ground={'surface/textures/ground/sanddirt/brokenworld'+suffix for suffix in ['sweptsandalbedo','gravelalbedo','mixedrockyalbedo','mixedrockynormal']}
+                if not ground.issubset({row['id'] for row in records}):raise ValueError('Terrain package requires original ground blend maps')
             document['payload']['textures']=records
         asset_root=out/'bin/Assets';asset_root.mkdir()
         write_json(asset_root/'catalog.json',document)
@@ -105,13 +113,48 @@ The model is a technical rock generator, not final geological art. Three basic d
 
 Shared simulation can enable the third-person proxy to walk around the rock. Disable character mode to edit. Hands-on feel and creative acceptance are separate from technical verification. Live streaming and native Windows verification remain later engine work. This is a local development package, not a signed/notarized distribution release.
 """,encoding='utf-8')
+    if args.terrain:
+        destination=out/'bin/Assets/Recipes';destination.mkdir(parents=True,exist_ok=True)
+        for source,name,kind in [(args.terrain,'terrain.json','engine.terrain-recipe'),(args.stream_rock,'stream-rock.json','engine.rock-recipe')]:
+            recipe=inside(source);data=json.loads(recipe.read_text())
+            if data.get('kind')!=kind or data.get('version')!=1:raise ValueError('Unsupported terrain package recipe')
+            shutil.copyfile(recipe,destination/name)
+        inspection=inside(args.inspection);data=json.loads(inspection.read_text())
+        if data.get('kind')!='engine.inspection' or data.get('version')!=1:raise ValueError('Unsupported inspection document')
+        shutil.copyfile(inspection,out/'bin/Assets/inspection.json')
+        name='Launch-Wasteland.cmd' if executable.suffix=='.exe' else 'Launch-Wasteland.command'
+        shutil.copyfile(ROOT/'Tools/Packaging'/name,out/name)
+        if executable.suffix!='.exe':(out/name).chmod(0o755)
+        (out/'START-HERE.md').write_text("""# Wasteland terrain preview
+
+Open Launch-Wasteland.command on Mac. This package has a separate saved world and
+inspection settings under UserData; your rock generator packages are unchanged.
+
+Option/Alt + left-drag or right-drag orbits. Middle-drag or Space + left-drag pans.
+Scroll zooms. The scene camera streams ground as you pan. The Wasteland terrain
+panel offers Scene camera, Character camera and a ground material blend toggle.
+Use the Engine menu for lighting/texture inspection. In character mode, WASD moves,
+Space jumps and right-drag orbits; Remove nearby rock and Save world preserve edits.
+The character is a calibration proxy, with hands-on feel still to be assessed.
+
+Terrain v2 has continuous seeded relief, 4 m collision samples and three render
+LODs (4/8/16 m), with edge skirts. It blends original dirt, swept sand, gravel and
+rocky textures. Shared v3 boulders are seated into the ground with 12 cm burial.
+The scene has a bounded 3x3 active region neighborhood; distant edges and discrete
+LOD changes can be visible. Shadows cover only the existing small local sun volume.
+
+Recipes live under bin/Assets/Recipes. Changing them requires a new --world-profile
+path; mismatched existing profiles are rejected rather than silently altered.
+No sculpting, erosion, imported heightmaps, live multi-rock formations, origin
+shifting or native Windows verification is included in this first pass.
+""",encoding='utf-8')
     payload={p.relative_to(out).as_posix():sha(p) for p in sorted(out.rglob('*')) if p.is_file()}
     sources={p.relative_to(ROOT).as_posix():sha(p) for folder in ['Source','Apps','Shaders','CMake']
              for p in sorted((ROOT/folder).rglob('*')) if p.is_file()}
     for name in ['CMakeLists.txt','CMakePresets.json','Research/probe-lock.json','Research/runtime-lock.json']:
         sources[name]=sha(ROOT/name)
     for path in [Path(__file__),*sorted((ROOT/'Tools/Packaging').glob('*'))]:sources[path.relative_to(ROOT).as_posix()]=sha(path)
-    write_json(out/'package.json',{'schema_version':1,'kind':'native-rock-generator' if args.rock else ('technical-player-and-workbench' if args.model else 'technical-workbench'),'files':payload,'source_inputs':sources,
+    write_json(out/'package.json',{'schema_version':1,'kind':'native-wasteland-preview' if args.terrain else ('native-rock-generator' if args.rock else ('technical-player-and-workbench' if args.model else 'technical-workbench')),'files':payload,'source_inputs':sources,
         'proof_limit':'Install inventory only; compare with build receipts. Not Windows validation, complete third-party shipping clearance or release approval.'})
     print(json.dumps({'package':str(out),'payload_files':len(payload)},indent=2))
 

@@ -1,5 +1,7 @@
 # Engine Master Implementation Plan
 
+Current user-directed extension: [wasteland terrain preview](./TERRAIN_PREVIEW_RESULT.md), a bounded P18/P20 improvement after the rock transfer. P22 origin handling remains open.
+
 Revision 2, rewritten 2026-09-10 after the requested whole-engine analysis and [V1 audit](./ENGINE_PLAN_AUDIT.md). This is the primary implementation roadmap for Engine. It supersedes the earlier foundation plan that ended at streamed terrain. [Direction](./DIRECTION.md) controls product intent; [STATUS.md](./STATUS.md) controls current implementation/evidence. The [system audit](../Research/ENGINE_SYSTEM_AUDIT.md), [research update](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) and [work-package record](./ENGINE_ROADMAP.json) support this plan.
 
 ## Current execution target
