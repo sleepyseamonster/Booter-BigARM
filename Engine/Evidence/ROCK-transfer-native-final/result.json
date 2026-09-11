@@ -1,0 +1,55 @@
+{
+  "command": [
+    "build/foundation/engine_rock_transfer_tests",
+    "Assets/FusedRockPresets/01-Fractured-Boulder.json",
+    "out/rock-transfer-complete-final"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Shaders/fs_scene.sc",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Source/Runtime/EditHistory.h",
+    " M Engine/Source/Tools/RockWorkbench.cpp",
+    " M Engine/Source/Tools/RockWorkbench.h",
+    " M Engine/Source/World/Rocks/RockGenerator.cpp",
+    " M Engine/Source/World/Rocks/RockGenerator.h",
+    " M Engine/Source/World/Terrain.cpp",
+    " M Engine/Tools/package_workbench.py",
+    "?? Engine/Assets/FusedRockPresets/",
+    "?? Engine/Assets/Inspection/rock-formation.json",
+    "?? Engine/Assets/Materials/",
+    "?? Engine/Docs/ROCK_TRANSFER_IMPLEMENTATION.md",
+    "?? Engine/Evidence/ROCK-transfer-boulder/",
+    "?? Engine/Evidence/ROCK-transfer-native/",
+    "?? Engine/Evidence/ROCK-transfer-render/",
+    "?? Engine/Source/Core/RockMaterial.h",
+    "?? Engine/Source/World/Rocks/RockFormation.cpp",
+    "?? Engine/Source/World/Rocks/RockVolumes.cpp",
+    "?? Engine/Tests/RockTransferTests.cpp"
+  ],
+  "duration_seconds": 0.614,
+  "exit_code": 0,
+  "git_head": "1ba767ea82d8621ad6f1b86e9e73516647f24d74",
+  "input_sha256_after": {
+    "Source/Runtime/EditHistory.h": "ed57e7680bcb9a279d5f855a351d2d3a50924305b08712df2c55c378a7d5511e",
+    "Source/World/Rocks/RockFormation.cpp": "44a7e58681d3037d1fd425731fb0c2d2b9bd9d60d35b4e18d437d0ec6e86e390",
+    "Source/World/Rocks/RockVolumes.cpp": "f14523429a9a645cd4732771a1f21741862eb7ec90fac2400f30991c72358473",
+    "Tests/RockTransferTests.cpp": "61d186a76e2ed11bb1b9c17d8dae066768114bd2501542c9e178b40e75df1278"
+  },
+  "input_sha256_before": {
+    "Source/Runtime/EditHistory.h": "ed57e7680bcb9a279d5f855a351d2d3a50924305b08712df2c55c378a7d5511e",
+    "Source/World/Rocks/RockFormation.cpp": "44a7e58681d3037d1fd425731fb0c2d2b9bd9d60d35b4e18d437d0ec6e86e390",
+    "Source/World/Rocks/RockVolumes.cpp": "f14523429a9a645cd4732771a1f21741862eb7ec90fac2400f30991c72358473",
+    "Tests/RockTransferTests.cpp": "61d186a76e2ed11bb1b9c17d8dae066768114bd2501542c9e178b40e75df1278"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "3c8ee3c32ba9e05609066f9863a2f629501f5f5d24141aada2479d783c95902e",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-11T00:02:34.883773+00:00",
+  "timeout_seconds": 60.0
+}

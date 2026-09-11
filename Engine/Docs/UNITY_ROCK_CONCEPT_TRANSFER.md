@@ -1,5 +1,7 @@
 # Unity rock generator concept transfer
 
+**Implementation update:** the [native v3 first pass](./ROCK_TRANSFER_RESULT.md) now supplies layered materials, editable fused volumes, and basic formations. The comparison below records the pre-transfer baseline.
+
 Source audit: 2026-09-10. The user requested carrying the Unity generator's functionality and textures into the native engine. This comparison reads the existing project; it does not run or modify Unity. The source references below describe implementation, not proof that every feature was active in the last Unity scene.
 
 ## Finding

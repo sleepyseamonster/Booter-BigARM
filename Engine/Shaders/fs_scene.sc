@@ -4,6 +4,17 @@ SAMPLER2D(s_shadow, 0);
 SAMPLER2D(s_albedo, 1);
 SAMPLER2D(s_normal, 2);
 SAMPLER2D(s_surface, 3);
+SAMPLER2D(s_topColor, 4);
+SAMPLER2D(s_topNormal, 5);
+SAMPLER2D(s_topSurface, 6);
+SAMPLER2D(s_bottomColor, 7);
+SAMPLER2D(s_bottomNormal, 8);
+SAMPLER2D(s_bottomSurface, 9);
+SAMPLER2D(s_gritColor, 10);
+SAMPLER2D(s_gritNormal, 11);
+SAMPLER2D(s_gritSurface, 12);
+SAMPLER2D(s_cracks, 13);
+uniform vec4 u_rockLayers[3]; // enabled/grit/shale/cracks, dust/variation/worn/seed, local origin
 uniform vec4 u_material;
 uniform vec4 u_light;
 uniform vec4 u_sceneOptions; // normal diagnostic, textures, world repeats/m, ambient
@@ -23,6 +34,18 @@ float visibility(vec4 shadowPosition, vec3 geometricNormal, vec3 light)
         for (int x = -1; x <= 1; ++x)
             result += step(p.z - bias, texture2D(s_shadow, p.xy + vec2(float(x),float(y)) * u_shadowOptions.z).r);
     return result / 9.0;
+}
+vec3 layerNormal(vec3 nx, vec3 ny, vec3 nz, vec3 weights, vec3 signN, vec3 geometricNormal, float strength)
+{
+    nx=nx*2.0-1.0; ny=ny*2.0-1.0; nz=nz*2.0-1.0;
+    vec3 d=vec3(0.0,nx.y,-nx.x*signN.x)*weights.x+vec3(ny.x,0.0,-ny.y*signN.y)*weights.y+vec3(nz.x*signN.z,nz.y,0.0)*weights.z;
+    d-=geometricNormal*dot(d,geometricNormal);
+    return normalize(geometricNormal*max(dot(vec3(nx.z,ny.z,nz.z),weights),0.05)+d*strength);
+}
+float rockPatch(vec3 p)
+{
+    // Coherent broad variation; a material seed changes patches without changing world IDs.
+    return 0.5+0.5*sin(p.x*1.7+p.y*.8)*sin(p.z*1.3-p.y*1.1);
 }
 void main()
 {
@@ -62,6 +85,52 @@ void main()
         detail -= geometricNormal * dot(detail,geometricNormal);
         float z = max(nx.z * weights.x + ny.z * weights.y + nz.z * weights.z,0.05);
         normal = normalize(geometricNormal * z + detail * u_surfaceParams.z);
+        if(u_rockLayers[0].x>0.5)
+        {
+            vec3 local=v_world-u_rockLayers[2].xyz;
+            float patch=rockPatch(local+vec3(u_rockLayers[1].w*19.0));
+            float top=smoothstep(0.42,0.72,geometricNormal.y);
+            float bottom=smoothstep(0.08,0.5,-geometricNormal.y)*u_rockLayers[0].z;
+            float side=1.0-top;
+            float shalePatch=smoothstep(0.60,0.82,rockPatch(local*1.9+3.7))*u_rockLayers[0].z*(0.36*side+0.42*top);
+            bottom=clamp(bottom+shalePatch,0.0,1.0);
+            float grit=smoothstep(0.58,0.80,patch)*side*(1.0-bottom)*u_rockLayers[0].y;
+            vec2 topX=uvX*1.0, topY=uvY*1.0, topZ=uvZ*1.0;
+            vec3 topColor=texture2D(s_topColor,topX).rgb*weights.x+texture2D(s_topColor,topY).rgb*weights.y+texture2D(s_topColor,topZ).rgb*weights.z;
+            vec3 topSurface=texture2D(s_topSurface,topX).rgb*weights.x+texture2D(s_topSurface,topY).rgb*weights.y+texture2D(s_topSurface,topZ).rgb*weights.z;
+            vec3 topNormal=layerNormal(texture2D(s_topNormal,topX).rgb,texture2D(s_topNormal,topY).rgb,texture2D(s_topNormal,topZ).rgb,weights,signN,geometricNormal,u_surfaceParams.z*1.0);
+            albedo=mix(albedo,topColor*mix(0.90,1.06,topSurface.b),top);
+            surface=mix(surface,topSurface,top);
+            normal=normalize(mix(normal,topNormal,top));
+            vec2 bottomX=uvX*1.22, bottomY=uvY*1.22, bottomZ=uvZ*1.22;
+            vec3 bottomColor=texture2D(s_bottomColor,bottomX).rgb*weights.x+texture2D(s_bottomColor,bottomY).rgb*weights.y+texture2D(s_bottomColor,bottomZ).rgb*weights.z;
+            vec3 bottomSurface=texture2D(s_bottomSurface,bottomX).rgb*weights.x+texture2D(s_bottomSurface,bottomY).rgb*weights.y+texture2D(s_bottomSurface,bottomZ).rgb*weights.z;
+            vec3 bottomNormal=layerNormal(texture2D(s_bottomNormal,bottomX).rgb,texture2D(s_bottomNormal,bottomY).rgb,texture2D(s_bottomNormal,bottomZ).rgb,weights,signN,geometricNormal,u_surfaceParams.z*1.5);
+            albedo=mix(albedo,bottomColor*mix(0.90,1.06,bottomSurface.b),bottom);
+            surface=mix(surface,bottomSurface,bottom);
+            normal=normalize(mix(normal,bottomNormal,bottom));
+            vec2 gritX=uvX*1.57, gritY=uvY*1.57, gritZ=uvZ*1.57;
+            vec3 gritColor=texture2D(s_gritColor,gritX).rgb*weights.x+texture2D(s_gritColor,gritY).rgb*weights.y+texture2D(s_gritColor,gritZ).rgb*weights.z;
+            vec3 gritSurface=texture2D(s_gritSurface,gritX).rgb*weights.x+texture2D(s_gritSurface,gritY).rgb*weights.y+texture2D(s_gritSurface,gritZ).rgb*weights.z;
+            vec3 gritNormal=layerNormal(texture2D(s_gritNormal,gritX).rgb,texture2D(s_gritNormal,gritY).rgb,texture2D(s_gritNormal,gritZ).rgb,weights,signN,geometricNormal,u_surfaceParams.z*1.35);
+            albedo=mix(albedo,gritColor*mix(0.90,1.06,gritSurface.b),grit);
+            surface=mix(surface,gritSurface,grit);
+            normal=normalize(mix(normal,gritNormal,grit));
+            vec3 mask=texture2D(s_cracks,uvX*.344).rgb*weights.x+texture2D(s_cracks,uvY*.344).rgb*weights.y+texture2D(s_cracks,uvZ*.344).rgb*weights.z;
+            float crack=clamp(pow(clamp(mask.r,0.0,1.0),1.25)*u_rockLayers[0].w*mix(.45,1.0,patch),0.0,1.0);
+            float halo=mask.g*u_rockLayers[0].w*.38;
+            float mineral=mask.b*smoothstep(.46,.78,rockPatch(local*2.3));
+            // Colors below are linear equivalents of the preserved Unity material tints.
+            albedo=mix(albedo,vec3(.0134,.0078,.0049),crack)*(1.0-halo*.12);
+            albedo=mix(albedo,vec3(.196,.147,.095),mineral*.22);
+            float dust=clamp(pow(max(geometricNormal.y,0.0),5.0)*u_rockLayers[1].x*mix(.65,1.25,surface.b),0.0,1.0);
+            albedo=mix(albedo,vec3(.196,.095,.047),dust);
+            albedo*=mix(1.0,mix(.87,1.07,patch),u_rockLayers[1].y);
+            ao=surface.r*mix(1.0,.58,crack);
+            roughness=clamp(surface.g*u_surfaceParams.x-u_rockLayers[1].z*smoothstep(.55,.85,patch)*.25+crack*.08,0.045,1.0);
+            roughness=mix(roughness,.95,dust);
+        }
+
     }
     roughness = clamp(roughness,0.045,1.0);
     float metal = u_surfaceParams.y;

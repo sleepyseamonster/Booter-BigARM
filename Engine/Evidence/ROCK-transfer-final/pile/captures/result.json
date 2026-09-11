@@ -1,0 +1,13 @@
+{
+  "kind": "engine.rock-capture",
+  "payload": {
+    "backend": "Metal",
+    "captures": 1,
+    "gpu_errors": 0,
+    "passed": true,
+    "real_surfaces": true,
+    "recipe": "Assets/FusedRockPresets/04-Rock-Pile.json",
+    "simulation_advanced": false
+  },
+  "version": 1
+}

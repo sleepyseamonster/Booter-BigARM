@@ -47,7 +47,8 @@ TerrainPatch generateTerrain(const TerrainRecipe& recipe,Region region,const Roc
     // Each patch owns its south/west edge; neighbors provide north/east continuation.
     patch.routes.push_back({patch.id.text()+":west",{region,{0,0,0}},{region,{0,0,256}},6,3});
     patch.routes.push_back({patch.id.text()+":south",{region,{0,0,0}},{region,{256,0,0}},6,3});
-    const float footprint=float(std::max(rock.radiiMm[0],rock.radiiMm[2]))*.001f*1.4f;
+    if(rock.version==3&&rock.formation)throw std::invalid_argument("Formation recipes are authoring assets; live terrain placement requires a single rock");
+    const float footprint=rock.version==3?std::hypot(float(rock.radiiMm[0]),float(rock.radiiMm[2]))*.001f:float(std::max(rock.radiiMm[0],rock.radiiMm[2]))*.001f*1.4f;
     if(footprint>4)throw std::invalid_argument("Terrain placement currently supports rock footprints up to four metres");
     patch.rocks.reserve(256);
     // Stable cell slots do not renumber when a neighbor candidate is rejected.

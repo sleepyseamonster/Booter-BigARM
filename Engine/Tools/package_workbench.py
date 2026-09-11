@@ -39,8 +39,8 @@ def main():
         if args.rock:
             required={"surface/textures/rocks/workbench/layered/rockworkbenchside_"+suffix for suffix in ['albedo','normal','surface']}
             required.add('surface/textures/ground/sanddirt/brokenworldsanddirtalbedo')
-            records=[row for row in records if row['id'] in required]
-            if {row['id'] for row in records}!=required:raise ValueError('Rock package requires all four current material textures')
+            required.update('surface/textures/rocks/workbench/layered/rockworkbench'+name for name in ['top_normal','top_surface','underside_normal','underside_surface','grit_normal','grit_surface','crack_mask'])
+            if not required.issubset({row['id'] for row in records}):raise ValueError('Rock package requires the complete layered rock material family')
             document['payload']['textures']=records
         asset_root=out/'bin/Assets';asset_root.mkdir()
         write_json(asset_root/'catalog.json',document)
@@ -92,7 +92,7 @@ def main():
 
 Open **Launch-Rock-Generator.command** on Mac (the .cmd launcher is for a future native Windows package). Keep the package in a writable folder. No Unity installation or source checkout is needed.
 
-1. Change the seed, radii, detail, irregularity or bands, then select **Apply recipe**.
+1. Choose a **Rock preset** or select **Fused volumes v3**. Adjust seed/dimensions, fused shape, layered material or formation controls, then select **Apply recipe**. **Frame rock / formation** fits the accepted result in view.
 2. Alt/Option + left-drag or right-drag to orbit; Space + left-drag or middle-drag to pan; wheel to zoom; F to recenter. Lighting/material controls are in the left inspector.
 3. **Undo/Redo** restores accepted recipes. **Save recipe** saves the accepted recipe; **Reload** reads the displayed file.
 4. Choose a new **Export directory**, then **Export rock** to write the accepted mesh, normals, bounds, triangle surface classes and recipe in the engine format.
@@ -101,7 +101,7 @@ The launcher creates UserData/rock.json on first use and never replaces it on la
 
 When a preset library is included, use **Rock preset** in the right panel to switch examples. This changes the preview; **Save recipe** writes your working copy and leaves library originals intact. A bundled inspection preset supplies first-launch lighting and framing, then your saved settings take over.
 
-The model is a technical rock generator, not final geological art. Three basic detail levels and collision support are present. Exports contain the highest-detail static mesh and recipe, not embedded textures or a baked collision file. The workbench uses bundled triplanar textures; other applications need their own material binding. Changing the LOD preview does not change exported geometry.
+The model is a technical rock generator, not final geological art. Three basic detail levels and collision support are present. Exports contain the highest-detail static mesh and recipe, not embedded textures or a baked collision file. V3 also exports material bindings/controls and formation member IDs. All 38 transferred rock/ground textures are included in the cooked catalog; the Engine menu offers a texture inspector. V3 uses the layered rock family with grit, shale, cracks, dust and worn patches. In Source volumes, **Edit generated volumes** exposes individual mass/cut controls; **Return to seeded plan** resumes procedural planning. Disconnected chips are removed from each single rock. Formations are assembled static members on flat preview ground, with three LODs and a bounded collision mesh. The workbench uses bundled triplanar textures; other applications need their own material binding. Changing the LOD preview does not change exported geometry.
 
 Shared simulation can enable the third-person proxy to walk around the rock. Disable character mode to edit. Hands-on feel and creative acceptance are separate from technical verification. Live streaming and native Windows verification remain later engine work. This is a local development package, not a signed/notarized distribution release.
 """,encoding='utf-8')

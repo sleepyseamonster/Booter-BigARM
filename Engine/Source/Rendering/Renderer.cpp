@@ -99,6 +99,10 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders)
     surfaceSampler_=bgfx::createUniform("s_surface",bgfx::UniformType::Sampler);
     for (auto uniform:{shadowMatrix_,shadowOptions_,shadowSampler_,eye_,surfaceParams_,albedoSampler_,normalSampler_,surfaceSampler_})
         if (!bgfx::isValid(uniform)) throw std::runtime_error("Lighting uniform allocation failed");
+    const char* layerNames[]={"s_topColor","s_topNormal","s_topSurface","s_bottomColor","s_bottomNormal","s_bottomSurface","s_gritColor","s_gritNormal","s_gritSurface","s_cracks"};
+    for(size_t i=0;i<layerSamplers_.size();++i){layerSamplers_[i]=bgfx::createUniform(layerNames[i],bgfx::UniformType::Sampler);if(!bgfx::isValid(layerSamplers_[i]))throw std::runtime_error("Rock layer sampler allocation failed");}
+    layerParams_=bgfx::createUniform("u_rockLayers",bgfx::UniformType::Vec4,3);
+    if(!bgfx::isValid(layerParams_))throw std::runtime_error("Rock layer parameters allocation failed");
     constexpr uint64_t shadowFlags=BGFX_TEXTURE_RT|BGFX_SAMPLER_U_CLAMP|BGFX_SAMPLER_V_CLAMP|BGFX_SAMPLER_MIN_POINT|BGFX_SAMPLER_MAG_POINT;
     if (!bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::R32F,shadowFlags)) throw std::runtime_error("Shadow R32F target unsupported");
     bgfx::TextureHandle shadowTargets[]={
@@ -264,6 +268,13 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
             bgfx::setTexture(2,normalSampler_,bound->normal);
             bgfx::setTexture(3,surfaceSampler_,bound->surface);
         }
+        const bool layered=textured&&surface->layered;
+        const auto material=surface?surface->material:RockMaterial{};
+        const float layers[12]={layered?1.f:0.f,material.grit*.001f,material.shale*.001f,material.cracks*.001f,
+            material.dust*.001f,material.variation*.001f,material.worn*.001f,surface?surface->seed:0.f,
+            transform[12],transform[13],transform[14],0};
+        bgfx::setUniform(layerParams_,layers,3);
+        if(bound)for(size_t i=0;i<layerSamplers_.size();++i){const auto handle=bgfx::isValid(bound->layers[i])?bound->layers[i]:bound->albedo;bgfx::setTexture(uint8_t(i+4),layerSamplers_[i],handle);}
         bgfx::setUniform(normal_,normal.data()); bgfx::setUniform(options_,options);
         bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA|cull);
         bgfx::submit(views::scene,mesh==-1&&gpuSkin?skinProgram_:program_);
@@ -359,6 +370,8 @@ void Renderer::stop() {
     fullscreen_=BGFX_INVALID_HANDLE; display_=BGFX_INVALID_HANDLE; sceneSampler_=BGFX_INVALID_HANDLE;
     for (auto handle : meshes_) if (bgfx::isValid(handle)) bgfx::destroy(handle);
     if (bgfx::isValid(program_)) bgfx::destroy(program_);
+    if(bgfx::isValid(layerParams_))bgfx::destroy(layerParams_);layerParams_=BGFX_INVALID_HANDLE;
+    for(auto& h:layerSamplers_){if(bgfx::isValid(h))bgfx::destroy(h);h=BGFX_INVALID_HANDLE;}
     if (bgfx::isValid(material_)) bgfx::destroy(material_);
     if (bgfx::isValid(light_)) bgfx::destroy(light_);
     if (bgfx::isValid(normal_)) bgfx::destroy(normal_);

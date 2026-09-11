@@ -1,6 +1,6 @@
 # Current Engine Handoff
 
-**Latest user-directed work (2026-09-10):** [editor-style scene camera controls](./SCENE_CAMERA_CONTROLS.md) add Alt/Option + left-drag orbit, Space + left-drag or middle-drag pan, and F to recenter. The updated rock generator is packaged at `out/rock-showcase-camera/`. The [three native rock presets](./ROCK_SHOWCASE.md) remain available. P21 remains complete as a first pass; P22 and other foundation packages remain planned. No origin-shift or gameplay expansion was started.
+**Latest user-directed work (2026-09-10):** the [Unity rock concept transfer first pass](./ROCK_TRANSFER_RESULT.md) adds generator v3 with editable fused masses/cuts, layered original textures, saved material controls, and small deterministic formations. The runnable package is `out/rock-transfer-v3/`, with all 38 transferred textures available. [Scene camera controls](./SCENE_CAMERA_CONTROLS.md) and the compact Engine menu remain included. Existing v1/v2 recipes retain their behavior. Live formation placement, origin shifting and gameplay expansion remain deferred.
 
 Updated 2026-09-10, America/Phoenix. The first-pass shared document/identity foundation (P01) and linear HDR/display pipeline (P02) are implemented and technically verified on the current Mac. Portable builds (P07) are complete on Mac. All new work is under `Engine/`; Unity and Arc & Dust remain preserved references.
 

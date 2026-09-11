@@ -1,5 +1,6 @@
 #pragma once
 #include "Core/FixtureState.h"
+#include "Core/RockMaterial.h"
 #include "Platform/Window.h"
 #include "Rendering/RenderModel.h"
 #include <bgfx/bgfx.h>
@@ -30,6 +31,9 @@ struct TexturePreview { bgfx::TextureHandle texture=BGFX_INVALID_HANDLE;float lo
 struct SurfaceTextures {
     bool packedSurface=true;
     bgfx::TextureHandle albedo=BGFX_INVALID_HANDLE, normal=BGFX_INVALID_HANDLE, surface=BGFX_INVALID_HANDLE;
+    std::array<bgfx::TextureHandle,10> layers=[] {std::array<bgfx::TextureHandle,10> a;for(auto& h:a)h=BGFX_INVALID_HANDLE;return a;}();
+    bool layered=false;RockMaterial material;float seed=0;
+
 };
 struct RenderInstance {const RenderModel* model=nullptr;std::array<float,3> offset{},boundsCenter{};float yaw=0,boundsRadius=1;bool ground=false;};
 struct ScenePlacement {const std::vector<RenderInstance>* instances=nullptr;bool streamedWorld=false; std::array<float,3> offset{},eye{},target{};bool physicalCharacter=false;const RenderModel* model=nullptr;const std::vector<SkinMatrix>* pose=nullptr;bool cpuReference=false,markerActive=false;const RenderModel* rock=nullptr;std::array<float,3> rockOffset{-3.5f,0,0};float rockFocusHeight=.85f; };
@@ -66,6 +70,8 @@ private:
     bgfx::ProgramHandle shadowProgram_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle shadowMatrix_ = BGFX_INVALID_HANDLE, shadowOptions_ = BGFX_INVALID_HANDLE, shadowSampler_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle eye_ = BGFX_INVALID_HANDLE, surfaceParams_ = BGFX_INVALID_HANDLE;
+    std::array<bgfx::UniformHandle,10> layerSamplers_=[] {std::array<bgfx::UniformHandle,10> a;for(auto& h:a)h=BGFX_INVALID_HANDLE;return a;}();
+    bgfx::UniformHandle layerParams_=BGFX_INVALID_HANDLE;
     bgfx::UniformHandle albedoSampler_ = BGFX_INVALID_HANDLE, normalSampler_ = BGFX_INVALID_HANDLE, surfaceSampler_ = BGFX_INVALID_HANDLE;
     std::array<bgfx::VertexBufferHandle, 5> meshes_{{BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE}};
     bgfx::UniformHandle material_ = BGFX_INVALID_HANDLE, light_ = BGFX_INVALID_HANDLE;

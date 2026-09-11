@@ -1,0 +1,32 @@
+{
+  "kind": "engine.rock-material",
+  "payload": {
+    "base_textures": [
+      "surface/textures/rocks/workbench/layered/rockworkbenchside_albedo",
+      "surface/textures/rocks/workbench/layered/rockworkbenchside_normal",
+      "surface/textures/rocks/workbench/layered/rockworkbenchside_surface"
+    ],
+    "controls": {
+      "cracks": 500,
+      "dust": 240,
+      "grit": 400,
+      "shale": 700,
+      "variation": 620,
+      "worn": 200
+    },
+    "family": "wasteland-layered-v1",
+    "layer_textures": [
+      "surface/textures/rocks/workbench/layered/rockworkbenchside_albedo",
+      "surface/textures/rocks/workbench/layered/rockworkbenchtop_normal",
+      "surface/textures/rocks/workbench/layered/rockworkbenchtop_surface",
+      "surface/textures/rocks/workbench/layered/rockworkbenchside_albedo",
+      "surface/textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+      "surface/textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+      "surface/textures/rocks/workbench/layered/rockworkbenchside_albedo",
+      "surface/textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+      "surface/textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+      "surface/textures/rocks/workbench/layered/rockworkbenchcrack_mask"
+    ]
+  },
+  "version": 1
+}

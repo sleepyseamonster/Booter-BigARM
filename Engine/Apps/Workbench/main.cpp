@@ -236,7 +236,7 @@ int run(Options options) {
 
     engine::TextureLease texture;
     bool materialAvailable=!records.empty();
-    std::array<engine::TextureLease,6> surfaceLeases;
+    std::array<engine::TextureLease,16> surfaceLeases;
     auto acquireSurface=[&](size_t slot,const char* id,engine::TextureRole role) {
         const auto found=std::find_if(records.begin(),records.end(),[&](const auto& record){return record.id==id;});
         if (found==records.end()) {
@@ -258,6 +258,10 @@ int run(Options options) {
     // This source ground material has no paired normal/surface map. Use explicit
     // neutral normal and scalar roughness rather than substituting another ground.
     surfaces.ground.packedSurface=false;
+    const bool baseMaterialAvailable=materialAvailable;
+    for(size_t i=0;i<engine::rockLayerTextureIds.size();++i)surfaces.rock.layers[i]=acquireSurface(i+6,engine::rockLayerTextureIds[i],i==9?engine::TextureRole::Mask:(i%3==0?engine::TextureRole::Color:(i%3==1?engine::TextureRole::Normal:engine::TextureRole::Surface)));
+    const bool layeredMaterialAvailable=materialAvailable;materialAvailable=baseMaterialAvailable;
+
     if (!materialAvailable) state.surfaceTextures=false;
     if(verify) state.surfaceTextures=false;
     TextureControls textureControls;textureControls.records=&records;
@@ -268,7 +272,7 @@ int run(Options options) {
     SimulationControls simulation;
     engine::CalibrationRuntime runtime(modelData,worldSession?worldSession->initial().player:engine::PlayerSnapshot{});
     std::unique_ptr<engine::RockWorkbench> rock;
-    if(!options.rock.empty())rock=std::make_unique<engine::RockWorkbench>(options.rock,runtime,options.rockLibrary);
+    if(!options.rock.empty())rock=std::make_unique<engine::RockWorkbench>(options.rock,runtime,options.rockLibrary,layeredMaterialAvailable);
     engine::InspectionWorkbench documents(state,!options.inspection.empty()?options.inspection:(!options.saveInspection.empty()?options.saveInspection:std::filesystem::path(SDL_GetBasePath())/"inspection.json"));
     std::unique_ptr<engine::StreamingScene> streaming;
     if(worldSession){
@@ -397,6 +401,10 @@ int run(Options options) {
             }
             button=inspector(state,renderer,milliseconds,textureControls,simulation,documents,technical);
             if(rock&&!rockVerify)rock->drawControls(simulation.enabled);
+            if(rock&&rock->frameRequested&&!simulation.enabled){
+                const auto& a=rock->asset().lods.front();float squared=0;for(size_t i=0;i<3;++i){const float extent=(a.maximum[i]-a.minimum[i])*.5f;squared+=extent*extent;}
+                state.distance=std::clamp(std::sqrt(squared)/std::sin(state.fieldOfView*.00872664626f)*1.05f,2.5f,30.f);state.viewOffset={(a.minimum[0]+a.maximum[0])*.5f,0,(a.minimum[2]+a.maximum[2])*.5f};rock->frameRequested=false;
+            }
             if(animation && !animationVerify) {
                 ImGui::Begin("Model animation");
                 ImGui::Text("%zu joints | %zu clips",modelData->joints.size(),modelData->clips.size());
@@ -468,7 +476,7 @@ int run(Options options) {
                 }
                 if (textureControls.loaded>=0) preview={textures.resolve(texture.token()),textureControls.lod,float(textureControls.channel),records.at(size_t(textureControls.loaded)).srgb,textureControls.repeat};
             }
-            if(rock){float distance=state.distance;if(simulation.enabled){float squared=0;for(size_t i=0;i<3;++i){const float delta=placement.eye[i]-engine::RockWorkbench::offset[i];squared+=delta*delta;}distance=std::sqrt(squared);}placement.rock=rock->model(distance);placement.rockOffset=engine::RockWorkbench::offset;placement.rockFocusHeight=(rock->asset().lods[0].minimum[1]+rock->asset().lods[0].maximum[1])*.5f;}
+            if(rock){surfaces.rock.layered=rock->recipe().version==3&&layeredMaterialAvailable;surfaces.rock.material=rock->recipe().material;surfaces.rock.seed=float(rock->recipe().seed%65536)/65536.f;float distance=state.distance;if(simulation.enabled){float squared=0;for(size_t i=0;i<3;++i){const float delta=placement.eye[i]-engine::RockWorkbench::offset[i];squared+=delta*delta;}distance=std::sqrt(squared);}placement.rock=rock->model(distance);placement.rockOffset=engine::RockWorkbench::offset;placement.rockFocusHeight=(rock->asset().lods[0].minimum[1]+rock->asset().lods[0].maximum[1])*.5f;}
             if(streaming){
                 if(streamVerify){const float shift=streamPhase==1?1024.f:0.f;placement.physicalCharacter=true;placement.eye={32+shift,18,52};placement.target={32+shift,0,24};}
                 placement.streamedWorld=true;placement.instances=&streaming->instances(placement.physicalCharacter?placement.eye:state.eye());

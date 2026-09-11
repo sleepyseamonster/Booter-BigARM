@@ -6,7 +6,7 @@
 namespace engine {
 class RockWorkbench {
 public:
-    RockWorkbench(const std::filesystem::path&,CalibrationRuntime&,const std::filesystem::path& library={});
+    RockWorkbench(const std::filesystem::path&,CalibrationRuntime&,const std::filesystem::path& library={},bool layeredMaterialsAvailable=true);
     void drawControls(bool characterMode);
     const RenderModel* model(float cameraDistance)const;
     void apply(const RockRecipe&);
@@ -15,10 +15,12 @@ public:
     const RockRecipe& recipe()const{return history_.value();}
     const RockAsset& asset()const{return asset_;}
     int forcedLod=-1;
+    bool frameRequested=false;
     static constexpr PhysicsVector offset{-3.5f,0,0};
 private:
     void rebuild(const RockRecipe&);
     CalibrationRuntime& runtime_;
+    bool layeredMaterialsAvailable_;
     EditHistory<RockRecipe> history_;
     RockRecipe draft_;
     RockAsset asset_;

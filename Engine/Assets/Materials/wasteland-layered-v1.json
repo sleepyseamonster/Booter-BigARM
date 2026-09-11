@@ -1,0 +1,31 @@
+{
+  "family": "wasteland-layered-v1",
+  "role": "reference mapping for the compiled first-pass native material adapter",
+  "source": "Assets/_Project/Materials/TopDown3D/BrokenWorld_Rock_Dark.mat",
+  "texture_bindings": {
+    "_BaseMap": "surface/textures/rocks/workbench/layered/rockworkbenchside_albedo",
+    "_BottomBaseMap": "surface/textures/rocks/workbench/layered/rockworkbenchside_albedo",
+    "_BottomNormalMap": "surface/textures/rocks/workbench/layered/rockworkbenchunderside_normal",
+    "_BottomSurfaceMap": "surface/textures/rocks/workbench/layered/rockworkbenchunderside_surface",
+    "_CrackMap": "surface/textures/rocks/workbench/layered/rockworkbenchcrack_mask",
+    "_GritBaseMap": "surface/textures/rocks/workbench/layered/rockworkbenchside_albedo",
+    "_GritNormalMap": "surface/textures/rocks/workbench/layered/rockworkbenchgrit_normal",
+    "_GritSurfaceMap": "surface/textures/rocks/workbench/layered/rockworkbenchgrit_surface",
+    "_NormalMap": "surface/textures/rocks/workbench/layered/rockworkbenchside_normal",
+    "_SurfaceMap": "surface/textures/rocks/workbench/layered/rockworkbenchside_surface",
+    "_TopBaseMap": "surface/textures/rocks/workbench/layered/rockworkbenchside_albedo",
+    "_TopNormalMap": "surface/textures/rocks/workbench/layered/rockworkbenchtop_normal",
+    "_TopSurfaceMap": "surface/textures/rocks/workbench/layered/rockworkbenchtop_surface"
+  },
+  "surface_channels": [
+    "ao",
+    "roughness",
+    "height"
+  ],
+  "crack_channels": [
+    "crack",
+    "halo",
+    "mineral_deposit"
+  ],
+  "controls_unit": "permille; UI shows zero to one"
+}
