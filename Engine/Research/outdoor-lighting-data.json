@@ -1,0 +1,403 @@
+{
+  "schema_version": 1,
+  "researched_on": "2026-09-11",
+  "status": "research_only_not_runtime_evidence",
+  "repository_baseline": "5b8c6a20f62c2e4d50303b8fd0be40eb4f1fd52c",
+  "audited_engine_files": [
+    {
+      "path": "Source/Rendering/Renderer.cpp",
+      "sha256": "3a9b3c22f78dd2b6b822196f60f0b58e3055c4d8d46d9a4d6b686464bd616819"
+    },
+    {
+      "path": "Source/Rendering/Renderer.h",
+      "sha256": "9f2b1708234cea0435b24e63f6e8fa75324bf11bc5a95a87ab434a2208e67b1e"
+    },
+    {
+      "path": "Source/Rendering/RenderViews.h",
+      "sha256": "a6e140762c1f5e64659fca3640232dedd60107d7dea20107240f6874c3971ef0"
+    },
+    {
+      "path": "Shaders/fs_scene.sc",
+      "sha256": "ee360838e2bc8babc3cf15806b278719fefae9698ff5b13bc67095e841d60013"
+    },
+    {
+      "path": "Shaders/fs_display.sc",
+      "sha256": "a7ffc1aa5f91beab57c02ec80961c60329f3145091119f914093c8817f3276bd"
+    },
+    {
+      "path": "Shaders/varying.def.sc",
+      "sha256": "c8b4586f891f15020222021980018678efe6d5d3c42f7083e325d689490f4295"
+    }
+  ],
+  "pinned_bgfx": {
+    "revision": "9b636df330c81e11c84595651a291b6c59fb7396",
+    "lock": "probe-lock.json",
+    "files": [
+      {
+        "path": "examples/16-shadowmaps/shadowmaps.cpp",
+        "sha256": "aaf378eae6b17b1e368a0845934340acb302f80a549635aef65e2b0901babd90",
+        "url": "https://github.com/bkaradzic/bgfx/blob/9b636df330c81e11c84595651a291b6c59fb7396/examples/16-shadowmaps/shadowmaps.cpp"
+      },
+      {
+        "path": "examples/39-assao/assao.cpp",
+        "sha256": "092d1e050a4950723debd649e3e081d9e34f97bf7b88553ec5f643b20f5f7f04",
+        "url": "https://github.com/bkaradzic/bgfx/blob/9b636df330c81e11c84595651a291b6c59fb7396/examples/39-assao/assao.cpp"
+      },
+      {
+        "path": "examples/44-sss/fs_screen_space_shadows.sc",
+        "sha256": "fe494478c2291b0db441770f9b488e7d9191a02bc67edb69b96c1881b68cad71",
+        "url": "https://github.com/bkaradzic/bgfx/blob/9b636df330c81e11c84595651a291b6c59fb7396/examples/44-sss/fs_screen_space_shadows.sc"
+      },
+      {
+        "path": "examples/44-sss/fs_sss_linear_depth.sc",
+        "sha256": "b47fa08b1473b77a3ef187d51fc0a5ee0de49978edebec90e64856e2a64753af",
+        "url": "https://github.com/bkaradzic/bgfx/blob/9b636df330c81e11c84595651a291b6c59fb7396/examples/44-sss/fs_sss_linear_depth.sc"
+      },
+      {
+        "path": "include/bgfx/bgfx.h",
+        "sha256": "5679d71ef86648a8de9d990a49cc54765d82aa25adfd6f431cad09f76535a39f",
+        "url": "https://github.com/bkaradzic/bgfx/blob/9b636df330c81e11c84595651a291b6c59fb7396/include/bgfx/bgfx.h"
+      }
+    ]
+  },
+  "primary_sources": [
+    {
+      "id": "csm",
+      "title": "Microsoft cascaded shadow maps",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/dxtecharts/cascaded-shadow-maps",
+      "accessed_on": "2026-09-11",
+      "use": "Frustum splits, stable bounds, texel snapping, transition blending and PCF."
+    },
+    {
+      "id": "shadow_artifacts",
+      "title": "Microsoft shadow-depth artifacts",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/dxtecharts/common-techniques-to-improve-shadow-depth-maps",
+      "accessed_on": "2026-09-11",
+      "use": "Bias, aliasing and projection-fitting tradeoffs."
+    },
+    {
+      "id": "filament",
+      "title": "Filament technical guide",
+      "url": "https://google.github.io/filament/main/filament.html",
+      "accessed_on": "2026-09-11",
+      "use": "PBR, environment lighting, indirect occlusion and display boundaries; not an engine dependency."
+    },
+    {
+      "id": "xegtao",
+      "title": "Intel XeGTAO README",
+      "url": "https://github.com/GameTechDev/XeGTAO/blob/master/README.md",
+      "accessed_on": "2026-09-11",
+      "use": "AO integration, spatial/temporal filtering and author-reported benchmark; archived project."
+    },
+    {
+      "id": "tone_mapping",
+      "title": "Khronos tone mapping",
+      "url": "https://github.com/KhronosGroup/ToneMapping",
+      "accessed_on": "2026-09-11",
+      "use": "PBR Neutral purpose; repository points to LICENSE.md and LICENSES."
+    },
+    {
+      "id": "tone_shader",
+      "title": "Khronos PBR Neutral shader",
+      "url": "https://github.com/KhronosGroup/ToneMapping/blob/main/PBR_Neutral/pbrNeutral.glsl",
+      "accessed_on": "2026-09-11",
+      "use": "Linear Rec.709 input/output contract; no implementation copied during research."
+    },
+    {
+      "id": "fog",
+      "title": "Epic exponential height fog",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/exponential-height-fog-in-unreal-engine",
+      "accessed_on": "2026-09-11",
+      "use": "Height/distance/color controls and distinction from volumetric fog."
+    },
+    {
+      "id": "bgfx_examples",
+      "title": "bgfx examples index",
+      "url": "https://bkaradzic.github.io/bgfx/examples.html",
+      "accessed_on": "2026-09-11",
+      "use": "Discovery; immutable implementation references retained above."
+    }
+  ],
+  "upstream_measurements": {
+    "source_id": "xegtao",
+    "gpu": "NVIDIA RTX 2060",
+    "width": 1920,
+    "height": 1080,
+    "reported_approximate_gpu_ms": {
+      "XeGTAO_High": 0.56,
+      "ASSAO_Medium": 0.72
+    },
+    "scope": "Author workload and unequal quality presets; not our implementation, Mac timing, target-PC guarantee or controlled equal-quality comparison."
+  },
+  "allocation_model": {
+    "kind": "nominal_uncompressed_texture_storage_not_measured",
+    "formula": "Sum over mip dimensions max(1,floor(width/2^level))*max(1,floor(height/2^level))*bytes_per_pixel*layers*count. No mip chain means base level only. MiB=bytes/1048576.",
+    "excludes": [
+      "driver padding/alignment",
+      "transient old-plus-new resize overlap",
+      "geometry and material textures",
+      "command buffers",
+      "additional debug views",
+      "small counters and uniform buffers"
+    ],
+    "shadow_configurations": [
+      {
+        "name": "current_R32F_plus_D24S8",
+        "width": 2048,
+        "height": 2048,
+        "bytes_per_pixel": 8,
+        "layers": 1,
+        "count": 1,
+        "full_mip_chain": false,
+        "nominal_bytes": 33554432,
+        "nominal_mib": 32.0
+      },
+      {
+        "name": "two_2048_tiles_R32F_plus_D24S8",
+        "width": 4096,
+        "height": 2048,
+        "bytes_per_pixel": 8,
+        "layers": 1,
+        "count": 1,
+        "full_mip_chain": false,
+        "nominal_bytes": 67108864,
+        "nominal_mib": 64.0
+      },
+      {
+        "name": "two_1024_tiles_R32F_plus_D24S8",
+        "width": 2048,
+        "height": 1024,
+        "bytes_per_pixel": 8,
+        "layers": 1,
+        "count": 1,
+        "full_mip_chain": false,
+        "nominal_bytes": 16777216,
+        "nominal_mib": 16.0
+      }
+    ],
+    "screen_scenarios": [
+      {
+        "width": 1920,
+        "height": 1080,
+        "purpose": "1080p reference",
+        "pixels_relative_to_1080p": 1.0,
+        "attachments": [
+          {
+            "name": "existing_HDR_RGBA16F_and_D24S8",
+            "width": 1920,
+            "height": 1080,
+            "bytes_per_pixel": 12,
+            "layers": 1,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 24883200,
+            "nominal_mib": 23.7305
+          },
+          {
+            "name": "proposed_linear_depth_R32F_and_normals_RGBA8",
+            "width": 1920,
+            "height": 1080,
+            "bytes_per_pixel": 8,
+            "layers": 1,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 16588800,
+            "nominal_mib": 15.8203
+          },
+          {
+            "name": "proposed_combined_visibility_RG8",
+            "width": 1920,
+            "height": 1080,
+            "bytes_per_pixel": 2,
+            "layers": 1,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 4147200,
+            "nominal_mib": 3.9551
+          }
+        ],
+        "pinned_assao_scratch_reference": [
+          {
+            "name": "halfDepths_R16F",
+            "width": 960,
+            "height": 540,
+            "bytes_per_pixel": 2,
+            "layers": 1,
+            "count": 4,
+            "full_mip_chain": true,
+            "nominal_bytes": 5528440,
+            "nominal_mib": 5.2723
+          },
+          {
+            "name": "pingPong_RG8",
+            "width": 960,
+            "height": 540,
+            "bytes_per_pixel": 2,
+            "layers": 2,
+            "count": 2,
+            "full_mip_chain": false,
+            "nominal_bytes": 4147200,
+            "nominal_mib": 3.9551
+          },
+          {
+            "name": "finalResults_RG8",
+            "width": 960,
+            "height": 540,
+            "bytes_per_pixel": 2,
+            "layers": 4,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 4147200,
+            "nominal_mib": 3.9551
+          },
+          {
+            "name": "generatedNormals_RGBA8",
+            "width": 1920,
+            "height": 1080,
+            "bytes_per_pixel": 4,
+            "layers": 1,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 8294400,
+            "nominal_mib": 7.9102
+          },
+          {
+            "name": "importanceMaps_R8",
+            "width": 480,
+            "height": 270,
+            "bytes_per_pixel": 1,
+            "layers": 1,
+            "count": 2,
+            "full_mip_chain": false,
+            "nominal_bytes": 259200,
+            "nominal_mib": 0.2472
+          },
+          {
+            "name": "resolvedAO_R8",
+            "width": 1920,
+            "height": 1080,
+            "bytes_per_pixel": 1,
+            "layers": 1,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 2073600,
+            "nominal_mib": 1.9775
+          }
+        ],
+        "scratch_reference_bytes": 24450040,
+        "scope": "Scratch follows example desktop R16F/RG8/R8 layout and includes optional generated normals even when we could supply normals. Excludes its deferred G-buffer because proposed prepass is listed separately. Actual adaptation may eliminate unused resources or use different formats. Do not count these as proven runtime allocations."
+      },
+      {
+        "width": 3456,
+        "height": 2234,
+        "purpose": "User screenshot file dimensions; illustrative high-DPI size, not measured current drawable",
+        "pixels_relative_to_1080p": 3.7233,
+        "attachments": [
+          {
+            "name": "existing_HDR_RGBA16F_and_D24S8",
+            "width": 3456,
+            "height": 2234,
+            "bytes_per_pixel": 12,
+            "layers": 1,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 92648448,
+            "nominal_mib": 88.3564
+          },
+          {
+            "name": "proposed_linear_depth_R32F_and_normals_RGBA8",
+            "width": 3456,
+            "height": 2234,
+            "bytes_per_pixel": 8,
+            "layers": 1,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 61765632,
+            "nominal_mib": 58.9043
+          },
+          {
+            "name": "proposed_combined_visibility_RG8",
+            "width": 3456,
+            "height": 2234,
+            "bytes_per_pixel": 2,
+            "layers": 1,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 15441408,
+            "nominal_mib": 14.7261
+          }
+        ],
+        "pinned_assao_scratch_reference": [
+          {
+            "name": "halfDepths_R16F",
+            "width": 1728,
+            "height": 1117,
+            "bytes_per_pixel": 2,
+            "layers": 1,
+            "count": 4,
+            "full_mip_chain": true,
+            "nominal_bytes": 20581776,
+            "nominal_mib": 19.6283
+          },
+          {
+            "name": "pingPong_RG8",
+            "width": 1728,
+            "height": 1117,
+            "bytes_per_pixel": 2,
+            "layers": 2,
+            "count": 2,
+            "full_mip_chain": false,
+            "nominal_bytes": 15441408,
+            "nominal_mib": 14.7261
+          },
+          {
+            "name": "finalResults_RG8",
+            "width": 1728,
+            "height": 1117,
+            "bytes_per_pixel": 2,
+            "layers": 4,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 15441408,
+            "nominal_mib": 14.7261
+          },
+          {
+            "name": "generatedNormals_RGBA8",
+            "width": 3456,
+            "height": 2234,
+            "bytes_per_pixel": 4,
+            "layers": 1,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 30882816,
+            "nominal_mib": 29.4521
+          },
+          {
+            "name": "importanceMaps_R8",
+            "width": 864,
+            "height": 559,
+            "bytes_per_pixel": 1,
+            "layers": 1,
+            "count": 2,
+            "full_mip_chain": false,
+            "nominal_bytes": 965952,
+            "nominal_mib": 0.9212
+          },
+          {
+            "name": "resolvedAO_R8",
+            "width": 3456,
+            "height": 2234,
+            "bytes_per_pixel": 1,
+            "layers": 1,
+            "count": 1,
+            "full_mip_chain": false,
+            "nominal_bytes": 7720704,
+            "nominal_mib": 7.363
+          }
+        ],
+        "scratch_reference_bytes": 91034064,
+        "scope": "Scratch follows example desktop R16F/RG8/R8 layout and includes optional generated normals even when we could supply normals. Excludes its deferred G-buffer because proposed prepass is listed separately. Actual adaptation may eliminate unused resources or use different formats. Do not count these as proven runtime allocations."
+      }
+    ]
+  }
+}

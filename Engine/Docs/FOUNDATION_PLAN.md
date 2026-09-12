@@ -1,5 +1,7 @@
 # Engine Master Implementation Plan
 
+Outdoor-lighting preparation, 2026-09-11: the [focused research](../Research/OUTDOOR_LIGHTING_RESEARCH.md) and [audited implementation sequence](./OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) define a bounded P02/P04/P05 visual extension and preparation for P32. Research is complete; implementation remains planned. Local lighting improvements can use the current supported coordinates; full P32 integration and its P22 prerequisite remain open.
+
 Current user-directed extension: [Unity formation composition and placement](./UNITY_FORMATION_PARITY_RESULT.md), a bounded P14–P20 improvement connecting roles, supported members and original terrain transitions. The [follow-up methods audit](../Research/UnityReference/ENVIRONMENT_METHODS_AUDIT.md) prioritizes silhouette grammar and shared ground contacts, then sand/gravel/debris; whole-formation fusion is conditional. P22 origin handling remains open.
 
 Revision 2, rewritten 2026-09-10 after the requested whole-engine analysis and [V1 audit](./ENGINE_PLAN_AUDIT.md). This is the primary implementation roadmap for Engine. It supersedes the earlier foundation plan that ended at streamed terrain. [Direction](./DIRECTION.md) controls product intent; [STATUS.md](./STATUS.md) controls current implementation/evidence. The [system audit](../Research/ENGINE_SYSTEM_AUDIT.md), [research update](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) and [work-package record](./ENGINE_ROADMAP.json) support this plan.

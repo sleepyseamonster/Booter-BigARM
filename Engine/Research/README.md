@@ -11,6 +11,7 @@ The cohort first pinned for EXP-001 is now also used by the [application foundat
 - [Master plan and rewrite audit](../Docs/FOUNDATION_PLAN.md): complete implementation program; [audit findings](../Docs/ENGINE_PLAN_AUDIT.md) and retained first draft.
 - [Terrain-system research](./TERRAIN_SYSTEM_RESEARCH.md): library/tool comparison, selected preview scope, LOD and future heightmap input contract.
 - [Texture-system research](./TEXTURE_SYSTEM_RESEARCH.md): asset/channel audit, tested mip/compiler limitations, runtime format and ownership recommendations.
+- [Outdoor-lighting research](./OUTDOOR_LIGHTING_RESEARCH.md): live renderer audit, stable sun shadows, sky/exposure, AO/contact and height fog; [audited implementation sequence](../Docs/OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) and [source hashes/cost data](./outdoor-lighting-data.json). Research complete; effects remain proposed.
 - [TEXTURE-001 offline experiment](./Experiments/TEXTURE-001/README.md): reproducible numerical evidence using the pinned texture tools.
 - [Dependency inventory](./dependencies.json): proposed versus experiment-only components.
 - [Experiment source lock](./probe-lock.json): immutable revisions and archive checksums.

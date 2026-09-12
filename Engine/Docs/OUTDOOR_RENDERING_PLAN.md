@@ -4,6 +4,8 @@ Planned 2026-09-09 under the user's continuing implementation authority. This ex
 
 Scheduling update 2026-09-10: [the whole-engine master plan](./FOUNDATION_PLAN.md) now owns program order. OR-2–OR-5 map to P02/P04/P05/P06, with P03 supplying textures. Independent core/document/build/cooker work may proceed alongside renderer work when its prerequisites are met. OR labels remain completion contracts; they are not a requirement to finish each unrelated workstream serially.
 
+Research update 2026-09-11: the initial sun/material foundation now exists. The [outdoor-lighting research](../Research/OUTDOOR_LIGHTING_RESEARCH.md) and [audited extension plan](./OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) address wider stable shadows, sky/display, scene AO and fog. Those new effects remain planned; this older document describes the original bounded fixture contract.
+
 ## Done and Scope
 
 Provide a repeatable outdoor inspection scene in which known geometry responds predictably to camera, sun and material changes. Establish correct surfaces, useful cast/self shadows, basic materials, ambient illumination, saved inspection settings and measured rendering cost before judging generated rocks. This is a bounded inspection area, not a renderer for the entire wasteland.
@@ -12,9 +14,9 @@ Provide a repeatable outdoor inspection scene in which known geometry responds p
 |---|---|---|
 | OR-1 — Geometry correctness | Inverse-transpose normals; known cube, sloped solid and sphere; winding/culling and depth checks; CPU geometry tests and native GPU comparisons | Complete on Mac; [result and limits](./OUTDOOR_GEOMETRY_RESULT.md) |
 | OR-2 — Color contract | Explicit linear lighting and display conversion; known color/illumination checks; define the HDR, exposure and UI composition boundary | Complete on Mac; [linear/HDR/display proof](./FIRST_PASS_RUNTIME.md) |
-| OR-3 — Sun and shadows | One directional sun and bounded shadow map; cast/self shadows, bias and edge behavior; moving-light/camera evidence | Pending |
-| OR-4 — Materials and ambient | Base color, roughness and normal textures; minimal owned asset fixtures/loading; ambient/environment illumination and consistent exposure | Pending PBR/ambient; [P03 catalog and residency](./TEXTURE_PIPELINE_RESULT.md) are implemented |
-| OR-5 — Repeatable inspection | Save/reload camera, light and material settings; neutral and low-angle inspection presets; CPU/GPU measurements with backend and resolution | Pending |
+| OR-3 — Sun and shadows | One directional sun and bounded shadow map; cast/self shadows, bias and edge behavior; moving-light/camera evidence | Initial Mac pass complete; [sun/surface result and limits](./SUN_AND_SURFACE_RESULT.md); wider stable coverage remains planned |
+| OR-4 — Materials and ambient | Base color, roughness and normal textures; minimal owned asset fixtures/loading; ambient/environment illumination and consistent exposure | Initial PBR/hemisphere pass complete; [sun/surface result](./SUN_AND_SURFACE_RESULT.md) and [texture residency](./TEXTURE_PIPELINE_RESULT.md); IBL and scene AO remain open |
+| OR-5 — Repeatable inspection | Save/reload camera, light and material settings; neutral and low-angle inspection presets; CPU/GPU measurements with backend and resolution | Partial: [inspection documents](./FIRST_PASS_RUNTIME.md) and lighting fixtures exist; complete per-effect GPU timing/preset evidence remains open |
 | Windows checkpoint | Native configure, compile, shader compilation, launch and technical captures on a Windows PC during this milestone | Pending hardware access; does not require moving daily development off Mac |
 
 Keep Mac as the main development machine while practical. Switch daily development only when compatibility effort materially impedes progress or target-specific debugging/performance work requires Windows. Passing Mac checks never closes the Windows checkpoint.
@@ -37,7 +39,7 @@ No Unity edits, canyons, terrain streaming, physics, character controller, anima
 
 ## Audit and Sources
 
-At the start of OR-1, the vertex shader applied the position matrix directly to normals, which fails under nonuniform scaling for non-axis-aligned surfaces; face culling was neither enabled nor proved. OR-1 corrected those geometry issues and retained the existing depth path. Current lit shading still multiplies display-like RGB values by light intensity without an explicit linear/display contract. These are renderer prerequisites rather than rock-generator problems.
+At the start of OR-1, the vertex shader applied the position matrix directly to normals, which fails under nonuniform scaling for non-axis-aligned surfaces; face culling was neither enabled nor proved. OR-1 corrected those geometry issues and retained the existing depth path. The original display-like lighting multiplication was subsequently replaced by the OR-2 linear/HDR/display contract. Smooth tone mapping is still missing; see the newer lighting research for the current source audit.
 
 Use the exact pinned bgfx/bx source for API and matrix conventions. The upstream [examples index](https://bkaradzic.github.io/bgfx/examples.html) identifies focused mesh, texture, HDR and shadow examples; it does not provide a finished game renderer. No dependency upgrade is required for OR-1.
 
