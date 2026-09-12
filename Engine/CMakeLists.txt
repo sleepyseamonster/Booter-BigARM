@@ -169,5 +169,8 @@ target_link_libraries(engine_rock_transfer_tests PRIVATE engine_world engine_phy
 add_executable(engine_terrain_preview_tests Tests/TerrainPreviewTests.cpp)
 target_link_libraries(engine_terrain_preview_tests PRIVATE engine_world_save)
 
+add_executable(engine_rock_authoring_tests Tests/RockAuthoringTests.cpp)
+target_link_libraries(engine_rock_authoring_tests PRIVATE engine_world engine_state)
+
 add_executable(engine_formation_parity_tests Tests/FormationParityTests.cpp)
 target_link_libraries(engine_formation_parity_tests PRIVATE engine_world_save)

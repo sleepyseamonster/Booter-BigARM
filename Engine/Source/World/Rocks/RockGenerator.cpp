@@ -16,9 +16,9 @@ V unit(V v){const float len=std::sqrt(dot(v,v));if(len<1e-8f)throw std::runtime_
 uint32_t integer(const Json& p,const char* key,uint32_t maximum){const auto& n=p.at(key);if(!n.is_number_unsigned()||n>maximum)throw std::runtime_error("Invalid integer rock parameter");return n.get<uint32_t>();}
 }
 void validateRecipe(const RockRecipe& r) {
-    if((r.version<1||r.version>4)||r.subdivisions>4||r.distortionPermille>250||r.bandPermille>150||r.bands<1||r.bands>32)throw std::invalid_argument("Unsupported rock recipe version or parameters");
+    if((r.version<1||r.version>5)||r.subdivisions>4||r.distortionPermille>250||r.bandPermille>150||r.bands<1||r.bands>32)throw std::invalid_argument("Unsupported rock recipe version or parameters");
     if(r.version>=3){
-        if(r.massCount<1||r.massCount>12||r.compaction>1000||r.asymmetry>1000||r.fractures>1000||r.edgeDamage>1000||r.formation>(r.version==4?5u:3u)||r.members<1||r.members>(r.version==4?16u:8u)||r.spacingMm<500||r.spacingMm>12000||r.volumes.size()>24)throw std::invalid_argument("Invalid fused rock controls");
+        if(r.massCount<1||r.massCount>12||r.compaction>1000||r.asymmetry>1000||r.fractures>1000||r.edgeDamage>1000||r.formation>(r.version>=4?5u:3u)||r.members<1||r.members>(r.version>=4?16u:8u)||r.spacingMm<500||r.spacingMm>12000||r.volumes.size()>24)throw std::invalid_argument("Invalid fused rock controls");
         for(auto value:{r.material.grit,r.material.shale,r.material.cracks,r.material.dust,r.material.variation,r.material.worn})if(value>1000)throw std::invalid_argument("Invalid rock material control");
         std::vector<uint32_t> ids;bool additive=r.volumes.empty();
         for(const auto& v:r.volumes){
@@ -27,6 +27,19 @@ void validateRecipe(const RockRecipe& r) {
             for(size_t i=0;i<3;++i)if(!std::isfinite(v.center[i])||std::abs(v.center[i])>4||!std::isfinite(v.halfSize[i])||v.halfSize[i]<.03f||v.halfSize[i]>3)throw std::invalid_argument("Invalid source volume bounds");
         }
         if(!additive)throw std::invalid_argument("A rock needs an additive source volume");
+    }
+    if(r.profile>4||r.memberEdits.size()>16)throw std::invalid_argument("Invalid rock profile or member edits");
+    if(r.version<5&&(r.profile||!r.memberEdits.empty()))throw std::invalid_argument("Authored profiles and members require generator v5");
+    std::vector<uint32_t> slots;
+    for(const auto& e:r.memberEdits){
+        if(e.slot>=r.members||e.variant>3||std::find(slots.begin(),slots.end(),e.slot)!=slots.end())throw std::invalid_argument("Invalid or duplicate formation member slot");
+        slots.push_back(e.slot);
+        if(!std::isfinite(e.yaw)||std::abs(e.yaw)>6.284f)throw std::invalid_argument("Invalid member rotation");
+        for(size_t a=0;a<3;++a)if(!std::isfinite(e.translation[a])||std::abs(e.translation[a])>20||!std::isfinite(e.axes[a])||e.axes[a]<.1f||e.axes[a]>3)throw std::invalid_argument("Invalid member transform");
+    }
+    for(const auto& v:r.volumes){
+        if(v.primitive>2||!std::isfinite(v.pitch)||!std::isfinite(v.roll)||std::abs(v.pitch)>.8f||std::abs(v.roll)>.8f||!std::isfinite(v.taper)||v.taper<0||v.taper>.8f)throw std::invalid_argument("Invalid volume profile");
+        if(r.version<5&&(v.primitive||v.pitch||v.roll||v.taper))throw std::invalid_argument("Shaped volumes require generator v5");
     }
     for(auto radius:r.radiiMm)if(radius<100||radius>20000)throw std::invalid_argument("Rock radii must be 100 to 20000 mm");
 }
@@ -38,23 +51,36 @@ void saveRockRecipe(const std::filesystem::path& path,const RockRecipe& r) {
         p["material"]={{"family",rockMaterialFamily},{"grit",r.material.grit},{"shale",r.material.shale},{"cracks",r.material.cracks},{"dust",r.material.dust},{"variation",r.material.variation},{"worn",r.material.worn}};
         p["volumes"]=Json::array();for(const auto& v:r.volumes)p["volumes"].push_back({{"id",v.id},{"center",v.center},{"half_size",v.halfSize},{"yaw",v.yaw},{"subtractive",v.subtractive}});
     }
+    if(r.version==5){
+        p["profile"]=r.profile;p["member_edits"]=Json::array();
+        for(const auto& e:r.memberEdits)p["member_edits"].push_back({{"slot",e.slot},{"variant",e.variant},{"translation",e.translation},{"axes",e.axes},{"yaw",e.yaw},{"ground_only",e.groundOnly}});
+        for(size_t i=0;i<r.volumes.size();++i){const auto& v=r.volumes[i];auto& j=p["volumes"][i];j["primitive"]=v.primitive;j["pitch"]=v.pitch;j["roll"]=v.roll;j["taper"]=v.taper;}
+    }
     writeDocument(path,"engine.rock-recipe",p);
 }
 RockRecipe loadRockRecipe(const std::filesystem::path& path) {
     const auto p=readDocument(path,"engine.rock-recipe");
-    RockRecipe r;r.version=integer(p,"generator_version",4);
-    if(p.size()!=(r.version>=3?11:7)||!p.at("seed").is_number_unsigned()||!p.at("radii_mm").is_array()||p.at("radii_mm").size()!=3)throw std::runtime_error("Invalid rock recipe fields");
+    RockRecipe r;r.version=integer(p,"generator_version",5);
+    if(p.size()!=(r.version==5?13:(r.version>=3?11:7))||!p.at("seed").is_number_unsigned()||!p.at("radii_mm").is_array()||p.at("radii_mm").size()!=3)throw std::runtime_error("Invalid rock recipe fields");
     r.seed=p.at("seed").get<uint64_t>();r.subdivisions=integer(p,"subdivisions",4);r.distortionPermille=integer(p,"distortion_permille",250);r.bandPermille=integer(p,"band_permille",150);r.bands=integer(p,"bands",32);
     for(size_t i=0;i<3;++i){const auto& v=p.at("radii_mm")[i];if(!v.is_number_unsigned()||v>20000)throw std::runtime_error("Invalid rock radius");r.radiiMm[i]=v.get<uint32_t>();}
     if(r.version>=3){
         const auto& q=p.at("shape");const auto& f=p.at("formation");const auto& m=p.at("material");
         if(q.size()!=5||f.size()!=3||m.size()!=7||m.at("family")!=rockMaterialFamily||!p.at("volumes").is_array()||p.at("volumes").size()>24)throw std::runtime_error("Invalid v3 recipe fields");
         r.massCount=integer(q,"masses",12);r.compaction=integer(q,"compaction",1000);r.asymmetry=integer(q,"asymmetry",1000);r.fractures=integer(q,"fractures",1000);r.edgeDamage=integer(q,"edge_damage",1000);
-        r.formation=integer(f,"kind",r.version==4?5:3);r.members=integer(f,"members",r.version==4?16:8);r.spacingMm=integer(f,"spacing_mm",12000);
+        r.formation=integer(f,"kind",r.version>=4?5:3);r.members=integer(f,"members",r.version>=4?16:8);r.spacingMm=integer(f,"spacing_mm",12000);
         r.material={integer(m,"grit",1000),integer(m,"shale",1000),integer(m,"cracks",1000),integer(m,"dust",1000),integer(m,"variation",1000),integer(m,"worn",1000)};
         for(const auto& v:p.at("volumes")){
-            if(v.size()!=5||!v.at("subtractive").is_boolean()||!v.at("yaw").is_number())throw std::runtime_error("Invalid source volume");
-            RockVolume volume;volume.id=integer(v,"id",UINT32_MAX);volume.center=v.at("center").get<std::array<float,3>>();volume.halfSize=v.at("half_size").get<std::array<float,3>>();volume.yaw=v.at("yaw").get<float>();volume.subtractive=v.at("subtractive");r.volumes.push_back(volume);
+            if(v.size()!=(r.version==5?9:5)||!v.at("subtractive").is_boolean()||!v.at("yaw").is_number())throw std::runtime_error("Invalid source volume");
+            RockVolume volume;volume.id=integer(v,"id",UINT32_MAX);volume.center=v.at("center").get<std::array<float,3>>();volume.halfSize=v.at("half_size").get<std::array<float,3>>();volume.yaw=v.at("yaw").get<float>();volume.subtractive=v.at("subtractive");if(r.version==5){volume.primitive=integer(v,"primitive",2);volume.pitch=v.at("pitch").get<float>();volume.roll=v.at("roll").get<float>();volume.taper=v.at("taper").get<float>();}r.volumes.push_back(volume);
+        }
+    }
+    if(r.version==5){
+        r.profile=integer(p,"profile",4);const auto& edits=p.at("member_edits");
+        if(!edits.is_array()||edits.size()>16)throw std::runtime_error("Invalid member edit array");
+        for(const auto& j:edits){
+            if(j.size()!=6||!j.at("ground_only").is_boolean())throw std::runtime_error("Invalid member edit fields");
+            RockMemberEdit e;e.slot=integer(j,"slot",15);e.variant=integer(j,"variant",3);e.translation=j.at("translation").get<std::array<float,3>>();e.axes=j.at("axes").get<std::array<float,3>>();e.yaw=j.at("yaw").get<float>();e.groundOnly=j.at("ground_only");r.memberEdits.push_back(e);
         }
     }
     validateRecipe(r);return r;

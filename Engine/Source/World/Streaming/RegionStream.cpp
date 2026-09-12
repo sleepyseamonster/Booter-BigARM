@@ -38,6 +38,7 @@ RegionContent generate(const TerrainRecipe& terrain,const RockRecipe& recipe,con
 RegionStream::RegionStream(TerrainRecipe terrain,RockRecipe recipe,PlacementConstraints constraints,Attach attach,Detach detach,WorldDeltas deltas)
     :deltas_(std::move(deltas)),terrain_(terrain),recipe_(recipe),constraints_(std::move(constraints)),rocks_(std::make_shared<std::array<RockAsset,4>>()),attach_(std::move(attach)),detach_(std::move(detach)),jobs_([](const auto& c){return c.bytes();}){
     validateDeltas(deltas_);validateTerrainRecipe(terrain_);validateRecipe(recipe_);validateConstraints(constraints_);if(!attach_||!detach_)throw std::invalid_argument("Region adapters required");
+    if(recipe_.version==5)throw std::invalid_argument("V5 authored rocks currently require the rock workbench; streaming uses v1-v4 recipes");
     if(recipe_.version==4&&recipe_.formation&&terrain_.version!=3)throw std::invalid_argument("Streamed formation groups require terrain version 3");
     auto single=recipe_;if(single.version==4)single.formation=0;
     for(size_t i=0;i<4;++i)(*rocks_)[i]=buildRockAsset(single,{terrain_.seed,recipe_.version,{},i,"rock"});

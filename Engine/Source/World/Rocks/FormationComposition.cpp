@@ -52,6 +52,15 @@ std::vector<RockFormationMember> planComposedFormation(const RockRecipe& r,const
     }
     // Layout 4 supported members inherit already rotated hosts; do not rotate twice.
     if(kind==4)for(auto& p:plan)if(p.host!=UINT32_MAX)p.offset=plan[p.host].offset;
+    if(r.version==5){
+        for(auto& p:plan){
+            // Four cached meshes carry distinct silhouettes when the profile is Auto.
+            p.variant=p.role==FormationRole::Pillar?3:(p.role==FormationRole::Base||p.role==FormationRole::Slab||p.role==FormationRole::Cap?1:(p.role==FormationRole::Talus||p.role==FormationRole::Fragment?2:0));
+        }
+        for(const auto& e:r.memberEdits){auto& p=plan.at(e.slot);p.offset[0]+=e.translation[0];p.offset[2]+=e.translation[2];p.authoredLift=e.translation[1];p.yaw+=e.yaw;p.variant=e.variant;p.preservePlacement=e.translation[0]!=0||e.translation[2]!=0;
+            for(size_t a=0;a<3;++a)p.axes[a]*=e.axes[a];if(e.groundOnly)p.host=UINT32_MAX;
+        }
+    }
     return plan;
 }
 void seatRockFormation(std::vector<RockFormationMember>& plan,const std::array<const RockResult*,4>& rocks,const std::function<float(float,float)>& ground){
@@ -61,6 +70,7 @@ void seatRockFormation(std::vector<RockFormationMember>& plan,const std::array<c
         const float burial=std::min(.12f,(mesh.maximum[1]-mesh.minimum[1])*p.axes[1]*p.scale*.08f);
         p.offset[1]=support-burial;
         if(p.host!=UINT32_MAX){if(p.host>=i)throw std::invalid_argument("Formation support must precede its member");const auto& host=plan[p.host];auto top=topAt(host,*rocks[host.variant],p.offset[0],p.offset[2]);
+            if(!top&&p.preservePlacement)throw std::runtime_error("Moved member misses its host. Move it over the host or choose Seat on ground only.");
             if(!top){p.offset[0]=host.offset[0];p.offset[2]=host.offset[2];top=topAt(host,*rocks[host.variant],p.offset[0],p.offset[2]);}
             if(!top)throw std::runtime_error("Formation host has no support at contact");
             // The lower central surface meets the actual upper host triangle.
@@ -68,11 +78,12 @@ void seatRockFormation(std::vector<RockFormationMember>& plan,const std::array<c
             auto bottom=topAt(inverted,mesh,p.offset[0],p.offset[2]);if(!bottom)throw std::runtime_error("Formation member has no underside support");
             p.offset[1]=std::max(p.offset[1],*top+*bottom-burial);
         }
+        p.offset[1]+=p.authoredLift;
     }
 }
 RockResult generateComposedFormation(const RockRecipe& r,const GeneratedId& id,const std::function<float(float,float)>& ground){
     auto single=r;single.formation=0;std::array<RockResult,4> rocks;std::array<const RockResult*,4> meshes;
-    for(uint32_t i=0;i<4;++i){auto shapeId=id;shapeId.member=i;rocks[i]=generateVolumeRock(single,shapeId);meshes[i]=&rocks[i];}
+    for(uint32_t i=0;i<4;++i){auto shapeId=id;shapeId.member=i;if(r.version==5&&r.profile==0)single.profile=i+1;rocks[i]=generateVolumeRock(single,shapeId);meshes[i]=&rocks[i];}
     auto plan=planComposedFormation(r,id);seatRockFormation(plan,meshes,ground);
     RockResult result;result.id=id.text();result.mesh=rocks[0].mesh;result.mesh.vertices.clear();result.mesh.indices.clear();result.minimum={1e6f,1e6f,1e6f};result.maximum={-1e6f,-1e6f,-1e6f};
     for(const auto& p:plan){const auto& rock=rocks[p.variant];const uint32_t first=uint32_t(result.mesh.vertices.size());const float c=std::cos(p.yaw),s=std::sin(p.yaw);

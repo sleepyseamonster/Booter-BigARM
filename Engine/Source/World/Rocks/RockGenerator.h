@@ -9,7 +9,17 @@ struct RockVolume {
     std::array<float,3> center{},halfSize{.5f,.5f,.5f};
     float yaw=0;
     bool subtractive=false;
+    // V5 local primitive, rotated yaw then pitch then roll in the field inverse.
+    uint32_t primitive=0; // rounded block / tapered stone / wedge
+    float pitch=0,roll=0,taper=0;
     bool operator==(const RockVolume&)const=default;
+};
+struct RockMemberEdit {
+    uint32_t slot=0,variant=0;
+    std::array<float,3> translation{},axes{1,1,1};
+    float yaw=0;
+    bool groundOnly=false;
+    bool operator==(const RockMemberEdit&)const=default;
 };
 struct RockRecipe {
     uint64_t seed=1;
@@ -21,6 +31,8 @@ struct RockRecipe {
     uint32_t formation=0,members=4,spacingMm=2500; // single / outcrop / scattered / pile; v4 also ridge / mixed
     std::vector<RockVolume> volumes;
     RockMaterial material;
+    uint32_t profile=0; // V5: auto / boulder / broken slab / angular chunk / shard
+    std::vector<RockMemberEdit> memberEdits;
     bool operator==(const RockRecipe&)const=default;
 };
 struct RockResult {
@@ -38,6 +50,8 @@ enum class FormationRole { Core, Buttress, Pillar, Talus, Slab, Fragment, Base, 
 struct RockFormationMember {
     GeneratedId id;std::array<float,3> offset{};float yaw=0,scale=1;
     std::array<float,3> axes{1,1,1};uint32_t variant=0,host=UINT32_MAX;FormationRole role=FormationRole::Core;
+    float authoredLift=0;
+    bool preservePlacement=false;
 };
 std::array<float,3> formationPoint(const RockFormationMember&,std::array<float,3>);
 void seatRockFormation(std::vector<RockFormationMember>&,const std::array<const RockResult*,4>&,const std::function<float(float,float)>&);

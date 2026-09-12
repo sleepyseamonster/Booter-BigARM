@@ -1,5 +1,7 @@
 # Current Engine Handoff
 
+**Latest rock authoring (2026-09-11):** [Native workbench v5](./ROCK_AUTHORING_V5_RESULT.md) adds four silhouette families, tilted tapered/wedge volumes and editable formation members. Open `out/rock-workbench-v5/Launch-Rock-Generator.command`. Six native presets, save/identity/collision checks, v3/v4 regressions and Metal/UI verification pass. This is an authoring package; v5 streaming, contact dressing and full Unity parity remain open.
+
 **Outdoor-lighting research (2026-09-11):** [Primary-source findings](../Research/OUTDOOR_LIGHTING_RESEARCH.md), [audited implementation sequence](./OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) and [source/cost record](../Research/outdoor-lighting-data.json) are durable. The proposed order is coupled sky/exposure, two stable sun-shadow cascades, shared depth/normal inputs with scene AO, then height fog; contact shadows are conditional. Existing runtime remains the bounded sun/material foundation. This documentation batch adds no lighting behavior, GPU benchmark or Windows proof and does not complete P32.
 
 **Latest research collection (2026-09-10):** [Unity reference library](../Research/UnityReference/README.md) preserves 65 document/research records, including recovered conversation studies and superseded geology versions. The [visual methods audit](../Research/UnityReference/ENVIRONMENT_METHODS_AUDIT.md) revises the next step to silhouette grammar and shared ground contacts, then sand/gravel/debris. Whole-formation fusion is conditional; collection/audit added no runtime behavior.

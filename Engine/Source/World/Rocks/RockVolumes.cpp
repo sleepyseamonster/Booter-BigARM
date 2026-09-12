@@ -17,12 +17,22 @@ uint64_t mix(uint64_t v){v+=0x9e3779b97f4a7c15ULL;v=(v^(v>>30))*0xbf58476d1ce4e5
 uint64_t rockSeed(const RockRecipe& r,const GeneratedId& id){return mix(r.seed^mix(id.seed)^mix(uint64_t(id.region.x))^mix(uint64_t(id.region.z)+17)^mix(id.member));}
 float rnd(uint64_t seed,uint64_t n){return float(mix(seed+n)>>40)/float(0xffffff);}
 float smoothMin(float a,float b,float k){if(k<=0)return std::min(a,b);const float h=std::max(k-std::abs(a-b),0.f)/k;return std::min(a,b)-h*h*k*.25f;}
-float boxField(const RockVolume& v,V p,float bevel){
+float boxField(const RockVolume& v,V p,float bevel,bool shaped){
     p=sub(p,v.center);const float c=std::cos(v.yaw),s=std::sin(v.yaw);p={c*p[0]-s*p[2],p[1],s*p[0]+c*p[2]};
+    if(shaped){
+        const float cp=std::cos(v.pitch),sp=std::sin(v.pitch);p={p[0],cp*p[1]+sp*p[2],-sp*p[1]+cp*p[2]};
+        const float cr=std::cos(v.roll),sr=std::sin(v.roll);p={cr*p[0]+sr*p[1],-sr*p[0]+cr*p[1],p[2]};
+    }
+    V half=v.halfSize;
+    if(shaped&&v.primitive==1){const float taper=1-v.taper*std::clamp((p[1]/half[1]+1)*.5f,0.f,1.f);half[0]*=taper;half[2]*=taper;}
     const float b=std::min(bevel,*std::min_element(v.halfSize.begin(),v.halfSize.end())*.7f);
-    V q;for(int i=0;i<3;++i)q[i]=std::abs(p[i])-v.halfSize[i]+b;
+    V q;for(int i=0;i<3;++i)q[i]=std::abs(p[i])-half[i]+b;
     V positive;for(int i=0;i<3;++i)positive[i]=std::max(q[i],0.f);
-    return std::sqrt(dot(positive,positive))+std::min(std::max({q[0],q[1],q[2]}),0.f)-b;
+    float value=std::sqrt(dot(positive,positive))+std::min(std::max({q[0],q[1],q[2]}),0.f)-b;
+    if(shaped&&v.primitive==2)value=std::max(value,(p[1]+p[0]*v.taper*half[1]/half[0]-half[1]*(1-v.taper*.45f))/std::sqrt(1.f+(v.taper*half[1]/half[0])*(v.taper*half[1]/half[0])));
+    // Clip four corners to preserve broad fractured faces instead of rounded boxes.
+    if(shaped&&!v.subtractive)value=std::max(value,(std::abs(p[0])/half[0]+std::abs(p[2])/half[2]-1.65f)*std::min(half[0],half[2])*.7071f);
+    return value;
 }
 }
 std::vector<RockVolume> planRockVolumes(const RockRecipe& r,const GeneratedId& id){
@@ -44,6 +54,15 @@ std::vector<RockVolume> planRockVolumes(const RockRecipe& r,const GeneratedId& i
         plan.push_back({100+i,{std::cos(yaw)*.58f,.36f+rnd(seed,201+i*5)*.25f,std::sin(yaw)*.58f},
             {.035f+r.fractures*.00007f,.55f,.85f},yaw,false});plan.back().subtractive=true;
     }
+    if(r.version==5){
+        const uint32_t profile=r.profile?r.profile:1+uint32_t(mix(seed+707)%4);
+        const V proportions=profile==2?V{1.35f,.38f,.95f}:(profile==4?V{.57f,1.38f,.60f}:(profile==3?V{.88f,.84f,.86f}:V{1.05f,.88f,1}));
+        for(auto& v:plan){
+            for(size_t a=0;a<3;++a){v.center[a]*=proportions[a];v.halfSize[a]=std::max(.03f,v.halfSize[a]*proportions[a]);}
+            v.pitch=(rnd(seed,400+v.id)-.5f)*.35f;v.roll=(rnd(seed,500+v.id)-.5f)*.30f;
+            if(!v.subtractive){v.primitive=(profile==2?2u:(profile==4?1u:(v.id%2?2u:1u)));v.taper=profile==4?.65f:(profile==3?.48f:(profile==2?.65f:.22f));}
+        }
+    }
     return plan;
 }
 RockResult generateVolumeRock(const RockRecipe& r,const GeneratedId& id){
@@ -51,18 +70,25 @@ RockResult generateVolumeRock(const RockRecipe& r,const GeneratedId& id){
     const float smoothing=.025f+r.compaction*.00014f,bevel=.02f+r.edgeDamage*.00011f;
     auto field=[&](V p){
         float value=1e6f;
-        for(const auto& v:volumes)if(!v.subtractive)value=smoothMin(value,boxField(v,p,bevel),smoothing);
+        for(const auto& v:volumes)if(!v.subtractive)value=smoothMin(value,boxField(v,p,bevel,r.version==5),smoothing);
         const float phase=rnd(seed,900)*6.28f;
         value+=r.distortionPermille*.00020f*std::sin(p[0]*4.1f+phase)*std::sin(p[1]*3.7f-p[2]*2.4f)
              +r.bandPermille*.00016f*std::sin((p[1]+p[0]*.12f)*float(r.bands)*3.14f+phase);
-        for(const auto& v:volumes)if(v.subtractive)value=std::max(value,-boxField(v,p,bevel*.15f));
+        for(const auto& v:volumes)if(v.subtractive)value=std::max(value,-boxField(v,p,bevel*.15f,r.version==5));
         return value;
     };
     V lo{1e6f,1e6f,1e6f},hi{-1e6f,-1e6f,-1e6f};
-    for(const auto& v:volumes)if(!v.subtractive){const float c=std::abs(std::cos(v.yaw)),s=std::abs(std::sin(v.yaw));const V extent{c*v.halfSize[0]+s*v.halfSize[2],v.halfSize[1],s*v.halfSize[0]+c*v.halfSize[2]};for(int a=0;a<3;++a){lo[a]=std::min(lo[a],v.center[a]-extent[a]);hi[a]=std::max(hi[a],v.center[a]+extent[a]);}}
+    for(const auto& v:volumes)if(!v.subtractive){const float c=std::abs(std::cos(v.yaw)),s=std::abs(std::sin(v.yaw));V extent{c*v.halfSize[0]+s*v.halfSize[2],v.halfSize[1],s*v.halfSize[0]+c*v.halfSize[2]};
+        if(r.version==5){extent={};for(int x:{-1,1})for(int y:{-1,1})for(int z:{-1,1}){
+            V q{x*v.halfSize[0],y*v.halfSize[1],z*v.halfSize[2]};
+            const float cr=std::cos(v.roll),sr=std::sin(v.roll);q={cr*q[0]-sr*q[1],sr*q[0]+cr*q[1],q[2]};
+            const float cp=std::cos(v.pitch),sp=std::sin(v.pitch);q={q[0],cp*q[1]-sp*q[2],sp*q[1]+cp*q[2]};
+            const float cy=std::cos(v.yaw),sy=std::sin(v.yaw);q={cy*q[0]+sy*q[2],q[1],-sy*q[0]+cy*q[2]};
+            for(size_t a=0;a<3;++a)extent[a]=std::max(extent[a],std::abs(q[a]));
+        }}for(int a=0;a<3;++a){lo[a]=std::min(lo[a],v.center[a]-extent[a]);hi[a]=std::max(hi[a],v.center[a]+extent[a]);}}
     // Additive bounds only. Large subtractive tools must not coarsen the grid.
     const float padding=.2f+smoothing*float(volumes.size())*.25f;for(int a=0;a<3;++a){lo[a]-=padding;hi[a]+=padding;}
-    const auto span=sub(hi,lo);const float cell=*std::max_element(span.begin(),span.end())/float((r.version==4?10:12)+8*r.subdivisions);
+    const auto span=sub(hi,lo);const float cell=*std::max_element(span.begin(),span.end())/float((r.version>=4?10:12)+8*r.subdivisions);
     std::array<int,3> cells;V step;for(int a=0;a<3;++a){cells[a]=std::max(4,int(std::ceil(span[a]/cell)));step[a]=span[a]/cells[a];}
     const int nx=cells[0]+1,ny=cells[1]+1,nz=cells[2]+1;
     std::vector<V> points(size_t(nx*ny*nz));std::vector<float> values(points.size());
@@ -102,7 +128,11 @@ RockResult generateVolumeRock(const RockRecipe& r,const GeneratedId& id){
     mesh.vertices=std::move(kept);mesh.indices=std::move(indices);
     // Fit physical dimensions once after meshing; all LODs share the same ground anchor.
     lo={1e6f,1e6f,1e6f};hi={-1e6f,-1e6f,-1e6f};for(const auto& v:mesh.vertices)for(int a=0;a<3;++a){lo[a]=std::min(lo[a],v.position[a]);hi[a]=std::max(hi[a],v.position[a]);}
-    for(auto& v:mesh.vertices){for(int a=0;a<3;++a)v.position[a]=((v.position[a]-lo[a])/(hi[a]-lo[a])-(a==1?0.f:.5f))*float(r.radiiMm[a])*.002f;v.normal={};v.uv={v.position[0],v.position[2]};}
+    float fit=1e6f;for(int a=0;a<3;++a)fit=std::min(fit,float(r.radiiMm[a])*.002f/(hi[a]-lo[a]));
+    for(auto& v:mesh.vertices){for(int a=0;a<3;++a){
+        if(r.version==5)v.position[a]=(v.position[a]-(a==1?lo[a]:(lo[a]+hi[a])*.5f))*fit;
+        else v.position[a]=((v.position[a]-lo[a])/(hi[a]-lo[a])-(a==1?0.f:.5f))*float(r.radiiMm[a])*.002f;
+    }v.normal={};v.uv={v.position[0],v.position[2]};}
     for(size_t i=0;i<mesh.indices.size();i+=3){auto& a=mesh.vertices[mesh.indices[i]];auto& b=mesh.vertices[mesh.indices[i+1]];auto& c=mesh.vertices[mesh.indices[i+2]];const auto n=cross(sub(b.position,a.position),sub(c.position,a.position));a.normal=add(a.normal,n);b.normal=add(b.normal,n);c.normal=add(c.normal,n);const auto normal=unit(n);result.surfaces.push_back(normal[1]>.65f?1:(normal[1]<-.5f?2:0));}
     result.minimum={1e6f,1e6f,1e6f};result.maximum={-1e6f,-1e6f,-1e6f};
     for(auto& v:mesh.vertices){v.normal=unit(v.normal);const auto tangent=unit(cross(std::abs(v.normal[1])<.9f?V{0,1,0}:V{1,0,0},v.normal));v.tangent={tangent[0],tangent[1],tangent[2],1};for(int a=0;a<3;++a){result.minimum[a]=std::min(result.minimum[a],v.position[a]);result.maximum[a]=std::max(result.maximum[a],v.position[a]);}result.footprintRadius=std::max(result.footprintRadius,std::hypot(v.position[0],v.position[2]));}

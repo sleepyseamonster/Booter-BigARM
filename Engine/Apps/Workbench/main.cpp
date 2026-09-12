@@ -11,6 +11,7 @@
 #include "Rendering/Renderer.h"
 #include "Rendering/InspectorRenderer.h"
 #include <imgui.h>
+#include <imgui_internal.h>
 #include <imgui_impl_sdl3.h>
 #include <chrono>
 #include <filesystem>
@@ -34,11 +35,12 @@
 #include "Tools/EngineMenu.h"
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool terrainPreview=false,buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool captureRockUi=false,terrainPreview=false,buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
+        if(arg=="--capture-rock-ui"){options.captureRockUi=true;continue;}
         if(arg=="--terrain-preview"){options.terrainPreview=true;continue;}
         if ((arg=="--verify-camera" || arg=="--rock-library" || arg=="--capture-rock" || arg=="--world-profile" || arg=="--terrain" || arg=="--stream-rock" || arg=="--constraints" || arg=="--verify-stream" || arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
             if(arg=="--verify-camera"){options.cameraVerify=true;options.verify=argv[++i];}
@@ -183,6 +185,7 @@ int run(Options options) {
     if (!options.inspection.empty()) engine::loadInspection(options.inspection,state);
     const bool technical=!options.verify.empty();
     const bool captureRock=!options.captureRock.empty();
+    if(options.captureRockUi&&!captureRock)throw std::runtime_error("UI capture requires --capture-rock");
     if((captureRock||!options.rockLibrary.empty())&&options.rock.empty())throw std::runtime_error("Rock capture/library requires --rock");
     const bool verify=technical && !options.lightingVerify && !options.animationVerify && !options.rockVerify && !options.streamVerify && !captureRock && !options.cameraVerify;
     const bool rockVerify=options.rockVerify,streamVerify=options.streamVerify;
@@ -306,6 +309,7 @@ int run(Options options) {
         catch(const std::exception& error){worldStatus=error.what();std::cerr<<"World save failed: "<<error.what()<<'\n';}
     };
     unsigned streamPhase=0,streamStable=0,streamVertices=0,streamIndices=0,streamFinalVertices=0,streamFinalIndices=0;uint64_t streamRetired=0;bool streamDone=false;
+    std::array<bool,3> rockUiChecks{};
     unsigned rockBaselineVertices=0,rockBaselineIndices=0,rockFinalVertices=0,rockFinalIndices=0;
     const auto originalRecipe=rock?rock->recipe():engine::RockRecipe{};
     std::unique_ptr<engine::Audio> audio;bool audioAttempted=false;
@@ -511,7 +515,7 @@ int run(Options options) {
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock||streaming)?&placement:nullptr); if(!animationVerify&&!rockVerify&&!streamVerify&&!captureRock)ui.draw(ImGui::GetDrawData());
+            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock||streaming)?&placement:nullptr); if(!animationVerify&&!rockVerify&&!streamVerify&&(!captureRock||(options.captureRockUi&&frame>=24)))ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -587,7 +591,26 @@ int run(Options options) {
                     engine::saveRockResult(options.captureRock/"export",rock->asset().lods.front(),rock->recipe());
                     bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"rock.png").string().c_str());
                 }
-                if(frame==30)running=false;
+                if(options.captureRockUi){
+                    if(frame==25)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"workbench.png").string().c_str());
+                    if(frame==28)SDL_SetWindowSize(window.get(),800,600);
+                    if(frame==35)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"workbench-small.png").string().c_str());
+                    if(frame==36||frame==38||frame==40){
+                        auto* panel=ImGui::FindWindowByName("Rock & formation workbench");
+                        if(!panel)throw std::runtime_error("Rock authoring panel missing");
+                        ImGui::ActivateItemByID(panel->GetID(frame==36?"Next seed":(frame==38?"Apply recipe":"Undo")));
+                    }
+                    if(frame==37)rockUiChecks[0]=rock->hasPendingEdits()&&rock->recipe()==originalRecipe;
+                    if(frame==39)rockUiChecks[1]=!rock->hasPendingEdits()&&rock->recipe().seed==originalRecipe.seed+1;
+                    if(frame==41)rockUiChecks[2]=!rock->hasPendingEdits()&&rock->recipe()==originalRecipe;
+                    if(frame==42){
+                        auto* panel=ImGui::FindWindowByName("Rock & formation workbench");
+                        panel->StateStorage.SetInt(ImHashStr("Member",0,panel->GetID(1)),1);
+                        ImGui::SetScrollY(panel,panel->ScrollMax.y*.65f);
+                    }
+                    if(frame==47)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"member-controls.png").string().c_str());
+                    if(frame==52)running=false;
+                }else if(frame==30)running=false;
             }
             if(streamVerify){
                 if(frame>900)throw std::runtime_error("Stream verification timed out");
@@ -616,8 +639,8 @@ int run(Options options) {
         if(!passed)throw std::runtime_error("Scene camera input verification failed");
     }
     if(captureRock){
-        const bool passed=renderer.callbacks.captures==1&&renderer.callbacks.errors==0;
-        engine::writeDocument(options.captureRock/"result.json","engine.rock-capture",{{"passed",passed},{"backend",backend},{"real_surfaces",materialAvailable},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"recipe",options.rock.string()},{"simulation_advanced",false}});
+        const bool passed=renderer.callbacks.captures==(options.captureRockUi?4:1)&&renderer.callbacks.errors==0&&(!options.captureRockUi||std::all_of(rockUiChecks.begin(),rockUiChecks.end(),[](bool value){return value;}));
+        engine::writeDocument(options.captureRock/"result.json","engine.rock-capture",{{"passed",passed},{"ui_checked",options.captureRockUi},{"draft_apply_undo",rockUiChecks},{"backend",backend},{"real_surfaces",materialAvailable},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"recipe",options.rock.string()},{"simulation_advanced",false}});
         if(!passed)throw std::runtime_error("Rock capture failed");
     }
     if(streamVerify){const bool passed=streamDone&&renderer.callbacks.captures==3&&renderer.callbacks.errors==0&&streamVertices==streamFinalVertices&&streamIndices==streamFinalIndices&&streamRetired>=18;

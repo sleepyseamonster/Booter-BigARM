@@ -24,8 +24,12 @@ void RockWorkbench::undo(){history_.undo([&](const auto& r){rebuild(r);});draft_
 void RockWorkbench::redo(){history_.redo([&](const auto& r){rebuild(r);});draft_=history_.value();}
 const RenderModel* RockWorkbench::model(float distance)const{return models_.at(forcedLod<0?rockLod(asset_,distance):std::min(size_t(forcedLod),models_.size()-1)).get();}
 void RockWorkbench::drawControls(bool characterMode) {
-    ImGui::SetNextWindowPos({ImGui::GetIO().DisplaySize.x-365,54},ImGuiCond_FirstUseEver);ImGui::SetNextWindowSize({345,560},ImGuiCond_FirstUseEver);
-    ImGui::Begin("Native rock recipe");ImGui::Text("%zu LODs | %zu triangles | %.1f KiB",asset_.lods.size(),asset_.lods[0].mesh.indices.size()/3,asset_.bytes/1024.f);
+    const auto display=ImGui::GetIO().DisplaySize;
+    ImGui::SetNextWindowPos({std::max(0.f,display.x-425),54},ImGuiCond_Always);
+    ImGui::SetNextWindowSize({405,std::max(300.f,display.y-74)},ImGuiCond_Always);
+    ImGui::SetNextWindowSizeConstraints({320,280},{std::max(320.f,display.x),std::max(280.f,display.y-54)});
+    ImGui::Begin("Rock & formation workbench",nullptr,ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoResize);
+    ImGui::PushItemWidth(std::max(100.f,ImGui::GetContentRegionAvail().x-145));ImGui::Text("%zu LODs | %zu triangles | %.1f KiB",asset_.lods.size(),asset_.lods[0].mesh.indices.size()/3,asset_.bytes/1024.f);
     if(characterMode)ImGui::TextWrapped("Disable character mode to edit this rock.");
     ImGui::BeginDisabled(characterMode);
     auto run=[&](auto&& action){try{action();error_.clear();}catch(const std::exception& e){error_=e.what();}};
@@ -33,12 +37,24 @@ void RockWorkbench::drawControls(bool characterMode) {
         for(const auto& file:presets_)if(ImGui::Selectable(file.stem().string().c_str()))run([&]{apply(loadRockRecipe(file));forcedLod=0;frameRequested=true;});
         ImGui::EndCombo();
     }
+    const bool pending=draft_!=history_.value();
+    ImGui::TextUnformatted(pending?"Draft changes - Apply to update the preview":"Preview matches the recipe");
+    if(ImGui::Button("Apply recipe"))run([&]{apply(draft_);});ImGui::SameLine();
+    if(ImGui::Button("Undo"))run([&]{undo();});ImGui::SameLine();if(ImGui::Button("Redo"))run([&]{redo();});
+    if(ImGui::Button("Frame rock / formation"))frameRequested=true;
+    ImGui::Separator();
     int generator=int(draft_.version)-1;
-    if(ImGui::Combo("Generator",&generator,"Classic v1\0Weathered v2\0Fused volumes v3\0Geological formations v4\0"))draft_.version=uint32_t(generator+1);
+    if(ImGui::Combo("Generator",&generator,"Classic v1\0Weathered v2\0Fused volumes v3\0Geological formations v4\0Authored silhouettes v5\0")){
+        draft_.version=uint32_t(generator+1);
+        draft_.formation=std::min(draft_.formation,draft_.version>=4?5u:3u);draft_.members=std::min(draft_.members,draft_.version>=4?16u:8u);
+        if(draft_.version<5){draft_.profile=0;draft_.memberEdits.clear();for(auto& v:draft_.volumes){v.primitive=0;v.pitch=v.roll=v.taper=0;}}
+    }
 
     if(!presets_.empty())ImGui::TextWrapped("Presets replace the preview. Save recipe keeps your working copy; originals remain in the library.");
     ImGui::InputScalar("Seed",ImGuiDataType_U64,&draft_.seed);
-    int radii[3]={int(draft_.radiiMm[0]),int(draft_.radiiMm[1]),int(draft_.radiiMm[2])};if(ImGui::SliderInt3("Radii (mm)",radii,100,5000))for(size_t i=0;i<3;++i)draft_.radiiMm[i]=uint32_t(radii[i]);
+    if(ImGui::Button("Next seed"))++draft_.seed;
+    if(draft_.version==5){int profile=int(draft_.profile);if(ImGui::Combo("Silhouette",&profile,"Auto / role-based\0Fractured boulder\0Broken slab\0Angular chunk\0Tapered shard\0"))draft_.profile=uint32_t(profile);}
+    int radii[3]={int(draft_.radiiMm[0]),int(draft_.radiiMm[1]),int(draft_.radiiMm[2])};if(ImGui::SliderInt3(draft_.version==5?"Fit envelope (mm)":"Radii (mm)",radii,100,5000))for(size_t i=0;i<3;++i)draft_.radiiMm[i]=uint32_t(radii[i]);
     int detail=int(draft_.subdivisions),distortion=int(draft_.distortionPermille),band=int(draft_.bandPermille),count=int(draft_.bands);
     if(ImGui::SliderInt("Detail",&detail,0,4))draft_.subdivisions=uint32_t(detail);
     if(ImGui::SliderInt("Irregularity",&distortion,0,250))draft_.distortionPermille=uint32_t(distortion);
@@ -52,7 +68,7 @@ void RockWorkbench::drawControls(bool characterMode) {
         }
         if(ImGui::CollapsingHeader("Source volumes")){
             if(draft_.volumes.empty()){
-                if(ImGui::Button("Edit generated volumes"))run([&]{draft_.volumes=planRockVolumes(draft_,{1,3,{},0,"rock"});});
+                if(ImGui::Button("Edit generated volumes"))run([&]{draft_.volumes=planRockVolumes(draft_,{1,draft_.version,{},0,"rock"});});
             }else{
                 if(ImGui::Button("Return to seeded plan"))draft_.volumes.clear();
                 int remove=-1;
@@ -60,6 +76,11 @@ void RockWorkbench::drawControls(bool characterMode) {
                     if(ImGui::TreeNode("Volume","%s %u",volume.subtractive?"Cut":"Mass",volume.id)){
                         ImGui::Checkbox("Subtractive cut",&volume.subtractive);
                         ImGui::SliderFloat3("Center",volume.center.data(),-3,3,"%.2f");ImGui::SliderFloat3("Half size",volume.halfSize.data(),.03f,2,"%.2f");ImGui::SliderAngle("Yaw",&volume.yaw,-180,180);
+                        if(draft_.version==5){
+                            int primitive=int(volume.primitive);if(ImGui::Combo("Primitive",&primitive,"Rounded block\0Tapered stone\0Wedge\0"))volume.primitive=uint32_t(primitive);
+                            ImGui::SliderFloat("Taper / wedge",&volume.taper,0,.8f,"%.2f");
+                            ImGui::SliderAngle("Pitch",&volume.pitch,-45,45);ImGui::SliderAngle("Roll",&volume.roll,-45,45);
+                        }
                         if(ImGui::Button("Remove volume"))remove=int(i);ImGui::TreePop();
                     }ImGui::PopID();
                 }
@@ -70,25 +91,52 @@ void RockWorkbench::drawControls(bool characterMode) {
         if(ImGui::CollapsingHeader("Layered rock material",ImGuiTreeNodeFlags_DefaultOpen)){
             knob("Side grit",draft_.material.grit);knob("Shale",draft_.material.shale);knob("Cracks",draft_.material.cracks);knob("Dust",draft_.material.dust);knob("Surface variation",draft_.material.variation);knob("Worn shine",draft_.material.worn);
         }
-        if(ImGui::CollapsingHeader("Formation")){
-            int kind=int(draft_.formation);if(ImGui::Combo("Layout",&kind,draft_.version==4?"Single rock\0Connected outcrop\0Scattered rocks\0Supported pile\0Low ridge\0Mixed formations\0":"Single rock\0Connected outcrop\0Scattered rocks\0Rock pile\0"))draft_.formation=uint32_t(kind);
-            if(draft_.formation){knob("Members",draft_.members,1,draft_.version==4?16:8);knob("Spacing (mm)",draft_.spacingMm,500,12000);}
+        if(ImGui::CollapsingHeader("Formation",ImGuiTreeNodeFlags_DefaultOpen)){
+            int kind=int(draft_.formation);if(ImGui::Combo("Layout",&kind,draft_.version>=4?"Single rock\0Connected outcrop\0Scattered rocks\0Supported pile\0Low ridge\0Mixed formations\0":"Single rock\0Connected outcrop\0Scattered rocks\0Rock pile\0"))draft_.formation=uint32_t(kind);
+            if(draft_.formation){knob("Members",draft_.members,1,draft_.version>=4?16:8);std::erase_if(draft_.memberEdits,[&](const auto& e){return e.slot>=draft_.members;});knob("Spacing (mm)",draft_.spacingMm,500,12000);}
+            if(draft_.version==5&&draft_.formation){
+                ImGui::TextWrapped("Edit individual members below. Offsets are relative to the seeded layout; Lift adjusts the seated height. Auto silhouettes use each member's shape choice.");
+                if(ImGui::Button("Reset member edits"))draft_.memberEdits.clear();
+                try{
+                    const auto plan=planRockFormation(draft_,{1,5,{},0,"rock"},[](float,float){return 0.f;});
+                    static constexpr const char* roles[]={"Core","Buttress","Pillar","Talus","Slab","Fragment","Base","Middle","Cap"};
+                    for(const auto& member:plan){
+                        ImGui::PushID(int(member.id.member));
+                        if(ImGui::TreeNode("Member","Member %u - %s",uint32_t(member.id.member)+1,roles[size_t(member.role)])){
+                            const auto found=std::find_if(draft_.memberEdits.begin(),draft_.memberEdits.end(),[&](const auto& e){return e.slot==member.id.member;});
+                            RockMemberEdit edit=found==draft_.memberEdits.end()?RockMemberEdit{}:*found;
+                            if(found==draft_.memberEdits.end()){edit.slot=uint32_t(member.id.member);edit.variant=member.variant;}
+                            bool changed=ImGui::SliderFloat("Move X (m)",&edit.translation[0],-10,10,"%.2f");
+                            changed|=ImGui::SliderFloat("Move Z (m)",&edit.translation[2],-10,10,"%.2f");
+                            changed|=ImGui::SliderFloat("Lift (m)",&edit.translation[1],-2,4,"%.2f");
+                            changed|=ImGui::SliderFloat3("Proportions",edit.axes.data(),.1f,3,"%.2f");
+                            changed|=ImGui::SliderAngle("Turn",&edit.yaw,-180,180);
+                            int variant=int(edit.variant);changed|=ImGui::Combo("Shape variant",&variant,draft_.profile==0?"Boulder\0Slab\0Angular chunk\0Shard\0":"Variation 1\0Variation 2\0Variation 3\0Variation 4\0");edit.variant=uint32_t(variant);
+                            changed|=ImGui::Checkbox("Seat on ground only",&edit.groundOnly);
+                            if(changed){if(found==draft_.memberEdits.end())draft_.memberEdits.push_back(edit);else *found=edit;}
+                            if(ImGui::Button("Reset member"))std::erase_if(draft_.memberEdits,[&](const auto& e){return e.slot==member.id.member;});
+                            ImGui::TreePop();
+                        }ImGui::PopID();
+                    }
+                }catch(const std::exception& e){error_=e.what();}
+            }
             ImGui::TextWrapped("The workbench seats members on its flat ground. Saved formation recipes retain deterministic member identities.");
         }
     }
-    if(ImGui::Button("Apply recipe"))run([&]{apply(draft_);});ImGui::SameLine();
-    if(ImGui::Button("Undo"))run([&]{undo();});ImGui::SameLine();if(ImGui::Button("Redo"))run([&]{redo();});
-    if(ImGui::Button("Frame rock / formation"))frameRequested=true;
+    ImGui::Separator();
     ImGui::InputText("File",path_.data(),path_.size());
-    if(ImGui::Button("Save recipe"))run([&]{saveRockRecipe(path_.data(),history_.value());});ImGui::SameLine();
+    ImGui::BeginDisabled(draft_!=history_.value());
+    if(ImGui::Button("Save recipe"))run([&]{saveRockRecipe(path_.data(),history_.value());});ImGui::EndDisabled();ImGui::SameLine();
     if(ImGui::Button("Reload"))run([&]{apply(loadRockRecipe(path_.data()));});
     ImGui::InputText("Export directory",exportPath_.data(),exportPath_.size());
+    ImGui::BeginDisabled(draft_!=history_.value());
     if(ImGui::Button("Export rock"))run([&]{exportStatus_.clear();saveRockResult(exportPath_.data(),asset_.lods.front(),history_.value());exportStatus_="Exported accepted rock to "+std::string(exportPath_.data());});
-    ImGui::TextWrapped("Export writes the accepted highest-detail mesh and recipe. Choose a new directory for each export.");
+    ImGui::EndDisabled();
+    ImGui::TextWrapped("Apply draft changes before saving or exporting. Export writes the accepted highest-detail mesh and recipe. Choose a new directory for each export.");
     if(!exportStatus_.empty())ImGui::TextWrapped("%s",exportStatus_.c_str());
     ImGui::EndDisabled();
     ImGui::SliderInt("LOD (-1 = auto)",&forcedLod,-1,int(models_.size()-1));
     ImGui::TextWrapped("Collision keeps the highest detail. Orbit to inspect; enable character mode to walk around the rock.");
-    if(!error_.empty())ImGui::TextWrapped("%s",error_.c_str());ImGui::End();
+    if(!error_.empty())ImGui::TextWrapped("%s",error_.c_str());ImGui::PopItemWidth();ImGui::End();
 }
 }

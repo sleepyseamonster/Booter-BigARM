@@ -12,6 +12,7 @@ public:
     void apply(const RockRecipe&);
     void undo();
     void redo();
+    bool hasPendingEdits()const{return draft_!=history_.value();}
     const RockRecipe& recipe()const{return history_.value();}
     const RockAsset& asset()const{return asset_;}
     int forcedLod=-1;

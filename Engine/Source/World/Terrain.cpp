@@ -58,6 +58,7 @@ size_t TerrainPatch::bytes()const{
 }
 TerrainPatch generateTerrain(const TerrainRecipe& recipe,Region region,const RockRecipe& rock,const PlacementConstraints& constraints,const std::function<bool()>& cancelled){
     validateTerrainRecipe(recipe);validateRecipe(rock);validateConstraints(constraints);supported(region);
+    if(rock.version==5)throw std::invalid_argument("V5 authored rocks currently require the rock workbench; streaming uses v1-v4 recipes");
     if(rock.version==4&&rock.formation&&recipe.version!=3)throw std::invalid_argument("Streamed formation groups require terrain version 3");
     TerrainPatch patch;patch.region=region;patch.id={recipe.seed,recipe.version,region,0,"terrain"};
     auto check=[&]{if(cancelled())throw std::runtime_error("Terrain generation cancelled");};
