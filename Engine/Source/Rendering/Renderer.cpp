@@ -101,7 +101,7 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders)
         if (!bgfx::isValid(uniform)) throw std::runtime_error("Lighting uniform allocation failed");
     const char* layerNames[]={"s_topColor","s_topNormal","s_topSurface","s_bottomColor","s_bottomNormal","s_bottomSurface","s_gritColor","s_gritNormal","s_gritSurface","s_cracks"};
     for(size_t i=0;i<layerSamplers_.size();++i){layerSamplers_[i]=bgfx::createUniform(layerNames[i],bgfx::UniformType::Sampler);if(!bgfx::isValid(layerSamplers_[i]))throw std::runtime_error("Rock layer sampler allocation failed");}
-    layerParams_=bgfx::createUniform("u_rockLayers",bgfx::UniformType::Vec4,3);
+    layerParams_=bgfx::createUniform("u_rockLayers",bgfx::UniformType::Vec4,5);
     if(!bgfx::isValid(layerParams_))throw std::runtime_error("Rock layer parameters allocation failed");
     constexpr uint64_t shadowFlags=BGFX_TEXTURE_RT|BGFX_SAMPLER_U_CLAMP|BGFX_SAMPLER_V_CLAMP|BGFX_SAMPLER_MIN_POINT|BGFX_SAMPLER_MAG_POINT;
     if (!bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::R32F,shadowFlags)) throw std::runtime_error("Shadow R32F target unsupported");
@@ -264,7 +264,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
         const bool textured=mesh!=-1 && surface && state.surfaceTextures && bgfx::isValid(surface->albedo) && bgfx::isValid(surface->normal) && bgfx::isValid(surface->surface);
         const float linear[]={textured?1.0f:(mesh<0?resource->color[0]:srgbToLinear(color[0])),textured?1.0f:(mesh<0?resource->color[1]:srgbToLinear(color[1])),textured?1.0f:(mesh<0?resource->color[2]:srgbToLinear(color[2])),color[3]};
-        const float options[]={state.showNormals?1.0f:0.0f,textured?1.0f:0.0f,state.textureScale,state.ambient};
+        const float options[]={state.showNormals?1.0f:0.0f,textured?1.0f:0.0f,surface&&surface->material.geologyMm?1000.f/surface->material.geologyMm:state.textureScale,state.ambient};
         const float params[]={mesh<0?resource->roughness:state.roughness,mesh<0?resource->metallic:state.metallic,state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
         bgfx::setUniform(material_,linear); bgfx::setUniform(light_,light);bgfx::setUniform(environment_,environment,4);
         bgfx::setUniform(shadowMatrix_,shadowMatrix);bgfx::setUniform(shadowOptions_,shadowOptions);
@@ -278,10 +278,12 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         }
         const bool layered=textured&&surface->layered;
         const auto material=surface?surface->material:RockMaterial{};
-        const float layers[12]={textured&&surface->terrainBlend?(surface->terrainNatural?3.f:2.f):(layered?1.f:0.f),material.grit*.001f,material.shale*.001f,material.cracks*.001f,
+        const float layers[20]={textured&&surface->terrainBlend?(surface->terrainNatural?3.f:2.f):(layered?1.f:0.f),material.grit*.001f,material.shale*.001f,material.cracks*.001f,
             material.dust*.001f,material.variation*.001f,material.worn*.001f,surface?surface->seed:0.f,
-            transform[12],transform[13],transform[14],0};
-        bgfx::setUniform(layerParams_,layers,3);
+            transform[12],transform[13],transform[14],0,
+            material.sideShale*.001f,material.topShale*.001f,0,0,
+            material.dustColor[0],material.dustColor[1],material.dustColor[2],0};
+        bgfx::setUniform(layerParams_,layers,5);
         if(bound)for(size_t i=0;i<layerSamplers_.size();++i){const auto handle=bgfx::isValid(bound->layers[i])?bound->layers[i]:bound->albedo;bgfx::setTexture(uint8_t(i+4),layerSamplers_[i],handle);}
         bgfx::setUniform(normal_,normal.data()); bgfx::setUniform(options_,options);
         bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA|cull);

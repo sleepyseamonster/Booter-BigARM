@@ -1,0 +1,16 @@
+{
+  "source": "Assets/_Project/Art/Environment/Rocks/Source/ApprovedBoulderFamilyRecipe.asset",
+  "source_sha256": "c9adb21c2f039f83d2e112cb51d6d839d7e0766f897f343264d160658d24ed81",
+  "variants": 3,
+  "captured_mass_transforms": 6,
+  "material_source": "Saved ApprovedBoulderFamilyRecipe, not superseded prose values",
+  "native_adaptations": [
+    "Shared native mesher triangulation",
+    "Native BRDF and lighting",
+    "Dust amount uses preserved material default 0.06"
+  ],
+  "not_ported": [
+    "Full Unity random source-layout planner",
+    "Terrain and sand/clutter scene"
+  ]
+}

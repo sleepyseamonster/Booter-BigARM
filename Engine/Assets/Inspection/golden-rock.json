@@ -1,0 +1,62 @@
+{
+  "kind": "engine.inspection",
+  "version": 1,
+  "payload": {
+    "yaw": 0.68,
+    "pitch": 0.4,
+    "distance": 3.2,
+    "fov": 45.0,
+    "object_yaw": 0.0,
+    "mesh": 0,
+    "scale": [
+      1.5,
+      1.5,
+      1.5
+    ],
+    "normals": false,
+    "color_srgb": [
+      0.68,
+      0.39,
+      0.22
+    ],
+    "light_azimuth": -0.8,
+    "light_intensity": 1.5,
+    "exposure": 1.1,
+    "lighting": {
+      "shadows": true,
+      "shadow_bias": 0.0003,
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "normal_strength": 1.08,
+      "texture_scale": 0.42,
+      "ambient": 0.65,
+      "surface_textures": true
+    },
+    "environment": {
+      "ground_linear": [
+        0.1599999964237213,
+        0.12999999523162842,
+        0.10000000149011612
+      ],
+      "horizon_linear": [
+        0.6200000047683716,
+        0.699999988079071,
+        0.7799999713897705
+      ],
+      "sky": true,
+      "sun_color_linear": [
+        1.0,
+        0.949999988079071,
+        0.8600000143051147
+      ],
+      "sun_elevation": 0.7328150868415833,
+      "tone_mapping": true,
+      "version": 1,
+      "zenith_linear": [
+        0.18000000715255737,
+        0.3199999928474426,
+        0.5799999833106995
+      ]
+    }
+  }
+}

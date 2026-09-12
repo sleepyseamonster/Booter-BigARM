@@ -6,6 +6,8 @@ namespace engine {
 inline constexpr const char* rockMaterialFamily="wasteland-layered-v1";
 struct RockMaterial {
     uint32_t grit=300,shale=700,cracks=420,dust=150,variation=620,worn=200;
+    uint32_t sideShale=360,topShale=420,geologyMm=0;
+    std::array<float,3> dustColor{.196f,.095f,.047f};
     bool operator==(const RockMaterial&)const=default;
 };
 // Exact preserved Unity bindings: the four color slots intentionally share side albedo.

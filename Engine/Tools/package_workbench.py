@@ -102,7 +102,7 @@ def main():
 
 Open **Launch-Rock-Generator.command** on Mac (the .cmd launcher is for a future native Windows package). Keep the package in a writable folder. No Unity installation or source checkout is needed.
 
-1. Choose a **Rock preset** or select **Authored silhouettes v5**. Adjust the silhouette, seed/dimensions, source masses, layered material or individual formation members, then select **Apply recipe**. **Frame rock / formation** fits the accepted result in view.
+1. Choose a **Rock preset**, adjust its source masses or material, then select **Apply recipe**. **Frame rock / formation** fits the accepted result in view. The Golden Rock package starts with the saved Unity baseline; its Overall scale, Fusion, Relaxation and Voxel size controls shape the captured masses.
 2. Alt/Option + left-drag or right-drag to orbit; Space + left-drag or middle-drag to pan; wheel to zoom; F to recenter. Lighting/material controls are in the left inspector.
 3. **Undo/Redo** restores accepted recipes. Apply pending edits before Save or Export; those actions are disabled while the draft differs from the preview. **Save recipe** saves the accepted recipe; **Reload** reads the displayed file.
 4. Choose a new **Export directory**, then **Export rock** to write the accepted mesh, normals, bounds, triangle surface classes and recipe in the engine format.
@@ -116,6 +116,8 @@ The model is a technical rock generator, not final geological art. Three basic d
 V5 adds fractured boulder, broken slab, angular chunk and tapered shard silhouettes, plus pitch/roll and tapered/wedge source primitives. Fit envelope is the maximum half-size in millimeters; fitting preserves the profile proportions. In Formation, expand a member to move, resize, turn or change its mesh variant. Auto silhouettes select shape families by member role; a fixed silhouette uses four seeded variants of that family. Ground-only seating detaches that member from its pile support. Lift moves it relative to the seated height. V5 recipes are currently authoring assets: the separate streaming preview explicitly rejects them until its shape cache is upgraded. V1–V4 recipes remain supported.
 
 Shared simulation can enable the third-person proxy to walk around the rock. Disable character mode to edit. Hands-on feel and creative acceptance are separate from technical verification. The separate wasteland preview streams formations. Native Windows verification remains open. This is a local development package, not a signed/notarized distribution release.
+
+V6 translates the saved Unity Golden Rock family: three captured two-mass layouts, original source rotations/shape seeds, fusion and relaxation settings, and saved surface controls. Source angles adjust the captured pose. Changing Seed varies chipped surfaces within that layout; choose another preset to change the approved composition. Unity's complete random layout planner and surrounding sand/clutter scene are not included. V6 preserves physical source dimensions; Overall scale scales the whole result. Voxel size is the base spacing at Detail 2, halved for each higher detail. Large high-detail drafts may exceed the sampling budget; lower Detail or increase Voxel size. The original textures use native triangulation, lighting and shading, so pixel equality with Unity is not claimed. V6 is an authoring asset and is rejected by the streaming preview until integration is implemented.
 """,encoding='utf-8')
     if args.terrain:
         destination=out/'bin/Assets/Recipes';destination.mkdir(parents=True,exist_ok=True)

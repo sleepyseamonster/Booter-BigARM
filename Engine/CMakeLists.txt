@@ -28,7 +28,7 @@ target_include_directories(engine_simulation PUBLIC Source)
 target_include_directories(engine_simulation SYSTEM PRIVATE "${DEPS}/entt/src")
 target_link_libraries(engine_simulation PUBLIC engine_core)
 include(CMake/Animation.cmake)
-add_library(engine_world Source/World/Placement.cpp Source/World/Rocks/RockGenerator.cpp Source/World/Rocks/RockVolumes.cpp Source/World/Rocks/RockFormation.cpp Source/World/Rocks/FormationComposition.cpp Source/World/Rocks/RockAsset.cpp Source/World/Terrain.cpp Source/World/TerrainLod.cpp Source/World/Streaming/RegionStream.cpp)
+add_library(engine_world Source/World/Placement.cpp Source/World/Rocks/RockGenerator.cpp Source/World/Rocks/RockVolumes.cpp Source/World/Rocks/CalibratedRock.cpp Source/World/Rocks/RockFormation.cpp Source/World/Rocks/FormationComposition.cpp Source/World/Rocks/RockAsset.cpp Source/World/Terrain.cpp Source/World/TerrainLod.cpp Source/World/Streaming/RegionStream.cpp)
 target_include_directories(engine_world PUBLIC Source)
 target_link_libraries(engine_world PUBLIC engine_animation)
 add_executable(engine_rock_cook Apps/RockCooker/main.cpp)
@@ -168,6 +168,9 @@ target_link_libraries(engine_rock_transfer_tests PRIVATE engine_world engine_phy
 
 add_executable(engine_terrain_preview_tests Tests/TerrainPreviewTests.cpp)
 target_link_libraries(engine_terrain_preview_tests PRIVATE engine_world_save)
+
+add_executable(engine_golden_rock_tests Tests/GoldenRockTests.cpp)
+target_link_libraries(engine_golden_rock_tests PRIVATE engine_world engine_state)
 
 add_executable(engine_rock_authoring_tests Tests/RockAuthoringTests.cpp)
 target_link_libraries(engine_rock_authoring_tests PRIVATE engine_world engine_state)

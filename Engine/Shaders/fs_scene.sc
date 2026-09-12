@@ -15,7 +15,7 @@ SAMPLER2D(s_gritColor, 10);
 SAMPLER2D(s_gritNormal, 11);
 SAMPLER2D(s_gritSurface, 12);
 SAMPLER2D(s_cracks, 13);
-uniform vec4 u_rockLayers[3]; // enabled/grit/shale/cracks, dust/variation/worn/seed, local origin
+uniform vec4 u_rockLayers[5]; // enabled/grit/shale/cracks, dust/variation/worn/seed, local origin
 uniform vec4 u_material;
 uniform vec4 u_light;
 uniform vec4 u_sceneOptions; // normal diagnostic, textures, world repeats/m, ambient
@@ -102,7 +102,7 @@ void main()
             float top=smoothstep(0.42,0.72,geometricNormal.y);
             float bottom=smoothstep(0.08,0.5,-geometricNormal.y)*u_rockLayers[0].z;
             float side=1.0-top;
-            float shalePatch=smoothstep(0.60,0.82,rockPatch(local*1.9+3.7))*u_rockLayers[0].z*(0.36*side+0.42*top);
+            float shalePatch=smoothstep(0.60,0.82,rockPatch(local*1.9+3.7))*u_rockLayers[0].z*(u_rockLayers[3].x*side+u_rockLayers[3].y*top);
             bottom=clamp(bottom+shalePatch,0.0,1.0);
             float grit=smoothstep(0.58,0.80,patch)*side*(1.0-bottom)*u_rockLayers[0].y;
             vec2 topX=uvX*1.0, topY=uvY*1.0, topZ=uvZ*1.0;
@@ -134,7 +134,7 @@ void main()
             albedo=mix(albedo,vec3(.0134,.0078,.0049),crack)*(1.0-halo*.12);
             albedo=mix(albedo,vec3(.196,.147,.095),mineral*.22);
             float dust=clamp(pow(max(geometricNormal.y,0.0),5.0)*u_rockLayers[1].x*mix(.65,1.25,surface.b),0.0,1.0);
-            albedo=mix(albedo,vec3(.196,.095,.047),dust);
+            albedo=mix(albedo,u_rockLayers[4].rgb,dust);
             albedo*=mix(1.0,mix(.87,1.07,patch),u_rockLayers[1].y);
             ao=surface.r*mix(1.0,.58,crack);
             roughness=clamp(surface.g*u_surfaceParams.x-u_rockLayers[1].z*smoothstep(.55,.85,patch)*.25+crack*.08,0.045,1.0);

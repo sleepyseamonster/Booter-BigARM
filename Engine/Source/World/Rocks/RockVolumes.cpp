@@ -1,4 +1,5 @@
 #include "World/Rocks/RockGenerator.h"
+#include "World/Rocks/CalibratedRock.h"
 #include <algorithm>
 #include <cmath>
 #include <map>
@@ -67,9 +68,16 @@ std::vector<RockVolume> planRockVolumes(const RockRecipe& r,const GeneratedId& i
 }
 RockResult generateVolumeRock(const RockRecipe& r,const GeneratedId& id){
     const auto volumes=planRockVolumes(r,id);const auto seed=rockSeed(r,id);
-    const float smoothing=.025f+r.compaction*.00014f,bevel=.02f+r.edgeDamage*.00011f;
+    std::vector<CalibratedRockVolume> calibrated;
+    if(r.version==6)for(const auto& v:volumes)calibrated.emplace_back(v,r.edgeDamage*.001f,uint32_t(r.seed^r.calibrationSeed));
+    const float smoothing=r.version==6?r.fusion:.025f+r.compaction*.00014f,bevel=.02f+r.edgeDamage*.00011f;
     auto field=[&](V p){
         float value=1e6f;
+        if(r.version==6){
+            for(size_t i=0;i<volumes.size();++i)if(!volumes[i].subtractive)value=smoothMin(value,calibrated[i].evaluate(p),smoothing);
+            for(size_t i=0;i<volumes.size();++i)if(volumes[i].subtractive)value=std::max(value,-calibrated[i].evaluate(p));
+            return value;
+        }
         for(const auto& v:volumes)if(!v.subtractive)value=smoothMin(value,boxField(v,p,bevel,r.version==5),smoothing);
         const float phase=rnd(seed,900)*6.28f;
         value+=r.distortionPermille*.00020f*std::sin(p[0]*4.1f+phase)*std::sin(p[1]*3.7f-p[2]*2.4f)
@@ -86,10 +94,12 @@ RockResult generateVolumeRock(const RockRecipe& r,const GeneratedId& id){
             const float cy=std::cos(v.yaw),sy=std::sin(v.yaw);q={cy*q[0]+sy*q[2],q[1],-sy*q[0]+cy*q[2]};
             for(size_t a=0;a<3;++a)extent[a]=std::max(extent[a],std::abs(q[a]));
         }}for(int a=0;a<3;++a){lo[a]=std::min(lo[a],v.center[a]-extent[a]);hi[a]=std::max(hi[a],v.center[a]+extent[a]);}}
+    if(r.version==6){lo={1e6f,1e6f,1e6f};hi={-1e6f,-1e6f,-1e6f};for(size_t i=0;i<volumes.size();++i)if(!volumes[i].subtractive)for(size_t a=0;a<3;++a){lo[a]=std::min(lo[a],calibrated[i].minimum[a]);hi[a]=std::max(hi[a],calibrated[i].maximum[a]);}}
     // Additive bounds only. Large subtractive tools must not coarsen the grid.
     const float padding=.2f+smoothing*float(volumes.size())*.25f;for(int a=0;a<3;++a){lo[a]-=padding;hi[a]+=padding;}
-    const auto span=sub(hi,lo);const float cell=*std::max_element(span.begin(),span.end())/float((r.version>=4?10:12)+8*r.subdivisions);
+    const auto span=sub(hi,lo);const float cell=r.version==6?r.samplingMm*.001f*std::pow(2.f,2-int(r.subdivisions)):*std::max_element(span.begin(),span.end())/float((r.version>=4?10:12)+8*r.subdivisions);
     std::array<int,3> cells;V step;for(int a=0;a<3;++a){cells[a]=std::max(4,int(std::ceil(span[a]/cell)));step[a]=span[a]/cells[a];}
+    if(uint64_t(cells[0]+1)*uint64_t(cells[1]+1)*uint64_t(cells[2]+1)>2000000)throw std::runtime_error("Rock sampling exceeds authoring budget; increase voxel size or lower detail");
     const int nx=cells[0]+1,ny=cells[1]+1,nz=cells[2]+1;
     std::vector<V> points(size_t(nx*ny*nz));std::vector<float> values(points.size());
     auto index=[&](int x,int y,int z){return uint32_t(x+nx*(y+ny*z));};
@@ -126,11 +136,13 @@ RockResult generateVolumeRock(const RockRecipe& r,const GeneratedId& id){
     std::vector<SkinVertex> kept;std::vector<uint32_t> indices,remap(mesh.vertices.size(),UINT32_MAX);
     for(size_t i=0;i<mesh.indices.size();i+=3)if(root(mesh.indices[i])==largest)for(int a=0;a<3;++a){const auto old=mesh.indices[i+a];if(remap[old]==UINT32_MAX){remap[old]=uint32_t(kept.size());kept.push_back(mesh.vertices[old]);}indices.push_back(remap[old]);}
     mesh.vertices=std::move(kept);mesh.indices=std::move(indices);
+    if(r.version==6)relaxCalibratedRock(mesh,r.relaxation,cell);
     // Fit physical dimensions once after meshing; all LODs share the same ground anchor.
     lo={1e6f,1e6f,1e6f};hi={-1e6f,-1e6f,-1e6f};for(const auto& v:mesh.vertices)for(int a=0;a<3;++a){lo[a]=std::min(lo[a],v.position[a]);hi[a]=std::max(hi[a],v.position[a]);}
     float fit=1e6f;for(int a=0;a<3;++a)fit=std::min(fit,float(r.radiiMm[a])*.002f/(hi[a]-lo[a]));
     for(auto& v:mesh.vertices){for(int a=0;a<3;++a){
-        if(r.version==5)v.position[a]=(v.position[a]-(a==1?lo[a]:(lo[a]+hi[a])*.5f))*fit;
+        if(r.version==6)v.position[a]*=r.authoringScale;
+        else if(r.version==5)v.position[a]=(v.position[a]-(a==1?lo[a]:(lo[a]+hi[a])*.5f))*fit;
         else v.position[a]=((v.position[a]-lo[a])/(hi[a]-lo[a])-(a==1?0.f:.5f))*float(r.radiiMm[a])*.002f;
     }v.normal={};v.uv={v.position[0],v.position[2]};}
     for(size_t i=0;i<mesh.indices.size();i+=3){auto& a=mesh.vertices[mesh.indices[i]];auto& b=mesh.vertices[mesh.indices[i+1]];auto& c=mesh.vertices[mesh.indices[i+2]];const auto n=cross(sub(b.position,a.position),sub(c.position,a.position));a.normal=add(a.normal,n);b.normal=add(b.normal,n);c.normal=add(c.normal,n);const auto normal=unit(n);result.surfaces.push_back(normal[1]>.65f?1:(normal[1]<-.5f?2:0));}

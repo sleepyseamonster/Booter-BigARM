@@ -12,6 +12,9 @@ struct RockVolume {
     // V5 local primitive, rotated yaw then pitch then roll in the field inverse.
     uint32_t primitive=0; // rounded block / tapered stone / wedge
     float pitch=0,roll=0,taper=0;
+    // V6 captured physical source transform and Unity-compatible primitive seed.
+    std::array<float,4> orientation{0,0,0,1};
+    uint32_t shapeSeed=0;
     bool operator==(const RockVolume&)const=default;
 };
 struct RockMemberEdit {
@@ -33,6 +36,9 @@ struct RockRecipe {
     RockMaterial material;
     uint32_t profile=0; // V5: auto / boulder / broken slab / angular chunk / shard
     std::vector<RockMemberEdit> memberEdits;
+    float fusion=.0657f,relaxation=.45f,authoringScale=1;
+    uint32_t samplingMm=50;
+    uint64_t calibrationSeed=0;
     bool operator==(const RockRecipe&)const=default;
 };
 struct RockResult {

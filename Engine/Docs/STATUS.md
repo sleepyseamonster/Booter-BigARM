@@ -1,5 +1,7 @@
 # Current Engine Handoff
 
+**Latest approved-rock transfer (2026-09-11):** [Unity Golden Rock v6](./GOLDEN_ROCK_TRANSFER_RESULT.md) reproduces the three saved two-mass compositions with captured rotations, source primitive fields, fusion/relaxation and saved surface controls. Open `out/golden-rock-workbench/Launch-Rock-Generator.command`. Native geometry/save/collision checks, earlier rock regressions and Metal/UI/package captures pass. Full random composition planning, surrounding sand/clutter and v6 streaming remain open.
+
 **Latest lighting implementation (2026-09-11):** [L1 sky, sun and display](./OUTDOOR_LIGHTING_L1_RESULT.md) adds shared sky/ambient settings, sun elevation/color and PBR Neutral tone mapping with saved inspection defaults. Open `out/rock-workbench-lighting/Launch-Rock-Generator.command`. Native document checks, 12 Metal comparisons and the packaged v5 outcrop launch passed. L2 wider shadows is next; scene AO, fog and Windows proof remain pending.
 
 **Latest rock authoring (2026-09-11):** [Native workbench v5](./ROCK_AUTHORING_V5_RESULT.md) adds four silhouette families, tilted tapered/wedge volumes and editable formation members. Open `out/rock-workbench-v5/Launch-Rock-Generator.command`. Six native presets, save/identity/collision checks, v3/v4 regressions and Metal/UI verification pass. This is an authoring package; v5 streaming, contact dressing and full Unity parity remain open.
