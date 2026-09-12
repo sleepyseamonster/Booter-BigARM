@@ -8,6 +8,9 @@ Json encode(const FixtureState& s) {
     return {{"yaw",s.yaw},{"pitch",s.pitch},{"distance",s.distance},{"fov",s.fieldOfView},{"view_offset",s.viewOffset},
         {"object_yaw",s.objectYaw},{"mesh",s.mesh},{"scale",s.objectScale},{"normals",s.showNormals},
         {"color_srgb",s.color},{"light_azimuth",s.lightAzimuth},{"light_intensity",s.lightIntensity},{"exposure",s.exposure},
+        {"environment",{{"version",1},{"sun_elevation",s.environment.sunElevation},{"sun_color_linear",s.environment.sunColor},
+            {"zenith_linear",s.environment.zenith},{"horizon_linear",s.environment.horizon},{"ground_linear",s.environment.ground},
+            {"sky",s.environment.sky},{"tone_mapping",s.environment.toneMapping}}},
         {"lighting",{{"shadows",s.shadows},{"shadow_bias",s.shadowBias},{"roughness",s.roughness},{"metallic",s.metallic},
             {"normal_strength",s.normalStrength},{"texture_scale",s.textureScale},{"ambient",s.ambient},{"surface_textures",s.surfaceTextures}}}};
 }
@@ -16,6 +19,9 @@ void validate(const FixtureState& s) {
     range(s.yaw,-10000,10000); range(s.pitch,-.15f,1.25f); range(s.distance,2.5f,30); range(s.fieldOfView,30,90);
     range(s.objectYaw,-10000,10000); range(s.lightAzimuth,-10000,10000); range(s.lightIntensity,0,1.5f);
     range(s.exposure,-4,4);
+    range(s.environment.sunElevation,0.0349066f,1.4835299f);
+    for(const auto& color:{s.environment.sunColor,s.environment.zenith,s.environment.horizon,s.environment.ground})
+        for(float v:color)range(v,0,1);
     range(s.shadowBias,0,.02f);range(s.roughness,.045f,1);range(s.metallic,0,1);
     range(s.normalStrength,0,2);range(s.textureScale,.1f,8);range(s.ambient,0,1);
     for (float v:s.color) range(v,0,1);
@@ -34,6 +40,7 @@ void loadInspection(const std::filesystem::path& path,FixtureState& state) {
     // Additive v1 extension: old inspection documents receive explicit defaults.
     if (!p.contains("lighting")) p["lighting"]=expected.at("lighting");
     if (!p.contains("view_offset")) p["view_offset"]=expected.at("view_offset");
+    if (!p.contains("environment")) p["environment"]=expected.at("environment");
     if (p.size()!=expected.size()) throw std::runtime_error("Inspection fields differ from schema");
     for (const auto& [key,value]:expected.items()) {
         const auto& input=p.at(key);
@@ -63,6 +70,23 @@ void loadInspection(const std::filesystem::path& path,FixtureState& state) {
     next.shadows=lighting.at("shadows");next.shadowBias=lighting.at("shadow_bias");next.roughness=lighting.at("roughness");
     next.metallic=lighting.at("metallic");next.normalStrength=lighting.at("normal_strength");next.textureScale=lighting.at("texture_scale");
     next.ambient=lighting.at("ambient");next.surfaceTextures=lighting.at("surface_textures");
+    const auto& environment=p.at("environment");
+    const auto& environmentDefaults=expected.at("environment");
+    if(environment.size()!=environmentDefaults.size())throw std::runtime_error("Environment fields differ from schema");
+    for(const auto& [key,value]:environmentDefaults.items()) {
+        const auto& input=environment.at(key);
+        if(value.is_array()) {
+            if(!input.is_array()||input.size()!=3)throw std::runtime_error("Environment color must have three components");
+            for(const auto& n:input)if(!n.is_number())throw std::runtime_error("Environment color must contain numbers");
+        } else if(value.is_boolean()?!input.is_boolean():!input.is_number())throw std::runtime_error("Incorrect environment field type: "+key);
+    }
+    if(!environment.at("version").is_number_integer()||environment.at("version")!=1)throw std::runtime_error("Unsupported environment version");
+    next.environment.sunElevation=environment.at("sun_elevation");
+    next.environment.sunColor=environment.at("sun_color_linear").get<std::array<float,3>>();
+    next.environment.zenith=environment.at("zenith_linear").get<std::array<float,3>>();
+    next.environment.horizon=environment.at("horizon_linear").get<std::array<float,3>>();
+    next.environment.ground=environment.at("ground_linear").get<std::array<float,3>>();
+    next.environment.sky=environment.at("sky");next.environment.toneMapping=environment.at("tone_mapping");
     validate(next); state=next;
 }
 }

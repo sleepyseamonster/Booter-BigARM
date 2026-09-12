@@ -1,0 +1,31 @@
+{
+  "scope": "Generated export retained locally; hashes and capture are durable. Lighting task does not require duplicating the full cooked rock payload in Git.",
+  "local_directory": "out/l1-packaged-rock-export",
+  "files": [
+    {
+      "path": "material.json",
+      "sha256": "8925865c2b3d639b2c8f46958260f257801327ceaf2b59c224344d956df6c722",
+      "bytes": 1300
+    },
+    {
+      "path": "mesh.bin",
+      "sha256": "1316b8778985c9599560f352aa8749e8fb1deb69c968a71a621342ec75f35ab5",
+      "bytes": 1102072
+    },
+    {
+      "path": "model.json",
+      "sha256": "e00b42daf1e25c3b7fcd13be99e073b86789d098a22e4890331710a0abf1dd7d",
+      "bytes": 856
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "329e302e84f2a72dd9263d26a8e3f89caad28ab3f7357c1329849042e9b92a2d",
+      "bytes": 744
+    },
+    {
+      "path": "rock.json",
+      "sha256": "0666ed120923bd72d57976490142f27473273d697d8a1d43de470a1737f06218",
+      "bytes": 216181
+    }
+  ]
+}

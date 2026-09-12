@@ -45,6 +45,20 @@ int main(int argc,char** argv) {
         auto authored=loaded;authored.shadows=false;authored.roughness=.2f;authored.normalStrength=0;
         saveInspection(document,authored);loadInspection(document,loaded);
         require(!loaded.shadows && loaded.roughness==.2f && loaded.normalStrength==0,"Lighting settings roundtrip");
+        auto authoredEnvironment=loaded;
+        authoredEnvironment.environment.sunElevation=.2f;authoredEnvironment.environment.sunColor={.9f,.7f,.4f};
+        authoredEnvironment.environment.zenith={.1f,.3f,.5f};authoredEnvironment.environment.horizon={.8f,.6f,.4f};
+        authoredEnvironment.environment.ground={.2f,.1f,.05f};authoredEnvironment.environment.sky=false;authoredEnvironment.environment.toneMapping=false;
+        saveInspection(document,authoredEnvironment);loadInspection(document,loaded);
+        require(loaded==authoredEnvironment,"Environment roundtrip preserves all presentation settings");
+        auto legacyEnvironment=valid;legacyEnvironment.erase("environment");writeDocument(document,"engine.inspection",legacyEnvironment);
+        loadInspection(document,loaded);require(loaded.environment==EnvironmentSettings{},"Legacy inspection gets explicit environment defaults");
+        for(const auto& badEnvironment:{Json{{"sun_elevation",-1}},Json{{"sun_color_linear",Json::array({1,2,0})}},Json{{"version",2}},Json{{"sky",1}},Json{{"horizon_linear",Json::array({1,0})}}}) {
+            auto malformed=valid;
+            for(const auto& [key,value]:badEnvironment.items())malformed["environment"][key]=value;
+            writeDocument(document,"engine.inspection",malformed);const auto before=loaded;
+            rejects([&]{loadInspection(document,loaded);});require(loaded==before,"Bad environment retains live settings");
+        }
         auto invalid=valid; invalid["distance"]=-1; writeDocument(document,"engine.inspection",invalid);
         rejects([&] { loadInspection(document,loaded); }); require(loaded.distance==11,"Invalid candidate retains live state");
         writeDocument(document,"engine.inspection",valid,2); rejects([&] { loadInspection(document,loaded); });

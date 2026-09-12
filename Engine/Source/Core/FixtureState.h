@@ -1,6 +1,7 @@
 #pragma once
 #include <array>
 #include <cstdint>
+#include "Core/EnvironmentSettings.h"
 
 namespace engine {
 struct FixtureState {
@@ -17,6 +18,7 @@ struct FixtureState {
     float lightAzimuth = 0.8f;
     float lightIntensity = 0.85f;
     float exposure = 0.0f;
+    EnvironmentSettings environment;
     bool shadows = true;
     float shadowBias = 0.0015f;
     float roughness = 0.7f;

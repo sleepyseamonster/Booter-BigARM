@@ -6,7 +6,7 @@ else()
     set(SHADER_PROFILE s_5_0)
 endif()
 set(SHADER_OUTPUTS)
-foreach(shader vs_skin vs_skin_shadow vs_scene fs_scene vs_shadow fs_shadow vs_inspector fs_inspector vs_fullscreen fs_display fs_calibration fs_texture_preview)
+foreach(shader vs_skin vs_skin_shadow vs_scene fs_scene vs_shadow fs_shadow vs_inspector fs_inspector vs_fullscreen fs_display fs_calibration fs_texture_preview fs_sky)
     if(shader MATCHES "^vs_")
         set(SHADER_TYPE vertex)
     else()
@@ -21,6 +21,7 @@ foreach(shader vs_skin vs_skin_shadow vs_scene fs_scene vs_shadow fs_shadow vs_i
             --varyingdef "${CMAKE_CURRENT_SOURCE_DIR}/Shaders/varying.def.sc"
             -i "${BGFX_DIR}/src"
         DEPENDS shaderc "${input}" "${CMAKE_CURRENT_SOURCE_DIR}/Shaders/varying.def.sc"
+            "${CMAKE_CURRENT_SOURCE_DIR}/Shaders/environment.sh" "${CMAKE_CURRENT_SOURCE_DIR}/Shaders/pbr_neutral.sh"
             "${BGFX_DIR}/src/bgfx_shader.sh" "${BGFX_DIR}/src/bgfx_compute.sh"
         VERBATIM)
     list(APPEND SHADER_OUTPUTS "${output}")

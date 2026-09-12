@@ -125,6 +125,10 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders)
     previewSampler_=bgfx::createUniform("s_preview",bgfx::UniformType::Sampler);
     if (!bgfx::isValid(textureOptions_) || !bgfx::isValid(previewSampler_)) throw std::runtime_error("Texture preview resources failed");
     displayProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_display.bin");
+    skyProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_sky.bin");
+    environment_=bgfx::createUniform("u_environment",bgfx::UniformType::Vec4,4);
+    inverseViewProjection_=bgfx::createUniform("u_inverseViewProjection",bgfx::UniformType::Mat4);
+    if(!bgfx::isValid(environment_)||!bgfx::isValid(inverseViewProjection_))throw std::runtime_error("Environment resources failed");
     calibrationProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_calibration.bin");
     display_=bgfx::createUniform("u_display",bgfx::UniformType::Vec4);
     sceneSampler_=bgfx::createUniform("s_scene",bgfx::UniformType::Sampler);
@@ -231,7 +235,11 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     bgfx::setViewClear(views::scene,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,1.0f,0,uint8_t(0));
     bgfx::setViewTransform(views::scene,view,projection);
     bgfx::touch(views::scene);
-    const float light[4]={std::sin(state.lightAzimuth),0.9f,std::cos(state.lightAzimuth),state.lightIntensity};
+    const float elevation=state.environment.sunElevation;
+    const float light[4]={std::sin(state.lightAzimuth)*std::cos(elevation),std::sin(elevation),std::cos(state.lightAzimuth)*std::cos(elevation),state.lightIntensity};
+    float environment[16]{};
+    const std::array<std::array<float,3>,4> colors{state.environment.sunColor,state.environment.zenith,state.environment.horizon,state.environment.ground};
+    for(size_t i=0;i<4;++i)for(size_t j=0;j<3;++j)environment[i*4+j]=colors[i][j];
     float lightView[16],lightProjection[16],lightViewProjection[16],shadowMatrix[16];
     const auto lightDirection=bx::normalize(bx::Vec3{light[0],light[1],light[2]});
     const bx::Vec3 lightCenter=streamed?bx::Vec3{target[0],target[1],target[2]}:bx::Vec3{0,0,0};
@@ -258,7 +266,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         const float linear[]={textured?1.0f:(mesh<0?resource->color[0]:srgbToLinear(color[0])),textured?1.0f:(mesh<0?resource->color[1]:srgbToLinear(color[1])),textured?1.0f:(mesh<0?resource->color[2]:srgbToLinear(color[2])),color[3]};
         const float options[]={state.showNormals?1.0f:0.0f,textured?1.0f:0.0f,state.textureScale,state.ambient};
         const float params[]={mesh<0?resource->roughness:state.roughness,mesh<0?resource->metallic:state.metallic,state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
-        bgfx::setUniform(material_,linear); bgfx::setUniform(light_,light);
+        bgfx::setUniform(material_,linear); bgfx::setUniform(light_,light);bgfx::setUniform(environment_,environment,4);
         bgfx::setUniform(shadowMatrix_,shadowMatrix);bgfx::setUniform(shadowOptions_,shadowOptions);
         bgfx::setUniform(eye_,eyePosition);bgfx::setUniform(surfaceParams_,params);
         bgfx::setTexture(0,shadowSampler_,bgfx::getTexture(shadow_));
@@ -312,6 +320,15 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
             Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);cast(-3,transform,instance.model);
         }
     }
+    if(state.environment.sky&&!state.showNormals&&!preview&&!calibration) {
+        float inverse[16];bx::mtxInverse(inverse,viewProjection);
+        const float skyDisplay[]={0,0,0,0};
+        const float skyEye[]={eye[0],eye[1],eye[2],0};
+        bgfx::setUniform(display_,skyDisplay);bgfx::setUniform(inverseViewProjection_,inverse);
+        bgfx::setUniform(environment_,environment,4);bgfx::setUniform(eye_,skyEye);bgfx::setUniform(light_,light);
+        bgfx::setVertexBuffer(0,fullscreen_);bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A);
+        bgfx::submit(views::scene,skyProgram_);
+    }
     const auto* rock=surfaces?&surfaces->rock:nullptr;
     const auto* soil=surfaces?&surfaces->ground:nullptr;
     if (preview && bgfx::isValid(preview->texture)) {
@@ -335,7 +352,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         if(!visibleSphere(viewProjection,instance.boundsCenter,instance.boundsRadius,bgfx::getCaps()->homogeneousDepth))continue;
         Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);submit(-3,transform,color,instance.ground?soil:rock,instance.model);
     }
-    const float display[]={state.exposure,state.showNormals && !calibration && !preview?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,0};
+    const float display[]={state.exposure,state.showNormals && !calibration && !preview?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,state.environment.toneMapping&&!calibration&&!preview?1.0f:0.0f};
     bgfx::setViewRect(views::display,0,0,uint16_t(width_),uint16_t(height_));
     bgfx::setUniform(display_,display);
     bgfx::setTexture(0,sceneSampler_,bgfx::getTexture(scene_));
@@ -345,6 +362,10 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
 const char* Renderer::name() const { return bgfx::getRendererName(bgfx::getRendererType()); }
 void Renderer::stop() {
     if (!started_) return;
+    if(bgfx::isValid(skyProgram_))bgfx::destroy(skyProgram_);
+    if(bgfx::isValid(environment_))bgfx::destroy(environment_);
+    if(bgfx::isValid(inverseViewProjection_))bgfx::destroy(inverseViewProjection_);
+    skyProgram_=BGFX_INVALID_HANDLE;environment_=BGFX_INVALID_HANDLE;inverseViewProjection_=BGFX_INVALID_HANDLE;
     if(bgfx::isValid(skinProgram_))bgfx::destroy(skinProgram_);
     if(bgfx::isValid(skinShadowProgram_))bgfx::destroy(skinShadowProgram_);
     if(bgfx::isValid(joints_))bgfx::destroy(joints_);

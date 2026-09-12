@@ -1,5 +1,7 @@
 # Engine Master Implementation Plan
 
+Lighting implementation update, 2026-09-11: [L1 sky/sun/display](./OUTDOOR_LIGHTING_L1_RESULT.md) is complete as a Mac first pass, with a runnable v5 rock workbench. Continue the [lighting sequence](./OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) at L2 shadow coverage; P32 remains planned.
+
 Outdoor-lighting preparation, 2026-09-11: the [focused research](../Research/OUTDOOR_LIGHTING_RESEARCH.md) and [audited implementation sequence](./OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) define a bounded P02/P04/P05 visual extension and preparation for P32. Research is complete; implementation remains planned. Local lighting improvements can use the current supported coordinates; full P32 integration and its P22 prerequisite remain open.
 
 Current user-directed extension: [Unity formation composition and placement](./UNITY_FORMATION_PARITY_RESULT.md), a bounded P14–P20 improvement connecting roles, supported members and original terrain transitions. The [follow-up methods audit](../Research/UnityReference/ENVIRONMENT_METHODS_AUDIT.md) prioritizes silhouette grammar and shared ground contacts, then sand/gravel/debris; whole-formation fusion is conditional. P22 origin handling remains open.

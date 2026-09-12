@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "name": "Khronos PBR Neutral",
+  "revision": "b5a2eed5ddf6c2227090449399de9c7affb9e4c9",
+  "license": "Apache-2.0",
+  "source_url": "https://raw.githubusercontent.com/KhronosGroup/ToneMapping/b5a2eed5ddf6c2227090449399de9c7affb9e4c9/PBR_Neutral/pbrNeutral.glsl",
+  "source_sha256": "087a1542c8d12d2d0fb89f570057e4e8365cc04eee5bff76c6e365cfa69f3734",
+  "local_shader": "Shaders/pbr_neutral.sh",
+  "license_path": "Research/Licenses/khronos-tone-mapping.txt",
+  "license_sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+  "license_assignment_url": "https://raw.githubusercontent.com/KhronosGroup/ToneMapping/b5a2eed5ddf6c2227090449399de9c7affb9e4c9/.reuse/dep5",
+  "modifications": "Attribution header and filename extension only; algorithm unchanged.",
+  "scope": "One vendored shader function, no new compiled library."
+}

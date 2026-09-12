@@ -1,0 +1,47 @@
+[  3%] Built target bx
+[  3%] Built target engine_core
+[  4%] Built target ozz_base
+[  4%] Built target engine_miniaudio
+[ 23%] Built target SDL3-static
+[ 24%] Built target spirv-cross
+[ 35%] Built target Jolt
+[ 37%] Built target bimg
+[ 38%] Built target engine_texture_data
+[ 41%] Built target glslang
+[ 42%] Built target engine_state
+[ 42%] Built target engine_simulation
+[ 43%] Built target ozz_animation
+[ 43%] Built target engine_physics
+[ 43%] Built target engine_audio
+[ 45%] Built target engine_imgui
+[ 46%] Built target engine_platform
+[ 63%] Built target spirv-opt
+[ 65%] Built target bgfx
+[ 67%] Built target ozz_animation_offline
+[ 67%] Built target engine_animation
+[ 67%] Built target engine_game
+[ 67%] Built target engine_rendering
+[ 68%] Built target engine_world
+[ 68%] Built target engine_world_save
+[ 68%] Built target engine_stream_scene
+[ 97%] Built target tint
+[ 98%] Built target shaderc
+[100%] Built target engine_shaders
+[100%] Building CXX object CMakeFiles/engine_workbench.dir/Apps/Workbench/main.cpp.o
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Apps/Workbench/main.cpp:1:
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Rendering/StreamingScene.h:4:
+In file included from /Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/World/Streaming/RegionStream.h:4:
+/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Core/BoundedJobs.h:93:10: warning: misleading indentation; statement is not part of the previous 'for' [-Wmisleading-indentation]
+   93 |         }return {};
+      |          ^
+/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Source/Core/BoundedJobs.h:91:9: note: previous statement is here
+   91 |         for(const auto& e:entries_)if(e->done&&!e->cancelled->load()&&budget.admit(e->bytes)){
+      |         ^
+1 warning generated.
+[100%] Linking CXX executable engine_workbench
+[100%] Built target engine_workbench
+[ 50%] Built target engine_core
+[100%] Built target engine_state
+[100%] Building CXX object CMakeFiles/engine_core_tests.dir/Tests/CoreTests.cpp.o
+[100%] Linking CXX executable engine_core_tests
+[100%] Built target engine_core_tests

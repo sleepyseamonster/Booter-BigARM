@@ -1,5 +1,7 @@
 # Outdoor lighting research
 
+Implementation update: [L1 sky/sun/display](../Docs/OUTDOOR_LIGHTING_L1_RESULT.md) now has Mac evidence and a runnable package. The audit below records the pre-implementation baseline; its wider-shadow/AO/fog proposals remain open.
+
 Researched 2026-09-11. **Research complete; implementation proposed.** This is a focused extension of the existing sun/material foundation, supporting the open Greater Wasteland and rock workbench. It does not reopen the engine stack or require moving development off Mac.
 
 Start implementation from the [audited sequence](../Docs/OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md). The [source and cost record](./outdoor-lighting-data.json) preserves URLs, audited source hashes, allocation assumptions and upstream measurements. Current runtime proof remains in [STATUS](../Docs/STATUS.md).

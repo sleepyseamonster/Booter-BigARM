@@ -27,3 +27,5 @@ On Windows use `python` if that is the installed command. Use a Visual Studio De
 Only promote logs worth retaining into tracked `Evidence/`. Use `.cache/` for scratch/test receipts. Evidence never substitutes for reading the result and stating its proof limits.
 
 For a short sun/material rendering check, use `python3 Tools/verify_lighting.py --catalog out/surfaces-accepted-a/catalog.json --out Evidence/lighting-new` from Engine. It captures eight lighting states without repeating cooking, packaging or resource stress loops. See [the rendering result](../Docs/SUN_AND_SURFACE_RESULT.md).
+
+For the sky/display extension, use `python3 Tools/verify_environment.py --catalog out/surfaces-accepted-a/catalog.json --out Evidence/environment-new`. It captures 12 states using `--verify-environment`, checking sky/sun changes, bright-value compression and diagnostic/texture-preview bypasses through the production renderer. This is a non-focusable technical capture, not a gameplay test or GPU benchmark. See [L1 result](../Docs/OUTDOOR_LIGHTING_L1_RESULT.md).

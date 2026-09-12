@@ -35,14 +35,14 @@
 #include "Tools/EngineMenu.h"
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool captureRockUi=false,terrainPreview=false,buildInfo=false, lightingVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
+struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool captureRockUi=false,terrainPreview=false,buildInfo=false, lightingVerify=false, environmentVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
         if(arg=="--capture-rock-ui"){options.captureRockUi=true;continue;}
         if(arg=="--terrain-preview"){options.terrainPreview=true;continue;}
-        if ((arg=="--verify-camera" || arg=="--rock-library" || arg=="--capture-rock" || arg=="--world-profile" || arg=="--terrain" || arg=="--stream-rock" || arg=="--constraints" || arg=="--verify-stream" || arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
+        if ((arg=="--verify-camera" || arg=="--rock-library" || arg=="--capture-rock" || arg=="--world-profile" || arg=="--terrain" || arg=="--stream-rock" || arg=="--constraints" || arg=="--verify-stream" || arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-environment" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
             if(arg=="--verify-camera"){options.cameraVerify=true;options.verify=argv[++i];}
             else if(arg=="--rock-library")options.rockLibrary=argv[++i];
             else if(arg=="--capture-rock"){options.captureRock=argv[++i];options.verify=options.captureRock;}
@@ -55,6 +55,7 @@ Options parse(int argc,char** argv) {
             else if(arg=="--verify-rock"){options.rockVerify=true;options.verify=argv[++i];}
             else if (arg=="--model") options.model=argv[++i];
             else if (arg=="--verify-animation") {options.animationVerify=true;options.verify=argv[++i];}
+            else if (arg=="--verify-environment") {options.environmentVerify=true;options.verify=argv[++i];}
             else if (arg=="--verify-lighting") { options.lightingVerify=true;options.verify=argv[++i]; }
             else if (arg=="--verify") options.verify=argv[++i];
             else if (arg=="--inspection") options.inspection=argv[++i];
@@ -121,6 +122,16 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     ImGui::SliderAngle("Direction",&state.lightAzimuth,-180,180);
     ImGui::SliderFloat("Intensity",&state.lightIntensity,0.0f,1.5f,"%.2f");
     ImGui::SliderFloat("Exposure",&state.exposure,-4.0f,4.0f,"%.1f stops");
+    if(ImGui::CollapsingHeader("Sky and environment")) {
+        ImGui::SliderAngle("Sun elevation",&state.environment.sunElevation,2,85);
+        ImGui::ColorEdit3("Sun color",state.environment.sunColor.data(),ImGuiColorEditFlags_Float);
+        ImGui::Checkbox("Show sky",&state.environment.sky);
+        ImGui::Checkbox("PBR Neutral tone mapping",&state.environment.toneMapping);
+        ImGui::ColorEdit3("Sky zenith",state.environment.zenith.data(),ImGuiColorEditFlags_Float);
+        ImGui::ColorEdit3("Sky horizon",state.environment.horizon.data(),ImGuiColorEditFlags_Float);
+        ImGui::ColorEdit3("Ground bounce",state.environment.ground.data(),ImGuiColorEditFlags_Float);
+        ImGui::TextDisabled("Environment colors also control ambient fill.");
+    }
     if (ImGui::CollapsingHeader("Sun and surface")) {
         ImGui::Checkbox("Cast shadows",&state.shadows);
         ImGui::SliderFloat("Shadow bias",&state.shadowBias,0,0.02f,"%.4f");
@@ -187,7 +198,7 @@ int run(Options options) {
     const bool captureRock=!options.captureRock.empty();
     if(options.captureRockUi&&!captureRock)throw std::runtime_error("UI capture requires --capture-rock");
     if((captureRock||!options.rockLibrary.empty())&&options.rock.empty())throw std::runtime_error("Rock capture/library requires --rock");
-    const bool verify=technical && !options.lightingVerify && !options.animationVerify && !options.rockVerify && !options.streamVerify && !captureRock && !options.cameraVerify;
+    const bool verify=technical && !options.lightingVerify && !options.environmentVerify && !options.animationVerify && !options.rockVerify && !options.streamVerify && !captureRock && !options.cameraVerify;
     const bool rockVerify=options.rockVerify,streamVerify=options.streamVerify;
     if(options.terrainPreview&&options.terrain.empty())throw std::runtime_error("Terrain preview requires --terrain");
     if(streamVerify&&options.terrain.empty())throw std::runtime_error("Stream verification requires --terrain");
@@ -195,8 +206,8 @@ int run(Options options) {
     if(rockVerify&&options.rock.empty())throw std::runtime_error("Rock verification requires --rock");
     const bool animationVerify=options.animationVerify;
     if(animationVerify && options.model.empty())throw std::runtime_error("Animation verification requires --model");
-    if(int(options.animationVerify)+int(options.lightingVerify)+int(options.rockVerify)+int(options.streamVerify)+int(captureRock)+int(options.cameraVerify)>1)throw std::runtime_error("Choose one verification mode");
-    const bool lightingVerify=options.lightingVerify;
+    if(int(options.environmentVerify)+int(options.animationVerify)+int(options.lightingVerify)+int(options.rockVerify)+int(options.streamVerify)+int(captureRock)+int(options.cameraVerify)>1)throw std::runtime_error("Choose one verification mode");
+    const bool lightingVerify=options.lightingVerify||options.environmentVerify;
     if (technical) {
         if (std::filesystem::exists(options.verify)) throw std::runtime_error("Verification output exists; choose a new directory");
         std::filesystem::create_directories(options.verify);
@@ -401,7 +412,25 @@ int run(Options options) {
                 if (frame==435) select("surface/textures/rocks/workbench/layered/rockworkbenchside_albedo");
                 if (frame==455) select("surface/textures/ground/sanddirt/brokenworldsanddirtalbedo");
             }
-            if (lightingVerify) {
+            if(options.environmentVerify) {
+                if(frame==0||frame==45||frame==90||frame==105||frame==120) {
+                    state=engine::FixtureState{};state.mesh=2;state.pitch=.15f;state.distance=7;
+                    state.surfaceTextures=false;state.color={.72f,.72f,.72f};
+                }
+                if(frame==15){state.exposure=3;state.environment.toneMapping=false;}
+                if(frame==30)state.environment.toneMapping=true;
+                if(frame==45)state.environment.sunElevation=.12f;
+                if(frame==60){state.showNormals=true;state.exposure=0;}
+                if(frame==75)state.exposure=3;
+                if(frame==90)state.environment.sky=false;
+                if(frame==105){state.environment.zenith={.08f,.15f,.6f};state.environment.horizon={.3f,.4f,.8f};}
+                if(frame==135||frame==165)state.environment.toneMapping=false;
+                if(frame==150){
+                    state.environment.toneMapping=true;textureControls.enabled=true;
+                    if(records.empty())throw std::runtime_error("Environment preview verification requires a catalog");
+                    textureControls.selected=0;
+                }
+            } else if (lightingVerify) {
                 if(frame==0) {state=engine::FixtureState{};state.mesh=2;state.pitch=.6f;state.distance=6;state.surfaceTextures=false;state.shadows=false;}
                 if(frame==15) state.shadows=true;
                 if(frame==30) state.lightAzimuth=-.8f;
@@ -515,7 +544,7 @@ int run(Options options) {
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.draw(state,geometryCheck,verify && frame>=265 && frame<345,showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock||streaming)?&placement:nullptr); if(!animationVerify&&!rockVerify&&!streamVerify&&(!captureRock||(options.captureRockUi&&frame>=24)))ui.draw(ImGui::GetDrawData());
+            renderer.draw(state,geometryCheck,(verify && frame>=265 && frame<345)||(options.environmentVerify&&frame>=120&&frame<150),showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock||streaming)?&placement:nullptr); if(!animationVerify&&!rockVerify&&!streamVerify&&(!captureRock||(options.captureRockUi&&frame>=24)))ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -564,11 +593,14 @@ int run(Options options) {
                 if(frame==80)running=false;
             }
             if(lightingVerify) {
-                if(frame>=10 && frame<=115 && (frame-10)%15==0) {
+                if(frame>=10 && frame<=(options.environmentVerify?175:115) && (frame-10)%15==0) {
                     constexpr const char* names[]={"unshadowed.png","shadowed.png","sun-moved.png","surfaces.png","flat-normal.png","smooth.png","exposure.png","camera-bias.png"};
-                    bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/names[(frame-10)/15]).string().c_str());
+                    constexpr const char* environmentNames[]={"baseline.png","clipped.png","tone-bright.png","low-sun.png","normals.png","normals-exposed.png","sky-off.png","cool-sky.png","calibration-tone.png","calibration-linear.png","preview-tone.png","preview-linear.png"};
+                    const char* name=options.environmentVerify?environmentNames[(frame-10)/15]:names[(frame-10)/15];
+                    bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/name).string().c_str());
+                    if(options.environmentVerify)engine::saveInspection(options.verify/(std::string(name)+".inspection.json"),state);
                 }
-                if(frame==125) running=false;
+                if(frame==(options.environmentVerify?185:125)) running=false;
             }
             if(options.cameraVerify){
                 // Exercise the production SDL motion -> ImGui gesture -> scene state path.
@@ -657,8 +689,8 @@ int run(Options options) {
         if(!passed)throw std::runtime_error("Animation render capture failed");
     }
     if(lightingVerify) {
-        const bool passed=renderer.callbacks.captures==8 && renderer.callbacks.errors==0;
-        engine::writeDocument(options.verify/"lighting.json","engine.lighting-verification",{{"backend",backend},{"captures",renderer.callbacks.captures.load()},
+        const bool passed=renderer.callbacks.captures==(options.environmentVerify?12u:8u) && renderer.callbacks.errors==0;
+        engine::writeDocument(options.verify/(options.environmentVerify?"environment.json":"lighting.json"),"engine.lighting-verification",{{"backend",backend},{"captures",renderer.callbacks.captures.load()},
             {"gpu_errors",renderer.callbacks.errors.load()},{"real_surfaces",materialAvailable},{"passed",passed}});
         if(!passed) throw std::runtime_error("Lighting capture failed");
     }

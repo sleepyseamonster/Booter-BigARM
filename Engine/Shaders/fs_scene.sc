@@ -1,5 +1,6 @@
 $input v_normal, v_world, v_shadow
 #include <bgfx_shader.sh>
+#include "environment.sh"
 SAMPLER2D(s_shadow, 0);
 SAMPLER2D(s_albedo, 1);
 SAMPLER2D(s_normal, 2);
@@ -208,9 +209,9 @@ void main()
     vec3 f0 = mix(vec3(0.04),albedo,metal);
     vec3 fresnel = f0 + (1.0 - f0) * pow(1.0 - VoH,5.0);
     vec3 diffuse = (1.0 - fresnel) * (1.0 - metal) * albedo / 3.14159265;
-    vec3 direct = (diffuse + distribution * smith * fresnel) * NoL * u_light.w * visibility(v_shadow,geometricNormal,light);
+    vec3 direct = (diffuse + distribution * smith * fresnel) * NoL * u_light.w * u_environment[0].rgb * visibility(v_shadow,geometricNormal,light);
     // Bounded hemispheric fill. This is not an environment-map/IBL solution.
-    vec3 hemisphere = mix(vec3(0.16,0.13,0.10),vec3(0.50,0.60,0.75),normal.y * 0.5 + 0.5);
+    vec3 hemisphere = environmentAmbient(normal);
     vec3 ambient = ((1.0 - metal) * albedo + f0 * (1.0 - 0.5 * roughness)) * hemisphere * u_sceneOptions.w * ao;
     gl_FragColor = vec4(direct + ambient,1.0);
 }

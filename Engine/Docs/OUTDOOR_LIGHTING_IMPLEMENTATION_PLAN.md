@@ -1,12 +1,12 @@
 # Outdoor lighting implementation sequence
 
-Prepared and self-audited 2026-09-11 from [source-backed research](../Research/OUTDOOR_LIGHTING_RESEARCH.md) and [cost/source data](../Research/outdoor-lighting-data.json). **Planned, not implemented.** This is a bounded extension of P02/P04/P05 and preparation for P32; it does not complete P32 or remove its whole-world integration prerequisites. [FOUNDATION_PLAN](./FOUNDATION_PLAN.md) remains the master roadmap.
+Prepared and self-audited 2026-09-11 from [source-backed research](../Research/OUTDOOR_LIGHTING_RESEARCH.md) and [cost/source data](../Research/outdoor-lighting-data.json). **L1 implemented and technically verified on Mac; L2–L4 planned, L5 conditional.** See the [L1 result and runnable package](./OUTDOOR_LIGHTING_L1_RESULT.md). This is a bounded extension of P02/P04/P05 and preparation for P32; it does not complete P32 or remove its whole-world integration prerequisites. [FOUNDATION_PLAN](./FOUNDATION_PLAN.md) remains the master roadmap.
 
 ## Outcome and limits
 
 Make the current open-wasteland rocks readable under a coherent sky/sun, preserve bright surface detail, ground formations with useful shadows/ambient occlusion, and give distant terrain aerial perspective. Use existing rock/ground assets and renderer. Keep the first working pass small; do not block it on GI, weather, a deferred renderer, origin shifting or perfect material authoring.
 
-The research task delivers this plan and source record only. Implementation should follow these coherent batches when work resumes. Preserve concurrent geometry/terrain work and refresh source hashes before editing shared renderer files.
+The original research task delivered the plan and source record. The subsequent implementation delivered L1; continue with L2 using the batches below. Preserve concurrent geometry/terrain work and refresh source hashes before editing shared renderer files.
 
 ## Ordered batches
 

@@ -1,0 +1,23 @@
+{
+  "backend": "Metal",
+  "captures": 12,
+  "changed_sampled_pixels": {
+    "calibration_bypass": 0,
+    "environment_colors": 186624,
+    "highlight_operator": 186624,
+    "normal_bypass": 0,
+    "sky_visibility": 82678,
+    "sun_elevation": 101746,
+    "texture_preview_bypass": 0
+  },
+  "drawable": [
+    2240,
+    1440
+  ],
+  "limits": "Technical fixed-scene Metal comparison, no GPU timing, Windows, physical input or final art acceptance.",
+  "near_clipped_pixels": {
+    "clipped": 87250,
+    "tone-bright": 73570
+  },
+  "result": "passed"
+}

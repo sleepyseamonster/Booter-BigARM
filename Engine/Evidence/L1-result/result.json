@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "result": "passed",
+  "date": "2026-09-11",
+  "scope": "L1 sky, sun and SDR display; no L2-L5 completion claim",
+  "baseline_commit": "9056470dae23d324cd54b70c9fa245a7cbda9868",
+  "source_files": [
+    {
+      "path": "Source/Core/EnvironmentSettings.h",
+      "sha256": "12d446586ba6abd11c1c005c2f12d1edf6573621ac7c9b771095ea35aa41afd0"
+    },
+    {
+      "path": "Source/Core/FixtureState.h",
+      "sha256": "e4b1f0af6871964613a575ca038cba388b2078e22622c6209fb8c7f2a9c87644"
+    },
+    {
+      "path": "Source/Core/FixtureState.cpp",
+      "sha256": "b082975f25388a02a184222656f7b2d70d8bf8051e81b5e72559a4df2c1c1c8f"
+    },
+    {
+      "path": "Source/Runtime/InspectionDocument.cpp",
+      "sha256": "2c9ae45277d9e5965b9061161038aed9507d4d1662ac3582b789815f1e4f4d3b"
+    },
+    {
+      "path": "Source/Rendering/Renderer.h",
+      "sha256": "b1b4a94f5163cbbc803c3837c5c03f4edf15f05dfd314c4328475485716c1eaa"
+    },
+    {
+      "path": "Source/Rendering/Renderer.cpp",
+      "sha256": "bd370dfc2864fb8a1f942225a9c123ff725a5d6be73578a9740df8de4ce7cda8"
+    },
+    {
+      "path": "Apps/Workbench/main.cpp",
+      "sha256": "0060e59da669b7ba85d1a82ff1aab8c3cb8f4d304b8fd00b026ef5f6c56fc71a"
+    },
+    {
+      "path": "CMake/Shaders.cmake",
+      "sha256": "8e4b89befdc1a48d316f33411a6d65afd3c5ce7c8d981c2f477f4bc614bfcd0f"
+    },
+    {
+      "path": "Tests/CoreTests.cpp",
+      "sha256": "c34aa40470af6ac17eb79d3f6e1258f5bf5bcdbc1f84c602369dcd109687bbfa"
+    },
+    {
+      "path": "Shaders/fs_calibration.sc",
+      "sha256": "50fc6796ec1509cb59cd5835078171dd2785691b7be9d6bcef03a60fbfa79c74"
+    },
+    {
+      "path": "Shaders/fs_display.sc",
+      "sha256": "b716b0d8df23ee6b73b2606352954cb28156f989b17b168f97fddc301bfef639"
+    },
+    {
+      "path": "Shaders/fs_inspector.sc",
+      "sha256": "30a61868a51ded6ef7e1d225b0cfaf7e7a8cf5d6a4341f64ed184e88cd1bd7b6"
+    },
+    {
+      "path": "Shaders/fs_scene.sc",
+      "sha256": "52b1d29816f5514e5af3acc9bb0e73f12f1f8a5c04ffe7d87fa4f89291b19d42"
+    },
+    {
+      "path": "Shaders/fs_shadow.sc",
+      "sha256": "9bb9962c95f9919e565fcda4d2288189961731deba6c41cf6927672759405525"
+    },
+    {
+      "path": "Shaders/fs_sky.sc",
+      "sha256": "2dde45c5eee78850df0b741a426af7c0abf8e10b12505d95df2d05da35dd2dcb"
+    },
+    {
+      "path": "Shaders/fs_texture_preview.sc",
+      "sha256": "7eb4b3e871e8c9ea2be917a8b4702855fce411019d9a9524e8130c4ffbdc5822"
+    },
+    {
+      "path": "Shaders/varying.def.sc",
+      "sha256": "c8b4586f891f15020222021980018678efe6d5d3c42f7083e325d689490f4295"
+    },
+    {
+      "path": "Shaders/vs_fullscreen.sc",
+      "sha256": "a653be733f1e942b0f046882c9330e51a79b8806c3c552861d9db8ae2b81514d"
+    },
+    {
+      "path": "Shaders/vs_inspector.sc",
+      "sha256": "72c328534e13fbac14f3e4e4ff8e2093383b507cf39394cf81b1d12e595fa58a"
+    },
+    {
+      "path": "Shaders/vs_scene.sc",
+      "sha256": "fc22ef1f54c77d88239baf9148daeb6c6eb3d728be5e8ed6a50fd6acfcf5aa82"
+    },
+    {
+      "path": "Shaders/vs_shadow.sc",
+      "sha256": "cdaa4cc504d8f539abbf31b086feab16eb8530a7716a667214a54ccbfeb9533c"
+    },
+    {
+      "path": "Shaders/vs_skin.sc",
+      "sha256": "c761a2254c9aa495c7d417d371331e8db188fa32ef16cb53aa84ddf1486a1809"
+    },
+    {
+      "path": "Shaders/vs_skin_shadow.sc",
+      "sha256": "0da16cfa057f1741d66c46ad0fa70d93963f6b4ed348564464c1e32819bbc232"
+    },
+    {
+      "path": "Shaders/environment.sh",
+      "sha256": "058c308cc769e7ac0b605f80383d1de2bb5df8a4835514fc3bab7bb4fe783e45"
+    },
+    {
+      "path": "Shaders/pbr_neutral.sh",
+      "sha256": "8c9c12b4792e37ab163e14c7b59bfc6c2c944563c62633d13182bb37d30f55ba"
+    }
+  ],
+  "native_build": {
+    "result": "passed",
+    "targets": [
+      "engine_workbench",
+      "engine_player",
+      "engine_core_tests",
+      "engine_state_tests"
+    ],
+    "logs": [
+      "build.log",
+      "integration-build.log"
+    ],
+    "existing_warning": "Core/BoundedJobs.h:93 misleading indentation",
+    "log_normalization": "Trailing whitespace stripped from retained build.log; original ignored log remains out/l1-build.log."
+  },
+  "document_tests": {
+    "result": "passed",
+    "command": "ctest --test-dir Engine/build/foundation -R 'runtime_documents_identity|fixture_state' --output-on-failure",
+    "tests_executed": [
+      "runtime_documents_identity"
+    ],
+    "exit_code": 0,
+    "receipt_type": "Summarized from executed session command; foundation_state is separately recorded because fixture_state did not match its test name."
+  },
+  "state_receipt": "../L1-state/result.json",
+  "render_receipt": "../L1-environment/result.json",
+  "package_launch_receipt": "../L1-package-run/result.json",
+  "package_capture_receipt": "../L1-packaged-rock/result.json",
+  "visually_inspected": [
+    "../L1-environment/captures/baseline.png",
+    "../L1-environment/captures/tone-bright.png",
+    "../L1-packaged-rock/rock.png"
+  ],
+  "limits": [
+    "No Windows native run",
+    "No per-effect GPU timing",
+    "No physical-input or final art acceptance",
+    "Sky and ambient are authored approximations; no GI or IBL"
+  ]
+}

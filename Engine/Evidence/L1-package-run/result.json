@@ -1,0 +1,51 @@
+{
+  "command": [
+    "out/rock-workbench-lighting/Launch-Rock-Generator.command",
+    "--capture-rock",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/L1-packaged-rock"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMake/Shaders.cmake",
+    " M Engine/Research/license-manifest.json",
+    " M Engine/Shaders/fs_display.sc",
+    " M Engine/Shaders/fs_scene.sc",
+    " M Engine/Source/Core/FixtureState.cpp",
+    " M Engine/Source/Core/FixtureState.h",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Source/Runtime/InspectionDocument.cpp",
+    " M Engine/Tests/CoreTests.cpp",
+    "?? Engine/Assets/Inspection/outdoor-rock-lighting.json",
+    "?? Engine/Evidence/L1-environment/",
+    "?? Engine/Evidence/L1-state/",
+    "?? Engine/Research/Licenses/khronos-tone-mapping.txt",
+    "?? Engine/Research/tone-mapping-lock.json",
+    "?? Engine/Shaders/environment.sh",
+    "?? Engine/Shaders/fs_sky.sc",
+    "?? Engine/Shaders/pbr_neutral.sh",
+    "?? Engine/Source/Core/EnvironmentSettings.h",
+    "?? Engine/Tools/verify_environment.py"
+  ],
+  "duration_seconds": 3.417,
+  "exit_code": 0,
+  "git_head": "9056470dae23d324cd54b70c9fa245a7cbda9868",
+  "input_sha256_after": {
+    "Assets/Inspection/outdoor-rock-lighting.json": "0ff106b324cb44e972632702e72314ff1b729e8220f702a885aa3ba2a98a2146",
+    "out/rock-workbench-lighting/Launch-Rock-Generator.command": "14f16e67de1bad6b056fd65696e9d8dc869924f14ee5642c1d3e7d358ce4beec",
+    "out/rock-workbench-lighting/bin/engine_workbench": "de408938133e71872a0e63afb9bb1420fb0af34ab9c30d0213206ffbd898fcb8"
+  },
+  "input_sha256_before": {
+    "Assets/Inspection/outdoor-rock-lighting.json": "0ff106b324cb44e972632702e72314ff1b729e8220f702a885aa3ba2a98a2146",
+    "out/rock-workbench-lighting/Launch-Rock-Generator.command": "14f16e67de1bad6b056fd65696e9d8dc869924f14ee5642c1d3e7d358ce4beec",
+    "out/rock-workbench-lighting/bin/engine_workbench": "de408938133e71872a0e63afb9bb1420fb0af34ab9c30d0213206ffbd898fcb8"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "73f87a0a2ab726755026e421e1b57f5d39a7e7c3390f46308e13e77be93e906e",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-12T03:25:20.524893+00:00",
+  "timeout_seconds": 60.0
+}

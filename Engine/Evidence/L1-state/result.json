@@ -1,0 +1,57 @@
+{
+  "command": [
+    "ctest",
+    "--test-dir",
+    "build/foundation",
+    "-R",
+    "^foundation_state$",
+    "--output-on-failure"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMake/Shaders.cmake",
+    " M Engine/Research/license-manifest.json",
+    " M Engine/Shaders/fs_display.sc",
+    " M Engine/Shaders/fs_scene.sc",
+    " M Engine/Source/Core/FixtureState.cpp",
+    " M Engine/Source/Core/FixtureState.h",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Source/Runtime/InspectionDocument.cpp",
+    " M Engine/Tests/CoreTests.cpp",
+    "?? Engine/Assets/Inspection/outdoor-rock-lighting.json",
+    "?? Engine/Evidence/L1-environment/",
+    "?? Engine/Research/Licenses/khronos-tone-mapping.txt",
+    "?? Engine/Research/tone-mapping-lock.json",
+    "?? Engine/Shaders/environment.sh",
+    "?? Engine/Shaders/fs_sky.sc",
+    "?? Engine/Shaders/pbr_neutral.sh",
+    "?? Engine/Source/Core/EnvironmentSettings.h",
+    "?? Engine/Tools/verify_environment.py"
+  ],
+  "duration_seconds": 0.373,
+  "exit_code": 0,
+  "git_head": "9056470dae23d324cd54b70c9fa245a7cbda9868",
+  "input_sha256_after": {
+    "Source/Core/EnvironmentSettings.h": "12d446586ba6abd11c1c005c2f12d1edf6573621ac7c9b771095ea35aa41afd0",
+    "Source/Core/FixtureState.cpp": "b082975f25388a02a184222656f7b2d70d8bf8051e81b5e72559a4df2c1c1c8f",
+    "Source/Runtime/InspectionDocument.cpp": "2c9ae45277d9e5965b9061161038aed9507d4d1662ac3582b789815f1e4f4d3b",
+    "Tests/CoreTests.cpp": "c34aa40470af6ac17eb79d3f6e1258f5bf5bcdbc1f84c602369dcd109687bbfa",
+    "Tests/FixtureStateTests.cpp": "6f584430df7f90fc211e4ed21b6ce0c6317a5f758968b55f58455c838453f6ed"
+  },
+  "input_sha256_before": {
+    "Source/Core/EnvironmentSettings.h": "12d446586ba6abd11c1c005c2f12d1edf6573621ac7c9b771095ea35aa41afd0",
+    "Source/Core/FixtureState.cpp": "b082975f25388a02a184222656f7b2d70d8bf8051e81b5e72559a4df2c1c1c8f",
+    "Source/Runtime/InspectionDocument.cpp": "2c9ae45277d9e5965b9061161038aed9507d4d1662ac3582b789815f1e4f4d3b",
+    "Tests/CoreTests.cpp": "c34aa40470af6ac17eb79d3f6e1258f5bf5bcdbc1f84c602369dcd109687bbfa",
+    "Tests/FixtureStateTests.cpp": "6f584430df7f90fc211e4ed21b6ce0c6317a5f758968b55f58455c838453f6ed"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "f23f7520d74a601669c26247a9626c05b541066622af88ca18f40e9845d01492",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-12T03:24:43.779787+00:00",
+  "timeout_seconds": 600
+}
