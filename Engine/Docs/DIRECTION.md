@@ -16,11 +16,21 @@ The initial foundation should establish a reproducible executable, graphics, inp
 
 ## Current implementation depth
 
+Updated by the user on 2026-09-14: develop toward a professional, AAA-capable proprietary engine through successive iterations. Initial visual fidelity need not be AAA, but each increment must contribute to sound architecture, engine performance, speed, predictable frame times and low latency. The earlier skeleton milestone does not justify accumulating disposable fixture features or polishing isolated controls.
+
+Authoring is AI-driven: the user directs the agent to build the game through engine capabilities. Engine operations and authoritative data must be usable without UI widgets. A minimal scene viewer is sufficient. The separate UI agent owns viewer/UI changes; this engine lane owns runtime, rendering, assets, scheduling, authoring interfaces and performance. Preserve existing controls until their owner changes them. AI authoring does not imply model inference in the real-time simulation/render loop.
+
+The [runtime priorities](./ENGINE_RUNTIME_PRIORITIES.md) apply this clarification to the next work. Continue using the master plan; the lighting sequence is subordinate to these architecture/performance priorities.
+
 Clarified by the user on 2026-09-10: “we just need a base skeleton of an engine.” Build the smallest working version of each necessary subsystem and connect it to the shared runtime. Once that path works, move on. Advanced import coverage, visual polish, production tools, tuning and broad hardening are later work. Use focused checks to catch broken integration; do not turn each subsystem into repeated testing or perfection cycles. The long-range roadmap remains a reference, not a requirement to finish production features before the skeleton is usable.
 
 ## First user-facing milestone
 
 On 2026-09-10 the user clarified that the first milestone should be a completed rock generator. Deliver the working native generation/material/collision/LOD/edit/save loop as a convenient runnable workbench before expanding into live world streaming. The terrain/job foundation already underway may finish; it does not shift the first deliverable to a whole streamed world. Continue at skeleton depth.
+
+## Interface direction
+
+On 2026-09-14 the user selected an AI-controlled engine interface, with only a handful of manual toggles, sliders or inputs and a scene viewer that can fill the screen. The default workbench prioritizes viewing; detailed authoring and diagnostics are opt-in. This records product direction, not proof of an implemented AI connection. See the [UI/UX workspace](../UIUX/README.md).
 
 ## Platform
 

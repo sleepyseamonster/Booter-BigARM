@@ -18,6 +18,8 @@ For implementation sequencing, use [Docs/FOUNDATION_PLAN.md](./Docs/FOUNDATION_P
 
 ## Technical Direction
 
+- Production-engine architecture and performance are the priority, per the user's 2026-09-14 clarification. Follow [runtime priorities](./Docs/ENGINE_RUNTIME_PRIORITIES.md); justify each increment by its runtime, content-pipeline or AI-authoring contribution. Keep work bounded and measured rather than pursuing feature count or speculative optimization.
+- AI authoring must call validated engine operations and consume structured results without relying on widgets. The separate UI agent owns viewer/UI changes; this lane owns engine internals. Keep the real-time loop independent of model/network response latency.
 - Regular third-person, fully 3D. Do not inherit elevated top-down camera values or behavior. Exact camera and movement tuning remain open.
 - Windows PC is the product target. Keep Mac as the main development machine while practical; introduce Windows testing separately. Mac support must not become a substantial compatibility project.
 - Build the engine foundation first, then the rock generator/workbench for the open Greater Wasteland. Canyons are deferred.

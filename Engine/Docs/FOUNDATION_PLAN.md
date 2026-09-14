@@ -1,5 +1,7 @@
 # Engine Master Implementation Plan
 
+Controlling priority update, 2026-09-14: [production runtime and AI-authoring priorities](./ENGINE_RUNTIME_PRIORITIES.md) apply the user's architecture/performance/low-latency direction. Next is shared frame telemetry and explicit pacing, then evidenced scheduling/authoring/render improvements. UI belongs to the separate UI agent. Earlier lighting next-step entries below remain historical sequencing, subordinate to this update.
+
 Lighting implementation update, 2026-09-11: [L1 sky/sun/display](./OUTDOOR_LIGHTING_L1_RESULT.md) is complete as a Mac first pass, with a runnable v5 rock workbench. Continue the [lighting sequence](./OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) at L2 shadow coverage; P32 remains planned.
 
 Outdoor-lighting preparation, 2026-09-11: the [focused research](../Research/OUTDOOR_LIGHTING_RESEARCH.md) and [audited implementation sequence](./OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) define a bounded P02/P04/P05 visual extension and preparation for P32. Research is complete; implementation remains planned. Local lighting improvements can use the current supported coordinates; full P32 integration and its P22 prerequisite remain open.
