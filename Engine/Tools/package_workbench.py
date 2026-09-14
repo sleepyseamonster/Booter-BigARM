@@ -102,7 +102,7 @@ def main():
 
 Open **Launch-Rock-Generator.command** on Mac (the .cmd launcher is for a future native Windows package). Keep the package in a writable folder. No Unity installation or source checkout is needed.
 
-The normal viewer is scene-only, in a maximized window: no menu or control panels. F11 toggles fullscreen; Escape returns to the window without quitting. Controls are enabled only for a specific test using `--test-controls rock`, `engine`, `animation`, or `terrain`; only that subsystem is shown. AI operation is the intended workflow; this package does not introduce an AI connection.
+The normal viewer is scene-only, in a borderless window covering the display: no menu or control panels. F11 toggles borderless windowed fullscreen; Escape returns to the window without quitting. Controls are enabled only for a specific test using `--test-controls rock`, `engine`, `animation`, or `terrain`; only that subsystem is shown. AI operation is the intended workflow; this package does not introduce an AI connection.
 
 1. For a rock-authoring test, launch with `--test-controls rock`. Choose a **Rock preset**, adjust its source masses or material, then select **Apply recipe**. **Frame rock / formation** fits the accepted result in view. The Golden Rock package starts with the saved Unity baseline; its Overall scale, Fusion, Relaxation and Voxel size controls shape the captured masses.
 2. Alt/Option + left-drag or right-drag to orbit; Space + left-drag or middle-drag to pan; wheel to zoom; F to recenter. Scene lighting defaults load from the inspection document; engine diagnostics are available only in a separate `--test-controls engine` session.

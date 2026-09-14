@@ -6,7 +6,7 @@
 #endif
 
 namespace engine {
-Window::Window(bool verification) {
+Window::Window(bool verification,bool windowedFullscreen) {
     SDL_SetHint(SDL_HINT_WINDOW_ACTIVATE_WHEN_SHOWN, "0");
     SDL_SetHint(SDL_HINT_WINDOW_ACTIVATE_WHEN_RAISED, "0");
     SDL_SetHint(SDL_HINT_MAC_BACKGROUND_APP, "1");
@@ -18,6 +18,11 @@ Window::Window(bool verification) {
     window_ = SDL_CreateWindow("Booter & BigARM | Engine Foundation", 1120, 720, flags);
     if (!window_) throw std::runtime_error(std::string("Window creation failed: ") + SDL_GetError());
     SDL_SetWindowMinimumSize(window_,800,600);
+    if(windowedFullscreen&&!setWindowedFullscreen(true)) {
+        const std::string error=SDL_GetError();
+        SDL_DestroyWindow(window_);window_=nullptr;
+        throw std::runtime_error("Windowed fullscreen failed: "+error);
+    }
 #ifdef __APPLE__
     metalView_ = SDL_Metal_CreateView(window_);
     if (!metalView_) {
@@ -42,5 +47,19 @@ void* Window::nativeHandle() const {
 }
 void Window::pixels(int& width, int& height) const {
     if (!SDL_GetWindowSizeInPixels(window_, &width, &height)) { width = 0; height = 0; }
+}
+bool Window::setWindowedFullscreen(bool enabled) {
+    if(enabled==windowedFullscreen_)return true;
+    SDL_Rect bounds=restoredBounds_;
+    if(enabled) {
+        if(!SDL_GetDisplayBounds(SDL_GetDisplayForWindow(window_),&bounds))return false;
+        if(!SDL_GetWindowPosition(window_,&restoredBounds_.x,&restoredBounds_.y)||
+           !SDL_GetWindowSize(window_,&restoredBounds_.w,&restoredBounds_.h))return false;
+    }
+    // A borderless desktop window: no display-mode switch or native fullscreen Space.
+    if(!SDL_SetWindowBordered(window_,!enabled)||!SDL_SetWindowResizable(window_,!enabled)||
+       !SDL_SetWindowSize(window_,bounds.w,bounds.h)||!SDL_SetWindowPosition(window_,bounds.x,bounds.y))return false;
+    windowedFullscreen_=enabled;
+    return true;
 }
 }

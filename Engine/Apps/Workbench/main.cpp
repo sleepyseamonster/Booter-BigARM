@@ -245,8 +245,7 @@ int run(Options options) {
         const char* base=SDL_GetBasePath();
         if (base && std::filesystem::exists(std::filesystem::path(base)/"Assets/catalog.json")) options.catalog=std::filesystem::path(base)/"Assets/catalog.json";
     }
-    engine::Window window(technical);
-    if(!technical)SDL_MaximizeWindow(window.get());
+    engine::Window window(technical,!technical);
     engine::Renderer renderer;
     renderer.start(window,options.shaders);
     const std::string backend=renderer.name();
@@ -354,7 +353,7 @@ int run(Options options) {
         viewer.advanced=true; // Only explicit engine-testing sessions reach this inspector.
         std::string viewerError;
         auto setFullscreen=[&](bool enabled) {
-            if(!SDL_SetWindowFullscreen(window.get(),enabled))viewerError=SDL_GetError();
+            if(!window.setWindowedFullscreen(enabled))viewerError=SDL_GetError();
             else viewerError.clear();
         };
         ButtonPosition button;
@@ -371,9 +370,9 @@ int run(Options options) {
                 if (event.type==SDL_EVENT_MOUSE_WHEEL) wheel+=event.wheel.y;
                 if (event.type==SDL_EVENT_KEY_DOWN && event.key.key==SDLK_F5 && !event.key.repeat && !ImGui::GetIO().WantCaptureKeyboard)saveRequested=true;
                 if(event.type==SDL_EVENT_KEY_DOWN&&!event.key.repeat&&!ImGui::GetIO().WantCaptureKeyboard) {
-                    if(event.key.key==SDLK_F11)setFullscreen(!(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN));
+                    if(event.key.key==SDLK_F11)setFullscreen(!window.windowedFullscreen());
                     if(event.key.key==SDLK_ESCAPE) {
-                        if(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN)setFullscreen(false);
+                        if(window.windowedFullscreen())setFullscreen(false);
                     }
                 }
             }
@@ -483,13 +482,13 @@ int run(Options options) {
             const std::string testControls=options.captureRockUi
                 ? ((frame>=26&&frame<=32)||frame>=36?"rock":"") : options.testControls;
             if(verify||testControls=="engine")
-                button=inspector(state,renderer,milliseconds,textureControls,simulation,documents,technical,viewer,(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN)!=0);
+                button=inspector(state,renderer,milliseconds,textureControls,simulation,documents,technical,viewer,window.windowedFullscreen());
             else {
                 documents.draw(state,!technical&&!simulation.enabled,false);
                 state.constrain();
                 if(simulation.enabled)state.distance=std::min(state.distance,8.0f);
             }
-            if(viewer.fullscreenRequested){setFullscreen(!(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN));viewer.fullscreenRequested=false;}
+            if(viewer.fullscreenRequested){setFullscreen(!window.windowedFullscreen());viewer.fullscreenRequested=false;}
             if(viewer.frameRequested) {
                 if(rock)rock->frameRequested=true;
                 else {state.viewOffset={};state.distance=streaming?30.f:7.5f;}
