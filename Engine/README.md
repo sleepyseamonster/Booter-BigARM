@@ -4,7 +4,9 @@ This is the working home for the proprietary engine and regular third-person gam
 
 Start with [current status and next step](./Docs/STATUS.md), then [accepted direction](./Docs/DIRECTION.md) and [the working agreement](./AGENTS.md).
 
-[Open the approved Unity Golden Rock setup in the engine](./Docs/GOLDEN_ROCK_TRANSFER_RESULT.md), with three saved shapes and their source settings.
+[Open the Unity-compatible single-rock generator](./Docs/SINGLE_ROCK_PARITY.md), with fresh seeded compositions, all eight silhouette profiles and measured shape comparisons.
+
+[Open the earlier captured Unity Golden Rock setup](./Docs/GOLDEN_ROCK_TRANSFER_RESULT.md), with three saved shapes and their source settings.
 
 [Open the rock workbench with the new sky and lighting controls](./Docs/OUTDOOR_LIGHTING_L1_RESULT.md).
 

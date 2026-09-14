@@ -1,5 +1,6 @@
 #include "World/Rocks/RockGenerator.h"
 #include "World/Rocks/CalibratedRock.h"
+#include "World/Rocks/SingleRock.h"
 #include <algorithm>
 #include <cmath>
 #include <map>
@@ -38,6 +39,7 @@ float boxField(const RockVolume& v,V p,float bevel,bool shaped){
 }
 std::vector<RockVolume> planRockVolumes(const RockRecipe& r,const GeneratedId& id){
     validateRecipe(r);if(!r.volumes.empty())return r.volumes;
+    if(r.version==7)return planSingleRock(r);
     const auto seed=rockSeed(r,id);std::vector<RockVolume> plan;
     plan.push_back({0,{0,0,0},{.70f,.76f,.65f},(rnd(seed,1)-.5f)*.3f,false});
     const float asym=r.asymmetry/1000.f,compact=r.compaction/1000.f;
@@ -69,12 +71,12 @@ std::vector<RockVolume> planRockVolumes(const RockRecipe& r,const GeneratedId& i
 RockResult generateVolumeRock(const RockRecipe& r,const GeneratedId& id){
     const auto volumes=planRockVolumes(r,id);const auto seed=rockSeed(r,id);
     std::vector<CalibratedRockVolume> calibrated;
-    if(r.version==6)for(const auto& v:volumes)calibrated.emplace_back(v,r.edgeDamage*.001f,uint32_t(r.seed^r.calibrationSeed));
-    const float smoothing=r.version==6?r.fusion:.025f+r.compaction*.00014f,bevel=.02f+r.edgeDamage*.00011f;
+    if(r.version>=6)for(const auto& v:volumes)calibrated.emplace_back(v,r.edgeDamage*.001f,r.version==7?0:uint32_t(r.seed^r.calibrationSeed));
+    const float smoothing=r.version>=6?r.fusion:.025f+r.compaction*.00014f,bevel=.02f+r.edgeDamage*.00011f;
     auto field=[&](V p){
         float value=1e6f;
-        if(r.version==6){
-            for(size_t i=0;i<volumes.size();++i)if(!volumes[i].subtractive)value=smoothMin(value,calibrated[i].evaluate(p),smoothing);
+        if(r.version>=6){
+            for(size_t i=0;i<volumes.size();++i)if(!volumes[i].subtractive){const auto next=calibrated[i].evaluate(p);if(r.version==7&&smoothing>1e-5f){float blend=std::clamp(.5f+.5f*(next-value)/smoothing,0.f,1.f);value=next+(value-next)*blend-smoothing*blend*(1-blend);}else value=smoothMin(value,next,smoothing);}
             for(size_t i=0;i<volumes.size();++i)if(volumes[i].subtractive)value=std::max(value,-calibrated[i].evaluate(p));
             return value;
         }
@@ -94,26 +96,29 @@ RockResult generateVolumeRock(const RockRecipe& r,const GeneratedId& id){
             const float cy=std::cos(v.yaw),sy=std::sin(v.yaw);q={cy*q[0]+sy*q[2],q[1],-sy*q[0]+cy*q[2]};
             for(size_t a=0;a<3;++a)extent[a]=std::max(extent[a],std::abs(q[a]));
         }}for(int a=0;a<3;++a){lo[a]=std::min(lo[a],v.center[a]-extent[a]);hi[a]=std::max(hi[a],v.center[a]+extent[a]);}}
-    if(r.version==6){lo={1e6f,1e6f,1e6f};hi={-1e6f,-1e6f,-1e6f};for(size_t i=0;i<volumes.size();++i)if(!volumes[i].subtractive)for(size_t a=0;a<3;++a){lo[a]=std::min(lo[a],calibrated[i].minimum[a]);hi[a]=std::max(hi[a],calibrated[i].maximum[a]);}}
+    if(r.version>=6){lo={1e6f,1e6f,1e6f};hi={-1e6f,-1e6f,-1e6f};for(size_t i=0;i<volumes.size();++i)if(!volumes[i].subtractive)for(size_t a=0;a<3;++a){lo[a]=std::min(lo[a],calibrated[i].minimum[a]);hi[a]=std::max(hi[a],calibrated[i].maximum[a]);}}
     // Additive bounds only. Large subtractive tools must not coarsen the grid.
-    const float padding=.2f+smoothing*float(volumes.size())*.25f;for(int a=0;a<3;++a){lo[a]-=padding;hi[a]+=padding;}
-    const auto span=sub(hi,lo);const float cell=r.version==6?r.samplingMm*.001f*std::pow(2.f,2-int(r.subdivisions)):*std::max_element(span.begin(),span.end())/float((r.version>=4?10:12)+8*r.subdivisions);
-    std::array<int,3> cells;V step;for(int a=0;a<3;++a){cells[a]=std::max(4,int(std::ceil(span[a]/cell)));step[a]=span[a]/cells[a];}
+    const float requested=std::max(.025f,float(r.samplingMm*.001f*std::pow(2.f,2-int(r.subdivisions))));
+    const float padding=r.version==7?std::max(requested*1.75f,smoothing+requested*1.25f):.2f+smoothing*float(volumes.size())*.25f;
+    for(int a=0;a<3;++a){lo[a]-=padding;hi[a]+=padding;}
+    const auto span=sub(hi,lo);const float largestSpan=*std::max_element(span.begin(),span.end());
+    const float cell=r.version==7?std::max(requested,largestSpan/96):r.version==6?r.samplingMm*.001f*std::pow(2.f,2-int(r.subdivisions)):largestSpan/float((r.version>=4?10:12)+8*r.subdivisions);
+    std::array<int,3> cells;V step;for(int a=0;a<3;++a){cells[a]=std::max(r.version==7?2:4,int(std::ceil(span[a]/cell)));step[a]=span[a]/cells[a];}
     if(uint64_t(cells[0]+1)*uint64_t(cells[1]+1)*uint64_t(cells[2]+1)>2000000)throw std::runtime_error("Rock sampling exceeds authoring budget; increase voxel size or lower detail");
     const int nx=cells[0]+1,ny=cells[1]+1,nz=cells[2]+1;
     std::vector<V> points(size_t(nx*ny*nz));std::vector<float> values(points.size());
     auto index=[&](int x,int y,int z){return uint32_t(x+nx*(y+ny*z));};
-    for(int z=0;z<nz;++z)for(int y=0;y<ny;++y)for(int x=0;x<nx;++x){const auto i=index(x,y,z);points[i]={lo[0]+x*step[0],lo[1]+y*step[1],lo[2]+z*step[2]};values[i]=field(points[i]);if(std::abs(values[i])<cell*.05f)values[i]=std::copysign(cell*.05f,values[i]);}
+    for(int z=0;z<nz;++z)for(int y=0;y<ny;++y)for(int x=0;x<nx;++x){const auto i=index(x,y,z);points[i]={lo[0]+x*step[0],lo[1]+y*step[1],lo[2]+z*step[2]};values[i]=field(points[i]);if(r.version==7){if(std::abs(values[i])<cell*.00001f)values[i]=cell*.00001f;}else if(std::abs(values[i])<cell*.05f)values[i]=std::copysign(cell*.05f,values[i]);}
     RockResult result;result.id=id.text();result.memberIds={id.text()};auto& mesh=result.mesh;
     mesh.nodes.push_back({});mesh.joints={0};mesh.inverseBind={{{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1}}};mesh.baseColor={.32f,.29f,.26f,1};mesh.roughness=.9f;mesh.metallic=0;
     std::map<std::pair<uint32_t,uint32_t>,uint32_t> edges;
     auto vertex=[&](uint32_t a,uint32_t b){
-        if(a>b)std::swap(a,b);const auto key=std::pair{a,b};if(const auto it=edges.find(key);it!=edges.end())return it->second;
-        const float t=values[a]/(values[a]-values[b]);SkinVertex v;v.position=add(points[a],mul(sub(points[b],points[a]),t));const auto i=uint32_t(mesh.vertices.size());mesh.vertices.push_back(v);edges[key]=i;return i;
+        if(r.version!=7&&a>b)std::swap(a,b);const auto key=std::pair{std::min(a,b),std::max(a,b)};if(const auto it=edges.find(key);it!=edges.end())return it->second;
+        const float den=values[a]-values[b];const float t=r.version==7?(std::abs(den)<1e-7f?.5f:std::clamp(values[a]/den,0.f,1.f)):values[a]/den;SkinVertex v;v.position=add(points[a],mul(sub(points[b],points[a]),t));const auto i=uint32_t(mesh.vertices.size());mesh.vertices.push_back(v);edges[key]=i;return i;
     };
     auto triangle=[&](uint32_t a,uint32_t b,uint32_t c,V outside){
         const auto n=cross(sub(mesh.vertices[b].position,mesh.vertices[a].position),sub(mesh.vertices[c].position,mesh.vertices[a].position));
-        if(dot(n,n)<1e-20f)throw std::runtime_error("Degenerate volume-grid intersection");if(dot(n,outside)<0)std::swap(b,c);mesh.indices.insert(mesh.indices.end(),{a,b,c});
+        if(dot(n,n)==0 || dot(n,n)<(r.version==7?0.f:1e-20f))throw std::runtime_error("Degenerate volume-grid intersection");if(dot(n,outside)<0)std::swap(b,c);mesh.indices.insert(mesh.indices.end(),{a,b,c});
     };
     constexpr int corners[8][3]={{0,0,0},{1,0,0},{1,1,0},{0,1,0},{0,0,1},{1,0,1},{1,1,1},{0,1,1}};
     constexpr int tetra[6][4]={{0,5,1,6},{0,1,2,6},{0,2,3,6},{0,3,7,6},{0,7,4,6},{0,4,5,6}};
@@ -134,14 +139,14 @@ RockResult generateVolumeRock(const RockRecipe& r,const GeneratedId& id){
     std::map<uint32_t,size_t> counts;for(size_t i=0;i<mesh.indices.size();i+=3)++counts[root(mesh.indices[i])];
     uint32_t largest=counts.begin()->first;for(const auto& [component,count]:counts)if(count>counts[largest])largest=component;
     std::vector<SkinVertex> kept;std::vector<uint32_t> indices,remap(mesh.vertices.size(),UINT32_MAX);
-    for(size_t i=0;i<mesh.indices.size();i+=3)if(root(mesh.indices[i])==largest)for(int a=0;a<3;++a){const auto old=mesh.indices[i+a];if(remap[old]==UINT32_MAX){remap[old]=uint32_t(kept.size());kept.push_back(mesh.vertices[old]);}indices.push_back(remap[old]);}
+    for(size_t i=0;i<mesh.indices.size();i+=3)if(r.version==7||root(mesh.indices[i])==largest)for(int a=0;a<3;++a){const auto old=mesh.indices[i+a];if(remap[old]==UINT32_MAX){remap[old]=uint32_t(kept.size());kept.push_back(mesh.vertices[old]);}indices.push_back(remap[old]);}
     mesh.vertices=std::move(kept);mesh.indices=std::move(indices);
-    if(r.version==6)relaxCalibratedRock(mesh,r.relaxation,cell);
+    if(r.version>=6)relaxCalibratedRock(mesh,r.relaxation,cell);
     // Fit physical dimensions once after meshing; all LODs share the same ground anchor.
     lo={1e6f,1e6f,1e6f};hi={-1e6f,-1e6f,-1e6f};for(const auto& v:mesh.vertices)for(int a=0;a<3;++a){lo[a]=std::min(lo[a],v.position[a]);hi[a]=std::max(hi[a],v.position[a]);}
     float fit=1e6f;for(int a=0;a<3;++a)fit=std::min(fit,float(r.radiiMm[a])*.002f/(hi[a]-lo[a]));
     for(auto& v:mesh.vertices){for(int a=0;a<3;++a){
-        if(r.version==6)v.position[a]*=r.authoringScale;
+        if(r.version>=6)v.position[a]*=r.authoringScale;
         else if(r.version==5)v.position[a]=(v.position[a]-(a==1?lo[a]:(lo[a]+hi[a])*.5f))*fit;
         else v.position[a]=((v.position[a]-lo[a])/(hi[a]-lo[a])-(a==1?0.f:.5f))*float(r.radiiMm[a])*.002f;
     }v.normal={};v.uv={v.position[0],v.position[2]};}

@@ -1,5 +1,9 @@
 # Unity Golden Rock in the native engine
 
+The [2026-09-14 v7 pass](./SINGLE_ROCK_PARITY.md) now also ports fresh seeded
+composition and the original grid sampling. This page records the earlier v6
+captured-layout transfer; its package remains available for comparison.
+
 2026-09-11. The saved approved Unity boulder family now has a native C++ v6
 workbench path. Open [the Golden Rock workbench](../out/golden-rock-workbench/Launch-Rock-Generator.command).
 It starts with Golden Rock and provides two other saved approved variants.

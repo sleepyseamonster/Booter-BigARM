@@ -151,7 +151,15 @@ JPH::RefConst<JPH::Shape> triangleShape(const std::vector<PhysicsVector>& vertic
     JPH::TriangleList triangles;triangles.reserve(vertices.size()/3);
     for(size_t i=0;i<vertices.size();i+=3) {
         for(size_t j=0;j<3;++j) bounded(vertices[i+j]);
-        if((vec(vertices[i+1])-vec(vertices[i])).Cross(vec(vertices[i+2])-vec(vertices[i])).LengthSq()<1e-12f) throw std::invalid_argument("Degenerate collision triangle");
+        // Thin surface-extraction triangles are valid. Reject true zero area;
+        // Jolt sanitizes triangles that collapse in its own quantized storage.
+        std::array<double,3> a{},b{},cross{};
+        for(size_t axis=0;axis<3;++axis) {
+            a[axis]=double(vertices[i+1][axis])-vertices[i][axis];
+            b[axis]=double(vertices[i+2][axis])-vertices[i][axis];
+        }
+        for(size_t axis=0;axis<3;++axis)cross[axis]=a[(axis+1)%3]*b[(axis+2)%3]-a[(axis+2)%3]*b[(axis+1)%3];
+        if(cross[0]==0 && cross[1]==0 && cross[2]==0) throw std::invalid_argument("Degenerate collision triangle");
         triangles.emplace_back(vec(vertices[i]),vec(vertices[i+1]),vec(vertices[i+2]));
     }
     const auto result=JPH::MeshShapeSettings(triangles).Create();

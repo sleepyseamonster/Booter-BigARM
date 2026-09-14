@@ -26,7 +26,7 @@ CalibratedRockVolume::CalibratedRockVolume(const RockVolume& v,float edgeDamage,
     V extent{};for(size_t a=0;a<3;++a)for(size_t j=0;j<3;++j)extent[a]+=std::abs(axes_[j][a])*v.halfSize[j];minimum=sub(v.center,extent);maximum=add(v.center,extent);
     distanceScale_=2.f * *std::min_element(v.halfSize.begin(),v.halfSize.end());
     uint32_t state=(v.shapeSeed^seedDelta)^0xA511E9B3u;
-    round_=lerp(.045f,.105f,random(state));taperX_=lerp(.035f,.09f,random(state));taperZ_=lerp(.035f,.09f,random(state));
+    round_=v.primitive==3?.025f:lerp(.045f,.105f,random(state));taperX_=lerp(.035f,.09f,random(state));taperZ_=lerp(.035f,.09f,random(state));
     const uint32_t start=next(state)&7u,stride=(next(state)&3u)*2+1;
     for(uint32_t i=0;i<4;++i){const auto corner=(start+stride*i)&7u;V n{};for(uint32_t a=0;a<3;++a)n[a]=((corner&(1u<<a))?1.f:-1.f)*lerp(.72f,1,random(state));n=mul(n,1/std::sqrt(dot(n,n)));
         const float damaged=lerp(.56f,.5f,edgeDamage)+random(state)*lerp(.1f,.12f,edgeDamage);cuts_[i]={n[0],n[1],n[2],lerp(.74f,damaged,edgeDamage)};
@@ -36,11 +36,12 @@ CalibratedRockVolume::CalibratedRockVolume(const RockVolume& v,float edgeDamage,
 float CalibratedRockVolume::evaluate(V p)const{
     const auto relative=sub(p,volume_.center);for(size_t a=0;a<3;++a)p[a]=dot(relative,axes_[a])/(2*volume_.halfSize[a]);
     float upper=std::clamp((p[1]+.5f-.52f)/.48f,0.f,1.f);upper=upper*upper*(3-2*upper);
+    if(volume_.primitive==3)upper=0;
     const V half{.5f-taperX_*upper,.5f,.5f-taperZ_*upper};V q{},outside{};for(size_t a=0;a<3;++a){q[a]=std::abs(p[a])-half[a]+round_;outside[a]=std::max(q[a],0.f);}
     float value=std::sqrt(dot(outside,outside))+std::min(std::max({q[0],q[1],q[2]}),0.f)-round_;
     if(volume_.primitive==2)value=std::max(value,(p[0]+wedgeSlope_*p[1]-wedgeOffset_)/std::sqrt(1+wedgeSlope_*wedgeSlope_));
     if(volume_.primitive==1)for(size_t a:{0u,2u}){const float taper=.5f-(a==0?topX_:topZ_);value=std::max(value,(std::abs(p[a])+taper*p[1]-.5f*(1-taper))/std::sqrt(1+taper*taper));}
-    for(const auto& c:cuts_)value=std::max(value,c[0]*p[0]+c[1]*p[1]+c[2]*p[2]-c[3]);
+    if(volume_.primitive!=3)for(const auto& c:cuts_)value=std::max(value,c[0]*p[0]+c[1]*p[1]+c[2]*p[2]-c[3]);
     return value*distanceScale_;
 }
 void relaxCalibratedRock(ModelData& mesh,float amount,float cellSize){

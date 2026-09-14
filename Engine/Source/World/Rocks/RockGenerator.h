@@ -24,6 +24,11 @@ struct RockMemberEdit {
     bool groundOnly=false;
     bool operator==(const RockMemberEdit&)const=default;
 };
+struct SingleRockSettings {
+    float width=1,bodyLength=.75f;
+    bool randomDimensions=false,darkAutoProfile=true;
+    bool operator==(const SingleRockSettings&)const=default;
+};
 struct RockRecipe {
     uint64_t seed=1;
     uint32_t version=1,subdivisions=2;
@@ -39,6 +44,7 @@ struct RockRecipe {
     float fusion=.0657f,relaxation=.45f,authoringScale=1;
     uint32_t samplingMm=50;
     uint64_t calibrationSeed=0;
+    SingleRockSettings single;
     bool operator==(const RockRecipe&)const=default;
 };
 struct RockResult {

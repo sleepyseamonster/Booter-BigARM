@@ -1,5 +1,7 @@
 # Current Engine Handoff
 
+**Latest single-rock pass (2026-09-14):** [Native generator v7](./SINGLE_ROCK_PARITY.md) ports Unity's seeded composition and grid sampling. All 21 reference geometry cases match topology; 189 silhouette views have minimum overlap 99.9897%. Native save/edit/LOD checks, actual Jolt cooking/surface queries, earlier rock regressions and Metal/package captures pass. Open `out/single-rock-workbench/Launch-Rock-Generator.command`. The C# shim is test-only; native generation has no Unity/.NET dependency. Windows and v7 streamed placement remain open.
+
 **Latest engine batch (2026-09-14):** [Two sun cascades and shared frame telemetry](./OUTDOOR_LIGHTING_L2_RESULT.md) are implemented and technically verified on Metal. The ground self-shadow lines are corrected while preserving contact shadows. Open `out/engine-cascaded-shadows/Launch-Rock-Generator.command`. The next bounded job is the measured streamed-region adoption stall, then shared depth/AO and fog. Windows proof remains open.
 
 **Priority clarification (2026-09-14):** the user prioritizes professional engine architecture, performance, low latency and AI-driven authoring. The UI agent owns viewer/UI work. [Runtime priorities](./ENGINE_RUNTIME_PRIORITIES.md) now put a shared frame-performance baseline and explicit pacing ahead of further lighting effects. This is a direction/sequence update; no new performance result is claimed.

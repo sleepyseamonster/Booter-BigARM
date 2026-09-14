@@ -44,9 +44,12 @@ void RockWorkbench::drawControls(bool characterMode) {
     if(ImGui::Button("Frame rock / formation"))frameRequested=true;
     ImGui::Separator();
     int generator=int(draft_.version)-1;
-    if(ImGui::Combo("Generator",&generator,"Classic v1\0Weathered v2\0Fused volumes v3\0Geological formations v4\0Authored silhouettes v5\0Unity Golden Rock v6\0")){
+    if(ImGui::Combo("Generator",&generator,"Classic v1\0Weathered v2\0Fused volumes v3\0Geological formations v4\0Authored silhouettes v5\0Unity Golden Rock v6\0Unity single rocks v7\0")){
         if(generator==5&&draft_.version!=6){error_="Choose a Golden Rock preset to load the captured Unity masses.";}else{
+        const auto previousVersion=draft_.version;
         draft_.version=uint32_t(generator+1);
+        if(draft_.version==7&&previousVersion!=7){draft_.volumes.clear();draft_.formation=0;draft_.members=1;draft_.memberEdits.clear();draft_.profile=7;draft_.calibrationSeed=0;if(!draft_.material.geologyMm)draft_.material.geologyMm=2400;}
+        if(draft_.version<7){draft_.single={};draft_.profile=std::min(draft_.profile,4u);for(auto& v:draft_.volumes)if(v.primitive==3)v.primitive=0;}
         draft_.formation=std::min(draft_.formation,draft_.version>=4?5u:3u);draft_.members=std::min(draft_.members,draft_.version>=4?16u:8u);
         if(draft_.version<6){draft_.fusion=.0657f;draft_.relaxation=.45f;draft_.authoringScale=1;draft_.samplingMm=50;draft_.calibrationSeed=0;draft_.material.sideShale=360;draft_.material.topShale=420;draft_.material.geologyMm=0;draft_.material.dustColor={.196f,.095f,.047f};for(auto& v:draft_.volumes){v.orientation={0,0,0,1};v.shapeSeed=0;}}
         if(draft_.version<5){draft_.profile=0;draft_.memberEdits.clear();for(auto& v:draft_.volumes){v.primitive=0;v.pitch=v.roll=v.taper=0;}}
@@ -55,10 +58,16 @@ void RockWorkbench::drawControls(bool characterMode) {
 
     if(!presets_.empty())ImGui::TextWrapped("Presets replace the preview. Save recipe keeps your working copy; originals remain in the library.");
     ImGui::InputScalar("Seed",ImGuiDataType_U64,&draft_.seed);
-    if(ImGui::Button("Next seed"))++draft_.seed;
+    if(ImGui::Button("Next seed")){++draft_.seed;if(draft_.version==7)draft_.seed=uint32_t(draft_.seed);}
     if(draft_.version==5){int profile=int(draft_.profile);if(ImGui::Combo("Silhouette",&profile,"Auto / role-based\0Fractured boulder\0Broken slab\0Angular chunk\0Tapered shard\0"))draft_.profile=uint32_t(profile);}
-    if(draft_.version==6){
-        ImGui::TextWrapped("Captured Unity Golden Rock masses. Seed changes the chipped surfaces; presets switch the three approved shapes. Source angles adjust the captured resting pose.");
+    if(draft_.version>=6){
+        if(draft_.version==6)ImGui::TextWrapped("Captured Unity Golden Rock masses. Seed changes the chipped surfaces; presets switch the three approved shapes. Source angles adjust the captured resting pose.");
+        if(draft_.version==7){
+            ImGui::TextWrapped(draft_.volumes.empty()?"Unity single-rock planning: seed rebuilds the masses, facing and burial.":"Source overrides active. Return to seeded plan to regenerate the composition.");
+            int profile=int(draft_.profile);if(ImGui::Combo("Silhouette",&profile,"Auto\0Boulder\0Slab\0Angular chunk\0Split lobe\0Shard\0Fractured boulder\0Blocky monolith\0Broken slab\0"))draft_.profile=uint32_t(profile);
+            ImGui::Checkbox("Seeded body size",&draft_.single.randomDimensions);
+            ImGui::BeginDisabled(draft_.single.randomDimensions);ImGui::SliderFloat("Body width (m)",&draft_.single.width,.075f,1.2f,"%.3f");ImGui::SliderFloat("Body length (m)",&draft_.single.bodyLength,.05f,3,"%.3f");ImGui::EndDisabled();
+        }
         ImGui::SliderFloat("Overall scale",&draft_.authoringScale,.1f,5,"%.2f");
         ImGui::SliderFloat("Fusion (m)",&draft_.fusion,0,.2f,"%.4f");
         ImGui::SliderFloat("Relaxation",&draft_.relaxation,0,1,"%.2f");
@@ -69,7 +78,7 @@ void RockWorkbench::drawControls(bool characterMode) {
     }
     int detail=int(draft_.subdivisions),distortion=int(draft_.distortionPermille),band=int(draft_.bandPermille),count=int(draft_.bands);
     if(ImGui::SliderInt("Detail",&detail,0,4))draft_.subdivisions=uint32_t(detail);
-    if(draft_.version!=6){
+    if(draft_.version<6){
     if(ImGui::SliderInt("Irregularity",&distortion,0,250))draft_.distortionPermille=uint32_t(distortion);
     if(ImGui::SliderInt("Band strength",&band,0,150))draft_.bandPermille=uint32_t(band);
     if(ImGui::SliderInt("Bands",&count,1,32))draft_.bands=uint32_t(count);
@@ -77,7 +86,7 @@ void RockWorkbench::drawControls(bool characterMode) {
     if(draft_.version>=3){
         auto knob=[](const char* label,uint32_t& value,int low=0,int high=1000){if(low==0&&high==1000){float v=value*.001f;if(ImGui::SliderFloat(label,&v,0,1,"%.2f"))value=uint32_t(v*1000+.5f);}else{int v=int(value);if(ImGui::SliderInt(label,&v,low,high))value=uint32_t(v);}};
         if(draft_.version!=6&&ImGui::CollapsingHeader("Fused shape",ImGuiTreeNodeFlags_DefaultOpen)){
-            knob("Masses",draft_.massCount,1,12);knob("Compaction",draft_.compaction);knob("Lopsidedness",draft_.asymmetry);knob("Major fractures",draft_.fractures);knob("Edge damage",draft_.edgeDamage);
+            if(draft_.version!=7)knob("Masses",draft_.massCount,1,12);knob("Compaction",draft_.compaction);knob("Lopsidedness",draft_.asymmetry);knob("Major fractures",draft_.fractures);knob("Edge damage",draft_.edgeDamage);
             ImGui::TextWrapped("Shape controls create a seeded mass plan. Source-volume edits take precedence until you return to a seeded plan.");
         }
         if(ImGui::CollapsingHeader("Source volumes")){
@@ -91,7 +100,7 @@ void RockWorkbench::drawControls(bool characterMode) {
                         ImGui::Checkbox("Subtractive cut",&volume.subtractive);
                         ImGui::SliderFloat3("Center",volume.center.data(),-3,3,"%.2f");ImGui::SliderFloat3("Half size",volume.halfSize.data(),.03f,2,"%.2f");ImGui::SliderAngle("Yaw",&volume.yaw,-180,180);
                         if(draft_.version>=5){
-                            int primitive=int(volume.primitive);if(ImGui::Combo("Primitive",&primitive,"Rounded block\0Tapered stone\0Wedge\0"))volume.primitive=uint32_t(primitive);
+                            int primitive=int(volume.primitive);if(ImGui::Combo("Primitive",&primitive,draft_.version==7?"Rounded block\0Tapered stone\0Wedge\0Fracture cut\0":"Rounded block\0Tapered stone\0Wedge\0"))volume.primitive=uint32_t(primitive);
                             if(draft_.version==5)ImGui::SliderFloat("Taper / wedge",&volume.taper,0,.8f,"%.2f");
                             ImGui::SliderAngle("Pitch",&volume.pitch,-45,45);ImGui::SliderAngle("Roll",&volume.roll,-45,45);
                         }
@@ -104,9 +113,9 @@ void RockWorkbench::drawControls(bool characterMode) {
         }
         if(ImGui::CollapsingHeader("Layered rock material",ImGuiTreeNodeFlags_DefaultOpen)){
             knob("Side grit",draft_.material.grit);knob("Shale",draft_.material.shale);knob("Cracks",draft_.material.cracks);knob("Dust",draft_.material.dust);knob("Surface variation",draft_.material.variation);knob("Worn shine",draft_.material.worn);
-            if(draft_.version==6){knob("Side shale",draft_.material.sideShale);knob("Top shale",draft_.material.topShale);knob("Geology scale (mm)",draft_.material.geologyMm,450,3000);}
+            if(draft_.version>=6){knob("Side shale",draft_.material.sideShale);knob("Top shale",draft_.material.topShale);knob("Geology scale (mm)",draft_.material.geologyMm,450,3000);}
         }
-        if(draft_.version!=6&&ImGui::CollapsingHeader("Formation",ImGuiTreeNodeFlags_DefaultOpen)){
+        if(draft_.version<6&&ImGui::CollapsingHeader("Formation",ImGuiTreeNodeFlags_DefaultOpen)){
             int kind=int(draft_.formation);if(ImGui::Combo("Layout",&kind,draft_.version>=4?"Single rock\0Connected outcrop\0Scattered rocks\0Supported pile\0Low ridge\0Mixed formations\0":"Single rock\0Connected outcrop\0Scattered rocks\0Rock pile\0"))draft_.formation=uint32_t(kind);
             if(draft_.formation){knob("Members",draft_.members,1,draft_.version>=4?16:8);std::erase_if(draft_.memberEdits,[&](const auto& e){return e.slot>=draft_.members;});knob("Spacing (mm)",draft_.spacingMm,500,12000);}
             if(draft_.version==5&&draft_.formation){

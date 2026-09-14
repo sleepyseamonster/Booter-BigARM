@@ -1,0 +1,62 @@
+{
+  "kind": "engine.rock-recipe",
+  "payload": {
+    "band_permille": 0,
+    "bands": 1,
+    "calibration": {
+      "fusion": 0.065700002014637,
+      "relaxation": 0.44999998807907104,
+      "sampling_mm": 50,
+      "scale": 1.0,
+      "source_seed": 0
+    },
+    "distortion_permille": 0,
+    "formation": {
+      "kind": 0,
+      "members": 1,
+      "spacing_mm": 1500
+    },
+    "generator_version": 7,
+    "material": {
+      "cracks": 360,
+      "dust": 60,
+      "dust_color_linear": [
+        0.08353512734174728,
+        0.07323895394802094,
+        0.06372379511594772
+      ],
+      "family": "wasteland-layered-v1",
+      "geology_mm": 2400,
+      "grit": 220,
+      "shale": 200,
+      "side_shale": 0,
+      "top_shale": 0,
+      "variation": 346,
+      "worn": 99
+    },
+    "member_edits": [],
+    "profile": 1,
+    "radii_mm": [
+      500,
+      375,
+      500
+    ],
+    "seed": 2126351350,
+    "shape": {
+      "asymmetry": 0,
+      "compaction": 0,
+      "edge_damage": 1000,
+      "fractures": 0,
+      "masses": 2
+    },
+    "single": {
+      "body_length": 0.75,
+      "dark_auto_profile": true,
+      "random_dimensions": true,
+      "width": 1.0
+    },
+    "subdivisions": 2,
+    "volumes": []
+  },
+  "version": 1
+}

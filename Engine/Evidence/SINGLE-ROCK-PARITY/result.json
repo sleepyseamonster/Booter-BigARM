@@ -1,0 +1,87 @@
+{
+  "kind": "engine.single-rock-parity",
+  "version": 1,
+  "date": "2026-09-14",
+  "passed": true,
+  "native": {
+    "cases": 21,
+    "collision": true,
+    "cooked_collision_hits": 825,
+    "passed": true,
+    "recipe_roundtrip": true,
+    "saved_unity_pose_max_error": 1.043081283569336e-07
+  },
+  "comparison": {
+    "cases": 21,
+    "all_source_identities_match": true,
+    "all_oriented_topologies_match": true,
+    "max_vertex_distance_m": 1.7413610469710685e-05,
+    "threshold_m": 0.0001
+  },
+  "silhouettes": {
+    "passed": true,
+    "minimum_iou": 0.9998971643057305,
+    "views": 189,
+    "threshold": 0.9995
+  },
+  "viewer": {
+    "backend": "Metal",
+    "captures": 5,
+    "draft_apply_undo": [
+      true,
+      true,
+      true
+    ],
+    "gpu_errors": 0,
+    "passed": true,
+    "real_surfaces": true,
+    "recipe": "Engine/Assets/SingleRockPresets/01-Golden-Rock.json",
+    "simulation_advanced": false,
+    "ui_checked": true
+  },
+  "installed_viewer": {
+    "backend": "Metal",
+    "captures": 5,
+    "draft_apply_undo": [
+      true,
+      true,
+      true
+    ],
+    "gpu_errors": 0,
+    "passed": true,
+    "real_surfaces": true,
+    "recipe": "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/out/single-rock-workbench/UserData/rock.json",
+    "simulation_advanced": false,
+    "ui_checked": true
+  },
+  "physics_tests_passed": true,
+  "earlier_rock_regressions": [
+    "v3",
+    "v4",
+    "v5",
+    "v6"
+  ],
+  "package_manifest_sha256": "fb42efbc46b8e8302e156ea59adf7fc2c1be47b8ae3c27e485f727f119c585ec",
+  "package_payload_and_source_hashes_verified": true,
+  "original_unity_sources": {
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DRockWorkbenchBaseRockGenerator.cs": "775395a09cc18e009e13d7f68549ce4d0bb445a86523e01f2339be95315e4770",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DRockWorkbenchMesher.cs": "c0a07834d373be3dbde3d6770b9eeff8fc97fa30218b1b6327f18ba205bffe3e",
+    "Assets/_Project/Scripts/Editor/TopDown3D/RockFusion/TopDown3DRockMeshTopology.cs": "fa0749519cf1f821dda67f77a53e702bb0ff6c4b483ed381ee42db45f3ffe355"
+  },
+  "test_sources": {
+    "Tests/ReferenceRock/Program.cs": "8c569e27450938eb4a0a104e03161d0e865881a688cd1c7262eee10c6a23346e",
+    "Tests/ReferenceRock/README.md": "263754729c2fe63c9cb7e8318abef6892904f253d28f54dba211241622fe0bb4",
+    "Tests/ReferenceRock/UnityMath.cs": "b8096de2c66adacc48e419dd487c7e8b59036d1f4b240c1fcb078d786182bd2f",
+    "Tests/ReferenceRock/compare.py": "eed2b7706ea2e0d061ab4d48070f7e6bfc93be12152893872f33e173085d46a7",
+    "Tests/ReferenceRock/prepare_reference.py": "685d19728a02b79170a119c1ca1879e15d37f4e1d45e157792c80bc21e32ba52",
+    "Tests/ReferenceRock/silhouettes.py": "29fbea64a94eaca4dd78bbcd903ffbcd83701ad0398bb65c89753b34ff3570dc",
+    "Tests/SingleRockTests.cpp": "fc61cc2c4c119f0dad8fb35f965a53d52eb209f00871cbb7bfc43088cad84606"
+  },
+  "proof_limits": [
+    "C# test math adapters; no Unity Editor execution",
+    "Bounded cases, not all seeds or settings",
+    "Mac Metal; Windows not tested",
+    "Rendering geometry retained; Jolt may sanitize quantized degenerate triangles",
+    "No gameplay smoke test or v7 streamed placement adoption"
+  ]
+}
