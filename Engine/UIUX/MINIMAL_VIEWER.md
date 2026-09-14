@@ -1,23 +1,19 @@
-# Minimal scene viewer
+# Scene-only viewer
 
-2026-09-14. The user selected AI-controlled operation with very few manual inputs.
+2026-09-14. Supersedes the earlier minimal-menu design. The user does not want a menu, Advanced controls or persistent manual inputs. Controls are appropriate only when required by a specific test.
 
-The scene fills the window, which launches maximized. Only the small top-right Engine button is visible by default. Its compact dropdown contains four controls: Frame scene, Exposure, Fullscreen, and Advanced controls. Frame scene uses the existing rock/formation bounds when a rock is loaded; otherwise it recenters the inspection view. It is disabled in character mode. F11 toggles fullscreen; Escape dismisses an active menu or leaves fullscreen. Escape no longer quits the workbench.
+Normal launches show only the scene in a maximized window. Existing inspection documents supply framing and lighting. Orbit/pan/zoom remain available without overlays. F11 toggles fullscreen and Escape leaves fullscreen without quitting. The UI agent takes responsibility for task-appropriate scene adjustments through the existing engine/document owners; the user need not choose a permanent set of sliders.
 
-Advanced controls reveals the existing engine inspector, rock/formation authoring panel, model animation panel and terrain panel where applicable. Turning it off hides them together. Hidden panels retain their state. Inspection history still observes settled edits while hidden. No generator, world identity, stable object identity, authored constraint, streaming lifetime or persisted delta format changes are included. Viewer visibility and fullscreen are transient, not scene data.
+There is no normal-viewer menu to discover or configure. Explicit testing sessions use `--test-controls rock`, `engine`, `animation`, or `terrain`. Only the named subsystem's controls are submitted. Rock, animation and terrain modes require their corresponding asset arguments. Controls do not persist into the next ordinary launch. For example, a rock-generator test may expose recipe edits, Apply/Undo and export; it does not expose unrelated animation or terrain diagnostics.
 
-This is the interface foundation for AI-controlled work. It adds no AI service, command transport or false connection indicator. Existing documents and programmatic runtime paths remain available; a complete live AI command interface is separate work.
+No generator, world identity, generated object identity, authored constraints, streaming lifetime or persisted delta format changes are included. Inspection history continues to observe settled edits without rendering UI. No AI service or transport was added by this presentation change.
 
 ## Open
 
-Use [the current viewer launcher](../out/ai-scene-viewer/Launch-Rock-Generator.command). It contains the latest Golden Rock library and its own working settings/recipe. Existing packages and saved user data remain intact. Manual authoring and preset switching remain under Engine → Advanced controls.
+Use [the scene-only launcher](../out/scene-viewer/Launch-Rock-Generator.command). It contains the latest Golden Rock assets and separate working files. Earlier packages and user data remain intact. The previous `ai-scene-viewer` package is superseded by this one.
 
-## Evidence
+## Verification
 
-- Native Mac workbench build passed. An existing `BoundedJobs.h` indentation warning remains outside this UI change.
-- [Real ImGui interaction checks](Tools/check_menu.sh) pass: closed default, compact/advanced menu dimensions, viewport bounds, opening, Escape/outside dismissal, scrolling, frame/fullscreen requests, and advanced toggle on/off.
-- [Native Metal UI receipt](../out/uiux-viewer-review/native/result.json): five captures, zero GPU errors, actual draft/apply/undo checks pass, simulation did not advance. The closed scene, compact dropdown, small-window scene and advanced panel were visually inspected.
-- [General fixture receipt](../out/uiux-viewer-review/fixture/verification.json): inspector click, camera event, resizing, resource rebuild/cleanup and 13 captures passed.
-- Generated logs, captures and package receipts stay under ignored `Engine/out/`. The first capture attempt used a model path absent from the Golden Rock package and stopped; the corrected run uses the actual package assets.
+Native Mac build passed. The existing `BoundedJobs.h` indentation warning is outside this UI change. The [Metal UI check](../out/scene-only-review/native/result.json) captures the scene at normal and small window sizes, explicitly asserts zero UI vertices in both, and enables only rock test controls for the edit/apply/undo portion. Five captures, zero GPU errors and the three recipe assertions passed without advancing simulation. The scene-only captures were visually inspected.
 
-Fullscreen's SDL integration compiled and its UI request was exercised in ImGui; OS fullscreen transitions, physical input feel and Windows execution were not visually verified. The native captures use deterministic non-focusable windows rather than a gameplay session.
+Fullscreen transitions and Windows execution remain unverified. Generated logs, captures and packages live in ignored Engine output. This is an interface and native rendering check, not a gameplay smoke test.

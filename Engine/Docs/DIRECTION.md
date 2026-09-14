@@ -30,7 +30,7 @@ On 2026-09-10 the user clarified that the first milestone should be a completed 
 
 ## Interface direction
 
-On 2026-09-14 the user selected an AI-controlled engine interface, with only a handful of manual toggles, sliders or inputs and a scene viewer that can fill the screen. The default workbench prioritizes viewing; detailed authoring and diagnostics are opt-in. This records product direction, not proof of an implemented AI connection. See the [UI/UX workspace](../UIUX/README.md).
+On 2026-09-14 the user selected an AI-controlled engine interface, with only a handful of manual toggles, sliders or inputs and a scene viewer that can fill the screen. The user then clarified that even the menu and Advanced controls are unwanted: normal viewing must be scene-only, with controls exposed solely for a specific test. The UI agent owns sensible scene adjustments and should not make the user choose routine parameters. This records product direction, not proof of an implemented AI connection. See the [UI/UX workspace](../UIUX/README.md).
 
 ## Platform
 

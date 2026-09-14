@@ -36,11 +36,12 @@
 #include "Tools/ViewerControls.h"
 
 namespace {
-struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool captureRockUi=false,terrainPreview=false,buildInfo=false, lightingVerify=false, environmentVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
+struct Options { std::string testControls; std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool captureRockUi=false,terrainPreview=false,buildInfo=false, lightingVerify=false, environmentVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
+        if(arg=="--test-controls"&&i+1<argc){options.testControls=argv[++i];continue;}
         if(arg=="--capture-rock-ui"){options.captureRockUi=true;continue;}
         if(arg=="--terrain-preview"){options.terrainPreview=true;continue;}
         if ((arg=="--verify-camera" || arg=="--rock-library" || arg=="--capture-rock" || arg=="--world-profile" || arg=="--terrain" || arg=="--stream-rock" || arg=="--constraints" || arg=="--verify-stream" || arg=="--rock" || arg=="--verify-rock" || arg=="--model" || arg=="--verify-animation" || arg=="--bindings" || arg=="--save-bindings" || arg=="--verify-environment" || arg=="--verify-lighting" || arg=="--verify" || arg=="--shaders" || arg=="--inspection" || arg=="--save-inspection" || arg=="--catalog") && i+1<argc) {
@@ -66,8 +67,9 @@ Options parse(int argc,char** argv) {
             else if (arg=="--save-bindings") options.saveBindings=argv[++i];
             else options.shaders=argv[++i];
         } else if (arg=="--build-info") options.buildInfo=true;
-        else throw std::runtime_error("Usage: engine_workbench [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--rock-library directory] [--capture-rock new-directory] [--verify-camera new-directory] [--terrain recipe.json] [--terrain-preview] [--world-profile directory] [--stream-rock recipe.json] [--constraints file.json] [--verify-stream new-directory] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
+        else throw std::runtime_error("Usage: engine_workbench [--test-controls rock|engine|animation|terrain] [--shaders directory] [--inspection file] [--save-inspection file] [--build-info] [--catalog catalog.json] [--model model.json] [--rock recipe.json] [--rock-library directory] [--capture-rock new-directory] [--verify-camera new-directory] [--terrain recipe.json] [--terrain-preview] [--world-profile directory] [--stream-rock recipe.json] [--constraints file.json] [--verify-stream new-directory] [--verify-rock new-output-directory] [--verify-animation new-output-directory] [--verify new-output-directory] [--verify-lighting new-output-directory]");
     }
+    if(!options.testControls.empty()&&options.testControls!="rock"&&options.testControls!="engine"&&options.testControls!="animation"&&options.testControls!="terrain")throw std::runtime_error("Test controls must be rock, engine, animation or terrain");
     return options;
 }
 struct SDLSession {
@@ -207,6 +209,9 @@ int run(Options options) {
     if (!options.inspection.empty()) engine::loadInspection(options.inspection,state);
     const bool technical=!options.verify.empty();
     const bool captureRock=!options.captureRock.empty();
+    if(options.testControls=="rock"&&options.rock.empty())throw std::runtime_error("Rock test controls require --rock");
+    if(options.testControls=="animation"&&options.model.empty())throw std::runtime_error("Animation test controls require --model");
+    if(options.testControls=="terrain"&&options.terrain.empty())throw std::runtime_error("Terrain test controls require --terrain");
     if(options.captureRockUi&&!captureRock)throw std::runtime_error("UI capture requires --capture-rock");
     if((captureRock||!options.rockLibrary.empty())&&options.rock.empty())throw std::runtime_error("Rock capture/library requires --rock");
     const bool verify=technical && !options.lightingVerify && !options.environmentVerify && !options.animationVerify && !options.rockVerify && !options.streamVerify && !captureRock && !options.cameraVerify;
@@ -346,7 +351,7 @@ int run(Options options) {
         ui.start(options.shaders);
         bool running=true;
         engine::ViewerControls viewer;
-        viewer.advanced=verify; // The legacy fixture explicitly tests advanced controls.
+        viewer.advanced=true; // Only explicit engine-testing sessions reach this inspector.
         std::string viewerError;
         auto setFullscreen=[&](bool enabled) {
             if(!SDL_SetWindowFullscreen(window.get(),enabled))viewerError=SDL_GetError();
@@ -392,14 +397,6 @@ int run(Options options) {
                 if (frame==65) io.AddMousePosEvent(800,300);
                 if (frame==65) io.AddMouseButtonEvent(1,true);
                 if (frame==69) io.AddMouseButtonEvent(1,false);
-            }
-            if(options.captureRockUi) {
-                io.AddFocusEvent(true);
-                if(frame==26)io.AddMousePosEvent(button.x,button.y);
-                if(frame==27)io.AddMouseButtonEvent(0,true);
-                if(frame==28)io.AddMouseButtonEvent(0,false);
-                if(frame==32)io.AddKeyEvent(ImGuiKey_Escape,true);
-                if(frame==33)io.AddKeyEvent(ImGuiKey_Escape,false);
             }
             if(options.cameraVerify){
                 io.AddFocusEvent(true);io.AddMousePosEvent(560,300);
@@ -482,8 +479,16 @@ int run(Options options) {
                 if(frame==60)rock->undo();
                 if(frame==75){auto invalid=originalRecipe;invalid.subdivisions=99;bool rejected=false;try{rock->apply(invalid);}catch(const std::exception&){rejected=true;}if(!rejected||rock->recipe()!=originalRecipe)throw std::runtime_error("Failed rock edit changed the document");state.yaw+=3.14159265f;}
             }
-            if(options.captureRockUi&&frame==36)viewer.advanced=true;
-            button=inspector(state,renderer,milliseconds,textureControls,simulation,documents,technical,viewer,(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN)!=0);
+            // Testing exposes only the named subsystem. Normal viewing submits no controls.
+            const std::string testControls=options.captureRockUi
+                ? ((frame>=26&&frame<=32)||frame>=36?"rock":"") : options.testControls;
+            if(verify||testControls=="engine")
+                button=inspector(state,renderer,milliseconds,textureControls,simulation,documents,technical,viewer,(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN)!=0);
+            else {
+                documents.draw(state,!technical&&!simulation.enabled,false);
+                state.constrain();
+                if(simulation.enabled)state.distance=std::min(state.distance,8.0f);
+            }
             if(viewer.fullscreenRequested){setFullscreen(!(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN));viewer.fullscreenRequested=false;}
             if(viewer.frameRequested) {
                 if(rock)rock->frameRequested=true;
@@ -491,12 +496,12 @@ int run(Options options) {
                 viewer.frameRequested=false;
             }
             if(!viewerError.empty()){ImGui::Begin("Display error");ImGui::TextWrapped("%s",viewerError.c_str());if(ImGui::Button("Dismiss"))viewerError.clear();ImGui::End();}
-            if(rock&&!rockVerify&&viewer.advanced)rock->drawControls(simulation.enabled);
+            if(rock&&!rockVerify&&testControls=="rock")rock->drawControls(simulation.enabled);
             if(rock&&rock->frameRequested&&!simulation.enabled){
                 const auto& a=rock->asset().lods.front();float squared=0;for(size_t i=0;i<3;++i){const float extent=(a.maximum[i]-a.minimum[i])*.5f;squared+=extent*extent;}
                 state.distance=std::clamp(std::sqrt(squared)/std::sin(state.fieldOfView*.00872664626f)*1.05f,2.5f,30.f);state.viewOffset={(a.minimum[0]+a.maximum[0])*.5f,0,(a.minimum[2]+a.maximum[2])*.5f};rock->frameRequested=false;
             }
-            if(animation && !animationVerify && viewer.advanced) {
+            if(animation && !animationVerify && testControls=="animation") {
                 ImGui::Begin("Model animation");
                 ImGui::Text("%zu joints | %zu clips",modelData->joints.size(),modelData->clips.size());
                 if(!modelData->clips.empty() && !simulation.enabled) {
@@ -518,7 +523,7 @@ int run(Options options) {
                 if(streamVerify)streaming->anchors({{{{streamPhase==1?4:0,0},{32,0,32}},0}});
                 else if(!simulation.enabled){state.viewOffset[0]=std::clamp(state.viewOffset[0],-3500.f,3500.f);state.viewOffset[2]=std::clamp(state.viewOffset[2],-3500.f,3500.f);const auto eye=state.eye();streaming->anchors({{{{},{eye[0],eye[1],eye[2]}},0}});}
                 else streaming->update();
-                if(!streamVerify&&viewer.advanced){
+                if(!streamVerify&&testControls=="terrain"){
                     ImGui::SetNextWindowPos(ImVec2(12,54),ImGuiCond_FirstUseEver);
                     ImGui::Begin("Wasteland terrain");
                     ImGui::TextUnformatted("Option/Alt + drag: orbit | Middle/Space + drag: pan");
@@ -664,9 +669,10 @@ int run(Options options) {
                     bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"rock.png").string().c_str());
                 }
                 if(options.captureRockUi){
+                    if((frame==25||frame==35)&&ImGui::GetDrawData()->TotalVtxCount!=0)throw std::runtime_error("Scene-only viewer submitted UI geometry");
                     if(frame==25)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"workbench.png").string().c_str());
                     if(frame==29)SDL_SetWindowSize(window.get(),800,600);
-                    if(frame==31)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"viewer-controls.png").string().c_str());
+                    if(frame==31)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"test-controls.png").string().c_str());
                     if(frame==35)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"workbench-small.png").string().c_str());
                     if(frame==36||frame==38||frame==40){
                         auto* panel=ImGui::FindWindowByName("Rock & formation workbench");
