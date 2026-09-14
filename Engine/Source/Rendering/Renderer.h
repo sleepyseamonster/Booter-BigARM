@@ -3,6 +3,7 @@
 #include "Core/RockMaterial.h"
 #include "Platform/Window.h"
 #include "Rendering/RenderModel.h"
+#include "Rendering/FrameTelemetry.h"
 #include <bgfx/bgfx.h>
 #include <atomic>
 #include <filesystem>
@@ -44,7 +45,9 @@ public:
     ~Renderer();
     Renderer(const Renderer&) = delete;
     Renderer& operator=(const Renderer&) = delete;
-    void start(const Window&, const std::filesystem::path& shaders);
+    void start(const Window&, const std::filesystem::path& shaders, const RenderConfiguration& configuration=RenderConfiguration::fromEnvironment());
+    FrameTelemetry telemetry;
+    uint32_t finishFrame(bool technical=false){return telemetry.finish(technical);}
     void resize(int width, int height);
     void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None, bool calibration = false, const TexturePreview* preview = nullptr, const SceneSurfaces* surfaces = nullptr, const ScenePlacement* placement = nullptr);
     void rebuildMesh();
@@ -56,6 +59,7 @@ public:
 private:
     void resizeTargets(int width,int height);
     bool started_ = false;
+    RenderConfiguration configuration_;
     int width_ = 0, height_ = 0;
     bgfx::ProgramHandle textureProgram_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle textureOptions_ = BGFX_INVALID_HANDLE, previewSampler_ = BGFX_INVALID_HANDLE;
@@ -71,6 +75,7 @@ private:
     bgfx::FrameBufferHandle shadow_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle shadowProgram_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle shadowMatrix_ = BGFX_INVALID_HANDLE, shadowOptions_ = BGFX_INVALID_HANDLE, shadowSampler_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle shadowFarMatrix_ = BGFX_INVALID_HANDLE, shadowRange_ = BGFX_INVALID_HANDLE, shadowCamera_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle eye_ = BGFX_INVALID_HANDLE, surfaceParams_ = BGFX_INVALID_HANDLE;
     std::array<bgfx::UniformHandle,10> layerSamplers_=[] {std::array<bgfx::UniformHandle,10> a;for(auto& h:a)h=BGFX_INVALID_HANDLE;return a;}();
     bgfx::UniformHandle layerParams_=BGFX_INVALID_HANDLE;

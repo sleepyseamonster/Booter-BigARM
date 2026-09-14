@@ -1,5 +1,7 @@
 # Current Engine Handoff
 
+**Latest engine batch (2026-09-14):** [Two sun cascades and shared frame telemetry](./OUTDOOR_LIGHTING_L2_RESULT.md) are implemented and technically verified on Metal. The ground self-shadow lines are corrected while preserving contact shadows. Open `out/engine-cascaded-shadows/Launch-Rock-Generator.command`. The next bounded job is the measured streamed-region adoption stall, then shared depth/AO and fog. Windows proof remains open.
+
 **Priority clarification (2026-09-14):** the user prioritizes professional engine architecture, performance, low latency and AI-driven authoring. The UI agent owns viewer/UI work. [Runtime priorities](./ENGINE_RUNTIME_PRIORITIES.md) now put a shared frame-performance baseline and explicit pacing ahead of further lighting effects. This is a direction/sequence update; no new performance result is claimed.
 
 **Latest approved-rock transfer (2026-09-11):** [Unity Golden Rock v6](./GOLDEN_ROCK_TRANSFER_RESULT.md) reproduces the three saved two-mass compositions with captured rotations, source primitive fields, fusion/relaxation and saved surface controls. Open `out/golden-rock-workbench/Launch-Rock-Generator.command`. Native geometry/save/collision checks, earlier rock regressions and Metal/UI/package captures pass. Full random composition planning, surrounding sand/clutter and v6 streaming remain open.

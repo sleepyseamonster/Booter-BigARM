@@ -3,6 +3,7 @@
 #include "Core/FixtureGeometry.h"
 #include "Core/Color.h"
 #include "Core/Visibility.h"
+#include "Core/SunCascade.h"
 #include <bx/math.h>
 #include <cstdio>
 #include <cstdlib>
@@ -64,9 +65,11 @@ void CaptureCallbacks::screenShot(const char* path, uint32_t width, uint32_t hei
     if (surface) SDL_DestroySurface(surface);
 }
 Renderer::~Renderer() { stop(); }
-void Renderer::start(const Window& window, const std::filesystem::path& shaders) {
+void Renderer::start(const Window& window, const std::filesystem::path& shaders, const RenderConfiguration& configuration) {
     window.pixels(width_, height_);
     if (!window.nativeHandle() || width_ <= 0 || height_ <= 0) throw std::runtime_error("Invalid window surface");
+    configuration_=configuration;
+    telemetry.enable(!configuration_.trace.empty());
     bgfx::Init init;
 #ifdef __APPLE__
     init.type = bgfx::RendererType::Metal;
@@ -80,7 +83,7 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders)
     init.swapChain.nwh = window.nativeHandle();
     init.swapChain.width = uint32_t(width_);
     init.swapChain.height = uint32_t(height_);
-    init.reset = BGFX_RESET_VSYNC;
+    init.reset = configuration_.present==PresentMode::VSync?BGFX_RESET_VSYNC:BGFX_RESET_NONE;
     if (!bgfx::init(init)) throw std::runtime_error("Requested GPU backend failed to initialize");
     started_ = true;
     if (bgfx::getRendererType() != init.type) throw std::runtime_error("Unexpected GPU backend");
@@ -90,6 +93,9 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders)
     program_ = loadProgram(shaders, "vs_scene.bin", "fs_scene.bin");
     shadowProgram_=loadProgram(shaders,"vs_shadow.bin","fs_shadow.bin");
     shadowMatrix_=bgfx::createUniform("u_shadowMatrix",bgfx::UniformType::Mat4);
+    shadowFarMatrix_=bgfx::createUniform("u_shadowFarMatrix",bgfx::UniformType::Mat4);
+    shadowRange_=bgfx::createUniform("u_shadowRange",bgfx::UniformType::Vec4);
+    shadowCamera_=bgfx::createUniform("u_shadowCamera",bgfx::UniformType::Vec4);
     shadowOptions_=bgfx::createUniform("u_shadowOptions",bgfx::UniformType::Vec4);
     shadowSampler_=bgfx::createUniform("s_shadow",bgfx::UniformType::Sampler);
     eye_=bgfx::createUniform("u_eye",bgfx::UniformType::Vec4);
@@ -97,23 +103,25 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders)
     albedoSampler_=bgfx::createUniform("s_albedo",bgfx::UniformType::Sampler);
     normalSampler_=bgfx::createUniform("s_normal",bgfx::UniformType::Sampler);
     surfaceSampler_=bgfx::createUniform("s_surface",bgfx::UniformType::Sampler);
-    for (auto uniform:{shadowMatrix_,shadowOptions_,shadowSampler_,eye_,surfaceParams_,albedoSampler_,normalSampler_,surfaceSampler_})
+    for (auto uniform:{shadowMatrix_,shadowFarMatrix_,shadowRange_,shadowCamera_,shadowOptions_,shadowSampler_,eye_,surfaceParams_,albedoSampler_,normalSampler_,surfaceSampler_})
         if (!bgfx::isValid(uniform)) throw std::runtime_error("Lighting uniform allocation failed");
     const char* layerNames[]={"s_topColor","s_topNormal","s_topSurface","s_bottomColor","s_bottomNormal","s_bottomSurface","s_gritColor","s_gritNormal","s_gritSurface","s_cracks"};
     for(size_t i=0;i<layerSamplers_.size();++i){layerSamplers_[i]=bgfx::createUniform(layerNames[i],bgfx::UniformType::Sampler);if(!bgfx::isValid(layerSamplers_[i]))throw std::runtime_error("Rock layer sampler allocation failed");}
     layerParams_=bgfx::createUniform("u_rockLayers",bgfx::UniformType::Vec4,5);
     if(!bgfx::isValid(layerParams_))throw std::runtime_error("Rock layer parameters allocation failed");
+    if(bgfx::getCaps()->limits.maxTextureSize<4096)throw std::runtime_error("Two-cascade atlas requires a 4096-wide target");
     constexpr uint64_t shadowFlags=BGFX_TEXTURE_RT|BGFX_SAMPLER_U_CLAMP|BGFX_SAMPLER_V_CLAMP|BGFX_SAMPLER_MIN_POINT|BGFX_SAMPLER_MAG_POINT;
     if (!bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::R32F,shadowFlags)) throw std::runtime_error("Shadow R32F target unsupported");
     bgfx::TextureHandle shadowTargets[]={
-        bgfx::createTexture2D(2048,2048,false,1,bgfx::TextureFormat::R32F,shadowFlags),
-        bgfx::createTexture2D(2048,2048,false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT)};
+        bgfx::createTexture2D(4096,2048,false,1,bgfx::TextureFormat::R32F,shadowFlags),
+        bgfx::createTexture2D(4096,2048,false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT)};
     if (bgfx::isValid(shadowTargets[0]) && bgfx::isValid(shadowTargets[1])) shadow_=bgfx::createFrameBuffer(2,shadowTargets,true);
     if (!bgfx::isValid(shadow_)) {
         for(auto texture:shadowTargets) if(bgfx::isValid(texture)) bgfx::destroy(texture);
         throw std::runtime_error("Shadow target allocation failed");
     }
-    bgfx::setViewName(views::shadow,"Directional sun shadow");
+    bgfx::setViewName(views::shadow,"Sun near cascade");
+    bgfx::setViewName(views::shadowFar,"Sun far cascade");
     material_ = bgfx::createUniform("u_material", bgfx::UniformType::Vec4);
     light_ = bgfx::createUniform("u_light", bgfx::UniformType::Vec4);
     if (!bgfx::isValid(material_) || !bgfx::isValid(light_)) throw std::runtime_error("Scene uniform allocation failed");
@@ -175,7 +183,7 @@ void Renderer::resize(int width, int height) {
     resizeTargets(width,height);
     bgfx::SwapChain swap;
     swap.width = uint32_t(width); swap.height = uint32_t(height);
-    bgfx::reset(BGFX_RESET_VSYNC, &swap);
+    bgfx::reset(configuration_.present==PresentMode::VSync?BGFX_RESET_VSYNC:BGFX_RESET_NONE, &swap);
     width_ = width; height_ = height;
     std::cout << "RESIZE " << width_ << 'x' << height_ << '\n';
 }
@@ -240,18 +248,27 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     float environment[16]{};
     const std::array<std::array<float,3>,4> colors{state.environment.sunColor,state.environment.zenith,state.environment.horizon,state.environment.ground};
     for(size_t i=0;i<4;++i)for(size_t j=0;j<3;++j)environment[i*4+j]=colors[i][j];
-    float lightView[16],lightProjection[16],lightViewProjection[16],shadowMatrix[16];
-    const auto lightDirection=bx::normalize(bx::Vec3{light[0],light[1],light[2]});
-    const bx::Vec3 lightCenter=streamed?bx::Vec3{target[0],target[1],target[2]}:bx::Vec3{0,0,0};
-    const auto lightEye=bx::add(lightCenter,bx::mul(lightDirection,20.0f));
-    bx::mtxLookAt(lightView,lightEye,lightCenter,{0,1,0},bx::Handedness::Right);
-    bx::mtxOrtho(lightProjection,-12,12,-12,12,0.1f,45.0f,0,bgfx::getCaps()->homogeneousDepth,bx::Handedness::Right);
+    float lightView[2][16],lightProjection[2][16],lightViewProjection[2][16],shadowMatrix[2][16];
+    const auto direction=sunUnit(SunVector{target[0]-eye[0],target[1]-eye[1],target[2]-eye[2]});
+    const float shadowEnd=streamed?128.0f:80.0f;
+    const float shadowRange[]={21.6f,24.0f,shadowEnd*.9f,shadowEnd};
+    const float shadowCamera[]={direction[0],direction[1],direction[2],0};
     const auto* caps=bgfx::getCaps();
     const float crop[]={0.5f,0,0,0, 0,caps->originBottomLeft?0.5f:-0.5f,0,0,
         0,0,caps->homogeneousDepth?0.5f:1.0f,0, 0.5f,0.5f,caps->homogeneousDepth?0.5f:0.0f,1};
-    bx::mtxMul(lightViewProjection,lightView,lightProjection);
-    bx::mtxMul(shadowMatrix,lightViewProjection,crop);
-    const float shadowOptions[]={state.shadows?1.0f:0.0f,state.shadowBias,1.0f/2048,0};
+    float biases[2];
+    for(unsigned cascade=0;cascade<2;++cascade) {
+        const auto fit=fitSunCascade(eye,direction,{light[0],light[1],light[2]},state.fieldOfView,float(width_)/float(height_),cascade?21.6f:.1f,cascade?shadowEnd:24.f,2048);
+        const bx::Vec3 center{fit.center[0],fit.center[1],fit.center[2]},lightDirection{light[0],light[1],light[2]};
+        const float depth=2*(fit.radius+96.f);
+        const auto lightEye=bx::add(center,bx::mul(lightDirection,fit.radius+96.f));
+        bx::mtxLookAt(lightView[cascade],lightEye,center,{0,1,0},bx::Handedness::Right);
+        bx::mtxOrtho(lightProjection[cascade],-fit.radius,fit.radius,-fit.radius,fit.radius,.1f,depth,0,caps->homogeneousDepth,bx::Handedness::Right);
+        bx::mtxMul(lightViewProjection[cascade],lightView[cascade],lightProjection[cascade]);
+        bx::mtxMul(shadowMatrix[cascade],lightViewProjection[cascade],crop);
+        biases[cascade]=state.shadowBias*20.f/(depth-.1f); // Convert reference bias to world-space distance.
+    }
+    const float shadowOptions[]={state.shadows?1.0f:0.0f,biases[0],1.0f/2048,biases[1]};
     const float eyePosition[]={eye[0],eye[1],eye[2],0};
     uint64_t cull=BGFX_STATE_CULL_CW; // Authored fixture triangles are outward CCW.
     if (check==GeometryCheck::Unculled) cull=0;
@@ -267,7 +284,8 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         const float options[]={state.showNormals?1.0f:0.0f,textured?1.0f:0.0f,surface&&surface->material.geologyMm?1000.f/surface->material.geologyMm:state.textureScale,state.ambient};
         const float params[]={mesh<0?resource->roughness:state.roughness,mesh<0?resource->metallic:state.metallic,state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
         bgfx::setUniform(material_,linear); bgfx::setUniform(light_,light);bgfx::setUniform(environment_,environment,4);
-        bgfx::setUniform(shadowMatrix_,shadowMatrix);bgfx::setUniform(shadowOptions_,shadowOptions);
+        bgfx::setUniform(shadowMatrix_,shadowMatrix[0]);bgfx::setUniform(shadowFarMatrix_,shadowMatrix[1]);
+        bgfx::setUniform(shadowRange_,shadowRange);bgfx::setUniform(shadowCamera_,shadowCamera);bgfx::setUniform(shadowOptions_,shadowOptions);
         bgfx::setUniform(eye_,eyePosition);bgfx::setUniform(surfaceParams_,params);
         bgfx::setTexture(0,shadowSampler_,bgfx::getTexture(shadow_));
         const auto* bound=surface?surface:(surfaces?&surfaces->rock:nullptr);
@@ -304,23 +322,27 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     const int subjectMesh=model?-1:(physical?4:(baked?3:state.mesh));
     if (baked) bx::mtxIdentity(subject.data());
     if (state.shadows && !state.showNormals && !calibration && !preview) {
-        bgfx::setViewFrameBuffer(views::shadow,shadow_);
-        bgfx::setViewRect(views::shadow,0,0,2048,2048);
-        bgfx::setViewClear(views::shadow,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,0xffffffff,1.0f,0);
-        bgfx::setViewTransform(views::shadow,lightView,lightProjection);
+        for(unsigned cascade=0;cascade<2;++cascade) {
+        const auto shadowView=cascade?views::shadowFar:views::shadow;
+        bgfx::setViewFrameBuffer(shadowView,shadow_);
+        bgfx::setViewRect(shadowView,uint16_t(cascade*2048),0,2048,2048);
+        bgfx::setViewClear(shadowView,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,0xffffffff,1.0f,0);
+        bgfx::setViewTransform(shadowView,lightView[cascade],lightProjection[cascade]);
+        bgfx::touch(shadowView);
         auto cast=[&](int mesh,const Matrix4& transform,const RenderModel* instanceModel=nullptr) {
             bgfx::setTransform(transform.data());
             const auto* resource=mesh==-3?instanceModel:(mesh==-2?rockModel:model);
             if(mesh<0) {resource->bind(mesh==-1&&placement->cpuReference);if(mesh==-1&&gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
             else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
             bgfx::setState(BGFX_STATE_WRITE_R|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_CULL_CW);
-            bgfx::submit(views::shadow,mesh==-1&&gpuSkin?skinShadowProgram_:shadowProgram_);
+            bgfx::submit(shadowView,mesh==-1&&gpuSkin?skinShadowProgram_:shadowProgram_);
         };
         if(!streamed)cast(0,groundTransform);if(!rockOnly)cast(subjectMesh,subject);cast(0,markerTransform);if(rockModel)cast(-2,rockTransform);
         if(placement&&placement->instances)for(const auto& instance:*placement->instances){
-            const float dx=instance.boundsCenter[0]-target[0],dz=instance.boundsCenter[2]-target[2];if(std::hypot(dx,dz)>24+instance.boundsRadius)continue;
+            if(!visibleSphere(lightViewProjection[cascade],instance.boundsCenter,instance.boundsRadius,caps->homogeneousDepth))continue;
             Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);cast(-3,transform,instance.model);
         }
+        } // cascade loop
     }
     if(state.environment.sky&&!state.showNormals&&!preview&&!calibration) {
         float inverse[16];bx::mtxInverse(inverse,viewProjection);
@@ -364,6 +386,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
 const char* Renderer::name() const { return bgfx::getRendererName(bgfx::getRendererType()); }
 void Renderer::stop() {
     if (!started_) return;
+    try{telemetry.save(configuration_,name());}catch(const std::exception& e){++callbacks.errors;std::cerr<<"FRAME_TRACE_ERROR "<<e.what()<<'\n';}
     if(bgfx::isValid(skyProgram_))bgfx::destroy(skyProgram_);
     if(bgfx::isValid(environment_))bgfx::destroy(environment_);
     if(bgfx::isValid(inverseViewProjection_))bgfx::destroy(inverseViewProjection_);
@@ -375,7 +398,7 @@ void Renderer::stop() {
     if(bgfx::isValid(shadow_)) bgfx::destroy(shadow_);
     if(bgfx::isValid(shadowProgram_)) bgfx::destroy(shadowProgram_);
     shadow_=BGFX_INVALID_HANDLE;shadowProgram_=BGFX_INVALID_HANDLE;
-    for(auto* uniform:{&shadowMatrix_,&shadowOptions_,&shadowSampler_,&eye_,&surfaceParams_,&albedoSampler_,&normalSampler_,&surfaceSampler_}) {
+    for(auto* uniform:{&shadowMatrix_,&shadowFarMatrix_,&shadowRange_,&shadowCamera_,&shadowOptions_,&shadowSampler_,&eye_,&surfaceParams_,&albedoSampler_,&normalSampler_,&surfaceSampler_}) {
         if(bgfx::isValid(*uniform)) bgfx::destroy(*uniform);
         *uniform=BGFX_INVALID_HANDLE;
     }

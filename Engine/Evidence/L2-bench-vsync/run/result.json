@@ -1,0 +1,52 @@
+{
+  "command": [
+    "build/foundation/engine_outdoor_check",
+    "build/foundation/Shaders",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Evidence/L2-bench-vsync/captures",
+    "bench"
+  ],
+  "cwd_relative_to_engine": ".",
+  "dirty_engine_at_start": [
+    "M Engine/Apps/Game/main.cpp",
+    " M Engine/Apps/Workbench/main.cpp",
+    " M Engine/CMakeLists.txt",
+    " M Engine/Shaders/fs_scene.sc",
+    " M Engine/Source/Rendering/RenderViews.h",
+    " M Engine/Source/Rendering/Renderer.cpp",
+    " M Engine/Source/Rendering/Renderer.h",
+    " M Engine/Source/World/Rocks/CalibratedRock.cpp",
+    " M Engine/Source/World/Rocks/RockGenerator.cpp",
+    " M Engine/Source/World/Rocks/RockGenerator.h",
+    " M Engine/Source/World/Rocks/RockVolumes.cpp",
+    "?? Engine/Evidence/L2-cascade-final/",
+    "?? Engine/Evidence/L2-cascade/",
+    "?? Engine/Evidence/L2-native/",
+    "?? Engine/Evidence/L2-receiver-plane/",
+    "?? Engine/Evidence/L2-stream/",
+    "?? Engine/Source/Core/SunCascade.h",
+    "?? Engine/Source/Rendering/FrameTelemetry.cpp",
+    "?? Engine/Source/Rendering/FrameTelemetry.h",
+    "?? Engine/Source/World/Rocks/SingleRock.cpp",
+    "?? Engine/Source/World/Rocks/SingleRock.h",
+    "?? Engine/Source/World/Rocks/SingleRockMath.h",
+    "?? Engine/Tests/OutdoorRenderCheck.cpp",
+    "?? Engine/Tests/ReferenceRock/",
+    "?? Engine/Tests/SunCascadeTests.cpp"
+  ],
+  "duration_seconds": 1.805,
+  "exit_code": 0,
+  "git_head": "791994d96067d73dbe91e624c35748c1c07d0eb0",
+  "input_sha256_after": {
+    "build/foundation/engine_outdoor_check": "82762ff5ad7a9d1036f3e62ead070d2ff61d45a2ef6e698354e60e4ead2fb118"
+  },
+  "input_sha256_before": {
+    "build/foundation/engine_outdoor_check": "82762ff5ad7a9d1036f3e62ead070d2ff61d45a2ef6e698354e60e4ead2fb118"
+  },
+  "inputs_unchanged": true,
+  "outcome": "passed",
+  "output_sha256": "9690f86ade0437e30dc02e7202161282cb600579d801ca693b2204cac9e711df",
+  "proof_limit": "Process result only. Inspect output and semantic assertions; this does not establish visual quality or GPU performance.",
+  "schema_version": 1,
+  "started_at_utc": "2026-09-14T20:48:18.323114+00:00",
+  "timeout_seconds": 60.0
+}

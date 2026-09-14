@@ -1,6 +1,6 @@
 # Engine Master Implementation Plan
 
-Controlling priority update, 2026-09-14: [production runtime and AI-authoring priorities](./ENGINE_RUNTIME_PRIORITIES.md) apply the user's architecture/performance/low-latency direction. Next is shared frame telemetry and explicit pacing, then evidenced scheduling/authoring/render improvements. UI belongs to the separate UI agent. Earlier lighting next-step entries below remain historical sequencing, subordinate to this update.
+Controlling priority update, 2026-09-14: [production runtime and AI-authoring priorities](./ENGINE_RUNTIME_PRIORITIES.md) apply the user's architecture/performance/low-latency direction. Shared frame telemetry, explicit pacing and wider sun cascades are now implemented; see the [L2 result](./OUTDOOR_LIGHTING_L2_RESULT.md). Next is the measured streamed-region adoption burst, followed by depth/AO, height fog and AI-authoring integration. UI belongs to the separate UI agent. Earlier lighting next-step entries below remain historical sequencing, subordinate to this update.
 
 Lighting implementation update, 2026-09-11: [L1 sky/sun/display](./OUTDOOR_LIGHTING_L1_RESULT.md) is complete as a Mac first pass, with a runnable v5 rock workbench. Continue the [lighting sequence](./OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) at L2 shadow coverage; P32 remains planned.
 

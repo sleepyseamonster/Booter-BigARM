@@ -378,7 +378,7 @@ int run(Options options) {
             }
             if (!running) break;
             int width=0,height=0; window.pixels(width,height);
-            if (width<=0 || height<=0 || (SDL_GetWindowFlags(window.get())&SDL_WINDOW_MINIMIZED)) { actions.focus(false);runtime.advance(0,true,actions,state.yaw,state.pitch);last=std::chrono::steady_clock::now();SDL_Delay(16); continue; }
+            if (width<=0 || height<=0 || (SDL_GetWindowFlags(window.get())&SDL_WINDOW_MINIMIZED)) { actions.focus(false);renderer.telemetry.measure(engine::FramePhase::Simulation,[&]{runtime.advance(0,true,actions,state.yaw,state.pitch);});last=std::chrono::steady_clock::now();SDL_Delay(16); continue; }
             renderer.resize(width,height);
             ImGui_ImplSDL3_NewFrame();
             auto& io=ImGui::GetIO();
@@ -519,9 +519,9 @@ int run(Options options) {
             if(actions.consume(engine::Action::Pause).pressed) simulation.paused=!simulation.paused;
             actions.gameplay(simulation.enabled && !simulation.paused && !io.WantCaptureKeyboard);
             if(streaming){
-                if(streamVerify)streaming->anchors({{{{streamPhase==1?4:0,0},{32,0,32}},0}});
-                else if(!simulation.enabled){state.viewOffset[0]=std::clamp(state.viewOffset[0],-3500.f,3500.f);state.viewOffset[2]=std::clamp(state.viewOffset[2],-3500.f,3500.f);const auto eye=state.eye();streaming->anchors({{{{},{eye[0],eye[1],eye[2]}},0}});}
-                else streaming->update();
+                if(streamVerify)renderer.telemetry.measure(engine::FramePhase::Streaming,[&]{streaming->anchors({{{{streamPhase==1?4:0,0},{32,0,32}},0}});});
+                else if(!simulation.enabled){state.viewOffset[0]=std::clamp(state.viewOffset[0],-3500.f,3500.f);state.viewOffset[2]=std::clamp(state.viewOffset[2],-3500.f,3500.f);const auto eye=state.eye();renderer.telemetry.measure(engine::FramePhase::Streaming,[&]{streaming->anchors({{{{},{eye[0],eye[1],eye[2]}},0}});});}
+                else renderer.telemetry.measure(engine::FramePhase::Streaming,[&]{streaming->update();});
                 if(!streamVerify&&testControls=="terrain"){
                     ImGui::SetNextWindowPos(ImVec2(12,54),ImGuiCond_FirstUseEver);
                     ImGui::Begin("Wasteland terrain");
@@ -540,7 +540,7 @@ int run(Options options) {
                     for(const auto& [_,slot]:streaming->stream().slots())if(!slot.error.empty())ImGui::TextWrapped("%s",slot.error.c_str());ImGui::End();
                 }
             }
-            runtime.advance(double(milliseconds)/1000.0,technical||!simulation.enabled||simulation.paused||!focused,actions,state.yaw,state.pitch);
+            renderer.telemetry.measure(engine::FramePhase::Simulation,[&]{runtime.advance(double(milliseconds)/1000.0,technical||!simulation.enabled||simulation.paused||!focused,actions,state.yaw,state.pitch);});
             if(removeRequested)try{worldStatus=streaming->removeNearest()?"Rock removed; save to keep this change":"No rock within 8 metres";}catch(const std::exception& error){worldStatus=error.what();}
             if(saveRequested||runtime.clock().ticks()-saveAttemptTick>=600)saveWorld();
             simulation.grounded=runtime.grounded();simulation.ticks=runtime.clock().ticks();simulation.dropped=runtime.clock().droppedSeconds();
@@ -581,14 +581,14 @@ int run(Options options) {
             if(rock){surfaces.rock.layered=rock->recipe().version>=3&&layeredMaterialAvailable;surfaces.rock.material=rock->recipe().material;surfaces.rock.seed=float(rock->recipe().seed%65536)/65536.f;float distance=state.distance;if(simulation.enabled){float squared=0;for(size_t i=0;i<3;++i){const float delta=placement.eye[i]-engine::RockWorkbench::offset[i];squared+=delta*delta;}distance=std::sqrt(squared);}placement.rock=rock->model(distance);placement.rockOffset=engine::RockWorkbench::offset;placement.rockFocusHeight=(rock->asset().lods[0].minimum[1]+rock->asset().lods[0].maximum[1])*.5f;}
             if(streaming){
                 if(streamVerify){const float shift=streamPhase==1?1024.f:0.f;placement.physicalCharacter=true;const auto& terrain=worldSession->initial().configuration.terrain;const float ground=terrain.version>=2?engine::terrainSample(terrain,{{streamPhase==1?4:0,0},{32,0,24}}).height:0;placement.eye={32+shift,ground+(terrain.version>=2?7.f:18.f),52};placement.target={32+shift,ground+(terrain.version>=2?1.f:0.f),24};}
-                placement.streamedWorld=true;placement.instances=&streaming->instances(placement.physicalCharacter?placement.eye:state.eye());
+                placement.streamedWorld=true;renderer.telemetry.measure(engine::FramePhase::Streaming,[&]{placement.instances=&streaming->instances(placement.physicalCharacter?placement.eye:state.eye());});
             }
             ImGui::Render();
             engine::GeometryCheck geometryCheck=engine::GeometryCheck::None;
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.draw(state,geometryCheck,(verify && frame>=265 && frame<345)||(options.environmentVerify&&frame>=120&&frame<150),showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock||streaming)?&placement:nullptr); if(!animationVerify&&!rockVerify&&!streamVerify&&(!captureRock||(options.captureRockUi&&frame>=24)))ui.draw(ImGui::GetDrawData());
+            renderer.telemetry.measure(engine::FramePhase::Draw,[&]{renderer.draw(state,geometryCheck,(verify && frame>=265 && frame<345)||(options.environmentVerify&&frame>=120&&frame<150),showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock||streaming)?&placement:nullptr);}); if(!animationVerify&&!rockVerify&&!streamVerify&&(!captureRock||(options.captureRockUi&&frame>=24)))ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -700,7 +700,7 @@ int run(Options options) {
                 }
                 if(streamStable==15){if(streamDone)running=false;else{++streamPhase;streamStable=0;}}
             }
-            bgfx::frame();
+            renderer.finishFrame(technical);
             if (technical) SDL_Delay(10);
         }
         ui.stop();

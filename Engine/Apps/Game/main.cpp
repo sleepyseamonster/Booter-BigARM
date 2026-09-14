@@ -88,8 +88,8 @@ int run(int argc,char** argv) {
             const bool suspended=technical||paused||!focused||(flags&SDL_WINDOW_MINIMIZED)||width<=0||height<=0;
             actions.gameplay(!suspended);
             if(!suspended){state.orbit(dx,dy,false);state.zoom(wheel,false);}
-            if(streaming)streaming->update();
-            runtime.advance(seconds,suspended,actions,state.yaw,state.pitch);
+            if(streaming)renderer.telemetry.measure(engine::FramePhase::Streaming,[&]{streaming->update();});
+            renderer.telemetry.measure(engine::FramePhase::Simulation,[&]{runtime.advance(seconds,suspended,actions,state.yaw,state.pitch);});
             if(saveRequested||runtime.clock().ticks()-saveAttemptTick>=600)save();
             for(const auto& cue:runtime.takeCues())if(audio)audio->cue(cue.sequence);
             if(width<=0||height<=0||(flags&SDL_WINDOW_MINIMIZED)){SDL_Delay(16);continue;}
@@ -97,8 +97,8 @@ int run(int argc,char** argv) {
             const auto view=runtime.present(state.yaw,state.pitch,state.distance,float(std::min(seconds,.1)));
             engine::ScenePlacement placement;placement.physicalCharacter=true;placement.offset=view.feet;placement.offset[1]+=.15f;
             placement.eye=view.eye;placement.target=view.target;placement.model=&mesh;placement.pose=view.palette;placement.markerActive=runtime.targetActive();state.objectYaw=view.yaw;
-            if(streaming){placement.streamedWorld=true;placement.instances=&streaming->instances(view.eye);}
-            renderer.draw(state,engine::GeometryCheck::None,false,nullptr,&surfaces,&placement);
+            if(streaming){placement.streamedWorld=true;renderer.telemetry.measure(engine::FramePhase::Streaming,[&]{placement.instances=&streaming->instances(view.eye);});}
+            renderer.telemetry.measure(engine::FramePhase::Draw,[&]{renderer.draw(state,engine::GeometryCheck::None,false,nullptr,&surfaces,&placement);});
             bgfx::dbgTextClear();bgfx::dbgTextPrintf(2,2,0x0f,"BOOTER & BIGARM - ENGINE SKELETON");
             bgfx::dbgTextPrintf(2,4,0x07,"WASD: move  Space: jump  Shift: run  Right drag: camera");
             bgfx::dbgTextPrintf(2,5,0x07,"E: interact  F5: save  P/Start: pause  Esc: exit");
@@ -108,7 +108,7 @@ int run(int argc,char** argv) {
             bgfx::dbgTextPrintf(2,12,0x07,"%s",saveStatus.c_str());
             if(streaming)bgfx::dbgTextPrintf(2,14,0x07,"%zu regions | %s",streaming->stream().slots().size(),runtime.waitingForWorld()?"Waiting for ground collision":"World ready");
             if(technical&&frame==20)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(capture/"player.png").string().c_str());
-            bgfx::frame();
+            renderer.finishFrame(technical);
             if(technical&&frame==30)running=false;
             if(technical)SDL_Delay(10);
         }

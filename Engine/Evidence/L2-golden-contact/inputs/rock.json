@@ -1,0 +1,109 @@
+{
+  "kind": "engine.rock-recipe",
+  "version": 1,
+  "payload": {
+    "generator_version": 6,
+    "seed": 2126351350,
+    "subdivisions": 2,
+    "radii_mm": [
+      500,
+      375,
+      500
+    ],
+    "distortion_permille": 0,
+    "band_permille": 0,
+    "bands": 1,
+    "shape": {
+      "masses": 2,
+      "compaction": 0,
+      "asymmetry": 0,
+      "fractures": 0,
+      "edge_damage": 1000
+    },
+    "formation": {
+      "kind": 0,
+      "members": 1,
+      "spacing_mm": 1500
+    },
+    "material": {
+      "family": "wasteland-layered-v1",
+      "grit": 220,
+      "shale": 200,
+      "cracks": 360,
+      "variation": 346,
+      "worn": 99,
+      "side_shale": 0,
+      "top_shale": 0,
+      "dust": 60,
+      "geology_mm": 2400,
+      "dust_color_linear": [
+        0.0835351274258047,
+        0.07323895587840543,
+        0.06372379528489175
+      ]
+    },
+    "volumes": [
+      {
+        "id": 0,
+        "center": [
+          -0.3029579,
+          0.52107465,
+          -0.15252185
+        ],
+        "half_size": [
+          0.414551735,
+          0.3380828,
+          0.37492075
+        ],
+        "yaw": 0.0,
+        "subtractive": false,
+        "primitive": 0,
+        "pitch": 0.0,
+        "roll": 0.0,
+        "taper": 0.0,
+        "orientation": [
+          -0.6820994,
+          0.6160879,
+          0.011341253,
+          0.39376068
+        ],
+        "shape_seed": 2880666255
+      },
+      {
+        "id": 1,
+        "center": [
+          -0.24582094,
+          0.5366924,
+          -0.35985106
+        ],
+        "half_size": [
+          0.30637783,
+          0.3508948,
+          0.260381075
+        ],
+        "yaw": 0.0,
+        "subtractive": false,
+        "primitive": 0,
+        "pitch": 0.0,
+        "roll": 0.0,
+        "taper": 0.0,
+        "orientation": [
+          -0.68200773,
+          0.6134263,
+          0.015927432,
+          0.39789435
+        ],
+        "shape_seed": 3166464723
+      }
+    ],
+    "profile": 0,
+    "member_edits": [],
+    "calibration": {
+      "source_seed": 2126351350,
+      "fusion": 0.0657,
+      "relaxation": 0.45,
+      "scale": 1.0,
+      "sampling_mm": 50
+    }
+  }
+}

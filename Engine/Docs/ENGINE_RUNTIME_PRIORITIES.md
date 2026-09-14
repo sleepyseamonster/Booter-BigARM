@@ -8,9 +8,9 @@ Build a professional engine that can grow toward AAA workloads through iteration
 
 The UI agent owns the minimal viewer and interaction surfaces. Engine operations must have a UI-independent owner. Both the agent and any UI should use the same validation, commit/apply and persistence path; neither may create a competing world model. Existing recipe documents, cooker tools, edit history and runtime modules are the starting point.
 
-## Next bounded batch: shared frame-performance baseline
+## Shared frame-performance baseline — implemented 2026-09-14
 
-Current source observations: `Rendering/Renderer.cpp` fixes startup/reset to VSync; `Apps/Workbench/main.cpp` displays a wall-clock frame interval. Workbench and Game each call `bgfx::frame()`. Technical capture modes deliberately delay frames. These facts do not establish CPU bottlenecks, GPU cost or end-to-end input latency.
+The [L2/runtime result](./OUTDOOR_LIGHTING_L2_RESULT.md) delivers shared optional frame traces, explicit presentation policy and two sun cascades. The following contract describes this completed measurement pass. Region adoption still has a measured frame-thread burst; its cause must be attributed before moving work across ownership boundaries.
 
 1. Add bounded, machine-readable frame telemetry at shared runtime/render boundaries. Separate CPU update, streaming/adoption/upload, render submission and present/frame wait where observable. Read backend GPU timing only when supported and valid; retain frame identity because GPU results arrive later.
 2. Make presentation/pacing policy explicit in renderer/platform configuration and preserve it on resize. Document the existing default. Measure changes before selecting a lower-latency policy; disabling VSync alone is not a latency strategy.
@@ -18,6 +18,10 @@ Current source observations: `Rendering/Renderer.cpp` fixes startup/reset to VSy
 4. Identify the largest evidenced frame-thread stall or burst. Fix one bounded cause if found, with a comparison using the same workload. Do not invent a bottleneck to justify a rewrite.
 
 Done: a shared, repeatable runtime baseline and explicit pacing configuration, with honest timing limitations and one evidence-backed scheduling correction if warranted. Compilation, frame intervals and GPU timestamps must not be labeled input-to-photon measurements. Technical capture mode timing must not be reported as interactive performance. No fixed hardware/frame-time promise is selected until a Windows target and representative workload support it.
+
+## Next bounded batch: remove the streamed-region adoption burst
+
+The corrected load/retire/return trace records streaming CPU p95 about 53 ms and maximum 68 ms. This phase includes adoption and instance assembly; it does not isolate collision cooking from terrain LOD construction/uploads. Instrument those two adoption stages first. Move the dominant CPU preparation into bounded jobs, retaining physics/render ownership, epoch rejection, byte reservations and old valid resources until adoption. Compare the same workload once. Do not change world identity or geometry to hide stalls.
 
 ## Following engine work, in dependency order
 
@@ -34,4 +38,4 @@ Telemetry and pacing change no world seed, generated-object identity, authored p
 
 ## Current scope and deferred claims
 
-The completed L1 sky/display pass remains useful. L2–L4 lighting work is still planned, but wider shadows are no longer automatically the next batch. Runtime measurement and ownership take precedence under the latest instruction. This update implements no new renderer behavior, latency reduction, AI protocol or AAA performance claim.
+L1 sky/display and L2 shadow coverage are implemented on Metal. Shared depth/normal inputs with AO, height fog and the broader post-processing pipeline remain required engine work after this bounded adoption correction. Keep those rendering batches moving alongside AI authoring and runtime integration; do not expand profiling into an infrastructure detour. Windows performance, an AI command protocol and AAA readiness are not established by this pass.

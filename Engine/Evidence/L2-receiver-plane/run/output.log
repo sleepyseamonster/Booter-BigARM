@@ -1,0 +1,8 @@
+RENDERER Metal framebuffer=2240x1440
+CAPTURE Evidence/L2-receiver-plane/captures/unshadowed.png 2240x1440
+CAPTURE Evidence/L2-receiver-plane/captures/shadowed.png 2240x1440
+CAPTURE Evidence/L2-receiver-plane/captures/without-offscreen-caster.png 2240x1440
+CAPTURE Evidence/L2-receiver-plane/captures/camera-step.png 2240x1440
+RESIZE 1920x1280
+CAPTURE Evidence/L2-receiver-plane/captures/resized.png 1920x1280
+SHUTDOWN renderer resources released

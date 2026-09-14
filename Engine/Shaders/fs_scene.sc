@@ -23,18 +23,49 @@ uniform vec4 u_surfaceParams; // roughness multiplier, metallic, normal strength
 uniform vec4 u_eye;
 uniform vec4 u_shadowOptions; // enabled, depth bias, texel size, reserved
 
-float visibility(vec4 shadowPosition, vec3 geometricNormal, vec3 light)
+uniform mat4 u_shadowFarMatrix;
+uniform vec4 u_shadowRange;
+uniform vec4 u_shadowCamera;
+vec2 receiverGradient(vec3 p)
 {
-    if (u_shadowOptions.x < 0.5) return 1.0;
-    vec3 p = shadowPosition.xyz / shadowPosition.w;
-    // Outside the bounded first-pass sun volume is unshadowed.
-    if (any(lessThan(p, vec3(0.0))) || any(greaterThan(p, vec3(1.0)))) return 1.0;
-    float bias = u_shadowOptions.y * (1.0 + 2.0 * (1.0 - max(dot(geometricNormal, light), 0.0)));
-    float result = 0.0;
-    for (int y = -1; y <= 1; ++y)
-        for (int x = -1; x <= 1; ++x)
-            result += step(p.z - bias, texture2D(s_shadow, p.xy + vec2(float(x),float(y)) * u_shadowOptions.z).r);
-    return result / 9.0;
+    vec3 dx=dFdx(p),dy=dFdy(p);
+    float determinant=dx.x*dy.y-dx.y*dy.x;
+    if(abs(determinant)<1e-12)return vec2(0.0);
+    return vec2(dx.z*dy.y-dy.z*dx.y,dy.z*dx.x-dx.z*dy.x)/determinant;
+}
+float cascadeVisibility(vec3 p, float tile, float bias, vec2 gradient)
+{
+    if(any(lessThan(p,vec3(0.0)))||any(greaterThan(p,vec3(1.0))))return 1.0;
+    float result=0.0;
+    float texel=u_shadowOptions.z;
+    for(int y=-1;y<=1;++y)for(int x=-1;x<=1;++x) {
+        vec2 local=clamp(p.xy+vec2(float(x),float(y))*texel,vec2(texel*.5),vec2(1.0-texel*.5));
+        local=(floor(local/texel)+.5)*texel;
+        float receiverDepth=p.z+dot(gradient,local-p.xy)-bias;
+        vec2 uv=vec2((local.x+tile)*.5,local.y);
+        result+=step(receiverDepth,texture2D(s_shadow,uv).r);
+    }
+    return result/9.0;
+}
+float visibility(vec4 shadowPosition, vec3 geometricNormal, vec3 light, vec3 world)
+{
+    if(u_shadowOptions.x<.5)return 1.0;
+    vec3 nearPosition=shadowPosition.xyz/shadowPosition.w;
+    vec4 farProjected=mul(u_shadowFarMatrix,vec4(world,1.0));
+    vec3 farPosition=farProjected.xyz/farProjected.w;
+    // Derivatives precede pixel-dependent range branches. Compare against the
+    // receiver plane at each sampled texel center, avoiding grazing-angle acne.
+    vec2 nearGradient=receiverGradient(nearPosition),farGradient=receiverGradient(farPosition);
+    float distance=dot(world-u_eye.xyz,u_shadowCamera.xyz);
+    if(distance>=u_shadowRange.w)return 1.0;
+    float slope=1.0+2.0*(1.0-max(dot(geometricNormal,light),0.0));
+    if(distance<u_shadowRange.x)return cascadeVisibility(nearPosition,0.0,u_shadowOptions.y*slope,nearGradient);
+    float farShadow=cascadeVisibility(farPosition,1.0,u_shadowOptions.w*slope,farGradient);
+    if(distance<u_shadowRange.y) {
+        float nearShadow=cascadeVisibility(nearPosition,0.0,u_shadowOptions.y*slope,nearGradient);
+        return mix(nearShadow,farShadow,smoothstep(u_shadowRange.x,u_shadowRange.y,distance));
+    }
+    return mix(farShadow,1.0,smoothstep(u_shadowRange.z,u_shadowRange.w,distance));
 }
 vec3 layerNormal(vec3 nx, vec3 ny, vec3 nz, vec3 weights, vec3 signN, vec3 geometricNormal, float strength)
 {
@@ -209,7 +240,7 @@ void main()
     vec3 f0 = mix(vec3(0.04),albedo,metal);
     vec3 fresnel = f0 + (1.0 - f0) * pow(1.0 - VoH,5.0);
     vec3 diffuse = (1.0 - fresnel) * (1.0 - metal) * albedo / 3.14159265;
-    vec3 direct = (diffuse + distribution * smith * fresnel) * NoL * u_light.w * u_environment[0].rgb * visibility(v_shadow,geometricNormal,light);
+    vec3 direct = (diffuse + distribution * smith * fresnel) * NoL * u_light.w * u_environment[0].rgb * visibility(v_shadow,geometricNormal,light,v_world);
     // Bounded hemispheric fill. This is not an environment-map/IBL solution.
     vec3 hemisphere = environmentAmbient(normal);
     vec3 ambient = ((1.0 - metal) * albedo + f0 * (1.0 - 0.5 * roughness)) * hemisphere * u_sceneOptions.w * ao;

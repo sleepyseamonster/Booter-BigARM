@@ -1,0 +1,12 @@
+{
+  "kind": "engine.outdoor-render-check",
+  "payload": {
+    "backend": "Metal",
+    "benchmark": true,
+    "captures": 0,
+    "limits": "Resident synthetic opaque workload through production renderer; no gameplay, streaming or input-to-photon measurement.",
+    "offscreen_caster_confirmed": true,
+    "passed": true
+  },
+  "version": 1
+}

@@ -1,8 +1,8 @@
 # Outdoor lighting implementation sequence
 
-Sequencing update, 2026-09-14: [runtime architecture and performance](./ENGINE_RUNTIME_PRIORITIES.md) take priority under the user's latest instruction. L2 remains the next lighting batch, but is not automatically the next engine batch. Keep this plan as the effect integration contract after the shared runtime baseline.
+Sequencing update, 2026-09-14: [runtime architecture and performance](./ENGINE_RUNTIME_PRIORITIES.md) take priority under the user's latest instruction. L2 and the shared runtime baseline are now implemented; see the [L2 result](./OUTDOOR_LIGHTING_L2_RESULT.md). Address the evidenced region-adoption burst, then continue at L3/L4.
 
-Prepared and self-audited 2026-09-11 from [source-backed research](../Research/OUTDOOR_LIGHTING_RESEARCH.md) and [cost/source data](../Research/outdoor-lighting-data.json). **L1 implemented and technically verified on Mac; L2–L4 planned, L5 conditional.** See the [L1 result and runnable package](./OUTDOOR_LIGHTING_L1_RESULT.md). This is a bounded extension of P02/P04/P05 and preparation for P32; it does not complete P32 or remove its whole-world integration prerequisites. [FOUNDATION_PLAN](./FOUNDATION_PLAN.md) remains the master roadmap.
+Prepared and self-audited 2026-09-11 from [source-backed research](../Research/OUTDOOR_LIGHTING_RESEARCH.md) and [cost/source data](../Research/outdoor-lighting-data.json). **L1–L2 implemented and technically verified on Mac; L3–L4 planned, L5 conditional.** See the [L1 result and runnable package](./OUTDOOR_LIGHTING_L1_RESULT.md). This is a bounded extension of P02/P04/P05 and preparation for P32; it does not complete P32 or remove its whole-world integration prerequisites. [FOUNDATION_PLAN](./FOUNDATION_PLAN.md) remains the master roadmap.
 
 ## Outcome and limits
 

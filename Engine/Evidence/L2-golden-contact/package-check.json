@@ -1,0 +1,22 @@
+{
+  "result": "passed",
+  "package": "out/engine-cascaded-shadows",
+  "checks": {
+    "engine_workbench": true,
+    "engine_player": true,
+    "Shaders/vs_skin.bin": true,
+    "Shaders/vs_scene.bin": true,
+    "Shaders/vs_fullscreen.bin": true,
+    "Shaders/vs_skin_shadow.bin": true,
+    "Shaders/fs_texture_preview.bin": true,
+    "Shaders/fs_inspector.bin": true,
+    "Shaders/fs_calibration.bin": true,
+    "Shaders/fs_sky.bin": true,
+    "Shaders/vs_shadow.bin": true,
+    "Shaders/vs_inspector.bin": true,
+    "Shaders/fs_scene.bin": true,
+    "Shaders/fs_shadow.bin": true,
+    "Shaders/fs_display.bin": true
+  },
+  "limits": "Byte identity of installed executables/shaders to tested build, not full source attestation or Windows proof."
+}
