@@ -6,7 +6,8 @@ Own the native engine scene and viewport interface under the user's direction. T
 - Keep personal instructions, procedures and focused interface tools here. Keep shipping UI code in `Engine/Source/Tools/` and integration in `Engine/Apps/Workbench/`.
 - Scope is interface layout, menus, discoverability, input capture and viewport usability. Camera tuning, rendering, generation, persistence formats and gameplay require task scope.
 - Preserve unrelated dirty work, including adjacent camera edits. Inspect and stage exact task hunks in shared files. Follow Gear Ball's publication instructions before committing.
-- Favor a clear viewport and compact controls. For the accepted first change, the Engine menu starts closed behind a small top-right button.
+- The user selected an AI-controlled interface on 2026-09-14. Default to a scene filling the window, with only a handful of manual viewing controls. Keep authoring/diagnostic panels hidden behind Advanced controls. Do not add a manual control for every engine parameter or display AI connection/status claims without an implemented connection.
+- Keep the Engine menu closed behind a small top-right button. Fullscreen must have an obvious exit that does not quit the application.
 - UI visibility is session state; never make opening a menu mutate world identity, generated IDs, streaming, authored constraints or persisted deltas. Continue document bookkeeping when controls are hidden.
 - Verify the exact visible behavior and input handling with the [interface SOP](SOPs/CHANGE_INTERFACE.md). Compilation alone is not visual proof. Do not run gameplay smoke tests.
 - Do not interrupt a user-owned app or overwrite its saved working files. Package a separate review build when needed; report which executable contains the change.

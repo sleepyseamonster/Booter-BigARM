@@ -1,4 +1,5 @@
 #include "Tools/EngineMenu.h"
+#include "Tools/ViewerControls.h"
 #include <imgui_internal.h>
 #include <cstdlib>
 #include <iostream>
@@ -41,6 +42,30 @@ int main() {
     click(button);require(open,"Menu must open at minimum window size");
     require(popupMin.x>=0&&popupMax.x<=628.1f&&popupMax.y<=468.1f,"Resized dropdown must remain on screen");
     require(scrollMax>0,"Short-window menu must scroll");
+    io.AddKeyEvent(ImGuiKey_Escape,true);frame();io.AddKeyEvent(ImGuiKey_Escape,false);frame();
+    engine::ViewerControls viewer;float exposure=0;ImGuiID advancedId=0,fullscreenId=0,frameId=0;
+    auto compactFrame=[&] {
+        ImGui::NewFrame();
+        {
+            const bool wasAdvanced=viewer.advanced;
+            engine::EngineMenu menu(wasAdvanced);button=menu.button;open=menu.visible;
+            if(open) {
+                viewer.draw(exposure,false,true);
+                auto* popup=ImGui::GetCurrentWindow();
+                advancedId=popup->GetID("Advanced controls");fullscreenId=popup->GetID("Fullscreen");frameId=popup->GetID("Frame scene");
+                if(!wasAdvanced)require(ImGui::GetWindowSize().y<=240,"Simple menu must be compact");
+            }
+        }
+        ImGui::Render();
+    };
+    compactFrame();compactFrame();require(!viewer.advanced&&!open,"Viewer must start with no advanced panels or menu");
+    io.AddMousePosEvent(button.x,button.y);compactFrame();
+    io.AddMouseButtonEvent(0,true);compactFrame();io.AddMouseButtonEvent(0,false);compactFrame();compactFrame();
+    require(open,"Compact menu opens");
+    ImGui::ActivateItemByID(frameId);compactFrame();require(viewer.frameRequested,"Frame scene requests framing");
+    ImGui::ActivateItemByID(fullscreenId);compactFrame();require(viewer.fullscreenRequested,"Fullscreen control requests display change");
+    ImGui::ActivateItemByID(advancedId);compactFrame();require(viewer.advanced,"Advanced controls can be revealed");
+    ImGui::ActivateItemByID(advancedId);compactFrame();require(!viewer.advanced,"Advanced controls can be hidden again");
     ImGui::DestroyContext();
-    std::cout<<"PASS: closed default, top-right anchor, click open, scrolling, Escape, outside dismissal, reopen and 640x480 resize\n";
+    std::cout<<"PASS: closed default, top-right anchor, click open, scrolling, Escape, outside dismissal, reopen, 640x480 resize, compact viewer, frame/fullscreen requests and advanced toggle\n";
 }

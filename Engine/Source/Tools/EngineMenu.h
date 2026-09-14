@@ -6,7 +6,7 @@ namespace engine {
 // Frame-local scope: keep the toolbar alive while its popup submits controls.
 class EngineMenu {
 public:
-    EngineMenu() {
+    explicit EngineMenu(bool advanced=true) {
         const auto* viewport=ImGui::GetMainViewport();
         const ImVec2 edge{viewport->WorkPos.x+viewport->WorkSize.x-12,viewport->WorkPos.y+12};
         ImGui::SetNextWindowPos(edge,ImGuiCond_Always,{1,0});
@@ -18,8 +18,8 @@ public:
         const auto min=ImGui::GetItemRectMin(),max=ImGui::GetItemRectMax();
         button={(min.x+max.x)*.5f,(min.y+max.y)*.5f};
         ImGui::SetNextWindowPos({edge.x,max.y+6},ImGuiCond_Always,{1,0});
-        ImGui::SetNextWindowSize({std::min(350.f,viewport->WorkSize.x-24),
-            std::min(650.f,viewport->WorkPos.y+viewport->WorkSize.y-max.y-18)},ImGuiCond_Always);
+        ImGui::SetNextWindowSize({std::min(advanced?350.f:280.f,viewport->WorkSize.x-24),
+            std::min(advanced?650.f:240.f,viewport->WorkPos.y+viewport->WorkSize.y-max.y-18)},ImGuiCond_Always);
         visible=ImGui::BeginPopup("Engine menu",ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoSavedSettings);
     }
     ~EngineMenu() { if(visible)ImGui::EndPopup();ImGui::End(); }

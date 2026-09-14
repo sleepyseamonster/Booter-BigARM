@@ -33,6 +33,7 @@
 #include "Tools/RockWorkbench.h"
 #include "Tools/InspectionWorkbench.h"
 #include "Tools/EngineMenu.h"
+#include "Tools/ViewerControls.h"
 
 namespace {
 struct Options { std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool captureRockUi=false,terrainPreview=false,buildInfo=false, lightingVerify=false, environmentVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
@@ -94,14 +95,23 @@ struct TextureControls {
 };
 struct SimulationControls { bool enabled=false,paused=false,grounded=false;uint64_t ticks=0;double dropped=0; };
 struct ButtonPosition { float x=0,y=0; };
-ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds,TextureControls& textures,SimulationControls& simulation,engine::InspectionWorkbench& documents,bool technical) {
-    engine::EngineMenu menu;
+ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& renderer,float milliseconds,TextureControls& textures,SimulationControls& simulation,engine::InspectionWorkbench& documents,bool technical,engine::ViewerControls& viewer,bool fullscreen) {
+    engine::EngineMenu menu(viewer.advanced);
     if(!menu.visible) {
         documents.draw(state,!technical&&!simulation.enabled,false);
         state.constrain();
         if(simulation.enabled)state.distance=std::min(state.distance,8.0f);
         return {menu.button.x,menu.button.y};
     }
+    viewer.draw(state.exposure,fullscreen,!simulation.enabled);
+    if(!viewer.advanced) {
+        documents.draw(state,!technical&&!simulation.enabled,false);
+        state.constrain();
+        if(simulation.enabled)state.distance=std::min(state.distance,8.0f);
+        return {menu.button.x,menu.button.y};
+    }
+    ImGui::Separator();
+    ImGui::PushID("Advanced");
     ImGui::PushItemWidth(150);
     ImGui::TextUnformatted("BOOTER & BIGARM");
     ImGui::TextDisabled("Perspective inspection fixture");
@@ -179,6 +189,7 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     }
     documents.draw(state,!technical&&!simulation.enabled);
     ImGui::PopItemWidth();
+    ImGui::PopID();
     state.constrain();
     if(simulation.enabled) state.distance=std::min(state.distance,8.0f);
     return button;
@@ -230,6 +241,7 @@ int run(Options options) {
         if (base && std::filesystem::exists(std::filesystem::path(base)/"Assets/catalog.json")) options.catalog=std::filesystem::path(base)/"Assets/catalog.json";
     }
     engine::Window window(technical);
+    if(!technical)SDL_MaximizeWindow(window.get());
     engine::Renderer renderer;
     renderer.start(window,options.shaders);
     const std::string backend=renderer.name();
@@ -333,6 +345,13 @@ int run(Options options) {
         engine::InspectorRenderer ui;
         ui.start(options.shaders);
         bool running=true;
+        engine::ViewerControls viewer;
+        viewer.advanced=verify; // The legacy fixture explicitly tests advanced controls.
+        std::string viewerError;
+        auto setFullscreen=[&](bool enabled) {
+            if(!SDL_SetWindowFullscreen(window.get(),enabled))viewerError=SDL_GetError();
+            else viewerError.clear();
+        };
         ButtonPosition button;
         auto last=std::chrono::steady_clock::now();
         for (unsigned frame=0;running;++frame) {
@@ -346,7 +365,12 @@ int run(Options options) {
                 if (event.type==SDL_EVENT_MOUSE_MOTION) { dx+=event.motion.xrel; dy+=event.motion.yrel;if(event.motion.state&SDL_BUTTON_RMASK){gameDx+=event.motion.xrel;gameDy+=event.motion.yrel;} }
                 if (event.type==SDL_EVENT_MOUSE_WHEEL) wheel+=event.wheel.y;
                 if (event.type==SDL_EVENT_KEY_DOWN && event.key.key==SDLK_F5 && !event.key.repeat && !ImGui::GetIO().WantCaptureKeyboard)saveRequested=true;
-                if (event.type==SDL_EVENT_KEY_DOWN && event.key.key==SDLK_ESCAPE && !ImGui::GetIO().WantCaptureKeyboard) running=false;
+                if(event.type==SDL_EVENT_KEY_DOWN&&!event.key.repeat&&!ImGui::GetIO().WantCaptureKeyboard) {
+                    if(event.key.key==SDLK_F11)setFullscreen(!(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN));
+                    if(event.key.key==SDLK_ESCAPE) {
+                        if(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN)setFullscreen(false);
+                    }
+                }
             }
             if (!running) break;
             int width=0,height=0; window.pixels(width,height);
@@ -368,6 +392,14 @@ int run(Options options) {
                 if (frame==65) io.AddMousePosEvent(800,300);
                 if (frame==65) io.AddMouseButtonEvent(1,true);
                 if (frame==69) io.AddMouseButtonEvent(1,false);
+            }
+            if(options.captureRockUi) {
+                io.AddFocusEvent(true);
+                if(frame==26)io.AddMousePosEvent(button.x,button.y);
+                if(frame==27)io.AddMouseButtonEvent(0,true);
+                if(frame==28)io.AddMouseButtonEvent(0,false);
+                if(frame==32)io.AddKeyEvent(ImGuiKey_Escape,true);
+                if(frame==33)io.AddKeyEvent(ImGuiKey_Escape,false);
             }
             if(options.cameraVerify){
                 io.AddFocusEvent(true);io.AddMousePosEvent(560,300);
@@ -450,13 +482,21 @@ int run(Options options) {
                 if(frame==60)rock->undo();
                 if(frame==75){auto invalid=originalRecipe;invalid.subdivisions=99;bool rejected=false;try{rock->apply(invalid);}catch(const std::exception&){rejected=true;}if(!rejected||rock->recipe()!=originalRecipe)throw std::runtime_error("Failed rock edit changed the document");state.yaw+=3.14159265f;}
             }
-            button=inspector(state,renderer,milliseconds,textureControls,simulation,documents,technical);
-            if(rock&&!rockVerify)rock->drawControls(simulation.enabled);
+            if(options.captureRockUi&&frame==36)viewer.advanced=true;
+            button=inspector(state,renderer,milliseconds,textureControls,simulation,documents,technical,viewer,(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN)!=0);
+            if(viewer.fullscreenRequested){setFullscreen(!(SDL_GetWindowFlags(window.get())&SDL_WINDOW_FULLSCREEN));viewer.fullscreenRequested=false;}
+            if(viewer.frameRequested) {
+                if(rock)rock->frameRequested=true;
+                else {state.viewOffset={};state.distance=streaming?30.f:7.5f;}
+                viewer.frameRequested=false;
+            }
+            if(!viewerError.empty()){ImGui::Begin("Display error");ImGui::TextWrapped("%s",viewerError.c_str());if(ImGui::Button("Dismiss"))viewerError.clear();ImGui::End();}
+            if(rock&&!rockVerify&&viewer.advanced)rock->drawControls(simulation.enabled);
             if(rock&&rock->frameRequested&&!simulation.enabled){
                 const auto& a=rock->asset().lods.front();float squared=0;for(size_t i=0;i<3;++i){const float extent=(a.maximum[i]-a.minimum[i])*.5f;squared+=extent*extent;}
                 state.distance=std::clamp(std::sqrt(squared)/std::sin(state.fieldOfView*.00872664626f)*1.05f,2.5f,30.f);state.viewOffset={(a.minimum[0]+a.maximum[0])*.5f,0,(a.minimum[2]+a.maximum[2])*.5f};rock->frameRequested=false;
             }
-            if(animation && !animationVerify) {
+            if(animation && !animationVerify && viewer.advanced) {
                 ImGui::Begin("Model animation");
                 ImGui::Text("%zu joints | %zu clips",modelData->joints.size(),modelData->clips.size());
                 if(!modelData->clips.empty() && !simulation.enabled) {
@@ -478,7 +518,7 @@ int run(Options options) {
                 if(streamVerify)streaming->anchors({{{{streamPhase==1?4:0,0},{32,0,32}},0}});
                 else if(!simulation.enabled){state.viewOffset[0]=std::clamp(state.viewOffset[0],-3500.f,3500.f);state.viewOffset[2]=std::clamp(state.viewOffset[2],-3500.f,3500.f);const auto eye=state.eye();streaming->anchors({{{{},{eye[0],eye[1],eye[2]}},0}});}
                 else streaming->update();
-                if(!streamVerify){
+                if(!streamVerify&&viewer.advanced){
                     ImGui::SetNextWindowPos(ImVec2(12,54),ImGuiCond_FirstUseEver);
                     ImGui::Begin("Wasteland terrain");
                     ImGui::TextUnformatted("Option/Alt + drag: orbit | Middle/Space + drag: pan");
@@ -625,7 +665,8 @@ int run(Options options) {
                 }
                 if(options.captureRockUi){
                     if(frame==25)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"workbench.png").string().c_str());
-                    if(frame==28)SDL_SetWindowSize(window.get(),800,600);
+                    if(frame==29)SDL_SetWindowSize(window.get(),800,600);
+                    if(frame==31)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"viewer-controls.png").string().c_str());
                     if(frame==35)bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.captureRock/"workbench-small.png").string().c_str());
                     if(frame==36||frame==38||frame==40){
                         auto* panel=ImGui::FindWindowByName("Rock & formation workbench");
@@ -671,7 +712,7 @@ int run(Options options) {
         if(!passed)throw std::runtime_error("Scene camera input verification failed");
     }
     if(captureRock){
-        const bool passed=renderer.callbacks.captures==(options.captureRockUi?4:1)&&renderer.callbacks.errors==0&&(!options.captureRockUi||std::all_of(rockUiChecks.begin(),rockUiChecks.end(),[](bool value){return value;}));
+        const bool passed=renderer.callbacks.captures==(options.captureRockUi?5:1)&&renderer.callbacks.errors==0&&(!options.captureRockUi||std::all_of(rockUiChecks.begin(),rockUiChecks.end(),[](bool value){return value;}));
         engine::writeDocument(options.captureRock/"result.json","engine.rock-capture",{{"passed",passed},{"ui_checked",options.captureRockUi},{"draft_apply_undo",rockUiChecks},{"backend",backend},{"real_surfaces",materialAvailable},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"recipe",options.rock.string()},{"simulation_advanced",false}});
         if(!passed)throw std::runtime_error("Rock capture failed");
     }
