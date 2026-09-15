@@ -6,6 +6,7 @@
 #include "Core/Visibility.h"
 #include "Core/SunCascade.h"
 #include <bx/math.h>
+#include <algorithm>
 #include <iostream>
 
 using namespace engine;
@@ -30,16 +31,28 @@ int main(int argc,char** argv){try{
     instances.push_back({&cube,{45,10,0},{45,10,0},0,11,false,{2,20,2}});
     FixtureState state;state.lightAzimuth=.785398f;state.environment.sunElevation=.18f;state.exposure=1;state.ambient=.5f;state.ambientOcclusion=true;state.aoStrength=.65f;state.aoRadius=1.75f;state.contactShadows=true;state.contactStrength=.8f;state.contactDistance=1.25f;
     ScenePlacement placement;placement.streamedWorld=true;placement.physicalCharacter=true;placement.eye={0,12,25};placement.target={0,1,-30};placement.instances=&instances;
+    auto authoredDocument=std::make_shared<AuthoringSceneDocument>("render-check");
+    const auto authoredA=authoredDocument->createEntity("Mirrored nonuniform cube"),authoredB=authoredDocument->createEntity("Rotated foreground cube");
+    auto authoredEdit=authoredDocument->beginTransaction(authoredDocument->version());
+    SceneTransform authoredTransformA;authoredTransformA.translation={-2,2,-12};authoredTransformA.rotation={0,.258819f,0,.965926f};authoredTransformA.scale={-3,1,1.5f};
+    SceneTransform authoredTransformB;authoredTransformB.translation={1,2,-9};authoredTransformB.rotation={.130526f,0,0,.991445f};authoredTransformB.scale={1,2,.7f};
+    authoredEdit.setTransform(authoredA,authoredTransformA);authoredEdit.setTransform(authoredB,authoredTransformB);
+    authoredEdit.setMetadata(authoredA,"engine://mesh/cube","engine://material/default","",0,true,{});
+    authoredEdit.setMetadata(authoredB,"engine://mesh/sloped-solid","engine://material/default","",0,true,{});
+    if(!authoredEdit.commit().applied)throw std::runtime_error("Cannot seed authored render check");
+    RenderAssetCatalog authoredAssets;auto authored=extractRenderScene(authoredDocument,authoredAssets,false);
     float view[16],projection[16],vp[16];bx::mtxLookAt(view,{0,12,25},{0,1,-30},{0,1,0},bx::Handedness::Right);
     bx::mtxProj(projection,state.fieldOfView,float(renderer.width())/renderer.height(),.1f,600,bgfx::getCaps()->homogeneousDepth,bx::Handedness::Right);bx::mtxMul(vp,view,projection);
     if(visibleSphere(vp,{45,10,0},11,bgfx::getCaps()->homogeneousDepth))throw std::runtime_error("Reference caster must be outside the camera");
-    for(int frame=0;frame<(bench?160:95);++frame){
+    for(int frame=0;frame<(bench?160:135);++frame){
         SDL_Event event;while(SDL_PollEvent(&event)){}
         if(!bench){
             state.shadows=frame>=20;
             if(frame==40)instances.pop_back();
             if(frame==60){placement.eye[0]+=.01f;placement.target[0]+=.01f;}
             if(frame==80)SDL_SetWindowSize(window.get(),960,640);
+            if(frame==96){placement.instances=nullptr;placement.authored=&authored;}
+            if(frame==110)std::reverse(authored.draws.begin(),authored.draws.end());
         }
         int width,height;window.pixels(width,height);renderer.resize(width,height);
         renderer.telemetry.measure(FramePhase::Draw,[&]{renderer.draw(state,GeometryCheck::None,false,nullptr,nullptr,&placement);});
@@ -47,12 +60,16 @@ int main(int argc,char** argv){try{
             const char* names[]={"unshadowed.png","shadowed.png","without-offscreen-caster.png","camera-step.png","resized.png"};
             bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(out/names[expected++]).string().c_str());
         }
+        if(!bench&&(frame==105||frame==125)){
+            const char* name=frame==105?"authored-order-a.png":"authored-order-b.png";
+            bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(out/name).string().c_str());++expected;
+        }
         renderer.finishFrame(false); // No artificial frame delay in either workload.
     }
     }
     renderer.stop();
     const bool passed=renderer.callbacks.errors==0&&renderer.callbacks.captures==expected;
-    writeDocument(out/"result.json","engine.outdoor-render-check",{{"passed",passed},{"backend",backend},{"captures",renderer.callbacks.captures.load()},{"offscreen_caster_confirmed",true},{"benchmark",bench},{"limits","Resident synthetic opaque workload through production renderer; no gameplay, streaming or input-to-photon measurement."}});
+    writeDocument(out/"result.json","engine.outdoor-render-check",{{"passed",passed},{"backend",backend},{"captures",renderer.callbacks.captures.load()},{"offscreen_caster_confirmed",true},{"authored_affine_draws",2},{"authored_draw_order_pair",!bench},{"benchmark",bench},{"limits","Resident synthetic opaque workload through production renderer; no gameplay, streaming or input-to-photon measurement."}});
     if(!passed)throw std::runtime_error("Outdoor renderer check failed");
     }
     SDL_Quit();

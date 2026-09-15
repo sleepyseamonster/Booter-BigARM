@@ -977,9 +977,12 @@
           "A06",
           "A07"
         ],
-        "state": "planned",
+        "state": "complete",
         "proof": "Generic snapshots, per-view resource ownership, draw and tangent proof; human acceptance recorded separately",
-        "evidence": [],
+        "evidence": [
+          "Evidence/R3-render-scene/result.json",
+          "Docs/RENDER_SCENE_GIZMO_R3_RESULT.md"
+        ],
         "environment": "mac_or_platform_independent",
         "required_gates": []
       },

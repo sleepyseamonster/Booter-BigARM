@@ -85,19 +85,49 @@ ModelData importGltf(const std::filesystem::path& path) {
     const auto normals=read<fastgltf::math::fvec3>(asset,attribute("NORMAL"),fastgltf::AccessorType::Vec3);
     require(positions.size()<=100000&&normals.size()==positions.size(),"Position/normal count mismatch");model.vertices.resize(positions.size());
     for(size_t i=0;i<positions.size();++i)for(size_t c=0;c<3;++c) {model.vertices[i].position[c]=positions[i][c];model.vertices[i].normal[c]=normals[i][c];}
+    bool hasUv0=false,hasTangents=false;
     if(const auto uv=primitive.findAttribute("TEXCOORD_0");uv!=primitive.attributes.end()) {
         const auto values=read<fastgltf::math::fvec2>(asset,uv->accessorIndex,fastgltf::AccessorType::Vec2);require(values.size()==positions.size(),"UV count mismatch");
         for(size_t i=0;i<values.size();++i)for(size_t c=0;c<2;++c)model.vertices[i].uv[c]=values[i][c];
+        hasUv0=true;
     }
     if(const auto tangent=primitive.findAttribute("TANGENT");tangent!=primitive.attributes.end()) {
         const auto values=read<fastgltf::math::fvec4>(asset,tangent->accessorIndex,fastgltf::AccessorType::Vec4);require(values.size()==positions.size(),"Tangent count mismatch");
         for(size_t i=0;i<values.size();++i)for(size_t c=0;c<4;++c)model.vertices[i].tangent[c]=values[i][c];
-    } else for(auto& v:model.vertices) {
-        const auto& n=v.normal;std::array<float,3> t=std::abs(n[1])<.9f?std::array<float,3>{n[2],0,-n[0]}:std::array<float,3>{0,-n[2],n[1]};
-        const float length=std::sqrt(t[0]*t[0]+t[1]*t[1]+t[2]*t[2]);require(length>1e-6f,"Degenerate source normal");for(size_t c=0;c<3;++c)v.tangent[c]=t[c]/length;
+        hasTangents=true;
     }
     if(primitive.indicesAccessor) model.indices=read<uint32_t>(asset,*primitive.indicesAccessor,fastgltf::AccessorType::Scalar);
     else {model.indices.resize(model.vertices.size());std::iota(model.indices.begin(),model.indices.end(),0);}
+    if(!hasTangents&&hasUv0) {
+        std::vector<std::array<double,3>> tangentSum(model.vertices.size()),bitangentSum(model.vertices.size());
+        size_t usable=0;
+        for(size_t triangle=0;triangle<model.indices.size();triangle+=3) {
+            const auto ia=model.indices[triangle],ib=model.indices[triangle+1],ic=model.indices[triangle+2];
+            const auto& a=model.vertices[ia];const auto& b=model.vertices[ib];const auto& c=model.vertices[ic];
+            const std::array<double,3> e1{b.position[0]-a.position[0],b.position[1]-a.position[1],b.position[2]-a.position[2]};
+            const std::array<double,3> e2{c.position[0]-a.position[0],c.position[1]-a.position[1],c.position[2]-a.position[2]};
+            const double du1=b.uv[0]-a.uv[0],dv1=b.uv[1]-a.uv[1],du2=c.uv[0]-a.uv[0],dv2=c.uv[1]-a.uv[1];
+            const double determinant=du1*dv2-du2*dv1;if(std::abs(determinant)<1e-12)continue;
+            const double inverse=1.0/determinant;
+            const std::array<double,3> tangent{(e1[0]*dv2-e2[0]*dv1)*inverse,(e1[1]*dv2-e2[1]*dv1)*inverse,(e1[2]*dv2-e2[2]*dv1)*inverse};
+            const std::array<double,3> bitangent{(e2[0]*du1-e1[0]*du2)*inverse,(e2[1]*du1-e1[1]*du2)*inverse,(e2[2]*du1-e1[2]*du2)*inverse};
+            for(auto index:{ia,ib,ic})for(size_t axis=0;axis<3;++axis){tangentSum[index][axis]+=tangent[axis];bitangentSum[index][axis]+=bitangent[axis];}
+            ++usable;
+        }
+        require(usable>0,"UV0 cannot produce a tangent basis");
+        for(size_t index=0;index<model.vertices.size();++index) {
+            auto& vertex=model.vertices[index];const auto& n=vertex.normal;auto tangent=tangentSum[index];
+            const double projection=tangent[0]*n[0]+tangent[1]*n[1]+tangent[2]*n[2];
+            for(size_t axis=0;axis<3;++axis)tangent[axis]-=projection*n[axis];
+            const double length=std::hypot(tangent[0],tangent[1],tangent[2]);require(length>1e-8,"UV tangent is degenerate at a vertex");
+            for(size_t axis=0;axis<3;++axis)vertex.tangent[axis]=float(tangent[axis]/length);
+            const std::array<double,3> cross{n[1]*vertex.tangent[2]-n[2]*vertex.tangent[1],n[2]*vertex.tangent[0]-n[0]*vertex.tangent[2],n[0]*vertex.tangent[1]-n[1]*vertex.tangent[0]};
+            vertex.tangent[3]=(cross[0]*bitangentSum[index][0]+cross[1]*bitangentSum[index][1]+cross[2]*bitangentSum[index][2])<0?-1.f:1.f;
+        }
+    } else if(!hasTangents) for(auto& v:model.vertices) {
+        const auto& n=v.normal;std::array<float,3> t=std::abs(n[1])<.9f?std::array<float,3>{n[2],0,-n[0]}:std::array<float,3>{0,-n[2],n[1]};
+        const float length=std::sqrt(t[0]*t[0]+t[1]*t[1]+t[2]*t[2]);require(length>1e-6f,"Degenerate source normal");for(size_t c=0;c<3;++c)v.tangent[c]=t[c]/length;
+    }
     if(asset.nodes[meshNode].skinIndex) {
         require(*asset.nodes[meshNode].skinIndex<asset.skins.size(),"Skin index out of range");const auto& skin=asset.skins[*asset.nodes[meshNode].skinIndex];require(!skin.joints.empty()&&skin.joints.size()<=64,"Skin joint budget exceeded");
         for(auto joint:skin.joints) {require(joint<mapping.size(),"Missing skin joint node");model.joints.push_back(mapping[joint]);}

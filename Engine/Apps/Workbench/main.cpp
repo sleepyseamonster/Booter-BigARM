@@ -205,7 +205,7 @@ ButtonPosition inspector(engine::FixtureState& state,const engine::Renderer& ren
     if(simulation.enabled) state.distance=std::min(state.distance,8.0f);
     return button;
 }
-int run(Options options) {
+int run(Options options, engine::AuthoringHost* authoring) {
     std::cout << "Engine build " << ENGINE_BUILD_ID << " | compiler " <<
 #ifdef _MSC_VER
         "MSVC " << _MSC_VER
@@ -215,6 +215,8 @@ int run(Options options) {
         << '\n';
     if (options.buildInfo) return 0;
     engine::FixtureState state;
+    engine::RenderAssetCatalog authoredAssets;
+    engine::RenderSceneSnapshot authoredScene;
     if (!options.inspection.empty()) engine::loadInspection(options.inspection,state);
     const bool technical=!options.verify.empty();
     const bool captureRock=!options.captureRock.empty();
@@ -562,6 +564,12 @@ int run(Options options) {
             }
             for(const auto& cue:runtime.takeCues())if(audio)audio->cue(cue.sequence);
             engine::ScenePlacement placement;
+            if(authoring) {
+                auto snapshot=authoring->snapshot();
+                if(snapshot->version()!=authoredScene.revision||snapshot->sceneId()!=authoredScene.sceneId)
+                    authoredScene=engine::extractRenderScene(std::move(snapshot),authoredAssets,true);
+                placement.authored=&authoredScene;
+            }
             if(simulation.enabled) {
                 const auto frame=runtime.present(state.yaw,state.pitch,state.distance,std::min(milliseconds/1000.f,.1f));
                 placement.offset=frame.feet;placement.offset[1]+=.15f;placement.eye=frame.eye;placement.target=frame.target;
@@ -601,7 +609,7 @@ int run(Options options) {
             constexpr engine::GeometryCheck checks[]={engine::GeometryCheck::Transformed,engine::GeometryCheck::BakedReference,
                 engine::GeometryCheck::Unculled,engine::GeometryCheck::FrontCull,engine::GeometryCheck::ReverseOrder,engine::GeometryCheck::Transformed};
             if (verify && frame>=155 && frame<245) geometryCheck=checks[(frame-155)/15];
-            renderer.telemetry.measure(engine::FramePhase::Draw,[&]{renderer.draw(state,geometryCheck,(verify && frame>=265 && frame<345)||(options.environmentVerify&&frame>=120&&frame<150),showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock||streaming)?&placement:nullptr);}); if(!animationVerify&&!rockVerify&&!streamVerify&&(!captureRock||(options.captureRockUi&&frame>=24)))ui.draw(ImGui::GetDrawData());
+            renderer.telemetry.measure(engine::FramePhase::Draw,[&]{renderer.draw(state,geometryCheck,(verify && frame>=265 && frame<345)||(options.environmentVerify&&frame>=120&&frame<150),showTexture?&preview:nullptr,&surfaces,(simulation.enabled||animation||rock||streaming||authoring)?&placement:nullptr);}); if(!animationVerify&&!rockVerify&&!streamVerify&&(!captureRock||(options.captureRockUi&&frame>=24)))ui.draw(ImGui::GetDrawData());
             if (verify) {
                 auto capture=[&](const char* file) { bgfx::requestScreenShot(BGFX_INVALID_HANDLE,(options.verify/file).string().c_str()); };
                 if (frame==25) { capture("baseline.png"); baselineBuffers=bgfx::getStats()->numVertexBuffers; }
@@ -788,7 +796,7 @@ int main(int argc,char** argv) {
             std::cout<<"Authoring endpoint: "<<options.authoringSocket<<'\n';
         }
         if(options.authoringHeadlessMs){std::this_thread::sleep_for(std::chrono::milliseconds(options.authoringHeadlessMs));return 0;}
-        return run(options);
+        return run(options,authoring.get());
     }
     catch (const std::exception& error) { std::cerr << "ERROR: " << error.what() << '\n'; return 1; }
 }

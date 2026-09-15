@@ -117,6 +117,26 @@ AuthoringJson SceneAuthoringAdapter::execute(AuthoringSceneDocument& document,co
         } else if(kind=="set_transform") {
             requireFields(op,{"type","entity","transform"});
             transaction.setTransform(entity(),AuthoringSceneDocument::transformFromJson(op.at("transform")));
+        } else if(kind=="set_world_transforms") {
+            requireFields(op,{"type","transforms"});
+            if(!op.contains("transforms")||!op.at("transforms").is_array()||op.at("transforms").empty()||op.at("transforms").size()>AuthoringSceneDocument::maxEntities)
+                throw SceneDocumentError("World transform edit requires a bounded nonempty selection");
+            std::vector<std::pair<SceneEntityId,AffineMatrix>> transforms;
+            transforms.reserve(op.at("transforms").size());
+            for(const auto& item:op.at("transforms")) {
+                requireObject(item,"world transform item");requireFields(item,{"entity","world_matrix"});
+                if(!item.contains("entity")||!item.contains("world_matrix")||!item.at("world_matrix").is_array()||item.at("world_matrix").size()!=16)
+                    throw SceneDocumentError("World transform item is invalid");
+                AffineMatrix matrix{};
+                for(size_t i=0;i<matrix.size();++i) {
+                    const auto& value=item.at("world_matrix").at(i);
+                    if(!value.is_number())throw SceneDocumentError("World matrix values must be numeric");
+                    matrix[i]=value.get<double>();
+                }
+                validateRenderAffine(matrix);
+                transforms.emplace_back(readEntityId(item.at("entity")),matrix);
+            }
+            transaction.setWorldTransforms(transforms);
         } else if(kind=="reparent") {
             requireFields(op,{"type","entity","parent","preserve_world"});
             transaction.reparent(entity(),parent(),op.value("preserve_world",true));

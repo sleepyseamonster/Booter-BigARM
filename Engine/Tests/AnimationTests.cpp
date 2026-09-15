@@ -45,8 +45,11 @@ int main(int argc,char** argv)try{
     invalid=json;invalid["animations"][0]["samplers"][0]["interpolation"]="STEP";write(invalid);rejects([&]{importGltf(root/"source.gltf");});
     // Static hierarchy transforms use the same palette contract without a skin.
     invalid=json;invalid.erase("skins");invalid.erase("animations");invalid["nodes"][1].erase("skin");invalid["nodes"][1]["translation"]={2,0,0};
-    invalid["meshes"][0]["primitives"][0]["attributes"].erase("JOINTS_0");invalid["meshes"][0]["primitives"][0]["attributes"].erase("WEIGHTS_0");write(invalid);
+    invalid["meshes"][0]["primitives"][0]["attributes"].erase("JOINTS_0");invalid["meshes"][0]["primitives"][0]["attributes"].erase("WEIGHTS_0");
+    invalid["meshes"][0]["primitives"][0]["attributes"].erase("TANGENT");write(invalid);
     auto staticData=std::make_shared<ModelData>(importGltf(root/"source.gltf"));AnimationPlayer staticPlayer(staticData);const auto staticVertices=skinVertices(*staticData,staticPlayer.rest());
     require(std::abs(staticVertices[0].position[0]-staticData->vertices[0].position[0]-2)<.0001f,"Static mesh node transform retained");
-    std::cout<<"PASS: GLB/glTF cook, skin hierarchy/bind pose, clip sampling/blending, static transforms and bounded rejection\n";return 0;
+    bool uvDerived=false;for(const auto& vertex:staticData->vertices){const auto& n=vertex.normal;const std::array<float,3> fallback=std::abs(n[1])<.9f?std::array<float,3>{n[2],0,-n[0]}:std::array<float,3>{0,-n[2],n[1]};const float length=std::hypot(fallback[0],fallback[1],fallback[2]);const float dot=(vertex.tangent[0]*fallback[0]+vertex.tangent[1]*fallback[1]+vertex.tangent[2]*fallback[2])/length;if(std::abs(dot)<.99f)uvDerived=true;}
+    require(uvDerived,"Missing tangents must be generated from UV0 rather than an arbitrary normal basis");
+    std::cout<<"PASS: GLB/glTF cook, skin hierarchy/bind pose, clip sampling/blending, UV-derived tangent generation, static transforms and bounded rejection\n";return 0;
 }catch(const std::exception& error){std::cerr<<error.what()<<'\n';return 1;}

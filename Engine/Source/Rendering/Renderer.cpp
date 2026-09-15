@@ -136,8 +136,10 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders,
     light_ = bgfx::createUniform("u_light", bgfx::UniformType::Vec4);
     if (!bgfx::isValid(material_) || !bgfx::isValid(light_)) throw std::runtime_error("Scene uniform allocation failed");
     normal_ = bgfx::createUniform("u_normalMatrix", bgfx::UniformType::Mat4);
+    linear_ = bgfx::createUniform("u_linearMatrix", bgfx::UniformType::Mat4);
+    orientation_ = bgfx::createUniform("u_orientationSign", bgfx::UniformType::Vec4);
     options_ = bgfx::createUniform("u_sceneOptions", bgfx::UniformType::Vec4);
-    if (!bgfx::isValid(normal_) || !bgfx::isValid(options_)) throw std::runtime_error("Geometry uniform allocation failed");
+    if (!bgfx::isValid(normal_) || !bgfx::isValid(linear_) || !bgfx::isValid(orientation_) || !bgfx::isValid(options_)) throw std::runtime_error("Geometry uniform allocation failed");
     textureProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_texture_preview.bin");
     textureOptions_=bgfx::createUniform("u_textureOptions",bgfx::UniformType::Vec4);
     previewSampler_=bgfx::createUniform("s_preview",bgfx::UniformType::Sampler);
@@ -306,16 +308,24 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     uint64_t cull=BGFX_STATE_CULL_CW; // Authored fixture triangles are outward CCW.
     if (check==GeometryCheck::Unculled) cull=0;
     if (check==GeometryCheck::FrontCull) cull=BGFX_STATE_CULL_CCW;
-    auto submit=[&](int mesh,const Matrix4& transform,const float* color,const SurfaceTextures* surface=nullptr,const RenderModel* instanceModel=nullptr) {
+    auto perDraw=[&](const Matrix4& transform) {
         const auto normal=normalMatrix(transform);
         bgfx::setTransform(transform.data());
+        auto linear=transform;linear[12]=linear[13]=linear[14]=0;linear[15]=1;
+        const float determinant=transform[0]*(transform[5]*transform[10]-transform[9]*transform[6])-transform[4]*(transform[1]*transform[10]-transform[9]*transform[2])+transform[8]*(transform[1]*transform[6]-transform[5]*transform[2]);
+        const float orientation[]={determinant<0?-1.0f:1.0f,0,0,0};
+        bgfx::setUniform(normal_,normal.data());bgfx::setUniform(linear_,linear.data());bgfx::setUniform(orientation_,orientation);
+        return determinant<0;
+    };
+    auto submit=[&](int mesh,const Matrix4& transform,const float* color,const SurfaceTextures* surface=nullptr,const RenderModel* instanceModel=nullptr,const RenderMaterialAsset* authoredMaterial=nullptr) {
+        const bool mirrored=perDraw(transform);
         const auto* resource=mesh==-3?instanceModel:(mesh==-2?rockModel:model);
         if(mesh<0) {resource->bind(mesh==-1&&placement->cpuReference);if(mesh==-1&&gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
         else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
         const bool textured=mesh!=-1 && surface && state.surfaceTextures && bgfx::isValid(surface->albedo) && bgfx::isValid(surface->normal) && bgfx::isValid(surface->surface);
-        const float linear[]={textured?1.0f:(mesh<0?resource->color[0]:srgbToLinear(color[0])),textured?1.0f:(mesh<0?resource->color[1]:srgbToLinear(color[1])),textured?1.0f:(mesh<0?resource->color[2]:srgbToLinear(color[2])),color[3]};
+        const float linear[]={textured?1.0f:(authoredMaterial?authoredMaterial->baseColor[0]:(mesh<0?resource->color[0]:srgbToLinear(color[0]))),textured?1.0f:(authoredMaterial?authoredMaterial->baseColor[1]:(mesh<0?resource->color[1]:srgbToLinear(color[1]))),textured?1.0f:(authoredMaterial?authoredMaterial->baseColor[2]:(mesh<0?resource->color[2]:srgbToLinear(color[2]))),authoredMaterial?authoredMaterial->baseColor[3]:color[3]};
         const float options[]={state.showNormals?1.0f:0.0f,textured?1.0f:0.0f,surface&&surface->material.geologyMm?1000.f/surface->material.geologyMm:state.textureScale,state.ambient};
-        const float params[]={mesh<0?resource->roughness:state.roughness,mesh<0?resource->metallic:state.metallic,state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
+        const float params[]={authoredMaterial?authoredMaterial->roughness:(mesh<0?resource->roughness:state.roughness),authoredMaterial?authoredMaterial->metallic:(mesh<0?resource->metallic:state.metallic),state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
         const float mapping[]={surface&&surface->mapping==MaterialMapping::UV?1.0f:0.0f,surface?surface->uvTransform[0]:1.0f,surface?surface->uvTransform[1]:1.0f,0.0f};
         const float uvOffset[]={surface?surface->uvTransform[2]:0.0f,surface?surface->uvTransform[3]:0.0f,0.0f,0.0f};
         const float fog[]={state.environment.fog?1.0f:0.0f,state.environment.fogDensity,state.environment.fogHeightFalloff,0.0f};
@@ -344,8 +354,9 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
             material.dustColor[0],material.dustColor[1],material.dustColor[2],0};
         bgfx::setUniform(layerParams_,layers,5);
         if(bound)for(size_t i=0;i<layerSamplers_.size();++i){const auto handle=bgfx::isValid(bound->layers[i])?bound->layers[i]:bound->albedo;bgfx::setTexture(uint8_t(i+4),layerSamplers_[i],handle);}
-        bgfx::setUniform(normal_,normal.data()); bgfx::setUniform(options_,options);
-        bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA|cull);
+        bgfx::setUniform(options_,options);
+        const uint64_t drawCull=!mirrored?cull:(cull==BGFX_STATE_CULL_CW?BGFX_STATE_CULL_CCW:(cull==BGFX_STATE_CULL_CCW?BGFX_STATE_CULL_CW:0));
+        bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA|drawCull);
         bgfx::submit(views::scene,mesh==-1&&gpuSkin?skinProgram_:program_);
     };
     const float ground[4]={0.28f,0.31f,0.34f,1};
@@ -369,17 +380,23 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         bgfx::setViewTransform(views::prepass,view,projection);
         bgfx::touch(views::prepass);
         auto prepassSubmit=[&](int mesh,const Matrix4& transform,const RenderModel* instanceModel=nullptr) {
-            bgfx::setTransform(transform.data());
+            const bool mirrored=perDraw(transform);
             const auto* resource=mesh==-3?instanceModel:(mesh==-2?rockModel:model);
             if(mesh<0) {resource->bind(mesh==-1&&placement->cpuReference);if(mesh==-1&&gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
             else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
-            bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA|BGFX_STATE_CULL_CW);
+            bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_MSAA|(mirrored?BGFX_STATE_CULL_CCW:BGFX_STATE_CULL_CW));
             bgfx::submit(views::prepass,mesh==-1&&gpuSkin?prepassSkinProgram_:prepassProgram_);
         };
         if(!streamed)prepassSubmit(0,groundTransform);if(!rockOnly)prepassSubmit(subjectMesh,subject);prepassSubmit(0,markerTransform);if(rockModel)prepassSubmit(-2,rockTransform);
         if(placement&&placement->instances)for(const auto& instance:*placement->instances){
             if(!visibleSphere(viewProjection,instance.boundsCenter,instance.boundsRadius,bgfx::getCaps()->homogeneousDepth))continue;
             Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);prepassSubmit(-3,transform,instance.model);
+        }
+        if(placement&&placement->authored)for(const auto& draw:placement->authored->draws){
+            if(!visibleSphere(viewProjection,draw.boundsCenter,draw.boundsRadius,bgfx::getCaps()->homogeneousDepth))continue;
+            Matrix4 transform;for(size_t i=0;i<16;++i)transform[i]=float(draw.world[i]);
+            const int mesh=draw.mesh->builtin==BuiltinRenderMesh::SlopedSolid?1:(draw.mesh->builtin==BuiltinRenderMesh::Sphere?2:0);
+            prepassSubmit(mesh,transform);
         }
     }
     if (state.shadows && !state.showNormals && !calibration && !preview) {
@@ -391,17 +408,23 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         bgfx::setViewTransform(shadowView,lightView[cascade],lightProjection[cascade]);
         bgfx::touch(shadowView);
         auto cast=[&](int mesh,const Matrix4& transform,const RenderModel* instanceModel=nullptr) {
-            bgfx::setTransform(transform.data());
+            const bool mirrored=perDraw(transform);
             const auto* resource=mesh==-3?instanceModel:(mesh==-2?rockModel:model);
             if(mesh<0) {resource->bind(mesh==-1&&placement->cpuReference);if(mesh==-1&&gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
             else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
-            bgfx::setState(BGFX_STATE_WRITE_R|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|BGFX_STATE_CULL_CW);
+            bgfx::setState(BGFX_STATE_WRITE_R|BGFX_STATE_WRITE_Z|BGFX_STATE_DEPTH_TEST_LESS|(mirrored?BGFX_STATE_CULL_CCW:BGFX_STATE_CULL_CW));
             bgfx::submit(shadowView,mesh==-1&&gpuSkin?skinShadowProgram_:shadowProgram_);
         };
         if(!streamed)cast(0,groundTransform);if(!rockOnly)cast(subjectMesh,subject);cast(0,markerTransform);if(rockModel)cast(-2,rockTransform);
         if(placement&&placement->instances)for(const auto& instance:*placement->instances){
             if(!visibleSphere(lightViewProjection[cascade],instance.boundsCenter,instance.boundsRadius,caps->homogeneousDepth))continue;
             Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);cast(-3,transform,instance.model);
+        }
+        if(placement&&placement->authored)for(const auto& draw:placement->authored->draws){
+            if(!visibleSphere(lightViewProjection[cascade],draw.boundsCenter,draw.boundsRadius,caps->homogeneousDepth))continue;
+            Matrix4 transform;for(size_t i=0;i<16;++i)transform[i]=float(draw.world[i]);
+            const int mesh=draw.mesh->builtin==BuiltinRenderMesh::SlopedSolid?1:(draw.mesh->builtin==BuiltinRenderMesh::Sphere?2:0);
+            cast(mesh,transform);
         }
         } // cascade loop
     }
@@ -436,6 +459,12 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     if(!preview&&!calibration&&placement&&placement->instances)for(const auto& instance:*placement->instances){
         if(!visibleSphere(viewProjection,instance.boundsCenter,instance.boundsRadius,bgfx::getCaps()->homogeneousDepth))continue;
         Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);submit(-3,transform,color,instance.ground?soil:rock,instance.model);
+    }
+    if(!preview&&!calibration&&placement&&placement->authored)for(const auto& draw:placement->authored->draws){
+        if(!visibleSphere(viewProjection,draw.boundsCenter,draw.boundsRadius,bgfx::getCaps()->homogeneousDepth))continue;
+        Matrix4 transform;for(size_t i=0;i<16;++i)transform[i]=float(draw.world[i]);
+        const int mesh=draw.mesh->builtin==BuiltinRenderMesh::SlopedSolid?1:(draw.mesh->builtin==BuiltinRenderMesh::Sphere?2:0);
+        submit(mesh,transform,draw.material->baseColor.data(),nullptr,nullptr,draw.material.get());
     }
     const float display[]={state.exposure,state.showNormals && !calibration && !preview?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,state.environment.toneMapping&&!calibration&&!preview?1.0f:0.0f};
     const float ao[]={state.ambientOcclusion&&!calibration&&!preview&&!state.showNormals?1.0f:0.0f,state.aoStrength,state.aoRadius/float(std::max(width_,height_)),0.0f};
@@ -493,9 +522,11 @@ void Renderer::stop() {
     if (bgfx::isValid(material_)) bgfx::destroy(material_);
     if (bgfx::isValid(light_)) bgfx::destroy(light_);
     if (bgfx::isValid(normal_)) bgfx::destroy(normal_);
+    if (bgfx::isValid(linear_)) bgfx::destroy(linear_);
+    if (bgfx::isValid(orientation_)) bgfx::destroy(orientation_);
     if (bgfx::isValid(options_)) bgfx::destroy(options_);
     for (auto& handle : meshes_) handle=BGFX_INVALID_HANDLE;
-    program_=BGFX_INVALID_HANDLE; normal_=BGFX_INVALID_HANDLE; options_=BGFX_INVALID_HANDLE;
+    program_=BGFX_INVALID_HANDLE; normal_=BGFX_INVALID_HANDLE; linear_=BGFX_INVALID_HANDLE; orientation_=BGFX_INVALID_HANDLE; options_=BGFX_INVALID_HANDLE;
     material_=BGFX_INVALID_HANDLE; light_=BGFX_INVALID_HANDLE;
     bgfx::frame(); bgfx::shutdown(); started_=false;
     std::cout << "SHUTDOWN renderer resources released\n";

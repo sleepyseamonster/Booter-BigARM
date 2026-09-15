@@ -1,0 +1,61 @@
+{
+  "batch": "R3",
+  "date": "2026-09-15",
+  "source_baseline": "b6add6df328d5ca5eec8693f5702b9d0d43e21fa",
+  "passed": true,
+  "findings_closed": [
+    "A06",
+    "A07"
+  ],
+  "native_checks": [
+    "authoring_scene_corrections",
+    "authoring_bounded_host",
+    "render_scene_gizmo_contract",
+    "model_import_animation"
+  ],
+  "native_passed": 4,
+  "renderer": {
+    "backend": "Metal",
+    "captures": 7,
+    "callback_errors": 0,
+    "authored_affine_draws": 2,
+    "comparison_size": [
+      1920,
+      1280
+    ],
+    "reverse_order_byte_identical": true,
+    "comparison_sha256": "b7e8cdeaf511455ca8c138ca5f624467b2cd48605fe565ecc85d689ff95f1eda",
+    "visually_inspected": true
+  },
+  "source_sha256": {
+    "Source/Rendering/RenderScene.cpp": "82390d2a2f3d48dc42956c874cfc630f094e3566e39cfe83203ded39c4dedc57",
+    "Source/Rendering/RenderScene.h": "8e57dd8b2333d0741e8189623f015a50e488585f293677ccad54121822638b4f",
+    "Source/Rendering/Renderer.cpp": "db098be290450d1a018eb1b5dcf293432a2018726f117ab953b2e9869c739125",
+    "Source/Authoring/SceneManipulation.cpp": "a29e3644878927662491433e381ad2983d7563f81b7b73f739dd370f74585e0d",
+    "Source/Authoring/SceneManipulation.h": "d3c690f807078b22cc78e8a6cf972b1622761582d575d8c0c44c7cb51a50c00c",
+    "Source/Assets/GltfImport.cpp": "442ed8e93c79766487bac4dfe5b713876beafc81536e2177cbf57b97ce0e0668",
+    "Shaders/vs_scene.sc": "11a9b0a08b7dd3b50fe7733d798aae1c11ca430c853b70ff553d0c70f9d600ff",
+    "Shaders/vs_skin.sc": "35f417d1dc5746714e767c66b39944450649a796e53d8c554c8753a76c53fe4e",
+    "Tests/RenderSceneTests.cpp": "ec556880e04ef72959047af9c38eb2d8717c7c6ea93420eedb42cd974befcee8",
+    "Tests/OutdoorRenderCheck.cpp": "5c6b611215ef842306cbf706d3c51487d813e8729a2b3d54e27676232e4597de",
+    "Tests/AnimationTests.cpp": "736952ca691ecbaaf724013c710bba797ed87b4529e2ddef47ff27165fd030ea"
+  },
+  "binary_sha256": {
+    "Shaders/vs_scene.bin": "ca1929b81929f4d3caa2fdd7d9ab6215241ec7e52de4c11e8382fa398959c017",
+    "Shaders/vs_skin.bin": "7f9a6774d14f8a6bd3a3e3ad8ae61694a20695baf994c7d446d888f77985c38a",
+    "engine_workbench": "542a19a0c52041dca0eb526f8fb5889f6ce6b8ac5e70bd5c20a84c2353a9cfce",
+    "engine_player": "26049e71cdb3f3f200fae784158a5db44ac36829f31dc1b2b9f49fd92c3991e1"
+  },
+  "artifacts": [
+    "native-tests.txt",
+    "metal-result.json",
+    "authored-affine.png"
+  ],
+  "open_gates": [
+    "Visible move, rotate and scale handles plus physical pointer acceptance are UI-owned and remain open",
+    "The second live Game View and its GPU target belong to R4",
+    "Arbitrary imported textured GPU residency and resource budgeting belong to R5",
+    "Windows D3D11 and native input remain unverified"
+  ],
+  "proof_limits": "Mac CPU contracts and a non-focusable Metal technical render. No gameplay smoke test, Windows claim, input feel, input-to-photon result or production performance result."
+}

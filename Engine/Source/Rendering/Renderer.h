@@ -3,6 +3,7 @@
 #include "Core/RockMaterial.h"
 #include "Platform/Window.h"
 #include "Rendering/RenderModel.h"
+#include "Rendering/RenderScene.h"
 #include "Rendering/FrameTelemetry.h"
 #include <bgfx/bgfx.h>
 #include <atomic>
@@ -40,7 +41,7 @@ struct SurfaceTextures {
 
 };
 struct RenderInstance {const RenderModel* model=nullptr;std::array<float,3> offset{},boundsCenter{};float yaw=0,boundsRadius=1;bool ground=false;std::array<float,3> scale{1,1,1};};
-struct ScenePlacement {const std::vector<RenderInstance>* instances=nullptr;bool streamedWorld=false; std::array<float,3> offset{},eye{},target{};bool physicalCharacter=false;const RenderModel* model=nullptr;const std::vector<SkinMatrix>* pose=nullptr;bool cpuReference=false,markerActive=false;const RenderModel* rock=nullptr;std::array<float,3> rockOffset{-3.5f,0,0};float rockFocusHeight=.85f; };
+struct ScenePlacement {const std::vector<RenderInstance>* instances=nullptr;const RenderSceneSnapshot* authored=nullptr;bool streamedWorld=false; std::array<float,3> offset{},eye{},target{};bool physicalCharacter=false;const RenderModel* model=nullptr;const std::vector<SkinMatrix>* pose=nullptr;bool cpuReference=false,markerActive=false;const RenderModel* rock=nullptr;std::array<float,3> rockOffset{-3.5f,0,0};float rockFocusHeight=.85f; };
 struct SceneSurfaces { SurfaceTextures rock, ground; };
 class Renderer {
 public:
@@ -90,6 +91,6 @@ private:
     bgfx::UniformHandle albedoSampler_ = BGFX_INVALID_HANDLE, normalSampler_ = BGFX_INVALID_HANDLE, surfaceSampler_ = BGFX_INVALID_HANDLE;
     std::array<bgfx::VertexBufferHandle, 5> meshes_{{BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE}};
     bgfx::UniformHandle material_ = BGFX_INVALID_HANDLE, light_ = BGFX_INVALID_HANDLE;
-    bgfx::UniformHandle normal_ = BGFX_INVALID_HANDLE, options_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle normal_ = BGFX_INVALID_HANDLE, linear_ = BGFX_INVALID_HANDLE, orientation_ = BGFX_INVALID_HANDLE, options_ = BGFX_INVALID_HANDLE;
 };
 }

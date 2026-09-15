@@ -60,6 +60,7 @@ The page contains `entities`, `total`, exact `revision` and `next_offset` (null 
 | `duplicate` | `entity`; duplicates the whole subtree with fresh IDs |
 | `delete` | `entity`; deletes the whole subtree |
 | `set_transform` | `entity`, `transform` containing `translation` (3), quaternion `rotation` xyzw (4), `scale` (3) |
+| `set_world_transforms` | `transforms`: 1–1,024 items containing `entity` and a 16-number column-major affine `world_matrix`; intended for one atomic multi-selection/gizmo commit |
 | `reparent` | `entity`, optional `parent` (null means root), optional boolean `preserve_world` (defaults true) |
 | `metadata` | `entity`, `mesh`, `material`, `collider`, integer `lod` 0–31, boolean `visible`, array of string `tags`; all metadata fields required |
 

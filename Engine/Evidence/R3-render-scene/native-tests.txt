@@ -1,0 +1,19 @@
+Internal ctest changing into directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/foundation
+Test project /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/foundation
+    Start  5: authoring_scene_corrections
+1/4 Test  #5: authoring_scene_corrections ......   Passed    1.22 sec
+    Start  6: authoring_bounded_host
+2/4 Test  #6: authoring_bounded_host ...........   Passed    0.34 sec
+    Start  7: render_scene_gizmo_contract
+3/4 Test  #7: render_scene_gizmo_contract ......   Passed    0.28 sec
+    Start 12: model_import_animation
+4/4 Test #12: model_import_animation ...........   Passed    0.04 sec
+
+100% tests passed, 0 tests failed out of 4
+
+Label Time Summary:
+authoring    =   0.62 sec*proc (2 tests)
+headless     =   0.62 sec*proc (2 tests)
+rendering    =   0.28 sec*proc (1 test)
+
+Total Test time (real) =   1.89 sec
