@@ -1,0 +1,122 @@
+{
+  "purpose": "Observational audit; reproduced_issue=true identifies a defect, not a passing engine gate",
+  "source_commit": "f6dc2ad72511706d2f4c694318013e378238fc3a",
+  "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+  "command": [
+    "clang++",
+    "-std=c++20",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-I",
+    "Source",
+    "-isystem",
+    ".cache/probe-sources/nlohmann_json/single_include",
+    "Tests/ArchitectureAuditProbe.cpp",
+    "Source/Authoring/SceneDocument.cpp",
+    "Source/Authoring/SceneAuthoringAdapter.cpp",
+    "Source/Persistence/Document.cpp",
+    "-o",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/architecture-audit/architecture_audit_probe"
+  ],
+  "input_sha256": {
+    "Tests/ArchitectureAuditProbe.cpp": "b806b250c97d3f10415772467777f4c4ba376bce606f2b3bab0f7e9728006d06",
+    "Source/Authoring/SceneDocument.cpp": "cd5b559523111e64121c530a0234e41c5827ba03dc3c38e228fefa54cba04c9b",
+    "Source/Authoring/SceneAuthoringAdapter.cpp": "bf4e4a2e5fd804d3993ea7f34127db4edc229b25850f8df75985a022c6ce32a4",
+    "Source/Persistence/Document.cpp": "d4331e0eb23ff892d738d9810ee43d25962731c985c1eca17ef581784ebd6d70",
+    "Source/Authoring/SceneDocument.h": "bfdf0ec8ed68b8ea80d27a866c594c4e1c6641b1025389a93f19fe77a3e076b9",
+    "Source/Authoring/SceneAuthoringAdapter.h": "d44530bb049703c572e678ab53c0a5cb4a6f0824c03f1b8f2a3a06be99804a72",
+    "Source/Runtime/AuthoringOperations.h": "5e9212e5dc027e1deef8c9326c8a1d32eedfc2c6853311ac4fa34c4a52e84fc5",
+    "Source/Persistence/Document.h": "604964e48d092ca394bf6c0f6dd1e330cf0992d810fa76a74abe680efd0c92d6",
+    "Research/runtime-lock.json": "07ecaa8ccc47b2d129d7acf313d3fb5dfb0767a0e6b01101ba9d41f386fc0a42"
+  },
+  "observations": {
+    "commit_allocation_atomicity": {
+      "mutated_after_exception": [
+        {
+          "allocation_index": 1,
+          "can_undo": false,
+          "original_revision": 2,
+          "revision": 2
+        },
+        {
+          "allocation_index": 2,
+          "can_undo": false,
+          "original_revision": 2,
+          "revision": 2
+        },
+        {
+          "allocation_index": 3,
+          "can_undo": true,
+          "original_revision": 2,
+          "revision": 3
+        }
+      ],
+      "reproduced_issue": true
+    },
+    "composed_transform_overflow": {
+      "inspection_rejected": true,
+      "reproduced_issue": true,
+      "world_finite": false
+    },
+    "deleted_entity_blocks_history": {
+      "can_undo": true,
+      "remaining_entity_x": 1.0,
+      "reproduced_issue": true,
+      "undo_succeeded": false
+    },
+    "failed_direct_transaction_can_commit_prefix": {
+      "commit_succeeded": true,
+      "invalid_edit_rejected": true,
+      "reproduced_issue": true
+    },
+    "hierarchy_inspection_timings": [
+      {
+        "entities": 128,
+        "inspection_ms": 1.506959,
+        "result_entities": 128
+      },
+      {
+        "entities": 512,
+        "inspection_ms": 21.560584,
+        "result_entities": 512
+      },
+      {
+        "entities": 1024,
+        "inspection_ms": 128.122916,
+        "result_entities": 1024
+      }
+    ],
+    "hierarchy_nonuniform_scale": {
+      "actual_translation": [
+        -1.5149566934269387e-08,
+        2.000000238418579,
+        0.0
+      ],
+      "expected_translation": [
+        0,
+        1,
+        0
+      ],
+      "reproduced_issue": true
+    },
+    "revision_overflow": {
+      "receipt_error": "Authoring operation version moved backwards",
+      "reproduced_issue": true,
+      "revision": 0
+    },
+    "scene_save_capacity": {
+      "created_entities": 2500,
+      "document_limit": 1048576,
+      "reproduced_issue": true,
+      "serialized_bytes": 1431570
+    },
+    "schema_silent_coercion": {
+      "accepted_fractional_lod": true,
+      "dropped_unknown_field": true,
+      "reproduced_issue": true,
+      "result_lod": 1
+    }
+  }
+}

@@ -2,6 +2,8 @@
 
 Updated 2026-09-14, America/Phoenix. Audited and rewritten after confirming the current source seams and the required standalone and in-workbench Game View behavior.
 
+**Controlling audit update, 2026-09-15:** the [current architecture audit](./ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) reproduced hierarchy, transaction/history and scene validation/capacity defects in the first authoring pass. Complete its R1 scene-authority corrections before Phase 3 or gizmo integration. R2 then bounds and hosts the authoring adapter; R3–R6 refine the phases below. The earlier first-boundary completion means a basic library/test substrate exists, not that its complete correctness or live application integration has been accepted.
+
 This is the focused execution plan for the new operating model: Codex is the primary authoring client, a human uses a small scene viewport for visual judgment and precise gizmo edits, and the same engine runtime powers playtesting and the standalone game. It is subordinate to [FOUNDATION_PLAN.md](./FOUNDATION_PLAN.md), which remains the master whole-engine roadmap, and [STATUS.md](./STATUS.md), which remains the live evidence handoff.
 
 ## Outcome
@@ -30,7 +32,7 @@ Unity remains reference-only. Terrain, rocks, generators, canyons and final game
 
 ## Live audit findings
 
-The repository now contains the first `AuthoringSceneDocument` and transform transaction domain. `AuthoringOperations` remains the generic bounded queue, while `SceneAuthoringAdapter` supplies the first local `inspect_scene`, `inspect_entity` and `apply_transaction` handlers. `FixtureState` still drives the current Workbench renderer, and `Apps/Game` is still a standalone player path rather than an in-workbench play session. The first implementation boundary is complete; the next dependency is the Phase 3 render snapshot and viewport contract.
+The repository contains the first `AuthoringSceneDocument` and transform transaction domain. `AuthoringOperations` remains the generic queue, while `SceneAuthoringAdapter` supplies in-process `inspect_scene`, `inspect_entity` and `apply_transaction` handlers. Neither application instantiates the adapter. `FixtureState` still drives the Workbench renderer, and `Apps/Game` is a standalone player path rather than an in-workbench play session. First-boundary correctness is reopened by the 2026-09-15 audit; R1 corrections and R2 bounded hosting precede the Phase 3 render snapshot and viewport contract.
 
 The corrected sequence below puts the smallest local AI operation path beside the first scene transactions, defines a temporary `FixtureState`/runtime adapter, establishes frame-safe render snapshots before the viewport contract, and treats the standalone player and embedded Game View as two clients of one play-session service. No current implementation is being reclassified as complete because the plan exists.
 
@@ -210,8 +212,8 @@ The initial editor-oriented interpretation was revised because it would have cre
 
 ## First implementation boundary
 
-**Complete 2026-09-14:** Phase 1 plus the minimum of Phase 2 adds `AuthoringSceneDocument`, hierarchy/transform storage, versioned serialization, one atomic `set_transform` transaction with undo/rollback, and the in-process `inspect/apply` AI adapter. Codex and a small test client can inspect and change a scene without touching renderer or UI state. The native core suite and all 15 configured core tests pass; details are recorded in [HUMAN_AI_SCENE_DOCUMENT_RESULT.md](./HUMAN_AI_SCENE_DOCUMENT_RESULT.md).
+**Basic substrate delivered 2026-09-14; correctness reopened 2026-09-15:** Phase 1 plus the minimum of Phase 2 adds `AuthoringSceneDocument`, hierarchy/transform storage, versioned serialization, transform transactions with undo/rollback, and an in-process `inspect/apply` adapter. A C++ test client can inspect and change a document without renderer/UI state. The 15 registered native tests pass, but the [new audit](./ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) demonstrates cases they missed. The adapter has no running-application host or external command entry point. See the original [result](./HUMAN_AI_SCENE_DOCUMENT_RESULT.md) for the earlier proof scope.
 
-The next coherent engine batch is Phase 3: build the immutable render snapshot adapter and narrow Scene View gizmo contract, then formalize the isolated Play Session/Game View lifecycle in bounded batches.
+The next coherent engine batch is **R1: correct scene authority**. Close the audit's A01–A04 and the false-positive hierarchy test before extending consumers. Follow with R2 bounded authoring hosting, then Phase 3/R3 immutable render snapshots and the Scene View gizmo contract, followed by the isolated Play Session/Game View lifecycle.
 
 Do not begin generator-specific constraints, permanent world layouts, a large asset browser or additional visual effects before that boundary is complete. The result must remain a usable Scene View while the Game View/session work is added.

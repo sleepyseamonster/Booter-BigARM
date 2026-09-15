@@ -4,6 +4,8 @@ This is the working home for the proprietary engine and regular third-person gam
 
 Start with [current status and next step](./Docs/STATUS.md), then [accepted direction](./Docs/DIRECTION.md) and [the working agreement](./AGENTS.md).
 
+The [2026-09-15 engine architecture audit](./Docs/ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) records current strengths, reproduced defects and the correction order before human-AI viewport integration.
+
 [Open the Unity-compatible single-rock generator](./Docs/SINGLE_ROCK_PARITY.md), with fresh seeded compositions, all eight silhouette profiles and measured shape comparisons.
 
 [Open the earlier captured Unity Golden Rock setup](./Docs/GOLDEN_ROCK_TRANSFER_RESULT.md), with three saved shapes and their source settings.

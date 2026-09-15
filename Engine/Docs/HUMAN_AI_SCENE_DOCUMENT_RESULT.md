@@ -1,5 +1,7 @@
 # Human-AI scene document result
 
+**Audit qualification, 2026-09-15:** the [architecture audit](./ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) reproduced defects in hierarchy composition, allocation-failure atomicity, delete/history behavior and revision/schema/save bounds. The statements below describe the original first-pass intent and basic tests, not complete correctness. The adapter is in-process library code with no app host. R1 corrections now precede the previously proposed snapshot/gizmo work; no fixes are claimed by the audit.
+
 Implemented 2026-09-14 as the first boundary of the [human and AI engine build-out plan](./HUMAN_AI_ENGINE_BUILDOUT_PLAN.md).
 
 The engine now has a renderer-independent authoring domain under `Source/Authoring/`. `AuthoringSceneDocument` stores stable numeric entity IDs, names, parent relationships, local transforms, resolved world transforms, mesh/material/collider references, LOD intent, visibility and bounded authoring tags. Hierarchy evaluation is deterministic and rejects missing parents, cycles, non-finite values and invalid quaternions. Runtime and renderer handles are not serialized.

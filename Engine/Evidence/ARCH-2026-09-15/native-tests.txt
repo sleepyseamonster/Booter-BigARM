@@ -1,0 +1,246 @@
+Start testing: Sep 15 12:36 MST
+----------------------------------------------------------
+1/15 Testing: foundation_state
+1/15 Test: foundation_state
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_state_tests"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"foundation_state" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: input capture and gesture ownership, orbit/pan/recenter math, camera bounds, nonfinite state, clipped/empty/zero framebuffer
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"foundation_state" end time: Sep 15 12:36 MST
+"foundation_state" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/15 Testing: fixture_geometry
+2/15 Test: fixture_geometry
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_geometry_tests"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"fixture_geometry" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: outward nondegenerate cube/solid/sphere, radial sphere normals, affine normal perpendicularity, translation, mirrored math, invalid transforms, independent baked normals, inspector bounds
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"fixture_geometry" end time: Sep 15 12:36 MST
+"fixture_geometry" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/15 Testing: runtime_documents_identity
+3/15 Test: runtime_documents_identity
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_core_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/core-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"runtime_documents_identity" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: stable identity, negative/large coordinates, bounded JSON, strict candidate load, atomic replacement, contention and content confinement
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"runtime_documents_identity" end time: Sep 15 12:36 MST
+"runtime_documents_identity" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/15 Testing: authoring_scene_document
+4/15 Test: authoring_scene_document
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_scene_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/scene-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"authoring_scene_document" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: authoring hierarchy, atomic transform transactions, undo/redo, persistence and AI adapter
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"authoring_scene_document" end time: Sep 15 12:36 MST
+"authoring_scene_document" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/15 Testing: semantic_textures_catalog
+5/15 Test: semantic_textures_catalog
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_texture_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/texture-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"semantic_textures_catalog" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: semantic color/data/alpha/vector mips, NPOT/1D/periodic footprints, strict KTX truncation/profile/CRC and catalog confinement
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"semantic_textures_catalog" end time: Sep 15 12:36 MST
+"semantic_textures_catalog" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/15 Testing: material_definition_contract
+6/15 Test: material_definition_contract
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_material_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/material-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"material_definition_contract" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: material family slots, semantic roles, transfer functions and missing assets
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"material_definition_contract" end time: Sep 15 12:36 MST
+"material_definition_contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/15 Testing: fixed_simulation_actions
+7/15 Test: fixed_simulation_actions
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_simulation_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/simulation-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"fixed_simulation_actions" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: fixed clock, action lifecycle, named bindings, ordered ECS commands, region unload and stale lifetimes
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"fixed_simulation_actions" end time: Sep 15 12:36 MST
+"fixed_simulation_actions" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/15 Testing: collision_character_camera
+8/15 Test: collision_character_camera
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_physics_tests"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"collision_character_camera" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+step peak=0.252882 stop x=4.38
+slope steep=0 x=2.31604 y=1.20169
+slope steep=1 x=-0.228673 y=5.32907e-14
+PASS: Jolt bodies/queries/contact lifetime, capsule slopes/steps/jump/ground loss, camera obstruction and fixed-rate motion
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"collision_character_camera" end time: Sep 15 12:36 MST
+"collision_character_camera" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/15 Testing: model_import_animation
+9/15 Test: model_import_animation
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_animation_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Assets/Models/Calibration/character.glb" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/animation-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"model_import_animation" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: GLB/glTF cook, skin hierarchy/bind pose, clip sampling/blending, static transforms and bounded rejection
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"model_import_animation" end time: Sep 15 12:36 MST
+"model_import_animation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/15 Testing: shared_calibration_audio
+10/15 Test: shared_calibration_audio
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_calibration_tests"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"shared_calibration_audio" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: shared calibration state, one-shot interaction/event drain, pause, camera and offline miniaudio cue; energy=28.918
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"shared_calibration_audio" end time: Sep 15 12:36 MST
+"shared_calibration_audio" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/15 Testing: native_rock_placement
+11/15 Test: native_rock_placement
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_world_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/Assets/Recipes/wasteland-rock.json" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/world-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"native_rock_placement" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: stable deterministic rocks, closed topology/semantics, cooked assets, two-agent clearance, reserved routes and constraint roundtrip
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"native_rock_placement" end time: Sep 15 12:36 MST
+"native_rock_placement" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/15 Testing: rock_adapters_commands
+12/15 Test: rock_adapters_commands
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_rock_workbench_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/rock-workbench-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"rock_adapters_commands" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: LOD identity/anchors, render-triangle collision agreement, edit/undo/redo and failed-edit preservation, inspection save/reload, exact accepted mesh export and overwrite rejection; bytes=40896
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Passed.
+"rock_adapters_commands" end time: Sep 15 12:36 MST
+"rock_adapters_commands" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/15 Testing: terrain_jobs
+13/15 Test: terrain_jobs
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_terrain_jobs_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/terrain-jobs-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"terrain_jobs" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: terrain borders/large signed coordinates, triangle surface/collision agreement, deterministic constrained placement and two-class macro routes; bounded async generation, out-of-order/epoch replacement, failure and shutdown; terrain bytes=211376, rocks=161
+<end of output>
+Test time =   0.09 sec
+----------------------------------------------------------
+Test Passed.
+"terrain_jobs" end time: Sep 15 12:36 MST
+"terrain_jobs" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/15 Testing: region_stream
+14/15 Test: region_stream
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_region_stream_tests"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"region_stream" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: prioritized region jobs, real Jolt attachment, safe waiting and negative-border traversal, hysteresis, two anchors, stable reload identity, bounded retirement/cancellation and frustum conventions; adopted=30, retired=39
+<end of output>
+Test time =   0.46 sec
+----------------------------------------------------------
+Test Passed.
+"region_stream" end time: Sep 15 12:36 MST
+"region_stream" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/15 Testing: sun_cascade_contract
+15/15 Test: sun_cascade_contract
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_sun_tests"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"sun_cascade_contract" start time: Sep 15 12:36 MST
+Output:
+----------------------------------------------------------
+PASS: camera rotation invariant extent, subtexel stability, frustum coverage and invalid range rejection
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"sun_cascade_contract" end time: Sep 15 12:36 MST
+"sun_cascade_contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 15 12:36 MST
