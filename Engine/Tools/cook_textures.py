@@ -8,7 +8,7 @@ import zlib
 from pathlib import Path
 from common import ROOT, inside, write_json
 
-CHANNELS={'base_color':'srgb_rgb_linear_alpha','normal':'xyz_linear_alpha','packed_surface':'ao_roughness_height_alpha','height':'scalar_linear','mask':('crack_halo_deposit_alpha','uninterpreted_linear_mask')}
+CHANNELS={'base_color':'srgb_rgb_linear_alpha','normal':'xyz_linear_alpha','packed_surface':'ao_roughness_height_alpha','height':'scalar_linear','mask':('crack_halo_deposit_alpha','uninterpreted_linear_mask'),'environment':'linear_rgb_alpha'}
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def validate(recipe):
     fields={'id','source','role','transfer','channels','alpha','normal_green','dimensions','filter','edge','format'}

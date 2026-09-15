@@ -12,6 +12,7 @@ TextureRole textureRole(const std::string& name) {
     if (name=="packed_surface") return TextureRole::Surface;
     if (name=="height") return TextureRole::Height;
     if (name=="mask") return TextureRole::Mask;
+    if (name=="environment") return TextureRole::Environment;
     throw std::invalid_argument("Unsupported texture role: "+name);
 }
 size_t TextureData::bytes() const { size_t size=0; for (const auto& level:levels) size+=level.rgba.size(); return size; }

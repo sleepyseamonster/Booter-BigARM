@@ -5,7 +5,9 @@
 #include <string>
 #include <vector>
 namespace engine {
-enum class TextureRole { Color, Normal, Surface, Height, Mask };
+// Environment panoramas are authored as linear RGB. They are lighting inputs,
+// not visible sky backgrounds, so they must never be treated as sRGB color art.
+enum class TextureRole { Color, Normal, Surface, Height, Mask, Environment };
 TextureRole textureRole(const std::string& name);
 struct ImageLevel { uint32_t width=0,height=0; std::vector<uint8_t> rgba; };
 struct TextureData { bool srgb=false; std::vector<ImageLevel> levels; size_t bytes() const; };
