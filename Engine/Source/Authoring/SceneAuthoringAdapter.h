@@ -21,6 +21,9 @@ public:
     std::size_t process(std::size_t budget = 8) { return operations_.process(budget); }
     std::optional<AuthoringOperationReceipt> receipt(std::uint64_t id) const { return operations_.receipt(id); }
     std::size_t pending() const { return operations_.pending(); }
+    // Same domain entry point for in-process clients and the off-frame live host.
+    static AuthoringJson execute(AuthoringSceneDocument&, const std::string& type,
+                                 const AuthoringJson& payload, std::uint64_t expectedVersion);
 
 private:
     AuthoringSceneDocument& document_;
@@ -28,7 +31,7 @@ private:
     void registerHandlers();
     AuthoringJson inspectScene(const AuthoringJson& payload, std::uint64_t expectedVersion, std::uint64_t& resultingVersion);
     AuthoringJson inspectEntity(const AuthoringJson& payload, std::uint64_t expectedVersion, std::uint64_t& resultingVersion);
-    AuthoringJson applyTransaction(const AuthoringJson& payload, std::uint64_t expectedVersion, std::uint64_t& resultingVersion);
+
 };
 
 } // namespace engine

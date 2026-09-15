@@ -4,7 +4,7 @@ This is the working home for the proprietary engine and regular third-person gam
 
 Start with [current status and next step](./Docs/STATUS.md), then [accepted direction](./Docs/DIRECTION.md) and [the working agreement](./AGENTS.md).
 
-The [active correction and integration plan](./Docs/ENGINE_CORRECTION_PLAN.md) turns the two architecture audits into six ordered implementation batches. [R1 scene authority is implemented](./Docs/SCENE_AUTHORITY_R1_RESULT.md); R2 bounded live authoring is next.
+The [active correction and integration plan](./Docs/ENGINE_CORRECTION_PLAN.md) turns the two architecture audits into six ordered implementation batches. [R1 scene authority](./Docs/SCENE_AUTHORITY_R1_RESULT.md) and [R2 bounded live authoring](./Docs/LIVE_AUTHORING_R2_RESULT.md) are implemented; R3 snapshot rendering and the Scene View manipulation contract are next.
 
 The [2026-09-15 engine architecture audit](./Docs/ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) records current strengths, reproduced defects and the correction order before human-AI viewport integration.
 

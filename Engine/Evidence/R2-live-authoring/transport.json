@@ -1,0 +1,241 @@
+{
+  "initial": {
+    "closed": false,
+    "commands": [
+      "apply_transaction",
+      "preview_transaction",
+      "undo",
+      "redo"
+    ],
+    "document_id": "workbench",
+    "epoch": "31c4f30226b86a7f156a7e4d419658cc",
+    "limits": {
+      "page_entities": 64,
+      "pending_bytes": 8388608,
+      "pending_count": 128,
+      "pinned_revisions": 4,
+      "receipt_bytes": 8388608,
+      "receipt_count": 512,
+      "request_bytes": 262144,
+      "result_bytes": 65536
+    },
+    "next_entity_id": 1,
+    "operations": [
+      "describe",
+      "inspect_scene",
+      "inspect_entity",
+      "submit",
+      "receipt",
+      "cancel"
+    ],
+    "protocol": 1,
+    "request_id_high_water": 0,
+    "revision": 1,
+    "timing": {
+      "last_adopt_ns": 0,
+      "last_prepare_ns": 0
+    },
+    "usage": {
+      "pending_bytes": 0,
+      "pending_count": 0,
+      "receipt_bytes": 0,
+      "receipt_count": 0
+    }
+  },
+  "applied": {
+    "document_id": "workbench",
+    "epoch": "31c4f30226b86a7f156a7e4d419658cc",
+    "request_id": 1,
+    "result": {
+      "after_version": 2,
+      "before_version": 1,
+      "changed_entities": [
+        1
+      ],
+      "created_entities": [
+        1
+      ],
+      "preview": false
+    },
+    "revision": 2,
+    "status": "applied"
+  },
+  "inspected": {
+    "document_id": "workbench",
+    "entity": {
+      "components": {
+        "collider": "",
+        "lod": 0,
+        "material": "",
+        "mesh": "",
+        "visible": true
+      },
+      "id": 1,
+      "name": "Technical proxy",
+      "parent": null,
+      "tags": [],
+      "transform": {
+        "rotation": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          1.0,
+          2.0,
+          1.0
+        ],
+        "translation": [
+          2.0,
+          3.0,
+          4.0
+        ]
+      }
+    },
+    "epoch": "31c4f30226b86a7f156a7e4d419658cc",
+    "revision": 2,
+    "world_matrix": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      2.0,
+      3.0,
+      4.0,
+      1.0
+    ]
+  },
+  "interrupted_reply": {
+    "document_id": "workbench",
+    "epoch": "31c4f30226b86a7f156a7e4d419658cc",
+    "request_id": 2,
+    "result": {
+      "after_version": 3,
+      "before_version": 2,
+      "changed_entities": [
+        2
+      ],
+      "created_entities": [
+        2
+      ],
+      "preview": false
+    },
+    "revision": 3,
+    "status": "applied"
+  },
+  "stale_epoch": {
+    "epoch": "31c4f30226b86a7f156a7e4d419658cc",
+    "error": "Document identity or live epoch mismatch",
+    "request_id": 0,
+    "status": "rejected"
+  },
+  "final": {
+    "closed": false,
+    "commands": [
+      "apply_transaction",
+      "preview_transaction",
+      "undo",
+      "redo"
+    ],
+    "document_id": "workbench",
+    "epoch": "31c4f30226b86a7f156a7e4d419658cc",
+    "limits": {
+      "page_entities": 64,
+      "pending_bytes": 8388608,
+      "pending_count": 128,
+      "pinned_revisions": 4,
+      "receipt_bytes": 8388608,
+      "receipt_count": 512,
+      "request_bytes": 262144,
+      "result_bytes": 65536
+    },
+    "next_entity_id": 3,
+    "operations": [
+      "describe",
+      "inspect_scene",
+      "inspect_entity",
+      "submit",
+      "receipt",
+      "cancel"
+    ],
+    "protocol": 1,
+    "request_id_high_water": 2,
+    "revision": 3,
+    "timing": {
+      "last_adopt_ns": 458,
+      "last_prepare_ns": 31583
+    },
+    "usage": {
+      "pending_bytes": 0,
+      "pending_count": 0,
+      "receipt_bytes": 1006,
+      "receipt_count": 2
+    }
+  },
+  "restart": {
+    "closed": false,
+    "commands": [
+      "apply_transaction",
+      "preview_transaction",
+      "undo",
+      "redo"
+    ],
+    "document_id": "workbench",
+    "epoch": "a02763dbd0e95ca4cb58fb8ffbd4667f",
+    "limits": {
+      "page_entities": 64,
+      "pending_bytes": 8388608,
+      "pending_count": 128,
+      "pinned_revisions": 4,
+      "receipt_bytes": 8388608,
+      "receipt_count": 512,
+      "request_bytes": 262144,
+      "result_bytes": 65536
+    },
+    "next_entity_id": 1,
+    "operations": [
+      "describe",
+      "inspect_scene",
+      "inspect_entity",
+      "submit",
+      "receipt",
+      "cancel"
+    ],
+    "protocol": 1,
+    "request_id_high_water": 0,
+    "revision": 1,
+    "timing": {
+      "last_adopt_ns": 0,
+      "last_prepare_ns": 0
+    },
+    "usage": {
+      "pending_bytes": 0,
+      "pending_count": 0,
+      "receipt_bytes": 0,
+      "receipt_count": 0
+    }
+  },
+  "passed": true,
+  "binary_sha256": "5ad475dd0d7297c704cbb7c07d7010f2ccbdce5ac661329ffb00dc92a0ca0732",
+  "mode": "real workbench binary; bounded headless authoring mode; no SDL/gameplay",
+  "checks": [
+    "CLI transaction/inspection",
+    "retained retry",
+    "stale epoch",
+    "interrupted delivery",
+    "private endpoint",
+    "no endpoint replacement",
+    "duplicate JSON rejection",
+    "shutdown with incomplete client",
+    "fresh restart epoch and socket cleanup"
+  ]
+}

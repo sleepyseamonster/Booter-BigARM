@@ -41,9 +41,11 @@ void SceneAuthoringAdapter::registerHandlers() {
     operations_.registerHandler("inspect_entity", [this](const auto& payload, auto expected, auto& resulting) {
         return inspectEntity(payload, expected, resulting);
     });
-    operations_.registerHandler("apply_transaction", [this](const auto& payload, auto expected, auto& resulting) {
-        return applyTransaction(payload, expected, resulting);
-    });
+    for(const std::string type:{"apply_transaction","preview_transaction","undo","redo"})
+        operations_.registerHandler(type, [this,type](const auto& payload, auto expected, auto& resulting) {
+            auto result=execute(document_,type,payload,expected);
+            resulting=document_.version();return result;
+        });
 }
 
 AuthoringJson SceneAuthoringAdapter::inspectScene(const AuthoringJson& payload, std::uint64_t expectedVersion,
@@ -73,34 +75,60 @@ AuthoringJson SceneAuthoringAdapter::inspectEntity(const AuthoringJson& payload,
     return std::move(out.value);
 }
 
-AuthoringJson SceneAuthoringAdapter::applyTransaction(const AuthoringJson& payload, std::uint64_t expectedVersion,
-                                                      std::uint64_t& resultingVersion) {
-    requireObject(payload, "apply_transaction payload");
-    requireFields(payload,{"operations"});
-    requireCurrentVersion(document_, expectedVersion, true);
-    if (!payload.contains("operations") || !payload.at("operations").is_array() || payload.at("operations").empty() ||
-        payload.at("operations").size() > 128)
-        throw SceneDocumentError("apply_transaction requires 1 to 128 operations");
-    auto transaction = document_.beginTransaction(expectedVersion);
-    for (const auto& operation : payload.at("operations")) {
-        requireObject(operation, "scene transaction operation");
-        requireFields(operation,{"type","entity","transform"});
-        if (!operation.contains("type") || !operation.at("type").is_string() ||
-            operation.at("type").template get_ref<const std::string&>() != "set_transform" || !operation.contains("entity") ||
-            !operation.contains("transform"))
-            throw SceneDocumentError("Only set_transform is available in this transaction boundary");
-        transaction.setTransform(readEntityId(operation.at("entity")), AuthoringSceneDocument::transformFromJson(operation.at("transform")));
+AuthoringJson SceneAuthoringAdapter::execute(AuthoringSceneDocument& document,const std::string& type,
+                                             const AuthoringJson& payload,uint64_t expectedVersion) {
+    requireObject(payload,"transaction payload");
+    requireCurrentVersion(document,expectedVersion,true);
+    const bool preview=type=="preview_transaction";
+    auto finish=[&](AuthoringSceneDocument::PreparedEdit prepared,const std::vector<SceneEntityId>& created) {
+        const auto& result=prepared.result();
+        PreparedJson receipt;
+        receipt.value["before_version"]=result.beforeVersion;
+        receipt.value["after_version"]=result.afterVersion;
+        receipt.value["changed_entities"]=result.changedEntities;
+        receipt.value["created_entities"]=created;
+        receipt.value["preview"]=preview;
+        if(receipt.value.dump().size()>60*1024)throw SceneDocumentError("Transaction result too large",SceneErrorCode::Capacity);
+        if(!preview&&!prepared.apply())throw SceneDocumentError("Scene changed during preparation",SceneErrorCode::Conflict);
+        return std::move(receipt.value);
+    };
+    if(type=="undo"||type=="redo") {
+        requireFields(payload,{});
+        return finish(type=="undo"?document.prepareUndo(expectedVersion):document.prepareRedo(expectedVersion),{});
     }
-    auto prepared = transaction.prepare();
-    const auto& result = prepared.result();
-    PreparedJson receipt;
-    receipt.value["before_version"]=result.beforeVersion;
-    receipt.value["after_version"]=result.afterVersion;
-    receipt.value["changed_entities"]=result.changedEntities;
-    // All result allocation precedes adoption. Moving the JSON return value is nonthrowing.
-    if (!prepared.apply()) throw SceneDocumentError("Scene changed during preparation", SceneErrorCode::Conflict);
-    resultingVersion = result.afterVersion;
-    return std::move(receipt.value);
+    if(type!="apply_transaction"&&!preview)throw SceneDocumentError("Unsupported authoring command");
+    requireFields(payload,{"operations"});
+    if(!payload.contains("operations")||!payload.at("operations").is_array()||payload.at("operations").empty()||payload.at("operations").size()>128)
+        throw SceneDocumentError("Transaction requires 1 to 128 operations");
+    auto transaction=document.beginTransaction(expectedVersion);
+    std::vector<SceneEntityId> created;
+    for(const auto& op:payload.at("operations")) {
+        requireObject(op,"transaction operation");
+        const auto& kind=op.at("type").get_ref<const std::string&>();
+        auto entity=[&]{return readEntityId(op.at("entity"));};
+        auto parent=[&]()->std::optional<SceneEntityId>{return !op.contains("parent")||op.at("parent").is_null()?std::nullopt:std::optional<SceneEntityId>{readEntityId(op.at("parent"))};};
+        if(kind=="create") {
+            requireFields(op,{"type","name","parent"});
+            created.push_back(transaction.createEntity(op.at("name").get<std::string>(),parent()));
+        } else if(kind=="duplicate") {
+            requireFields(op,{"type","entity"});created.push_back(transaction.duplicate(entity()));
+        } else if(kind=="delete") {
+            requireFields(op,{"type","entity"});transaction.eraseEntity(entity());
+        } else if(kind=="set_transform") {
+            requireFields(op,{"type","entity","transform"});
+            transaction.setTransform(entity(),AuthoringSceneDocument::transformFromJson(op.at("transform")));
+        } else if(kind=="reparent") {
+            requireFields(op,{"type","entity","parent","preserve_world"});
+            transaction.reparent(entity(),parent(),op.value("preserve_world",true));
+        } else if(kind=="metadata") {
+            requireFields(op,{"type","entity","mesh","material","collider","lod","visible","tags"});
+            const auto& lod=op.at("lod");
+            if(!lod.is_number_integer()||lod.get<double>()<0||lod.get<double>()>31)throw SceneDocumentError("LOD must be an integer in 0..31");
+            transaction.setMetadata(entity(),op.at("mesh").get<std::string>(),op.at("material").get<std::string>(),
+                op.at("collider").get<std::string>(),lod.get<int32_t>(),op.at("visible").get<bool>(),op.at("tags").get<std::vector<std::string>>());
+        } else throw SceneDocumentError("Unsupported transaction operation: "+kind);
+    }
+    return finish(transaction.prepare(),created);
 }
 
 } // namespace engine

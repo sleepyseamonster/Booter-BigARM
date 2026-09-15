@@ -104,6 +104,11 @@ const SceneEntity* AuthoringSceneDocument::find(SceneEntityId id)const noexcept{
 const AffineMatrix& AuthoringSceneDocument::worldMatrix(SceneEntityId id)const{const auto it=state_->index.find(id);if(it==state_->index.end())throw SceneDocumentError("Entity does not exist");return state_->worlds[it->second];}
 SceneTransform AuthoringSceneDocument::worldTransform(SceneEntityId id)const{return transformOf(worldMatrix(id));}
 std::vector<SceneEntity> AuthoringSceneDocument::entities()const{return state_->entities;}
+size_t AuthoringSceneDocument::entityCount()const noexcept{return state_->entities.size();}
+const SceneEntity& AuthoringSceneDocument::entityAt(size_t index)const{return state_->entities.at(index);}
+AuthoringSceneDocument AuthoringSceneDocument::readSnapshot()const{
+    AuthoringSceneDocument out(sceneId_);out.state_=state_;out.version_=version_;out.nextEntityId_=nextEntityId_;return out;
+}
 Json AuthoringSceneDocument::transformToJson(const SceneTransform& t){
     validateTransform(t);PreparedJson out;
     out.value["translation"]=t.translation;out.value["rotation"]=t.rotation;out.value["scale"]=t.scale;

@@ -958,9 +958,12 @@
         "findings": [
           "A05"
         ],
-        "state": "planned",
+        "state": "complete",
         "proof": "Live local command host, epochs, receipt semantics and bounded extraction",
-        "evidence": [],
+        "evidence": [
+          "Evidence/R2-live-authoring/result.json",
+          "Docs/LIVE_AUTHORING_R2_RESULT.md"
+        ],
         "environment": "mac_or_platform_independent",
         "required_gates": []
       },

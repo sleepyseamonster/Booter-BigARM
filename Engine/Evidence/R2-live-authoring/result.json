@@ -1,0 +1,85 @@
+{
+  "batch": "R2",
+  "date": "2026-09-15",
+  "passed": true,
+  "findings_closed": [
+    "A05"
+  ],
+  "source_baseline": "6b606867107b438f3deca2f4b0db6b0881ab8696",
+  "source_sha256": {
+    "CMakeLists.txt": "d6e4608377a72c949f7eafd4c02541e5da303fdd48781cccc0c0944c2404940c",
+    "Apps/Workbench/main.cpp": "a59c3ad23e580b980f33cbcce8103647deb0c33a874404507f23e0606204a7bf",
+    "Source/Authoring/AuthoringHost.h": "23e23f37ca3e434339e6b6eff8f3f0bb19ab60cfb8d36f2cda599029227c86e5",
+    "Source/Authoring/AuthoringHost.cpp": "9457bacb9de482e4d33e68d52a95eafeaf28462e3614b3f6a530f0aab3acfc52",
+    "Source/Authoring/SceneDocument.h": "95eef2197e3eeabb2e37135c7240ade7bf9ed3e74ddb2cd593d801f8cb3d0c5b",
+    "Source/Authoring/SceneDocument.cpp": "3bf73d7046a99fe0781a0f25f986ffc74ec8c334e5cf200ef5e1bec044127d6a",
+    "Source/Authoring/SceneAuthoringAdapter.h": "cab4b67ab06d63adb06f715a9425504126214e14f034a6a5ec8c376fc189a309",
+    "Source/Authoring/SceneAuthoringAdapter.cpp": "593cc42c62c3d7f2147cfc1b5b0e88e51b5d482be7c1ced8d2375dabdbc95af2",
+    "Source/Platform/LocalAuthoringEndpoint.h": "eafd3f819682612e987c96a7aa9d05b202b0cdac9fdf155bc0bf76121c27a65d",
+    "Source/Platform/LocalAuthoringEndpoint.cpp": "2e1859f0182b3f930361b84f805728647a25ad56ba1bb86e280723a3880352e1",
+    "Source/Runtime/AuthoringOperations.h": "62c3a18f342123fff430ded2e2fb0d2525712661eefc77b31d0de536a4eb456e",
+    "Source/Persistence/JsonLifetime.h": "a713c0e1929c0fc224c9ad30c3cd87d827f61d87e3c2b48062a8e8d2d3d7bd22",
+    "Tests/AuthoringHostTests.cpp": "5641858c1ba92f39cc57c2c2d5a72bba350380a9103211d85e9c39b1d64b770f",
+    "Tests/SceneCorrectionTests.cpp": "388e9765b92570d4347a405c416d41290e688db205db4413992baf72d68131c7",
+    "Tests/SceneDocumentTests.cpp": "bf4f06055f62b8ed22867c0d58184da3ed182592583cb99cbd1b36ecdce64502",
+    "Tools/author_scene.py": "1c435be6531d01e1994158b5b4363c59eab36e5b1963651400b7703beab96f08",
+    "Tools/tests/check_authoring_transport.py": "55671c88bc484e5457d897050ae0be7e5b18640885fcaaf2a4977dadfc4d7cd3",
+    "Research/runtime-lock.json": "07ecaa8ccc47b2d129d7acf313d3fb5dfb0767a0e6b01101ba9d41f386fc0a42"
+  },
+  "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "native_checks": [
+    "runtime_documents_identity",
+    "authoring_scene_document",
+    "authoring_scene_corrections",
+    "authoring_bounded_host"
+  ],
+  "native_passed": 4,
+  "registered_test_count": 17,
+  "workbench_build": "build/foundation/engine_workbench",
+  "workbench_binary_sha256": "5ad475dd0d7297c704cbb7c07d7010f2ccbdce5ac661329ffb00dc92a0ca0732",
+  "cli_transport_passed": true,
+  "timing": {
+    "flat_deep_1024_page_inspection_ns": 19233708,
+    "last_native_owner": {
+      "last_adopt_ns": 167,
+      "last_prepare_ns": 98417
+    },
+    "last_workbench_owner": {
+      "last_adopt_ns": 458,
+      "last_prepare_ns": 31583
+    },
+    "interpretation": "Single observational CPU samples; not frame percentiles or end-to-end latency"
+  },
+  "limits": {
+    "page_entities": 64,
+    "pending_bytes": 8388608,
+    "pending_count": 128,
+    "pinned_revisions": 4,
+    "receipt_bytes": 8388608,
+    "receipt_count": 512,
+    "request_bytes": 262144,
+    "result_bytes": 65536
+  },
+  "proof_limits": [
+    "Mac CPU/domain and actual Workbench headless host only; no SDL/gameplay initialized",
+    "No renderer/visual/gizmo acceptance; R3 next",
+    "Live save/load and PlaySession await R4",
+    "Windows local transport is explicitly unsupported pending native gate",
+    "Encoded payload budgets do not claim whole-process memory limits",
+    "No crash-persistent command journal or exhaustive host allocation/interleaving fault coverage"
+  ],
+  "artifacts": [
+    "native-tests.txt",
+    "transport.json",
+    "workbench.txt"
+  ],
+  "documentation_checks": {
+    "plan_checker_errors": 0,
+    "ready_local": [
+      "R3"
+    ],
+    "planner_tests_passed": 12,
+    "workspace_checker_existing_errors": 44,
+    "workspace_error_scope": "Research/UnityReference; preserved reference links and whitespace; unchanged baseline"
+  }
+}

@@ -1,4 +1,5 @@
 #include "Rendering/StreamingScene.h"
+#include "Platform/LocalAuthoringEndpoint.h"
 #define SDL_MAIN_HANDLED
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
@@ -37,11 +38,18 @@
 #include "Tools/ViewerControls.h"
 
 namespace {
-struct Options { std::string testControls; std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool captureRockUi=false,terrainPreview=false,buildInfo=false, lightingVerify=false, environmentVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
+struct Options { std::filesystem::path authoringSocket,authoringScene; unsigned authoringHeadlessMs=0; std::string testControls; std::filesystem::path shaders, verify, inspection, saveInspection, catalog, bindings, saveBindings, model, rock, terrain, streamRock, constraints, worldProfile, rockLibrary, captureRock; bool captureRockUi=false,terrainPreview=false,buildInfo=false, lightingVerify=false, environmentVerify=false, animationVerify=false, rockVerify=false,streamVerify=false,cameraVerify=false; };
 Options parse(int argc,char** argv) {
     Options options;
     for (int i=1;i<argc;++i) {
         const std::string arg=argv[i];
+        if(arg=="--authoring-socket"&&i+1<argc){options.authoringSocket=argv[++i];continue;}
+        if(arg=="--authoring-scene"&&i+1<argc){options.authoringScene=argv[++i];continue;}
+        if(arg=="--authoring-headless-ms"&&i+1<argc){
+            const std::string value=argv[++i];size_t end=0;const auto ms=std::stoul(value,&end);
+            if(end!=value.size()||ms<100||ms>60000)throw std::invalid_argument("Authoring headless duration must be 100..60000 ms");
+            options.authoringHeadlessMs=unsigned(ms);continue;
+        }
         if(arg=="--test-controls"&&i+1<argc){options.testControls=argv[++i];continue;}
         if(arg=="--capture-rock-ui"){options.captureRockUi=true;continue;}
         if(arg=="--terrain-preview"){options.terrainPreview=true;continue;}
@@ -767,6 +775,20 @@ int run(Options options) {
 }
 }
 int main(int argc,char** argv) {
-    try { return run(parse(argc,argv)); }
+    try {
+        auto options=parse(argc,argv);
+        if((options.authoringHeadlessMs||!options.authoringScene.empty())&&options.authoringSocket.empty())
+            throw std::invalid_argument("Authoring headless/scene options require --authoring-socket");
+        std::unique_ptr<engine::AuthoringHost> authoring;
+        std::unique_ptr<engine::LocalAuthoringEndpoint> endpoint;
+        if(!options.authoringSocket.empty()){
+            authoring=std::make_unique<engine::AuthoringHost>(options.authoringScene.empty()?engine::AuthoringSceneDocument("workbench"):engine::AuthoringSceneDocument::load(options.authoringScene));
+            authoring->start();
+            endpoint=std::make_unique<engine::LocalAuthoringEndpoint>(*authoring,options.authoringSocket);
+            std::cout<<"Authoring endpoint: "<<options.authoringSocket<<'\n';
+        }
+        if(options.authoringHeadlessMs){std::this_thread::sleep_for(std::chrono::milliseconds(options.authoringHeadlessMs));return 0;}
+        return run(options);
+    }
     catch (const std::exception& error) { std::cerr << "ERROR: " << error.what() << '\n'; return 1; }
 }

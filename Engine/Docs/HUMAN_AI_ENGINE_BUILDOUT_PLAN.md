@@ -1,6 +1,6 @@
 # Human and AI engine build-out plan
 
-**R1 delivered 2026-09-15:** [Scene-authority correction proof](./SCENE_AUTHORITY_R1_RESULT.md) closes the first corrective boundary. Continue R2 bounded live authoring; older audit/phase entries below describe the starting deficiencies.
+**R1/R2 delivered 2026-09-15:** [Scene-authority proof](./SCENE_AUTHORITY_R1_RESULT.md) and [bounded live authoring proof](./LIVE_AUTHORING_R2_RESULT.md) close the first two corrective boundaries. Continue R3 snapshot rendering and the Scene View manipulation contract; older audit/phase entries below describe the starting deficiencies.
 
 Updated 2026-09-14, America/Phoenix. Audited and rewritten after confirming the current source seams and the required standalone and in-workbench Game View behavior.
 
@@ -220,6 +220,6 @@ The initial editor-oriented interpretation was revised because it would have cre
 
 **Basic substrate delivered 2026-09-14; correctness reopened 2026-09-15:** Phase 1 plus the minimum of Phase 2 adds `AuthoringSceneDocument`, hierarchy/transform storage, versioned serialization, transform transactions with undo/rollback, and an in-process `inspect/apply` adapter. A C++ test client can inspect and change a document without renderer/UI state. The 15 registered native tests pass, but the [new audit](./ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) demonstrates cases they missed. The adapter has no running-application host or external command entry point. See the original [result](./HUMAN_AI_SCENE_DOCUMENT_RESULT.md) for the earlier proof scope.
 
-The next coherent engine batch is **R1: correct scene authority**. Close the audit's A01–A04 and the false-positive hierarchy test before extending consumers. Follow with R2 bounded authoring hosting, then Phase 3/R3 immutable render snapshots and the Scene View gizmo contract, followed by the isolated Play Session/Game View lifecycle.
+The next coherent engine batch is **R3: immutable render snapshots and the Scene View manipulation contract**. R1 closes A01–A04 and the hierarchy assertion; R2 closes A05 with the live host. Follow R3 with the isolated Play Session/Game View lifecycle. Actual human widget acceptance remains the UI owner's separate gate.
 
 Do not begin generator-specific constraints, permanent world layouts, a large asset browser or additional visual effects before that boundary is complete. The result must remain a usable Scene View while the Game View/session work is added.

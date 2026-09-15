@@ -43,6 +43,10 @@ public:
     const SceneEntity* find(SceneEntityId)const noexcept;
     bool updateEntityMetadata(SceneEntityId,std::string mesh,std::string material,std::string collider,int32_t lod,bool visible,std::vector<std::string> tags);
     std::vector<SceneEntity> entities()const;
+    size_t entityCount()const noexcept;
+    const SceneEntity& entityAt(size_t index)const;
+    // Cheap immutable-state view without retaining undo/redo history.
+    AuthoringSceneDocument readSnapshot()const;
     const AffineMatrix& worldMatrix(SceneEntityId)const;
     SceneTransform worldTransform(SceneEntityId)const; // Compatibility: rejects unrepresentable shear.
     static AffineMatrix matrixOf(const SceneTransform&);
