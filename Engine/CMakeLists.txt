@@ -17,7 +17,7 @@ file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/Research/runtime-lock.json" RUNTIME_LOC
 add_library(engine_core Source/Core/WorldIdentity.cpp Source/Persistence/Document.cpp)
 target_include_directories(engine_core PUBLIC Source)
 target_include_directories(engine_core SYSTEM PUBLIC "${DEPS}/nlohmann_json/single_include")
-add_library(engine_texture_data Source/Assets/TextureData.cpp Source/Assets/TextureCatalog.cpp)
+add_library(engine_texture_data Source/Assets/TextureData.cpp Source/Assets/TextureCatalog.cpp Source/Assets/MaterialDefinition.cpp)
 target_include_directories(engine_texture_data PUBLIC Source)
 target_link_libraries(engine_texture_data PUBLIC engine_core)
 add_library(engine_state Source/Core/FixtureState.cpp Source/Core/FixtureGeometry.cpp Source/Runtime/InspectionDocument.cpp)
@@ -125,6 +125,10 @@ add_test(NAME runtime_documents_identity COMMAND engine_core_tests "${CMAKE_CURR
 add_executable(engine_texture_tests Tests/TextureTests.cpp)
 target_link_libraries(engine_texture_tests PRIVATE engine_texture_data)
 add_test(NAME semantic_textures_catalog COMMAND engine_texture_tests "${CMAKE_CURRENT_BINARY_DIR}/texture-test-data")
+
+add_executable(engine_material_tests Tests/MaterialTests.cpp)
+target_link_libraries(engine_material_tests PRIVATE engine_texture_data)
+add_test(NAME material_definition_contract COMMAND engine_material_tests "${CMAKE_CURRENT_BINARY_DIR}/material-test-data")
 
 add_executable(engine_simulation_tests Tests/SimulationTests.cpp)
 target_link_libraries(engine_simulation_tests PRIVATE engine_simulation)

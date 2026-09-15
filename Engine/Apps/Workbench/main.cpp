@@ -6,6 +6,7 @@
 #include "Core/SceneCameraControls.h"
 #include "Runtime/InspectionDocument.h"
 #include "Rendering/TextureStore.h"
+#include "Assets/MaterialDefinition.h"
 #include "Rendering/TextureChecks.h"
 #include "Platform/Window.h"
 #include "Rendering/Renderer.h"
@@ -250,6 +251,10 @@ int run(Options options) {
     renderer.start(window,options.shaders);
     const std::string backend=renderer.name();
     const auto records=options.catalog.empty()?std::vector<engine::TextureRecord>{}:engine::loadTextureCatalog(options.catalog);
+    if(!records.empty()) {
+        const auto material=engine::validateMaterial(engine::layeredRockMaterial(),records);
+        if(!material.valid) throw std::runtime_error("Layered rock material contract failed: "+material.errors.front());
+    }
     std::shared_ptr<const engine::ModelData> modelData;
     std::unique_ptr<engine::AnimationPlayer> animation;
     std::unique_ptr<engine::RenderModel> renderModel;

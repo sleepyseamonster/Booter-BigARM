@@ -32,6 +32,8 @@ public:
     void replaceMesh(BodyToken,const std::vector<PhysicsVector>& triangles);
     BodyToken heightfield(std::string id,PhysicsVector offset,uint32_t side,float spacing,const std::vector<float>& heights);
     bool remove(BodyToken);
+    void setGravity(PhysicsVector);
+    PhysicsVector gravity() const;
     std::optional<PhysicsVector> position(BodyToken) const;
     void velocity(BodyToken,PhysicsVector);
     void step(float seconds);

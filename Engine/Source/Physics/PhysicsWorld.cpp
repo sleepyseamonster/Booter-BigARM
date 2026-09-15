@@ -190,6 +190,11 @@ bool PhysicsWorld::remove(BodyToken token) {
     auto& interface=w.system.GetBodyInterface();interface.RemoveBody(JPH::BodyID(token.body));interface.DestroyBody(JPH::BodyID(token.body));
     w.identities.erase(w.bodies.at(token.body).id);w.bodies.erase(token.body);return true;
 }
+void PhysicsWorld::setGravity(PhysicsVector value) {
+    bounded(value,1000);
+    impl_->system.SetGravity(vec(value));
+}
+PhysicsVector PhysicsWorld::gravity() const {return array(impl_->system.GetGravity());}
 std::optional<PhysicsVector> PhysicsWorld::position(BodyToken token) const {
     if(!impl_->valid(token)) return {};return array(impl_->system.GetBodyInterface().GetPosition(JPH::BodyID(token.body)));
 }

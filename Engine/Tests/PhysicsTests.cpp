@@ -17,6 +17,10 @@ void floor(PhysicsWorld& w,float half=20) {w.box("authored:floor",{0,-.5f,0},{ha
 int main() try {
     {
         PhysicsWorld world;floor(world);
+        require(std::abs(world.gravity()[1]+9.81f)<.01f,"Default gravity is physically configured");
+        world.setGravity({0,-4,0});
+        require(std::abs(world.gravity()[1]+4)<.001f,"Gravity configuration reaches the physics world");
+        rejects([&]{world.setGravity({NAN,0,0});});
         const auto ray=world.ray({0,5,0},{0,-10,0});
         require(ray && ray->stableId=="authored:floor" && std::abs(ray->fraction-.5f)<.001f && ray->normal[1]>.99f,"Ray hit fraction and normal");
         require(world.capsuleOverlap({0,.5f,0},.35f,.55f) && !world.capsuleOverlap({0,4,0},.35f,.55f),"Capsule overlap/clear cases");

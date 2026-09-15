@@ -1,5 +1,7 @@
 # Current Engine Handoff
 
+**Latest engine contract pass (2026-09-14):** [Material semantic validation](./MATERIAL_SYSTEM_RESULT.md) centralizes layered material slots and rejects role/transfer-function/missing-asset mismatches before GPU acquisition. `PhysicsWorld` now exposes configured gravity while retaining Jolt collision, queries and character behavior. Focused material and physics contracts pass. Lighting/texture format scope is unchanged; the next runtime batch remains streamed-region adoption attribution.
+
 **Latest single-rock pass (2026-09-14):** [Native generator v7](./SINGLE_ROCK_PARITY.md) ports Unity's seeded composition and grid sampling. All 21 reference geometry cases match topology; 189 silhouette views have minimum overlap 99.9897%. Native save/edit/LOD checks, actual Jolt cooking/surface queries, earlier rock regressions and Metal/package captures pass. Open `out/single-rock-workbench/Launch-Rock-Generator.command`. The C# shim is test-only; native generation has no Unity/.NET dependency. Windows and v7 streamed placement remain open.
 
 **Latest engine batch (2026-09-14):** [Two sun cascades and shared frame telemetry](./OUTDOOR_LIGHTING_L2_RESULT.md) are implemented and technically verified on Metal. The ground self-shadow lines are corrected while preserving contact shadows. Open `out/engine-cascaded-shadows/Launch-Rock-Generator.command`. The next bounded job is the measured streamed-region adoption stall, then shared depth/AO and fog. Windows proof remains open.
