@@ -67,6 +67,7 @@ private:
     bgfx::ProgramHandle textureProgram_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle textureOptions_ = BGFX_INVALID_HANDLE, previewSampler_ = BGFX_INVALID_HANDLE;
     bgfx::FrameBufferHandle scene_ = BGFX_INVALID_HANDLE;
+    bgfx::FrameBufferHandle prepass_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle displayProgram_ = BGFX_INVALID_HANDLE, calibrationProgram_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle skyProgram_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle environment_ = BGFX_INVALID_HANDLE, inverseViewProjection_ = BGFX_INVALID_HANDLE;
@@ -75,12 +76,14 @@ private:
     bgfx::UniformHandle ao_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle sceneNormalSampler_ = BGFX_INVALID_HANDLE, sceneDepthSampler_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle skinProgram_=BGFX_INVALID_HANDLE,skinShadowProgram_=BGFX_INVALID_HANDLE;
+    bgfx::ProgramHandle prepassProgram_=BGFX_INVALID_HANDLE,prepassSkinProgram_=BGFX_INVALID_HANDLE;
     bgfx::UniformHandle joints_=BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle program_ = BGFX_INVALID_HANDLE;
     bgfx::FrameBufferHandle shadow_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle shadowProgram_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle shadowMatrix_ = BGFX_INVALID_HANDLE, shadowOptions_ = BGFX_INVALID_HANDLE, shadowSampler_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle shadowFarMatrix_ = BGFX_INVALID_HANDLE, shadowRange_ = BGFX_INVALID_HANDLE, shadowCamera_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle contactMatrix_ = BGFX_INVALID_HANDLE, contactOptions_ = BGFX_INVALID_HANDLE, prepassNormalSampler_ = BGFX_INVALID_HANDLE, prepassDepthSampler_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle eye_ = BGFX_INVALID_HANDLE, surfaceParams_ = BGFX_INVALID_HANDLE, materialMapping_ = BGFX_INVALID_HANDLE, materialUvOffset_ = BGFX_INVALID_HANDLE, fog_ = BGFX_INVALID_HANDLE, fogColor_ = BGFX_INVALID_HANDLE;
     std::array<bgfx::UniformHandle,10> layerSamplers_=[] {std::array<bgfx::UniformHandle,10> a;for(auto& h:a)h=BGFX_INVALID_HANDLE;return a;}();
     bgfx::UniformHandle layerParams_=BGFX_INVALID_HANDLE;

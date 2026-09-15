@@ -28,7 +28,7 @@ int main(int argc,char** argv){try{
     instances.push_back({&cube,{0,-.2f,-50},{0,-.2f,-50},0,160,true,{160,.4f,220}});
     for(int i=0;i<5;++i){float z=-float(i)*20;instances.push_back({&sphere,{float(i%2?6:-6),2,z},{float(i%2?6:-6),2,z},0,4,false,{4,4,4}});}
     instances.push_back({&cube,{45,10,0},{45,10,0},0,11,false,{2,20,2}});
-    FixtureState state;state.lightAzimuth=.785398f;state.environment.sunElevation=.18f;state.exposure=1;state.ambient=.5f;
+    FixtureState state;state.lightAzimuth=.785398f;state.environment.sunElevation=.18f;state.exposure=1;state.ambient=.5f;state.ambientOcclusion=true;state.aoStrength=.65f;state.aoRadius=1.75f;state.contactShadows=true;state.contactStrength=.8f;state.contactDistance=1.25f;
     ScenePlacement placement;placement.streamedWorld=true;placement.physicalCharacter=true;placement.eye={0,12,25};placement.target={0,1,-30};placement.instances=&instances;
     float view[16],projection[16],vp[16];bx::mtxLookAt(view,{0,12,25},{0,1,-30},{0,1,0},bx::Handedness::Right);
     bx::mtxProj(projection,state.fieldOfView,float(renderer.width())/renderer.height(),.1f,600,bgfx::getCaps()->homogeneousDepth,bx::Handedness::Right);bx::mtxMul(vp,view,projection);

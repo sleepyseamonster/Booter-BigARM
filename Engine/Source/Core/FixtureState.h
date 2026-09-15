@@ -29,6 +29,9 @@ struct FixtureState {
     bool ambientOcclusion = false;
     float aoStrength = 0.35f;
     float aoRadius = 1.0f;
+    bool contactShadows = false;
+    float contactStrength = 0.65f;
+    float contactDistance = 0.75f;
     bool surfaceTextures = true;
     bool operator==(const FixtureState&)const=default;
     void orbit(float dx, float dy, bool captured);

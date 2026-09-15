@@ -34,6 +34,7 @@ void FixtureState::constrain() {
     bound(shadowBias,0,0.02f,0.0015f); bound(roughness,0.045f,1,0.7f);
     bound(metallic,0,1,0); bound(normalStrength,0,2,1); bound(textureScale,0.1f,8,1); bound(ambient,0,1,0.3f);
     bound(aoStrength,0,1,0.35f);bound(aoRadius,0.1f,4,1.0f);
+    bound(contactStrength,0,1,0.65f);bound(contactDistance,0.1f,3,0.75f);
     if (!std::isfinite(objectYaw)) objectYaw = 0;
     for (float& scale : objectScale) scale = std::isfinite(scale)?std::clamp(scale,0.2f,3.0f):1.5f;
     for(float& value:viewOffset)value=std::isfinite(value)?std::clamp(value,-4096.f,4096.f):0;

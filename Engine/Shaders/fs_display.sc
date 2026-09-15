@@ -20,23 +20,37 @@ void main()
     if (u_ao.x > 0.5 && centerNormalSample.a > 0.5 && centerDepth < 0.999)
     {
         vec3 centerNormal = normalize(centerNormalSample.rgb * 2.0 - 1.0);
-        vec2 offsets[4];
+        vec2 offsets[12];
         offsets[0] = vec2(1.0, 0.0);
         offsets[1] = vec2(-1.0, 0.0);
         offsets[2] = vec2(0.0, 1.0);
         offsets[3] = vec2(0.0, -1.0);
+        offsets[4] = vec2(0.7071, 0.7071);
+        offsets[5] = vec2(-0.7071, 0.7071);
+        offsets[6] = vec2(0.7071, -0.7071);
+        offsets[7] = vec2(-0.7071, -0.7071);
+        offsets[8] = vec2(0.9239, 0.3827);
+        offsets[9] = vec2(-0.3827, 0.9239);
+        offsets[10] = vec2(-0.9239, -0.3827);
+        offsets[11] = vec2(0.3827, -0.9239);
         float occlusion = 0.0;
-        for (int i = 0; i < 4; ++i)
+        float weightSum = 0.0;
+        for (int i = 0; i < 12; ++i)
         {
-            vec2 sampleUv = v_texcoord0 + offsets[i] * u_ao.z;
+            float ring = i < 4 ? 0.45 : (i < 8 ? 0.72 : 1.0);
+            float weight = i < 8 ? 1.0 : 0.75;
+            vec2 sampleUv = v_texcoord0 + offsets[i] * u_ao.z * ring;
             vec4 sampleNormal = texture2D(s_sceneNormal, sampleUv);
             float sampleDepth = texture2D(s_sceneDepth, sampleUv).r;
-            float closer = step(sampleDepth + 0.002, centerDepth);
+            float depthDelta = centerDepth - sampleDepth;
+            float closer = smoothstep(0.0008, 0.012, depthDelta);
+            float rangeWeight = 1.0 - smoothstep(0.015, 0.12, abs(depthDelta));
             vec3 decodedSampleNormal = normalize(sampleNormal.rgb * 2.0 - 1.0);
-            float normalAgreement = 0.5 + 0.5 * max(dot(centerNormal, decodedSampleNormal), 0.0);
-            occlusion += closer * normalAgreement * step(0.5, sampleNormal.a);
+            float normalAgreement = 0.35 + 0.65 * max(dot(centerNormal, decodedSampleNormal), 0.0);
+            occlusion += closer * rangeWeight * normalAgreement * step(0.5, sampleNormal.a) * weight;
+            weightSum += weight;
         }
-        aoFactor = 1.0 - clamp(occlusion * 0.25 * u_ao.y, 0.0, 0.8);
+        aoFactor = 1.0 - clamp((occlusion / max(weightSum, 0.001)) * 2.2 * u_ao.y, 0.0, 0.85);
     }
     sceneColor *= aoFactor;
     // Normal diagnostic colors are already display values; exposure must not alter them.

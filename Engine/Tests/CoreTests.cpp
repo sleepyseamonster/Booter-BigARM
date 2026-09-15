@@ -44,9 +44,9 @@ int main(int argc,char** argv) {
         auto badLighting=valid;badLighting["lighting"]["roughness"]=-1;writeDocument(document,"engine.inspection",badLighting);
         rejects([&] {loadInspection(document,loaded);});require(loaded.roughness==.7f,"Bad lighting retains live state");
         auto authored=loaded;authored.shadows=false;authored.roughness=.2f;authored.normalStrength=0;
-        authored.ambientOcclusion=true;authored.aoStrength=.6f;authored.aoRadius=2.25f;
+        authored.ambientOcclusion=true;authored.aoStrength=.6f;authored.aoRadius=2.25f;authored.contactShadows=true;authored.contactStrength=.8f;authored.contactDistance=1.5f;
         saveInspection(document,authored);loadInspection(document,loaded);
-        require(!loaded.shadows && loaded.roughness==.2f && loaded.normalStrength==0 && loaded.ambientOcclusion && loaded.aoStrength==.6f && loaded.aoRadius==2.25f,"Lighting settings roundtrip");
+        require(!loaded.shadows && loaded.roughness==.2f && loaded.normalStrength==0 && loaded.ambientOcclusion && loaded.aoStrength==.6f && loaded.aoRadius==2.25f && loaded.contactShadows && loaded.contactStrength==.8f && loaded.contactDistance==1.5f,"Lighting settings roundtrip");
         auto authoredEnvironment=loaded;
         authoredEnvironment.environment.sunElevation=.2f;authoredEnvironment.environment.sunColor={.9f,.7f,.4f};
         authoredEnvironment.environment.zenith={.1f,.3f,.5f};authoredEnvironment.environment.horizon={.8f,.6f,.4f};

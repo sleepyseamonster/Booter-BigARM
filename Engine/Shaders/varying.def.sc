@@ -8,6 +8,7 @@ vec3 v_world : TEXCOORD2;
 vec4 v_shadow : TEXCOORD3;
 vec2 v_uv : TEXCOORD4 = vec2(0.0, 0.0);
 vec4 v_tangent : TEXCOORD5 = vec4(1.0, 0.0, 0.0, 1.0);
+vec4 v_screen : TEXCOORD6;
 vec4 v_color0 : COLOR0;
 vec2 v_texcoord0 : TEXCOORD0;
 vec4 a_indices : BLENDINDICES;

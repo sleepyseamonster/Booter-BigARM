@@ -1,6 +1,6 @@
 # Engine Master Implementation Plan
 
-Controlling priority update, 2026-09-14: [production runtime and AI-authoring priorities](./ENGINE_RUNTIME_PRIORITIES.md) apply the user's architecture/performance/low-latency direction. Shared frame telemetry, explicit pacing, wider sun cascades, asynchronous collision preparation, height fog and the first shared G-buffer/AO pass are now implemented; see [STATUS.md](./STATUS.md). Next is AI-authoring integration and broader scalable rendering around representative world data. UI belongs to the separate UI agent. Earlier lighting next-step entries below remain historical sequencing, subordinate to this update.
+Controlling priority update, 2026-09-14: [production runtime and AI-authoring priorities](./ENGINE_RUNTIME_PRIORITIES.md) apply the user's architecture/performance/low-latency direction. Shared frame telemetry, explicit pacing, wider sun cascades, asynchronous collision preparation, height fog, higher quality AO and contact shadows are now implemented; see [STATUS.md](./STATUS.md). Next is AI-authoring integration and broader scalable rendering around representative world data. UI belongs to the separate UI agent. Earlier lighting next-step entries below remain historical sequencing, subordinate to this update.
 
 Lighting implementation update, 2026-09-11: [L1 sky/sun/display](./OUTDOOR_LIGHTING_L1_RESULT.md) is complete as a Mac first pass, with a runnable v5 rock workbench. Continue the [lighting sequence](./OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) at L2 shadow coverage; P32 remains planned.
 

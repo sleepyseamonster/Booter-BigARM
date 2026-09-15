@@ -1,4 +1,4 @@
-$input v_normal, v_world, v_shadow, v_uv, v_tangent
+$input v_normal, v_world, v_shadow, v_uv, v_tangent, v_screen
 #include <bgfx_shader.sh>
 #include "environment.sh"
 SAMPLER2D(s_shadow, 0);
@@ -15,6 +15,8 @@ SAMPLER2D(s_gritColor, 10);
 SAMPLER2D(s_gritNormal, 11);
 SAMPLER2D(s_gritSurface, 12);
 SAMPLER2D(s_cracks, 13);
+SAMPLER2D(s_prepassNormal, 14);
+SAMPLER2D(s_prepassDepth, 15);
 uniform vec4 u_rockLayers[5]; // enabled/grit/shale/cracks, dust/variation/worn/seed, local origin
 uniform vec4 u_material;
 uniform vec4 u_light;
@@ -30,6 +32,8 @@ uniform vec4 u_shadowOptions; // enabled, depth bias, texel size, reserved
 uniform mat4 u_shadowFarMatrix;
 uniform vec4 u_shadowRange;
 uniform vec4 u_shadowCamera;
+uniform mat4 u_contactViewProjection;
+uniform vec4 u_contactOptions; // enabled, strength, world distance, origin-bottom-left
 vec2 receiverGradient(vec3 p)
 {
     vec3 dx=dFdx(p),dy=dFdy(p);
@@ -70,6 +74,32 @@ float visibility(vec4 shadowPosition, vec3 geometricNormal, vec3 light, vec3 wor
         return mix(nearShadow,farShadow,smoothstep(u_shadowRange.x,u_shadowRange.y,distance));
     }
     return mix(farShadow,1.0,smoothstep(u_shadowRange.z,u_shadowRange.w,distance));
+}
+float contactVisibility(vec3 world, vec3 geometricNormal, vec3 light)
+{
+    if (u_contactOptions.x < 0.5) return 1.0;
+    float occlusion = 0.0;
+    for (int i = 1; i <= 8; ++i)
+    {
+        float fraction = float(i) / 8.0;
+        vec3 rayWorld = world + light * (u_contactOptions.z * fraction);
+        vec4 projected = mul(u_contactViewProjection, vec4(rayWorld, 1.0));
+        if (abs(projected.w) < 0.0001) continue;
+        vec3 ndc = projected.xyz / projected.w;
+        vec2 uv = ndc.xy * 0.5 + 0.5;
+        if (u_contactOptions.w < 0.5) uv.y = 1.0 - uv.y;
+        float edge = min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));
+        if (edge <= 0.0) continue;
+        float sceneDepth = texture2D(s_prepassDepth, uv).r;
+        vec4 blockerNormal = texture2D(s_prepassNormal, uv);
+        float rayDepth = ndc.z;
+        float blocked = smoothstep(0.0008, 0.008, rayDepth - sceneDepth);
+        vec3 decodedBlocker = normalize(blockerNormal.rgb * 2.0 - 1.0);
+        float facing = 0.55 + 0.45 * max(dot(geometricNormal, decodedBlocker), 0.0);
+        float edgeFade = smoothstep(0.0, 0.08, edge);
+        occlusion = max(occlusion, blocked * facing * blockerNormal.a * edgeFade * (1.0 - fraction * 0.45));
+    }
+    return 1.0 - clamp(occlusion * u_contactOptions.y, 0.0, 0.95);
 }
 vec3 layerNormal(vec3 nx, vec3 ny, vec3 nz, vec3 weights, vec3 signN, vec3 geometricNormal, float strength)
 {
@@ -259,7 +289,8 @@ void main()
     vec3 f0 = mix(vec3(0.04),albedo,metal);
     vec3 fresnel = f0 + (1.0 - f0) * pow(1.0 - VoH,5.0);
     vec3 diffuse = (1.0 - fresnel) * (1.0 - metal) * albedo / 3.14159265;
-    vec3 direct = (diffuse + distribution * smith * fresnel) * NoL * u_light.w * u_environment[0].rgb * visibility(v_shadow,geometricNormal,light,v_world);
+    float sunVisibility = visibility(v_shadow,geometricNormal,light,v_world) * contactVisibility(v_world,geometricNormal,light);
+    vec3 direct = (diffuse + distribution * smith * fresnel) * NoL * u_light.w * u_environment[0].rgb * sunVisibility;
     // Bounded hemispheric fill. This is not an environment-map/IBL solution.
     vec3 hemisphere = environmentAmbient(normal);
     vec3 ambient = ((1.0 - metal) * albedo + f0 * (1.0 - 0.5 * roughness)) * hemisphere * u_sceneOptions.w * ao;

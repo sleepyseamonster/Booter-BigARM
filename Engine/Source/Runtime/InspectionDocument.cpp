@@ -13,7 +13,7 @@ Json encode(const FixtureState& s) {
             {"fog_color_linear",s.environment.fogColor},{"fog_density",s.environment.fogDensity},{"fog_height_falloff",s.environment.fogHeightFalloff},{"fog",s.environment.fog},
             {"sky",s.environment.sky},{"tone_mapping",s.environment.toneMapping}}},
         {"lighting",{{"shadows",s.shadows},{"shadow_bias",s.shadowBias},{"roughness",s.roughness},{"metallic",s.metallic},
-            {"normal_strength",s.normalStrength},{"texture_scale",s.textureScale},{"ambient",s.ambient},{"ambient_occlusion",s.ambientOcclusion},{"ao_strength",s.aoStrength},{"ao_radius",s.aoRadius},{"surface_textures",s.surfaceTextures}}}};
+            {"normal_strength",s.normalStrength},{"texture_scale",s.textureScale},{"ambient",s.ambient},{"ambient_occlusion",s.ambientOcclusion},{"ao_strength",s.aoStrength},{"ao_radius",s.aoRadius},{"contact_shadows",s.contactShadows},{"contact_strength",s.contactStrength},{"contact_distance",s.contactDistance},{"surface_textures",s.surfaceTextures}}}};
 }
 void validate(const FixtureState& s) {
     auto range=[](float v,float low,float high) { if (!std::isfinite(v) || v<low || v>high) throw std::runtime_error("Inspection value outside supported range"); };
@@ -25,7 +25,7 @@ void validate(const FixtureState& s) {
         for(float v:color)range(v,0,1);
     range(s.environment.fogDensity,0,1);range(s.environment.fogHeightFalloff,0,4);
     range(s.shadowBias,0,.02f);range(s.roughness,.045f,1);range(s.metallic,0,1);
-    range(s.normalStrength,0,2);range(s.textureScale,.1f,8);range(s.ambient,0,1);range(s.aoStrength,0,1);range(s.aoRadius,.1f,4);
+    range(s.normalStrength,0,2);range(s.textureScale,.1f,8);range(s.ambient,0,1);range(s.aoStrength,0,1);range(s.aoRadius,.1f,4);range(s.contactStrength,0,1);range(s.contactDistance,.1f,3);
     for (float v:s.color) range(v,0,1);
     for (float v:s.objectScale) range(v,.2f,3);
     for(float v:s.viewOffset)range(v,-4096,4096);
@@ -71,7 +71,7 @@ void loadInspection(const std::filesystem::path& path,FixtureState& state) {
     next.exposure=p.at("exposure");
     auto& lighting=p.at("lighting");
     const auto& defaults=expected.at("lighting");
-    for(const auto& key:{"ambient_occlusion","ao_strength","ao_radius"})if(!lighting.contains(key))lighting[key]=defaults.at(key);
+    for(const auto& key:{"ambient_occlusion","ao_strength","ao_radius","contact_shadows","contact_strength","contact_distance"})if(!lighting.contains(key))lighting[key]=defaults.at(key);
     if(lighting.size()!=defaults.size()) throw std::runtime_error("Lighting fields differ from schema");
     for(const auto& [key,value]:defaults.items()) {
         const auto& input=lighting.at(key);
@@ -79,7 +79,7 @@ void loadInspection(const std::filesystem::path& path,FixtureState& state) {
     }
     next.shadows=lighting.at("shadows");next.shadowBias=lighting.at("shadow_bias");next.roughness=lighting.at("roughness");
     next.metallic=lighting.at("metallic");next.normalStrength=lighting.at("normal_strength");next.textureScale=lighting.at("texture_scale");
-    next.ambient=lighting.at("ambient");next.ambientOcclusion=lighting.at("ambient_occlusion");next.aoStrength=lighting.at("ao_strength");next.aoRadius=lighting.at("ao_radius");next.surfaceTextures=lighting.at("surface_textures");
+    next.ambient=lighting.at("ambient");next.ambientOcclusion=lighting.at("ambient_occlusion");next.aoStrength=lighting.at("ao_strength");next.aoRadius=lighting.at("ao_radius");next.contactShadows=lighting.at("contact_shadows");next.contactStrength=lighting.at("contact_strength");next.contactDistance=lighting.at("contact_distance");next.surfaceTextures=lighting.at("surface_textures");
     const auto& environment=p.at("environment");
     const auto& environmentDefaults=expected.at("environment");
     if(environment.size()!=environmentDefaults.size())throw std::runtime_error("Environment fields differ from schema");
