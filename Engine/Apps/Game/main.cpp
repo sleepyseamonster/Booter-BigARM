@@ -51,7 +51,7 @@ int run(int argc,char** argv) {
         engine::SceneSurfaces surfaces;surfaces.rock={false,textures.resolve(albedo.token()),textures.resolve(normal.token()),textures.resolve(surface.token())};surfaces.ground=surfaces.rock;
         engine::CalibrationRuntime runtime(data,initial);
         std::unique_ptr<engine::StreamingScene> streaming;
-        if(worldSession){const auto& saved=worldSession->initial();streaming=std::make_unique<engine::StreamingScene>(runtime,saved.configuration.terrain,saved.configuration.rock,saved.configuration.constraints,saved.deltas);}
+        if(worldSession){const auto& saved=worldSession->initial();streaming=std::make_unique<engine::StreamingScene>(runtime,saved.configuration.terrain,saved.configuration.rock,saved.configuration.constraints,saved.deltas,&renderer.telemetry);}
         engine::Actions actions;engine::ActionInput input(actions);
         std::unique_ptr<engine::Audio> audio;
         if(!silent&&!technical)try{audio=std::make_unique<engine::Audio>();}catch(const std::exception& error){std::cerr<<error.what()<<"; continuing silently\n";}

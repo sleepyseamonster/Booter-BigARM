@@ -21,7 +21,7 @@ Done: a shared, repeatable runtime baseline and explicit pacing configuration, w
 
 ## Next bounded batch: remove the streamed-region adoption burst
 
-The corrected load/retire/return trace records streaming CPU p95 about 53 ms and maximum 68 ms. This phase includes adoption and instance assembly; it does not isolate collision cooking from terrain LOD construction/uploads. Instrument those two adoption stages first. Move the dominant CPU preparation into bounded jobs, retaining physics/render ownership, epoch rejection, byte reservations and old valid resources until adoption. Compare the same workload once. Do not change world identity or geometry to hide stalls.
+The corrected load/retire/return trace records streaming CPU p95 about 53 ms and maximum 68 ms. The attribution pass now isolates terrain render preparation at a maximum of about 0.35 ms and Jolt mesh cooking at about 59 ms. Move physics-shape preparation into bounded jobs, retaining physics/render ownership, epoch rejection, byte reservations and old valid resources until adoption. Compare the same workload once. Do not change world identity or geometry to hide stalls.
 
 ## Following engine work, in dependency order
 

@@ -6,7 +6,7 @@
 #include <filesystem>
 
 namespace engine {
-enum class FramePhase : size_t {Simulation, Streaming, Draw, Count};
+enum class FramePhase : size_t {Simulation, Streaming, StreamingPrepare, Physics, Draw, Count};
 enum class PresentMode {VSync, Immediate};
 struct RenderConfiguration {
     PresentMode present=PresentMode::VSync;

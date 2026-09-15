@@ -51,7 +51,9 @@ void FrameTelemetry::save(const RenderConfiguration& config,const char* backend)
     for(size_t n=0;n<count_;++n){const auto& s=samples_[(next_+capacity-count_+n)%capacity];
         Json views=Json::array();for(size_t i=0;i<s.viewCount;++i)views.push_back({{"view",s.views[i].id},{"gpu_frame",s.views[i].gpuFrame},{"gpu_ms",timing(s.views[i].ms)}});
         rows.push_back({{"submitted_frame",s.submittedFrame},{"gpu_frame",s.gpuFrame},{"technical_paced",s.technical},{"width",s.width},{"height",s.height},
-            {"interval_ms",timing(s.interval)},{"simulation_cpu_ms",s.phases[0]},{"streaming_cpu_ms",s.phases[1]},{"draw_cpu_ms",s.phases[2]},
+            {"interval_ms",timing(s.interval)},{"simulation_cpu_ms",s.phases[size_t(FramePhase::Simulation)]},{"streaming_cpu_ms",s.phases[size_t(FramePhase::Streaming)]},
+            {"streaming_prepare_cpu_ms",s.phases[size_t(FramePhase::StreamingPrepare)]},{"physics_cpu_ms",s.phases[size_t(FramePhase::Physics)]},
+            {"draw_cpu_ms",s.phases[size_t(FramePhase::Draw)]},
             {"frame_call_cpu_ms",s.frameCall},{"gpu_ms",timing(s.gpu)},{"draw_calls",s.draws},{"textures",s.textures},{"texture_bytes_estimate",s.textureBytes},{"views",views}});
         if(s.interval>=0)intervals.push_back(s.interval);draw.push_back(s.phases[2]);wait.push_back(s.frameCall);
         if(s.gpu>=0&&s.gpuFrame!=lastGpu){gpu.push_back(s.gpu);lastGpu=s.gpuFrame;}

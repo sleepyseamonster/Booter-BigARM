@@ -10,4 +10,4 @@ Focused proof is `material_definition_contract`: a complete layered family passe
 
 Physics also exposes configured gravity through `PhysicsWorld::setGravity`/`gravity`, with finite local bounds and the existing Jolt character/dynamic body path consuming the same world gravity. The physics suite verifies the default, mutation and invalid input rejection.
 
-World identity, generator versions, stable objects, streaming epochs and persisted deltas are unaffected. Material definitions reference logical asset IDs; physics tokens remain transient handles. The next engine batch remains streaming adoption attribution and bounded off-thread preparation.
+World identity, generator versions, stable objects, streaming epochs and persisted deltas are unaffected. Material definitions reference logical asset IDs; physics tokens remain transient handles. The next engine batch is asynchronous Jolt mesh-shape preparation, now guided by the attribution trace rather than an assumed terrain or renderer bottleneck.

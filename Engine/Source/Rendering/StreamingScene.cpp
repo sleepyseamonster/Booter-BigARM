@@ -1,17 +1,22 @@
 #include "Rendering/StreamingScene.h"
 #include <cmath>
 namespace engine {
-StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain,RockRecipe rock,PlacementConstraints constraints,WorldDeltas deltas):runtime_(runtime){
+StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain,RockRecipe rock,PlacementConstraints constraints,WorldDeltas deltas,FrameTelemetry* telemetry):runtime_(runtime),telemetry_(telemetry){
     stream_=std::make_unique<RegionStream>(terrain,rock,std::move(constraints),[this](const RegionContent& content){
         const auto region=content.terrain.region;const auto offset=WorldPosition{region,{}}.relativeTo({},256,4096);
-        Resident prepared;if(content.terrain.id.generatorVersion>=2){for(uint32_t level=0;level<3;++level)prepared.terrain[level]=std::make_unique<RenderModel>(terrainRenderLod(content.terrain,level));}
-        else prepared.terrain[0]=std::make_unique<RenderModel>(content.terrain.mesh);
+        Resident prepared;
+        auto prepare=[&]{if(content.terrain.id.generatorVersion>=2){for(uint32_t level=0;level<3;++level)prepared.terrain[level]=std::make_unique<RenderModel>(terrainRenderLod(content.terrain,level));}
+                        else prepared.terrain[0]=std::make_unique<RenderModel>(content.terrain.mesh);};
+        if(telemetry_)telemetry_->measure(FramePhase::StreamingPrepare,prepare);else prepare();
         auto existing=residents_.find({region.x,region.z});
         if(existing!=residents_.end()){
-            runtime_.physics().replaceMesh(existing->second.collider,content.collision);
+            auto replace=[&]{runtime_.physics().replaceMesh(existing->second.collider,content.collision);};
+            if(telemetry_)telemetry_->measure(FramePhase::Physics,replace);else replace();
             existing->second.terrain=std::move(prepared.terrain);return RegionReadiness{true,true};
         }
-        const auto collider=runtime_.physics().mesh(content.terrain.id.text(),offset,content.collision);
+        BodyToken collider;
+        auto cook=[&]{collider=runtime_.physics().mesh(content.terrain.id.text(),offset,content.collision);};
+        if(telemetry_)telemetry_->measure(FramePhase::Physics,cook);else cook();
         prepared.collider=collider;
         try{residents_.emplace(RegionKey{region.x,region.z},std::move(prepared));}catch(...){runtime_.physics().remove(collider);throw;}
         return RegionReadiness{true,true};
