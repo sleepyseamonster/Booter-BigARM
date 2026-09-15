@@ -28,12 +28,15 @@ public:
     void captureFrame(const void*, uint32_t) override {}
 };
 struct TexturePreview { bgfx::TextureHandle texture=BGFX_INVALID_HANDLE;float lod=0,channel=0;bool srgb=false;float repeat=1; };
+enum class MaterialMapping { WorldTriplanar, UV };
 // Borrowed for a frame; TextureStore leases own the resources. No persistent GPU IDs.
 struct SurfaceTextures {
     bool packedSurface=true;
     bgfx::TextureHandle albedo=BGFX_INVALID_HANDLE, normal=BGFX_INVALID_HANDLE, surface=BGFX_INVALID_HANDLE;
     std::array<bgfx::TextureHandle,10> layers=[] {std::array<bgfx::TextureHandle,10> a;for(auto& h:a)h=BGFX_INVALID_HANDLE;return a;}();
     bool terrainBlend=false,terrainNatural=false;bool layered=false;RockMaterial material;float seed=0;
+    MaterialMapping mapping=MaterialMapping::WorldTriplanar;
+    std::array<float,4> uvTransform{1,1,0,0}; // scale.xy, offset.xy
 
 };
 struct RenderInstance {const RenderModel* model=nullptr;std::array<float,3> offset{},boundsCenter{};float yaw=0,boundsRadius=1;bool ground=false;std::array<float,3> scale{1,1,1};};
@@ -76,7 +79,7 @@ private:
     bgfx::ProgramHandle shadowProgram_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle shadowMatrix_ = BGFX_INVALID_HANDLE, shadowOptions_ = BGFX_INVALID_HANDLE, shadowSampler_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle shadowFarMatrix_ = BGFX_INVALID_HANDLE, shadowRange_ = BGFX_INVALID_HANDLE, shadowCamera_ = BGFX_INVALID_HANDLE;
-    bgfx::UniformHandle eye_ = BGFX_INVALID_HANDLE, surfaceParams_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle eye_ = BGFX_INVALID_HANDLE, surfaceParams_ = BGFX_INVALID_HANDLE, materialMapping_ = BGFX_INVALID_HANDLE, materialUvOffset_ = BGFX_INVALID_HANDLE;
     std::array<bgfx::UniformHandle,10> layerSamplers_=[] {std::array<bgfx::UniformHandle,10> a;for(auto& h:a)h=BGFX_INVALID_HANDLE;return a;}();
     bgfx::UniformHandle layerParams_=BGFX_INVALID_HANDLE;
     bgfx::UniformHandle albedoSampler_ = BGFX_INVALID_HANDLE, normalSampler_ = BGFX_INVALID_HANDLE, surfaceSampler_ = BGFX_INVALID_HANDLE;

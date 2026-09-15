@@ -1,4 +1,4 @@
-$input v_normal, v_world, v_shadow
+$input v_normal, v_world, v_shadow, v_uv, v_tangent
 #include <bgfx_shader.sh>
 #include "environment.sh"
 SAMPLER2D(s_shadow, 0);
@@ -20,6 +20,8 @@ uniform vec4 u_material;
 uniform vec4 u_light;
 uniform vec4 u_sceneOptions; // normal diagnostic, textures, world repeats/m, ambient
 uniform vec4 u_surfaceParams; // roughness multiplier, metallic, normal strength, reserved
+uniform vec4 u_materialMapping; // UV mode, scale.xy
+uniform vec4 u_materialUvOffset; // UV offset.xy
 uniform vec4 u_eye;
 uniform vec4 u_shadowOptions; // enabled, depth bias, texel size, reserved
 
@@ -100,7 +102,20 @@ void main()
     vec3 albedo = u_material.rgb;
     float roughness = u_surfaceParams.x;
     float ao = 1.0;
-    if (u_sceneOptions.y > 0.5)
+    if (u_sceneOptions.y > 0.5 && u_materialMapping.x > 0.5)
+    {
+        vec2 uv=v_uv*u_materialMapping.yz+u_materialUvOffset.xy;
+        albedo*=texture2D(s_albedo,uv).rgb;
+        vec3 surfaceSample=texture2D(s_surface,uv).rgb;
+        ao=surfaceSample.r;
+        roughness*=mix(1.0,surfaceSample.g,u_surfaceParams.w);
+        vec3 tangent=normalize(v_tangent.xyz-geometricNormal*dot(v_tangent.xyz,geometricNormal));
+        vec3 bitangent=normalize(cross(geometricNormal,tangent))*v_tangent.w;
+        vec3 tangentNormal=texture2D(s_normal,uv).xyz*2.0-1.0;
+        vec3 mapped=tangent*tangentNormal.x+bitangent*tangentNormal.y+geometricNormal*tangentNormal.z;
+        normal=normalize(mix(geometricNormal,mapped,clamp(u_surfaceParams.z,0.0,1.0)));
+    }
+    else if (u_sceneOptions.y > 0.5)
     {
         // World projection needs no author-supplied UVs. Signed right-handed bases
         // keep +Y tangent normals aligned on both sides of every projection.

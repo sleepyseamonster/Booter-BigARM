@@ -103,7 +103,9 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders,
     albedoSampler_=bgfx::createUniform("s_albedo",bgfx::UniformType::Sampler);
     normalSampler_=bgfx::createUniform("s_normal",bgfx::UniformType::Sampler);
     surfaceSampler_=bgfx::createUniform("s_surface",bgfx::UniformType::Sampler);
-    for (auto uniform:{shadowMatrix_,shadowFarMatrix_,shadowRange_,shadowCamera_,shadowOptions_,shadowSampler_,eye_,surfaceParams_,albedoSampler_,normalSampler_,surfaceSampler_})
+    materialMapping_=bgfx::createUniform("u_materialMapping",bgfx::UniformType::Vec4);
+    materialUvOffset_=bgfx::createUniform("u_materialUvOffset",bgfx::UniformType::Vec4);
+    for (auto uniform:{shadowMatrix_,shadowFarMatrix_,shadowRange_,shadowCamera_,shadowOptions_,shadowSampler_,eye_,surfaceParams_,materialMapping_,materialUvOffset_,albedoSampler_,normalSampler_,surfaceSampler_})
         if (!bgfx::isValid(uniform)) throw std::runtime_error("Lighting uniform allocation failed");
     const char* layerNames[]={"s_topColor","s_topNormal","s_topSurface","s_bottomColor","s_bottomNormal","s_bottomSurface","s_gritColor","s_gritNormal","s_gritSurface","s_cracks"};
     for(size_t i=0;i<layerSamplers_.size();++i){layerSamplers_[i]=bgfx::createUniform(layerNames[i],bgfx::UniformType::Sampler);if(!bgfx::isValid(layerSamplers_[i]))throw std::runtime_error("Rock layer sampler allocation failed");}
@@ -283,10 +285,12 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         const float linear[]={textured?1.0f:(mesh<0?resource->color[0]:srgbToLinear(color[0])),textured?1.0f:(mesh<0?resource->color[1]:srgbToLinear(color[1])),textured?1.0f:(mesh<0?resource->color[2]:srgbToLinear(color[2])),color[3]};
         const float options[]={state.showNormals?1.0f:0.0f,textured?1.0f:0.0f,surface&&surface->material.geologyMm?1000.f/surface->material.geologyMm:state.textureScale,state.ambient};
         const float params[]={mesh<0?resource->roughness:state.roughness,mesh<0?resource->metallic:state.metallic,state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
+        const float mapping[]={surface&&surface->mapping==MaterialMapping::UV?1.0f:0.0f,surface?surface->uvTransform[0]:1.0f,surface?surface->uvTransform[1]:1.0f,0.0f};
+        const float uvOffset[]={surface?surface->uvTransform[2]:0.0f,surface?surface->uvTransform[3]:0.0f,0.0f,0.0f};
         bgfx::setUniform(material_,linear); bgfx::setUniform(light_,light);bgfx::setUniform(environment_,environment,4);
         bgfx::setUniform(shadowMatrix_,shadowMatrix[0]);bgfx::setUniform(shadowFarMatrix_,shadowMatrix[1]);
         bgfx::setUniform(shadowRange_,shadowRange);bgfx::setUniform(shadowCamera_,shadowCamera);bgfx::setUniform(shadowOptions_,shadowOptions);
-        bgfx::setUniform(eye_,eyePosition);bgfx::setUniform(surfaceParams_,params);
+        bgfx::setUniform(eye_,eyePosition);bgfx::setUniform(surfaceParams_,params);bgfx::setUniform(materialMapping_,mapping);bgfx::setUniform(materialUvOffset_,uvOffset);
         bgfx::setTexture(0,shadowSampler_,bgfx::getTexture(shadow_));
         const auto* bound=surface?surface:(surfaces?&surfaces->rock:nullptr);
         if (bound) {
@@ -398,7 +402,7 @@ void Renderer::stop() {
     if(bgfx::isValid(shadow_)) bgfx::destroy(shadow_);
     if(bgfx::isValid(shadowProgram_)) bgfx::destroy(shadowProgram_);
     shadow_=BGFX_INVALID_HANDLE;shadowProgram_=BGFX_INVALID_HANDLE;
-    for(auto* uniform:{&shadowMatrix_,&shadowFarMatrix_,&shadowRange_,&shadowCamera_,&shadowOptions_,&shadowSampler_,&eye_,&surfaceParams_,&albedoSampler_,&normalSampler_,&surfaceSampler_}) {
+    for(auto* uniform:{&shadowMatrix_,&shadowFarMatrix_,&shadowRange_,&shadowCamera_,&shadowOptions_,&shadowSampler_,&eye_,&surfaceParams_,&materialMapping_,&materialUvOffset_,&albedoSampler_,&normalSampler_,&surfaceSampler_}) {
         if(bgfx::isValid(*uniform)) bgfx::destroy(*uniform);
         *uniform=BGFX_INVALID_HANDLE;
     }
