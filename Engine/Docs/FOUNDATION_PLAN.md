@@ -1,5 +1,7 @@
 # Engine Master Implementation Plan
 
+Current build-out direction, 2026-09-14: [Human and AI engine build-out plan](./HUMAN_AI_ENGINE_BUILDOUT_PLAN.md) defines the execution sequence for the Codex-driven authoring model, minimal Scene View/Game View, canonical scene documents, play-session isolation, runtime snapshot rendering and later procedural constraint capture. It is subordinate to this whole-engine roadmap and does not create a competing world or renderer model.
+
 Controlling priority update, 2026-09-14: [production runtime and AI-authoring priorities](./ENGINE_RUNTIME_PRIORITIES.md) apply the user's architecture/performance/low-latency direction. Shared frame telemetry, explicit pacing, wider sun cascades, asynchronous collision preparation, height fog, higher quality AO and contact shadows are now implemented; see [STATUS.md](./STATUS.md). Next is AI-authoring integration and broader scalable rendering around representative world data. UI belongs to the separate UI agent. Earlier lighting next-step entries below remain historical sequencing, subordinate to this update.
 
 Lighting implementation update, 2026-09-11: [L1 sky/sun/display](./OUTDOOR_LIGHTING_L1_RESULT.md) is complete as a Mac first pass, with a runnable v5 rock workbench. Continue the [lighting sequence](./OUTDOOR_LIGHTING_IMPLEMENTATION_PLAN.md) at L2 shadow coverage; P32 remains planned.
