@@ -1,0 +1,14 @@
+{
+  "kind": "engine.player-render",
+  "version": 1,
+  "payload": {
+    "passed": true,
+    "backend": "Metal",
+    "captures": 1,
+    "gpu_errors": 0,
+    "dimensions": [2240, 1440],
+    "capture_sha256": "bffd6002237d9acc935c35a7b58977f44f8217555a7fb39a745d0386d5a22b53",
+    "simulation_advanced": false,
+    "limits": "Noninteractive technical launch of the standalone player through the shared PlaySession. No Game View UI acceptance, gameplay feel, Windows, latency or performance claim."
+  }
+}

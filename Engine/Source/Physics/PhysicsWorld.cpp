@@ -131,6 +131,21 @@ struct PhysicsWorld::Impl:public JPH::ContactListener {
         const auto& record=bodies.at(body.GetIndexAndSequenceNumber());return {record.token,record.id,fraction,position,normal};
     }
 };
+namespace {
+template<class World> JPH::AABox bodyBounds(World& world,JPH::BodyID id) {
+    JPH::BodyLockRead lock(world.system.GetBodyLockInterface(),id);
+    if(!lock.Succeeded())throw std::runtime_error("Cannot lock collision body bounds");
+    return lock.GetBody().GetWorldSpaceBounds();
+}
+template<class World> void wakeDynamicSupportNeighbors(World& world,JPH::AABox bounds) {
+    // Wake only dynamics close enough to have depended on the edited support.
+    // The margin covers contact slop and the first falling integration step.
+    bounds.ExpandBy(JPH::Vec3::sReplicate(.25f));
+    world.system.GetBodyInterface().ActivateBodiesInAABox(bounds,
+        world.system.GetDefaultBroadPhaseLayerFilter(dynamicLayer),
+        world.system.GetDefaultLayerFilter(dynamicLayer));
+}
+}
 PhysicsWorld::PhysicsWorld(uint32_t maxBodies):impl_(std::make_shared<Impl>(maxBodies)) {}
 PhysicsWorld::~PhysicsWorld()=default;
 BodyToken PhysicsWorld::box(std::string id,PhysicsVector center,PhysicsVector half,std::array<float,4> rotation) {
@@ -192,7 +207,10 @@ void PhysicsWorld::replaceMeshPrepared(BodyToken token,const PreparedMesh& prepa
     auto& bodies=impl_->system.GetBodyInterface();const JPH::BodyID id(token.body);
     if(bodies.GetMotionType(id)!=JPH::EMotionType::Static)throw std::invalid_argument("Mesh replacement requires a static body");
     const auto shape=preparedShape(prepared); // Preserve old body/identity if preparation fails.
+    auto affected=bodyBounds(*impl_,id);
     bodies.SetShape(id,shape,false,JPH::EActivation::DontActivate);
+    affected.Encapsulate(bodyBounds(*impl_,id));
+    wakeDynamicSupportNeighbors(*impl_,affected);
 }
 BodyToken PhysicsWorld::heightfield(std::string id,PhysicsVector offset,uint32_t side,float spacing,const std::vector<float>& heights) {
     impl_->checkId(id);bounded(offset);dimension(spacing);
@@ -204,8 +222,10 @@ BodyToken PhysicsWorld::heightfield(std::string id,PhysicsVector offset,uint32_t
 }
 bool PhysicsWorld::remove(BodyToken token) {
     auto& w=*impl_;if(!w.valid(token) || w.bodies.at(token.body).characterOwned) return false;
-    auto& interface=w.system.GetBodyInterface();interface.RemoveBody(JPH::BodyID(token.body));interface.DestroyBody(JPH::BodyID(token.body));
-    w.identities.erase(w.bodies.at(token.body).id);w.bodies.erase(token.body);return true;
+    auto& interface=w.system.GetBodyInterface();const JPH::BodyID id(token.body);const auto affected=bodyBounds(w,id);
+    interface.RemoveBody(id);interface.DestroyBody(id);
+    w.identities.erase(w.bodies.at(token.body).id);w.bodies.erase(token.body);
+    wakeDynamicSupportNeighbors(w,affected);return true;
 }
 void PhysicsWorld::setGravity(PhysicsVector value) {
     bounded(value,1000);

@@ -12,7 +12,10 @@ public:
     static constexpr unsigned maxCatchUp=4;
     template<class Tick> unsigned advance(double seconds,bool paused,Tick&& tick) {
         if(!std::isfinite(seconds) || seconds<0) throw std::invalid_argument("Invalid frame duration");
-        if(paused) {remainder_=0;return 0;}
+        // Suspension freezes the exact presentation phase. Wall time supplied
+        // while paused is deliberately discarded, so resume cannot catch up a
+        // backlog or rewind interpolation to the previous fixed pose.
+        if(paused) return 0;
         // Admit at most four ticks plus the existing fractional tick. Account for
         // discarded time explicitly; pressure/travel never use hidden wall time.
         const double admitted=std::min(seconds,step*maxCatchUp);

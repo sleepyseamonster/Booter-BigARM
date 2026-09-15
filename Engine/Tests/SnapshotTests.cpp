@@ -8,7 +8,7 @@ void require(bool c,const char* m){if(!c)throw std::runtime_error(m);}
 template<class F>void rejects(F&& f){bool rejected=false;try{f();}catch(const std::exception&){rejected=true;}require(rejected,"Expected snapshot rejection");}
 int main(int argc,char** argv)try {
     if(argc!=2)throw std::runtime_error("Expected new test directory");const std::filesystem::path root=argv[1];
-    if(std::filesystem::exists(root))throw std::runtime_error("Choose a new snapshot test directory");
+    std::error_code ignored;std::filesystem::remove_all(root,ignored);
     require(!loadSnapshot(root).value,"Missing profile starts fresh");
     PlayerSnapshot first;first.feet={1,2,-1};first.velocity={0,-1,0};first.yaw=.7f;first.markerActive=true;first.ticks=120;
     saveSnapshot(root,first);const auto loaded=loadSnapshot(root);require(loaded.value&&loaded.generation==1&&!loaded.recovered,"First generation loads");
@@ -26,7 +26,15 @@ int main(int argc,char** argv)try {
     auto invalid=first;invalid.feet[0]=INFINITY;rejects([&]{saveSnapshot(root,invalid);});require(loadSnapshot(root).generation==2,"Invalid input cannot overwrite saves");
     const auto broken=root/"broken";std::filesystem::create_directory(broken);{std::ofstream f(broken/"snapshot-a.json");f<<"{}";}
     rejects([&]{loadSnapshot(broken);});rejects([&]{saveSnapshot(broken,first);});
+    const auto future=root/"future";saveSnapshot(future,first);saveSnapshot(future,second);
+    Json envelope;{std::ifstream input(future/"snapshot-b.json");input>>envelope;}
+    envelope["version"]=2;envelope["payload"]["future_only"]="preserve";
+    {std::ofstream output(future/"snapshot-b.json");output<<envelope.dump(2)<<'\n';}
+    std::ifstream beforeInput(future/"snapshot-b.json",std::ios::binary);const std::string before((std::istreambuf_iterator<char>(beforeInput)),{});
+    rejects([&]{loadSnapshot(future);});rejects([&]{saveSnapshot(future,first);});
+    std::ifstream afterInput(future/"snapshot-b.json",std::ios::binary);const std::string after((std::istreambuf_iterator<char>(afterInput)),{});
+    require(after==before,"Future snapshot version was overwritten during recovery");
     // Retain a valid profile for the separate package read/restart check.
     const auto package=root/"package-profile";saveSnapshot(package,first);
-    std::cout<<"PASS: runtime restart, stable identity, alternating slots, interrupted/corrupt recovery and preservation\n";return 0;
+    std::cout<<"PASS: runtime restart, stable identity, alternating slots, interrupted/corrupt recovery and incompatible-version preservation\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

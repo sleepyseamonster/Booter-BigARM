@@ -1,6 +1,6 @@
 # Human and AI engine build-out plan
 
-**R1–R3 delivered 2026-09-15:** [Scene-authority proof](./SCENE_AUTHORITY_R1_RESULT.md), [bounded live authoring proof](./LIVE_AUTHORING_R2_RESULT.md) and [render/gizmo engine proof](./RENDER_SCENE_GIZMO_R3_RESULT.md) close the first three corrective boundaries. Continue R4 shared play/recovery/save lifecycle. Visible gizmo widgets remain the UI owner's acceptance gate; older audit/phase entries below describe the starting deficiencies.
+**R1–R4 delivered 2026-09-15:** [Scene-authority proof](./SCENE_AUTHORITY_R1_RESULT.md), [bounded live authoring proof](./LIVE_AUTHORING_R2_RESULT.md), [render/gizmo engine proof](./RENDER_SCENE_GIZMO_R3_RESULT.md) and [shared play/durability proof](./PLAY_SESSION_DURABILITY_R4_RESULT.md) close the first four corrective boundaries. Continue R5 generic materials, AO/depth contracts and representative performance. Visible Scene/Game View widgets remain the UI owner's acceptance gate; older audit/phase entries below describe the starting deficiencies.
 
 Updated 2026-09-14, America/Phoenix. Audited and rewritten after confirming the current source seams and the required standalone and in-workbench Game View behavior.
 
@@ -220,6 +220,6 @@ The initial editor-oriented interpretation was revised because it would have cre
 
 **Basic substrate delivered 2026-09-14; correctness reopened 2026-09-15:** Phase 1 plus the minimum of Phase 2 adds `AuthoringSceneDocument`, hierarchy/transform storage, versioned serialization, transform transactions with undo/rollback, and an in-process `inspect/apply` adapter. A C++ test client can inspect and change a document without renderer/UI state. The 15 registered native tests pass, but the [new audit](./ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) demonstrates cases they missed. The adapter has no running-application host or external command entry point. See the original [result](./HUMAN_AI_SCENE_DOCUMENT_RESULT.md) for the earlier proof scope.
 
-The next coherent engine batch is **R4: the isolated Play Session/Game View, streaming recovery and deliberate save lifecycle**. R1–R3 now provide the corrected scene authority, bounded live host, immutable render snapshots and engine-side manipulation contract. Actual human gizmo widget acceptance remains the UI owner's separate gate and does not block the R4 engine core.
+The next coherent engine batch is **R5: generic material contracts, AO/depth correctness and representative performance**. R1–R4 now provide corrected scene authority, bounded live hosting, immutable render snapshots, engine-side manipulation, isolated shared play, bounded streaming recovery and deliberate durability. The [Game View engine contract](../UIUX/GAME_VIEW_ENGINE_CONTRACT.md) gives the UI owner the exact focus, presentation, save-status and shutdown boundary without creating a second runtime.
 
-Do not begin generator-specific constraints, permanent world layouts, a large asset browser or additional visual effects before that boundary is complete. The result must remain a usable Scene View while the Game View/session work is added.
+Do not begin generator-specific constraints, permanent world layouts or a large asset browser before that boundary is complete. R5 uses a generic representative workload and must keep the Scene View and shared PlaySession paths intact.

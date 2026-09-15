@@ -25,7 +25,8 @@ Slots readSlots(const std::filesystem::path& profile) {
             const auto generation=p.at("generation").get<uint64_t>();
             if(slots.result.value && generation==slots.result.generation)throw std::runtime_error("Duplicate snapshot generation");
             if(generation>slots.result.generation){slots.result.value=value;slots.result.generation=generation;slots.newest=i;}
-        }catch(const std::exception&){invalid=true;}
+        }catch(const DocumentCompatibilityError&){throw;}
+        catch(const std::exception&){invalid=true;}
     }
     if(!slots.result.value&&(invalid||staging))throw std::runtime_error("No valid snapshot; preserve this profile and choose a new --profile to start fresh");
     slots.result.recovered=invalid||staging;return slots;

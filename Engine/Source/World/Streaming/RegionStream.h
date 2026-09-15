@@ -18,11 +18,16 @@ struct RegionReadiness {
     static constexpr uint32_t navigationVersion=0;
 };
 static_assert(RegionReadiness::navigationVersion==0);
+enum class RegionStreamState : uint8_t { Pending,Ready,RetryableFailed,PermanentFailed };
 struct RegionSlot {
     Region region;uint64_t ticket=0;
     bool desired=false;RegionReadiness ready;
     std::shared_ptr<const RegionContent> content;
     std::string error;
+    RegionStreamState state=RegionStreamState::Pending;
+    uint8_t failures=0;
+    uint64_t retryAfterUpdate=0;
+    uint64_t contentRevision=0;
 };
 // Single owner-thread region lifecycle. Callbacks attach/retire physical/GPU representations on that thread.
 class RegionStream {
@@ -35,6 +40,7 @@ public:
     bool removeRock(const GeneratedId&);
     void markCollisionReady(Region);
     void markCollisionError(Region,std::string);
+    bool retry(Region);
     const WorldDeltas& deltas()const{return deltas_;}
     bool collisionReady(WorldPosition from,WorldPosition to,float radius=.5f)const;
     const std::map<RegionKey,RegionSlot>& slots()const{return slots_;}
@@ -50,6 +56,6 @@ private:
     BoundedJobs<RegionContent> jobs_;
     std::map<RegionKey,RegionSlot> slots_;
     size_t reservation_=0,residentBytes_=0;
-    uint64_t epoch_=0,retired_=0;
+    uint64_t epoch_=0,retired_=0,updateSequence_=0;
 };
 }

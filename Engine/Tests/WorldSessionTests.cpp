@@ -24,6 +24,7 @@ int main(int argc,char** argv)try{
     if(argc!=3)throw std::runtime_error("Usage: engine_world_session_tests create|restore new-output-directory");
     const std::string mode=argv[1];const std::filesystem::path root=argv[2];
     if(mode!="create"&&mode!="restore")throw std::runtime_error("Unknown check mode");
+    if(mode=="create"){std::error_code ignored;std::filesystem::remove_all(root,ignored);}
     WorldConfiguration config;config.terrain.amplitudeMm=0;
     const auto patch=generateTerrain(config.terrain,{},config.rock,config.constraints);
     require(!patch.rocks.empty(),"Missing rock fixture");const auto rock=patch.rocks.front();

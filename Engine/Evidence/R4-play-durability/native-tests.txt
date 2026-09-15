@@ -1,0 +1,18 @@
+Engine build: Engine/build/foundation
+Command: ctest --test-dir Engine/build/foundation --output-on-failure
+Date: 2026-09-15
+
+23/23 registered tests passed.
+
+Focused R4 coverage:
+- fixed_simulation_actions
+- collision_character_camera
+- player_snapshot_recovery
+- region_stream
+- world_save_recovery
+- world_session_create
+- world_session_restore
+- shared_play_durability
+
+Total registered test time: 3.77 seconds.
+No gameplay or human input-feel smoke test was performed.

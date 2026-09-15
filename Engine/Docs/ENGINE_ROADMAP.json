@@ -1001,9 +1001,12 @@
           "A14",
           "A15"
         ],
-        "state": "planned",
+        "state": "complete",
         "proof": "Isolated play, recovery, durable save receipts, physics support and pause/stop proofs",
-        "evidence": [],
+        "evidence": [
+          "Evidence/R4-play-durability/result.json",
+          "Docs/PLAY_SESSION_DURABILITY_R4_RESULT.md"
+        ],
         "environment": "mac_or_platform_independent",
         "required_gates": []
       },

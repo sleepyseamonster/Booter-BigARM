@@ -41,6 +41,19 @@ int main()try{
     while(stream.jobStats().outstanding){stream.update({});if(std::chrono::steady_clock::now()>deadline)throw std::runtime_error("Cancelled region jobs did not retire");std::this_thread::sleep_for(std::chrono::milliseconds(1));}
     require(stream.slots().empty()&&bodies.empty()&&stream.residentBytes()==0,"Stale job republished after retirement");
     runtime.streamingGuard({});require(runtime.physics().size()==baseline,"Runtime ground restoration changed body baseline");
+    {
+        unsigned centerAttempts=0;
+        RegionStream retrying({}, {}, {},[&](const RegionContent& content){if(content.terrain.region==Region{}&&centerAttempts++==0)throw std::runtime_error("transient attach failure");return RegionReadiness{true,true};},[](Region){});
+        const auto retryDeadline=std::chrono::steady_clock::now()+std::chrono::seconds(20);
+        for(;;){retrying.update(home);const auto found=retrying.slots().find({0,0});if(found!=retrying.slots().end()&&found->second.state==RegionStreamState::Ready)break;if(std::chrono::steady_clock::now()>retryDeadline)throw std::runtime_error("Retryable stream failure did not recover");std::this_thread::sleep_for(std::chrono::milliseconds(1));}
+        require(centerAttempts==2,"Transient stream failure retry count");
+    }
+    {
+        RegionStream failing({}, {}, {},[](const RegionContent& content){if(content.terrain.region==Region{})throw std::runtime_error("permanent attach failure");return RegionReadiness{true,true};},[](Region){});
+        const auto failureDeadline=std::chrono::steady_clock::now()+std::chrono::seconds(20);
+        for(;;){failing.update(home);const auto found=failing.slots().find({0,0});if(found!=failing.slots().end()&&found->second.state==RegionStreamState::PermanentFailed)break;if(std::chrono::steady_clock::now()>failureDeadline)throw std::runtime_error("Permanent stream failure retried forever");std::this_thread::sleep_for(std::chrono::milliseconds(1));}
+        require(failing.slots().at({0,0}).failures==3&&!failing.slots().at({0,0}).error.empty(),"Permanent stream failure state");
+    }
     const float identity[]={1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};require(visibleSphere(identity,{0,0,.5f},.1f,false)&&!visibleSphere(identity,{3,0,.5f},.1f,false)&&!visibleSphere(identity,{0,0,-.5f},.1f,false)&&visibleSphere(identity,{0,0,-.5f},.1f,true),"Frustum depth or side planes");
-    std::cout<<"PASS: prioritized region jobs, real Jolt attachment, safe waiting and negative-border traversal, hysteresis, two anchors, stable reload identity, bounded retirement/cancellation and frustum conventions; adopted="<<adopted.size()<<", retired="<<stream.retired()<<'\n';return 0;
+    std::cout<<"PASS: prioritized region jobs, bounded retry/permanent failure states, real Jolt attachment, safe traversal, hysteresis, stable reload identity, retirement/cancellation and frustum conventions; adopted="<<adopted.size()<<", retired="<<stream.retired()<<'\n';return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

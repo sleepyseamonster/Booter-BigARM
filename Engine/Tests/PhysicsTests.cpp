@@ -79,6 +79,23 @@ int main() try {
         require(!actor.grounded() && actor.position()[1]<-2,"Ground loss falls rather than hovering");
     }
     {
+        PhysicsWorld world;
+        const std::vector<PhysicsVector> upper{{-4,0,-4},{4,0,-4},{4,0,4},{-4,0,-4},{4,0,4},{-4,0,4}};
+        auto support=world.mesh("authored:support",{0,0,0},upper);
+        auto distantSupport=world.box("authored:distant-support",{30,-.5f,0},{4,.5f,4});
+        auto near=world.capsule("authored:near-dynamic",{0,3,0},.25f,.5f,true);
+        auto distant=world.capsule("authored:distant-dynamic",{30,3,0},.25f,.5f,true);
+        for(int i=0;i<240;++i)world.step(float(FixedClock::step));
+        const auto distantRest=world.position(distant)->at(1);
+        auto lower=upper;for(auto& point:lower)point[1]-=3;
+        world.replaceMesh(support,lower);
+        for(int i=0;i<120;++i)world.step(float(FixedClock::step));
+        require(world.position(near)->at(1)<-1.5f,"Replacing static support did not wake nearby dynamic body");
+        require(std::abs(world.position(distant)->at(1)-distantRest)<.03f,"Support edit woke unrelated distant body");
+        world.remove(distantSupport);for(int i=0;i<120;++i)world.step(float(FixedClock::step));
+        require(world.position(distant)->at(1)<-5,"Removing static support did not wake nearby dynamic body");
+    }
+    {
         PhysicsWorld world;floor(world);CharacterController actor(world,"authored:actor",{0,0,0});
         const auto query=world.ray({0,1,-3},{0,0,6});require(query && query->body==actor.body(),"Character inner body visible to ordinary queries");
         require(world.capsuleOverlap({0,1,0},.1f,.1f) && !world.capsuleOverlap({0,1,0},.1f,.1f,actor.body()),"Self exclusion query");

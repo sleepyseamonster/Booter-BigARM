@@ -28,7 +28,7 @@
 #include "Simulation/World.h"
 #include "Physics/CharacterController.h"
 #include "Game/ThirdPersonCamera.h"
-#include "Game/CalibrationRuntime.h"
+#include "Game/PlaySession.h"
 #include "Game/WorldSession.h"
 #include "Audio/Audio.h"
 #include "Animation/AnimationPlayer.h"
@@ -328,12 +328,15 @@ int run(Options options, engine::AuthoringHost* authoring) {
     if (!materialAvailable) state.surfaceTextures=false;
     if(verify) state.surfaceTextures=false;
     TextureControls textureControls;textureControls.records=&records;
-    engine::Actions actions;
+    const auto playSource=authoring?authoring->snapshot():std::make_shared<const engine::AuthoringSceneDocument>("workbench-play");
+    engine::PlaySession play;play.start({playSource,worldSession?worldSession->initial().player:engine::PlayerSnapshot{},modelData});
+    const auto playEpoch=play.epoch();auto& actions=play.actions();
+    engine::DurabilityService durability;
     if(!options.bindings.empty()) engine::loadBindings(options.bindings,actions);
     engine::ActionInput actionInput(actions);
     engine::SceneCameraControls sceneCamera;
     SimulationControls simulation;
-    engine::CalibrationRuntime runtime(modelData,worldSession?worldSession->initial().player:engine::PlayerSnapshot{});
+    auto& runtime=play.runtime(playEpoch);
     std::unique_ptr<engine::RockWorkbench> rock;
     if(!options.rock.empty())rock=std::make_unique<engine::RockWorkbench>(options.rock,runtime,options.rockLibrary,layeredMaterialAvailable);
     engine::InspectionWorkbench documents(state,!options.inspection.empty()?options.inspection:(!options.saveInspection.empty()?options.saveInspection:std::filesystem::path(SDL_GetBasePath())/"inspection.json"));
@@ -346,8 +349,9 @@ int run(Options options, engine::AuthoringHost* authoring) {
     std::string worldStatus=worldSession?(worldSession->recovered()?"Recovered complete world save":(worldSession->restored()?"World restored":"New world")):"";
     auto saveWorld=[&] {
         if(!worldSession||technical)return;
+        if(worldSession->savePending())return;
         saveAttemptTick=runtime.clock().ticks();
-        try{worldSession->save(runtime,state.yaw,state.pitch,state.distance,streaming->deltas());worldStatus="World saved (generation "+std::to_string(worldSession->generation())+")";}
+        try{worldSession->requestSave(durability,runtime,state.yaw,state.pitch,state.distance,streaming->deltas(),playEpoch,playSource->version(),true);worldStatus="World save queued";}
         catch(const std::exception& error){worldStatus=error.what();std::cerr<<"World save failed: "<<error.what()<<'\n';}
     };
     unsigned streamPhase=0,streamStable=0,streamVertices=0,streamIndices=0,streamFinalVertices=0,streamFinalIndices=0;uint64_t streamRetired=0;bool streamDone=false;
@@ -393,7 +397,7 @@ int run(Options options, engine::AuthoringHost* authoring) {
             }
             if (!running) break;
             int width=0,height=0; window.pixels(width,height);
-            if (width<=0 || height<=0 || (SDL_GetWindowFlags(window.get())&SDL_WINDOW_MINIMIZED)) { actions.focus(false);renderer.telemetry.measure(engine::FramePhase::Simulation,[&]{runtime.advance(0,true,actions,state.yaw,state.pitch);});last=std::chrono::steady_clock::now();SDL_Delay(16); continue; }
+            if (width<=0 || height<=0 || (SDL_GetWindowFlags(window.get())&SDL_WINDOW_MINIMIZED)) { play.focus(playEpoch,false);renderer.telemetry.measure(engine::FramePhase::Simulation,[&]{play.advance(playEpoch,0,state.yaw,state.pitch);});last=std::chrono::steady_clock::now();SDL_Delay(16); continue; }
             renderer.resize(width,height);
             ImGui_ImplSDL3_NewFrame();
             auto& io=ImGui::GetIO();
@@ -530,7 +534,7 @@ int run(Options options, engine::AuthoringHost* authoring) {
                 if(simulation.enabled)ImGui::Text("Marker: %s | %s",runtime.targetActive()?"on":"off",runtime.canInteract()?"E to interact":"out of reach");ImGui::End();
             }
             const bool focused=(SDL_GetWindowFlags(window.get())&SDL_WINDOW_INPUT_FOCUS)!=0;
-            actions.focus(focused);actionInput.sample();
+            play.focus(playEpoch,focused);actionInput.sample();
             if(actions.consume(engine::Action::Pause).pressed) simulation.paused=!simulation.paused;
             actions.gameplay(simulation.enabled && !simulation.paused && !io.WantCaptureKeyboard);
             if(streaming){
@@ -555,7 +559,9 @@ int run(Options options, engine::AuthoringHost* authoring) {
                     for(const auto& [_,slot]:streaming->stream().slots())if(!slot.error.empty())ImGui::TextWrapped("%s",slot.error.c_str());ImGui::End();
                 }
             }
-            renderer.telemetry.measure(engine::FramePhase::Simulation,[&]{runtime.advance(double(milliseconds)/1000.0,technical||!simulation.enabled||simulation.paused||!focused,actions,state.yaw,state.pitch);});
+            play.pause(playEpoch,technical||!simulation.enabled||simulation.paused);
+            renderer.telemetry.measure(engine::FramePhase::Simulation,[&]{play.advance(playEpoch,double(milliseconds)/1000.0,state.yaw,state.pitch);});
+            if(worldSession&&worldSession->savePending()){const auto receipt=worldSession->pollSave(durability);if(receipt.state==engine::DurableState::Durable)worldStatus="World saved (generation "+std::to_string(receipt.diskGeneration)+")";else if(receipt.state==engine::DurableState::Rejected)worldStatus=receipt.error;}
             if(removeRequested)try{worldStatus=streaming->removeNearest()?"Rock removed; save to keep this change":"No rock within 8 metres";}catch(const std::exception& error){worldStatus=error.what();}
             if(saveRequested||runtime.clock().ticks()-saveAttemptTick>=600)saveWorld();
             simulation.grounded=runtime.grounded();simulation.ticks=runtime.clock().ticks();simulation.dropped=runtime.clock().droppedSeconds();
@@ -571,7 +577,7 @@ int run(Options options, engine::AuthoringHost* authoring) {
                 placement.authored=&authoredScene;
             }
             if(simulation.enabled) {
-                const auto frame=runtime.present(state.yaw,state.pitch,state.distance,std::min(milliseconds/1000.f,.1f));
+                const auto frame=play.present(playEpoch,state.yaw,state.pitch,state.distance,std::min(milliseconds/1000.f,.1f));
                 placement.offset=frame.feet;placement.offset[1]+=.15f;placement.eye=frame.eye;placement.target=frame.target;
                 placement.physicalCharacter=true;placement.pose=frame.palette;placement.markerActive=runtime.targetActive();state.objectYaw=frame.yaw;
             }
@@ -729,7 +735,9 @@ int run(Options options, engine::AuthoringHost* authoring) {
     if(!options.saveBindings.empty()) engine::saveBindings(options.saveBindings,actions);
     texture.reset();for(auto& lease:surfaceLeases)lease.reset();textures.stop();
     saveWorld();
-    streaming.reset();rock.reset();renderModel.reset();animation.reset();
+    durability.shutdown();
+    if(worldSession&&worldSession->savePending()){const auto receipt=worldSession->pollSave(durability);if(receipt.state==engine::DurableState::Rejected)std::cerr<<"World save failed: "<<receipt.error<<'\n';}
+    streaming.reset();rock.reset();play.stop();renderModel.reset();animation.reset();
     renderer.stop();
     if (!options.saveInspection.empty()) engine::saveInspection(options.saveInspection,state);
     if(options.cameraVerify){

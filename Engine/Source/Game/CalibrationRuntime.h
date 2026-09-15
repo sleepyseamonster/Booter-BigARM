@@ -28,6 +28,12 @@ public:
     PhysicsVector feet()const{return character_.position();}
     PhysicsWorld& physics(){return physics_;}
     void streamingGuard(std::function<bool(PhysicsVector,PhysicsVector)>);
+    // Release-only teardown path. This never creates replacement collision and
+    // is safe to call while the physics body budget is exhausted.
+    void disconnectStreamingGuard() noexcept;
+    // Separate fallible transition for consumers that intentionally return to
+    // the bounded calibration fixture after streaming has stopped.
+    void restoreCalibrationGround();
     bool waitingForWorld()const{return waitingForWorld_;}
     bool grounded() const {return character_.grounded();}
     const FixedClock& clock() const {return clock_;}

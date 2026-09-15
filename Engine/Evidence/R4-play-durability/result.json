@@ -1,0 +1,48 @@
+{
+  "batch": "R4",
+  "date": "2026-09-15",
+  "source_baseline": "be5c3e3",
+  "passed": true,
+  "findings_closed": ["A09", "A10", "A11", "A12", "A13", "A14", "A15"],
+  "registered_tests": 23,
+  "registered_passed": 23,
+  "focused_checks": [
+    "fixed_simulation_actions",
+    "collision_character_camera",
+    "player_snapshot_recovery",
+    "region_stream",
+    "world_save_recovery",
+    "world_session_create",
+    "world_session_restore",
+    "shared_play_durability"
+  ],
+  "player_render": {
+    "backend": "Metal",
+    "captures": 1,
+    "callback_errors": 0,
+    "capture_sha256": "bffd6002237d9acc935c35a7b58977f44f8217555a7fb39a745d0386d5a22b53"
+  },
+  "source_sha256": {
+    "Source/Game/PlaySession.cpp": "0009af61d22812fa4681abe0dba5f5ce4e0b872e8bd12b93ea0f8935bbde1ec7",
+    "Source/Game/PlaySession.h": "d48592f03dc3035dc81fcb603b4d20cffd19b0d4a296f6def94ff325448d5297",
+    "Source/Persistence/DurabilityService.cpp": "d7c33443e2e40456838d259a3fe87918bd53a0bbafaece5974e9248ca2cc17f3",
+    "Source/Persistence/DurabilityService.h": "1ff3c304731abe45af1654006c1eee6c8c2941bed2b51cd8b1faf84618098a13",
+    "Source/Persistence/PlayerSnapshot.cpp": "248599fd970beacba7c12ddd509d0447c924b89e6ae371d760d57a6f6ad21f25",
+    "Source/Physics/PhysicsWorld.cpp": "05326ede83466cf8dc72bf08a768792ddff2800ac387cf0e03263ba3342f1b02",
+    "Source/Simulation/FixedClock.h": "c9feb98dcff3e92b3cfea8f7861261448eb9c0064005d354a8b1407a9cbb5374",
+    "Source/World/Streaming/RegionStream.cpp": "9032654d083b97d138ff6004609fbbefd5b56e7e82bc08379b3b2f36d883d99c",
+    "Source/Rendering/StreamingScene.cpp": "c0a2bd911992dc6c3e5682f5d386e5f996a712471e174e4ef1f413353f36553b",
+    "Tests/PlaySessionTests.cpp": "69206e0c8870cdabbfa354568f382c8b2d85c048f141cdb197ba224c38d68bb2"
+  },
+  "binary_sha256": {
+    "engine_player": "c8e1b8163dee661f150628bcd661c105f4aa5cdf2699b1999efa9a53836366a3",
+    "engine_workbench": "13680a1ab324f1014b88c8f9895a151235d74d412ea80f7f5905f1e3a79f4e23"
+  },
+  "open_gates": [
+    "Visible separate Scene View and Game View presentation remains UI-owned",
+    "The local scene-authoring socket does not yet carry live play and durability verbs; typed PlaySession and DurabilityService operations are the engine boundary",
+    "Windows D3D11, native input feel, gameplay acceptance and representative performance remain unverified",
+    "Directory-entry durability is platform-dependent; file fsync plus atomic rename is not claimed as a power-loss guarantee"
+  ],
+  "proof_limits": "Mac CPU contracts and a noninteractive Metal player capture. No manual gameplay smoke test, Windows result, latency result or production performance result."
+}

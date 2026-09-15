@@ -10,6 +10,8 @@ std::string collisionOwner(Region region){return "physics:region:"+std::to_strin
 StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain,RockRecipe rock,PlacementConstraints constraints,WorldDeltas deltas,FrameTelemetry* telemetry):runtime_(runtime),telemetry_(telemetry),collisionJobs_([](const PreparedCollision& prepared){return prepared.bytes();}){
     stream_=std::make_unique<RegionStream>(terrain,rock,std::move(constraints),[this](const RegionContent& content){
         const auto region=content.terrain.region;const auto offset=WorldPosition{region,{}}.relativeTo({},256,4096);
+        uint64_t contentRevision=1;
+        if(stream_){const auto slot=stream_->slots().find(collisionKey(region));if(slot!=stream_->slots().end())contentRevision=slot->second.contentRevision+1;}
         Resident prepared;
         auto prepare=[&]{if(content.terrain.id.generatorVersion>=2){for(uint32_t level=0;level<3;++level)prepared.terrain[level]=std::make_unique<RenderModel>(terrainRenderLod(content.terrain,level));}
                         else prepared.terrain[0]=std::make_unique<RenderModel>(content.terrain.mesh);};
@@ -19,12 +21,12 @@ StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain
         const size_t bytes=content.collision.size()*sizeof(PhysicsVector);
         const auto reservation=std::max<size_t>(bytes*2,64*1024);
         auto vertices=content.collision;
-        const auto ticket=collisionJobs_.submit(collisionOwner(region),++collisionEpoch_,reservation,[this,region,vertices=std::move(vertices)](const auto& token){
+        const auto ticket=collisionJobs_.submit(collisionOwner(region),++collisionEpoch_,reservation,[this,region,contentRevision,vertices=std::move(vertices)](const auto& token){
             if(token.cancelled())throw std::runtime_error("Physics preparation cancelled");
-            return PreparedCollision{region,runtime_.physics().prepareMesh(vertices)};
+            return PreparedCollision{region,contentRevision,runtime_.physics().prepareMesh(vertices)};
         });
         if(!ticket)throw std::runtime_error("Physics preparation queue is full");
-        pendingCollisions_[collisionKey(region)]=*ticket;
+        pendingCollisions_[collisionKey(region)]={*ticket,contentRevision};
         if(existing!=residents_.end()){
             existing->second.terrain=std::move(prepared.terrain);return RegionReadiness{true,false};
         }
@@ -39,17 +41,25 @@ StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain
         return stream_->collisionReady({{},{from[0],from[1],from[2]}},{{},{to[0],to[1],to[2]}},1.f);
     });
 }
-StreamingScene::~StreamingScene(){runtime_.streamingGuard({});collisionJobs_.shutdown();stream_.reset();}
+StreamingScene::~StreamingScene(){
+    // Teardown must only disconnect and release. Recreating the calibration
+    // floor is a separate fallible transition after streamed bodies retire.
+    runtime_.disconnectStreamingGuard();
+    collisionJobs_.shutdown();
+    stream_.reset();
+    residents_.clear();
+}
 void StreamingScene::retire(Region region){collisionJobs_.cancel(collisionOwner(region));pendingCollisions_.erase(collisionKey(region));auto it=residents_.find(collisionKey(region));if(it!=residents_.end()){if(it->second.collider.owner)runtime_.physics().remove(it->second.collider);residents_.erase(it);}}
 void StreamingScene::adoptCollisions(){
     UploadAdmission budget{16*1024*1024,64*1024*1024};
     while(auto completed=collisionJobs_.takeReady(budget)){
-        const auto pending=std::find_if(pendingCollisions_.begin(),pendingCollisions_.end(),[&](const auto& entry){return entry.second==completed->ticket;});
+        const auto pending=std::find_if(pendingCollisions_.begin(),pendingCollisions_.end(),[&](const auto& entry){return entry.second.ticket==completed->ticket;});
         if(pending==pendingCollisions_.end())continue;
-        const Region region{pending->first.first,pending->first.second};const auto key=pending->first;
+        const Region region{pending->first.first,pending->first.second};const auto key=pending->first;const auto expectedRevision=pending->second.contentRevision;
         pendingCollisions_.erase(pending);
         if(!completed->error.empty()||!completed->value){stream_->markCollisionError(region,completed->error.empty()?"Physics preparation returned no shape":completed->error);continue;}
-        const auto slot=stream_->slots().find(key);if(slot==stream_->slots().end()||!slot->second.content)continue;
+        const auto slot=stream_->slots().find(key);if(slot==stream_->slots().end()||!slot->second.content||
+            slot->second.contentRevision!=completed->value->contentRevision||expectedRevision!=completed->value->contentRevision)continue;
         try{
             auto resident=residents_.find(key);if(resident==residents_.end())continue;
             auto prepared=std::move(completed->value->shape);

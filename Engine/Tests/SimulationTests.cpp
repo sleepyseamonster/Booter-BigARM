@@ -23,9 +23,9 @@ int main(int argc,char** argv) try {
     FixedClock clock;unsigned calls=0;
     clock.advance(.01,false,[&](double,uint64_t){++calls;});
     clock.advance(5,true,[&](double,uint64_t){++calls;});
-    require(calls==0 && clock.alpha()==0,"Pause clears residual time");
+    require(calls==0 && std::abs(clock.alpha()-.6)<1e-9,"Pause preserves fractional presentation time");
     clock.advance(10,false,[&](double,uint64_t){++calls;});
-    require(calls==4 && clock.overloadedFrames()==1 && clock.droppedSeconds()>9.9,"Bounded catch-up accounts for lost time");
+    require(calls==4 && std::abs(clock.alpha()-.6)<1e-9 && clock.overloadedFrames()==1 && clock.droppedSeconds()>9.9,"Resume preserves phase while bounded catch-up accounts for lost time");
     rejects([&]{clock.advance(NAN,false,[](double,uint64_t){});});
     Actions input;
     input.set(Control::Space,1);input.set(Control::Space,0);

@@ -52,6 +52,8 @@ RegionStream::RegionStream(TerrainRecipe terrain,RockRecipe recipe,PlacementCons
 }
 RegionStream::~RegionStream(){jobs_.shutdown();for(const auto& [_,slot]:slots_)if(slot.content)detach_(slot.region);}
 void RegionStream::update(const std::vector<StreamAnchor>& anchors){
+    if(updateSequence_==UINT64_MAX)throw std::overflow_error("Region update sequence exhausted");
+    ++updateSequence_;
     if(anchors.size()>2)throw std::invalid_argument("First-pass streaming supports two anchors");
     std::vector<std::pair<Region,unsigned>> centers;
     for(const auto& a:anchors){const auto r=a.position.normalized(256).region;if(r.x<INT64_MIN+4||r.x>INT64_MAX-4||r.z<INT64_MIN+4||r.z>INT64_MAX-4)throw std::out_of_range("Streaming anchor outside coordinate halo");centers.push_back({r,a.priority});}
@@ -60,22 +62,37 @@ void RegionStream::update(const std::vector<StreamAnchor>& anchors){
     std::vector<Wanted> ordered;for(const auto& [_,w]:wanted)ordered.push_back(w);std::sort(ordered.begin(),ordered.end(),[](const auto& a,const auto& b){return std::tuple(a.priority,a.distance,a.region.x,a.region.z)<std::tuple(b.priority,b.distance,b.region.x,b.region.z);});
     auto retire=[&](auto it){jobs_.cancel(owner(it->second.region));if(it->second.content){detach_(it->second.region);residentBytes_-=it->second.content->bytes();}++retired_;return slots_.erase(it);};
     for(auto it=slots_.begin();it!=slots_.end();){it->second.desired=wanted.contains(it->first);bool keep=it->second.desired;for(const auto& c:centers)keep=keep||distance(c.first,it->second.region)<=2;if(!keep)it=retire(it);else ++it;}
-    for(const auto& w:ordered){const auto existing=slots_.find(key(w.region));if(existing!=slots_.end()&&existing->second.ticket)continue;
+    for(const auto& w:ordered){const auto existing=slots_.find(key(w.region));
+        if(existing!=slots_.end()&&(existing->second.ticket||existing->second.state==RegionStreamState::Ready||existing->second.state==RegionStreamState::PermanentFailed||
+            (existing->second.state==RegionStreamState::RetryableFailed&&updateSequence_<existing->second.retryAfterUpdate)))continue;
         if(existing==slots_.end()&&slots_.size()>=25){auto old=std::find_if(slots_.begin(),slots_.end(),[](const auto& e){return !e.second.desired;});if(old==slots_.end())break;retire(old);}
         const auto region=w.region;const auto terrain=terrain_;const auto recipe=recipe_;const auto constraints=constraints_;const auto rocks=rocks_;const auto deltas=deltas_;
         if(epoch_==UINT64_MAX)throw std::overflow_error("Region epoch exhausted");
         auto ticket=jobs_.submit(owner(region),++epoch_,reservation_,[=](const auto& token){return generate(terrain,recipe,constraints,region,*rocks,deltas,token);});
-        if(ticket){if(existing!=slots_.end())existing->second.ticket=*ticket;else slots_.emplace(key(region),RegionSlot{region,*ticket,true,{},{},{}});}
+        if(ticket){
+            if(existing!=slots_.end()){existing->second.ticket=*ticket;existing->second.state=RegionStreamState::Pending;}
+            else {RegionSlot slot;slot.region=region;slot.ticket=*ticket;slot.desired=true;slots_.emplace(key(region),std::move(slot));}
+        }
     }
     // One adoption per displayed frame bounds expensive collider creation as well as uploads.
     UploadAdmission budget{512*1024,16*1024*1024};auto completed=jobs_.takeReady(budget);if(!completed)return;
     auto it=std::find_if(slots_.begin(),slots_.end(),[&](const auto& e){return e.second.ticket==completed->ticket;});if(it==slots_.end())return;
-    auto& slot=it->second;if(!completed->error.empty()){slot.error=completed->error;return;}
+    auto& slot=it->second;slot.ticket=0;
+    auto fail=[&](std::string message){
+        slot.error=std::move(message);if(slot.failures<UINT8_MAX)++slot.failures;
+        if(slot.failures>=3)slot.state=RegionStreamState::PermanentFailed;
+        else {slot.state=RegionStreamState::RetryableFailed;slot.retryAfterUpdate=updateSequence_+(uint64_t(1)<<slot.failures);}
+    };
+    if(!completed->error.empty()){fail(completed->error);return;}
     auto content=std::make_shared<RegionContent>(std::move(*completed->value));
     const size_t previousBytes=slot.content?slot.content->bytes():0;
-    if(content->bytes()>64*1024*1024-(residentBytes_-previousBytes)){slot.error="Region CPU residency budget exhausted";return;}
-    try{slot.ready=attach_(*content);slot.content=content;residentBytes_=residentBytes_-previousBytes+content->bytes();}
-    catch(const std::exception& e){if(!slot.content){detach_(slot.region);slot.ready={};}slot.error=e.what();}
+    if(content->bytes()>64*1024*1024-(residentBytes_-previousBytes)){fail("Region CPU residency budget exhausted");return;}
+    try{
+        const auto ready=attach_(*content);
+        if(slot.contentRevision==UINT64_MAX)throw std::overflow_error("Region content revision exhausted");
+        slot.ready=ready;slot.content=content;residentBytes_=residentBytes_-previousBytes+content->bytes();
+        slot.error.clear();slot.failures=0;slot.state=RegionStreamState::Ready;++slot.contentRevision;
+    }catch(const std::exception& e){if(!slot.content){detach_(slot.region);slot.ready={};}fail(e.what());}
 }
 bool RegionStream::removeRock(const GeneratedId& id){
     if(id.seed!=terrain_.seed||id.generatorVersion!=recipe_.version||id.generator!="rock"||id.member>255)throw std::invalid_argument("Rock identity does not belong to this world");
@@ -83,17 +100,23 @@ bool RegionStream::removeRock(const GeneratedId& id){
     auto it=slots_.find(key(id.region));if(it==slots_.end()||!it->second.content)return false;
     const auto& rocks=it->second.content->terrain.rocks;if(std::none_of(rocks.begin(),rocks.end(),[&](const auto& p){return p.id==id;}))return false;
     auto next=deltas_;next.removedRocks[key(id.region)].insert(id.member);validateDeltas(next);deltas_=std::move(next);
-    jobs_.cancel(owner(id.region));it->second.ticket=0;it->second.error.clear();return true;
+    jobs_.cancel(owner(id.region));it->second.ticket=0;it->second.error.clear();it->second.state=RegionStreamState::Pending;return true;
 }
 void RegionStream::markCollisionReady(Region region){
     const auto it=slots_.find(key(region));
     if(it==slots_.end()||!it->second.content) return;
-    it->second.ready.collision=true;it->second.error.clear();
+    it->second.ready.collision=true;it->second.error.clear();it->second.failures=0;it->second.state=RegionStreamState::Ready;
 }
 void RegionStream::markCollisionError(Region region,std::string error){
     const auto it=slots_.find(key(region));
     if(it==slots_.end()||!it->second.content) return;
-    it->second.ready.collision=false;it->second.error=std::move(error);
+    auto& slot=it->second;slot.ready.collision=false;slot.error=std::move(error);if(slot.failures<UINT8_MAX)++slot.failures;
+    if(slot.failures>=3)slot.state=RegionStreamState::PermanentFailed;
+    else {slot.state=RegionStreamState::RetryableFailed;slot.retryAfterUpdate=updateSequence_+(uint64_t(1)<<slot.failures);}
+}
+bool RegionStream::retry(Region region){
+    const auto it=slots_.find(key(region));if(it==slots_.end()||it->second.ticket)return false;
+    it->second.state=RegionStreamState::RetryableFailed;it->second.failures=0;it->second.retryAfterUpdate=updateSequence_;it->second.error.clear();return true;
 }
 bool RegionStream::collisionReady(WorldPosition from,WorldPosition to,float radius)const{
     if(!std::isfinite(radius)||radius<0||radius>4)return false;

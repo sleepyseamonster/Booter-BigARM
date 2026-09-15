@@ -6,7 +6,7 @@
 #include "Rendering/Renderer.h"
 #include "Rendering/TextureStore.h"
 #include "Rendering/StreamingScene.h"
-#include "Game/CalibrationRuntime.h"
+#include "Game/PlaySession.h"
 #include "Game/WorldSession.h"
 #include "Audio/Audio.h"
 #include "Persistence/Document.h"
@@ -49,21 +49,26 @@ int run(int argc,char** argv) {
         engine::TextureStore textures;
         auto albedo=textures.fallback(engine::TextureRole::Color),normal=textures.fallback(engine::TextureRole::Normal),surface=textures.fallback(engine::TextureRole::Surface);
         engine::SceneSurfaces surfaces;surfaces.rock={false,textures.resolve(albedo.token()),textures.resolve(normal.token()),textures.resolve(surface.token())};surfaces.ground=surfaces.rock;
-        engine::CalibrationRuntime runtime(data,initial);
+        auto source=std::make_shared<const engine::AuthoringSceneDocument>("standalone-player");
+        engine::PlaySession play;play.start({source,initial,data});
+        const auto playEpoch=play.epoch();play.focus(playEpoch,true);
+        auto& runtime=play.runtime(playEpoch);
         std::unique_ptr<engine::StreamingScene> streaming;
         if(worldSession){const auto& saved=worldSession->initial();streaming=std::make_unique<engine::StreamingScene>(runtime,saved.configuration.terrain,saved.configuration.rock,saved.configuration.constraints,saved.deltas,&renderer.telemetry);}
-        engine::Actions actions;engine::ActionInput input(actions);
+        auto& actions=play.actions();engine::ActionInput input(actions);
+        engine::DurabilityService durability;
         std::unique_ptr<engine::Audio> audio;
         if(!silent&&!technical)try{audio=std::make_unique<engine::Audio>();}catch(const std::exception& error){std::cerr<<error.what()<<"; continuing silently\n";}
         engine::FixtureState state;state.distance=initial.cameraDistance;state.pitch=initial.cameraPitch;state.yaw=initial.cameraYaw;state.surfaceTextures=false;
         uint64_t saveAttemptTick=initial.ticks;std::string saveStatus=worldSession?(worldSession->recovered()?"Recovered complete world save":(worldSession->restored()?"World restored":"New world")):loaded.recovered?"Recovered last valid snapshot":(loaded.value?"Snapshot restored":"New session");
         auto save=[&] {
             if(technical)return;
+            if(worldSession&&worldSession->savePending())return;
             saveAttemptTick=runtime.clock().ticks();
             try{
-                if(worldSession)worldSession->save(runtime,state.yaw,state.pitch,state.distance,streaming->deltas());
+                if(worldSession){worldSession->requestSave(durability,runtime,state.yaw,state.pitch,state.distance,streaming->deltas(),playEpoch,source->version(),true);saveStatus="World save queued";}
                 else engine::saveSnapshot(profile,runtime.snapshot(state.yaw,state.pitch,state.distance));
-                saveStatus=worldSession?"World saved (generation "+std::to_string(worldSession->generation())+")":"Saved";
+                if(!worldSession)saveStatus="Saved";
             }
             catch(const std::exception& error){saveStatus=error.what();std::cerr<<"Save failed: "<<error.what()<<'\n';}
         };
@@ -83,18 +88,20 @@ int run(int argc,char** argv) {
             const auto now=std::chrono::steady_clock::now();const double seconds=std::chrono::duration<double>(now-last).count();last=now;
             int width,height;window.pixels(width,height);const auto flags=SDL_GetWindowFlags(window.get());
             const bool focused=(flags&SDL_WINDOW_INPUT_FOCUS)!=0;
-            actions.focus(focused);input.sample();
-            if(actions.consume(engine::Action::Pause).pressed)paused=!paused;
+            play.focus(playEpoch,focused);input.sample();
+            if(actions.consume(engine::Action::Pause).pressed){paused=!paused;play.pause(playEpoch,paused);}
             const bool suspended=technical||paused||!focused||(flags&SDL_WINDOW_MINIMIZED)||width<=0||height<=0;
             actions.gameplay(!suspended);
             if(!suspended){state.orbit(dx,dy,false);state.zoom(wheel,false);}
             if(streaming)renderer.telemetry.measure(engine::FramePhase::Streaming,[&]{streaming->update();});
-            renderer.telemetry.measure(engine::FramePhase::Simulation,[&]{runtime.advance(seconds,suspended,actions,state.yaw,state.pitch);});
+            if(suspended!=paused)play.focus(playEpoch,!suspended);
+            renderer.telemetry.measure(engine::FramePhase::Simulation,[&]{play.advance(playEpoch,seconds,state.yaw,state.pitch);});
             if(saveRequested||runtime.clock().ticks()-saveAttemptTick>=600)save();
+            if(worldSession&&worldSession->savePending()){const auto receipt=worldSession->pollSave(durability);if(receipt.state==engine::DurableState::Durable)saveStatus="World saved (generation "+std::to_string(receipt.diskGeneration)+")";else if(receipt.state==engine::DurableState::Rejected)saveStatus=receipt.error;}
             for(const auto& cue:runtime.takeCues())if(audio)audio->cue(cue.sequence);
             if(width<=0||height<=0||(flags&SDL_WINDOW_MINIMIZED)){SDL_Delay(16);continue;}
             renderer.resize(width,height);
-            const auto view=runtime.present(state.yaw,state.pitch,state.distance,float(std::min(seconds,.1)));
+            const auto view=play.present(playEpoch,state.yaw,state.pitch,state.distance,float(std::min(seconds,.1)));
             engine::ScenePlacement placement;placement.physicalCharacter=true;placement.offset=view.feet;placement.offset[1]+=.15f;
             placement.eye=view.eye;placement.target=view.target;placement.model=&mesh;placement.pose=view.palette;placement.markerActive=runtime.targetActive();state.objectYaw=view.yaw;
             if(streaming){placement.streamedWorld=true;renderer.telemetry.measure(engine::FramePhase::Streaming,[&]{placement.instances=&streaming->instances(view.eye);});}
@@ -113,7 +120,10 @@ int run(int argc,char** argv) {
             if(technical)SDL_Delay(10);
         }
         save();
+        durability.shutdown();
+        if(worldSession&&worldSession->savePending()){const auto receipt=worldSession->pollSave(durability);if(receipt.state==engine::DurableState::Rejected)std::cerr<<"World save failed: "<<receipt.error<<'\n';}
         streaming.reset();
+        play.stop();
         albedo.reset();normal.reset();surface.reset();textures.stop();
     }
     renderer.stop();

@@ -15,7 +15,7 @@ void awaitRegion(RegionStream& stream,size_t expectedCount){
 }
 }
 int main(int argc,char** argv)try{
-    if(argc!=2)throw std::runtime_error("Need new output directory");const std::filesystem::path root=argv[1];if(std::filesystem::exists(root))throw std::runtime_error("Choose a new test directory");std::filesystem::create_directories(root);
+    if(argc!=2)throw std::runtime_error("Need new output directory");const std::filesystem::path root=argv[1];std::error_code ignored;std::filesystem::remove_all(root,ignored);std::filesystem::create_directories(root);
     WorldSave state;state.player.feet={2,0,3};state.player.markerActive=true;state.deltas.removedRocks[{-1,0}]={4,9};state.origin={12,-13};
     const auto profile=root/"world";auto generation=saveWorld(profile,state,0);require(generation==1,"Initial generation");auto loaded=loadWorldSave(profile,state.configuration);require(loaded.value&&loaded.value->deltas==state.deltas&&loaded.value->player.feet==state.player.feet&&loaded.value->player.markerActive&&loaded.value->origin==state.origin,"World/player/config/delta roundtrip");
     auto changed=state;changed.player.feet={7,0,8};changed.player.markerActive=false;changed.deltas.removedRocks[{0,0}]={16};

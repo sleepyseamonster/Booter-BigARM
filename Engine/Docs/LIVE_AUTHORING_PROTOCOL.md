@@ -1,6 +1,6 @@
 # Local authoring protocol v1
 
-The [R2 implementation](./LIVE_AUTHORING_R2_RESULT.md) exposes an optional local authoring host in the Workbench. It edits a generic source scene. Rendering that scene is R3; a live command does not yet imply a visible fixture change. No commands write game content or save source files.
+The [R2 implementation](./LIVE_AUTHORING_R2_RESULT.md) exposes an optional local authoring host in the Workbench. It edits a generic source scene, and R3 connects immutable snapshots of that scene to rendering. [R4](./PLAY_SESSION_DURABILITY_R4_RESULT.md) supplies typed in-process `PlaySession` and `DurabilityService` APIs used by both applications. This v1 socket remains scene-authoring only: it does not expose play, save or load verbs, and no command writes game content or source files.
 
 ## Launch and connect
 

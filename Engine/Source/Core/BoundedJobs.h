@@ -90,7 +90,8 @@ public:
         std::lock_guard lock(mutex_);
         for(const auto& e:entries_)if(e->done&&!e->cancelled->load()&&budget.admit(e->bytes)){
             Completion result{e->ticket,e->owner,e->epoch,std::move(e->value),std::move(e->error),e->bytes};auto owned=e;erase(owned);return result;
-        }return {};
+        }
+        return {};
     }
     Stats stats(){std::lock_guard lock(mutex_);return {entries_.size(),reserved_,size_t(std::count_if(entries_.begin(),entries_.end(),[](const auto& e){return e->done;}))};}
     void shutdown(){

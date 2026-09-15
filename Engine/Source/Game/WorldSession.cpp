@@ -25,4 +25,15 @@ void WorldSession::save(const CalibrationRuntime& runtime,float yaw,float pitch,
     WorldSave state{initial_.configuration,runtime.snapshot(yaw,pitch,distance),initial_.origin,deltas};
     generation_=saveWorld(profile_,state,generation_);
 }
+uint64_t WorldSession::requestSave(DurabilityService& durability,const CalibrationRuntime& runtime,float yaw,float pitch,float distance,const WorldDeltas& deltas,
+                                   uint64_t sessionEpoch,uint64_t sourceRevision,bool explicitSave){
+    if(profile_.empty())throw std::runtime_error("No world profile selected");
+    if(pendingSave_)throw std::runtime_error("A world save is already pending");
+    WorldSave state{initial_.configuration,runtime.snapshot(yaw,pitch,distance),initial_.origin,deltas};
+    pendingSave_=durability.save(profile_,std::move(state),generation_,sessionEpoch,sourceRevision,explicitSave);return pendingSave_;
+}
+DurableReceipt WorldSession::pollSave(DurabilityService& durability){
+    if(!pendingSave_)throw std::logic_error("No world save is pending");
+    auto result=durability.receipt(pendingSave_);if(result.terminal()){if(result.state==DurableState::Durable)generation_=result.diskGeneration;pendingSave_=0;}return result;
+}
 }

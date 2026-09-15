@@ -62,8 +62,15 @@ CalibrationFrame CalibrationRuntime::present(float yaw,float pitch,float distanc
 }
 void CalibrationRuntime::streamingGuard(std::function<bool(PhysicsVector,PhysicsVector)> guard){
     if(guard&&!streamingGuard_)physics_.remove(groundBody_);
-    else if(!guard&&streamingGuard_)groundBody_=physics_.box("authored:calibration:ground",{0,-.05f,0},{10,.05f,10});
+    else if(!guard&&streamingGuard_)restoreCalibrationGround();
     streamingGuard_=std::move(guard);waitingForWorld_=bool(streamingGuard_);
+}
+void CalibrationRuntime::disconnectStreamingGuard() noexcept {
+    streamingGuard_={};waitingForWorld_=false;groundBody_={};
+}
+void CalibrationRuntime::restoreCalibrationGround() {
+    if(groundBody_.owner&&physics_.position(groundBody_))return;
+    groundBody_=physics_.box("authored:calibration:ground",{0,-.05f,0},{10,.05f,10});
 }
 void CalibrationRuntime::setRock(const std::string& id,const std::vector<PhysicsVector>& triangles,PhysicsVector offset) {
     if(rockId_.empty()){rockBody_=physics_.mesh(id,offset,triangles);rockId_=id;rockOffset_=offset;}
