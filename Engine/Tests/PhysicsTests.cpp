@@ -27,8 +27,12 @@ int main() try {
         const auto wall=world.box("authored:wall",{0,1,0},{.1f,1,2});
         const auto sweep=world.sphereSweep({-3,1,0},.2f,{6,0,0});
         require(sweep && sweep->body==wall && sweep->fraction>.44f && sweep->fraction<.46f,"Sphere sweep stops at radius clearance");
-        world.mesh("authored:mesh",{25,0,0},{{-2,0,-2},{0,1,2},{2,0,-2}});
-        const auto meshHit=world.ray({25,3,0},{0,-6,0});require(meshHit && meshHit->stableId=="authored:mesh" && std::abs(meshHit->position[1]-.5f)<.01f,"Triangle mesh query");
+        const std::vector<PhysicsVector> meshTriangles{{-2,0,-2},{0,1,2},{2,0,-2}};
+        const auto prepared=world.prepareMesh(meshTriangles);require(prepared&&prepared.bytes>0,"Collision mesh can be prepared independently");
+        const auto preparedBody=world.meshPrepared("authored:prepared",{25,0,0},prepared);
+        require(world.ray({25,3,0},{0,-6,0})&&world.ray({25,3,0},{0,-6,0})->body==preparedBody,"Prepared collision is adopted on the physics owner");
+        world.mesh("authored:mesh",{28,0,0},meshTriangles);
+        const auto meshHit=world.ray({28,3,0},{0,-6,0});require(meshHit && meshHit->stableId=="authored:mesh" && std::abs(meshHit->position[1]-.5f)<.01f,"Triangle mesh query");
         world.heightfield("authored:heightfield",{30,0,0},8,1,std::vector<float>(64,1));
         const auto terrain=world.ray({32,5,2},{0,-10,0});require(terrain && terrain->stableId=="authored:heightfield" && std::abs(terrain->position[1]-1)<.01f,"Heightfield query");
         auto capsule=world.capsule("authored:falling",{-4,3,0},.25f,.5f,true);bool added=false,removed=false;

@@ -17,11 +17,16 @@ public:
     bool readyAt(PhysicsVector p)const;
 private:
     struct Resident {std::array<std::unique_ptr<RenderModel>,3> terrain;BodyToken collider;};
+    struct PreparedCollision {Region region;PreparedMesh shape;size_t bytes()const{return shape.bytes;}};
     void retire(Region);
+    void adoptCollisions();
     CalibrationRuntime& runtime_;
     FrameTelemetry* telemetry_=nullptr;
     std::map<RegionKey,Resident> residents_;
     std::array<std::vector<std::unique_ptr<RenderModel>>,4> rockModels_;
+    BoundedJobs<PreparedCollision> collisionJobs_;
+    uint64_t collisionEpoch_=0;
+    std::map<RegionKey,uint64_t> pendingCollisions_;
     std::unique_ptr<RegionStream> stream_;
     std::vector<RenderInstance> instances_;
 };

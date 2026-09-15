@@ -85,6 +85,16 @@ bool RegionStream::removeRock(const GeneratedId& id){
     auto next=deltas_;next.removedRocks[key(id.region)].insert(id.member);validateDeltas(next);deltas_=std::move(next);
     jobs_.cancel(owner(id.region));it->second.ticket=0;it->second.error.clear();return true;
 }
+void RegionStream::markCollisionReady(Region region){
+    const auto it=slots_.find(key(region));
+    if(it==slots_.end()||!it->second.content) return;
+    it->second.ready.collision=true;it->second.error.clear();
+}
+void RegionStream::markCollisionError(Region region,std::string error){
+    const auto it=slots_.find(key(region));
+    if(it==slots_.end()||!it->second.content) return;
+    it->second.ready.collision=false;it->second.error=std::move(error);
+}
 bool RegionStream::collisionReady(WorldPosition from,WorldPosition to,float radius)const{
     if(!std::isfinite(radius)||radius<0||radius>4)return false;
     const auto a=from.normalized(256),b=to.normalized(256);if(distance(a.region,b.region)>1)return false;

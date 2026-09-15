@@ -19,9 +19,9 @@ The [L2/runtime result](./OUTDOOR_LIGHTING_L2_RESULT.md) delivers shared optiona
 
 Done: a shared, repeatable runtime baseline and explicit pacing configuration, with honest timing limitations and one evidence-backed scheduling correction if warranted. Compilation, frame intervals and GPU timestamps must not be labeled input-to-photon measurements. Technical capture mode timing must not be reported as interactive performance. No fixed hardware/frame-time promise is selected until a Windows target and representative workload support it.
 
-## Next bounded batch: remove the streamed-region adoption burst
+## Completed bounded batch: remove the streamed-region adoption burst
 
-The corrected load/retire/return trace records streaming CPU p95 about 53 ms and maximum 68 ms. The attribution pass now isolates terrain render preparation at a maximum of about 0.35 ms and Jolt mesh cooking at about 59 ms. Move physics-shape preparation into bounded jobs, retaining physics/render ownership, epoch rejection, byte reservations and old valid resources until adoption. Compare the same workload once. Do not change world identity or geometry to hide stalls.
+The corrected load/retire/return trace records streaming CPU p95 about 53 ms and maximum 68 ms. The attribution pass isolated terrain render preparation at a maximum of about 0.35 ms and Jolt mesh cooking at about 59 ms. Physics-shape preparation now runs in bounded jobs, retaining physics/render ownership, ticket rejection, byte reservations and old valid resources until adoption. A matching end-to-end timing capture remains the proof follow-up; do not change world identity or geometry to hide stalls.
 
 ## Following engine work, in dependency order
 

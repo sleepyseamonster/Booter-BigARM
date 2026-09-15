@@ -1,25 +1,36 @@
 #include "Rendering/StreamingScene.h"
+#include <algorithm>
 #include <cmath>
+#include <stdexcept>
 namespace engine {
-StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain,RockRecipe rock,PlacementConstraints constraints,WorldDeltas deltas,FrameTelemetry* telemetry):runtime_(runtime),telemetry_(telemetry){
+namespace {
+RegionKey collisionKey(Region region){return {region.x,region.z};}
+std::string collisionOwner(Region region){return "physics:region:"+std::to_string(region.x)+":"+std::to_string(region.z);}
+}
+StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain,RockRecipe rock,PlacementConstraints constraints,WorldDeltas deltas,FrameTelemetry* telemetry):runtime_(runtime),telemetry_(telemetry),collisionJobs_([](const PreparedCollision& prepared){return prepared.bytes();}){
     stream_=std::make_unique<RegionStream>(terrain,rock,std::move(constraints),[this](const RegionContent& content){
         const auto region=content.terrain.region;const auto offset=WorldPosition{region,{}}.relativeTo({},256,4096);
         Resident prepared;
         auto prepare=[&]{if(content.terrain.id.generatorVersion>=2){for(uint32_t level=0;level<3;++level)prepared.terrain[level]=std::make_unique<RenderModel>(terrainRenderLod(content.terrain,level));}
                         else prepared.terrain[0]=std::make_unique<RenderModel>(content.terrain.mesh);};
         if(telemetry_)telemetry_->measure(FramePhase::StreamingPrepare,prepare);else prepare();
-        auto existing=residents_.find({region.x,region.z});
+        const auto existing=residents_.find(collisionKey(region));
+        if(collisionEpoch_==UINT64_MAX)throw std::overflow_error("Physics preparation epoch exhausted");
+        const size_t bytes=content.collision.size()*sizeof(PhysicsVector);
+        const auto reservation=std::max<size_t>(bytes*2,64*1024);
+        auto vertices=content.collision;
+        const auto ticket=collisionJobs_.submit(collisionOwner(region),++collisionEpoch_,reservation,[this,region,vertices=std::move(vertices)](const auto& token){
+            if(token.cancelled())throw std::runtime_error("Physics preparation cancelled");
+            return PreparedCollision{region,runtime_.physics().prepareMesh(vertices)};
+        });
+        if(!ticket)throw std::runtime_error("Physics preparation queue is full");
+        pendingCollisions_[collisionKey(region)]=*ticket;
         if(existing!=residents_.end()){
-            auto replace=[&]{runtime_.physics().replaceMesh(existing->second.collider,content.collision);};
-            if(telemetry_)telemetry_->measure(FramePhase::Physics,replace);else replace();
-            existing->second.terrain=std::move(prepared.terrain);return RegionReadiness{true,true};
+            existing->second.terrain=std::move(prepared.terrain);return RegionReadiness{true,false};
         }
-        BodyToken collider;
-        auto cook=[&]{collider=runtime_.physics().mesh(content.terrain.id.text(),offset,content.collision);};
-        if(telemetry_)telemetry_->measure(FramePhase::Physics,cook);else cook();
-        prepared.collider=collider;
-        try{residents_.emplace(RegionKey{region.x,region.z},std::move(prepared));}catch(...){runtime_.physics().remove(collider);throw;}
-        return RegionReadiness{true,true};
+        try{residents_.emplace(collisionKey(region),std::move(prepared));}
+        catch(...){collisionJobs_.cancel(collisionOwner(region));pendingCollisions_.erase(collisionKey(region));throw;}
+        return RegionReadiness{true,false};
     },[this](Region region){retire(region);},std::move(deltas));
     for(size_t variant=0;variant<4;++variant)for(const auto& lod:stream_->rocks()[variant].lods)rockModels_[variant].push_back(std::make_unique<RenderModel>(lod.mesh));
     runtime_.streamingGuard([this](PhysicsVector from,PhysicsVector to){
@@ -28,8 +39,33 @@ StreamingScene::StreamingScene(CalibrationRuntime& runtime,TerrainRecipe terrain
         return stream_->collisionReady({{},{from[0],from[1],from[2]}},{{},{to[0],to[1],to[2]}},1.f);
     });
 }
-StreamingScene::~StreamingScene(){runtime_.streamingGuard({});stream_.reset();}
-void StreamingScene::retire(Region region){auto it=residents_.find({region.x,region.z});if(it!=residents_.end()){runtime_.physics().remove(it->second.collider);residents_.erase(it);}}
+StreamingScene::~StreamingScene(){runtime_.streamingGuard({});collisionJobs_.shutdown();stream_.reset();}
+void StreamingScene::retire(Region region){collisionJobs_.cancel(collisionOwner(region));pendingCollisions_.erase(collisionKey(region));auto it=residents_.find(collisionKey(region));if(it!=residents_.end()){if(it->second.collider.owner)runtime_.physics().remove(it->second.collider);residents_.erase(it);}}
+void StreamingScene::adoptCollisions(){
+    UploadAdmission budget{16*1024*1024,64*1024*1024};
+    while(auto completed=collisionJobs_.takeReady(budget)){
+        const auto pending=std::find_if(pendingCollisions_.begin(),pendingCollisions_.end(),[&](const auto& entry){return entry.second==completed->ticket;});
+        if(pending==pendingCollisions_.end())continue;
+        const Region region{pending->first.first,pending->first.second};const auto key=pending->first;
+        pendingCollisions_.erase(pending);
+        if(!completed->error.empty()||!completed->value){stream_->markCollisionError(region,completed->error.empty()?"Physics preparation returned no shape":completed->error);continue;}
+        const auto slot=stream_->slots().find(key);if(slot==stream_->slots().end()||!slot->second.content)continue;
+        try{
+            auto resident=residents_.find(key);if(resident==residents_.end())continue;
+            auto prepared=std::move(completed->value->shape);
+            if(resident->second.collider.owner){
+                auto replace=[&]{runtime_.physics().replaceMeshPrepared(resident->second.collider,prepared);};
+                if(telemetry_)telemetry_->measure(FramePhase::Physics,replace);else replace();
+            }else{
+                const auto offset=WorldPosition{region,{}}.relativeTo({},256,4096);BodyToken collider;
+                auto create=[&]{collider=runtime_.physics().meshPrepared(slot->second.content->terrain.id.text(),offset,prepared);};
+                if(telemetry_)telemetry_->measure(FramePhase::Physics,create);else create();
+                resident->second.collider=collider;
+            }
+            stream_->markCollisionReady(region);
+        }catch(const std::exception& error){stream_->markCollisionError(region,error.what());}
+    }
+}
 bool StreamingScene::removeNearest(float maximumDistance){
     if(!std::isfinite(maximumDistance)||maximumDistance<=0||maximumDistance>32)throw std::invalid_argument("Invalid rock editing range");
     std::optional<GeneratedId> chosen;float nearest=maximumDistance;const auto feet=runtime_.feet();
@@ -37,7 +73,7 @@ bool StreamingScene::removeNearest(float maximumDistance){
     return chosen&&stream_->removeRock(*chosen);
 }
 void StreamingScene::update(){const auto p=runtime_.feet();anchors({{{{},{p[0],p[1],p[2]}},0}});}
-void StreamingScene::anchors(const std::vector<StreamAnchor>& a){stream_->update(a);}
+void StreamingScene::anchors(const std::vector<StreamAnchor>& a){stream_->update(a);adoptCollisions();}
 bool StreamingScene::readyAt(PhysicsVector p)const{return stream_->collisionReady({{},{p[0],p[1],p[2]}},{{},{p[0],p[1],p[2]}},1);}
 const std::vector<RenderInstance>& StreamingScene::instances(std::array<float,3> eye){
     instances_.clear();

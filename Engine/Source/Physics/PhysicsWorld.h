@@ -20,6 +20,13 @@ struct ContactEvent {
     uint32_t subshapeA=0,subshapeB=0;
     PhysicsVector normal{};
 };
+// CPU-prepared collision shape. The backend shape is opaque to callers and may
+// be created on a worker before adoption on the owning physics thread.
+struct PreparedMesh {
+    std::shared_ptr<const void> shape;
+    size_t bytes=0;
+    explicit operator bool()const{return bool(shape);}
+};
 class PhysicsWorld {
 public:
     explicit PhysicsWorld(uint32_t maxBodies=2048);
@@ -29,7 +36,10 @@ public:
     BodyToken box(std::string id,PhysicsVector center,PhysicsVector halfExtent,std::array<float,4> rotation={0,0,0,1});
     BodyToken capsule(std::string id,PhysicsVector center,float radius,float halfCylinder,bool dynamic=false);
     BodyToken mesh(std::string id,PhysicsVector offset,const std::vector<PhysicsVector>& triangles);
+    PreparedMesh prepareMesh(const std::vector<PhysicsVector>& triangles) const;
+    BodyToken meshPrepared(std::string id,PhysicsVector offset,const PreparedMesh& prepared);
     void replaceMesh(BodyToken,const std::vector<PhysicsVector>& triangles);
+    void replaceMeshPrepared(BodyToken,const PreparedMesh& prepared);
     BodyToken heightfield(std::string id,PhysicsVector offset,uint32_t side,float spacing,const std::vector<float>& heights);
     bool remove(BodyToken);
     void setGravity(PhysicsVector);

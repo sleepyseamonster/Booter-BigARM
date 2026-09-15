@@ -33,6 +33,8 @@ public:
     ~RegionStream();
     void update(const std::vector<StreamAnchor>&);
     bool removeRock(const GeneratedId&);
+    void markCollisionReady(Region);
+    void markCollisionError(Region,std::string);
     const WorldDeltas& deltas()const{return deltas_;}
     bool collisionReady(WorldPosition from,WorldPosition to,float radius=.5f)const;
     const std::map<RegionKey,RegionSlot>& slots()const{return slots_;}
