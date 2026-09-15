@@ -30,7 +30,7 @@ Unity remains reference-only. Terrain, rocks, generators, canyons and final game
 
 ## Live audit findings
 
-The repository does not yet contain an `AuthoringSceneDocument`, transform transaction domain or embedded Game View. `AuthoringOperations` is only a generic queue, `FixtureState` still drives the current Workbench renderer, and `Apps/Game` is a standalone player path rather than an in-workbench play session. The first plan placed the AI bridge after the UI and play-session phases, which would make the primary Codex client depend on interfaces that did not exist yet.
+The repository now contains the first `AuthoringSceneDocument` and transform transaction domain. `AuthoringOperations` remains the generic bounded queue, while `SceneAuthoringAdapter` supplies the first local `inspect_scene`, `inspect_entity` and `apply_transaction` handlers. `FixtureState` still drives the current Workbench renderer, and `Apps/Game` is still a standalone player path rather than an in-workbench play session. The first implementation boundary is complete; the next dependency is the Phase 3 render snapshot and viewport contract.
 
 The corrected sequence below puts the smallest local AI operation path beside the first scene transactions, defines a temporary `FixtureState`/runtime adapter, establishes frame-safe render snapshots before the viewport contract, and treats the standalone player and embedded Game View as two clients of one play-session service. No current implementation is being reclassified as complete because the plan exists.
 
@@ -210,6 +210,8 @@ The initial editor-oriented interpretation was revised because it would have cre
 
 ## First implementation boundary
 
-The next coherent engine batch is **Phase 1 plus the minimum of Phase 2**: add `AuthoringSceneDocument`, hierarchy/transform storage, versioned serialization, one atomic `set_transform` transaction with undo/rollback, and the in-process `inspect/apply` AI adapter. Stop when Codex and a small test client can inspect and change a scene without touching renderer or UI state. Then add the Phase 3 snapshot adapter, Scene View gizmo contract and Play Session/Game View lifecycle in bounded batches.
+**Complete 2026-09-14:** Phase 1 plus the minimum of Phase 2 adds `AuthoringSceneDocument`, hierarchy/transform storage, versioned serialization, one atomic `set_transform` transaction with undo/rollback, and the in-process `inspect/apply` AI adapter. Codex and a small test client can inspect and change a scene without touching renderer or UI state. The native core suite and all 15 configured core tests pass; details are recorded in [HUMAN_AI_SCENE_DOCUMENT_RESULT.md](./HUMAN_AI_SCENE_DOCUMENT_RESULT.md).
+
+The next coherent engine batch is Phase 3: build the immutable render snapshot adapter and narrow Scene View gizmo contract, then formalize the isolated Play Session/Game View lifecycle in bounded batches.
 
 Do not begin generator-specific constraints, permanent world layouts, a large asset browser or additional visual effects before that boundary is complete. The result must remain a usable Scene View while the Game View/session work is added.
