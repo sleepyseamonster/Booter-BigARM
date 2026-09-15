@@ -21,6 +21,7 @@ The native application renders a perspective fixture and interactive inspector o
 | Need | Durable home |
 |---|---|
 | Native scene and viewport interface work | [UI/UX agent workspace](./UIUX/README.md) |
+| Proprietary engine ownership, SOPs and research routing | [Game Engine agent workspace](./Agents/GameEngine/README.md) |
 | What must be built and how we will judge it | [Requirements](./Docs/REQUIREMENTS.md) |
 | Accepted choices, proposals and unknowns | [Decision register](./Docs/DECISIONS.md) |
 | Component ownership and procedural-world contracts | [Architecture](./Docs/ARCHITECTURE.md) |
