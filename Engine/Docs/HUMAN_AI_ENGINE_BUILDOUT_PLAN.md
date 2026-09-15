@@ -1,6 +1,6 @@
 # Human and AI engine build-out plan
 
-Updated 2026-09-14, America/Phoenix.
+Updated 2026-09-14, America/Phoenix. Audited and rewritten after confirming the current source seams and the required standalone and in-workbench Game View behavior.
 
 This is the focused execution plan for the new operating model: Codex is the primary authoring client, a human uses a small scene viewport for visual judgment and precise gizmo edits, and the same engine runtime powers playtesting and the standalone game. It is subordinate to [FOUNDATION_PLAN.md](./FOUNDATION_PLAN.md), which remains the master whole-engine roadmap, and [STATUS.md](./STATUS.md), which remains the live evidence handoff.
 
@@ -27,6 +27,14 @@ The engine must remain useful with a minimal interface. A large editor, scriptin
 - Existing renderer and material ownership: [Renderer.h](../Source/Rendering/Renderer.h), [RenderModel.h](../Source/Rendering/RenderModel.h), and the asset catalog/resource owner.
 
 Unity remains reference-only. Terrain, rocks, generators, canyons and final game geography are consumers of this architecture, not prerequisites for the first authoring/runtime layers. The UI agent owns presentation widgets, but never owns scene truth, simulation truth or persistence.
+
+## Live audit findings
+
+The repository does not yet contain an `AuthoringSceneDocument`, transform transaction domain or embedded Game View. `AuthoringOperations` is only a generic queue, `FixtureState` still drives the current Workbench renderer, and `Apps/Game` is a standalone player path rather than an in-workbench play session. The first plan placed the AI bridge after the UI and play-session phases, which would make the primary Codex client depend on interfaces that did not exist yet.
+
+The corrected sequence below puts the smallest local AI operation path beside the first scene transactions, defines a temporary `FixtureState`/runtime adapter, establishes frame-safe render snapshots before the viewport contract, and treats the standalone player and embedded Game View as two clients of one play-session service. No current implementation is being reclassified as complete because the plan exists.
+
+The existing `check_engine_plan.py` graph still reports downstream packages such as P22/P23/P25 as locally ready because it indexes the whole-engine P01–P37 roadmap. That checker remains useful for package coverage; it does not replace this focused dependency order for the new human/AI authoring layer.
 
 ## Canonical state model
 
@@ -65,7 +73,7 @@ Use a flat, cache-friendly component store or equivalent owned structure. Do not
 
 **Proof:** core tests cover IDs, hierarchy order, transform propagation, invalid documents, stale versions, atomic save/reload and preservation of the previous valid document after a rejected candidate.
 
-### Phase 2 — Transform transactions, history and selection
+### Phase 2 — Transform transactions, history and the first AI path
 
 Build the domain operations that both AI and UI will call:
 
@@ -79,11 +87,20 @@ Build the domain operations that both AI and UI will call:
 
 A drag is one transaction, not hundreds of permanent edits. Each receipt contains operation ID, expected version, resulting version, changed entity IDs and structured errors. Large operations are bounded and can be previewed before commit.
 
-**Proof:** duplicate/reparent/undo/redo cases, stale transaction rejection, stable IDs after save/reload, and no partial mutation after a failed multi-entity operation.
+Add the smallest local, in-process Codex adapter at this phase. It accepts bounded JSON requests for `inspect_scene`, `inspect_entity` and `apply_transaction`, then returns the same receipt type as the queue. This is enough for Codex to author and verify a scene before the UI exists. Session, capture and export commands wait until their owning runtime services exist.
 
-### Phase 3 — Human Scene View contract
+**Proof:** duplicate/reparent/undo/redo cases, stale transaction rejection, stable IDs after save/reload, no partial mutation after a failed multi-entity operation, and identical state from a local AI request and a direct domain call.
 
-Give the UI agent a narrow viewport contract over Phase 2:
+### Phase 3 — Runtime snapshots and the human Scene View contract
+
+Add the first frame-facing extraction path before wiring widgets:
+
+- `RenderSceneSnapshot` is built from an authoring document without exposing domain storage to bgfx.
+- A temporary adapter translates the existing `FixtureState`/`ScenePlacement` fixture into the same snapshot shape while current Workbench and Player code are migrated.
+- One renderer owns shared resources; each viewport supplies a camera, target rectangle and input context.
+- Scene View receives an immutable snapshot and never writes renderer handles back into the document.
+
+Give the UI agent a narrow viewport contract over Phase 2 and this snapshot:
 
 - Selection by ID and viewport ray/pick result.
 - Translate, rotate and scale gizmos.
@@ -95,7 +112,7 @@ Give the UI agent a narrow viewport contract over Phase 2:
 
 The UI submits domain transactions and reads snapshots. It does not directly edit ECS components, renderer resources or save files. Game View hides authoring gizmos and uses a separate input context.
 
-**Proof:** a manual transform round-trip produces the same document as an equivalent Codex operation; selection/gizmo changes survive save/reload; UI focus does not leak into gameplay input.
+**Proof:** snapshot transforms match the document, a manual transform round-trip produces the same document as an equivalent Codex operation, selection/gizmo changes survive save/reload, UI focus does not leak into gameplay input, and the adapter preserves the existing diagnostic fixture while the new path is introduced.
 
 ### Phase 4 — Play session and Game View
 
@@ -110,11 +127,13 @@ Formalize the existing player/runtime path into a shared play-session service:
 
 Expose Game View as a second viewport over this session. The standalone player application and the in-workbench Game View must use the same session and renderer services; one is not a special preview implementation.
 
+Game View owns player input and the regular third-person camera. It does not expose authoring gizmos or mutate the source scene. The Workbench may show Scene View and Game View as tabs or split targets, but both consume the same runtime services and resource owner. Starting a session records the source document/profile version and stopping it returns to the unchanged authoring snapshot unless an explicit apply/save transaction is requested.
+
 **Proof:** start/stop/restart isolation, deterministic initial snapshot, player camera/input ownership, collision and streaming readiness, runtime changes discarded on stop, explicit save preserving only intended deltas, and identical render/resource paths in Workbench and Player.
 
-### Phase 5 — AI command bridge
+### Phase 5 — Expanded AI command and playtest bridge
 
-Connect Codex to the same operations without requiring UI automation. Begin with a local, bounded adapter using JSON requests and receipts; add a transport only when an actual external process requires it.
+Expand the Phase 2 local adapter once the play-session owner exists. Codex can now control and inspect playtesting without requiring UI automation. Add a transport only when an actual external process requires it.
 
 Required command families:
 
@@ -130,11 +149,11 @@ Every request has an operation ID, expected domain/session version, bounded payl
 
 ### Phase 6 — Runtime snapshot rendering and representative workload
 
-Replace fixture-only submission as the primary path with an extraction step:
+Broaden the Phase 3 extraction path from a compatibility adapter into the primary scalable renderer path:
 
 `Authoritative scene/session state → RenderSceneSnapshot → visibility/LOD → material/resource bindings → render passes`.
 
-The snapshot contains only frame-safe data: transforms, bounds, mesh/material IDs, LOD choice, skin pose references and visibility flags. Resource owners resolve IDs to GPU handles. Keep the current forward passes and G-buffer/AO/contact infrastructure; do not introduce a general render graph without a demonstrated need.
+The snapshot contains only frame-safe data: transforms, bounds, mesh/material IDs, LOD choice, skin pose references and visibility flags. Resource owners resolve IDs to GPU handles. Keep the current forward passes and G-buffer/AO/contact infrastructure; do not introduce a general render graph without a demonstrated need. Retire the fixture adapter only after both Scene View and Game View use the snapshot path.
 
 Create one generic representative authoring/playtest workload containing repeated static meshes, parented groups, multiple material instances, several LODs, one skinned object, a player camera and streamed instances. It is an architecture fixture, not final game content.
 
@@ -178,17 +197,19 @@ After the shared architecture has a representative workload, perform Windows bui
 
 The initial editor-oriented interpretation was revised because it would have created unnecessary systems and ambiguous ownership:
 
-1. The authoritative object model is now a native scene document, not UI widgets or `FixtureState`.
-2. Scene View and Game View are separate clients of one runtime, not two renderers or two world models.
-3. Gizmos are precise human input; Codex operations are the primary bulk authoring path. Both use identical transactions and history.
-4. Playtesting starts from an isolated snapshot so manual experiments cannot corrupt authored source data.
-5. Manual set building precedes procedural inference; examples become constraints only through explicit capture and promotion.
-6. Scalable rendering means frame-safe snapshot extraction, visibility, LOD and resource ownership around representative data. It does not mean building a giant editor or general render graph immediately.
-7. AI transport is intentionally local and bounded first. A network protocol, scripting VM or service layer is added only when a real integration requires it.
-8. Terrain, rock and ruin generators are downstream consumers. Their implementation is not allowed to redefine scene authority or block the generic authoring/playtest loop.
+1. The authoritative object model is now a native scene document, not UI widgets or `FixtureState`; the fixture remains only as a temporary adapter during migration.
+2. The first AI operation path moves beside scene transactions, because Codex is the primary client and must not depend on UI completion.
+3. Runtime snapshots precede viewport integration so Scene View and Game View cannot create separate renderer/world models.
+4. Scene View and Game View are separate clients of one play-session/runtime owner, with distinct input contexts and cameras.
+5. Gizmos are precise human input; Codex operations are the primary bulk authoring path. Both use identical transactions and history.
+6. Playtesting starts from an isolated snapshot so manual experiments cannot corrupt authored source data.
+7. Manual set building precedes procedural inference; examples become constraints only through explicit capture and promotion.
+8. Scalable rendering means frame-safe snapshot extraction, visibility, LOD and resource ownership around representative data. It does not mean building a giant editor or general render graph immediately.
+9. AI transport is intentionally local and bounded first. A network protocol, scripting VM or service layer is added only when a real integration requires it.
+10. Terrain, rock and ruin generators are downstream consumers. Their implementation is not allowed to redefine scene authority or block the generic authoring/playtest loop.
 
 ## First implementation boundary
 
-The next coherent engine batch is **Phase 1 plus the minimum of Phase 2**: add `AuthoringSceneDocument`, hierarchy/transform storage, versioned serialization and one atomic `set_transform` transaction with undo/rollback. Stop when Codex and a small test client can inspect and change a scene without touching renderer or UI state. Then integrate the UI gizmo contract and Play Session lifecycle in the following bounded batches.
+The next coherent engine batch is **Phase 1 plus the minimum of Phase 2**: add `AuthoringSceneDocument`, hierarchy/transform storage, versioned serialization, one atomic `set_transform` transaction with undo/rollback, and the in-process `inspect/apply` AI adapter. Stop when Codex and a small test client can inspect and change a scene without touching renderer or UI state. Then add the Phase 3 snapshot adapter, Scene View gizmo contract and Play Session/Game View lifecycle in bounded batches.
 
 Do not begin generator-specific constraints, permanent world layouts, a large asset browser or additional visual effects before that boundary is complete. The result must remain a usable Scene View while the Game View/session work is added.
