@@ -1,0 +1,56 @@
+{
+  "purpose": "Planning, finding coverage and continuation routing; no runtime implementation proof",
+  "source_baseline": "7eb9abdb9f29f85e41b34a51a0f52331d5aa1177",
+  "plan_self_audit": "Reviewed shared hierarchy ownership, UI/core acceptance separation, early Windows gates, incompatible-save handling, receipt durability and engine-only scope. Decisions recorded in plan.",
+  "planning_tests": {
+    "command": "python3 -m unittest discover -s Tools/tests -p test_engine_plan.py -v",
+    "exit_code": 0,
+    "tests_passed": 12
+  },
+  "plan_check": {
+    "schema_version": 1,
+    "errors": [],
+    "packages": 40,
+    "capabilities": 24,
+    "ready_local": [
+      "R1"
+    ],
+    "ready_windows": [
+      "W01"
+    ],
+    "deferred_roadmap_local": [
+      "P22",
+      "P23",
+      "P25"
+    ],
+    "active_execution": {
+      "plan": "Docs/ENGINE_CORRECTION_PLAN.md",
+      "batches": 6,
+      "findings": 15,
+      "active_batches": [],
+      "blocked_batches": [],
+      "scope_complete": false,
+      "ready_local": [
+        "R1"
+      ],
+      "ready_windows": []
+    },
+    "proof_limit": "Plan graph, coverage and evidence-file presence only; not implementation, creative acceptance or runtime verification."
+  },
+  "workspace_check": {
+    "exit_code": 1,
+    "existing_errors": 44,
+    "new_task_errors": [],
+    "classification": "All existing errors are retained Research/UnityReference link/whitespace issues; unchanged by this task"
+  },
+  "input_sha256": {
+    "Docs/ENGINE_CORRECTION_PLAN.md": "478656da528983234bbed9c6c7c0c4a9fb93dd66f61f19b2611899009fb443e6",
+    "Docs/ENGINE_ROADMAP.json": "0fbf6d98bbfb6de932f5a19340e7e442a01ca49bc421032ba8dec4222a29ebef",
+    "Docs/FOUNDATION_PLAN.md": "fb22e38b70112739385ea3b954c01ad5d7d488b0c8e95dc2079379974ddc4e25",
+    "Docs/HUMAN_AI_ENGINE_BUILDOUT_PLAN.md": "0cf427a016cdad195e381965e60323776f6f6669b39e4741b7fd18b865d96bcc",
+    "Docs/STATUS.md": "d8811957a35e0ac1426a0d2fdef82e1ed00531ba184a164916fb2e87ad00c47f",
+    "README.md": "770bc41de4dc5410531915164f9e15008fcee50c3298d97bce90807b3b6e6d20",
+    "Tools/check_engine_plan.py": "48b10dd0c896ddfdcd05e820bdbc4b533a5739e3bc85443812ec7149841f2cff",
+    "Tools/tests/test_engine_plan.py": "38f2c828e5ecae5612888939ba58491ca3a24e402347667ca558fdc8f7728e1e"
+  }
+}

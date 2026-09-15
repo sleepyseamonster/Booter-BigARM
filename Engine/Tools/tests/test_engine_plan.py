@@ -20,8 +20,59 @@ class EnginePlanTests(unittest.TestCase):
     def inspect(self, data=None):
         return inspect_plan(data or self.data, self.root, self.master, self.audit)
 
+    def reset_execution_fixture(self):
+        # Keep transition tests independent of future completed batch states.
+        for row in self.data["active_execution"]["batches"]:
+            row["state"] = "planned"
+            row["evidence"] = []
+
     def test_current_graph_and_coverage(self):
         self.assertEqual(self.inspect()["errors"], [])
+
+    def test_corrections_override_unrelated_local_packages(self):
+        self.reset_execution_fixture()
+        historical = copy.deepcopy(self.data)
+        historical.pop("active_execution")
+        historical_result = self.inspect(historical)
+        result = self.inspect()
+        self.assertEqual(result["ready_local"], ["R1"])
+        self.assertEqual(result["active_execution"]["findings"], 15)
+        self.assertEqual(result["ready_windows"], historical_result["ready_windows"])
+        self.assertEqual(result["deferred_roadmap_local"], historical_result["ready_local"])
+
+    def test_missing_finding_blocks_execution(self):
+        self.reset_execution_fixture()
+        self.data["active_execution"]["batches"][0]["findings"].remove("A01")
+        result = self.inspect()
+        self.assertTrue(any("finding coverage" in e for e in result["errors"]))
+        self.assertEqual(result["ready_local"], [])
+
+    def test_execution_order_and_completion_require_proof(self):
+        self.reset_execution_fixture()
+        rows = self.data["active_execution"]["batches"]
+        rows[0]["depends_on"] = ["R2"]
+        rows[1]["state"] = "complete"
+        errors = self.inspect()["errors"]
+        self.assertTrue(any("nonpreceding" in e for e in errors))
+        self.assertTrue(any("without execution evidence" in e for e in errors))
+        self.assertTrue(any("before execution prerequisites" in e for e in errors))
+
+    def test_execution_does_not_erase_windows_gates(self):
+        self.reset_execution_fixture()
+        self.data["active_execution"]["batches"][-1]["required_gates"] = []
+        result = self.inspect()
+        self.assertTrue(any("missing required Windows gates" in e for e in result["errors"]))
+        self.assertEqual(result["ready_windows"], [])
+
+    def test_corrected_batch_unlocks_next_with_evidence(self):
+        self.reset_execution_fixture()
+        row = self.data["active_execution"]["batches"][0]
+        row["state"] = "complete"
+        # Deliberately only file-presence proof: checker cannot certify runtime behavior.
+        row["evidence"] = ["Docs/ENGINE_CORRECTION_PLAN.md"]
+        result = self.inspect()
+        self.assertEqual(result["errors"], [])
+        self.assertEqual(result["ready_local"], ["R2"])
 
     def test_cycle_rejected(self):
         self.data["work_packages"][0]["depends_on"] = ["P02"]

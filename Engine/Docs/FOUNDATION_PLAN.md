@@ -1,5 +1,7 @@
 # Engine Master Implementation Plan
 
+**Active correction sequence, 2026-09-15:** [Engine correction and integration plan](./ENGINE_CORRECTION_PLAN.md) expands both audits into six bounded batches covering A01–A15. Its `active_execution` index overrides local gameplay-package suggestions from the historical roadmap. **R1 scene authority is next**; Windows gates remain independently visible. This is the current engine-only execution path, not a new game-content program or a claim of completed corrections.
+
 Current audit correction, 2026-09-15: [Engine architecture audit](./ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) identifies defects in the initial authoring substrate and gaps in generic runtime integration. Its R1–R6 sequence refines the focused human-AI plan without replacing this roadmap. R1 scene authority (hierarchy math, atomic edits/history, schema/revision/save bounds) is the immediate batch, before snapshot/gizmo integration. Existing library choices remain; no engine rewrite or new generator work is indicated.
 
 Current build-out direction, 2026-09-14 (audited): [Human and AI engine build-out plan](./HUMAN_AI_ENGINE_BUILDOUT_PLAN.md) defines the execution sequence for the Codex-driven authoring model, minimal Scene View/Game View, canonical scene documents, play-session isolation, runtime snapshot rendering and later procedural constraint capture. It is subordinate to this whole-engine roadmap and does not create a competing world or renderer model.
@@ -197,6 +199,8 @@ Game content is data-driven initially, with explicit C++ systems. Do not create 
 ## 8. Continuation policy
 
 At each continuation read current status and run `python3 Tools/check_engine_plan.py` from Engine. It reports the earliest planned work whose indexed dependencies are complete. During M1, begin P01 and then P02; bring P07 forward once P01 is ready, and develop texture cooking after the color contract without waiting for unrelated shadow work. Integrate P03/P04 into P05 and close the outdoor foundation through P06. This replaces a renderer-only sequence with coordinated runtime/assets/build work while retaining the original color/shadow/material proof.
+
+While `active_execution` is present, the checker reports ready correction batches in `ready_local` and keeps historical local candidates under `deferred_roadmap_local`. Those deferred candidates are not current task instructions. Advance the correction batch state only with its recorded proof and update the focused plan/status at closure. The checker validates all audit findings have owning batches, ordered dependencies, required platform gates and evidence-file presence; it cannot certify behavior. If this scope completes, choose and record the next engine-owned consumer before removing/replacing the active sequence; do not automatically start historical game-content packages.
 
 Keep at most one coupled implementation batch active in the shared checkout. Do not infer permission to spawn background tasks or create automations from this roadmap. At a stopping boundary, leave the exact next ready package and any blocked gate in STATUS; the user should not have to discover engine requirements or choose the next technical subsystem.
 

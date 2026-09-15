@@ -2,6 +2,8 @@
 
 Updated 2026-09-14, America/Phoenix. Audited and rewritten after confirming the current source seams and the required standalone and in-workbench Game View behavior.
 
+**Implementation plan, 2026-09-15:** [Engine correction and integration plan](./ENGINE_CORRECTION_PLAN.md) now supplies the ordered R1–R6 implementation batches, explicit architecture decisions, limits, complete A01–A15 coverage and exit proofs. Follow it for current execution; the phases below retain the broader human–AI product contract. The separate UI acceptance boundary does not block independent engine delivery or silently count as complete.
+
 **Controlling audit update, 2026-09-15:** the [current architecture audit](./ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) reproduced hierarchy, transaction/history and scene validation/capacity defects in the first authoring pass. Complete its R1 scene-authority corrections before Phase 3 or gizmo integration. R2 then bounds and hosts the authoring adapter; R3–R6 refine the phases below. The earlier first-boundary completion means a basic library/test substrate exists, not that its complete correctness or live application integration has been accepted.
 
 This is the focused execution plan for the new operating model: Codex is the primary authoring client, a human uses a small scene viewport for visual judgment and precise gizmo edits, and the same engine runtime powers playtesting and the standalone game. It is subordinate to [FOUNDATION_PLAN.md](./FOUNDATION_PLAN.md), which remains the master whole-engine roadmap, and [STATUS.md](./STATUS.md), which remains the live evidence handoff.
@@ -38,7 +40,7 @@ The repository contains the first `AuthoringSceneDocument` and transform transac
 
 The corrected sequence below puts the smallest local AI operation path beside the first scene transactions, defines a temporary `FixtureState`/runtime adapter, establishes frame-safe render snapshots before the viewport contract, and treats the standalone player and embedded Game View as two clients of one play-session service. No current implementation is being reclassified as complete because the plan exists.
 
-The existing `check_engine_plan.py` graph still reports downstream packages such as P22/P23/P25 as locally ready because it indexes the whole-engine P01–P37 roadmap. That checker remains useful for package coverage; it does not replace this focused dependency order for the new human/AI authoring layer.
+`check_engine_plan.py` now applies the roadmap's `active_execution` section: R1–R6 govern local continuation while historical candidates such as P22/P23/P25 are listed separately as deferred. Windows gates stay visible. This is planning/evidence-presence validation, not runtime acceptance.
 
 ## Canonical state model
 

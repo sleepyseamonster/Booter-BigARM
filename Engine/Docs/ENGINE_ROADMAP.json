@@ -920,5 +920,115 @@
       "evidence": [],
       "environment": "windows"
     }
-  ]
+  ],
+  "active_execution": {
+    "plan": "Docs/ENGINE_CORRECTION_PLAN.md",
+    "audits": [
+      "Docs/ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md",
+      "Docs/ENGINE_LIFECYCLE_AUDIT_2026-09-15.md"
+    ],
+    "scope": "Engine corrections and generic integration; supersedes local P/W package suggestions while present. Windows gates remain independently visible.",
+    "batches": [
+      {
+        "id": "R1",
+        "title": "Correct scene authority",
+        "depends_on": [],
+        "findings": [
+          "A01",
+          "A02",
+          "A03",
+          "A04",
+          "A11"
+        ],
+        "state": "planned",
+        "proof": "CPU hierarchy, transaction/history, schema and durable round-trip proofs",
+        "evidence": [],
+        "environment": "mac_or_platform_independent",
+        "required_gates": []
+      },
+      {
+        "id": "R2",
+        "title": "Bound and host authoring",
+        "depends_on": [
+          "R1"
+        ],
+        "findings": [
+          "A05"
+        ],
+        "state": "planned",
+        "proof": "Live local command host, epochs, receipt semantics and bounded extraction",
+        "evidence": [],
+        "environment": "mac_or_platform_independent",
+        "required_gates": []
+      },
+      {
+        "id": "R3",
+        "title": "Connect renderer and Scene View",
+        "depends_on": [
+          "R2"
+        ],
+        "findings": [
+          "A06",
+          "A07"
+        ],
+        "state": "planned",
+        "proof": "Generic snapshots, per-view resource ownership, draw and tangent proof; human acceptance recorded separately",
+        "evidence": [],
+        "environment": "mac_or_platform_independent",
+        "required_gates": []
+      },
+      {
+        "id": "R4",
+        "title": "Share play lifecycle and durability",
+        "depends_on": [
+          "R3"
+        ],
+        "findings": [
+          "A09",
+          "A10",
+          "A11",
+          "A12",
+          "A13",
+          "A14",
+          "A15"
+        ],
+        "state": "planned",
+        "proof": "Isolated play, recovery, durable save receipts, physics support and pause/stop proofs",
+        "evidence": [],
+        "environment": "mac_or_platform_independent",
+        "required_gates": []
+      },
+      {
+        "id": "R5",
+        "title": "Correct material and rendering costs",
+        "depends_on": [
+          "R4"
+        ],
+        "findings": [
+          "A08"
+        ],
+        "state": "planned",
+        "proof": "Indirect AO, depth/target budgets, generic materials and measured workload",
+        "evidence": [],
+        "environment": "mac_or_platform_independent",
+        "required_gates": []
+      },
+      {
+        "id": "R6",
+        "title": "Validate Windows and hand off",
+        "depends_on": [
+          "R5"
+        ],
+        "findings": [],
+        "state": "planned",
+        "proof": "Native W01/W02, corrected generic workload and relocatable technical package",
+        "evidence": [],
+        "environment": "windows",
+        "required_gates": [
+          "W01",
+          "W02"
+        ]
+      }
+    ]
+  }
 }
