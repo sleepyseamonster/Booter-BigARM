@@ -1,0 +1,123 @@
+{
+  "purpose": "Observational audit; reproduced_issue=true identifies a defect",
+  "source_commit": "3170b9f66fbf896801d46ce902b4d216d3908e53",
+  "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+  "rebuild_command": [
+    "cmake",
+    "--build",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core",
+    "--target",
+    "engine_snapshot_tests",
+    "engine_physics_tests",
+    "-j2"
+  ],
+  "rebuild_output": "[  1%] Built target engine_core\n[  7%] Built target ozz_base\n[  8%] Built target engine_texture_data\n[ 10%] Built target engine_simulation\n[ 17%] Built target ozz_animation\n[ 24%] Built target ozz_animation_offline\n[ 26%] Built target engine_animation\n[ 95%] Built target Jolt\n[ 97%] Built target engine_physics\n[ 98%] Built target engine_game\n[100%] Built target engine_snapshot_tests\n[  1%] Built target engine_core\n[  7%] Built target ozz_base\n[  8%] Built target engine_texture_data\n[ 10%] Built target engine_simulation\n[ 17%] Built target ozz_animation\n[ 25%] Built target ozz_animation_offline\n[ 26%] Built target engine_animation\n[ 97%] Built target Jolt\n[ 98%] Built target engine_physics\n[100%] Built target engine_game\n[100%] Built target engine_physics_tests\n",
+  "probe_command": [
+    "clang++",
+    "-std=c++20",
+    "-O2",
+    "-DNDEBUG",
+    "-Wall",
+    "-Wextra",
+    "-pthread",
+    "-I",
+    "Source",
+    "-isystem",
+    ".cache/probe-sources/nlohmann_json/single_include",
+    "Tests/RuntimeLifecycleAuditProbe.cpp",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/libengine_game.a",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/libengine_physics.a",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/jolt/libJolt.a",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/libengine_simulation.a",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/libengine_animation.a",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/libengine_texture_data.a",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/libengine_core.a",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/ozz/src/animation/offline/libozz_animation_offline.a",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/ozz/src/animation/runtime/libozz_animation.a",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/ozz/src/base/libozz_base.a",
+    "-framework",
+    "Foundation",
+    "-framework",
+    "Metal",
+    "-framework",
+    "MetalKit",
+    "-o",
+    "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/lifecycle-audit-3yql6zd4/probe"
+  ],
+  "input_sha256": {
+    "Tests/RuntimeLifecycleAuditProbe.cpp": "9f959ce014b55c6f8c857cf1290dd10949175c6c09b77effb978531d7df1454d",
+    "Tools/audit_runtime_lifecycle.py": "2f1467dbd6d8cace73af243dec9beb730755eb61ca07b5a55eac9e77c5122796",
+    "Source/Persistence/PlayerSnapshot.cpp": "7b849d4420274e97effb151389d490926801038619aad4c49b64fa2c2e8ec8bc",
+    "Source/Persistence/Document.cpp": "d4331e0eb23ff892d738d9810ee43d25962731c985c1eca17ef581784ebd6d70",
+    "Source/Physics/PhysicsWorld.cpp": "bd1f0442495131f93982e5ade366907f7e1cc40b242696e7f03dd131a3cc0491",
+    "Source/Physics/PhysicsWorld.h": "e0a15d8e64bd0350ce9badc9a78e12945d52a555096cd0e9ef888af727103cb2",
+    "Source/Game/CalibrationRuntime.cpp": "044f37f5ac184d7593150faaf5acb172e39fdbed3f41eeba275ef7e5245d538f",
+    "Source/Simulation/FixedClock.h": "6fa5de5cc5843093c18ea450bbb0409ab8659dc15cc579e6e2c9fc160322786d",
+    "Source/Rendering/StreamingScene.cpp": "eab4eecf4904b871e847e0408cd5e737ab28ad7891546bd70897751132c46276",
+    "Research/runtime-lock.json": "07ecaa8ccc47b2d129d7acf313d3fb5dfb0767a0e6b01101ba9d41f386fc0a42",
+    ".cache/probe-sources/jolt/Jolt/Physics/Body/BodyInterface.cpp": "bdc5c1b2a47dcf52f3802da6163ffbab4919cdc33ae191801533304206e81500"
+  },
+  "observations": {
+    "future_snapshot_overwrite": {
+      "future_state_retained": false,
+      "loaded_generation": 1,
+      "reported_recovered": true,
+      "reproduced_issue": true,
+      "version_after_save": 1
+    },
+    "guard_removal_at_capacity": {
+      "body_count_at_failure": 2048,
+      "error": "Physics body budget exhausted",
+      "reproduced_issue": true,
+      "succeeds_after_freeing_one_body": true
+    },
+    "pause_presentation_rewind": {
+      "before_pause": [
+        0.02500000037252903,
+        -2.0489096641540527e-08,
+        0.0
+      ],
+      "paused": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "physics_after": [
+        0.05000000074505806,
+        -4.0978193283081055e-08,
+        0.0
+      ],
+      "physics_before": [
+        0.05000000074505806,
+        -4.0978193283081055e-08,
+        0.0
+      ],
+      "reproduced_issue": true,
+      "ticks_after": 1,
+      "ticks_before": 1
+    },
+    "sleeping_support_removed": {
+      "after_explicit_wake_y": -18.39934539794922,
+      "after_support_edit_y": 0.7299998998641968,
+      "reproduced_issue": true,
+      "settled_y": 0.7299998998641968
+    },
+    "sleeping_support_replaced": {
+      "after_explicit_wake_y": -2.270000457763672,
+      "after_support_edit_y": 0.7299998998641968,
+      "reproduced_issue": true,
+      "settled_y": 0.7299998998641968
+    }
+  },
+  "existing_contract_checks": {
+    "engine_physics_tests": {
+      "exit_code": 0,
+      "stdout": "step peak=0.252882 stop x=4.38\nslope steep=0 x=2.31604 y=1.20169\nslope steep=1 x=-0.228673 y=5.32907e-14\nPASS: Jolt bodies/queries/contact lifetime, capsule slopes/steps/jump/ground loss, camera obstruction and fixed-rate motion\n"
+    },
+    "engine_snapshot_tests": {
+      "exit_code": 0,
+      "stdout": "PASS: runtime restart, stable identity, alternating slots, interrupted/corrupt recovery and preservation\n"
+    }
+  }
+}

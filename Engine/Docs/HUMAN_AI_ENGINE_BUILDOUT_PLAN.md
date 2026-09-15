@@ -32,6 +32,8 @@ Unity remains reference-only. Terrain, rocks, generators, canyons and final game
 
 ## Live audit findings
 
+The [2026-09-15 lifecycle follow-up](./ENGINE_LIFECYCLE_AUDIT_2026-09-15.md) additionally requires incompatible-save preservation, sleeping-body activation after support changes, continuous pause/suspend presentation and release-only nonthrowing teardown. These belong to R4's shared PlaySession/durability work. R1 remains the immediate corrective boundary; no further broad audit is required before starting it.
+
 The repository contains the first `AuthoringSceneDocument` and transform transaction domain. `AuthoringOperations` remains the generic queue, while `SceneAuthoringAdapter` supplies in-process `inspect_scene`, `inspect_entity` and `apply_transaction` handlers. Neither application instantiates the adapter. `FixtureState` still drives the Workbench renderer, and `Apps/Game` is a standalone player path rather than an in-workbench play session. First-boundary correctness is reopened by the 2026-09-15 audit; R1 corrections and R2 bounded hosting precede the Phase 3 render snapshot and viewport contract.
 
 The corrected sequence below puts the smallest local AI operation path beside the first scene transactions, defines a temporary `FixtureState`/runtime adapter, establishes frame-safe render snapshots before the viewport contract, and treats the standalone player and embedded Game View as two clients of one play-session service. No current implementation is being reclassified as complete because the plan exists.
