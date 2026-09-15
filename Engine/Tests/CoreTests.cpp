@@ -1,6 +1,7 @@
 #include "Core/WorldIdentity.h"
 #include "Persistence/Document.h"
 #include "Runtime/InspectionDocument.h"
+#include "Runtime/AuthoringOperations.h"
 #include <fstream>
 #include <iostream>
 #include <limits>
@@ -69,6 +70,18 @@ int main(int argc,char** argv) {
         rejects([&] { writeDocument(document,"engine.inspection",nonfinite); });
         rejects([&] { contentPath(root,"../outside"); }); rejects([&] { contentPath(root,"C:\\outside"); });
         require(contentPath(root,"inspection.json")==std::filesystem::canonical(document),"Portable content path");
+        AuthoringOperations operations(2,4);uint64_t authoringVersion=3;
+        operations.registerHandler("set_value",[&](const AuthoringJson& payload,uint64_t expected,uint64_t& resulting) {
+            if(expected!=authoringVersion)throw std::runtime_error("Stale authoring version");
+            resulting=++authoringVersion;return AuthoringJson{{"accepted",payload.at("value")}};
+        });
+        const auto accepted=operations.enqueue({"set_value",AuthoringJson{{"value",7}},3});
+        require(operations.pending()==1&&operations.process(1)==1,"Bounded authoring operation processing");
+        const auto acceptedReceipt=operations.receipt(accepted);require(acceptedReceipt&&acceptedReceipt->status==AuthoringOperationStatus::Succeeded&&acceptedReceipt->resultingVersion==4,"Authoring operation receipt and version");
+        const auto unknown=operations.enqueue({"missing",AuthoringJson::object(),0});operations.process();
+        const auto unknownReceipt=operations.receipt(unknown);require(unknownReceipt&&unknownReceipt->status==AuthoringOperationStatus::Rejected,"Unknown authoring operation is rejected");
+        const auto stale=operations.enqueue({"set_value",AuthoringJson{{"value",8}},3});operations.process();
+        const auto staleReceipt=operations.receipt(stale);require(staleReceipt&&staleReceipt->status==AuthoringOperationStatus::Failed&&authoringVersion==4,"Stale authoring edit cannot mutate version");
         std::cout<<"PASS: stable identity, negative/large coordinates, bounded JSON, strict candidate load, atomic replacement, contention and content confinement\n";
     } catch(const std::exception& error) { std::cerr<<error.what()<<'\n'; return 1; }
 }
