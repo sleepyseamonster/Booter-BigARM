@@ -27,7 +27,10 @@ void FixtureState::constrain() {
         bound(environment.zenith[i],0,1,defaults.zenith[i]);
         bound(environment.horizon[i],0,1,defaults.horizon[i]);
         bound(environment.ground[i],0,1,defaults.ground[i]);
+        bound(environment.fogColor[i],0,1,defaults.fogColor[i]);
     }
+    bound(environment.fogDensity,0,1,defaults.fogDensity);
+    bound(environment.fogHeightFalloff,0,4,defaults.fogHeightFalloff);
     bound(shadowBias,0,0.02f,0.0015f); bound(roughness,0.045f,1,0.7f);
     bound(metallic,0,1,0); bound(normalStrength,0,2,1); bound(textureScale,0.1f,8,1); bound(ambient,0,1,0.3f);
     if (!std::isfinite(objectYaw)) objectYaw = 0;

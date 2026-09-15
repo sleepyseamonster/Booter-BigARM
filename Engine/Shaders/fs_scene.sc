@@ -22,6 +22,8 @@ uniform vec4 u_sceneOptions; // normal diagnostic, textures, world repeats/m, am
 uniform vec4 u_surfaceParams; // roughness multiplier, metallic, normal strength, reserved
 uniform vec4 u_materialMapping; // UV mode, scale.xy
 uniform vec4 u_materialUvOffset; // UV offset.xy
+uniform vec4 u_fog; // enabled, density, height falloff
+uniform vec4 u_fogColor; // linear RGB
 uniform vec4 u_eye;
 uniform vec4 u_shadowOptions; // enabled, depth bias, texel size, reserved
 
@@ -259,5 +261,9 @@ void main()
     // Bounded hemispheric fill. This is not an environment-map/IBL solution.
     vec3 hemisphere = environmentAmbient(normal);
     vec3 ambient = ((1.0 - metal) * albedo + f0 * (1.0 - 0.5 * roughness)) * hemisphere * u_sceneOptions.w * ao;
-    gl_FragColor = vec4(direct + ambient,1.0);
+    vec3 lit=direct+ambient;
+    float distanceToEye=length(v_world-u_eye.xyz);
+    float heightAttenuation=exp(-max(v_world.y,0.0)*u_fog.z);
+    float fogAmount=clamp(1.0-exp(-u_fog.y*distanceToEye*heightAttenuation),0.0,1.0)*u_fog.x;
+    gl_FragColor = vec4(mix(lit,u_fogColor.rgb,fogAmount),1.0);
 }

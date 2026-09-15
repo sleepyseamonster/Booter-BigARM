@@ -50,11 +50,16 @@ int main(int argc,char** argv) {
         authoredEnvironment.environment.sunElevation=.2f;authoredEnvironment.environment.sunColor={.9f,.7f,.4f};
         authoredEnvironment.environment.zenith={.1f,.3f,.5f};authoredEnvironment.environment.horizon={.8f,.6f,.4f};
         authoredEnvironment.environment.ground={.2f,.1f,.05f};authoredEnvironment.environment.sky=false;authoredEnvironment.environment.toneMapping=false;
+        authoredEnvironment.environment.fog=true;authoredEnvironment.environment.fogDensity=.025f;authoredEnvironment.environment.fogHeightFalloff=.12f;authoredEnvironment.environment.fogColor={.3f,.35f,.4f};
         saveInspection(document,authoredEnvironment);loadInspection(document,loaded);
         require(loaded==authoredEnvironment,"Environment roundtrip preserves all presentation settings");
+        auto legacyFog=readDocument(document,"engine.inspection");legacyFog["environment"].at("version")=1;
+        for(const auto& key:{"fog_color_linear","fog_density","fog_height_falloff","fog"})legacyFog["environment"].erase(key);
+        writeDocument(document,"engine.inspection",legacyFog);loadInspection(document,loaded);
+        require(!loaded.environment.fog&&loaded.environment.fogDensity==0,"Environment v1 receives fog defaults");
         auto legacyEnvironment=valid;legacyEnvironment.erase("environment");writeDocument(document,"engine.inspection",legacyEnvironment);
         loadInspection(document,loaded);require(loaded.environment==EnvironmentSettings{},"Legacy inspection gets explicit environment defaults");
-        for(const auto& badEnvironment:{Json{{"sun_elevation",-1}},Json{{"sun_color_linear",Json::array({1,2,0})}},Json{{"version",2}},Json{{"sky",1}},Json{{"horizon_linear",Json::array({1,0})}}}) {
+        for(const auto& badEnvironment:{Json{{"sun_elevation",-1}},Json{{"sun_color_linear",Json::array({1,2,0})}},Json{{"version",3}},Json{{"sky",1}},Json{{"horizon_linear",Json::array({1,0})}}}) {
             auto malformed=valid;
             for(const auto& [key,value]:badEnvironment.items())malformed["environment"][key]=value;
             writeDocument(document,"engine.inspection",malformed);const auto before=loaded;

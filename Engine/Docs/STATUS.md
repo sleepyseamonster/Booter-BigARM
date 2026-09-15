@@ -4,6 +4,8 @@
 
 **Latest physics scheduling pass (2026-09-14):** [Prepared collision adoption](./PHYSICS_RUNTIME_RESULT.md) moves Jolt mesh-shape cooking into a bounded worker queue with per-region tickets, cancellation and owner-thread adoption. Existing colliders remain valid until replacement succeeds. Physics, terrain-jobs and region-stream suites pass; a fresh end-to-end timing capture remains open.
 
+**Latest environment rendering pass (2026-09-14):** [Generic height fog](./HEIGHT_FOG_RESULT.md) adds persisted, bounded fog color/density/height controls with v1 inspection migration and an opt-in exponential forward pass. Core serialization, migration and shader builds pass. Screen-space AO and shared depth/normal targets remain open.
+
 **Latest authoring boundary pass (2026-09-14):** [UI-independent authoring operations](./AI_AUTHORING_OPERATIONS_RESULT.md) add bounded JSON requests, stable operation IDs, expected-version handoff, owner-controlled processing budgets and structured receipts. Successful, unknown-type and stale-version cases pass in the native core suite. No UI, transport, terrain, rock or game-specific operation was added.
 
 **Latest engine contract pass (2026-09-14):** [Material semantic validation](./MATERIAL_SYSTEM_RESULT.md) centralizes layered material slots and rejects role/transfer-function/missing-asset mismatches before GPU acquisition. `PhysicsWorld` now exposes configured gravity while retaining Jolt collision, queries and character behavior. Focused material and physics contracts pass. The next runtime batch remains streamed-region adoption attribution.
