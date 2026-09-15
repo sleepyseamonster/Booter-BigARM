@@ -72,6 +72,8 @@ private:
     bgfx::UniformHandle environment_ = BGFX_INVALID_HANDLE, inverseViewProjection_ = BGFX_INVALID_HANDLE;
     bgfx::VertexBufferHandle fullscreen_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle display_ = BGFX_INVALID_HANDLE, sceneSampler_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle ao_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle sceneNormalSampler_ = BGFX_INVALID_HANDLE, sceneDepthSampler_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle skinProgram_=BGFX_INVALID_HANDLE,skinShadowProgram_=BGFX_INVALID_HANDLE;
     bgfx::UniformHandle joints_=BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle program_ = BGFX_INVALID_HANDLE;

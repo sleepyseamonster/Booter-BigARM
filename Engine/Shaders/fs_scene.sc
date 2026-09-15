@@ -97,7 +97,9 @@ void main()
     vec3 geometricNormal = normalize(v_normal);
     if (u_sceneOptions.x > 0.5)
     {
-        gl_FragColor = vec4(geometricNormal * 0.5 + 0.5, 1.0);
+        gl_FragData[0] = vec4(geometricNormal * 0.5 + 0.5, 1.0);
+        gl_FragData[1] = vec4(geometricNormal * 0.5 + 0.5, 1.0);
+        gl_FragData[2] = vec4(clamp(gl_FragCoord.z, 0.0, 1.0), 0.0, 0.0, 1.0);
         return;
     }
     vec3 normal = geometricNormal;
@@ -265,5 +267,7 @@ void main()
     float distanceToEye=length(v_world-u_eye.xyz);
     float heightAttenuation=exp(-max(v_world.y,0.0)*u_fog.z);
     float fogAmount=clamp(1.0-exp(-u_fog.y*distanceToEye*heightAttenuation),0.0,1.0)*u_fog.x;
-    gl_FragColor = vec4(mix(lit,u_fogColor.rgb,fogAmount),1.0);
+    gl_FragData[0] = vec4(mix(lit,u_fogColor.rgb,fogAmount),1.0);
+    gl_FragData[1] = vec4(normalize(normal)*0.5+0.5,1.0);
+    gl_FragData[2] = vec4(clamp(gl_FragCoord.z,0.0,1.0),0.0,0.0,1.0);
 }

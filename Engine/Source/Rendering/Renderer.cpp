@@ -144,12 +144,15 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders,
     calibrationProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_calibration.bin");
     display_=bgfx::createUniform("u_display",bgfx::UniformType::Vec4);
     sceneSampler_=bgfx::createUniform("s_scene",bgfx::UniformType::Sampler);
+    ao_=bgfx::createUniform("u_ao",bgfx::UniformType::Vec4);
+    sceneNormalSampler_=bgfx::createUniform("s_sceneNormal",bgfx::UniformType::Sampler);
+    sceneDepthSampler_=bgfx::createUniform("s_sceneDepth",bgfx::UniformType::Sampler);
     struct FullscreenVertex { float x,y,z,u,v; };
     const FullscreenVertex vertices[]={{-1,-1,0,0,1},{3,-1,0,2,1},{-1,3,0,0,-1}};
     bgfx::VertexLayout layout;
     layout.begin().add(bgfx::Attrib::Position,3,bgfx::AttribType::Float).add(bgfx::Attrib::TexCoord0,2,bgfx::AttribType::Float).end();
     fullscreen_=bgfx::createVertexBuffer(bgfx::copy(vertices,sizeof(vertices)),layout);
-    if (!bgfx::isValid(display_) || !bgfx::isValid(sceneSampler_) || !bgfx::isValid(fullscreen_))
+    if (!bgfx::isValid(display_) || !bgfx::isValid(sceneSampler_) || !bgfx::isValid(ao_) || !bgfx::isValid(sceneNormalSampler_) || !bgfx::isValid(sceneDepthSampler_) || !bgfx::isValid(fullscreen_))
         throw std::runtime_error("Display resources failed");
     resizeTargets(width_,height_);
     bgfx::setViewMode(views::display,bgfx::ViewMode::Sequential);
@@ -163,15 +166,19 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders,
 void Renderer::resizeTargets(int width,int height) {
     const uint64_t flags=BGFX_TEXTURE_RT|BGFX_SAMPLER_U_CLAMP|BGFX_SAMPLER_V_CLAMP|BGFX_SAMPLER_MIN_POINT|BGFX_SAMPLER_MAG_POINT;
     if (!bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::RGBA16F,flags) ||
+        !bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::RGBA16F,flags) ||
+        !bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::RGBA16F,flags) ||
         !bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT))
         throw std::runtime_error("RGBA16F scene/depth targets unsupported");
-    bgfx::TextureHandle attachments[]={BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE};
+    bgfx::TextureHandle attachments[]={BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE};
     bgfx::FrameBufferHandle next=BGFX_INVALID_HANDLE;
     try {
         attachments[0]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
-        attachments[1]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT);
-        if (!bgfx::isValid(attachments[0]) || !bgfx::isValid(attachments[1])) throw std::runtime_error("Scene target allocation failed");
-        next=bgfx::createFrameBuffer(2,attachments,true);
+        attachments[1]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
+        attachments[2]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
+        attachments[3]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT);
+        if (!bgfx::isValid(attachments[0]) || !bgfx::isValid(attachments[1]) || !bgfx::isValid(attachments[2]) || !bgfx::isValid(attachments[3])) throw std::runtime_error("Scene target allocation failed");
+        next=bgfx::createFrameBuffer(4,attachments,true);
         if (!bgfx::isValid(next)) throw std::runtime_error("Scene framebuffer allocation failed");
     } catch (...) {
         for (auto texture:attachments) if (bgfx::isValid(texture)) bgfx::destroy(texture);
@@ -242,7 +249,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     // reset clears view framebuffer bindings; restore ownership on every frame.
     bgfx::setViewFrameBuffer(views::scene,scene_);
     bgfx::setViewRect(views::scene,0,0,uint16_t(width_),uint16_t(height_));
-    const float clear[]={srgbToLinear(28.0f/255),srgbToLinear(37.0f/255),srgbToLinear(50.0f/255),1};
+    const float clear[]={srgbToLinear(28.0f/255),srgbToLinear(37.0f/255),srgbToLinear(50.0f/255),0};
     bgfx::setPaletteColor(0,clear);
     bgfx::setViewClear(views::scene,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,1.0f,0,uint8_t(0));
     bgfx::setViewTransform(views::scene,view,projection);
@@ -385,9 +392,13 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);submit(-3,transform,color,instance.ground?soil:rock,instance.model);
     }
     const float display[]={state.exposure,state.showNormals && !calibration && !preview?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,state.environment.toneMapping&&!calibration&&!preview?1.0f:0.0f};
+    const float ao[]={state.ambientOcclusion&&!calibration&&!preview&&!state.showNormals?1.0f:0.0f,state.aoStrength,state.aoRadius/float(std::max(width_,height_)),0.0f};
     bgfx::setViewRect(views::display,0,0,uint16_t(width_),uint16_t(height_));
     bgfx::setUniform(display_,display);
+    bgfx::setUniform(ao_,ao);
     bgfx::setTexture(0,sceneSampler_,bgfx::getTexture(scene_));
+    bgfx::setTexture(1,sceneNormalSampler_,bgfx::getTexture(scene_,1));
+    bgfx::setTexture(2,sceneDepthSampler_,bgfx::getTexture(scene_,2));
     bgfx::setVertexBuffer(0,fullscreen_); bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A);
     bgfx::submit(views::display,displayProgram_);
 }
@@ -422,6 +433,10 @@ void Renderer::stop() {
     if (bgfx::isValid(sceneSampler_)) bgfx::destroy(sceneSampler_);
     scene_=BGFX_INVALID_HANDLE; displayProgram_=BGFX_INVALID_HANDLE; calibrationProgram_=BGFX_INVALID_HANDLE;
     fullscreen_=BGFX_INVALID_HANDLE; display_=BGFX_INVALID_HANDLE; sceneSampler_=BGFX_INVALID_HANDLE;
+    if (bgfx::isValid(ao_)) bgfx::destroy(ao_);
+    if (bgfx::isValid(sceneNormalSampler_)) bgfx::destroy(sceneNormalSampler_);
+    if (bgfx::isValid(sceneDepthSampler_)) bgfx::destroy(sceneDepthSampler_);
+    ao_=BGFX_INVALID_HANDLE;sceneNormalSampler_=BGFX_INVALID_HANDLE;sceneDepthSampler_=BGFX_INVALID_HANDLE;
     for (auto handle : meshes_) if (bgfx::isValid(handle)) bgfx::destroy(handle);
     if (bgfx::isValid(program_)) bgfx::destroy(program_);
     if(bgfx::isValid(layerParams_))bgfx::destroy(layerParams_);layerParams_=BGFX_INVALID_HANDLE;

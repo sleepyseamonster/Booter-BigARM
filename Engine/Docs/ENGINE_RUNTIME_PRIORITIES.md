@@ -38,4 +38,4 @@ Telemetry and pacing change no world seed, generated-object identity, authored p
 
 ## Current scope and deferred claims
 
-L1 sky/display and L2 shadow coverage are implemented on Metal. Shared depth/normal inputs with AO, height fog and the broader post-processing pipeline remain required engine work after this bounded adoption correction. Keep those rendering batches moving alongside AI authoring and runtime integration; do not expand profiling into an infrastructure detour. Windows performance, an AI command protocol and AAA readiness are not established by this pass.
+L1 sky/display, L2 shadow coverage, shared depth/normal inputs, a first opt-in AO display pass and height fog are implemented on Metal. Broader post-processing, higher quality AO kernels, contact shadows and platform-specific GPU tuning remain required engine work. Keep those rendering batches moving alongside AI authoring and runtime integration; do not expand profiling into an infrastructure detour. Windows performance, an AI command protocol and AAA readiness are not established by this pass.

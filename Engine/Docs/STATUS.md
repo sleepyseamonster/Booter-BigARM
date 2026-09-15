@@ -1,5 +1,7 @@
 # Current Engine Handoff
 
+**Latest scene-buffer pass (2026-09-14):** [Shared G-buffer and opt-in screen-space AO](./SCREEN_SPACE_AO_RESULT.md) adds color, encoded normal and depth-proxy attachments to the generic scene target. AO is a bounded display-stage effect with persisted strength/radius controls and additive inspection-document migration; it is disabled by default and skipped for diagnostics. Shader builds and all 14 native tests pass. This is engine infrastructure only; terrain, rocks, generators and Unity content are untouched.
+
 **Latest engine rendering pass (2026-09-14):** [Generic material pipeline](./MATERIAL_PIPELINE_RESULT.md) adds opt-in UV material mapping with tangent-space normal mapping, aligned albedo/surface sampling, and explicit UV scale/offset while preserving world-triplanar defaults. Shader variants, static/skinned UV+tangent transport, semantic texture validation and focused native suites pass. This is engine infrastructure only; terrain, rocks, generators and Unity content are untouched.
 
 **Latest physics scheduling pass (2026-09-14):** [Prepared collision adoption](./PHYSICS_RUNTIME_RESULT.md) moves Jolt mesh-shape cooking into a bounded worker queue with per-region tickets, cancellation and owner-thread adoption. Existing colliders remain valid until replacement succeeds. Physics, terrain-jobs and region-stream suites pass; a fresh end-to-end timing capture remains open.
