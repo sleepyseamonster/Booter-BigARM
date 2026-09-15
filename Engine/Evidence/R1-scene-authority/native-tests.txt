@@ -1,0 +1,83 @@
+Start testing: Sep 15 14:02 MST
+----------------------------------------------------------
+3/16 Testing: runtime_documents_identity
+3/16 Test: runtime_documents_identity
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_core_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/core-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"runtime_documents_identity" start time: Sep 15 14:02 MST
+Output:
+----------------------------------------------------------
+PASS: stable identity, negative/large coordinates, bounded JSON, strict candidate load, atomic replacement, contention and content confinement
+<end of output>
+Test time =   0.46 sec
+----------------------------------------------------------
+Test Passed.
+"runtime_documents_identity" end time: Sep 15 14:02 MST
+"runtime_documents_identity" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/16 Testing: authoring_scene_document
+4/16 Test: authoring_scene_document
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_scene_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/scene-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"authoring_scene_document" start time: Sep 15 14:02 MST
+Output:
+----------------------------------------------------------
+PASS: authoring hierarchy, atomic transform transactions, undo/redo, persistence and AI adapter
+<end of output>
+Test time =   0.26 sec
+----------------------------------------------------------
+Test Passed.
+"authoring_scene_document" end time: Sep 15 14:02 MST
+"authoring_scene_document" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/16 Testing: authoring_scene_corrections
+5/16 Test: authoring_scene_corrections
+Command: "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/engine_scene_correction_tests" "/Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core/scene-correction-test-data"
+Directory: /Users/worldbuilder/Desktop/Booter & BigARM/Engine/build/core
+"authoring_scene_corrections" start time: Sep 15 14:02 MST
+Output:
+----------------------------------------------------------
+{
+  "affine_hierarchy_mirror_shear_and_normals": true,
+  "allocation_atomicity": {
+    "adapter": {
+      "eventual_success": true,
+      "injected_boundaries": 66
+    },
+    "commit": {
+      "eventual_success": true,
+      "injected_boundaries": 60
+    },
+    "enqueue": {
+      "eventual_success": true,
+      "injected_boundaries": 32
+    },
+    "redo": {
+      "eventual_success": true,
+      "injected_boundaries": 53
+    },
+    "undo": {
+      "eventual_success": true,
+      "injected_boundaries": 53
+    }
+  },
+  "capacity_roundtrip_and_history_budget": {
+    "entities": 1024,
+    "large_metadata_entities": 92,
+    "saved_bytes": 1045820
+  },
+  "passed": true,
+  "strict_schema_exhaustion_and_prepared_conflicts": true,
+  "structural_history_and_parent_aware_edits": true
+}
+<end of output>
+Test time =   0.84 sec
+----------------------------------------------------------
+Test Passed.
+"authoring_scene_corrections" end time: Sep 15 14:02 MST
+"authoring_scene_corrections" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 15 14:02 MST

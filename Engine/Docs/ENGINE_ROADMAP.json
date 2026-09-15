@@ -940,9 +940,12 @@
           "A04",
           "A11"
         ],
-        "state": "planned",
+        "state": "complete",
         "proof": "CPU hierarchy, transaction/history, schema and durable round-trip proofs",
-        "evidence": [],
+        "evidence": [
+          "Evidence/R1-scene-authority/result.json",
+          "Docs/SCENE_AUTHORITY_R1_RESULT.md"
+        ],
         "environment": "mac_or_platform_independent",
         "required_gates": []
       },

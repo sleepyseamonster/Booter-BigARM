@@ -71,13 +71,16 @@ int main(int argc, char** argv) {
         document.save(path);
         const auto loaded = AuthoringSceneDocument::load(path);
         require(loaded.toJson() == document.toJson(), "Authoring scene persistence roundtrip");
-        const Json malformedCycle = Json{{"scene_id", "bad"}, {"revision", 1}, {"next_entity_id", 3},
+        const Json malformedCycle = Json{{"scene_id", "bad"}, {"revision", uint64_t(1)}, {"next_entity_id", uint64_t(3)},
                                           {"entities", Json::array({
                                               Json{{"id", parent}, {"name", "Parent"}, {"parent", child},
                                                    {"transform", AuthoringSceneDocument::transformToJson(parentTransform)}},
                                               Json{{"id", child}, {"name", "Child"}, {"parent", parent},
                                                    {"transform", AuthoringSceneDocument::transformToJson(childTransform)}}})}};
-        rejects([&] { AuthoringSceneDocument::fromJson(malformedCycle); });
+        bool cycleRejected=false;
+        try { AuthoringSceneDocument::fromJson(malformedCycle); }
+        catch (const SceneDocumentError& error) { cycleRejected=error.code==SceneErrorCode::Hierarchy; }
+        require(cycleRejected,"Cycle test reaches hierarchy validation");
 
         SceneAuthoringAdapter adapter(document);
         const auto inspectId = adapter.enqueue({"inspect_scene", Json{{"include_world_transforms", true}}, 0});

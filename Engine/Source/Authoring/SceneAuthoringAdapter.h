@@ -12,6 +12,10 @@ class SceneAuthoringAdapter {
 public:
     explicit SceneAuthoringAdapter(AuthoringSceneDocument& document, std::size_t maxPending = 128,
                                    std::size_t maxReceipts = 512);
+    SceneAuthoringAdapter(const SceneAuthoringAdapter&)=delete;
+    SceneAuthoringAdapter& operator=(const SceneAuthoringAdapter&)=delete;
+    SceneAuthoringAdapter(SceneAuthoringAdapter&&)=delete;
+    SceneAuthoringAdapter& operator=(SceneAuthoringAdapter&&)=delete;
 
     std::uint64_t enqueue(AuthoringOperationRequest request) { return operations_.enqueue(std::move(request)); }
     std::size_t process(std::size_t budget = 8) { return operations_.process(budget); }

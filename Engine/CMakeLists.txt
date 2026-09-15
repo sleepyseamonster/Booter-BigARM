@@ -127,6 +127,10 @@ add_executable(engine_scene_tests Tests/SceneDocumentTests.cpp)
 target_link_libraries(engine_scene_tests PRIVATE engine_core)
 add_test(NAME authoring_scene_document COMMAND engine_scene_tests "${CMAKE_CURRENT_BINARY_DIR}/scene-test-data")
 
+add_executable(engine_scene_correction_tests Tests/SceneCorrectionTests.cpp)
+target_link_libraries(engine_scene_correction_tests PRIVATE engine_core)
+add_test(NAME authoring_scene_corrections COMMAND engine_scene_correction_tests "${CMAKE_CURRENT_BINARY_DIR}/scene-correction-test-data")
+
 add_executable(engine_texture_tests Tests/TextureTests.cpp)
 target_link_libraries(engine_texture_tests PRIVATE engine_texture_data)
 add_test(NAME semantic_textures_catalog COMMAND engine_texture_tests "${CMAKE_CURRENT_BINARY_DIR}/texture-test-data")

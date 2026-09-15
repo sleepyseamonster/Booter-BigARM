@@ -1,5 +1,6 @@
 #pragma once
 #include <nlohmann/json.hpp>
+#include "Persistence/JsonLifetime.h"
 #include <cstdint>
 #include <deque>
 #include <functional>
@@ -7,9 +8,11 @@
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
+#include <type_traits>
 
 namespace engine {
 using AuthoringJson=nlohmann::json;
+static_assert(std::is_nothrow_move_assignable_v<AuthoringJson>);
 
 enum class AuthoringOperationStatus { Queued, Succeeded, Rejected, Failed };
 
@@ -43,13 +46,22 @@ public:
     }
     uint64_t enqueue(AuthoringOperationRequest request) {
         if(request.type.empty()||request.type.size()>128||!request.payload.is_object())throw std::invalid_argument("Invalid authoring operation request");
+        if(!boundedJsonDepth(request.payload))throw std::invalid_argument("Authoring payload exceeds document depth");
         if(request.payload.dump().size()>256*1024)throw std::invalid_argument("Authoring operation payload exceeds 256 KiB");
         if(queue_.size()>=maxPending_)throw std::runtime_error("Authoring operation queue full");
         if(nextId_==UINT64_MAX)throw std::overflow_error("Authoring operation id exhausted");
-        const uint64_t id=nextId_++;
-        queue_.push_back({id,std::move(request)});
-        receipts_[id]=AuthoringOperationReceipt{id,AuthoringOperationStatus::Queued,0,AuthoringJson::object(),{}};
-        receiptOrder_.push_back(id);trimReceipts();
+        const uint64_t id=nextId_;
+        AuthoringOperationReceipt receipt{id,AuthoringOperationStatus::Queued,0,AuthoringJson::object(),{}};
+        receipt.error.reserve(256);
+        receipts_.emplace(id,std::move(receipt));
+        bool ordered=false;
+        try {
+            receiptOrder_.push_back(id);ordered=true;
+            queue_.push_back({id,std::move(request)});
+        } catch (...) {
+            if(ordered)receiptOrder_.pop_back();receipts_.erase(id);throw;
+        }
+        ++nextId_;trimReceipts();
         return id;
     }
     size_t process(size_t budget=8) {
@@ -57,6 +69,7 @@ public:
         size_t completed=0;
         while(completed<budget&&!queue_.empty()) {
             auto work=std::move(queue_.front());queue_.pop_front();
+            JsonReleaseGuard requestCleanup{work.request.payload};
             auto receipt=receipts_.find(work.id);if(receipt==receipts_.end())continue;
             const auto handler=handlers_.find(work.request.type);
             if(handler==handlers_.end()) {
@@ -93,7 +106,11 @@ private:
     std::deque<Work> queue_;std::unordered_map<std::string,Handler> handlers_;
     std::unordered_map<uint64_t,AuthoringOperationReceipt> receipts_;std::deque<uint64_t> receiptOrder_;
     void trimReceipts() {
-        while(receiptOrder_.size()>maxReceipts_) {receipts_.erase(receiptOrder_.front());receiptOrder_.pop_front();}
+        while(receiptOrder_.size()>maxReceipts_) {
+            const auto it=receipts_.find(receiptOrder_.front());
+            if(it!=receipts_.end()){clearBoundedJson(it->second.result);receipts_.erase(it);}
+            receiptOrder_.pop_front();
+        }
     }
 };
 }

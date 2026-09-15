@@ -1,5 +1,7 @@
 # Human and AI engine build-out plan
 
+**R1 delivered 2026-09-15:** [Scene-authority correction proof](./SCENE_AUTHORITY_R1_RESULT.md) closes the first corrective boundary. Continue R2 bounded live authoring; older audit/phase entries below describe the starting deficiencies.
+
 Updated 2026-09-14, America/Phoenix. Audited and rewritten after confirming the current source seams and the required standalone and in-workbench Game View behavior.
 
 **Implementation plan, 2026-09-15:** [Engine correction and integration plan](./ENGINE_CORRECTION_PLAN.md) now supplies the ordered R1–R6 implementation batches, explicit architecture decisions, limits, complete A01–A15 coverage and exit proofs. Follow it for current execution; the phases below retain the broader human–AI product contract. The separate UI acceptance boundary does not block independent engine delivery or silently count as complete.

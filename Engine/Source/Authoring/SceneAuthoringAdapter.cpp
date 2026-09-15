@@ -1,4 +1,5 @@
 #include "Authoring/SceneAuthoringAdapter.h"
+#include "Persistence/JsonLifetime.h"
 
 #include <stdexcept>
 
@@ -7,6 +8,12 @@ namespace {
 
 void requireObject(const AuthoringJson& value, const char* label) {
     if (!value.is_object()) throw SceneDocumentError(std::string("Invalid ") + label);
+}
+
+void requireFields(const AuthoringJson& value,std::initializer_list<const char*> allowed){
+    for(const auto& entry:value.items())
+        if(std::none_of(allowed.begin(),allowed.end(),[&](const char* key){return entry.key()==key;}))
+            throw SceneDocumentError("Unknown operation field: "+entry.key());
 }
 
 void requireCurrentVersion(const AuthoringSceneDocument& document, std::uint64_t expectedVersion, bool required) {
@@ -42,6 +49,7 @@ void SceneAuthoringAdapter::registerHandlers() {
 AuthoringJson SceneAuthoringAdapter::inspectScene(const AuthoringJson& payload, std::uint64_t expectedVersion,
                                                  std::uint64_t& resultingVersion) {
     requireObject(payload, "inspect_scene payload");
+    requireFields(payload,{"include_world_transforms"});
     requireCurrentVersion(document_, expectedVersion, false);
     const bool includeWorld = !payload.contains("include_world_transforms") || payload.at("include_world_transforms").get<bool>();
     resultingVersion = document_.version();
@@ -51,19 +59,24 @@ AuthoringJson SceneAuthoringAdapter::inspectScene(const AuthoringJson& payload, 
 AuthoringJson SceneAuthoringAdapter::inspectEntity(const AuthoringJson& payload, std::uint64_t expectedVersion,
                                                   std::uint64_t& resultingVersion) {
     requireObject(payload, "inspect_entity payload");
+    requireFields(payload,{"id"});
     if (!payload.contains("id")) throw SceneDocumentError("inspect_entity requires id");
     requireCurrentVersion(document_, expectedVersion, false);
     const auto id = readEntityId(payload.at("id"));
     const auto* entity = document_.find(id);
     if (!entity) throw SceneDocumentError("Entity does not exist");
     resultingVersion = document_.version();
-    return AuthoringJson{{"scene_version", document_.version()}, {"entity", AuthoringSceneDocument::entityToJson(*entity)},
-                         {"world_transform", AuthoringSceneDocument::transformToJson(document_.worldTransform(id))}};
+    PreparedJson out;
+    out.value["scene_version"]=document_.version();
+    out.value["entity"]=AuthoringSceneDocument::entityToJson(*entity);
+    out.value["world_matrix"]=document_.worldMatrix(id);
+    return std::move(out.value);
 }
 
 AuthoringJson SceneAuthoringAdapter::applyTransaction(const AuthoringJson& payload, std::uint64_t expectedVersion,
                                                       std::uint64_t& resultingVersion) {
     requireObject(payload, "apply_transaction payload");
+    requireFields(payload,{"operations"});
     requireCurrentVersion(document_, expectedVersion, true);
     if (!payload.contains("operations") || !payload.at("operations").is_array() || payload.at("operations").empty() ||
         payload.at("operations").size() > 128)
@@ -71,18 +84,23 @@ AuthoringJson SceneAuthoringAdapter::applyTransaction(const AuthoringJson& paylo
     auto transaction = document_.beginTransaction(expectedVersion);
     for (const auto& operation : payload.at("operations")) {
         requireObject(operation, "scene transaction operation");
-        if (!operation.contains("type") || operation.at("type") != "set_transform" || !operation.contains("entity") ||
+        requireFields(operation,{"type","entity","transform"});
+        if (!operation.contains("type") || !operation.at("type").is_string() ||
+            operation.at("type").template get_ref<const std::string&>() != "set_transform" || !operation.contains("entity") ||
             !operation.contains("transform"))
             throw SceneDocumentError("Only set_transform is available in this transaction boundary");
         transaction.setTransform(readEntityId(operation.at("entity")), AuthoringSceneDocument::transformFromJson(operation.at("transform")));
     }
-    const auto result = transaction.commit();
-    if (!result.applied) throw SceneDocumentError(result.error.empty() ? "Scene transaction was rejected" : result.error);
+    auto prepared = transaction.prepare();
+    const auto& result = prepared.result();
+    PreparedJson receipt;
+    receipt.value["before_version"]=result.beforeVersion;
+    receipt.value["after_version"]=result.afterVersion;
+    receipt.value["changed_entities"]=result.changedEntities;
+    // All result allocation precedes adoption. Moving the JSON return value is nonthrowing.
+    if (!prepared.apply()) throw SceneDocumentError("Scene changed during preparation", SceneErrorCode::Conflict);
     resultingVersion = result.afterVersion;
-    AuthoringJson changed = AuthoringJson::array();
-    for (const auto id : result.changedEntities) changed.push_back(id);
-    return AuthoringJson{{"before_version", result.beforeVersion}, {"after_version", result.afterVersion},
-                         {"changed_entities", changed}};
+    return std::move(receipt.value);
 }
 
 } // namespace engine

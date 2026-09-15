@@ -1,0 +1,79 @@
+{
+  "scope": "R1 scene authority; CPU/domain/adapter proof only",
+  "baseline_commit": "c267dc6a5c0c885cedede8cf379b34624c9cce89",
+  "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "closed_findings": [
+    "A01",
+    "A02",
+    "A03",
+    "A04"
+  ],
+  "partially_closed": {
+    "A11": "Hierarchy test now asserts the hierarchy category; persistence registration remains R4"
+  },
+  "build_command": "cmake --build build/core --target engine_scene_correction_tests engine_scene_tests engine_core_tests -j2",
+  "test_command": "ctest --test-dir build/core -R 'authoring_scene|runtime_documents_identity' --output-on-failure",
+  "tests_passed": 3,
+  "registered_suite_count": 16,
+  "full_suite_rerun": false,
+  "observations": {
+    "affine_hierarchy_mirror_shear_and_normals": true,
+    "allocation_atomicity": {
+      "adapter": {
+        "eventual_success": true,
+        "injected_boundaries": 66
+      },
+      "commit": {
+        "eventual_success": true,
+        "injected_boundaries": 60
+      },
+      "enqueue": {
+        "eventual_success": true,
+        "injected_boundaries": 32
+      },
+      "redo": {
+        "eventual_success": true,
+        "injected_boundaries": 53
+      },
+      "undo": {
+        "eventual_success": true,
+        "injected_boundaries": 53
+      }
+    },
+    "capacity_roundtrip_and_history_budget": {
+      "entities": 1024,
+      "large_metadata_entities": 92,
+      "saved_bytes": 1045820
+    },
+    "passed": true,
+    "strict_schema_exhaustion_and_prepared_conflicts": true,
+    "structural_history_and_parent_aware_edits": true
+  },
+  "input_sha256": {
+    "CMakeLists.txt": "425191ec8aec2c8eca12b6cd52943f75b3d919cb8ace32218128bf0f550b9574",
+    "Source/Core/AffineTransform.h": "fee408e6b21675321c48ee1ebebce3ae91894921deae1d6c2c94f8b61b03427e",
+    "Source/Persistence/JsonLifetime.h": "a713c0e1929c0fc224c9ad30c3cd87d827f61d87e3c2b48062a8e8d2d3d7bd22",
+    "Source/Authoring/SceneDocument.h": "f34e12a942297c1075567a82189348aa15c3ca32a31aca11c2e91d02feb64a2b",
+    "Source/Authoring/SceneDocument.cpp": "63df0b043d5e2ac11e66112ccc2a8e3b90026e8b1744561c990d28f0720e5aee",
+    "Source/Authoring/SceneAuthoringAdapter.h": "72f496fc502d5767a497b0963dcff74d4d7427671c74a2b1b3e4ad7ca1db7b47",
+    "Source/Authoring/SceneAuthoringAdapter.cpp": "018f147665885f4fe9d9846eaaf38012fc077d6ed07c91acef3cc958a322608b",
+    "Source/Runtime/AuthoringOperations.h": "62c3a18f342123fff430ded2e2fb0d2525712661eefc77b31d0de536a4eb456e",
+    "Tests/SceneDocumentTests.cpp": "bf4f06055f62b8ed22867c0d58184da3ed182592583cb99cbd1b36ecdce64502",
+    "Tests/SceneCorrectionTests.cpp": "388e9765b92570d4347a405c416d41290e688db205db4413992baf72d68131c7",
+    "Research/runtime-lock.json": "07ecaa8ccc47b2d129d7acf313d3fb5dfb0767a0e6b01101ba9d41f386fc0a42"
+  },
+  "limits": [
+    "No fresh GPU or Windows acceptance",
+    "Local adapter remains unhosted until R2",
+    "No gameplay or UI smoke testing",
+    "History payload accounting conservatively counts shared states per entry; allocator overhead and external snapshots are separate resource costs"
+  ],
+  "planning_checks": {
+    "tests_passed": 12,
+    "ready_local": [
+      "R2"
+    ],
+    "changed_document_links": "passed",
+    "task_whitespace": "passed"
+  }
+}
