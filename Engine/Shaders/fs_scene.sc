@@ -33,7 +33,9 @@ uniform mat4 u_shadowFarMatrix;
 uniform vec4 u_shadowRange;
 uniform vec4 u_shadowCamera;
 uniform mat4 u_contactViewProjection;
-uniform vec4 u_contactOptions; // enabled, strength, world distance, origin-bottom-left
+uniform mat4 u_contactView;
+uniform vec4 u_contactOptions; // enabled, strength, world distance, bias meters
+uniform vec4 u_contactDepth; // thickness meters, origin-bottom-left
 vec2 receiverGradient(vec3 p)
 {
     vec3 dx=dFdx(p),dy=dFdy(p);
@@ -87,15 +89,16 @@ float contactVisibility(vec3 world, vec3 geometricNormal, vec3 light)
         if (abs(projected.w) < 0.0001) continue;
         vec3 ndc = projected.xyz / projected.w;
         vec2 uv = ndc.xy * 0.5 + 0.5;
-        if (u_contactOptions.w < 0.5) uv.y = 1.0 - uv.y;
+        if (u_contactDepth.y < 0.5) uv.y = 1.0 - uv.y;
         float edge = min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));
         if (edge <= 0.0) continue;
         float sceneDepth = texture2D(s_prepassDepth, uv).r;
         vec4 blockerNormal = texture2D(s_prepassNormal, uv);
-        float rayDepth = ndc.z;
-        float blocked = smoothstep(0.0008, 0.008, rayDepth - sceneDepth);
+        float rayDepth = -mul(u_contactView,vec4(rayWorld,1.0)).z;
+        float blocked = smoothstep(u_contactOptions.w,u_contactDepth.x,rayDepth-sceneDepth);
         vec3 decodedBlocker = normalize(blockerNormal.rgb * 2.0 - 1.0);
-        float facing = 0.55 + 0.45 * max(dot(geometricNormal, decodedBlocker), 0.0);
+        vec3 receiverViewNormal=normalize(mul(u_view,vec4(geometricNormal,0.0)).xyz);
+        float facing = 0.55 + 0.45 * max(dot(receiverViewNormal, decodedBlocker), 0.0);
         float edgeFade = smoothstep(0.0, 0.08, edge);
         occlusion = max(occlusion, blocked * facing * blockerNormal.a * edgeFade * (1.0 - fraction * 0.45));
     }
@@ -128,8 +131,7 @@ void main()
     if (u_sceneOptions.x > 0.5)
     {
         gl_FragData[0] = vec4(geometricNormal * 0.5 + 0.5, 1.0);
-        gl_FragData[1] = vec4(geometricNormal * 0.5 + 0.5, 1.0);
-        gl_FragData[2] = vec4(clamp(gl_FragCoord.z, 0.0, 1.0), 0.0, 0.0, 1.0);
+        gl_FragData[1] = vec4(0.0);
         return;
     }
     vec3 normal = geometricNormal;
@@ -294,11 +296,9 @@ void main()
     // Bounded hemispheric fill. This is not an environment-map/IBL solution.
     vec3 hemisphere = environmentAmbient(normal);
     vec3 ambient = ((1.0 - metal) * albedo + f0 * (1.0 - 0.5 * roughness)) * hemisphere * u_sceneOptions.w * ao;
-    vec3 lit=direct+ambient;
     float distanceToEye=length(v_world-u_eye.xyz);
     float heightAttenuation=exp(-max(v_world.y,0.0)*u_fog.z);
     float fogAmount=clamp(1.0-exp(-u_fog.y*distanceToEye*heightAttenuation),0.0,1.0)*u_fog.x;
-    gl_FragData[0] = vec4(mix(lit,u_fogColor.rgb,fogAmount),1.0);
-    gl_FragData[1] = vec4(normalize(normal)*0.5+0.5,1.0);
-    gl_FragData[2] = vec4(clamp(gl_FragCoord.z,0.0,1.0),0.0,0.0,1.0);
+    gl_FragData[0] = vec4(direct,1.0);
+    gl_FragData[1] = vec4(ambient,fogAmount);
 }

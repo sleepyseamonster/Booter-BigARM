@@ -2,6 +2,8 @@
 
 Updated 2026-09-14, America/Phoenix.
 
+Historical implementation note: R5 corrected the reconstruction units, indirect-only AO composition and auxiliary formats/allocation policy. See the [corrected current contract and measured cost](./MATERIAL_OCCLUSION_PERFORMANCE_R5_RESULT.md). The details below describe the superseded quality pass.
+
 This pass is limited to screen-space occlusion quality. It does not add terrain, rock generation, authored landscapes or game-specific content.
 
 The display pass now evaluates twelve fixed samples across three radii. Each sample uses a soft depth-closer test, a depth-range weight and an edge-aware normal agreement term. The result is normalized by the kernel weights and clamped to a bounded strength. The existing persisted AO controls remain the authority: `ambient_occlusion`, `ao_strength` (0..1) and `ao_radius` (0.1..4 m). AO is still opt-in, disabled for preview/calibration/normal diagnostics, and applied before exposure and tone mapping.

@@ -17,6 +17,5 @@ void main()
     // Numerical diagnostics are displayed as encoded bytes, not interpreted as light.
     if (u_textureOptions.z<0.5 || u_textureOptions.y>3.5) result=decodeSRGB(result);
     gl_FragData[0]=vec4(result,1.0);
-    gl_FragData[1]=vec4(0.0,0.0,0.0,1.0);
-    gl_FragData[2]=vec4(1.0,0.0,0.0,1.0);
+    gl_FragData[1]=vec4(0.0);
 }

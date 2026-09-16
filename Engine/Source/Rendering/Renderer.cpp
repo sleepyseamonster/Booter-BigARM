@@ -100,7 +100,9 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders,
     shadowCamera_=bgfx::createUniform("u_shadowCamera",bgfx::UniformType::Vec4);
     shadowOptions_=bgfx::createUniform("u_shadowOptions",bgfx::UniformType::Vec4);
     contactMatrix_=bgfx::createUniform("u_contactViewProjection",bgfx::UniformType::Mat4);
+    contactView_=bgfx::createUniform("u_contactView",bgfx::UniformType::Mat4);
     contactOptions_=bgfx::createUniform("u_contactOptions",bgfx::UniformType::Vec4);
+    contactDepth_=bgfx::createUniform("u_contactDepth",bgfx::UniformType::Vec4);
     shadowSampler_=bgfx::createUniform("s_shadow",bgfx::UniformType::Sampler);
     prepassNormalSampler_=bgfx::createUniform("s_prepassNormal",bgfx::UniformType::Sampler);
     prepassDepthSampler_=bgfx::createUniform("s_prepassDepth",bgfx::UniformType::Sampler);
@@ -113,7 +115,7 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders,
     materialUvOffset_=bgfx::createUniform("u_materialUvOffset",bgfx::UniformType::Vec4);
     fog_=bgfx::createUniform("u_fog",bgfx::UniformType::Vec4);
     fogColor_=bgfx::createUniform("u_fogColor",bgfx::UniformType::Vec4);
-    for (auto uniform:{shadowMatrix_,shadowFarMatrix_,shadowRange_,shadowCamera_,shadowOptions_,contactMatrix_,contactOptions_,shadowSampler_,prepassNormalSampler_,prepassDepthSampler_,eye_,surfaceParams_,materialMapping_,materialUvOffset_,fog_,fogColor_,albedoSampler_,normalSampler_,surfaceSampler_})
+    for (auto uniform:{shadowMatrix_,shadowFarMatrix_,shadowRange_,shadowCamera_,shadowOptions_,contactMatrix_,contactView_,contactOptions_,contactDepth_,shadowSampler_,prepassNormalSampler_,prepassDepthSampler_,eye_,surfaceParams_,materialMapping_,materialUvOffset_,fog_,fogColor_,albedoSampler_,normalSampler_,surfaceSampler_})
         if (!bgfx::isValid(uniform)) throw std::runtime_error("Lighting uniform allocation failed");
     const char* layerNames[]={"s_topColor","s_topNormal","s_topSurface","s_bottomColor","s_bottomNormal","s_bottomSurface","s_gritColor","s_gritNormal","s_gritSurface","s_cracks"};
     for(size_t i=0;i<layerSamplers_.size();++i){layerSamplers_[i]=bgfx::createUniform(layerNames[i],bgfx::UniformType::Sampler);if(!bgfx::isValid(layerSamplers_[i]))throw std::runtime_error("Rock layer sampler allocation failed");}
@@ -130,6 +132,8 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders,
         for(auto texture:shadowTargets) if(bgfx::isValid(texture)) bgfx::destroy(texture);
         throw std::runtime_error("Shadow target allocation failed");
     }
+    constexpr uint64_t shadowBytes=uint64_t(4096)*2048*8;
+    targetBytes_=shadowBytes;targetHighWaterBytes_=shadowBytes;overlapHighWaterBytes_=shadowBytes;
     bgfx::setViewName(views::shadow,"Sun near cascade");
     bgfx::setViewName(views::shadowFar,"Sun far cascade");
     material_ = bgfx::createUniform("u_material", bgfx::UniformType::Vec4);
@@ -152,7 +156,8 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders,
     calibrationProgram_=loadProgram(shaders,"vs_fullscreen.bin","fs_calibration.bin");
     display_=bgfx::createUniform("u_display",bgfx::UniformType::Vec4);
     sceneSampler_=bgfx::createUniform("s_scene",bgfx::UniformType::Sampler);
-    ao_=bgfx::createUniform("u_ao",bgfx::UniformType::Vec4);
+    sceneIndirectSampler_=bgfx::createUniform("s_sceneIndirect",bgfx::UniformType::Sampler);
+    ao_=bgfx::createUniform("u_ao",bgfx::UniformType::Vec4,2);
     sceneNormalSampler_=bgfx::createUniform("s_sceneNormal",bgfx::UniformType::Sampler);
     sceneDepthSampler_=bgfx::createUniform("s_sceneDepth",bgfx::UniformType::Sampler);
     struct FullscreenVertex { float x,y,z,u,v; };
@@ -160,9 +165,9 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders,
     bgfx::VertexLayout layout;
     layout.begin().add(bgfx::Attrib::Position,3,bgfx::AttribType::Float).add(bgfx::Attrib::TexCoord0,2,bgfx::AttribType::Float).end();
     fullscreen_=bgfx::createVertexBuffer(bgfx::copy(vertices,sizeof(vertices)),layout);
-    if (!bgfx::isValid(display_) || !bgfx::isValid(sceneSampler_) || !bgfx::isValid(ao_) || !bgfx::isValid(sceneNormalSampler_) || !bgfx::isValid(sceneDepthSampler_) || !bgfx::isValid(fullscreen_))
+    if (!bgfx::isValid(display_) || !bgfx::isValid(sceneSampler_) || !bgfx::isValid(sceneIndirectSampler_) || !bgfx::isValid(ao_) || !bgfx::isValid(sceneNormalSampler_) || !bgfx::isValid(sceneDepthSampler_) || !bgfx::isValid(fullscreen_))
         throw std::runtime_error("Display resources failed");
-    resizeTargets(width_,height_);
+    resizeTargets(width_,height_,false);
     bgfx::setViewMode(views::display,bgfx::ViewMode::Sequential);
     bgfx::setViewName(views::display,"Linear HDR to SDR display");
     rebuildMesh();
@@ -173,49 +178,57 @@ void Renderer::start(const Window& window, const std::filesystem::path& shaders,
     bgfx::setViewName(views::prepass, "Contact shadow depth and normals");
     std::cout << "RENDERER " << name() << " framebuffer=" << width_ << 'x' << height_ << '\n';
 }
-void Renderer::resizeTargets(int width,int height) {
+void Renderer::resizeTargets(int width,int height,bool auxiliary) {
     const uint64_t flags=BGFX_TEXTURE_RT|BGFX_SAMPLER_U_CLAMP|BGFX_SAMPLER_V_CLAMP|BGFX_SAMPLER_MIN_POINT|BGFX_SAMPLER_MAG_POINT;
-    if (!bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::RGBA16F,flags) ||
-        !bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::RGBA16F,flags) ||
-        !bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::RGBA16F,flags) ||
-        !bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT))
-        throw std::runtime_error("RGBA16F scene/depth targets unsupported");
-    bgfx::TextureHandle attachments[]={BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE};
-    bgfx::TextureHandle prepassAttachments[]={BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE};
-    bgfx::FrameBufferHandle next=BGFX_INVALID_HANDLE;
-    bgfx::FrameBufferHandle nextPrepass=BGFX_INVALID_HANDLE;
+    const auto* caps=bgfx::getCaps();
+    RenderTargetSupport support{caps->limits.maxFBAttachments,
+        bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::RGBA16F,flags),
+        bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::RGBA8,flags),
+        bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::R32F,flags),
+        bgfx::isTextureValid(0,false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT)};
+    auto plan=planRenderTargets(uint32_t(width),uint32_t(height),auxiliary,support);
+    bgfx::TextureHandle sceneTextures[]={BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE};
+    bgfx::TextureHandle auxiliaryTextures[]={BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE,BGFX_INVALID_HANDLE};
+    bgfx::FrameBufferHandle nextScene=BGFX_INVALID_HANDLE,nextAuxiliary=BGFX_INVALID_HANDLE;
+    auto destroyLoose=[](auto& textures){for(auto& texture:textures)if(bgfx::isValid(texture)){bgfx::destroy(texture);texture=BGFX_INVALID_HANDLE;}};
     try {
-        attachments[0]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
-        attachments[1]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
-        attachments[2]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
-        attachments[3]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT);
-        if (!bgfx::isValid(attachments[0]) || !bgfx::isValid(attachments[1]) || !bgfx::isValid(attachments[2]) || !bgfx::isValid(attachments[3])) throw std::runtime_error("Scene target allocation failed");
-        next=bgfx::createFrameBuffer(4,attachments,true);
-        if (!bgfx::isValid(next)) throw std::runtime_error("Scene framebuffer allocation failed");
-        prepassAttachments[0]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
-        prepassAttachments[1]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
-        prepassAttachments[2]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT);
-        if (!bgfx::isValid(prepassAttachments[0]) || !bgfx::isValid(prepassAttachments[1]) || !bgfx::isValid(prepassAttachments[2])) throw std::runtime_error("Prepass target allocation failed");
-        nextPrepass=bgfx::createFrameBuffer(3,prepassAttachments,true);
-        if (!bgfx::isValid(nextPrepass)) throw std::runtime_error("Prepass framebuffer allocation failed");
-    } catch (...) {
-        if (bgfx::isValid(next)) { bgfx::destroy(next); for (auto& texture:attachments) texture=BGFX_INVALID_HANDLE; }
-        if (bgfx::isValid(nextPrepass)) { bgfx::destroy(nextPrepass); for (auto& texture:prepassAttachments) texture=BGFX_INVALID_HANDLE; }
-        for (auto texture:attachments) if (bgfx::isValid(texture)) bgfx::destroy(texture);
-        for (auto texture:prepassAttachments) if (bgfx::isValid(texture)) bgfx::destroy(texture);
-        throw;
+        sceneTextures[0]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
+        sceneTextures[1]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA16F,flags);
+        sceneTextures[2]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT);
+        if(!bgfx::isValid(sceneTextures[0])||!bgfx::isValid(sceneTextures[1])||!bgfx::isValid(sceneTextures[2]))throw std::runtime_error("Required scene target allocation failed");
+        nextScene=bgfx::createFrameBuffer(3,sceneTextures,true);
+        if(!bgfx::isValid(nextScene))throw std::runtime_error("Required scene framebuffer allocation failed");
+    }catch(...){if(bgfx::isValid(nextScene))bgfx::destroy(nextScene);else destroyLoose(sceneTextures);throw;}
+    if(plan.auxiliaryEnabled)try{
+        auxiliaryTextures[0]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::RGBA8,flags);
+        auxiliaryTextures[1]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::R32F,flags);
+        auxiliaryTextures[2]=bgfx::createTexture2D(uint16_t(width),uint16_t(height),false,1,bgfx::TextureFormat::D24S8,BGFX_TEXTURE_RT);
+        if(!bgfx::isValid(auxiliaryTextures[0])||!bgfx::isValid(auxiliaryTextures[1])||!bgfx::isValid(auxiliaryTextures[2]))throw std::runtime_error("Optional occlusion target allocation failed");
+        nextAuxiliary=bgfx::createFrameBuffer(3,auxiliaryTextures,true);
+        if(!bgfx::isValid(nextAuxiliary))throw std::runtime_error("Optional occlusion framebuffer allocation failed");
+    }catch(const std::exception& error){
+        if(bgfx::isValid(nextAuxiliary))bgfx::destroy(nextAuxiliary);else destroyLoose(auxiliaryTextures);
+        nextAuxiliary=BGFX_INVALID_HANDLE;plan.auxiliaryEnabled=false;plan.auxiliaryBytes=0;plan.totalBytes=plan.sceneBytes;
+        plan.degradation=std::string("AO/contact targets disabled: ")+error.what();
     }
-    if (bgfx::isValid(scene_)) bgfx::destroy(scene_);
-    if (bgfx::isValid(prepass_)) bgfx::destroy(prepass_);
-    scene_=next;
-    prepass_=nextPrepass;
+    constexpr uint64_t shadowBytes=uint64_t(4096)*2048*8;
+    overlapHighWaterBytes_=std::max(overlapHighWaterBytes_,targetBytes_+plan.totalBytes);
+    if(bgfx::isValid(scene_))bgfx::destroy(scene_);if(bgfx::isValid(prepass_))bgfx::destroy(prepass_);
+    scene_=nextScene;prepass_=nextAuxiliary;auxiliaryActive_=plan.auxiliaryEnabled;targetDegradation_=plan.degradation;
+    targetBytes_=shadowBytes+plan.totalBytes;targetHighWaterBytes_=std::max(targetHighWaterBytes_,targetBytes_);
     bgfx::setViewFrameBuffer(views::scene,scene_);
-    bgfx::setViewFrameBuffer(views::prepass,prepass_);
+    if(bgfx::isValid(prepass_))bgfx::setViewFrameBuffer(views::prepass,prepass_);
+}
+bool Renderer::ensureAuxiliary(bool wanted){
+    auxiliaryRequested_=wanted;
+    if(wanted==auxiliaryActive_)return auxiliaryActive_;
+    if(wanted&&!targetDegradation_.empty())return false;
+    resizeTargets(width_,height_,wanted);return auxiliaryActive_;
 }
 void Renderer::resize(int width, int height) {
     if (width <= 0 || height <= 0 || (width == width_ && height == height_)) return;
     if (width > 65535 || height > 65535) throw std::runtime_error("Framebuffer exceeds view limits");
-    resizeTargets(width,height);
+    targetDegradation_.clear();resizeTargets(width,height,auxiliaryRequested_);
     bgfx::SwapChain swap;
     swap.width = uint32_t(width); swap.height = uint32_t(height);
     bgfx::reset(configuration_.present==PresentMode::VSync?BGFX_RESET_VSYNC:BGFX_RESET_NONE, &swap);
@@ -252,6 +265,10 @@ void Renderer::rebuildMesh() {
     for (size_t i=0;i<meshes_.size();++i) bgfx::setName(meshes_[i],names[i]);
 }
 void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibration, const TexturePreview* preview, const SceneSurfaces* surfaces, const ScenePlacement* placement) {
+    const bool requestedAO=state.ambientOcclusion&&!calibration&&!preview&&!state.showNormals;
+    const bool requestedContact=state.contactShadows&&!calibration&&!preview&&!state.showNormals;
+    const bool auxiliary=ensureAuxiliary(requestedAO||requestedContact);
+    const bool activeAO=requestedAO&&auxiliary,activeContact=requestedContact&&auxiliary;
     auto eye=state.eye();
     const auto* rockModel=placement?placement->rock:nullptr;
     const bool physical=placement && placement->physicalCharacter;
@@ -274,8 +291,8 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     bgfx::setViewFrameBuffer(views::scene,scene_);
     bgfx::setViewRect(views::scene,0,0,uint16_t(width_),uint16_t(height_));
     const float clear[]={srgbToLinear(28.0f/255),srgbToLinear(37.0f/255),srgbToLinear(50.0f/255),0};
-    bgfx::setPaletteColor(0,clear);
-    bgfx::setViewClear(views::scene,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,1.0f,0,uint8_t(0));
+    const float black[]={0,0,0,0};bgfx::setPaletteColor(0,clear);bgfx::setPaletteColor(1,black);
+    bgfx::setViewClear(views::scene,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,1.0f,0,0,1);
     bgfx::setViewTransform(views::scene,view,projection);
     bgfx::touch(views::scene);
     const float elevation=state.environment.sunElevation;
@@ -322,23 +339,24 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
         const auto* resource=mesh==-3?instanceModel:(mesh==-2?rockModel:model);
         if(mesh<0) {resource->bind(mesh==-1&&placement->cpuReference);if(mesh==-1&&gpuSkin)bgfx::setUniform(joints_,placement->pose->data(),uint16_t(model->jointCount));}
         else bgfx::setVertexBuffer(0,meshes_.at(size_t(mesh)));
-        const bool textured=mesh!=-1 && surface && state.surfaceTextures && bgfx::isValid(surface->albedo) && bgfx::isValid(surface->normal) && bgfx::isValid(surface->surface);
+        const bool textured=surface && state.surfaceTextures && bgfx::isValid(surface->albedo) && bgfx::isValid(surface->normal) && bgfx::isValid(surface->surface);
         const float linear[]={textured?1.0f:(authoredMaterial?authoredMaterial->baseColor[0]:(mesh<0?resource->color[0]:srgbToLinear(color[0]))),textured?1.0f:(authoredMaterial?authoredMaterial->baseColor[1]:(mesh<0?resource->color[1]:srgbToLinear(color[1]))),textured?1.0f:(authoredMaterial?authoredMaterial->baseColor[2]:(mesh<0?resource->color[2]:srgbToLinear(color[2]))),authoredMaterial?authoredMaterial->baseColor[3]:color[3]};
         const float options[]={state.showNormals?1.0f:0.0f,textured?1.0f:0.0f,surface&&surface->material.geologyMm?1000.f/surface->material.geologyMm:state.textureScale,state.ambient};
         const float params[]={authoredMaterial?authoredMaterial->roughness:(mesh<0?resource->roughness:state.roughness),authoredMaterial?authoredMaterial->metallic:(mesh<0?resource->metallic:state.metallic),state.normalStrength,surface && surface->packedSurface?1.0f:0.0f};
-        const float mapping[]={surface&&surface->mapping==MaterialMapping::UV?1.0f:0.0f,surface?surface->uvTransform[0]:1.0f,surface?surface->uvTransform[1]:1.0f,0.0f};
+        const float mapping[]={surface&&surface->projection==MaterialProjection::UV0?1.0f:0.0f,surface?surface->uvTransform[0]:1.0f,surface?surface->uvTransform[1]:1.0f,0.0f};
         const float uvOffset[]={surface?surface->uvTransform[2]:0.0f,surface?surface->uvTransform[3]:0.0f,0.0f,0.0f};
         const float fog[]={state.environment.fog?1.0f:0.0f,state.environment.fogDensity,state.environment.fogHeightFalloff,0.0f};
         const float fogColor[]={state.environment.fogColor[0],state.environment.fogColor[1],state.environment.fogColor[2],1.0f};
-        const float contact[]={state.contactShadows&&!calibration&&!preview&&!state.showNormals?1.0f:0.0f,state.contactStrength,state.contactDistance,bgfx::getCaps()->originBottomLeft?1.0f:0.0f};
+        constexpr OcclusionConvention occlusion;
+        const float contact[]={activeContact?1.0f:0.0f,state.contactStrength,state.contactDistance,occlusion.contactBiasMeters};
+        const float contactDepth[]={occlusion.contactThicknessMeters,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,0,0};
         bgfx::setUniform(material_,linear); bgfx::setUniform(light_,light);bgfx::setUniform(environment_,environment,4);
         bgfx::setUniform(shadowMatrix_,shadowMatrix[0]);bgfx::setUniform(shadowFarMatrix_,shadowMatrix[1]);
         bgfx::setUniform(shadowRange_,shadowRange);bgfx::setUniform(shadowCamera_,shadowCamera);bgfx::setUniform(shadowOptions_,shadowOptions);
-        bgfx::setUniform(contactMatrix_,viewProjection);bgfx::setUniform(contactOptions_,contact);
+        bgfx::setUniform(contactMatrix_,viewProjection);bgfx::setUniform(contactView_,view);bgfx::setUniform(contactOptions_,contact);bgfx::setUniform(contactDepth_,contactDepth);
         bgfx::setUniform(eye_,eyePosition);bgfx::setUniform(surfaceParams_,params);bgfx::setUniform(materialMapping_,mapping);bgfx::setUniform(materialUvOffset_,uvOffset);bgfx::setUniform(fog_,fog);bgfx::setUniform(fogColor_,fogColor);
         bgfx::setTexture(0,shadowSampler_,bgfx::getTexture(shadow_));
-        bgfx::setTexture(14,prepassNormalSampler_,bgfx::getTexture(prepass_,0));
-        bgfx::setTexture(15,prepassDepthSampler_,bgfx::getTexture(prepass_,1));
+        if(activeContact){bgfx::setTexture(14,prepassNormalSampler_,bgfx::getTexture(prepass_,0));bgfx::setTexture(15,prepassDepthSampler_,bgfx::getTexture(prepass_,1));}
         const auto* bound=surface?surface:(surfaces?&surfaces->rock:nullptr);
         if (bound) {
             bgfx::setTexture(1,albedoSampler_,bound->albedo);
@@ -373,7 +391,7 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     const bool baked=check==GeometryCheck::BakedReference;
     const int subjectMesh=model?-1:(physical?4:(baked?3:state.mesh));
     if (baked) bx::mtxIdentity(subject.data());
-    if (state.contactShadows && !state.showNormals && !calibration && !preview) {
+    if (activeAO||activeContact) {
         bgfx::setViewFrameBuffer(views::prepass,prepass_);
         bgfx::setViewRect(views::prepass,0,0,uint16_t(width_),uint16_t(height_));
         bgfx::setViewClear(views::prepass,BGFX_CLEAR_COLOR|BGFX_CLEAR_DEPTH,uint32_t(0),1.0f,uint8_t(0));
@@ -458,26 +476,32 @@ void Renderer::draw(const FixtureState& state, GeometryCheck check, bool calibra
     }
     if(!preview&&!calibration&&placement&&placement->instances)for(const auto& instance:*placement->instances){
         if(!visibleSphere(viewProjection,instance.boundsCenter,instance.boundsRadius,bgfx::getCaps()->homogeneousDepth))continue;
-        Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);submit(-3,transform,color,instance.ground?soil:rock,instance.model);
+        Matrix4 transform;bx::mtxSRT(transform.data(),instance.scale[0],instance.scale[1],instance.scale[2],0,instance.yaw,0,instance.offset[0],instance.offset[1],instance.offset[2]);submit(-3,transform,color,instance.surface?instance.surface:(instance.ground?soil:rock),instance.model);
     }
     if(!preview&&!calibration&&placement&&placement->authored)for(const auto& draw:placement->authored->draws){
         if(!visibleSphere(viewProjection,draw.boundsCenter,draw.boundsRadius,bgfx::getCaps()->homogeneousDepth))continue;
         Matrix4 transform;for(size_t i=0;i<16;++i)transform[i]=float(draw.world[i]);
         const int mesh=draw.mesh->builtin==BuiltinRenderMesh::SlopedSolid?1:(draw.mesh->builtin==BuiltinRenderMesh::Sphere?2:0);
-        submit(mesh,transform,draw.material->baseColor.data(),nullptr,nullptr,draw.material.get());
+        const auto* authoredSurface=draw.material->surface?&draw.material->surface->surface():nullptr;
+        submit(mesh,transform,draw.material->baseColor.data(),authoredSurface,nullptr,draw.material.get());
     }
     const float display[]={state.exposure,state.showNormals && !calibration && !preview?1.0f:0.0f,bgfx::getCaps()->originBottomLeft?1.0f:0.0f,state.environment.toneMapping&&!calibration&&!preview?1.0f:0.0f};
-    const float ao[]={state.ambientOcclusion&&!calibration&&!preview&&!state.showNormals?1.0f:0.0f,state.aoStrength,state.aoRadius/float(std::max(width_,height_)),0.0f};
+    constexpr OcclusionConvention occlusion;
+    const float tangent=std::tan(state.fieldOfView*float(3.14159265358979323846/360.0));
+    const float ao[]={activeAO?1.0f:0.0f,state.aoStrength,state.aoRadius,occlusion.aoBiasMeters,
+        occlusion.aoThicknessMeters,tangent,float(width_)/float(height_),0.0f};
+    const float displayFog[]={state.environment.fogColor[0],state.environment.fogColor[1],state.environment.fogColor[2],1.0f};
     bgfx::setViewRect(views::display,0,0,uint16_t(width_),uint16_t(height_));
     bgfx::setUniform(display_,display);
-    bgfx::setUniform(ao_,ao);
+    bgfx::setUniform(ao_,ao,2);bgfx::setUniform(fogColor_,displayFog);
     bgfx::setTexture(0,sceneSampler_,bgfx::getTexture(scene_));
-    bgfx::setTexture(1,sceneNormalSampler_,bgfx::getTexture(scene_,1));
-    bgfx::setTexture(2,sceneDepthSampler_,bgfx::getTexture(scene_,2));
+    bgfx::setTexture(1,sceneIndirectSampler_,bgfx::getTexture(scene_,1));
+    if(activeAO){bgfx::setTexture(2,sceneNormalSampler_,bgfx::getTexture(prepass_,0));bgfx::setTexture(3,sceneDepthSampler_,bgfx::getTexture(prepass_,1));}
     bgfx::setVertexBuffer(0,fullscreen_); bgfx::setState(BGFX_STATE_WRITE_RGB|BGFX_STATE_WRITE_A);
     bgfx::submit(views::display,displayProgram_);
 }
 const char* Renderer::name() const { return bgfx::getRendererName(bgfx::getRendererType()); }
+uint32_t Renderer::finishFrame(bool technical){return telemetry.finish(technical);}
 void Renderer::stop() {
     if (!started_) return;
     try{telemetry.save(configuration_,name());}catch(const std::exception& e){++callbacks.errors;std::cerr<<"FRAME_TRACE_ERROR "<<e.what()<<'\n';}
@@ -494,7 +518,7 @@ void Renderer::stop() {
     if(bgfx::isValid(shadow_)) bgfx::destroy(shadow_);
     if(bgfx::isValid(shadowProgram_)) bgfx::destroy(shadowProgram_);
     shadow_=BGFX_INVALID_HANDLE;shadowProgram_=BGFX_INVALID_HANDLE;
-    for(auto* uniform:{&shadowMatrix_,&shadowFarMatrix_,&shadowRange_,&shadowCamera_,&shadowOptions_,&contactMatrix_,&contactOptions_,&shadowSampler_,&prepassNormalSampler_,&prepassDepthSampler_,&eye_,&surfaceParams_,&materialMapping_,&materialUvOffset_,&fog_,&fogColor_,&albedoSampler_,&normalSampler_,&surfaceSampler_}) {
+    for(auto* uniform:{&shadowMatrix_,&shadowFarMatrix_,&shadowRange_,&shadowCamera_,&shadowOptions_,&contactMatrix_,&contactView_,&contactOptions_,&contactDepth_,&shadowSampler_,&prepassNormalSampler_,&prepassDepthSampler_,&eye_,&surfaceParams_,&materialMapping_,&materialUvOffset_,&fog_,&fogColor_,&albedoSampler_,&normalSampler_,&surfaceSampler_}) {
         if(bgfx::isValid(*uniform)) bgfx::destroy(*uniform);
         *uniform=BGFX_INVALID_HANDLE;
     }
@@ -509,8 +533,9 @@ void Renderer::stop() {
     if (bgfx::isValid(fullscreen_)) bgfx::destroy(fullscreen_);
     if (bgfx::isValid(display_)) bgfx::destroy(display_);
     if (bgfx::isValid(sceneSampler_)) bgfx::destroy(sceneSampler_);
+    if (bgfx::isValid(sceneIndirectSampler_)) bgfx::destroy(sceneIndirectSampler_);
     scene_=BGFX_INVALID_HANDLE; prepass_=BGFX_INVALID_HANDLE; displayProgram_=BGFX_INVALID_HANDLE; calibrationProgram_=BGFX_INVALID_HANDLE;
-    fullscreen_=BGFX_INVALID_HANDLE; display_=BGFX_INVALID_HANDLE; sceneSampler_=BGFX_INVALID_HANDLE;
+    fullscreen_=BGFX_INVALID_HANDLE; display_=BGFX_INVALID_HANDLE; sceneSampler_=BGFX_INVALID_HANDLE;sceneIndirectSampler_=BGFX_INVALID_HANDLE;
     if (bgfx::isValid(ao_)) bgfx::destroy(ao_);
     if (bgfx::isValid(sceneNormalSampler_)) bgfx::destroy(sceneNormalSampler_);
     if (bgfx::isValid(sceneDepthSampler_)) bgfx::destroy(sceneDepthSampler_);
@@ -528,7 +553,7 @@ void Renderer::stop() {
     for (auto& handle : meshes_) handle=BGFX_INVALID_HANDLE;
     program_=BGFX_INVALID_HANDLE; normal_=BGFX_INVALID_HANDLE; linear_=BGFX_INVALID_HANDLE; orientation_=BGFX_INVALID_HANDLE; options_=BGFX_INVALID_HANDLE;
     material_=BGFX_INVALID_HANDLE; light_=BGFX_INVALID_HANDLE;
-    bgfx::frame(); bgfx::shutdown(); started_=false;
+    bgfx::frame(); bgfx::shutdown(); started_=false;targetBytes_=0;auxiliaryActive_=false;auxiliaryRequested_=false;
     std::cout << "SHUTDOWN renderer resources released\n";
 }
 }

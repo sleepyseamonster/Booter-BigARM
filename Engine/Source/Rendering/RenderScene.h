@@ -7,6 +7,8 @@
 
 namespace engine {
 
+class SurfaceMaterialBinding;
+
 enum class BuiltinRenderMesh : std::uint8_t { Cube, SlopedSolid, Sphere, DiagnosticCube };
 
 struct MeshAssetId {
@@ -35,6 +37,7 @@ struct RenderMaterialAsset {
     float roughness = 0.75F;
     float metallic = 0.0F;
     bool normalMapped = false;
+    std::shared_ptr<const SurfaceMaterialBinding> surface;
     std::shared_ptr<const void> lease;
 };
 

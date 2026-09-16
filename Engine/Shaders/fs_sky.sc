@@ -12,6 +12,5 @@ void main()
     // Broad glow and a softened small disk, sharing the surface sun direction.
     vec3 glow = u_environment[0].rgb*u_light.w*(0.12*pow(towardSun,32.0)+4.0*smoothstep(0.9997,0.99995,towardSun));
     gl_FragData[0]=vec4(skyRadiance(ray)+glow,1.0);
-    gl_FragData[1]=vec4(0.0,0.0,0.0,1.0);
-    gl_FragData[2]=vec4(1.0,0.0,0.0,1.0);
+    gl_FragData[1]=vec4(0.0);
 }

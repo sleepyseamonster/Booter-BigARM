@@ -6,16 +6,18 @@
 #endif
 
 namespace engine {
-Window::Window(bool verification,bool windowedFullscreen) {
+Window::Window(bool verification,bool windowedFullscreen,int width,int height,bool highDensity) {
+    if(width<1||height<1)throw std::invalid_argument("Window dimensions must be positive");
     SDL_SetHint(SDL_HINT_WINDOW_ACTIVATE_WHEN_SHOWN, "0");
     SDL_SetHint(SDL_HINT_WINDOW_ACTIVATE_WHEN_RAISED, "0");
     SDL_SetHint(SDL_HINT_MAC_BACKGROUND_APP, "1");
-    SDL_WindowFlags flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_HIDDEN;
+    SDL_WindowFlags flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN;
+    if(highDensity)flags|=SDL_WINDOW_HIGH_PIXEL_DENSITY;
     if (verification) flags |= SDL_WINDOW_NOT_FOCUSABLE;
 #ifdef __APPLE__
     flags |= SDL_WINDOW_METAL;
 #endif
-    window_ = SDL_CreateWindow("Booter & BigARM | Engine Foundation", 1120, 720, flags);
+    window_ = SDL_CreateWindow("Booter & BigARM | Engine Foundation", width, height, flags);
     if (!window_) throw std::runtime_error(std::string("Window creation failed: ") + SDL_GetError());
     SDL_SetWindowMinimumSize(window_,800,600);
     if(windowedFullscreen&&!setWindowedFullscreen(true)) {

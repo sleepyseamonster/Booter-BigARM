@@ -5,6 +5,8 @@
 #include "Rendering/RenderModel.h"
 #include "Rendering/RenderScene.h"
 #include "Rendering/FrameTelemetry.h"
+#include "Rendering/RenderContracts.h"
+#include "Rendering/SurfaceMaterial.h"
 #include <bgfx/bgfx.h>
 #include <atomic>
 #include <filesystem>
@@ -29,20 +31,14 @@ public:
     void captureFrame(const void*, uint32_t) override {}
 };
 struct TexturePreview { bgfx::TextureHandle texture=BGFX_INVALID_HANDLE;float lod=0,channel=0;bool srgb=false;float repeat=1; };
-enum class MaterialMapping { WorldTriplanar, UV };
-// Borrowed for a frame; TextureStore leases own the resources. No persistent GPU IDs.
-struct SurfaceTextures {
-    bool packedSurface=true;
-    bgfx::TextureHandle albedo=BGFX_INVALID_HANDLE, normal=BGFX_INVALID_HANDLE, surface=BGFX_INVALID_HANDLE;
-    std::array<bgfx::TextureHandle,10> layers=[] {std::array<bgfx::TextureHandle,10> a;for(auto& h:a)h=BGFX_INVALID_HANDLE;return a;}();
-    bool terrainBlend=false,terrainNatural=false;bool layered=false;RockMaterial material;float seed=0;
-    MaterialMapping mapping=MaterialMapping::WorldTriplanar;
-    std::array<float,4> uvTransform{1,1,0,0}; // scale.xy, offset.xy
-
-};
-struct RenderInstance {const RenderModel* model=nullptr;std::array<float,3> offset{},boundsCenter{};float yaw=0,boundsRadius=1;bool ground=false;std::array<float,3> scale{1,1,1};};
+struct RenderInstance {const RenderModel* model=nullptr;std::array<float,3> offset{},boundsCenter{};float yaw=0,boundsRadius=1;bool ground=false;std::array<float,3> scale{1,1,1};const SurfaceTextures* surface=nullptr;};
 struct ScenePlacement {const std::vector<RenderInstance>* instances=nullptr;const RenderSceneSnapshot* authored=nullptr;bool streamedWorld=false; std::array<float,3> offset{},eye{},target{};bool physicalCharacter=false;const RenderModel* model=nullptr;const std::vector<SkinMatrix>* pose=nullptr;bool cpuReference=false,markerActive=false;const RenderModel* rock=nullptr;std::array<float,3> rockOffset{-3.5f,0,0};float rockFocusHeight=.85f; };
 struct SceneSurfaces { SurfaceTextures rock, ground; };
+struct RenderResourceInspection {
+    uint64_t currentTargetBytes=0,targetHighWaterBytes=0,resizeOverlapHighWaterBytes=0;
+    bool auxiliaryTargets=false;
+    std::string degradation;
+};
 class Renderer {
 public:
     Renderer() = default;
@@ -51,7 +47,7 @@ public:
     Renderer& operator=(const Renderer&) = delete;
     void start(const Window&, const std::filesystem::path& shaders, const RenderConfiguration& configuration=RenderConfiguration::fromEnvironment());
     FrameTelemetry telemetry;
-    uint32_t finishFrame(bool technical=false){return telemetry.finish(technical);}
+    uint32_t finishFrame(bool technical=false);
     void resize(int width, int height);
     void draw(const FixtureState&, GeometryCheck check = GeometryCheck::None, bool calibration = false, const TexturePreview* preview = nullptr, const SceneSurfaces* surfaces = nullptr, const ScenePlacement* placement = nullptr);
     void rebuildMesh();
@@ -59,9 +55,11 @@ public:
     const char* name() const;
     int width() const { return width_; }
     int height() const { return height_; }
+    RenderResourceInspection resourceInspection()const{return {targetBytes_,targetHighWaterBytes_,overlapHighWaterBytes_,auxiliaryActive_,targetDegradation_};}
     CaptureCallbacks callbacks;
 private:
-    void resizeTargets(int width,int height);
+    void resizeTargets(int width,int height,bool auxiliary);
+    bool ensureAuxiliary(bool wanted);
     bool started_ = false;
     RenderConfiguration configuration_;
     int width_ = 0, height_ = 0;
@@ -73,7 +71,7 @@ private:
     bgfx::ProgramHandle skyProgram_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle environment_ = BGFX_INVALID_HANDLE, inverseViewProjection_ = BGFX_INVALID_HANDLE;
     bgfx::VertexBufferHandle fullscreen_ = BGFX_INVALID_HANDLE;
-    bgfx::UniformHandle display_ = BGFX_INVALID_HANDLE, sceneSampler_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle display_ = BGFX_INVALID_HANDLE, sceneSampler_ = BGFX_INVALID_HANDLE,sceneIndirectSampler_=BGFX_INVALID_HANDLE;
     bgfx::UniformHandle ao_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle sceneNormalSampler_ = BGFX_INVALID_HANDLE, sceneDepthSampler_ = BGFX_INVALID_HANDLE;
     bgfx::ProgramHandle skinProgram_=BGFX_INVALID_HANDLE,skinShadowProgram_=BGFX_INVALID_HANDLE;
@@ -84,7 +82,7 @@ private:
     bgfx::ProgramHandle shadowProgram_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle shadowMatrix_ = BGFX_INVALID_HANDLE, shadowOptions_ = BGFX_INVALID_HANDLE, shadowSampler_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle shadowFarMatrix_ = BGFX_INVALID_HANDLE, shadowRange_ = BGFX_INVALID_HANDLE, shadowCamera_ = BGFX_INVALID_HANDLE;
-    bgfx::UniformHandle contactMatrix_ = BGFX_INVALID_HANDLE, contactOptions_ = BGFX_INVALID_HANDLE, prepassNormalSampler_ = BGFX_INVALID_HANDLE, prepassDepthSampler_ = BGFX_INVALID_HANDLE;
+    bgfx::UniformHandle contactMatrix_ = BGFX_INVALID_HANDLE,contactView_=BGFX_INVALID_HANDLE,contactOptions_ = BGFX_INVALID_HANDLE,contactDepth_=BGFX_INVALID_HANDLE, prepassNormalSampler_ = BGFX_INVALID_HANDLE, prepassDepthSampler_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle eye_ = BGFX_INVALID_HANDLE, surfaceParams_ = BGFX_INVALID_HANDLE, materialMapping_ = BGFX_INVALID_HANDLE, materialUvOffset_ = BGFX_INVALID_HANDLE, fog_ = BGFX_INVALID_HANDLE, fogColor_ = BGFX_INVALID_HANDLE;
     std::array<bgfx::UniformHandle,10> layerSamplers_=[] {std::array<bgfx::UniformHandle,10> a;for(auto& h:a)h=BGFX_INVALID_HANDLE;return a;}();
     bgfx::UniformHandle layerParams_=BGFX_INVALID_HANDLE;
@@ -92,5 +90,8 @@ private:
     std::array<bgfx::VertexBufferHandle, 5> meshes_{{BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE, BGFX_INVALID_HANDLE}};
     bgfx::UniformHandle material_ = BGFX_INVALID_HANDLE, light_ = BGFX_INVALID_HANDLE;
     bgfx::UniformHandle normal_ = BGFX_INVALID_HANDLE, linear_ = BGFX_INVALID_HANDLE, orientation_ = BGFX_INVALID_HANDLE, options_ = BGFX_INVALID_HANDLE;
+    uint64_t targetBytes_=0,targetHighWaterBytes_=0,overlapHighWaterBytes_=0;
+    bool auxiliaryActive_=false,auxiliaryRequested_=false;
+    std::string targetDegradation_;
 };
 }

@@ -13,6 +13,5 @@ void main()
     if (band > 5.5) value=0.1;
     if (band > 6.5) value=0.75;
     gl_FragData[0]=vec4(value,value,value,1.0);
-    gl_FragData[1]=vec4(0.0,0.0,0.0,1.0);
-    gl_FragData[2]=vec4(1.0,0.0,0.0,1.0);
+    gl_FragData[1]=vec4(0.0);
 }

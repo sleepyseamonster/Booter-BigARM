@@ -4,7 +4,7 @@ This is the working home for the proprietary engine and regular third-person gam
 
 Start with [current status and next step](./Docs/STATUS.md), then [accepted direction](./Docs/DIRECTION.md) and [the working agreement](./AGENTS.md).
 
-The [active correction and integration plan](./Docs/ENGINE_CORRECTION_PLAN.md) turns the two architecture audits into six ordered implementation batches. [R1 scene authority](./Docs/SCENE_AUTHORITY_R1_RESULT.md), [R2 bounded live authoring](./Docs/LIVE_AUTHORING_R2_RESULT.md), [R3 render snapshots/Scene View manipulation](./Docs/RENDER_SCENE_GIZMO_R3_RESULT.md) and [R4 shared play/durability](./Docs/PLAY_SESSION_DURABILITY_R4_RESULT.md) are implemented; R5 generic materials, AO/depth contracts and representative performance is next. Visible Scene/Game View acceptance remains open with the UI owner.
+The [active correction and integration plan](./Docs/ENGINE_CORRECTION_PLAN.md) turns the two architecture audits into six ordered implementation batches. [R1 scene authority](./Docs/SCENE_AUTHORITY_R1_RESULT.md), [R2 bounded live authoring](./Docs/LIVE_AUTHORING_R2_RESULT.md), [R3 render snapshots/Scene View manipulation](./Docs/RENDER_SCENE_GIZMO_R3_RESULT.md), [R4 shared play/durability](./Docs/PLAY_SESSION_DURABILITY_R4_RESULT.md) and [R5 material/occlusion/performance](./Docs/MATERIAL_OCCLUSION_PERFORMANCE_R5_RESULT.md) are implemented. R6 native Windows validation is next. Visible Scene/Game View acceptance remains open with the UI owner.
 
 The [2026-09-15 engine architecture audit](./Docs/ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) records current strengths, reproduced defects and the correction order before human-AI viewport integration.
 

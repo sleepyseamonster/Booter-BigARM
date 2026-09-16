@@ -32,7 +32,7 @@ private:
         bool technical=false;std::array<double,size_t(FramePhase::Count)> phases{};
         std::array<View,8> views{};size_t viewCount=0;
     };
-    static constexpr size_t capacity=128;
+    static constexpr size_t capacity=2048;
     std::array<Sample,capacity> samples_{};
     std::array<double,size_t(FramePhase::Count)> phases_{};
     size_t count_=0,next_=0;uint64_t observed_=0;bool enabled_=false;

@@ -2,6 +2,8 @@
 
 Updated 2026-09-14, America/Phoenix.
 
+Historical implementation note: R5 replaced this three-color-attachment layout and normalized depth proxy with a two-attachment direct/indirect scene target plus conditional `RGBA8` view normals and `R32F` linear view depth. See the [corrected current contract](./MATERIAL_OCCLUSION_PERFORMANCE_R5_RESULT.md). The details below describe the superseded first pass.
+
 The generic scene target now carries the inputs needed by later post-processing in one bounded pass:
 
 - attachment 0: linear HDR scene color (`RGBA16F`)

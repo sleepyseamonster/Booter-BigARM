@@ -4,7 +4,7 @@
 namespace engine {
 class Window {
 public:
-    explicit Window(bool verification,bool windowedFullscreen=false);
+    explicit Window(bool verification,bool windowedFullscreen=false,int width=1120,int height=720,bool highDensity=true);
     ~Window();
     Window(const Window&) = delete;
     Window& operator=(const Window&) = delete;

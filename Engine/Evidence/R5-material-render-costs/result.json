@@ -1,0 +1,81 @@
+{
+  "batch": "R5",
+  "date": "2026-09-15",
+  "source_baseline": "7879df9",
+  "passed": true,
+  "findings_closed": ["A08"],
+  "registered_tests": 24,
+  "registered_passed": 24,
+  "focused_checks": [
+    "render_scene_gizmo_contract",
+    "render_material_occlusion_contract",
+    "semantic_textures_catalog",
+    "material_definition_contract",
+    "model_import_animation"
+  ],
+  "representative_workload": {
+    "backend": "Metal",
+    "present": "immediate",
+    "width": 1920,
+    "height": 1080,
+    "warmup_frames": 120,
+    "steady_frames": 1000,
+    "retirement_frames": 1,
+    "draw_calls": 579,
+    "static_instances": 135,
+    "authored_affine_draws": 26,
+    "material_instances": 3,
+    "skinned_actors": 1,
+    "dynamic_bodies": 1,
+    "live_textures": 15,
+    "texture_bytes_estimate": 49416,
+    "callback_errors": 0,
+    "captures": 1
+  },
+  "hardware": {
+    "machine": "MacBookPro18,2",
+    "chip": "Apple M1 Max",
+    "cpu_cores": 10,
+    "gpu_cores": 24,
+    "memory_gb": 32
+  },
+  "timings_ms": {
+    "draw_cpu": {"samples": 1001, "p50": 0.192916, "p95": 0.519334, "p99": 0.618583, "max": 1.609833},
+    "physics_cpu": {"samples": 1001, "p50": 0.004459, "p95": 0.0085, "p99": 0.012833, "max": 0.031708},
+    "frame_call_cpu": {"samples": 1001, "p50": 2.457917, "p95": 8.022042, "p99": 10.409125, "max": 95.042584},
+    "gpu_unique_frames": {"samples": 907, "p50": 2.418709, "p95": 4.8, "p99": 5.982709, "max": 7.66}
+  },
+  "target_bytes": {
+    "active": 133464064,
+    "post_retirement": 108580864,
+    "optional_difference": 24883200,
+    "high_water": 133464064,
+    "resize_overlap_high_water": 174936064,
+    "degradation": ""
+  },
+  "sha256": {
+    "representative_capture": "22578a5457b0a9462c2db93a4c1b7b3ee4e96e43b52a52604cc47ad5f9112a46",
+    "ordinary_authored_order_pair": "92c2a03e09647e92ec77530efce8bc0fd575943639b9f5089aa69992bee6d3de",
+    "frame_trace": "9bd7c06ea1f81caa04f27721fd6a0cafa3197d69209de69c4af2da175d86bd9f",
+    "engine_workbench": "d7c2b3ed12b4052aa057a1ff5ca874ebb34f98d562ccb1cc131d49d4ba5b4a29",
+    "engine_player": "b23c4d67e82afca46278cb2e98210b235b5a87aa54fd819d4727ff8e80cb4797",
+    "engine_outdoor_check": "41d358f90e8e28357e56de4c668f14acbb635a55b76fbe296f2df209e34980ac",
+    "Source/Assets/MaterialDefinition.cpp": "59c7bb108399909fc3c716746ca715caf1183e9778f57a0e7c172800333875e7",
+    "Source/Rendering/SurfaceMaterial.cpp": "a2121022cbd6e74958030553559614a3fcac9ad7b821124ffe07e32f9a333fce",
+    "Source/Rendering/RenderContracts.cpp": "5a7ee4ca6448ef0819b49bee2c597a5fad00bea10129ff0f3c8425aca24c403d",
+    "Source/Rendering/Renderer.cpp": "4159219827c77dcada8662ccad664fb1f7d554dfaf92ab50f5b2890d66aff890",
+    "Source/Rendering/FrameTelemetry.cpp": "c788c5589b63ab0b60af6e619e85b10bc6f1b2aee94004dd74f137a48e1f5780",
+    "Shaders/fs_scene.sc": "958bcb22fd7c776156a4d751934fbe8aeccc8c8c478349931cb423a2ac41bf69",
+    "Shaders/fs_display.sc": "f9a51e27fefb4271bfb345d33c34ce87e75bf6f3fddc8d7c6672d76ea40a9354",
+    "Shaders/fs_prepass.sc": "fbce21d7318b6c9378f76681d2c16b7b9a94b32de14a3011c7b423e1b617df6f",
+    "Tests/RenderContractTests.cpp": "df5a567e73c3d7dea3d00f711efc932aefeed567578fcc9898f4103d41f2d6a1",
+    "Tests/OutdoorRenderCheck.cpp": "a4b5012a4459f1ff0ba9e04b14a701fcc564c526e7e2630847cda673d27b3a94"
+  },
+  "open_gates": [
+    "Native Windows compiler, D3D11, input and corrected-workload evidence remain R6",
+    "Visible Scene View and Game View presentation remains UI-owned",
+    "Target Windows hardware and pass/fail frame budget remain unset",
+    "Transparent rendering, actual streamed I/O, input-to-photon latency and process-resident memory are outside this fixture"
+  ],
+  "proof_limits": "One bounded immediate-mode Mac Metal architecture workload plus CPU contracts and an ordinary Metal renderer check. No Windows, gameplay-feel or production-content performance claim."
+}

@@ -3,6 +3,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 namespace engine {
@@ -26,7 +27,8 @@ Json timing(double value){return value>=0?Json(value):Json(nullptr);}
 Json distribution(std::vector<double> values){
     if(values.empty())return nullptr;
     std::sort(values.begin(),values.end());
-    return {{"samples",values.size()},{"median_ms",values[(values.size()-1)/2]},{"p95_ms",values[size_t(std::ceil(values.size()*.95))-1]},{"max_ms",values.back()}};
+    return {{"samples",values.size()},{"p50_ms",values[(values.size()-1)/2]},{"p95_ms",values[size_t(std::ceil(values.size()*.95))-1]},
+        {"p99_ms",values[size_t(std::ceil(values.size()*.99))-1]},{"max_ms",values.back()}};
 }
 }
 uint32_t FrameTelemetry::finish(bool technical){
@@ -46,8 +48,8 @@ uint32_t FrameTelemetry::finish(bool technical){
 }
 void FrameTelemetry::save(const RenderConfiguration& config,const char* backend){
     if(!enabled_||config.trace.empty())return;
-    Json rows=Json::array();std::vector<double> intervals,draw,wait,gpu;
-    uint32_t lastGpu=UINT32_MAX;
+    Json rows=Json::array();std::vector<double> intervals,simulation,streaming,streamingPrepare,physics,draw,wait,gpu;
+    std::unordered_set<uint32_t> gpuFrames;
     for(size_t n=0;n<count_;++n){const auto& s=samples_[(next_+capacity-count_+n)%capacity];
         Json views=Json::array();for(size_t i=0;i<s.viewCount;++i)views.push_back({{"view",s.views[i].id},{"gpu_frame",s.views[i].gpuFrame},{"gpu_ms",timing(s.views[i].ms)}});
         rows.push_back({{"submitted_frame",s.submittedFrame},{"gpu_frame",s.gpuFrame},{"technical_paced",s.technical},{"width",s.width},{"height",s.height},
@@ -55,12 +57,16 @@ void FrameTelemetry::save(const RenderConfiguration& config,const char* backend)
             {"streaming_prepare_cpu_ms",s.phases[size_t(FramePhase::StreamingPrepare)]},{"physics_cpu_ms",s.phases[size_t(FramePhase::Physics)]},
             {"draw_cpu_ms",s.phases[size_t(FramePhase::Draw)]},
             {"frame_call_cpu_ms",s.frameCall},{"gpu_ms",timing(s.gpu)},{"draw_calls",s.draws},{"textures",s.textures},{"texture_bytes_estimate",s.textureBytes},{"views",views}});
-        if(s.interval>=0)intervals.push_back(s.interval);draw.push_back(s.phases[2]);wait.push_back(s.frameCall);
-        if(s.gpu>=0&&s.gpuFrame!=lastGpu){gpu.push_back(s.gpu);lastGpu=s.gpuFrame;}
+        if(s.interval>=0)intervals.push_back(s.interval);
+        simulation.push_back(s.phases[size_t(FramePhase::Simulation)]);streaming.push_back(s.phases[size_t(FramePhase::Streaming)]);
+        streamingPrepare.push_back(s.phases[size_t(FramePhase::StreamingPrepare)]);physics.push_back(s.phases[size_t(FramePhase::Physics)]);
+        draw.push_back(s.phases[size_t(FramePhase::Draw)]);wait.push_back(s.frameCall);
+        if(s.gpu>=0&&gpuFrames.insert(s.gpuFrame).second)gpu.push_back(s.gpu);
     }
     writeDocument(config.trace,"engine.frame-trace",{{"backend",backend},{"present",config.present==PresentMode::VSync?"vsync":"immediate"},
         {"observed_frames",observed_},{"retained_frames",count_},{"capacity",capacity},{"interval",distribution(intervals)},
-        {"draw_cpu",distribution(draw)},{"frame_call_cpu",distribution(wait)},{"gpu_unique_frames",distribution(gpu)},{"frames",rows},
-        {"limits","Last 128 frames, optional profiling overhead; GPU stats are delayed and identified separately. CPU frame-call duration includes API synchronization, not measured display latency. Technical pacing and capture work invalidate interactive benchmark claims. Resource counters are backend estimates."}});
+        {"simulation_cpu",distribution(simulation)},{"streaming_cpu",distribution(streaming)},{"streaming_prepare_cpu",distribution(streamingPrepare)},
+        {"physics_cpu",distribution(physics)},{"draw_cpu",distribution(draw)},{"frame_call_cpu",distribution(wait)},{"gpu_unique_frames",distribution(gpu)},{"frames",rows},
+        {"limits","Last 2048 frames, optional profiling overhead; GPU stats are delayed and identified separately. CPU frame-call duration includes API synchronization, not measured display latency. Technical pacing and capture work invalidate interactive benchmark claims. Resource counters are backend estimates."}});
 }
 }
