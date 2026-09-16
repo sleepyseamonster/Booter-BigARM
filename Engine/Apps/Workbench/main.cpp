@@ -342,7 +342,7 @@ int run(Options options, engine::AuthoringHost* authoring) {
     engine::InspectionWorkbench documents(state,!options.inspection.empty()?options.inspection:(!options.saveInspection.empty()?options.saveInspection:std::filesystem::path(SDL_GetBasePath())/"inspection.json"));
     std::unique_ptr<engine::StreamingScene> streaming;
     if(worldSession){
-        const auto& saved=worldSession->initial();streaming=std::make_unique<engine::StreamingScene>(runtime,saved.configuration.terrain,saved.configuration.rock,saved.configuration.constraints,saved.deltas,&renderer.telemetry);
+        const auto& saved=worldSession->initial();streaming=std::make_unique<engine::StreamingScene>(runtime,saved.configuration.terrain,saved.configuration.rock,saved.configuration.constraints,saved.deltas,&renderer.telemetry,saved.origin);
         simulation.enabled=!options.terrainPreview;
     }
     uint64_t saveAttemptTick=runtime.clock().ticks();

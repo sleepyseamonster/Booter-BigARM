@@ -209,6 +209,10 @@ add_executable(engine_world_session_tests Tests/WorldSessionTests.cpp)
 target_link_libraries(engine_world_session_tests PRIVATE engine_world_save)
 add_test(NAME world_session_create COMMAND engine_world_session_tests create "${CMAKE_CURRENT_BINARY_DIR}/ctest/world-session")
 add_test(NAME world_session_restore COMMAND engine_world_session_tests restore "${CMAKE_CURRENT_BINARY_DIR}/ctest/world-session")
+
+add_executable(engine_streamed_traversal_tests Tests/StreamedTraversalCorpusTests.cpp)
+target_link_libraries(engine_streamed_traversal_tests PRIVATE engine_world_save)
+add_test(NAME streamed_traversal_corpus COMMAND engine_streamed_traversal_tests "${CMAKE_CURRENT_BINARY_DIR}/ctest/streamed-traversal.json")
 set_tests_properties(world_session_create PROPERTIES FIXTURES_SETUP world_session LABELS "headless;persistence;runtime")
 set_tests_properties(world_session_restore PROPERTIES FIXTURES_REQUIRED world_session LABELS "headless;persistence;runtime")
 

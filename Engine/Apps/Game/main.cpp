@@ -54,7 +54,7 @@ int run(int argc,char** argv) {
         const auto playEpoch=play.epoch();play.focus(playEpoch,true);
         auto& runtime=play.runtime(playEpoch);
         std::unique_ptr<engine::StreamingScene> streaming;
-        if(worldSession){const auto& saved=worldSession->initial();streaming=std::make_unique<engine::StreamingScene>(runtime,saved.configuration.terrain,saved.configuration.rock,saved.configuration.constraints,saved.deltas,&renderer.telemetry);}
+        if(worldSession){const auto& saved=worldSession->initial();streaming=std::make_unique<engine::StreamingScene>(runtime,saved.configuration.terrain,saved.configuration.rock,saved.configuration.constraints,saved.deltas,&renderer.telemetry,saved.origin);}
         auto& actions=play.actions();engine::ActionInput input(actions);
         engine::DurabilityService durability;
         std::unique_ptr<engine::Audio> audio;
@@ -129,7 +129,8 @@ int run(int argc,char** argv) {
     renderer.stop();
     if(technical) {
         const bool passed=renderer.callbacks.captures==1&&renderer.callbacks.errors==0;
-        engine::writeDocument(capture/"player.json","engine.player-render",{{"passed",passed},{"backend",backend},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"simulation_advanced",false},{"snapshot_loaded",worldSession?worldSession->restored():loaded.value.has_value()},{"snapshot_generation",worldSession?worldSession->generation():loaded.generation},{"recovered",worldSession?worldSession->recovered():loaded.recovered},{"world_profile",bool(worldSession)},{"changed_regions",worldSession?worldSession->initial().deltas.removedRocks.size():0},{"marker_active",initial.markerActive},{"feet",initial.feet}});
+        const auto origin=worldSession?worldSession->initial().origin:engine::Region{};
+        engine::writeDocument(capture/"player.json","engine.player-render",{{"passed",passed},{"backend",backend},{"captures",renderer.callbacks.captures.load()},{"gpu_errors",renderer.callbacks.errors.load()},{"simulation_advanced",false},{"snapshot_loaded",worldSession?worldSession->restored():loaded.value.has_value()},{"snapshot_generation",worldSession?worldSession->generation():loaded.generation},{"recovered",worldSession?worldSession->recovered():loaded.recovered},{"world_profile",bool(worldSession)},{"world_origin",{origin.x,origin.z}},{"changed_regions",worldSession?worldSession->initial().deltas.removedRocks.size():0},{"marker_active",initial.markerActive},{"feet",initial.feet}});
         if(!passed)throw std::runtime_error("Player render capture failed");
     }
     return 0;

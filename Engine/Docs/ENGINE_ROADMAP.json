@@ -546,8 +546,12 @@
       ],
       "owner_module": "Tools/Tests/Runtime",
       "proof": "Repeated streaming, precision/phase, memory plateau and timing tails",
-      "state": "planned",
-      "evidence": [],
+      "state": "complete",
+      "evidence": [
+        "Docs/STREAMED_TRAVERSAL_P22_RESULT.md",
+        "Evidence/P22-runtime/result.json",
+        "Evidence/P22-player-far/captures/player.json"
+      ],
       "environment": "mac_or_platform_independent"
     },
     {

@@ -69,7 +69,8 @@ int main(int argc,char** argv)try{
     require(bodies.empty(),"Session teardown leaked region colliders");
     if(mode=="restore"){
         auto mismatch=config;++mismatch.terrain.seed;rejects([&]{WorldSession bad(profile,mismatch);});
-        auto shifted=session.initial();shifted.origin={1,0};saveWorld(root/"shifted",shifted,0);rejects([&]{WorldSession bad(root/"shifted",config);});
+        auto shifted=session.initial();shifted.origin={4000000000000LL,-4000000000000LL};saveWorld(root/"shifted",shifted,0);
+        WorldSession far(root/"shifted",config);require(far.restored()&&far.initial().origin==shifted.origin,"Precision-safe nonzero local frame was not restored");
         saveSnapshot(root/"legacy",{});rejects([&]{WorldSession bad(root/"legacy",config);});
         session.save(runtime,1.1f,.4f,6,session.initial().deltas);
     }

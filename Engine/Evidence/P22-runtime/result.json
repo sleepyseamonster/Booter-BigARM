@@ -1,0 +1,24 @@
+{
+  "kind": "engine.streamed-traversal-corpus",
+  "payload": {
+    "load_ms": {
+      "p50": 36.147958,
+      "p95": 54.105458,
+      "p99": 60.447708
+    },
+    "origin": [
+      4000000000000,
+      -4000000000000
+    ],
+    "passed": true,
+    "peak_physics_bodies": 15,
+    "peak_resident_bytes": 15598670,
+    "peak_slots": 15,
+    "proof_limit": "Mac CPU/Jolt integration corpus with technical terrain; no GPU, navigation-tile, gameplay-feel, dynamic in-place frame relocation or Windows claim.",
+    "reload_checks": 48,
+    "retired_regions": 95,
+    "route_steps": 21,
+    "unique_regions": 59
+  },
+  "version": 1
+}

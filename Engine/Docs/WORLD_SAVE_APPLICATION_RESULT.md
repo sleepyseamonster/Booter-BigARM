@@ -1,5 +1,7 @@
 # World saves in the player and workbench
 
+> P22 update, 2026-09-15: [streamed traversal integration](./STREAMED_TRAVERSAL_P22_RESULT.md) now restores saved nonzero local-frame origins in both applications. The origin-zero limitation below records this earlier P21 result and is no longer current.
+
 P21 is complete at first-pass depth on the current Mac. Both applications now use `Game/WorldSession` to restore and save the same terrain/rock configuration, authored constraints, player/camera state and removed-rock deltas. Saves capture the runtime and deltas at one main-thread boundary and retain the expected generation, so another session cannot silently overwrite newer changes. The [library checkpoint](./WORLD_SAVE_CHECKPOINT.md) supplies the immutable-generation recovery and compatibility rules.
 
 ## Use
@@ -30,4 +32,4 @@ build/foundation/engine_world_session_tests create out/new-session-check
 build/foundation/engine_world_session_tests restore out/new-session-check
 ```
 
-Workbench controls are compiled and source-reviewed; hands-on clicking and gameplay feel remain user-owned. This is a Mac application/session result, not Windows, full power-loss durability, migration, cargo transactions or final-art proof. Current adapters still use origin zero and approximately ±3.8 km traversal; a saved nonzero origin is rejected without rewriting it. P22 adds origin handling and bounded streamed integration next. No dependency or package change was needed.
+Workbench controls are compiled and source-reviewed; hands-on clicking and gameplay feel remain user-owned. This is a Mac application/session result, not Windows, full power-loss durability, migration, cargo transactions or final-art proof. At this P21 checkpoint the adapters used origin zero and approximately ±3.8 km traversal; P22 later added saved nonzero local-frame origins and bounded streamed integration. No dependency or package change was needed.

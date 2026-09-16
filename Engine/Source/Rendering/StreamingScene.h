@@ -6,7 +6,7 @@ namespace engine {
 // Main-thread adapter; runtime outlives this object, and this object dies before Renderer::stop.
 class StreamingScene {
 public:
-    StreamingScene(CalibrationRuntime&,TerrainRecipe,RockRecipe,PlacementConstraints,WorldDeltas={},FrameTelemetry* telemetry=nullptr);
+    StreamingScene(CalibrationRuntime&,TerrainRecipe,RockRecipe,PlacementConstraints,WorldDeltas={},FrameTelemetry* telemetry=nullptr,Region localOrigin={});
     ~StreamingScene();
     void update();
     bool removeNearest(float maximumDistance=8);
@@ -22,6 +22,7 @@ private:
     void retire(Region);
     void adoptCollisions();
     CalibrationRuntime& runtime_;
+    Region localOrigin_;
     FrameTelemetry* telemetry_=nullptr;
     std::map<RegionKey,Resident> residents_;
     std::array<std::vector<std::unique_ptr<RenderModel>>,4> rockModels_;
