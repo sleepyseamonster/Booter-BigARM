@@ -10,7 +10,9 @@ Use a character-following perspective view as the presentation target. Exact dis
 
 ## Initial Work
 
-Research and build the engine foundation before extending the rock generator. Then develop the rock generator/workbench for the open spaces of the Greater Wasteland. Canyons are a separate, deferred technical effort.
+Research and build the engine foundation before extending the rock generator. Then develop the rock generator/workbench for the open spaces of the Greater Wasteland.
+
+Updated 2026-09-15: landscape quality, procedural terrain and navigation are central game systems. The terrain architecture must support open ground, hills, sand, earth, shale, rocks, formations, cliffs and canyons as one coherent generated world. Canyon implementation follows the hybrid terrain foundation rather than leading it, but it is no longer excluded from the architecture. Use the [professional terrain research](../Research/PROCEDURAL_TERRAIN_ARCHITECTURE_RESEARCH.md) and [audited implementation plan](./PROCEDURAL_TERRAIN_IMPLEMENTATION_PLAN.md).
 
 The initial foundation should establish a reproducible executable, graphics, input, diagnostics, resource ownership and development tools. A complete gameplay loop or finished landscape is not the first milestone.
 
@@ -49,6 +51,6 @@ The user requested separation from Unity within this repository and then instruc
 
 On 2026-09-10 the user requested whole-engine analysis, a complete implementation plan, its audit and rewrite, and agent-owned technical sequencing. [The master plan](./FOUNDATION_PLAN.md) records that program. Routine engine requirements and implementation order should be managed by the agent; the user remains the creative/product authority. Planning does not claim that later capabilities or proposed libraries are implemented.
 
-Accepted: proprietary engine, regular third person, open Greater Wasteland rock workload, deferred canyons, Windows target, preferred Mac development while practical, and `Engine/` as the working area in this repository.
+Accepted: proprietary engine, regular third person, procedural landscape as a primary mechanic and visual system, open Greater Wasteland rock workload, canyon-ready hybrid terrain architecture, Windows target, preferred Mac development while practical, and `Engine/` as the working area in this repository.
 
 Selected for the current application foundation under the user's implementation authority: C++20, CMake and the pinned SDL3/bgfx/Dear ImGui cohort, extended during P01 with nlohmann JSON for bounded engine documents and during P08 with EnTT registry storage for the shared simulation. The native Metal result is recorded in [STATUS.md](./STATUS.md); Windows and broader production suitability remain open. Jolt is selected for the P09/P10 collision/controller pass. Later supporting components in [the foundation research](./PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md) remain proposed. [DECISIONS.md](./DECISIONS.md) records selection scope and review triggers.

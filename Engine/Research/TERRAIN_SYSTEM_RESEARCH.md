@@ -1,5 +1,10 @@
 # Terrain implementation choices
 
+> Historical scope note (2026-09-15): this document explains the already implemented terrain
+> preview. Future production terrain follows
+> [PROCEDURAL_TERRAIN_ARCHITECTURE_RESEARCH.md](./PROCEDURAL_TERRAIN_ARCHITECTURE_RESEARCH.md)
+> and the [audited implementation plan](../Docs/PROCEDURAL_TERRAIN_IMPLEMENTATION_PLAN.md).
+
 Researched 2026-09-10; selected scope is the [preview plan](../Docs/TERRAIN_PREVIEW_PLAN.md).
 
 | Source / option | Finding and decision |

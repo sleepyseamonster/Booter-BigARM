@@ -31,6 +31,7 @@ Foundation selections were made under the user's implementation authority on 202
 
 | D-20 | Accepted first-pass audio integration | miniaudio 0.11.25 as the shared playback owner; one generated PCM cue and sequence deduplication | [Player skeleton result](./PLAYER_RUNTIME_RESULT.md); offline mixer proved, speaker/device transitions and spatial audio remain open |
 | D-21 | Accepted generic rendering contract | UV0 or world-triplanar material coordinates; positive linear view-depth metres for AO/contact; direct plus indirect/fog scene outputs; conditional shared normal/depth prepass | [R5 material, occlusion and cost result](./MATERIAL_OCCLUSION_PERFORMANCE_R5_RESULT.md); broader material profiles and native Windows/D3D11 validation remain open |
+| D-22 | Accepted terrain architecture | Hybrid terrain: tiled multiresolution heightfield for ordinary ground plus sparse mesh-backed feature surfaces for canyon walls, overhangs and caves; one surface/query, streaming, revision, material and stable-ID contract. Full-world voxels are rejected for the initial system. | User terrain direction and [professional terrain research](../Research/PROCEDURAL_TERRAIN_ARCHITECTURE_RESEARCH.md), 2026-09-15; implement [T01-T14](./PROCEDURAL_TERRAIN_IMPLEMENTATION_PLAN.md) in order and validate representation choices on the representative corpus. |
 
 ## Decision Procedure
 

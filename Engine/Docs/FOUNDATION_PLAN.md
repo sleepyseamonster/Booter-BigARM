@@ -16,6 +16,8 @@ Current user-directed extension: [Unity formation composition and placement](./U
 
 Revision 2, rewritten 2026-09-10 after the requested whole-engine analysis and [V1 audit](./ENGINE_PLAN_AUDIT.md). This is the primary implementation roadmap for Engine. It supersedes the earlier foundation plan that ended at streamed terrain. [Direction](./DIRECTION.md) controls product intent; [STATUS.md](./STATUS.md) controls current implementation/evidence. The [system audit](../Research/ENGINE_SYSTEM_AUDIT.md), [research update](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) and [work-package record](./ENGINE_ROADMAP.json) support this plan.
 
+Terrain extension, 2026-09-15: the [professional terrain research](../Research/PROCEDURAL_TERRAIN_ARCHITECTURE_RESEARCH.md) and [audited T01-T14 sequence](./PROCEDURAL_TERRAIN_IMPLEMENTATION_PLAN.md) expand P18-P23 into the production path for hybrid heightfield/feature terrain, hydrology, lithology, materials, formations and canyon-ready surfaces. The existing P packages and evidence remain historical first-pass milestones.
+
 ## Current execution target
 
 The user's 2026-09-10 clarification is a **base engine skeleton**: connected, minimal working systems before subsystem depth or polish. Implement one supported path per required capability, verify that path once, and proceed to integration. Fix actual failures; defer optional source formats, stress campaigns, advanced visuals and production tooling. The production/gameplay milestones below remain the future roadmap and do not expand the immediate skeleton acceptance target. [Direction](./DIRECTION.md) controls this depth limit.
@@ -24,7 +26,7 @@ The first user-facing milestone is the completed native rock generator, clarifie
 
 ## 1. What we are building
 
-A game-specific C++ engine for regular third-person Booter & BigARM: readable open wasteland, generated terrain and rocks, grounded traversal, a physically persistent companion, durable player consequences, useful content tools and a Windows player build. Mac remains the daily development platform while practical. Canyons are deferred.
+A game-specific C++ engine for regular third-person Booter & BigARM: readable open wasteland, generated terrain and rocks, grounded traversal, a physically persistent companion, durable player consequences, useful content tools and a Windows player build. Mac remains the daily development platform while practical. The 2026-09-15 terrain direction adds canyon-ready hybrid terrain; ordinary terrain foundations precede canyon feature implementation.
 
 We own the systems that make this game distinctive and coherent: world identity, generation/placement rules, runtime ownership, asset/material semantics, streaming policy, authoring, gameplay and persistence. We integrate established libraries for rendering access, collision, animation sampling, navigation meshes, audio and UI. The [research table](../Research/ENGINE_ARCHITECTURE_RESEARCH.md) records the preferred choices and integration checks. Existing selected pins remain unchanged until a consuming implementation batch requires a new dependency.
 
@@ -187,7 +189,7 @@ Game content is data-driven initially, with explicit C++ systems. Do not create 
 
 | Capability | Why deferred / when to revisit |
 |---|---|
-| Canyons and final geography | User deferred them. Preserve non-heightfield surface/route interfaces; start only with later creative scope. |
+| Final canyon content and final geography | The terrain architecture must support canyons, but final canyon layouts and geographic canon remain open. Build the heightfield/feature-surface contracts first, then a bounded technical canyon fixture before permanent content. |
 | Multiplayer/replication/rollback | No current requirement. Revisit before designing an actual network game; current state boundaries are not a compatibility guarantee. |
 | Oceans/rain/water simulation | Conflicts with current setting needs; no generic “engine completeness” requirement. |
 | Vehicles, mobile bases and remote BigARM storage | Not the current companion design. Do not build by analogy with other survival games. |

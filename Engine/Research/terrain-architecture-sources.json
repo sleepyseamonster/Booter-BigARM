@@ -1,0 +1,248 @@
+{
+  "schema": "engine.terrain-research-sources",
+  "version": 1,
+  "retrieved": "2026-09-15",
+  "scope": "Professional procedural terrain architecture, mathematics, streaming, erosion, materials and bounded non-heightfield features",
+  "sources": [
+    {
+      "id": "unreal-landscape-technical-guide",
+      "kind": "official_documentation",
+      "title": "Landscape Technical Guide",
+      "publisher": "Epic Games",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/landscape-technical-guide-in-unreal-engine",
+      "finding": "Landscape components are rendering, visibility and collision units; sections are LOD units; shared border vertices are duplicated; component and section counts have CPU and draw-call costs.",
+      "decision": "Adopt explicit source-tile, render-patch and border contracts; do not copy Unreal dimensions or limits."
+    },
+    {
+      "id": "unreal-world-partition",
+      "kind": "official_documentation",
+      "title": "World Partition",
+      "publisher": "Epic Games",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/world-partition-in-unreal-engine",
+      "finding": "A persistent world is subdivided into grid cells and loaded around streaming sources; HLOD and data layers are adjacent systems.",
+      "decision": "Keep identity, storage, derived products and active residency separate; retain multi-anchor priority in RegionStream."
+    },
+    {
+      "id": "unreal-pcg-framework",
+      "kind": "official_documentation",
+      "title": "Procedural Content Generation Framework",
+      "publisher": "Epic Games",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/procedural-content-generation-framework-in-unreal-engine",
+      "finding": "Production procedural workflows combine spatial data, attributes, interactivity, extensibility and traditional authored content from utilities through whole worlds.",
+      "decision": "Use a versioned engine-owned stage graph and authored constraints; do not build a visual node editor now."
+    },
+    {
+      "id": "unreal-landscape-materials",
+      "kind": "official_documentation",
+      "title": "Landscape Materials",
+      "publisher": "Epic Games",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/landscape-materials-in-unreal-engine",
+      "finding": "Landscape material layers are driven by weight data and support weighted, alpha and height-aware blending.",
+      "decision": "Cook normalized physical base weights and separate additive overlays; support height-aware contacts."
+    },
+    {
+      "id": "unreal-nanite-landscapes",
+      "kind": "official_documentation",
+      "title": "Using Nanite with Landscapes",
+      "publisher": "Epic Games",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/using-nanite-with-landscapes-in-unreal-engine",
+      "finding": "Nanite terrain can improve rendering but retains the non-Nanite landscape for other systems, adds data residency and rebuild requirements, and uses skirts for seams.",
+      "decision": "Do not clone Nanite. Measure our tiled hierarchy first and preserve derived-cache rebuild boundaries."
+    },
+    {
+      "id": "unity-terrain-data",
+      "kind": "official_documentation",
+      "title": "TerrainData",
+      "publisher": "Unity Technologies",
+      "url": "https://docs.unity3d.com/6000.0/Documentation/ScriptReference/TerrainData.html",
+      "finding": "Terrain source data separates heightmaps, alpha maps, holes, detail patches and far basemaps; patch maximum-height-error data is exposed.",
+      "decision": "Separate canonical fields from derived meshes/material composites and store geometric-error metadata."
+    },
+    {
+      "id": "unity-terrain-settings",
+      "kind": "official_documentation",
+      "title": "Terrain settings reference",
+      "publisher": "Unity Technologies",
+      "url": "https://docs.unity3d.com/6000.0/Documentation/Manual/terrain-OtherSettings.html",
+      "finding": "Terrain exposes instancing, pixel-error simplification, complexity bounds and a low-resolution composite beyond the basemap distance.",
+      "decision": "Use projected geometric error, shared instances and a far material composite."
+    },
+    {
+      "id": "unity-terrain-neighbors",
+      "kind": "official_documentation",
+      "title": "Terrain.SetNeighbors",
+      "publisher": "Unity Technologies",
+      "url": "https://docs.unity3d.com/2023.2/Documentation/ScriptReference/Terrain.SetNeighbors.html",
+      "finding": "Explicit neighbor connections let adjacent tiles coordinate LOD.",
+      "decision": "Make tile adjacency and border revision explicit rather than inferring it in rendering."
+    },
+    {
+      "id": "unity-terrain-erosion",
+      "kind": "official_documentation",
+      "title": "Terrain Tools: Erosion",
+      "publisher": "Unity Technologies",
+      "url": "https://docs.unity3d.com/Packages/com.unity.terrain-tools@5.0/manual/erosion.html",
+      "finding": "The tools distinguish hydraulic, thermal and wind erosion, and erosion detail depends on sample resolution.",
+      "decision": "Treat fluvial transport, talus relaxation and aeolian transport as distinct scale-aware stages."
+    },
+    {
+      "id": "perlin-improved-noise",
+      "kind": "primary_research_and_reference",
+      "title": "Improving Noise and reference implementation",
+      "authors": ["Ken Perlin"],
+      "doi": "10.1145/566570.566636",
+      "url": "https://cs.nyu.edu/~perlin/noise/",
+      "finding": "Improved gradient noise corrects interpolation discontinuity and gradient issues in the original algorithm and provides a stable reference implementation.",
+      "decision": "Use a deterministic coherent noise basis only as a band-limited scaffold and version its algorithm."
+    },
+    {
+      "id": "procedural-noise-survey",
+      "kind": "primary_research",
+      "title": "A Survey of Procedural Noise Functions",
+      "authors": ["Ares Lagae", "Sylvain Lefebvre", "Rob Cook", "Tony DeRose", "George Drettakis", "David Ebert", "J. P. Lewis", "Ken Perlin", "Matthias Zwicker"],
+      "url": "https://www-sop.inria.fr/reves/Basilic/2010/LLCDDELPZ10a/",
+      "finding": "Noise families have different spectral, anisotropy, performance and filtering properties; there is no universal best noise.",
+      "decision": "Select noise per field and validate spectra/aliasing instead of accumulating fashionable noise types."
+    },
+    {
+      "id": "hydrology-terrain-generation",
+      "kind": "primary_research",
+      "title": "Terrain Generation Using Procedural Models Based on Hydrology",
+      "authors": ["Jean-David Genevaux", "Eric Galin", "Eric Guerin", "Adrien Peytavie", "Bedrich Benes"],
+      "doi": "10.1145/2461912.2461996",
+      "url": "https://doi.org/10.1145/2461912.2461996",
+      "finding": "A drainage graph, watersheds, river characterization and procedural patches can generate controllable continuous terrain from a compact sketch.",
+      "decision": "Make drainage topology and guide constraints earlier than detailed height synthesis."
+    },
+    {
+      "id": "priority-flood",
+      "kind": "primary_research",
+      "title": "Priority-Flood: An Optimal Depression-Filling and Watershed-Labeling Algorithm for Digital Elevation Models",
+      "authors": ["Richard Barnes", "Clarence Lehman", "David Mulla"],
+      "doi": "10.1016/j.cageo.2013.04.024",
+      "url": "https://rbarnes.org/sci/2014_depressions.pdf",
+      "code": "https://github.com/r-barnes/Barnes2013-Depressions",
+      "finding": "Priority-Flood provides a general depression-filling basis and can support flow direction and watershed labeling on regular or irregular terrain.",
+      "decision": "Prototype it for unwanted-pit resolution while retaining explicitly authored closed basins."
+    },
+    {
+      "id": "d-infinity",
+      "kind": "primary_algorithm_documentation",
+      "title": "D-Infinity Flow Directions",
+      "authors": ["David Tarboton"],
+      "url": "https://hydrology.usu.edu/taudem/taudem5/help/DInfinityFlowDirections.html",
+      "finding": "D-infinity derives continuous flow direction from the steepest triangular facet and apportions flow between two neighbors.",
+      "decision": "Prototype against simpler D8 and retain deterministic flat/tie rules."
+    },
+    {
+      "id": "analytical-erosion-2024",
+      "kind": "primary_research",
+      "title": "Physically-based analytical erosion for fast terrain generation",
+      "authors": ["Petros Tzathas", "Boris Gailleton", "Philippe Steer", "Guillaume Cordonnier"],
+      "url": "https://www-sop.inria.fr/reves/Basilic/2024/TGSC24/",
+      "finding": "Analytical stream-power solutions with multigrid acceleration can bridge fast procedural control and physically grounded large-scale erosion, including hillslopes and landslides.",
+      "decision": "Evaluate before committing to costly droplet or long iterative erosion."
+    },
+    {
+      "id": "debris-flow-2024",
+      "kind": "primary_research",
+      "title": "Efficient Debris-flow Simulation for Steep Terrain Erosion",
+      "authors": ["Aryamaan Jain", "Bedrich Benes", "Guillaume Cordonnier"],
+      "url": "https://www-sop.inria.fr/reves/Basilic/2024/JBC24/",
+      "finding": "Debris flow complements fluvial erosion on steep, low-drainage terrain where simple slope-reducing erosion becomes unrealistically uniform.",
+      "decision": "Represent debris/talus as a distinct field; preserve full simulation as a later authoring cook."
+    },
+    {
+      "id": "windblown-sand-2024",
+      "kind": "primary_research",
+      "title": "Windblown sand around obstacles - simulation and validation of deposition patterns",
+      "authors": ["Nicolas Rosset", "Regis Duvigneau", "Adrien Bousseau", "Guillaume Cordonnier"],
+      "url": "https://www-sop.inria.fr/reves/Basilic/2024/RDBC24/",
+      "finding": "Wind flow, saltation and avalanching reproduce characteristic sand deposition around obstacles and include qualitative validation and source code.",
+      "decision": "Use a separate mobile-sand field and prototype detailed deposition only in bounded zones."
+    },
+    {
+      "id": "digital-terrain-review-2019",
+      "kind": "primary_survey",
+      "title": "A Review of Digital Terrain Modeling",
+      "authors": ["Eric Galin", "Eric Guerin", "Adrien Peytavie", "Guillaume Cordonnier", "Marie-Paule Cani", "Bedrich Benes", "James Gain"],
+      "url": "https://cs.purdue.edu/homes/bbenes/papers/Galin19CGF.pdf",
+      "finding": "Heightfields are efficient but cannot represent caves and overhangs; volumetric methods enable them at higher cost; erosion, feature and example-based approaches have complementary strengths.",
+      "decision": "Use a heightfield plus sparse feature surfaces rather than one representation for every landform."
+    },
+    {
+      "id": "table-mountains-2005",
+      "kind": "primary_research",
+      "title": "Table Mountains by Virtual Erosion",
+      "authors": ["Bedrich Benes", "Xavier Arriaga"],
+      "url": "https://cs.purdue.edu/homes/bbenes/papers/Benes05EGNAT.pdf",
+      "finding": "Separate resistant rock and eroded soft material layers plus thermal erosion can form rimrock and talus characteristic of mesas.",
+      "decision": "Store bedrock/lithology separately from sediment and use hardness-dependent erosion."
+    },
+    {
+      "id": "arenite-2025",
+      "kind": "primary_research",
+      "title": "Arenite: A Physics-based Sandstone Simulator",
+      "authors": ["Zhanyu Yang", "Aryamaan Jain", "Guillaume Cordonnier", "Marie-Paule Cani", "Zhaopeng Wang", "Bedrich Benes"],
+      "doi": "10.1145/3731201",
+      "url": "https://jango6324.github.io/arenite/",
+      "finding": "Layer hardness, stress, wind/fluvial erosion and deposition can generate sandstone arches, alcoves, hoodoos and buttes under user control.",
+      "decision": "Treat as a future bounded feature-authoring technique, not the initial world generator."
+    },
+    {
+      "id": "geometry-clipmaps",
+      "kind": "primary_research",
+      "title": "Geometry Clipmaps: Terrain Rendering Using Nested Regular Grids",
+      "authors": ["Frank Losasso", "Hugues Hoppe"],
+      "url": "https://hhoppe.com/geomclipmap.pdf",
+      "finding": "Nested viewer-centered regular grids support incremental refill, on-demand synthesis and bounded terrain rendering cost.",
+      "decision": "Retain as a later rendering candidate after a measured tiled/error-LOD baseline."
+    },
+    {
+      "id": "smooth-view-dependent-lod",
+      "kind": "primary_research",
+      "title": "Smooth View-Dependent Level-of-Detail Control and its Application to Terrain Rendering",
+      "authors": ["Hugues Hoppe"],
+      "url": "https://www.microsoft.com/en-us/research/publication/smooth-view-dependent-level-of-detail-control-and-its-application-to-terrain-rendering/",
+      "finding": "Screen-space error, block hierarchies and runtime geomorphs provide spatially and temporally continuous terrain LOD without visible popping.",
+      "decision": "Replace fixed-distance LOD with error metadata, hysteresis and geomorphing."
+    },
+    {
+      "id": "gpu-density-terrain",
+      "kind": "primary_technical_reference",
+      "title": "Generating Complex Procedural Terrains Using the GPU",
+      "authors": ["Ryan Geiss"],
+      "url": "https://developer.nvidia.com/gpugems/gpugems3/part-i-geometry/chapter-1-generating-complex-procedural-terrains-using-gpu",
+      "finding": "3D density fields and Marching Cubes represent caves and overhangs in generated blocks, but introduce block scheduling, LOD transition and texturing problems.",
+      "decision": "Use density fields only for bounded features and measure CPU/GPU ownership before selecting a backend."
+    },
+    {
+      "id": "dual-contouring",
+      "kind": "primary_research",
+      "title": "Dual Contouring of Hermite Data",
+      "authors": ["Tao Ju", "Frank Losasso", "Scott Schaefer", "Joe Warren"],
+      "doi": "10.1145/566654.566586",
+      "url": "https://people.eecs.berkeley.edu/~jrs/meshpapers/JuLosassoSchaeferWarren.pdf",
+      "finding": "Hermite intersection and normal data plus quadratic error functions can preserve sharp features while contouring and simplifying adaptive grids.",
+      "decision": "Compare with Marching Cubes on one layered canyon/overhang fixture before adoption."
+    },
+    {
+      "id": "transvoxel",
+      "kind": "primary_algorithm_reference",
+      "title": "The Transvoxel Algorithm for Voxel Terrain",
+      "authors": ["Eric Lengyel"],
+      "url": "https://transvoxel.org/",
+      "finding": "Transition cells stitch Marching-Cubes-style voxel meshes across exact 2:1 resolution boundaries.",
+      "decision": "Preserve as a later option only if bounded volumetric feature cells require multiresolution streaming."
+    },
+    {
+      "id": "poisson-disk",
+      "kind": "primary_research",
+      "title": "Fast Poisson Disk Sampling in Arbitrary Dimensions",
+      "authors": ["Robert Bridson"],
+      "url": "https://www.cs.ubc.ca/~rbridson/docs/bridson-siggraph07-poissondisk.pdf",
+      "finding": "A background grid and bounded candidate attempts generate efficient blue-noise point distributions.",
+      "decision": "Use as a placement prototype only with world-stable candidate identities and cross-tile ownership."
+    }
+  ]
+}
