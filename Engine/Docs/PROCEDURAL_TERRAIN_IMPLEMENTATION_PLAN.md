@@ -242,15 +242,21 @@ Proof:
 ### T14 — Representative performance and platform gates
 
 Run the whole corpus through repeated traversal, rapid turnaround, regeneration and long-range
-views. Set budgets from evidence on the current Mac. Execute Windows W01/W02 and tune target
-backend behavior when Windows access returns; do not redesign the architecture solely to mimic
-Mac performance.
+views. Retain platform-neutral workload, scene, viewpoint, movement-route and resource evidence
+from the available development host without treating it as a product budget. Use one representative
+outdoor terrain and locomotion scene as the specialized Unreal-comparable quality feasibility gate.
+Execute Windows W01/W02 and set or tune target budgets only when native Windows GPU access exists.
+If backend-specific implementation or credible target-performance proof becomes the next required
+step before then, stop that lane rather than creating Mac-specific engine work.
 
 Proof:
 
 - recorded frame, job, upload, collision, navigation and memory high-water data;
 - no growth after repeated load/retire cycles;
-- native Metal acceptance now and D3D validation later;
+- retained fixed viewpoints and a traversal route compare terrain, materials, lighting, shadows,
+  atmospheric depth, animation contacts and motion against an explicit high-quality Unreal reference;
+- user acceptance determines whether the specialized quality target remains viable;
+- native Windows GPU/backend evidence is required for product performance and platform acceptance;
 - budget failures route back to the owning stage, not global quality reductions.
 
 ## Dependency order
@@ -296,14 +302,14 @@ user's goal. These corrections are already incorporated:
 6. **The draft could have pursued visual polish without diagnostics.** Corrected with false-color
    field views, seam/LOD measurements, retained viewpoints and explicit user visual acceptance.
 7. **The draft deferred Windows so completely that backend risk could disappear.** Corrected by
-   keeping W01/W02 explicit in T14 while allowing all platform-independent work to continue on
-   Mac.
+   keeping W01/W02 explicit in T14 while allowing platform-independent work to continue on the
+   available host and prohibiting Mac-specific substitute implementation.
 8. **The draft did not protect old worlds.** Corrected by requiring v1-v3 compatibility and an
    explicit persisted-delta migration policy.
 
 ## Immediate next package
 
-Implement **T01 only** as the next terrain code batch. It creates the contracts and corpus that
-all mathematical and rendering experiments use. T01 must not replace the current generator or
-begin aesthetic tuning. Once T01 is verified, T02 and T03 establish the field/constraint seams
-before paleohydrology or ancient-erosion algorithms are selected.
+Implement **T02 only** as the next terrain code batch. T01 established the contracts and corpus.
+T02 now supplies deterministic multiscale fields, derivatives, halos and diagnostics without
+replacing the current generator or beginning aesthetic tuning. T03 follows with authored
+constraint layers before paleohydrology or ancient-erosion algorithms are selected.

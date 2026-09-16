@@ -738,7 +738,7 @@
     {
       "id": "P32",
       "milestone": "M7",
-      "title": "Measured rendering and animation quality",
+      "title": "Specialized game-quality feasibility gate",
       "depends_on": [
         "P22",
         "P05"
@@ -751,7 +751,7 @@
         "CAP-13"
       ],
       "owner_module": "Rendering/Animation",
-      "proof": "Larger-area shadows, dust/effects/contact and justified quality improvements",
+      "proof": "Fixed representative outdoor terrain and locomotion scene compared against an explicit high-quality Unreal reference; retained viewpoints, movement, resources and user acceptance, with target-Windows proof still required",
       "state": "planned",
       "evidence": [],
       "environment": "mac_or_platform_independent"
