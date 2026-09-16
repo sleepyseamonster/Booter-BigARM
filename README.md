@@ -1,28 +1,41 @@
 # Booter & BigARM
 
-Unity 6 2D top-down game project.
+The active production implementation now lives under [Unreal/](./Unreal/README.md). Booter & BigARM is a regular third-person game targeting Windows PC, with Unreal Engine supplying production rendering and platform systems while a portable game/world core preserves engine-neutral procedural logic and durable data.
 
-## Current Baseline
+## Work Areas
+
+| Area | Status | Purpose |
+|---|---|---|
+| [Unreal/](./Unreal/README.md) | **Active** | Unreal host, portable core, AI authoring integration, tools and current planning |
+| [Engine/](./Engine/README.md) | Preserved reference | Prior proprietary C++ engine, evidence and research; no continuing production implementation |
+| Repository-root Unity project | Preserved reference | Former Unity 3D implementation and source material |
+| `Assets/_Project/Legacy2D/` | Preserved legacy reference | Isolated original 2D implementation |
+
+Read [AGENTS.md](./AGENTS.md) for repository routing and [Unreal/AGENTS.md](./Unreal/AGENTS.md) before new work. Do not move or delete the preserved implementations during the Unreal transition.
+
+## Preserved Unity Baseline
+
+### Current Baseline
 
 - Unity Editor: `6000.4.0f1`
 - Render pipeline: URP
 - Core systems already present: Input System, 2D Animation, Aseprite import, PSD import, SpriteShape, Tilemap Extras, Timeline, Visual Scripting
 - Current editable game content lives under `Assets/`
 
-## Open In Unity
+### Open In Unity
 
 1. Open the project root in Unity Hub.
 2. Use the editor version listed above if possible.
 3. Let Unity reimport the project before editing gameplay content.
 
-## Repo Layout
+### Unity Layout
 
 - `Assets/` - game content, scenes, settings, scripts, prefabs, art, and imported assets
 - `Packages/` - package manifest and lockfile
 - `ProjectSettings/` - Unity project configuration
 - `Docs/` - working notes and initialization references for this repo
 
-## Working Rules
+### Unity Working Rules
 
 - Treat `.meta` files as required Unity source files.
 - Do not move or rename assets without updating references intentionally.
@@ -30,7 +43,7 @@ Unity 6 2D top-down game project.
 - Keep Unity-facing changes small and deliberate.
 - Avoid changes to `ProjectSettings/` unless they are needed for the project setup.
 
-## Initialization Docs
+### Unity Reference Documents
 
 - Read [AGENTS.md](./AGENTS.md) before making changes.
 - Read [Docs/Agents/Gottspan/README.md](./Docs/Agents/Gottspan/README.md) for repo management, project management, and multi-agent coordination.

@@ -1,0 +1,19 @@
+# Unreal-generated state
+**/Binaries/
+**/DerivedDataCache/
+**/Intermediate/
+**/Saved/
+
+# Generated IDE state
+.vs/
+.idea/
+*.VC.db
+*.VC.opendb
+*.sln
+*.suo
+*.user
+
+# Local build and evidence scratch
+build/
+out/
+.cache/

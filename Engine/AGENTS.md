@@ -1,8 +1,12 @@
 # New Engine Working Agreement
 
+## Preservation Status
+
+The user selected Unreal Engine as the sole active production lane on 2026-09-16. This proprietary engine is preserved as technical evidence and a source of portable concepts. Do not add production features, renderer work, platform work or new game content here unless the user explicitly reactivates this area. New portable game/world code belongs under [`../Unreal/PortableCore/`](../Unreal/PortableCore/README.md), and Unreal integration belongs under [`../Unreal/Project/`](../Unreal/Project/README.md).
+
 ## Active Scope
 
-This folder is the exclusive working area for the proprietary engine and new game work. The user explicitly requested this separation on 2026-09-09. Keep the current Unity project in place; do not relocate it to create this boundary.
+This folder was the exclusive working area for the proprietary engine from 2026-09-09 through 2026-09-15. It is now a preserved reference. Keep both it and the Unity project in place.
 
 Load [README.md](./README.md), [Docs/STATUS.md](./Docs/STATUS.md), [Docs/DIRECTION.md](./Docs/DIRECTION.md), and task-relevant requirements or research. Do not default to auditing or repairing the Unity project when the task concerns this folder.
 

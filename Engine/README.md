@@ -1,5 +1,7 @@
 # Booter & BigARM — New Engine
 
+> **Preserved reference:** On 2026-09-16 the active production lane moved to [Unreal](../Unreal/README.md). This directory retains the proprietary C++ engine, research and evidence. New production work belongs in `Unreal/`; portable concepts are migrated deliberately rather than developed here in parallel.
+
 This is the working home for the proprietary engine and regular third-person game. Initial content is the rock generator and procedural landscape of the open Greater Wasteland. The terrain architecture includes later canyon and non-heightfield feature surfaces. Windows PC is the product target; Mac remains the main development machine while practical.
 
 Start with [current status and next step](./Docs/STATUS.md), then [accepted direction](./Docs/DIRECTION.md) and [the working agreement](./AGENTS.md).

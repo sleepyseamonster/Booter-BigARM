@@ -1,12 +1,14 @@
 # Agent Working Agreement
 
-This file defines the operating rules for work inside this Unity repository.
+This file defines the operating rules for the Booter & BigARM repository and routes work among preserved implementations.
 
 ## Separate Work Areas
 
-- New proprietary-engine work lives exclusively under [Engine/](./Engine/README.md). Load [Engine/AGENTS.md](./Engine/AGENTS.md) and its direction document before working there.
-- The user has selected regular third-person presentation for the new engine. The Unity/top-down implementation rules below describe the preserved Unity work area; they do not prescribe the new engine's architecture or camera.
-- Keep new-engine implementation, documentation, dependencies and build outputs inside `Engine/`. Existing Unity files remain reference-only during new-engine tasks unless the user explicitly includes them.
+- [Unreal/](./Unreal/README.md) is the sole active production area as of 2026-09-16. Load [Unreal/AGENTS.md](./Unreal/AGENTS.md) before any new implementation, research, tooling or documentation work.
+- The current Unity project remains preserved at the repository root. It is reference-only unless the user explicitly reactivates Unity work.
+- The former 2D implementation remains isolated under `Assets/_Project/Legacy2D/`. It is a separate historical reference and must not receive new production work.
+- The proprietary C++ engine remains preserved under [Engine/](./Engine/README.md). Do not extend its renderer, platform shell or runtime. Portable concepts may be deliberately reimplemented or extracted into `Unreal/PortableCore/`; do not silently make `Engine/` an active second production lane.
+- Keep all new Unreal-hosted implementation, portable-core code, documentation, dependencies, tools and generated-output conventions inside `Unreal/`.
 - Shared ownership, Git safety and user-authority rules still apply across the repository. Root routing links may be maintained when needed to keep the two areas discoverable.
 
 ## Repo Management Authority
@@ -23,9 +25,9 @@ This file defines the operating rules for work inside this Unity repository.
 - The user remains the product and creative authority. Gottspan may organize and implement approved work, but does not silently turn provisional design ideas into canon or make release, purchasing, account, or destructive decisions.
 - A specialist agent's task brief can narrow its scope, but cannot override this file or the canonical project documents.
 
-## Scope
+## Preserved Unity Scope
 
-- This is a perspective, elevated top-down fully 3D Unity game. The former 2D top-down prototype is preserved as isolated legacy reference content under `Assets/_Project/Legacy2D/`.
+- The root Unity project is the preserved perspective, elevated top-down fully 3D implementation. The former 2D top-down prototype is preserved as isolated legacy reference content under `Assets/_Project/Legacy2D/`.
 - The project should stay Unity-compatible at all times.
 - Most production work should happen under `Assets/`.
 - Prefer small, verifiable changes over broad refactors.
