@@ -408,13 +408,13 @@ MonoBehaviour:
   centerChunk: {x: 1, y: 0}
   terrainRadiusInChunks: 1
   rockReference: {fileID: 821206193611995965, guid: cdf2a535a70e74d22981b0b4f16aeca5, type: 3}
-  variationEnabled: 0
-  variationSeed: 0
+  variationEnabled: 1
+  variationSeed: 12
   rockBurial: 0.11067194
   maximumRockBurial: 0.74308294
   burialRangeVersion: 1
   maximumRockTilt: 35
-  sandBuildup: 1
+  sandBuildup: 0.25
   sandBuildupVersion: 1
   groundClutter: 1
   pebbleDepth: 0.015
