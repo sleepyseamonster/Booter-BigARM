@@ -21,7 +21,7 @@ editor.
 Build a **hybrid terrain system**:
 
 1. A tiled, multiresolution **heightfield is the authoritative open-ground surface**. It is
-   efficient for queries, collision, drainage, material classification, navigation and distant
+   efficient for queries, collision, fossil drainage, material classification, navigation and distant
    rendering.
 2. A separate, sparse **feature-surface layer** represents shapes a heightfield cannot:
    near-vertical canyon walls, overhangs, alcoves, arches, caves and detached formations.
@@ -30,7 +30,7 @@ Build a **hybrid terrain system**:
 3. Heightfield ground and feature surfaces share one engine-facing surface/query contract,
    material semantics, stable identity system, streaming lifecycle and revision fence.
 4. Terrain generation is a versioned dependency graph, not one noise function. Macro form,
-   hydrology, erosion, sediment, lithology, canyon features, materials, rock placement,
+   paleohydrology, ancient fluvial erosion, dry weathering, sediment, lithology, canyon features, materials, rock placement,
    collision and navigation are explicit stages with recorded inputs and derived outputs.
 5. Authoring is non-destructive. Authored splines, masks, volumes, landmarks, routes and
    protected silhouettes constrain regeneration; they do not bake a permanent world into the
@@ -81,7 +81,36 @@ process taxonomy for this landscape: water incision and sediment transport, slop
 relaxation, and aeolian sand movement should not be collapsed into an undifferentiated noise
 layer. Unity also notes that erosion detail depends on terrain resolution. Our system must
 therefore declare each process's physical sample scale instead of applying the same filter to
-every LOD.
+every LOD. Hydraulic tools are references for reconstructing the planet's ancient formation
+history; they do not imply present-day water.
+
+## World-timescale correction: fossil water, active dry processes
+
+The current world has no natural liquid water, and the user places the end of natural liquid
+water at roughly ten thousand years before the game. Terrain generation therefore has two
+explicit temporal phases:
+
+1. **Ancient formation phase:** reconstruct plausible drainage graphs, watersheds, channel
+   incision, sediment transport and canyon carving. These are paleohydrological construction
+   tools used to produce inherited landforms. They are not runtime weather or water simulation.
+2. **Dry-age phase:** advance the inherited terrain through roughly ten thousand waterless years
+   using wind transport, saltation, dust and sand deposition, thermal/mechanical fracture,
+   gravity-driven rockfall, talus relaxation, dry debris movement and exposure/weathering.
+
+The accepted terrain state contains fossil channels, abandoned basins, dissected canyon systems
+and reworked sediment. It contains no rainfall, flowing rivers, groundwater cycle, wet terrain
+layer, hydraulic runtime process or naturally replenished liquid. A dry channel is classified by
+its ancient catchment and current preservation state, not current discharge.
+
+Ten thousand years is brief on geological timescales. The dry-age phase should preserve the
+large inherited canyon and watershed geometry while adding restrained infill, softened exposed
+edges, rockfall, talus, dust and dune migration. It must not use the dry interval as justification
+to completely regenerate the ancient landforms.
+
+The manifest must record the temporal model explicitly, including an ancient-formation recipe,
+the dry-transition boundary and a configurable `dry_age_years` value whose initial world-facing
+default is approximately 10,000. This number is a creative/world parameter rather than a claim
+that the engine can infer geological chronology.
 
 ## Current-engine audit
 
@@ -93,12 +122,12 @@ The current system is a sound skeleton, not a production terrain system:
 | Deterministic `TerrainRecipe` and `GeneratedId` | Yes. | Replace the three-field recipe with a versioned world-terrain manifest that references stage recipes, source hashes and authored constraint layers. |
 | `terrainSample()` representation-independent comment | Yes; make it a real interface. | Return surface provenance, material, support, revision and query quality; support feature surfaces as well as heightfields. |
 | 256 m regions and bounded asynchronous jobs | Yes as residency/job foundations. | Decouple generation supertiles, render patches, physics tiles and stream regions; add dependency-aware invalidation and adoption budgets. |
-| Shared border evaluation | Yes. | Add explicit border ownership, halos and supertile generation for hydrology/erosion; point sampling alone cannot keep drainage coherent. |
+| Shared border evaluation | Yes. | Add explicit border ownership, halos and supertile generation for paleodrainage/ancient erosion; point sampling alone cannot keep fossil drainage coherent. |
 | Three decimated render LODs with skirts | Preserve as fallback. | Add geometric-error metadata and geomorph/stitch transitions; skirts can hide cracks but do not prevent silhouette popping. |
 | Exact triangle collision from render source | Preserve agreement. | Cook heightfield collision for ordinary ground and feature-mesh collision for exceptional surfaces, both tied to the same surface revision. |
 | Fixed-distance LOD choice at 96/240 m | No as production policy. | Replace with projected-error selection, hysteresis and bounded upload/adoption. |
-| Value-noise height function | Preserve only for compatibility recipes. | Noise becomes one scaffold input. Hydrology, erosion, lithology, constraints and feature construction determine the production terrain. |
-| Random rock slots | Preserve stable-slot identity concept. | Population must consume geology, slope, curvature, exposure, sediment, drainage and authored formation rules. |
+| Value-noise height function | Preserve only for compatibility recipes. | Noise becomes one scaffold input. Paleodrainage, inherited erosion, dry weathering, lithology, constraints and feature construction determine the production terrain. |
+| Random rock slots | Preserve stable-slot identity concept. | Population must consume geology, slope, curvature, exposure, sediment, fossil drainage and authored formation rules. |
 | World-triplanar material and normal maps | Yes as feature-wall baseline. | Add normalized terrain layer weights, height-aware blending, macro variation, distance composites and material diagnostics. |
 | Navigation readiness placeholder | Yes. | Build traversability from the authoritative surface revision, then local navigation tiles and a coarse route graph. |
 
@@ -117,13 +146,14 @@ camera height and target pixel error; it should not be hard-coded globally.
 - world seed and deterministic random-stream namespaces;
 - world metric/axis convention;
 - generation tile, supertile and halo dimensions;
-- references to macro-form, hydrology, erosion, lithology, material and population recipes;
+- references to macro-form, ancient-formation, dry-age, lithology, material and population recipes;
+- temporal parameters including the liquid-water cutoff and dry-age duration;
 - authored constraint layers and their revisions;
 - external input hashes, scale, offset and provenance when height/material data is imported.
 
 `TerrainConstraintLayer`
 
-- guide splines: drainage, canyon centerlines, ridges, routes and formation alignments;
+- guide splines: fossil drainage, canyon centerlines, ridges, routes and formation alignments;
 - scalar/vector masks: elevation target, hardness, erosion resistance, deposition, material,
   protection and exclusion;
 - volumes: flatten, preserve, cut, fill and feature-generation domains;
@@ -131,7 +161,7 @@ camera height and target pixel error; it should not be hard-coded globally.
 - blend radius, priority and composition operator for every constraint.
 
 Constraints are sparse, editable and non-destructive. A change invalidates only intersecting
-generation products plus required hydrology/erosion dependencies.
+generation products plus required paleodrainage/formation dependencies.
 
 ### Canonical generated fields
 
@@ -139,10 +169,11 @@ A generation supertile owns fields at declared sample scales:
 
 - base elevation and final elevation;
 - surface gradient, slope and curvature;
-- drainage direction, catchment/flow accumulation and watershed ID;
-- water/erosion potential and channel class;
+- fossil drainage direction, ancient catchment/flow accumulation and watershed ID;
+- inherited fluvial-incision potential, fossil channel class and preservation state;
 - bedrock elevation, sediment depth and talus/debris depth;
 - lithology/stratum ID, hardness, fracture direction and weathering/exposure;
+- aeolian transport/exposure, dry rockfall and thermal-fracture potential;
 - normalized base-material weights and additive overlay masks;
 - traversability inputs: slope, step, support, clearance and surface hazard;
 - feature descriptors for canyon walls, cliffs, outcrops and formations.
@@ -202,23 +233,23 @@ Profiles may define route shelves, valley floors, ridge crests or canyon cross-s
 constraints in stable priority order with explicit `replace`, `min/cut`, `max/fill`, `add` or
 `blend` operators. Never rely on authoring insertion order.
 
-### 3. Drainage graph
+### 3. Ancient drainage reconstruction
 
-Noise-derived terrain often contains accidental pits and incoherent rivers. Build hydrology on
-a supertile with an outlet policy:
+Noise-derived terrain often contains accidental pits and incoherent fossil channels. Reconstruct
+paleohydrology on a supertile with an ancient outlet policy:
 
-1. apply protected outlets and authored drainage constraints;
+1. apply protected outlets and authored paleodrainage constraints;
 2. resolve unwanted depressions with a Priority-Flood fill/breach policy;
 3. compute continuous flow direction with D-infinity or a validated multiple-flow alternative;
 4. accumulate contributing area in topological order;
-5. classify channels and watersheds;
+5. classify ancient channels and watersheds;
 6. preserve desired closed basins as explicit authored features rather than accidental pits.
 
 D-infinity uses the steepest slope over triangular facets and divides flow between adjacent
 cells. It reduces the rigid eight-direction pattern of D8. The exact policy must be deterministic
 for flats and ties.
 
-### 4. Fluvial erosion and hillslopes
+### 4. Ancient fluvial erosion followed by dry hillslopes
 
 A common geomorphology model is the stream-power law:
 
@@ -226,23 +257,24 @@ A common geomorphology model is the stream-power law:
 E = K * A^m * S^n
 ```
 
-`E` is incision rate, `K` erodibility, `A` drainage area and `S` local channel slope. It should
-operate with lithology-dependent `K`, bounded time/age and authored protections. Hillslope
-diffusion supplies a complementary process:
+`E` is ancient incision rate, `K` erodibility, `A` paleodrainage area and `S` local channel
+slope. It operates only in the ancient formation phase, with lithology-dependent `K`, bounded
+formation age and authored protections. It does not run against the accepted present-day world.
+Hillslope diffusion supplies a complementary construction process:
 
 ```text
 dh/dt = D * laplacian(h) + uplift - incision + deposition
 ```
 
 Thermal/talus relaxation moves material only when slope exceeds a material angle of repose. It
-must conserve tracked mass within the simulation boundary or record boundary flux. Recent
-research shows that debris flow matters on steep, low-drainage slopes where water-only erosion
-and uniform slope relaxation look wrong.
+must conserve tracked mass within the simulation boundary or record boundary flux. Ancient wet
+debris flow may contribute to inherited forms; present-day change is restricted to dry
+rockfall, granular movement and wind-driven transport.
 
 For the first production implementation, use a deterministic bounded authoring/cook pass rather
-than real-time simulation. Prototype graph-based/analytical erosion before committing to
-thousands of iterative droplets. Physically inspired fields and mass accounting matter more
-than simulating geological time literally.
+than real-time simulation. Prototype graph-based/analytical ancient erosion before committing to
+thousands of iterative droplets, then apply a separate dry-age pass. Physically inspired fields,
+phase separation and mass accounting matter more than simulating geological time literally.
 
 ### 5. Sand and aeolian deposition
 
@@ -269,7 +301,7 @@ caps, talus and detached rocks agree rather than appearing as independent decora
 
 ### 7. Canyon and cliff construction
 
-Canyons are generated from a drainage/guide graph and lithology, not a late texture stamp:
+Canyons are inherited from a fossil drainage/guide graph and lithology, not a late texture stamp:
 
 1. define or derive a stable centerline graph, longitudinal grade and catchment;
 2. construct floor width/depth and asymmetric cross-section fields;
@@ -295,7 +327,7 @@ process. Candidate acceptance and type depend on geological fields:
 
 - exposed bedrock/stratum and fracture direction;
 - slope, curvature and surface normal;
-- channel, flood and route exclusion;
+- fossil-channel, ancient-floodplain and route exclusion;
 - sediment/talus depth and depositional direction;
 - distance to parent cliff/outcrop and formation grammar;
 - authored density, silhouette and navigation constraints.
@@ -309,12 +341,12 @@ constraints.
 Base weights are functions of the generated physical fields, for example:
 
 ```text
-raw_i = materialRule_i(height, slope, curvature, stratum, sediment, flow, exposure)
+raw_i = materialRule_i(height, slope, curvature, stratum, sediment, fossilChannel, exposure)
 weight_i = max(raw_i, 0) / sum_j(max(raw_j, 0))
 ```
 
 Keep a small active base-layer set per render tile and store additional overlays such as dust,
-sand, wetness or flow staining separately. Use height-aware blending at contacts. Triplanar
+sand or ancient mineral staining separately. Use height-aware blending at contacts. Triplanar
 projection is appropriate on steep feature walls; gentler ground can use world-aligned or
 terrain parameterization with macro variation. Detail normals must fade before aliasing, and a
 far composite/basemap replaces full layer evaluation at distance.
@@ -326,7 +358,7 @@ again in the shader from unrelated thresholds.
 
 Generation, rendering and residency use related but distinct partitions:
 
-- **generation supertile:** hydrology/erosion domain with halo and deterministic border policy;
+- **generation supertile:** paleodrainage/formation domain with halo and deterministic border policy;
 - **source tile:** durable field storage and invalidation unit;
 - **render patch:** culling and LOD unit;
 - **physics tile:** heightfield or feature-mesh collision adoption unit;
@@ -392,10 +424,11 @@ Every representative terrain corpus must retain:
 
 - deterministic manifest and output hashes;
 - maximum height, normal, material-weight and feature-edge seam error;
-- drainage continuity and watershed/outlet checks across tile borders;
+- fossil-drainage continuity and ancient watershed/outlet checks across tile borders;
+- present-state validation that no active water, rainfall, wetness or hydraulic-runtime field is published;
 - sediment/material mass and normalized-weight checks;
 - slope, curvature, catchment and material histograms;
-- false-color elevation, slope, curvature, flow, sediment, lithology, weights and LOD views;
+- false-color elevation, slope, curvature, fossil flow, sediment, lithology, weights and LOD views;
 - LOD transition pixel-difference/popping measurements;
 - render/collision surface distance and normal disagreement;
 - terrain/collision/navigation revision agreement;
@@ -413,7 +446,7 @@ accepts silhouettes, composition, scale and beauty from retained comparable capt
 - versioned terrain manifest and stage graph;
 - generation supertiles, halos and deterministic border ownership;
 - authored constraints and bounded invalidation;
-- multiscale scaffold plus hydrology, slope/curvature, sediment/talus and lithology fields;
+- multiscale scaffold plus paleohydrology, slope/curvature, sediment/talus, dry-process and lithology fields;
 - hybrid heightfield plus feature-surface contract;
 - field-driven material weights and rock/formation candidates;
 - geometric-error LOD, geomorph/stitch diagnostics and distant composites;
@@ -423,7 +456,7 @@ accepts silhouettes, composition, scale and beauty from retained comparable capt
 ### Prototype before selection
 
 - analytical stream-power erosion versus graph/iterative erosion;
-- D-infinity versus another multiple-flow drainage method;
+- D-infinity versus another multiple-flow paleodrainage method;
 - marching cubes versus dual contouring for bounded canyon feature cells;
 - triangle mesh versus Jolt heightfield collision for normal ground;
 - tiled mesh hierarchy versus geometry clipmaps;
@@ -441,7 +474,8 @@ accepts silhouettes, composition, scale and beauty from retained comparable capt
 ### Reject for the initial system
 
 - one noise function as the production world model;
-- independent per-tile erosion without a halo/global drainage contract;
+- independent per-tile erosion without a halo/global paleodrainage contract;
+- active natural-water, rainfall, river, wetness or hydraulic-runtime systems;
 - full-world dense voxels or SDFs;
 - material selection based only on elevation and slope;
 - baking one permanent game landscape before generator constraints stabilize;

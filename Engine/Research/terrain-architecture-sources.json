@@ -2,7 +2,7 @@
   "schema": "engine.terrain-research-sources",
   "version": 1,
   "retrieved": "2026-09-15",
-  "scope": "Professional procedural terrain architecture, mathematics, streaming, erosion, materials and bounded non-heightfield features",
+  "scope": "Professional procedural terrain architecture, mathematics, ancient paleohydrology, dry landscape processes, streaming, materials and bounded non-heightfield features",
   "sources": [
     {
       "id": "unreal-landscape-technical-guide",
@@ -83,7 +83,7 @@
       "publisher": "Unity Technologies",
       "url": "https://docs.unity3d.com/Packages/com.unity.terrain-tools@5.0/manual/erosion.html",
       "finding": "The tools distinguish hydraulic, thermal and wind erosion, and erosion detail depends on sample resolution.",
-      "decision": "Treat fluvial transport, talus relaxation and aeolian transport as distinct scale-aware stages."
+      "decision": "Use hydraulic/fluvial methods only to reconstruct ancient formation, then stop liquid processes and run distinct dry talus and aeolian stages."
     },
     {
       "id": "perlin-improved-noise",
@@ -112,7 +112,7 @@
       "doi": "10.1145/2461912.2461996",
       "url": "https://doi.org/10.1145/2461912.2461996",
       "finding": "A drainage graph, watersheds, river characterization and procedural patches can generate controllable continuous terrain from a compact sketch.",
-      "decision": "Make drainage topology and guide constraints earlier than detailed height synthesis."
+      "decision": "Make fossil drainage topology and guide constraints earlier than detailed height synthesis; publish no present-day water state."
     },
     {
       "id": "priority-flood",
@@ -123,7 +123,7 @@
       "url": "https://rbarnes.org/sci/2014_depressions.pdf",
       "code": "https://github.com/r-barnes/Barnes2013-Depressions",
       "finding": "Priority-Flood provides a general depression-filling basis and can support flow direction and watershed labeling on regular or irregular terrain.",
-      "decision": "Prototype it for unwanted-pit resolution while retaining explicitly authored closed basins."
+      "decision": "Prototype it for ancient drainage reconstruction and unwanted-pit resolution while retaining explicitly authored fossil closed basins."
     },
     {
       "id": "d-infinity",
@@ -132,7 +132,7 @@
       "authors": ["David Tarboton"],
       "url": "https://hydrology.usu.edu/taudem/taudem5/help/DInfinityFlowDirections.html",
       "finding": "D-infinity derives continuous flow direction from the steepest triangular facet and apportions flow between two neighbors.",
-      "decision": "Prototype against simpler D8 and retain deterministic flat/tie rules."
+      "decision": "Prototype ancient flow reconstruction against simpler D8 and retain deterministic flat/tie rules; do not use it as current water simulation."
     },
     {
       "id": "analytical-erosion-2024",
@@ -141,7 +141,7 @@
       "authors": ["Petros Tzathas", "Boris Gailleton", "Philippe Steer", "Guillaume Cordonnier"],
       "url": "https://www-sop.inria.fr/reves/Basilic/2024/TGSC24/",
       "finding": "Analytical stream-power solutions with multigrid acceleration can bridge fast procedural control and physically grounded large-scale erosion, including hillslopes and landslides.",
-      "decision": "Evaluate before committing to costly droplet or long iterative erosion."
+      "decision": "Evaluate as an offline ancient-formation pass before committing to costly droplet or long iterative erosion; follow with a separate dry-age pass."
     },
     {
       "id": "debris-flow-2024",
@@ -150,7 +150,7 @@
       "authors": ["Aryamaan Jain", "Bedrich Benes", "Guillaume Cordonnier"],
       "url": "https://www-sop.inria.fr/reves/Basilic/2024/JBC24/",
       "finding": "Debris flow complements fluvial erosion on steep, low-drainage terrain where simple slope-reducing erosion becomes unrealistically uniform.",
-      "decision": "Represent debris/talus as a distinct field; preserve full simulation as a later authoring cook."
+      "decision": "Represent present dry talus/rockfall separately from any ancient wet debris history; preserve full simulation as a later authoring cook."
     },
     {
       "id": "windblown-sand-2024",
@@ -159,7 +159,7 @@
       "authors": ["Nicolas Rosset", "Regis Duvigneau", "Adrien Bousseau", "Guillaume Cordonnier"],
       "url": "https://www-sop.inria.fr/reves/Basilic/2024/RDBC24/",
       "finding": "Wind flow, saltation and avalanching reproduce characteristic sand deposition around obstacles and include qualitative validation and source code.",
-      "decision": "Use a separate mobile-sand field and prototype detailed deposition only in bounded zones."
+      "decision": "Use a separate present-day mobile-sand field and prototype detailed dry deposition only in bounded zones."
     },
     {
       "id": "digital-terrain-review-2019",

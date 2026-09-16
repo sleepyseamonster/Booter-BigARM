@@ -9,12 +9,12 @@ it does not claim these systems are implemented.
 
 The first production terrain foundation is done when the engine can deterministically generate,
 stream, render, collide with, query and navigate a representative landscape corpus containing
-open earth, sand, shale, hills, drainage cuts, cliffs and one bounded canyon-wall/overhang
+open earth, sand, shale, hills, fossil drainage cuts, cliffs and one bounded canyon-wall/overhang
 feature, while preserving authored constraints and stable runtime deltas.
 
 Completion requires:
 
-- no border cracks or material/drainage discontinuities above recorded tolerances;
+- no border cracks or material/fossil-drainage discontinuities above recorded tolerances;
 - smooth measured LOD transitions from ground-level and distant views;
 - matching render, collision and navigation surface revisions;
 - field-driven terrain materials and geologically constrained rocks/formations;
@@ -33,14 +33,16 @@ terrain destruction, full-world voxels, a visual node editor or a permanent land
 ### T01 — Terrain contracts and representative corpus
 
 Define `WorldTerrainManifest`, source-field and derived-product revisions, tile/supertile/halo
-addressing, feature IDs, constraint composition and surface query results. Add a small corpus:
-open plain, rolling hills, drainage basin, layered mesa/cliff and bounded canyon feature domain.
+addressing, feature IDs, constraint composition, ancient-formation/dry-age phase metadata and
+surface query results. Add a small corpus: open plain, rolling hills, fossil drainage basin,
+layered mesa/cliff and bounded canyon feature domain.
 
 Proof:
 
 - strict document round trips and migration rejection;
 - negative/large coordinates and stable identity;
 - dependency/invalidation graph tests;
+- `dry_age_years` and the liquid-water cutoff round-trip as explicit world parameters;
 - current terrain v1-v3 continue to load unchanged;
 - representative inputs and expected diagnostics are durable, not a permanent game landscape.
 
@@ -70,30 +72,38 @@ Proof:
 - undo/redo/restart preserve exact constraint identity;
 - unchanged areas retain hashes and stable IDs.
 
-### T04 — Hydrology and landform graph
+### T04 — Paleohydrology and fossil landform graph
 
 Prototype Priority-Flood plus D-infinity against simpler alternatives on the corpus. Establish
-outlet/closed-basin policy, drainage direction, accumulation, channel classes, watersheds and
-guide-graph integration. Select with correctness, controllability and cost data.
+ancient outlet/closed-basin policy, fossil drainage direction, accumulation, channel classes,
+watersheds and guide-graph integration. These fields reconstruct terrain formation and publish
+no active water. Select with correctness, controllability and cost data.
 
 Proof:
 
 - every non-preserved basin has a deterministic outlet;
-- drainage is continuous across source-tile borders;
+- fossil drainage is continuous across source-tile borders;
 - no cycles or unresolved flats;
-- authored canyon/drainage guides retain grade and catchment constraints;
+- authored canyon/paleodrainage guides retain grade and ancient catchment constraints;
+- accepted present-state output contains no rainfall, river flow, wetness or hydraulic runtime state;
 - p50/p95/p99 stage time and memory recorded.
 
-### T05 — Erosion, sediment, talus and lithology prototype
+### T05 — Ancient erosion, dry aging, sediment, talus and lithology prototype
 
 Implement layered bedrock/lithology and sediment fields. Compare bounded analytical stream-power
 erosion with a graph/iterative reference; add hillslope/talus relaxation and mass accounting.
-Select the least complex model that gives coherent drainage, mesas, cuts and depositional forms.
+The fluvial pass belongs exclusively to ancient formation. Then apply roughly ten thousand years
+of configurable dry aging through aeolian transport, thermal/mechanical fracture, dry rockfall,
+talus and exposure. Select the least complex model that gives coherent fossil drainage, mesas,
+cuts and depositional forms.
 
 Proof:
 
 - hardness changes erosion in the expected direction;
 - sediment/talus respects material repose parameters;
+- phase receipts prove that liquid-driven processes stop before the dry-age pass;
+- changing dry age affects preservation, infill and exposure without creating active water;
+- the roughly ten-thousand-year dry pass cannot replace or radically re-carve inherited canyon geometry;
 - mass/flux error is bounded and recorded;
 - halo/supertile output is seam-free;
 - repeat runs are bit-stable or use a documented numerical tolerance and platform policy.
@@ -126,7 +136,7 @@ Proof:
 
 ### T08 — Terrain material framework
 
-Cook normalized physical base weights from lithology, sediment, slope, curvature, flow and
+Cook normalized physical base weights from lithology, sediment, slope, curvature, fossil channels and
 exposure. Support a bounded active layer set, height-aware blending, steep-wall triplanar
 projection, macro variation, detail-normal fade and distant composites. Add false-color field
 and layer modes.
@@ -142,7 +152,7 @@ Proof:
 ### T09 — Geological rock and formation integration
 
 Replace random terrain scatter with stable candidates evaluated from exposure, stratum, fracture,
-slope, curvature, sediment, drainage and authored formation rules. Integrate current native rock
+slope, curvature, sediment, fossil drainage and authored formation rules. Integrate current native rock
 assets without changing their authored recipes.
 
 Proof:
@@ -256,7 +266,7 @@ user's goal. These corrections are already incorporated:
 1. **The draft treated one tile size as universal.** Corrected by separating generation,
    source, render, physics, navigation and streaming partitions.
 2. **The draft placed erosion before authored constraints.** Corrected because constraints must
-   participate in drainage and erosion rather than patch the result afterward.
+   participate in paleodrainage and ancient erosion rather than patch the result afterward.
 3. **The draft could have made rocks a late decorative pass.** Corrected by making lithology,
    exposure, sediment and fracture fields inputs to stable formation candidates.
 4. **The draft risked committing to voxels for canyons.** Corrected to mesh-backed feature
@@ -276,4 +286,4 @@ user's goal. These corrections are already incorporated:
 Implement **T01 only** as the next terrain code batch. It creates the contracts and corpus that
 all mathematical and rendering experiments use. T01 must not replace the current generator or
 begin aesthetic tuning. Once T01 is verified, T02 and T03 establish the field/constraint seams
-before hydrology or erosion algorithms are selected.
+before paleohydrology or ancient-erosion algorithms are selected.

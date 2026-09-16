@@ -19,6 +19,7 @@ The game is about endurance, deliberate movement, and living inside a hostile sy
 
 - The world is a planet-wide canyon system carved into deep chasms.
 - There are no oceans, rivers, rain, or plant life.
+- Natural liquid water has not existed on the planet for roughly ten thousand years. Dry channels, canyons and sedimentary forms may preserve much older hydrological history, but there is no active natural water cycle or current fluvial landscape process.
 - The sky is permanently orange and the world reads in reds, rusts, and iron hues.
 - The setting is procedurally generated and effectively infinite.
 - Ancient ruins, broken war machines, and buried megastructures appear throughout the terrain.

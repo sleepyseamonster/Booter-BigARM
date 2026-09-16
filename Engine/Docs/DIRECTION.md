@@ -14,6 +14,8 @@ Research and build the engine foundation before extending the rock generator. Th
 
 Updated 2026-09-15: landscape quality, procedural terrain and navigation are central game systems. The terrain architecture must support open ground, hills, sand, earth, shale, rocks, formations, cliffs and canyons as one coherent generated world. Canyon implementation follows the hybrid terrain foundation rather than leading it, but it is no longer excluded from the architecture. Use the [professional terrain research](../Research/PROCEDURAL_TERRAIN_ARCHITECTURE_RESEARCH.md) and [audited implementation plan](./PROCEDURAL_TERRAIN_IMPLEMENTATION_PLAN.md).
 
+World-process constraint, 2026-09-15: natural liquid water has been absent for roughly ten thousand years. Paleohydrology and ancient fluvial erosion may construct inherited channels and canyons during offline generation, followed by a dry-age phase. Present terrain supports aeolian sand/dust, thermal and mechanical weathering, dry rockfall, talus and exposure; it does not publish active rain, rivers, wetness or hydraulic runtime simulation.
+
 The initial foundation should establish a reproducible executable, graphics, input, diagnostics, resource ownership and development tools. A complete gameplay loop or finished landscape is not the first milestone.
 
 ## Current implementation depth
