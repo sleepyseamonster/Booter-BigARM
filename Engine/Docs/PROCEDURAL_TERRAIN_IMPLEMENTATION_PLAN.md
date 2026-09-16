@@ -5,6 +5,9 @@ Created and audited 2026-09-15 from the
 This is the controlling plan for the next terrain program. It extends the whole-engine roadmap;
 it does not claim these systems are implemented.
 
+Execution update, 2026-09-15: **T01 is complete** as the production data-contract boundary. See
+[the retained result](./TERRAIN_CONTRACT_T01_RESULT.md). T02 is next. Later stages remain planned.
+
 ## Done definition
 
 The first production terrain foundation is done when the engine can deterministically generate,
@@ -30,7 +33,7 @@ terrain destruction, full-world voxels, a visual node editor or a permanent land
 
 ## Sequence
 
-### T01 — Terrain contracts and representative corpus
+### T01 — Terrain contracts and representative corpus — complete
 
 Define `WorldTerrainManifest`, source-field and derived-product revisions, tile/supertile/halo
 addressing, feature IDs, constraint composition, ancient-formation/dry-age phase metadata and

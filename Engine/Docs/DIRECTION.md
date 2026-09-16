@@ -18,6 +18,8 @@ World-process constraint, 2026-09-15: natural liquid water has been absent for r
 
 Environmental constraint, corrected 2026-09-15: windstorms, dust storms and violent electrical storms are present hazards. Planetary resonance is lore context only and creates no ambient vibration, earthquake simulation, stress field or automatic terrain change. Any earthquake is an explicitly authored story moment. Follow the [planetary environment contract](./PLANETARY_ENVIRONMENT_CONTRACT.md) for storm state, sparse terrain deltas and the scripted-earthquake boundary.
 
+Traversal priority, 2026-09-15: terrain silhouette and physical navigation are primary gameplay systems. Terrain, rocks and formations must publish shared surface semantics for support, loose footing, slope, slide risk, vault edges, climb candidates and blocked walls. Character movement, animation, navigation, collision and procedural placement consume that common truth; none may infer a competing terrain model from render geometry alone.
+
 The initial foundation should establish a reproducible executable, graphics, input, diagnostics, resource ownership and development tools. A complete gameplay loop or finished landscape is not the first milestone.
 
 ## Current implementation depth

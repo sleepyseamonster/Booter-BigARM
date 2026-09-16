@@ -1,0 +1,57 @@
+{
+  "kind": "engine.terrain-corpus",
+  "version": 1,
+  "payload": {
+    "technical_only": true,
+    "cases": [
+      {
+        "id": "open_plain",
+        "address": [0, 0],
+        "silhouette": "Low open horizon with shallow sediment variation",
+        "surfaces": ["sediment", "gravel", "sand"],
+        "traversal": ["stable_support", "walk", "loose"],
+        "feature_surface": false
+      },
+      {
+        "id": "rolling_ridges",
+        "address": [1, -1],
+        "silhouette": "Broad asymmetric ridges with readable crests and descents",
+        "surfaces": ["sediment", "shale", "gravel"],
+        "traversal": ["stable_support", "walk", "slide"],
+        "feature_surface": false
+      },
+      {
+        "id": "fossil_drainage",
+        "address": [-2, 3],
+        "silhouette": "Inherited dry channel with banks and depositional floor",
+        "surfaces": ["bedrock", "sediment", "gravel", "sand"],
+        "traversal": ["stable_support", "walk", "vault_edge", "slide", "loose"],
+        "feature_surface": false
+      },
+      {
+        "id": "layered_mesa",
+        "address": [4000000000000, -4000000000000],
+        "silhouette": "Layered mesa and cliff steps with talus apron",
+        "surfaces": ["bedrock", "shale", "talus"],
+        "traversal": ["stable_support", "walk", "vault_edge", "climb", "slide", "loose", "blocked"],
+        "feature_surface": true
+      },
+      {
+        "id": "formation_ridge",
+        "address": [-4000000000000, 4000000000000],
+        "silhouette": "Boulder formation and iron-rich ridge with navigable gaps",
+        "surfaces": ["bedrock", "shale", "talus", "gravel"],
+        "traversal": ["stable_support", "walk", "vault_edge", "climb", "slide", "loose", "blocked"],
+        "feature_surface": true
+      },
+      {
+        "id": "bounded_wall_feature",
+        "address": [8, 8],
+        "silhouette": "Technical wall and overhang domain for non-heightfield queries",
+        "surfaces": ["bedrock", "shale", "talus"],
+        "traversal": ["stable_support", "walk", "climb", "slide", "blocked"],
+        "feature_surface": true
+      }
+    ]
+  }
+}

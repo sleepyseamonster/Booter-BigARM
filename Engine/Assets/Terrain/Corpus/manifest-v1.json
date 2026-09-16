@@ -1,0 +1,41 @@
+{
+  "kind": "engine.world-terrain-manifest",
+  "version": 1,
+  "payload": {
+    "dataset": "technical-terrain-corpus",
+    "world_seed": 1049,
+    "generator_version": 1,
+    "grid": {
+      "tile_meters": 256,
+      "tiles_per_supertile": 4,
+      "halo_meters": 64
+    },
+    "temporal": {
+      "ancient_formation_version": 1,
+      "dry_age_version": 1,
+      "liquid_water_cutoff_years": 10000,
+      "dry_age_years": 10000,
+      "active_natural_water": false
+    },
+    "revisions": {
+      "manifest": 1,
+      "constraints": 1,
+      "source_fields": 1,
+      "storm_forcing": 1
+    },
+    "constraint_layers": [
+      {
+        "id": "technical_routes",
+        "revision": 1,
+        "priority": 100,
+        "composition": "protect"
+      },
+      {
+        "id": "technical_silhouette_guides",
+        "revision": 1,
+        "priority": 200,
+        "composition": "replace"
+      }
+    ]
+  }
+}

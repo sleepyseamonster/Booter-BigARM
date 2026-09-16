@@ -1,0 +1,22 @@
+{
+  "kind": "engine.terrain-contract-result",
+  "payload": {
+    "cases": 6,
+    "constraint_layers": 2,
+    "feature_domains": 3,
+    "large_address": [
+      4000000000000,
+      -4000000000000
+    ],
+    "legacy_versions": 3,
+    "negative_supertile": [
+      -1,
+      -1
+    ],
+    "passed": true,
+    "products": 9,
+    "proof_limit": "Contracts, identities, revisions and technical corpus only; no production terrain generation, final movement thresholds, visual acceptance or Windows proof.",
+    "surface_classes": 6
+  },
+  "version": 1
+}
