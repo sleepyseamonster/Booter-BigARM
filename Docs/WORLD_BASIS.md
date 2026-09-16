@@ -36,9 +36,9 @@ The game is about endurance, deliberate movement, and living inside a hostile sy
 
 - The world has windstorms and dense dust storms.
 - Electrical storms are violent and dangerous.
-- The planet experiences a persistent low vibration or resonance. This is not a conventional Earth-style earthquake caused by an ordinary sudden tectonic slip.
-- A resonance episode may continue for weeks or months. It is usually mild at any instant, but the planet is continually shifting and its accumulated effects can shape terrain.
-- Exact storm behavior, the physical cause of the resonance and its final gameplay consequences remain open for technical and creative development. The engine must preserve these facts without reducing the resonance to occasional short earthquake events.
+- The setting includes a mild, long-duration planetary resonance or shifting-world idea rather than ordinary Earth-style tectonic earthquakes. This is lore context and does not require the world to vibrate during gameplay.
+- If an earthquake appears in the game, it will be an explicitly scripted story moment rather than an ambient or recurring simulation.
+- Exact storm behavior, the physical cause of the resonance and its narrative meaning remain open for creative development.
 
 ## Survival Rules
 

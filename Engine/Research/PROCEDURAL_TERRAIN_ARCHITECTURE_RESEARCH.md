@@ -112,13 +112,12 @@ the dry-transition boundary and a configurable `dry_age_years` value whose initi
 default is approximately 10,000. This number is a creative/world parameter rather than a claim
 that the engine can infer geological chronology.
 
-Current dry conditions include windstorms, dust storms and violent electrical storms. The planet
-also has a mild low-frequency resonance that can persist for weeks or months. This is not modeled
-as a conventional short tectonic earthquake. Terrain fields therefore include susceptibility to
-aeolian transport, electrical exposure, fracture fatigue, granular creep, rockfall and talus
-release. Long-lived environment state may accumulate stress; accepted permanent changes are
-bounded deterministic events and sparse deltas rather than continuous whole-world deformation.
-The [planetary environment contract](../Docs/PLANETARY_ENVIRONMENT_CONTRACT.md) owns this seam.
+Current dry conditions include windstorms, dust storms and violent electrical storms. Planetary
+resonance is lore context only: terrain does not consume a resonance field, accumulate resonance
+stress or mutate automatically from ambient vibration. If an earthquake occurs, an authored
+story sequence supplies its exact presentation and selected physical changes. The terrain system
+retains only the storm-forcing seam described by the
+[planetary environment contract](../Docs/PLANETARY_ENVIRONMENT_CONTRACT.md).
 
 ## Current-engine audit
 
@@ -182,7 +181,7 @@ A generation supertile owns fields at declared sample scales:
 - bedrock elevation, sediment depth and talus/debris depth;
 - lithology/stratum ID, hardness, fracture direction and weathering/exposure;
 - aeolian transport/exposure, dry rockfall and thermal-fracture potential;
-- electrical exposure plus resonance sensitivity and accumulated-stress inputs;
+- electrical exposure and strike-attraction inputs;
 - normalized base-material weights and additive overlay masks;
 - traversability inputs: slope, step, support, clearance and surface hazard;
 - feature descriptors for canyon walls, cliffs, outcrops and formations.
@@ -299,25 +298,17 @@ susceptibility. Coarse unloaded-region evolution uses bounded analytic intervals
 may resolve local transport. Both paths must produce the same stable event/delta identities for
 accepted permanent changes.
 
-### 6. Resonance and electrical forcing
-
-The persistent planetary resonance is represented by low-frequency regional state and terrain
-susceptibility, not by translating the terrain mesh or collider. A simple accumulation model is:
-
-```text
-stress_next = clamp(stress + exposure * amplitude * duration - relaxation, 0, capacity)
-release when stress_next >= threshold(stable feature ID, lithology, support)
-```
-
-Release candidates include bounded rockfall, fracture growth, granular creep and talus movement.
-The model needs deterministic interval integration so weeks of unloaded time do not require
-millions of fixed ticks. Visual vibration, audio and haptics consume the same episode state but
-cannot change authoritative stress.
+### 6. Electrical forcing and scripted earthquakes
 
 Electrical storms expose a coarse charge/severity field and stable local strike candidates. A
 strike may produce a bounded hazard or landscape-change proposal. Exact strike products and
 material transformations remain creative decisions; the engine contract requires identity,
 bounds, revision and transactional acceptance rather than a predetermined effect.
+
+Planetary resonance introduces no terrain algorithm or runtime field. A scripted earthquake may
+request specific rockfalls, fractures, collapses or route changes from a future narrative
+sequence. Those changes are authored, bounded and transactional; they are not generated from a
+background stress accumulator.
 
 ### 7. Strata and lithology
 
@@ -460,8 +451,8 @@ Every representative terrain corpus must retain:
 - maximum height, normal, material-weight and feature-edge seam error;
 - fossil-drainage continuity and ancient watershed/outlet checks across tile borders;
 - present-state validation that no active water, rainfall, wetness or hydraulic-runtime field is published;
-- environment-episode continuity and deterministic stress/change results across unload/reload;
-- validation that presentation vibration cannot move authoritative terrain or collision;
+- storm-episode continuity and deterministic accepted changes across unload/reload;
+- validation that no resonance/vibration runtime field exists in ordinary terrain state;
 - sediment/material mass and normalized-weight checks;
 - slope, curvature, catchment and material histograms;
 - false-color elevation, slope, curvature, fossil flow, sediment, lithology, weights and LOD views;
@@ -487,8 +478,8 @@ accepts silhouettes, composition, scale and beauty from retained comparable capt
 - field-driven material weights and rock/formation candidates;
 - geometric-error LOD, geomorph/stitch diagnostics and distant composites;
 - revision-fenced render/collision/navigation products;
-- AI-callable inspect/preview/apply/regenerate/validate operations.
-- a persistent-environment input seam and sparse-delta output for storm/resonance terrain forcing.
+- AI-callable inspect/preview/apply/regenerate/validate operations;
+- a persistent storm-input seam and sparse-delta output for storm terrain forcing.
 
 ### Prototype before selection
 

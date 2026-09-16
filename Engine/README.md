@@ -37,7 +37,7 @@ The native application renders a perspective fixture and interactive inspector o
 | Transferred rock/ground textures and material mappings | [Surface library](./Assets/SurfaceLibrary/README.md) |
 | Texture formats, cooking, loading and material sequence | [Texture research](./Research/TEXTURE_SYSTEM_RESEARCH.md), [implementation plan](./Docs/TEXTURE_SYSTEM_PLAN.md) |
 | Professional procedural terrain, canyon-ready architecture and build sequence | [Terrain architecture research](./Research/PROCEDURAL_TERRAIN_ARCHITECTURE_RESEARCH.md), [source ledger](./Research/terrain-architecture-sources.json), [implementation plan](./Docs/PROCEDURAL_TERRAIN_IMPLEMENTATION_PLAN.md) |
-| Wind, dust, electrical storms and persistent planetary resonance | [Planetary environment and landscape contract](./Docs/PLANETARY_ENVIRONMENT_CONTRACT.md) |
+| Wind, dust and electrical storms; lore-only resonance and scripted earthquakes | [Planetary environment and landscape contract](./Docs/PLANETARY_ENVIRONMENT_CONTRACT.md) |
 | Environment checks, source preparation and experiment receipts | [Preparation tools](./Tools/README.md) |
 | Repeatable working procedures | [Dependency evaluation](./SOPs/EVALUATE_DEPENDENCY.md), [experiments](./SOPs/RUN_EXPERIMENT.md), [handoffs](./SOPs/SESSION_HANDOFF.md) |
 

@@ -16,7 +16,7 @@ Updated 2026-09-15: landscape quality, procedural terrain and navigation are cen
 
 World-process constraint, 2026-09-15: natural liquid water has been absent for roughly ten thousand years. Paleohydrology and ancient fluvial erosion may construct inherited channels and canyons during offline generation, followed by a dry-age phase. Present terrain supports aeolian sand/dust, thermal and mechanical weathering, dry rockfall, talus and exposure; it does not publish active rain, rivers, wetness or hydraulic runtime simulation.
 
-Environmental constraint, 2026-09-15: windstorms, dust storms and violent electrical storms are present hazards. The planet also has a mild low-frequency resonance that can persist for weeks or months; it is not a conventional brief Earth-style tectonic earthquake. Accumulated resonance and storm forcing may shape susceptible terrain. Follow the [planetary environment contract](./PLANETARY_ENVIRONMENT_CONTRACT.md): persistent environment state and sparse durable terrain deltas, with presentation separated from authoritative physics.
+Environmental constraint, corrected 2026-09-15: windstorms, dust storms and violent electrical storms are present hazards. Planetary resonance is lore context only and creates no ambient vibration, earthquake simulation, stress field or automatic terrain change. Any earthquake is an explicitly authored story moment. Follow the [planetary environment contract](./PLANETARY_ENVIRONMENT_CONTRACT.md) for storm state, sparse terrain deltas and the scripted-earthquake boundary.
 
 The initial foundation should establish a reproducible executable, graphics, input, diagnostics, resource ownership and development tools. A complete gameplay loop or finished landscape is not the first milestone.
 
