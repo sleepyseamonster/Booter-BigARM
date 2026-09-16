@@ -32,6 +32,14 @@ The game is about endurance, deliberate movement, and living inside a hostile sy
 - The playable day/night cycle moves between brighter sunset and deeper twilight. It never becomes conventional noon or full night.
 - The low sun angle makes long shadows a stable part of navigation, concealment, danger, and environmental readability rather than a purely visual effect.
 
+## Atmospheric and Planetary Hazards
+
+- The world has windstorms and dense dust storms.
+- Electrical storms are violent and dangerous.
+- The planet experiences a persistent low vibration or resonance. This is not a conventional Earth-style earthquake caused by an ordinary sudden tectonic slip.
+- A resonance episode may continue for weeks or months. It is usually mild at any instant, but the planet is continually shifting and its accumulated effects can shape terrain.
+- Exact storm behavior, the physical cause of the resonance and its final gameplay consequences remain open for technical and creative development. The engine must preserve these facts without reducing the resonance to occasional short earthquake events.
+
 ## Survival Rules
 
 - There is no water in the world.

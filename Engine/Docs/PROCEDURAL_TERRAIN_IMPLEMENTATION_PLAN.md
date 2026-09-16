@@ -34,7 +34,9 @@ terrain destruction, full-world voxels, a visual node editor or a permanent land
 
 Define `WorldTerrainManifest`, source-field and derived-product revisions, tile/supertile/halo
 addressing, feature IDs, constraint composition, ancient-formation/dry-age phase metadata and
-surface query results. Add a small corpus: open plain, rolling hills, fossil drainage basin,
+the persistent-environment forcing revision consumed from the world simulation. Define sparse,
+stable terrain-change event/delta results; terrain does not own storm scheduling or the world
+clock. Add a small corpus: open plain, rolling hills, fossil drainage basin,
 layered mesa/cliff and bounded canyon feature domain.
 
 Proof:
@@ -43,6 +45,7 @@ Proof:
 - negative/large coordinates and stable identity;
 - dependency/invalidation graph tests;
 - `dry_age_years` and the liquid-water cutoff round-trip as explicit world parameters;
+- environment forcing is revision-fenced and presentation-only vibration cannot mutate terrain;
 - current terrain v1-v3 continue to load unchanged;
 - representative inputs and expected diagnostics are durable, not a permanent game landscape.
 
@@ -97,6 +100,9 @@ of configurable dry aging through aeolian transport, thermal/mechanical fracture
 talus and exposure. Select the least complex model that gives coherent fossil drainage, mesas,
 cuts and depositional forms.
 
+Add susceptibility fields for wind transport, electrical exposure, resonance fatigue, granular
+creep, rockfall and talus release. This stage does not implement the storm scheduler.
+
 Proof:
 
 - hardness changes erosion in the expected direction;
@@ -104,6 +110,7 @@ Proof:
 - phase receipts prove that liquid-driven processes stop before the dry-age pass;
 - changing dry age affects preservation, infill and exposure without creating active water;
 - the roughly ten-thousand-year dry pass cannot replace or radically re-carve inherited canyon geometry;
+- susceptibility and accumulated-stress integration are deterministic across interval subdivision;
 - mass/flux error is bounded and recorded;
 - halo/supertile output is seam-free;
 - repeat runs are bit-stable or use a documented numerical tolerance and platform policy.
@@ -192,16 +199,23 @@ Proof:
 - cross-tile paths, unload/reload and blocked-route regeneration behave deterministically;
 - no traversal into missing collision or unsupported feature surfaces.
 
-### T12 — Sand transport and ground/feature contact polish
+### T12 — Dry transport, environmental forcing and ground/feature contacts
 
 Add a separate mobile-sand depth/material stage. Begin with wind exposure, obstacle shadow and
 repose-based deposition; run high-detail transport only in bounded zones if measurements and
-visual comparisons justify it. Connect sand, talus, debris and contact blending to rocks/walls.
+visual comparisons justify it. Consume persistent wind/dust/electrical/resonance state through
+the T01 forcing seam. Resolve only bounded local effects and publish accepted rockfall, fracture,
+creep, dune movement or strike changes as stable sparse deltas. Connect sand, talus, debris and
+contact blending to rocks/walls.
 
 Proof:
 
 - sand does not rewrite bedrock identity;
 - border continuity and mass/flux diagnostics;
+- long resonance episodes integrate without unbounded fixed-tick catch-up;
+- unloaded and loaded interval evaluation agree on stable accepted event identities;
+- presentation camera/audio/particle signals cannot modify terrain or collision;
+- permanent changes are bounded, revisioned and survive unload/reload/restart;
 - formation contacts do not float or form uniform halos;
 - retained before/after views and cost data support adoption.
 

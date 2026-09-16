@@ -112,6 +112,14 @@ the dry-transition boundary and a configurable `dry_age_years` value whose initi
 default is approximately 10,000. This number is a creative/world parameter rather than a claim
 that the engine can infer geological chronology.
 
+Current dry conditions include windstorms, dust storms and violent electrical storms. The planet
+also has a mild low-frequency resonance that can persist for weeks or months. This is not modeled
+as a conventional short tectonic earthquake. Terrain fields therefore include susceptibility to
+aeolian transport, electrical exposure, fracture fatigue, granular creep, rockfall and talus
+release. Long-lived environment state may accumulate stress; accepted permanent changes are
+bounded deterministic events and sparse deltas rather than continuous whole-world deformation.
+The [planetary environment contract](../Docs/PLANETARY_ENVIRONMENT_CONTRACT.md) owns this seam.
+
 ## Current-engine audit
 
 The current system is a sound skeleton, not a production terrain system:
@@ -174,6 +182,7 @@ A generation supertile owns fields at declared sample scales:
 - bedrock elevation, sediment depth and talus/debris depth;
 - lithology/stratum ID, hardness, fracture direction and weathering/exposure;
 - aeolian transport/exposure, dry rockfall and thermal-fracture potential;
+- electrical exposure plus resonance sensitivity and accumulated-stress inputs;
 - normalized base-material weights and additive overlay masks;
 - traversability inputs: slope, step, support, clearance and surface hazard;
 - feature descriptors for canyon walls, cliffs, outcrops and formations.
@@ -285,7 +294,32 @@ Run detailed obstacle deposition only in bounded authored or representative zone
 is measured. Windblown-sand research supports coupling wind transport with saltation and
 avalanching rather than painting dunes with unrelated noise.
 
-### 6. Strata and lithology
+Storm wind is a time-varying forcing input, while the terrain owns mobile-sediment capacity and
+susceptibility. Coarse unloaded-region evolution uses bounded analytic intervals; loaded regions
+may resolve local transport. Both paths must produce the same stable event/delta identities for
+accepted permanent changes.
+
+### 6. Resonance and electrical forcing
+
+The persistent planetary resonance is represented by low-frequency regional state and terrain
+susceptibility, not by translating the terrain mesh or collider. A simple accumulation model is:
+
+```text
+stress_next = clamp(stress + exposure * amplitude * duration - relaxation, 0, capacity)
+release when stress_next >= threshold(stable feature ID, lithology, support)
+```
+
+Release candidates include bounded rockfall, fracture growth, granular creep and talus movement.
+The model needs deterministic interval integration so weeks of unloaded time do not require
+millions of fixed ticks. Visual vibration, audio and haptics consume the same episode state but
+cannot change authoritative stress.
+
+Electrical storms expose a coarse charge/severity field and stable local strike candidates. A
+strike may produce a bounded hazard or landscape-change proposal. Exact strike products and
+material transformations remain creative decisions; the engine contract requires identity,
+bounds, revision and transactional acceptance rather than a predetermined effect.
+
+### 7. Strata and lithology
 
 Evaluate a 3D layer coordinate rather than assigning materials from height alone:
 
@@ -299,7 +333,7 @@ response. Bedrock and sediment are separate layers. Exposed strata drive canyon-
 ledge formation and rock populations. This provides visual causality: shale bands, resistant
 caps, talus and detached rocks agree rather than appearing as independent decoration.
 
-### 7. Canyon and cliff construction
+### 8. Canyon and cliff construction
 
 Canyons are inherited from a fossil drainage/guide graph and lithology, not a late texture stamp:
 
@@ -320,7 +354,7 @@ multiresolution volumetric feature cells need crack-free transitions. We should 
 only for a representative canyon feature, then select based on topology, cracks, triangle cost,
 collision cooking and authoring behavior.
 
-### 8. Rock and formation placement
+### 9. Rock and formation placement
 
 Generate stable candidates from a deterministic spatial lattice or hierarchical blue-noise
 process. Candidate acceptance and type depend on geological fields:
@@ -336,7 +370,7 @@ Formations are structured groups with a stable parent ID and stable child IDs. S
 one formation type. The existing rock generator supplies shapes; terrain supplies context and
 constraints.
 
-### 9. Material weights
+### 10. Material weights
 
 Base weights are functions of the generated physical fields, for example:
 
@@ -426,6 +460,8 @@ Every representative terrain corpus must retain:
 - maximum height, normal, material-weight and feature-edge seam error;
 - fossil-drainage continuity and ancient watershed/outlet checks across tile borders;
 - present-state validation that no active water, rainfall, wetness or hydraulic-runtime field is published;
+- environment-episode continuity and deterministic stress/change results across unload/reload;
+- validation that presentation vibration cannot move authoritative terrain or collision;
 - sediment/material mass and normalized-weight checks;
 - slope, curvature, catchment and material histograms;
 - false-color elevation, slope, curvature, fossil flow, sediment, lithology, weights and LOD views;
@@ -452,6 +488,7 @@ accepts silhouettes, composition, scale and beauty from retained comparable capt
 - geometric-error LOD, geomorph/stitch diagnostics and distant composites;
 - revision-fenced render/collision/navigation products;
 - AI-callable inspect/preview/apply/regenerate/validate operations.
+- a persistent-environment input seam and sparse-delta output for storm/resonance terrain forcing.
 
 ### Prototype before selection
 
