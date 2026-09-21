@@ -744,6 +744,16 @@ namespace BooterBigArm.Editor
                 var cameraRig = FindComponents<TopDown3DCameraRig>(roots).SingleOrDefault();
                 if (cameraRig != null
                     && (!Mathf.Approximately(
+                            cameraRig.MinimumPitchDegrees,
+                            TopDown3DCameraRig.DefaultMinimumPitchDegrees)
+                        || !cameraRig.TiltShiftDepthOfFieldEnabled
+                        || !Mathf.Approximately(
+                            cameraRig.DepthOfFieldFocalLength,
+                            TopDown3DCameraRig.DefaultDepthOfFieldFocalLength)
+                        || !Mathf.Approximately(
+                            cameraRig.DepthOfFieldAperture,
+                            TopDown3DCameraRig.DefaultDepthOfFieldAperture)
+                        || !Mathf.Approximately(
                             cameraRig.MaximumLookAheadDistance,
                             TopDown3DCameraRig.DefaultMaximumLookAheadDistance)
                         || !Mathf.Approximately(
@@ -753,7 +763,7 @@ namespace BooterBigArm.Editor
                             cameraRig.LookAheadReturnSpeed,
                             TopDown3DCameraRig.DefaultLookAheadReturnSpeed)))
                 {
-                    errors.Add("TopDown3DPrototype camera look-ahead range and outward/return speeds must match the canonical tuning.");
+                    errors.Add("TopDown3DPrototype camera horizon pitch, tilt-shift depth of field, and look-ahead tuning must match the canonical values.");
                 }
 
                 var bigArm = FindComponents<TopDown3DBigArmFollower>(roots).SingleOrDefault();

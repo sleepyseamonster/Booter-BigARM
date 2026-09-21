@@ -7,8 +7,9 @@ For the perspective lane:
 - use a 3D `Rigidbody` on XZ with Y as elevation;
 - project movement through the camera basis onto the traversal plane;
 - use an elevated perspective camera with serialized pitch, yaw, distance, field of view, damping, and obstruction values;
-- use right-stick horizontal orbit and constrained vertical pitch by default; while the gamepad left trigger is held, suppress orbit and use the right stick to translate the framing target across the XZ plane without blocking player movement;
+- use right-stick horizontal orbit and constrained vertical pitch by default; allow the player to lower pitch to `26` degrees to reveal more horizon while preserving the elevated top-down identity; while the gamepad left trigger is held, suppress orbit and use the right stick to translate the framing target across the XZ plane without blocking player movement;
 - limit look-ahead translation to `12` meters, move outward at `12.6 m/s` (three times normal run speed), and recenter at `37.8 m/s` (three times the outward speed) whenever the stick or modifier is released;
+- use a tunable URP bokeh depth-of-field treatment for the miniature tilt-shift character, with the sharp depth plane tracking Booter even while the framing target moves; the production baseline uses a `52 mm` focal length and `f/5.6`, and keeps this camera-owned effect separate from the dust/atmosphere volume;
 - use 3D depth, lighting, colliders, materials, and renderer topology instead of pixel snapping and sprite sorting;
 - keep one collision owner for each walkable surface; decorative crag faces must not overlap the authoritative terrain collider;
 - use a capsule with a low-friction movement material, a volume cast for ground proximity, and a raycast for the true triangle normal before applying the serialized slope limit;
