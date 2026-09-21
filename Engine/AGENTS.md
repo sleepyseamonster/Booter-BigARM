@@ -2,11 +2,11 @@
 
 ## Preservation Status
 
-The user selected Unreal Engine as the sole active production lane on 2026-09-16. This proprietary engine is preserved as technical evidence and a source of portable concepts. Do not add production features, renderer work, platform work or new game content here unless the user explicitly reactivates this area. New portable game/world code belongs under [`../Unreal/PortableCore/`](../Unreal/PortableCore/README.md), and Unreal integration belongs under [`../Unreal/Project/`](../Unreal/Project/README.md).
+The user returned production exclusively to the repository-root Unity project on 2026-09-21. This proprietary engine is preserved as technical evidence and a source of portable concepts. Do not add production features, renderer work, platform work or new game content here unless the user explicitly reactivates this area. Useful concepts must be deliberately reimplemented through the active Unity architecture rather than extended here in parallel.
 
-## Active Scope
+## Preserved Scope
 
-This folder was the exclusive working area for the proprietary engine from 2026-09-09 through 2026-09-15. It is now a preserved reference. Keep both it and the Unity project in place.
+This folder was the exclusive working area for the proprietary engine from 2026-09-09 through 2026-09-15. It is now a preserved reference. Keep it, the preserved Unreal experiment, and the active Unity project in place.
 
 Load [README.md](./README.md), [Docs/STATUS.md](./Docs/STATUS.md), [Docs/DIRECTION.md](./Docs/DIRECTION.md), and task-relevant requirements or research. Do not default to auditing or repairing the Unity project when the task concerns this folder.
 
@@ -14,13 +14,13 @@ For implementation sequencing, use [Docs/FOUNDATION_PLAN.md](./Docs/FOUNDATION_P
 
 ## Sources and Ownership
 
-- The current user instruction controls; [Docs/DIRECTION.md](./Docs/DIRECTION.md) records accepted direction for new work.
+- The current user instruction and root [`../AGENTS.md`](../AGENTS.md) control. [Docs/DIRECTION.md](./Docs/DIRECTION.md) records the superseded proprietary-engine direction for historical reference.
 - Technology choices in the research are proposals until selected and verified. Do not report research, a folder structure or a successful compile as a working engine.
 - Gottspan retains repository coordination and Gear Ball retains the Git lane under the shared root agreement. Use existing role guidance when needed, without creating competing managers or moving their folders.
-- Lorekeeper may retrieve setting context. Old Unity documents and Arc & Dust are read-only references during engine work. Their old camera, implementation and initial-area assumptions do not override the new direction. Arc & Dust must never be modified.
+- Lorekeeper may retrieve setting context. Current Unity documents control active implementation; this preserved engine's camera, implementation and initial-area assumptions do not override them. Arc & Dust remains read-only and must never be modified.
 - Keep source code, engine assets, tools, tests, documentation and local build output under this folder. Changes elsewhere require explicit task scope, except narrow repository routing necessary for separation.
 
-## Technical Direction
+## Historical Technical Direction
 
 - Production-engine architecture and performance are the priority, per the user's 2026-09-14 clarification. Follow [runtime priorities](./Docs/ENGINE_RUNTIME_PRIORITIES.md); justify each increment by its runtime, content-pipeline or AI-authoring contribution. Keep work bounded and measured rather than pursuing feature count or speculative optimization.
 - AI authoring must call validated engine operations and consume structured results without relying on widgets. The separate UI agent owns viewer/UI changes; this lane owns engine internals. Keep the real-time loop independent of model/network response latency.

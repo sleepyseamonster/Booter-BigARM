@@ -1,12 +1,12 @@
-# Booter & BigARM — New Engine
+# Booter & BigARM — Preserved Proprietary Engine
 
-> **Preserved reference:** On 2026-09-16 the active production lane moved to [Unreal](../Unreal/README.md). This directory retains the proprietary C++ engine, research and evidence. New production work belongs in `Unreal/`; portable concepts are migrated deliberately rather than developed here in parallel.
+> **Preserved reference:** On 2026-09-21 the active production lane returned exclusively to the repository-root Unity project. This directory retains the proprietary C++ engine, research and evidence. Useful concepts are reimplemented deliberately through Unity rather than developed here in parallel.
 
-This is the working home for the proprietary engine and regular third-person game. Initial content is the rock generator and procedural landscape of the open Greater Wasteland. The terrain architecture includes later canyon and non-heightfield feature surfaces. Windows PC is the product target; Mac remains the main development machine while practical.
+This was the working home for the proprietary engine and regular third-person experiment. Its retained content includes the rock generator, procedural landscape, terrain architecture, tools and evidence. These remain historical implementation evidence rather than the current product host.
 
-Start with [current status and next step](./Docs/STATUS.md), then [accepted direction](./Docs/DIRECTION.md) and [the working agreement](./AGENTS.md).
+For historical inspection, start with [the retained status handoff](./Docs/STATUS.md), then [the superseded direction](./Docs/DIRECTION.md) and [the preservation agreement](./AGENTS.md).
 
-The [active correction and integration plan](./Docs/ENGINE_CORRECTION_PLAN.md) turns the two architecture audits into six ordered implementation batches. [R1 scene authority](./Docs/SCENE_AUTHORITY_R1_RESULT.md), [R2 bounded live authoring](./Docs/LIVE_AUTHORING_R2_RESULT.md), [R3 render snapshots/Scene View manipulation](./Docs/RENDER_SCENE_GIZMO_R3_RESULT.md), [R4 shared play/durability](./Docs/PLAY_SESSION_DURABILITY_R4_RESULT.md) and [R5 material/occlusion/performance](./Docs/MATERIAL_OCCLUSION_PERFORMANCE_R5_RESULT.md) are implemented. R6 native Windows validation is next. Visible Scene/Game View acceptance remains open with the UI owner.
+The [retained correction and integration plan](./Docs/ENGINE_CORRECTION_PLAN.md) organized the two architecture audits into six implementation batches. [R1 scene authority](./Docs/SCENE_AUTHORITY_R1_RESULT.md), [R2 bounded live authoring](./Docs/LIVE_AUTHORING_R2_RESULT.md), [R3 render snapshots/Scene View manipulation](./Docs/RENDER_SCENE_GIZMO_R3_RESULT.md), [R4 shared play/durability](./Docs/PLAY_SESSION_DURABILITY_R4_RESULT.md) and [R5 material/occlusion/performance](./Docs/MATERIAL_OCCLUSION_PERFORMANCE_R5_RESULT.md) were implemented. R6 native Windows validation was left open when this lane was preserved.
 
 The [2026-09-15 engine architecture audit](./Docs/ENGINE_ARCHITECTURE_AUDIT_2026-09-15.md) records current strengths, reproduced defects and the correction order before human-AI viewport integration.
 
@@ -45,4 +45,4 @@ The native application renders a perspective fixture and interactive inspector o
 
 The [master plan](./Docs/FOUNDATION_PLAN.md) now carries the engine through reusable outdoor rendering, character calibration, rock authoring, streamed persistence, BigARM travel, a survival expedition, production content and a supported Windows candidate. The earlier compatibility/geometry results remain bounded evidence. These later capabilities are planned; see the status page for what is actually implemented.
 
-All new source, tools, assets, tests and documentation stay here. The existing Unity project remains a read-only reference for this work. `.cache/`, `build/` and `out/` hold ignored generated output; pinned acquisition instructions make dependency sources reproducible without committing their caches.
+Any explicitly authorized maintenance of this preserved engine stays here. The Unity project is the active production implementation and must not be modified as part of engine-reference maintenance unless the task explicitly includes a Unity change. `.cache/`, `build/` and `out/` hold ignored generated output; pinned acquisition instructions make dependency sources reproducible without committing their caches.

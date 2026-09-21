@@ -1,6 +1,6 @@
-# Accepted New-Engine Direction
+# Superseded New-Engine Direction
 
-Confirmed by the user on 2026-09-09. This document controls direction for `Engine/`; the research document contains proposed technical choices.
+Confirmed by the user on 2026-09-09, superseded by the Unreal direction on 2026-09-16, and retained as historical reference after the user returned production exclusively to Unity on 2026-09-21. This document no longer controls new work.
 
 ## Game and Presentation
 

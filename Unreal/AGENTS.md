@@ -1,12 +1,12 @@
-# Unreal Production Working Agreement
+# Preserved Unreal Working Agreement
 
-## Active Scope
+## Preservation Scope
 
-`Unreal/` is the sole active production area for Booter & BigARM as of 2026-09-16. The repository-root Unity project, `Assets/_Project/Legacy2D/` and `Engine/` are preserved references. Do not modify them during Unreal work unless the user explicitly includes a narrowly defined migration or reference-maintenance task.
+`Unreal/` was the active production area from 2026-09-16 through 2026-09-20. On 2026-09-21 the user returned production exclusively to the repository-root Unity project. Preserve this folder as planning, evidence and portability reference; do not add Unreal production work unless the user explicitly reactivates it. `Assets/_Project/Legacy2D/` and `Engine/` remain separate preserved references.
 
-Load [README.md](./README.md), [Docs/DIRECTION.md](./Docs/DIRECTION.md), [Docs/STATUS.md](./Docs/STATUS.md) and [Docs/ARCHITECTURE_BOUNDARY.md](./Docs/ARCHITECTURE_BOUNDARY.md) before implementation.
+Load [README.md](./README.md), [Docs/DIRECTION.md](./Docs/DIRECTION.md), [Docs/STATUS.md](./Docs/STATUS.md) and [Docs/ARCHITECTURE_BOUNDARY.md](./Docs/ARCHITECTURE_BOUNDARY.md) only for narrowly scoped inspection or maintenance inside this preserved area.
 
-## Product Direction
+## Historical Product Direction
 
 - Regular third-person, fully 3D game targeting Windows PC.
 - Unreal-comparable finished quality for this game's outdoor terrain, rocks, lighting, materials, animation and physical traversal. General Unreal feature parity is not a goal.
@@ -42,8 +42,8 @@ Every generated-world system must address deterministic world identity, chunk or
 ## Workflow
 
 1. Inspect repository and Unreal-area state before editing.
-2. Keep new work inside `Unreal/` and preserve all reference lanes.
-3. Prefer the smallest end-to-end production path over parallel framework construction.
-4. Validate the portable core independently and validate Unreal adapters through Unreal's supported build, automation and commandlet paths.
+2. Do not add new production work while this area is preserved; keep any explicitly authorized maintenance inside `Unreal/`.
+3. Preserve the Unity production lane and all other reference areas.
+4. If Unreal is explicitly reactivated, validate the portable core independently and validate Unreal adapters through Unreal's supported build, automation and commandlet paths.
 5. Distinguish source/build checks, editor/runtime execution, visual acceptance and native Windows proof.
 6. Stage and commit only verified task-owned files. Pushes, releases, branch changes and external publication require current authority.

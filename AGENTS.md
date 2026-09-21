@@ -4,11 +4,11 @@ This file defines the operating rules for the Booter & BigARM repository and rou
 
 ## Separate Work Areas
 
-- [Unreal/](./Unreal/README.md) is the sole active production area as of 2026-09-16. Load [Unreal/AGENTS.md](./Unreal/AGENTS.md) before any new implementation, research, tooling or documentation work.
-- The current Unity project remains preserved at the repository root. It is reference-only unless the user explicitly reactivates Unity work.
+- The repository-root Unity project is the sole active production area as of 2026-09-21. New implementation, research, tooling, documentation and generated-content conventions must serve the Unity TopDown3D production lane.
+- [Unreal/](./Unreal/README.md) is a preserved reference from the 2026-09-16 through 2026-09-20 experiment. Do not add production work there unless the user explicitly reactivates Unreal; load [Unreal/AGENTS.md](./Unreal/AGENTS.md) only for narrowly scoped reference maintenance or inspection inside that folder.
 - The former 2D implementation remains isolated under `Assets/_Project/Legacy2D/`. It is a separate historical reference and must not receive new production work.
-- The proprietary C++ engine remains preserved under [Engine/](./Engine/README.md). Do not extend its renderer, platform shell or runtime. Portable concepts may be deliberately reimplemented or extracted into `Unreal/PortableCore/`; do not silently make `Engine/` an active second production lane.
-- Keep all new Unreal-hosted implementation, portable-core code, documentation, dependencies, tools and generated-output conventions inside `Unreal/`.
+- The proprietary C++ engine remains preserved under [Engine/](./Engine/README.md). Do not extend its renderer, platform shell or runtime. Useful concepts may be deliberately reimplemented through the active Unity architecture; do not silently make `Engine/` an active second production lane.
+- Keep new Unity-hosted implementation and content in the established root `Assets/_Project/`, `Docs/`, `Packages/`, and `ProjectSettings/` boundaries. Do not continue parallel production in `Unreal/` or `Engine/`.
 - Shared ownership, Git safety and user-authority rules still apply across the repository. Root routing links may be maintained when needed to keep the two areas discoverable.
 
 ## Repo Management Authority
@@ -25,9 +25,9 @@ This file defines the operating rules for the Booter & BigARM repository and rou
 - The user remains the product and creative authority. Gottspan may organize and implement approved work, but does not silently turn provisional design ideas into canon or make release, purchasing, account, or destructive decisions.
 - A specialist agent's task brief can narrow its scope, but cannot override this file or the canonical project documents.
 
-## Preserved Unity Scope
+## Active Unity Scope
 
-- The root Unity project is the preserved perspective, elevated top-down fully 3D implementation. The former 2D top-down prototype is preserved as isolated legacy reference content under `Assets/_Project/Legacy2D/`.
+- The root Unity project is the active perspective, elevated top-down fully 3D implementation. The former 2D top-down prototype is preserved as isolated legacy reference content under `Assets/_Project/Legacy2D/`.
 - The project should stay Unity-compatible at all times.
 - Most production work should happen under `Assets/`.
 - Prefer small, verifiable changes over broad refactors.

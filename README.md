@@ -1,19 +1,19 @@
 # Booter & BigARM
 
-The active production implementation now lives under [Unreal/](./Unreal/README.md). Booter & BigARM is a regular third-person game targeting Windows PC, with Unreal Engine supplying production rendering and platform systems while a portable game/world core preserves engine-neutral procedural logic and durable data.
+The active production implementation is the repository-root Unity project. Booter & BigARM uses the perspective, elevated top-down fully 3D TopDown3D lane, with deterministic procedural-world identity, streaming, authored constraints and durable runtime deltas kept as first-class architecture concerns.
 
 ## Work Areas
 
 | Area | Status | Purpose |
 |---|---|---|
-| [Unreal/](./Unreal/README.md) | **Active** | Unreal host, portable core, AI authoring integration, tools and current planning |
+| Repository-root Unity project | **Active** | Unity 6 TopDown3D production implementation, authoring tools, procedural world systems and current planning |
+| [Unreal/](./Unreal/README.md) | Preserved reference | Prior Unreal direction, portable-core planning and evidence; no continuing production implementation |
 | [Engine/](./Engine/README.md) | Preserved reference | Prior proprietary C++ engine, evidence and research; no continuing production implementation |
-| Repository-root Unity project | Preserved reference | Former Unity 3D implementation and source material |
 | `Assets/_Project/Legacy2D/` | Preserved legacy reference | Isolated original 2D implementation |
 
-Read [AGENTS.md](./AGENTS.md) for repository routing and [Unreal/AGENTS.md](./Unreal/AGENTS.md) before new work. Do not move or delete the preserved implementations during the Unreal transition.
+Read [AGENTS.md](./AGENTS.md) for repository routing and the task-specific Unity documents under [Docs/](./Docs/DOCS_INDEX.md) before new work. Do not move or delete the preserved Unreal or proprietary-engine implementations.
 
-## Preserved Unity Baseline
+## Active Unity Baseline
 
 ### Current Baseline
 

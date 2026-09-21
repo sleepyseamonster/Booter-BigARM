@@ -1,6 +1,6 @@
-# Booter & BigARM — Unreal Production
+# Booter & BigARM — Preserved Unreal Reference
 
-This is the sole active production area for Booter & BigARM. Unreal Engine supplies the production renderer, physics, animation, navigation, audio, editor, cooking and Windows platform path. A standalone portable core owns the game-specific procedural and durable systems that should survive a future host change.
+This folder preserves the Unreal direction and portable-core planning explored from 2026-09-16 through 2026-09-20. The user returned production exclusively to the repository-root Unity project on 2026-09-21. Do not continue Unreal implementation unless the user explicitly reactivates this area.
 
 ## Start Here
 
@@ -20,4 +20,4 @@ This is the sole active production area for Booter & BigARM. Unreal Engine suppl
 | [Evidence/](./Evidence/README.md) | Retained verification receipts |
 | [References/](./References/README.md) | Links to preserved Unity and proprietary-engine sources |
 
-No `.uproject` has been created yet. The first implementation step is to select and verify the Unreal version and toolchain, then create the host project and portable-core plugin boundary without importing old projects wholesale.
+No `.uproject` was created. Version/toolchain selection and project creation remain historical proposed next steps, not current work.

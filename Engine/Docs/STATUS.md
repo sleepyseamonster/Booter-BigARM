@@ -1,4 +1,6 @@
-# Current Engine Handoff
+# Preserved Proprietary-Engine Handoff
+
+> **Preserved on 2026-09-21:** The repository-root Unity project is the sole active production implementation. This file retains the proprietary engine's last verified evidence and historical sequence. Statements below that name a "next" package are snapshots from that lane and do not authorize continuing it.
 
 **T01 production terrain contract complete (2026-09-15):** [the retained result](./TERRAIN_CONTRACT_T01_RESULT.md) adds the versioned `WorldTerrainManifest`, floor-stable signed tile/supertile/halo addressing, deterministic authored-constraint composition, ancient/dry temporal metadata, source/constraint/storm revisions, product invalidation, stable terrain-feature IDs, sparse change deltas and shared surface/traversal semantics. The durable six-case technical corpus covers open ground, ridges, fossil drainage, layered mesa/talus, boulder/iron-rich formation ridges and a bounded non-heightfield wall domain. It requires stable support, walk, vault, climb, slide, loose-footing and blocked-surface semantics without choosing final movement thresholds or permanent geography. Legacy terrain recipes v1–v3 remain compatible. **T02 deterministic multiscale fields and diagnostics is next.**
 

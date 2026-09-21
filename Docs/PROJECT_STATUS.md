@@ -2,10 +2,11 @@
 
 This is the shared implementation pulse for Booter & BigARM. It records what live repo evidence establishes, what still needs Unity or playtest proof, and which decisions are waiting for the user. It does not replace the strategic order in [ROADMAP.md](./ROADMAP.md).
 
-Last reconciled: 2026-08-14 by Gottspan after the representative landscape-family Unity validation.
+Last reconciled: 2026-09-21 by Gottspan for production-host routing and Unity rock-work resumption. Existing workstream proof rows retain their earlier evidence boundaries.
 
 ## Active Program
 
+- The repository-root Unity project is again the sole active production implementation. `Unreal/`, `Engine/`, and `Assets/_Project/Legacy2D/` are preserved references and receive no new production work without a new explicit user decision.
 - The user has revised the presentation direction to a perspective, elevated top-down game with a fully 3D runtime world and assets.
 - Gottspan owns the conversion program under the user's creative and product authority.
 - The perspective foundation was accepted and cut over as the primary production path. `TopDown3DPrototype.unity` is the first enabled Build Settings scene; former 2D scenes remain disabled, isolated legacy reference content.

@@ -16,6 +16,18 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:**
 - **Supersedes:** none / link to prior entry
 
+## 2026-09-21 — Unity-Only Production Return
+
+- **Status:** accepted
+- **Decision owner:** user
+- **Question:** Which implementation should receive all continuing Booter & BigARM production work?
+- **Decision:** Return exclusively to the repository-root Unity project and its TopDown3D production lane. Preserve `Unreal/`, `Engine/`, and `Assets/_Project/Legacy2D/` as reference implementations; do not continue production in them unless the user explicitly changes direction again.
+- **Why:** The user chose to resume the established Unity rock-generator and rock-formation-generator work instead of continuing parallel engine development.
+- **Evidence:** The user's 2026-09-21 direction, the clean Unity checkout, and live inspection of the retained rock workbench, accepted mixed-formation baseline, baked mesh families, and opt-in runtime adapter.
+- **Controlling files updated:** `AGENTS.md`, `README.md`, `Docs/PROJECT_STATUS.md`, `Unreal/AGENTS.md`, `Unreal/README.md`, `Unreal/Docs/DIRECTION.md`, `Unreal/Docs/STATUS.md`, `Engine/AGENTS.md`, `Engine/README.md`, `Engine/Docs/DIRECTION.md`, and `Engine/Docs/STATUS.md`.
+- **Consequences / follow-up:** New code, assets, tooling and production documentation belong to Unity. The rock lane resumes from the accepted 2026-09-08 visual baseline: deterministic gameplay meshes and the opt-in reservation adapter exist, while assigning the mixed template, runtime sand/clutter integration, and interactive world proof remain separate future work. This decision does not delete or bulk-migrate either preserved engine experiment.
+- **Supersedes:** the active-host direction recorded in `Unreal/Docs/DIRECTION.md` and the earlier proprietary-engine active-host direction in `Engine/Docs/DIRECTION.md`; it does not supersede Unity world, gameplay, or visual decisions.
+
 ## 2026-09-05 — Visual-First Rock Production Recovery
 
 - **Status:** accepted
