@@ -37,6 +37,7 @@ MonoBehaviour:
   baseHeight: 0
   propsPerChunk: 1.7
   naturalObjectCatalog: {fileID: 11400000, guid: 03ec8052e2404ee19712ee02d05deb23, type: 2}
+  mixedFormationTemplate: {fileID: 11400000, guid: c6f4acbf777fe4922bdb82cd9daad050, type: 2}
   naturalObjectGenerationVersion: 3
   physicalRockGenerationVersion: 7
   physicalRockAdditionalBurialFraction: 0.12

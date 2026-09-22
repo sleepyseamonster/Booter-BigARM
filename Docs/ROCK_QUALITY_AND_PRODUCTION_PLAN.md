@@ -26,7 +26,7 @@ Final rebake passed with byte-identical mesh assets and metadata against the cor
 
 ### Second production batch — opt-in reservation connection, 2026-09-08
 
-Implemented an unassigned `MixedFormationTemplate` world-setting reference. When assigned, formation-scale BrokenStack reservations use the captured template, shared layout variation and baked member choices. Other reservation types keep the existing catalog realization. No saved setting is assigned in this batch: existing worlds and the accepted authoring preview remain unchanged.
+Implemented the `MixedFormationTemplate` world-setting reference. The production Unity world now assigns the accepted `MixedPileScatter` bake, so formation-scale BrokenStack reservations use the captured template, shared layout variation and baked member choices. Other reservation types keep the existing catalog realization. The accepted authoring preview remains unchanged.
 
 Reservation IDs remain canonical; member IDs and seeds derive from reservation plus captured source ID. The existing support-aware grounding solver is now shared runtime/editor code, moved with its metadata GUID preserved. Source geometry is fitted before selecting the envelope-normalized baked silhouette, preserving the accepted no-contact-repair ordering. Spawn, reserved-route, site/approach and slope exclusions reject unsuitable placements. Each formation remains a child of its owner chunk; member LODs use captured materials and shared baked assets, not runtime meshing. Chunk cleanup owns instances, not those persistent meshes. The planner is called synchronously from main-thread decoration, where Unity mesh reads are allowed.
 
