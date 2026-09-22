@@ -614,12 +614,30 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                         groundPosition / max(_RockyMetersPerTile * farTileScale, 0.01),
                         farMipLevel,
                         TEXTURE2D_ARGS(_RockyMap, sampler_RockyMap));
+                    float farRockyMidMeters = max(
+                        lerp(_GravelMetersPerTile, _RockyMetersPerTile, 0.55) * farTileScale,
+                        0.01);
+                    half3 farRockyMidTransitionAlbedo = SampleFarAlbedo(
+                        groundPosition / farRockyMidMeters,
+                        farMipLevel,
+                        TEXTURE2D_ARGS(_RockyMidTransitionMap, sampler_RockyMidTransitionMap));
+                    float farRockyMidProgress = smoothstep(
+                        _RockyThreshold - _TransitionWidth * 0.50,
+                        _RockyThreshold + _BlendWidth * 0.20,
+                        lerp(rockySignal, weathering, 0.35));
+                    float farRockyShaleBand = 4.0
+                        * farRockyMidProgress
+                        * (1.0 - farRockyMidProgress);
+                    half3 farRockySurfaceAlbedo = lerp(
+                        farRockyAlbedo,
+                        farRockyMidTransitionAlbedo,
+                        farRockyShaleBand);
 
                     // Authoring bank mask retains sand detail while bringing it into the local earth palette.
                     farSweptAlbedo = lerp(farSweptAlbedo, farBaseAlbedo, input.clutter.y * 0.8);
                     half3 farAlbedo = lerp(farBaseAlbedo, farSweptAlbedo, sweptMask);
                     farAlbedo = lerp(farAlbedo, farGravelAlbedo, gravelMask);
-                    farAlbedo = lerp(farAlbedo, farRockyAlbedo, rockyMask);
+                    farAlbedo = lerp(farAlbedo, farRockySurfaceAlbedo, rockyMask);
                     farAlbedo *= _BaseColor.rgb * lerp(0.92, 1.05, weathering);
 
                     SurfaceData farSurfaceData = (SurfaceData)0;

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using System.Reflection;
 using BooterBigArm.TopDown3D;
 using NUnit.Framework;
@@ -15,6 +16,24 @@ namespace BooterBigArm.Tests
             "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat";
         private const string RockMaterialPath =
             "Assets/_Project/Materials/TopDown3D/Greybox_Rock.mat";
+        private const string TerrainShaderPath =
+            "Assets/_Project/Shaders/TopDown3D/BrokenWorldTerrainBlend.shader";
+
+        [Test]
+        public void FastTerrainPathRetainsMediumShaleTransitionAlbedo()
+        {
+            var source = File.ReadAllText(TerrainShaderPath);
+            var fastPathStart = source.IndexOf("half3 farBaseAlbedo", System.StringComparison.Ordinal);
+            var fastPathEnd = source.IndexOf("SurfaceData farSurfaceData", System.StringComparison.Ordinal);
+
+            Assert.That(fastPathStart, Is.GreaterThanOrEqualTo(0));
+            Assert.That(fastPathEnd, Is.GreaterThan(fastPathStart));
+            var fastPath = source.Substring(fastPathStart, fastPathEnd - fastPathStart);
+            StringAssert.Contains("farRockyMidTransitionAlbedo", fastPath);
+            StringAssert.Contains("_RockyMidTransitionMap", fastPath);
+            StringAssert.Contains("farRockyShaleBand", fastPath);
+            StringAssert.Contains("farRockySurfaceAlbedo", fastPath);
+        }
 
         [Test]
         public void StartupQueuesImmediateTerrainWithoutSynchronousMeshConstruction()
