@@ -80,15 +80,22 @@ namespace BooterBigArm.Editor
             new Vector3(0.2f, -0.5f, 0.2f),
             new Vector3(-0.2f, -0.5f, 0.2f)
         };
-        private static readonly TopDown3DRockSilhouetteProfile[] ScatteredSilhouetteProfiles =
+        private static readonly TopDown3DRockSilhouetteProfile[] ScatteredBoulderProfiles =
         {
             TopDown3DRockSilhouetteProfile.Boulder,
             TopDown3DRockSilhouetteProfile.FracturedBoulder,
-            TopDown3DRockSilhouetteProfile.BlockyMonolith,
             TopDown3DRockSilhouetteProfile.SplitLobe,
+            TopDown3DRockSilhouetteProfile.AngularChunk
+        };
+        private static readonly TopDown3DRockSilhouetteProfile[] ScatteredSlabProfiles =
+        {
+            TopDown3DRockSilhouetteProfile.BrokenSlab,
+            TopDown3DRockSilhouetteProfile.Slab
+        };
+        private static readonly TopDown3DRockSilhouetteProfile[] ScatteredFragmentProfiles =
+        {
             TopDown3DRockSilhouetteProfile.AngularChunk,
             TopDown3DRockSilhouetteProfile.BrokenSlab,
-            TopDown3DRockSilhouetteProfile.Slab,
             TopDown3DRockSilhouetteProfile.Shard
         };
 
@@ -472,38 +479,38 @@ namespace BooterBigArm.Editor
                 if (index < anchorCount)
                 {
                     role = TopDown3DRockFormationMemberRole.Boulder;
-                    rockSize = baseRockSize * NextRange(random, 1f, 1.12f);
+                    rockSize = baseRockSize * NextRange(random, 1.22f, 1.46f);
                     scale = new Vector3(
-                        NextRange(random, 0.94f, 1.1f),
-                        Mathf.Lerp(0.82f, 1.08f, verticality)
-                            * NextRange(random, 0.94f, 1.06f),
-                        NextRange(random, 0.92f, 1.1f));
+                        NextRange(random, 1.02f, 1.24f),
+                        Mathf.Lerp(0.76f, 0.98f, verticality)
+                            * NextRange(random, 0.94f, 1.04f),
+                        NextRange(random, 0.98f, 1.22f));
                     memberVerticality = Mathf.Clamp01(
-                        0.18f + verticality * 0.5f + NextRange(random, -0.14f, 0.18f));
+                        0.12f + verticality * 0.34f + NextRange(random, -0.1f, 0.12f));
                 }
                 else if (index < anchorCount + slabCount)
                 {
                     role = TopDown3DRockFormationMemberRole.Slab;
-                    rockSize = baseRockSize * NextRange(random, 0.94f, 1.08f);
+                    rockSize = baseRockSize * NextRange(random, 0.82f, 1f);
                     scale = new Vector3(
-                        NextRange(random, 0.96f, 1.14f),
-                        Mathf.Lerp(0.72f, 0.94f, verticality)
-                            * NextRange(random, 0.92f, 1.08f),
-                        NextRange(random, 0.92f, 1.12f));
+                        NextRange(random, 1.08f, 1.4f),
+                        Mathf.Lerp(0.48f, 0.72f, verticality)
+                            * NextRange(random, 0.92f, 1.06f),
+                        NextRange(random, 0.92f, 1.22f));
                     memberVerticality = Mathf.Clamp01(
-                        0.08f + verticality * 0.32f + NextRange(random, -0.08f, 0.18f));
+                        0.04f + verticality * 0.2f + NextRange(random, -0.05f, 0.1f));
                 }
                 else
                 {
                     role = TopDown3DRockFormationMemberRole.Fragment;
-                    rockSize = baseRockSize * NextRange(random, 0.9f, 1.06f);
+                    rockSize = baseRockSize * NextRange(random, 0.38f, 0.72f);
                     scale = new Vector3(
-                        NextRange(random, 0.9f, 1.1f),
-                        Mathf.Lerp(0.76f, 0.98f, verticality)
-                            * NextRange(random, 0.9f, 1.1f),
-                        NextRange(random, 0.9f, 1.1f));
+                        NextRange(random, 0.74f, 1.06f),
+                        Mathf.Lerp(0.5f, 0.78f, verticality)
+                            * NextRange(random, 0.88f, 1.1f),
+                        NextRange(random, 0.72f, 1.06f));
                     memberVerticality = Mathf.Clamp01(
-                        0.06f + verticality * 0.4f + NextRange(random, -0.08f, 0.22f));
+                        0.04f + verticality * 0.24f + NextRange(random, -0.06f, 0.16f));
                 }
 
                 rockSize = Mathf.Clamp(rockSize, 0.28f, 6.4f);
@@ -1805,11 +1812,17 @@ namespace BooterBigArm.Editor
                     // silhouette vocabulary is evaluated in loose and piled formations.
                     return TopDown3DRockSilhouetteProfile.Boulder;
                 case TopDown3DRockFormationMemberRole.Boulder:
-                    return ChooseScatteredSilhouetteProfile(variationHash, 0);
+                    return ChooseScatteredSilhouetteProfile(
+                        variationHash,
+                        ScatteredBoulderProfiles);
                 case TopDown3DRockFormationMemberRole.Slab:
-                    return ChooseScatteredSilhouetteProfile(variationHash, 3);
+                    return ChooseScatteredSilhouetteProfile(
+                        variationHash,
+                        ScatteredSlabProfiles);
                 case TopDown3DRockFormationMemberRole.Fragment:
-                    return ChooseScatteredSilhouetteProfile(variationHash, 5);
+                    return ChooseScatteredSilhouetteProfile(
+                        variationHash,
+                        ScatteredFragmentProfiles);
                 case TopDown3DRockFormationMemberRole.PileBase:
                     return variation == 0u
                         ? TopDown3DRockSilhouetteProfile.FracturedBoulder
@@ -1859,11 +1872,10 @@ namespace BooterBigArm.Editor
 
         private static TopDown3DRockSilhouetteProfile ChooseScatteredSilhouetteProfile(
             uint variationHash,
-            int roleOffset)
+            IReadOnlyList<TopDown3DRockSilhouetteProfile> profiles)
         {
-            var index = (int)((variationHash + (uint)roleOffset)
-                % (uint)ScatteredSilhouetteProfiles.Length);
-            return ScatteredSilhouetteProfiles[index];
+            var index = (int)(variationHash % (uint)profiles.Count);
+            return profiles[index];
         }
 
         private static Vector3 GetMemberSourceSize(

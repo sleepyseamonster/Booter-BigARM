@@ -474,7 +474,7 @@ namespace BooterBigArm.Tests
         [TestCase(246813, 11, 16f, 0.55f, 0.5f)]
         [TestCase(975310, 15, 28f, 0.95f, 0.85f)]
         [TestCase(209753, 20, 30f, 1f, 1f)]
-        public void ScatteredFormationPlanBuildsSeparatedGroundedSimilarSizeRocks(
+        public void ScatteredFormationPlanBuildsSeparatedGroundedSizeHierarchy(
             int seed,
             int rockCount,
             float overallSize,
@@ -505,10 +505,6 @@ namespace BooterBigArm.Tests
             Assert.That(first.Any(member => member.Role == TopDown3DRockFormationMemberRole.Fragment),
                 Is.True);
 
-            var rockSizes = first.Select(member => member.RockSize).ToArray();
-            Assert.That(
-                rockSizes.Max(),
-                Is.LessThanOrEqualTo(rockSizes.Min() * 1.25f));
             var footprints = first
                 .Select(ScatteredFootprintRadius)
                 .OrderBy(value => value)
@@ -519,10 +515,10 @@ namespace BooterBigArm.Tests
                 .ElementAt(first.Count / 2);
             Assert.That(
                 footprints[footprints.Length - 1],
-                Is.LessThanOrEqualTo(medianFootprint * 1.35f));
+                Is.LessThanOrEqualTo(medianFootprint * 3.2f));
             Assert.That(
                 footprints[0],
-                Is.GreaterThanOrEqualTo(medianFootprint * 0.68f));
+                Is.GreaterThanOrEqualTo(medianFootprint * 0.24f));
             var averageBoulderSize = first
                 .Where(member => member.Role == TopDown3DRockFormationMemberRole.Boulder)
                 .Average(member => member.RockSize);
@@ -532,15 +528,18 @@ namespace BooterBigArm.Tests
             var averageFragmentSize = first
                 .Where(member => member.Role == TopDown3DRockFormationMemberRole.Fragment)
                 .Average(member => member.RockSize);
-            var roleAverages = new[]
-            {
-                averageBoulderSize,
-                averageSlabSize,
-                averageFragmentSize
-            };
             Assert.That(
-                roleAverages.Max(),
-                Is.LessThanOrEqualTo(roleAverages.Min() * 1.18f));
+                averageBoulderSize,
+                Is.GreaterThan(averageSlabSize * 1.18f));
+            Assert.That(
+                averageSlabSize,
+                Is.GreaterThan(averageFragmentSize * 1.3f));
+            Assert.That(
+                first.Where(member => member.Role == TopDown3DRockFormationMemberRole.Fragment)
+                    .Max(member => member.RockSize),
+                Is.LessThan(first
+                    .Where(member => member.Role == TopDown3DRockFormationMemberRole.Boulder)
+                    .Min(member => member.RockSize)));
 
             for (var index = 0; index < first.Count; index++)
             {
@@ -550,9 +549,9 @@ namespace BooterBigArm.Tests
                 Assert.That(repeat[index].RockSize, Is.EqualTo(first[index].RockSize));
                 Assert.That(repeat[index].Seed, Is.EqualTo(first[index].Seed));
                 Assert.That(repeat[index].Role, Is.EqualTo(first[index].Role));
-                Assert.That(first[index].LocalScale.x, Is.InRange(0.9f, 1.14f));
-                Assert.That(first[index].LocalScale.y, Is.InRange(0.65f, 1.15f));
-                Assert.That(first[index].LocalScale.z, Is.InRange(0.9f, 1.12f));
+                Assert.That(first[index].LocalScale.x, Is.InRange(0.74f, 1.4f));
+                Assert.That(first[index].LocalScale.y, Is.InRange(0.44f, 1.02f));
+                Assert.That(first[index].LocalScale.z, Is.InRange(0.72f, 1.22f));
 
                 var supportCoverage = TopDown3DRockWorkbenchFormationGenerator
                     .CalculateGroundSupportCoverage(
@@ -595,7 +594,7 @@ namespace BooterBigArm.Tests
                 .Select(TopDown3DRockWorkbenchFormationGenerator.ChooseMemberSilhouetteProfile)
                 .ToArray();
 
-            Assert.That(profiles.Distinct().Count(), Is.GreaterThanOrEqualTo(5));
+            Assert.That(profiles.Distinct().Count(), Is.GreaterThanOrEqualTo(4));
             Assert.That(plan.Select(member => member.Seed).Distinct().Count(), Is.EqualTo(plan.Count));
             Assert.That(plan.Select(member => (
                     member.LocalScale,
@@ -604,6 +603,27 @@ namespace BooterBigArm.Tests
                     member.Compaction))
                 .Distinct()
                 .Count(), Is.EqualTo(plan.Count));
+            for (var index = 0; index < plan.Count; index++)
+            {
+                var validForRole = plan[index].Role switch
+                {
+                    TopDown3DRockFormationMemberRole.Boulder =>
+                        profiles[index] == TopDown3DRockSilhouetteProfile.Boulder
+                        || profiles[index] == TopDown3DRockSilhouetteProfile.FracturedBoulder
+                        || profiles[index] == TopDown3DRockSilhouetteProfile.SplitLobe
+                        || profiles[index] == TopDown3DRockSilhouetteProfile.AngularChunk,
+                    TopDown3DRockFormationMemberRole.Slab =>
+                        profiles[index] == TopDown3DRockSilhouetteProfile.BrokenSlab
+                        || profiles[index] == TopDown3DRockSilhouetteProfile.Slab,
+                    TopDown3DRockFormationMemberRole.Fragment =>
+                        profiles[index] == TopDown3DRockSilhouetteProfile.AngularChunk
+                        || profiles[index] == TopDown3DRockSilhouetteProfile.BrokenSlab
+                        || profiles[index] == TopDown3DRockSilhouetteProfile.Shard,
+                    _ => false
+                };
+                Assert.That(validForRole, Is.True,
+                    $"{plan[index].Role} selected invalid profile {profiles[index]}.");
+            }
         }
 
         [Test]

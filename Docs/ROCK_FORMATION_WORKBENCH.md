@@ -44,7 +44,7 @@ The Formation Inspector begins with a `Formation Type`, then exposes the same tw
 The current formation categories are:
 
 - `Connected Outcrop` — one fused geological formation built around a dominant anchor, framed crevice, pillars, buttresses, and attached base talus.
-- `Scattered Rocks` — 5–20 separate, partially buried boulders distributed across a loose field with a deliberate large/medium/small hierarchy. Width and height automatically move the count through that full range. These rocks do not fuse to one another, so clean sand remains visible between them.
+- `Scattered Rocks` — 5–20 separate, partially buried rocks distributed across a loose field with a deliberate large-boulder, broad-slab, and small-fragment hierarchy. Width and height automatically move the count through that full range; because the field is not stacked, Height sets the tallest member envelope while smaller roles remain proportionally lower. These rocks do not fuse to one another, so clean sand remains visible between them.
 - `Pile Of Rocks` — 5–20 touching stones assembled as an all-sided mound. Broad, partially buried base slabs carry an overlapping middle shelf and one or two offset cap rocks, while restrained gaps preserve readable contact crevices. It uses the fused geological shell by default, so hidden overlap geometry is removed while seams remain visible.
 - `Small Ridge Pillars` — 7–18 rocks arranged as a low, gently wandering ridge body with several short upright pillars and attached edge talus. The backbone stays broader and lower than the pillar accents, producing a directional silhouette without becoming a tall spire complex. It uses the fused geological shell by default while leaving every member rock editable.
 

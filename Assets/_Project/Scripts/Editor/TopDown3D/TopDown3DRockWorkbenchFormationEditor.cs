@@ -42,7 +42,9 @@ namespace BooterBigArm.Editor
                 new GUIContent("Width", "Physical width and depth of the formation in meters."));
             EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("generatedHeight"),
-                new GUIContent("Height", "Physical formation height in meters, independent from width."));
+                new GUIContent(
+                    "Height",
+                    "Physical formation height in meters, independent from width. For Scattered Rocks this sets the tallest member envelope while smaller roles remain proportionally lower."));
             var usesEditableFractureCuts =
                 (TopDown3DRockFormationArchetype)archetypeProperty.enumValueIndex
                 == TopDown3DRockFormationArchetype.ScatteredRocks;
@@ -227,7 +229,7 @@ namespace BooterBigArm.Editor
             return archetype switch
             {
                 TopDown3DRockFormationArchetype.ScatteredRocks =>
-                    "Generates a loose field of separate, similarly sized rocks with varied silhouettes, proportions, weathering, and uneven spacing. Every rock remains editable.",
+                    "Generates a loose field of separate rocks with a deliberate boulder, slab, and fragment size hierarchy, role-specific silhouettes, weathering, and uneven spacing. Every rock remains editable.",
                 TopDown3DRockFormationArchetype.PileOfRocks =>
                     "Generates a compact, all-sided mound with broad base stones, an overlapping middle shelf, cap rocks, and retained crevices. Every rock remains editable.",
                 TopDown3DRockFormationArchetype.SmallRidgePillars =>
