@@ -89,6 +89,16 @@ namespace BooterBigArm.Tests
                     cameraRig.FindProperty("target").objectReferenceValue,
                     Is.SameAs(motors[0].transform));
                 Assert.That(cameraRig.FindProperty("input").objectReferenceValue, Is.SameAs(inputs[0]));
+                Assert.That(
+                    cameraRigs[0].MinimumPitchDegrees,
+                    Is.EqualTo(TopDown3DCameraRig.DefaultMinimumPitchDegrees).Within(0.0001f));
+                Assert.That(cameraRigs[0].TiltShiftDepthOfFieldEnabled, Is.True);
+                Assert.That(
+                    cameraRigs[0].DepthOfFieldFocalLength,
+                    Is.EqualTo(TopDown3DCameraRig.DefaultDepthOfFieldFocalLength).Within(0.0001f));
+                Assert.That(
+                    cameraRigs[0].DepthOfFieldAperture,
+                    Is.EqualTo(TopDown3DCameraRig.DefaultDepthOfFieldAperture).Within(0.0001f));
 
                 var activeCameras = Object.FindObjectsByType<Camera>(
                     FindObjectsInactive.Include,
