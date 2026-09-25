@@ -25,7 +25,9 @@ namespace BooterBigArm.TopDown3D
         private const int ShadowCascades = 1;
         private const int TextureMipmapLimit = 2;
         private const int StreamingRadius = 2;
-        private const int DecorationStreamingRadius = 0;
+        // Keep the near-field authored formations visible during lightweight playtests.
+        // This remains smaller than production's three-chunk decoration radius.
+        private const int DecorationStreamingRadius = 1;
         private const int ChunksBuiltPerFrame = 1;
 
         private readonly float[] frameTimes = new float[600];
@@ -110,7 +112,7 @@ namespace BooterBigArm.TopDown3D
             Debug.Log(
                 "[TopDown3D Performance] Stress-test profile enabled: 50% render scale, "
                 + "1024px single-cascade shadows, 60 FPS cap, two-level texture mip reduction, "
-                + "fast terrain path, a two-chunk terrain ring, no runtime decoration, "
+                + "fast terrain path, a two-chunk terrain ring, a one-chunk decoration ring, "
                 + "and one generation stage per frame.",
                 this);
         }
