@@ -44,6 +44,7 @@ Unity documents `PerformInteractiveRebinding`, `SaveBindingOverridesAsJson`, and
 
 - Use a `Vector2` move action with a stick binding and a 2D vector keyboard composite.
 - Use a `Vector2` Look action with the gamepad right stick for perspective camera orbit and a separate `CameraLookAhead` button action on the left trigger. The camera rig, not the input router, decides whether the current right-stick value means orbit or translated look-ahead.
+- During gameplay, lock and hide the mouse cursor and use mouse delta to orbit the perspective camera. Apply mouse sensitivity in degrees per pixel, without multiplying by frame time; keep the right stick's degrees-per-second response separate. Release the cursor for inventory and when gameplay input is disabled.
 - Ensure analog sticks receive one radial deadzone treatment. Gamepad stick controls already apply the Input System's `StickDeadzone`; do not add the same processor again at the binding layer unless intentionally replacing and testing that response.
 - Tune deadzone values intentionally at the owning layer rather than stacking processors in multiple layers.
 

@@ -25,6 +25,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(20f, 75f)] private float maximumPitchDegrees = 65f;
         [SerializeField, Range(30f, 240f)] private float yawSpeedDegrees = 120f;
         [SerializeField, Range(20f, 180f)] private float pitchSpeedDegrees = 70f;
+        [SerializeField, Min(0f)] private float mouseSensitivityDegreesPerPixel = 0.15f;
         [SerializeField, Min(2f)] private float distance = 25f;
         [SerializeField, Range(20f, 80f)] private float fieldOfView = 48f;
         [SerializeField, Min(0f)] private float followSmoothTime = 0.14f;
@@ -219,10 +220,17 @@ namespace BooterBigArm.TopDown3D
             ResolveInput();
             var lookAheadHeld = input != null && input.CameraLookAheadHeld;
             var look = input != null ? input.CameraLookValue : Vector2.zero;
+            var mouseDelta = input != null ? input.MouseLookDelta : Vector2.zero;
             if (!lookAheadHeld)
             {
                 ApplyOrbitInput(look);
             }
+
+            yawDegrees = Mathf.Repeat(yawDegrees + mouseDelta.x * mouseSensitivityDegreesPerPixel, 360f);
+            pitchDegrees = Mathf.Clamp(
+                pitchDegrees - mouseDelta.y * mouseSensitivityDegreesPerPixel,
+                minimumPitchDegrees,
+                maximumPitchDegrees);
 
             var yawRotation = Quaternion.Euler(0f, yawDegrees, 0f);
             lookAheadOffset = CalculateLookAheadOffset(
@@ -394,6 +402,7 @@ namespace BooterBigArm.TopDown3D
             pitchDegrees = Mathf.Clamp(pitchDegrees, minimumPitchDegrees, maximumPitchDegrees);
             yawSpeedDegrees = Mathf.Clamp(yawSpeedDegrees, 30f, 240f);
             pitchSpeedDegrees = Mathf.Clamp(pitchSpeedDegrees, 20f, 180f);
+            mouseSensitivityDegreesPerPixel = Mathf.Max(0f, mouseSensitivityDegreesPerPixel);
             minimumDistance = Mathf.Clamp(minimumDistance, 1f, distance);
             followSmoothTime = Mathf.Max(0f, followSmoothTime);
             maximumLookAheadDistance = Mathf.Max(0f, maximumLookAheadDistance);

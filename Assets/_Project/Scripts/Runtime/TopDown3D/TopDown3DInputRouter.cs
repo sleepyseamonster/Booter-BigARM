@@ -48,6 +48,9 @@ namespace BooterBigArm.TopDown3D
 
         public Vector2 MoveValue { get; private set; }
         public Vector2 CameraLookValue { get; private set; }
+        public Vector2 MouseLookDelta => Mode == TopDown3DInputMode.Gameplay && Application.isFocused && Mouse.current != null
+            ? Mouse.current.delta.ReadValue()
+            : Vector2.zero;
         public bool CameraLookAheadHeld { get; private set; }
         public bool SprintHeld { get; private set; }
         public string LastInputDevice { get; private set; } = "None";
@@ -86,6 +89,15 @@ namespace BooterBigArm.TopDown3D
         private void OnDisable()
         {
             UnbindActions();
+            ReleaseCursor();
+        }
+
+        private void OnApplicationFocus(bool focused)
+        {
+            if (focused && Mode == TopDown3DInputMode.Gameplay)
+            {
+                CaptureCursor();
+            }
         }
 
         private void BindActions()
@@ -257,8 +269,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleLook(InputAction.CallbackContext context)
         {
-            // The shared Look action also carries pointer delta. This foundation pass intentionally
-            // consumes only the gamepad stick so pixel delta and normalized stick rate are never mixed.
+            // Pointer delta is read separately so its pixel units are not treated as a stick rate.
             if (!(context.control?.device is Gamepad))
             {
                 return;
@@ -351,7 +362,33 @@ namespace BooterBigArm.TopDown3D
             }
 
             Mode = mode;
+            if (mode == TopDown3DInputMode.Gameplay)
+            {
+                CaptureCursor();
+            }
+            else
+            {
+                ReleaseCursor();
+            }
             ModeChanged?.Invoke(mode);
+        }
+
+        private static void CaptureCursor()
+        {
+            if (Application.isPlaying && Application.isFocused && Mouse.current != null)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
+
+        private static void ReleaseCursor()
+        {
+            if (Application.isPlaying)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
 
         private void ClearGameplayIntent()
