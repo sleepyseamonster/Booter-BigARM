@@ -9,7 +9,7 @@ Shader "BooterBigArm/TopDown3D/Martian Panorama Sky"
         _SourceSunV ("Painted Sun Latitude", Range(0.5, 1)) = 0.72
         _HorizonV ("Skyline Latitude", Range(0.5, 0.7)) = 0.545
         _SeamBlendWidth ("Seam Blend Width", Range(0, 0.1)) = 0.025
-        [HideInInspector] _SunDirection ("Sun Direction", Vector) = (0, 0.5, 0.866, 0)
+        [HideInInspector] _SunDirection ("Sun Direction", Vector) = (0.33972552, 0.40341485, -0.84961347, 0)
     }
 
     SubShader
