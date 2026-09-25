@@ -242,6 +242,28 @@ namespace BooterBigArm.TopDown3D
             return true;
         }
 
+        internal void PrepareInitialGroundHeight(float groundHeight)
+        {
+            if (startupGroundingComplete)
+            {
+                return;
+            }
+
+            if (body == null)
+            {
+                body = GetComponent<Rigidbody>();
+            }
+
+            var position = body != null ? body.position : transform.position;
+            position.y = groundHeight + groundClearance;
+            if (body != null)
+            {
+                body.position = position;
+            }
+
+            transform.position = position;
+        }
+
         private void UpdateCatchUpIntent(float distanceToBooter)
         {
             if (distanceToBooter >= catchUpDistance)

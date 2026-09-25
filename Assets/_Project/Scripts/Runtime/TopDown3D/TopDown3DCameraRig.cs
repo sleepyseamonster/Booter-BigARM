@@ -283,7 +283,7 @@ namespace BooterBigArm.TopDown3D
             return Mathf.Clamp(nearest, minimumDistance, distance);
         }
 
-        private void SnapToTarget()
+        internal void SnapToTarget()
         {
             if (target == null)
             {

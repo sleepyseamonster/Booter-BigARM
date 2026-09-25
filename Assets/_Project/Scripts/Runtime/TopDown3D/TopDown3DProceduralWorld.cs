@@ -420,6 +420,22 @@ namespace BooterBigArm.TopDown3D
             }
 
             spawnExclusionCenter = new Vector2(spawnPosition.x, spawnPosition.z);
+
+            var cameraRig = Camera.main != null
+                ? Camera.main.GetComponent<TopDown3DCameraRig>()
+                : null;
+            if (cameraRig != null)
+            {
+                cameraRig.SnapToTarget();
+            }
+
+            var companion = FindFirstObjectByType<TopDown3DBigArmFollower>();
+            if (companion != null)
+            {
+                var companionPosition = companion.transform.position;
+                companion.PrepareInitialGroundHeight(
+                    worldGenerator.SampleHeight(companionPosition.x, companionPosition.z));
+            }
         }
 
         private void RequestChunkTerrain(Vector2Int coordinate)
