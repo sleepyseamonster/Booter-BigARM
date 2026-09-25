@@ -25,6 +25,7 @@ namespace BooterBigArm.TopDown3D
         }
 
         private const float MinimumCycleDurationSeconds = 1f;
+        private const string PanoramaMaterialResourcePath = "TopDown3D/MartianPanoramaSky";
         public const float DefaultCycleDurationSeconds = 1200f;
 
         [Header("Cycle")]
@@ -233,10 +234,19 @@ namespace BooterBigArm.TopDown3D
             RenderSettings.subtractiveShadowColor = new Color(0.055f, 0.025f, 0.05f);
             if (runtimeSkybox != null)
             {
-                runtimeSkybox.SetColor(
-                    "_SkyTint",
-                    Color.Lerp(deepTwilightSkyTint, brightTwilightSkyTint, brightness01));
-                runtimeSkybox.SetFloat("_Exposure", Mathf.Lerp(0.55f, 0.82f, brightness01));
+                if (runtimeSkybox.HasProperty("_SunDirection"))
+                {
+                    // The painted sun follows the authoritative light, including the twilight cycle.
+                    runtimeSkybox.SetVector("_SunDirection", DirectionToSun);
+                    runtimeSkybox.SetFloat("_Exposure", Mathf.Lerp(0.65f, 1.05f, brightness01));
+                }
+                else
+                {
+                    runtimeSkybox.SetColor(
+                        "_SkyTint",
+                        Color.Lerp(deepTwilightSkyTint, brightTwilightSkyTint, brightness01));
+                    runtimeSkybox.SetFloat("_Exposure", Mathf.Lerp(0.55f, 0.82f, brightness01));
+                }
             }
         }
 
@@ -244,6 +254,22 @@ namespace BooterBigArm.TopDown3D
         {
             if (!Application.isPlaying || runtimeSkybox != null)
             {
+                return;
+            }
+
+            var panoramaTemplate = Resources.Load<Material>(PanoramaMaterialResourcePath);
+            if (panoramaTemplate != null
+                && panoramaTemplate.shader != null
+                && panoramaTemplate.shader.isSupported
+                && panoramaTemplate.mainTexture != null)
+            {
+                previousSkybox = RenderSettings.skybox;
+                runtimeSkybox = new Material(panoramaTemplate)
+                {
+                    name = "Runtime Martian Panorama Sky",
+                    hideFlags = HideFlags.DontSave,
+                };
+                RenderSettings.skybox = runtimeSkybox;
                 return;
             }
 

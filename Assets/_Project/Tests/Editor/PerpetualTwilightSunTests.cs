@@ -1,6 +1,7 @@
 using BooterBigArm.TopDown3D;
 using NUnit.Framework;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 namespace BooterBigArm.Tests
@@ -9,6 +10,26 @@ namespace BooterBigArm.Tests
     {
         private const string PipelineAssetPath =
             "Assets/_Project/Settings/Rendering/URP/UniversalRP.asset";
+
+        [Test]
+        public void PanoramaSky_HasImportableMaterialAndSkyOnlyMapping()
+        {
+            var material = Resources.Load<Material>("TopDown3D/MartianPanoramaSky");
+            Assert.That(material, Is.Not.Null);
+            Assert.That(material.shader, Is.Not.Null);
+            Assert.That(material.shader.name,
+                Is.EqualTo("BooterBigArm/TopDown3D/Martian Panorama Sky"));
+            Assert.That(material.shader.isSupported, Is.True);
+            Assert.That(material.HasProperty("_SunDirection"), Is.True);
+
+            var panorama = material.mainTexture as Texture2D;
+            Assert.That(panorama, Is.Not.Null);
+            Assert.That(panorama.width, Is.EqualTo(1774));
+            Assert.That(panorama.height, Is.EqualTo(887));
+            Assert.That(material.GetFloat("_HorizonV"), Is.GreaterThan(0.5f));
+            Assert.That(material.GetFloat("_HorizonV"),
+                Is.LessThan(material.GetFloat("_SourceSunV")));
+        }
 
         [Test]
         public void Cycle_StaysInsidePerpetualTwilightElevationBand()
