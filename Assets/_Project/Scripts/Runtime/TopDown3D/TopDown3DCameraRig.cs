@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 namespace BooterBigArm.TopDown3D
@@ -13,8 +12,6 @@ namespace BooterBigArm.TopDown3D
         public const float DefaultLookAheadSpeed = 12.6f;
         public const float DefaultLookAheadReturnSpeed = 37.8f;
         public const float DefaultMinimumPitchDegrees = 26f;
-        public const float DefaultDepthOfFieldFocalLength = 52f;
-        public const float DefaultDepthOfFieldAperture = 5.6f;
 
         [SerializeField] private Transform target;
         [SerializeField] private TopDown3DInputRouter input;
@@ -35,22 +32,11 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(0.05f)] private float obstructionRadius = 0.35f;
         [SerializeField, Min(1f)] private float minimumDistance = 4f;
         [SerializeField] private LayerMask obstructionMask = ~0;
-        [Header("Tilt-Shift Depth Of Field")]
-        [SerializeField] private bool tiltShiftDepthOfFieldEnabled = true;
-        [SerializeField, Range(1f, 300f)] private float depthOfFieldFocalLength = DefaultDepthOfFieldFocalLength;
-        [SerializeField, Range(1f, 32f)] private float depthOfFieldAperture = DefaultDepthOfFieldAperture;
-        [SerializeField, Min(0f)] private float depthOfFieldFocusOffset;
-        [SerializeField, Min(0f)] private float depthOfFieldFocusTrackingSpeed = 24f;
-
         private readonly RaycastHit[] obstructionHits = new RaycastHit[ObstructionHitCapacity];
         private Camera outputCamera;
         private Vector3 smoothedTarget;
         private Vector3 targetVelocity;
         private Vector3 lookAheadOffset;
-        private Volume depthOfFieldVolume;
-        private VolumeProfile depthOfFieldProfile;
-        private DepthOfField depthOfField;
-        private float trackedFocusDistance;
         private bool initialized;
 
         public float PitchDegrees => pitchDegrees;
@@ -61,9 +47,6 @@ namespace BooterBigArm.TopDown3D
         public float LookAheadReturnSpeed => lookAheadReturnSpeed;
         public Vector3 LookAheadOffset => lookAheadOffset;
         public float MinimumPitchDegrees => minimumPitchDegrees;
-        public bool TiltShiftDepthOfFieldEnabled => tiltShiftDepthOfFieldEnabled;
-        public float DepthOfFieldFocalLength => depthOfFieldFocalLength;
-        public float DepthOfFieldAperture => depthOfFieldAperture;
 
         public void Configure(Transform followTarget, TopDown3DInputRouter inputRouter = null)
         {
@@ -75,6 +58,7 @@ namespace BooterBigArm.TopDown3D
         private void Awake()
         {
             outputCamera = GetComponent<Camera>();
+            EnsurePostProcessing();
             ResolveInput();
             ApplyLens();
         }
@@ -82,26 +66,6 @@ namespace BooterBigArm.TopDown3D
         private void OnEnable()
         {
             SnapToTarget();
-            EnsureDepthOfField();
-            SetDepthOfFieldActive(tiltShiftDepthOfFieldEnabled);
-        }
-
-        private void OnDisable()
-        {
-            SetDepthOfFieldActive(false);
-        }
-
-        private void OnDestroy()
-        {
-            if (depthOfFieldProfile != null)
-            {
-                Destroy(depthOfFieldProfile);
-            }
-
-            if (depthOfFieldVolume != null)
-            {
-                Destroy(depthOfFieldVolume.gameObject);
-            }
         }
 
         private void LateUpdate()
@@ -123,7 +87,6 @@ namespace BooterBigArm.TopDown3D
             var framingTarget = smoothedTarget + lookAheadOffset;
             var resolvedDistance = ResolveDistance(framingTarget, backward);
             transform.SetPositionAndRotation(framingTarget + backward * resolvedDistance, rotation);
-            ApplyDepthOfField(rawTarget);
         }
 
         public static float CalculateYaw(float currentYaw, float inputValue, float speedDegrees, float deltaTime)
@@ -187,32 +150,6 @@ namespace BooterBigArm.TopDown3D
             var displacement = panDirection.normalized
                 * (Mathf.Max(0f, outwardSpeed) * stick.magnitude * deltaTime);
             return Vector3.ClampMagnitude(currentOffset + displacement, maximumDistance);
-        }
-
-        public static float CalculateFocusDistance(
-            Vector3 cameraPosition,
-            Vector3 cameraForward,
-            Vector3 focusTarget,
-            float focusOffset)
-        {
-            var forward = cameraForward.sqrMagnitude > 0.0001f
-                ? cameraForward.normalized
-                : Vector3.forward;
-            return Mathf.Max(
-                0.1f,
-                Vector3.Dot(focusTarget - cameraPosition, forward) + focusOffset);
-        }
-
-        public static float TrackFocusDistance(
-            float currentDistance,
-            float desiredDistance,
-            float trackingSpeed,
-            float deltaTime)
-        {
-            return Mathf.MoveTowards(
-                Mathf.Max(0.1f, currentDistance),
-                Mathf.Max(0.1f, desiredDistance),
-                Mathf.Max(0f, trackingSpeed) * Mathf.Max(0f, deltaTime));
         }
 
         private void ApplyCameraInput()
@@ -313,6 +250,7 @@ namespace BooterBigArm.TopDown3D
                 outputCamera = GetComponent<Camera>();
             }
 
+            EnsurePostProcessing();
             outputCamera.orthographic = false;
             outputCamera.fieldOfView = fieldOfView;
             outputCamera.nearClipPlane = 0.1f;
@@ -323,75 +261,20 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
-        private void EnsureDepthOfField()
+        private void EnsurePostProcessing()
         {
-            if (!Application.isPlaying || depthOfFieldProfile != null)
+            if (!Application.isPlaying || outputCamera == null)
             {
                 return;
             }
 
-            var volumeObject = new GameObject("Camera Tilt-Shift Depth Of Field")
+            var additionalCameraData = outputCamera.GetComponent<UniversalAdditionalCameraData>();
+            if (additionalCameraData == null)
             {
-                hideFlags = HideFlags.DontSave,
-                layer = gameObject.layer
-            };
-            volumeObject.transform.SetParent(transform, false);
-            depthOfFieldVolume = volumeObject.AddComponent<Volume>();
-
-            depthOfFieldProfile = ScriptableObject.CreateInstance<VolumeProfile>();
-            depthOfFieldProfile.name = "TopDown3D Camera Tilt-Shift Profile";
-            depthOfField = depthOfFieldProfile.Add<DepthOfField>(true);
-            depthOfFieldVolume.isGlobal = true;
-            depthOfFieldVolume.priority = 20f;
-            depthOfFieldVolume.sharedProfile = depthOfFieldProfile;
-            trackedFocusDistance = target != null
-                ? CalculateFocusDistance(
-                    transform.position,
-                    transform.forward,
-                    target.position + targetOffset,
-                    depthOfFieldFocusOffset)
-                : distance;
-        }
-
-        private void ApplyDepthOfField(Vector3 focusTarget)
-        {
-            EnsureDepthOfField();
-            if (depthOfField == null)
-            {
-                return;
+                additionalCameraData = outputCamera.gameObject.AddComponent<UniversalAdditionalCameraData>();
             }
 
-            SetDepthOfFieldActive(tiltShiftDepthOfFieldEnabled);
-            if (!tiltShiftDepthOfFieldEnabled)
-            {
-                return;
-            }
-
-            var desiredFocusDistance = CalculateFocusDistance(
-                transform.position,
-                transform.forward,
-                focusTarget,
-                depthOfFieldFocusOffset);
-            trackedFocusDistance = TrackFocusDistance(
-                trackedFocusDistance,
-                desiredFocusDistance,
-                depthOfFieldFocusTrackingSpeed,
-                Time.deltaTime);
-            depthOfField.mode.value = DepthOfFieldMode.Bokeh;
-            depthOfField.focusDistance.value = trackedFocusDistance;
-            depthOfField.focalLength.value = depthOfFieldFocalLength;
-            depthOfField.aperture.value = depthOfFieldAperture;
-            depthOfField.bladeCount.value = 7;
-            depthOfField.bladeCurvature.value = 0.75f;
-            depthOfField.bladeRotation.value = 0f;
-        }
-
-        private void SetDepthOfFieldActive(bool active)
-        {
-            if (depthOfFieldVolume != null)
-            {
-                depthOfFieldVolume.weight = active ? 1f : 0f;
-            }
+            additionalCameraData.renderPostProcessing = true;
         }
 
         private void OnValidate()
@@ -409,9 +292,6 @@ namespace BooterBigArm.TopDown3D
             lookAheadSpeed = Mathf.Max(0f, lookAheadSpeed);
             lookAheadReturnSpeed = Mathf.Max(0f, lookAheadReturnSpeed);
             obstructionRadius = Mathf.Max(0.05f, obstructionRadius);
-            depthOfFieldFocalLength = Mathf.Clamp(depthOfFieldFocalLength, 1f, 300f);
-            depthOfFieldAperture = Mathf.Clamp(depthOfFieldAperture, 1f, 32f);
-            depthOfFieldFocusTrackingSpeed = Mathf.Max(0f, depthOfFieldFocusTrackingSpeed);
             ApplyLens();
         }
     }

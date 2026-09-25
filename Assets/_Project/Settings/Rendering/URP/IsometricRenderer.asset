@@ -27,7 +27,11 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: 8947123059812374813}
   - {fileID: 3288659935097919263}
-  m_RendererFeatureMap: 1d99d2dd04912a7c1f179272c9aaa32d
+  - {fileID: 6172849301728394051}
+  - {fileID: 5791042863317659437}
+  - {fileID: 7219931842335071659}
+  - {fileID: 8357291046284017532}
+  m_RendererFeatureMap: 1d99d2dd04912a7c1f179272c9aaa32d43fb8919bc5daa552d2f1c4bcdea5d50abdde9fcc15932647cbf4f82ed0ffb73
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -82,6 +86,110 @@ MonoBehaviour:
     BlurQuality: 0
     Falloff: 75
     SampleCount: -1
+--- !u!114 &5791042863317659437
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08bb71ebc894472b8c2befa9e5560c25, type: 3}
+  m_Name: TopDown3D Anamorphic Streak
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DAnamorphicStreakFeature
+  m_Active: 1
+  streakShader: {fileID: 4800000, guid: a28de9370c1240d7a84945b4cc6d1816, type: 3}
+  streakEnabled: 1
+  previewInSceneView: 1
+  downsample: 4
+  intensity: 0.18
+  length: 0
+  threshold: 0.4
+  orientation: -89
+  chromaticSeparation: 0.095
+  tint: {r: 1, g: 0.82, b: 0.68, a: 1}
+--- !u!114 &6172849301728394051
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d825670a9b8442aa99a40ac3c9304f1, type: 3}
+  m_Name: TopDown3D Tilt Shift
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DTiltShiftFeature
+  m_Active: 1
+  tiltShiftShader: {fileID: 4800000, guid: 5f0cf8130d3a4e4b9bd9f5bd2b1d423a, type: 3}
+  previewInSceneView: 1
+  downsample: 2
+  focusCenter: 0.5
+  sharpBandWidth: 0.05
+  featherWidth: 0.427
+  blurRadius: 3.64
+--- !u!114 &7219931842335071659
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4626f4e6e1e49f183114627f333615c, type: 3}
+  m_Name: TopDown3D Round Lens Flare
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DRoundLensFlareFeature
+  m_Active: 1
+  flareShader: {fileID: 4800000, guid: b2559f29869f44de808c6fa80b6cdfc4, type: 3}
+  flareEnabled: 1
+  previewInSceneView: 1
+  intensity: 0.34
+  radius: 0.22
+  anisotropy: 1.08
+  ghostReach: 1.3
+  edgeReach: 0.35
+  haloThickness: 0.14
+  hdrEnergy: 2.6
+  occlusionRadius: 0.075
+  coreOcclusion: 1
+  aureoleOcclusion: 0.08
+  ghostOcclusion: 0.42
+  occlusionStability: 0.82
+  tint: {r: 1, g: 0.62, b: 0.32, a: 1}
+  primaryFlareSprite: {fileID: 2800000, guid: 3a0f5e6d3bbc4c4f99f9a03711334c87, type: 3}
+  ghostRingSprite: {fileID: 2800000, guid: 4b1a6f7e4ccd5d50aa0ab14822445d98, type: 3}
+  apertureGhostSprite: {fileID: 2800000, guid: 5c2b708f5dde6e61bb1bc25933556ea9, type: 3}
+--- !u!114 &8357291046284017532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d4c5e71f0243cf8d3eae900f9d8132, type: 3}
+  m_Name: TopDown3D Sun Bloom
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DSunBloomFeature
+  m_Active: 1
+  bloomShader: {fileID: 4800000, guid: c4e8b3f1a9d74872ac6e5f1234b9d067, type: 3}
+  bloomEnabled: 1
+  previewInSceneView: 1
+  downsample: 2
+  pyramidLevels: 6
+  intensity: 0.38
+  threshold: 0.82
+  softKnee: 0.48
+  scatter: 0.7
+  clamp: 12
+  tightWeight: 0.9
+  mediumWeight: 0.72
+  broadWeight: 0.48
+  sunAureoleIntensity: 0.62
+  sunAureoleRadius: 0.16
+  tint: {r: 1, g: 0.84, b: 0.68, a: 1}
 --- !u!114 &8947123059812374813
 MonoBehaviour:
   m_ObjectHideFlags: 1

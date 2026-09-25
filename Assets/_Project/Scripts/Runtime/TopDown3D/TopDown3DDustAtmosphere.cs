@@ -143,7 +143,6 @@ namespace BooterBigArm.TopDown3D
         private Volume volume;
         private VolumeProfile runtimeProfile;
         private ColorAdjustments colorAdjustments;
-        private Bloom bloom;
         private Vignette vignette;
         private ChromaticAberration chromaticAberration;
         private ParticleSystem motes;
@@ -673,12 +672,6 @@ namespace BooterBigArm.TopDown3D
                     0.34f * exposure);
             }
 
-            if (bloom != null)
-            {
-                bloom.intensity.value = Mathf.Lerp(0f, 0.34f, exposure);
-                bloom.tint.value = Color.Lerp(Color.white, currentTint, 0.35f);
-            }
-
             if (vignette != null)
             {
                 vignette.intensity.value = Mathf.Lerp(0f, 0.12f, exposure);
@@ -775,13 +768,9 @@ namespace BooterBigArm.TopDown3D
             runtimeProfile.name = "Runtime Dust Atmosphere Profile";
             runtimeProfile.hideFlags = HideFlags.DontSave;
             colorAdjustments = runtimeProfile.Add<ColorAdjustments>(true);
-            bloom = runtimeProfile.Add<Bloom>(true);
             vignette = runtimeProfile.Add<Vignette>(true);
             chromaticAberration = runtimeProfile.Add<ChromaticAberration>(true);
             chromaticAberration.intensity.value = chromaticAberrationIntensity;
-            bloom.threshold.value = 0.85f;
-            bloom.scatter.value = 0.72f;
-            bloom.highQualityFiltering.value = true;
             vignette.color.value = new Color(0.12f, 0.055f, 0.025f);
             vignette.smoothness.value = 0.55f;
             vignette.rounded.value = false;
@@ -1064,7 +1053,6 @@ namespace BooterBigArm.TopDown3D
         {
             runtimeInitialized = false;
             colorAdjustments = null;
-            bloom = null;
             vignette = null;
             chromaticAberration = null;
             if (volume != null && volume.sharedProfile == runtimeProfile)
