@@ -38,6 +38,8 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [IRONSTONE_FORMATION_MINERALIZATION_PLAN.md](./IRONSTONE_FORMATION_MINERALIZATION_PLAN.md)
+  Proposed versioned redesign from standalone Ironstone nodes to mineralized generated formations, including seam-visual experiments and save gates.
 - [ROCK_QUALITY_AND_PRODUCTION_PLAN.md](./ROCK_QUALITY_AND_PRODUCTION_PLAN.md)
   The active visual-first sequence from one user-shaped Golden Rock through the existing editor baker, catalog, and World Creator placement path.
 - [WORLD_CREATOR_ARCHITECTURE_PLAN.md](./WORLD_CREATOR_ARCHITECTURE_PLAN.md)
