@@ -2,6 +2,8 @@
 
 Status: proposed implementation plan, 2026-09-28. This document records an audit and a preferred experiment. It does not approve a new visual direction, alter the accepted terrain shapes, enable canyons in the first playable area, or authorize a terrain/save cutover.
 
+Implementation checkpoint, 2026-09-28: `WorldCliffSectionStudy` now provides a read-only, absolute-coordinate candidate and toe-influence study with stable landform-domain IDs and a Booter/BigARM route screen. Its technical thresholds are unapproved calibration values. No terrain material, mesh, collider, scatter, save record, or production streaming path consumes it yet. Four focused EditMode tests passed in an isolated Unity project mirror. The next step is to measure candidates on fixed approved terrain sections and compare the visible methods below before choosing production face geometry.
+
 ## Goal and authority
 
 Make steep terrain read as exposed rock, make valleys and scarps feel like connected places, and make debris visibly originate from nearby faces. Preserve the current broad terrain shapes while testing the treatment. The controlling product rules are `WORLD_BASIS.md` and `WORLD_CREATOR_CHARTER.md`; `WORLD_CREATOR_ARCHITECTURE_PLAN.md` controls world identity and representation; `TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md` controls the production-camera comparison. The root Unity project is the sole production lane.
