@@ -131,34 +131,13 @@ namespace BooterBigArm.TopDown3D
             }
             tall.Sort((left, right) => bounds[right].size.y.CompareTo(bounds[left].size.y));
 
-            // Vary the authored standing stones around their planted base. The tallest anchor is
-            // retained, while secondary pillars may be shorter or absent on a given seed.
-            for (var order = 0; order < tall.Count; order++)
-            {
-                var index = tall[order];
-                var heightScale = Mathf.Lerp(order == 0 ? 0.76f : 0.62f, 1f,
-                    Unit(seed, members[index].SourceId, 30));
-                var pivot = new Vector3(bounds[index].center.x, bounds[index].min.y, bounds[index].center.z);
-                transforms[index] = Matrix4x4.Translate(pivot)
-                    * Matrix4x4.Scale(new Vector3(1f, heightScale, 1f))
-                    * Matrix4x4.Translate(-pivot) * transforms[index];
-                bounds[index] = TransformBounds(members[index].Mesh.bounds, transforms[index]);
-            }
-
+            // The standing stones define the hand-built silhouette. Preserve their
+            // authored height and let the peripheral rocks supply count variation.
             var keep = new bool[count];
             for (var i = 0; i < count; i++) keep[i] = true;
-            var omittedTall = 0;
-            for (var order = 1; order < tall.Count && omittedTall < 2; order++)
-            {
-                var index = tall[order];
-                if (Unit(seed, members[index].SourceId, 31) >= 0.38f) continue;
-                keep[index] = false;
-                omittedTall++;
-            }
-
             var target = Mathf.Clamp(count + Mathf.FloorToInt(Unit(seed, "spire-count", 32) * 7f) - 3,
                 count - 3, count + 3);
-            var keptCount = count - omittedTall;
+            var keptCount = count;
             if (keptCount > target)
             {
                 var optional = new List<int>();

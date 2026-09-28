@@ -260,45 +260,29 @@ namespace BooterBigArm.TopDown3D
             if (string.IsNullOrWhiteSpace(reservationId))
                 throw new ArgumentException("Procedural formation requires a stable reservation ID.", nameof(reservationId));
 
-            // The workbench bake owns the detailed shapes. Keep the seeded layout unique
-            // per reservation, but draw its members from a deterministically selected
-            // approved generation instead of the separate generic mesh library.
+            // A baked workbench generation pairs each shape with its own pose and
+            // source instance. Keep that composition together while varying its
+            // overall size for a stable world reservation.
             var selected = SelectGenerationIndex(template, reservationId);
             var library = selected == 0 ? template.ApprovedStageEntries
                 : template.ProceduralGenerations[selected - 1].Entries;
-            var layout = TopDown3DAuthoredFormationVariation.GenerateLayout(
-                template, Hash(reservationId + ":layout"));
-            var entries = new TopDown3DAuthoredFormationAsset.ApprovedStageEntry[layout.Entries.Count];
+            var bounds = BoundsAt(library[0].Family.Lod0.bounds, library[0].LocalPose);
+            for (var i = 1; i < library.Count; i++)
+                bounds.Encapsulate(BoundsAt(library[i].Family.Lod0.bounds, library[i].LocalPose));
+            var pivot = new Vector3(bounds.center.x, bounds.min.y, bounds.center.z);
+            var variation = (uint)Hash(reservationId + ":layout");
+            var scale = Mathf.Lerp(0.9f, 1.1f, variation / (float)uint.MaxValue);
+            var change = Matrix4x4.Translate(pivot)
+                * Matrix4x4.Scale(Vector3.one * scale)
+                * Matrix4x4.Translate(-pivot);
+            var entries = new TopDown3DAuthoredFormationAsset.ApprovedStageEntry[library.Count];
             for (var i = 0; i < entries.Length; i++)
             {
-                var layoutEntry = layout.Entries[i];
-                var family = FindBakedFamily(library, layoutEntry.SourceIndex)
-                    ?? FindBakedFamily(template.ApprovedStageEntries, layoutEntry.SourceIndex)
-                    ?? FindBakedFamilyInOtherGenerations(template, layoutEntry.SourceIndex)
-                    ?? template.Members[layoutEntry.SourceIndex].BakedVariants[0];
+                var entry = library[i];
                 entries[i] = new TopDown3DAuthoredFormationAsset.ApprovedStageEntry(
-                    layoutEntry.SourceIndex, layoutEntry.InstanceId, layoutEntry.Transform, family);
+                    entry.SourceIndex, entry.InstanceId, change * entry.LocalPose, entry.Family);
             }
             return entries;
-        }
-
-        private static TopDown3DNaturalMeshFamily FindBakedFamily(
-            IReadOnlyList<TopDown3DAuthoredFormationAsset.ApprovedStageEntry> stage, int sourceIndex)
-        {
-            for (var i = 0; i < stage.Count; i++)
-                if (stage[i].SourceIndex == sourceIndex) return stage[i].Family;
-            return null;
-        }
-
-        private static TopDown3DNaturalMeshFamily FindBakedFamilyInOtherGenerations(
-            TopDown3DAuthoredFormationAsset template, int sourceIndex)
-        {
-            for (var generation = 0; generation < template.ProceduralGenerations.Count; generation++)
-            {
-                var family = FindBakedFamily(template.ProceduralGenerations[generation].Entries, sourceIndex);
-                if (family != null) return family;
-            }
-            return null;
         }
 
         internal static int SelectGenerationIndex(TopDown3DAuthoredFormationAsset template,

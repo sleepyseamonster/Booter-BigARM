@@ -151,6 +151,7 @@ namespace BooterBigArm.Tests
                     var selectedStage = selection == 0 ? template.ApprovedStageEntries
                         : template.ProceduralGenerations[selection - 1].Entries;
                     Assert.That(first.Count, Is.EqualTo(second.Count));
+                    Assert.That(first.Count, Is.EqualTo(selectedStage.Count));
                     Assert.That(first.Count, Is.GreaterThanOrEqualTo(15));
                     for (var member = 0; member < first.Count; member++)
                     {
@@ -158,17 +159,11 @@ namespace BooterBigArm.Tests
                         Assert.That(first[member].LocalPose, Is.EqualTo(second[member].LocalPose));
                         Assert.That(first[member].Family, Is.SameAs(second[member].Family));
                         Assert.That(first[member].Family.IsComplete, Is.True);
-                        var baked = selectedStage.FirstOrDefault(entry =>
-                            entry.SourceIndex == first[member].SourceIndex)
-                            ?? template.ApprovedStageEntries.FirstOrDefault(entry =>
-                                entry.SourceIndex == first[member].SourceIndex);
-                        for (var generation = 0; generation < template.ProceduralGenerations.Count
-                            && baked == null; generation++)
-                            baked = template.ProceduralGenerations[generation].Entries.FirstOrDefault(entry =>
-                                entry.SourceIndex == first[member].SourceIndex);
-                        if (baked != null)
-                            Assert.That(first[member].Family, Is.SameAs(baked.Family),
-                                "Streamed shapes must come from the selected Mixed Formation workbench bake.");
+                        var baked = selectedStage[member];
+                        Assert.That(first[member].SourceIndex, Is.EqualTo(baked.SourceIndex));
+                        Assert.That(first[member].InstanceId, Is.EqualTo(baked.InstanceId));
+                        Assert.That(first[member].Family, Is.SameAs(baked.Family),
+                            "Each streamed shape must stay paired with its own workbench pose.");
                     }
                     firstRockPoses.Add(first[0].LocalPose);
                 }
