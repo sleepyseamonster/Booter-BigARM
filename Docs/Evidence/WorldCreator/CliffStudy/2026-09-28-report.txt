@@ -1,0 +1,14 @@
+NON-CANON CLIFF SECTION CALIBRATION
+Read-only production-query sample; not a visual, collision, or gameplay acceptance test.
+seed=24681357, versions=topology=13;coordinate=1;landform=2;material=1;decoration=2;resource=1;site=2, sourceFingerprint=96ef0728256ce0e5c5524173e588aa7f
+profile: 1.5 m owner grid; 0.75 m trace; 35 deg minimum slope; 1.25 m minimum drop; 5 m debris runout
+windows use absolute A/B coordinates in metres; candidates are independent of 18 m streaming chunks
+origin: cells=1024, candidates=31, plannedParents=0, broadGroundSections=31, nearChunkBorder=3, maxDrop=5.227 m
+east: cells=1024, candidates=47, plannedParents=0, broadGroundSections=47, nearChunkBorder=18, maxDrop=5.924 m
+north: cells=1024, candidates=0, plannedParents=0, broadGroundSections=0, nearChunkBorder=0, maxDrop=0 m
+diagonal: cells=1024, candidates=51, plannedParents=0, broadGroundSections=51, nearChunkBorder=13, maxDrop=5.998 m
+section=ca6eda59c70d2f3e0206bfd5fae0b8d9, owner=39:27, rim=(60.259375903242983, 0.76398946989730776, 45.635334683459448), toe=(58.408853413964181, -5.233973262990383, 37.595554430450456), drop=5.998, strata=proof.non-canon.strata.iron-shelf
+section=a2194adf1b671fc2acf2ad1c3c05cb55, owner=35:-10, rim=(49.8273158425996, 0.79345215519250534, -15.782231431174914), toe=(58.726294651840639, -5.1304765212660373, -11.798429710120139), drop=5.924, strata=proof.non-canon.strata.iron-shelf
+section=893105d2bd8d11a39d16260c593c69c7, owner=-16:7, rim=(-22.368142615324537, 0.31172472525655337, 12.463395052360671), toe=(-26.777429538701849, -4.9150267317229677, 6.396419790557319), drop=5.227, strata=proof.non-canon.strata.iron-shelf
+section=1d5d02181d4e30c04e89d559e78c31c6, owner=31:0, rim=(44.529531031057829, 0.84137970773546344, -0.51453492993380934), toe=(52.69093793788435, -4.2704314432965322, 3.2790698598676187), drop=5.112, strata=proof.non-canon.strata.iron-shelf
+Interpretation: a candidate marks a steep source only. Caprock breaks, ledges, apron shape, route-safe placement, and the user's visual target remain unproven.

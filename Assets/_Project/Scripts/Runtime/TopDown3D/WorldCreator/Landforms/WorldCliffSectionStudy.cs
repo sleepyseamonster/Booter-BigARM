@@ -88,6 +88,8 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         }
 
         public WorldFeatureId Id { get; }
+        // Empty on broad ground: its DominantFeatureId is a per-position context ID,
+        // not the identity of a continuous landform or cliff.
         public WorldFeatureId ParentFeatureId { get; }
         public long OwnerCellA { get; }
         public long OwnerCellB { get; }
@@ -154,7 +156,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             var centerPoint = new AbsoluteWorldPosition(centerA, 0d, centerB);
             if (!query.TrySampleSurface(centerPoint, out var center, out error)) return false;
             if (SlopeDegrees(center.NormalVertical) < profile.MinimumSlopeDegrees
-                || center.DominantFeatureId.IsEmpty)
+                || (center.Semantic & WorldSurfaceSemantic.SiteReservation) != 0)
             {
                 error = null;
                 return false;
@@ -200,7 +202,14 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 return false;
             }
 
-            // This is only the canonical route screen. Spawn, authored formation, and site
+            if ((rim.Semantic & WorldSurfaceSemantic.SiteReservation) != 0
+                || (toe.Semantic & WorldSurfaceSemantic.SiteReservation) != 0)
+            {
+                error = null;
+                return false;
+            }
+
+            // This is only the canonical route screen. Spawn and authored formation
             // reservations are required before a candidate becomes production geometry.
             if (!TryRouteClear(center.Position, out var centerClear, out error)
                 || !TryRouteClear(rim.Position, out var rimClear, out error)
@@ -212,12 +221,17 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             }
 
             var address = coordinateModel.Encode(centerPoint);
+            var parentFeatureId = (center.Semantic & (WorldSurfaceSemantic.CanyonFloor
+                | WorldSurfaceSemantic.CanyonShelf | WorldSurfaceSemantic.CanyonWall
+                | WorldSurfaceSemantic.BoundedLandform)) != 0
+                ? center.DominantFeatureId
+                : WorldFeatureId.Empty;
             var key = cellA.ToString(CultureInfo.InvariantCulture) + ":"
                 + cellB.ToString(CultureInfo.InvariantCulture) + ":"
-                + center.DominantFeatureId;
+                + parentFeatureId;
             var id = WorldFeatureId.Create(world, SectionNamespace, address, key);
             candidate = new WorldCliffSectionCandidate(
-                id, center.DominantFeatureId, cellA, cellB,
+                id, parentFeatureId, cellA, cellB,
                 center.Position, rim.Position, toe.Position,
                 outwardA, outwardB, center.StrataFamilyId,
                 profile.DebrisRunout, profile.DebrisHalfWidth);

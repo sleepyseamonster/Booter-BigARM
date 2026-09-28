@@ -13,7 +13,7 @@ namespace BooterBigArm.Tests.WorldCreator
             var study = CreateStudy();
             Assert.That(study.TryBuild(-1, 0, out var section, out var error), Is.True, error);
             Assert.That(section.Id.IsEmpty, Is.False);
-            Assert.That(section.ParentFeatureId, Is.EqualTo(SyntheticScarpQuery.ParentId));
+            Assert.That(section.ParentFeatureId.IsEmpty, Is.True);
             Assert.That(section.StrataFamilyId, Is.EqualTo("study.strata"));
             Assert.That(section.VerticalDrop, Is.GreaterThan(1.25d));
             Assert.That(section.OutwardA, Is.GreaterThan(0d));
@@ -60,6 +60,18 @@ namespace BooterBigArm.Tests.WorldCreator
         }
 
         [Test]
+        public void OnlyPlannedLandformsSupplyAParentFeature()
+        {
+            var broadGround = CreateStudy();
+            var boundedLandform = CreateStudy(semantic: WorldSurfaceSemantic.BoundedLandform);
+            Assert.That(broadGround.TryBuild(-1, 0, out var broad, out var broadError), Is.True, broadError);
+            Assert.That(boundedLandform.TryBuild(-1, 0, out var bounded, out var boundedError), Is.True, boundedError);
+            Assert.That(broad.ParentFeatureId.IsEmpty, Is.True);
+            Assert.That(bounded.ParentFeatureId, Is.EqualTo(SyntheticScarpQuery.ParentId));
+            Assert.That(bounded.Id, Is.Not.EqualTo(broad.Id));
+        }
+
+        [Test]
         public void WindowLimitAlsoRejectsExtremeCellRangesWithoutOverflow()
         {
             var study = CreateStudy();
@@ -71,12 +83,13 @@ namespace BooterBigArm.Tests.WorldCreator
             bool reservedRoute = false,
             double amplitude = 2d,
             int landform = 1,
-            int material = 1)
+            int material = 1,
+            WorldSurfaceSemantic semantic = WorldSurfaceSemantic.BroadGround)
         {
             return new WorldCliffSectionStudy(
                 WorldCreatorTestFactory.CreateWorld(landform: landform, material: material),
                 new NonCanonCoordinateModel(),
-                new SyntheticScarpQuery(amplitude, reservedRoute),
+                new SyntheticScarpQuery(amplitude, reservedRoute, semantic),
                 WorldCliffStudyProfile.CreateTechnicalStudy());
         }
 
@@ -85,11 +98,13 @@ namespace BooterBigArm.Tests.WorldCreator
             public static readonly WorldFeatureId ParentId = new WorldFeatureId(17UL, 23UL);
             private readonly double amplitude;
             private readonly bool reservedRoute;
+            private readonly WorldSurfaceSemantic semantic;
 
-            public SyntheticScarpQuery(double amplitude, bool reservedRoute)
+            public SyntheticScarpQuery(double amplitude, bool reservedRoute, WorldSurfaceSemantic semantic)
             {
                 this.amplitude = amplitude;
                 this.reservedRoute = reservedRoute;
+                this.semantic = semantic;
             }
 
             public bool TrySampleSurface(
@@ -107,7 +122,7 @@ namespace BooterBigArm.Tests.WorldCreator
                     (float)(-derivative / normalLength),
                     (float)(1d / normalLength),
                     0f,
-                    WorldSurfaceSemantic.BroadGround,
+                    semantic,
                     ParentId,
                     "study.province",
                     "study.strata");
