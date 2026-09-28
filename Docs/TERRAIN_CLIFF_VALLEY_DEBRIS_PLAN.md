@@ -4,6 +4,14 @@ Status: proposed implementation plan, 2026-09-28. This document records an audit
 
 Implementation checkpoint, 2026-09-28: `WorldCliffSectionStudy` now provides a read-only, absolute-coordinate candidate and toe-influence study with stable landform-domain IDs and a Booter/BigARM route screen. Its technical thresholds are unapproved calibration values. No terrain material, mesh, collider, scatter, save record, or production streaming path consumes it yet. Four focused EditMode tests passed in an isolated Unity project mirror. The next step is to measure candidates on fixed approved terrain sections and compare the visible methods below before choosing production face geometry.
 
+## User visual reference, 2026-09-28
+
+The user supplied [this stepped-mesa cliff image](VisualReferences/Terrain/SteppedMesaCliffs_2026-09-28.png) as the intended terrain feel. It is a composition and geological-form reference, not a production screenshot or a request to replace the accepted heightfield, sky, camera, or first-area no-deep-canyon rule.
+
+The defining shapes are broad open valley floors between long, staggered mesas; a hard, nearly horizontal dark caprock edge that breaks into ledges and buttresses; exposed lighter strata beneath it; and a sloping scree apron joining each wall to the valley floor. The large walls have quiet stretches and abrupt broken corners rather than a uniform jagged contour. Near rocks are large and irregular, while smaller fragments gather near cliff toes and thin out across the open floor. Repeated mesa bands create depth without filling every route with rock.
+
+For the controlled comparison, judge whether the approved terrain can read as **top/edge/face/apron/floor**, especially from the production camera. Test material bands and caprock accents before adding large fitted geometry. The present `WorldCliffSectionStudy` supplies only a rim, toe, and deposit candidate; it does not yet infer the caprock break, intermediate strata ledges, or the full debris fan shown here. Those features need a shared parent-face plan and visual proof, not independent scatter at each steep sample.
+
 ## Goal and authority
 
 Make steep terrain read as exposed rock, make valleys and scarps feel like connected places, and make debris visibly originate from nearby faces. Preserve the current broad terrain shapes while testing the treatment. The controlling product rules are `WORLD_BASIS.md` and `WORLD_CREATOR_CHARTER.md`; `WORLD_CREATOR_ARCHITECTURE_PLAN.md` controls world identity and representation; `TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md` controls the production-camera comparison. The root Unity project is the sole production lane.
