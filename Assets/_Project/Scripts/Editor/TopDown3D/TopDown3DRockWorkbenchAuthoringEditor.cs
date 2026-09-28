@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,50 @@ namespace BooterBigArm.Editor
         internal const string WorkbenchMaterialPath =
             "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat";
         private bool showAdvanced;
+
+        [MenuItem("Booter & BigARM/Top Down 3D/Apply Light Cliff Gray To Selected Rocks", false, 35)]
+        private static void ApplyLightCliffGrayToSelection()
+        {
+            var rocks = CollectSelectedSceneRocks();
+            if (rocks.Count == 0) return;
+            const string undoName = "Apply Light Cliff Gray";
+            Undo.SetCurrentGroupName(undoName);
+            var undoGroup = Undo.GetCurrentGroup();
+            try
+            {
+                foreach (var rock in rocks)
+                {
+                    if (rock.SurfacePreset == TopDown3DRockSurfacePreset.LightCliffGray) continue;
+                    Undo.RecordObject(rock, undoName);
+                    rock.SetSurfacePreset(TopDown3DRockSurfacePreset.LightCliffGray);
+                    EditorUtility.SetDirty(rock);
+                    TopDown3DRockWorkbenchPreview.RequestRebuild(rock, false);
+                }
+            }
+            finally
+            {
+                Undo.CollapseUndoOperations(undoGroup);
+            }
+            SceneView.RepaintAll();
+        }
+
+        [MenuItem("Booter & BigARM/Top Down 3D/Apply Light Cliff Gray To Selected Rocks", true)]
+        private static bool CanApplyLightCliffGrayToSelection() => CollectSelectedSceneRocks().Count > 0;
+
+        private static List<TopDown3DRockWorkbenchAuthoring> CollectSelectedSceneRocks()
+        {
+            var result = new List<TopDown3DRockWorkbenchAuthoring>();
+            var seen = new HashSet<TopDown3DRockWorkbenchAuthoring>();
+            foreach (var selected in Selection.gameObjects)
+            {
+                if (selected == null || !selected.scene.IsValid()) continue;
+                foreach (var rock in selected.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true))
+                {
+                    if (seen.Add(rock)) result.Add(rock);
+                }
+            }
+            return result;
+        }
 
         [MenuItem("Booter & BigARM/Create Rock Workbench", false, 1)]
         private static void CreateWorkbenchFromMainMenu()

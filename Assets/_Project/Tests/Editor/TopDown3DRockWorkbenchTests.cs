@@ -1543,6 +1543,65 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void LightCliffGrayPresetKeepsSeededNeutralTintOnSharedMaterial()
+        {
+            var root = new GameObject("Light Cliff Gray Preset Test");
+            try
+            {
+                var authoring = root.AddComponent<TopDown3DRockWorkbenchAuthoring>();
+                var renderer = root.GetComponent<MeshRenderer>();
+                var material = AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath);
+                authoring.Configure(material);
+                renderer.sharedMaterial = material;
+                authoring.SetSurfacePreset(TopDown3DRockSurfacePreset.LightCliffGray);
+
+                authoring.SetGenerationSeed(10101);
+                TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(
+                    authoring, renderer, new Vector3(4f, 3f, 4f), 10101,
+                    Vector3.zero, 0f, 1f);
+                var first = new MaterialPropertyBlock();
+                renderer.GetPropertyBlock(first);
+
+                authoring.SetGenerationSeed(20202);
+                TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(
+                    authoring, renderer, new Vector3(4f, 3f, 4f), 20202,
+                    Vector3.zero, 0f, 1f);
+                var second = new MaterialPropertyBlock();
+                renderer.GetPropertyBlock(second);
+
+                var firstTint = first.GetColor(Shader.PropertyToID("_BaseColor"));
+                var secondTint = second.GetColor(Shader.PropertyToID("_BaseColor"));
+                Assert.That(firstTint.r, Is.GreaterThan(1f));
+                Assert.That(secondTint.r, Is.GreaterThan(1f));
+                Assert.That(secondTint, Is.Not.EqualTo(firstTint));
+                Assert.That(Mathf.Abs(secondTint.r - secondTint.b), Is.LessThan(0.06f));
+                Assert.That(renderer.sharedMaterial, Is.SameAs(material));
+                Assert.That(material.GetColor("_BaseColor"), Is.EqualTo(Color.white));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void CliffWallSourcePreservesEditableRocksWithoutPretendingToBeGameplayMesh()
+        {
+            var source = AssetDatabase.LoadAssetAtPath<GameObject>(
+                TopDown3DCliffWallSourceCapture.PrefabPath);
+            Assert.That(source, Is.Not.Null);
+            var rocks = source.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+            Assert.That(rocks.Length, Is.EqualTo(18));
+            foreach (var rock in rocks)
+            {
+                Assert.That(rock.SurfacePreset, Is.EqualTo(TopDown3DRockSurfacePreset.LightCliffGray));
+                Assert.That(rock.GetComponentsInChildren<TopDown3DRockVolumeNode>(true).Length,
+                    Is.GreaterThanOrEqualTo(2));
+                Assert.That(rock.GetComponent<MeshFilter>().sharedMesh, Is.Null);
+            }
+        }
+
+        [Test]
         public void SubtractiveFractureCutsCarveAClosedConnectedRockSurface()
         {
             var root = new GameObject("Subtractive Fracture Mesher Test");

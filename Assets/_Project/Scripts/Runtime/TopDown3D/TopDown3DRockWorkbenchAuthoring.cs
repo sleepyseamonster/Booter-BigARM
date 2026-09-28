@@ -20,7 +20,8 @@ namespace BooterBigArm.TopDown3D
     public enum TopDown3DRockSurfacePreset
     {
         NeutralWeathered,
-        DarkFracturedDesert
+        DarkFracturedDesert,
+        LightCliffGray
     }
 
     /// <summary>
@@ -267,6 +268,13 @@ namespace BooterBigArm.TopDown3D
         public void Configure(Material material)
         {
             rockMaterial = material;
+        }
+
+        public void SetSurfacePreset(TopDown3DRockSurfacePreset preset)
+        {
+            if (!Enum.IsDefined(typeof(TopDown3DRockSurfacePreset), preset))
+                throw new ArgumentOutOfRangeException(nameof(preset));
+            surfacePreset = preset;
         }
 
         /// <summary>
