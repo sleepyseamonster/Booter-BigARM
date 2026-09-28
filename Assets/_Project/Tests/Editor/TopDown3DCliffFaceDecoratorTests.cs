@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using BooterBigArm.TopDown3D;
 using BooterBigArm.TopDown3D.WorldCreator;
 using NUnit.Framework;
@@ -13,7 +14,7 @@ namespace BooterBigArm.Tests
             "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
 
         [Test]
-        public void SteepWorldChunkBuildsTheSameVisualFaceAfterReload()
+        public void SteepWorldChunkBuildsTheSamePhysicalRockFormationAfterReload()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(SettingsPath);
             Assert.That(settings, Is.Not.Null);
@@ -26,12 +27,15 @@ namespace BooterBigArm.Tests
             var rebased = Build(coordinate, settings, runtime);
             try
             {
-                Assert.That(first.mesh, Is.Not.Null);
-                Assert.That(first.mesh.triangles.Length, Is.GreaterThan(0));
-                Assert.That(first.mesh.vertices, Is.EqualTo(second.mesh.vertices));
-                Assert.That(first.mesh.triangles, Is.EqualTo(second.mesh.triangles));
-                Assert.That(first.mesh.vertices, Is.EqualTo(rebased.mesh.vertices));
-                Assert.That(first.chunk.GetComponentsInChildren<Collider>(), Is.Empty);
+                Assert.That(first.rocks.Length, Is.GreaterThan(0));
+                Assert.That(first.rocks, Is.EqualTo(second.rocks));
+                Assert.That(first.rocks, Is.EqualTo(rebased.rocks));
+                Assert.That(first.chunk.GetComponentsInChildren<BoxCollider>().Length,
+                    Is.EqualTo(first.rocks.Length));
+                Assert.That(first.chunk.GetComponentsInChildren<LODGroup>().Length,
+                    Is.EqualTo(first.rocks.Length));
+                Assert.That(first.chunk.GetComponentsInChildren<MeshFilter>()
+                    .All(filter => filter.sharedMesh.bounds.size.z > 0.1f), Is.True);
             }
             finally
             {
@@ -41,7 +45,7 @@ namespace BooterBigArm.Tests
             }
         }
 
-        private static (TopDown3DGeneratedChunk chunk, Mesh mesh) Build(
+        private static (TopDown3DGeneratedChunk chunk, string[] rocks) Build(
             Vector2Int coordinate, TopDown3DWorldSettings settings,
             WorldCreatorProductionRuntime runtime)
         {
@@ -54,9 +58,15 @@ namespace BooterBigArm.Tests
             var chunk = root.AddComponent<TopDown3DGeneratedChunk>();
             chunk.Initialize(coordinate, null);
             foreach (var _ in TopDown3DCliffFaceDecorator.DecorateSteps(
-                chunk, settings, runtime, new Vector2(-1000f, -1000f), null)) { }
-            var filter = chunk.GetComponentInChildren<MeshFilter>();
-            return (chunk, filter != null ? filter.sharedMesh : null);
+                chunk, settings, runtime, Vector2.zero,
+                new List<TopDown3DRockFormationPlan>())) { }
+            var rocks = chunk.GetComponentsInChildren<BoxCollider>()
+                .Select(collider => collider.name + "|"
+                    + collider.transform.localPosition + "|"
+                    + collider.transform.localRotation + "|"
+                    + collider.transform.localScale)
+                .ToArray();
+            return (chunk, rocks);
         }
     }
 }
