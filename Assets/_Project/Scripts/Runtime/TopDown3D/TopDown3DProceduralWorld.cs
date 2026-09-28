@@ -66,6 +66,12 @@ namespace BooterBigArm.TopDown3D
         private readonly List<Vector2Int> unloadBuffer = new List<Vector2Int>();
         private readonly Dictionary<Vector2Int, TerrainRequest> terrainRequests =
             new Dictionary<Vector2Int, TerrainRequest>();
+        private readonly Dictionary<Vector2Int, double> terrainRetryDue =
+            new Dictionary<Vector2Int, double>();
+        private readonly Dictionary<Vector2Int, int> terrainRetryCounts =
+            new Dictionary<Vector2Int, int>();
+        private readonly Dictionary<Vector2Int, double> missingTerrainIntegrationSince =
+            new Dictionary<Vector2Int, double>();
         private int pendingChunkCursor;
         private Vector2Int currentCenterChunk = new Vector2Int(int.MinValue, int.MinValue);
         private Vector2 spawnExclusionCenter;
@@ -137,7 +143,7 @@ namespace BooterBigArm.TopDown3D
         public int LoadedChunkCount => loadedChunks.Count;
         public int PendingChunkCount => PendingTerrainChunkCount;
         public int PendingTerrainChunkCount => Mathf.Max(0, pendingChunks.Count - pendingChunkCursor)
-            + terrainRequests.Count;
+            + terrainRequests.Count + terrainRetryDue.Count;
         public int PendingTerrainColliderCount => queuedTerrainColliders.Count;
         public int PendingDecorationCount => queuedDecorations.Count
             + (activeDecorationStage != 0 ? 1 : 0) + queuedFormationRefreshes.Count
@@ -264,7 +270,9 @@ namespace BooterBigArm.TopDown3D
                             requiredDecoratedChunks.Add(coordinate);
                         }
 
-                        if (!loadedChunks.ContainsKey(coordinate))
+                        if (!loadedChunks.ContainsKey(coordinate)
+                            && !terrainRequests.ContainsKey(coordinate)
+                            && !terrainRetryDue.ContainsKey(coordinate))
                         {
                             pendingChunks.Add(coordinate);
                         }
@@ -277,6 +285,14 @@ namespace BooterBigArm.TopDown3D
                 }
 
                 pendingChunks.Sort(ComparePendingChunks);
+                unloadBuffer.Clear();
+                foreach (var pair in terrainRetryCounts)
+                    if (!requiredChunks.Contains(pair.Key)) unloadBuffer.Add(pair.Key);
+                for (var i = 0; i < unloadBuffer.Count; i++)
+                {
+                    terrainRetryDue.Remove(unloadBuffer[i]);
+                    terrainRetryCounts.Remove(unloadBuffer[i]);
+                }
                 if (force)
                 {
                     var immediateRadius = Mathf.Min(settings.ImmediateLoadRadius, streamingRadius);
@@ -317,6 +333,9 @@ namespace BooterBigArm.TopDown3D
                         CancelActiveDecoration(false);
                     if (formationTreatments.Remove(coordinate)) QueueFormationTerrainNear(coordinate);
                     terrainRequests.Remove(coordinate);
+                    terrainRetryDue.Remove(coordinate);
+                    terrainRetryCounts.Remove(coordinate);
+                    missingTerrainIntegrationSince.Remove(coordinate);
                     decoratedChunks.Remove(coordinate);
                     queuedDecorations.Remove(coordinate);
                     queuedTerrainColliders.Remove(coordinate);
@@ -366,6 +385,7 @@ namespace BooterBigArm.TopDown3D
                 {
                     if (!TryCreatePendingTerrainCollider()
                         && !TryIntegrateRequestedTerrain()
+                        && !TryRequestDueTerrainRetry()
                         && !TryRefreshPendingFormationTerrain()
                         && !TryProcessDecoration())
                     {
@@ -475,11 +495,14 @@ namespace BooterBigArm.TopDown3D
             if (loadedChunks.ContainsKey(coordinate)
                 || terrainRequests.ContainsKey(coordinate)
                 || worldCreatorRuntime == null
-                || settings == null)
+                || settings == null
+                || (terrainRetryDue.TryGetValue(coordinate, out var retryDue)
+                    && Time.realtimeSinceStartupAsDouble < retryDue))
             {
                 return;
             }
 
+            terrainRetryDue.Remove(coordinate);
             var key = worldCreatorRuntime.CreateRepresentationKey(
                 WorldRepresentationTier.Near,
                 coordinate.x,
@@ -513,26 +536,75 @@ namespace BooterBigArm.TopDown3D
             }
 
             var outcome = request.Task.GetAwaiter().GetResult();
-            if (outcome.State == WorldRepresentationRequestState.Failed)
+            if (outcome.State == WorldRepresentationRequestState.Failed
+                || outcome.State == WorldRepresentationRequestState.Cancelled)
             {
-                Debug.LogError($"World Creator near representation failed: {outcome.Error}", this);
+                Debug.LogError($"World Creator near representation {coordinate} {outcome.State}: {outcome.Error}", this);
                 terrainRequests.Remove(coordinate);
+                ScheduleTerrainRetry(coordinate);
                 return true;
             }
 
             if (!requiredChunks.Contains(coordinate))
             {
                 terrainRequests.Remove(coordinate);
+                terrainRetryDue.Remove(coordinate);
+                terrainRetryCounts.Remove(coordinate);
+                missingTerrainIntegrationSince.Remove(coordinate);
                 return true;
             }
 
             if (!worldCreatorRuntime.TryGetIntegrated(request.Key, out var result))
             {
-                return false;
+                var now = Time.realtimeSinceStartupAsDouble;
+                if (!missingTerrainIntegrationSince.TryGetValue(coordinate, out var since))
+                {
+                    missingTerrainIntegrationSince.Add(coordinate, now);
+                    since = now;
+                }
+                if (outcome.State == WorldRepresentationRequestState.QueuedForIntegration
+                    && worldCreatorRuntime.CaptureMetrics().Queued > 0
+                    && now - since < 5d)
+                    return false;
+                terrainRequests.Remove(coordinate);
+                missingTerrainIntegrationSince.Remove(coordinate);
+                ScheduleTerrainRetry(coordinate);
+                return true;
             }
 
             terrainRequests.Remove(coordinate);
+            terrainRetryDue.Remove(coordinate);
+            terrainRetryCounts.Remove(coordinate);
+            missingTerrainIntegrationSince.Remove(coordinate);
             IntegrateChunkTerrain(coordinate, result);
+            return true;
+        }
+
+        private void ScheduleTerrainRetry(Vector2Int coordinate)
+        {
+            if (!requiredChunks.Contains(coordinate)) return;
+            var attempts = terrainRetryCounts.TryGetValue(coordinate, out var previous)
+                ? Mathf.Min(7, previous + 1) : 1;
+            terrainRetryCounts[coordinate] = attempts;
+            terrainRetryDue[coordinate] = Time.realtimeSinceStartupAsDouble
+                + Mathf.Min(30f, 0.5f * (1 << (attempts - 1)));
+        }
+
+        private bool TryRequestDueTerrainRetry()
+        {
+            var now = Time.realtimeSinceStartupAsDouble;
+            var found = false;
+            var nearest = default(Vector2Int);
+            foreach (var pair in terrainRetryDue)
+            {
+                if (pair.Value > now || !requiredChunks.Contains(pair.Key)
+                    || loadedChunks.ContainsKey(pair.Key) || terrainRequests.ContainsKey(pair.Key)
+                    || (found && ComparePendingChunks(pair.Key, nearest) >= 0)) continue;
+                nearest = pair.Key;
+                found = true;
+            }
+            if (!found) return false;
+            RequestChunkTerrain(nearest);
             return true;
         }
 

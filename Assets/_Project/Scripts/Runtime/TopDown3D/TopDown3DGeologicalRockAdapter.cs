@@ -17,6 +17,10 @@ namespace BooterBigArm.TopDown3D
         private const ulong AdditionalBurialSalt = 0xA54FF53AUL;
         private static readonly ProfilerMarker PlanMarker =
             new ProfilerMarker("TopDown3D.World.PlanGeologicalRocks");
+        private static readonly ProfilerMarker PlanReservationCellMarker =
+            new ProfilerMarker("TopDown3D.World.PlanFormationReservationCell");
+        private static readonly ProfilerMarker FitAuthoredFormationMarker =
+            new ProfilerMarker("TopDown3D.World.FitAuthoredFormation");
 
         public static List<TopDown3DRockFormationPlan> BuildPhysicalFormations(
             TopDown3DWorldSettings settings,
@@ -94,7 +98,9 @@ namespace BooterBigArm.TopDown3D
                 if (IsComplete) return;
                 if (reservationSteps != null)
                 {
-                    if (!reservationSteps.MoveNext())
+                    bool hasMore;
+                    using (PlanReservationCellMarker.Auto()) hasMore = reservationSteps.MoveNext();
+                    if (!hasMore)
                     {
                         reservationSteps.Dispose();
                         reservationSteps = null;
@@ -111,7 +117,7 @@ namespace BooterBigArm.TopDown3D
                         plan, template, spawnExclusionCenter);
                 }
                 if (placement == null) { IsComplete = true; return; }
-                placement.Step();
+                using (FitAuthoredFormationMarker.Auto()) placement.Step();
                 if (!placement.IsComplete) return;
                 if (placement.Result != null) Output.Add(placement.Result);
                 placement = null;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Profiling;
 using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
@@ -90,6 +91,10 @@ namespace BooterBigArm.TopDown3D
 
     public static class TopDown3DNaturalObjectPlanner
     {
+        private static readonly ProfilerMarker PlanFormationStepMarker =
+            new ProfilerMarker("TopDown3D.World.PlanFormationStep");
+        private static readonly ProfilerMarker PlanResourceNodesMarker =
+            new ProfilerMarker("TopDown3D.World.PlanResourceNodes");
         public static TopDown3DNaturalObjectChunkPlan BuildChunkPlan(
             TopDown3DWorldSettings settings,
             TopDown3DWorldGenerator generator,
@@ -163,15 +168,17 @@ namespace BooterBigArm.TopDown3D
                 }
                 else if (stage == 1)
                 {
-                    formations.Step();
+                    using (PlanFormationStepMarker.Auto()) formations.Step();
                     if (formations.IsComplete) stage = 2;
                 }
                 else
                 {
-                    var resources = settings != null && catalog != null
-                        ? TopDown3DResourceNodePlanner.BuildChunkPlacements(settings, generator,
-                            settings.ResourceCatalog, coordinate, spawnExclusionCenter, formations.Output)
-                        : new List<TopDown3DResourceNodePlacement>();
+                    List<TopDown3DResourceNodePlacement> resources;
+                    using (PlanResourceNodesMarker.Auto())
+                        resources = settings != null && catalog != null
+                            ? TopDown3DResourceNodePlanner.BuildChunkPlacements(settings, generator,
+                                settings.ResourceCatalog, coordinate, spawnExclusionCenter, formations.Output)
+                            : new List<TopDown3DResourceNodePlacement>();
                     Result = new TopDown3DNaturalObjectChunkPlan(placements, formations.Output, resources);
                     stage = 3;
                 }
