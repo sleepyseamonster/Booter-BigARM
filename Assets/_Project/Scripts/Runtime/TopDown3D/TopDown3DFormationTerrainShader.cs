@@ -62,7 +62,6 @@ namespace BooterBigArm.TopDown3D
 
             var depth = 0f;
             Material sourceMaterial = null;
-            var sandTint = relevant[0].Formation.AuthoredTemplate.SurfaceTreatment.BandColor;
             for (var f = 0; f < relevant.Count; f++)
             {
                 var formation = relevant[f].Formation;
@@ -133,7 +132,6 @@ namespace BooterBigArm.TopDown3D
             properties.SetVector("_FormationGroundMaskOriginScale", new Vector4(chunkOrigin.x,
                 chunkOrigin.z, 1f / settings.ChunkSize, 1f / settings.ChunkSize));
             properties.SetFloat("_FormationGroundMaskEnabled", 1f);
-            properties.SetColor("_FormationSandTint", sandTint);
             properties.SetFloat("_PebbleDetail", 1f);
             properties.SetFloat("_NearRockPebbleDepth", depth);
             properties.SetFloat("_NearRockPebbleDensity", 0f);

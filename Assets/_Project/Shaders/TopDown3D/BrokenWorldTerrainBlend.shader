@@ -47,7 +47,6 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
         [HideInInspector] _FormationGroundMask("Formation Gravel and Sand", 2D) = "black" {}
         [HideInInspector] _FormationGroundMaskEnabled("Formation Ground Mask Enabled", Float) = 0
         [HideInInspector] _FormationGroundMaskOriginScale("Formation Mask Origin and Scale", Vector) = (0,0,1,1)
-        [HideInInspector] _FormationSandTint("Formation Sand Base Tint", Color) = (0.65,0.3,0.15,1)
         _Smoothness("Smoothness", Range(0, 1)) = 0.18
         [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
@@ -148,7 +147,6 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float _NearRockPebbleDensity;
                 float _FormationGroundMaskEnabled;
                 float4 _FormationGroundMaskOriginScale;
-                half4 _FormationSandTint;
                 float _Smoothness;
                 float _Cutoff;
                 float _Surface;
@@ -324,78 +322,40 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 return output;
             }
 
-            // The authored gravel images are not edge-seamless. Mirror each projection at
-            // its image boundary so a repeat cannot expose a straight texture edge.
-            float2 MirrorPebbleUv(float2 uv, out float2 direction)
-            {
-                float2 phase = frac(uv * 0.5) * 2.0;
-                direction = lerp(float2(1.0, 1.0), float2(-1.0, -1.0), step(1.0, phase));
-                // Stay inside the image: the shared sampler is Repeat and sampling exactly
-                // at 0/1 would bilinearly mix the source image's mismatched opposite edges.
-                direction *= 0.996;
-                return lerp(0.002, 0.998, 1.0 - abs(phase - 1.0));
-            }
-
-            // Both projections and both gravel textures use identical coordinates and
-            // gradients, keeping the color, height, and resulting relief aligned.
+            // Use the same stochastic mapping for the workbench and streamed world.
+            // Color and height share coordinates and gradients so their relief stays aligned.
             float4 SamplePebbleTilesGrad(float2 position, float2 positionDx, float2 positionDy,
                 TEXTURE2D_PARAM(textureMap, sampler_textureMap))
             {
-                float4 sampleResult = 0;
-                // The sandbox keeps its accepted stochastic mapping. Streamed formation
-                // chunks opt into the edge-safe mapping through their ground mask.
-                [branch] if (_FormationGroundMaskEnabled <= 0.5)
+                float2 sandboxUv = position / 1.25;
+                float2 cell = floor(sandboxUv);
+                float2 blendCell = frac(sandboxUv);
+                blendCell = blendCell * blendCell * (3.0 - 2.0 * blendCell);
+                float2 dx = positionDx / 1.25;
+                float2 dy = positionDy / 1.25;
+                float4 result = 0;
+                float total = 0;
+                [unroll] for (int y = 0; y < 2; y++)
                 {
-                    float2 sandboxUv = position / 1.25;
-                    float2 cell = floor(sandboxUv);
-                    float2 blendCell = frac(sandboxUv);
-                    blendCell = blendCell * blendCell * (3.0 - 2.0 * blendCell);
-                    float2 dx = positionDx / 1.25;
-                    float2 dy = positionDy / 1.25;
-                    float4 result = 0;
-                    float total = 0;
-                    [unroll] for (int y = 0; y < 2; y++)
+                    [unroll] for (int x = 0; x < 2; x++)
                     {
-                        [unroll] for (int x = 0; x < 2; x++)
-                        {
-                            float2 id = cell + float2(x, y);
-                            float angle = Hash21(id + 7.13) * 6.2831853;
-                            float sine = 0.0;
-                            float cosine = 1.0;
-                            sincos(angle, sine, cosine);
-                            float2x2 tileRotation = float2x2(cosine, -sine, sine, cosine);
-                            float2 offset = float2(Hash21(id + 19.71), Hash21(id + 43.29));
-                            float2 tileUv = mul(tileRotation, sandboxUv - id) + offset;
-                            float weight = (x == 0 ? 1.0 - blendCell.x : blendCell.x)
-                                * (y == 0 ? 1.0 - blendCell.y : blendCell.y);
-                            weight *= weight;
-                            result += SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
-                                tileUv, mul(tileRotation, dx), mul(tileRotation, dy)) * weight;
-                            total += weight;
-                        }
+                        float2 id = cell + float2(x, y);
+                        float angle = Hash21(id + 7.13) * 6.2831853;
+                        float sine = 0.0;
+                        float cosine = 1.0;
+                        sincos(angle, sine, cosine);
+                        float2x2 tileRotation = float2x2(cosine, -sine, sine, cosine);
+                        float2 offset = float2(Hash21(id + 19.71), Hash21(id + 43.29));
+                        float2 tileUv = mul(tileRotation, sandboxUv - id) + offset;
+                        float weight = (x == 0 ? 1.0 - blendCell.x : blendCell.x)
+                            * (y == 0 ? 1.0 - blendCell.y : blendCell.y);
+                        weight *= weight;
+                        result += SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
+                            tileUv, mul(tileRotation, dx), mul(tileRotation, dy)) * weight;
+                        total += weight;
                     }
-                    sampleResult = result / max(total, 0.0001);
                 }
-                else
-                {
-                    float2 uv = position / 1.25;
-                    float2 gradientX = positionDx / 1.25;
-                    float2 gradientY = positionDy / 1.25;
-                    const float2x2 rotation = float2x2(0.7547096, -0.6560590, 0.6560590, 0.7547096);
-                    float2 alternateUv = mul(rotation, uv * 0.93) + float2(13.37, 27.19);
-                    float blend = smoothstep(0.2, 0.8, ValueNoise(position * 0.11 + 31.7));
-                    float2 primaryDirection;
-                    float2 alternateDirection;
-                    uv = MirrorPebbleUv(uv, primaryDirection);
-                    alternateUv = MirrorPebbleUv(alternateUv, alternateDirection);
-                    float4 primary = SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
-                        uv, gradientX * primaryDirection, gradientY * primaryDirection);
-                    float4 alternate = SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
-                        alternateUv, mul(rotation, gradientX * 0.93) * alternateDirection,
-                        mul(rotation, gradientY * 0.93) * alternateDirection);
-                    sampleResult = lerp(primary, alternate, blend);
-                }
-                return sampleResult;
+                return result / max(total, 0.0001);
             }
 
             float4 SamplePebbleTiles(float2 position, TEXTURE2D_PARAM(textureMap, sampler_textureMap))
@@ -616,7 +576,13 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float2 groundPosition = absolutePositionWS.xz;
                 half2 formationMask = SampleFormationGroundMask(groundPosition);
                 half2 localClutter = input.clutter;
-                if (_FormationGroundMaskEnabled > 0.5) localClutter.x = formationMask.x;
+                if (_FormationGroundMaskEnabled > 0.5)
+                {
+                    // The workbench's deposit channel hides chips inside the sand band.
+                    // Streamed chunks carry that channel in the ground mask instead of UV2.
+                    localClutter.x = formationMask.x * (1.0h - formationMask.y);
+                    localClutter.y = max(localClutter.y, formationMask.y);
+                }
                 float pixelFootprint = max(length(ddx(groundPosition)), length(ddy(groundPosition)));
                 half3 geometricNormalWS = NormalizeNormalPerPixel(input.normalWS);
                 half3 normalWS = geometricNormalWS;
@@ -693,7 +659,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                         farRockyShaleBand);
 
                     // Authoring bank mask retains sand detail while bringing it into the local earth palette.
-                    farSweptAlbedo = lerp(farSweptAlbedo, farBaseAlbedo, input.clutter.y * 0.8);
+                    farSweptAlbedo = lerp(farSweptAlbedo, farBaseAlbedo, localClutter.y * 0.8);
                     half3 farAlbedo = lerp(farBaseAlbedo, farSweptAlbedo, sweptMask);
                     farAlbedo = lerp(farAlbedo, farGravelAlbedo, gravelMask);
                     farAlbedo = lerp(farAlbedo, farRockySurfaceAlbedo, rockyMask);
@@ -702,8 +668,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     SurfaceData farSurfaceData = (SurfaceData)0;
                     farSurfaceData.albedo = farAlbedo;
                     farSurfaceData.albedo = lerp(farSurfaceData.albedo,
-                        lerp(farBaseAlbedo * _BaseColor.rgb, _FormationSandTint.rgb, 0.25h),
-                        formationMask.y * 0.85h);
+                        farBaseAlbedo * _BaseColor.rgb, formationMask.y);
                     farSurfaceData.specular = half3(0.2, 0.2, 0.2);
                     farSurfaceData.metallic = 0.0;
                     farSurfaceData.smoothness = lerp(
@@ -898,8 +863,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     rockyHeight,
                     rockyCenterBlend);
 
-                sweptAlbedo = lerp(sweptAlbedo, baseAlbedo, input.clutter.y * 0.8);
-                sweptTransitionAlbedo = lerp(sweptTransitionAlbedo, baseAlbedo, input.clutter.y * 0.8);
+                sweptAlbedo = lerp(sweptAlbedo, baseAlbedo, localClutter.y * 0.8);
+                sweptTransitionAlbedo = lerp(sweptTransitionAlbedo, baseAlbedo, localClutter.y * 0.8);
                 half3 albedo = lerp(baseAlbedo, sweptTransitionAlbedo, sweptTransitionMask);
                 albedo = lerp(albedo, sweptAlbedo, sweptMask);
                 albedo = lerp(albedo, gravelTransitionAlbedo, gravelTransitionMask);
@@ -927,8 +892,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 SurfaceData surfaceData = (SurfaceData)0;
                 surfaceData.albedo = albedo;
                 surfaceData.albedo = lerp(surfaceData.albedo,
-                    lerp(baseAlbedo * _BaseColor.rgb, _FormationSandTint.rgb, 0.25h),
-                    formationMask.y * 0.85h);
+                    baseAlbedo * _BaseColor.rgb, formationMask.y);
                 surfaceData.specular = half3(0.2, 0.2, 0.2);
                 surfaceData.metallic = 0.0;
                 float stonyMask = max(
