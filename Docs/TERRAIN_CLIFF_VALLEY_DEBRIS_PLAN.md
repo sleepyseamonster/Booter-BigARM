@@ -15,6 +15,71 @@ bounded six-section chunk budget. Terrain geometry, climbing affordances, and de
 unchanged. In-game appearance, physical contact, route clearance, and full-content frame cost
 still require review before treating this as the final cliff vocabulary.
 
+## Cohesive face correction and sparse vertical scarps, 2026-09-28
+
+The user's game-camera screenshot of the source-rock iteration shows separated upright
+stones on an orange slope. This is a rejected visual result for a cliff wall. The section
+decorator selects independent 3 m candidates, keeps at most six per 18 m chunk, and places
+three to seven small rocks around each selected point. It has no common crest, underlying
+rock mass, contact seam, or shared toe. Adding more of those stones would thicken islands
+without giving them a connected geological origin. The hand-built wall remains a useful
+fracture and buttress reference, but its stone meshes should become embedded accents.
+
+### Candidate constructions
+
+| Approach | Useful role | Reason it cannot be the whole answer |
+| --- | --- | --- |
+| Dense independent source rocks | Buttresses, broken corners, rare free boulders | Repeats the current isolated-column failure and multiplies colliders. |
+| Closed, contour-fitted bedrock volume | Continuous rock face, cap, buried sides and toe; can follow an existing sloped rim | Needs carefully matched terrain contact, chunk edges and simplified collision. |
+| Interlocking procedural stone courses | Visible deep joints, layered ledges and thick fracture blocks inside the bedrock silhouette | Must share a parent face and keep gaps bounded; free placement becomes scatter again. |
+| Local volumetric field / SDF | True undercuts, caves and complex silhouettes | Too costly as the default streamed terrain representation; reserve for rare landmarks. |
+| Sharpen a heightfield alone | Broad flat top and lower approach around a scarp | A single height at each horizontal coordinate cannot contain a genuinely vertical surface. |
+
+**Selected design to prototype:** a deterministic scarp feature owns a continuous, closed
+3D bedrock body. Its rim and toe trace the canonical terrain; its front is built from
+connected faceted bands with a few recessed fracture seams and projecting strata shelves.
+The saved source rocks are partially buried into that body as irregular buttresses, crown
+breaks and toe fragments. A source-linked talus field extends outward from the toe. All
+three layers use the same light-gray stone family and stable parent identity. This is an
+actual thick rock formation with a simplified face collider, not a one-sided sheet or
+texture projection. [Unity's *Survival Kids* terrain workflow](https://unity.com/blog/level-layout-and-terrain-workflows-in-survival-kids) used cliff-side modules,
+simplified collision and a continuous terrain top; the useful lesson here is the shared
+mass and contact, adapted to our streamed procedural world rather than fixed prefabs.
+
+For existing steep ground, trace connected slope bands across chunk boundaries before
+placing geometry. Measure drop, length, rim curvature and toe clearance over a world-space
+halo. Build face samples at stable absolute positions along the rim, then connect buried
+back, crown, stepped front and buried toe into a closed mesh. The front leans with moderate
+slopes and becomes increasingly upright as the measured angle rises. Vary layer thickness,
+ledge spacing, fractures and buttress locations *along the parent feature*, so adjacent
+segments share one silhouette and rock strata. The old point-cluster decorator must be
+replaced rather than layered on top.
+
+**Sparse true vertical areas are a separate landform decision.** A seeded macro-scale
+planner should admit occasional mesa edges, fault scarps or broken plateau lips only where
+the shared world plan has enough drop and room at both the upper and lower approaches.
+Authored sites, spawn clearances and Booter/BigARM route connectivity screen the whole
+planned footprint. The planned scarp creates a level upper surface and lower toe in the
+canonical height query, while the near terrain mesh is split at its rim/toe and the face
+volume supplies the vertical polygon surface. One coordinate may then have both upper and
+lower vertices; a height-only grid cannot represent that seam, as described in
+[SideFX's heightfield limitations](https://www.sidefx.com/docs/houdini/heightfields/index.html).
+The same feature must own near collision, mid/far silhouette and stable ID. A vertical
+cliff is impassable unless an explicit traversable opening or separately validated climb
+route is planned. No change to
+the current first-area canyon switch is implied.
+
+Implementation should proceed through one fixed world-space proof area: (1) contiguous
+closed face following an existing steep band, without accent stones; (2) fractured stone
+courses and sparse sample-derived buttresses; (3) shared terrain contact, collision and
+source-linked toe debris; (4) one intentionally planned true-vertical scarp with matching
+upper/lower terrain and distance representations. Compare the same camera positions against
+the screenshot failure after each step. Check chunk seams, deterministic rebuild, route
+clearance and normal-content streaming cost before widening generation. New vertical
+physical geography requires an explicit topology-version and old-save review before
+production cutover. Thresholds and frequency remain calibration values until visually
+accepted by the user.
+
 Initial implementation checkpoint, 2026-09-28: `WorldCliffSectionStudy` provided a read-only, absolute-coordinate candidate and toe-influence study with stable landform-domain IDs and a Booter/BigARM route screen. Four focused EditMode tests passed in an isolated Unity project mirror. The following runtime checkpoint supersedes its former read-only status.
 
 Runtime checkpoint, 2026-09-28: the user asked for automatic generation wherever terrain is steep enough. The first `TopDown3DCliffFaceDecorator` built shallow face panels. The user's game screenshot showed these as blue rectangular stickers; that implementation was superseded. The next version consumed the canonical section study during near-chunk decoration and placed two overlapping **3D cliff rock meshes** from the baked natural-object catalog for sections meeting a 43-degree, 1.75 m drop technical threshold. It had LODs and simplified box collision, but used generic wide rocks and is superseded by the source-rock iteration above.
