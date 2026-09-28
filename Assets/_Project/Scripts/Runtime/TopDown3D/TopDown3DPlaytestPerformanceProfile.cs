@@ -6,15 +6,16 @@ using UnityEngine.Rendering.Universal;
 namespace BooterBigArm.TopDown3D
 {
     /// <summary>
-    /// Installs telemetry plus a reversible rendering posture for Editor and Development Player playtests.
-    /// An explicit command-line flag keeps full production content active for controlled profiling.
+    /// Installs telemetry for Editor and Development Player playtests. The reduced diagnostic
+    /// posture requires an explicit opt-in so normal play always uses production content.
     /// It deliberately leaves release-player graphics unchanged.
     /// </summary>
     [DefaultExecutionOrder(-1000)]
     public sealed class TopDown3DPlaytestPerformanceProfile : MonoBehaviour
     {
         internal const string FullContentProfileArgument = "-topDown3DFullContentProfile";
-        public const string FullContentEditorPreferenceKey = "BooterBigArm.TopDown3D.FullContentPlayMode";
+        internal const string StressProfileArgument = "-topDown3DStressProfile";
+        public const string StressEditorPreferenceKey = "BooterBigArm.TopDown3D.StressPlayMode";
 
         private const string FastTerrainKeyword = "TOPDOWN3D_PLAYTEST_FAST_TERRAIN";
         private const float ReportIntervalSeconds = 5f;
@@ -66,7 +67,7 @@ namespace BooterBigArm.TopDown3D
         {
             fullContentTelemetryMode = ShouldUseFullContentProfile(
                 Environment.GetCommandLineArgs(),
-                IsEditorFullContentProfileEnabled());
+                IsEditorStressProfileEnabled());
             if (fullContentTelemetryMode)
             {
                 Debug.Log(
@@ -234,15 +235,25 @@ namespace BooterBigArm.TopDown3D
             return false;
         }
 
-        internal static bool ShouldUseFullContentProfile(string[] arguments, bool editorOptIn)
+        internal static bool IsStressProfileRequested(string[] arguments)
         {
-            return editorOptIn || IsFullContentProfileRequested(arguments);
+            if (arguments == null) return false;
+            for (var i = 0; i < arguments.Length; i++)
+                if (string.Equals(arguments[i], StressProfileArgument,
+                        StringComparison.OrdinalIgnoreCase)) return true;
+            return false;
         }
 
-        private static bool IsEditorFullContentProfileEnabled()
+        internal static bool ShouldUseFullContentProfile(string[] arguments, bool editorStressRequested)
+        {
+            return IsFullContentProfileRequested(arguments)
+                || (!editorStressRequested && !IsStressProfileRequested(arguments));
+        }
+
+        private static bool IsEditorStressProfileEnabled()
         {
 #if UNITY_EDITOR
-            return UnityEditor.EditorPrefs.GetBool(FullContentEditorPreferenceKey, false);
+            return UnityEditor.EditorPrefs.GetBool(StressEditorPreferenceKey, false);
 #else
             return false;
 #endif

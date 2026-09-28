@@ -56,6 +56,8 @@ The repo should expose static editor methods under an Editor-only assembly so Un
 `-buildTarget` is optional. If omitted, the build script uses the current active build target in the editor.
 When it is present, the build script expects the active build target to already match the requested target.
 
+Editor Play Mode and Development Players use the full world content and production rendering settings by default while logging performance telemetry. The reduced diagnostic profile is opt-in through `Booter & BigARM/World Creator/Reduced Stress Play Mode` in the Editor or `-topDown3DStressProfile` when launching a Development Player. The reduced profile disables runtime decoration and is not suitable for visual or gameplay acceptance.
+
 ## Current State
 
 - Player-build automation exists at `BooterBigArm.Editor.BuildAutomation.BuildFromCli`.

@@ -7,7 +7,7 @@ namespace BooterBigArm.Editor.TopDown3D.WorldCreator
     [InitializeOnLoad]
     internal static class WorldCreatorPlayModeProfileMenu
     {
-        private const string MenuPath = "Booter & BigARM/World Creator/Full-Content Play Mode";
+        private const string MenuPath = "Booter & BigARM/World Creator/Reduced Stress Play Mode";
 
         static WorldCreatorPlayModeProfileMenu()
         {
@@ -15,23 +15,23 @@ namespace BooterBigArm.Editor.TopDown3D.WorldCreator
         }
 
         [MenuItem(MenuPath, priority = 200)]
-        private static void ToggleFullContentPlayMode()
+        private static void ToggleStressPlayMode()
         {
             var enabled = !EditorPrefs.GetBool(
-                TopDown3DPlaytestPerformanceProfile.FullContentEditorPreferenceKey,
+                TopDown3DPlaytestPerformanceProfile.StressEditorPreferenceKey,
                 false);
             EditorPrefs.SetBool(
-                TopDown3DPlaytestPerformanceProfile.FullContentEditorPreferenceKey,
+                TopDown3DPlaytestPerformanceProfile.StressEditorPreferenceKey,
                 enabled);
             Menu.SetChecked(MenuPath, enabled);
             Debug.Log(
                 enabled
-                    ? "[World Creator] Full-content Play Mode enabled. The next Play session will use production landscape settings with telemetry."
-                    : "[World Creator] Stress Play Mode restored. The next Play session will use the low-cost diagnostic profile.");
+                    ? "[World Creator] Reduced stress Play Mode enabled for the next Play session."
+                    : "[World Creator] Full-content Play Mode restored for the next Play session.");
         }
 
         [MenuItem(MenuPath, true)]
-        private static bool ValidateFullContentPlayMode()
+        private static bool ValidateStressPlayMode()
         {
             RefreshCheckmark();
             return !EditorApplication.isPlayingOrWillChangePlaymode;
@@ -42,7 +42,7 @@ namespace BooterBigArm.Editor.TopDown3D.WorldCreator
             Menu.SetChecked(
                 MenuPath,
                 EditorPrefs.GetBool(
-                    TopDown3DPlaytestPerformanceProfile.FullContentEditorPreferenceKey,
+                    TopDown3DPlaytestPerformanceProfile.StressEditorPreferenceKey,
                     false));
         }
     }

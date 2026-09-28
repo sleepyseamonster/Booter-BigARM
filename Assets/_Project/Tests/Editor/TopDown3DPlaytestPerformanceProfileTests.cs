@@ -28,18 +28,33 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void FullContentProfile_DefaultsToStressModeWhenFlagIsAbsent()
+        public void FullContentProfile_IsTheDefaultWhenStressIsNotRequested()
         {
             Assert.That(
-                TopDown3DPlaytestPerformanceProfile.IsFullContentProfileRequested(null),
-                Is.False);
+                TopDown3DPlaytestPerformanceProfile.ShouldUseFullContentProfile(null, false),
+                Is.True);
             Assert.That(
-                TopDown3DPlaytestPerformanceProfile.IsFullContentProfileRequested(new string[0]),
-                Is.False);
+                TopDown3DPlaytestPerformanceProfile.ShouldUseFullContentProfile(new string[0], false),
+                Is.True);
             Assert.That(
-                TopDown3DPlaytestPerformanceProfile.IsFullContentProfileRequested(
-                    new[] { "BooterBigArm", "-batchmode" }),
+                TopDown3DPlaytestPerformanceProfile.ShouldUseFullContentProfile(
+                    new[] { "BooterBigArm", "-batchmode" }, false),
+                Is.True);
+        }
+
+        [Test]
+        public void ReducedStressProfile_RequiresAnExplicitFlagOrEditorSelection()
+        {
+            Assert.That(TopDown3DPlaytestPerformanceProfile.ShouldUseFullContentProfile(
+                new[] { "BooterBigArm", TopDown3DPlaytestPerformanceProfile.StressProfileArgument }, false),
                 Is.False);
+            Assert.That(TopDown3DPlaytestPerformanceProfile.ShouldUseFullContentProfile(
+                new[] { "BooterBigArm" }, true), Is.False);
+            Assert.That(TopDown3DPlaytestPerformanceProfile.IsStressProfileRequested(
+                new[] { "BooterBigArm", "-topDown3DStressProfileExtra" }), Is.False);
+            Assert.That(TopDown3DPlaytestPerformanceProfile.ShouldUseFullContentProfile(
+                new[] { TopDown3DPlaytestPerformanceProfile.FullContentProfileArgument,
+                    TopDown3DPlaytestPerformanceProfile.StressProfileArgument }, true), Is.True);
         }
     }
 }
