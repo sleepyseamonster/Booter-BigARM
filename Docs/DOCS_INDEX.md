@@ -75,6 +75,8 @@ These define current preferred approaches or sequencing.
 - [GAMEPLAY_ARCHITECTURE_BASELINES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md)
 - [INPUT_ARCHITECTURE_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/INPUT_ARCHITECTURE_STANDARD.md)
 - [MOVEMENT_CAMERA_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/MOVEMENT_CAMERA_STANDARD.md)
+- [CLIMBING_TRAVERSAL_PLAN.md](./CLIMBING_TRAVERSAL_PLAN.md)
+  The proposal for steep incline, scramble, wall, and overhang traversal and animation.
 - [SMART_TRAVERSAL_STANDARD.md](./SMART_TRAVERSAL_STANDARD.md)
   The contextual sprint traversal contract, first spin/vault move set, safety boundaries, and extension seam.
 - [SURVIVAL_SYSTEM_STANDARD.md](./SURVIVAL_SYSTEM_STANDARD.md)
