@@ -42,6 +42,10 @@ namespace BooterBigArm.TopDown3D
                 if ((formation.EnvelopeCenter + nearby[i].LocalShift - chunkCenter).sqrMagnitude <= reach * reach)
                     relevant.Add(nearby[i]);
             }
+            // Streaming refreshes a neighborhood after each formation chunk arrives.
+            // Existing chunks keep their mask and combined stones when their contributing
+            // immutable plans have not changed. An origin shift moves both with the chunk.
+            if (chunk.HasFormationGroundFor(relevant)) return;
             var properties = new MaterialPropertyBlock();
             renderer.GetPropertyBlock(properties);
             if (relevant.Count == 0)
@@ -52,6 +56,7 @@ namespace BooterBigArm.TopDown3D
                 properties.SetFloat("_NearRockPebbleDensity", 0f);
                 renderer.SetPropertyBlock(properties);
                 chunk.SetFormationGroundStones(null, null);
+                chunk.RecordFormationGround(relevant);
                 return;
             }
 
@@ -140,6 +145,7 @@ namespace BooterBigArm.TopDown3D
                 properties.SetTexture("_RockPebbleColorMap", sourceMaterial.GetTexture("_BaseMap"));
             renderer.SetPropertyBlock(properties);
             TopDown3DFormationSurfaceStones.Apply(chunk, settings, relevant);
+            chunk.RecordFormationGround(relevant);
         }
 
         internal static void RepositionMask(TopDown3DGeneratedChunk chunk, TopDown3DWorldSettings settings)

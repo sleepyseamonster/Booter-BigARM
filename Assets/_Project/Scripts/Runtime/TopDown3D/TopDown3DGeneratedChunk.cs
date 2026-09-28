@@ -16,6 +16,8 @@ namespace BooterBigArm.TopDown3D
         private Texture2D formationGroundMask;
         private GameObject formationStonesObject;
         private Mesh formationStonesMesh;
+        private readonly List<TopDown3DRockFormationPlan> appliedFormationGround = new List<TopDown3DRockFormationPlan>();
+        private bool formationGroundValid;
 
         public Vector2Int Coordinate { get; private set; }
         public long GenerationToken { get; private set; }
@@ -57,6 +59,22 @@ namespace BooterBigArm.TopDown3D
             formationGroundMask = mask;
         }
 
+        internal bool HasFormationGroundFor(IReadOnlyList<TopDown3DFormationTerrainShader.Influence> influences)
+        {
+            if (!formationGroundValid || appliedFormationGround.Count != influences.Count) return false;
+            for (var i = 0; i < influences.Count; i++)
+                if (!ReferenceEquals(appliedFormationGround[i], influences[i].Formation)) return false;
+            return true;
+        }
+
+        internal void RecordFormationGround(IReadOnlyList<TopDown3DFormationTerrainShader.Influence> influences)
+        {
+            appliedFormationGround.Clear();
+            for (var i = 0; i < influences.Count; i++)
+                appliedFormationGround.Add(influences[i].Formation);
+            formationGroundValid = true;
+        }
+
         public void SetFormationGroundStones(Mesh mesh, Material material)
         {
             DestroyOwnedObject(formationStonesObject);
@@ -96,6 +114,8 @@ namespace BooterBigArm.TopDown3D
 
         public void ClearDecoration()
         {
+            formationGroundValid = false;
+            appliedFormationGround.Clear();
             DecorationRendererCount = 0;
             DecorationColliderCount = 0;
             if (decorationRoot != null)

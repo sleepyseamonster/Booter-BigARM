@@ -195,13 +195,26 @@ namespace BooterBigArm.Tests
                 TopDown3DFormationTerrainShader.Apply(chunk, settings, influence);
                 var first = chunk.DecorationRoot.Find("Formation Surface Stones");
                 Assert.That(first, Is.Not.Null);
+                var firstMaskProperties = new MaterialPropertyBlock();
+                root.GetComponent<MeshRenderer>().GetPropertyBlock(firstMaskProperties);
+                var firstMask = firstMaskProperties.GetTexture("_FormationGroundMask");
                 var firstVertices = first.GetComponent<MeshFilter>().sharedMesh.vertices;
                 Assert.That(firstVertices.Length, Is.GreaterThan(0));
                 Assert.That(first.GetComponent<MeshRenderer>().sharedMaterial,
                     Is.SameAs(member.AuthoredMaterial));
                 TopDown3DFormationTerrainShader.Apply(chunk, settings, influence);
                 var second = chunk.DecorationRoot.Find("Formation Surface Stones");
+                var secondMaskProperties = new MaterialPropertyBlock();
+                root.GetComponent<MeshRenderer>().GetPropertyBlock(secondMaskProperties);
+                Assert.That(second, Is.SameAs(first));
+                Assert.That(secondMaskProperties.GetTexture("_FormationGroundMask"), Is.SameAs(firstMask));
                 Assert.That(second.GetComponent<MeshFilter>().sharedMesh.vertices,
+                    Is.EqualTo(firstVertices));
+                chunk.ClearDecoration();
+                TopDown3DFormationTerrainShader.Apply(chunk, settings, influence);
+                var rebuilt = chunk.DecorationRoot.Find("Formation Surface Stones");
+                Assert.That(rebuilt, Is.Not.Null);
+                Assert.That(rebuilt.GetComponent<MeshFilter>().sharedMesh.vertices,
                     Is.EqualTo(firstVertices));
             }
             finally
