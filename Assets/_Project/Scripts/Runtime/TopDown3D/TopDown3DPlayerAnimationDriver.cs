@@ -20,6 +20,7 @@ namespace BooterBigArm.TopDown3D
         Pivoting,
         Traversal,
         ConstrainedAction,
+        Climbing,
     }
 
     public readonly struct TopDown3DFootContact
@@ -65,7 +66,8 @@ namespace BooterBigArm.TopDown3D
         private const int SideStepRightIndex = 13;
         private const int VaultIndex = 14;
         private const int GatherIndex = 15;
-        private const int ClipCount = 16;
+        private const int ClimbPlaceholderIndex = 16;
+        private const int ClipCount = 17;
         private const float LocomotionStopSpeed = 0.08f;
         private const int FootGroundHitCapacity = 4;
 
@@ -118,6 +120,7 @@ namespace BooterBigArm.TopDown3D
         private float locomotionPhase;
         private float smoothedPlanarSpeed;
         private float activeGatherDuration;
+        private float climbPlaceholderPhase;
 
         public bool HasCoreAnimationSet => TryGetAnimationSetError(false, out _);
         public bool HasCompleteAnimationSet => TryGetAnimationSetError(true, out _);
@@ -302,6 +305,9 @@ namespace BooterBigArm.TopDown3D
                 sideStepLeftClip,
                 sideStepRightClip,
                 vaultClip,
+                gatherClip,
+                // A separate playable keeps the gather action independent while
+                // a dedicated climbing Humanoid clip set is being sourced.
                 gatherClip
             };
             playableGraph = PlayableGraph.Create("Booter Prototype Humanoid Animation");
@@ -341,6 +347,18 @@ namespace BooterBigArm.TopDown3D
             }
 
             var snapshot = motor.LocomotionSnapshot;
+            if (visualInstance != null)
+            {
+                var lean = snapshot.ClimbMode == TopDown3DClimbMode.Incline ? 9f
+                    : snapshot.ClimbMode == TopDown3DClimbMode.Scramble ? 22f
+                    : snapshot.ClimbMode == TopDown3DClimbMode.Overhang ? -25f
+                    : 0f;
+                visualInstance.transform.localRotation = Quaternion.Slerp(
+                    visualInstance.transform.localRotation,
+                    Quaternion.Euler(visualLocalEulerAngles + Vector3.right * lean),
+                    1f - Mathf.Exp(-10f * Time.deltaTime));
+            }
+
             var planarSpeed = snapshot.CurrentPlanarVelocity.magnitude;
             smoothedPlanarSpeed = TopDown3DAnimationMath.SmoothValue(
                 smoothedPlanarSpeed,
@@ -396,6 +414,12 @@ namespace BooterBigArm.TopDown3D
                 case TopDown3DTraversalMove.Vault:
                     ResetTransitionState(TopDown3DLocomotionState.Traversal);
                     return VaultIndex;
+            }
+
+            if (motor.ClimbMode >= TopDown3DClimbMode.Scramble)
+            {
+                ResetTransitionState(TopDown3DLocomotionState.Climbing);
+                return ClimbPlaceholderIndex;
             }
 
             var absoluteHeadingError = Mathf.Abs(snapshot.SignedHeadingError);
@@ -609,6 +633,22 @@ namespace BooterBigArm.TopDown3D
             {
                 clipPlayables[actionIndex].SetSpeed(1d);
                 EmitOneShotContactIfDue(actionIndex, snapshot);
+                return;
+            }
+
+            if (actionIndex == ClimbPlaceholderIndex)
+            {
+                var climbClip = clipPlayables[actionIndex];
+                var climbLength = Mathf.Max(0.01f, climbClip.GetAnimationClip().length);
+                if (motor.Velocity.sqrMagnitude > 0.04f)
+                {
+                    climbPlaceholderPhase = Mathf.Repeat(
+                        climbPlaceholderPhase + Time.deltaTime * motor.Velocity.magnitude / 1.4f,
+                        1f);
+                }
+
+                climbClip.SetSpeed(0d);
+                climbClip.SetTime(climbPlaceholderPhase * climbLength);
                 return;
             }
 

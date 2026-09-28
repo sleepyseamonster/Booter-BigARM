@@ -15,7 +15,8 @@ namespace BooterBigArm.TopDown3D
             bool sprintActive,
             bool traversalOwnsMotion,
             float directionAlignment,
-            float signedHeadingError)
+            float signedHeadingError,
+            TopDown3DClimbMode climbMode = TopDown3DClimbMode.None)
         {
             CurrentPlanarVelocity = currentPlanarVelocity;
             DesiredPlanarVelocity = desiredPlanarVelocity;
@@ -28,6 +29,7 @@ namespace BooterBigArm.TopDown3D
             TraversalOwnsMotion = traversalOwnsMotion;
             DirectionAlignment = directionAlignment;
             SignedHeadingError = signedHeadingError;
+            ClimbMode = climbMode;
         }
 
         public Vector3 CurrentPlanarVelocity { get; }
@@ -41,6 +43,7 @@ namespace BooterBigArm.TopDown3D
         public bool TraversalOwnsMotion { get; }
         public float DirectionAlignment { get; }
         public float SignedHeadingError { get; }
+        public TopDown3DClimbMode ClimbMode { get; }
     }
 
     [DisallowMultipleComponent]
@@ -67,6 +70,14 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(0.1f)] private float groundNormalSharpness = 12f;
         [SerializeField, Min(0.1f)] private float groundedVerticalAcceleration = 45f;
         [SerializeField] private LayerMask groundMask = ~0;
+
+        [Header("Hold Sprint To Climb")]
+        [SerializeField] private bool climbingEnabled = true;
+        [SerializeField, Min(0.1f)] private float climbProbeDistance = 1.2f;
+        [SerializeField, Min(0.1f)] private float inclineClimbSpeed = 2.5f;
+        [SerializeField, Min(0.1f)] private float scrambleClimbSpeed = 1.6f;
+        [SerializeField, Min(0.1f)] private float wallClimbSpeed = 1.1f;
+        [SerializeField, Min(0.1f)] private float overhangClimbSpeed = 0.7f;
 
         [Header("Smart Traversal")]
         [SerializeField] private bool smartTraversalEnabled = true;
@@ -105,6 +116,13 @@ namespace BooterBigArm.TopDown3D
         private float activeTraversalExitSpeed;
         private float traversalCooldownRemaining;
         private bool gravityBeforeTraversal;
+        private bool gravityBeforeClimb;
+        private Vector3 climbNormal = Vector3.up;
+        private Vector3 climbSurfaceUp = Vector3.up;
+        private Collider climbCollider;
+        private float climbTopOutElapsed;
+        private float climbStartHeight;
+        private TopDown3DClimbMode climbMode = TopDown3DClimbMode.None;
         private Vector3 stableGroundNormal = Vector3.up;
         private bool hasStableGroundNormal;
         private Vector3 lastPublishedFacing = Vector3.forward;
@@ -124,6 +142,7 @@ namespace BooterBigArm.TopDown3D
         public bool IsActionConstrained => actionConstraintOwner != null;
         public float MaxWalkableSlope => maxWalkableSlope;
         public LayerMask GroundMask => groundMask;
+        public TopDown3DClimbMode ClimbMode => climbMode;
 
         public void Configure(TopDown3DInputRouter inputRouter, Transform movementCamera)
         {
@@ -135,6 +154,7 @@ namespace BooterBigArm.TopDown3D
         {
             EnsureBody();
             CancelTraversal();
+            EndClimb();
             if (body != null)
             {
                 body.linearVelocity = Vector3.zero;
@@ -159,6 +179,7 @@ namespace BooterBigArm.TopDown3D
 
             EnsureBody();
             CancelTraversal();
+            EndClimb();
             actionConstraintOwner = owner;
             SprintActive = false;
             PlanarAcceleration = Vector3.zero;
@@ -256,6 +277,11 @@ namespace BooterBigArm.TopDown3D
                 input.MoveValue,
                 cameraBasis.forward,
                 cameraBasis.right);
+            if (TryAdvanceClimb(desiredDirection))
+            {
+                return;
+            }
+
             if (desiredDirection.sqrMagnitude > 0.0001f
                 && TryGetSurfaceNormalAhead(desiredDirection, out var surfaceNormalAhead))
             {
@@ -736,6 +762,220 @@ namespace BooterBigArm.TopDown3D
             activeTraversalExitSpeed = 0f;
         }
 
+        private bool TryAdvanceClimb(Vector3 desiredDirection)
+        {
+            if (!climbingEnabled || !input.SprintHeld)
+            {
+                EndClimb();
+                return false;
+            }
+
+            if (climbMode != TopDown3DClimbMode.None
+                && (climbTopOutElapsed > 0f || body.position.y > climbStartHeight + 0.6f)
+                && TryGetGroundNormal(out _))
+            {
+                EndClimb();
+                return false;
+            }
+
+            RaycastHit contact = default;
+            var hasContact = climbMode == TopDown3DClimbMode.None
+                ? desiredDirection.sqrMagnitude > 0.09f
+                    && TryProbeClimbSurface(desiredDirection.normalized, out contact)
+                : TryProbeClimbSurface(-climbNormal, out contact);
+            if (!hasContact)
+            {
+                if (TryAdvanceTopOut(desiredDirection))
+                {
+                    return true;
+                }
+
+                EndClimb();
+                return false;
+            }
+
+            var nextMode = TopDown3DClimbSurfaceMath.SelectMode(contact.normal, climbMode);
+            if (nextMode == TopDown3DClimbMode.None
+                || (climbMode == TopDown3DClimbMode.None
+                    && !TopDown3DClimbSurfaceMath.CanStartClimb(
+                        input.SprintHeld,
+                        desiredDirection.magnitude,
+                        contact.normal,
+                        maxWalkableSlope))
+                || (climbMode != TopDown3DClimbMode.None
+                    && Vector3.Angle(contact.normal, climbNormal) > 65f))
+            {
+                EndClimb();
+                return false;
+            }
+
+            if (climbMode == TopDown3DClimbMode.None)
+            {
+                gravityBeforeClimb = body.useGravity;
+                body.useGravity = false;
+                climbStartHeight = body.position.y;
+            }
+
+            climbMode = nextMode;
+            climbNormal = contact.normal.normalized;
+            climbCollider = contact.collider;
+            climbTopOutElapsed = 0f;
+            climbStartHeight = 0f;
+            climbSurfaceUp = TopDown3DClimbSurfaceMath.SurfaceUp(climbNormal, climbSurfaceUp);
+            if (climbSurfaceUp.sqrMagnitude < 0.5f)
+            {
+                EndClimb();
+                return false;
+            }
+
+            var planarInward = Vector3.ProjectOnPlane(-climbNormal, Vector3.up).normalized;
+            var lateral = Vector3.Cross(climbSurfaceUp, climbNormal).normalized;
+            var upIntent = Vector3.Dot(desiredDirection, planarInward);
+            var lateralIntent = Vector3.Dot(desiredDirection, lateral);
+            var tangentIntent = Vector3.ClampMagnitude(
+                climbSurfaceUp * upIntent + lateral * lateralIntent, 1f);
+            var speed = climbMode == TopDown3DClimbMode.Incline ? inclineClimbSpeed
+                : climbMode == TopDown3DClimbMode.Scramble ? scrambleClimbSpeed
+                : climbMode == TopDown3DClimbMode.Wall ? wallClimbSpeed
+                : overhangClimbSpeed;
+            var desiredContactDistance = Mathf.Max(0.05f, capsule.radius * 0.5f);
+            var correctionSpeed = Mathf.Clamp(
+                (contact.distance - desiredContactDistance) * 5f,
+                -0.8f,
+                0.8f);
+            var velocity = tangentIntent * speed - climbNormal * correctionSpeed;
+            body.linearVelocity = velocity;
+            body.angularVelocity = Vector3.zero;
+            IsGrounded = false;
+            SprintActive = false;
+            PlanarAcceleration = Vector3.zero;
+            var planarFacing = Vector3.ProjectOnPlane(-climbNormal, Vector3.up);
+            if (planarFacing.sqrMagnitude > 0.001f)
+            {
+                facingDirection = planarFacing.normalized;
+                body.MoveRotation(Quaternion.RotateTowards(
+                    body.rotation,
+                    Quaternion.LookRotation(facingDirection, Vector3.up),
+                    turnSpeedDegrees * Time.fixedDeltaTime));
+            }
+
+            PublishPresentationSnapshot(
+                new Vector3(velocity.x, 0f, velocity.z),
+                new Vector3(tangentIntent.x, 0f, tangentIntent.z) * speed,
+                false);
+            return true;
+        }
+
+        private bool TryAdvanceTopOut(Vector3 desiredDirection)
+        {
+            if (climbMode == TopDown3DClimbMode.None
+                || climbCollider == null
+                || !climbCollider.enabled
+                || climbTopOutElapsed >= 0.8f)
+            {
+                return false;
+            }
+
+            var inward = Vector3.ProjectOnPlane(-climbNormal, Vector3.up).normalized;
+            if (inward.sqrMagnitude < 0.1f
+                || Vector3.Dot(desiredDirection, inward) < 0.3f)
+            {
+                return false;
+            }
+
+            var scale = transform.lossyScale;
+            var bodyToFoot = capsule.height * Mathf.Abs(scale.y) * 0.5f;
+            var origin = body.position
+                + inward * (capsule.radius + 0.4f)
+                + Vector3.up * (bodyToFoot + 0.7f);
+            if (!Physics.Raycast(origin, Vector3.down, out var topHit,
+                    bodyToFoot * 2f + 1f, groundMask, QueryTriggerInteraction.Ignore)
+                || topHit.collider != climbCollider
+                || !TopDown3DSlopeMath.IsWalkable(topHit.normal, maxWalkableSlope)
+                || topHit.point.y < body.position.y - bodyToFoot + 0.15f)
+            {
+                return false;
+            }
+
+            climbTopOutElapsed += Time.fixedDeltaTime;
+            var speed = Mathf.Max(0.8f, wallClimbSpeed);
+            var velocity = Vector3.up * speed + inward * speed * 0.8f;
+            body.linearVelocity = velocity;
+            body.angularVelocity = Vector3.zero;
+            IsGrounded = false;
+            SprintActive = false;
+            PlanarAcceleration = Vector3.zero;
+            PublishPresentationSnapshot(
+                new Vector3(velocity.x, 0f, velocity.z),
+                new Vector3(velocity.x, 0f, velocity.z),
+                false);
+            return true;
+        }
+
+        private bool TryProbeClimbSurface(Vector3 direction, out RaycastHit contact)
+        {
+            contact = default;
+            if (direction.sqrMagnitude < 0.0001f)
+            {
+                return false;
+            }
+
+            var scale = transform.lossyScale;
+            var radius = capsule.radius * Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.z)) * 0.5f;
+            var upperOffset = Vector3.up * capsule.height * Mathf.Abs(scale.y) * 0.25f;
+            var nearest = float.PositiveInfinity;
+            var probeCount = climbMode == TopDown3DClimbMode.None ? 1 : 2;
+            for (var probe = 0; probe < probeCount; probe++)
+            {
+                var origin = body.position + (probe == 0 ? Vector3.zero : upperOffset);
+                var hitCount = Physics.SphereCastNonAlloc(
+                    origin,
+                    radius,
+                    direction.normalized,
+                    traversalHits,
+                    climbProbeDistance,
+                    groundMask,
+                    QueryTriggerInteraction.Ignore);
+                for (var i = 0; i < hitCount; i++)
+                {
+                    var hit = traversalHits[i];
+                    if (hit.collider == null
+                        || hit.collider.transform.IsChildOf(transform)
+                        || hit.collider.GetComponentInParent<TopDown3DGroundSurface>() == null
+                        || Vector3.Angle(hit.normal, Vector3.up) <= maxWalkableSlope
+                        || hit.distance >= nearest)
+                    {
+                        continue;
+                    }
+
+                    nearest = hit.distance;
+                    contact = hit;
+                }
+            }
+
+            return nearest < float.PositiveInfinity;
+        }
+
+        private void EndClimb()
+        {
+            if (climbMode == TopDown3DClimbMode.None)
+            {
+                return;
+            }
+
+            climbMode = TopDown3DClimbMode.None;
+            climbNormal = Vector3.up;
+            climbSurfaceUp = Vector3.up;
+            climbCollider = null;
+            climbTopOutElapsed = 0f;
+            if (body != null)
+            {
+                body.useGravity = gravityBeforeClimb;
+                var velocity = body.linearVelocity;
+                body.linearVelocity = new Vector3(velocity.x, Mathf.Min(0f, velocity.y), velocity.z);
+            }
+        }
+
         private bool TryGetGroundNormal(out Vector3 normal)
         {
             normal = Vector3.up;
@@ -938,18 +1178,28 @@ namespace BooterBigArm.TopDown3D
             lastPublishedFacing = actualFacing;
             hasPublishedFacing = true;
 
+            var presentationClimbMode = climbMode != TopDown3DClimbMode.None
+                ? climbMode
+                : IsGrounded
+                    ? TopDown3DClimbSurfaceMath.SelectMode(
+                        hasStableGroundNormal ? stableGroundNormal : Vector3.up,
+                        TopDown3DClimbMode.None)
+                    : TopDown3DClimbMode.None;
             LocomotionSnapshot = new TopDown3DLocomotionSnapshot(
                 currentPlanarVelocity,
                 desiredPlanarVelocity,
                 PlanarAcceleration,
                 actualFacing,
                 measuredYawRate,
-                hasStableGroundNormal ? stableGroundNormal : Vector3.up,
+                climbMode != TopDown3DClimbMode.None
+                    ? climbNormal
+                    : hasStableGroundNormal ? stableGroundNormal : Vector3.up,
                 IsGrounded,
                 SprintActive,
                 traversalOwnsMotion,
                 directionAlignment,
-                signedHeadingError);
+                signedHeadingError,
+                presentationClimbMode);
         }
 
         private void ResetPresentationSnapshot()
@@ -973,6 +1223,7 @@ namespace BooterBigArm.TopDown3D
         private void OnDisable()
         {
             CancelTraversal();
+            EndClimb();
             actionConstraintOwner = null;
             PlanarAcceleration = Vector3.zero;
             IsGrounded = false;
@@ -1001,6 +1252,11 @@ namespace BooterBigArm.TopDown3D
             groundProbeDistance = Mathf.Max(0.01f, groundProbeDistance);
             groundNormalSharpness = Mathf.Max(0.1f, groundNormalSharpness);
             groundedVerticalAcceleration = Mathf.Max(0.1f, groundedVerticalAcceleration);
+            climbProbeDistance = Mathf.Max(0.1f, climbProbeDistance);
+            inclineClimbSpeed = Mathf.Max(0.1f, inclineClimbSpeed);
+            scrambleClimbSpeed = Mathf.Max(0.1f, scrambleClimbSpeed);
+            wallClimbSpeed = Mathf.Max(0.1f, wallClimbSpeed);
+            overhangClimbSpeed = Mathf.Max(0.1f, overhangClimbSpeed);
             minimumTraversalInput = Mathf.Clamp(minimumTraversalInput, 0.1f, 1f);
             minimumTraversalSpeed = Mathf.Max(0f, minimumTraversalSpeed);
             traversalProbeDistance = Mathf.Max(0.1f, traversalProbeDistance);

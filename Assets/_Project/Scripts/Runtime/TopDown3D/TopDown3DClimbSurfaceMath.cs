@@ -21,6 +21,23 @@ namespace BooterBigArm.TopDown3D
         public const float MaximumOverhangAngle = 160f;
         public const float TransitionHysteresis = 3f;
 
+        public static bool CanStartClimb(
+            bool sprintHeld,
+            float movementMagnitude,
+            Vector3 measuredNormal,
+            float maximumWalkableSlope)
+        {
+            if (!sprintHeld || movementMagnitude <= 0.3f)
+            {
+                return false;
+            }
+
+            var angle = Vector3.Angle(measuredNormal, Vector3.up);
+            return measuredNormal.sqrMagnitude > 0.000001f
+                && angle > maximumWalkableSlope
+                && angle <= MaximumOverhangAngle;
+        }
+
         public static TopDown3DClimbMode SelectMode(
             Vector3 measuredNormal,
             TopDown3DClimbMode previousMode)

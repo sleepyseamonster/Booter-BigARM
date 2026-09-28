@@ -34,6 +34,20 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void CanStartClimb_RequiresHeldSprintAndSteepContact()
+        {
+            var steepNormal = Quaternion.AngleAxis(65f, Vector3.forward) * Vector3.up;
+            Assert.That(TopDown3DClimbSurfaceMath.CanStartClimb(
+                false, 1f, steepNormal, 48f), Is.False);
+            Assert.That(TopDown3DClimbSurfaceMath.CanStartClimb(
+                true, 0f, steepNormal, 48f), Is.False);
+            Assert.That(TopDown3DClimbSurfaceMath.CanStartClimb(
+                true, 1f, Vector3.up, 48f), Is.False);
+            Assert.That(TopDown3DClimbSurfaceMath.CanStartClimb(
+                true, 1f, steepNormal, 48f), Is.True);
+        }
+
+        [Test]
         public void SurfaceUp_RemainsTangentOnOverhangAndUsesPreviousFrameOnCeiling()
         {
             var overhangNormal = Quaternion.AngleAxis(120f, Vector3.forward) * Vector3.up;

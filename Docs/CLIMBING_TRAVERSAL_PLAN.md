@@ -1,6 +1,6 @@
 # Booter Terrain Climbing Plan
 
-Status: implementation proposal, 2026-09-28. The user requested traversal from steep slopes through vertical walls and overhangs, with increasingly weighty hand and foot animation. The angle-band and surface-frame math now exists in `TopDown3DClimbSurfaceMath`, but the motor and animation driver do not consume it yet. The current 48 degree movement limit is unchanged.
+Status: prototype implementation in progress, 2026-09-28. The user requested traversal from steep slopes through vertical walls and overhangs, with increasingly weighty hand and foot animation. The motor now uses the angle bands when Sprint is held and the animation driver uses its existing gather clip as a visible climbing placeholder. The current 48 degree ordinary walk limit remains unchanged; final contact, top-out, and visual acceptance are pending.
 
 ## Current implementation boundary
 
@@ -20,7 +20,7 @@ Treat slope angle as a transition input, not as a new walkable-slope limit. Prop
 | 75-105 degrees | Wall climb | Continuous alternating hand and foot contacts |
 | 105-160 degrees | Overhang climb | Body hangs below the surface, slowest travel, continuous contacts |
 
-The 48 degree existing walk limit stays in place until incline and scramble modes own the higher-angle movement. Use angle hysteresis near each boundary so a player does not flip modes on adjacent mesh triangles. Speed should scale with difficulty, with no sprint boost during scramble or climbing. Uphill input starts the climb automatically when contact and space checks pass; releasing input holds position while contact remains. Reverse input descends. Lateral input moves along the contacted surface. At a safe top edge, transition to ordinary grounded motion; at a lost contact or unloaded collider, return to gravity and normal falling behavior. Never invent a handhold or move through solid geometry.
+The 48 degree ordinary walk limit stays in place. The existing Sprint action is bound to gamepad right shoulder; holding it while pushing uphill starts climbing when contact passes the checks. Without Sprint held, uphill movement beyond that limit remains blocked. Keep Sprint held and release movement input to hold position while contact remains; releasing Sprint exits climb and restores gravity. Use angle hysteresis near each boundary so a player does not flip modes on adjacent mesh triangles. Speed should scale with difficulty, with no sprint boost during scramble or climbing. Reverse input descends. Lateral input moves along the contacted surface. At a safe top edge, transition to ordinary grounded motion; at a lost contact or unloaded collider, return to gravity and normal falling behavior. Never invent a handhold or move through solid geometry.
 
 ## Physics and contact ownership
 
@@ -32,7 +32,7 @@ The 48 degree existing walk limit stays in place until incline and scramble mode
 
 ## Animation ownership
 
-Extend the existing Playables mixer with authored Humanoid clips for incline walk, scramble, wall climb, and overhang climb. Use explicit clip availability checks in the scene builder and validator; do not silently play an ordinary run cycle on a vertical wall. Blend across bands using the same contact state that drives movement. Keep footstep dust confined to grounded gait; climbing contact effects, if added later, should use authored hand/foot contact events. Avoid root motion, procedural foot-goal rewrites, and a second Animator authority because the current locomotion recovery deliberately excludes them.
+Replace the temporary gather-clip climbing placeholder with authored Humanoid clips for incline walk, scramble, wall climb, and overhang climb. Candidate sources include the free, CC0 [KayKit Character Animations](https://kaylousberg.itch.io/kaykit-character-animations) pack, which advertises climbing motions; its exact clip coverage and retargeting onto Booter still need verification. Use explicit clip availability checks in the scene builder and validator when real clips are integrated. Blend across bands using the same contact state that drives movement. Keep footstep dust confined to grounded gait; climbing contact effects, if added later, should use authored hand/foot contact events. Avoid root motion, procedural foot-goal rewrites, and a second Animator authority because the current locomotion recovery deliberately excludes them.
 
 ## Procedural world and persistence
 
