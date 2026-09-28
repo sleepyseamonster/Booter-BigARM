@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using BooterBigArm.TopDown3D.WorldCreator;
 using Unity.Profiling;
 using UnityEngine;
@@ -47,7 +49,8 @@ namespace BooterBigArm.TopDown3D
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter)
         {
-            var work = new Work(settings, generator, catalog, chunkCoordinate, spawnExclusionCenter);
+            var work = new Work(settings, generator, catalog, chunkCoordinate, spawnExclusionCenter,
+                backgroundReservations: false);
             while (!work.IsComplete) work.Step();
             return work.Output;
         }
@@ -59,14 +62,18 @@ namespace BooterBigArm.TopDown3D
             private readonly Vector2 spawnExclusionCenter;
             private IReadOnlyList<WorldRockFormationPlan> plans;
             private IEnumerator<int> reservationSteps;
+            private Task<IReadOnlyList<WorldRockFormationPlan>> reservationTask;
+            private readonly CancellationTokenSource reservationCancellation;
+            private bool disposed;
             private int nextPlan;
             private TopDown3DAuthoredFormationPlacement.Work placement;
             internal readonly List<TopDown3DRockFormationPlan> Output = new List<TopDown3DRockFormationPlan>();
             internal bool IsComplete { get; private set; }
+            internal bool IsWaitingForReservation => reservationTask != null && !reservationTask.IsCompleted;
 
             internal Work(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,
                 TopDown3DNaturalObjectCatalog catalog, Vector2Int chunkCoordinate,
-                Vector2 spawnExclusionCenter)
+                Vector2 spawnExclusionCenter, bool backgroundReservations = true)
             {
                 this.settings = settings;
                 this.generator = generator;
@@ -86,16 +93,38 @@ namespace BooterBigArm.TopDown3D
                 // Spawn exclusion is absolute, independent of a local-frame rebase.
                 var protectedCenter = new AbsoluteWorldPosition(
                     spawnExclusionCenter.x, 0d, spawnExclusionCenter.y);
-                reservationSteps = planner.PlanOwnerAreaSteps(
-                    chunkCoordinate.x * (double)chunkSize,
-                    chunkCoordinate.y * (double)chunkSize,
-                    chunkSize, chunkSize, protectedCenter, settings.ClearSpawnRadius,
-                    result => plans = result).GetEnumerator();
+                var minimumA = chunkCoordinate.x * (double)chunkSize;
+                var minimumB = chunkCoordinate.y * (double)chunkSize;
+                if (backgroundReservations)
+                {
+                    reservationCancellation = new CancellationTokenSource();
+                    var cancellation = reservationCancellation.Token;
+                    reservationTask = Task.Factory.StartNew(() =>
+                    {
+                        IReadOnlyList<WorldRockFormationPlan> result = null;
+                        foreach (var _ in planner.PlanOwnerAreaSteps(
+                            minimumA, minimumB, chunkSize, chunkSize, protectedCenter,
+                            settings.ClearSpawnRadius, planned => result = planned))
+                            cancellation.ThrowIfCancellationRequested();
+                        return result;
+                    }, cancellation, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+                }
+                else
+                    reservationSteps = planner.PlanOwnerAreaSteps(
+                        minimumA, minimumB, chunkSize, chunkSize, protectedCenter,
+                        settings.ClearSpawnRadius, result => plans = result).GetEnumerator();
             }
 
             internal void Step()
             {
                 if (IsComplete) return;
+                if (reservationTask != null)
+                {
+                    if (!reservationTask.IsCompleted) return;
+                    plans = reservationTask.GetAwaiter().GetResult();
+                    reservationTask = null;
+                    return;
+                }
                 if (reservationSteps != null)
                 {
                     bool hasMore;
@@ -125,10 +154,14 @@ namespace BooterBigArm.TopDown3D
 
             internal void Dispose()
             {
+                if (disposed) return;
+                disposed = true;
+                reservationCancellation?.Cancel();
                 reservationSteps?.Dispose();
                 reservationSteps = null;
                 placement?.Dispose();
                 placement = null;
+                reservationCancellation?.Dispose();
             }
         }
 

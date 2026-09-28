@@ -395,6 +395,9 @@ namespace BooterBigArm.TopDown3D
                             break;
                         }
 
+                        // Bound cold terrain builds so decoration queries can make progress.
+                        if (terrainRequests.Count >= 32) break;
+
                         var coordinate = pendingChunks[pendingChunkCursor++];
                         if (requiredChunks.Contains(coordinate))
                         {
@@ -789,6 +792,7 @@ namespace BooterBigArm.TopDown3D
                 if (activeDecorationStage == 1)
                 {
                     using (PlanNaturalObjectsMarker.Auto()) activeDecorationPlan.Step();
+                    if (activeDecorationPlan.IsWaitingForReservation) return false;
                     if (activeDecorationPlan.IsComplete)
                     {
                         activeChunkPlan = activeDecorationPlan.Result;

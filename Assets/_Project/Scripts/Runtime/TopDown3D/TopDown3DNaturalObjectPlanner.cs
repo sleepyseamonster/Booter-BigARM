@@ -142,6 +142,8 @@ namespace BooterBigArm.TopDown3D
             private int stage;
             internal TopDown3DNaturalObjectChunkPlan Result { get; private set; }
             internal bool IsComplete => stage == 3;
+            internal bool IsWaitingForReservation => stage == 1
+                && formations != null && formations.IsWaitingForReservation;
 
             internal Work(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,
                 TopDown3DNaturalObjectCatalog catalog, Vector2Int coordinate,
@@ -169,7 +171,11 @@ namespace BooterBigArm.TopDown3D
                 else if (stage == 1)
                 {
                     using (PlanFormationStepMarker.Auto()) formations.Step();
-                    if (formations.IsComplete) stage = 2;
+                    if (formations.IsComplete)
+                    {
+                        formations.Dispose();
+                        stage = 2;
+                    }
                 }
                 else
                 {

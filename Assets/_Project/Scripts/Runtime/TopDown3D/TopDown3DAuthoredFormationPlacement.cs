@@ -187,12 +187,36 @@ namespace BooterBigArm.TopDown3D
                 var groundFit = template.SurfaceTreatment;
                 // Burial is authored in workbench meters. Scale it with the rock meshes so
                 // the exposed proportion survives the larger game-world presentation.
-                TopDown3DRockGroundContact.Pose[] poses = null;
-                foreach (var step in TopDown3DRockGroundContact.FitSteps(
-                    contacts, p => Surface(p).height, p => Surface(p).normal,
-                    groundFit.ShallowBurial * GameWorldScale,
-                    groundFit.DeepBurial * GameWorldScale, groundFit.MaximumGroundTilt,
-                    fitted => poses = fitted)) yield return step;
+                // Mesh data and bounds have been copied on the main thread. Ground fitting
+                // only reads value types and the thread-safe world query.
+                var memberBounds = new Bounds[stage.Count];
+                for (var i = 0; i < stage.Count; i++) memberBounds[i] = stage[i].Family.Lod0.bounds;
+                var fitTask = Task.Factory.StartNew(() =>
+                {
+                    TopDown3DRockGroundContact.Pose[] fittedPoses = null;
+                    foreach (var _ in TopDown3DRockGroundContact.FitSteps(
+                        contacts, p => Surface(p).height, p => Surface(p).normal,
+                        groundFit.ShallowBurial * GameWorldScale,
+                        groundFit.DeepBurial * GameWorldScale, groundFit.MaximumGroundTilt,
+                        fitted => fittedPoses = fitted))
+                    {
+                        cancellation.ThrowIfCancellationRequested();
+                    }
+                    for (var i = 0; i < stage.Count; i++)
+                    {
+                        cancellation.ThrowIfCancellationRequested();
+                        var matrix = Matrix4x4.TRS(fittedPoses[i].Position,
+                            fittedPoses[i].Rotation, scales[i]);
+                        var bounds = BoundsAt(memberBounds[i], matrix);
+                        for (var corner = 0; corner < 4; corner++)
+                            Surface(new Vector3((corner & 1) == 0 ? bounds.min.x : bounds.max.x,
+                                0f, (corner & 2) == 0 ? bounds.min.z : bounds.max.z));
+                        Surface(bounds.center);
+                    }
+                    return fittedPoses;
+                }, cancellation, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+                while (!fitTask.IsCompleted) yield return 0;
+                var poses = fitTask.GetAwaiter().GetResult();
                 var members = new TopDown3DRockFormationMember[stage.Count];
                 var envelope = new Bounds();
                 for (var i = 0; i < members.Length; i++)
