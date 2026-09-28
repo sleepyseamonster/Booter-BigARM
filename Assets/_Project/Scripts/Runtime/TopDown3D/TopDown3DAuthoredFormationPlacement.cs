@@ -8,6 +8,7 @@ namespace BooterBigArm.TopDown3D
     /// <summary>Realizes an existing canonical reservation; never creates a second geographic scatter.</summary>
     internal static class TopDown3DAuthoredFormationPlacement
     {
+        internal const float GameWorldScale = 1.45f;
         private sealed class RejectedSurface : Exception { }
 
         internal static bool TryBuild(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,
@@ -32,6 +33,7 @@ namespace BooterBigArm.TopDown3D
                     localCenter.X - pivot.x, 0f, localCenter.Z - pivot.z))
                 * Matrix4x4.Translate(pivot)
                 * Matrix4x4.Rotate(Quaternion.Euler(0f, yaw, 0f))
+                * Matrix4x4.Scale(Vector3.one * GameWorldScale)
                 * Matrix4x4.Translate(-pivot);
             var contacts = new List<TopDown3DRockGroundContact.Member>(stage.Count);
             var scales = new Vector3[stage.Count];

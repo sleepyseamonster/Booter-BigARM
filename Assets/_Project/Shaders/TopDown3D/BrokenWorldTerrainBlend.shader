@@ -324,43 +324,22 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 return output;
             }
 
-            // Local stochastic tiles: each world-space corner has its own rotation/offset.
-            // Shared transforms and weights keep colour and height aligned. Explicit rotated
-            // gradients avoid incorrect mip selection at hashed tile boundaries.
+            // Two continuous world-space projections avoid visible square boundaries from
+            // the old per-cell stochastic mapping. Colour and height use the same transforms.
             float4 SamplePebbleTilesGrad(float2 position, float2 positionDx, float2 positionDy,
                 TEXTURE2D_PARAM(textureMap, sampler_textureMap))
             {
                 float2 uv = position / 1.25;
-                float2 cell = floor(uv);
-                float2 blend = frac(uv);
-                blend = blend * blend * (3.0 - 2.0 * blend);
                 float2 gradientX = positionDx / 1.25;
                 float2 gradientY = positionDy / 1.25;
-                float4 result = 0;
-                float total = 0;
-                [unroll]
-                for (int y = 0; y < 2; y++)
-                {
-                    [unroll]
-                    for (int x = 0; x < 2; x++)
-                    {
-                        float2 id = cell + float2(x, y);
-                        float angle = Hash21(id + 7.13) * 6.2831853;
-                        float sine, cosine;
-                        sincos(angle, sine, cosine);
-                        float2x2 rotation = float2x2(cosine, -sine, sine, cosine);
-                        float2 offset = float2(Hash21(id + 19.71), Hash21(id + 43.29));
-                        float2 tileUv = mul(rotation, uv - id) + offset;
-                        float weight = (x == 0 ? 1.0 - blend.x : blend.x)
-                            * (y == 0 ? 1.0 - blend.y : blend.y);
-                        // Favor one tile away from transitions to retain sharp pebble shapes.
-                        weight *= weight;
-                        result += SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap, tileUv,
-                            mul(rotation, gradientX), mul(rotation, gradientY)) * weight;
-                        total += weight;
-                    }
-                }
-                return result / max(total, 0.0001);
+                const float2x2 rotation = float2x2(0.7547096, -0.6560590, 0.6560590, 0.7547096);
+                float2 alternateUv = mul(rotation, uv * 0.93) + float2(13.37, 27.19);
+                float blend = smoothstep(0.2, 0.8, ValueNoise(position * 0.11 + 31.7));
+                float4 primary = SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
+                    uv, gradientX, gradientY);
+                float4 alternate = SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
+                    alternateUv, mul(rotation, gradientX * 0.93), mul(rotation, gradientY * 0.93));
+                return lerp(primary, alternate, blend);
             }
 
             float4 SamplePebbleTiles(float2 position, TEXTURE2D_PARAM(textureMap, sampler_textureMap))

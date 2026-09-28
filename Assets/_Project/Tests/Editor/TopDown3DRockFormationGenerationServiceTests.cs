@@ -55,6 +55,9 @@ namespace BooterBigArm.Tests
                 {
                     Assert.That(first[i].Members[memberIndex].AuthoredFamily,
                         Is.SameAs(expectedStage[memberIndex].Family));
+                    Assert.That(first[i].Members[memberIndex].Scale.magnitude,
+                        Is.EqualTo(expectedStage[memberIndex].LocalPose.lossyScale.magnitude
+                            * TopDown3DAuthoredFormationPlacement.GameWorldScale).Within(0.001f));
                     Assert.That(second[i].Members[memberIndex].AuthoredFamily,
                         Is.SameAs(first[i].Members[memberIndex].AuthoredFamily));
                     Assert.That(first[i].Members[memberIndex].AuthoredMaterial, Is.Not.Null);
