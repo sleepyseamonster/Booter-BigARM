@@ -13,6 +13,9 @@ namespace BooterBigArm.TopDown3D
         private readonly List<Renderer> rendererCountBuffer = new List<Renderer>();
         private readonly List<Collider> colliderCountBuffer = new List<Collider>();
         private Transform decorationRoot;
+        private Texture2D formationGroundMask;
+        private GameObject formationStonesObject;
+        private Mesh formationStonesMesh;
 
         public Vector2Int Coordinate { get; private set; }
         public long GenerationToken { get; private set; }
@@ -47,6 +50,33 @@ namespace BooterBigArm.TopDown3D
             RegisterGeneratedMesh(mesh);
         }
 
+        public void SetFormationGroundMask(Texture2D mask)
+        {
+            if (formationGroundMask == mask) return;
+            DestroyOwnedObject(formationGroundMask);
+            formationGroundMask = mask;
+        }
+
+        public void SetFormationGroundStones(Mesh mesh, Material material)
+        {
+            DestroyOwnedObject(formationStonesObject);
+            if (formationStonesMesh != null)
+            {
+                generatedMeshes.Remove(formationStonesMesh);
+                decorationMeshes.Remove(formationStonesMesh);
+                DestroyOwnedObject(formationStonesMesh);
+            }
+            formationStonesObject = null;
+            formationStonesMesh = mesh;
+            if (mesh == null || material == null) return;
+            formationStonesObject = new GameObject("Formation Surface Stones");
+            formationStonesObject.transform.SetParent(DecorationRoot, false);
+            formationStonesObject.AddComponent<MeshFilter>().sharedMesh = mesh;
+            var renderer = formationStonesObject.AddComponent<MeshRenderer>();
+            renderer.sharedMaterial = material;
+            RegisterDecorationMesh(mesh);
+        }
+
         public void RefreshDecorationCounts()
         {
             DecorationRendererCount = 0;
@@ -73,6 +103,8 @@ namespace BooterBigArm.TopDown3D
                 DestroyOwnedObject(decorationRoot.gameObject);
                 decorationRoot = null;
             }
+            formationStonesObject = null;
+            formationStonesMesh = null;
 
             for (var i = 0; i < decorationMeshes.Count; i++)
             {
@@ -99,6 +131,8 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDestroy()
         {
+            DestroyOwnedObject(formationGroundMask);
+            formationGroundMask = null;
             for (var i = 0; i < generatedMeshes.Count; i++)
             {
                 if (generatedMeshes[i] != null)

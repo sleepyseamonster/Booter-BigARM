@@ -40,6 +40,9 @@ namespace BooterBigArm.TopDown3D
         private readonly Queue<Vector2Int> pendingDecorations = new Queue<Vector2Int>();
         private readonly HashSet<Vector2Int> queuedDecorations = new HashSet<Vector2Int>();
         private readonly HashSet<Vector2Int> decoratedChunks = new HashSet<Vector2Int>();
+        private readonly Dictionary<Vector2Int, (IReadOnlyList<TopDown3DRockFormationPlan> plans,
+            AbsoluteWorldPosition origin)> formationTreatments =
+            new Dictionary<Vector2Int, (IReadOnlyList<TopDown3DRockFormationPlan>, AbsoluteWorldPosition)>();
         private readonly Queue<Vector2Int> pendingTerrainColliders = new Queue<Vector2Int>();
         private readonly HashSet<Vector2Int> queuedTerrainColliders = new HashSet<Vector2Int>();
         private readonly List<Vector2Int> unloadBuffer = new List<Vector2Int>();
@@ -294,6 +297,7 @@ namespace BooterBigArm.TopDown3D
                     }
 
                     loadedChunks.Remove(coordinate);
+                    if (formationTreatments.Remove(coordinate)) RefreshFormationTerrainNear(coordinate);
                     terrainRequests.Remove(coordinate);
                     decoratedChunks.Remove(coordinate);
                     queuedDecorations.Remove(coordinate);
@@ -318,6 +322,8 @@ namespace BooterBigArm.TopDown3D
                     }
 
                     decoratedChunks.Remove(coordinate);
+                    if (formationTreatments.Remove(coordinate)) RefreshFormationTerrainNear(coordinate);
+                    else RefreshFormationTerrainForChunk(coordinate);
                     queuedDecorations.Remove(coordinate);
                 }
 
@@ -536,6 +542,7 @@ namespace BooterBigArm.TopDown3D
                 var chunk = chunkObject.AddComponent<TopDown3DGeneratedChunk>();
                 chunk.Initialize(coordinate, mesh);
                 loadedChunks.Add(coordinate, chunk);
+                RefreshFormationTerrainForChunk(coordinate);
                 QueueTerrainCollider(coordinate);
                 if (requiredDecoratedChunks.Contains(coordinate))
                 {
@@ -694,6 +701,12 @@ namespace BooterBigArm.TopDown3D
                     settings,
                     propMaterial,
                     plan);
+                if (plan.PhysicalFormations.Count > 0)
+                {
+                    formationTreatments[chunk.Coordinate] = (plan.PhysicalFormations,
+                        worldCreatorRuntime.CurrentFrame.OriginPosition);
+                    RefreshFormationTerrainNear(chunk.Coordinate);
+                }
                 TopDown3DResourceNodeDecorator.Decorate(
                     chunk,
                     settings,
@@ -707,6 +720,30 @@ namespace BooterBigArm.TopDown3D
                     spawnExclusionCenter);
                 chunk.RefreshDecorationCounts();
             }
+        }
+
+        private void RefreshFormationTerrainNear(Vector2Int center)
+        {
+            foreach (var pair in loadedChunks)
+                if (ChebyshevDistance(pair.Key, center) <= 3)
+                    RefreshFormationTerrainForChunk(pair.Key);
+        }
+
+        private void RefreshFormationTerrainForChunk(Vector2Int coordinate)
+        {
+            if (!loadedChunks.TryGetValue(coordinate, out var chunk) || chunk == null) return;
+            var nearby = new List<TopDown3DFormationTerrainShader.Influence>();
+            var currentOrigin = worldCreatorRuntime.CurrentFrame.OriginPosition;
+            foreach (var pair in formationTreatments)
+            {
+                if (ChebyshevDistance(pair.Key, coordinate) > 3) continue;
+                var shift = new Vector2(
+                    checked((float)(pair.Value.origin.HorizontalA - currentOrigin.HorizontalA)),
+                    checked((float)(pair.Value.origin.HorizontalB - currentOrigin.HorizontalB)));
+                foreach (var formation in pair.Value.plans)
+                    nearby.Add(new TopDown3DFormationTerrainShader.Influence(formation, shift));
+            }
+            TopDown3DFormationTerrainShader.Apply(chunk, settings, nearby);
         }
 
         private int SumDecorationRenderers()
@@ -865,6 +902,7 @@ namespace BooterBigArm.TopDown3D
                     && worldCreatorRuntime.TryToLocal(key.Minimum, out var local))
                 {
                     pair.Value.transform.localPosition = new Vector3(local.X, local.Y, local.Z);
+                    TopDown3DFormationTerrainShader.RepositionMask(pair.Value, settings);
                 }
             }
         }

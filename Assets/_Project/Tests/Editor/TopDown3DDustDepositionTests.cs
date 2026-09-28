@@ -77,6 +77,45 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void TerrainSandPlan_IsIndependentOfFormationSettings()
+        {
+            var settings = LoadSettings();
+            var changedFormationSettings = Object.Instantiate(settings);
+            try
+            {
+                var serialized = new SerializedObject(changedFormationSettings);
+                serialized.FindProperty("physicalRockGenerationVersion").intValue =
+                    settings.PhysicalRockGenerationVersion + 17;
+                serialized.FindProperty("mixedFormationTemplate").objectReferenceValue = null;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+
+                var coordinate = new Vector2Int(4, -3);
+                var first = TopDown3DDustDepositionPlanner.BuildTerrainPlan(
+                    settings,
+                    new TopDown3DWorldGenerator(settings),
+                    coordinate);
+                var second = TopDown3DDustDepositionPlanner.BuildTerrainPlan(
+                    changedFormationSettings,
+                    new TopDown3DWorldGenerator(changedFormationSettings),
+                    coordinate);
+
+                Assert.That(first.QuadsPerAxis, Is.EqualTo(second.QuadsPerAxis));
+                Assert.That(first.Step, Is.EqualTo(second.Step));
+                for (var z = 0; z < first.VerticesPerAxis; z++)
+                {
+                    for (var x = 0; x < first.VerticesPerAxis; x++)
+                    {
+                        Assert.That(first.GetSample(x, z), Is.EqualTo(second.GetSample(x, z)));
+                    }
+                }
+            }
+            finally
+            {
+                Object.DestroyImmediate(changedFormationSettings);
+            }
+        }
+
+        [Test]
         public void AdjacentChunkPlans_MatchExactlyAtTheirSharedBorder()
         {
             var settings = LoadSettings();
@@ -215,6 +254,31 @@ namespace BooterBigArm.Tests
             var coverage = deposited / (float)total;
             Assert.That(coverage, Is.GreaterThan(0.01f));
             Assert.That(coverage, Is.LessThan(0.3f));
+        }
+
+        [Test]
+        public void TerrainRelief_KeepsAShallowBedAndRaisesWindShapedCrests()
+        {
+            var settings = LoadSettings();
+            const float semanticWeight = 0.8f;
+            var shallowBed = semanticWeight * 0.18f;
+            var lowest = float.PositiveInfinity;
+            var highest = float.NegativeInfinity;
+            for (var z = -180; z <= 180; z += 3)
+            {
+                for (var x = -180; x <= 180; x += 3)
+                {
+                    var relief = TopDown3DDustDepositionPlanner.SampleTerrainReliefWeight(
+                        settings,
+                        new Vector2(x, z),
+                        semanticWeight);
+                    lowest = Mathf.Min(lowest, relief);
+                    highest = Mathf.Max(highest, relief);
+                }
+            }
+
+            Assert.That(lowest, Is.EqualTo(shallowBed).Within(0.0001f));
+            Assert.That(highest, Is.GreaterThan(shallowBed + 0.35f));
         }
 
         [Test]

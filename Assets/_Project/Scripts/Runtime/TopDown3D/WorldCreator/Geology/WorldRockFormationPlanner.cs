@@ -132,10 +132,13 @@ namespace BooterBigArm.TopDown3D.WorldCreator
     /// </summary>
     public sealed class WorldRockFormationPlanner
     {
-        public const double FormationReservationSpan = 32d;
+        // Formations have stricter geological and support constraints than ironstone nodes.
+        // A denser reservation lattice compensates for those rejections so the realized,
+        // combined Scatter/Spire cadence tracks ironstone without bypassing terrain rules.
+        public const double FormationReservationSpan = 16d;
         public const double LandformReservationSpan = 96d;
         private static readonly WorldSeedNamespace FormationNamespace =
-            new WorldSeedNamespace(WorldVersionDomain.Decoration, "geological-rock-formations");
+            new WorldSeedNamespace(WorldVersionDomain.Decoration, "geological-rock-formations-v2");
 
         private readonly WorldIdentity world;
         private readonly IWorldCoordinateModel coordinateModel;

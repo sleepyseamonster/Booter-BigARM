@@ -69,16 +69,17 @@ namespace BooterBigArm.TopDown3D
                 settings.ClearSpawnRadius);
             for (var i = 0; i < plans.Count; i++)
             {
-                if (settings.MixedFormationTemplate != null
-                    && plans[i].ReservationScale == WorldRockReservationScale.Formation
-                    && plans[i].CompositionGoal == WorldRockCompositionGoal.BrokenStack)
-                {
-                    if (TopDown3DAuthoredFormationPlacement.TryBuild(settings, generator, plans[i],
-                        spawnExclusionCenter, out var mixed)) output.Add(mixed);
+                // Every admitted formation-scale reservation now realizes one approved authored
+                // composition. Requiring the legacy BrokenStack goal made Scatter and Spire
+                // roughly an order of magnitude rarer than ironstone before surface fitting.
+                // Small cosmetic scatter remains planned elsewhere.
+                if (plans[i].ReservationScale != WorldRockReservationScale.Formation)
                     continue;
-                }
-                if (TryRealize(settings, generator, catalog, plans[i], out var formation))
-                    output.Add(formation);
+
+                var authoredTemplate = settings.SelectAuthoredFormation(plans[i].Id.ToString());
+                if (authoredTemplate == null || !authoredTemplate.HasBakedVariants) continue;
+                if (TopDown3DAuthoredFormationPlacement.TryBuild(settings, generator, plans[i],
+                    authoredTemplate, spawnExclusionCenter, out var mixed)) output.Add(mixed);
             }
             return output;
         }

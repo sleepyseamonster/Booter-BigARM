@@ -11,9 +11,10 @@ namespace BooterBigArm.Editor
     {
         internal static void Apply(TopDown3DLandscapeAuthoringSandbox sandbox, Transform parent,
             MeshCollider[] terrain, TopDown3DRockWorkbenchAuthoring[] rocks,
-            IReadOnlyList<TopDown3DDustDepositionPlanner.AuthoredObstruction> groundContacts)
+            IReadOnlyList<TopDown3DDustDepositionPlanner.AuthoredObstruction> groundContacts,
+            List<TopDown3DContactRockPreview> contactRocks = null)
         {
-            if (sandbox.GroundClutter <= 0f || rocks.Length == 0) return;
+            if ((sandbox.GroundClutter <= 0f && sandbox.LandscapeClutter <= 0f) || rocks.Length == 0) return;
             const string textureFolder = "Assets/_Project/Art/Environment/Ground/SandDirt/";
             var pebbleColor = AssetDatabase.LoadAssetAtPath<Texture2D>(textureFolder + "MixedGroundPebbles_Albedo.png");
             var pebbleHeight = AssetDatabase.LoadAssetAtPath<Texture2D>(textureFolder + "MixedGroundPebbles_Height.png");
@@ -64,6 +65,19 @@ namespace BooterBigArm.Editor
             }
             var formationBounds = bounds[0];
             for (var r = 1; r < bounds.Count; r++) formationBounds.Encapsulate(bounds[r]);
+            var generator = new TopDown3DWorldGenerator(sandbox.WorldSettings);
+            float LandscapeCoverage(Vector3 point)
+            {
+                if (sandbox.LandscapeClutter <= 0f) return 0f;
+                var position = new Vector2(point.x, point.z);
+                var abundance = TopDown3DNaturalObjectPlanner.SampleRockAbundance(
+                    sandbox.WorldSettings, position);
+                var surface = generator.Sample(point.x, point.z);
+                var geology = Mathf.Clamp01(0.18f + surface.GravelWeight * 0.72f
+                    + surface.BedrockWeight * 0.5f + surface.Talus * 0.42f);
+                var island = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.18f, 1.65f, abundance));
+                return island * geology * sandbox.LandscapeClutter;
+            }
             float FormationCoverage(Vector3 point)
             {
                 // Fill the spaces between authored members, then taper beyond the formation.
@@ -85,7 +99,7 @@ namespace BooterBigArm.Editor
                 for (var i = 0; i < vertices.Length; i++)
                 {
                     var point = ground.transform.TransformPoint(vertices[i]);
-                    mask[i].x = Coverage(point);
+                    mask[i].x = Mathf.Max(Coverage(point), LandscapeCoverage(point));
                     // Carry the nearest tint outside the visible mask too, so interpolation
                     // fades coverage rather than blending the boundary color toward black.
                     var closest = float.PositiveInfinity;
@@ -233,6 +247,9 @@ namespace BooterBigArm.Editor
                 foreach (var vertex in source.vertices) bottom = Mathf.Min(bottom, shape.MultiplyPoint3x4(vertex).y);
                 var pose = Matrix4x4.Translate(hit.point + Vector3.up * (-bottom - size * Mathf.Lerp(0.22f, 0.34f, sandWeight))) * shape;
                 instances.Add(new CombineInstance { mesh = source, transform = parent.worldToLocalMatrix * pose });
+                if (contactRocks != null && size >= 0.16f)
+                    AddContactProxy(parent, source,
+                        rocks[0].GetComponent<MeshRenderer>().sharedMaterial, pose, seed, contactRocks);
                 placed.Add(new Vector4(hit.point.x, hit.point.y, hit.point.z, size));
             }
             if (instances.Count == 0) return;
@@ -247,6 +264,32 @@ namespace BooterBigArm.Editor
             TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(rocks[0], renderer, Vector3.one * 0.12f,
                 sandbox.WorldSettings.WorldSeed, Vector3.zero, 0f, 6f);
             ApplyFormationReadability(renderer);
+        }
+
+        private static void AddContactProxy(
+            Transform parent,
+            Mesh mesh,
+            Material material,
+            Matrix4x4 worldPose,
+            int seed,
+            List<TopDown3DContactRockPreview> contactRocks)
+        {
+            var proxy = new GameObject("Surface Stone Contact Proxy")
+            {
+                hideFlags = HideFlags.HideInHierarchy | HideFlags.DontSaveInEditor | HideFlags.NotEditable
+            };
+            proxy.transform.SetParent(parent, false);
+            var localPose = parent.worldToLocalMatrix * worldPose;
+            proxy.transform.localPosition = localPose.GetColumn(3);
+            proxy.transform.localRotation = localPose.rotation;
+            proxy.transform.localScale = localPose.lossyScale;
+            var filter = proxy.AddComponent<MeshFilter>();
+            filter.sharedMesh = mesh;
+            var renderer = proxy.AddComponent<MeshRenderer>();
+            renderer.sharedMaterial = material;
+            renderer.enabled = false;
+            contactRocks.Add(new TopDown3DContactRockPreview(
+                proxy.transform, filter, renderer, seed));
         }
 
         internal static void ApplyFormationReadability(MeshRenderer renderer)

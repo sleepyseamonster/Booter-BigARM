@@ -28,6 +28,23 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0f, 1f)] private float sandBuildup = 0.18f;
         [SerializeField, HideInInspector] private int sandBuildupVersion;
         [SerializeField, Range(0f, 1f)] private float groundClutter = 0.7f;
+        [SerializeField, Range(0f, 1f)] private float landscapeSand = 0.55f;
+        [SerializeField, Range(0f, 0.6f)] private float landscapeSandRelief = 0.32f;
+        [SerializeField, Range(0f, 1f)] private float landscapeClutter = 0.72f;
+        [Header("Rock / Sand Contact Edge")]
+        [SerializeField, Range(0.05f, 1.5f)] private float contactSandWidth = 0.48f;
+        [SerializeField, Range(0f, 1f)] private float contactSandOpacity = 0.72f;
+        [SerializeField] private Color contactSandColor = new Color(0.58f, 0.27f, 0.12f, 1f);
+        [SerializeField] private Color contactSandTrimColor = new Color(0.58f, 0.27f, 0.12f, 1f);
+        [SerializeField, Range(0.01f, 1f)] private float contactSandFeather = 0.14f;
+        [SerializeField, Range(0f, 0.5f)] private float contactSandBaseFeather = 0.08f;
+        [SerializeField, Range(0f, 0.5f)] private float contactSandTopFeather = 0.06f;
+        [SerializeField, Range(0f, 1f)] private float contactSandWaviness = 0.38f;
+        [SerializeField, Range(0.2f, 8f)] private float contactSandNoiseScale = 2.2f;
+        [SerializeField, Range(0f, 1f)] private float contactSandDirectionalBuildup = 0.22f;
+        [SerializeField, Range(0.08f, 1.5f)] private float contactSandTrimWidth = 0.42f;
+        [SerializeField, Range(0.01f, 0.3f)] private float contactSandTrimHeight = 0.085f;
+        [SerializeField, Range(1f, 5f)] private float contactSandTrimCurve = 3f;
         [SerializeField, Range(0f, 0.04f)] private float pebbleDepth = 0.015f;
         [SerializeField, Range(0f, 1f)] private float blowingSand;
         [SerializeField, HideInInspector] private bool blowingSandOffDefaultApplied;
@@ -39,6 +56,22 @@ namespace BooterBigArm.TopDown3D
         public float MaximumRockTilt => Mathf.Clamp(maximumRockTilt, 0f, 35f);
         public float SandBuildup => Mathf.Clamp01(sandBuildupVersion == 0 ? sandBuildup * 2f : sandBuildup);
         public float GroundClutter => Mathf.Clamp01(groundClutter);
+        public float LandscapeSand => Mathf.Clamp01(landscapeSand);
+        public float LandscapeSandRelief => Mathf.Clamp(landscapeSandRelief, 0f, 0.6f);
+        public float LandscapeClutter => Mathf.Clamp01(landscapeClutter);
+        public float ContactSandWidth => Mathf.Clamp(contactSandWidth, 0.05f, 1.5f);
+        public float ContactSandOpacity => Mathf.Clamp01(contactSandOpacity);
+        public Color ContactSandColor => contactSandColor;
+        public Color ContactSandTrimColor => contactSandTrimColor;
+        public float ContactSandFeather => Mathf.Clamp(contactSandFeather, 0.01f, 1f);
+        public float ContactSandBaseFeather => Mathf.Clamp(contactSandBaseFeather, 0f, 0.5f);
+        public float ContactSandTopFeather => Mathf.Clamp(contactSandTopFeather, 0f, 0.5f);
+        public float ContactSandWaviness => Mathf.Clamp01(contactSandWaviness);
+        public float ContactSandNoiseScale => Mathf.Clamp(contactSandNoiseScale, 0.2f, 8f);
+        public float ContactSandDirectionalBuildup => Mathf.Clamp01(contactSandDirectionalBuildup);
+        public float ContactSandTrimWidth => Mathf.Clamp(contactSandTrimWidth, 0.08f, 1.5f);
+        public float ContactSandTrimHeight => Mathf.Clamp(contactSandTrimHeight, 0.01f, 0.3f);
+        public float ContactSandTrimCurve => Mathf.Clamp(contactSandTrimCurve, 1f, 5f);
         public float PebbleDepth => Mathf.Clamp(pebbleDepth, 0f, 0.04f);
         public float BlowingSand => blowingSandOffDefaultApplied ? Mathf.Clamp01(blowingSand) : 0f;
 

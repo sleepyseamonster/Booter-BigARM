@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using BooterBigArm.TopDown3D;
 using BooterBigArm.TopDown3D.WorldCreator;
 
@@ -17,15 +17,20 @@ namespace BooterBigArm.Editor
     public sealed class TopDown3DLandscapeAuthoringSandboxEditor : UnityEditor.Editor
     {
         private const string TerrainPreviewRootName = "__Generated Terrain Context";
+        internal const float FormationStageSize = 40f;
+        private const int FormationStageQuadsPerAxis = 20;
         internal const string MixedReferencePath =
             "Assets/_Project/Art/Environment/Rocks/Source/MixedPileScatterReference.prefab";
+        private static List<FormationChoice> formationChoicesCache;
 
         static TopDown3DLandscapeAuthoringSandboxEditor()
         {
             EditorApplication.playModeStateChanged -= HandlePlayModeStateChanged;
             EditorApplication.playModeStateChanged += HandlePlayModeStateChanged;
-            EditorApplication.delayCall -= RebuildLoadedTerrainContexts;
-            EditorApplication.delayCall += RebuildLoadedTerrainContexts;
+            EditorApplication.delayCall -= RestoreMissingTerrainContexts;
+            EditorApplication.delayCall += RestoreMissingTerrainContexts;
+            EditorApplication.projectChanged -= ClearFormationChoiceCache;
+            EditorApplication.projectChanged += ClearFormationChoiceCache;
         }
 
         [MenuItem("Booter & BigARM/Top Down 3D/Open Landscape Authoring Sandbox")]
@@ -37,12 +42,60 @@ namespace BooterBigArm.Editor
             if (existing != null)
             {
                 EditorSceneManager.OpenScene(LandscapeAuthoringSandboxBuilder.ScenePath, OpenSceneMode.Single);
-                var loadedSandbox = UnityEngine.Object.FindAnyObjectByType<TopDown3DLandscapeAuthoringSandbox>();
-                if (loadedSandbox != null) BuildTerrainContext(loadedSandbox);
+                RebuildLoadedTerrainContexts();
                 return;
             }
 
             LandscapeAuthoringSandboxBuilder.CreateScene();
+        }
+
+        private readonly struct FormationChoice
+        {
+            internal string DisplayName { get; }
+            internal GameObject Prefab { get; }
+
+            internal FormationChoice(string displayName, GameObject prefab)
+            {
+                DisplayName = displayName;
+                Prefab = prefab;
+            }
+        }
+
+        private static List<FormationChoice> LoadFormationChoices()
+        {
+            if (formationChoicesCache != null)
+                return new List<FormationChoice>(formationChoicesCache);
+            var choices = new List<FormationChoice>();
+            var guids = AssetDatabase.FindAssets("t:Prefab",
+                new[] { TopDown3DMixedFormationAssetBaker.SourceFolder });
+            foreach (var guid in guids)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+                if (!path.EndsWith("Reference.prefab", StringComparison.Ordinal)) continue;
+                var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+                if (prefab == null) continue;
+                choices.Add(new FormationChoice(GetFormationDisplayName(prefab.name), prefab));
+            }
+            choices.Sort((left, right) =>
+            {
+                if (left.Prefab == right.Prefab) return 0;
+                if (left.Prefab.name == "MixedPileScatterReference") return -1;
+                if (right.Prefab.name == "MixedPileScatterReference") return 1;
+                return string.CompareOrdinal(left.DisplayName, right.DisplayName);
+            });
+            formationChoicesCache = choices;
+            return new List<FormationChoice>(formationChoicesCache);
+        }
+
+        private static void ClearFormationChoiceCache() => formationChoicesCache = null;
+
+        private static string GetFormationDisplayName(string prefabName)
+        {
+            if (prefabName == "MixedPileScatterReference") return "Scatter";
+            const string suffix = "Reference";
+            if (prefabName.EndsWith(suffix, StringComparison.Ordinal))
+                prefabName = prefabName.Substring(0, prefabName.Length - suffix.Length);
+            return ObjectNames.NicifyVariableName(prefabName);
         }
 
         public override void OnInspectorGUI()
@@ -51,7 +104,31 @@ namespace BooterBigArm.Editor
             serializedObject.Update();
             if (sandbox.RockReference != null)
             {
-                EditorGUILayout.LabelField("Mixed Formation Ground", EditorStyles.boldLabel);
+                EditorGUILayout.LabelField("Formation Template Ground", EditorStyles.boldLabel);
+                var referenceProperty = serializedObject.FindProperty("rockReference");
+                var formationChoices = LoadFormationChoices();
+                var currentChoice = formationChoices.FindIndex(choice => choice.Prefab == sandbox.RockReference);
+                if (currentChoice < 0)
+                {
+                    formationChoices.Add(new FormationChoice(
+                        GetFormationDisplayName(sandbox.RockReference.name), sandbox.RockReference));
+                    currentChoice = formationChoices.Count - 1;
+                }
+                var nextChoice = EditorGUILayout.Popup(
+                    new GUIContent("Formation Type", "Choose which saved formation template to test on this stage."),
+                    currentChoice, formationChoices.Select(choice => choice.DisplayName).ToArray());
+                var nextReference = formationChoices[nextChoice].Prefab;
+                if (nextReference != sandbox.RockReference)
+                {
+                    TopDown3DMixedFormationAssetBaker.GetOutputPath(nextReference);
+                    referenceProperty.objectReferenceValue = nextReference;
+                    serializedObject.FindProperty("variationEnabled").boolValue = false;
+                    serializedObject.FindProperty("variationSeed").intValue = 0;
+                    serializedObject.ApplyModifiedProperties();
+                    sandbox.ConfigureRockReference(nextReference);
+                    BuildTerrainContext(sandbox);
+                    serializedObject.Update();
+                }
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("centerChunk"),
                     new GUIContent("Terrain Location"));
                 var shallowProperty = serializedObject.FindProperty("rockBurial");
@@ -74,7 +151,37 @@ namespace BooterBigArm.Editor
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("sandBuildup"),
                     new GUIContent("Sand Buildup (m)", "Rock-hugging sand banks. Update Rocks & Ground applies changes without changing the variation seed. Zero removes buildup."));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("groundClutter"),
-                    new GUIContent("Ground Clutter", "Pebble surface relief and sparse protruding stones. Sand hides the buried detail."));
+                    new GUIContent("Formation Clutter", "Pebble relief and sparse protruding stones immediately around the mixed formation."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("landscapeClutter"),
+                    new GUIContent("Landscape Rock Clutter", "Production-planned loose stones and ground texture pockets across the surrounding terrain."));
+                EditorGUILayout.Space();
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandWidth"),
+                    new GUIContent("Rock Stain Height", "How far the sand-stained shader band climbs each grounded rock face."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandOpacity"),
+                    new GUIContent("Rock Stain Opacity", "Controls only the textured color stain on the rocks. The raised sand border remains fully opaque."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandColor"),
+                    new GUIContent("Rock Band Tint", "Opaque sand-stain color drawn directly on the lower rock surface."));
+                EditorGUILayout.HelpBox(
+                    "The raised sand border inherits its texture and color from the regular Terrain Material. Its body is opaque; only the adjustable outer base feather fades into the terrain.",
+                    MessageType.None);
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandFeather"),
+                    new GUIContent("Rock Stain Feather (m)", "Vertical distance over which the opaque rock stain fades into the original rock surface."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandWaviness"),
+                    new GUIContent("Waviness", "Breaks up the upper edge of the sand stain on the rock surface."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandNoiseScale"),
+                    new GUIContent("Noise Scale", "World-space frequency of the shoreline-like band edge."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandDirectionalBuildup"),
+                    new GUIContent("Directional Buildup", "Makes the band climb higher on the prevailing-wind side of each rock."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandTrimWidth"),
+                    new GUIContent("Border Width", "How far the shaped sand lip extends outward from each grounded rock."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandTrimHeight"),
+                    new GUIContent("Border Rise", "How high the concave sand bevel rises where it meets the rock. It leaves the outer terrain nearly flat, then steepens toward the rock; collision is unchanged."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandBaseFeather"),
+                    new GUIContent("Sand Border Base Feather (m)", "Distance over which the terrain-facing bottom of the raised sand border fades from transparent into its opaque body. This does not affect the rock stain."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandTopFeather"),
+                    new GUIContent("Sand Border Top Feather (m)", "Distance over which the rock-facing top of the raised sand border fades into the rock contact. The middle of the sand border remains opaque, and this does not affect the rock stain."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("contactSandTrimCurve"),
+                    new GUIContent("Border Curve", "Controls how strongly the raised sand stays flat near the terrain before curving upward into the rock. Higher values make the transition more concave."));
                 using (new EditorGUI.DisabledScope(sandbox.VariationEnabled))
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("blowingSand"),
                         new GUIContent("Blowing Sand", "Excluded from rock variations."));
@@ -83,12 +190,27 @@ namespace BooterBigArm.Editor
                         new GUIContent("Pebble Depth — Deferred", "The rejected textured-pebble experiment is off while we review the whole formation. Its settings are preserved."));
                 EditorGUILayout.HelpBox(
                     "Each ground-contact rock receives stable bell-curve burial. Stacked rocks follow their supports. "
-                    + "The saved reference and the original scene rocks stay intact. This authoring view clears in Play Mode.",
+                    + "The saved reference and the original scene rocks stay intact. Broad raised sand is controlled "
+                    + "separately on Landscape Authoring Sandbox. This authoring view clears in Play Mode.",
                     MessageType.Info);
             }
             else
             {
-                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt", "burialRangeVersion", "sandBuildup", "sandBuildupVersion", "groundClutter", "blowingSand", "pebbleDepth");
+                EditorGUILayout.LabelField("Landscape Terrain Ground", EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("centerChunk"),
+                    new GUIContent("Terrain Location"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("terrainRadiusInChunks"),
+                    new GUIContent("Terrain Radius In Chunks"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("landscapeSand"),
+                    new GUIContent("Landscape Sand", "Broad deterministic terrain-owned sand coverage."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("landscapeSandRelief"),
+                    new GUIContent("Raised Sand Relief (m)", "Actual raised height of broad terrain sand, independent of every rock and formation generator."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("landscapeClutter"),
+                    new GUIContent("Landscape Rock Clutter", "Production-planned loose stones and ground texture pockets across the surrounding terrain."));
+                EditorGUILayout.HelpBox(
+                    "This object owns the broad landscape sand and terrain clutter. Formation workbenches only preview the result.",
+                    MessageType.Info);
+                DrawPropertiesExcluding(serializedObject, "m_Script", "rockReference", "rockBurial", "maximumRockBurial", "maximumRockTilt", "burialRangeVersion", "sandBuildup", "sandBuildupVersion", "groundClutter", "landscapeSand", "landscapeSandRelief", "landscapeClutter", "contactSandWidth", "contactSandOpacity", "contactSandColor", "contactSandTrimColor", "contactSandFeather", "contactSandBaseFeather", "contactSandTopFeather", "contactSandWaviness", "contactSandNoiseScale", "contactSandDirectionalBuildup", "contactSandTrimWidth", "contactSandTrimHeight", "contactSandTrimCurve", "blowingSand", "pebbleDepth");
             }
             serializedObject.ApplyModifiedProperties();
 
@@ -152,6 +274,11 @@ namespace BooterBigArm.Editor
                     BuildTerrainContext(sandbox);
                 }
             }
+            if (sandbox.RockReference != null
+                && GUILayout.Button("Center & Consolidate Formation Stage"))
+            {
+                CenterFormationStage(sandbox);
+            }
 
             if (GUILayout.Button("Clear Terrain Context"))
             {
@@ -161,16 +288,18 @@ namespace BooterBigArm.Editor
             {
                 EditorGUILayout.Space();
                 EditorGUILayout.HelpBox("Reusable capture preserves the saved reference rocks and surfaces. "
-                    + "Terrain, sand and clutter are preview treatments, not part of this capture. World placement is not enabled yet.", MessageType.Info);
+                    + "Terrain, sand and clutter are preview treatments, not part of this capture. "
+                    + "A complete gameplay bake adds the formation to the world catalog for eligible geological reservations.", MessageType.Info);
                 using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode))
                 {
-                    if (GUILayout.Button("Save / Update Reusable Mixed Formation"))
+                    if (GUILayout.Button("Save / Update Reusable Formation"))
                         TopDown3DMixedFormationAssetBaker.Bake(sandbox.RockReference);
                     if (GUILayout.Button("Build Gameplay Rock Meshes"))
                         TopDown3DMixedFormationAssetBaker.BakeGameplay(sandbox.RockReference);
                 }
                 EditorGUILayout.HelpBox("Build Gameplay Rock Meshes captures the saved reference and prepares "
-                    + "three shape choices per rock with distance-detail meshes. It does not change this preview or enable world placement. "
+                    + "three shape choices per rock with distance-detail meshes and updates the world catalog. "
+                    + "It does not change this preview or guarantee placement at every reservation. "
                     + "Recapturing the reference requires rebuilding its gameplay meshes.", MessageType.Info);
             }
         }
@@ -195,11 +324,44 @@ namespace BooterBigArm.Editor
                 context.Configure(
                     AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(TopDown3DPrototypeBuilder.WorldSettingsPath),
                     AssetDatabase.LoadAssetAtPath<Material>(TopDown3DPrototypeBuilder.TerrainMaterialPath),
-                    null, new Vector2Int(1, 0));
+                    null, Vector2Int.zero);
                 context.ConfigureRockReference(reference);
+                var serialized = new SerializedObject(context);
+                serialized.FindProperty("terrainRadiusInChunks").intValue = 0;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
             }
             BuildTerrainContext(context);
             Selection.activeGameObject = context.gameObject;
+        }
+
+        [MenuItem("Booter & BigARM/Center Formation Sandbox Stage", false, 4)]
+        public static void CenterFormationStageFromMenu()
+        {
+            var stage = FindStageAuthority();
+            if (stage == null || stage.RockReference == null)
+                throw new InvalidOperationException("Create Mixed Formation Ground before consolidating the sandbox stage.");
+
+            CenterFormationStage(stage);
+        }
+
+        internal static void CenterFormationStage(TopDown3DLandscapeAuthoringSandbox stage)
+        {
+            if (stage == null) throw new ArgumentNullException(nameof(stage));
+            if (stage.RockReference == null)
+                throw new InvalidOperationException("The formation stage requires the saved mixed formation reference.");
+
+            Undo.RecordObject(stage, "Center Formation Sandbox Stage");
+            var serialized = new SerializedObject(stage);
+            serialized.FindProperty("centerChunk").vector2IntValue = Vector2Int.zero;
+            serialized.FindProperty("terrainRadiusInChunks").intValue = 0;
+            serialized.ApplyModifiedProperties();
+
+            RebuildTerrainContexts(stage.gameObject.scene.GetRootGameObjects()
+                .SelectMany(root => root.GetComponentsInChildren<TopDown3DLandscapeAuthoringSandbox>(true))
+                .ToArray());
+            ArrangeAuthoringWorkbenches(stage);
+            Selection.activeGameObject = stage.gameObject;
+            EditorSceneManager.MarkSceneDirty(stage.gameObject.scene);
         }
 
         private static bool HasValidPlacement(TopDown3DLandscapeAuthoringSandbox sandbox)
@@ -234,10 +396,13 @@ namespace BooterBigArm.Editor
             {
                 var settings = sandbox.WorldSettings;
                 var generator = new TopDown3DWorldGenerator(settings);
-                var authority = generator.Authority;
-                var compiler = sandbox.RockReference == null ? null : new WorldRepresentationCompiler(
-                    authority.Query, authority.Materials, new WorldRepresentationBufferPool(1),
-                    authority.Profile.CreateRepresentationProfile(), authority.SourceFingerprint);
+                if (sandbox.RockReference != null)
+                {
+                    BuildFlatFormationStage(sandbox, contextRoot.transform, generator);
+                    BuildGroundedReference(sandbox, contextRoot.transform);
+                    return;
+                }
+
                 var radius = sandbox.TerrainRadiusInChunks;
                 var center = sandbox.CenterChunk;
                 for (var z = -radius; z <= radius; z++)
@@ -255,19 +420,7 @@ namespace BooterBigArm.Editor
                             0f,
                             coordinate.y * settings.ChunkSize);
 
-                        Mesh mesh;
-                        if (compiler == null)
-                        {
-                            mesh = TopDown3DChunkMeshBuilder.BuildMesh(settings, generator, coordinate);
-                        }
-                        else
-                        {
-                            var key = new WorldRepresentationKey(authority.Identity, authority.CoordinateModel,
-                                WorldRepresentationTier.Near, coordinate.x, coordinate.y, settings.ChunkSize);
-                            using (var representation = compiler.BuildAsync(key, CancellationToken.None)
-                                .GetAwaiter().GetResult())
-                                mesh = TopDown3DChunkMeshBuilder.BuildMesh(representation, chunk.name);
-                        }
+                        var mesh = TopDown3DChunkMeshBuilder.BuildMesh(settings, generator, coordinate);
                         mesh.hideFlags = HideFlags.DontSaveInEditor | HideFlags.DontUnloadUnusedAsset;
                         chunk.AddComponent<MeshFilter>().sharedMesh = mesh;
                         chunk.AddComponent<MeshRenderer>().sharedMaterial = sandbox.TerrainMaterial;
@@ -275,14 +428,164 @@ namespace BooterBigArm.Editor
                         chunk.AddComponent<MeshCollider>().sharedMesh = mesh;
                     }
                 }
-                if (sandbox.RockReference != null)
-                    BuildGroundedReference(sandbox, contextRoot.transform);
+                var terrain = contextRoot.GetComponentsInChildren<MeshCollider>();
+                TopDown3DLandscapeSandPreview.Apply(sandbox, terrain);
+                TopDown3DLandscapeGroundClutterPreview.Apply(
+                    sandbox,
+                    contextRoot.transform,
+                    terrain,
+                    Array.Empty<TopDown3DRockWorkbenchAuthoring>());
             }
             catch
             {
                 ClearTerrainContext(sandbox);
                 throw;
             }
+        }
+
+        internal static TopDown3DLandscapeAuthoringSandbox ResolveLandscapeAuthority(
+            TopDown3DLandscapeAuthoringSandbox sandbox)
+        {
+            if (sandbox == null || sandbox.RockReference == null) return sandbox;
+            var roots = sandbox.gameObject.scene.GetRootGameObjects();
+            for (var rootIndex = 0; rootIndex < roots.Length; rootIndex++)
+            {
+                var candidates = roots[rootIndex]
+                    .GetComponentsInChildren<TopDown3DLandscapeAuthoringSandbox>(true);
+                for (var candidateIndex = 0; candidateIndex < candidates.Length; candidateIndex++)
+                {
+                    var candidate = candidates[candidateIndex];
+                    if (candidate != null && candidate.RockReference == null) return candidate;
+                }
+            }
+
+            // Older isolated formation scenes remain usable until a separate landscape
+            // authority is added; the production sandbox always contains one.
+            return sandbox;
+        }
+
+        private static void BuildFlatFormationStage(
+            TopDown3DLandscapeAuthoringSandbox sandbox,
+            Transform contextRoot,
+            TopDown3DWorldGenerator generator)
+        {
+            var stage = new GameObject("Compact Flat Formation Stage")
+            {
+                hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable
+            };
+            stage.transform.SetParent(contextRoot, false);
+
+            var verticesPerAxis = FormationStageQuadsPerAxis + 1;
+            var vertices = new Vector3[verticesPerAxis * verticesPerAxis];
+            var normals = new Vector3[vertices.Length];
+            var uvs = new Vector2[vertices.Length];
+            var colors = new Color[vertices.Length];
+            var triangles = new int[FormationStageQuadsPerAxis * FormationStageQuadsPerAxis * 6];
+            var step = FormationStageSize / FormationStageQuadsPerAxis;
+            var halfSize = FormationStageSize * 0.5f;
+            var sampleOrigin = new Vector2(
+                sandbox.CenterChunk.x * sandbox.WorldSettings.ChunkSize,
+                sandbox.CenterChunk.y * sandbox.WorldSettings.ChunkSize);
+            // Sand authoring expects each terrain tile's vertices to begin at its Transform
+            // origin. Offset the tile itself so its world-space bounds remain centered at zero.
+            // Terrain Location selects the production geology sampled under that centered stage;
+            // it must not move the compact workbench away from the camera and rock formation.
+            stage.transform.localPosition = new Vector3(-halfSize, 0f, -halfSize);
+
+            for (var z = 0; z < verticesPerAxis; z++)
+            {
+                for (var x = 0; x < verticesPerAxis; x++)
+                {
+                    var index = z * verticesPerAxis + x;
+                    var localX = x * step;
+                    var localZ = z * step;
+                    var worldX = localX - halfSize;
+                    var worldZ = localZ - halfSize;
+                    var sampleX = worldX + sampleOrigin.x;
+                    var sampleZ = worldZ + sampleOrigin.y;
+                    vertices[index] = new Vector3(localX, 0f, localZ);
+                    normals[index] = Vector3.up;
+                    uvs[index] = new Vector2(
+                        sampleX / sandbox.WorldSettings.ChunkSize,
+                        sampleZ / sandbox.WorldSettings.ChunkSize);
+                    if (!generator.Authority.Materials.TrySample(
+                            new AbsoluteWorldPosition(sampleX, 0d, sampleZ),
+                            out var material,
+                            out var materialError))
+                        throw new InvalidOperationException(materialError);
+                    colors[index] = BuildFormationStagePreviewColor(
+                        WorldTerrainMaterialPackingAdapter.Pack(material),
+                        sampleX,
+                        sampleZ,
+                        worldX,
+                        worldZ,
+                        sandbox.WorldSettings.WorldSeed);
+                }
+            }
+
+            var triangleIndex = 0;
+            for (var z = 0; z < FormationStageQuadsPerAxis; z++)
+            {
+                for (var x = 0; x < FormationStageQuadsPerAxis; x++)
+                {
+                    var bottomLeft = z * verticesPerAxis + x;
+                    var topLeft = bottomLeft + verticesPerAxis;
+                    triangles[triangleIndex++] = bottomLeft;
+                    triangles[triangleIndex++] = topLeft;
+                    triangles[triangleIndex++] = bottomLeft + 1;
+                    triangles[triangleIndex++] = bottomLeft + 1;
+                    triangles[triangleIndex++] = topLeft;
+                    triangles[triangleIndex++] = topLeft + 1;
+                }
+            }
+
+            var mesh = new Mesh { name = "Compact Flat Formation Stage" };
+            mesh.SetVertices(vertices);
+            mesh.SetTriangles(triangles, 0, true);
+            mesh.SetNormals(normals);
+            mesh.SetUVs(0, uvs);
+            mesh.SetColors(colors);
+            mesh.RecalculateBounds();
+            mesh.hideFlags = HideFlags.DontSaveInEditor | HideFlags.DontUnloadUnusedAsset;
+            stage.AddComponent<MeshFilter>().sharedMesh = mesh;
+            stage.AddComponent<MeshRenderer>().sharedMaterial = sandbox.TerrainMaterial;
+            stage.AddComponent<TopDown3DGroundSurface>();
+            stage.AddComponent<MeshCollider>().sharedMesh = mesh;
+        }
+
+        private static Color BuildFormationStagePreviewColor(
+            Color productionWeights,
+            float sampleX,
+            float sampleZ,
+            float stageX,
+            float stageZ,
+            int worldSeed)
+        {
+            // The compact flat pad covers far less area than a streamed production region.
+            // Preserve the production material query, then lift broad deterministic patches so
+            // sand, gravel and shale remain visible together while formations are authored.
+            var seedOffset = (worldSeed & 0xffff) * 0.0137f;
+            var shaleNoise = Mathf.PerlinNoise(
+                (sampleX + seedOffset) * 0.055f,
+                (sampleZ - seedOffset * 0.37f) * 0.055f);
+            var sandNoise = Mathf.PerlinNoise(
+                (sampleX - seedOffset * 0.61f) * 0.047f + 17.3f,
+                (sampleZ + seedOffset * 0.29f) * 0.047f - 9.1f);
+            var shalePatch = Mathf.Max(
+                Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.43f, 0.72f, shaleNoise)),
+                1f - Mathf.SmoothStep(3f, 11f, Vector2.Distance(
+                    new Vector2(stageX, stageZ), new Vector2(-9f, 6f))));
+            var sandPatch = Mathf.Max(
+                Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.46f, 0.75f, sandNoise)),
+                1f - Mathf.SmoothStep(3f, 12f, Vector2.Distance(
+                    new Vector2(stageX, stageZ), new Vector2(9f, -7f))))
+                * (1f - shalePatch * 0.72f);
+            var gravelPatch = Mathf.Clamp01((1f - Mathf.Abs(shaleNoise - 0.5f) * 4f) * 0.68f);
+            return new Color(
+                Mathf.Max(productionWeights.r, sandPatch * 0.86f),
+                Mathf.Max(productionWeights.g, gravelPatch),
+                Mathf.Max(productionWeights.b, shalePatch * 0.9f),
+                productionWeights.a);
         }
 
         private static void BuildGroundedReference(
@@ -303,41 +606,64 @@ namespace BooterBigArm.Editor
                     if (collider.Raycast(new Ray(origin, Vector3.down), out var hit, bounds.size.y + 2f))
                         return hit;
                 }
-                throw new InvalidOperationException("The mixed reference extends beyond its terrain context.");
+                var terrainBounds = ground[0].bounds;
+                for (var i = 1; i < ground.Length; i++) terrainBounds.Encapsulate(ground[i].bounds);
+                throw new InvalidOperationException(
+                    $"The mixed reference point ({point.x:0.###}, {point.z:0.###}) extends beyond "
+                    + $"terrain X[{terrainBounds.min.x:0.###}, {terrainBounds.max.x:0.###}] "
+                    + $"Z[{terrainBounds.min.z:0.###}, {terrainBounds.max.z:0.###}].");
             }
             var copy = UnityEngine.Object.Instantiate(sandbox.RockReference, contextRoot, false);
             copy.name = "Mixed Rocks — Grounded Copy";
-            copy.transform.localPosition += new Vector3(
-                sandbox.CenterChunk.x * sandbox.WorldSettings.ChunkSize, 0f,
-                sandbox.CenterChunk.y * sandbox.WorldSettings.ChunkSize);
             var rocks = copy.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+            var rejectUnsupportedDisplayedRocks = false;
             if (sandbox.VariationEnabled)
             {
                 var template = AssetDatabase.LoadAssetAtPath<TopDown3DAuthoredFormationAsset>(
-                    TopDown3DMixedFormationAssetBaker.OutputPath);
+                    TopDown3DMixedFormationAssetBaker.GetOutputPath(sandbox.RockReference));
                 if (template == null) throw new InvalidOperationException("Save / Update Reusable Mixed Formation first.");
                 var sourcePath = AssetDatabase.GetAssetPath(sandbox.RockReference);
                 if (template.SourceRevision != AssetDatabase.GetAssetDependencyHash(sourcePath).ToString())
                     throw new InvalidOperationException("The saved reference changed. Save / Update Reusable Mixed Formation first.");
+                rejectUnsupportedDisplayedRocks = template.VariationProfile
+                    == TopDown3DAuthoredFormationVariationProfile.HandbuiltSpire;
                 var sourceRocks = sandbox.RockReference.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
-                var variations = TopDown3DAuthoredFormationVariation.Generate(template, sandbox.VariationSeed);
-                var byId = new Dictionary<string, int>();
-                for (var i = 0; i < template.Members.Count; i++) byId.Add(template.Members[i].SourceId, i);
-                for (var i = 0; i < rocks.Length; i++)
+                var layout = TopDown3DAuthoredFormationVariation.GenerateLayout(template, sandbox.VariationSeed);
+                var instancesById = new Dictionary<string, TopDown3DRockWorkbenchAuthoring>();
+                for (var i = 0; i < sourceRocks.Length; i++)
                 {
                     AssetDatabase.TryGetGUIDAndLocalFileIdentifier(sourceRocks[i], out string guid, out long localId);
-                    var pose = copy.transform.localToWorldMatrix * variations[byId[guid + ":" + localId]];
-                    rocks[i].transform.SetPositionAndRotation(pose.GetColumn(3), pose.rotation);
-                    // Captured workbench members have positive TRS transforms; divide out their parent scale.
-                    var parentScale = rocks[i].transform.parent.lossyScale;
-                    var scale = pose.lossyScale;
-                    rocks[i].transform.localScale = new Vector3(scale.x / parentScale.x,
-                        scale.y / parentScale.y, scale.z / parentScale.z);
+                    instancesById.Add(guid + ":" + localId, rocks[i]);
                 }
+                var selected = new List<TopDown3DRockWorkbenchAuthoring>(layout.Entries.Count);
+                var usedOriginals = new HashSet<TopDown3DRockWorkbenchAuthoring>();
+                for (var i = 0; i < layout.Entries.Count; i++)
+                {
+                    var entry = layout.Entries[i];
+                    var original = instancesById[template.Members[entry.SourceIndex].SourceId];
+                    var rock = usedOriginals.Add(original)
+                        ? original
+                        : UnityEngine.Object.Instantiate(original, original.transform.parent, false);
+                    if (rock != original) rock.name = original.name + " (Variation Extra)";
+                    var pose = copy.transform.localToWorldMatrix * entry.Transform;
+                    rock.transform.SetPositionAndRotation(pose.GetColumn(3), pose.rotation);
+                    // Captured workbench members have positive TRS transforms; divide out their parent scale.
+                    var parentScale = rock.transform.parent.lossyScale;
+                    var scale = pose.lossyScale;
+                    rock.transform.localScale = new Vector3(scale.x / parentScale.x,
+                        scale.y / parentScale.y, scale.z / parentScale.z);
+                    selected.Add(rock);
+                }
+                for (var i = 0; i < rocks.Length; i++)
+                    if (!usedOriginals.Contains(rocks[i])) UnityEngine.Object.DestroyImmediate(rocks[i].gameObject);
+                rocks = selected.ToArray();
             }
-            var members = new List<TopDown3DRockGroundContact.Member>(rocks.Length);
-            foreach (var rock in rocks)
+            // Select the visible silhouette before testing support. Shape variation can make a
+            // previously valid source contact visibly miss its neighbor even when the captured
+            // authoring bounds were sound.
+            for (var rockIndex = 0; rockIndex < rocks.Length; rockIndex++)
             {
+                var rock = rocks[rockIndex];
                 var filter = rock.GetComponent<MeshFilter>();
                 var renderer = rock.GetComponent<MeshRenderer>();
                 if (filter == null || filter.sharedMesh == null || renderer == null)
@@ -345,6 +671,31 @@ namespace BooterBigArm.Editor
                 var serialized = new SerializedObject(rock);
                 serialized.FindProperty("autoRebuild").boolValue = false;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
+                if (sandbox.VariationEnabled)
+                    TopDown3DMixedFormationShapeVariation.Apply(rock, unchecked(
+                        rock.GenerationSeed ^ sandbox.VariationSeed * 486187739
+                        ^ rockIndex * 16777619));
+            }
+            if (rejectUnsupportedDisplayedRocks)
+            {
+                var displayedBounds = new Bounds[rocks.Length];
+                for (var i = 0; i < rocks.Length; i++)
+                    displayedBounds[i] = rocks[i].GetComponent<MeshRenderer>().bounds;
+                var supported = TopDown3DAuthoredFormationVariation.SupportedMask(displayedBounds);
+                var grounded = new List<TopDown3DRockWorkbenchAuthoring>(rocks.Length);
+                for (var i = 0; i < rocks.Length; i++)
+                {
+                    if (supported[i]) grounded.Add(rocks[i]);
+                    else UnityEngine.Object.DestroyImmediate(rocks[i].gameObject);
+                }
+                rocks = grounded.ToArray();
+            }
+            var members = new List<TopDown3DRockGroundContact.Member>(rocks.Length);
+            for (var rockIndex = 0; rockIndex < rocks.Length; rockIndex++)
+            {
+                var rock = rocks[rockIndex];
+                var filter = rock.GetComponent<MeshFilter>();
+                var renderer = rock.GetComponent<MeshRenderer>();
                 var vertices = filter.sharedMesh.vertices;
                 for (var i = 0; i < vertices.Length; i++)
                     vertices[i] = rock.transform.TransformPoint(vertices[i]);
@@ -362,15 +713,22 @@ namespace BooterBigArm.Editor
                 sandbox.RockBurial, sandbox.MaximumRockBurial, sandbox.MaximumRockTilt);
             for (var i = 0; i < rocks.Length; i++)
                 rocks[i].transform.SetPositionAndRotation(poses[i].Position, poses[i].Rotation);
-            // Shape changes happen after placement: do not refit gaps/overlaps introduced by new silhouettes.
-            if (sandbox.VariationEnabled)
-                for (var i = 0; i < rocks.Length; i++)
-                    TopDown3DMixedFormationShapeVariation.Apply(rocks[i], unchecked(
-                        rocks[i].GenerationSeed ^ sandbox.VariationSeed * 486187739 ^ i * 16777619));
             foreach (var child in copy.GetComponentsInChildren<Transform>(true))
                 child.gameObject.hideFlags = HideFlags.DontSaveInEditor | HideFlags.NotEditable;
-            var groundContacts = TopDown3DMixedFormationSand.Apply(sandbox, ground, rocks);
-            TopDown3DMixedFormationClutter.Apply(sandbox, contextRoot, ground, rocks, groundContacts);
+            var groundContacts = TopDown3DMixedFormationSand.CollectGroundContacts(sandbox, ground, rocks);
+            TopDown3DLandscapeSandPreview.Apply(sandbox, ground, groundContacts);
+            var contactRocks = new List<TopDown3DContactRockPreview>(rocks.Length + 32);
+            foreach (var rock in rocks)
+                contactRocks.Add(new TopDown3DContactRockPreview(rock.transform,
+                    rock.GetComponent<MeshFilter>(), rock.GetComponent<MeshRenderer>(), rock.GenerationSeed));
+            TopDown3DMixedFormationClutter.Apply(
+                sandbox, contextRoot, ground, rocks, groundContacts, contactRocks);
+            TopDown3DLandscapeGroundClutterPreview.Apply(
+                sandbox, contextRoot, ground, rocks, contactRocks);
+            var allContacts = TopDown3DMixedFormationSand.CollectGroundContacts(
+                sandbox, ground, contactRocks);
+            TopDown3DMixedFormationContactSand.Apply(
+                sandbox, contextRoot, ground, contactRocks, allContacts);
             if (!sandbox.VariationEnabled)
                 TopDown3DMixedFormationBlowingSand.Apply(sandbox, contextRoot, ground, rocks);
         }
@@ -413,14 +771,53 @@ namespace BooterBigArm.Editor
             RebuildLoadedTerrainContexts();
         }
 
-        private static void RebuildLoadedTerrainContexts()
+        internal static void RebuildLoadedTerrainContexts()
         {
             var sandboxes = UnityEngine.Object.FindObjectsByType<TopDown3DLandscapeAuthoringSandbox>(
                 FindObjectsInactive.Include,
                 FindObjectsSortMode.None);
-            for (var i = 0; i < sandboxes.Length; i++)
+            foreach (var sceneSandboxes in sandboxes.GroupBy(sandbox => sandbox.gameObject.scene.handle))
             {
-                var sandbox = sandboxes[i];
+                RebuildTerrainContexts(sceneSandboxes.ToArray());
+            }
+        }
+
+        private static void RestoreMissingTerrainContexts()
+        {
+            if (EditorApplication.isCompiling || EditorApplication.isPlayingOrWillChangePlaymode) return;
+            var sandboxes = UnityEngine.Object.FindObjectsByType<TopDown3DLandscapeAuthoringSandbox>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.None);
+            foreach (var sceneSandboxes in sandboxes.GroupBy(sandbox => sandbox.gameObject.scene.handle))
+            {
+                var candidates = sceneSandboxes.ToArray();
+                var stage = FindStageAuthority(candidates);
+                for (var i = 0; i < candidates.Length; i++)
+                {
+                    var sandbox = candidates[i];
+                    if (sandbox == null || sandbox.gameObject.scene.path != LandscapeAuthoringSandboxBuilder.ScenePath)
+                        continue;
+                    if (sandbox == stage)
+                    {
+                        // Generated preview objects survive ordinary domain reloads. Rebuilding an intact
+                        // stage here was repeatedly resampling the full sand field after every script edit.
+                        if (sandbox.transform.Find(TerrainPreviewRootName) == null)
+                            BuildTerrainContext(sandbox);
+                    }
+                    else
+                    {
+                        ClearTerrainContext(sandbox);
+                    }
+                }
+            }
+        }
+
+        private static void RebuildTerrainContexts(TopDown3DLandscapeAuthoringSandbox[] candidates)
+        {
+            var stage = FindStageAuthority(candidates);
+            for (var i = 0; i < candidates.Length; i++)
+            {
+                var sandbox = candidates[i];
                 if (sandbox == null
                     || !sandbox.gameObject.scene.IsValid()
                     || sandbox.WorldSettings == null
@@ -429,8 +826,87 @@ namespace BooterBigArm.Editor
                     continue;
                 }
 
-                BuildTerrainContext(sandbox);
+                if (sandbox == stage) BuildTerrainContext(sandbox);
+                else ClearTerrainContext(sandbox);
             }
+        }
+
+        private static TopDown3DLandscapeAuthoringSandbox FindStageAuthority(
+            TopDown3DLandscapeAuthoringSandbox[] sandboxes = null)
+        {
+            sandboxes ??= SceneManager.GetActiveScene().GetRootGameObjects()
+                .SelectMany(root => root.GetComponentsInChildren<TopDown3DLandscapeAuthoringSandbox>(true))
+                .ToArray();
+            return sandboxes
+                .Where(candidate => candidate != null
+                    && candidate.gameObject.scene.IsValid()
+                    && candidate.WorldSettings != null
+                    && candidate.TerrainMaterial != null)
+                .OrderByDescending(candidate => candidate.RockReference != null)
+                .ThenBy(candidate => candidate.gameObject.name, StringComparer.Ordinal)
+                .ThenBy(candidate => candidate.transform.GetSiblingIndex())
+                .FirstOrDefault();
+        }
+
+        private static void ArrangeAuthoringWorkbenches(TopDown3DLandscapeAuthoringSandbox stage)
+        {
+            var contextRoot = stage.transform.Find(TerrainPreviewRootName);
+            if (contextRoot == null) return;
+            var groundColliders = contextRoot.GetComponentsInChildren<TopDown3DGroundSurface>(true)
+                .Select(surface => surface.GetComponent<MeshCollider>())
+                .Where(collider => collider != null)
+                .ToArray();
+            if (groundColliders.Length == 0) return;
+            var stageCenter = Vector2.zero;
+
+            var sceneRoots = stage.gameObject.scene.GetRootGameObjects();
+            var formations = sceneRoots
+                .SelectMany(root => root.GetComponentsInChildren<TopDown3DRockWorkbenchFormationAuthoring>(true))
+                .Where(candidate => (candidate.gameObject.hideFlags & HideFlags.DontSaveInEditor) == 0)
+                .OrderBy(candidate => candidate.gameObject.name, StringComparer.Ordinal)
+                .ThenBy(candidate => candidate.transform.GetSiblingIndex())
+                .ToArray();
+            for (var i = 0; i < formations.Length; i++)
+                PlaceAndGround(formations[i].transform,
+                    stageCenter + new Vector2(0f, 9f + i * 4f), groundColliders);
+
+            var standaloneRocks = sceneRoots
+                .SelectMany(root => root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true))
+                .Where(candidate => candidate.GetComponentInParent<TopDown3DRockWorkbenchFormationAuthoring>() == null
+                    && (candidate.gameObject.hideFlags & HideFlags.DontSaveInEditor) == 0)
+                .OrderBy(candidate => candidate.gameObject.name, StringComparer.Ordinal)
+                .ThenBy(candidate => candidate.transform.GetSiblingIndex())
+                .ToArray();
+            for (var i = 0; i < standaloneRocks.Length; i++)
+                PlaceAndGround(standaloneRocks[i].transform,
+                    stageCenter + new Vector2(0f, -12f + i * 4f), groundColliders);
+        }
+
+        private static void PlaceAndGround(Transform root, Vector2 stagePosition, MeshCollider[] groundColliders)
+        {
+            Undo.RecordObject(root, "Arrange Formation Sandbox Workbench");
+            root.position = new Vector3(stagePosition.x, root.position.y, stagePosition.y);
+            Physics.SyncTransforms();
+
+            var renderers = root.GetComponentsInChildren<Renderer>(true)
+                .Where(renderer => renderer.enabled
+                    && (renderer.gameObject.hideFlags & HideFlags.DontSaveInEditor) == 0)
+                .ToArray();
+            if (renderers.Length == 0) return;
+            var bounds = renderers[0].bounds;
+            for (var i = 1; i < renderers.Length; i++) bounds.Encapsulate(renderers[i].bounds);
+
+            var rayOrigin = new Vector3(bounds.center.x, 256f, bounds.center.z);
+            var groundY = float.NegativeInfinity;
+            for (var i = 0; i < groundColliders.Length; i++)
+            {
+                if (groundColliders[i].Raycast(new Ray(rayOrigin, Vector3.down), out var hit, 512f))
+                    groundY = Mathf.Max(groundY, hit.point.y);
+            }
+            if (float.IsNegativeInfinity(groundY)) return;
+
+            root.position += Vector3.up * (groundY - bounds.min.y);
+            EditorUtility.SetDirty(root);
         }
     }
 
@@ -513,8 +989,10 @@ namespace BooterBigArm.Editor
             var camera = cameraObject.AddComponent<Camera>();
             camera.clearFlags = CameraClearFlags.Skybox;
             camera.fieldOfView = 50f;
+            cameraObject.AddComponent<UniversalAdditionalCameraData>().renderPostProcessing = true;
             cameraObject.transform.position = new Vector3(24f, 26f, -24f);
             cameraObject.transform.LookAt(new Vector3(0f, 0f, 4f));
+            cameraObject.AddComponent<TopDown3DCameraRig>();
         }
     }
 }

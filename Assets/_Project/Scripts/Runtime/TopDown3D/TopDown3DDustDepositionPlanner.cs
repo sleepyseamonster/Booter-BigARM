@@ -118,10 +118,15 @@ namespace BooterBigArm.TopDown3D
 
             internal float DistanceOutside(Vector2 position)
             {
+                return Mathf.Max(0f, SignedDistance(position));
+            }
+
+            internal float SignedDistance(Vector2 position)
+            {
                 if (contactEdges == null || contactEdges.Length < 2)
                 {
                     var delta = position - Center;
-                    return Mathf.Max(0f, new Vector2(delta.x / HalfSize.x, delta.y / HalfSize.y).magnitude - 1f)
+                    return (new Vector2(delta.x / HalfSize.x, delta.y / HalfSize.y).magnitude - 1f)
                         * Mathf.Min(HalfSize.x, HalfSize.y);
                 }
                 var inside = false;
@@ -137,7 +142,28 @@ namespace BooterBigArm.TopDown3D
                     if ((a.y > position.y) != (b.y > position.y)
                         && position.x < a.x + (position.y - a.y) * edge.x / edge.y) inside = !inside;
                 }
-                return inside ? 0f : Mathf.Sqrt(distanceSquared);
+                var distance = Mathf.Sqrt(distanceSquared);
+                return inside ? -distance : distance;
+            }
+
+            internal bool TouchesOrOverlaps(AuthoredObstruction other, float tolerance)
+            {
+                tolerance = Mathf.Max(0f, tolerance);
+                if (Mathf.Abs(Center.x - other.Center.x) > HalfSize.x + other.HalfSize.x + tolerance
+                    || Mathf.Abs(Center.y - other.Center.y) > HalfSize.y + other.HalfSize.y + tolerance)
+                    return false;
+
+                if (DistanceOutside(other.Center) <= tolerance
+                    || other.DistanceOutside(Center) <= tolerance)
+                    return true;
+
+                if (contactEdges != null)
+                    for (var i = 0; i < contactEdges.Length; i++)
+                        if (other.DistanceOutside(contactEdges[i]) <= tolerance) return true;
+                if (other.contactEdges != null)
+                    for (var i = 0; i < other.contactEdges.Length; i++)
+                        if (DistanceOutside(other.contactEdges[i]) <= tolerance) return true;
+                return false;
             }
         }
 
@@ -206,6 +232,38 @@ namespace BooterBigArm.TopDown3D
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter)
         {
+            var physicalSources = CollectPhysicalSources(
+                settings,
+                generator,
+                catalog,
+                chunkCoordinate,
+                spawnExclusionCenter);
+            return BuildPlanCore(settings, generator, chunkCoordinate, physicalSources);
+        }
+
+        /// <summary>
+        /// Builds only the terrain-owned sand field. It intentionally has no rock catalog,
+        /// formation version, or physical-placement input, so terrain sand remains valid when
+        /// formations are absent or their generator changes.
+        /// </summary>
+        public static TopDown3DDustDepositionPlan BuildTerrainPlan(
+            TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
+            Vector2Int chunkCoordinate)
+        {
+            return BuildPlanCore(
+                settings,
+                generator,
+                chunkCoordinate,
+                Array.Empty<TopDown3DRockFormationPlan>());
+        }
+
+        private static TopDown3DDustDepositionPlan BuildPlanCore(
+            TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator,
+            Vector2Int chunkCoordinate,
+            IReadOnlyList<TopDown3DRockFormationPlan> physicalSources)
+        {
             if (settings == null)
             {
                 return new TopDown3DDustDepositionPlan(
@@ -219,12 +277,6 @@ namespace BooterBigArm.TopDown3D
             var verticesPerAxis = quads + 1;
             var step = settings.ChunkSize / quads;
             var samples = new TopDown3DDustDepositionSample[verticesPerAxis * verticesPerAxis];
-            var physicalSources = CollectPhysicalSources(
-                settings,
-                generator,
-                catalog,
-                chunkCoordinate,
-                spawnExclusionCenter);
             var origin = new Vector2(
                 chunkCoordinate.x * settings.ChunkSize,
                 chunkCoordinate.y * settings.ChunkSize);
@@ -344,7 +396,8 @@ namespace BooterBigArm.TopDown3D
             }
 
             var baseWeight = SmoothStepRange(0.38f, 0.72f, material.Deposit);
-            var baseHeight = baseWeight
+            var reliefWeight = SampleTerrainReliefWeight(settings, worldPosition, baseWeight);
+            var baseHeight = reliefWeight
                 * settings.DustMaximumBaseHeight
                 * Mathf.Lerp(0.62f, 1f, material.Sediment)
                 * Mathf.Lerp(0.72f, 1f, material.Shelter);
@@ -371,6 +424,17 @@ namespace BooterBigArm.TopDown3D
                 material.WindExposure,
                 material.Erosion,
                 material.Deposit);
+        }
+
+        internal static float SampleTerrainReliefWeight(
+            TopDown3DWorldSettings settings,
+            Vector2 worldPosition,
+            float semanticWeight)
+        {
+            // Keep a shallow bed wherever the semantic terrain calls for sand, then let the
+            // continuous wind field raise irregular crests and pockets inside that coverage.
+            // World-space sampling keeps the relief deterministic and exact at chunk borders.
+            return Mathf.Max(Mathf.Clamp01(semanticWeight) * 0.18f, SampleBaseWeight(settings, worldPosition));
         }
 
         private static List<TopDown3DRockFormationPlan> CollectPhysicalSources(

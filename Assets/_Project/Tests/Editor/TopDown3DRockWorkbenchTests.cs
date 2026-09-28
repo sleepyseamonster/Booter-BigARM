@@ -1241,6 +1241,9 @@ namespace BooterBigArm.Tests
                 serialized.FindProperty("fusedVoxelSize").floatValue = 0.18f;
                 serialized.FindProperty("geologicalSeamWidth").floatValue = 0.5f;
                 serialized.FindProperty("geologicalSeamStrength").floatValue = 0.9f;
+                serialized.FindProperty("ironstoneVeinAmount").floatValue = 0.65f;
+                serialized.FindProperty("ironstoneBranchAmount").floatValue = 0.35f;
+                serialized.FindProperty("ironstoneDebugMask").floatValue = 1f;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
                 var left = CreateFormationMember(
@@ -1267,11 +1270,19 @@ namespace BooterBigArm.Tests
                 Assert.That(firstColors.Any(color => color.r == 0), Is.True);
 
                 var renderer = root.GetComponent<MeshRenderer>();
+                Assert.That(renderer.sharedMaterial.shader.name,
+                    Is.EqualTo("BooterBigArm/TopDown3D/Ironstone Seam Experiment"));
                 var properties = new MaterialPropertyBlock();
                 renderer.GetPropertyBlock(properties);
                 Assert.That(
                     properties.GetFloat(Shader.PropertyToID("_GeologicalSeamAmount")),
                     Is.EqualTo(0.9f).Within(0.0001f));
+                Assert.That(properties.GetFloat(Shader.PropertyToID("_IronstoneVeinAmount")),
+                    Is.EqualTo(0.65f).Within(0.0001f));
+                Assert.That(properties.GetFloat(Shader.PropertyToID("_IronstoneBranchAmount")),
+                    Is.EqualTo(0.35f).Within(0.0001f));
+                Assert.That(properties.GetFloat(Shader.PropertyToID("_IronstoneDebugMask")),
+                    Is.EqualTo(1f).Within(0.0001f));
                 Assert.That(
                     root.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>()
                         .All(member => !member.GetComponent<MeshRenderer>().enabled),

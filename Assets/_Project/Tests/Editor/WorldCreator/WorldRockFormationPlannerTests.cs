@@ -11,6 +11,54 @@ namespace BooterBigArm.Tests.WorldCreator
     {
         private const string SettingsPath =
             "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
+        private const string IronstonePath =
+            "Assets/_Project/Settings/World/Resource_IronstoneNode.asset";
+
+        [Test]
+        public void RealizedAuthoredFormations_MatchIronstoneCadence()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(SettingsPath);
+            var ironstone = AssetDatabase.LoadAssetAtPath<TopDown3DResourceDefinition>(IronstonePath);
+            Assert.That(settings, Is.Not.Null);
+            Assert.That(ironstone, Is.Not.Null);
+            var formationCount = 0;
+            var ironstoneCount = 0;
+            var generator = new TopDown3DWorldGenerator(settings);
+            var disabledSpawnExclusion = new Vector2(10000000f, 10000000f);
+            for (var z = -4; z <= 4; z++)
+            {
+                for (var x = -4; x <= 4; x++)
+                {
+                    var chunk = new Vector2Int(x, z);
+                    var formations = TopDown3DGeologicalRockAdapter.BuildPhysicalFormations(
+                        settings,
+                        generator,
+                        settings.NaturalObjectCatalog,
+                        chunk,
+                        disabledSpawnExclusion);
+                    formationCount += formations.Count;
+                    var resources = TopDown3DResourceNodePlanner.BuildChunkPlacements(
+                        settings,
+                        generator,
+                        settings.ResourceCatalog,
+                        chunk,
+                        disabledSpawnExclusion,
+                        formations);
+                    for (var resourceIndex = 0; resourceIndex < resources.Count; resourceIndex++)
+                    {
+                        if (resources[resourceIndex].ResourceId == ironstone.ResourceId)
+                            ironstoneCount++;
+                    }
+                }
+            }
+
+            Assert.That(formationCount, Is.GreaterThan(0));
+            Assert.That(ironstoneCount, Is.GreaterThan(0));
+            Assert.That(formationCount / (float)ironstoneCount,
+                Is.InRange(0.75f, 1.25f),
+                $"Realized Scatter/Spire count {formationCount} should track realized "
+                + $"ironstone count {ironstoneCount} in the same streamed terrain sample.");
+        }
 
         [Test]
         public void AbsolutePlans_AreDeterministicGenealogicalAndDeltaAddressable()
@@ -147,7 +195,7 @@ namespace BooterBigArm.Tests.WorldCreator
         }
 
         [Test]
-        public void RealizedFormation_NonParentVolumesDoNotOverlap()
+        public void RealizedFormation_UsesCompleteAuthoredMembersWithStableIds()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(SettingsPath);
             var generator = new TopDown3DWorldGenerator(settings);
@@ -160,18 +208,19 @@ namespace BooterBigArm.Tests.WorldCreator
                 Vector2.zero);
             for (var formationIndex = 0; formationIndex < formations.Count; formationIndex++)
             {
-                var members = formations[formationIndex].Members;
+                var formation = formations[formationIndex];
+                var members = formation.Members;
+                Assert.That(formation.AuthoredTemplate, Is.Not.Null);
+                Assert.That(members.Count, Is.GreaterThan(0));
+                Assert.That(formation.EnvelopeRadius, Is.GreaterThan(0f));
+                var ids = new HashSet<string>();
                 for (var i = 0; i < members.Count; i++)
                 {
-                    for (var otherIndex = 0; otherIndex < i; otherIndex++)
-                    {
-                        if (otherIndex == members[i].ParentIndex) continue;
-                        var distance = Vector2.Distance(
-                            new Vector2(members[i].Position.x, members[i].Position.z),
-                            new Vector2(members[otherIndex].Position.x, members[otherIndex].Position.z));
-                        Assert.That(distance + 0.001f,
-                            Is.GreaterThanOrEqualTo(members[i].SupportRadius + members[otherIndex].SupportRadius));
-                    }
+                    var member = members[i];
+                    Assert.That(ids.Add(member.StableId), Is.True);
+                    Assert.That(member.AuthoredFamily, Is.Not.Null);
+                    Assert.That(member.AuthoredFamily.IsComplete, Is.True);
+                    Assert.That(member.WorldBounds.size.sqrMagnitude, Is.GreaterThan(0f));
                 }
             }
         }

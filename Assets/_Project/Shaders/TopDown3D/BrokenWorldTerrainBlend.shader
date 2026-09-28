@@ -44,6 +44,10 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
         [NoScaleOffset] _RockPebbleColorMap("Near-rock Pebble Color", 2D) = "gray" {}
         [NoScaleOffset] _NearRockPebbleAlbedoMap("Independent Near-rock Pebble Detail", 2D) = "gray" {}
         [NoScaleOffset] _NearRockPebbleHeightMap("Independent Near-rock Pebble Height", 2D) = "black" {}
+        [HideInInspector] _FormationGroundMask("Formation Gravel and Sand", 2D) = "black" {}
+        [HideInInspector] _FormationGroundMaskEnabled("Formation Ground Mask Enabled", Float) = 0
+        [HideInInspector] _FormationGroundMaskOriginScale("Formation Mask Origin and Scale", Vector) = (0,0,1,1)
+        [HideInInspector] _FormationSandTint("Formation Sand Base Tint", Color) = (0.65,0.3,0.15,1)
         _Smoothness("Smoothness", Range(0, 1)) = 0.18
         [HideInInspector] _Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
@@ -142,6 +146,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float _NearRockPebbleDepth;
                 float4 _NearRockPebbleFormation;
                 float _NearRockPebbleDensity;
+                float _FormationGroundMaskEnabled;
+                float4 _FormationGroundMaskOriginScale;
+                half4 _FormationSandTint;
                 float _Smoothness;
                 float _Cutoff;
                 float _Surface;
@@ -157,6 +164,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
             #define sampler_RockPebbleColorMap sampler_BaseMap
             TEXTURE2D(_NearRockPebbleAlbedoMap);
             TEXTURE2D(_NearRockPebbleHeightMap);
+            TEXTURE2D(_FormationGroundMask);
+            SAMPLER(sampler_FormationGroundMask);
 
             struct Attributes
             {
@@ -551,6 +560,18 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     normal, surface, true, rockPebbles.rgb, groundNormal);
             }
 
+            half2 SampleFormationGroundMask(float2 position)
+            {
+                half2 result = half2(0, 0);
+                [branch] if (_FormationGroundMaskEnabled > 0.5)
+                {
+                    float2 uv = (position - _FormationGroundMaskOriginScale.xy)
+                        * _FormationGroundMaskOriginScale.zw;
+                    result = SAMPLE_TEXTURE2D(_FormationGroundMask, sampler_FormationGroundMask, uv).rg;
+                }
+                return result;
+            }
+
             half4 TerrainFragment(Varyings input) : SV_Target
             {
                 UNITY_SETUP_INSTANCE_ID(input);
@@ -558,6 +579,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
 
                 float3 absolutePositionWS = GetAbsolutePositionWS(input.positionWS);
                 float2 groundPosition = absolutePositionWS.xz;
+                half2 formationMask = SampleFormationGroundMask(groundPosition);
+                half2 localClutter = input.clutter;
+                if (_FormationGroundMaskEnabled > 0.5) localClutter.x = formationMask.x;
                 float pixelFootprint = max(length(ddx(groundPosition)), length(ddy(groundPosition)));
                 half3 geometricNormalWS = NormalizeNormalPerPixel(input.normalWS);
                 half3 normalWS = geometricNormalWS;
@@ -642,6 +666,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
 
                     SurfaceData farSurfaceData = (SurfaceData)0;
                     farSurfaceData.albedo = farAlbedo;
+                    farSurfaceData.albedo = lerp(farSurfaceData.albedo,
+                        lerp(farBaseAlbedo * _BaseColor.rgb, _FormationSandTint.rgb, 0.25h),
+                        formationMask.y * 0.85h);
                     farSurfaceData.specular = half3(0.2, 0.2, 0.2);
                     farSurfaceData.metallic = 0.0;
                     farSurfaceData.smoothness = lerp(
@@ -667,7 +694,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     farInputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
                     farInputData.shadowMask = half4(1.0, 1.0, 1.0, 1.0);
 
-                    ApplyPebbleLayers(groundPosition, viewDirectionWS, input.clutter, input.rockPebbles,
+                    ApplyPebbleLayers(groundPosition, viewDirectionWS, localClutter, input.rockPebbles,
                         pixelFootprint, geometricNormalWS, farInputData.normalWS, farSurfaceData);
                     half4 farColor = UniversalFragmentPBR(farInputData, farSurfaceData);
                     farColor.rgb = MixFog(farColor.rgb, input.fogFactor);
@@ -864,6 +891,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
 
                 SurfaceData surfaceData = (SurfaceData)0;
                 surfaceData.albedo = albedo;
+                surfaceData.albedo = lerp(surfaceData.albedo,
+                    lerp(baseAlbedo * _BaseColor.rgb, _FormationSandTint.rgb, 0.25h),
+                    formationMask.y * 0.85h);
                 surfaceData.specular = half3(0.2, 0.2, 0.2);
                 surfaceData.metallic = 0.0;
                 float stonyMask = max(
@@ -890,7 +920,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
                 inputData.shadowMask = half4(1.0, 1.0, 1.0, 1.0);
 
-                ApplyPebbleLayers(groundPosition, viewDirectionWS, input.clutter, input.rockPebbles,
+                ApplyPebbleLayers(groundPosition, viewDirectionWS, localClutter, input.rockPebbles,
                     pixelFootprint, geometricNormalWS, inputData.normalWS, surfaceData);
                 half4 color = UniversalFragmentPBR(inputData, surfaceData);
                 color.rgb = MixFog(color.rgb, input.fogFactor);

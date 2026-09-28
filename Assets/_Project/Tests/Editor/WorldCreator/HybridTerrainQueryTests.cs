@@ -72,6 +72,12 @@ namespace BooterBigArm.Tests.WorldCreator
                     Assert.That(float.IsInfinity(volume.SignedDistanceToSolid), Is.False);
                     Assert.That(fixture.Query.TrySampleAffordance(position, WorldAgentProfile.BooterProof, out var affordance, out var affordanceError), Is.True, affordanceError);
                     Assert.That(affordance.SlopeDegrees, Is.InRange(0f, 180f));
+                    Assert.That(fixture.Query.TrySampleAffordance(position, surface,
+                        WorldAgentProfile.BooterProof, out var reused, out var reuseError), Is.True, reuseError);
+                    Assert.That(reused.Walkable, Is.EqualTo(affordance.Walkable));
+                    Assert.That(reused.ReservedRoute, Is.EqualTo(affordance.ReservedRoute));
+                    Assert.That(reused.SlopeDegrees, Is.EqualTo(affordance.SlopeDegrees));
+                    Assert.That(reused.RouteFeatureId, Is.EqualTo(affordance.RouteFeatureId));
                 }
             }
         }

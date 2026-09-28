@@ -31,6 +31,20 @@ namespace BooterBigArm.Editor
             "Assets/_Project/Shaders/TopDown3D/BrokenWorldRockTriplanar.shader";
         public const string VolumetricDustShaderPath =
             "Assets/_Project/Shaders/TopDown3D/BrokenWorldVolumetricDust.shader";
+        public const string TiltShiftShaderPath =
+            "Assets/_Project/Shaders/TopDown3D/BrokenWorldTiltShift.shader";
+        public const string AnamorphicStreakShaderPath =
+            "Assets/_Project/Shaders/TopDown3D/BrokenWorldAnamorphicStreak.shader";
+        public const string RoundLensFlareShaderPath =
+            "Assets/_Project/Shaders/TopDown3D/BrokenWorldRoundLensFlare.shader";
+        public const string SunBloomShaderPath =
+            "Assets/_Project/Shaders/TopDown3D/BrokenWorldSunBloom.shader";
+        public const string RoundLensFlarePrimarySpritePath =
+            "Assets/_Project/VFX/Camera/LensFlares/BrokenWorld_Flare_Primary.png";
+        public const string RoundLensFlareGhostRingSpritePath =
+            "Assets/_Project/VFX/Camera/LensFlares/BrokenWorld_Flare_GhostRing.png";
+        public const string RoundLensFlareApertureGhostSpritePath =
+            "Assets/_Project/VFX/Camera/LensFlares/BrokenWorld_Flare_ApertureGhost.png";
         public const string RockAlbedoPath =
             "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceAlbedo.png";
         public const string DarkRockAlbedoPath =
@@ -222,6 +236,10 @@ namespace BooterBigArm.Editor
             var playerMaterial = EnsureMaterial("Greybox_Booter", new Color(0.58f, 0.49f, 0.37f));
             var bigArmMaterial = EnsureMaterial("Greybox_BigARM", new Color(0.08f, 0.74f, 0.76f));
             EnsureVolumetricDustRendererFeature();
+            EnsureTiltShiftRendererFeature();
+            EnsureAnamorphicStreakRendererFeature();
+            EnsureRoundLensFlareRendererFeature();
+            EnsureSunBloomRendererFeature();
             var rendererIndex = ResolveConversionRendererIndex();
             CreateScene(
                 rendererIndex,
@@ -521,6 +539,273 @@ namespace BooterBigArm.Editor
                 UnityEngine.Object.DestroyImmediate(feature, true);
                 throw new InvalidOperationException(
                     "Unity could not serialize the volumetric dust renderer feature safely.");
+            }
+
+            var featureIndex = serializedFeatures.arraySize;
+            serializedFeatures.InsertArrayElementAtIndex(featureIndex);
+            serializedFeatures.GetArrayElementAtIndex(featureIndex).objectReferenceValue = feature;
+            serializedFeatureMap.InsertArrayElementAtIndex(featureIndex);
+            serializedFeatureMap.GetArrayElementAtIndex(featureIndex).longValue = localId;
+            serializedRenderer.ApplyModifiedPropertiesWithoutUndo();
+            renderer.SetDirty();
+            EditorUtility.SetDirty(renderer);
+            EditorUtility.SetDirty(feature);
+        }
+
+        public static void EnsureTiltShiftRendererFeature()
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
+                ConversionBaselineValidator.ConversionRendererPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(TiltShiftShaderPath);
+            if (renderer == null || shader == null)
+            {
+                throw new InvalidOperationException(
+                    "The protected perspective renderer or tilt-shift shader is missing.");
+            }
+
+            var matchingFeatures = renderer.rendererFeatures
+                .OfType<TopDown3DTiltShiftFeature>()
+                .ToArray();
+            if (matchingFeatures.Length > 1)
+            {
+                throw new InvalidOperationException(
+                    "The perspective renderer contains duplicate tilt-shift features.");
+            }
+
+            if (matchingFeatures.Length == 1)
+            {
+                var existing = matchingFeatures[0];
+                if (existing.TiltShiftShader != shader || !existing.isActive)
+                {
+                    existing.Configure(shader);
+                    existing.SetActive(true);
+                    EditorUtility.SetDirty(existing);
+                    renderer.SetDirty();
+                    EditorUtility.SetDirty(renderer);
+                }
+
+                return;
+            }
+
+            var feature = ScriptableObject.CreateInstance<TopDown3DTiltShiftFeature>();
+            feature.name = "TopDown3D Tilt Shift";
+            feature.hideFlags = HideFlags.HideInHierarchy;
+            feature.Configure(shader);
+            feature.SetActive(true);
+            AssetDatabase.AddObjectToAsset(feature, renderer);
+            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(feature, out _, out long localId);
+
+            var serializedRenderer = new SerializedObject(renderer);
+            var serializedFeatures = serializedRenderer.FindProperty("m_RendererFeatures");
+            var serializedFeatureMap = serializedRenderer.FindProperty("m_RendererFeatureMap");
+            if (serializedFeatures == null || serializedFeatureMap == null || localId == 0)
+            {
+                UnityEngine.Object.DestroyImmediate(feature, true);
+                throw new InvalidOperationException(
+                    "Unity could not serialize the tilt-shift renderer feature safely.");
+            }
+
+            var featureIndex = serializedFeatures.arraySize;
+            serializedFeatures.InsertArrayElementAtIndex(featureIndex);
+            serializedFeatures.GetArrayElementAtIndex(featureIndex).objectReferenceValue = feature;
+            serializedFeatureMap.InsertArrayElementAtIndex(featureIndex);
+            serializedFeatureMap.GetArrayElementAtIndex(featureIndex).longValue = localId;
+            serializedRenderer.ApplyModifiedPropertiesWithoutUndo();
+            renderer.SetDirty();
+            EditorUtility.SetDirty(renderer);
+            EditorUtility.SetDirty(feature);
+        }
+
+        public static void EnsureAnamorphicStreakRendererFeature()
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
+                ConversionBaselineValidator.ConversionRendererPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(AnamorphicStreakShaderPath);
+            if (renderer == null || shader == null)
+            {
+                throw new InvalidOperationException(
+                    "The protected perspective renderer or anamorphic streak shader is missing.");
+            }
+
+            var matchingFeatures = renderer.rendererFeatures
+                .OfType<TopDown3DAnamorphicStreakFeature>()
+                .ToArray();
+            if (matchingFeatures.Length > 1)
+            {
+                throw new InvalidOperationException(
+                    "The perspective renderer contains duplicate anamorphic streak features.");
+            }
+
+            if (matchingFeatures.Length == 1)
+            {
+                var existing = matchingFeatures[0];
+                if (existing.StreakShader != shader || !existing.isActive)
+                {
+                    existing.Configure(shader);
+                    existing.SetActive(true);
+                    EditorUtility.SetDirty(existing);
+                    renderer.SetDirty();
+                    EditorUtility.SetDirty(renderer);
+                }
+
+                return;
+            }
+
+            var feature = ScriptableObject.CreateInstance<TopDown3DAnamorphicStreakFeature>();
+            feature.name = "TopDown3D Anamorphic Streak";
+            feature.hideFlags = HideFlags.HideInHierarchy;
+            feature.Configure(shader);
+            feature.SetActive(true);
+            AssetDatabase.AddObjectToAsset(feature, renderer);
+            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(feature, out _, out long localId);
+
+            var serializedRenderer = new SerializedObject(renderer);
+            var serializedFeatures = serializedRenderer.FindProperty("m_RendererFeatures");
+            var serializedFeatureMap = serializedRenderer.FindProperty("m_RendererFeatureMap");
+            if (serializedFeatures == null || serializedFeatureMap == null || localId == 0)
+            {
+                UnityEngine.Object.DestroyImmediate(feature, true);
+                throw new InvalidOperationException(
+                    "Unity could not serialize the anamorphic streak renderer feature safely.");
+            }
+
+            var featureIndex = serializedFeatures.arraySize;
+            serializedFeatures.InsertArrayElementAtIndex(featureIndex);
+            serializedFeatures.GetArrayElementAtIndex(featureIndex).objectReferenceValue = feature;
+            serializedFeatureMap.InsertArrayElementAtIndex(featureIndex);
+            serializedFeatureMap.GetArrayElementAtIndex(featureIndex).longValue = localId;
+            serializedRenderer.ApplyModifiedPropertiesWithoutUndo();
+            renderer.SetDirty();
+            EditorUtility.SetDirty(renderer);
+            EditorUtility.SetDirty(feature);
+        }
+
+        public static void EnsureRoundLensFlareRendererFeature()
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
+                ConversionBaselineValidator.ConversionRendererPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(RoundLensFlareShaderPath);
+            var primarySprite = AssetDatabase.LoadAssetAtPath<Texture2D>(RoundLensFlarePrimarySpritePath);
+            var ringSprite = AssetDatabase.LoadAssetAtPath<Texture2D>(RoundLensFlareGhostRingSpritePath);
+            var apertureSprite = AssetDatabase.LoadAssetAtPath<Texture2D>(RoundLensFlareApertureGhostSpritePath);
+            if (renderer == null
+                || shader == null
+                || primarySprite == null
+                || ringSprite == null
+                || apertureSprite == null)
+            {
+                throw new InvalidOperationException(
+                    "The protected perspective renderer, round lens-flare shader, or flare sprites are missing.");
+            }
+
+            var matchingFeatures = renderer.rendererFeatures
+                .OfType<TopDown3DRoundLensFlareFeature>()
+                .ToArray();
+            if (matchingFeatures.Length > 1)
+            {
+                throw new InvalidOperationException(
+                    "The perspective renderer contains duplicate round lens-flare features.");
+            }
+
+            if (matchingFeatures.Length == 1)
+            {
+                var existing = matchingFeatures[0];
+                if (existing.FlareShader != shader
+                    || existing.PrimaryFlareSprite != primarySprite
+                    || existing.GhostRingSprite != ringSprite
+                    || existing.ApertureGhostSprite != apertureSprite
+                    || !existing.isActive)
+                {
+                    existing.Configure(shader, primarySprite, ringSprite, apertureSprite);
+                    existing.SetActive(true);
+                    EditorUtility.SetDirty(existing);
+                    renderer.SetDirty();
+                    EditorUtility.SetDirty(renderer);
+                }
+
+                return;
+            }
+
+            var feature = ScriptableObject.CreateInstance<TopDown3DRoundLensFlareFeature>();
+            feature.name = "TopDown3D Round Lens Flare";
+            feature.hideFlags = HideFlags.HideInHierarchy;
+            feature.Configure(shader, primarySprite, ringSprite, apertureSprite);
+            feature.SetActive(true);
+            AssetDatabase.AddObjectToAsset(feature, renderer);
+            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(feature, out _, out long localId);
+
+            var serializedRenderer = new SerializedObject(renderer);
+            var serializedFeatures = serializedRenderer.FindProperty("m_RendererFeatures");
+            var serializedFeatureMap = serializedRenderer.FindProperty("m_RendererFeatureMap");
+            if (serializedFeatures == null || serializedFeatureMap == null || localId == 0)
+            {
+                UnityEngine.Object.DestroyImmediate(feature, true);
+                throw new InvalidOperationException(
+                    "Unity could not serialize the round lens-flare renderer feature safely.");
+            }
+
+            var featureIndex = serializedFeatures.arraySize;
+            serializedFeatures.InsertArrayElementAtIndex(featureIndex);
+            serializedFeatures.GetArrayElementAtIndex(featureIndex).objectReferenceValue = feature;
+            serializedFeatureMap.InsertArrayElementAtIndex(featureIndex);
+            serializedFeatureMap.GetArrayElementAtIndex(featureIndex).longValue = localId;
+            serializedRenderer.ApplyModifiedPropertiesWithoutUndo();
+            renderer.SetDirty();
+            EditorUtility.SetDirty(renderer);
+            EditorUtility.SetDirty(feature);
+        }
+
+        public static void EnsureSunBloomRendererFeature()
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
+                ConversionBaselineValidator.ConversionRendererPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(SunBloomShaderPath);
+            if (renderer == null || shader == null)
+            {
+                throw new InvalidOperationException(
+                    "The protected perspective renderer or sun-bloom shader is missing.");
+            }
+
+            var matchingFeatures = renderer.rendererFeatures
+                .OfType<TopDown3DSunBloomFeature>()
+                .ToArray();
+            if (matchingFeatures.Length > 1)
+            {
+                throw new InvalidOperationException(
+                    "The perspective renderer contains duplicate sun-bloom features.");
+            }
+
+            if (matchingFeatures.Length == 1)
+            {
+                var existing = matchingFeatures[0];
+                if (existing.BloomShader != shader || !existing.isActive)
+                {
+                    existing.Configure(shader);
+                    existing.SetActive(true);
+                    EditorUtility.SetDirty(existing);
+                    renderer.SetDirty();
+                    EditorUtility.SetDirty(renderer);
+                }
+
+                return;
+            }
+
+            var feature = ScriptableObject.CreateInstance<TopDown3DSunBloomFeature>();
+            feature.name = "TopDown3D Sun Bloom";
+            feature.hideFlags = HideFlags.HideInHierarchy;
+            feature.Configure(shader);
+            feature.SetActive(true);
+            AssetDatabase.AddObjectToAsset(feature, renderer);
+            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(feature, out _, out long localId);
+
+            var serializedRenderer = new SerializedObject(renderer);
+            var serializedFeatures = serializedRenderer.FindProperty("m_RendererFeatures");
+            var serializedFeatureMap = serializedRenderer.FindProperty("m_RendererFeatureMap");
+            if (serializedFeatures == null || serializedFeatureMap == null || localId == 0)
+            {
+                UnityEngine.Object.DestroyImmediate(feature, true);
+                throw new InvalidOperationException(
+                    "Unity could not serialize the sun-bloom renderer feature safely.");
             }
 
             var featureIndex = serializedFeatures.arraySize;

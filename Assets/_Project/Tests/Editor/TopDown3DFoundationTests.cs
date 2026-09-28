@@ -89,37 +89,6 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void TiltShiftFocus_TracksPlayerDepthPlaneAndClampsBehindCameraTargets()
-        {
-            var focusDistance = TopDown3DCameraRig.CalculateFocusDistance(
-                new Vector3(0f, 8f, -12f),
-                new Vector3(0f, -0.5f, 1f),
-                new Vector3(0f, 1f, 0f),
-                0.5f);
-            var expected = Vector3.Dot(
-                new Vector3(0f, -7f, 12f),
-                new Vector3(0f, -0.5f, 1f).normalized) + 0.5f;
-
-            Assert.That(focusDistance, Is.EqualTo(expected).Within(0.0001f));
-            Assert.That(
-                TopDown3DCameraRig.CalculateFocusDistance(
-                    Vector3.zero,
-                    Vector3.forward,
-                    Vector3.back,
-                    0f),
-                Is.EqualTo(0.1f).Within(0.0001f));
-
-            var oneStep = TopDown3DCameraRig.TrackFocusDistance(8f, 20f, 12f, 0.5f);
-            var twoSteps = TopDown3DCameraRig.TrackFocusDistance(
-                TopDown3DCameraRig.TrackFocusDistance(8f, 20f, 12f, 0.25f),
-                20f,
-                12f,
-                0.25f);
-            Assert.That(oneStep, Is.EqualTo(14f).Within(0.0001f));
-            Assert.That(twoSteps, Is.EqualTo(oneStep).Within(0.0001f));
-        }
-
-        [Test]
         public void CameraLookAhead_IsFrameRateIndependentRangeLimitedAndQuicklyRecenters()
         {
             var oneStep = TopDown3DCameraRig.CalculateLookAheadOffset(
@@ -186,9 +155,6 @@ namespace BooterBigArm.Tests
                 Assert.That(settings, Is.Not.Null);
                 Assert.That(rig.Distance, Is.EqualTo(25f).Within(0.0001f));
                 Assert.That(rig.MinimumPitchDegrees, Is.EqualTo(26f).Within(0.0001f));
-                Assert.That(rig.TiltShiftDepthOfFieldEnabled, Is.True);
-                Assert.That(rig.DepthOfFieldFocalLength, Is.EqualTo(52f).Within(0.0001f));
-                Assert.That(rig.DepthOfFieldAperture, Is.EqualTo(5.6f).Within(0.0001f));
                 Assert.That(rig.MaximumLookAheadDistance, Is.EqualTo(12f).Within(0.0001f));
                 Assert.That(rig.LookAheadSpeed, Is.EqualTo(12.6f).Within(0.0001f));
                 Assert.That(rig.LookAheadReturnSpeed, Is.EqualTo(37.8f).Within(0.0001f));

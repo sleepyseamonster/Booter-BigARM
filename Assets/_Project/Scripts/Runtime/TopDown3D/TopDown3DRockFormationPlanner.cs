@@ -70,7 +70,8 @@ namespace BooterBigArm.TopDown3D
             float supportRadius,
             Bounds worldBounds,
             TopDown3DNaturalMeshFamily authoredFamily = null,
-            Material authoredMaterial = null)
+            Material authoredMaterial = null,
+            float groundHeight = 0f)
         {
             StableId = stableId;
             DefinitionStableId = definitionStableId;
@@ -86,6 +87,7 @@ namespace BooterBigArm.TopDown3D
             WorldBounds = worldBounds;
             AuthoredFamily = authoredFamily;
             AuthoredMaterial = authoredMaterial;
+            GroundHeight = groundHeight;
         }
 
         public string StableId { get; }
@@ -102,6 +104,7 @@ namespace BooterBigArm.TopDown3D
         public Bounds WorldBounds { get; }
         public TopDown3DNaturalMeshFamily AuthoredFamily { get; }
         public Material AuthoredMaterial { get; }
+        public float GroundHeight { get; }
 
         public bool Equals(TopDown3DRockFormationMember other)
         {
@@ -118,7 +121,8 @@ namespace BooterBigArm.TopDown3D
                 && SupportRadius.Equals(other.SupportRadius)
                 && WorldBounds.Equals(other.WorldBounds)
                 && ReferenceEquals(AuthoredFamily, other.AuthoredFamily)
-                && AuthoredMaterial == other.AuthoredMaterial;
+                && AuthoredMaterial == other.AuthoredMaterial
+                && GroundHeight.Equals(other.GroundHeight);
         }
 
         public override bool Equals(object obj)
@@ -152,7 +156,8 @@ namespace BooterBigArm.TopDown3D
             TopDown3DRockFormationMember[] members,
             Vector2 envelopeCenter,
             float envelopeRadius,
-            float height)
+            float height,
+            TopDown3DAuthoredFormationAsset authoredTemplate = null)
         {
             RootKey = rootKey;
             StableId = stableId;
@@ -163,6 +168,7 @@ namespace BooterBigArm.TopDown3D
             EnvelopeCenter = envelopeCenter;
             EnvelopeRadius = envelopeRadius;
             Height = height;
+            AuthoredTemplate = authoredTemplate;
         }
 
         public TopDown3DRockRootKey RootKey { get; }
@@ -174,6 +180,7 @@ namespace BooterBigArm.TopDown3D
         public Vector2 EnvelopeCenter { get; }
         public float EnvelopeRadius { get; }
         public float Height { get; }
+        public TopDown3DAuthoredFormationAsset AuthoredTemplate { get; }
 
         public bool Equals(TopDown3DRockFormationPlan other)
         {
@@ -186,6 +193,7 @@ namespace BooterBigArm.TopDown3D
                 || EnvelopeCenter != other.EnvelopeCenter
                 || !EnvelopeRadius.Equals(other.EnvelopeRadius)
                 || !Height.Equals(other.Height)
+                || AuthoredTemplate != other.AuthoredTemplate
                 || members.Length != other.members.Length)
             {
                 return false;

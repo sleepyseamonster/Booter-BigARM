@@ -11,24 +11,31 @@ namespace BooterBigArm.TopDown3D
         private sealed class RejectedSurface : Exception { }
 
         internal static bool TryBuild(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,
-            WorldRockFormationPlan reservation, Vector2 spawnCenter, out TopDown3DRockFormationPlan result)
+            WorldRockFormationPlan reservation, TopDown3DAuthoredFormationAsset template,
+            Vector2 spawnCenter, out TopDown3DRockFormationPlan result)
         {
             result = null;
-            var template = settings.MixedFormationTemplate;
-            if (template == null || !template.HasBakedVariants)
-                throw new InvalidOperationException("The mixed world template needs a complete gameplay mesh bake.");
+            if (template == null || !template.HasBakedVariants || !template.HasApprovedStage)
+                throw new InvalidOperationException("The selected authored world template needs a complete approved workbench-stage bake.");
             if (!generator.TryToLocal(reservation.Center, out var localCenter)) return false;
             var seed = Hash(reservation.Id.ToString());
             var source = template.Members;
-            var matrices = TopDown3DAuthoredFormationVariation.Generate(template, seed);
-            var originalBounds = BoundsAt(source[0].Mesh.bounds, source[0].LocalPose);
-            for (var i = 1; i < source.Count; i++)
-                originalBounds.Encapsulate(BoundsAt(source[i].Mesh.bounds, source[i].LocalPose));
-            var offset = new Vector3(localCenter.X - originalBounds.center.x, 0f,
-                localCenter.Z - originalBounds.center.z);
-            var contacts = new List<TopDown3DRockGroundContact.Member>(source.Count);
-            var scales = new Vector3[source.Count];
-            var variants = new int[source.Count];
+            // The workbench's approved rocks supply the detailed mesh library. Its seeded
+            // composition rules make a fresh, repeatable arrangement for each world reservation.
+            var stage = BuildProceduralStage(template, reservation.Id.ToString());
+            var originalBounds = BoundsAt(stage[0].Family.Lod0.bounds, stage[0].LocalPose);
+            for (var i = 1; i < stage.Count; i++)
+                originalBounds.Encapsulate(BoundsAt(stage[i].Family.Lod0.bounds, stage[i].LocalPose));
+            var pivot = originalBounds.center;
+            var yaw = (uint)Hash(reservation.Id + ":yaw") / (float)uint.MaxValue * 360f;
+            var placement = Matrix4x4.Translate(new Vector3(
+                    localCenter.X - pivot.x, 0f, localCenter.Z - pivot.z))
+                * Matrix4x4.Translate(pivot)
+                * Matrix4x4.Rotate(Quaternion.Euler(0f, yaw, 0f))
+                * Matrix4x4.Translate(-pivot);
+            var contacts = new List<TopDown3DRockGroundContact.Member>(stage.Count);
+            var scales = new Vector3[stage.Count];
+            var groundHeights = new float[stage.Count];
             var cache = new Dictionary<Vector2, (float height, Vector3 normal)>();
             (float height, Vector3 normal) Surface(Vector3 point)
             {
@@ -41,8 +48,14 @@ namespace BooterBigArm.TopDown3D
                     throw new RejectedSurface();
                 if (!generator.Authority.Query.TrySampleSurface(absolute, out var surface, out var error))
                     throw new InvalidOperationException(error);
-                if (!generator.Authority.Query.TrySampleAffordance(absolute, WorldAgentProfile.BigArmProof,
-                    out var affordance, out error)) throw new InvalidOperationException(error);
+                var query = generator.Authority.Query;
+                WorldAffordanceSample affordance;
+                var sampledAffordance = query is UnboundedHybridWorldQueryService unbounded
+                    ? unbounded.TrySampleAffordance(absolute, surface, WorldAgentProfile.BigArmProof,
+                        out affordance, out error)
+                    : query.TrySampleAffordance(absolute, WorldAgentProfile.BigArmProof,
+                        out affordance, out error);
+                if (!sampledAffordance) throw new InvalidOperationException(error);
                 if (affordance.ReservedRoute
                     || (surface.Semantic & (WorldSurfaceSemantic.SiteReservation | WorldSurfaceSemantic.Approach)) != 0
                     || !generator.TryToLocal(surface.Position, out var local)) throw new RejectedSurface();
@@ -54,28 +67,30 @@ namespace BooterBigArm.TopDown3D
             }
             try
             {
-                for (var i = 0; i < source.Count; i++)
+                for (var i = 0; i < stage.Count; i++)
                 {
-                    var matrix = Matrix4x4.Translate(offset) * matrices[i];
+                    var entry = stage[i];
+                    var matrix = placement * entry.LocalPose;
                     scales[i] = matrix.lossyScale;
-                    var memberSeed = Hash(reservation.Id + ":authored:" + source[i].SourceId);
-                    variants[i] = (int)((uint)memberSeed % (uint)source[i].BakedVariants.Count);
-                    // Fit the source envelope/geometry first, as in the accepted workbench;
-                    // choosing a fresh baked silhouette does not trigger contact repair.
-                    var vertices = source[i].Mesh.vertices;
+                    var memberSeed = Hash(reservation.Id + ":authored:" + entry.InstanceId);
+                    // The stage bake is the same silhouette the Mixed Formation workbench displays.
+                    var selectedMesh = entry.Family.Lod0;
+                    var vertices = selectedMesh.vertices;
                     for (var v = 0; v < vertices.Length; v++) vertices[v] = matrix.MultiplyPoint3x4(vertices[v]);
-                    var bounds = BoundsAt(source[i].Mesh.bounds, matrix);
+                    var bounds = BoundsAt(selectedMesh.bounds, matrix);
                     contacts.Add(new TopDown3DRockGroundContact.Member(matrix.GetColumn(3), matrix.rotation,
                         bounds, vertices, memberSeed));
-                    Surface(bounds.center);
+                    groundHeights[i] = Surface(bounds.center).height;
                 }
                 var poses = TopDown3DRockGroundContact.Fit(contacts, p => Surface(p).height,
                     p => Surface(p).normal, 0.035f, 0.6f, 20f);
-                var members = new TopDown3DRockFormationMember[source.Count];
+                var members = new TopDown3DRockFormationMember[stage.Count];
                 var envelope = new Bounds();
                 for (var i = 0; i < members.Length; i++)
                 {
-                    var family = source[i].BakedVariants[variants[i]];
+                    var entry = stage[i];
+                    var sourceMember = source[entry.SourceIndex];
+                    var family = entry.Family;
                     var matrix = Matrix4x4.TRS(poses[i].Position, poses[i].Rotation, scales[i]);
                     var bounds = BoundsAt(family.Lod0.bounds, matrix);
                     // Check final footprint as well as the vertices queried while fitting.
@@ -84,9 +99,10 @@ namespace BooterBigArm.TopDown3D
                             (corner & 2) == 0 ? bounds.min.z : bounds.max.z));
                     var radius = new Vector2(bounds.extents.x, bounds.extents.z).magnitude;
                     members[i] = new TopDown3DRockFormationMember(
-                        reservation.Id + ":authored:" + source[i].SourceId, family.StableId,
-                        TopDown3DRockSizeTier.Medium, family.Shape, variants[i], poses[i].Position,
-                        poses[i].Rotation, scales[i], i, -1, radius, bounds, family, source[i].Material);
+                        reservation.Id + ":authored:" + entry.InstanceId, family.StableId,
+                        TopDown3DRockSizeTier.Medium, family.Shape, 0, poses[i].Position,
+                        poses[i].Rotation, scales[i], i, -1, radius, bounds, family, sourceMember.Material,
+                        groundHeights[i]);
                     if (i == 0) envelope = bounds; else envelope.Encapsulate(bounds);
                 }
                 var span = WorldRockFormationPlanner.FormationReservationSpan;
@@ -103,7 +119,8 @@ namespace BooterBigArm.TopDown3D
                 result = new TopDown3DRockFormationPlan(rootKey, reservation.Id.ToString(), seed,
                     TopDown3DNaturalObjectLayer.Obstacle, TopDown3DRockSurface.Regular, members,
                     new Vector2(envelope.center.x, envelope.center.z),
-                    new Vector2(envelope.extents.x, envelope.extents.z).magnitude, envelope.size.y);
+                    new Vector2(envelope.extents.x, envelope.extents.z).magnitude, envelope.size.y,
+                    template);
                 return true;
             }
             catch (RejectedSurface) { return false; }
@@ -125,6 +142,48 @@ namespace BooterBigArm.TopDown3D
                 uint hash = 2166136261u;
                 foreach (var c in text) hash = (hash ^ c) * 16777619u;
                 return (int)hash;
+            }
+        }
+
+        internal static IReadOnlyList<TopDown3DAuthoredFormationAsset.ApprovedStageEntry>
+            BuildProceduralStage(TopDown3DAuthoredFormationAsset template, string reservationId)
+        {
+            if (template == null || !template.HasBakedVariants || !template.HasApprovedStage)
+                throw new ArgumentException("Procedural formation requires a complete workbench bake.", nameof(template));
+            if (string.IsNullOrWhiteSpace(reservationId))
+                throw new ArgumentException("Procedural formation requires a stable reservation ID.", nameof(reservationId));
+
+            var layout = TopDown3DAuthoredFormationVariation.GenerateLayout(
+                template, Hash(reservationId + ":layout"));
+            var entries = new TopDown3DAuthoredFormationAsset.ApprovedStageEntry[layout.Entries.Count];
+            for (var i = 0; i < entries.Length; i++)
+            {
+                var layoutEntry = layout.Entries[i];
+                var variants = template.Members[layoutEntry.SourceIndex].BakedVariants;
+                var variantHash = (uint)Hash(reservationId + ":shape:" + layoutEntry.InstanceId);
+                var family = variants[(int)(variantHash % (uint)variants.Count)];
+                entries[i] = new TopDown3DAuthoredFormationAsset.ApprovedStageEntry(
+                    layoutEntry.SourceIndex, layoutEntry.InstanceId, layoutEntry.Transform, family);
+            }
+            return entries;
+        }
+
+        internal static int SelectGenerationIndex(TopDown3DAuthoredFormationAsset template,
+            string reservationId)
+        {
+            if (template == null || !template.HasApprovedStage)
+                throw new ArgumentException("Generation selection requires a complete formation bake.", nameof(template));
+            if (string.IsNullOrWhiteSpace(reservationId))
+                throw new ArgumentException("Generation selection requires a stable reservation ID.", nameof(reservationId));
+            unchecked
+            {
+                // Catalog selection uses FNV modulo two. Avalanche its bits before the
+                // generation modulo so each approved family can reach every generation.
+                var value = (uint)Hash(reservationId + ":generation");
+                value = (value ^ (value >> 16)) * 0x7FEB352Du;
+                value = (value ^ (value >> 15)) * 0x846CA68Bu;
+                value ^= value >> 16;
+                return (int)(value % (uint)(template.ProceduralGenerations.Count + 1));
             }
         }
     }

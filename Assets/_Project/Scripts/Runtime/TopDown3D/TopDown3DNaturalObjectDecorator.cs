@@ -8,6 +8,10 @@ namespace BooterBigArm.TopDown3D
     public static class TopDown3DNaturalObjectDecorator
     {
         private const int RockSurfaceCount = 3;
+        // Authored workbench compositions must remain a complete silhouette at gameplay distance.
+        private const float AuthoredLod0ScreenHeight = 0.08f;
+        private const float AuthoredLod1ScreenHeight = 0.025f;
+        private const float AuthoredLod2ScreenHeight = 0.002f;
 
         private static readonly ProfilerMarker DecorateMarker =
             new ProfilerMarker("TopDown3D.World.DecorateNaturalObjects");
@@ -15,6 +19,17 @@ namespace BooterBigArm.TopDown3D
             new ProfilerMarker("TopDown3D.World.PrepareRockFormation");
         private static readonly ProfilerMarker BuildCombinedLayerMarker =
             new ProfilerMarker("TopDown3D.World.BuildCombinedNaturalLayer");
+        private static readonly int GroundHeightId = Shader.PropertyToID("_GroundHeight");
+        private static readonly int BandHeightId = Shader.PropertyToID("_BandHeight");
+        private static readonly int OpacityId = Shader.PropertyToID("_Opacity");
+        private static readonly int FeatherHeightId = Shader.PropertyToID("_FeatherHeight");
+        private static readonly int WavinessId = Shader.PropertyToID("_Waviness");
+        private static readonly int NoiseScaleId = Shader.PropertyToID("_NoiseScale");
+        private static readonly int DirectionalBuildupId = Shader.PropertyToID("_DirectionalBuildup");
+        private static readonly int WindDirectionId = Shader.PropertyToID("_WindDirection");
+        private static readonly int RockCenterId = Shader.PropertyToID("_RockCenter");
+        private static readonly int BandColorId = Shader.PropertyToID("_BandColor");
+        private static readonly int PhaseId = Shader.PropertyToID("_Phase");
 
         internal static void Decorate(
             TopDown3DGeneratedChunk chunk,
@@ -62,6 +77,7 @@ namespace BooterBigArm.TopDown3D
                         settings.NaturalObjectCatalog,
                         ResolveRockMaterial(settings, material, formation.Surface),
                         formation,
+                        settings,
                         i + 1);
                 }
 
@@ -101,6 +117,7 @@ namespace BooterBigArm.TopDown3D
             TopDown3DNaturalObjectCatalog catalog,
             Material material,
             TopDown3DRockFormationPlan formation,
+            TopDown3DWorldSettings settings,
             int index)
         {
             using (BuildFormationMarker.Auto())
@@ -113,6 +130,9 @@ namespace BooterBigArm.TopDown3D
                 var root = new GameObject(
                     $"{GetTierName(formation.Members[0].Tier)} Rock Formation {index} - {formation.StableId}");
                 root.transform.SetParent(chunk.DecorationRoot, false);
+                var authoredLods = formation.Members[0].AuthoredFamily != null
+                    ? new[] { new List<Renderer>(), new List<Renderer>(), new List<Renderer>() }
+                    : null;
                 for (var memberIndex = 0; memberIndex < formation.Members.Count; memberIndex++)
                 {
                     var member = formation.Members[memberIndex];
@@ -126,9 +146,8 @@ namespace BooterBigArm.TopDown3D
                     var collider = memberObject.AddComponent<BoxCollider>();
                     collider.center = family.ColliderCenter;
                     collider.size = family.ColliderSize;
-                    if (member.AuthoredFamily != null)
+                    if (authoredLods != null)
                     {
-                        var lods = new LOD[3];
                         for (var lod = 0; lod < 3; lod++)
                         {
                             var child = new GameObject($"LOD{lod}");
@@ -136,19 +155,92 @@ namespace BooterBigArm.TopDown3D
                             child.AddComponent<MeshFilter>().sharedMesh = family.GetLod(lod);
                             var renderer = child.AddComponent<MeshRenderer>();
                             renderer.sharedMaterial = member.AuthoredMaterial;
-                            var threshold = lod == 0 ? family.Lod0ScreenHeight
-                                : lod == 1 ? family.Lod1ScreenHeight : family.Lod2ScreenHeight;
-                            lods[lod] = new LOD(threshold, new Renderer[] { renderer });
+                            authoredLods[lod].Add(renderer);
+                            if (formation.AuthoredTemplate != null
+                                && settings.RockContactBandMaterial != null
+                                && member.WorldBounds.min.y <= member.GroundHeight + 0.15f
+                                && member.WorldBounds.max.y > member.GroundHeight + 0.01f)
+                            {
+                                var band = new GameObject($"Rock Base Shader Band LOD{lod}");
+                                band.transform.SetParent(memberObject.transform, false);
+                                band.AddComponent<MeshFilter>().sharedMesh = family.GetLod(lod);
+                                var bandRenderer = band.AddComponent<MeshRenderer>();
+                                bandRenderer.sharedMaterial = settings.RockContactBandMaterial;
+                                bandRenderer.shadowCastingMode = ShadowCastingMode.Off;
+                                bandRenderer.receiveShadows = false;
+                                ApplyContactBand(bandRenderer, member, formation, settings);
+                                authoredLods[lod].Add(bandRenderer);
+                            }
                         }
-                        var group = memberObject.AddComponent<LODGroup>();
-                        group.SetLODs(lods);
-                        group.RecalculateBounds();
                     }
                 }
 
-                if (formation.Members[0].AuthoredFamily == null)
+                if (authoredLods != null)
+                {
+                    var group = root.AddComponent<LODGroup>();
+                    group.SetLODs(new[]
+                    {
+                        new LOD(AuthoredLod0ScreenHeight, authoredLods[0].ToArray()),
+                        new LOD(AuthoredLod1ScreenHeight, authoredLods[1].ToArray()),
+                        new LOD(AuthoredLod2ScreenHeight, authoredLods[2].ToArray())
+                    });
+                    group.RecalculateBounds();
+                }
+                else
                     CreateFormationLods(chunk, root, catalog, material, formation);
                 root.AddComponent<TopDown3DTraversalObstacle>();
+            }
+        }
+
+        private static void ApplyContactBand(MeshRenderer renderer, TopDown3DRockFormationMember member,
+            TopDown3DRockFormationPlan formation, TopDown3DWorldSettings settings)
+        {
+            var treatment = formation.AuthoredTemplate.SurfaceTreatment;
+            if (treatment == null) return;
+            var radians = settings.PrevailingWindDegrees * Mathf.Deg2Rad;
+            var properties = new MaterialPropertyBlock();
+            properties.SetFloat(GroundHeightId, member.GroundHeight);
+            properties.SetFloat(BandHeightId, treatment.BandHeight);
+            properties.SetFloat(OpacityId, treatment.BandOpacity);
+            properties.SetFloat(FeatherHeightId, treatment.BandFeather);
+            properties.SetFloat(WavinessId, treatment.BandWaviness);
+            properties.SetFloat(NoiseScaleId, treatment.BandNoiseScale);
+            properties.SetFloat(DirectionalBuildupId, treatment.BandDirectionalBuildup);
+            properties.SetVector(WindDirectionId, new Vector4(Mathf.Cos(radians), Mathf.Sin(radians), 0f, 0f));
+            properties.SetVector(RockCenterId, new Vector4(formation.EnvelopeCenter.x,
+                formation.EnvelopeCenter.y, 0f, 0f));
+            properties.SetColor(BandColorId, treatment.BandColor);
+            properties.SetFloat(PhaseId, ContactPhase(formation.Seed));
+            var source = member.AuthoredMaterial;
+            if (source != null)
+            {
+                CopyTexture(source, properties, "_BaseMap");
+                CopyTexture(source, properties, "_NormalMap");
+                CopyFloat(source, properties, "_RockMetersPerTile");
+                CopyFloat(source, properties, "_TriplanarSharpness");
+                CopyFloat(source, properties, "_NormalStrength");
+            }
+            renderer.SetPropertyBlock(properties);
+        }
+
+        private static void CopyTexture(Material source, MaterialPropertyBlock block, string name)
+        {
+            if (source.HasProperty(name)) block.SetTexture(name, source.GetTexture(name));
+        }
+
+        private static void CopyFloat(Material source, MaterialPropertyBlock block, string name)
+        {
+            if (source.HasProperty(name)) block.SetFloat(name, source.GetFloat(name));
+        }
+
+        private static float ContactPhase(int seed)
+        {
+            unchecked
+            {
+                var value = (uint)seed;
+                value = (value ^ (value >> 16)) * 0x7FEB352Du;
+                value = (value ^ (value >> 15)) * 0x846CA68Bu;
+                return ((value ^ (value >> 16)) & 0xFFFFFF) / 16777215f * 31f;
             }
         }
 

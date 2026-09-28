@@ -75,6 +75,14 @@ namespace BooterBigArm.Editor
             ValidateCameraInput(errors);
             ValidateVolumetricDustShader(errors);
             ValidateVolumetricDustRenderer(errors);
+            ValidateTiltShiftShader(errors);
+            ValidateTiltShiftRenderer(errors);
+            ValidateAnamorphicStreakShader(errors);
+            ValidateAnamorphicStreakRenderer(errors);
+            ValidateRoundLensFlareShader(errors);
+            ValidateRoundLensFlareRenderer(errors);
+            ValidateSunBloomShader(errors);
+            ValidateSunBloomRenderer(errors);
             ValidateBuildSettings(errors);
             ValidateScene(errors);
             return errors;
@@ -88,6 +96,13 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(TopDown3DPrototypeBuilder.PackingSettingsPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainShaderPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.VolumetricDustShaderPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.TiltShiftShaderPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.AnamorphicStreakShaderPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.RoundLensFlareShaderPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.SunBloomShaderPath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.RoundLensFlarePrimarySpritePath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.RoundLensFlareGhostRingSpritePath, errors);
+            ValidateAssetExists(TopDown3DPrototypeBuilder.RoundLensFlareApertureGhostSpritePath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainSweptSandAlbedoPath, errors);
             ValidateAssetExists(TopDown3DPrototypeBuilder.TerrainSweptSandTransitionAlbedoPath, errors);
@@ -116,7 +131,68 @@ namespace BooterBigArm.Editor
             ValidateRockMaterial(errors);
             ValidateWorldCoverage(errors);
             ValidateNaturalObjectCatalog(errors);
+            ValidateAuthoredFormationCatalog(errors);
             return errors;
+        }
+
+        private static void ValidateAuthoredFormationCatalog(ICollection<string> errors)
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(
+                TopDown3DPrototypeBuilder.WorldSettingsPath);
+            var catalog = settings != null ? settings.AuthoredFormationCatalog : null;
+            if (catalog == null || !catalog.IsComplete)
+            {
+                errors.Add("TopDown3D world settings require a complete authored formation catalog.");
+                return;
+            }
+
+            const string bandMaterialPath =
+                "Assets/_Project/Materials/TopDown3D/RockContactSandBand_Runtime.mat";
+            if (settings.RockContactBandMaterial == null
+                || settings.RockContactBandMaterial != AssetDatabase.LoadAssetAtPath<Material>(bandMaterialPath)
+                || settings.RockContactBandMaterial.shader == null
+                || settings.RockContactBandMaterial.shader.name !=
+                    "BooterBigArm/TopDown3D/Rock Contact Sand Band")
+                errors.Add("World formations require the approved rock contact sand band shader material.");
+            if (settings.MixedGroundPebbleAlbedo == null || settings.MixedGroundPebbleHeight == null
+                || settings.NearRockPebbleAlbedo == null || settings.NearRockPebbleHeight == null)
+                errors.Add("World formations require both workbench pebble shader texture pairs.");
+            if (settings.GenerateDepositedDust)
+                errors.Add("The broad deposited-dust field must remain disabled for the current world look.");
+
+            var approvedSources = new HashSet<string>
+            {
+                TopDown3DLandscapeAuthoringSandboxEditor.MixedReferencePath,
+                TopDown3DAuthoredFormationTemplateCapture.HandbuiltSpireReferencePath
+            };
+            if (catalog.Templates.Count != approvedSources.Count)
+                errors.Add("The production formation catalog must contain exactly Scatter and Handbuilt Spire.");
+
+            foreach (var template in catalog.Templates)
+            {
+                if (template.SurfaceTreatment == null
+                    || template.SurfaceTreatment.BandOpacity <= 0f
+                    || template.SurfaceTreatment.GroundClutter <= 0f)
+                    errors.Add($"Authored formation '{template.name}' needs its workbench shader treatment profile.");
+                var sourcePath = AssetDatabase.GUIDToAssetPath(template.SourceGuid);
+                if (!approvedSources.Remove(sourcePath))
+                    errors.Add($"Authored formation '{template.name}' is not one of the two approved workbench sources.");
+                if (string.IsNullOrEmpty(sourcePath)
+                    || template.SourceRevision != AssetDatabase.GetAssetDependencyHash(sourcePath).ToString())
+                {
+                    errors.Add($"Authored formation '{template.name}' needs a gameplay rebake from its saved reference.");
+                }
+                foreach (var stage in Resources.FindObjectsOfTypeAll<TopDown3DLandscapeAuthoringSandbox>())
+                {
+                    if (stage == null || !stage.gameObject.scene.isLoaded
+                        || AssetDatabase.GetAssetPath(stage.RockReference) != sourcePath) continue;
+                    if (template.ApprovedStageVariationEnabled != stage.VariationEnabled
+                        || template.ApprovedStageSeed != stage.VariationSeed)
+                        errors.Add($"Authored formation '{template.name}' needs a gameplay rebake from its current workbench generation.");
+                }
+            }
+            if (approvedSources.Count != 0)
+                errors.Add("The production formation catalog is missing Scatter or Handbuilt Spire.");
         }
 
         private static void ValidateWorldCoverage(ICollection<string> errors)
@@ -649,6 +725,53 @@ namespace BooterBigArm.Editor
 
         }
 
+        private static void ValidateTiltShiftRenderer(ICollection<string> errors)
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
+                ConversionBaselineValidator.ConversionRendererPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(
+                TopDown3DPrototypeBuilder.TiltShiftShaderPath);
+            if (renderer == null || shader == null)
+            {
+                return;
+            }
+
+            var features = renderer.rendererFeatures
+                .OfType<TopDown3DTiltShiftFeature>()
+                .ToArray();
+            if (features.Length != 1)
+            {
+                errors.Add(
+                    $"The perspective renderer must contain exactly one TopDown3D tilt-shift feature; found {features.Length}.");
+                return;
+            }
+
+            var feature = features[0];
+            if (!feature.isActive || !feature.PreviewInSceneView)
+            {
+                errors.Add("The TopDown3D tilt-shift renderer feature and its Scene View preview must be active.");
+            }
+
+            if (feature.TiltShiftShader != shader)
+            {
+                errors.Add("The TopDown3D tilt-shift renderer feature must reference the canonical shader.");
+            }
+
+            if (feature.Downsample < 1
+                || feature.Downsample > 4
+                || feature.FocusCenter < 0f
+                || feature.FocusCenter > 1f
+                || feature.SharpBandWidth < 0.05f
+                || feature.SharpBandWidth > 0.8f
+                || feature.FeatherWidth < 0.01f
+                || feature.FeatherWidth > 0.5f
+                || feature.BlurRadius < 0.5f
+                || feature.BlurRadius > 12f)
+            {
+                errors.Add("The TopDown3D tilt-shift renderer feature contains values outside the supported artistic ranges.");
+            }
+        }
+
         private static void ValidateVolumetricDustShader(ICollection<string> errors)
         {
             var shader = AssetDatabase.LoadAssetAtPath<Shader>(
@@ -663,6 +786,251 @@ namespace BooterBigArm.Editor
             {
                 errors.Add(
                     $"The volumetric dust shader must compile without messages on the active editor platform. Supported={shader.isSupported}; messages={messages.Length}.");
+            }
+        }
+
+        private static void ValidateTiltShiftShader(ICollection<string> errors)
+        {
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(
+                TopDown3DPrototypeBuilder.TiltShiftShaderPath);
+            if (shader == null)
+            {
+                return;
+            }
+
+            var messages = ShaderUtil.GetShaderMessages(shader);
+            if (!shader.isSupported || messages.Length > 0)
+            {
+                errors.Add(
+                    $"The tilt-shift shader must compile without messages on the active editor platform. Supported={shader.isSupported}; messages={messages.Length}.");
+            }
+        }
+
+        private static void ValidateAnamorphicStreakRenderer(ICollection<string> errors)
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
+                ConversionBaselineValidator.ConversionRendererPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(
+                TopDown3DPrototypeBuilder.AnamorphicStreakShaderPath);
+            if (renderer == null || shader == null)
+            {
+                return;
+            }
+
+            var features = renderer.rendererFeatures
+                .OfType<TopDown3DAnamorphicStreakFeature>()
+                .ToArray();
+            if (features.Length != 1)
+            {
+                errors.Add(
+                    $"The perspective renderer must contain exactly one TopDown3D anamorphic streak feature; found {features.Length}.");
+                return;
+            }
+
+            var feature = features[0];
+            if (!feature.isActive || !feature.StreakEnabled || !feature.PreviewInSceneView)
+            {
+                errors.Add(
+                    "The TopDown3D anamorphic streak renderer feature and its Scene View preview must be active.");
+            }
+
+            if (feature.StreakShader != shader)
+            {
+                errors.Add(
+                    "The TopDown3D anamorphic streak renderer feature must reference the canonical shader.");
+            }
+
+            if (feature.Downsample < 1
+                || feature.Downsample > 4
+                || feature.Intensity < 0f
+                || feature.Intensity > 2f
+                || feature.Length < 0f
+                || feature.Length > 1f
+                || feature.Threshold < 0f
+                || feature.Threshold > 4f
+                || feature.Orientation < -180f
+                || feature.Orientation > 180f
+                || feature.ChromaticSeparation < 0f
+                || feature.ChromaticSeparation > 0.15f)
+            {
+                errors.Add(
+                    "The TopDown3D anamorphic streak renderer feature contains values outside the supported artistic ranges.");
+            }
+        }
+
+        private static void ValidateAnamorphicStreakShader(ICollection<string> errors)
+        {
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(
+                TopDown3DPrototypeBuilder.AnamorphicStreakShaderPath);
+            if (shader == null)
+            {
+                return;
+            }
+
+            var messages = ShaderUtil.GetShaderMessages(shader);
+            if (!shader.isSupported || messages.Length > 0)
+            {
+                errors.Add(
+                    $"The anamorphic streak shader must compile without messages on the active editor platform. Supported={shader.isSupported}; messages={messages.Length}.");
+            }
+        }
+
+        private static void ValidateRoundLensFlareRenderer(ICollection<string> errors)
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
+                ConversionBaselineValidator.ConversionRendererPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(
+                TopDown3DPrototypeBuilder.RoundLensFlareShaderPath);
+            var primarySprite = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                TopDown3DPrototypeBuilder.RoundLensFlarePrimarySpritePath);
+            var ringSprite = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                TopDown3DPrototypeBuilder.RoundLensFlareGhostRingSpritePath);
+            var apertureSprite = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                TopDown3DPrototypeBuilder.RoundLensFlareApertureGhostSpritePath);
+            if (renderer == null
+                || shader == null
+                || primarySprite == null
+                || ringSprite == null
+                || apertureSprite == null)
+            {
+                return;
+            }
+
+            var features = renderer.rendererFeatures
+                .OfType<TopDown3DRoundLensFlareFeature>()
+                .ToArray();
+            if (features.Length != 1)
+            {
+                errors.Add(
+                    $"The perspective renderer must contain exactly one TopDown3D round lens-flare feature; found {features.Length}.");
+                return;
+            }
+
+            var feature = features[0];
+            if (!feature.isActive || !feature.FlareEnabled || !feature.PreviewInSceneView)
+            {
+                errors.Add(
+                    "The TopDown3D round lens-flare renderer feature and its Scene View preview must be active.");
+            }
+
+            if (feature.FlareShader != shader)
+            {
+                errors.Add(
+                    "The TopDown3D round lens-flare renderer feature must reference the canonical shader.");
+            }
+
+            if (feature.PrimaryFlareSprite != primarySprite
+                || feature.GhostRingSprite != ringSprite
+                || feature.ApertureGhostSprite != apertureSprite)
+            {
+                errors.Add(
+                    "The TopDown3D round lens-flare renderer feature must reference the canonical transparent flare sprite set.");
+            }
+
+            if (feature.Intensity < 0f
+                || feature.Intensity > 2f
+                || feature.Radius < 0.02f
+                || feature.Radius > 0.75f
+                || feature.Anisotropy < 0.4f
+                || feature.Anisotropy > 2.5f
+                || feature.GhostReach < 0f
+                || feature.GhostReach > 3f
+                || feature.EdgeReach < 0f
+                || feature.EdgeReach > 1f
+                || feature.HaloThickness < 0.03f
+                || feature.HaloThickness > 0.5f
+                || feature.HdrEnergy < 0.5f
+                || feature.HdrEnergy > 6f
+                || feature.OcclusionRadius < 0.005f
+                || feature.OcclusionRadius > 0.25f
+                || feature.CoreOcclusion < 0f
+                || feature.CoreOcclusion > 1f
+                || feature.AureoleOcclusion < 0f
+                || feature.AureoleOcclusion > 1f
+                || feature.GhostOcclusion < 0f
+                || feature.GhostOcclusion > 1f
+                || feature.OcclusionStability < 0f
+                || feature.OcclusionStability > 0.95f)
+            {
+                errors.Add(
+                    "The TopDown3D round lens-flare renderer feature contains values outside the supported artistic ranges.");
+            }
+        }
+
+        private static void ValidateRoundLensFlareShader(ICollection<string> errors)
+        {
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(
+                TopDown3DPrototypeBuilder.RoundLensFlareShaderPath);
+            if (shader == null)
+            {
+                return;
+            }
+
+            var messages = ShaderUtil.GetShaderMessages(shader);
+            if (!shader.isSupported || messages.Length > 0)
+            {
+                errors.Add(
+                    $"The round lens-flare shader must compile without messages on the active editor platform. Supported={shader.isSupported}; messages={messages.Length}.");
+            }
+        }
+
+        private static void ValidateSunBloomRenderer(ICollection<string> errors)
+        {
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
+                ConversionBaselineValidator.ConversionRendererPath);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(TopDown3DPrototypeBuilder.SunBloomShaderPath);
+            if (renderer == null || shader == null)
+            {
+                return;
+            }
+
+            var features = renderer.rendererFeatures.OfType<TopDown3DSunBloomFeature>().ToArray();
+            if (features.Length != 1)
+            {
+                errors.Add($"The perspective renderer must contain exactly one TopDown3D sun-bloom feature; found {features.Length}.");
+                return;
+            }
+
+            var feature = features[0];
+            if (!feature.isActive || !feature.BloomEnabled || !feature.PreviewInSceneView)
+            {
+                errors.Add("The TopDown3D sun-bloom renderer feature and its Scene View preview must be active.");
+            }
+
+            if (feature.BloomShader != shader)
+            {
+                errors.Add("The TopDown3D sun-bloom renderer feature must reference the canonical shader.");
+            }
+
+            if (feature.Downsample < 1 || feature.Downsample > 4
+                || feature.PyramidLevels < 3 || feature.PyramidLevels > 7
+                || feature.Intensity < 0f || feature.Intensity > 2f
+                || feature.Threshold < 0f || feature.Threshold > 4f
+                || feature.SoftKnee < 0f || feature.SoftKnee > 1f
+                || feature.Scatter < 0f || feature.Scatter > 1f
+                || feature.Clamp < 1f || feature.Clamp > 32f
+                || feature.TightWeight < 0f || feature.TightWeight > 2f
+                || feature.MediumWeight < 0f || feature.MediumWeight > 2f
+                || feature.BroadWeight < 0f || feature.BroadWeight > 2f
+                || feature.SunAureoleIntensity < 0f || feature.SunAureoleIntensity > 2f
+                || feature.SunAureoleRadius < 0.02f || feature.SunAureoleRadius > 0.5f)
+            {
+                errors.Add("The TopDown3D sun-bloom renderer feature contains values outside the supported artistic ranges.");
+            }
+        }
+
+        private static void ValidateSunBloomShader(ICollection<string> errors)
+        {
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>(TopDown3DPrototypeBuilder.SunBloomShaderPath);
+            if (shader == null)
+            {
+                return;
+            }
+
+            var messages = ShaderUtil.GetShaderMessages(shader);
+            if (!shader.isSupported || messages.Length > 0)
+            {
+                errors.Add($"The sun-bloom shader must compile without messages on the active editor platform. Supported={shader.isSupported}; messages={messages.Length}.");
             }
         }
 
@@ -746,13 +1114,6 @@ namespace BooterBigArm.Editor
                     && (!Mathf.Approximately(
                             cameraRig.MinimumPitchDegrees,
                             TopDown3DCameraRig.DefaultMinimumPitchDegrees)
-                        || !cameraRig.TiltShiftDepthOfFieldEnabled
-                        || !Mathf.Approximately(
-                            cameraRig.DepthOfFieldFocalLength,
-                            TopDown3DCameraRig.DefaultDepthOfFieldFocalLength)
-                        || !Mathf.Approximately(
-                            cameraRig.DepthOfFieldAperture,
-                            TopDown3DCameraRig.DefaultDepthOfFieldAperture)
                         || !Mathf.Approximately(
                             cameraRig.MaximumLookAheadDistance,
                             TopDown3DCameraRig.DefaultMaximumLookAheadDistance)
@@ -763,7 +1124,7 @@ namespace BooterBigArm.Editor
                             cameraRig.LookAheadReturnSpeed,
                             TopDown3DCameraRig.DefaultLookAheadReturnSpeed)))
                 {
-                    errors.Add("TopDown3DPrototype camera horizon pitch, tilt-shift depth of field, and look-ahead tuning must match the canonical values.");
+                    errors.Add("TopDown3DPrototype camera horizon pitch, optical style, and look-ahead tuning must match the canonical values.");
                 }
 
                 var bigArm = FindComponents<TopDown3DBigArmFollower>(roots).SingleOrDefault();

@@ -1,194 +1,161 @@
 using System;
 using System.Collections.Generic;
 using BooterBigArm.TopDown3D;
-using BooterBigArm.TopDown3D.WorldCreator;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace BooterBigArm.Editor
 {
-    /// <summary>Deposits sand into disposable authoring terrain, never a second overlay/collider.</summary>
+    /// <summary>Finds frozen formation contacts for local berms and formation clutter.</summary>
     internal static class TopDown3DMixedFormationSand
     {
-        internal static IReadOnlyList<TopDown3DDustDepositionPlanner.AuthoredObstruction> Apply(TopDown3DLandscapeAuthoringSandbox sandbox,
+        internal static IReadOnlyList<TopDown3DDustDepositionPlanner.AuthoredObstruction> CollectGroundContacts(
+            TopDown3DLandscapeAuthoringSandbox sandbox,
             MeshCollider[] terrain, TopDown3DRockWorkbenchAuthoring[] rocks, bool includeSand = true)
+        {
+            var previews = new List<TopDown3DContactRockPreview>(rocks.Length);
+            foreach (var rock in rocks)
+                previews.Add(new TopDown3DContactRockPreview(rock.transform,
+                    rock.GetComponent<MeshFilter>(), rock.GetComponent<MeshRenderer>(), rock.GenerationSeed));
+            return CollectGroundContacts(sandbox, terrain, previews, includeSand);
+        }
+
+        internal static IReadOnlyList<TopDown3DDustDepositionPlanner.AuthoredObstruction> CollectGroundContacts(
+            TopDown3DLandscapeAuthoringSandbox sandbox,
+            MeshCollider[] terrain, IReadOnlyList<TopDown3DContactRockPreview> rocks,
+            bool includeSand = true)
         {
             var buildup = includeSand ? sandbox.SandBuildup : 0f;
             var tiles = new List<BaseTile>(terrain.Length);
             foreach (var collider in terrain) tiles.Add(new BaseTile(collider));
             var sources = new List<TopDown3DDustDepositionPlanner.AuthoredObstruction>();
-            var influence = new Bounds();
             foreach (var rock in rocks)
             {
-                var bounds = rock.GetComponent<MeshRenderer>().bounds;
+                if (rock == null || rock.Filter == null || rock.Filter.sharedMesh == null
+                    || rock.Renderer == null) continue;
+                var bounds = rock.Renderer.bounds;
                 var center = new Vector2(bounds.center.x, bounds.center.z);
                 var floor = SampleBase(tiles, center).Height;
                 // A suspended upper member is supported by the pile, not a separate ground collar.
                 if (bounds.min.y > floor + 0.15f || bounds.max.y <= floor + 0.01f) continue;
                 // The widest part of the rock can sit well above its buried base. Anchor the
                 // bank to a mesh cross-section near ground contact, not the whole renderer box.
-                var contact = ContactFootprint(rock, bounds, floor, buildup, out var contactEdges);
+                // Contact detection must remain available when the raised sand field is off;
+                // the flat visual collar still needs a stable section through the rock base.
+                var contactSampleHeight = Mathf.Max(buildup,
+                    sandbox.ContactSandTrimHeight > 0f ? 0.12f : 0f);
+                var contact = ContactFootprint(rock.Filter.sharedMesh, rock.Transform.localToWorldMatrix,
+                    rock.Transform.name, bounds, floor, contactSampleHeight, out var contactEdges);
                 center = new Vector2(contact.center.x, contact.center.z);
                 var source = new TopDown3DDustDepositionPlanner.AuthoredObstruction(
                     center, new Vector2(contact.extents.x, contact.extents.z), bounds.max.y - floor, contactEdges);
                 sources.Add(source);
-                var radius = Mathf.Min(source.HalfSize.x, source.HalfSize.y);
-                var extent = source.HalfSize * (1f + 3.6f / Mathf.Max(0.01f, radius))
-                    + Vector2.one * (sandbox.WorldSettings.DustWakeLength + 0.3f);
-                var sourceInfluence = new Bounds(new Vector3(center.x, 0f, center.y),
-                    new Vector3(extent.x * 2f, 2f, extent.y * 2f));
-                if (sources.Count == 1) influence = sourceInfluence;
-                else influence.Encapsulate(sourceInfluence);
             }
-            // Gravel uses these same frozen ground contacts, including when sand is disabled.
-            if (sources.Count == 0 || buildup <= 0f) return sources;
-
-            var generator = new TopDown3DWorldGenerator(sandbox.WorldSettings);
-            var cache = new Dictionary<Vector2, TopDown3DDustDepositionSample>();
-            TopDown3DDustDepositionSample DepositAt(Vector2 position)
-            {
-                if (!influence.Contains(new Vector3(position.x, 0f, position.y))) return default;
-                if (cache.TryGetValue(position, out var cached)) return cached;
-                if (!generator.Authority.Materials.TrySample(
-                    new AbsoluteWorldPosition(position.x, 0d, position.y), out var material, out var error))
-                    throw new InvalidOperationException(error);
-                var deposit = TopDown3DDustDepositionPlanner.SampleAuthoredDeposit(
-                    sandbox.WorldSettings, material, position, sources, buildup);
-                cache.Add(position, deposit);
-                return deposit;
-            }
-
-            foreach (var tile in tiles)
-            {
-                if (!tile.Intersects(influence)) continue;
-                // Integer subdivisions preserve the exact original triangle planes. Sand needs
-                // finer geometry than the large-scale ground; only nearby tiles are refined.
-                var subdivisions = Mathf.Max(1, Mathf.CeilToInt(tile.Step / 0.1f));
-                var quads = (tile.Resolution - 1) * subdivisions;
-                var size = quads + 1;
-                var step = tile.Step / subdivisions;
-                var vertices = new Vector3[size * size];
-                var normals = new Vector3[vertices.Length];
-                var colors = new Color[vertices.Length];
-                var uvs = new Vector2[vertices.Length];
-                var bankMasks = new Vector2[vertices.Length];
-                var triangles = new int[quads * quads * 6];
-                var visible = false;
-                for (var z = 0; z < size; z++)
-                {
-                    for (var x = 0; x < size; x++)
-                    {
-                        var index = z * size + x;
-                        // Global integer grid gives adjacent tiles identical boundary/halo samples.
-                        var point = new Vector2(
-                            Mathf.Round(tile.Origin.x / step + x) * step,
-                            Mathf.Round(tile.Origin.z / step + z) * step);
-                        var basis = tile.Sample(point);
-                        var deposit = DepositAt(point);
-                        visible |= deposit.Height > 0.00001f;
-                        vertices[index] = new Vector3(point.x - tile.Origin.x,
-                            basis.Height + deposit.Height, point.y - tile.Origin.z);
-                        var normal = basis.Normal;
-                        if (deposit.Height > 0f)
-                        {
-                            var dx = (DepositAt(point + Vector2.right * step).Height
-                                - DepositAt(point - Vector2.right * step).Height) / (2f * step);
-                            var dz = (DepositAt(point + Vector2.up * step).Height
-                                - DepositAt(point - Vector2.up * step).Height) / (2f * step);
-                            normal = new Vector3(normal.x - dx * normal.y,
-                                normal.y, normal.z - dz * normal.y).normalized;
-                        }
-                        normals[index] = normal;
-                        // Existing terrain packing: deposit grows while exposed gravel/strata recede.
-                        var coverage = deposit.Weight;
-                        colors[index] = new Color(Mathf.Lerp(basis.Color.r, 1f, coverage),
-                            basis.Color.g * (1f - coverage), basis.Color.b * (1f - coverage), basis.Color.a);
-                        uvs[index] = point / sandbox.WorldSettings.ChunkSize;
-                        // Dedicated deposit-depth mask, independent of the terrain's broad sand biome weight.
-                        bankMasks[index] = new Vector2(0f, Mathf.SmoothStep(0f, 1f,
-                            Mathf.Clamp01(deposit.Height / 0.25f)));
-                    }
-                }
-                if (!visible) continue;
-                var t = 0;
-                for (var z = 0; z < quads; z++)
-                {
-                    for (var x = 0; x < quads; x++)
-                    {
-                        var bottom = z * size + x;
-                        var top = bottom + size;
-                        triangles[t++] = bottom;
-                        triangles[t++] = top;
-                        triangles[t++] = bottom + 1;
-                        triangles[t++] = bottom + 1;
-                        triangles[t++] = top;
-                        triangles[t++] = top + 1;
-                    }
-                }
-                var mesh = tile.Collider.sharedMesh;
-                tile.Collider.sharedMesh = null;
-                mesh.Clear();
-                mesh.indexFormat = vertices.Length > ushort.MaxValue ? IndexFormat.UInt32 : IndexFormat.UInt16;
-                mesh.SetVertices(vertices);
-                mesh.SetNormals(normals);
-                mesh.SetColors(colors);
-                mesh.SetUVs(0, uvs);
-                mesh.SetUVs(1, bankMasks);
-                mesh.SetTriangles(triangles, 0, true);
-                mesh.RecalculateBounds();
-                // Renderer and ground queries see the very same displaced triangles.
-                tile.Collider.sharedMesh = mesh;
-            }
-            Physics.SyncTransforms();
             return sources;
         }
 
-        private static Bounds ContactFootprint(TopDown3DRockWorkbenchAuthoring rock,
+        private static Bounds ContactFootprint(Mesh mesh, Matrix4x4 matrix, string rockName,
             Bounds bounds, float floor, float buildup, out Vector2[] contactEdges)
         {
-            var mesh = rock.GetComponent<MeshFilter>().sharedMesh;
             var vertices = mesh.vertices;
-            var matrix = rock.transform.localToWorldMatrix;
             for (var i = 0; i < vertices.Length; i++) vertices[i] = matrix.MultiplyPoint3x4(vertices[i]);
             // Sample near the expected berm crest, so it can cover the lower face rather
             // than banking against an oval detached from the visible rock surface.
-            var level = Mathf.Clamp(floor + Mathf.Min(buildup, (bounds.max.y - floor) * 0.7f) * 0.65f,
-                bounds.min.y + 0.001f, bounds.max.y - 0.001f);
-            var found = false;
             var footprint = new Bounds();
             var edges = new List<Vector2>();
             var crossings = new List<Vector2>(3);
-            void IncludeCrossing(Vector3 a, Vector3 b)
+            bool TrySlice(float level)
             {
-                if ((a.y < level && b.y < level) || (a.y > level && b.y > level)) return;
-                var dy = b.y - a.y;
-                if (Mathf.Abs(dy) < 0.000001f) return;
-                var point = Vector3.Lerp(a, b, (level - a.y) / dy);
-                var planar = new Vector2(point.x, point.z);
-                if (crossings.Count == 0 || (crossings[0] - planar).sqrMagnitude > 0.00000001f)
-                    crossings.Add(planar);
-                if (!found) { footprint = new Bounds(point, Vector3.zero); found = true; }
-                else footprint.Encapsulate(point);
-            }
-            var triangles = mesh.triangles;
-            for (var i = 0; i < triangles.Length; i += 3)
-            {
-                var a = vertices[triangles[i]];
-                var b = vertices[triangles[i + 1]];
-                var c = vertices[triangles[i + 2]];
-                crossings.Clear();
-                IncludeCrossing(a, b);
-                IncludeCrossing(b, c);
-                IncludeCrossing(c, a);
-                if (crossings.Count >= 2)
+                var found = false;
+                footprint = new Bounds();
+                edges.Clear();
+                void IncludeCrossing(Vector3 a, Vector3 b)
                 {
+                    if ((a.y < level && b.y < level) || (a.y > level && b.y > level)) return;
+                    var dy = b.y - a.y;
+                    if (Mathf.Abs(dy) < 0.000001f) return;
+                    var point = Vector3.Lerp(a, b, (level - a.y) / dy);
+                    var planar = new Vector2(point.x, point.z);
+                    if (crossings.Count == 0 || (crossings[0] - planar).sqrMagnitude > 0.00000001f)
+                        crossings.Add(planar);
+                    if (!found) { footprint = new Bounds(point, Vector3.zero); found = true; }
+                    else footprint.Encapsulate(point);
+                }
+                var triangles = mesh.triangles;
+                for (var i = 0; i < triangles.Length; i += 3)
+                {
+                    var a = vertices[triangles[i]];
+                    var b = vertices[triangles[i + 1]];
+                    var c = vertices[triangles[i + 2]];
+                    crossings.Clear();
+                    IncludeCrossing(a, b);
+                    IncludeCrossing(b, c);
+                    IncludeCrossing(c, a);
+                    if (crossings.Count < 2) continue;
                     edges.Add(crossings[0]);
                     edges.Add(crossings[1]);
                 }
+                return found && edges.Count >= 2;
             }
-            if (!found || edges.Count < 2) throw new InvalidOperationException($"Cannot locate the sand-contact contour of {rock.name}.");
+
+            var level = Mathf.Clamp(floor + Mathf.Min(buildup, (bounds.max.y - floor) * 0.7f) * 0.65f,
+                bounds.min.y + 0.001f, bounds.max.y - 0.001f);
+            if (!TrySlice(level))
+            {
+                // Raised terrain can nearly bury shallow clutter. Use a stable slice through
+                // the lower visible body before falling back to its grounded lower envelope.
+                // Some workbench meshes contain a very thin lower cap whose triangles do not
+                // cross either horizontal sample plane. They still need a bounded contact
+                // contour: failing the whole stage leaves the playable authoring scene stale.
+                var lowerLevel = Mathf.Lerp(bounds.min.y, bounds.max.y, 0.18f);
+                if (!TrySlice(Mathf.Clamp(lowerLevel, bounds.min.y + 0.001f, bounds.max.y - 0.001f)))
+                {
+                    footprint = LowerEnvelope(vertices, bounds);
+                    edges.Clear();
+                    AddBoundsEdges(footprint, edges);
+                }
+            }
             contactEdges = edges.ToArray();
             return footprint;
+        }
+
+        private static Bounds LowerEnvelope(Vector3[] vertices, Bounds bounds)
+        {
+            var lowerBand = bounds.min.y + Mathf.Max(0.025f, bounds.size.y * 0.2f);
+            var found = false;
+            var envelope = new Bounds();
+            for (var i = 0; i < vertices.Length; i++)
+            {
+                var vertex = vertices[i];
+                if (vertex.y > lowerBand) continue;
+                if (!found)
+                {
+                    envelope = new Bounds(vertex, Vector3.zero);
+                    found = true;
+                }
+                else envelope.Encapsulate(vertex);
+            }
+
+            if (!found) envelope = bounds;
+            var minimumExtent = 0.025f;
+            envelope.extents = new Vector3(
+                Mathf.Max(envelope.extents.x, minimumExtent),
+                0f,
+                Mathf.Max(envelope.extents.z, minimumExtent));
+            return envelope;
+        }
+
+        private static void AddBoundsEdges(Bounds footprint, List<Vector2> edges)
+        {
+            var min = footprint.min;
+            var max = footprint.max;
+            var southwest = new Vector2(min.x, min.z);
+            var southeast = new Vector2(max.x, min.z);
+            var northeast = new Vector2(max.x, max.z);
+            var northwest = new Vector2(min.x, max.z);
+            edges.Add(southwest); edges.Add(southeast);
+            edges.Add(southeast); edges.Add(northeast);
+            edges.Add(northeast); edges.Add(northwest);
+            edges.Add(northwest); edges.Add(southwest);
         }
 
         private static Surface SampleBase(List<BaseTile> tiles, Vector2 point)
@@ -238,9 +205,6 @@ namespace BooterBigArm.Editor
             private float Span => Step * (Resolution - 1);
             internal bool Contains(Vector2 point) => point.x >= Origin.x && point.x <= Origin.x + Span
                 && point.y >= Origin.z && point.y <= Origin.z + Span;
-            internal bool Intersects(Bounds bounds) => Origin.x <= bounds.max.x && Origin.x + Span >= bounds.min.x
-                && Origin.z <= bounds.max.z && Origin.z + Span >= bounds.min.z;
-
             internal Surface Sample(Vector2 point)
             {
                 var gx = Mathf.Clamp((point.x - Origin.x) / Step, 0f, Resolution - 1);

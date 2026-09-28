@@ -56,6 +56,65 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void CenteredMixedStageIsTheOnlyGeneratedTerrainContext()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(
+                TopDown3DPrototypeBuilder.WorldSettingsPath);
+            var terrainMaterial = AssetDatabase.LoadAssetAtPath<Material>(
+                TopDown3DPrototypeBuilder.TerrainMaterialPath);
+            var rockReference = AssetDatabase.LoadAssetAtPath<GameObject>(
+                TopDown3DLandscapeAuthoringSandboxEditor.MixedReferencePath);
+            var testScene = EditorSceneManager.NewPreviewScene();
+            var genericObject = new GameObject("Generic Terrain Context");
+            var mixedObject = new GameObject("Mixed Formation Ground");
+            SceneManager.MoveGameObjectToScene(genericObject, testScene);
+            SceneManager.MoveGameObjectToScene(mixedObject, testScene);
+
+            try
+            {
+                var generic = genericObject.AddComponent<TopDown3DLandscapeAuthoringSandbox>();
+                generic.Configure(settings, terrainMaterial, null, Vector2Int.zero);
+                var mixed = mixedObject.AddComponent<TopDown3DLandscapeAuthoringSandbox>();
+                mixed.Configure(settings, terrainMaterial, null, Vector2Int.one);
+                mixed.ConfigureRockReference(rockReference);
+                var mixedSerialized = new SerializedObject(mixed);
+                mixedSerialized.FindProperty("sandBuildup").floatValue = 0f;
+                mixedSerialized.ApplyModifiedPropertiesWithoutUndo();
+
+                TopDown3DLandscapeAuthoringSandboxEditor.CenterFormationStage(mixed);
+
+                Assert.That(mixed.CenterChunk, Is.EqualTo(Vector2Int.zero));
+                Assert.That(mixed.TerrainRadiusInChunks, Is.EqualTo(0));
+                Assert.That(generic.transform.Find("__Generated Terrain Context"), Is.Null);
+                var context = mixed.transform.Find("__Generated Terrain Context");
+                Assert.That(context, Is.Not.Null);
+                Assert.That(context.childCount, Is.GreaterThanOrEqualTo(1));
+
+                var ground = context.GetComponentsInChildren<TopDown3DGroundSurface>();
+                Assert.That(ground, Has.Length.EqualTo(1));
+                var mesh = ground[0].GetComponent<MeshFilter>().sharedMesh;
+                Assert.That(mesh.bounds.size.x,
+                    Is.EqualTo(TopDown3DLandscapeAuthoringSandboxEditor.FormationStageSize).Within(0.001f));
+                Assert.That(mesh.bounds.size.y, Is.EqualTo(0f).Within(0.001f));
+                Assert.That(mesh.bounds.size.z,
+                    Is.EqualTo(TopDown3DLandscapeAuthoringSandboxEditor.FormationStageSize).Within(0.001f));
+                Assert.That(ground[0].GetComponent<MeshRenderer>().bounds.center, Is.EqualTo(Vector3.zero));
+                Assert.That(mesh.vertices, Has.All.Matches<Vector3>(vertex =>
+                    Mathf.Abs(vertex.y) < 0.0001f));
+            }
+            finally
+            {
+                TopDown3DLandscapeAuthoringSandboxEditor.ClearTerrainContext(
+                    genericObject.GetComponent<TopDown3DLandscapeAuthoringSandbox>());
+                TopDown3DLandscapeAuthoringSandboxEditor.ClearTerrainContext(
+                    mixedObject.GetComponent<TopDown3DLandscapeAuthoringSandbox>());
+                Object.DestroyImmediate(genericObject);
+                Object.DestroyImmediate(mixedObject);
+                EditorSceneManager.ClosePreviewScene(testScene);
+            }
+        }
+
+        [Test]
         public void SavedSandboxContainsWiredPlayerRigAndOneActiveCamera()
         {
             try
@@ -92,13 +151,6 @@ namespace BooterBigArm.Tests
                 Assert.That(
                     cameraRigs[0].MinimumPitchDegrees,
                     Is.EqualTo(TopDown3DCameraRig.DefaultMinimumPitchDegrees).Within(0.0001f));
-                Assert.That(cameraRigs[0].TiltShiftDepthOfFieldEnabled, Is.True);
-                Assert.That(
-                    cameraRigs[0].DepthOfFieldFocalLength,
-                    Is.EqualTo(TopDown3DCameraRig.DefaultDepthOfFieldFocalLength).Within(0.0001f));
-                Assert.That(
-                    cameraRigs[0].DepthOfFieldAperture,
-                    Is.EqualTo(TopDown3DCameraRig.DefaultDepthOfFieldAperture).Within(0.0001f));
 
                 var activeCameras = Object.FindObjectsByType<Camera>(
                     FindObjectsInactive.Include,

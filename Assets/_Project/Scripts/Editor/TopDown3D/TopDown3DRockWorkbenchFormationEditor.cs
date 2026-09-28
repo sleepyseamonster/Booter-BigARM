@@ -180,6 +180,11 @@ namespace BooterBigArm.Editor
             EditorGUILayout.PropertyField(serializedObject.FindProperty("fusedJoinSoftness"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("geologicalSeamWidth"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("geologicalSeamStrength"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("ironstoneVeinAmount"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("ironstoneBranchAmount"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("ironstoneDepleted"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("ironstoneDebugMask"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("ironstoneVeinColor"));
             var advancedChanged = EditorGUI.EndChangeCheck();
             serializedObject.ApplyModifiedProperties();
             if (advancedChanged)
@@ -329,6 +334,7 @@ namespace BooterBigArm.Editor
         private const double RebuildDebounceSeconds = 0.15d;
         private static readonly Dictionary<int, PreviewState> States =
             new Dictionary<int, PreviewState>();
+        private static Material ironstoneExperimentMaterial;
         private static double nextScanTime;
 
         static TopDown3DRockWorkbenchFormationPreview()
@@ -561,9 +567,12 @@ namespace BooterBigArm.Editor
 
             DestroyGeneratedMesh(formation);
             filter.sharedMesh = mesh;
-            rendererRoot.sharedMaterial = formation.RockMaterial != null
-                ? formation.RockMaterial
-                : members[0].RockMaterial;
+            var experimentActive = formation.IronstoneVeinAmount > 0f
+                || formation.IronstoneDebugMask > 0f;
+            var experimentMaterial = experimentActive ? GetIronstoneExperimentMaterial() : null;
+            rendererRoot.sharedMaterial = experimentMaterial != null
+                ? experimentMaterial
+                : formation.RockMaterial != null ? formation.RockMaterial : members[0].RockMaterial;
             rendererRoot.enabled = true;
             TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(
                 members[0],
@@ -575,7 +584,8 @@ namespace BooterBigArm.Editor
                 formation.FractureSpacing,
                 formation.JoinStyle == TopDown3DRockFormationJoinStyle.FusedGeologicalSeams
                     ? formation.GeologicalSeamStrength
-                    : 0f);
+                    : 0f,
+                formation);
             colliderRoot.sharedMesh = null;
             colliderRoot.enabled = formation.UpdateCollider;
             if (formation.UpdateCollider) colliderRoot.sharedMesh = mesh;
@@ -704,6 +714,19 @@ namespace BooterBigArm.Editor
             return state;
         }
 
+        private static Material GetIronstoneExperimentMaterial()
+        {
+            if (ironstoneExperimentMaterial != null) return ironstoneExperimentMaterial;
+            var shader = Shader.Find("BooterBigArm/TopDown3D/Ironstone Seam Experiment");
+            if (shader == null || !shader.isSupported) return null;
+            ironstoneExperimentMaterial = new Material(shader)
+            {
+                name = "Ironstone Seam Experiment (Preview Only)",
+                hideFlags = HideFlags.HideAndDontSave
+            };
+            return ironstoneExperimentMaterial;
+        }
+
         private static int CalculateSignature(
             TopDown3DRockWorkbenchFormationAuthoring formation)
         {
@@ -723,6 +746,11 @@ namespace BooterBigArm.Editor
                 hash = hash * 31 + formation.MemberSurfaceRelaxation.GetHashCode();
                 hash = hash * 31 + formation.GeologicalSeamWidth.GetHashCode();
                 hash = hash * 31 + formation.GeologicalSeamStrength.GetHashCode();
+                hash = hash * 31 + formation.IronstoneVeinAmount.GetHashCode();
+                hash = hash * 31 + formation.IronstoneBranchAmount.GetHashCode();
+                hash = hash * 31 + formation.IronstoneDepleted.GetHashCode();
+                hash = hash * 31 + formation.IronstoneDebugMask.GetHashCode();
+                hash = hash * 31 + formation.IronstoneVeinColor.GetHashCode();
                 hash = hash * 31 + (formation.RockMaterial == null
                     ? 0
                     : formation.RockMaterial.GetInstanceID());

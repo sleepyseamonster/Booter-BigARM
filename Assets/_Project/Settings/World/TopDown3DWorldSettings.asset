@@ -38,13 +38,19 @@ MonoBehaviour:
   propsPerChunk: 1.7
   naturalObjectCatalog: {fileID: 11400000, guid: 03ec8052e2404ee19712ee02d05deb23, type: 2}
   mixedFormationTemplate: {fileID: 11400000, guid: c6f4acbf777fe4922bdb82cd9daad050, type: 2}
+  authoredFormationCatalog: {fileID: 11400000, guid: 697c3222154734b2ba35950b86535e4a, type: 2}
+  rockContactBandMaterial: {fileID: 2100000, guid: 136a7bd3e13441f4a392c0761a7ed139, type: 2}
+  mixedGroundPebbleAlbedo: {fileID: 2800000, guid: 9c271467dba904bbd85eae82c1ef47ca, type: 3}
+  mixedGroundPebbleHeight: {fileID: 2800000, guid: c1f32abdc427c4bb9ab2b25d1f66be5d, type: 3}
+  nearRockPebbleAlbedo: {fileID: 2800000, guid: 79798ad9a0cb4fada23d04e3da9ac81c, type: 3}
+  nearRockPebbleHeight: {fileID: 2800000, guid: 131870ef70cd40b7b4cce8204f9d234e, type: 3}
   naturalObjectGenerationVersion: 3
   physicalRockGenerationVersion: 7
   physicalRockAdditionalBurialFraction: 0.12
   resourceCatalog: {fileID: 11400000, guid: 70f7abf6fb143476ca72d1f9eba36e18, type: 2}
   resourceGenerationVersion: 1
-  scatterObjectsPerChunk: 30
-  groundDetailsPerChunk: 72
+  scatterObjectsPerChunk: 0
+  groundDetailsPerChunk: 0
   clutterClusterFrequency: 0.08
   clutterClusterStrength: 0.9
   rockAbundanceFrequency: 0.035
@@ -78,7 +84,7 @@ MonoBehaviour:
   scatterSpacing: 0.18
   groundDetailSpacing: 0.04
   fineGrayClutterMaterial: {fileID: 2100000, guid: 50ec2ac4616046718215ccc257883321, type: 2}
-  fineGrayClutterPerChunk: 156
+  fineGrayClutterPerChunk: 0
   fineGrayClusterFrequency: 0.12
   fineGrayClusterStrength: 1
   fineGrayClutterSpacing: 0.006
@@ -96,10 +102,10 @@ MonoBehaviour:
   dustPocketFrequency: 0.012
   dustWindrowFrequency: 0.09
   dustCoverageThreshold: 0.58
-  dustMaximumBaseHeight: 0.16
+  dustMaximumBaseHeight: 0.32
   dustWakeLength: 2.8
   dustWakeWidthMultiplier: 1.15
-  dustMaximumWakeHeight: 0.28
+  dustMaximumWakeHeight: 0.42
   maximumDustDepositionSlope: 26
   dustSurfaceOffset: 0.018
   clearSpawnRadius: 7

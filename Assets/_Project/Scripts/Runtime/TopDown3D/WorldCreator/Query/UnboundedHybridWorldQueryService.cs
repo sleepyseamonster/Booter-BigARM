@@ -93,6 +93,22 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             return query.TrySampleAffordance(position, agent, out sample, out error);
         }
 
+        public bool TrySampleAffordance(
+            AbsoluteWorldPosition position,
+            WorldSurfaceSample surface,
+            WorldAgentProfile agent,
+            out WorldAffordanceSample sample,
+            out string error)
+        {
+            if (!TryGetWindow(position, out var query, out error))
+            {
+                sample = default;
+                return false;
+            }
+
+            return query.TrySampleAffordance(position, surface, agent, out sample, out error);
+        }
+
         public WorldQueryCacheSnapshot CaptureCacheSnapshot()
         {
             lock (gate)

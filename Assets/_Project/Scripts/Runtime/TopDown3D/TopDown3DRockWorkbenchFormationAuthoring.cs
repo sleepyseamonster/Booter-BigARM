@@ -94,6 +94,18 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0f, 1f), Tooltip("Visual depth and darkness of retained rock-to-rock contact seams.")]
         private float geologicalSeamStrength = 0.78f;
 
+        [Header("Ironstone Seam Experiment")]
+        [SerializeField, Range(0f, 1f), Tooltip("Experimental mineral coverage on fused geological contacts. Zero preserves ordinary rock.")]
+        private float ironstoneVeinAmount;
+        [SerializeField, Range(0f, 1f), Tooltip("Experimental short branches from mineralized contacts along formation fractures.")]
+        private float ironstoneBranchAmount;
+        [SerializeField, Range(0f, 1f), Tooltip("One fades live mineral to a subdued depleted stain.")]
+        private float ironstoneDepleted;
+        [SerializeField, Range(0f, 1f), Tooltip("Show the contact and branch mask without mineral shading.")]
+        private float ironstoneDebugMask;
+        [SerializeField, ColorUsage(false, false)]
+        private Color ironstoneVeinColor = new Color(0.42f, 0.13f, 0.075f, 1f);
+
         [NonSerialized] private Mesh generatedMesh;
         [NonSerialized] private string previewStatus =
             "Add or group at least two Rock Workbenches to build a formation.";
@@ -192,6 +204,11 @@ namespace BooterBigArm.TopDown3D
         public float FusedJoinSoftness => Mathf.Clamp(fusedJoinSoftness, 0f, 0.5f);
         public float GeologicalSeamWidth => Mathf.Clamp(geologicalSeamWidth, 0.08f, 1.2f);
         public float GeologicalSeamStrength => Mathf.Clamp01(geologicalSeamStrength);
+        public float IronstoneVeinAmount => Mathf.Clamp01(ironstoneVeinAmount);
+        public float IronstoneBranchAmount => Mathf.Clamp01(ironstoneBranchAmount);
+        public float IronstoneDepleted => Mathf.Clamp01(ironstoneDepleted);
+        public float IronstoneDebugMask => Mathf.Clamp01(ironstoneDebugMask);
+        public Color IronstoneVeinColor => ironstoneVeinColor;
         public Mesh GeneratedMesh => generatedMesh;
         public string PreviewStatus => previewStatus;
 

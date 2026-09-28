@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.21960784}
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e52f8f817ba440880ca1fae87af6bcd, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DLandscapeAuthoringSandbox
   worldSettings: {fileID: 11400000, guid: 05e0954f75e1049c2b66791f7615c4b8, type: 2}
   terrainMaterial: {fileID: 2100000, guid: e7ce6c68c4df84590a0e6dbe0cda5369, type: 2}
@@ -408,15 +408,31 @@ MonoBehaviour:
   centerChunk: {x: 1, y: 0}
   terrainRadiusInChunks: 1
   rockReference: {fileID: 821206193611995965, guid: cdf2a535a70e74d22981b0b4f16aeca5, type: 3}
-  variationEnabled: 1
+  variationEnabled: 0
   variationSeed: 12
   rockBurial: 0.11067194
   maximumRockBurial: 0.74308294
   burialRangeVersion: 1
   maximumRockTilt: 35
-  sandBuildup: 0.25
+  sandBuildup: 0.267
   sandBuildupVersion: 1
   groundClutter: 1
+  landscapeSand: 0.55
+  landscapeSandRelief: 0.32
+  landscapeClutter: 1
+  contactSandWidth: 0.48
+  contactSandOpacity: 0.72
+  contactSandColor: {r: 0.58, g: 0.27, b: 0.12, a: 1}
+  contactSandTrimColor: {r: 0.58, g: 0.27, b: 0.12, a: 1}
+  contactSandFeather: 0.14
+  contactSandBaseFeather: 0.5
+  contactSandTopFeather: 0
+  contactSandWaviness: 0.38
+  contactSandNoiseScale: 2.2
+  contactSandDirectionalBuildup: 0
+  contactSandTrimWidth: 0.186
+  contactSandTrimHeight: 0.024
+  contactSandTrimCurve: 5
   pebbleDepth: 0.015
   blowingSand: 0
   blowingSandOffDefaultApplied: 1
@@ -482,7 +498,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.92156863, g: 0.88235295, b: 0.8, a: 1}
@@ -561,7 +577,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.5411765, g: 0.7294118, b: 0.78039217, a: 1}
@@ -726,7 +742,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.011764706, g: 0.015686275, b: 0.019607844, a: 0.47843137}
@@ -804,7 +820,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.07450981, g: 0.09019608, b: 0.105882354, a: 0.9411765}
@@ -879,7 +895,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -954,7 +970,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.21960784}
@@ -1036,7 +1052,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3034c4d3217a4e1fbfc3ede7816cd1f0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DSurvivalHud
   vitals: {fileID: 690964291}
 --- !u!1 &204051240
@@ -1067,7 +1083,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
@@ -1082,7 +1098,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
   m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
@@ -1165,7 +1181,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1188,7 +1204,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &257770048
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1275,7 +1291,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1384,7 +1400,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.07450981, g: 0.09019608, b: 0.105882354, a: 0.9411765}
@@ -1463,7 +1479,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &387631146
 MonoBehaviour:
@@ -1475,7 +1491,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -1519,7 +1535,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -1594,7 +1610,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1617,7 +1633,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &402875677
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1674,7 +1690,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.023529412, g: 0.03137255, b: 0.03529412, a: 1}
@@ -1729,7 +1745,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78d1850598ba3464398e6091f2ae5f15, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInputRouter
   inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   gameplayMapName: Gameplay
@@ -1816,7 +1832,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12ca9151e8c624e0e99369f3abd556e1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DGameStateSaveService
   booterInventory: {fileID: 690964290}
   cargo: {fileID: 812448494}
@@ -1888,7 +1904,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.011764706, g: 0.015686275, b: 0.019607844, a: 0.7372549}
@@ -1963,7 +1979,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1986,7 +2002,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &621122511
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2046,7 +2062,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &630092009
 MonoBehaviour:
@@ -2058,7 +2074,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -2102,7 +2118,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -2158,7 +2174,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7faa9083009974897a983c169a18bbc3, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DProceduralWorld
   settings: {fileID: 11400000, guid: 05e0954f75e1049c2b66791f7615c4b8, type: 2}
   streamingTarget: {fileID: 690964292}
@@ -2174,7 +2190,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65a5aa2195ea43d4aa1f0ff4c235edad, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DResourceWorldState
   resourceGenerationVersion: 1
 --- !u!4 &634186678
@@ -2239,7 +2255,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.21960784, g: 0.6509804, b: 0.67058825, a: 1}
@@ -2404,7 +2420,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.7294118, g: 0.21960784, b: 0.16862746, a: 1}
@@ -2478,7 +2494,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26353ba4cd894fdd8e6f250909e7c258, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DActionDpadGraphic
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2539,7 +2555,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2614,7 +2630,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2637,7 +2653,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &687259004
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2683,7 +2699,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ace4ecab60b4e69a6e88a3d1cd81636, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerActionController
   input: {fileID: 412165501}
   interaction: {fileID: 690964289}
@@ -2700,7 +2716,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9b27e4322ca4d12869a3308c00f74e7, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver
   humanoidPrefab: {fileID: 100004, guid: 20d97ea0953936148b25caa82b5e14f9, type: 3}
   visualLocalPosition: {x: 0, y: -1.24, z: 0}
@@ -2731,7 +2747,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e29ec082ef5242aa925700b4ded70ef, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerMotor
   input: {fileID: 412165501}
   cameraBasis: {fileID: 2126727608}
@@ -2777,7 +2793,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83b6a75603aa462cb5e0288f90a44885, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInteractionController
   motor: {fileID: 690964288}
   scanRadius: 4
@@ -2798,7 +2814,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2966ee41ba2f43aaa16a69b18e27cf36, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerInventory
   itemCatalog: {fileID: 11400000, guid: e7deba06225b5461689bc97bc37877dc, type: 2}
   capacity: 16
@@ -2812,7 +2828,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b324f5e9b7ac4afa8a594bd5c25ddc6a, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DSurvivalVitals
   settings: {fileID: 11400000, guid: 1e605735dac54df5a05928f378cd6842, type: 2}
   health: 100
@@ -2953,7 +2969,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90ecf2858e6943a9bfcd3add2d775fc9, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DFootstepDust
   minimumParticlesPerStep: 10
   maximumParticlesPerStep: 20
@@ -3007,7 +3023,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3030,7 +3046,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &711298945
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3090,7 +3106,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &727048374
 MonoBehaviour:
@@ -3102,7 +3118,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -3146,7 +3162,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -3221,7 +3237,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.90588236, g: 0.85882354, b: 0.74509805, a: 0.9607843}
@@ -3302,7 +3318,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.98039216}
@@ -3403,7 +3419,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41d8082eb8db485dbf7f09096b8681c3, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DDustZone
   innerRadius: 15
   blendDistance: 16
@@ -3456,7 +3472,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3517,7 +3533,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afc7ba11cb40f46ceb4d713cd621d986, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DBigArmFollower
   followTarget: {fileID: 690964292}
   cameraBasis: {fileID: 2126727608}
@@ -3641,7 +3657,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ccc3e5fc186e44b7b5fa497c06e8c59, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DBigArmState
   companionId: bigarm.primary
   authoritativePosition: {x: 0, y: 0, z: 0}
@@ -3657,7 +3673,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa0bc522d97f24f87a9b2a47c675417f, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DBigArmCargo
   itemCatalog: {fileID: 11400000, guid: e7deba06225b5461689bc97bc37877dc, type: 2}
   packingSettings: {fileID: 11400000, guid: 5309bf7cec2414dd1b44d36ae18520ac, type: 2}
@@ -3672,7 +3688,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d61e7e5537c4ab7b57f100f2d8b0cd1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DBigArmCargoVisuals
   cargo: {fileID: 812448494}
 --- !u!114 &812448496
@@ -3685,7 +3701,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 842156ff0ae04fa8ba71247b04b9d3f0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DBigArmCargoAccess
   cargo: {fileID: 0}
 --- !u!114 &812462177
@@ -3750,7 +3766,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.21960784, g: 0.6509804, b: 0.67058825, a: 1}
@@ -3826,7 +3842,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.023529412, g: 0.03137255, b: 0.03529412, a: 1}
@@ -3901,7 +3917,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.90588236, g: 0.85882354, b: 0.74509805, a: 0.9607843}
@@ -3980,7 +3996,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7647059, g: 0.69803923, b: 0.56078434, a: 1}
@@ -4059,7 +4075,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.92156863, g: 0.88235295, b: 0.8, a: 1}
@@ -4176,7 +4192,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.023529412, g: 0.03137255, b: 0.03529412, a: 1}
@@ -4251,7 +4267,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4329,7 +4345,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.07450981, g: 0.09019608, b: 0.105882354, a: 0.9411765}
@@ -4404,7 +4420,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.90588236, g: 0.85882354, b: 0.74509805, a: 0.9607843}
@@ -4463,7 +4479,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 201067d9490b44d1d803d93ba6640835, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DDebugOverlay
   input: {fileID: 412165501}
   player: {fileID: 690964288}
@@ -4537,7 +4553,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &990489582
 MonoBehaviour:
@@ -4549,7 +4565,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -4593,7 +4609,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -4668,7 +4684,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4691,7 +4707,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1006182495
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4747,7 +4763,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.90588236, g: 0.85882354, b: 0.74509805, a: 0.9607843}
@@ -4810,7 +4826,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
@@ -4827,7 +4843,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
@@ -4874,7 +4890,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38ed06f36306424285fac24377a191ca, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventoryUiController
   input: {fileID: 412165501}
   inventory: {fileID: 690964290}
@@ -4891,7 +4907,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e21bc0a4767e40c68cd8b489b624031a, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventoryCanvas
 --- !u!224 &1015305376
 RectTransform:
@@ -4974,7 +4990,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5049,7 +5065,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5124,7 +5140,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5147,7 +5163,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1113980917
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5218,7 +5234,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
     m_Left: 0
@@ -5369,7 +5385,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5392,7 +5408,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1169893032
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5448,7 +5464,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5471,7 +5487,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1190293694
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5531,7 +5547,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &1201969163
 MonoBehaviour:
@@ -5543,7 +5559,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -5587,7 +5603,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -5677,7 +5693,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.5411765, g: 0.7294118, b: 0.78039217, a: 1}
@@ -5756,7 +5772,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &1255022538
 MonoBehaviour:
@@ -5768,7 +5784,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -5812,7 +5828,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -5950,7 +5966,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &1313337381
 MonoBehaviour:
@@ -5962,7 +5978,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -6006,7 +6022,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -6063,7 +6079,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 0
   m_AdditionalLightsShadowResolutionTier: 2
@@ -6092,7 +6108,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f3c10c876ef4ee4bd4fc0a9d7aa54a1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.PerpetualTwilightSun
   cycleEnabled: 1
   cycleDurationSeconds: 1200
@@ -6245,7 +6261,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6324,7 +6340,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &1345220835
 MonoBehaviour:
@@ -6336,7 +6352,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -6380,7 +6396,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -6455,7 +6471,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6478,7 +6494,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1377960390
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6538,7 +6554,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &1419090605
 MonoBehaviour:
@@ -6550,7 +6566,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -6594,7 +6610,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -6669,7 +6685,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6692,7 +6708,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1429444841
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6748,7 +6764,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6931,7 +6947,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &1504880556
 MonoBehaviour:
@@ -6943,7 +6959,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -6987,7 +7003,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -7152,7 +7168,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.21960784}
@@ -7241,7 +7257,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7378,7 +7394,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7457,7 +7473,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &1562912696
 MonoBehaviour:
@@ -7469,7 +7485,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -7513,7 +7529,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -7588,7 +7604,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7611,7 +7627,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1563881018
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7667,7 +7683,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.98039216, g: 0.8784314, b: 0.65882355, a: 0.17254902}
@@ -7742,7 +7758,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7765,7 +7781,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1576353988
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7854,7 +7870,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7929,7 +7945,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8035,7 +8051,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.92156863, g: 0.88235295, b: 0.8, a: 1}
@@ -8115,7 +8131,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.78039217, g: 0.5686275, b: 0.2, a: 1}
@@ -8280,7 +8296,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8303,7 +8319,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1641016489
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8359,7 +8375,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.77254903, g: 0.6784314, b: 0.5019608, a: 0.8235294}
@@ -8434,7 +8450,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.21960784}
@@ -8509,7 +8525,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65f603b2a3534682844cc0f2f8510e0c, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DActionDpadHud
   size: 168
   safeAreaMargin: 34
@@ -8564,7 +8580,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &1675810705
 MonoBehaviour:
@@ -8576,7 +8592,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -8620,7 +8636,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -8789,7 +8805,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &1722217455
 MonoBehaviour:
@@ -8801,7 +8817,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -8845,7 +8861,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -8920,7 +8936,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9000,7 +9016,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.047058824, g: 0.05882353, b: 0.07058824, a: 0.9882353}
@@ -9169,7 +9185,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &1751738109
 MonoBehaviour:
@@ -9181,7 +9197,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -9225,7 +9241,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -9300,7 +9316,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9357,7 +9373,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
@@ -9404,7 +9420,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98d9cb683ae949fbae46c0cb462d8c14, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DGameHudCanvas
 --- !u!224 &1799545187
 RectTransform:
@@ -9566,7 +9582,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.023529412, g: 0.03137255, b: 0.03529412, a: 1}
@@ -9745,7 +9761,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.02745098, g: 0.03137255, b: 0.039215688, a: 0.8784314}
@@ -9910,7 +9926,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9933,7 +9949,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1874441082
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9990,7 +10006,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.9372549, g: 0.8784314, b: 0.7529412, a: 1}
@@ -10013,7 +10029,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1934570404
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10032,7 +10048,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6424c89a5bd34426be83c2274903765d, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInteractionFeedbackHud
   interaction: {fileID: 690964289}
   actionController: {fileID: 690964286}
@@ -10115,7 +10131,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.69411767, g: 0.6431373, b: 0.5372549, a: 1}
@@ -10194,7 +10210,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10217,7 +10233,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &2011723895
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10274,7 +10290,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.7294118, g: 0.21960784, b: 0.16862746, a: 1}
@@ -10443,7 +10459,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &2028992274
 MonoBehaviour:
@@ -10455,7 +10471,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -10499,7 +10515,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -10586,7 +10602,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b3164091c8544b780f7925566eecf41, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DDustAtmosphere
   globalHazeEnabled: 0
   subject: {fileID: 690964292}
@@ -10627,7 +10643,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
   m_IsGlobal: 1
   priority: 0
@@ -10710,7 +10726,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.78039217, g: 0.5686275, b: 0.2, a: 1}
@@ -10941,7 +10957,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2e85a6065c4e5a9034a2781c19d793, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DInventorySlotView
 --- !u!114 &2116680477
 MonoBehaviour:
@@ -10953,7 +10969,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -10997,7 +11013,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.09411765, g: 0.10980392, b: 0.1254902, a: 0.9607843}
@@ -11070,7 +11086,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc9f535c6a27140ce8d26aea9db17e93, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCameraRig
   target: {fileID: 690964292}
   input: {fileID: 412165501}
@@ -11093,11 +11109,6 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  tiltShiftDepthOfFieldEnabled: 1
-  depthOfFieldFocalLength: 52
-  depthOfFieldAperture: 5.6
-  depthOfFieldFocusOffset: 0
-  depthOfFieldFocusTrackingSpeed: 24
 --- !u!20 &2126727610
 Camera:
   m_ObjectHideFlags: 0
@@ -11159,7 +11170,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
@@ -11251,7 +11262,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.07450981, g: 0.09019608, b: 0.105882354, a: 0.9411765}
@@ -11321,7 +11332,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41d8082eb8db485dbf7f09096b8681c3, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DDustZone
   innerRadius: 11
   blendDistance: 14

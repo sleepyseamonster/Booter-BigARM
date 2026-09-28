@@ -17,6 +17,11 @@ namespace BooterBigArm.Editor
         private static readonly int FormationFractureAmountId = Shader.PropertyToID("_FormationFractureAmount");
         private static readonly int FormationFractureSpacingId = Shader.PropertyToID("_FormationFractureSpacing");
         private static readonly int GeologicalSeamAmountId = Shader.PropertyToID("_GeologicalSeamAmount");
+        private static readonly int IronstoneVeinAmountId = Shader.PropertyToID("_IronstoneVeinAmount");
+        private static readonly int IronstoneBranchAmountId = Shader.PropertyToID("_IronstoneBranchAmount");
+        private static readonly int IronstoneDepletedId = Shader.PropertyToID("_IronstoneDepleted");
+        private static readonly int IronstoneDebugMaskId = Shader.PropertyToID("_IronstoneDebugMask");
+        private static readonly int IronstoneVeinColorId = Shader.PropertyToID("_IronstoneVeinColor");
         private static readonly int GeologyScaleId = Shader.PropertyToID("_RockMetersPerTile");
         private static readonly int SurfaceVariationId = Shader.PropertyToID("_SurfacePatchStrength");
         private static readonly int CrackAmountId = Shader.PropertyToID("_CrackAmount");
@@ -238,7 +243,8 @@ namespace BooterBigArm.Editor
             Vector3 formationOrigin,
             float formationFractureAmount,
             float formationFractureSpacing,
-            float geologicalSeamAmount = 0f)
+            float geologicalSeamAmount = 0f,
+            TopDown3DRockWorkbenchFormationAuthoring formation = null)
         {
             if (authoring == null || renderer == null) return;
             var materialProperties = new MaterialPropertyBlock();
@@ -261,6 +267,12 @@ namespace BooterBigArm.Editor
             materialProperties.SetFloat(FormationFractureAmountId, formationFractureAmount);
             materialProperties.SetFloat(FormationFractureSpacingId, formationFractureSpacing);
             materialProperties.SetFloat(GeologicalSeamAmountId, Mathf.Clamp01(geologicalSeamAmount));
+            materialProperties.SetFloat(IronstoneVeinAmountId, formation != null ? formation.IronstoneVeinAmount : 0f);
+            materialProperties.SetFloat(IronstoneBranchAmountId, formation != null ? formation.IronstoneBranchAmount : 0f);
+            materialProperties.SetFloat(IronstoneDepletedId, formation != null ? formation.IronstoneDepleted : 0f);
+            materialProperties.SetFloat(IronstoneDebugMaskId, formation != null ? formation.IronstoneDebugMask : 0f);
+            materialProperties.SetColor(IronstoneVeinColorId, formation != null
+                ? formation.IronstoneVeinColor : new Color(0.42f, 0.13f, 0.075f, 1f));
             ApplyMaterialFamily(authoring, renderer, materialProperties);
             renderer.SetPropertyBlock(materialProperties);
         }

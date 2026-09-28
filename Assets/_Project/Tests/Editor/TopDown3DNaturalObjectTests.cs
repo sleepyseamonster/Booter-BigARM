@@ -42,7 +42,7 @@ namespace BooterBigArm.Tests
 
             Assert.That(first.CosmeticPlacements, Is.EqualTo(second.CosmeticPlacements));
             Assert.That(first.PhysicalFormations, Is.EqualTo(second.PhysicalFormations));
-            Assert.That(first.CosmeticPlacements, Is.Not.Empty);
+            Assert.That(first.CosmeticPlacements, Is.Empty);
             Assert.That(first.CosmeticPlacements.All(placement =>
                 Mathf.FloorToInt(placement.Position.x / settings.ChunkSize) == coordinate.x
                 && Mathf.FloorToInt(placement.Position.z / settings.ChunkSize) == coordinate.y), Is.True);
@@ -91,7 +91,7 @@ namespace BooterBigArm.Tests
                 Vector2Int.zero,
                 center);
 
-            Assert.That(plan.CosmeticPlacements, Is.Not.Empty);
+            Assert.That(plan.CosmeticPlacements, Is.Empty);
             Assert.That(plan.CosmeticPlacements.All(placement =>
                 Vector2.Distance(
                     new Vector2(placement.Position.x, placement.Position.z),
@@ -493,32 +493,20 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void FineGrayCluster_RemainsDenseStrongAndCosmetic()
+        public void LegacyGroundClutter_IsDisabledInProduction()
         {
             var settings = LoadSettings();
-            Assert.That(settings.FineGrayClutterPerChunk, Is.GreaterThan(settings.GroundDetailsPerChunk));
-            Assert.That(settings.FineGrayClusterStrength, Is.GreaterThan(settings.ClutterClusterStrength));
-            Assert.That(settings.FineGrayClusterFrequency, Is.GreaterThan(settings.ClutterClusterFrequency));
+            Assert.That(settings.ScatterObjectsPerChunk, Is.Zero);
+            Assert.That(settings.GroundDetailsPerChunk, Is.Zero);
+            Assert.That(settings.FineGrayClutterPerChunk, Is.Zero);
             var generator = new TopDown3DWorldGenerator(settings);
-            var placements = new List<TopDown3DNaturalObjectPlacement>();
-            for (var z = -3; z <= 3; z++)
-            {
-                for (var x = -3; x <= 3; x++)
-                {
-                    placements.AddRange(
-                        TopDown3DNaturalObjectPlanner.BuildChunkPlan(
-                                settings,
-                                generator,
-                                settings.NaturalObjectCatalog,
-                                new Vector2Int(x, z),
-                                DistantExclusion)
-                            .CosmeticPlacements
-                            .Where(placement =>
-                                placement.Layer == TopDown3DNaturalObjectLayer.FineGrayCluster));
-                }
-            }
-            Assert.That(placements, Is.Not.Empty);
-            Assert.That(placements.All(placement => Mathf.Max(placement.Scale.x, placement.Scale.z) <= 0.2f), Is.True);
+            var plan = TopDown3DNaturalObjectPlanner.BuildChunkPlan(
+                settings,
+                generator,
+                settings.NaturalObjectCatalog,
+                new Vector2Int(3, -2),
+                DistantExclusion);
+            Assert.That(plan.CosmeticPlacements, Is.Empty);
         }
 
         [Test]

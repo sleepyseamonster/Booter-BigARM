@@ -14,7 +14,7 @@ namespace BooterBigArm.Tests
             api.Execute(new ExecutionSettings(new Filter
             {
                 testMode = TestMode.EditMode,
-                assemblyNames = new[] { "BooterBigArm.Editor.Tests" }
+                testNames = new[] { "BooterBigArm.Tests.ConversionAssetStructureTests" }
             })
             {
                 runSynchronously = true

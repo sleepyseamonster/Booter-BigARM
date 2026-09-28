@@ -39,18 +39,18 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void FullContentEditorOptIn_EnablesProfileWithoutCommandLineArgument()
+        public void FullContentPlayMode_IsDefaultUnlessStressIsExplicitlySelected()
         {
             Assert.That(
                 TopDown3DPlaytestPerformanceProfile.ShouldUseFullContentProfile(
                     new[] { "BooterBigArm" },
                     true),
-                Is.True);
+                Is.False);
             Assert.That(
                 TopDown3DPlaytestPerformanceProfile.ShouldUseFullContentProfile(
                     new[] { "BooterBigArm" },
                     false),
-                Is.False);
+                Is.True);
         }
     }
 }

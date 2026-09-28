@@ -21,9 +21,31 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Range(0f, 4f)] private float propsPerChunk = 1.7f;
         [Header("Natural Objects")]
         [SerializeField] private TopDown3DNaturalObjectCatalog naturalObjectCatalog;
-        [Tooltip("Optional baked mixed template. Leave unassigned until streamed ground treatment and save-version rollout are ready.")]
+        [Tooltip("Legacy fallback for a single baked authored formation.")]
         [SerializeField] private TopDown3DAuthoredFormationAsset mixedFormationTemplate;
         public TopDown3DAuthoredFormationAsset MixedFormationTemplate => mixedFormationTemplate;
+        [Tooltip("Approved baked authored formations. Eligible world reservations select one deterministically.")]
+        [SerializeField] private TopDown3DAuthoredFormationCatalog authoredFormationCatalog;
+        public TopDown3DAuthoredFormationCatalog AuthoredFormationCatalog => authoredFormationCatalog;
+        [Header("Authored Formation Ground Shaders")]
+        [SerializeField] private Material rockContactBandMaterial;
+        [SerializeField] private Texture2D mixedGroundPebbleAlbedo;
+        [SerializeField] private Texture2D mixedGroundPebbleHeight;
+        [SerializeField] private Texture2D nearRockPebbleAlbedo;
+        [SerializeField] private Texture2D nearRockPebbleHeight;
+        public Material RockContactBandMaterial => rockContactBandMaterial;
+        public Texture2D MixedGroundPebbleAlbedo => mixedGroundPebbleAlbedo;
+        public Texture2D MixedGroundPebbleHeight => mixedGroundPebbleHeight;
+        public Texture2D NearRockPebbleAlbedo => nearRockPebbleAlbedo;
+        public Texture2D NearRockPebbleHeight => nearRockPebbleHeight;
+
+        public TopDown3DAuthoredFormationAsset SelectAuthoredFormation(string stableReservationId)
+        {
+            if (authoredFormationCatalog == null || !authoredFormationCatalog.IsComplete)
+                throw new System.InvalidOperationException(
+                    "World rock formation generation requires the complete approved authored catalog.");
+            return authoredFormationCatalog.Select(stableReservationId);
+        }
         [SerializeField, Min(1)] private int naturalObjectGenerationVersion = 3;
         [SerializeField, Min(1)] private int physicalRockGenerationVersion = 7;
         [Header("Physical Rock Placement")]

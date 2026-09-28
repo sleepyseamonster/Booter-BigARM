@@ -116,6 +116,19 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 return false;
             }
 
+            return TrySampleAffordance(position, surface, agent, out sample, out error);
+        }
+
+        // Placement already samples the surface at each contact. Reuse that exact sample
+        // so a formation does not repeat five terrain queries for every mesh point.
+        public bool TrySampleAffordance(
+            AbsoluteWorldPosition position,
+            WorldSurfaceSample surface,
+            WorldAgentProfile agent,
+            out WorldAffordanceSample sample,
+            out string error)
+        {
+
             var slope = (float)(Math.Acos(Math.Max(-1d, Math.Min(1d, surface.NormalVertical))) * 180d / Math.PI);
             var reserved = false;
             var routeId = WorldFeatureId.Empty;

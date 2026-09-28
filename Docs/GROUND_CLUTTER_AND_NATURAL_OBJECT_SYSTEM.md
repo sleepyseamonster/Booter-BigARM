@@ -2,6 +2,10 @@
 
 This is the implementation contract for natural decoration in the perspective TopDown3D world. It extends the deterministic chunk generator without changing the protected 2D prototype.
 
+## Current Production Posture
+
+The previous world-wide cosmetic Scatter, GroundDetail, and FineGrayCluster layers are disabled in `TopDown3DWorldSettings.asset` with zero per-chunk targets. Their generators and catalog assets remain available for later tuning, but streamed chunks currently produce no loose cosmetic stones from these layers. The approved Scatter and Handbuilt Spire formations, their local rock sand-band shader, and their nearby terrain shader treatment remain separate and enabled.
+
 ## World Fit
 
 The Broken World has no plant life or open water. Natural clutter is therefore geological: ironstone boulders, fractured slabs, shale shards, wind-scoured stones, mineral nodules, crust plates, gravel, and scree. Vegetation, moss, wood, wet mud, and ordinary river stones are out of scope. Machine debris belongs to a separate authored layer so decorative scrap is not mistaken for collectible salvage.
@@ -24,9 +28,21 @@ The Broken World has no plant life or open water. Natural clutter is therefore g
 4. `FineGrayCluster`: small neutral-gray grit and shale pieces using a higher-frequency local cluster mask inside the shared abundance islands, a separate shared material, no colliders, and no realtime shadow casting.
 5. `Landmark`: rare, extra-large spires and monumental outcrops with conservative slope limits, broad cross-chunk spacing, simple collision, and full obstacle shadows.
 
-The default gray layer targets 156 candidates per 18-meter chunk, but its sharpened local density mask and the shared broad abundance field reject all candidates across low-value regions. The surviving 4.5–14 cm pieces reinforce the same rock-rich stretches as the other clutter while forming denser sub-pockets with ample bare ground between them.
+The preserved gray-layer design targets 156 candidates per 18-meter chunk when enabled, but its current production target is zero. Its sharpened local density mask and shared broad abundance field remain available for later use.
 
 The per-chunk combined meshes are destroyed with their owning streamed chunk. They combine catalog LOD0 geometry at deterministic placements, while the reusable baked mesh assets remain shared and owned by the catalog.
+
+## Formation Sandbox Ground Review
+
+The Landscape Authoring Sandbox previews the surrounding ground from the same production authorities without turning the preview into a second generator:
+
+- `Landscape Sand` is a terrain-owned generator. It adds broad, deterministic semantic deposition from world identity and terrain material fields even when no rock formation exists.
+- `Raised Sand Relief (m)` lives on the separate `Landscape Authoring Sandbox` authority and controls the actual raised terrain-sand geometry independently from coverage. Mixed formation workbenches only preview that terrain-owned result and cannot retune it. The same continuous world-space windrow field shapes low beds, irregular crests, and scoured gaps without changing rock scale or formation layout.
+- `Sand Buildup` remains a separate formation-contact contributor. The preview composites those local banks with the terrain sand without making either generator own the other.
+- `Landscape Rock Clutter` reuses `TopDown3DNaturalObjectPlanner`, the production catalog mesh families, world seed, generation version, abundance islands, geology masks, and chunk ownership. It only remaps the planned cosmetic stones onto the disposable flat review stage; the current production densities are zero.
+- `Formation Clutter` remains a separate local control for the tighter pebble transition immediately around the reference formation.
+- Rebuilding the preview regenerates all landscape clutter from stable inputs. Nothing under `__Generated Terrain Context` is authored content or save data.
+- The active production `generateDepositedDust` setting is disabled. Streamed chunks still realize the approved authored formations and their shader-only contact treatment.
 
 The production family contains nine archetypes (`Pebble`, `Shard`, `Slab`, `Boulder`, `Nodule`, `Outcrop`, `Cliff`, `Talus`, and `HeroSpire`), three deterministic silhouette variants per archetype, and three progressively reduced LOD meshes per variant. The editor baker owns mesh creation; player/runtime code only resolves the catalogued assets.
 
@@ -39,6 +55,8 @@ The root chunk owns the whole formation even when a child crosses a chunk bounda
 ## Wind-Deposited Dust
 
 Deposited dust is a deterministic ground layer, separate from the airborne atmosphere system. A world-space field combines broad low-frequency pockets with anisotropic noise aligned to one prevailing wind direction. This creates long windrows, exposed scoured gaps, and coherent dust-rich basins across chunk borders.
+
+The broad terrain field has its own `BuildTerrainPlan` entry point and depends only on world/terrain identity. Formation versions, catalogs, or missing formations cannot change that base field. Sand coverage comes from the semantic terrain deposit field, while raised height is modulated by the deterministic windrow field and a shallow minimum bed. The production composite may add local formation shelter afterward without transferring ownership of the terrain sand to the rock generator.
 
 Physical obstacles and landmarks contribute shelter wakes. Dust accumulates only on their downwind side, curves slightly around each seeded formation, and fades with lateral and downwind distance. Larger formations produce wider wakes, while rare landmarks can anchor longer and taller banks. Steep slopes attenuate both broad deposits and sheltered piles.
 

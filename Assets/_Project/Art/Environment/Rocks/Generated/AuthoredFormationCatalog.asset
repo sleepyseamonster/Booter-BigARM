@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750a0f42b50dd43c9811954f677d1ba9, type: 3}
+  m_Name: AuthoredFormationCatalog
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DAuthoredFormationCatalog
+  templates:
+  - {fileID: 11400000, guid: c6f4acbf777fe4922bdb82cd9daad050, type: 2}
+  - {fileID: 11400000, guid: 2e68aeec840514f7a858858907e90235, type: 2}
