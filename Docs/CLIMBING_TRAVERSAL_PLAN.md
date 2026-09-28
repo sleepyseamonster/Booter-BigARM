@@ -1,6 +1,6 @@
 # Booter Terrain Climbing Plan
 
-Status: implementation proposal, 2026-09-28. The user requested traversal from steep slopes through vertical walls and overhangs, with increasingly weighty hand and foot animation. This document does not change the current 48 degree movement limit.
+Status: implementation proposal, 2026-09-28. The user requested traversal from steep slopes through vertical walls and overhangs, with increasingly weighty hand and foot animation. The angle-band and surface-frame math now exists in `TopDown3DClimbSurfaceMath`, but the motor and animation driver do not consume it yet. The current 48 degree movement limit is unchanged.
 
 ## Current implementation boundary
 
