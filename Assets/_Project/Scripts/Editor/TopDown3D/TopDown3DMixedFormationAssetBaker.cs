@@ -34,6 +34,9 @@ namespace BooterBigArm.Editor
             {
                 var path = AssetDatabase.GUIDToAssetPath(guids[i]);
                 if (!path.EndsWith("Reference.prefab", StringComparison.Ordinal)) continue;
+                // Cliff source stones have their own compact runtime bake. The full
+                // 18-rock authoring wall must not enter the generic formation catalog.
+                if (path == TopDown3DCliffWallSourceCapture.PrefabPath) continue;
                 var source = AssetDatabase.LoadAssetAtPath<GameObject>(path);
                 if (source != null) sources.Add(source);
             }

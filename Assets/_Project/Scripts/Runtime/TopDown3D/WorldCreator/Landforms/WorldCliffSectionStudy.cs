@@ -69,6 +69,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             AbsoluteWorldPosition toe,
             double outwardA,
             double outwardB,
+            float centerSlopeDegrees,
             string strataFamilyId,
             double debrisRunout,
             double debrisHalfWidth)
@@ -82,6 +83,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             Toe = toe;
             OutwardA = outwardA;
             OutwardB = outwardB;
+            CenterSlopeDegrees = centerSlopeDegrees;
             StrataFamilyId = strataFamilyId ?? string.Empty;
             DebrisRunout = debrisRunout;
             DebrisHalfWidth = debrisHalfWidth;
@@ -98,6 +100,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public AbsoluteWorldPosition Toe { get; }
         public double OutwardA { get; }
         public double OutwardB { get; }
+        public float CenterSlopeDegrees { get; }
         public string StrataFamilyId { get; }
         public double DebrisRunout { get; }
         public double DebrisHalfWidth { get; }
@@ -233,7 +236,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             candidate = new WorldCliffSectionCandidate(
                 id, parentFeatureId, cellA, cellB,
                 center.Position, rim.Position, toe.Position,
-                outwardA, outwardB, center.StrataFamilyId,
+                outwardA, outwardB, SlopeDegrees(center.NormalVertical), center.StrataFamilyId,
                 profile.DebrisRunout, profile.DebrisHalfWidth);
             error = null;
             return true;

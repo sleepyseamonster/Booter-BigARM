@@ -2,9 +2,22 @@
 
 Status: procedural cliff rock formations implemented as a first runtime pass, 2026-09-28; the broader valley, debris, and final visual decisions remain proposed. This document records an audit and a preferred experiment. The current pass does not alter accepted terrain shapes, enable canyons in the first playable area, or change terrain/save authority.
 
+Source-rock iteration, 2026-09-28: the earlier two broad catalog rocks are superseded by
+five runtime rock recipes baked from the user's `CliffWallSampleReference.prefab`, each with
+three LODs. The steep-section query remains the terrain authority. The decorator now packs
+three, five, or seven interleaved stones as sampled center slope crosses 43, 50, and 60 degrees.
+Heights follow the rim-to-toe drop while retaining the sample's nonuniform vertical stretch;
+source choice, offsets, scale, and tint derive from the world seed and absolute section owner.
+An absolute one-cell halo prevents neighboring chunks from independently selecting nearby
+sections. Static rocks regenerate on chunk reload; no rock state is written to a save. The
+sample wall itself is never stamped as one prefab. These are calibration thresholds and a
+bounded six-section chunk budget. Terrain geometry, climbing affordances, and debris remain
+unchanged. In-game appearance, physical contact, route clearance, and full-content frame cost
+still require review before treating this as the final cliff vocabulary.
+
 Initial implementation checkpoint, 2026-09-28: `WorldCliffSectionStudy` provided a read-only, absolute-coordinate candidate and toe-influence study with stable landform-domain IDs and a Booter/BigARM route screen. Four focused EditMode tests passed in an isolated Unity project mirror. The following runtime checkpoint supersedes its former read-only status.
 
-Runtime checkpoint, 2026-09-28: the user asked for automatic generation wherever terrain is steep enough. The first `TopDown3DCliffFaceDecorator` built shallow face panels. The user's game screenshot showed these as blue rectangular stickers; that implementation was superseded. The decorator now consumes the canonical section study during near-chunk decoration and places bounded, overlapping **3D cliff rock meshes** from the baked natural-object catalog for sections meeting a 43-degree, 1.75 m drop technical threshold. Each two-rock cluster has LODs and simplified box collision. Its absolute 3 m owner grid and world seed control section selection, variant, scale, orientation, and light-gray tint; unloading a chunk removes the cluster and rebuilding restores it. Site and route checks come from the section study; decoration also screens the current chunk's spawn exclusion and physical formation envelopes plus candidate side points. It uses the saved wall as visual direction, not as an 18-rock stamp. It adds no terrain height or save delta and offers no climb affordance. The first fixed-camera appearance, contact accuracy, cross-chunk formation overlap, and full-content streaming cost still need review, so the threshold and fracture treatment remain calibration values.
+Runtime checkpoint, 2026-09-28: the user asked for automatic generation wherever terrain is steep enough. The first `TopDown3DCliffFaceDecorator` built shallow face panels. The user's game screenshot showed these as blue rectangular stickers; that implementation was superseded. The next version consumed the canonical section study during near-chunk decoration and placed two overlapping **3D cliff rock meshes** from the baked natural-object catalog for sections meeting a 43-degree, 1.75 m drop technical threshold. It had LODs and simplified box collision, but used generic wide rocks and is superseded by the source-rock iteration above.
 
 Calibration checkpoint, 2026-09-28: the [production-query section survey](Evidence/WorldCreator/CliffStudy/README.md) sampled four fixed 48 m windows at seed `24681357`. It found 129 candidate steep sections, including 34 near an 18 m chunk border, with high-drop examples around 5–6 m. One window had none. Broad-ground query context IDs proved point-specific, so the study now uses absolute owner cells for candidate identity and leaves the parent feature empty until a larger scarp plan exists. The sampled slopes do not yet express the hard caprock, layered ledges, and scree apron in the user's reference. This survey is a working-tree technical snapshot, not visual acceptance; the next design step is stable cross-section grouping and a fixed-camera material/modules/fitted-face comparison.
 

@@ -14,6 +14,26 @@ namespace BooterBigArm.Tests
             "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
 
         [Test]
+        public void SavedCliffSourceHasFiveBakedRockRecipesWithDescendingLods()
+        {
+            foreach (var recipe in new[] { "A", "B", "C", "D", "E" })
+            {
+                var previousTriangles = int.MaxValue;
+                for (var lod = 0; lod < 3; lod++)
+                {
+                    var mesh = Resources.Load<Mesh>($"WorldCreator/CliffStones/CliffStone_{recipe}_LOD{lod}");
+                    Assert.That(mesh, Is.Not.Null, recipe + " LOD" + lod);
+                    Assert.That(mesh.bounds.size.x, Is.GreaterThan(0.1f));
+                    Assert.That(mesh.bounds.size.y, Is.GreaterThan(0.1f));
+                    Assert.That(mesh.bounds.size.z, Is.GreaterThan(0.1f));
+                    var triangles = mesh.triangles.Length / 3;
+                    Assert.That(triangles, Is.LessThan(previousTriangles));
+                    previousTriangles = triangles;
+                }
+            }
+        }
+
+        [Test]
         public void SteepWorldChunkBuildsTheSamePhysicalRockFormationAfterReload()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(SettingsPath);
@@ -27,7 +47,7 @@ namespace BooterBigArm.Tests
             var rebased = Build(coordinate, settings, runtime);
             try
             {
-                Assert.That(first.rocks.Length, Is.GreaterThan(0));
+                Assert.That(first.rocks.Length, Is.GreaterThanOrEqualTo(3));
                 Assert.That(first.rocks, Is.EqualTo(second.rocks));
                 Assert.That(first.rocks, Is.EqualTo(rebased.rocks));
                 Assert.That(first.chunk.GetComponentsInChildren<BoxCollider>().Length,
@@ -36,6 +56,8 @@ namespace BooterBigArm.Tests
                     Is.EqualTo(first.rocks.Length));
                 Assert.That(first.chunk.GetComponentsInChildren<MeshFilter>()
                     .All(filter => filter.sharedMesh.bounds.size.z > 0.1f), Is.True);
+                Assert.That(first.chunk.GetComponentsInChildren<MeshFilter>()
+                    .All(filter => filter.sharedMesh.name.StartsWith("CliffStone_")), Is.True);
             }
             finally
             {
