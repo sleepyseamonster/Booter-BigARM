@@ -2,7 +2,7 @@
 
 Status: prototype implementation in progress, 2026-09-28. The user requested traversal from steep slopes through vertical walls and overhangs, with increasingly weighty hand and foot animation. The motor now uses the angle bands when Sprint is held and the animation driver uses its existing gather clip as a visible climbing placeholder. The current 48 degree ordinary walk limit remains unchanged; final contact, top-out, and visual acceptance are pending.
 
-Climbing is intended as a major gameplay system. The first mechanic is simple: Booter can climb almost any fixed, solid steep surface while holding Sprint, without a climb-specific stamina bar. Rest and long-term exertion are represented by Reserve in `SURVIVAL_SYSTEM_STANDARD.md`. The current region should establish trustworthy movement and contact before later regions add equipment-dependent routes. The Legger is the companion's new name; older code and asset identifiers still use BigARM for reference safety.
+Climbing is intended as a major gameplay system. The first mechanic is simple: Booter can climb almost any fixed, solid steep surface while holding Sprint, without a climb-specific stamina bar. Climbing slowly drains Reserve; standing still does not restore it. Future sleep at a camp or establishment will restore Reserve and add bonuses. The current region should establish trustworthy movement and contact before later regions add equipment-dependent routes. The Legger is the companion's new name; older code and asset identifiers still use BigARM for reference safety.
 
 ## Current implementation boundary
 

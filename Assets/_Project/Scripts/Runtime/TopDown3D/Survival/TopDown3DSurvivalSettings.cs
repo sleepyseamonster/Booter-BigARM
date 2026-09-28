@@ -22,8 +22,6 @@ namespace BooterBigArm.TopDown3D
         [Header("Reserve")]
         [SerializeField, Min(0f)] private float reserveDepletionPerSecond = 0.01f;
         [SerializeField, Min(0f)] private float exertionReserveDepletionPerSecond = 0.015f;
-        [SerializeField, Min(0f)] private float reserveRestorationPerSecond = 0.8f;
-        [SerializeField, Min(0f)] private float restDelaySeconds = 4f;
 
         public float MaximumHealth => maximumHealth;
         public float MaximumHunger => maximumHunger;
@@ -34,8 +32,6 @@ namespace BooterBigArm.TopDown3D
         public float ThirstDepletionPerSecond => thirstDepletionPerSecond;
         public float ReserveDepletionPerSecond => reserveDepletionPerSecond;
         public float ExertionReserveDepletionPerSecond => exertionReserveDepletionPerSecond;
-        public float ReserveRestorationPerSecond => reserveRestorationPerSecond;
-        public float RestDelaySeconds => restDelaySeconds;
 
         public static TopDown3DSurvivalSettings Load()
         {
@@ -53,8 +49,6 @@ namespace BooterBigArm.TopDown3D
             thirstDepletionPerSecond = Mathf.Max(0f, thirstDepletionPerSecond);
             reserveDepletionPerSecond = Mathf.Max(0f, reserveDepletionPerSecond);
             exertionReserveDepletionPerSecond = Mathf.Max(0f, exertionReserveDepletionPerSecond);
-            reserveRestorationPerSecond = Mathf.Max(0f, reserveRestorationPerSecond);
-            restDelaySeconds = Mathf.Max(0f, restDelaySeconds);
         }
     }
 }

@@ -137,7 +137,6 @@ namespace BooterBigArm.TopDown3D
         public bool IsGrounded { get; private set; }
         public bool SprintActive { get; private set; }
         public bool SprintHeld => input != null && input.SprintHeld;
-        public bool HasMovementInput => input != null && input.MoveValue.sqrMagnitude > 0.01f;
         public TopDown3DTraversalMove ActiveTraversal { get; private set; }
         public float ActiveTraversalDuration => activeTraversalDuration;
         public float ActiveTraversalSide => activeTraversalSide;

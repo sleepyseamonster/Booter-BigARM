@@ -61,7 +61,6 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(0f)] private float reserve = 100f;
         [SerializeField, HideInInspector] private bool initialized;
         private TopDown3DPlayerMotor motor;
-        private float idleSeconds;
 
         public TopDown3DSurvivalSettings Settings => settings;
         public float Health => health;
@@ -93,17 +92,16 @@ namespace BooterBigArm.TopDown3D
             thirst = settings.MaximumThirst;
             oxygen = settings.MaximumOxygen;
             reserve = settings.MaximumReserve;
-            idleSeconds = 0f;
             initialized = true;
             Changed?.Invoke();
         }
 
         public void Advance(float elapsedSeconds)
         {
-            Advance(elapsedSeconds, false, false);
+            Advance(elapsedSeconds, false);
         }
 
-        public void Advance(float elapsedSeconds, bool exerting, bool resting)
+        public void Advance(float elapsedSeconds, bool exerting)
         {
             if (elapsedSeconds <= 0f || float.IsNaN(elapsedSeconds) || float.IsInfinity(elapsedSeconds))
             {
@@ -113,10 +111,8 @@ namespace BooterBigArm.TopDown3D
             EnsureSettings();
             var nextHunger = Mathf.Max(0f, hunger - (settings.HungerDepletionPerSecond * elapsedSeconds));
             var nextThirst = Mathf.Max(0f, thirst - (settings.ThirstDepletionPerSecond * elapsedSeconds));
-            var nextReserve = resting
-                ? Mathf.Min(settings.MaximumReserve, reserve + settings.ReserveRestorationPerSecond * elapsedSeconds)
-                : Mathf.Max(0f, reserve - (settings.ReserveDepletionPerSecond
-                    + (exerting ? settings.ExertionReserveDepletionPerSecond : 0f)) * elapsedSeconds);
+            var nextReserve = Mathf.Max(0f, reserve - (settings.ReserveDepletionPerSecond
+                + (exerting ? settings.ExertionReserveDepletionPerSecond : 0f)) * elapsedSeconds);
             if (Mathf.Approximately(nextHunger, hunger) && Mathf.Approximately(nextThirst, thirst)
                 && Mathf.Approximately(nextReserve, reserve))
             {
@@ -129,26 +125,16 @@ namespace BooterBigArm.TopDown3D
             Changed?.Invoke();
         }
 
-        internal void AdvanceActivity(float elapsedSeconds, bool exerting, bool idle)
+        internal static bool IsReserveExertion(
+            bool sprintHeld,
+            bool sprintActive,
+            float planarSpeed,
+            TopDown3DClimbMode climbMode,
+            TopDown3DTraversalMove traversal)
         {
-            if (elapsedSeconds <= 0f || float.IsNaN(elapsedSeconds) || float.IsInfinity(elapsedSeconds))
-                return;
-
-            EnsureSettings();
-            if (!idle)
-            {
-                idleSeconds = 0f;
-                Advance(elapsedSeconds, exerting, false);
-                return;
-            }
-
-            var beforeRest = Mathf.Min(elapsedSeconds, Mathf.Max(0f, settings.RestDelaySeconds - idleSeconds));
-            if (beforeRest > 0f)
-                Advance(beforeRest, false, false);
-            var restingTime = elapsedSeconds - beforeRest;
-            if (restingTime > 0f)
-                Advance(restingTime, false, true);
-            idleSeconds += elapsedSeconds;
+            return sprintHeld && ((sprintActive && planarSpeed > 0.2f)
+                || climbMode != TopDown3DClimbMode.None
+                || traversal != TopDown3DTraversalMove.None);
         }
 
         public float GetValue(TopDown3DSurvivalVital vital)
@@ -233,7 +219,6 @@ namespace BooterBigArm.TopDown3D
             reserve = snapshot.Version == 1
                 ? settings.MaximumReserve
                 : Mathf.Clamp(snapshot.Reserve, 0f, settings.MaximumReserve);
-            idleSeconds = 0f;
             initialized = true;
             Changed?.Invoke();
             return true;
@@ -256,17 +241,13 @@ namespace BooterBigArm.TopDown3D
         private void Update()
         {
             var elapsed = Time.deltaTime;
-            var exerting = motor != null && motor.SprintHeld
-                && (motor.SprintActive
-                    && Vector3.ProjectOnPlane(motor.Velocity, Vector3.up).sqrMagnitude > 0.04f
-                    || motor.ClimbMode != TopDown3DClimbMode.None
-                    || motor.ActiveTraversal != TopDown3DTraversalMove.None);
-            var idle = motor != null && motor.IsGrounded && !motor.SprintHeld
-                && !motor.HasMovementInput && !motor.IsActionConstrained
-                && motor.ActiveTraversal == TopDown3DTraversalMove.None
-                && motor.ClimbMode == TopDown3DClimbMode.None
-                && Vector3.ProjectOnPlane(motor.Velocity, Vector3.up).sqrMagnitude < 0.04f;
-            AdvanceActivity(elapsed, exerting, idle);
+            var exerting = motor != null && IsReserveExertion(
+                motor.SprintHeld,
+                motor.SprintActive,
+                Vector3.ProjectOnPlane(motor.Velocity, Vector3.up).magnitude,
+                motor.ClimbMode,
+                motor.ActiveTraversal);
+            Advance(elapsed, exerting);
         }
 
         private void OnValidate()

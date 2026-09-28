@@ -23,7 +23,6 @@ namespace BooterBigArm.Tests
             Assert.That(settings.MaximumReserve, Is.GreaterThan(0f));
             Assert.That(settings.ReserveDepletionPerSecond, Is.GreaterThan(0f));
             Assert.That(settings.ExertionReserveDepletionPerSecond, Is.GreaterThan(0f));
-            Assert.That(settings.ReserveRestorationPerSecond, Is.GreaterThan(0f));
         }
 
         [Test]
@@ -56,7 +55,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void Reserve_ExertionDrainsFasterAndRestRestoresWithoutBlockingActions()
+        public void Reserve_ExertionDrainsFasterWithoutBlockingActions()
         {
             var player = new GameObject("Reserve Test Player");
             try
@@ -64,18 +63,12 @@ namespace BooterBigArm.Tests
                 var vitals = player.AddComponent<TopDown3DSurvivalVitals>();
                 vitals.ResetToFull();
                 var settings = vitals.Settings;
-                vitals.Advance(100f, true, false);
+                vitals.Advance(100f, true);
                 Assert.That(vitals.Reserve, Is.EqualTo(settings.MaximumReserve
                     - (settings.ReserveDepletionPerSecond + settings.ExertionReserveDepletionPerSecond) * 100f).Within(0.001f));
 
-                vitals.SetValue(TopDown3DSurvivalVital.Reserve, 50f);
-                var beforeRest = vitals.Reserve;
-                vitals.Advance(10f, false, true);
-                Assert.That(vitals.Reserve,
-                    Is.EqualTo(beforeRest + settings.ReserveRestorationPerSecond * 10f).Within(0.001f));
-
                 vitals.SetValue(TopDown3DSurvivalVital.Reserve, 0f);
-                vitals.Advance(10f, true, false);
+                vitals.Advance(10f, true);
                 Assert.That(vitals.Reserve, Is.Zero);
             }
             finally
@@ -85,9 +78,9 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void Reserve_RecoversOnlyAfterUninterruptedGroundedIdleDelay()
+        public void Reserve_DoesNotRecoverDuringExtendedIdleTime()
         {
-            var player = new GameObject("Reserve Rest Delay Player");
+            var player = new GameObject("Reserve No Idle Recovery Player");
             try
             {
                 var vitals = player.AddComponent<TopDown3DSurvivalVitals>();
@@ -95,20 +88,29 @@ namespace BooterBigArm.Tests
                 vitals.SetValue(TopDown3DSurvivalVital.Reserve, 50f);
                 var settings = vitals.Settings;
 
-                vitals.AdvanceActivity(settings.RestDelaySeconds * 0.5f, false, true);
-                vitals.AdvanceActivity(0.5f, true, false);
-                vitals.AdvanceActivity(settings.RestDelaySeconds, false, true);
-                Assert.That(vitals.Reserve, Is.EqualTo(50f
-                    - settings.ReserveDepletionPerSecond * (settings.RestDelaySeconds * 1.5f + 0.5f)
-                    - settings.ExertionReserveDepletionPerSecond * 0.5f).Within(0.001f));
-
-                vitals.AdvanceActivity(10f, false, true);
-                Assert.That(vitals.Reserve, Is.GreaterThan(50f));
+                vitals.Advance(1000f);
+                Assert.That(vitals.Reserve,
+                    Is.EqualTo(50f - settings.ReserveDepletionPerSecond * 1000f).Within(0.001f));
             }
             finally
             {
                 Object.DestroyImmediate(player);
             }
+        }
+
+        [Test]
+        public void ReserveExertion_ClimbingAndVaultingCountWhileSprintIsHeld()
+        {
+            Assert.That(TopDown3DSurvivalVitals.IsReserveExertion(
+                true, false, 0f, TopDown3DClimbMode.Wall, TopDown3DTraversalMove.None), Is.True);
+            Assert.That(TopDown3DSurvivalVitals.IsReserveExertion(
+                true, false, 0f, TopDown3DClimbMode.None, TopDown3DTraversalMove.Vault), Is.True);
+            Assert.That(TopDown3DSurvivalVitals.IsReserveExertion(
+                true, true, 2f, TopDown3DClimbMode.None, TopDown3DTraversalMove.None), Is.True);
+            Assert.That(TopDown3DSurvivalVitals.IsReserveExertion(
+                false, false, 0f, TopDown3DClimbMode.Wall, TopDown3DTraversalMove.None), Is.False);
+            Assert.That(TopDown3DSurvivalVitals.IsReserveExertion(
+                true, false, 0f, TopDown3DClimbMode.None, TopDown3DTraversalMove.None), Is.False);
         }
 
         [Test]

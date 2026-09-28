@@ -12,14 +12,14 @@ Booter has five capacity-style survival values. A full meter means the current n
 - **Oxygen** represents breathable reserve and begins full.
 - **Reserve** represents long-term physical readiness. It drains slowly during activity and a little faster while Sprint is held during running, climbing, or traversal moves. It is not a short stamina bar.
 
-Hunger, thirst, and Reserve deplete automatically. Empty Reserve does not force a fall or disable movement. After four seconds grounded and still, with Sprint released and no action underway, Booter rests and Reserve refills. The initial tuning gives roughly 167 minutes from full to empty during ordinary activity, roughly 67 minutes of continuous exertion, and about two minutes to refill from empty while resting. These values are provisional. Empty hunger or thirst does not yet damage health. Health loss, health recovery, eating, drinking, low-oxygen exposure, oxygen loss, and oxygen recovery are later slices.
+Hunger, thirst, and Reserve deplete automatically. Empty Reserve does not force a fall or disable movement. Standing still or waiting never restores Reserve. Only sleeping at a camp or establishment will restore it; sleeping and its bonuses are deferred while climbing is developed. The initial tuning gives roughly 167 minutes from full to empty during ordinary activity and roughly 67 minutes of continuous exertion. These values are provisional. Empty hunger or thirst does not yet damage health. Health loss, health recovery, eating, drinking, low-oxygen exposure, oxygen loss, and oxygen recovery are later slices.
 
 ## Tuning And Runtime State
 
 - `TopDown3DSurvivalSettings` owns authored capacities and depletion rates.
 - The canonical settings asset is `Assets/_Project/Settings/Survival/Resources/TopDown3DSurvivalSettings.asset`.
 - `TopDown3DSurvivalVitals` owns mutable player state and deterministic elapsed-time advancement.
-- The default hunger, thirst, Reserve, and rest rates are provisional tuning values, not locked design decisions.
+- The default hunger, thirst, and Reserve rates are provisional tuning values, not locked design decisions. No automatic Reserve recovery rate or idle-rest timer is active.
 - External gameplay systems may set a vital explicitly, but this slice does not introduce item-consumption or environmental-exposure owners.
 
 ## Procedural World Contract
@@ -27,7 +27,7 @@ Hunger, thirst, and Reserve deplete automatically. Empty Reserve does not force 
 - **World identity:** not applicable to the vital values; they belong to Booter's save state rather than a seed or chunk.
 - **Stable identity:** the single player-survival record is stable across chunk transitions.
 - **Streaming lifecycle:** hunger, thirst, and Reserve continue independently of streamed chunk presence. Unloading a chunk must not reset them.
-- **Persistence:** all five values are captured in a versioned snapshot. Version 1 snapshots restore Reserve full; version 2 preserves its value. A future TopDown3D save owner must include that snapshot without serializing a scene object. There is no world-generated object or persisted terrain delta for resting.
+- **Persistence:** all five values are captured in a versioned snapshot. Version 1 snapshots restore Reserve full; version 2 preserves its value. A future TopDown3D save owner must include that snapshot without serializing a scene object. Future camps and establishments will need stable world identity and persisted sleep outcomes when implemented.
 - **Authored constraints:** the Broken World's algae-based survival rules control future replenishment design. This slice does not invent water sources.
 - **Deterministic proof:** direct elapsed-time advancement verifies rate behavior, clamping, and snapshot restore without depending on frame rate or chunk state.
 
