@@ -8,7 +8,7 @@ namespace BooterBigArm.TopDown3D
     /// <summary>Realizes an existing canonical reservation; never creates a second geographic scatter.</summary>
     internal static class TopDown3DAuthoredFormationPlacement
     {
-        internal const float GameWorldScale = 1.45f;
+        internal const float GameWorldScale = 1.85f;
         private sealed class RejectedSurface : Exception { }
 
         internal static bool TryBuild(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,

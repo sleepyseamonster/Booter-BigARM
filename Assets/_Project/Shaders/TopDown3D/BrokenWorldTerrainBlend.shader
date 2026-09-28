@@ -324,22 +324,78 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 return output;
             }
 
-            // Two continuous world-space projections avoid visible square boundaries from
-            // the old per-cell stochastic mapping. Colour and height use the same transforms.
+            // The authored gravel images are not edge-seamless. Mirror each projection at
+            // its image boundary so a repeat cannot expose a straight texture edge.
+            float2 MirrorPebbleUv(float2 uv, out float2 direction)
+            {
+                float2 phase = frac(uv * 0.5) * 2.0;
+                direction = lerp(float2(1.0, 1.0), float2(-1.0, -1.0), step(1.0, phase));
+                // Stay inside the image: the shared sampler is Repeat and sampling exactly
+                // at 0/1 would bilinearly mix the source image's mismatched opposite edges.
+                direction *= 0.996;
+                return lerp(0.002, 0.998, 1.0 - abs(phase - 1.0));
+            }
+
+            // Both projections and both gravel textures use identical coordinates and
+            // gradients, keeping the color, height, and resulting relief aligned.
             float4 SamplePebbleTilesGrad(float2 position, float2 positionDx, float2 positionDy,
                 TEXTURE2D_PARAM(textureMap, sampler_textureMap))
             {
-                float2 uv = position / 1.25;
-                float2 gradientX = positionDx / 1.25;
-                float2 gradientY = positionDy / 1.25;
-                const float2x2 rotation = float2x2(0.7547096, -0.6560590, 0.6560590, 0.7547096);
-                float2 alternateUv = mul(rotation, uv * 0.93) + float2(13.37, 27.19);
-                float blend = smoothstep(0.2, 0.8, ValueNoise(position * 0.11 + 31.7));
-                float4 primary = SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
-                    uv, gradientX, gradientY);
-                float4 alternate = SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
-                    alternateUv, mul(rotation, gradientX * 0.93), mul(rotation, gradientY * 0.93));
-                return lerp(primary, alternate, blend);
+                float4 sampleResult = 0;
+                // The sandbox keeps its accepted stochastic mapping. Streamed formation
+                // chunks opt into the edge-safe mapping through their ground mask.
+                [branch] if (_FormationGroundMaskEnabled <= 0.5)
+                {
+                    float2 sandboxUv = position / 1.25;
+                    float2 cell = floor(sandboxUv);
+                    float2 blendCell = frac(sandboxUv);
+                    blendCell = blendCell * blendCell * (3.0 - 2.0 * blendCell);
+                    float2 dx = positionDx / 1.25;
+                    float2 dy = positionDy / 1.25;
+                    float4 result = 0;
+                    float total = 0;
+                    [unroll] for (int y = 0; y < 2; y++)
+                    {
+                        [unroll] for (int x = 0; x < 2; x++)
+                        {
+                            float2 id = cell + float2(x, y);
+                            float angle = Hash21(id + 7.13) * 6.2831853;
+                            float sine = 0.0;
+                            float cosine = 1.0;
+                            sincos(angle, sine, cosine);
+                            float2x2 tileRotation = float2x2(cosine, -sine, sine, cosine);
+                            float2 offset = float2(Hash21(id + 19.71), Hash21(id + 43.29));
+                            float2 tileUv = mul(tileRotation, sandboxUv - id) + offset;
+                            float weight = (x == 0 ? 1.0 - blendCell.x : blendCell.x)
+                                * (y == 0 ? 1.0 - blendCell.y : blendCell.y);
+                            weight *= weight;
+                            result += SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
+                                tileUv, mul(tileRotation, dx), mul(tileRotation, dy)) * weight;
+                            total += weight;
+                        }
+                    }
+                    sampleResult = result / max(total, 0.0001);
+                }
+                else
+                {
+                    float2 uv = position / 1.25;
+                    float2 gradientX = positionDx / 1.25;
+                    float2 gradientY = positionDy / 1.25;
+                    const float2x2 rotation = float2x2(0.7547096, -0.6560590, 0.6560590, 0.7547096);
+                    float2 alternateUv = mul(rotation, uv * 0.93) + float2(13.37, 27.19);
+                    float blend = smoothstep(0.2, 0.8, ValueNoise(position * 0.11 + 31.7));
+                    float2 primaryDirection;
+                    float2 alternateDirection;
+                    uv = MirrorPebbleUv(uv, primaryDirection);
+                    alternateUv = MirrorPebbleUv(alternateUv, alternateDirection);
+                    float4 primary = SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
+                        uv, gradientX * primaryDirection, gradientY * primaryDirection);
+                    float4 alternate = SAMPLE_TEXTURE2D_GRAD(textureMap, sampler_textureMap,
+                        alternateUv, mul(rotation, gradientX * 0.93) * alternateDirection,
+                        mul(rotation, gradientY * 0.93) * alternateDirection);
+                    sampleResult = lerp(primary, alternate, blend);
+                }
+                return sampleResult;
             }
 
             float4 SamplePebbleTiles(float2 position, TEXTURE2D_PARAM(textureMap, sampler_textureMap))
