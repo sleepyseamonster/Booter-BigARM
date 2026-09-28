@@ -16,5 +16,10 @@ MonoBehaviour:
   maximumHunger: 100
   maximumThirst: 100
   maximumOxygen: 100
+  maximumReserve: 100
   hungerDepletionPerSecond: 0.025
   thirstDepletionPerSecond: 0.04
+  reserveDepletionPerSecond: 0.01
+  exertionReserveDepletionPerSecond: 0.015
+  reserveRestorationPerSecond: 0.8
+  restDelaySeconds: 4

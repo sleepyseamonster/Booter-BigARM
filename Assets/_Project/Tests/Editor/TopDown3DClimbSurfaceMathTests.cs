@@ -6,6 +6,30 @@ namespace BooterBigArm.Tests
 {
     public sealed class TopDown3DClimbSurfaceMathTests
     {
+        [Test]
+        public void ClimbContact_AllowsStaticSolidsButRejectsDynamicAndTriggerBodies()
+        {
+            var actor = new GameObject("Climber");
+            var rock = new GameObject("Static rock");
+            var dynamicObject = new GameObject("Moving object");
+            try
+            {
+                var rockCollider = rock.AddComponent<BoxCollider>();
+                var movingCollider = dynamicObject.AddComponent<BoxCollider>();
+                dynamicObject.AddComponent<Rigidbody>();
+                Assert.That(TopDown3DPlayerMotor.IsClimbableSolid(rockCollider, actor.transform), Is.True);
+                Assert.That(TopDown3DPlayerMotor.IsClimbableSolid(movingCollider, actor.transform), Is.False);
+                rockCollider.isTrigger = true;
+                Assert.That(TopDown3DPlayerMotor.IsClimbableSolid(rockCollider, actor.transform), Is.False);
+            }
+            finally
+            {
+                Object.DestroyImmediate(actor);
+                Object.DestroyImmediate(rock);
+                Object.DestroyImmediate(dynamicObject);
+            }
+        }
+
         [TestCase(20f, TopDown3DClimbMode.Ground)]
         [TestCase(40f, TopDown3DClimbMode.Incline)]
         [TestCase(60f, TopDown3DClimbMode.Scramble)]

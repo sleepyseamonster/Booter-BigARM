@@ -9,7 +9,7 @@ namespace BooterBigArm.TopDown3D
     public sealed class TopDown3DSurvivalHud : MonoBehaviour
     {
         public const float ReferenceWidth = 300f;
-        public const float ReferenceHeight = 152f;
+        public const float ReferenceHeight = 180f;
         public const float ReferenceMargin = 34f;
         public const float ReferenceGap = 5f;
         public const float ReferencePadding = 8f;
@@ -25,12 +25,13 @@ namespace BooterBigArm.TopDown3D
         private static readonly Color32 HungerColor = new(199, 145, 51, 255);
         private static readonly Color32 ThirstColor = new(56, 166, 171, 255);
         private static readonly Color32 OxygenColor = new(138, 186, 199, 255);
-        private static readonly string[] VitalLabels = { "HEALTH", "HUNGER", "THIRST", "OXYGEN" };
-        private static readonly Color32[] VitalColors = { HealthColor, HungerColor, ThirstColor, OxygenColor };
+        private static readonly Color32 ReserveColor = new(166, 142, 194, 255);
+        private static readonly string[] VitalLabels = { "HEALTH", "HUNGER", "THIRST", "OXYGEN", "RESERVE" };
+        private static readonly Color32[] VitalColors = { HealthColor, HungerColor, ThirstColor, OxygenColor, ReserveColor };
 
         [SerializeField] private TopDown3DSurvivalVitals vitals;
 
-        private readonly RectTransform[] fillRects = new RectTransform[4];
+        private readonly RectTransform[] fillRects = new RectTransform[VitalLabels.Length];
         private TopDown3DGameHudCanvas gameHud;
         private RectTransform panelRect;
         private Rect lastSafeArea;
@@ -189,8 +190,8 @@ namespace BooterBigArm.TopDown3D
             highlight.rectTransform.offsetMax = new Vector2(-2f, -2f);
             highlight.transform.SetSiblingIndex(3);
 
-            var rowHeight = (ReferenceHeight - (ReferencePadding * 2f) - (ReferenceGap * 3f)) * 0.25f;
-            for (var i = 0; i < 4; i++)
+            var rowHeight = (ReferenceHeight - (ReferencePadding * 2f) - (ReferenceGap * (VitalLabels.Length - 1))) / VitalLabels.Length;
+            for (var i = 0; i < VitalLabels.Length; i++)
             {
                 EnsureVitalRow(i, rowHeight);
             }

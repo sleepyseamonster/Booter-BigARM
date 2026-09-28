@@ -9,7 +9,7 @@ namespace BooterBigArm.Tests
     public sealed class TopDown3DSurvivalTests
     {
         [Test]
-        public void SettingsAsset_ProvidesAuthoredFourVitalTuning()
+        public void SettingsAsset_ProvidesAuthoredReserveTuning()
         {
             var settings = TopDown3DSurvivalSettings.Load();
 
@@ -20,10 +20,14 @@ namespace BooterBigArm.Tests
             Assert.That(settings.MaximumOxygen, Is.GreaterThan(0f));
             Assert.That(settings.HungerDepletionPerSecond, Is.GreaterThan(0f));
             Assert.That(settings.ThirstDepletionPerSecond, Is.GreaterThan(0f));
+            Assert.That(settings.MaximumReserve, Is.GreaterThan(0f));
+            Assert.That(settings.ReserveDepletionPerSecond, Is.GreaterThan(0f));
+            Assert.That(settings.ExertionReserveDepletionPerSecond, Is.GreaterThan(0f));
+            Assert.That(settings.ReserveRestorationPerSecond, Is.GreaterThan(0f));
         }
 
         [Test]
-        public void Advance_DepletesOnlyHungerAndThirst()
+        public void Advance_DepletesLongTermNeedsWithoutChangingHealthOrOxygen()
         {
             var player = new GameObject("Survival Test Player");
             try
@@ -36,12 +40,70 @@ namespace BooterBigArm.Tests
 
                 Assert.That(vitals.Health, Is.EqualTo(settings.MaximumHealth));
                 Assert.That(vitals.Oxygen, Is.EqualTo(settings.MaximumOxygen));
+                Assert.That(vitals.Reserve,
+                    Is.EqualTo(settings.MaximumReserve - settings.ReserveDepletionPerSecond * 100f).Within(0.001f));
                 Assert.That(
                     vitals.Hunger,
                     Is.EqualTo(settings.MaximumHunger - (settings.HungerDepletionPerSecond * 100f)).Within(0.001f));
                 Assert.That(
                     vitals.Thirst,
                     Is.EqualTo(settings.MaximumThirst - (settings.ThirstDepletionPerSecond * 100f)).Within(0.001f));
+            }
+            finally
+            {
+                Object.DestroyImmediate(player);
+            }
+        }
+
+        [Test]
+        public void Reserve_ExertionDrainsFasterAndRestRestoresWithoutBlockingActions()
+        {
+            var player = new GameObject("Reserve Test Player");
+            try
+            {
+                var vitals = player.AddComponent<TopDown3DSurvivalVitals>();
+                vitals.ResetToFull();
+                var settings = vitals.Settings;
+                vitals.Advance(100f, true, false);
+                Assert.That(vitals.Reserve, Is.EqualTo(settings.MaximumReserve
+                    - (settings.ReserveDepletionPerSecond + settings.ExertionReserveDepletionPerSecond) * 100f).Within(0.001f));
+
+                vitals.SetValue(TopDown3DSurvivalVital.Reserve, 50f);
+                var beforeRest = vitals.Reserve;
+                vitals.Advance(10f, false, true);
+                Assert.That(vitals.Reserve,
+                    Is.EqualTo(beforeRest + settings.ReserveRestorationPerSecond * 10f).Within(0.001f));
+
+                vitals.SetValue(TopDown3DSurvivalVital.Reserve, 0f);
+                vitals.Advance(10f, true, false);
+                Assert.That(vitals.Reserve, Is.Zero);
+            }
+            finally
+            {
+                Object.DestroyImmediate(player);
+            }
+        }
+
+        [Test]
+        public void Reserve_RecoversOnlyAfterUninterruptedGroundedIdleDelay()
+        {
+            var player = new GameObject("Reserve Rest Delay Player");
+            try
+            {
+                var vitals = player.AddComponent<TopDown3DSurvivalVitals>();
+                vitals.ResetToFull();
+                vitals.SetValue(TopDown3DSurvivalVital.Reserve, 50f);
+                var settings = vitals.Settings;
+
+                vitals.AdvanceActivity(settings.RestDelaySeconds * 0.5f, false, true);
+                vitals.AdvanceActivity(0.5f, true, false);
+                vitals.AdvanceActivity(settings.RestDelaySeconds, false, true);
+                Assert.That(vitals.Reserve, Is.EqualTo(50f
+                    - settings.ReserveDepletionPerSecond * (settings.RestDelaySeconds * 1.5f + 0.5f)
+                    - settings.ExertionReserveDepletionPerSecond * 0.5f).Within(0.001f));
+
+                vitals.AdvanceActivity(10f, false, true);
+                Assert.That(vitals.Reserve, Is.GreaterThan(50f));
             }
             finally
             {
@@ -76,7 +138,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void Snapshot_RoundTripsAllFourPlayerOwnedVitals()
+        public void Snapshot_RoundTripsReserveAndExistingVitals()
         {
             var sourceObject = new GameObject("Survival Snapshot Source");
             var targetObject = new GameObject("Survival Snapshot Target");
@@ -87,6 +149,7 @@ namespace BooterBigArm.Tests
                 source.SetValue(TopDown3DSurvivalVital.Hunger, 61f);
                 source.SetValue(TopDown3DSurvivalVital.Thirst, 54f);
                 source.SetValue(TopDown3DSurvivalVital.Oxygen, 83f);
+                source.SetValue(TopDown3DSurvivalVital.Reserve, 42f);
 
                 var snapshot = source.CaptureSnapshot();
                 var target = targetObject.AddComponent<TopDown3DSurvivalVitals>();
@@ -97,11 +160,30 @@ namespace BooterBigArm.Tests
                 Assert.That(target.Hunger, Is.EqualTo(61f));
                 Assert.That(target.Thirst, Is.EqualTo(54f));
                 Assert.That(target.Oxygen, Is.EqualTo(83f));
+                Assert.That(target.Reserve, Is.EqualTo(42f));
             }
             finally
             {
                 Object.DestroyImmediate(sourceObject);
                 Object.DestroyImmediate(targetObject);
+            }
+        }
+
+        [Test]
+        public void LegacySnapshot_StartsReserveFull()
+        {
+            var player = new GameObject("Legacy Reserve Snapshot Player");
+            try
+            {
+                var vitals = player.AddComponent<TopDown3DSurvivalVitals>();
+                var legacy = JsonUtility.FromJson<TopDown3DSurvivalSnapshot>(
+                    "{\"version\":1,\"health\":72,\"hunger\":61,\"thirst\":54,\"oxygen\":83}");
+                Assert.That(vitals.ApplySnapshot(legacy), Is.True);
+                Assert.That(vitals.Reserve, Is.EqualTo(vitals.Settings.MaximumReserve));
+            }
+            finally
+            {
+                Object.DestroyImmediate(player);
             }
         }
 
@@ -118,7 +200,7 @@ namespace BooterBigArm.Tests
         [Test]
         public void TryInstallForScene_AttachesVitalsToPlayerAndIsIdempotent()
         {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             try
             {
                 Assert.That(TopDown3DSurvivalHud.TryInstallForScene(scene), Is.Null);
@@ -139,6 +221,7 @@ namespace BooterBigArm.Tests
                     Is.EqualTo(new Vector2(TopDown3DSurvivalHud.ReferenceWidth, TopDown3DSurvivalHud.ReferenceHeight)));
                 Assert.That(first.transform.Find("Vital Row 0/Label"), Is.Not.Null);
                 Assert.That(first.transform.Find("Vital Row 3/Track/Fill"), Is.Not.Null);
+                Assert.That(first.transform.Find("Vital Row 4/Track/Fill"), Is.Not.Null);
             }
             finally
             {

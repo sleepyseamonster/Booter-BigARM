@@ -4,29 +4,30 @@ This document defines the first TopDown3D survival-system slice and the seams th
 
 ## Player Vitals
 
-Booter has four capacity-style survival values. A full meter means the current need is satisfied.
+Booter has five capacity-style survival values. A full meter means the current need is satisfied.
 
 - **Health** represents remaining life and begins full.
 - **Hunger** represents remaining nourishment and depletes over time.
 - **Thirst** represents remaining hydration and depletes over time.
 - **Oxygen** represents breathable reserve and begins full.
+- **Reserve** represents long-term physical readiness. It drains slowly during activity and a little faster while Sprint is held during running, climbing, or traversal moves. It is not a short stamina bar.
 
-The first implementation automatically depletes only hunger and thirst. Empty hunger or thirst does not yet damage health. Health loss, health recovery, eating, drinking, low-oxygen exposure, oxygen loss, and oxygen recovery are later slices.
+Hunger, thirst, and Reserve deplete automatically. Empty Reserve does not force a fall or disable movement. After four seconds grounded and still, with Sprint released and no action underway, Booter rests and Reserve refills. The initial tuning gives roughly 167 minutes from full to empty during ordinary activity, roughly 67 minutes of continuous exertion, and about two minutes to refill from empty while resting. These values are provisional. Empty hunger or thirst does not yet damage health. Health loss, health recovery, eating, drinking, low-oxygen exposure, oxygen loss, and oxygen recovery are later slices.
 
 ## Tuning And Runtime State
 
 - `TopDown3DSurvivalSettings` owns authored capacities and depletion rates.
 - The canonical settings asset is `Assets/_Project/Settings/Survival/Resources/TopDown3DSurvivalSettings.asset`.
 - `TopDown3DSurvivalVitals` owns mutable player state and deterministic elapsed-time advancement.
-- The default hunger and thirst rates are provisional tuning values, not locked design decisions.
+- The default hunger, thirst, Reserve, and rest rates are provisional tuning values, not locked design decisions.
 - External gameplay systems may set a vital explicitly, but this slice does not introduce item-consumption or environmental-exposure owners.
 
 ## Procedural World Contract
 
 - **World identity:** not applicable to the vital values; they belong to Booter's save state rather than a seed or chunk.
 - **Stable identity:** the single player-survival record is stable across chunk transitions.
-- **Streaming lifecycle:** hunger and thirst continue independently of streamed chunk presence. Unloading a chunk must not reset them.
-- **Persistence:** all four values are captured in a versioned snapshot. A future TopDown3D save owner must include that snapshot without serializing a scene object.
+- **Streaming lifecycle:** hunger, thirst, and Reserve continue independently of streamed chunk presence. Unloading a chunk must not reset them.
+- **Persistence:** all five values are captured in a versioned snapshot. Version 1 snapshots restore Reserve full; version 2 preserves its value. A future TopDown3D save owner must include that snapshot without serializing a scene object. There is no world-generated object or persisted terrain delta for resting.
 - **Authored constraints:** the Broken World's algae-based survival rules control future replenishment design. This slice does not invent water sources.
 - **Deterministic proof:** direct elapsed-time advancement verifies rate behavior, clamping, and snapshot restore without depending on frame rate or chunk state.
 
@@ -34,6 +35,6 @@ Future low-oxygen regions should provide exposure to the player-owned oxygen sys
 
 ## HUD Contract
 
-The four meters use a compact 2x2 safe-area-aware panel. It occupies the upper-left corner and remains separate from the lower-left action D-pad indicator. All four meters remain visible in this foundation slice so their ownership and layout are stable; oxygen is not given extra visual priority while it is normally full.
+The five meters use a compact, vertically stacked safe-area-aware panel. It occupies the upper-left corner and remains separate from the lower-left action D-pad indicator.
 
 The HUD installs at runtime when the perspective player is present, avoiding scene or prefab coupling during this additive foundation pass.

@@ -136,6 +136,8 @@ namespace BooterBigArm.TopDown3D
         public Vector3 FacingDirection => facingDirection;
         public bool IsGrounded { get; private set; }
         public bool SprintActive { get; private set; }
+        public bool SprintHeld => input != null && input.SprintHeld;
+        public bool HasMovementInput => input != null && input.MoveValue.sqrMagnitude > 0.01f;
         public TopDown3DTraversalMove ActiveTraversal { get; private set; }
         public float ActiveTraversalDuration => activeTraversalDuration;
         public float ActiveTraversalSide => activeTraversalSide;
@@ -938,9 +940,7 @@ namespace BooterBigArm.TopDown3D
                 for (var i = 0; i < hitCount; i++)
                 {
                     var hit = traversalHits[i];
-                    if (hit.collider == null
-                        || hit.collider.transform.IsChildOf(transform)
-                        || hit.collider.GetComponentInParent<TopDown3DGroundSurface>() == null
+                    if (!IsClimbableSolid(hit.collider, transform)
                         || Vector3.Angle(hit.normal, Vector3.up) <= maxWalkableSlope
                         || hit.distance >= nearest)
                     {
@@ -953,6 +953,13 @@ namespace BooterBigArm.TopDown3D
             }
 
             return nearest < float.PositiveInfinity;
+        }
+
+        internal static bool IsClimbableSolid(Collider candidate, Transform actor)
+        {
+            return candidate != null && candidate.enabled && !candidate.isTrigger
+                && (actor == null || !candidate.transform.IsChildOf(actor))
+                && candidate.attachedRigidbody == null;
         }
 
         private void EndClimb()

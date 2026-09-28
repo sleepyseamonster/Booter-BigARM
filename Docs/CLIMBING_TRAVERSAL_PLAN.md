@@ -2,7 +2,7 @@
 
 Status: prototype implementation in progress, 2026-09-28. The user requested traversal from steep slopes through vertical walls and overhangs, with increasingly weighty hand and foot animation. The motor now uses the angle bands when Sprint is held and the animation driver uses its existing gather clip as a visible climbing placeholder. The current 48 degree ordinary walk limit remains unchanged; final contact, top-out, and visual acceptance are pending.
 
-Climbing is intended as a major gameplay system. The current region should establish trustworthy movement, contact, and readable terrain assessment before later regions add equipment-dependent routes. The Legger is the companion's new name; older code and asset identifiers still use BigARM for reference safety.
+Climbing is intended as a major gameplay system. The first mechanic is simple: Booter can climb almost any fixed, solid steep surface while holding Sprint, without a climb-specific stamina bar. Rest and long-term exertion are represented by Reserve in `SURVIVAL_SYSTEM_STANDARD.md`. The current region should establish trustworthy movement and contact before later regions add equipment-dependent routes. The Legger is the companion's new name; older code and asset identifiers still use BigARM for reference safety.
 
 ## Current implementation boundary
 
@@ -27,7 +27,7 @@ The 48 degree ordinary walk limit stays in place. The existing Sprint action is 
 ## Physics and contact ownership
 
 1. Keep the existing Rigidbody and capsule as the only movement authority. A climb state may suspend gravity while valid contact is present, but must restore the previous gravity state on exit, teleport, action constraint, disable, and destruction. It must not alter vault or side-step ownership.
-2. Probe the intended surface from the capsule, require an authoritative terrain/feature collider and a usable triangle normal, and recheck contact every physics step. Check capsule clearance at projected positions and at the top-out destination. Do not accept decorative colliders merely because they are near terrain.
+2. Probe the intended surface from the capsule, require an enabled, fixed, non-trigger solid collider and a usable surface normal, and recheck contact every physics step. Dynamic bodies and the player body are excluded. Check capsule clearance at projected positions and at the top-out destination.
 3. Build movement from a surface tangent and a stable outward normal. Camera-relative input must map unambiguously to up, down, and sideways travel even on vertical faces. For a near-horizontal ceiling, use the maintained contact frame rather than deriving ascent from a vanishing horizontal normal.
 4. Handle convex corners and seams by reacquiring nearby contact within a bounded distance and angle. Cap the correction speed and reject discontinuous position jumps. Keep the character on the exposed side of the collider.
 5. Publish traversal mode, measured angle, contact normal, and along-surface speed in the motor's read-only locomotion snapshot. Presentation consumes this state and never moves the gameplay body.
