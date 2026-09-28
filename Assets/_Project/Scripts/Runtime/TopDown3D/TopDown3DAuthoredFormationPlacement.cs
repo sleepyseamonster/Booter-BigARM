@@ -260,19 +260,45 @@ namespace BooterBigArm.TopDown3D
             if (string.IsNullOrWhiteSpace(reservationId))
                 throw new ArgumentException("Procedural formation requires a stable reservation ID.", nameof(reservationId));
 
+            // The workbench bake owns the detailed shapes. Keep the seeded layout unique
+            // per reservation, but draw its members from a deterministically selected
+            // approved generation instead of the separate generic mesh library.
+            var selected = SelectGenerationIndex(template, reservationId);
+            var library = selected == 0 ? template.ApprovedStageEntries
+                : template.ProceduralGenerations[selected - 1].Entries;
             var layout = TopDown3DAuthoredFormationVariation.GenerateLayout(
                 template, Hash(reservationId + ":layout"));
             var entries = new TopDown3DAuthoredFormationAsset.ApprovedStageEntry[layout.Entries.Count];
             for (var i = 0; i < entries.Length; i++)
             {
                 var layoutEntry = layout.Entries[i];
-                var variants = template.Members[layoutEntry.SourceIndex].BakedVariants;
-                var variantHash = (uint)Hash(reservationId + ":shape:" + layoutEntry.InstanceId);
-                var family = variants[(int)(variantHash % (uint)variants.Count)];
+                var family = FindBakedFamily(library, layoutEntry.SourceIndex)
+                    ?? FindBakedFamily(template.ApprovedStageEntries, layoutEntry.SourceIndex)
+                    ?? FindBakedFamilyInOtherGenerations(template, layoutEntry.SourceIndex)
+                    ?? template.Members[layoutEntry.SourceIndex].BakedVariants[0];
                 entries[i] = new TopDown3DAuthoredFormationAsset.ApprovedStageEntry(
                     layoutEntry.SourceIndex, layoutEntry.InstanceId, layoutEntry.Transform, family);
             }
             return entries;
+        }
+
+        private static TopDown3DNaturalMeshFamily FindBakedFamily(
+            IReadOnlyList<TopDown3DAuthoredFormationAsset.ApprovedStageEntry> stage, int sourceIndex)
+        {
+            for (var i = 0; i < stage.Count; i++)
+                if (stage[i].SourceIndex == sourceIndex) return stage[i].Family;
+            return null;
+        }
+
+        private static TopDown3DNaturalMeshFamily FindBakedFamilyInOtherGenerations(
+            TopDown3DAuthoredFormationAsset template, int sourceIndex)
+        {
+            for (var generation = 0; generation < template.ProceduralGenerations.Count; generation++)
+            {
+                var family = FindBakedFamily(template.ProceduralGenerations[generation].Entries, sourceIndex);
+                if (family != null) return family;
+            }
+            return null;
         }
 
         internal static int SelectGenerationIndex(TopDown3DAuthoredFormationAsset template,
