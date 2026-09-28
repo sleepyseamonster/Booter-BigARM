@@ -47,6 +47,23 @@ namespace BooterBigArm.TopDown3D
             float maximumBurial,
             float maximumTilt)
         {
+            Pose[] result = null;
+            foreach (var _ in FitSteps(members, sampleHeight, sampleNormal,
+                minimumBurial, maximumBurial, maximumTilt, poses => result = poses)) { }
+            return result;
+        }
+
+        // A streamed formation can pause after each terrain sample. The synchronous editor
+        // path above consumes the same steps, so both paths retain identical contact math.
+        internal static IEnumerable<int> FitSteps(
+            IReadOnlyList<Member> members,
+            Func<Vector3, float> sampleHeight,
+            Func<Vector3, Vector3> sampleNormal,
+            float minimumBurial,
+            float maximumBurial,
+            float maximumTilt,
+            Action<Pose[]> completed)
+        {
             if (members == null) throw new ArgumentNullException(nameof(members));
             if (sampleHeight == null) throw new ArgumentNullException(nameof(sampleHeight));
             if (sampleNormal == null) throw new ArgumentNullException(nameof(sampleNormal));
@@ -75,11 +92,11 @@ namespace BooterBigArm.TopDown3D
                 }
             }
 
-            var completed = new HashSet<int>();
+            var processedGroups = new HashSet<int>();
             for (var i = 0; i < members.Count; i++)
             {
                 var group = groups[i];
-                if (!completed.Add(group)) continue;
+                if (!processedGroups.Add(group)) continue;
                 var bounds = members[i].Bounds;
                 for (var j = i + 1; j < members.Count; j++)
                     if (groups[j] == group) bounds.Encapsulate(members[j].Bounds);
@@ -106,9 +123,13 @@ namespace BooterBigArm.TopDown3D
                     {
                         if (vertices[v].y < lowest.y) lowest = vertices[v];
                         if (v % stride == 0)
+                        {
                             lift = Mathf.Max(lift, RequiredLift(vertices[v], pivot, tilt, sampleHeight));
+                            yield return 0;
+                        }
                     }
                     lift = Mathf.Max(lift, RequiredLift(lowest, pivot, tilt, sampleHeight));
+                    yield return 0;
                     lifts[j] = lift;
                 }
                 // Resolve lower rocks first. Separate ground-contact members settle independently;
@@ -141,7 +162,7 @@ namespace BooterBigArm.TopDown3D
                         group);
                 }
             }
-            return poses;
+            completed(poses);
         }
 
         private static bool Supports(Bounds lower, Bounds upper)

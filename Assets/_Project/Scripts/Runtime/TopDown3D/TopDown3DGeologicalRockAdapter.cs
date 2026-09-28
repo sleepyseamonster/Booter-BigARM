@@ -43,45 +43,87 @@ namespace BooterBigArm.TopDown3D
             Vector2Int chunkCoordinate,
             Vector2 spawnExclusionCenter)
         {
-            var output = new List<TopDown3DRockFormationPlan>();
-            if (settings == null || generator == null || catalog == null)
-                return output;
+            var work = new Work(settings, generator, catalog, chunkCoordinate, spawnExclusionCenter);
+            while (!work.IsComplete) work.Step();
+            return work.Output;
+        }
 
-            var authority = generator.Authority;
-            var planner = new WorldRockFormationPlanner(
-                authority.Identity,
-                authority.CoordinateModel,
-                authority.ContextProvider,
-                authority.Query);
-            var chunkSize = settings.ChunkSize;
-            // The existing spawn exclusion is authored in absolute prototype world coordinates.
-            // Do not reinterpret it through the current local frame after an origin rebase.
-            var protectedCenter = new AbsoluteWorldPosition(
-                spawnExclusionCenter.x,
-                0d,
-                spawnExclusionCenter.y);
-            var plans = planner.PlanOwnerArea(
-                chunkCoordinate.x * (double)chunkSize,
-                chunkCoordinate.y * (double)chunkSize,
-                chunkSize,
-                chunkSize,
-                protectedCenter,
-                settings.ClearSpawnRadius);
-            for (var i = 0; i < plans.Count; i++)
+        internal sealed class Work
+        {
+            private readonly TopDown3DWorldSettings settings;
+            private readonly TopDown3DWorldGenerator generator;
+            private readonly Vector2 spawnExclusionCenter;
+            private IReadOnlyList<WorldRockFormationPlan> plans;
+            private IEnumerator<int> reservationSteps;
+            private int nextPlan;
+            private TopDown3DAuthoredFormationPlacement.Work placement;
+            internal readonly List<TopDown3DRockFormationPlan> Output = new List<TopDown3DRockFormationPlan>();
+            internal bool IsComplete { get; private set; }
+
+            internal Work(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,
+                TopDown3DNaturalObjectCatalog catalog, Vector2Int chunkCoordinate,
+                Vector2 spawnExclusionCenter)
             {
-                // Every admitted formation-scale reservation now realizes one approved authored
-                // composition. Requiring the legacy BrokenStack goal made Scatter and Spire
-                // roughly an order of magnitude rarer than ironstone before surface fitting.
-                // Small cosmetic scatter remains planned elsewhere.
-                if (plans[i].ReservationScale != WorldRockReservationScale.Formation)
-                    continue;
+                this.settings = settings;
+                this.generator = generator;
+                this.spawnExclusionCenter = spawnExclusionCenter;
+                if (settings == null || generator == null || catalog == null)
+                {
+                    plans = Array.Empty<WorldRockFormationPlan>();
+                    IsComplete = true;
+                    return;
+                }
 
-                var authoredTemplate = settings.SelectAuthoredFormation(plans[i].Id.ToString());
-                if (authoredTemplate == null || !authoredTemplate.HasBakedVariants) continue;
-                if (TopDown3DAuthoredFormationPlacement.TryBuild(settings, generator, plans[i],
-                    authoredTemplate, spawnExclusionCenter, out var mixed)) output.Add(mixed);
+                var authority = generator.Authority;
+                var planner = new WorldRockFormationPlanner(
+                    authority.Identity, authority.CoordinateModel,
+                    authority.ContextProvider, authority.Query);
+                var chunkSize = settings.ChunkSize;
+                // Spawn exclusion is absolute, independent of a local-frame rebase.
+                var protectedCenter = new AbsoluteWorldPosition(
+                    spawnExclusionCenter.x, 0d, spawnExclusionCenter.y);
+                reservationSteps = planner.PlanOwnerAreaSteps(
+                    chunkCoordinate.x * (double)chunkSize,
+                    chunkCoordinate.y * (double)chunkSize,
+                    chunkSize, chunkSize, protectedCenter, settings.ClearSpawnRadius,
+                    result => plans = result).GetEnumerator();
             }
-            return output;
+
+            internal void Step()
+            {
+                if (IsComplete) return;
+                if (reservationSteps != null)
+                {
+                    if (!reservationSteps.MoveNext())
+                    {
+                        reservationSteps.Dispose();
+                        reservationSteps = null;
+                    }
+                    return;
+                }
+                while (placement == null && nextPlan < plans.Count)
+                {
+                    var plan = plans[nextPlan++];
+                    if (plan.ReservationScale != WorldRockReservationScale.Formation) continue;
+                    var template = settings.SelectAuthoredFormation(plan.Id.ToString());
+                    if (template == null || !template.HasBakedVariants) continue;
+                    placement = TopDown3DAuthoredFormationPlacement.CreateWork(settings, generator,
+                        plan, template, spawnExclusionCenter);
+                }
+                if (placement == null) { IsComplete = true; return; }
+                placement.Step();
+                if (!placement.IsComplete) return;
+                if (placement.Result != null) Output.Add(placement.Result);
+                placement = null;
+            }
+
+            internal void Dispose()
+            {
+                reservationSteps?.Dispose();
+                reservationSteps = null;
+                placement?.Dispose();
+                placement = null;
+            }
         }
 
         private static bool TryRealize(

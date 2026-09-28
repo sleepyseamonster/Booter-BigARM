@@ -11,14 +11,58 @@ namespace BooterBigArm.TopDown3D
         internal const float GameWorldScale = 1.85f;
         private sealed class RejectedSurface : Exception { }
 
+        internal sealed class Work
+        {
+            private readonly IEnumerator<int> steps;
+            internal TopDown3DRockFormationPlan Result { get; private set; }
+            internal bool IsComplete { get; private set; }
+
+            internal Work(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,
+                WorldRockFormationPlan reservation, TopDown3DAuthoredFormationAsset template,
+                Vector2 spawnCenter)
+            {
+                steps = BuildSteps(settings, generator, reservation, template, spawnCenter,
+                    plan => Result = plan).GetEnumerator();
+            }
+
+            internal void Step()
+            {
+                if (IsComplete) return;
+                try { IsComplete = !steps.MoveNext(); }
+                catch (RejectedSurface) { IsComplete = true; }
+                catch { Dispose(); throw; }
+                if (IsComplete) steps.Dispose();
+            }
+
+            internal void Dispose()
+            {
+                if (!IsComplete) steps.Dispose();
+                IsComplete = true;
+            }
+        }
+
         internal static bool TryBuild(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,
             WorldRockFormationPlan reservation, TopDown3DAuthoredFormationAsset template,
             Vector2 spawnCenter, out TopDown3DRockFormationPlan result)
         {
-            result = null;
+            var work = new Work(settings, generator, reservation, template, spawnCenter);
+            while (!work.IsComplete) work.Step();
+            result = work.Result;
+            return result != null;
+        }
+
+        internal static Work CreateWork(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,
+            WorldRockFormationPlan reservation, TopDown3DAuthoredFormationAsset template,
+            Vector2 spawnCenter) => new Work(settings, generator, reservation, template, spawnCenter);
+
+        private static IEnumerable<int> BuildSteps(TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator, WorldRockFormationPlan reservation,
+            TopDown3DAuthoredFormationAsset template, Vector2 spawnCenter,
+            Action<TopDown3DRockFormationPlan> completed)
+        {
             if (template == null || !template.HasBakedVariants || !template.HasApprovedStage)
                 throw new InvalidOperationException("The selected authored world template needs a complete approved workbench-stage bake.");
-            if (!generator.TryToLocal(reservation.Center, out var localCenter)) return false;
+            if (!generator.TryToLocal(reservation.Center, out var localCenter)) yield break;
             var seed = Hash(reservation.Id.ToString());
             var source = template.Members;
             // The workbench's approved rocks supply the detailed mesh library. Its seeded
@@ -66,8 +110,6 @@ namespace BooterBigArm.TopDown3D
                 cache.Add(key, sample);
                 return sample;
             }
-            try
-            {
                 for (var i = 0; i < stage.Count; i++)
                 {
                     var entry = stage[i];
@@ -77,17 +119,25 @@ namespace BooterBigArm.TopDown3D
                     // The stage bake is the same silhouette the Mixed Formation workbench displays.
                     var selectedMesh = entry.Family.Lod0;
                     var vertices = selectedMesh.vertices;
-                    for (var v = 0; v < vertices.Length; v++) vertices[v] = matrix.MultiplyPoint3x4(vertices[v]);
+                    for (var v = 0; v < vertices.Length; v++)
+                    {
+                        vertices[v] = matrix.MultiplyPoint3x4(vertices[v]);
+                        if ((v & 255) == 255) yield return 0;
+                    }
                     var bounds = BoundsAt(selectedMesh.bounds, matrix);
                     contacts.Add(new TopDown3DRockGroundContact.Member(matrix.GetColumn(3), matrix.rotation,
                         bounds, vertices, memberSeed));
+                    yield return 0;
                 }
                 var groundFit = template.SurfaceTreatment;
                 // Burial is authored in workbench meters. Scale it with the rock meshes so
                 // the exposed proportion survives the larger game-world presentation.
-                var poses = TopDown3DRockGroundContact.Fit(contacts, p => Surface(p).height,
-                    p => Surface(p).normal, groundFit.ShallowBurial * GameWorldScale,
-                    groundFit.DeepBurial * GameWorldScale, groundFit.MaximumGroundTilt);
+                TopDown3DRockGroundContact.Pose[] poses = null;
+                foreach (var step in TopDown3DRockGroundContact.FitSteps(
+                    contacts, p => Surface(p).height, p => Surface(p).normal,
+                    groundFit.ShallowBurial * GameWorldScale,
+                    groundFit.DeepBurial * GameWorldScale, groundFit.MaximumGroundTilt,
+                    fitted => poses = fitted)) yield return step;
                 var members = new TopDown3DRockFormationMember[stage.Count];
                 var envelope = new Bounds();
                 for (var i = 0; i < members.Length; i++)
@@ -108,6 +158,7 @@ namespace BooterBigArm.TopDown3D
                         poses[i].Rotation, scales[i], i, -1, radius, bounds, family, sourceMember.Material,
                         Surface(bounds.center).height);
                     if (i == 0) envelope = bounds; else envelope.Encapsulate(bounds);
+                    yield return 0;
                 }
                 var span = WorldRockFormationPlanner.FormationReservationSpan;
                 var absoluteCenter = generator.ToAbsolute(envelope.center.x, envelope.center.y, envelope.center.z);
@@ -115,19 +166,16 @@ namespace BooterBigArm.TopDown3D
                     + new Vector2(envelope.extents.x, envelope.extents.z).magnitude;
                 var spawnDx = absoluteCenter.HorizontalA - spawnCenter.x;
                 var spawnDz = absoluteCenter.HorizontalB - spawnCenter.y;
-                if (spawnDx * spawnDx + spawnDz * spawnDz < protectedRadius * protectedRadius) return false;
+                if (spawnDx * spawnDx + spawnDz * spawnDz < protectedRadius * protectedRadius) yield break;
                 var rootKey = new TopDown3DRockRootKey(TopDown3DRockSizeTier.Medium,
                     TopDown3DGeologicalRockAdapter.FoldLegacyCell(Math.Floor(reservation.Center.HorizontalA / span)),
                     TopDown3DGeologicalRockAdapter.FoldLegacyCell(Math.Floor(reservation.Center.HorizontalB / span)),
                     generator.Authority.Identity.Versions.Decoration);
-                result = new TopDown3DRockFormationPlan(rootKey, reservation.Id.ToString(), seed,
+                completed(new TopDown3DRockFormationPlan(rootKey, reservation.Id.ToString(), seed,
                     TopDown3DNaturalObjectLayer.Obstacle, TopDown3DRockSurface.Regular, members,
                     new Vector2(envelope.center.x, envelope.center.z),
                     new Vector2(envelope.extents.x, envelope.extents.z).magnitude, envelope.size.y,
-                    template);
-                return true;
-            }
-            catch (RejectedSurface) { return false; }
+                    template));
         }
 
         private static Bounds BoundsAt(Bounds bounds, Matrix4x4 matrix)

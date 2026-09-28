@@ -78,6 +78,52 @@ namespace BooterBigArm.Tests
             }
         }
 
+        [Test]
+        public void UnfinishedDecorationCanBeCancelledBeforeChunkPublication()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
+            var terrainMaterial = AssetDatabase.LoadAssetAtPath<Material>(TerrainMaterialPath);
+            var rockMaterial = AssetDatabase.LoadAssetAtPath<Material>(RockMaterialPath);
+            var worldObject = new GameObject("Cancellable formation streaming");
+            var targetObject = new GameObject("Streaming target");
+            var chunkObject = new GameObject("Unfinished chunk");
+            try
+            {
+                targetObject.AddComponent<CapsuleCollider>();
+                worldObject.AddComponent<TopDown3DProceduralWorld>().Configure(
+                    settings, targetObject.transform, terrainMaterial, rockMaterial);
+                var world = worldObject.GetComponent<TopDown3DProceduralWorld>();
+                InvokePrivate(world, "Start");
+                var coordinate = world.CurrentCenterChunk;
+                var chunk = chunkObject.AddComponent<TopDown3DGeneratedChunk>();
+                chunk.Initialize(coordinate, null);
+                var chunks = (System.Collections.IDictionary)GetPrivateField(world, "loadedChunks");
+                chunks.Add(coordinate, chunk);
+                InvokePrivate(world, "EnqueueDecoration", coordinate);
+                Assert.That((bool)InvokePrivateResult(world, "TryProcessDecoration"), Is.True);
+                Assert.That(world.PendingDecorationCount, Is.EqualTo(1));
+                Assert.That(world.DecoratedChunkCount, Is.Zero);
+                InvokePrivate(world, "CancelActiveDecoration", false);
+                Assert.That(world.PendingDecorationCount, Is.Zero);
+                Assert.That(world.DecoratedChunkCount, Is.Zero);
+            }
+            finally
+            {
+                Object.DestroyImmediate(worldObject);
+                Object.DestroyImmediate(targetObject);
+                Object.DestroyImmediate(chunkObject);
+            }
+        }
+
+        private static object GetPrivateField(TopDown3DProceduralWorld world, string name) =>
+            typeof(TopDown3DProceduralWorld).GetField(name,
+                BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(world);
+
+        private static object InvokePrivateResult(TopDown3DProceduralWorld world,
+            string methodName, params object[] arguments) =>
+            typeof(TopDown3DProceduralWorld).GetMethod(methodName,
+                BindingFlags.Instance | BindingFlags.NonPublic)?.Invoke(world, arguments);
+
         private static int GetPrivateCollectionCount(TopDown3DProceduralWorld world, string fieldName)
         {
             var field = typeof(TopDown3DProceduralWorld).GetField(

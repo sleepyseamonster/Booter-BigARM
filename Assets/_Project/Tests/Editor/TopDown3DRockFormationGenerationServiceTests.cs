@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using BooterBigArm.TopDown3D;
 using NUnit.Framework;
 using UnityEditor;
@@ -77,6 +78,42 @@ namespace BooterBigArm.Tests
                 "The production search area should realize at least one authored mixed formation.");
             Assert.That(selectedTemplates, Is.EquivalentTo(settings.AuthoredFormationCatalog.Templates),
                 "The populated production search must realize both Scatter and Handbuilt Spire.");
+
+            var formationCenter = first[0].EnvelopeCenter;
+            var nearbyOwner = generator.WorldToChunk(settings,
+                new Vector3(formationCenter.x, 0f, formationCenter.y));
+            var foundOwner = false;
+            for (var z = -2; z <= 2 && !foundOwner; z++)
+            for (var x = -2; x <= 2 && !foundOwner; x++)
+            {
+                var coordinate = nearbyOwner + new Vector2Int(x, z);
+                var ownerPlans = TopDown3DRockFormationGenerationService.BuildChunk(
+                    settings, coordinate, new Vector2(10000000f, 10000000f));
+                if (!ownerPlans.Any(plan => plan.StableId == first[0].StableId)) continue;
+
+                var work = new TopDown3DGeologicalRockAdapter.Work(settings, generator,
+                    settings.NaturalObjectCatalog, coordinate,
+                    new Vector2(10000000f, 10000000f));
+                var steps = 0;
+                while (!work.IsComplete)
+                {
+                    work.Step();
+                    Assert.That(++steps, Is.LessThan(100000), "Formation planning failed to finish.");
+                }
+                Assert.That(steps, Is.GreaterThan(first[0].Members.Count));
+                Assert.That(work.Output.Select(plan => plan.StableId),
+                    Is.EqualTo(ownerPlans.Select(plan => plan.StableId)));
+                for (var formation = 0; formation < ownerPlans.Count; formation++)
+                for (var member = 0; member < ownerPlans[formation].Members.Count; member++)
+                {
+                    Assert.That(work.Output[formation].Members[member].Position,
+                        Is.EqualTo(ownerPlans[formation].Members[member].Position));
+                    Assert.That(work.Output[formation].Members[member].GroundHeight,
+                        Is.EqualTo(ownerPlans[formation].Members[member].GroundHeight));
+                }
+                foundOwner = true;
+            }
+            Assert.That(foundOwner, Is.True, "Could not find the selected formation's owner chunk.");
         }
 
         [Test]

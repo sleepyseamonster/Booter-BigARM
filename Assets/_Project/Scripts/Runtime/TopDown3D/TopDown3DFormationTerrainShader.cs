@@ -24,12 +24,17 @@ namespace BooterBigArm.TopDown3D
         internal static void Apply(TopDown3DGeneratedChunk chunk, TopDown3DWorldSettings settings,
             IReadOnlyList<Influence> nearby)
         {
+            foreach (var _ in ApplySteps(chunk, settings, nearby)) { }
+        }
+
+        internal static IEnumerable<int> ApplySteps(TopDown3DGeneratedChunk chunk,
+            TopDown3DWorldSettings settings, IReadOnlyList<Influence> nearby)
+        {
             var filter = chunk != null ? chunk.GetComponent<MeshFilter>() : null;
             var renderer = chunk != null ? chunk.GetComponent<MeshRenderer>() : null;
             if (filter == null || renderer == null || filter.sharedMesh == null
-                || renderer.sharedMaterial == null || !renderer.sharedMaterial.HasProperty("_PebbleDetail")) return;
+                || renderer.sharedMaterial == null || !renderer.sharedMaterial.HasProperty("_PebbleDetail")) yield break;
 
-            var mesh = filter.sharedMesh;
             var relevant = new List<Influence>();
             var chunkCenter = new Vector2(chunk.transform.position.x + settings.ChunkSize * 0.5f,
                 chunk.transform.position.z + settings.ChunkSize * 0.5f);
@@ -45,7 +50,7 @@ namespace BooterBigArm.TopDown3D
             // Streaming refreshes a neighborhood after each formation chunk arrives.
             // Existing chunks keep their mask and combined stones when their contributing
             // immutable plans have not changed. An origin shift moves both with the chunk.
-            if (chunk.HasFormationGroundFor(relevant)) return;
+            if (chunk.HasFormationGroundFor(relevant)) yield break;
             var properties = new MaterialPropertyBlock();
             renderer.GetPropertyBlock(properties);
             if (relevant.Count == 0)
@@ -57,13 +62,14 @@ namespace BooterBigArm.TopDown3D
                 renderer.SetPropertyBlock(properties);
                 chunk.SetFormationGroundStones(null, null);
                 chunk.RecordFormationGround(relevant);
-                return;
+                yield break;
             }
 
             var pixels = new Color32[MaskResolution * MaskResolution];
             var chunkOrigin = chunk.transform.position;
             var metersPerPixel = settings.ChunkSize / MaskResolution;
             for (var z = 0; z < MaskResolution; z++)
+            {
             for (var x = 0; x < MaskResolution; x++)
             {
                 var position = new Vector2(chunkOrigin.x + (x + 0.5f) * metersPerPixel,
@@ -105,6 +111,8 @@ namespace BooterBigArm.TopDown3D
                     (byte)Mathf.RoundToInt(Mathf.Clamp01(coverage) * 255f),
                     (byte)Mathf.RoundToInt(Mathf.Clamp01(sand) * 255f), 0, 255);
             }
+            yield return 0;
+            }
 
             // A fine mask avoids the terrain vertex grid and leaves UV2.y's existing sand
             // deposition information intact. The terrain mesh and collider are untouched.
@@ -128,8 +136,10 @@ namespace BooterBigArm.TopDown3D
             properties.SetFloat("_PebbleDetail", 0f);
             properties.SetFloat("_NearRockPebbleDensity", 0f);
             renderer.SetPropertyBlock(properties);
-            TopDown3DFormationSurfaceStones.Apply(chunk, settings, relevant);
+            foreach (var step in TopDown3DFormationSurfaceStones.ApplySteps(chunk, settings, relevant))
+                yield return step;
             chunk.RecordFormationGround(relevant);
+            yield return 0;
         }
 
         internal static void RepositionMask(TopDown3DGeneratedChunk chunk, TopDown3DWorldSettings settings)
@@ -154,12 +164,19 @@ namespace BooterBigArm.TopDown3D
         internal static void Apply(TopDown3DGeneratedChunk chunk, TopDown3DWorldSettings settings,
             IReadOnlyList<TopDown3DFormationTerrainShader.Influence> formations)
         {
+            foreach (var _ in ApplySteps(chunk, settings, formations)) { }
+        }
+
+        internal static IEnumerable<int> ApplySteps(TopDown3DGeneratedChunk chunk,
+            TopDown3DWorldSettings settings,
+            IReadOnlyList<TopDown3DFormationTerrainShader.Influence> formations)
+        {
             var terrain = chunk.GetComponent<MeshFilter>()?.sharedMesh;
             var catalog = settings.NaturalObjectCatalog;
             if (terrain == null || catalog == null)
             {
                 chunk.SetFormationGroundStones(null, null);
-                return;
+                yield break;
             }
             var vertices = terrain.vertices;
             var normals = terrain.normals;
@@ -181,6 +198,7 @@ namespace BooterBigArm.TopDown3D
                     bounds.center += new Vector3(influence.LocalShift.x, 0f, influence.LocalShift.y);
                     for (var attempt = 0; attempt < 9 && instances.Count < MaximumStonesPerChunk; attempt++)
                     {
+                        yield return 0;
                         var seed = Hash(formation.StableId + ":stone:" + member.StableId + ":" + attempt);
                         if (Unit(seed ^ 7171) > formation.AuthoredTemplate.SurfaceTreatment.GroundClutter * 0.85f)
                             continue;
@@ -255,7 +273,7 @@ namespace BooterBigArm.TopDown3D
             if (instances.Count == 0 || material == null)
             {
                 chunk.SetFormationGroundStones(null, null);
-                return;
+                yield break;
             }
             var combined = new Mesh
             {
@@ -265,6 +283,7 @@ namespace BooterBigArm.TopDown3D
             combined.CombineMeshes(instances.ToArray(), true, true);
             chunk.SetFormationGroundStones(combined, material);
             chunk.RefreshDecorationCounts();
+            yield return 0;
         }
 
         private static bool TrySampleTerrain(Vector3[] vertices, Vector3[] normals, int[] triangles,

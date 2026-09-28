@@ -106,6 +106,85 @@ namespace BooterBigArm.TopDown3D
                     new List<TopDown3DResourceNodePlacement>());
             }
 
+            BuildCosmeticPlacements(settings, generator, catalog, chunkCoordinate,
+                spawnExclusionCenter, placements);
+            var formations = TopDown3DGeologicalRockAdapter.BuildPhysicalFormations(
+                settings,
+                generator,
+                catalog,
+                chunkCoordinate,
+                spawnExclusionCenter);
+            var resources = TopDown3DResourceNodePlanner.BuildChunkPlacements(
+                settings,
+                generator,
+                settings.ResourceCatalog,
+                chunkCoordinate,
+                spawnExclusionCenter,
+                formations);
+            return new TopDown3DNaturalObjectChunkPlan(placements, formations, resources);
+        }
+
+        internal sealed class Work
+        {
+            private readonly TopDown3DWorldSettings settings;
+            private readonly TopDown3DWorldGenerator generator;
+            private readonly TopDown3DNaturalObjectCatalog catalog;
+            private readonly Vector2Int coordinate;
+            private readonly Vector2 spawnExclusionCenter;
+            private readonly List<TopDown3DNaturalObjectPlacement> placements =
+                new List<TopDown3DNaturalObjectPlacement>();
+            private TopDown3DGeologicalRockAdapter.Work formations;
+            private int stage;
+            internal TopDown3DNaturalObjectChunkPlan Result { get; private set; }
+            internal bool IsComplete => stage == 3;
+
+            internal Work(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,
+                TopDown3DNaturalObjectCatalog catalog, Vector2Int coordinate,
+                Vector2 spawnExclusionCenter)
+            {
+                this.settings = settings;
+                this.generator = generator;
+                this.catalog = catalog;
+                this.coordinate = coordinate;
+                this.spawnExclusionCenter = spawnExclusionCenter;
+            }
+
+            internal void Step()
+            {
+                if (IsComplete) return;
+                if (stage == 0)
+                {
+                    if (settings != null && catalog != null)
+                        BuildCosmeticPlacements(settings, generator, catalog, coordinate,
+                            spawnExclusionCenter, placements);
+                    formations = new TopDown3DGeologicalRockAdapter.Work(settings, generator,
+                        catalog, coordinate, spawnExclusionCenter);
+                    stage = 1;
+                }
+                else if (stage == 1)
+                {
+                    formations.Step();
+                    if (formations.IsComplete) stage = 2;
+                }
+                else
+                {
+                    var resources = settings != null && catalog != null
+                        ? TopDown3DResourceNodePlanner.BuildChunkPlacements(settings, generator,
+                            settings.ResourceCatalog, coordinate, spawnExclusionCenter, formations.Output)
+                        : new List<TopDown3DResourceNodePlacement>();
+                    Result = new TopDown3DNaturalObjectChunkPlan(placements, formations.Output, resources);
+                    stage = 3;
+                }
+            }
+
+            internal void Dispose() => formations?.Dispose();
+        }
+
+        private static void BuildCosmeticPlacements(TopDown3DWorldSettings settings,
+            TopDown3DWorldGenerator generator, TopDown3DNaturalObjectCatalog catalog,
+            Vector2Int chunkCoordinate, Vector2 spawnExclusionCenter,
+            List<TopDown3DNaturalObjectPlacement> placements)
+        {
             BuildLayer(
                 settings,
                 generator,
@@ -156,20 +235,6 @@ namespace BooterBigArm.TopDown3D
                 3.2f,
                 true,
                 placements);
-            var formations = TopDown3DGeologicalRockAdapter.BuildPhysicalFormations(
-                settings,
-                generator,
-                catalog,
-                chunkCoordinate,
-                spawnExclusionCenter);
-            var resources = TopDown3DResourceNodePlanner.BuildChunkPlacements(
-                settings,
-                generator,
-                settings.ResourceCatalog,
-                chunkCoordinate,
-                spawnExclusionCenter,
-                formations);
-            return new TopDown3DNaturalObjectChunkPlan(placements, formations, resources);
         }
 
         private static void BuildLayer(

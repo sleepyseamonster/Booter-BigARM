@@ -165,11 +165,22 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             AbsoluteWorldPosition protectedCenter,
             double protectedRadius)
         {
+            IReadOnlyList<WorldRockFormationPlan> result = null;
+            foreach (var _ in PlanOwnerAreaSteps(minimumA, minimumB, spanA, spanB,
+                protectedCenter, protectedRadius, plans => result = plans)) { }
+            return result;
+        }
+
+        internal IEnumerable<int> PlanOwnerAreaSteps(
+            double minimumA, double minimumB, double spanA, double spanB,
+            AbsoluteWorldPosition protectedCenter, double protectedRadius,
+            Action<IReadOnlyList<WorldRockFormationPlan>> completed)
+        {
             if (!(spanA > 0d) || !(spanB > 0d) || protectedRadius < 0d)
                 throw new ArgumentOutOfRangeException(nameof(spanA));
 
             var output = new List<WorldRockFormationPlan>(4);
-            PlanLattice(
+            foreach (var step in PlanLatticeSteps(
                 minimumA,
                 minimumB,
                 spanA,
@@ -178,8 +189,8 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 protectedRadius,
                 WorldRockReservationScale.LandformAnchor,
                 LandformReservationSpan,
-                output);
-            PlanLattice(
+                output)) yield return step;
+            foreach (var step in PlanLatticeSteps(
                 minimumA,
                 minimumB,
                 spanA,
@@ -188,12 +199,12 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 protectedRadius,
                 WorldRockReservationScale.Formation,
                 FormationReservationSpan,
-                output);
+                output)) yield return step;
             output.Sort((left, right) => left.Id.CompareTo(right.Id));
-            return output.AsReadOnly();
+            completed(output.AsReadOnly());
         }
 
-        private void PlanLattice(
+        private IEnumerable<int> PlanLatticeSteps(
             double minimumA,
             double minimumB,
             double spanA,
@@ -214,19 +225,17 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             {
                 for (var cellA = minCellA; cellA <= maxCellA; cellA++)
                 {
-                    if (!TryPlanReservation(cellA, cellB, scale, reservationSpan, out var plan))
-                        continue;
-                    if (plan.Center.HorizontalA < minimumA || plan.Center.HorizontalA >= maximumA
-                        || plan.Center.HorizontalB < minimumB || plan.Center.HorizontalB >= maximumB)
-                        continue;
-                    var deltaA = plan.Center.HorizontalA - protectedCenter.HorizontalA;
-                    var deltaB = plan.Center.HorizontalB - protectedCenter.HorizontalB;
-                    if (deltaA * deltaA + deltaB * deltaB < protectedRadius * protectedRadius)
-                        continue;
-                    if (scale == WorldRockReservationScale.Formation
-                        && IsInsideAnchorReservation(plan.Center))
-                        continue;
-                    output.Add(plan);
+                    if (TryPlanReservation(cellA, cellB, scale, reservationSpan, out var plan)
+                        && plan.Center.HorizontalA >= minimumA && plan.Center.HorizontalA < maximumA
+                        && plan.Center.HorizontalB >= minimumB && plan.Center.HorizontalB < maximumB)
+                    {
+                        var deltaA = plan.Center.HorizontalA - protectedCenter.HorizontalA;
+                        var deltaB = plan.Center.HorizontalB - protectedCenter.HorizontalB;
+                        if (deltaA * deltaA + deltaB * deltaB >= protectedRadius * protectedRadius
+                            && (scale != WorldRockReservationScale.Formation
+                                || !IsInsideAnchorReservation(plan.Center))) output.Add(plan);
+                    }
+                    yield return 0;
                 }
             }
         }

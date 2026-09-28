@@ -44,6 +44,14 @@ namespace BooterBigArm.Tests
             try
             {
                 var chunk = chunkObject.AddComponent<TopDown3DGeneratedChunk>();
+                using (var partial = TopDown3DNaturalObjectDecorator.DecorateSteps(
+                    chunk, settings, material, plan).GetEnumerator())
+                {
+                    Assert.That(partial.MoveNext(), Is.True);
+                    Assert.That(chunk.DecorationRoot.GetChild(0).gameObject.activeSelf, Is.False,
+                        "An unfinished streamed formation must stay hidden.");
+                }
+                chunk.ClearDecoration();
                 TopDown3DNaturalObjectDecorator.Decorate(chunk, settings, material, plan);
                 var root = chunk.DecorationRoot.GetChild(0);
                 var groups = root.GetComponentsInChildren<LODGroup>(true);
@@ -170,7 +178,11 @@ namespace BooterBigArm.Tests
                 leftRenderer.sharedMaterial = groundMaterial;
                 rightRenderer.sharedMaterial = groundMaterial;
                 TopDown3DFormationTerrainShader.Apply(left, settings, influence);
-                TopDown3DFormationTerrainShader.Apply(right, settings, influence);
+                var groundSteps = 0;
+                foreach (var _ in TopDown3DFormationTerrainShader.ApplySteps(right, settings, influence))
+                    groundSteps++;
+                Assert.That(groundSteps, Is.GreaterThanOrEqualTo(64),
+                    "The streamed ground mask must yield between texture rows.");
                 var leftProperties = new MaterialPropertyBlock();
                 var rightProperties = new MaterialPropertyBlock();
                 leftRenderer.GetPropertyBlock(leftProperties);

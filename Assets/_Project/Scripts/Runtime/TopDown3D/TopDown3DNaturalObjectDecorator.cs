@@ -13,10 +13,6 @@ namespace BooterBigArm.TopDown3D
         private const float AuthoredLod1ScreenHeight = 0.025f;
         private const float AuthoredLod2ScreenHeight = 0.002f;
 
-        private static readonly ProfilerMarker DecorateMarker =
-            new ProfilerMarker("TopDown3D.World.DecorateNaturalObjects");
-        private static readonly ProfilerMarker BuildFormationMarker =
-            new ProfilerMarker("TopDown3D.World.PrepareRockFormation");
         private static readonly ProfilerMarker BuildCombinedLayerMarker =
             new ProfilerMarker("TopDown3D.World.BuildCombinedNaturalLayer");
         private static readonly int GroundHeightId = Shader.PropertyToID("_GroundHeight");
@@ -37,7 +33,16 @@ namespace BooterBigArm.TopDown3D
             Material material,
             TopDown3DNaturalObjectChunkPlan plan)
         {
-            using (DecorateMarker.Auto())
+            foreach (var _ in DecorateSteps(chunk, settings, material, plan)) { }
+        }
+
+        internal static IEnumerable<int> DecorateSteps(
+            TopDown3DGeneratedChunk chunk,
+            TopDown3DWorldSettings settings,
+            Material material,
+            TopDown3DNaturalObjectChunkPlan plan)
+        {
+            // The iterator spans frames; a profiler sample cannot span its yields.
             {
                 if (chunk == null
                     || settings == null
@@ -45,7 +50,7 @@ namespace BooterBigArm.TopDown3D
                     || plan == null
                     || settings.NaturalObjectCatalog == null)
                 {
-                    return;
+                    yield break;
                 }
 
                 var scatter = CreateSurfaceBuckets((settings.ScatterObjectsPerChunk + 2) / 3);
@@ -72,13 +77,13 @@ namespace BooterBigArm.TopDown3D
                 for (var i = 0; i < plan.PhysicalFormations.Count; i++)
                 {
                     var formation = plan.PhysicalFormations[i];
-                    CreateFormation(
+                    foreach (var step in CreateFormationSteps(
                         chunk,
                         settings.NaturalObjectCatalog,
                         ResolveRockMaterial(settings, material, formation.Surface),
                         formation,
                         settings,
-                        i + 1);
+                        i + 1)) yield return step;
                 }
 
                 for (var surfaceIndex = 0; surfaceIndex < RockSurfaceCount; surfaceIndex++)
@@ -93,6 +98,7 @@ namespace BooterBigArm.TopDown3D
                         scatter[surfaceIndex],
                         $"Natural Scatter - {surfaceName}",
                         ShadowCastingMode.On);
+                    yield return 0;
                     CreateCombinedLayer(
                         chunk,
                         settings.NaturalObjectCatalog,
@@ -100,6 +106,7 @@ namespace BooterBigArm.TopDown3D
                         details[surfaceIndex],
                         $"Ground Micro Detail - {surfaceName}",
                         ShadowCastingMode.Off);
+                    yield return 0;
                 }
 
                 CreateCombinedLayer(
@@ -109,10 +116,11 @@ namespace BooterBigArm.TopDown3D
                     fineGrayClusters,
                     "Fine Gray Ground Clusters",
                     ShadowCastingMode.Off);
+                yield return 0;
             }
         }
 
-        private static void CreateFormation(
+        private static IEnumerable<int> CreateFormationSteps(
             TopDown3DGeneratedChunk chunk,
             TopDown3DNaturalObjectCatalog catalog,
             Material material,
@@ -120,16 +128,17 @@ namespace BooterBigArm.TopDown3D
             TopDown3DWorldSettings settings,
             int index)
         {
-            using (BuildFormationMarker.Auto())
+            // Each member is a resumable unit of streaming work.
             {
                 if (formation.Members.Count == 0)
                 {
-                    return;
+                    yield break;
                 }
 
                 var root = new GameObject(
                     $"{GetTierName(formation.Members[0].Tier)} Rock Formation {index} - {formation.StableId}");
                 root.transform.SetParent(chunk.DecorationRoot, false);
+                root.SetActive(false);
                 var authoredLods = formation.Members[0].AuthoredFamily != null
                     ? new[] { new List<Renderer>(), new List<Renderer>(), new List<Renderer>() }
                     : null;
@@ -173,6 +182,7 @@ namespace BooterBigArm.TopDown3D
                             }
                         }
                     }
+                    yield return 0;
                 }
 
                 if (authoredLods != null)
@@ -189,6 +199,8 @@ namespace BooterBigArm.TopDown3D
                 else
                     CreateFormationLods(chunk, root, catalog, material, formation);
                 root.AddComponent<TopDown3DTraversalObstacle>();
+                root.SetActive(true);
+                yield return 0;
             }
         }
 

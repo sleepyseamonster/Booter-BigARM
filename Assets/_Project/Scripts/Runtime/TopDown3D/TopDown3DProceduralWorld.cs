@@ -26,6 +26,10 @@ namespace BooterBigArm.TopDown3D
             new ProfilerMarker("TopDown3D.World.DecorateChunk");
         private static readonly ProfilerMarker PlanNaturalObjectsMarker =
             new ProfilerMarker("TopDown3D.World.PlanNaturalObjects");
+        private static readonly ProfilerMarker DecorateNaturalObjectsMarker =
+            new ProfilerMarker("TopDown3D.World.DecorateNaturalObjects");
+        private static readonly ProfilerMarker DecorateResourceNodesMarker =
+            new ProfilerMarker("TopDown3D.World.DecorateResourceNodes");
 
         [SerializeField] private TopDown3DWorldSettings settings;
         [SerializeField] private Transform streamingTarget;
@@ -40,6 +44,20 @@ namespace BooterBigArm.TopDown3D
         private readonly Queue<Vector2Int> pendingDecorations = new Queue<Vector2Int>();
         private readonly HashSet<Vector2Int> queuedDecorations = new HashSet<Vector2Int>();
         private readonly HashSet<Vector2Int> decoratedChunks = new HashSet<Vector2Int>();
+        private readonly Queue<Vector2Int> pendingFormationRefreshes = new Queue<Vector2Int>();
+        private readonly HashSet<Vector2Int> queuedFormationRefreshes = new HashSet<Vector2Int>();
+        private IEnumerator<int> activeFormationRefresh;
+        private Vector2Int activeFormationRefreshCoordinate;
+        private long activeFormationRefreshToken;
+        private bool activeFormationRefreshInvalidated;
+        private TopDown3DNaturalObjectPlanner.Work activeDecorationPlan;
+        private TopDown3DNaturalObjectChunkPlan activeChunkPlan;
+        private IEnumerator<int> activeNaturalObjects;
+        private IEnumerator<int> activeResources;
+        private Vector2Int activeDecorationCoordinate;
+        private long activeDecorationToken;
+        private AbsoluteWorldPosition activeDecorationOrigin;
+        private int activeDecorationStage;
         private readonly Dictionary<Vector2Int, (IReadOnlyList<TopDown3DRockFormationPlan> plans,
             AbsoluteWorldPosition origin)> formationTreatments =
             new Dictionary<Vector2Int, (IReadOnlyList<TopDown3DRockFormationPlan>, AbsoluteWorldPosition)>();
@@ -121,7 +139,9 @@ namespace BooterBigArm.TopDown3D
         public int PendingTerrainChunkCount => Mathf.Max(0, pendingChunks.Count - pendingChunkCursor)
             + terrainRequests.Count;
         public int PendingTerrainColliderCount => queuedTerrainColliders.Count;
-        public int PendingDecorationCount => queuedDecorations.Count;
+        public int PendingDecorationCount => queuedDecorations.Count
+            + (activeDecorationStage != 0 ? 1 : 0) + queuedFormationRefreshes.Count
+            + (activeFormationRefresh != null ? 1 : 0);
         public int DecoratedChunkCount => decoratedChunks.Count;
         public int TerrainRendererCount => loadedChunks.Count;
         public int TerrainColliderCount => CountEnabledTerrainColliders();
@@ -272,10 +292,6 @@ namespace BooterBigArm.TopDown3D
                         pendingChunks.RemoveAt(i);
                     }
 
-                    if (EffectiveDecorationStreamingRadius > 0)
-                    {
-                        DecorateChunkImmediately(center);
-                    }
                 }
 
                 unloadBuffer.Clear();
@@ -297,7 +313,9 @@ namespace BooterBigArm.TopDown3D
                     }
 
                     loadedChunks.Remove(coordinate);
-                    if (formationTreatments.Remove(coordinate)) RefreshFormationTerrainNear(coordinate);
+                    if (activeDecorationStage != 0 && activeDecorationCoordinate == coordinate)
+                        CancelActiveDecoration(false);
+                    if (formationTreatments.Remove(coordinate)) QueueFormationTerrainNear(coordinate);
                     terrainRequests.Remove(coordinate);
                     decoratedChunks.Remove(coordinate);
                     queuedDecorations.Remove(coordinate);
@@ -322,12 +340,17 @@ namespace BooterBigArm.TopDown3D
                     }
 
                     decoratedChunks.Remove(coordinate);
-                    if (formationTreatments.Remove(coordinate)) RefreshFormationTerrainNear(coordinate);
-                    else RefreshFormationTerrainForChunk(coordinate);
+                    if (activeDecorationStage != 0 && activeDecorationCoordinate == coordinate)
+                        CancelActiveDecoration(false);
+                    if (formationTreatments.Remove(coordinate)) QueueFormationTerrainNear(coordinate);
+                    else QueueFormationTerrainRefresh(coordinate);
                     queuedDecorations.Remove(coordinate);
                 }
 
                 RefreshTerrainCollisionStreaming();
+                if (activeDecorationStage != 0
+                    && !requiredDecoratedChunks.Contains(activeDecorationCoordinate))
+                    CancelActiveDecoration(false);
             }
         }
 
@@ -335,12 +358,15 @@ namespace BooterBigArm.TopDown3D
         {
             using (ProcessPendingChunksMarker.Auto())
             {
-                var count = Mathf.Max(0, budget);
+                // Planning yields after surface samples and decoration after rock members.
+                // Allow many small steps, but stop as soon as the frame's time is spent.
+                var count = Mathf.Max(0, budget * 128);
                 var startedAt = Time.realtimeSinceStartupAsDouble;
                 for (var i = 0; i < count; i++)
                 {
                     if (!TryCreatePendingTerrainCollider()
                         && !TryIntegrateRequestedTerrain()
+                        && !TryRefreshPendingFormationTerrain()
                         && !TryProcessDecoration())
                     {
                         if (pendingChunkCursor >= pendingChunks.Count)
@@ -542,7 +568,7 @@ namespace BooterBigArm.TopDown3D
                 var chunk = chunkObject.AddComponent<TopDown3DGeneratedChunk>();
                 chunk.Initialize(coordinate, mesh);
                 loadedChunks.Add(coordinate, chunk);
-                RefreshFormationTerrainForChunk(coordinate);
+                QueueFormationTerrainRefresh(coordinate);
                 QueueTerrainCollider(coordinate);
                 if (requiredDecoratedChunks.Contains(coordinate))
                 {
@@ -637,7 +663,9 @@ namespace BooterBigArm.TopDown3D
 
         private void EnqueueDecoration(Vector2Int coordinate)
         {
-            if (decoratedChunks.Contains(coordinate) || !queuedDecorations.Add(coordinate))
+            if (decoratedChunks.Contains(coordinate)
+                || (activeDecorationStage != 0 && activeDecorationCoordinate == coordinate)
+                || !queuedDecorations.Add(coordinate))
             {
                 return;
             }
@@ -647,91 +675,173 @@ namespace BooterBigArm.TopDown3D
 
         private bool TryProcessDecoration()
         {
-            while (pendingDecorations.Count > 0)
+            if (activeDecorationStage == 0)
             {
-                var coordinate = pendingDecorations.Dequeue();
-                if (!queuedDecorations.Remove(coordinate)
-                    || decoratedChunks.Contains(coordinate)
-                    || !requiredDecoratedChunks.Contains(coordinate)
-                    || !loadedChunks.TryGetValue(coordinate, out var chunk)
-                    || chunk == null)
+                if (pendingDecorations.Count > 1)
                 {
-                    continue;
+                    var nearestFirst = new List<Vector2Int>(pendingDecorations);
+                    nearestFirst.Sort(ComparePendingChunks);
+                    pendingDecorations.Clear();
+                    foreach (var coordinate in nearestFirst) pendingDecorations.Enqueue(coordinate);
                 }
-
-                DecorateChunk(chunk);
-                decoratedChunks.Add(coordinate);
+                while (pendingDecorations.Count > 0)
+                {
+                    var coordinate = pendingDecorations.Dequeue();
+                    if (!queuedDecorations.Remove(coordinate)
+                        || decoratedChunks.Contains(coordinate)
+                        || !requiredDecoratedChunks.Contains(coordinate)
+                        || !loadedChunks.TryGetValue(coordinate, out var chunk)
+                        || chunk == null) continue;
+                    activeDecorationCoordinate = coordinate;
+                    activeDecorationToken = chunk.GenerationToken;
+                    activeDecorationOrigin = worldCreatorRuntime.CurrentFrame.OriginPosition;
+                    activeDecorationPlan = new TopDown3DNaturalObjectPlanner.Work(settings,
+                        worldGenerator, settings.NaturalObjectCatalog, coordinate, spawnExclusionCenter);
+                    activeDecorationStage = 1;
+                    break;
+                }
+            }
+            if (activeDecorationStage == 0) return false;
+            if (!requiredDecoratedChunks.Contains(activeDecorationCoordinate)
+                || !loadedChunks.TryGetValue(activeDecorationCoordinate, out var activeChunk)
+                || activeChunk == null || activeChunk.GenerationToken != activeDecorationToken
+                || !activeDecorationOrigin.Equals(worldCreatorRuntime.CurrentFrame.OriginPosition))
+            {
+                CancelActiveDecoration(requiredDecoratedChunks.Contains(activeDecorationCoordinate));
                 return true;
             }
 
-            return false;
-        }
-
-        private void DecorateChunkImmediately(Vector2Int coordinate)
-        {
-            queuedDecorations.Remove(coordinate);
-            if (decoratedChunks.Contains(coordinate)
-                || !loadedChunks.TryGetValue(coordinate, out var chunk)
-                || chunk == null)
-            {
-                return;
-            }
-
-            DecorateChunk(chunk);
-            decoratedChunks.Add(coordinate);
-        }
-
-        private void DecorateChunk(TopDown3DGeneratedChunk chunk)
-        {
             using (DecorateChunkMarker.Auto())
             {
-                TopDown3DNaturalObjectChunkPlan plan;
-                using (PlanNaturalObjectsMarker.Auto())
+                if (activeDecorationStage == 1)
                 {
-                    plan = TopDown3DNaturalObjectPlanner.BuildChunkPlan(
-                        settings,
-                        worldGenerator,
-                        settings.NaturalObjectCatalog,
-                        chunk.Coordinate,
-                        spawnExclusionCenter);
+                    using (PlanNaturalObjectsMarker.Auto()) activeDecorationPlan.Step();
+                    if (activeDecorationPlan.IsComplete)
+                    {
+                        activeChunkPlan = activeDecorationPlan.Result;
+                        activeDecorationPlan = null;
+                        activeNaturalObjects = TopDown3DNaturalObjectDecorator.DecorateSteps(
+                            activeChunk, settings, propMaterial, activeChunkPlan).GetEnumerator();
+                        activeDecorationStage = 2;
+                    }
                 }
-
-                TopDown3DNaturalObjectDecorator.Decorate(
-                    chunk,
-                    settings,
-                    propMaterial,
-                    plan);
-                if (plan.PhysicalFormations.Count > 0)
+                else if (activeDecorationStage == 2)
                 {
-                    formationTreatments[chunk.Coordinate] = (plan.PhysicalFormations,
-                        worldCreatorRuntime.CurrentFrame.OriginPosition);
-                    RefreshFormationTerrainNear(chunk.Coordinate);
+                    bool hasMore;
+                    using (DecorateNaturalObjectsMarker.Auto()) hasMore = activeNaturalObjects.MoveNext();
+                    if (!hasMore)
+                    {
+                        activeNaturalObjects.Dispose();
+                        activeNaturalObjects = null;
+                        if (activeChunkPlan.PhysicalFormations.Count > 0)
+                        {
+                            formationTreatments[activeDecorationCoordinate] =
+                                (activeChunkPlan.PhysicalFormations, activeDecorationOrigin);
+                            QueueFormationTerrainNear(activeDecorationCoordinate);
+                        }
+                        activeResources = TopDown3DResourceNodeDecorator.DecorateSteps(
+                            activeChunk, settings, activeChunkPlan, resourceWorldState).GetEnumerator();
+                        activeDecorationStage = 3;
+                    }
                 }
-                TopDown3DResourceNodeDecorator.Decorate(
-                    chunk,
-                    settings,
-                    plan,
-                    resourceWorldState);
-                TopDown3DDustDepositionDecorator.Decorate(
-                    chunk,
-                    settings,
-                    worldGenerator,
-                    groundMaterial,
-                    spawnExclusionCenter);
-                chunk.RefreshDecorationCounts();
+                else if (activeDecorationStage == 3)
+                {
+                    bool hasMore;
+                    using (DecorateResourceNodesMarker.Auto()) hasMore = activeResources.MoveNext();
+                    if (!hasMore)
+                    {
+                        activeResources.Dispose();
+                        activeResources = null;
+                        activeDecorationStage = 4;
+                    }
+                }
+                else
+                {
+                    TopDown3DDustDepositionDecorator.Decorate(activeChunk, settings,
+                        worldGenerator, groundMaterial, spawnExclusionCenter);
+                    activeChunk.RefreshDecorationCounts();
+                    decoratedChunks.Add(activeDecorationCoordinate);
+                    activeDecorationStage = 0;
+                    activeChunkPlan = null;
+                }
             }
+            return true;
         }
 
-        private void RefreshFormationTerrainNear(Vector2Int center)
+        private void CancelActiveDecoration(bool retry)
+        {
+            if (activeDecorationStage == 0) return;
+            var coordinate = activeDecorationCoordinate;
+            var createdObjects = activeDecorationStage >= 2;
+            activeNaturalObjects?.Dispose();
+            activeResources?.Dispose();
+            activeDecorationPlan?.Dispose();
+            activeNaturalObjects = null;
+            activeResources = null;
+            activeDecorationPlan = null;
+            activeChunkPlan = null;
+            activeDecorationStage = 0;
+            if (createdObjects && loadedChunks.TryGetValue(coordinate, out var chunk)
+                && chunk != null && chunk.GenerationToken == activeDecorationToken)
+            {
+                chunk.ClearDecoration();
+                QueueFormationTerrainRefresh(coordinate);
+            }
+            if (formationTreatments.Remove(coordinate)) QueueFormationTerrainNear(coordinate);
+            if (retry && requiredDecoratedChunks.Contains(coordinate)) EnqueueDecoration(coordinate);
+        }
+
+        private void QueueFormationTerrainNear(Vector2Int center)
         {
             foreach (var pair in loadedChunks)
                 if (ChebyshevDistance(pair.Key, center) <= 3)
-                    RefreshFormationTerrainForChunk(pair.Key);
+                    QueueFormationTerrainRefresh(pair.Key);
         }
 
-        private void RefreshFormationTerrainForChunk(Vector2Int coordinate)
+        private void QueueFormationTerrainRefresh(Vector2Int coordinate)
         {
-            if (!loadedChunks.TryGetValue(coordinate, out var chunk) || chunk == null) return;
+            if (activeFormationRefresh != null && activeFormationRefreshCoordinate == coordinate)
+                activeFormationRefreshInvalidated = true;
+            if (queuedFormationRefreshes.Add(coordinate)) pendingFormationRefreshes.Enqueue(coordinate);
+        }
+
+        private bool TryRefreshPendingFormationTerrain()
+        {
+            if (activeFormationRefresh != null)
+            {
+                if (activeFormationRefreshInvalidated
+                    || !loadedChunks.TryGetValue(activeFormationRefreshCoordinate, out var current)
+                    || current == null || current.GenerationToken != activeFormationRefreshToken)
+                {
+                    activeFormationRefresh.Dispose();
+                    activeFormationRefresh = null;
+                    activeFormationRefreshInvalidated = false;
+                    return true;
+                }
+                if (!activeFormationRefresh.MoveNext())
+                {
+                    activeFormationRefresh.Dispose();
+                    activeFormationRefresh = null;
+                }
+                return true;
+            }
+            while (pendingFormationRefreshes.Count > 0)
+            {
+                var coordinate = pendingFormationRefreshes.Dequeue();
+                if (!queuedFormationRefreshes.Remove(coordinate)
+                    || !loadedChunks.TryGetValue(coordinate, out var chunk)
+                    || chunk == null) continue;
+                activeFormationRefreshCoordinate = coordinate;
+                activeFormationRefreshToken = chunk.GenerationToken;
+                activeFormationRefresh = RefreshFormationTerrainForChunkSteps(coordinate).GetEnumerator();
+                return true;
+            }
+            return false;
+        }
+
+        private IEnumerable<int> RefreshFormationTerrainForChunkSteps(Vector2Int coordinate)
+        {
+            if (!loadedChunks.TryGetValue(coordinate, out var chunk) || chunk == null) yield break;
             var nearby = new List<TopDown3DFormationTerrainShader.Influence>();
             var currentOrigin = worldCreatorRuntime.CurrentFrame.OriginPosition;
             foreach (var pair in formationTreatments)
@@ -743,7 +853,8 @@ namespace BooterBigArm.TopDown3D
                 foreach (var formation in pair.Value.plans)
                     nearby.Add(new TopDown3DFormationTerrainShader.Influence(formation, shift));
             }
-            TopDown3DFormationTerrainShader.Apply(chunk, settings, nearby);
+            foreach (var step in TopDown3DFormationTerrainShader.ApplySteps(chunk, settings, nearby))
+                yield return step;
         }
 
         private int SumDecorationRenderers()
@@ -891,6 +1002,15 @@ namespace BooterBigArm.TopDown3D
 
         private void RepositionLoadedChunks()
         {
+            // A plan stores local-frame positions and must be restarted after a rebase.
+            if (activeDecorationStage != 0) CancelActiveDecoration(true);
+            if (activeFormationRefresh != null)
+            {
+                activeFormationRefresh.Dispose();
+                activeFormationRefresh = null;
+                activeFormationRefreshInvalidated = false;
+                QueueFormationTerrainRefresh(activeFormationRefreshCoordinate);
+            }
             foreach (var pair in loadedChunks)
             {
                 var key = worldCreatorRuntime.CreateRepresentationKey(
@@ -909,6 +1029,9 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDestroy()
         {
+            CancelActiveDecoration(false);
+            activeFormationRefresh?.Dispose();
+            activeFormationRefresh = null;
             ResumeStreamingTargetAfterInitialTerrain();
             farLandscape?.Dispose();
             farLandscape = null;
