@@ -34,6 +34,7 @@ namespace BooterBigArm.Tests
             Assert.That(first.Count, Is.GreaterThan(0));
             Assert.That(second.Count, Is.EqualTo(first.Count));
             var ids = new HashSet<string>();
+            var generator = new TopDown3DWorldGenerator(settings);
             var selectedTemplates = new HashSet<TopDown3DAuthoredFormationAsset>();
             var foundAuthoredMixedFormation = false;
             for (var i = 0; i < first.Count; i++)
@@ -61,6 +62,14 @@ namespace BooterBigArm.Tests
                     Assert.That(second[i].Members[memberIndex].AuthoredFamily,
                         Is.SameAs(first[i].Members[memberIndex].AuthoredFamily));
                     Assert.That(first[i].Members[memberIndex].AuthoredMaterial, Is.Not.Null);
+                    var member = first[i].Members[memberIndex];
+                    var center = member.WorldBounds.center;
+                    var absolute = generator.ToAbsolute(center.x, 0f, center.z);
+                    Assert.That(generator.Authority.Query.TrySampleSurface(
+                        absolute, out var surface, out var error), Is.True, error);
+                    Assert.That(generator.TryToLocal(surface.Position, out var local), Is.True);
+                    Assert.That(member.GroundHeight, Is.EqualTo(local.Y).Within(0.001f),
+                        "Formation ground treatment must use the fitted rock footprint.");
                 }
             }
 

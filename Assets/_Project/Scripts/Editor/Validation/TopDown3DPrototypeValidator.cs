@@ -154,9 +154,6 @@ namespace BooterBigArm.Editor
                 || settings.RockContactBandMaterial.shader.name !=
                     "BooterBigArm/TopDown3D/Rock Contact Sand Band")
                 errors.Add("World formations require the approved rock contact sand band shader material.");
-            if (settings.MixedGroundPebbleAlbedo == null || settings.MixedGroundPebbleHeight == null
-                || settings.NearRockPebbleAlbedo == null || settings.NearRockPebbleHeight == null)
-                errors.Add("World formations require both workbench pebble shader texture pairs.");
             if (settings.GenerateDepositedDust)
                 errors.Add("The broad deposited-dust field must remain disabled for the current world look.");
 

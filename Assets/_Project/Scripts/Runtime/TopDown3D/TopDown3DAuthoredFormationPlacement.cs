@@ -37,7 +37,6 @@ namespace BooterBigArm.TopDown3D
                 * Matrix4x4.Translate(-pivot);
             var contacts = new List<TopDown3DRockGroundContact.Member>(stage.Count);
             var scales = new Vector3[stage.Count];
-            var groundHeights = new float[stage.Count];
             var cache = new Dictionary<Vector2, (float height, Vector3 normal)>();
             (float height, Vector3 normal) Surface(Vector3 point)
             {
@@ -82,7 +81,6 @@ namespace BooterBigArm.TopDown3D
                     var bounds = BoundsAt(selectedMesh.bounds, matrix);
                     contacts.Add(new TopDown3DRockGroundContact.Member(matrix.GetColumn(3), matrix.rotation,
                         bounds, vertices, memberSeed));
-                    groundHeights[i] = Surface(bounds.center).height;
                 }
                 var groundFit = template.SurfaceTreatment;
                 // Burial is authored in workbench meters. Scale it with the rock meshes so
@@ -108,7 +106,7 @@ namespace BooterBigArm.TopDown3D
                         reservation.Id + ":authored:" + entry.InstanceId, family.StableId,
                         TopDown3DRockSizeTier.Medium, family.Shape, 0, poses[i].Position,
                         poses[i].Rotation, scales[i], i, -1, radius, bounds, family, sourceMember.Material,
-                        groundHeights[i]);
+                        Surface(bounds.center).height);
                     if (i == 0) envelope = bounds; else envelope.Encapsulate(bounds);
                 }
                 var span = WorldRockFormationPlanner.FormationReservationSpan;

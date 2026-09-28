@@ -82,6 +82,34 @@ namespace BooterBigArm.Tests
                 Assert.That(choices, Is.EquivalentTo(new[] { 0, 1, 2, 3 }));
         }
 
+        [Test]
+        public void StreamedSpireShapesKeepSupportedMembersAfterShapeSelection()
+        {
+            var asset = AssetDatabase.LoadAssetAtPath<TopDown3DAuthoredFormationAsset>(
+                "Assets/_Project/Art/Environment/Rocks/Generated/HandbuiltSpire.asset");
+            Assert.That(asset, Is.Not.Null);
+            for (var seed = 0; seed < 2048; seed++)
+            {
+                var entries = TopDown3DAuthoredFormationPlacement.BuildProceduralStage(
+                    asset, "spire-support-audit:" + seed);
+                Assert.That(entries.Count, Is.GreaterThan(0));
+                var bounds = new Bounds[entries.Count];
+                for (var i = 0; i < entries.Count; i++)
+                {
+                    var source = entries[i].Family.Lod0.bounds;
+                    var pose = entries[i].LocalPose;
+                    bounds[i] = new Bounds(pose.MultiplyPoint3x4(source.center), Vector3.zero);
+                    for (var corner = 0; corner < 8; corner++)
+                        bounds[i].Encapsulate(pose.MultiplyPoint3x4(source.center + Vector3.Scale(
+                            source.extents, new Vector3((corner & 1) == 0 ? -1 : 1,
+                                (corner & 2) == 0 ? -1 : 1, (corner & 4) == 0 ? -1 : 1))));
+                }
+                var supported = TopDown3DAuthoredFormationVariation.SupportedMask(bounds);
+                Assert.That(supported, Is.All.True,
+                    "Baked shape selection left an unsupported spire member for seed " + seed);
+            }
+        }
+
         [TestCase("MixedPileScatter")]
         [TestCase("HandbuiltSpire")]
         public void StreamedFormationsUseTheSavedWorkbenchBurialProfile(string assetName)
