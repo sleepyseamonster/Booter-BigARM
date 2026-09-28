@@ -1,19 +1,35 @@
 # Terrain Cliff, Valley, and Debris Plan
 
-Status: procedural cliff rock formations implemented as a first runtime pass, 2026-09-28; the broader valley, debris, and final visual decisions remain proposed. This document records an audit and a preferred experiment. The current pass does not alter accepted terrain shapes, enable canyons in the first playable area, or change terrain/save authority.
+Status: a connected bedrock-face runtime pass is implemented, 2026-09-28; sparse vertical
+landforms, valley/debris integration and final visual decisions remain proposed. This
+document records the audit, rejected iterations and next proof. The current pass does not
+alter accepted terrain heights, enable canyons in the first playable area, or change save
+authority.
 
-Source-rock iteration, 2026-09-28: the earlier two broad catalog rocks are superseded by
+Connected-bedrock checkpoint, 2026-09-28: the disconnected three-to-seven-stone clusters
+shown in the user's screenshot have been removed from near-chunk cliff decoration. Sustained
+steep candidates now link only when their facing, tangent and rim/toe elevations agree; a
+reciprocal neighbor rule prevents branch-like joins. Each absolute owner emits a closed,
+faceted bedrock span whose buried back, crown, stepped front and buried toe share exact
+endpoint samples with adjacent spans. Runtime LOD0 and LOD1 meshes are chunk-owned; the
+low-detail closed mesh supplies static collision. The same light-gray rock material and
+surface settings apply. This is the first structural face proof, with no source-stone
+buttresses or talus yet. The canonical heightfield is unchanged, so sparse true-vertical
+landforms, upper/lower terrain cuts and matching distance representation remain the next
+separate topology step. Focused EditMode checks establish mesh endpoints, outward normal,
+LOD reduction and deterministic rebuild/rebase; appearance and contact remain unaccepted
+until an in-game view and traversal review.
+
+Superseded source-rock iteration, 2026-09-28: the earlier two broad catalog rocks were superseded by
 five runtime rock recipes baked from the user's `CliffWallSampleReference.prefab`, each with
-three LODs. The steep-section query remains the terrain authority. The decorator now packs
+three LODs. The steep-section query remained the terrain authority. That decorator packed
 three, five, or seven interleaved stones as sampled center slope crosses 43, 50, and 60 degrees.
-Heights follow the rim-to-toe drop while retaining the sample's nonuniform vertical stretch;
-source choice, offsets, scale, and tint derive from the world seed and absolute section owner.
-An absolute one-cell halo prevents neighboring chunks from independently selecting nearby
-sections. Static rocks regenerate on chunk reload; no rock state is written to a save. The
-sample wall itself is never stamped as one prefab. These are calibration thresholds and a
-bounded six-section chunk budget. Terrain geometry, climbing affordances, and debris remain
-unchanged. In-game appearance, physical contact, route clearance, and full-content frame cost
-still require review before treating this as the final cliff vocabulary.
+Their heights followed the rim-to-toe drop while retaining the sample's nonuniform vertical
+stretch; source choice, offsets, scale, and tint derived from the world seed and absolute
+section owner. An absolute one-cell halo prevented neighboring chunks from independently
+selecting nearby sections. Static rocks regenerated on chunk reload; no rock state was
+written to a save. The sample wall itself was never stamped as one prefab. This pass was
+rejected by the user after the game-camera view showed disconnected upright stones.
 
 ## Cohesive face correction and sparse vertical scarps, 2026-09-28
 

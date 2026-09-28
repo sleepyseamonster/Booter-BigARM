@@ -14,6 +14,37 @@ namespace BooterBigArm.Tests
             "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
 
         [Test]
+        public void BedrockSpanKeepsItsRimEndpointsAcrossLodsAndFacesOutward()
+        {
+            var firstRim = new Vector3(1.5f, 3f, 0f);
+            var firstToe = new Vector3(1.5f, 0f, 1f);
+            var lastRim = new Vector3(-1.5f, 3f, 0f);
+            var lastToe = new Vector3(-1.5f, 0f, 1f);
+            var outward = Vector3.forward;
+            var near = TopDown3DCliffFaceMeshBuilder.Build(firstRim, firstToe,
+                outward, lastRim, lastToe, outward, 7123, true);
+            var far = TopDown3DCliffFaceMeshBuilder.Build(firstRim, firstToe,
+                outward, lastRim, lastToe, outward, 7123, false);
+            try
+            {
+                var firstCrest = firstRim + outward * 0.18f + Vector3.up * 0.10f;
+                var lastCrest = lastRim + outward * 0.18f + Vector3.up * 0.10f;
+                Assert.That(near.vertices, Does.Contain(firstCrest));
+                Assert.That(near.vertices, Does.Contain(lastCrest));
+                Assert.That(far.vertices, Does.Contain(firstCrest));
+                Assert.That(far.vertices, Does.Contain(lastCrest));
+                Assert.That(near.triangles.Length, Is.GreaterThan(far.triangles.Length));
+                Assert.That(near.normals.Any(normal => normal.z > 0.7f), Is.True);
+                Assert.That(near.bounds.size.y, Is.GreaterThan(3f));
+            }
+            finally
+            {
+                Object.DestroyImmediate(near);
+                Object.DestroyImmediate(far);
+            }
+        }
+
+        [Test]
         public void SavedCliffSourceHasFiveBakedRockRecipesWithDescendingLods()
         {
             foreach (var recipe in new[] { "A", "B", "C", "D", "E" })
@@ -34,7 +65,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void SteepWorldChunkBuildsTheSamePhysicalRockFormationAfterReload()
+        public void SteepWorldChunkBuildsTheSameClosedBedrockFacesAfterReload()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(SettingsPath);
             Assert.That(settings, Is.Not.Null);
@@ -47,17 +78,19 @@ namespace BooterBigArm.Tests
             var rebased = Build(coordinate, settings, runtime);
             try
             {
-                Assert.That(first.rocks.Length, Is.GreaterThanOrEqualTo(3));
+                Assert.That(first.rocks.Length, Is.GreaterThan(0));
                 Assert.That(first.rocks, Is.EqualTo(second.rocks));
                 Assert.That(first.rocks, Is.EqualTo(rebased.rocks));
-                Assert.That(first.chunk.GetComponentsInChildren<BoxCollider>().Length,
+                Assert.That(first.chunk.GetComponentsInChildren<MeshCollider>().Length,
                     Is.EqualTo(first.rocks.Length));
                 Assert.That(first.chunk.GetComponentsInChildren<LODGroup>().Length,
                     Is.EqualTo(first.rocks.Length));
                 Assert.That(first.chunk.GetComponentsInChildren<MeshFilter>()
                     .All(filter => filter.sharedMesh.bounds.size.z > 0.1f), Is.True);
                 Assert.That(first.chunk.GetComponentsInChildren<MeshFilter>()
-                    .All(filter => filter.sharedMesh.name.StartsWith("CliffStone_")), Is.True);
+                    .All(filter => filter.sharedMesh.name.StartsWith("Cliff Bedrock")), Is.True);
+                Assert.That(first.chunk.GetComponentsInChildren<MeshCollider>()
+                    .All(collider => collider.sharedMesh.triangles.Length > 0), Is.True);
             }
             finally
             {
@@ -82,11 +115,11 @@ namespace BooterBigArm.Tests
             foreach (var _ in TopDown3DCliffFaceDecorator.DecorateSteps(
                 chunk, settings, runtime, Vector2.zero,
                 new List<TopDown3DRockFormationPlan>())) { }
-            var rocks = chunk.GetComponentsInChildren<BoxCollider>()
+            var rocks = chunk.GetComponentsInChildren<MeshCollider>()
                 .Select(collider => collider.name + "|"
-                    + collider.transform.localPosition + "|"
-                    + collider.transform.localRotation + "|"
-                    + collider.transform.localScale)
+                    + collider.sharedMesh.bounds.center + "|"
+                    + collider.sharedMesh.bounds.size + "|"
+                    + collider.sharedMesh.triangles.Length)
                 .ToArray();
             return (chunk, rocks);
         }
