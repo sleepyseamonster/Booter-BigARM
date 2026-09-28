@@ -44,7 +44,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
         [NoScaleOffset] _RockPebbleColorMap("Near-rock Pebble Color", 2D) = "gray" {}
         [NoScaleOffset] _NearRockPebbleAlbedoMap("Independent Near-rock Pebble Detail", 2D) = "gray" {}
         [NoScaleOffset] _NearRockPebbleHeightMap("Independent Near-rock Pebble Height", 2D) = "black" {}
-        [HideInInspector] _FormationGroundMask("Formation Gravel and Sand", 2D) = "black" {}
+        [HideInInspector] _FormationGroundMask("Formation Plain Ground and Sand", 2D) = "black" {}
         [HideInInspector] _FormationGroundMaskEnabled("Formation Ground Mask Enabled", Float) = 0
         [HideInInspector] _FormationGroundMaskOriginScale("Formation Mask Origin and Scale", Vector) = (0,0,1,1)
         _Smoothness("Smoothness", Range(0, 1)) = 0.18
@@ -575,12 +575,13 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                 float3 absolutePositionWS = GetAbsolutePositionWS(input.positionWS);
                 float2 groundPosition = absolutePositionWS.xz;
                 half2 formationMask = SampleFormationGroundMask(groundPosition);
+                half plainGround = saturate(formationMask.x * 1.2h);
                 half2 localClutter = input.clutter;
                 if (_FormationGroundMaskEnabled > 0.5)
                 {
-                    // The workbench's deposit channel hides chips inside the sand band.
-                    // Streamed chunks carry that channel in the ground mask instead of UV2.
-                    localClutter.x = formationMask.x * (1.0h - formationMask.y);
+                    // Formation-local gravel is temporarily disabled. Keep the sand channel
+                    // so the bank and its ordinary surface blend survive independently.
+                    localClutter.x = 0.0h;
                     localClutter.y = max(localClutter.y, formationMask.y);
                 }
                 float pixelFootprint = max(length(ddx(groundPosition)), length(ddy(groundPosition)));
@@ -668,13 +669,15 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     SurfaceData farSurfaceData = (SurfaceData)0;
                     farSurfaceData.albedo = farAlbedo;
                     farSurfaceData.albedo = lerp(farSurfaceData.albedo,
-                        farBaseAlbedo * _BaseColor.rgb, formationMask.y);
+                        farBaseAlbedo * _BaseColor.rgb, plainGround);
+                    farSurfaceData.albedo = lerp(farSurfaceData.albedo,
+                        farBaseAlbedo * _BaseColor.rgb * 1.06h, formationMask.y);
                     farSurfaceData.specular = half3(0.2, 0.2, 0.2);
                     farSurfaceData.metallic = 0.0;
                     farSurfaceData.smoothness = lerp(
                         _Smoothness,
                         0.10,
-                        max(gravelMask, rockyMask));
+                        max(gravelMask, rockyMask) * (1.0h - plainGround));
                     farSurfaceData.normalTS = half3(0.0, 0.0, 1.0);
                     farSurfaceData.emission = 0.0;
                     farSurfaceData.occlusion = 1.0;
@@ -888,21 +891,26 @@ Shader "BooterBigArm/TopDown3D/Broken World Terrain Blend"
                     tangentWS * rockyDetailNormalTS.x
                     + bitangentWS * rockyDetailNormalTS.y
                     + geometricNormalWS * rockyDetailNormalTS.z);
+                normalWS = normalize(lerp(normalWS, geometricNormalWS, plainGround));
 
                 SurfaceData surfaceData = (SurfaceData)0;
                 surfaceData.albedo = albedo;
                 surfaceData.albedo = lerp(surfaceData.albedo,
-                    baseAlbedo * _BaseColor.rgb, formationMask.y);
+                    baseAlbedo * _BaseColor.rgb, plainGround);
+                surfaceData.albedo = lerp(surfaceData.albedo,
+                    baseAlbedo * _BaseColor.rgb * 1.06h, formationMask.y);
                 surfaceData.specular = half3(0.2, 0.2, 0.2);
                 surfaceData.metallic = 0.0;
                 float stonyMask = max(
                     gravelTransitionMask,
                     max(gravelMask, rockyCoverage));
-                surfaceData.smoothness = lerp(_Smoothness, 0.10, stonyMask);
+                surfaceData.smoothness = lerp(_Smoothness, 0.10,
+                    stonyMask * (1.0h - plainGround));
                 surfaceData.normalTS = half3(0.0, 0.0, 1.0);
                 surfaceData.emission = 0.0;
                 float rockyCrevice = rockyCoverage * (1.0 - rockyPatchHeight);
-                surfaceData.occlusion = 1.0 - rockyCrevice * _RockyReliefOcclusion;
+                surfaceData.occlusion = 1.0 - rockyCrevice * _RockyReliefOcclusion
+                    * (1.0h - plainGround);
                 surfaceData.alpha = 1.0;
                 surfaceData.clearCoatMask = 0.0;
                 surfaceData.clearCoatSmoothness = 0.0;

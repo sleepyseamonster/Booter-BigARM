@@ -151,6 +151,8 @@ namespace BooterBigArm.Tests
                 var rightMask = rightProperties.GetTexture("_FormationGroundMask") as Texture2D;
                 Assert.That(leftMask, Is.Not.Null);
                 Assert.That(rightMask, Is.Not.Null);
+                Assert.That(leftProperties.GetFloat("_PebbleDetail"), Is.Zero,
+                    "Streamed formation ground must not turn the tiled pebble layer back on.");
                 var leftEdge = leftMask.GetPixel(63, 32);
                 var rightEdge = rightMask.GetPixel(0, 32);
                 Assert.That(leftEdge.r, Is.GreaterThan(0f));

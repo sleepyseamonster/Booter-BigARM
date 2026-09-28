@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 
 namespace BooterBigArm.TopDown3D
 {
-    /// <summary>Feeds the existing terrain pebble shader from streamed authored formations.</summary>
+    /// <summary>Blends streamed formation footprints into plain ground and contact sand.</summary>
     internal static class TopDown3DFormationTerrainShader
     {
         private const int MaskResolution = 64;
@@ -58,16 +58,6 @@ namespace BooterBigArm.TopDown3D
                 chunk.SetFormationGroundStones(null, null);
                 chunk.RecordFormationGround(relevant);
                 return;
-            }
-
-            var depth = 0f;
-            Material sourceMaterial = null;
-            for (var f = 0; f < relevant.Count; f++)
-            {
-                var formation = relevant[f].Formation;
-                depth = Mathf.Max(depth, formation.AuthoredTemplate.SurfaceTreatment.PebbleDepth);
-                if (sourceMaterial == null && formation.Members.Count > 0)
-                    sourceMaterial = formation.Members[0].AuthoredMaterial;
             }
 
             var pixels = new Color32[MaskResolution * MaskResolution];
@@ -132,15 +122,11 @@ namespace BooterBigArm.TopDown3D
             properties.SetVector("_FormationGroundMaskOriginScale", new Vector4(chunkOrigin.x,
                 chunkOrigin.z, 1f / settings.ChunkSize, 1f / settings.ChunkSize));
             properties.SetFloat("_FormationGroundMaskEnabled", 1f);
-            properties.SetFloat("_PebbleDetail", 1f);
-            properties.SetFloat("_NearRockPebbleDepth", depth);
+            // Leave the formation-local tiled gravel/shale detail off until its texture is
+            // replaced. The mask still carries plain-ground and sand coverage, and the
+            // separate combined stone mesh remains enabled.
+            properties.SetFloat("_PebbleDetail", 0f);
             properties.SetFloat("_NearRockPebbleDensity", 0f);
-            properties.SetTexture("_PebbleAlbedoMap", settings.MixedGroundPebbleAlbedo);
-            properties.SetTexture("_PebbleHeightMap", settings.MixedGroundPebbleHeight);
-            properties.SetTexture("_NearRockPebbleAlbedoMap", settings.NearRockPebbleAlbedo);
-            properties.SetTexture("_NearRockPebbleHeightMap", settings.NearRockPebbleHeight);
-            if (sourceMaterial != null && sourceMaterial.HasProperty("_BaseMap"))
-                properties.SetTexture("_RockPebbleColorMap", sourceMaterial.GetTexture("_BaseMap"));
             renderer.SetPropertyBlock(properties);
             TopDown3DFormationSurfaceStones.Apply(chunk, settings, relevant);
             chunk.RecordFormationGround(relevant);
