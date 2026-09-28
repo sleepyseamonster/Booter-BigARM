@@ -16,6 +16,9 @@ namespace BooterBigArm.TopDown3D
         [Serializable]
         public sealed class GroundTreatment
         {
+            [SerializeField] private float shallowBurial = 0.11067194f;
+            [SerializeField] private float deepBurial = 0.74308294f;
+            [SerializeField] private float maximumGroundTilt = 35f;
             [SerializeField] private float bandHeight = 0.48f;
             [SerializeField] private float bandOpacity = 0.72f;
             [SerializeField] private Color bandColor = new Color(0.58f, 0.27f, 0.12f, 1f);
@@ -26,6 +29,9 @@ namespace BooterBigArm.TopDown3D
             [SerializeField] private float groundClutter = 1f;
             [SerializeField] private float pebbleDepth = 0.015f;
 
+            public float ShallowBurial => Mathf.Clamp01(shallowBurial);
+            public float DeepBurial => Mathf.Clamp(deepBurial, ShallowBurial, 1f);
+            public float MaximumGroundTilt => Mathf.Clamp(maximumGroundTilt, 0f, 35f);
             public float BandHeight => bandHeight;
             public float BandOpacity => bandOpacity;
             public Color BandColor => bandColor;
@@ -35,6 +41,13 @@ namespace BooterBigArm.TopDown3D
             public float BandDirectionalBuildup => bandDirectionalBuildup;
             public float GroundClutter => groundClutter;
             public float PebbleDepth => pebbleDepth;
+
+            internal void SetGroundFit(float shallow, float deep, float tilt)
+            {
+                shallowBurial = shallow;
+                deepBurial = deep;
+                maximumGroundTilt = tilt;
+            }
         }
 
         [Serializable]

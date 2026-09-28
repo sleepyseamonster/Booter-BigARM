@@ -84,8 +84,12 @@ namespace BooterBigArm.TopDown3D
                         bounds, vertices, memberSeed));
                     groundHeights[i] = Surface(bounds.center).height;
                 }
+                var groundFit = template.SurfaceTreatment;
+                // Burial is authored in workbench meters. Scale it with the rock meshes so
+                // the exposed proportion survives the larger game-world presentation.
                 var poses = TopDown3DRockGroundContact.Fit(contacts, p => Surface(p).height,
-                    p => Surface(p).normal, 0.035f, 0.6f, 20f);
+                    p => Surface(p).normal, groundFit.ShallowBurial * GameWorldScale,
+                    groundFit.DeepBurial * GameWorldScale, groundFit.MaximumGroundTilt);
                 var members = new TopDown3DRockFormationMember[stage.Count];
                 var envelope = new Bounds();
                 for (var i = 0; i < members.Length; i++)

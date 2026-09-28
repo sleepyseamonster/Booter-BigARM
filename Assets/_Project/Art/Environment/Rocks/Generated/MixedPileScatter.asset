@@ -1256,6 +1256,9 @@ MonoBehaviour:
   sourceRevision: c21edcd08f2fe6c272a7f2657c1b574e
   variationProfile: 0
   groundTreatment:
+    shallowBurial: 0.11067194
+    deepBurial: 0.74308294
+    maximumGroundTilt: 35
     bandHeight: 0.48
     bandOpacity: 0.72
     bandColor: {r: 0.58, g: 0.27, b: 0.12, a: 1}

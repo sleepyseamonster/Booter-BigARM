@@ -82,6 +82,24 @@ namespace BooterBigArm.Tests
                 Assert.That(choices, Is.EquivalentTo(new[] { 0, 1, 2, 3 }));
         }
 
+        [TestCase("MixedPileScatter")]
+        [TestCase("HandbuiltSpire")]
+        public void StreamedFormationsUseTheSavedWorkbenchBurialProfile(string assetName)
+        {
+            var asset = AssetDatabase.LoadAssetAtPath<TopDown3DAuthoredFormationAsset>(
+                "Assets/_Project/Art/Environment/Rocks/Generated/" + assetName + ".asset");
+            Assert.That(asset, Is.Not.Null);
+            Assert.That(asset.SurfaceTreatment.ShallowBurial, Is.EqualTo(0.11067194f).Within(0.00001f));
+            Assert.That(asset.SurfaceTreatment.DeepBurial, Is.EqualTo(0.74308294f).Within(0.00001f));
+            Assert.That(asset.SurfaceTreatment.MaximumGroundTilt, Is.EqualTo(35f));
+
+            // The world is larger than the workbench. A one-meter clamp would undo the
+            // proportional burial for tall rocks after the range is scaled to 1.85x.
+            var depth = TopDown3DRockGroundContact.SampleBurial(173,
+                1.1f, 1.4f);
+            Assert.That(depth, Is.InRange(1.1f, 1.4f));
+        }
+
         [Test]
         public void FormationGroundShaderMaskContinuesAcrossChunkBoundary()
         {

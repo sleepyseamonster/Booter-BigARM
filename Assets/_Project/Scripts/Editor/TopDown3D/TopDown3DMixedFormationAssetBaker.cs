@@ -52,16 +52,30 @@ namespace BooterBigArm.Editor
                 var sourceRevision = AssetDatabase.GetAssetDependencyHash(
                     AssetDatabase.GetAssetPath(source)).ToString();
                 var loadedStageMatches = true;
+                TopDown3DLandscapeAuthoringSandbox loadedStage = null;
                 foreach (var stage in Resources.FindObjectsOfTypeAll<TopDown3DLandscapeAuthoringSandbox>())
                 {
                     if (stage == null || !stage.gameObject.scene.isLoaded || stage.RockReference != source) continue;
+                    loadedStage = stage;
                     loadedStageMatches = existing != null
                         && existing.ApprovedStageVariationEnabled == stage.VariationEnabled
                         && existing.ApprovedStageSeed == stage.VariationSeed;
                     break;
                 }
                 if (existing != null && existing.HasBakedVariants && existing.HasApprovedStage
-                    && existing.SourceRevision == sourceRevision && loadedStageMatches) continue;
+                    && existing.SourceRevision == sourceRevision && loadedStageMatches)
+                {
+                    if (loadedStage != null && (existing.SurfaceTreatment.ShallowBurial != loadedStage.RockBurial
+                        || existing.SurfaceTreatment.DeepBurial != loadedStage.MaximumRockBurial
+                        || existing.SurfaceTreatment.MaximumGroundTilt != loadedStage.MaximumRockTilt))
+                    {
+                        existing.SurfaceTreatment.SetGroundFit(loadedStage.RockBurial,
+                            loadedStage.MaximumRockBurial, loadedStage.MaximumRockTilt);
+                        EditorUtility.SetDirty(existing);
+                        AssetDatabase.SaveAssetIfDirty(existing);
+                    }
+                    continue;
+                }
                 BakeGameplay(source);
                 bakedCount++;
             }
@@ -81,6 +95,8 @@ namespace BooterBigArm.Editor
             {
                 if (stage == null || !stage.gameObject.scene.isLoaded || stage.RockReference != source) continue;
                 asset.SetApprovedStageConfiguration(stage.VariationEnabled, stage.VariationSeed);
+                asset.SurfaceTreatment.SetGroundFit(
+                    stage.RockBurial, stage.MaximumRockBurial, stage.MaximumRockTilt);
                 break;
             }
             var sourceRocks = source.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);

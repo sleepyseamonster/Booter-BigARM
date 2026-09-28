@@ -155,8 +155,10 @@ namespace BooterBigArm.TopDown3D
 
         internal static float SampleBurial(int seed, float minimum, float maximum)
         {
-            minimum = Mathf.Clamp01(minimum);
-            maximum = Mathf.Clamp(maximum, minimum, 1f);
+            // Authored sliders stop at one meter, but world formations can be uniformly
+            // scaled. The per-rock height cap in Fit still limits burial of small pieces.
+            minimum = Mathf.Max(0f, minimum);
+            maximum = Mathf.Max(minimum, maximum);
             // Same bounded bell-shaped construction as the accepted body-size distribution.
             // Local integer state only: independent of editor/global random state and terrain tile.
             var state = unchecked((uint)seed ^ 0xA511E9B3u);
