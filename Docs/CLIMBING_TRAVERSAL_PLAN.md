@@ -2,6 +2,8 @@
 
 Status: prototype implementation in progress, 2026-09-28. The user requested traversal from steep slopes through vertical walls and overhangs, with increasingly weighty hand and foot animation. The motor now uses the angle bands when Sprint is held and the animation driver uses its existing gather clip as a visible climbing placeholder. The current 48 degree ordinary walk limit remains unchanged; final contact, top-out, and visual acceptance are pending.
 
+Climbing is intended as a major gameplay system. The current region should establish trustworthy movement, contact, and readable terrain assessment before later regions add equipment-dependent routes. The Legger is the companion's new name; older code and asset identifiers still use BigARM for reference safety.
+
 ## Current implementation boundary
 
 - `TopDown3DPlayerMotor` owns a dynamic Rigidbody and capsule. A sphere cast beneath the capsule, followed by a raycast for the true triangle normal, accepts only surfaces at or below `maxWalkableSlope` (48 degrees in the production scene). `TopDown3DSlopeMath.RemoveSteepUphillComponent` then rejects uphill input above that limit.
@@ -40,6 +42,14 @@ Replace the temporary gather-clip climbing placeholder with authored Humanoid cl
 - **Streaming:** Only active colliders can support a climb. A missing, disabled, or unloaded collider ends the mode safely. Chunk loading around a climber must include vertical reach and top-out space; no movement through an unloaded feature.
 - **Authored constraints:** Authored landmark geometry may define valid climbing surfaces and top-outs. The collision mesh, visible geometry, and surface classification must agree.
 - **Persisted deltas:** There is no world delta for climbing itself. Save/restore must place the player at a validated position; a restored mid-climb state must reacquire a matching loaded contact or fall safely. Do not serialize a Unity collider reference.
+
+## Terrain assessment and tools
+
+For the current region, ordinary inclines and clearly exposed hand-and-foot surfaces can remain traversable with Sprint held. The player should be able to read the route before committing: visible surface shape and contact material, a consistent movement response at each angle band, and a clear reason when a climb fails. Surface angle alone is not enough for harder regions. Add an authored or deterministic surface affordance record for grip, exposure, wet/loose condition, usable handholds, and a top-out. Keep it separate from the visual material so gameplay collision and art can be validated together.
+
+Future tool-assisted routes should declare a required capability and contact points in that affordance record. Inventory/equipment supplies the capability; the motor checks it at entry and each contact transition. A missing or exhausted tool must prevent that route before gravity is suspended, with readable feedback. Tools may change reach, anchoring, or security, but must not let the motor skip clearance, contact, or valid top-out checks. Do not invent a mandatory equipment list for this region until the tool design is approved.
+
+The Legger uses a separate traversal profile. A Booter handhold does not imply a passable Legger route. Generated and authored features need to expose both profiles so macro routes can choose a physical detour or honestly report that the Legger cannot follow.
 
 ## Implementation and proof order
 

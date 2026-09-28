@@ -58,17 +58,17 @@ Booter is a professional desert survivor and metal scrapper.
 - Movement should have momentum, commitment, and positioning cost.
 - Combat should be slow, intentional, and punishing when poorly positioned.
 
-## BigARM
+## The Legger
 
-BigARM is a simple, physically present companion whose abilities are designed to work synergistically with Booter.
+The Legger (formerly BigARM) is a simple, physically present companion whose abilities are designed to work synergistically with Booter.
 
-- BigARM is not a rover, vehicle, mobile habitat, home base, safe zone, or crafting platform. He is a finite, physically present mobile carrier; cargo access and transfer require his real simulated presence and never become remote storage.
-- Booter and BigARM form one inseparable mechanical partnership even when they are physically separated in the world.
-- BigARM may wander, choose local tasks, and operate autonomously.
-- BigARM always has a true world position and must physically traverse the world to regroup with Booter.
-- BigARM never snaps, teleports, or magically appears near Booter as a distance-recovery shortcut.
-- BigARM exists in the world simulation, not as a menu abstraction.
-- Further story changes to BigARM and the relationship with Booter remain open until the user defines them.
+- The Legger is not a rover, vehicle, mobile habitat, home base, safe zone, or crafting platform. He is a finite, physically present mobile carrier; cargo access and transfer require his real simulated presence and never become remote storage.
+- Booter and the Legger form one inseparable mechanical partnership even when they are physically separated in the world.
+- The Legger may wander, choose local tasks, and operate autonomously.
+- The Legger always has a true world position and must physically traverse the world to regroup with Booter.
+- The Legger never snaps, teleports, or magically appears near Booter as a distance-recovery shortcut.
+- The Legger exists in the world simulation, not as a menu abstraction.
+- Further story changes to the Legger and his relationship with Booter remain open until the user defines them.
 
 ## World Structure
 
@@ -87,10 +87,10 @@ The world should naturally create:
 
 ## Core Loop
 
-1. Move through the world in coordination with BigARM, whether together or pursuing separate tasks.
+1. Move through the world in coordination with the Legger, whether together or pursuing separate tasks.
 2. Scout terrain and identify threats.
 3. Salvage scrap, iron, and biological resources.
-4. Regroup and combine Booter's and BigARM's complementary capabilities.
+4. Regroup and combine Booter's and the Legger's complementary capabilities.
 5. Craft tools, weapons, and upgrades.
 6. Trade in settlements and outposts.
 7. Plan and execute hunts.

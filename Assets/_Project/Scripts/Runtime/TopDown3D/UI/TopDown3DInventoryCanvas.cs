@@ -52,7 +52,7 @@ namespace BooterBigArm.TopDown3D
             grid.anchoredPosition = new Vector2(472f, -94f); grid.sizeDelta = new Vector2(416f, 280f);
             var layout = grid.GetComponent<GridLayoutGroup>() ?? grid.gameObject.AddComponent<GridLayoutGroup>();
             layout.cellSize = new Vector2(86f, 70f); layout.spacing = new Vector2(6f, 6f); layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount; layout.constraintCount = 4;
-            var title = EnsureText("BigARM Title", panel); title.text = "BIGARM LOADFRAME"; title.fontSize = 19; title.fontStyle = FontStyle.Bold; Place(title.rectTransform, new Vector2(472f, -66f), new Vector2(416f, 28f));
+            var title = EnsureText("BigARM Title", panel); title.text = "LEGGER LOADFRAME"; title.fontSize = 19; title.fontStyle = FontStyle.Bold; Place(title.rectTransform, new Vector2(472f, -66f), new Vector2(416f, 28f));
             while (cargoSlotViews.Count < cargoCapacity)
             {
                 var index = cargoSlotViews.Count;

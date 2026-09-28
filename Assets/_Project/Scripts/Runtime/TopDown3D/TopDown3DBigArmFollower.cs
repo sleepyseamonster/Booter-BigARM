@@ -15,11 +15,14 @@ namespace BooterBigArm.TopDown3D
             Avoid,
             Recover,
             CatchUp,
-            WaitingForTerrain
+            WaitingForTerrain,
+            WaitingForRoute
         }
 
-        private static readonly float[] AvoidanceAngles = { 0f, 32f, -32f, 64f, -64f, 105f, -105f };
         private const int GroundHitCapacity = 12;
+        private const int ObstacleHitCapacity = 16;
+        private const int RouteGridSize = 13;
+        private const int RouteGridCenter = RouteGridSize / 2;
 
         [SerializeField] private Transform followTarget;
         [SerializeField] private Transform cameraBasis;
@@ -43,11 +46,23 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(10f)] private float trailRetentionDistance = 180f;
         [SerializeField, Min(0.1f)] private float groundClearance = 0.82f;
         [SerializeField, Min(0.2f)] private float stuckCheckSeconds = 1.25f;
+        [Header("Legger Ground Route")]
+        [SerializeField, Range(1f, 60f)] private float maximumRouteSlope = 38f;
+        [SerializeField, Min(0.05f)] private float maximumStepUp = 0.55f;
+        [SerializeField, Min(0.05f)] private float maximumStepDown = 0.75f;
+        [SerializeField, Range(0.8f, 2f)] private float routeCellSize = 1.25f;
+        [SerializeField, Min(0.1f)] private float routeReplanSeconds = 0.75f;
         [SerializeField] private LayerMask movementMask = ~0;
 
         private readonly RaycastHit[] groundHits = new RaycastHit[GroundHitCapacity];
+        private readonly Collider[] obstacleHits = new Collider[ObstacleHitCapacity];
         private readonly List<Vector3> targetTrail = new List<Vector3>(192);
+        private readonly List<Vector2Int> gridPath = new List<Vector2Int>(RouteGridSize * RouteGridSize);
+        private readonly List<Vector3> route = new List<Vector3>(RouteGridSize * RouteGridSize);
+        private readonly bool[,] routeTraversable = new bool[RouteGridSize, RouteGridSize];
+        private readonly float[,] routeHeights = new float[RouteGridSize, RouteGridSize];
         private Rigidbody body;
+        private BoxCollider bodyCollider;
         private Rigidbody followTargetBody;
         private TopDown3DInputRouter subscribedInput;
         private Vector3 stuckSamplePosition;
@@ -56,6 +71,9 @@ namespace BooterBigArm.TopDown3D
         private bool callRequested;
         private bool automaticCatchUp;
         private bool startupGroundingComplete;
+        private int routeIndex;
+        private float routeReplanAt;
+        private Vector3 routeGoal;
 
         public FollowState State { get; private set; } = FollowState.Idle;
         public float CurrentSpeed => currentSpeed;
@@ -72,6 +90,7 @@ namespace BooterBigArm.TopDown3D
             cargo = GetComponent<TopDown3DBigArmCargo>();
             companionState = GetComponent<TopDown3DBigArmState>();
             targetTrail.Clear();
+            InvalidateRoute();
             RefreshInputSubscription();
         }
 
@@ -105,6 +124,7 @@ namespace BooterBigArm.TopDown3D
         private void Awake()
         {
             body = GetComponent<Rigidbody>();
+            bodyCollider = GetComponent<BoxCollider>();
             body.isKinematic = true;
             body.interpolation = RigidbodyInterpolation.Interpolate;
             body.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
@@ -142,13 +162,25 @@ namespace BooterBigArm.TopDown3D
 
             RecordTargetTrail();
             var desired = GetDesiredFollowPosition();
+            var distanceToDesired = PlanarDistance(body.position, desired);
+            if (distanceToDesired <= idleRadius)
+            {
+                currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, deceleration * Time.fixedDeltaTime);
+                State = FollowState.Idle;
+                InvalidateRoute();
+                ResetStuckTracking();
+                return;
+            }
+            if (!TryGetRouteDirection(desired, out var desiredDirection))
+            {
+                State = FollowState.WaitingForRoute;
+                currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, deceleration * Time.fixedDeltaTime);
+                return;
+            }
             var distanceToBooter = PlanarDistance(body.position, followTarget.position);
             UpdateCatchUpIntent(distanceToBooter);
             var catchUpActive = callRequested || automaticCatchUp;
 
-            var toDesired = desired - body.position;
-            toDesired.y = 0f;
-            var distanceToDesired = toDesired.magnitude;
             var desiredSpeed = CalculateDesiredSpeed(
                 distanceToDesired,
                 idleRadius,
@@ -164,32 +196,23 @@ namespace BooterBigArm.TopDown3D
                 desiredSpeed,
                 (desiredSpeed > currentSpeed ? acceleration : deceleration) * loadAcceleration * Time.fixedDeltaTime);
 
-            if (distanceToDesired <= idleRadius && currentSpeed <= 0.01f)
-            {
-                State = FollowState.Idle;
-                ResetStuckTracking();
-                return;
-            }
-
-            if (toDesired.sqrMagnitude <= 0.0001f)
-            {
-                return;
-            }
-
-            var desiredDirection = toDesired.normalized;
-            var direction = ChooseMovementDirection(desiredDirection);
+            var direction = desiredDirection;
             var turnAngle = Vector3.Angle(transform.forward, direction);
             var turnSpeedFactor = Mathf.Lerp(1f, sharpTurnSpeedScale, turnAngle / 180f);
             var movement = direction * currentSpeed * turnSpeedFactor * Time.fixedDeltaTime;
             var candidate = body.position + movement;
-            if (!TryProjectToGround(candidate, out var groundedCandidate))
+            if (!TryProjectToGround(candidate, out var groundedCandidate)
+                || !IsStepTraversable(body.position, groundedCandidate)
+                || IsOccupied(groundedCandidate))
             {
-                State = FollowState.WaitingForTerrain;
+                InvalidateRoute();
+                State = FollowState.WaitingForRoute;
                 currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, deceleration * Time.fixedDeltaTime);
                 return;
             }
 
-            var avoidanceAngle = Mathf.Abs(Vector3.SignedAngle(desiredDirection, direction, Vector3.up));
+            var avoidanceAngle = Mathf.Abs(Vector3.SignedAngle(
+                Vector3.ProjectOnPlane(desired - body.position, Vector3.up), direction, Vector3.up));
             State = catchUpActive
                 ? FollowState.CatchUp
                 : avoidanceAngle > 1f
@@ -237,6 +260,7 @@ namespace BooterBigArm.TopDown3D
             body.position = groundedPosition;
             currentSpeed = 0f;
             startupGroundingComplete = true;
+            InvalidateRoute();
             State = FollowState.Idle;
             ResetStuckTracking();
             return true;
@@ -377,21 +401,95 @@ namespace BooterBigArm.TopDown3D
             return targetTrail[0];
         }
 
-        private Vector3 ChooseMovementDirection(Vector3 desiredDirection)
+        private bool TryGetRouteDirection(Vector3 desired, out Vector3 direction)
         {
-            var recoveryBias = State == FollowState.Recover ? 45f : 0f;
-            for (var i = 0; i < AvoidanceAngles.Length; i++)
+            direction = Vector3.zero;
+            if (route.Count == 0 || routeIndex >= route.Count || Time.time >= routeReplanAt
+                || PlanarDistance(routeGoal, desired) > routeCellSize * 2f)
             {
-                var candidate = Quaternion.AngleAxis(AvoidanceAngles[i] + recoveryBias, Vector3.up) * desiredDirection;
-                if (!body.SweepTest(candidate, out var hit, avoidanceProbeDistance, QueryTriggerInteraction.Ignore)
-                    || hit.collider == null
-                    || hit.collider.GetComponent<TopDown3DGroundSurface>() != null)
-                {
-                    return candidate.normalized;
-                }
+                if (!BuildRoute(desired))
+                    return false;
             }
 
-            return Quaternion.AngleAxis(110f, Vector3.up) * desiredDirection;
+            while (routeIndex < route.Count && PlanarDistance(body.position, route[routeIndex]) < 0.3f)
+                routeIndex++;
+            if (routeIndex >= route.Count)
+            {
+                if (!BuildRoute(desired))
+                    return false;
+            }
+
+            direction = Vector3.ProjectOnPlane(route[routeIndex] - body.position, Vector3.up).normalized;
+            return direction.sqrMagnitude > 0.0001f;
+        }
+
+        private bool BuildRoute(Vector3 desired)
+        {
+            route.Clear();
+            routeIndex = 0;
+            routeGoal = desired;
+            routeReplanAt = Time.time + routeReplanSeconds;
+            for (var x = 0; x < RouteGridSize; x++)
+            for (var z = 0; z < RouteGridSize; z++)
+            {
+                var probe = body.position + new Vector3(
+                    (x - RouteGridCenter) * routeCellSize, 0f,
+                    (z - RouteGridCenter) * routeCellSize);
+                var valid = TryProjectToGround(probe, out var ground);
+                routeTraversable[x, z] = valid && !IsOccupied(ground);
+                routeHeights[x, z] = ground.y;
+            }
+
+            // The live position is already occupied by this Rigidbody; preserve its
+            // exact elevation even when the grid probe lands on a nearby triangle.
+            routeTraversable[RouteGridCenter, RouteGridCenter] = true;
+            routeHeights[RouteGridCenter, RouteGridCenter] = body.position.y;
+            var goal = new Vector2Int(
+                Mathf.Clamp(RouteGridCenter + Mathf.RoundToInt((desired.x - body.position.x) / routeCellSize), 0, RouteGridSize - 1),
+                Mathf.Clamp(RouteGridCenter + Mathf.RoundToInt((desired.z - body.position.z) / routeCellSize), 0, RouteGridSize - 1));
+            if (!TopDown3DLocalGridPathfinder.TryFindPath(routeTraversable, routeHeights,
+                    new Vector2Int(RouteGridCenter, RouteGridCenter), goal,
+                    maximumStepUp, maximumStepDown, gridPath))
+                return false;
+
+            foreach (var cell in gridPath)
+                route.Add(new Vector3(
+                    body.position.x + (cell.x - RouteGridCenter) * routeCellSize,
+                    routeHeights[cell.x, cell.y],
+                    body.position.z + (cell.y - RouteGridCenter) * routeCellSize));
+            return route.Count > 0;
+        }
+
+        private bool IsOccupied(Vector3 grounded)
+        {
+            var scale = transform.lossyScale;
+            var half = Vector3.Scale(bodyCollider.size, new Vector3(Mathf.Abs(scale.x), Mathf.Abs(scale.y), Mathf.Abs(scale.z))) * 0.48f;
+            var center = grounded + transform.TransformVector(bodyCollider.center);
+            var count = Physics.OverlapBoxNonAlloc(center, half, obstacleHits,
+                body.rotation, movementMask, QueryTriggerInteraction.Ignore);
+            if (count == obstacleHits.Length)
+                return true;
+            for (var i = 0; i < count; i++)
+            {
+                var other = obstacleHits[i];
+                if (other != null && !other.transform.IsChildOf(transform)
+                    && other.GetComponent<TopDown3DGroundSurface>() == null)
+                    return true;
+            }
+            return false;
+        }
+
+        private bool IsStepTraversable(Vector3 from, Vector3 to)
+        {
+            var rise = to.y - from.y;
+            return rise <= maximumStepUp && rise >= -maximumStepDown;
+        }
+
+        private void InvalidateRoute()
+        {
+            route.Clear();
+            routeIndex = 0;
+            routeReplanAt = 0f;
         }
 
         private bool TryProjectToGround(Vector3 position, out Vector3 grounded)
@@ -422,7 +520,8 @@ namespace BooterBigArm.TopDown3D
                 if (hit.collider == null
                     || hit.collider.transform.IsChildOf(transform)
                     || hit.collider.GetComponent<TopDown3DGroundSurface>() == null
-                    || hit.distance >= nearest)
+                    || hit.distance >= nearest
+                    || Vector3.Angle(hit.normal, Vector3.up) > maximumRouteSlope)
                 {
                     continue;
                 }
@@ -498,6 +597,7 @@ namespace BooterBigArm.TopDown3D
             catchUpReleaseDistance = Mathf.Clamp(catchUpReleaseDistance, followDistance, catchUpDistance);
             trailSampleDistance = Mathf.Max(0.25f, trailSampleDistance);
             trailRetentionDistance = Mathf.Max(followDistance * 2f, trailRetentionDistance);
+            maximumStepDown = Mathf.Max(maximumStepUp, maximumStepDown);
         }
 
         private static float PlanarDistance(Vector3 a, Vector3 b)

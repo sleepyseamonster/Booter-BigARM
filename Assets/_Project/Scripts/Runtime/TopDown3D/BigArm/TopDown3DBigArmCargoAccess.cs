@@ -8,7 +8,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DBigArmCargo cargo;
         public Object UnityObject => this;
         public string StableId => "bigarm.cargo";
-        public string Prompt => "Open BigARM Packing";
+        public string Prompt => "Open Legger Packing";
         public Vector3 InteractionPoint => transform.position;
         public float InteractionRange => cargo != null ? cargo.AccessRange : 3.2f;
         public float ActionDuration => 0.01f;

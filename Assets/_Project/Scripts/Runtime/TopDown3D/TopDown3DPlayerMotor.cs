@@ -820,7 +820,6 @@ namespace BooterBigArm.TopDown3D
             climbNormal = contact.normal.normalized;
             climbCollider = contact.collider;
             climbTopOutElapsed = 0f;
-            climbStartHeight = 0f;
             climbSurfaceUp = TopDown3DClimbSurfaceMath.SurfaceUp(climbNormal, climbSurfaceUp);
             if (climbSurfaceUp.sqrMagnitude < 0.5f)
             {
@@ -968,6 +967,7 @@ namespace BooterBigArm.TopDown3D
             climbSurfaceUp = Vector3.up;
             climbCollider = null;
             climbTopOutElapsed = 0f;
+            climbStartHeight = 0f;
             if (body != null)
             {
                 body.useGravity = gravityBeforeClimb;

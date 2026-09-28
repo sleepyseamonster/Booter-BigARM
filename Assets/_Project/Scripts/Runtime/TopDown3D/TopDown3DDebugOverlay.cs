@@ -45,7 +45,7 @@ namespace BooterBigArm.TopDown3D
             GUILayout.Label("Move: Left Stick / WASD    Sprint: RB / Left Shift");
             GUILayout.Label("Climb: hold Sprint + move into steep terrain");
             GUILayout.Label("Camera: Right Stick orbit    LT + Right Stick look ahead");
-            GUILayout.Label("Call BigARM: LB / F1 (physical catch-up, no teleport)");
+            GUILayout.Label("Call the Legger: LB / F1 (physical catch-up, no teleport)");
             if (input != null)
             {
                 GUILayout.Label($"Input device: {input.LastInputDevice}");
@@ -67,7 +67,7 @@ namespace BooterBigArm.TopDown3D
             if (bigArm != null)
             {
                 GUILayout.Label(
-                    $"BigARM state: {bigArm.State}  Distance: {bigArm.DistanceToBooter:0.0}  Speed: {bigArm.CurrentSpeed:0.0}");
+                    $"Legger state: {bigArm.State}  Distance: {bigArm.DistanceToBooter:0.0}  Speed: {bigArm.CurrentSpeed:0.0}");
             }
 
             if (cameraRig != null)
