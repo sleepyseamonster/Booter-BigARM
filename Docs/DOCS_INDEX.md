@@ -38,6 +38,8 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md](./TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md)
+  Proposed audit, method comparison, controlled visual experiment, and staged plan for cliffs, valleys, and source-linked debris.
 - [IRONSTONE_FORMATION_MINERALIZATION_PLAN.md](./IRONSTONE_FORMATION_MINERALIZATION_PLAN.md)
   Proposed versioned redesign from standalone Ironstone nodes to mineralized generated formations, including seam-visual experiments and save gates.
 - [ROCK_QUALITY_AND_PRODUCTION_PLAN.md](./ROCK_QUALITY_AND_PRODUCTION_PLAN.md)
