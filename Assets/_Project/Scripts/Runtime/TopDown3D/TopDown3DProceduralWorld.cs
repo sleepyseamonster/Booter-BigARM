@@ -54,6 +54,7 @@ namespace BooterBigArm.TopDown3D
         private TopDown3DNaturalObjectChunkPlan activeChunkPlan;
         private IEnumerator<int> activeNaturalObjects;
         private IEnumerator<int> activeResources;
+        private IEnumerator<int> activeCliffFaces;
         private Vector2Int activeDecorationCoordinate;
         private long activeDecorationToken;
         private AbsoluteWorldPosition activeDecorationOrigin;
@@ -824,7 +825,19 @@ namespace BooterBigArm.TopDown3D
                     {
                         activeResources.Dispose();
                         activeResources = null;
+                        activeCliffFaces = TopDown3DCliffFaceDecorator.DecorateSteps(
+                            activeChunk, settings, worldCreatorRuntime, spawnExclusionCenter,
+                            activeChunkPlan.PhysicalFormations).GetEnumerator();
                         activeDecorationStage = 4;
+                    }
+                }
+                else if (activeDecorationStage == 4)
+                {
+                    if (!activeCliffFaces.MoveNext())
+                    {
+                        activeCliffFaces.Dispose();
+                        activeCliffFaces = null;
+                        activeDecorationStage = 5;
                     }
                 }
                 else
@@ -847,9 +860,11 @@ namespace BooterBigArm.TopDown3D
             var createdObjects = activeDecorationStage >= 2;
             activeNaturalObjects?.Dispose();
             activeResources?.Dispose();
+            activeCliffFaces?.Dispose();
             activeDecorationPlan?.Dispose();
             activeNaturalObjects = null;
             activeResources = null;
+            activeCliffFaces = null;
             activeDecorationPlan = null;
             activeChunkPlan = null;
             activeDecorationStage = 0;
