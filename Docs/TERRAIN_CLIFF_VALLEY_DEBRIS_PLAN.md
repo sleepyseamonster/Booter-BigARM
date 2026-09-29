@@ -106,6 +106,10 @@ contains exact code, images, XML, and Player telemetry. Continue with more varie
 floor texture and rock silhouettes, a production-camera vista that shows the parent
 landform, and repeatable frame attribution before deciding versions or touching the
 dirty production World Creator assets.
+The current 25 m rim-camera diagnostic still shows a long dark fitted-face strip
+against smooth orange slopes. Add a rendered terrain-triangle contact probe at
+the rim/toe and a wider fixed vista of the same generated parent before judging
+whether the layered landform reads as the reference composition.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,
