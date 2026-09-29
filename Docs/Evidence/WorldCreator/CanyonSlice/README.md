@@ -16,10 +16,12 @@ Date: 2026-09-28. This receipt covers the first terrain-driven canyon face pass.
 
 ## Measured proof
 
-- Focused normal-profile EditMode run: 5 of 5 passed (`/tmp/booter-canyon-face-tests2.xml`). It checks source LODs, face closure/endpoints and seam data, stable reload/rebase, border ownership, and parent/strata separation.
+- Focused normal-profile EditMode run after the layer-rhythm change: 6 of 6 passed (`/tmp/booter-canyon-face-tests3.xml`). It checks source LODs, face closure/endpoints and seam data, shared ledge geometry at adjacent endpoints, stable reload/rebase, border ownership, and parent/strata separation.
 - Canyon proof-only EditMode run: 1 of 1 passed (`/tmp/booter-canyon-fixture-repeat.xml`). The two chunks produced 30 physical face spans and 10 Workbench stone colliders. Reversed chunk build order and a local-origin rebase reproduced the same generated object names and counts. The three sequential decoration calls took 424, 351, and 359 ms across both chunks in this editor fixture.
 - An exact pre-change decorator comparison on the same mirror fixture produced 30 face spans and no Workbench stones, with 393, 341, and 341 ms across the same three calls (`/tmp/booter-canyon-fixture-baseline.xml`). That proof-only test intentionally fails its new-stones assertion against the old decorator; the timing is a diagnostic, not a Player performance verdict.
 - Source Workbench prefab and baked mesh assets were not changed. The production scene, profile, query, representation, and pre-existing dirty files were not staged by this task.
+
+The [proof crop](ProofCrop.png) renders 20 generated 18 m chunks around the fixture with the actual source-rock material, a plain temporary terrain material, and temporary light/camera in the isolated mirror. It shows a continuous layered physical face, but the wall still reads as too regular and monolithic to meet the reference composition. The crop omits the production atmosphere, true ground material, wider mesa/valley context, and middle/far landscape. It is a diagnostic failure of the visual gate, not an accepted final look.
 
 ## Limits and next gates
 

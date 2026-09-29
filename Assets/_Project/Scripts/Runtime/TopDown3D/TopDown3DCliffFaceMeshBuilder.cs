@@ -14,7 +14,8 @@ namespace BooterBigArm.TopDown3D
         internal static Mesh Build(
             Vector3 firstRim, Vector3 firstToe, Vector3 firstOutward,
             Vector3 lastRim, Vector3 lastToe, Vector3 lastOutward,
-            int seed, bool near, float strataShift = 0f)
+            int seed, bool near, float strataShift = 0f,
+            float firstRhythm = 0f, float lastRhythm = 0f)
         {
             var stations = near ? 5 : 2;
             var vertices = new List<Vector3>(stations * RingSize + 2);
@@ -31,8 +32,12 @@ namespace BooterBigArm.TopDown3D
                 var drop = Mathf.Max(0.5f, rim.y - toe.y);
                 var faceDepth = Mathf.Lerp(0.34f, 0.86f,
                     Mathf.Clamp01((drop - 1.5f) / 4f));
-                var lowerBand = Mathf.Clamp(0.31f + strataShift, 0.22f, 0.40f);
-                var upperBand = Mathf.Clamp(0.59f + strataShift, 0.48f, 0.70f);
+                var rhythm = Mathf.Lerp(firstRhythm, lastRhythm, t);
+                faceDepth *= 1f + rhythm * 0.30f;
+                var lowerBand = Mathf.Clamp(0.31f + strataShift + rhythm * 0.065f,
+                    0.22f, 0.40f);
+                var upperBand = Mathf.Clamp(0.59f + strataShift - rhythm * 0.055f,
+                    0.48f, 0.70f);
 
                 // The two ledges and cap share the same parent-level strata phase.
                 // Endpoint stations carry no random displacement, so neighbors meet.

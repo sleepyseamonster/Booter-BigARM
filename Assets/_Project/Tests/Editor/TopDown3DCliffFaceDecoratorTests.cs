@@ -48,6 +48,34 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void LayerRhythmSharesTheSameGeometryAtAdjacentSpanEndpoints()
+        {
+            var outward = Vector3.forward;
+            var left = TopDown3DCliffFaceMeshBuilder.Build(
+                new Vector3(1.5f, 8f, 0f), new Vector3(1.5f, 0f, 1f), outward,
+                new Vector3(0f, 8f, 0f), new Vector3(0f, 0f, 1f), outward,
+                11, true, 0.02f, -0.6f, 0.2f);
+            var right = TopDown3DCliffFaceMeshBuilder.Build(
+                new Vector3(0f, 8f, 0f), new Vector3(0f, 0f, 1f), outward,
+                new Vector3(-1.5f, 8f, 0f), new Vector3(-1.5f, 0f, 1f), outward,
+                89, true, 0.02f, 0.2f, 0.9f);
+            try
+            {
+                var leftEdge = left.vertices.Where(vertex => Mathf.Abs(vertex.x) < 0.0001f)
+                    .Distinct().OrderBy(vertex => vertex.y).ToArray();
+                var rightEdge = right.vertices.Where(vertex => Mathf.Abs(vertex.x) < 0.0001f)
+                    .Distinct().OrderBy(vertex => vertex.y).ToArray();
+                Assert.That(leftEdge.Length, Is.EqualTo(13));
+                Assert.That(rightEdge, Is.EqualTo(leftEdge));
+            }
+            finally
+            {
+                Object.DestroyImmediate(left);
+                Object.DestroyImmediate(right);
+            }
+        }
+
+        [Test]
         public void SavedCliffSourceHasFiveBakedRockRecipesWithDescendingLods()
         {
             foreach (var recipe in new[] { "A", "B", "C", "D", "E" })

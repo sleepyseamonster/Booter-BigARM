@@ -160,10 +160,14 @@ namespace BooterBigArm.TopDown3D
             var seed = unchecked((int)(Hash01(first.OwnerCellA ^ runtime.Identity.Seed,
                 first.OwnerCellB ^ last.OwnerCellA, 131) * int.MaxValue));
             var strataShift = StableStrataShift(first.ParentFeatureId, first.StrataFamilyId);
+            var firstRhythm = SectionRhythm(first, strataShift);
+            var lastRhythm = SectionRhythm(last, strataShift);
             var near = TopDown3DCliffFaceMeshBuilder.Build(firstRim, firstToe, firstOutward,
-                lastRim, lastToe, lastOutward, seed, true, strataShift);
+                lastRim, lastToe, lastOutward, seed, true, strataShift,
+                firstRhythm, lastRhythm);
             var far = TopDown3DCliffFaceMeshBuilder.Build(firstRim, firstToe, firstOutward,
-                lastRim, lastToe, lastOutward, seed, false, strataShift);
+                lastRim, lastToe, lastOutward, seed, false, strataShift,
+                firstRhythm, lastRhythm);
 
             var face = new GameObject($"Cliff Bedrock {first.Id} to {last.Id}");
             face.transform.SetParent(chunk.DecorationRoot, false);
@@ -367,6 +371,14 @@ namespace BooterBigArm.TopDown3D
                     hash = (hash ^ key[i]) * 16777619u;
                 return ((hash & 1023u) / 1023f - 0.5f) * 0.06f;
             }
+        }
+
+        private static float SectionRhythm(WorldCliffSectionCandidate section,
+            float parentPhase)
+        {
+            var distancePhase = section.Center.HorizontalA * 0.052d
+                + section.Center.HorizontalB * 0.031d;
+            return (float)Math.Sin(distancePhase + parentPhase * 24d);
         }
 
         private static double Hash01(long a, long b, int salt)
