@@ -352,6 +352,60 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void WaitingNearTerrainDoesNotBlockAnotherCompletedRequest()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
+            var terrainMaterial = AssetDatabase.LoadAssetAtPath<Material>(TerrainMaterialPath);
+            var rockMaterial = AssetDatabase.LoadAssetAtPath<Material>(RockMaterialPath);
+            var worldObject = new GameObject("Waiting near terrain");
+            var targetObject = new GameObject("Waiting terrain target");
+            try
+            {
+                targetObject.AddComponent<CapsuleCollider>();
+                var world = worldObject.AddComponent<TopDown3DProceduralWorld>();
+                world.Configure(settings, targetObject.transform, terrainMaterial, rockMaterial);
+                InvokePrivate(world, "Start");
+                var center = world.CurrentCenterChunk;
+                var requests = (IDictionary)GetPrivateField(world, "terrainRequests");
+                Assert.That(requests.Contains(center), Is.True);
+                var centerRequest = requests[center];
+                var requestType = centerRequest.GetType();
+                var centerTask = (Task<WorldRepresentationRequestOutcome>)requestType
+                    .GetProperty("Task")?.GetValue(centerRequest);
+                Assert.That(centerTask, Is.Not.Null);
+                Assert.That(centerTask.Wait(System.TimeSpan.FromSeconds(15)), Is.True);
+                Assert.That(centerTask.Result.State,
+                    Is.EqualTo(WorldRepresentationRequestState.QueuedForIntegration));
+                var runtime = (WorldCreatorProductionRuntime)GetPrivateField(world, "worldCreatorRuntime");
+                Assert.That(runtime.CaptureMetrics().Queued, Is.GreaterThan(0));
+                requests.Clear();
+                requests.Add(center, centerRequest);
+                var failedCoordinate = center + new Vector2Int(3, 0);
+                var failedKey = runtime.CreateRepresentationKey(WorldRepresentationTier.Near,
+                    failedCoordinate.x, failedCoordinate.y, settings.ChunkSize);
+                var failed = Task.FromResult(new WorldRepresentationRequestOutcome(failedKey, 1L,
+                    WorldRepresentationRequestState.Failed, "independent failure"));
+                requests.Add(failedCoordinate,
+                    System.Activator.CreateInstance(requestType, failedKey, failed));
+
+                LogAssert.Expect(LogType.Error,
+                    new Regex("World Creator near representation.*independent failure"));
+                Assert.That(InvokePrivateResult(world, "TryIntegrateRequestedTerrain"), Is.EqualTo(true));
+                Assert.That(requests.Contains(center), Is.True,
+                    "The integration-queued center request still needs its result.");
+                Assert.That(requests.Contains(failedCoordinate), Is.False,
+                    "A waiting nearer tile must not hold the completed failure hostage.");
+                Assert.That(((IDictionary)GetPrivateField(world, "terrainRetryDue"))
+                    .Contains(failedCoordinate), Is.True);
+            }
+            finally
+            {
+                Object.DestroyImmediate(worldObject);
+                Object.DestroyImmediate(targetObject);
+            }
+        }
+
+        [Test]
         public void FailedDistanceTerrainIsQueuedForBoundedRetryWithoutMoving()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);

@@ -526,13 +526,29 @@ namespace BooterBigArm.TopDown3D
             var request = default(TerrainRequest);
             foreach (var pair in terrainRequests)
             {
-                if (pair.Value.Task.IsCompleted
-                    && (!found || ComparePendingChunks(pair.Key, coordinate) < 0))
+                if (!pair.Value.Task.IsCompleted
+                    || (found && ComparePendingChunks(pair.Key, coordinate) >= 0)) continue;
+
+                var candidateOutcome = pair.Value.Task.GetAwaiter().GetResult();
+                if (candidateOutcome.State == WorldRepresentationRequestState.QueuedForIntegration
+                    && requiredChunks.Contains(pair.Key)
+                    && !worldCreatorRuntime.TryGetIntegrated(pair.Value.Key, out _))
                 {
-                    found = true;
-                    coordinate = pair.Key;
-                    request = pair.Value;
+                    var now = Time.realtimeSinceStartupAsDouble;
+                    if (!missingTerrainIntegrationSince.TryGetValue(pair.Key, out var since))
+                    {
+                        missingTerrainIntegrationSince.Add(pair.Key, now);
+                        since = now;
+                    }
+                    // A waiting nearest tile must not delay another completed tile.
+                    // An emptied queue or expired wait still reaches the retry path below.
+                    if (worldCreatorRuntime.CaptureMetrics().Queued > 0 && now - since < 5d)
+                        continue;
                 }
+
+                found = true;
+                coordinate = pair.Key;
+                request = pair.Value;
             }
 
             if (!found)
