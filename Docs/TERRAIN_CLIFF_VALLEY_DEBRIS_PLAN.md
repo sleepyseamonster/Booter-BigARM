@@ -77,6 +77,13 @@ reference's open mesa view. The settled player position also differed from the r
 driver's requested coordinate, so the next controlled benchmark must log and hold the
 actual absolute player position. See the [game-camera receipt](Evidence/WorldCreator/CanyonSlice/README.md)
 before judging material or camera changes.
+A corrected temporary Player driver now waits for the initial-terrain motor restore before
+locking the benchmark player; its five settled waypoints hold their exact requested
+horizontal positions and the intended `23/25/27/25/23` chunk centers. Those views confirm
+the red floor and dark walls. At the farther waypoint, a foreground Workbench stone
+nearly fills the camera after the obstruction solver compresses the camera distance.
+Treat camera legibility, material response, and formation placement as visible gates,
+not as inferred successes from the geometry or frame telemetry.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,
