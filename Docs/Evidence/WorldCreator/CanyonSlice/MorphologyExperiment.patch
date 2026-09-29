@@ -1,0 +1,45 @@
+--- current/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Canyons/CanyonSystemPlanner.cs
++++ mirror/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Canyons/CanyonSystemPlanner.cs
+@@ -149 +149,2 @@
+-                    profile.BooterClearWidth * 1.25f);
++                    profile.BooterClearWidth * 1.25f,
++                    false);
+@@ -452 +453,2 @@
+-            float minimumWidth)
++            float minimumWidth,
++            bool major = true)
+@@ -456 +458,3 @@
+-            var width = Lerp(18f, 112f, widthParameter) * Lerp(0.86f, 1.14f, UnitFloat(seed));
++            var width = (major ? Lerp(110f, 330f, widthParameter)
++                : Lerp(18f, 112f, widthParameter))
++                * Lerp(0.86f, 1.14f, UnitFloat(seed));
+--- current/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Query/DormantHybridWorldQueryService.cs
++++ mirror/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Query/DormantHybridWorldQueryService.cs
+@@ -250,2 +250,12 @@
+-                var smooth = 1d - normalized * normalized * (3d - 2d * normalized);
+-                strongestCanyonCut = Math.Max(strongestCanyonCut, depth * smooth);
++                var lower = Lerp(segment.From.CrossSection.Shelves.Lower,
++                    segment.To.CrossSection.Shelves.Lower, amount);
++                var middle = Lerp(segment.From.CrossSection.Shelves.Middle,
++                    segment.To.CrossSection.Shelves.Middle, amount);
++                var upper = Lerp(segment.From.CrossSection.Shelves.Upper,
++                    segment.To.CrossSection.Shelves.Upper, amount);
++                var cut = depth * (
++                    0.22d * (1d - SmoothBand(normalized, lower - 0.065d, lower + 0.065d))
++                    + 0.34d * (1d - SmoothBand(normalized, middle - 0.075d, middle + 0.075d))
++                    + 0.28d * (1d - SmoothBand(normalized, upper - 0.075d, upper + 0.075d))
++                    + 0.16d * (1d - SmoothBand(normalized, 0.94d, 1d)));
++                strongestCanyonCut = Math.Max(strongestCanyonCut, cut);
+@@ -256 +266 @@
+-                    semantic |= normalized < 0.34d
++                    semantic |= normalized < lower
+@@ -258 +268 @@
+-                        : normalized < 0.72d
++                        : normalized < upper
+@@ -591,0 +602,6 @@
++        private static double SmoothBand(double value, double start, double end)
++        {
++            var t = Math.Max(0d, Math.Min(1d, (value - start) / (end - start)));
++            return t * t * (3d - 2d * t);
++        }
++

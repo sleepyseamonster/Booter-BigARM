@@ -1,0 +1,263 @@
+--- current/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs
++++ mirror/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs
+@@ -46 +46 @@
+-                CellSpan, 0.75d, 8, 43f, 1.75d, 3, 5d, 3d);
++                CellSpan, 0.75d, 8, 43f, 1.75d, 3, 9d, 4.5d);
+@@ -200 +200 @@
+-                formations, first, last, firstOutward, lastOutward, seed);
++                formations, span, seed);
+@@ -210 +210 @@
+-            if (drop < 4f || Hash01(first.OwnerCellA, first.OwnerCellB, 211) > 0.23d)
++            if (drop < 4f || Hash01(first.OwnerCellA, first.OwnerCellB, 211) > 0.10d)
+@@ -224 +224 @@
+-            var scale = Mathf.Lerp(1.25f, 2.05f,
++            var scale = Mathf.Lerp(3.5f, 5.5f,
+@@ -226 +226 @@
+-            root.transform.localScale = new Vector3(scale, scale * 2.8f, scale);
++            root.transform.localScale = new Vector3(scale, scale * 2.0f, scale);
+@@ -227,0 +228,2 @@
++            root.transform.localPosition += Vector3.up *
++                (-bounds.min.y * root.transform.localScale.y - 0.30f);
+@@ -241,52 +243,82 @@
+-            WorldCliffSectionCandidate first,
+-            WorldCliffSectionCandidate last,
+-            Vector3 firstOutward, Vector3 lastOutward, int seed)
+-        {
+-            if (Hash01(first.OwnerCellA, first.OwnerCellB, 239) > 0.36d) return;
+-            var outward = (firstOutward + lastOutward).normalized;
+-            var distance = 1.4d + Hash01(first.OwnerCellA, last.OwnerCellB, 241) * 2.6d;
+-            var point = new AbsoluteWorldPosition(
+-                (first.Toe.HorizontalA + last.Toe.HorizontalA) * 0.5d + outward.x * distance,
+-                0d,
+-                (first.Toe.HorizontalB + last.Toe.HorizontalB) * 0.5d + outward.z * distance);
+-            var chunkSize = (double)settings.ChunkSize;
+-            if (point.HorizontalA < chunk.Coordinate.x * chunkSize
+-                || point.HorizontalA >= (chunk.Coordinate.x + 1d) * chunkSize
+-                || point.HorizontalB < chunk.Coordinate.y * chunkSize
+-                || point.HorizontalB >= (chunk.Coordinate.y + 1d) * chunkSize)
+-                return;
+-            if (!runtime.Query.TrySampleSurface(point, out var surface, out _)
+-                || (surface.Semantic & (WorldSurfaceSemantic.SiteReservation
+-                    | WorldSurfaceSemantic.Approach)) != 0
+-                || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BooterProof,
+-                    out var booter, out _)
+-                || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BigArmProof,
+-                    out var bigArm, out _)
+-                || booter.ReservedRoute || bigArm.ReservedRoute
+-                || booter.SlopeDegrees > 27f || bigArm.SlopeDegrees > 27f
+-                || !runtime.TryToLocal(surface.Position, out var local)) return;
+-            var center = new Vector2(local.X, local.Z);
+-            if (Vector2.Distance(center, spawnExclusionCenter)
+-                < settings.ClearSpawnRadius + 2f) return;
+-            if (formations != null)
+-                for (var i = 0; i < formations.Count; i++)
+-                    if (Vector2.Distance(center, formations[i].EnvelopeCenter)
+-                        < formations[i].EnvelopeRadius + 1f) return;
+-
+-            var variant = Mathf.Min(4, (int)(Hash01(first.OwnerCellA,
+-                last.OwnerCellB, 251) * 5d));
+-            if (!TryGetCliffStone(variant, 0, out var source)) return;
+-            var root = new GameObject($"Cliff Toe Debris {first.Id}");
+-            root.transform.SetParent(chunk.DecorationRoot, false);
+-            root.transform.localPosition = chunk.transform.InverseTransformPoint(
+-                new Vector3(local.X, local.Y, local.Z)) + Vector3.down * 0.12f;
+-            root.transform.localRotation = Quaternion.Euler(0f,
+-                (float)(Hash01(first.OwnerCellA, last.OwnerCellB, 257) * 360d), 0f);
+-            var scale = Mathf.Lerp(0.85f, 1.35f,
+-                (float)Hash01(first.OwnerCellA, last.OwnerCellB, 263));
+-            root.transform.localScale = new Vector3(scale, scale * 1.15f, scale);
+-            root.AddComponent<TopDown3DTraversalObstacle>();
+-            var collider = root.AddComponent<BoxCollider>();
+-            collider.center = source.bounds.center;
+-            collider.size = source.bounds.size * 0.85f;
+-            AddStoneLods(root.transform, variant, first, last, seed, source.bounds.size);
++            WorldCliffFaceSpan span, int seed)
++        {
++            var candidates = WorldCliffDebrisPlanner.Plan(runtime.Identity,
++                runtime.CoordinateModel, span);
++            foreach (var candidate in candidates)
++            {
++                var point = candidate.Position;
++                if (!TryGetCliffStone(candidate.SourceRockVariant, 0, out var source)
++                    || !IsDebrisFootprintClear(candidate, settings, runtime,
++                        spawnExclusionCenter, formations, out var local)) continue;
++
++                var root = new GameObject($"Cliff Toe Debris {candidate.Id}");
++                root.transform.SetParent(chunk.DecorationRoot, false);
++                root.transform.localRotation = Quaternion.Euler(0f,
++                    (float)(Hash01(span.First.OwnerCellA,
++                        span.Last.OwnerCellB, 257 + candidate.Ordinal) * 360d), 0f);
++                var horizontalScale = candidate.TargetWidth
++                    / Mathf.Max(source.bounds.size.x, source.bounds.size.z);
++                var verticalScale = horizontalScale * Mathf.Lerp(0.88f, 1.20f,
++                    (float)Hash01(span.First.OwnerCellA,
++                        span.Last.OwnerCellB, 263 + candidate.Ordinal));
++                root.transform.localScale = new Vector3(horizontalScale,
++                    verticalScale, horizontalScale);
++                var bounds = source.bounds;
++                var horizontalOffset = root.transform.localRotation * new Vector3(
++                    -bounds.center.x * horizontalScale, 0f,
++                    -bounds.center.z * horizontalScale);
++                root.transform.localPosition = chunk.transform.InverseTransformPoint(
++                    new Vector3(local.X, local.Y, local.Z)) + horizontalOffset
++                    + Vector3.up * (-bounds.min.y * verticalScale
++                        - Mathf.Min(0.32f, candidate.TargetWidth * 0.10f));
++                root.AddComponent<TopDown3DTraversalObstacle>();
++                var collider = root.AddComponent<BoxCollider>();
++                collider.center = bounds.center;
++                collider.size = bounds.size * 0.82f;
++                AddStoneLods(root.transform, candidate.SourceRockVariant,
++                    span.First, span.Last, seed, bounds.size);
++            }
++        }
++
++        private static bool IsDebrisFootprintClear(
++            WorldCliffDebrisCandidate candidate,
++            TopDown3DWorldSettings settings,
++            WorldCreatorProductionRuntime runtime,
++            Vector2 spawnExclusionCenter,
++            IReadOnlyList<TopDown3DRockFormationPlan> formations,
++            out LocalWorldPosition local)
++        {
++            local = default;
++            var radius = candidate.TargetWidth * 0.5f + 0.35f;
++            var offsets = new[]
++            {
++                Vector2.zero, Vector2.right * radius, Vector2.left * radius,
++                Vector2.up * radius, Vector2.down * radius
++            };
++            for (var i = 0; i < offsets.Length; i++)
++            {
++                var point = new AbsoluteWorldPosition(
++                    candidate.Position.HorizontalA + offsets[i].x,
++                    0d,
++                    candidate.Position.HorizontalB + offsets[i].y);
++                if (!runtime.Query.TrySampleSurface(point, out var surface, out _)
++                    || (surface.Semantic & (WorldSurfaceSemantic.SiteReservation
++                        | WorldSurfaceSemantic.Approach)) != 0
++                    || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BooterProof,
++                        out var booter, out _)
++                    || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BigArmProof,
++                        out var bigArm, out _)
++                    || booter.ReservedRoute || bigArm.ReservedRoute
++                    || booter.SlopeDegrees > 27f || bigArm.SlopeDegrees > 27f
++                    || !runtime.TryToLocal(surface.Position, out var sampleLocal)) return false;
++                var center = new Vector2(sampleLocal.X, sampleLocal.Z);
++                if (Vector2.Distance(center, spawnExclusionCenter)
++                    < settings.ClearSpawnRadius + radius) return false;
++                if (formations != null)
++                    for (var formation = 0; formation < formations.Count; formation++)
++                        if (Vector2.Distance(center, formations[formation].EnvelopeCenter)
++                            < formations[formation].EnvelopeRadius + radius) return false;
++                if (i == 0) local = sampleLocal;
++            }
++
++            return true;
+--- /dev/null
++++ mirror/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Landforms/WorldCliffDebrisPlanner.cs
+@@ -0,0 +1,105 @@
++using System;
++using System.Collections.Generic;
++
++namespace BooterBigArm.TopDown3D.WorldCreator
++{
++    public readonly struct WorldCliffDebrisCandidate
++    {
++        public WorldCliffDebrisCandidate(WorldFeatureId id,
++            WorldFeatureId sourceFaceId, AbsoluteWorldPosition position,
++            int sourceRockVariant, float targetWidth, int ordinal)
++        {
++            Id = id;
++            SourceFaceId = sourceFaceId;
++            Position = position;
++            SourceRockVariant = sourceRockVariant;
++            TargetWidth = targetWidth;
++            Ordinal = ordinal;
++        }
++
++        public WorldFeatureId Id { get; }
++        public WorldFeatureId SourceFaceId { get; }
++        public AbsoluteWorldPosition Position { get; }
++        public int SourceRockVariant { get; }
++        public float TargetWidth { get; }
++        public int Ordinal { get; }
++    }
++
++    /// <summary>
++    /// Plans a short talus runout from a real cliff toe. The source face, absolute
++    /// coordinates and decoration version own identity; chunk order does not.
++    /// Runtime placement still checks terrain contact and authored clearances.
++    /// </summary>
++    public static class WorldCliffDebrisPlanner
++    {
++        private static readonly WorldSeedNamespace DebrisNamespace =
++            new WorldSeedNamespace(WorldVersionDomain.Decoration, "decoration.cliff-talus");
++
++        public static IReadOnlyList<WorldCliffDebrisCandidate> Plan(
++            WorldIdentity world, IWorldCoordinateModel coordinates,
++            WorldCliffFaceSpan source)
++        {
++            if (coordinates == null) throw new ArgumentNullException(nameof(coordinates));
++            var first = source.First;
++            var last = source.Last;
++            var drop = Math.Min(first.VerticalDrop, last.VerticalDrop);
++            if (drop < 3d) return Array.Empty<WorldCliffDebrisCandidate>();
++
++            var sourceAddress = coordinates.Encode(first.Center);
++            var seed = DebrisNamespace.DeriveSeed(world, sourceAddress);
++            if (Hash01(seed, 0) > 0.20d) return Array.Empty<WorldCliffDebrisCandidate>();
++            var count = drop >= 24d ? 3 : drop >= 8d ? 2 : 1;
++            var outwardA = first.OutwardA + last.OutwardA;
++            var outwardB = first.OutwardB + last.OutwardB;
++            var length = Math.Sqrt(outwardA * outwardA + outwardB * outwardB);
++            if (length < 1e-6d) return Array.Empty<WorldCliffDebrisCandidate>();
++            outwardA /= length;
++            outwardB /= length;
++            var toeA = (first.Toe.HorizontalA + last.Toe.HorizontalA) * 0.5d;
++            var toeB = (first.Toe.HorizontalB + last.Toe.HorizontalB) * 0.5d;
++            var results = new List<WorldCliffDebrisCandidate>(count);
++            for (var ordinal = 0; ordinal < count; ordinal++)
++            {
++                var runout = Math.Min(first.DebrisRunout, last.DebrisRunout);
++                var halfWidth = Math.Min(first.DebrisHalfWidth, last.DebrisHalfWidth);
++                var distance = runout * (0.25d + ordinal * 0.22d
++                    + Hash01(seed, ordinal * 7 + 1) * 0.12d);
++                var lateral = (Hash01(seed, ordinal * 7 + 2) * 2d - 1d)
++                    * halfWidth * (ordinal == 0 ? 0.16d : 0.72d);
++                var position = new AbsoluteWorldPosition(
++                    toeA + outwardA * distance - outwardB * lateral,
++                    0d,
++                    toeB + outwardB * distance + outwardA * lateral);
++                var influence = (first.SampleDebrisInfluence(position)
++                    + last.SampleDebrisInfluence(position)) * 0.5f;
++                if (influence <= 0.01f) continue;
++                var width = ordinal == 0
++                    ? 1.7f + (float)Hash01(seed, ordinal * 7 + 3) * 1.1f
++                    : ordinal == 1
++                        ? 1.1f + (float)Hash01(seed, ordinal * 7 + 3) * 0.9f
++                        : 0.65f + (float)Hash01(seed, ordinal * 7 + 3) * 0.6f;
++                var variant = Math.Min(4, (int)(Hash01(seed, ordinal * 7 + 4) * 5d));
++                var id = WorldFeatureId.Create(world, DebrisNamespace,
++                    coordinates.Encode(position), source.Id + ":" + ordinal);
++                results.Add(new WorldCliffDebrisCandidate(id, source.Id, position,
++                    variant, width, ordinal));
++            }
++
++            return results.AsReadOnly();
++        }
++
++        private static double Hash01(ulong seed, int ordinal)
++        {
++            unchecked
++            {
++                var value = seed ^ ((ulong)(uint)ordinal + 1UL) * 0x9E3779B185EBCA87UL;
++                value ^= value >> 30;
++                value *= 0xBF58476D1CE4E5B9UL;
++                value ^= value >> 27;
++                value *= 0x94D049BB133111EBUL;
++                value ^= value >> 31;
++                return (value & 0xFFFFFFUL) / 16777215d;
++            }
++        }
++    }
++}

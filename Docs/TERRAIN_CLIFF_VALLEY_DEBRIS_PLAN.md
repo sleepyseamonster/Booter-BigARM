@@ -39,6 +39,11 @@ mirror-only 195 m wide cut using those shelf values creates a more useful terrai
 terrace candidate, but the 20-chunk proof is too repetitive and unprofiled. Refine the
 parent landform and its material/distance treatment in the mirror before a topology
 version or saved-place cutover. Keep the user's dirty query/profile/scene edits intact.
+The refined mirror pass reduced the Workbench placements to 66, proved center contact
+within 0.14 m and raycastable face collision, and showed the terraces flatten in an
+18 m-sampled far view. The [receipt](Evidence/WorldCreator/CanyonSlice/README.md)
+preserves the proof code, patches, images, and XML; a real representation and streaming
+comparison remains required before cutover.
 
 ### Objective, authority, and fixture
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 06:25:24Z" end-time="2026-09-29 06:25:33Z" duration="8.7975422">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="446" result="Passed" start-time="2026-09-29 06:25:24Z" end-time="2026-09-29 06:25:33Z" duration="8.797542" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1525" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="446" result="Passed" start-time="2026-09-29 06:25:24Z" end-time="2026-09-29 06:25:33Z" duration="8.790231" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="84437" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1526" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="446" result="Passed" start-time="2026-09-29 06:25:24Z" end-time="2026-09-29 06:25:33Z" duration="8.786382" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1527" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="446" result="Passed" start-time="2026-09-29 06:25:24Z" end-time="2026-09-29 06:25:33Z" duration="8.782690" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1528" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="97" result="Passed" start-time="2026-09-29 06:25:24Z" end-time="2026-09-29 06:25:33Z" duration="8.779479" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1424" name="TempCanyonFaceProofTests" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-29 06:25:24Z" end-time="2026-09-29 06:25:33Z" duration="8.777943" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1425" name="CanyonWallProducesConnectedPhysicalFaceAndSourceRocks" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.CanyonWallProducesConnectedPhysicalFaceAndSourceRocks" methodname="CanyonWallProducesConnectedPhysicalFaceAndSourceRocks" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1940713689" result="Passed" start-time="2026-09-29 06:25:24Z" end-time="2026-09-29 06:25:33Z" duration="8.771092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON FIXTURE faces=178 stones=66 talus=40 buttress=26 contactGapMax=0.14 poorContacts=0 elapsedMs=2487
+CANYON FIXTURE faces=178 stones=66 talus=40 buttress=26 contactGapMax=0.14 poorContacts=0 elapsedMs=2378
+CANYON FIXTURE faces=178 stones=66 talus=40 buttress=26 contactGapMax=0.14 poorContacts=0 elapsedMs=2368
+Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

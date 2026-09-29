@@ -1,0 +1,94 @@
+using System.Diagnostics;
+using System.Linq;
+using BooterBigArm.TopDown3D;
+using BooterBigArm.TopDown3D.WorldCreator;
+using NUnit.Framework;
+using UnityEditor;
+using UnityEngine;
+
+namespace BooterBigArm.Tests.WorldCreator
+{
+    public sealed class TempCanyonFaceProofTests
+    {
+        [Test]
+        public void CanyonWallProducesConnectedPhysicalFaceAndSourceRocks()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(
+                "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset");
+            Assert.That(settings, Is.Not.Null);
+            using var runtime = WorldCreatorProductionRuntime.Create(24681357L);
+            Assert.That(runtime.Profile.IncludeCanyonsInInitialPlayableArea, Is.True);
+            var coordinates = Enumerable.Range(17, 4)
+                .SelectMany(b => Enumerable.Range(21, 5)
+                    .Select(a => new Vector2Int(a, b))).ToArray();
+            var firstPass = Capture(coordinates, settings, runtime);
+            var secondPass = Capture(coordinates.Reverse().ToArray(), settings, runtime);
+            Assert.That(secondPass.ids, Is.EquivalentTo(firstPass.ids));
+            Assert.That(runtime.TryRebase(new AbsoluteWorldPosition(18d, 0d, 0d)), Is.True);
+            var rebased = Capture(coordinates, settings, runtime);
+            Assert.That(rebased.ids, Is.EquivalentTo(firstPass.ids));
+            Assert.That(firstPass.faces, Is.GreaterThan(0));
+            Assert.That(firstPass.stones, Is.GreaterThan(0));
+        }
+
+        private static (int faces, int stones, string[] ids) Capture(
+            Vector2Int[] coordinates, TopDown3DWorldSettings settings,
+            WorldCreatorProductionRuntime runtime)
+        {
+            var totalFaces = 0;
+            var totalStones = 0;
+            var ids = new System.Collections.Generic.List<string>();
+            var maximumContactGap = 0f;
+            var poorContacts = 0;
+            var clock = Stopwatch.StartNew();
+            foreach (var coordinate in coordinates)
+            {
+                var root = new GameObject("Canyon fixture chunk");
+                try
+                {
+                    var absolute = new AbsoluteWorldPosition(
+                        coordinate.x * (double)settings.ChunkSize, 0d,
+                        coordinate.y * (double)settings.ChunkSize);
+                    Assert.That(runtime.TryToLocal(absolute, out var local), Is.True);
+                    root.transform.position = new Vector3(local.X, local.Y, local.Z);
+                    var chunk = root.AddComponent<TopDown3DGeneratedChunk>();
+                    chunk.Initialize(coordinate, null);
+                    foreach (var _ in TopDown3DCliffFaceDecorator.DecorateSteps(
+                        chunk, settings, runtime, Vector2.zero, null)) { }
+                    Physics.SyncTransforms();
+                    foreach (var faceCollider in root.GetComponentsInChildren<MeshCollider>())
+                    {
+                        var bounds = faceCollider.bounds;
+                        var ray = new Ray(bounds.center + Vector3.up * (bounds.extents.y + 1f),
+                            Vector3.down);
+                        Assert.That(faceCollider.Raycast(ray, out _, bounds.size.y + 2f), Is.True,
+                            faceCollider.gameObject.name);
+                    }
+                    totalFaces += root.GetComponentsInChildren<MeshCollider>().Length;
+                    totalStones += root.GetComponentsInChildren<BoxCollider>().Length;
+                    foreach (var collider in root.GetComponentsInChildren<BoxCollider>())
+                    {
+                        if (!collider.gameObject.name.StartsWith("Cliff Toe Debris")) continue;
+                        var absolutePoint = runtime.ToAbsolute(
+                            collider.bounds.center.x, 0f, collider.bounds.center.z);
+                        Assert.That(runtime.Query.TrySampleSurface(absolutePoint,
+                            out var surface, out var error), Is.True, error);
+                        Assert.That(runtime.TryToLocal(surface.Position, out var ground), Is.True);
+                        var gap = Mathf.Abs(collider.bounds.min.y - ground.Y);
+                        maximumContactGap = Mathf.Max(maximumContactGap, gap);
+                        if (gap > 1f) poorContacts++;
+                    }
+                    ids.AddRange(root.GetComponentsInChildren<MeshCollider>()
+                        .Select(collider => collider.gameObject.name));
+                    ids.AddRange(root.GetComponentsInChildren<BoxCollider>()
+                        .Select(collider => collider.gameObject.name));
+                }
+                finally { Object.DestroyImmediate(root); }
+            }
+            clock.Stop();
+            UnityEngine.Debug.Log($"CANYON FIXTURE faces={totalFaces} stones={totalStones} talus={ids.Count(id => id.StartsWith("Cliff Toe Debris"))} buttress={ids.Count(id => id.StartsWith("Workbench Cliff Buttress"))} contactGapMax={maximumContactGap:F2} poorContacts={poorContacts} elapsedMs={clock.ElapsedMilliseconds}");
+            Assert.That(poorContacts, Is.Zero);
+            return (totalFaces, totalStones, ids.OrderBy(id => id).ToArray());
+        }
+    }
+}
