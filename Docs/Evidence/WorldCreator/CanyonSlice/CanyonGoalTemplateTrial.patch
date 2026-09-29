@@ -1,0 +1,22 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGeologicalRockAdapter.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGeologicalRockAdapter.cs
+@@ -141,6 +141,19 @@
+                     var plan = plans[nextPlan++];
+                     if (plan.ReservationScale != WorldRockReservationScale.Formation) continue;
+                     var template = settings.SelectAuthoredFormation(plan.Id.ToString());
++                    if (plan.CompositionGoal == WorldRockCompositionGoal.TalusFan
++                        && generator.Authority.Query.TrySampleSurface(plan.Center,
++                            out var sourceSurface, out _)
++                        && (sourceSurface.Semantic & WorldSurfaceSemantic.CanyonFloor) != 0)
++                    {
++                        foreach (var approved in settings.AuthoredFormationCatalog.Templates)
++                        {
++                            if (approved.VariationProfile
++                                != TopDown3DAuthoredFormationVariationProfile.FixedCluster) continue;
++                            template = approved;
++                            break;
++                        }
++                    }
+                     if (template == null || !template.HasBakedVariants) continue;
+                     placement = TopDown3DAuthoredFormationPlacement.CreateWork(settings, generator,
+                         plan, template, spawnExclusionCenter);

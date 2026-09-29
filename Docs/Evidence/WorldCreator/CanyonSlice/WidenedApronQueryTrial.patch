@@ -1,0 +1,14 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Query/DormantHybridWorldQueryService.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Query/DormantHybridWorldQueryService.cs
+@@ -252,6 +252,11 @@
+                     segment.To.CrossSection.Shelves.Lower, amount);
+                 var middle = Lerp(segment.From.CrossSection.Shelves.Middle,
+                     segment.To.CrossSection.Shelves.Middle, amount);
++                if (width >= 150d)
++                {
++                    lower += 0.20d;
++                    middle += 0.10d;
++                }
+                 var upper = Lerp(segment.From.CrossSection.Shelves.Upper,
+                     segment.To.CrossSection.Shelves.Upper, amount);
+                 var cut = depth * (

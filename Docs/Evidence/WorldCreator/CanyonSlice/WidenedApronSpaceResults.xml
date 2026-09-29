@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 13:44:38Z" end-time="2026-09-29 13:44:41Z" duration="3.368105">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="459" result="Passed" start-time="2026-09-29 13:44:38Z" end-time="2026-09-29 13:44:41Z" duration="3.368105" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1539" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="459" result="Passed" start-time="2026-09-29 13:44:38Z" end-time="2026-09-29 13:44:41Z" duration="3.359083" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="89741" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1540" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="459" result="Passed" start-time="2026-09-29 13:44:38Z" end-time="2026-09-29 13:44:41Z" duration="3.350198" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1541" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="459" result="Passed" start-time="2026-09-29 13:44:38Z" end-time="2026-09-29 13:44:41Z" duration="3.345033" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1542" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-09-29 13:44:38Z" end-time="2026-09-29 13:44:41Z" duration="3.328509" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1426" name="TempCanyonFaceProofTests" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-29 13:44:38Z" end-time="2026-09-29 13:44:41Z" duration="3.323959" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1429" name="AuditUnreservedCanyonFloorApronSpace" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.AuditUnreservedCanyonFloorApronSpace" methodname="AuditUnreservedCanyonFloorApronSpace" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1963733325" result="Passed" start-time="2026-09-29 13:44:38Z" end-time="2026-09-29 13:44:39Z" duration="1.353648" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON APRON GRID floors=551 gentleUnreservedCenters=391 clearRadius5=231 clearRadius9=108 failureReasons=slope:220;outside-floor:36;route:187 samples9=432,326;436,326;440,326;444,326;448,326;452,326;436,330;440,330;444,330;448,330;452,330;456,330;460,330;464,330;468,330;472,330;476,330;480,330;484,330;456,334
+]]></output>
+              </test-case>
+              <test-case id="1439" name="WalkableCanyonFloorIsClearOfWorkbenchButtressAfterReloadAndRebase" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.WalkableCanyonFloorIsClearOfWorkbenchButtressAfterReloadAndRebase" methodname="WalkableCanyonFloorIsClearOfWorkbenchButtressAfterReloadAndRebase" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1401744728" result="Passed" start-time="2026-09-29 13:44:39Z" end-time="2026-09-29 13:44:41Z" duration="1.961751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON BUTTRESS CLEARANCE retained=0 waypoint=(488.74,342.39)
+CANYON BUTTRESS CLEARANCE retained=0 waypoint=(488.74,342.39)
+CANYON BUTTRESS CLEARANCE retained=0 waypoint=(488.74,342.39)
+Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
