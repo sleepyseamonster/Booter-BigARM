@@ -1,0 +1,13 @@
+Proof-only isolated-mirror switch in TopDown3DProceduralWorld.cs:
+
+private static readonly bool BenchmarkDisableAdaptiveFar = Array.IndexOf(
+    Environment.GetCommandLineArgs(), "-noAdaptiveFar") >= 0;
+
+farLandscape?.ProcessReady(2, 2,
+    !BenchmarkDisableAdaptiveFar
+    && PendingTerrainChunkCount == 0 && PendingDecorationCount == 0);
+
+The two rendered runs used the same Development Player build and five-waypoint
+fixed-route driver. Baseline launch added -noAdaptiveFar; adaptive launch omitted it.
+Both used -screen-width 1034 -screen-height 546 -topDown3DFullContentProfile
+-canyonBenchmark, with separate -logFile paths. The switch is not in live assets.

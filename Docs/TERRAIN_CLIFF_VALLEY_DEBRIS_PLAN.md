@@ -84,6 +84,13 @@ the red floor and dark walls. At the farther waypoint, a foreground Workbench st
 nearly fills the camera after the obstruction solver compresses the camera distance.
 Treat camera legibility, material response, and formation placement as visible gates,
 not as inferred successes from the geometry or frame telemetry.
+A same-binary rendered comparison with the corrected route held `23/25/27/25/23`
+centers in both modes. The 17×17 control stayed at 0/49 adaptive far tiles; the
+candidate reached 49/49 by stop one, and neither retained near/decoration queues at
+later stops. First-arrival p99 varied from 483 ms in the control to 50 ms in the
+candidate, so one paired run does not establish a causal performance gain. Keep the
+adaptive scheduler and all visual/topology changes in the mirror pending repeatable
+frame attribution and the camera/material corrections above.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,
