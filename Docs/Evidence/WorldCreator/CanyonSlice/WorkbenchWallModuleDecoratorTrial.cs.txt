@@ -1,0 +1,167 @@
+using System;
+using System.Collections.Generic;
+using BooterBigArm.TopDown3D.WorldCreator;
+using UnityEngine;
+
+namespace BooterBigArm.TopDown3D
+{
+    // Isolated canyon-module candidate. Source geometry is baked from the saved 18-rock
+    // Workbench cliff reference and loaded as one streamed physical formation.
+    internal static class TopDown3DCanyonWorkbenchModuleDecorator
+    {
+        private const float Scale = 4f;
+        private const string MeshPath = "WorldCreator/CanyonWallModules/CanyonWorkbenchWall_LOD";
+        private static readonly Mesh[] Meshes = new Mesh[3];
+        private static Material material;
+
+        internal static bool TryDecorate(TopDown3DGeneratedChunk chunk,
+            TopDown3DWorldSettings settings, WorldCreatorProductionRuntime runtime,
+            WorldCliffSectionCandidate first, WorldCliffSectionCandidate last,
+            Vector2 spawnExclusionCenter,
+            IReadOnlyList<TopDown3DRockFormationPlan> formations)
+        {
+            if (first.VerticalDrop < 15d || last.VerticalDrop < 15d
+                || first.CenterSlopeDegrees < 60f || last.CenterSlopeDegrees < 60f
+                || !IsStableSparseAnchor(first.OwnerCellA, first.OwnerCellB)) return false;
+            Debug.Log($"CANYON MODULE CANDIDATE {first.Id} owner={first.OwnerCellA},{first.OwnerCellB}");
+            for (var lod = 0; lod < Meshes.Length; lod++)
+            {
+                Meshes[lod] ??= Resources.Load<Mesh>(MeshPath + lod);
+                if (Meshes[lod] == null) return false;
+            }
+            material ??= Resources.Load<Material>("WorldCreator/CliffWall_LightGray");
+            if (material == null) return false;
+            var meshBounds = Meshes[0].bounds;
+            var radius = Scale * Mathf.Max(meshBounds.extents.x, meshBounds.extents.z) + 0.6f;
+            var toeA = (first.Toe.HorizontalA + last.Toe.HorizontalA) * 0.5d;
+            var toeB = (first.Toe.HorizontalB + last.Toe.HorizontalB) * 0.5d;
+            var outwardA = (first.OutwardA + last.OutwardA) * 0.5d;
+            var outwardB = (first.OutwardB + last.OutwardB) * 0.5d;
+            var outwardLength = Math.Sqrt(outwardA * outwardA + outwardB * outwardB);
+            if (outwardLength < 0.5d) return false;
+            outwardA /= outwardLength;
+            outwardB /= outwardLength;
+            Debug.Log($"CANYON MODULE ANCHOR {first.Id} toe=({toeA:F1},{toeB:F1}) outward=({outwardA:F2},{outwardB:F2}) radius={radius:F1}");
+            WorldSurfaceSample anchorSurface = default;
+            AbsoluteWorldPosition anchor = default;
+            var found = false;
+            for (var distance = 8; distance <= 60 && !found; distance += 4)
+            for (var direction = 0; direction < 2 && !found; direction++)
+            {
+                var sign = direction == 0 ? 1d : -1d;
+                var point = new AbsoluteWorldPosition(toeA + outwardA * distance * sign,
+                    0d, toeB + outwardB * distance * sign);
+                if (!FootprintClear(settings, runtime, point, radius,
+                        spawnExclusionCenter, formations, out var surface, out var reason))
+                {
+                    Debug.Log($"CANYON MODULE SITE {first.Id} direction={sign} distance={distance} reason={reason}");
+                    continue;
+                }
+                anchor = point;
+                anchorSurface = surface;
+                found = true;
+            }
+            if (!found)
+            {
+                Debug.Log($"CANYON MODULE REJECTED {first.Id} no floor footprint");
+                return false;
+            }
+            var yaw = (float)(Stable01(first.OwnerCellA, first.OwnerCellB, 1409) * 360d);
+            var rotation = Quaternion.Euler(0f, yaw, 0f);
+            var center = new Vector3(
+                (float)(anchor.HorizontalA - chunk.Coordinate.x * (double)settings.ChunkSize),
+                (float)anchorSurface.Position.Vertical,
+                (float)(anchor.HorizontalB - chunk.Coordinate.y * (double)settings.ChunkSize));
+            var offset = rotation * Vector3.Scale(meshBounds.center, Vector3.one * Scale);
+            var position = center - offset
+                + Vector3.up * (meshBounds.extents.y * Scale - 1f);
+            var root = new GameObject($"Canyon Workbench Wall Module {first.Id}");
+            root.transform.SetParent(chunk.DecorationRoot, false);
+            root.transform.localPosition = position;
+            root.transform.localRotation = rotation;
+            root.transform.localScale = Vector3.one * Scale;
+            root.AddComponent<TopDown3DTraversalObstacle>();
+            root.AddComponent<MeshCollider>().sharedMesh = Meshes[2];
+            var renderers = new Renderer[Meshes.Length];
+            for (var lod = 0; lod < Meshes.Length; lod++)
+            {
+                var child = new GameObject($"LOD{lod}");
+                child.transform.SetParent(root.transform, false);
+                child.AddComponent<MeshFilter>().sharedMesh = Meshes[lod];
+                var renderer = child.AddComponent<MeshRenderer>();
+                renderer.sharedMaterial = material;
+                renderers[lod] = renderer;
+            }
+            var group = root.AddComponent<LODGroup>();
+            group.SetLODs(new[]
+            {
+                new LOD(0.10f, new[] { renderers[0] }),
+                new LOD(0.035f, new[] { renderers[1] }),
+                new LOD(0.002f, new[] { renderers[2] })
+            });
+            group.RecalculateBounds();
+            Debug.Log($"CANYON MODULE PLACED {first.Id} anchor=({anchor.HorizontalA:F1},{anchor.HorizontalB:F1}) y={anchorSurface.Position.Vertical:F1}");
+            return true;
+        }
+
+        private static bool FootprintClear(TopDown3DWorldSettings settings,
+            WorldCreatorProductionRuntime runtime, AbsoluteWorldPosition center,
+            float radius, Vector2 spawnExclusionCenter,
+            IReadOnlyList<TopDown3DRockFormationPlan> formations,
+            out WorldSurfaceSample centerSurface, out string failure)
+        {
+            centerSurface = default;
+            failure = null;
+            var minimumHeight = double.PositiveInfinity;
+            var maximumHeight = double.NegativeInfinity;
+            for (var z = -2; z <= 2; z++)
+            for (var x = -2; x <= 2; x++)
+            {
+                if (x * x + z * z > 4) continue;
+                var point = new AbsoluteWorldPosition(
+                    center.HorizontalA + radius * x * 0.5d,
+                    0d, center.HorizontalB + radius * z * 0.5d);
+                if (!runtime.Query.TrySampleSurface(point, out var surface, out _)) { failure = "surface"; return false; }
+                if ((surface.Semantic & WorldSurfaceSemantic.CanyonFloor) == 0) { failure = "outside-floor"; return false; }
+                if ((surface.Semantic & (WorldSurfaceSemantic.SiteReservation | WorldSurfaceSemantic.Approach)) != 0) { failure = "reservation"; return false; }
+                if (!runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BooterProof, out var booter, out _)
+                    || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BigArmProof, out var bigArm, out _)) { failure = "affordance"; return false; }
+                if (booter.ReservedRoute || bigArm.ReservedRoute) { failure = "route"; return false; }
+                if (booter.SlopeDegrees > 25f || bigArm.SlopeDegrees > 25f) { failure = "slope"; return false; }
+                if (!runtime.TryToLocal(surface.Position, out var local)) { failure = "local"; return false; }
+                var localPoint = new Vector2(local.X, local.Z);
+                if (Vector2.Distance(localPoint, spawnExclusionCenter)
+                    < settings.ClearSpawnRadius + radius) { failure = "spawn"; return false; }
+                if (formations != null)
+                    for (var formation = 0; formation < formations.Count; formation++)
+                        if (Vector2.Distance(localPoint, formations[formation].EnvelopeCenter)
+                            < formations[formation].EnvelopeRadius + radius) { failure = "formation"; return false; }
+                minimumHeight = Math.Min(minimumHeight, surface.Position.Vertical);
+                maximumHeight = Math.Max(maximumHeight, surface.Position.Vertical);
+                if (x == 0 && z == 0) centerSurface = surface;
+            }
+            if (maximumHeight - minimumHeight > 3.5d) { failure = "height"; return false; }
+            return true;
+        }
+
+        private static bool IsStableSparseAnchor(long a, long b)
+        {
+            return Stable01(a, b, 1403) < 0.015d;
+        }
+
+        private static double Stable01(long a, long b, int salt)
+        {
+            unchecked
+            {
+                var value = (ulong)a * 0x9E3779B97F4A7C15UL
+                    ^ (ulong)b * 0xC2B2AE3D27D4EB4FUL ^ (uint)salt;
+                value ^= value >> 30;
+                value *= 0xBF58476D1CE4E5B9UL;
+                value ^= value >> 27;
+                value *= 0x94D049BB133111EBUL;
+                value ^= value >> 31;
+                return (value & 0xFFFFFFUL) / 16777215d;
+            }
+        }
+    }
+}

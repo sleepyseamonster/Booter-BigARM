@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 15:08:06Z" end-time="2026-09-29 15:08:33Z" duration="26.927948">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 15:08:06Z" end-time="2026-09-29 15:08:33Z" duration="26.927948" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1540" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 15:08:06Z" end-time="2026-09-29 15:08:33Z" duration="26.909570" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="21926" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1541" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 15:08:06Z" end-time="2026-09-29 15:08:33Z" duration="26.903533" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1542" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 15:08:06Z" end-time="2026-09-29 15:08:33Z" duration="26.890076" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1543" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-09-29 15:08:06Z" end-time="2026-09-29 15:08:33Z" duration="26.883721" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1426" name="TempCanyonFaceProofTests" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-29 15:08:06Z" end-time="2026-09-29 15:08:33Z" duration="26.873895" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1439" name="VisibleRightWallIsDeterministicAfterReloadAndRebase" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.VisibleRightWallIsDeterministicAfterReloadAndRebase" methodname="VisibleRightWallIsDeterministicAfterReloadAndRebase" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1000252942" result="Passed" start-time="2026-09-29 15:08:06Z" end-time="2026-09-29 15:08:33Z" duration="26.864077" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON MODULE CANDIDATE 3dbf7bca225f69f3faf189ecbe29bc76 owner=160,135
+CANYON MODULE ANCHOR 3dbf7bca225f69f3faf189ecbe29bc76 toe=(484.0,400.6) outward=(0.17,-0.99) radius=6.3
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=8 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=12 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=16 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=20 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=24 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=24 reason=outside-floor
+CANYON MODULE PLACED 3dbf7bca225f69f3faf189ecbe29bc76 anchor=(488.8,373.0) y=-78.0
+CANYON MODULE CANDIDATE b489ab93e854a7f6f37d5da92cc3a50e owner=158,136
+CANYON MODULE ANCHOR b489ab93e854a7f6f37d5da92cc3a50e toe=(481.1,411.4) outward=(1.00,0.07) radius=6.3
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=8 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=12 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=16 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=20 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=24 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=24 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=28 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=28 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=32 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=32 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=36 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=36 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=40 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=40 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=44 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=44 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=48 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=48 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=52 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=52 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=56 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=56 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=60 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=60 reason=outside-floor
+CANYON MODULE REJECTED b489ab93e854a7f6f37d5da92cc3a50e no floor footprint
+CANYON MODULE CANDIDATE 2a7c525416d882a686b61d51b74e9dc9 owner=176,136
+CANYON MODULE ANCHOR 2a7c525416d882a686b61d51b74e9dc9 toe=(532.0,403.6) outward=(0.17,-0.99) radius=6.3
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=8 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=12 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=16 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=20 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=24 reason=height
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=24 reason=outside-floor
+CANYON MODULE PLACED 2a7c525416d882a686b61d51b74e9dc9 anchor=(536.7,376.0) y=-69.0
+CANYON MODULE CANDIDATE ca4907d33667e145468cd17522496fd5 owner=184,143
+CANYON MODULE ANCHOR ca4907d33667e145468cd17522496fd5 toe=(556.0,425.3) outward=(0.19,-0.98) radius=6.3
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=8 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=12 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=16 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=20 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=24 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=24 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=28 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=28 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=32 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=32 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=36 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=36 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=40 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=40 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=44 reason=height
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=44 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=48 reason=height
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=48 reason=outside-floor
+CANYON MODULE PLACED ca4907d33667e145468cd17522496fd5 anchor=(565.8,374.3) y=-63.9
+CANYON MODULE CANDIDATE 8cfe556c1f18fc3ae26f45a9aded301e owner=178,144
+CANYON MODULE ANCHOR 8cfe556c1f18fc3ae26f45a9aded301e toe=(538.2,427.6) outward=(0.20,-0.98) radius=6.3
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=8 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=12 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=16 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=20 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=24 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=24 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=28 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=28 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=32 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=32 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=36 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=36 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=40 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=40 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=44 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=44 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=48 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=48 reason=outside-floor
+CANYON MODULE PLACED 8cfe556c1f18fc3ae26f45a9aded301e anchor=(548.4,376.6) y=-66.8
+CANYON FIXTURE faces=126 stones=131 talus=102 buttress=29 contactGapMax=0.22 poorContacts=0 elapsedMs=8389
+CANYON MODULE CANDIDATE 8cfe556c1f18fc3ae26f45a9aded301e owner=178,144
+CANYON MODULE ANCHOR 8cfe556c1f18fc3ae26f45a9aded301e toe=(538.2,427.6) outward=(0.20,-0.98) radius=6.3
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=8 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=12 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=16 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=20 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=24 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=24 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=28 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=28 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=32 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=32 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=36 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=36 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=40 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=40 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=44 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=44 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=48 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=48 reason=outside-floor
+CANYON MODULE PLACED 8cfe556c1f18fc3ae26f45a9aded301e anchor=(548.4,376.6) y=-66.8
+CANYON MODULE CANDIDATE ca4907d33667e145468cd17522496fd5 owner=184,143
+CANYON MODULE ANCHOR ca4907d33667e145468cd17522496fd5 toe=(556.0,425.3) outward=(0.19,-0.98) radius=6.3
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=8 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=12 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=16 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=20 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=24 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=24 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=28 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=28 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=32 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=32 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=36 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=36 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=40 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=40 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=44 reason=height
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=44 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=48 reason=height
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=48 reason=outside-floor
+CANYON MODULE PLACED ca4907d33667e145468cd17522496fd5 anchor=(565.8,374.3) y=-63.9
+CANYON MODULE CANDIDATE 2a7c525416d882a686b61d51b74e9dc9 owner=176,136
+CANYON MODULE ANCHOR 2a7c525416d882a686b61d51b74e9dc9 toe=(532.0,403.6) outward=(0.17,-0.99) radius=6.3
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=8 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=12 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=16 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=20 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=24 reason=height
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=24 reason=outside-floor
+CANYON MODULE PLACED 2a7c525416d882a686b61d51b74e9dc9 anchor=(536.7,376.0) y=-69.0
+CANYON MODULE CANDIDATE 3dbf7bca225f69f3faf189ecbe29bc76 owner=160,135
+CANYON MODULE ANCHOR 3dbf7bca225f69f3faf189ecbe29bc76 toe=(484.0,400.6) outward=(0.17,-0.99) radius=6.3
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=8 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=12 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=16 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=20 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=24 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=24 reason=outside-floor
+CANYON MODULE PLACED 3dbf7bca225f69f3faf189ecbe29bc76 anchor=(488.8,373.0) y=-78.0
+CANYON MODULE CANDIDATE b489ab93e854a7f6f37d5da92cc3a50e owner=158,136
+CANYON MODULE ANCHOR b489ab93e854a7f6f37d5da92cc3a50e toe=(481.1,411.4) outward=(1.00,0.07) radius=6.3
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=8 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=12 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=16 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=20 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=24 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=24 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=28 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=28 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=32 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=32 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=36 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=36 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=40 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=40 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=44 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=44 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=48 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=48 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=52 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=52 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=56 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=56 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=60 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=60 reason=outside-floor
+CANYON MODULE REJECTED b489ab93e854a7f6f37d5da92cc3a50e no floor footprint
+CANYON FIXTURE faces=126 stones=131 talus=102 buttress=29 contactGapMax=0.22 poorContacts=0 elapsedMs=8353
+CANYON MODULE CANDIDATE 3dbf7bca225f69f3faf189ecbe29bc76 owner=160,135
+CANYON MODULE ANCHOR 3dbf7bca225f69f3faf189ecbe29bc76 toe=(484.0,400.6) outward=(0.17,-0.99) radius=6.3
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=8 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=12 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=16 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=20 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=1 distance=24 reason=slope
+CANYON MODULE SITE 3dbf7bca225f69f3faf189ecbe29bc76 direction=-1 distance=24 reason=outside-floor
+CANYON MODULE PLACED 3dbf7bca225f69f3faf189ecbe29bc76 anchor=(488.8,373.0) y=-78.0
+CANYON MODULE CANDIDATE b489ab93e854a7f6f37d5da92cc3a50e owner=158,136
+CANYON MODULE ANCHOR b489ab93e854a7f6f37d5da92cc3a50e toe=(481.1,411.4) outward=(1.00,0.07) radius=6.3
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=8 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=12 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=16 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=20 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=24 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=24 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=28 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=28 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=32 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=32 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=36 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=36 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=40 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=40 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=44 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=44 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=48 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=48 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=52 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=52 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=56 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=56 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=1 distance=60 reason=outside-floor
+CANYON MODULE SITE b489ab93e854a7f6f37d5da92cc3a50e direction=-1 distance=60 reason=outside-floor
+CANYON MODULE REJECTED b489ab93e854a7f6f37d5da92cc3a50e no floor footprint
+CANYON MODULE CANDIDATE 2a7c525416d882a686b61d51b74e9dc9 owner=176,136
+CANYON MODULE ANCHOR 2a7c525416d882a686b61d51b74e9dc9 toe=(532.0,403.6) outward=(0.17,-0.99) radius=6.3
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=8 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=12 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=16 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=20 reason=slope
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=1 distance=24 reason=height
+CANYON MODULE SITE 2a7c525416d882a686b61d51b74e9dc9 direction=-1 distance=24 reason=outside-floor
+CANYON MODULE PLACED 2a7c525416d882a686b61d51b74e9dc9 anchor=(536.7,376.0) y=-69.0
+CANYON MODULE CANDIDATE ca4907d33667e145468cd17522496fd5 owner=184,143
+CANYON MODULE ANCHOR ca4907d33667e145468cd17522496fd5 toe=(556.0,425.3) outward=(0.19,-0.98) radius=6.3
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=8 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=12 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=16 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=20 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=24 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=24 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=28 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=28 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=32 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=32 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=36 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=36 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=40 reason=slope
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=40 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=44 reason=height
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=44 reason=outside-floor
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=1 distance=48 reason=height
+CANYON MODULE SITE ca4907d33667e145468cd17522496fd5 direction=-1 distance=48 reason=outside-floor
+CANYON MODULE PLACED ca4907d33667e145468cd17522496fd5 anchor=(565.8,374.3) y=-63.9
+CANYON MODULE CANDIDATE 8cfe556c1f18fc3ae26f45a9aded301e owner=178,144
+CANYON MODULE ANCHOR 8cfe556c1f18fc3ae26f45a9aded301e toe=(538.2,427.6) outward=(0.20,-0.98) radius=6.3
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=8 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=8 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=12 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=12 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=16 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=16 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=20 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=20 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=24 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=24 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=28 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=28 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=32 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=32 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=36 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=36 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=40 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=40 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=44 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=44 reason=outside-floor
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=1 distance=48 reason=slope
+CANYON MODULE SITE 8cfe556c1f18fc3ae26f45a9aded301e direction=-1 distance=48 reason=outside-floor
+CANYON MODULE PLACED 8cfe556c1f18fc3ae26f45a9aded301e anchor=(548.4,376.6) y=-66.8
+CANYON FIXTURE faces=126 stones=131 talus=102 buttress=29 contactGapMax=0.22 poorContacts=0 elapsedMs=8324
+Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

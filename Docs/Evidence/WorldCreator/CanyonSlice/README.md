@@ -210,3 +210,5 @@ The [parent-wall trial](ParentWallWarpTrial.md) tested a broad wall-only terrain
 ## Workbench scale trials, 2026-09-29
 
 The [Workbench scale receipt](WorkbenchScaleTrials.md) rejects oversized individual cliff stones, which read as dark pebbles glued to a pale wall. Doubling approved spire composites on steep canyon shoulders produced no new realized wall formation under the full-footprint screen. Both mirror changes were restored. The next candidate needs a deliberately authored, baked wall/mesa formation rather than a scale multiplier.
+
+The follow-up [saved-source module trial](WorkbenchWallModuleTrial.md) successfully rebuilt the 18-rock Workbench cliff reference into three mesh LODs and deterministically placed four 12 m class composites in the 49-chunk mirror fixture. The game-camera render rejects the result: the source composite reads as a tall pillar on the floor rather than terrain-linked layered wall. Its exact baker/decorator/fixture source, NUnit XML, and images are retained there. No production asset or topology cutover followed.

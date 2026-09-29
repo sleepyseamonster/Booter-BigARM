@@ -110,6 +110,12 @@ The current 25 m rim-camera diagnostic still shows a long dark fitted-face strip
 against smooth orange slopes. Add a rendered terrain-triangle contact probe at
 the rim/toe and a wider fixed vista of the same generated parent before judging
 whether the layered landform reads as the reference composition.
+The later saved-source [Workbench wall-module trial](Evidence/WorldCreator/CanyonSlice/WorkbenchWallModuleTrial.md)
+baked all 18 editable source rocks into three LODs and proved four deterministic,
+chunk-owned placements in the isolated 49-chunk fixture. Its fixed game-camera image
+shows a tall dark pillar on the floor, so that module shape fails the visual gate.
+The baker and placement candidate remain evidence only; a terrain-shaped Workbench
+wall source and full-footprint contact design are still needed.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,
