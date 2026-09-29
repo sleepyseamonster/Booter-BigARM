@@ -110,13 +110,22 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 return false;
             }
 
-            var ids = new HashSet<string>(StringComparer.Ordinal);
             var output = new ResolvedContribution[set.Contributions.Count];
             var totalWeight = 0f;
             for (var i = 0; i < set.Contributions.Count; i++)
             {
                 var contribution = set.Contributions[i];
-                if (!ids.Add(contribution.InfluenceId))
+                var duplicate = false;
+                for (var previous = 0; previous < i; previous++)
+                {
+                    if (string.Equals(output[previous].Contribution.InfluenceId,
+                        contribution.InfluenceId, StringComparison.Ordinal))
+                    {
+                        duplicate = true;
+                        break;
+                    }
+                }
+                if (duplicate)
                 {
                     error = $"Landscape context contains duplicate influence ID '{contribution.InfluenceId}'.";
                     return false;
