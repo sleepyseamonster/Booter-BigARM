@@ -22,9 +22,13 @@ until an in-game view and traversal review.
 
 ## Next implementation slice: one generated layered canyon
 
-**Planning status, 2026-09-28:** ready for a bounded technical implementation after Batch 0
-revalidation; production visual acceptance, target-machine limits, and any topology/save
-cutover remain user gates. This section makes the next slice executable. It extends the
+**Implementation status, 2026-09-28:** the absolute parent-face planner, stepped closed
+bedrock mesh, and sparse Rock Workbench buttress/toe pass are implemented. The generated
+canyon fixture and focused tests are recorded in
+[the canyon implementation receipt](Evidence/WorldCreator/CanyonSlice/README.md).
+Fixed-camera visual review, terrain-triangle contact, streaming-ring proof, full-content
+Player profiling, and any topology/save cutover remain open gates. This section makes the
+remaining slice executable. It extends the
 connected-bedrock checkpoint and the generation contract below. Earlier rejected rock
 clusters, flat stickers, and generic broad-rock walls are evidence, not fallback paths.
 

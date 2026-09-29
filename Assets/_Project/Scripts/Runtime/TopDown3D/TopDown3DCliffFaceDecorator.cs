@@ -12,9 +12,6 @@ namespace BooterBigArm.TopDown3D
     internal static class TopDown3DCliffFaceDecorator
     {
         private const double CellSpan = 3d;
-        private const double MaximumLinkDistance = 4.3d;
-        private const double MinimumDirectionAlignment = 0.72d;
-        private const double MinimumFacingAlignment = 0.82d;
         private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
         private static readonly int CrackColorId = Shader.PropertyToID("_CrackColor");
         private static readonly int MineralColorId = Shader.PropertyToID("_MineralColor");
@@ -29,6 +26,8 @@ namespace BooterBigArm.TopDown3D
         private static readonly int SideShaleId = Shader.PropertyToID("_SideShalePatchAmount");
         private static readonly int TopShaleId = Shader.PropertyToID("_TopShalePatchAmount");
         private static readonly int WornShineId = Shader.PropertyToID("_WornSmoothnessBoost");
+        private static readonly int GeologicalSeamId = Shader.PropertyToID("_GeologicalSeamAmount");
+        private static readonly Mesh[,] cliffStoneLods = new Mesh[5, 3];
         private static Material cliffMaterial;
 
         internal static IEnumerable<int> DecorateSteps(
@@ -70,55 +69,17 @@ namespace BooterBigArm.TopDown3D
             }
 
             var clearance = new Dictionary<(long A, long B), bool>();
-            for (var b = minimumB; b <= maximumB; b++)
-            for (var a = minimumA; a <= maximumA; a++)
+            var spans = WorldCliffFacePlanner.PlanOwnedSpans(
+                candidates, minimumA, maximumA, minimumB, maximumB);
+            foreach (var span in spans)
             {
-                if (!candidates.TryGetValue((a, b), out var first)) continue;
-                if (!TryFindNeighbor(first, candidates, true, out var last)) continue;
-                if (!TryFindNeighbor(last, candidates, false, out var reverse)
-                    || reverse.OwnerCellA != first.OwnerCellA
-                    || reverse.OwnerCellB != first.OwnerCellB) continue;
-                if (!IsClear(first, clearance, runtime, settings,
+                if (!IsClear(span.First, clearance, runtime, settings,
                         spawnExclusionCenter, formations)
-                    || !IsClear(last, clearance, runtime, settings,
+                    || !IsClear(span.Last, clearance, runtime, settings,
                         spawnExclusionCenter, formations)) continue;
-                if (TryCreateFace(chunk, runtime, first, last)) yield return 0;
+                if (TryCreateFace(chunk, settings, runtime, spawnExclusionCenter,
+                        formations, span)) yield return 0;
             }
-        }
-
-        private static bool TryFindNeighbor(
-            WorldCliffSectionCandidate section,
-            Dictionary<(long A, long B), WorldCliffSectionCandidate> candidates,
-            bool forward,
-            out WorldCliffSectionCandidate result)
-        {
-            result = default;
-            var bestScore = double.NegativeInfinity;
-            var tangentA = -section.OutwardB * (forward ? 1d : -1d);
-            var tangentB = section.OutwardA * (forward ? 1d : -1d);
-            for (var db = -1; db <= 1; db++)
-            for (var da = -1; da <= 1; da++)
-            {
-                if (da == 0 && db == 0) continue;
-                if (!candidates.TryGetValue((section.OwnerCellA + da, section.OwnerCellB + db),
-                        out var candidate)) continue;
-                var deltaA = candidate.Center.HorizontalA - section.Center.HorizontalA;
-                var deltaB = candidate.Center.HorizontalB - section.Center.HorizontalB;
-                var distance = Math.Sqrt(deltaA * deltaA + deltaB * deltaB);
-                if (distance > MaximumLinkDistance) continue;
-                var direction = (deltaA * tangentA + deltaB * tangentB) / distance;
-                var facing = section.OutwardA * candidate.OutwardA
-                    + section.OutwardB * candidate.OutwardB;
-                if (direction < MinimumDirectionAlignment || facing < MinimumFacingAlignment)
-                    continue;
-                if (Math.Abs(candidate.Rim.Vertical - section.Rim.Vertical) > 2.5d
-                    || Math.Abs(candidate.Toe.Vertical - section.Toe.Vertical) > 2.5d) continue;
-                var score = direction * facing / distance;
-                if (score <= bestScore) continue;
-                bestScore = score;
-                result = candidate;
-            }
-            return bestScore > double.NegativeInfinity;
         }
 
         private static bool IsClear(
@@ -181,10 +142,14 @@ namespace BooterBigArm.TopDown3D
 
         private static bool TryCreateFace(
             TopDown3DGeneratedChunk chunk,
+            TopDown3DWorldSettings settings,
             WorldCreatorProductionRuntime runtime,
-            WorldCliffSectionCandidate first,
-            WorldCliffSectionCandidate last)
+            Vector2 spawnExclusionCenter,
+            IReadOnlyList<TopDown3DRockFormationPlan> formations,
+            WorldCliffFaceSpan span)
         {
+            var first = span.First;
+            var last = span.Last;
             if (!TryToChunkLocal(chunk, runtime, first.Rim, out var firstRim)
                 || !TryToChunkLocal(chunk, runtime, first.Toe, out var firstToe)
                 || !TryToChunkLocal(chunk, runtime, last.Rim, out var lastRim)
@@ -194,10 +159,11 @@ namespace BooterBigArm.TopDown3D
             var lastOutward = new Vector3((float)last.OutwardA, 0f, (float)last.OutwardB);
             var seed = unchecked((int)(Hash01(first.OwnerCellA ^ runtime.Identity.Seed,
                 first.OwnerCellB ^ last.OwnerCellA, 131) * int.MaxValue));
+            var strataShift = StableStrataShift(first.ParentFeatureId, first.StrataFamilyId);
             var near = TopDown3DCliffFaceMeshBuilder.Build(firstRim, firstToe, firstOutward,
-                lastRim, lastToe, lastOutward, seed, true);
+                lastRim, lastToe, lastOutward, seed, true, strataShift);
             var far = TopDown3DCliffFaceMeshBuilder.Build(firstRim, firstToe, firstOutward,
-                lastRim, lastToe, lastOutward, seed, false);
+                lastRim, lastToe, lastOutward, seed, false, strataShift);
 
             var face = new GameObject($"Cliff Bedrock {first.Id} to {last.Id}");
             face.transform.SetParent(chunk.DecorationRoot, false);
@@ -224,7 +190,137 @@ namespace BooterBigArm.TopDown3D
                 new LOD(0.002f, new[] { renderers[1] })
             });
             group.RecalculateBounds();
+            AddWorkbenchButtress(face.transform, first, last, firstToe, lastToe,
+                firstOutward, lastOutward, seed);
+            AddToeDebris(chunk, settings, runtime, spawnExclusionCenter,
+                formations, first, last, firstOutward, lastOutward, seed);
             return true;
+        }
+
+        private static void AddWorkbenchButtress(Transform parent,
+            WorldCliffSectionCandidate first, WorldCliffSectionCandidate last,
+            Vector3 firstToe, Vector3 lastToe,
+            Vector3 firstOutward, Vector3 lastOutward, int seed)
+        {
+            var drop = Mathf.Min((float)first.VerticalDrop, (float)last.VerticalDrop);
+            if (drop < 4f || Hash01(first.OwnerCellA, first.OwnerCellB, 211) > 0.23d)
+                return;
+            var variant = Mathf.Min(4, (int)(Hash01(first.OwnerCellA,
+                last.OwnerCellB, 223) * 5d));
+            if (!TryGetCliffStone(variant, 0, out var source)) return;
+            var outward = (firstOutward + lastOutward).normalized;
+            var root = new GameObject($"Workbench Cliff Buttress {first.Id}");
+            root.transform.SetParent(parent, false);
+            root.transform.localPosition = Vector3.Lerp(firstToe, lastToe, 0.5f)
+                + outward * 0.25f + Vector3.down * 0.23f;
+            root.transform.localRotation = Quaternion.Euler(0f,
+                Mathf.Atan2(outward.x, outward.z) * Mathf.Rad2Deg
+                    + (float)(Hash01(first.OwnerCellA, last.OwnerCellB, 227) * 40d - 20d),
+                0f);
+            var scale = Mathf.Lerp(1.25f, 2.05f,
+                (float)Hash01(first.OwnerCellA, last.OwnerCellB, 229));
+            root.transform.localScale = new Vector3(scale, scale * 2.8f, scale);
+            var bounds = source.bounds;
+            root.AddComponent<TopDown3DTraversalObstacle>();
+            var collider = root.AddComponent<BoxCollider>();
+            collider.center = bounds.center;
+            collider.size = bounds.size * 0.82f;
+            AddStoneLods(root.transform, variant, first, last, seed, bounds.size);
+        }
+
+        private static void AddToeDebris(
+            TopDown3DGeneratedChunk chunk,
+            TopDown3DWorldSettings settings,
+            WorldCreatorProductionRuntime runtime,
+            Vector2 spawnExclusionCenter,
+            IReadOnlyList<TopDown3DRockFormationPlan> formations,
+            WorldCliffSectionCandidate first,
+            WorldCliffSectionCandidate last,
+            Vector3 firstOutward, Vector3 lastOutward, int seed)
+        {
+            if (Hash01(first.OwnerCellA, first.OwnerCellB, 239) > 0.36d) return;
+            var outward = (firstOutward + lastOutward).normalized;
+            var distance = 1.4d + Hash01(first.OwnerCellA, last.OwnerCellB, 241) * 2.6d;
+            var point = new AbsoluteWorldPosition(
+                (first.Toe.HorizontalA + last.Toe.HorizontalA) * 0.5d + outward.x * distance,
+                0d,
+                (first.Toe.HorizontalB + last.Toe.HorizontalB) * 0.5d + outward.z * distance);
+            var chunkSize = (double)settings.ChunkSize;
+            if (point.HorizontalA < chunk.Coordinate.x * chunkSize
+                || point.HorizontalA >= (chunk.Coordinate.x + 1d) * chunkSize
+                || point.HorizontalB < chunk.Coordinate.y * chunkSize
+                || point.HorizontalB >= (chunk.Coordinate.y + 1d) * chunkSize)
+                return;
+            if (!runtime.Query.TrySampleSurface(point, out var surface, out _)
+                || (surface.Semantic & (WorldSurfaceSemantic.SiteReservation
+                    | WorldSurfaceSemantic.Approach)) != 0
+                || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BooterProof,
+                    out var booter, out _)
+                || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BigArmProof,
+                    out var bigArm, out _)
+                || booter.ReservedRoute || bigArm.ReservedRoute
+                || booter.SlopeDegrees > 27f || bigArm.SlopeDegrees > 27f
+                || !runtime.TryToLocal(surface.Position, out var local)) return;
+            var center = new Vector2(local.X, local.Z);
+            if (Vector2.Distance(center, spawnExclusionCenter)
+                < settings.ClearSpawnRadius + 2f) return;
+            if (formations != null)
+                for (var i = 0; i < formations.Count; i++)
+                    if (Vector2.Distance(center, formations[i].EnvelopeCenter)
+                        < formations[i].EnvelopeRadius + 1f) return;
+
+            var variant = Mathf.Min(4, (int)(Hash01(first.OwnerCellA,
+                last.OwnerCellB, 251) * 5d));
+            if (!TryGetCliffStone(variant, 0, out var source)) return;
+            var root = new GameObject($"Cliff Toe Debris {first.Id}");
+            root.transform.SetParent(chunk.DecorationRoot, false);
+            root.transform.localPosition = chunk.transform.InverseTransformPoint(
+                new Vector3(local.X, local.Y, local.Z)) + Vector3.down * 0.12f;
+            root.transform.localRotation = Quaternion.Euler(0f,
+                (float)(Hash01(first.OwnerCellA, last.OwnerCellB, 257) * 360d), 0f);
+            var scale = Mathf.Lerp(0.85f, 1.35f,
+                (float)Hash01(first.OwnerCellA, last.OwnerCellB, 263));
+            root.transform.localScale = new Vector3(scale, scale * 1.15f, scale);
+            root.AddComponent<TopDown3DTraversalObstacle>();
+            var collider = root.AddComponent<BoxCollider>();
+            collider.center = source.bounds.center;
+            collider.size = source.bounds.size * 0.85f;
+            AddStoneLods(root.transform, variant, first, last, seed, source.bounds.size);
+        }
+
+        private static void AddStoneLods(Transform root, int variant,
+            WorldCliffSectionCandidate first, WorldCliffSectionCandidate last,
+            int seed, Vector3 sourceSize)
+        {
+            var renderers = new Renderer[3];
+            for (var lod = 0; lod < renderers.Length; lod++)
+            {
+                if (!TryGetCliffStone(variant, lod, out var mesh)) return;
+                var child = new GameObject($"LOD{lod}");
+                child.transform.SetParent(root, false);
+                child.AddComponent<MeshFilter>().sharedMesh = mesh;
+                var renderer = child.AddComponent<MeshRenderer>();
+                renderer.sharedMaterial = cliffMaterial;
+                ApplyStoneSurface(renderer, sourceSize, first, last, seed);
+                renderers[lod] = renderer;
+            }
+            var group = root.gameObject.AddComponent<LODGroup>();
+            group.SetLODs(new[]
+            {
+                new LOD(0.08f, new[] { renderers[0] }),
+                new LOD(0.025f, new[] { renderers[1] }),
+                new LOD(0.002f, new[] { renderers[2] })
+            });
+            group.RecalculateBounds();
+        }
+
+        private static bool TryGetCliffStone(int variant, int lod, out Mesh mesh)
+        {
+            mesh = cliffStoneLods[variant, lod];
+            if (mesh != null) return true;
+            mesh = Resources.Load<Mesh>($"WorldCreator/CliffStones/CliffStone_{(char)('A' + variant)}_LOD{lod}");
+            cliffStoneLods[variant, lod] = mesh;
+            return mesh != null;
         }
 
         private static bool TryToChunkLocal(TopDown3DGeneratedChunk chunk,
@@ -257,7 +353,20 @@ namespace BooterBigArm.TopDown3D
             block.SetFloat(SideShaleId, 0f);
             block.SetFloat(TopShaleId, 0f);
             block.SetFloat(WornShineId, 0.099f);
+            block.SetFloat(GeologicalSeamId, 0.50f);
             renderer.SetPropertyBlock(block);
+        }
+
+        private static float StableStrataShift(WorldFeatureId parent, string strata)
+        {
+            unchecked
+            {
+                var hash = 2166136261u;
+                var key = parent + ":" + strata;
+                for (var i = 0; i < key.Length; i++)
+                    hash = (hash ^ key[i]) * 16777619u;
+                return ((hash & 1023u) / 1023f - 0.5f) * 0.06f;
+            }
         }
 
         private static double Hash01(long a, long b, int salt)

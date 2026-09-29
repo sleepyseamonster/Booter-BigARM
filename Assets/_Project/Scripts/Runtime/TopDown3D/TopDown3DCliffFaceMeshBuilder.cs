@@ -9,15 +9,16 @@ namespace BooterBigArm.TopDown3D
     /// </summary>
     internal static class TopDown3DCliffFaceMeshBuilder
     {
-        private const int RingSize = 7;
+        private const int RingSize = 12;
 
         internal static Mesh Build(
             Vector3 firstRim, Vector3 firstToe, Vector3 firstOutward,
             Vector3 lastRim, Vector3 lastToe, Vector3 lastOutward,
-            int seed, bool near)
+            int seed, bool near, float strataShift = 0f)
         {
             var stations = near ? 5 : 2;
             var vertices = new List<Vector3>(stations * RingSize + 2);
+            var seamWeights = new List<float>(stations * RingSize + 2);
             var triangles = new List<int>((stations - 1) * RingSize * 6 + RingSize * 6);
             for (var station = 0; station < stations; station++)
             {
@@ -30,20 +31,34 @@ namespace BooterBigArm.TopDown3D
                 var drop = Mathf.Max(0.5f, rim.y - toe.y);
                 var faceDepth = Mathf.Lerp(0.34f, 0.86f,
                     Mathf.Clamp01((drop - 1.5f) / 4f));
+                var lowerBand = Mathf.Clamp(0.31f + strataShift, 0.22f, 0.40f);
+                var upperBand = Mathf.Clamp(0.59f + strataShift, 0.48f, 0.70f);
 
-                // Ordered around a thick section: buried rear/toe, projecting
-                // stepped front, crest lip, and buried rear/rim.
+                // The two ledges and cap share the same parent-level strata phase.
+                // Endpoint stations carry no random displacement, so neighbors meet.
                 vertices.Add(toe - outward * 0.55f + Vector3.down * 0.38f);
                 vertices.Add(toe + outward * 0.16f + Vector3.down * 0.34f);
                 vertices.Add(Vector3.Lerp(toe, rim, 0.13f)
                     + outward * (0.32f + irregularity * 0.4f));
-                vertices.Add(Vector3.Lerp(toe, rim, 0.48f)
-                    + outward * (faceDepth + irregularity));
-                vertices.Add(Vector3.Lerp(toe, rim, 0.73f)
-                    + outward * (faceDepth * 0.78f + irregularity * 0.55f));
+                vertices.Add(Vector3.Lerp(toe, rim, lowerBand - 0.035f)
+                    + outward * (faceDepth * 0.77f + irregularity));
+                vertices.Add(Vector3.Lerp(toe, rim, lowerBand)
+                    + outward * (faceDepth * 1.14f + irregularity));
+                vertices.Add(Vector3.Lerp(toe, rim, lowerBand + 0.055f)
+                    + outward * (faceDepth * 0.67f + irregularity * 0.6f));
+                vertices.Add(Vector3.Lerp(toe, rim, upperBand - 0.035f)
+                    + outward * (faceDepth * 0.73f + irregularity));
+                vertices.Add(Vector3.Lerp(toe, rim, upperBand)
+                    + outward * (faceDepth * 1.18f + irregularity));
+                vertices.Add(Vector3.Lerp(toe, rim, upperBand + 0.055f)
+                    + outward * (faceDepth * 0.63f + irregularity * 0.5f));
+                vertices.Add(Vector3.Lerp(toe, rim, 0.88f)
+                    + outward * (faceDepth * 0.88f + irregularity * 0.3f));
                 vertices.Add(rim + outward * (0.18f + irregularity * 0.25f)
                     + Vector3.up * 0.10f);
                 vertices.Add(rim - outward * 0.42f + Vector3.down * 0.24f);
+                for (var side = 0; side < RingSize; side++)
+                    seamWeights.Add(side == 4 || side == 7 || side == 10 ? 1f : 0f);
             }
 
             for (var station = 0; station < stations - 1; station++)
@@ -60,8 +75,10 @@ namespace BooterBigArm.TopDown3D
 
             var firstCap = vertices.Count;
             vertices.Add(AverageRing(vertices, 0));
+            seamWeights.Add(0f);
             var lastCap = vertices.Count;
             vertices.Add(AverageRing(vertices, (stations - 1) * RingSize));
+            seamWeights.Add(0f);
             for (var side = 0; side < RingSize; side++)
             {
                 var next = (side + 1) % RingSize;
@@ -75,6 +92,7 @@ namespace BooterBigArm.TopDown3D
             var flatVertices = new Vector3[triangles.Count];
             var flatTriangles = new int[triangles.Count];
             var normals = new Vector3[triangles.Count];
+            var colors = new Color[triangles.Count];
             for (var index = 0; index < triangles.Count; index += 3)
             {
                 var a = vertices[triangles[index]];
@@ -88,12 +106,15 @@ namespace BooterBigArm.TopDown3D
                 {
                     flatTriangles[index + corner] = index + corner;
                     normals[index + corner] = normal;
+                    colors[index + corner] = new Color(
+                        seamWeights[triangles[index + corner]], 0f, 0f, 1f);
                 }
             }
             var mesh = new Mesh { name = near ? "Cliff Bedrock LOD0" : "Cliff Bedrock LOD1" };
             mesh.vertices = flatVertices;
             mesh.triangles = flatTriangles;
             mesh.normals = normals;
+            mesh.colors = colors;
             mesh.RecalculateBounds();
             return mesh;
         }

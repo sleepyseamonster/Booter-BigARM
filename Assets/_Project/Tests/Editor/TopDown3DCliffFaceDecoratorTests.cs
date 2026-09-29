@@ -36,6 +36,9 @@ namespace BooterBigArm.Tests
                 Assert.That(near.triangles.Length, Is.GreaterThan(far.triangles.Length));
                 Assert.That(near.normals.Any(normal => normal.z > 0.7f), Is.True);
                 Assert.That(near.bounds.size.y, Is.GreaterThan(3f));
+                Assert.That(near.colors.Count(color => color.r > 0.9f), Is.GreaterThan(0),
+                    "The exposed ledges and cap must carry the geological seam signal.");
+                Assert.That(far.colors.Count(color => color.r > 0.9f), Is.GreaterThan(0));
             }
             finally
             {
@@ -84,11 +87,12 @@ namespace BooterBigArm.Tests
                 Assert.That(first.chunk.GetComponentsInChildren<MeshCollider>().Length,
                     Is.EqualTo(first.rocks.Length));
                 Assert.That(first.chunk.GetComponentsInChildren<LODGroup>().Length,
-                    Is.EqualTo(first.rocks.Length));
+                    Is.GreaterThanOrEqualTo(first.rocks.Length));
                 Assert.That(first.chunk.GetComponentsInChildren<MeshFilter>()
                     .All(filter => filter.sharedMesh.bounds.size.z > 0.1f), Is.True);
                 Assert.That(first.chunk.GetComponentsInChildren<MeshFilter>()
-                    .All(filter => filter.sharedMesh.name.StartsWith("Cliff Bedrock")), Is.True);
+                    .All(filter => filter.sharedMesh.name.StartsWith("Cliff Bedrock")
+                        || filter.sharedMesh.name.StartsWith("CliffStone_")), Is.True);
                 Assert.That(first.chunk.GetComponentsInChildren<MeshCollider>()
                     .All(collider => collider.sharedMesh.triangles.Length > 0), Is.True);
             }
