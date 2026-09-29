@@ -1,0 +1,80 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs
+@@ -162,39 +162,44 @@
+             var strataShift = StableStrataShift(first.ParentFeatureId, first.StrataFamilyId);
+             var firstRhythm = SectionRhythm(first, strataShift);
+             var lastRhythm = SectionRhythm(last, strataShift);
+-            var near = TopDown3DCliffFaceMeshBuilder.Build(firstRim, firstToe, firstOutward,
+-                lastRim, lastToe, lastOutward, seed, true, strataShift,
+-                firstRhythm, lastRhythm);
+-            var far = TopDown3DCliffFaceMeshBuilder.Build(firstRim, firstToe, firstOutward,
+-                lastRim, lastToe, lastOutward, seed, false, strataShift,
+-                firstRhythm, lastRhythm);
+-
+-            var face = new GameObject($"Cliff Bedrock {first.Id} to {last.Id}");
+-            face.transform.SetParent(chunk.DecorationRoot, false);
+-            face.AddComponent<TopDown3DTraversalObstacle>();
+-            face.AddComponent<MeshCollider>().sharedMesh = far;
+-            chunk.RegisterDecorationMesh(near);
+-            chunk.RegisterDecorationMesh(far);
+-            var renderers = new Renderer[2];
+-            for (var lod = 0; lod < 2; lod++)
+-            {
+-                var child = new GameObject($"LOD{lod}");
+-                child.transform.SetParent(face.transform, false);
+-                child.AddComponent<MeshFilter>().sharedMesh = lod == 0 ? near : far;
+-                var renderer = child.AddComponent<MeshRenderer>();
+-                renderer.sharedMaterial = cliffMaterial;
+-                renderer.receiveShadows = true;
+-                ApplyStoneSurface(renderer, near.bounds.size, first, last, seed);
+-                renderers[lod] = renderer;
+-            }
+-            var group = face.AddComponent<LODGroup>();
+-            group.SetLODs(new[]
+-            {
+-                new LOD(0.08f, new[] { renderers[0] }),
+-                new LOD(0.002f, new[] { renderers[1] })
+-            });
+-            group.RecalculateBounds();
+-            AddWorkbenchButtress(face.transform, first, last, firstToe, lastToe,
++            var rockParent = chunk.DecorationRoot;
++            if (first.CenterSlopeDegrees >= 60f && last.CenterSlopeDegrees >= 60f)
++            {
++                var near = TopDown3DCliffFaceMeshBuilder.Build(firstRim, firstToe, firstOutward,
++                    lastRim, lastToe, lastOutward, seed, true, strataShift,
++                    firstRhythm, lastRhythm);
++                var far = TopDown3DCliffFaceMeshBuilder.Build(firstRim, firstToe, firstOutward,
++                    lastRim, lastToe, lastOutward, seed, false, strataShift,
++                    firstRhythm, lastRhythm);
++
++                var face = new GameObject($"Cliff Bedrock {first.Id} to {last.Id}");
++                face.transform.SetParent(chunk.DecorationRoot, false);
++                face.AddComponent<TopDown3DTraversalObstacle>();
++                face.AddComponent<MeshCollider>().sharedMesh = far;
++                chunk.RegisterDecorationMesh(near);
++                chunk.RegisterDecorationMesh(far);
++                var renderers = new Renderer[2];
++                for (var lod = 0; lod < 2; lod++)
++                {
++                    var child = new GameObject($"LOD{lod}");
++                    child.transform.SetParent(face.transform, false);
++                    child.AddComponent<MeshFilter>().sharedMesh = lod == 0 ? near : far;
++                    var renderer = child.AddComponent<MeshRenderer>();
++                    renderer.sharedMaterial = cliffMaterial;
++                    renderer.receiveShadows = true;
++                    ApplyStoneSurface(renderer, near.bounds.size, first, last, seed);
++                    renderers[lod] = renderer;
++                }
++                var group = face.AddComponent<LODGroup>();
++                group.SetLODs(new[]
++                {
++                    new LOD(0.08f, new[] { renderers[0] }),
++                    new LOD(0.002f, new[] { renderers[1] })
++                });
++                group.RecalculateBounds();
++                rockParent = face.transform;
++            }
++            AddWorkbenchButtress(rockParent, first, last, firstToe, lastToe,
+                 firstOutward, lastOutward, seed, runtime);
+             AddToeDebris(chunk, settings, runtime, spawnExclusionCenter,
+                 formations, span, seed);
