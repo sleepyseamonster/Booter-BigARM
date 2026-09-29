@@ -1869,7 +1869,7 @@ MonoBehaviour:
   m_Name: HandbuiltSpire
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DAuthoredFormationAsset
   sourceGuid: eb946905807654ee1995d96e45fcb87b
-  sourceRevision: 98ca959443a8ca22ffdb2a58ed171a38
+  sourceRevision: 4226bdc4ff63c2a8885e7ff7310fafdc
   variationProfile: 1
   groundTreatment:
     shallowBurial: 0.11067194
@@ -2437,7 +2437,7 @@ MonoBehaviour:
       stableId: eb946905807654ee1995d96e45fcb87b:1074929009093912678:extra:2:Approved
       shape: 3
       variant: 0
-      lod0: {fileID: 4300000, guid: 3687104853639465cbf9666c9d8dd423, type: 2}
+      lod0: {fileID: 1411458134619554434, guid: 3687104853639465cbf9666c9d8dd423, type: 2}
       lod1: {fileID: -2091815617142799294, guid: 3687104853639465cbf9666c9d8dd423, type: 2}
       lod2: {fileID: 429457633922451467, guid: 3687104853639465cbf9666c9d8dd423, type: 2}
       colliderCenter: {x: 0.030721009, y: 0.49276078, z: -0.28487372}
@@ -2471,7 +2471,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:1074929009093912678:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: efe1a556ae310412099f8a3ae9fae955, type: 2}
+        lod0: {fileID: -5973934783833348523, guid: efe1a556ae310412099f8a3ae9fae955, type: 2}
         lod1: {fileID: -8301348335767600137, guid: efe1a556ae310412099f8a3ae9fae955, type: 2}
         lod2: {fileID: -3829719151657597167, guid: efe1a556ae310412099f8a3ae9fae955, type: 2}
         colliderCenter: {x: 0.030721009, y: 0.49276078, z: -0.28487372}
@@ -2502,7 +2502,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:1776032724006912928:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 1c84ddc8734e341e39a1f861442d5474, type: 2}
+        lod0: {fileID: 5429518729949510898, guid: 1c84ddc8734e341e39a1f861442d5474, type: 2}
         lod1: {fileID: -8778105788081560842, guid: 1c84ddc8734e341e39a1f861442d5474, type: 2}
         lod2: {fileID: -2814107393266512587, guid: 1c84ddc8734e341e39a1f861442d5474, type: 2}
         colliderCenter: {x: -0.13824521, y: 0.4826305, z: 0.6135448}
@@ -2533,7 +2533,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:2231233482587214165:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 2cbd99d5dae7547b9b4e1fda52ddd9bc, type: 2}
+        lod0: {fileID: -860964046906749217, guid: 2cbd99d5dae7547b9b4e1fda52ddd9bc, type: 2}
         lod1: {fileID: -8204037819058363360, guid: 2cbd99d5dae7547b9b4e1fda52ddd9bc, type: 2}
         lod2: {fileID: -2515532277289686243, guid: 2cbd99d5dae7547b9b4e1fda52ddd9bc, type: 2}
         colliderCenter: {x: -0.13824481, y: 0.4826306, z: 0.6135454}
@@ -2564,7 +2564,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:3327513898996877557:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 425b82b8ceefb446bb8d61bec9a9adcd, type: 2}
+        lod0: {fileID: 4058543714667250807, guid: 425b82b8ceefb446bb8d61bec9a9adcd, type: 2}
         lod1: {fileID: -3005645092341586169, guid: 425b82b8ceefb446bb8d61bec9a9adcd, type: 2}
         lod2: {fileID: 3080784441206418646, guid: 425b82b8ceefb446bb8d61bec9a9adcd, type: 2}
         colliderCenter: {x: -0.052349344, y: 0.09537092, z: 0.1119558}
@@ -2595,7 +2595,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:457020274567505135:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 7a1c009cffcb24f77a6128f58a540000, type: 2}
+        lod0: {fileID: 8642466660414790591, guid: 7a1c009cffcb24f77a6128f58a540000, type: 2}
         lod1: {fileID: 4835940760263268762, guid: 7a1c009cffcb24f77a6128f58a540000, type: 2}
         lod2: {fileID: 1897404290324608858, guid: 7a1c009cffcb24f77a6128f58a540000, type: 2}
         colliderCenter: {x: 1.1549733, y: 0.39178798, z: -0.3446728}
@@ -2626,7 +2626,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:5548352433594403912:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: e088f85a86f9840eb92257c606165c22, type: 2}
+        lod0: {fileID: 8575553966353940552, guid: e088f85a86f9840eb92257c606165c22, type: 2}
         lod1: {fileID: -8973853202651781233, guid: e088f85a86f9840eb92257c606165c22, type: 2}
         lod2: {fileID: 7232214883364611763, guid: e088f85a86f9840eb92257c606165c22, type: 2}
         colliderCenter: {x: -0.07893103, y: 0.40327486, z: 0.35658962}
@@ -2657,7 +2657,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:5886257161158013872:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 142c286fe03354012b972d72950f8ef6, type: 2}
+        lod0: {fileID: 5526188253358532916, guid: 142c286fe03354012b972d72950f8ef6, type: 2}
         lod1: {fileID: -4377604172222676833, guid: 142c286fe03354012b972d72950f8ef6, type: 2}
         lod2: {fileID: -8714485288147052734, guid: 142c286fe03354012b972d72950f8ef6, type: 2}
         colliderCenter: {x: -0.44522735, y: 0.39277214, z: -0.072273985}
@@ -2688,7 +2688,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:6271496900359507450:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 96f1e7b7a54214fc5838aef74109b774, type: 2}
+        lod0: {fileID: -2351543570667068624, guid: 96f1e7b7a54214fc5838aef74109b774, type: 2}
         lod1: {fileID: 3570364485882762254, guid: 96f1e7b7a54214fc5838aef74109b774, type: 2}
         lod2: {fileID: -5048192437683342382, guid: 96f1e7b7a54214fc5838aef74109b774, type: 2}
         colliderCenter: {x: -0.052349396, y: 0.095370896, z: 0.11195627}
@@ -2719,7 +2719,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:6719125517857742950:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 926e174de1a6b46adbec30e61406f105, type: 2}
+        lod0: {fileID: -4729398067771717209, guid: 926e174de1a6b46adbec30e61406f105, type: 2}
         lod1: {fileID: 8798468282897539426, guid: 926e174de1a6b46adbec30e61406f105, type: 2}
         lod2: {fileID: 602114297618133046, guid: 926e174de1a6b46adbec30e61406f105, type: 2}
         colliderCenter: {x: -0.82591665, y: 0.38179016, z: -0.3282597}
@@ -2750,7 +2750,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:7063860993332472054:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 1e8c74868dda04afe8237e339558720c, type: 2}
+        lod0: {fileID: 7093069968874637355, guid: 1e8c74868dda04afe8237e339558720c, type: 2}
         lod1: {fileID: -1309408806441345816, guid: 1e8c74868dda04afe8237e339558720c, type: 2}
         lod2: {fileID: -4523836271345423685, guid: 1e8c74868dda04afe8237e339558720c, type: 2}
         colliderCenter: {x: -0.052349273, y: 0.09537089, z: 0.11195579}
@@ -2781,7 +2781,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:7234630767095812004:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 20725cc8750fd425bb6aa04e3c41a401, type: 2}
+        lod0: {fileID: 8826932001407747114, guid: 20725cc8750fd425bb6aa04e3c41a401, type: 2}
         lod1: {fileID: 8839505804120298424, guid: 20725cc8750fd425bb6aa04e3c41a401, type: 2}
         lod2: {fileID: 5105360193684276571, guid: 20725cc8750fd425bb6aa04e3c41a401, type: 2}
         colliderCenter: {x: 1.1549735, y: 0.39178902, z: -0.3446721}
@@ -2812,7 +2812,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:7604047177975200957:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 70c1146b0a1ea498195e617986a885a8, type: 2}
+        lod0: {fileID: -6289742811315785009, guid: 70c1146b0a1ea498195e617986a885a8, type: 2}
         lod1: {fileID: -2946386602394365318, guid: 70c1146b0a1ea498195e617986a885a8, type: 2}
         lod2: {fileID: 3164734127057367067, guid: 70c1146b0a1ea498195e617986a885a8, type: 2}
         colliderCenter: {x: -0.052349277, y: 0.095370896, z: 0.1119558}
@@ -2843,7 +2843,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:8289306239112685758:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: e756b494434c84bbda46fd0e5b7d7afd, type: 2}
+        lod0: {fileID: -1190395966979476071, guid: e756b494434c84bbda46fd0e5b7d7afd, type: 2}
         lod1: {fileID: 3930038731902526419, guid: e756b494434c84bbda46fd0e5b7d7afd, type: 2}
         lod2: {fileID: 3583091359906461510, guid: e756b494434c84bbda46fd0e5b7d7afd, type: 2}
         colliderCenter: {x: 0.08916402, y: 0.2392592, z: -0.08240639}
@@ -2874,7 +2874,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:8379739159725462509:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: c6c996351ea0343efa91394be0ea9647, type: 2}
+        lod0: {fileID: -473648197763101572, guid: c6c996351ea0343efa91394be0ea9647, type: 2}
         lod1: {fileID: 1375549175130363546, guid: c6c996351ea0343efa91394be0ea9647, type: 2}
         lod2: {fileID: 5206369558054963173, guid: c6c996351ea0343efa91394be0ea9647, type: 2}
         colliderCenter: {x: -0.052349344, y: 0.0953708, z: 0.111954816}
@@ -2905,7 +2905,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:8545071076743932296:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 5293f9cec45804ab5b7de5edfbc4b386, type: 2}
+        lod0: {fileID: -6489007596198255773, guid: 5293f9cec45804ab5b7de5edfbc4b386, type: 2}
         lod1: {fileID: 5145017101689689129, guid: 5293f9cec45804ab5b7de5edfbc4b386, type: 2}
         lod2: {fileID: -8006157639102579743, guid: 5293f9cec45804ab5b7de5edfbc4b386, type: 2}
         colliderCenter: {x: 0.26287854, y: 0.2654585, z: -0.2704125}
@@ -2936,7 +2936,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:8678945523897847449:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 84307a832f2d54850b21e5f4cce9c8b0, type: 2}
+        lod0: {fileID: -7806535452629304533, guid: 84307a832f2d54850b21e5f4cce9c8b0, type: 2}
         lod1: {fileID: -5854206119922637764, guid: 84307a832f2d54850b21e5f4cce9c8b0, type: 2}
         lod2: {fileID: -9145931023295239263, guid: 84307a832f2d54850b21e5f4cce9c8b0, type: 2}
         colliderCenter: {x: -0.052349333, y: 0.09537089, z: 0.111956276}
@@ -2967,7 +2967,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:95011162911648745:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 22e5678b26fe74152854202007664dfd, type: 2}
+        lod0: {fileID: 1491599312264773088, guid: 22e5678b26fe74152854202007664dfd, type: 2}
         lod1: {fileID: -5720743991608901779, guid: 22e5678b26fe74152854202007664dfd, type: 2}
         lod2: {fileID: -1710855895629982533, guid: 22e5678b26fe74152854202007664dfd, type: 2}
         colliderCenter: {x: -0.8259164, y: 0.38178927, z: -0.3282599}
@@ -2998,7 +2998,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:7234630767095812004:extra:0:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 5e40b2a1141094e2ab193744aff1e8dd, type: 2}
+        lod0: {fileID: -2351601195927444233, guid: 5e40b2a1141094e2ab193744aff1e8dd, type: 2}
         lod1: {fileID: 7951360497912309800, guid: 5e40b2a1141094e2ab193744aff1e8dd, type: 2}
         lod2: {fileID: -3083546011805694103, guid: 5e40b2a1141094e2ab193744aff1e8dd, type: 2}
         colliderCenter: {x: 1.1549735, y: 0.39178902, z: -0.3446721}
@@ -3029,7 +3029,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:6719125517857742950:extra:1:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: dae371a7367464c43b5584fc45fb0a05, type: 2}
+        lod0: {fileID: 4796441082188881608, guid: dae371a7367464c43b5584fc45fb0a05, type: 2}
         lod1: {fileID: 676705497754458767, guid: dae371a7367464c43b5584fc45fb0a05, type: 2}
         lod2: {fileID: 5321341438211534229, guid: dae371a7367464c43b5584fc45fb0a05, type: 2}
         colliderCenter: {x: -0.82591665, y: 0.38179016, z: -0.3282597}
@@ -3060,7 +3060,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:95011162911648745:extra:2:Variation1
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: 73e353a52aee34987b1cdb7240bb920f, type: 2}
+        lod0: {fileID: 4825947841542265366, guid: 73e353a52aee34987b1cdb7240bb920f, type: 2}
         lod1: {fileID: -453876839506802111, guid: 73e353a52aee34987b1cdb7240bb920f, type: 2}
         lod2: {fileID: 9113523001089083564, guid: 73e353a52aee34987b1cdb7240bb920f, type: 2}
         colliderCenter: {x: -0.8259164, y: 0.38178927, z: -0.3282599}
@@ -4366,7 +4366,7 @@ MonoBehaviour:
         stableId: eb946905807654ee1995d96e45fcb87b:1074929009093912678:extra:2:Variation3
         shape: 3
         variant: 0
-        lod0: {fileID: 4300000, guid: e775b9a8c5c054abfa750252fd421d70, type: 2}
+        lod0: {fileID: 7855116599123568648, guid: e775b9a8c5c054abfa750252fd421d70, type: 2}
         lod1: {fileID: -8607473074749550448, guid: e775b9a8c5c054abfa750252fd421d70, type: 2}
         lod2: {fileID: -716517958246528323, guid: e775b9a8c5c054abfa750252fd421d70, type: 2}
         colliderCenter: {x: 0.030721009, y: 0.49276078, z: -0.28487372}
