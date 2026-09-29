@@ -1,0 +1,14 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Query/DormantHybridWorldQueryService.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Query/DormantHybridWorldQueryService.cs
+@@ -279,6 +279,11 @@
+                 var endpointFade = SmoothBand(amount, 0.05d, 0.15d)
+                     * (1d - SmoothBand(amount, 0.85d, 0.95d));
+                 cut += depth * 0.23d * gully * wallMask * endpointFade;
++                var talusApron = depth * 0.06d
++                    * SmoothBand(normalized, 0.14d, 0.32d)
++                    * (1d - SmoothBand(normalized, 0.34d, 0.48d))
++                    * endpointFade;
++                cut = Math.Max(0d, cut - talusApron);
+                 strongestCanyonCut = Math.Max(strongestCanyonCut, cut);
+                 if (distance < nearestCanyonDistance)
+                 {

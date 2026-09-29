@@ -1,0 +1,13 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Landforms/WorldCliffDebrisPlanner.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Landforms/WorldCliffDebrisPlanner.cs
+@@ -50 +50 @@
+-            if (Hash01(seed, 0) > 0.20d) return Array.Empty<WorldCliffDebrisCandidate>();
++            if (Hash01(seed, 0) > 0.45d) return Array.Empty<WorldCliffDebrisCandidate>();
+@@ -77 +77 @@
+-                    ? 1.7f + (float)Hash01(seed, ordinal * 7 + 3) * 1.1f
++                    ? 3.5f + (float)Hash01(seed, ordinal * 7 + 3) * 2.0f
+@@ -79,2 +79,2 @@
+-                        ? 1.1f + (float)Hash01(seed, ordinal * 7 + 3) * 0.9f
+-                        : 0.65f + (float)Hash01(seed, ordinal * 7 + 3) * 0.6f;
++                        ? 1.8f + (float)Hash01(seed, ordinal * 7 + 3) * 1.2f
++                        : 0.8f + (float)Hash01(seed, ordinal * 7 + 3) * 0.8f;
