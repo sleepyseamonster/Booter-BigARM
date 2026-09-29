@@ -71,6 +71,12 @@ did not match the earlier baseline. The [streaming receipt](Evidence/WorldCreato
 preserves the mirror code, tests, and raw telemetry. Keep the runtime integration
 mirror-only until a same-center performance comparison, visible swap review, and
 production-camera visual acceptance support a cutover.
+Rendered Player captures at the first arrival and after all 49 far upgrades show that
+the actual 25 m game camera sees a saturated red floor and very dark walls, not the
+reference's open mesa view. The settled player position also differed from the route
+driver's requested coordinate, so the next controlled benchmark must log and hold the
+actual absolute player position. See the [game-camera receipt](Evidence/WorldCreator/CanyonSlice/README.md)
+before judging material or camera changes.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,

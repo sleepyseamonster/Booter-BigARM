@@ -1,0 +1,103 @@
+using System;
+using System.Collections;
+using BooterBigArm.TopDown3D.WorldCreator;
+using UnityEngine;
+
+namespace BooterBigArm.TopDown3D
+{
+    // Isolated-mirror profiling harness. Never copy this into the production checkout.
+    public sealed class TempCanyonPlayerBenchmark : MonoBehaviour
+    {
+        private void Awake()
+        {
+            Application.runInBackground = true;
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void Install()
+        {
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-canyonBenchmark") < 0) return;
+            new GameObject("Temporary Canyon Player Benchmark")
+                .AddComponent<TempCanyonPlayerBenchmark>();
+        }
+
+        private IEnumerator Start()
+        {
+            var route = new[]
+            {
+                new Vector2(416.74f, 342.39f),
+                new Vector2(452.74f, 342.39f),
+                new Vector2(488.74f, 342.39f),
+                new Vector2(452.74f, 342.39f),
+                new Vector2(416.74f, 342.39f)
+            };
+            TopDown3DProceduralWorld world = null;
+            TopDown3DPlayerMotor player = null;
+            for (var i = 0; i < 120 && (world == null || world.ProductionRuntime == null || player == null); i++)
+            {
+                world = FindAnyObjectByType<TopDown3DProceduralWorld>();
+                player = FindAnyObjectByType<TopDown3DPlayerMotor>();
+                yield return new WaitForSecondsRealtime(0.25f);
+            }
+            if (world == null || world.ProductionRuntime == null || player == null)
+            {
+                Debug.LogError("[CanyonBenchmark] World or player unavailable");
+                Application.Quit(2);
+                yield break;
+            }
+            Debug.Log($"[CanyonBenchmark] begin seed={world.WorldSeed} source={world.ProductionRuntime.SourceFingerprint}");
+            player.enabled = false;
+            var body = player.GetComponent<Rigidbody>();
+            if (body != null) body.isKinematic = true;
+            for (var i = 0; i < route.Length; i++)
+            {
+                var point = route[i];
+                var absolute = new AbsoluteWorldPosition(point.x, 0d, point.y);
+                if (!world.ProductionRuntime.Query.TrySampleSurface(absolute, out var surface, out var error)
+                    || !world.TryAbsoluteToLocal(surface.Position, out var local))
+                {
+                    Debug.LogError($"[CanyonBenchmark] sample failed waypoint={i} error={error}");
+                    Application.Quit(3);
+                    yield break;
+                }
+                player.Teleport(local + Vector3.up * 1.2f);
+                Camera.main?.GetComponent<TopDown3DCameraRig>()?.SnapToTarget();
+                Debug.Log($"[CanyonBenchmark] waypoint={i} abs=({point.x:F2},{point.y:F2}) "
+                    + $"center={world.CurrentCenterChunk} loaded={world.LoadedChunkCount} "
+                    + $"decorated={world.DecoratedChunkCount} pendingTerrain={world.PendingTerrainChunkCount} "
+                    + $"pendingDecoration={world.PendingDecorationCount}");
+                yield return new WaitForSecondsRealtime(i == 0 ? 25f : 15f);
+                Debug.Log($"[CanyonBenchmark] settled={i} center={world.CurrentCenterChunk} "
+                    + $"loaded={world.LoadedChunkCount} decorated={world.DecoratedChunkCount} "
+                    + $"pendingTerrain={world.PendingTerrainChunkCount} "
+                    + $"pendingDecoration={world.PendingDecorationCount} "
+                    + $"terrainColliders={world.TerrainColliderCount} "
+                    + $"decorationColliders={world.DecorationColliderCount} "
+                    + $"adaptiveFar={CountAdaptiveFarMeshes(out var farTotal)}/{farTotal}");
+                if (i == 0 || i == 2 || i == 4)
+                {
+                    ScreenCapture.CaptureScreenshot($"/tmp/booter-canyon-game-stop{i}.png");
+                    if (world.TryLocalToAbsolute(player.transform.position, out var actual))
+                        Debug.Log($"[CanyonBenchmark] actual={i} abs=({actual.HorizontalA:F2},{actual.Vertical:F2},{actual.HorizontalB:F2}) camera={Camera.main?.transform.position}");
+                    yield return null;
+                }
+            }
+            Debug.Log("[CanyonBenchmark] complete");
+            Application.Quit(0);
+        }
+
+        private static int CountAdaptiveFarMeshes(out int farTotal)
+        {
+            farTotal = 0;
+            var adaptive = 0;
+            foreach (var filter in FindObjectsByType<MeshFilter>(FindObjectsSortMode.None))
+            {
+                if (!filter.name.StartsWith("World Creator Far", StringComparison.Ordinal)) continue;
+                farTotal++;
+                if (filter.sharedMesh != null && filter.sharedMesh.vertexCount > 289)
+                    adaptive++;
+            }
+            return adaptive;
+        }
+    }
+}
