@@ -196,7 +196,8 @@ namespace BooterBigArm.Tests
                 var leftEdge = leftMask.GetPixel(63, 32);
                 var rightEdge = rightMask.GetPixel(0, 32);
                 Assert.That(leftEdge.r, Is.GreaterThan(0f));
-                Assert.That(leftEdge.g, Is.GreaterThan(0f));
+                Assert.That(leftEdge.g, Is.GreaterThan(0.95f),
+                    "The sand contact surface stays opaque even when the rock stain opacity is 0.72.");
                 Assert.That(Mathf.Abs(leftEdge.r - rightEdge.r), Is.LessThan(0.15f));
                 Assert.That(Mathf.Abs(leftEdge.g - rightEdge.g), Is.LessThan(0.15f));
                 Assert.That(leftMesh.uv2[1].y, Is.EqualTo(0.6f),

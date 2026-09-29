@@ -103,8 +103,10 @@ namespace BooterBigArm.TopDown3D
                             * Mathf.Max(0.1f, Mathf.Min(bounds.extents.x, bounds.extents.z));
                         coverage = Mathf.Max(coverage, (1f - Mathf.SmoothStep(0f, 1f,
                             Mathf.Clamp01(distance / (1.8f * edgeScale)))) * strength);
-                        sand = Mathf.Max(sand, (1f - Mathf.SmoothStep(0f, 1f,
-                            Mathf.Clamp01(distance / (0.75f * edgeScale)))) * treatment.BandOpacity);
+                        // The workbench's rock-stain opacity affects the overlay on the
+                        // rock, not the sand contact surface beneath it.
+                        sand = Mathf.Max(sand, 1f - Mathf.SmoothStep(0f, 1f,
+                            Mathf.Clamp01(distance / (0.75f * edgeScale))));
                     }
                 }
                 pixels[z * MaskResolution + x] = new Color32(
