@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="14" result="Passed" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 14:09:11Z" end-time="2026-09-29 14:10:07Z" duration="55.7137216">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 14:09:11Z" end-time="2026-09-29 14:10:07Z" duration="55.713722" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1540" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 14:09:11Z" end-time="2026-09-29 14:10:07Z" duration="55.696824" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="18454" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1541" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 14:09:11Z" end-time="2026-09-29 14:10:07Z" duration="55.690580" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1542" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 14:09:11Z" end-time="2026-09-29 14:10:07Z" duration="55.677943" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1543" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-09-29 14:09:11Z" end-time="2026-09-29 14:10:07Z" duration="55.672449" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1426" name="TempCanyonFaceProofTests" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-29 14:09:11Z" end-time="2026-09-29 14:10:07Z" duration="55.669488" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1436" name="ActualRepresentationCompilerKeepsCanyonVertexAcrossTiers" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.ActualRepresentationCompilerKeepsCanyonVertexAcrossTiers" methodname="ActualRepresentationCompilerKeepsCanyonVertexAcrossTiers" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1914668816" result="Passed" start-time="2026-09-29 14:09:11Z" end-time="2026-09-29 14:09:11Z" duration="0.333920" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON TIERS near=-72.182 mid=-72.182 far=-72.182 feature=9019ff4da6f11803382f8c3cc10b141a semantic=BroadGround, CanyonFloor, BoundedLandform
+]]></output>
+              </test-case>
+              <test-case id="1430" name="AuditApprovedWorkbenchFootprints" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.AuditApprovedWorkbenchFootprints" methodname="AuditApprovedWorkbenchFootprints" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1707238184" result="Passed" start-time="2026-09-29 14:09:11Z" end-time="2026-09-29 14:09:13Z" duration="1.618469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON TEMPLATE FOOTPRINT name=MixedPileScatter members=19 width=11.7 depth=14.5 halfDiagonal=9.3
+CANYON TEMPLATE FOOTPRINT name=HandbuiltSpire members=20 width=9.5 depth=6.4 halfDiagonal=5.7
+]]></output>
+              </test-case>
+              <test-case id="1427" name="AuditCanonicalAuthoredFormationReservationsAcrossVisibleCanyon" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.AuditCanonicalAuthoredFormationReservationsAcrossVisibleCanyon" methodname="AuditCanonicalAuthoredFormationReservationsAcrossVisibleCanyon" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="2084385844" result="Passed" start-time="2026-09-29 14:09:13Z" end-time="2026-09-29 14:09:13Z" duration="0.044317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON AUTHORED RESERVATION id=08af3c57b9e471113c849b5c0514b0b8 center=(456.2,411.1) goal=BrokenStack template=HandbuiltSpire semantic=BroadGround, CanyonShelf slope=1.7 walkable=True
+CANYON AUTHORED RESERVATION id=100a98156831b98d981eb5db3e2831df center=(549.7,412.6) goal=TalusFan template=HandbuiltSpire semantic=BroadGround, CanyonShelf slope=70.9 walkable=False
+CANYON AUTHORED RESERVATION id=15424df916471254a07826ef5d51c32c center=(518.1,374.8) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonFloor slope=11.9 walkable=True
+CANYON AUTHORED RESERVATION id=182f121eed93177ce249de51ab44177d center=(467.3,378.8) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonFloor slope=26.4 walkable=True
+CANYON AUTHORED RESERVATION id=1d06b0d2993f8e1c91dc03bc9d9a9c95 center=(505.9,357.6) goal=StructuralRidge template=MixedPileScatter semantic=BroadGround, CanyonFloor slope=11.8 walkable=True
+CANYON AUTHORED RESERVATION id=1dbee71008eef0380fa958fe5ee8bc1a center=(551.2,389.5) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonFloor slope=32.6 walkable=False
+CANYON AUTHORED RESERVATION id=206673ef279b1c2bf582014abb6f445c center=(439.6,421.9) goal=TalusFan template=HandbuiltSpire semantic=BroadGround, CanyonWall slope=24.4 walkable=True
+CANYON AUTHORED RESERVATION id=3afce972c0e404ccd083da57fba48f8d center=(444.3,412.7) goal=StructuralRidge template=MixedPileScatter semantic=BroadGround, CanyonShelf slope=1.3 walkable=True
+CANYON AUTHORED RESERVATION id=3e0a10176509003b005ad833158ffad6 center=(555.9,373.9) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonFloor slope=12.3 walkable=True
+CANYON AUTHORED RESERVATION id=4df666d911d047c64b2c10296af2a921 center=(506.1,408.0) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonShelf slope=68.2 walkable=False
+CANYON AUTHORED RESERVATION id=533ccf359c4d99beea89524147690289 center=(524.2,409.7) goal=BrokenStack template=HandbuiltSpire semantic=BroadGround, CanyonShelf slope=6.3 walkable=True
+CANYON AUTHORED RESERVATION id=557f3e340e7df6ff19cdd825558756b9 center=(438.3,390.6) goal=StructuralRidge template=MixedPileScatter semantic=BroadGround, CanyonShelf slope=80.6 walkable=False
+CANYON AUTHORED RESERVATION id=595f77666616ee258e77033a32e668e4 center=(505.5,346.0) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonFloor slope=11.8 walkable=True
+CANYON AUTHORED RESERVATION id=5981b5ed8db071d612bb7fc38e6ad9d8 center=(489.6,404.3) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonShelf slope=73.0 walkable=False
+CANYON AUTHORED RESERVATION id=5c598fe02c4c92d20d8670ff96ea98e8 center=(487.7,423.8) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonWall slope=14.2 walkable=True
+CANYON AUTHORED RESERVATION id=8d17e611925cb300fdbefd729ceea056 center=(476.2,441.3) goal=BrokenStack template=MixedPileScatter semantic=BroadGround, CanyonWall slope=51.0 walkable=False
+CANYON AUTHORED RESERVATION id=8f891839ab5913548dcc8e2efa594ded center=(500.3,380.1) goal=TalusFan template=HandbuiltSpire semantic=BroadGround, CanyonFloor slope=11.9 walkable=True
+CANYON AUTHORED RESERVATION id=a022d5d919bee0d89c2f89255bc7b061 center=(451.7,419.6) goal=BrokenStack template=MixedPileScatter semantic=BroadGround, CanyonWall slope=1.6 walkable=True
+CANYON AUTHORED RESERVATION id=ab438e13c932867cb9d0c410637614ac center=(487.4,393.7) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonShelf slope=71.0 walkable=False
+CANYON AUTHORED RESERVATION id=bc3fa14e4e83fce8333701125d87d7c1 center=(487.0,362.5) goal=TalusFan template=HandbuiltSpire semantic=BroadGround, CanyonFloor slope=11.7 walkable=True
+CANYON AUTHORED RESERVATION id=c2f88d96a2088115830c330282cb3713 center=(484.1,332.5) goal=StructuralRidge template=MixedPileScatter semantic=BroadGround, CanyonFloor slope=11.6 walkable=True
+CANYON AUTHORED RESERVATION id=c6b5802a08cb552167633b84a951d926 center=(485.3,345.6) goal=TalusFan template=MixedPileScatter semantic=BroadGround, CanyonFloor slope=11.7 walkable=True
+CANYON AUTHORED RESERVATION id=e45110a36b2b63f834aa0f91e77fdcb0 center=(534.8,411.2) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonShelf slope=70.0 walkable=False
+CANYON AUTHORED RESERVATION id=e732582fee299a97f2cc25a6f7a1feaf center=(471.9,419.6) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonShelf slope=65.2 walkable=False
+CANYON AUTHORED RESERVATION id=e7c231f0d84b5bf9f4aef2b6fed43506 center=(548.6,438.3) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonWall slope=12.3 walkable=True
+CANYON AUTHORED RESERVATION id=f1051cd63705cab0331b783c727623ce center=(524.0,393.4) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonShelf slope=63.4 walkable=False
+CANYON AUTHORED RESERVATION id=f11f34ffda2ba2ef5f646ed03c853569 center=(505.1,325.1) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonFloor slope=11.6 walkable=True
+CANYON AUTHORED RESERVATION id=f66bb1e9c66b7bb3c47b7ad1e79037f2 center=(490.6,372.9) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonFloor slope=11.8 walkable=True
+CANYON AUTHORED RESERVATION id=f97b1523e0bd52a4b8f2db697090f421 center=(548.1,364.0) goal=StructuralRidge template=HandbuiltSpire semantic=BroadGround, CanyonFloor slope=12.5 walkable=True
+CANYON AUTHORED RESERVATIONS all=30 formation=29 canyon=29 walkable=19
+]]></output>
+              </test-case>
+              <test-case id="1428" name="AuditRealizedAuthoredFormationsAcrossVisibleCanyon" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.AuditRealizedAuthoredFormationsAcrossVisibleCanyon" methodname="AuditRealizedAuthoredFormationsAcrossVisibleCanyon" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1937353933" result="Passed" start-time="2026-09-29 14:09:13Z" end-time="2026-09-29 14:09:19Z" duration="5.627747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON AUTHORED FORMATION chunk=26,18 id=c2f88d96a2088115830c330282cb3713 template=MixedPileScatter members=19 center=(484.07, 332.56) radius=9.0 height=4.1
+CANYON AUTHORED FORMATION chunk=28,19 id=595f77666616ee258e77033a32e668e4 template=HandbuiltSpire members=20 center=(505.79, 345.73) radius=5.2 height=6.1
+CANYON AUTHORED FORMATION chunk=27,20 id=bc3fa14e4e83fce8333701125d87d7c1 template=MixedPileScatter members=19 center=(486.89, 362.82) radius=9.5 height=4.6
+CANYON AUTHORED FORMATION chunk=27,20 id=f66bb1e9c66b7bb3c47b7ad1e79037f2 template=HandbuiltSpire members=22 center=(490.07, 372.94) radius=5.4 height=6.6
+CANYON AUTHORED FORMATION chunk=28,20 id=15424df916471254a07826ef5d51c32c template=HandbuiltSpire members=18 center=(517.82, 375.75) radius=5.4 height=7.1
+CANYON AUTHORED FORMATION chunk=30,20 id=3e0a10176509003b005ad833158ffad6 template=HandbuiltSpire members=20 center=(555.13, 373.58) radius=5.4 height=6.0
+CANYON AUTHORED FORMATION chunk=25,22 id=08af3c57b9e471113c849b5c0514b0b8 template=HandbuiltSpire members=20 center=(456.11, 410.31) radius=5.4 height=6.0
+CANYON AUTHORED FORMATION chunk=25,23 id=a022d5d919bee0d89c2f89255bc7b061 template=MixedPileScatter members=19 center=(451.66, 419.56) radius=9.9 height=3.0
+CANYON AUTHORED FORMATION chunk=27,23 id=5c598fe02c4c92d20d8670ff96ea98e8 template=HandbuiltSpire members=20 center=(487.35, 424.47) radius=6.1 height=7.5
+CANYON AUTHORED REALIZATION formations=9 members=177 chunks=8/49 elapsedMs=5626
+]]></output>
+              </test-case>
+              <test-case id="1429" name="AuditUnreservedCanyonFloorApronSpace" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.AuditUnreservedCanyonFloorApronSpace" methodname="AuditUnreservedCanyonFloorApronSpace" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1150112790" result="Passed" start-time="2026-09-29 14:09:19Z" end-time="2026-09-29 14:09:20Z" duration="1.358321" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON APRON GRID floors=551 gentleUnreservedCenters=391 clearRadius5=231 clearRadius9=108 failureReasons=slope:220;outside-floor:36;route:187 samples9=432,326;436,326;440,326;444,326;448,326;452,326;436,330;440,330;444,330;448,330;452,330;456,330;460,330;464,330;468,330;472,330;476,330;480,330;484,330;456,334
+]]></output>
+              </test-case>
+              <test-case id="1437" name="CanyonBoundaryMatchesAdjacentTilesAndProductionMaterialAcrossTiers" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.CanyonBoundaryMatchesAdjacentTilesAndProductionMaterialAcrossTiers" methodname="CanyonBoundaryMatchesAdjacentTilesAndProductionMaterialAcrossTiers" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1255157072" result="Passed" start-time="2026-09-29 14:09:20Z" end-time="2026-09-29 14:09:21Z" duration="0.503259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1434" name="CanyonFarTileBuildCostMetrics" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.CanyonFarTileBuildCostMetrics" methodname="CanyonFarTileBuildCostMetrics" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="2019144293" result="Passed" start-time="2026-09-29 14:09:21Z" end-time="2026-09-29 14:09:22Z" duration="1.503025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON FAR BUILD ordinaryMeanMs=50.10 denseMeanMs=166.90 repeats=6
+]]></output>
+              </test-case>
+              <test-case id="1433" name="CanyonFarTileCoarsePresenceScreen" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.CanyonFarTileCoarsePresenceScreen" methodname="CanyonFarTileCoarsePresenceScreen" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1111538946" result="Passed" start-time="2026-09-29 14:09:22Z" end-time="2026-09-29 14:09:22Z" duration="0.007796" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON FAR SCREEN screened=0,0;1,0;2,0;0,1;1,1;2,1;0,2;1,2;2,2 full=0,0;1,0;2,0;0,1;1,1;2,1;0,2;1,2;2,2 missed=
+]]></output>
+              </test-case>
+              <test-case id="1435" name="CanyonFarTileSamplingErrorMetrics" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.CanyonFarTileSamplingErrorMetrics" methodname="CanyonFarTileSamplingErrorMetrics" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1527689352" result="Passed" start-time="2026-09-29 14:09:22Z" end-time="2026-09-29 14:09:22Z" duration="0.289325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON FAR ALIAS samples=867 baselineMean=0.406 baselineMax=5.234 denseMean=0.232 denseMax=4.008 baselineVertices=289 denseVertices=1089
+]]></output>
+              </test-case>
+              <test-case id="1438" name="CanyonSourceProducesContactFittedFacesAndSourceRocks" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.CanyonSourceProducesContactFittedFacesAndSourceRocks" methodname="CanyonSourceProducesContactFittedFacesAndSourceRocks" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1093012734" result="Passed" start-time="2026-09-29 14:09:22Z" end-time="2026-09-29 14:09:27Z" duration="4.766864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON FIXTURE faces=17 stones=25 talus=25 buttress=0 contactGapMax=0.21 poorContacts=0 elapsedMs=1618
+CANYON FIXTURE faces=17 stones=25 talus=25 buttress=0 contactGapMax=0.21 poorContacts=0 elapsedMs=1562
+CANYON FIXTURE faces=17 stones=25 talus=25 buttress=0 contactGapMax=0.21 poorContacts=0 elapsedMs=1575
+]]></output>
+              </test-case>
+              <test-case id="1432" name="ReportNearFaceContactAgainstRenderedTerrainTriangles" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.ReportNearFaceContactAgainstRenderedTerrainTriangles" methodname="ReportNearFaceContactAgainstRenderedTerrainTriangles" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1995575670" result="Passed" start-time="2026-09-29 14:09:27Z" end-time="2026-09-29 14:09:29Z" duration="1.715644" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON TRIANGLE CONTACT faces=17 vertices=6120 max=0.300 p95=0.300 above025=3945 above100=0 below100=84
+CANYON TRIANGLE INTERIOR visual=2040 visualMax=0.992 visualP95=0.500 visualAbove100=0 collider=2040 colliderMax=0.992 colliderP95=0.500 colliderAbove100=0
+CANYON FACE MAXIMA visualUnder050=2 visualUnder100=17 colliderUnder050=2 colliderUnder100=17
+]]></output>
+              </test-case>
+              <test-case id="1439" name="VisibleRightWallIsDeterministicAfterReloadAndRebase" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.VisibleRightWallIsDeterministicAfterReloadAndRebase" methodname="VisibleRightWallIsDeterministicAfterReloadAndRebase" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="2128467041" result="Passed" start-time="2026-09-29 14:09:29Z" end-time="2026-09-29 14:09:49Z" duration="20.377872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON FIXTURE faces=60 stones=105 talus=81 buttress=24 contactGapMax=0.22 poorContacts=0 elapsedMs=6771
+CANYON FIXTURE faces=60 stones=105 talus=81 buttress=24 contactGapMax=0.22 poorContacts=0 elapsedMs=6833
+CANYON FIXTURE faces=60 stones=105 talus=81 buttress=24 contactGapMax=0.22 poorContacts=0 elapsedMs=6766
+]]></output>
+              </test-case>
+              <test-case id="1440" name="WalkableCanyonFloorIsClearOfWorkbenchButtressAfterReloadAndRebase" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.WalkableCanyonFloorIsClearOfWorkbenchButtressAfterReloadAndRebase" methodname="WalkableCanyonFloorIsClearOfWorkbenchButtressAfterReloadAndRebase" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="715391655" result="Passed" start-time="2026-09-29 14:09:49Z" end-time="2026-09-29 14:09:50Z" duration="0.621320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON BUTTRESS CLEARANCE retained=0 waypoint=(488.74,342.39)
+CANYON BUTTRESS CLEARANCE retained=0 waypoint=(488.74,342.39)
+CANYON BUTTRESS CLEARANCE retained=0 waypoint=(488.74,342.39)
+]]></output>
+              </test-case>
+              <test-case id="1431" name="WidenedCanyonAuthoredFormationsKeepIdentityAndAbsolutePlacementAfterRebase" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.WidenedCanyonAuthoredFormationsKeepIdentityAndAbsolutePlacementAfterRebase" methodname="WidenedCanyonAuthoredFormationsKeepIdentityAndAbsolutePlacementAfterRebase" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1801018886" result="Passed" start-time="2026-09-29 14:09:50Z" end-time="2026-09-29 14:10:07Z" duration="16.883204" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON AUTHORED REBASE records=186 formations=9
+Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

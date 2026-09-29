@@ -202,3 +202,7 @@ The upper-only [near view](UpperShelfWarpNearDiagnostic.png) still reads as broa
 ## Approved Workbench and widened-apron mirror trial, 2026-09-29
 
 The [separate trial receipt](WidenedApronTrial.md) records the canonical approved Workbench formation path, a 49-chunk wider-floor and goal-aware template experiment, its deterministic/near-contact proof, and the failed fixed-camera visual gate. The live dirty World Creator and Rock Workbench assets remain untouched.
+
+## Parent-wall warp rejection, 2026-09-29
+
+The [parent-wall trial](ParentWallWarpTrial.md) tested a broad wall-only terrain warp against the widened-apron control. The 14 focused checks passed, but the actual middle-tier image developed harsh triangular strata; higher sample density and wider erosion transitions did not produce an acceptable layered cliff. The mirror query was restored, and no live Unity asset changed.

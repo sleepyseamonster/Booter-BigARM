@@ -1,0 +1,15 @@
+# Parent-wall warp experiment
+
+Date: 2026-09-29. This is a rejected, isolated Unity mirror trial on the preceding [widened-apron candidate](WidenedApronTrial.md). It is not a production implementation or a change to the user's dirty Unity assets.
+
+## Trial and result
+
+The [query patch](ParentWallWarpTrial.patch) applies one seeded 96 m world-space value-noise sample to the middle and upper canyon cut coordinates. A wall-only mask leaves the lower floor and outer edge anchored; segment-end fading keeps joins stable. The intent was to make broad headlands and recesses without shifting the protected canyon route. The patch is relative to the previous mirror candidate, not the live query.
+
+The [fixed near render](ParentWallWarpNear.png) gains one broad projecting shoulder and recess compared with the [widened-apron control](WidenedApronNearDiagnostic.png). The face is still a smooth pale slab, with small approved Workbench clusters on it. The [actual 17×17 middle-tier render](ParentWallWarpMiddle.png) turns the warped strata into harsh white triangular ribbons. An experimental 33×33 middle tier and a selective 17×17 cell-refinement render softened the largest triangles but retained the same unnatural banding. Widening the middle and upper erosion transitions from ±0.075 to ±0.115 normalized cross-section units removes many bright zigzags, but the [broadened middle render](ParentWallWarpBroadMiddle.png) also loses the distinct layer rhythm. None of these meets the reference composition.
+
+The [14-of-14 focused mirror tests](ParentWallWarpTests.xml) passed for the sharp version: route/affordance, approved formation footprint and stable identities, normal/reversed/rebased cliff geometry, sampled near-triangle contact, representation edge agreement, and far-tile diagnostics. The 49-chunk right-wall fixture produced 60 fitted faces, 24 individual Workbench buttresses, and 81 talus rocks in each of normal, reversed, and rebased runs; maximum talus center gap was 0.22 m. The approved Workbench path realized nine formations with 177 member rocks across eight chunks and retained all 186 formation/member identity records after reload and rebase. The central near contact sample had 17 fitted faces; 6,120 vertices protruded at most 0.300 m, while 2,040 visual and collider triangle centroids protruded at most 0.992 m. These numbers show that the trial remained structurally coherent, not that it looked or played well.
+
+## Decision
+
+Reject the wall-coordinate warp and broader transition variant. The query was restored byte-for-byte to the widened-apron mirror candidate. Increasing middle-tier density alone does not solve the underlying visual problem and would add terrain work. The next implementation needs volumetric, irregular geology at formation and cliff-face scale, with strata and material tied to that geometry; it must preserve a legible middle/far silhouette. The existing heightfield terraces and terrain-conforming overlay are too planar to meet that result by another shelf threshold tweak.
