@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using BooterBigArm.TopDown3D;
+using UnityEditor;
+using UnityEngine;
+
+namespace BooterBigArm.Editor.WorldCreator
+{
+    // Isolated geometry study for a new editable Workbench ledge source.
+    public static class TempCanyonShelfBaker
+    {
+        private const string Folder = "Assets/_Project/Resources/WorldCreator/CanyonWallModules";
+
+        public static void Run()
+        {
+            var root = new GameObject("Canyon Workbench shelf volume study");
+            try
+            {
+                var boxes = new List<TopDown3DRockWorkbenchBox>();
+                void Add(string name, Vector3 center, Vector3 size, float yaw,
+                    TopDown3DRockSourceShape shape, TopDown3DRockVolumeOperation operation,
+                    int seed)
+                {
+                    var node = new GameObject(name);
+                    node.transform.SetParent(root.transform, false);
+                    node.transform.localPosition = center;
+                    node.transform.localRotation = Quaternion.Euler(0f, yaw, 0f);
+                    node.transform.localScale = size;
+                    boxes.Add(new TopDown3DRockWorkbenchBox(root.transform,
+                        node.transform, shape, seed, operation, 0.22f));
+                }
+
+                // Continuous buried core and offset broad bedding tiers.
+                Add("Buried bedrock core", new Vector3(0f, 2.4f, 1.8f),
+                    new Vector3(35f, 5.2f, 4.0f), 0f,
+                    TopDown3DRockSourceShape.WeatheredBlock,
+                    TopDown3DRockVolumeOperation.Additive, 1101);
+                for (var tier = 0; tier < 3; tier++)
+                for (var segment = 0; segment < 3; segment++)
+                {
+                    var x = (segment - 1) * 11.2f + (tier % 2 == 0 ? 0f : 1.2f);
+                    var width = tier == 2 ? 13.1f : 12.4f;
+                    var y = 1.0f + tier * 2.25f;
+                    var z = -0.45f + tier * 0.45f
+                        + (segment == 1 ? -0.18f : 0.12f);
+                    Add($"Bedding tier {tier} segment {segment}",
+                        new Vector3(x, y, z), new Vector3(width, 2.7f, 5.2f),
+                        segment == 0 ? -2f : segment == 2 ? 2f : 0f,
+                        TopDown3DRockSourceShape.WeatheredBlock,
+                        TopDown3DRockVolumeOperation.Additive,
+                        2100 + tier * 17 + segment);
+                }
+                Add("Upper crown left", new Vector3(-9.6f, 7.0f, 1.2f),
+                    new Vector3(16f, 1.9f, 4.7f), -2f,
+                    TopDown3DRockSourceShape.Wedge,
+                    TopDown3DRockVolumeOperation.Additive, 3131);
+                Add("Upper crown right", new Vector3(9.1f, 7.1f, 1.4f),
+                    new Vector3(17.4f, 2.0f, 4.9f), 2f,
+                    TopDown3DRockSourceShape.Wedge,
+                    TopDown3DRockVolumeOperation.Additive, 3137);
+                foreach (var lod in new[] { (index: 0, voxel: 0.17f),
+                    (index: 1, voxel: 0.31f), (index: 2, voxel: 0.54f) })
+                {
+                    if (!TopDown3DRockWorkbenchMesher.TryBuild(boxes, lod.voxel,
+                            0.11f, 0.08f, out var result, out var error))
+                        throw new InvalidOperationException(error);
+                    if (result.ConnectedComponents != 1)
+                        throw new InvalidOperationException($"Shelf LOD{lod.index} has {result.ConnectedComponents} components.");
+                    var mesh = result.CreateMesh($"CanyonWorkbenchStrataShelf_LOD{lod.index}");
+                    var triangles = mesh.triangles.Length / 3;
+                    Debug.Log($"CANYON SHELF lod={lod.index} vertices={mesh.vertexCount} triangles={triangles} bounds={mesh.bounds} grid={result.GridCells} components={result.ConnectedComponents}");
+                    TopDown3DProductionRockBaker.UpsertMesh(
+                        $"{Folder}/CanyonWorkbenchStrataShelf_LOD{lod.index}.asset", mesh);
+                }
+                AssetDatabase.SaveAssets();
+            }
+            finally { UnityEngine.Object.DestroyImmediate(root); }
+        }
+    }
+}

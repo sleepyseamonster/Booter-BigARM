@@ -1,0 +1,111 @@
+using System;
+using System.Collections.Generic;
+using BooterBigArm.TopDown3D;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+namespace BooterBigArm.Editor.WorldCreator
+{
+    // Isolated mirror only. Rebuilds the saved editable cliff reference into one proof mesh per LOD.
+    public static class TempCanyonWallModuleBaker
+    {
+        private const string SourcePath =
+            "Assets/_Project/Art/Environment/Rocks/Source/CliffWallSampleReference.prefab";
+        private const string Folder = "Assets/_Project/Resources/WorldCreator/CanyonWallModules";
+        private static readonly float[] VoxelSizes = { 0.075f, 0.13f, 0.21f };
+
+        public static void Run()
+        {
+            var layered = Environment.GetEnvironmentVariable("CANYON_WALL_LAYOUT") == "layered";
+            var baseName = layered ? "CanyonWorkbenchLedge" : "CanyonWorkbenchWall";
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(SourcePath);
+            if (prefab == null) throw new InvalidOperationException("Saved cliff source is missing.");
+            if (!AssetDatabase.IsValidFolder(Folder))
+                AssetDatabase.CreateFolder("Assets/_Project/Resources/WorldCreator", "CanyonWallModules");
+            var copy = UnityEngine.Object.Instantiate(prefab);
+            try
+            {
+                copy.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                copy.transform.localScale = Vector3.one;
+                var rocks = copy.GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>(true);
+                if (rocks.Length != 18) throw new InvalidOperationException("Expected 18 saved Workbench rocks.");
+                var previousTriangles = int.MaxValue;
+                for (var lod = 0; lod < VoxelSizes.Length; lod++)
+                {
+                    var parts = new List<Mesh>(rocks.Length);
+                    var combined = new Mesh { name = $"{baseName}_LOD{lod}", indexFormat = IndexFormat.UInt32 };
+                    try
+                    {
+                        var instances = new CombineInstance[rocks.Length];
+                        for (var index = 0; index < rocks.Length; index++)
+                        {
+                            var rock = rocks[index];
+                            var nodes = rock.GetComponentsInChildren<TopDown3DRockVolumeNode>(false);
+                            var boxes = new List<TopDown3DRockWorkbenchBox>(nodes.Length);
+                            foreach (var node in nodes)
+                                if (node.ContributesToRock && node.gameObject.activeInHierarchy)
+                                    boxes.Add(new TopDown3DRockWorkbenchBox(rock.transform, node.transform,
+                                        node.SourceShape, node.ShapeSeed, node.Operation,
+                                        rock.GeneratedEdgeDamage));
+                            if (boxes.Count == 0)
+                                throw new InvalidOperationException($"{rock.name} has no active source volumes.");
+                            if (!TopDown3DRockWorkbenchMesher.TryBuild(boxes, VoxelSizes[lod],
+                                    rock.FusionSmoothness, rock.SurfaceRelaxation,
+                                    out var result, out var error))
+                                throw new InvalidOperationException($"{rock.name}: {error}");
+                            var part = result.CreateMesh($"Source rock {index} LOD{lod}");
+                            parts.Add(part);
+                            if (lod == 0)
+                                Debug.Log($"CANYON SOURCE ROCK index={index} name={rock.name} local={rock.transform.localPosition} bounds={part.bounds} rotation={rock.transform.localEulerAngles} scale={rock.transform.localScale}");
+                            var sourceTransform = copy.transform.worldToLocalMatrix * rock.transform.localToWorldMatrix;
+                            var transform = sourceTransform;
+                            if (layered)
+                            {
+                                var sourceBounds = TransformedBounds(part.bounds, sourceTransform);
+                                var row = index / 6;
+                                var column = index % 6;
+                                var destination = new Vector3((column - 2.5f) * 2.3f
+                                        + (row % 2) * 0.55f,
+                                    row * 0.62f,
+                                    ((index * 7) % 5 - 2) * 0.12f);
+                                transform = Matrix4x4.TRS(destination,
+                                        Quaternion.Euler(0f, 0f, 90f), Vector3.one)
+                                    * Matrix4x4.Translate(-sourceBounds.center)
+                                    * sourceTransform;
+                            }
+                            instances[index] = new CombineInstance { mesh = part, transform = transform };
+                        }
+                        combined.CombineMeshes(instances, true, true, false);
+                        var triangles = combined.triangles.Length / 3;
+                        if (triangles >= previousTriangles)
+                            throw new InvalidOperationException("Combined wall LOD did not reduce triangles.");
+                        previousTriangles = triangles;
+                        Debug.Log($"CANYON WALL MODULE lod={lod} rocks={rocks.Length} vertices={combined.vertexCount} triangles={triangles} bounds={combined.bounds} sourceRevision={AssetDatabase.GetAssetDependencyHash(SourcePath)}");
+                        TopDown3DProductionRockBaker.UpsertMesh(
+                            $"{Folder}/{baseName}_LOD{lod}.asset", combined);
+                        combined = null;
+                    }
+                    finally
+                    {
+                        foreach (var part in parts) UnityEngine.Object.DestroyImmediate(part);
+                        if (combined != null) UnityEngine.Object.DestroyImmediate(combined);
+                    }
+                }
+                AssetDatabase.SaveAssets();
+            }
+            finally { UnityEngine.Object.DestroyImmediate(copy); }
+        }
+
+        private static Bounds TransformedBounds(Bounds bounds, Matrix4x4 transform)
+        {
+            var result = new Bounds(transform.MultiplyPoint3x4(bounds.center), Vector3.zero);
+            for (var x = -1; x <= 1; x += 2)
+            for (var y = -1; y <= 1; y += 2)
+            for (var z = -1; z <= 1; z += 2)
+                result.Encapsulate(transform.MultiplyPoint3x4(bounds.center +
+                    Vector3.Scale(bounds.extents, new Vector3(x, y, z))));
+            return result;
+        }
+    }
+}

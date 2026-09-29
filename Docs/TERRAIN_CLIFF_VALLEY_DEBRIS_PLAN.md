@@ -114,8 +114,14 @@ The later saved-source [Workbench wall-module trial](Evidence/WorldCreator/Canyo
 baked all 18 editable source rocks into three LODs and proved four deterministic,
 chunk-owned placements in the isolated 49-chunk fixture. Its fixed game-camera image
 shows a tall dark pillar on the floor, so that module shape fails the visual gate.
-The baker and placement candidate remain evidence only; a terrain-shaped Workbench
-wall source and full-footprint contact design are still needed.
+The baker and placement candidate remain evidence only; a convincing integration
+of Workbench rocks with terrain and full-footprint contact is still needed.
+The follow-up [shelf silhouette study](Evidence/WorldCreator/CanyonSlice/WorkbenchShelfShapeTrial.md)
+rejects rotating the existing upright source into horizontal courses and rejects a
+separate fused 36 m wall volume: both read as freestanding boulders. Continue the
+terrain-derived parent cliff and near/middle/far strata as the large-scale source;
+use approved Workbench geometry for rooted edge breaks and talus where its source
+shape, terrain footprint, and navigation clearance can be proven together.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,
