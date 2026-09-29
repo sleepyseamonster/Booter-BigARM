@@ -502,14 +502,18 @@ namespace BooterBigArm.TopDown3D
                 var sourcePosition = source.EnvelopeCenter;
                 if (sourcesAreLocal && generator != null)
                 {
+                    // Fitted rock bounds use local floats; rebase shifts their low bits.
+                    // Keep the absolute dust wake on a stable 1/256 m grid.
                     var absolute = generator.ToAbsolute(sourcePosition.x, 0f, sourcePosition.y);
                     sourcePosition = new Vector2(
-                        checked((float)absolute.HorizontalA),
-                        checked((float)absolute.HorizontalB));
+                        checked((float)(Math.Round(absolute.HorizontalA * 256d) / 256d)),
+                        checked((float)(Math.Round(absolute.HorizontalB * 256d) / 256d)));
                 }
                 var delta = worldPosition - sourcePosition;
                 var downwind = Vector2.Dot(delta, wind);
-                var sourceRadius = Mathf.Max(0.35f, source.EnvelopeRadius);
+                var sourceRadius = Mathf.Max(0.35f, sourcesAreLocal
+                    ? (float)(Math.Round(source.EnvelopeRadius * 256d) / 256d)
+                    : source.EnvelopeRadius);
                 var obstructionScale = SmoothStepRange(0.35f, 1.5f, sourceRadius);
                 var wakeLength = Mathf.Min(
                     settings.DustWakeLength * 1.28f,
@@ -562,7 +566,9 @@ namespace BooterBigArm.TopDown3D
                     Mathf.Lerp(
                         0.78f,
                         2.35f,
-                        SmoothStepRange(0.5f, 9f, source.Height)));
+                        SmoothStepRange(0.5f, 9f, sourcesAreLocal
+                            ? (float)(Math.Round(source.Height * 256d) / 256d)
+                            : source.Height)));
                 strongestWeight = Mathf.Max(strongestWeight, weight);
                 greatestHeight = Mathf.Max(
                     greatestHeight,

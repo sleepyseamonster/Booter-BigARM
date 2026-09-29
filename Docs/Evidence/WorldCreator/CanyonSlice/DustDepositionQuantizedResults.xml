@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Passed" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 07:56:00Z" end-time="2026-09-29 07:56:12Z" duration="11.6470956">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-09-29 07:56:00Z" end-time="2026-09-29 07:56:12Z" duration="11.647096" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1526" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-09-29 07:56:00Z" end-time="2026-09-29 07:56:12Z" duration="11.640851" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="14195" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1527" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-09-29 07:56:00Z" end-time="2026-09-29 07:56:12Z" duration="11.638270" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1528" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-09-29 07:56:00Z" end-time="2026-09-29 07:56:12Z" duration="11.635870" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1068" name="TopDown3DDustDepositionTests" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-09-29 07:56:00Z" end-time="2026-09-29 07:56:12Z" duration="11.609678" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1072" name="AdjacentChunkPlans_MatchExactlyAtTheirSharedBorder" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.AdjacentChunkPlans_MatchExactlyAtTheirSharedBorder" methodname="AdjacentChunkPlans_MatchExactlyAtTheirSharedBorder" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="231181196" result="Passed" start-time="2026-09-29 07:56:00Z" end-time="2026-09-29 07:56:05Z" duration="5.401374" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1074" name="BaseDeposits_FormLongerFeaturesAlongThePrevailingWind" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.BaseDeposits_FormLongerFeaturesAlongThePrevailingWind" methodname="BaseDeposits_FormLongerFeaturesAlongThePrevailingWind" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="1747897943" result="Passed" start-time="2026-09-29 07:56:05Z" end-time="2026-09-29 07:56:05Z" duration="0.002844" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1075" name="BaseDeposits_LeaveMostOfTheWorldSurfaceExposed" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.BaseDeposits_LeaveMostOfTheWorldSurfaceExposed" methodname="BaseDeposits_LeaveMostOfTheWorldSurfaceExposed" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="2058974475" result="Passed" start-time="2026-09-29 07:56:05Z" end-time="2026-09-29 07:56:05Z" duration="0.012723" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1070" name="DepositionPlan_IsDeterministic" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.DepositionPlan_IsDeterministic" methodname="DepositionPlan_IsDeterministic" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="1452475513" result="Passed" start-time="2026-09-29 07:56:05Z" end-time="2026-09-29 07:56:09Z" duration="3.416500" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1073" name="DepositMesh_ClipsBoundariesBetweenGridLines" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.DepositMesh_ClipsBoundariesBetweenGridLines" methodname="DepositMesh_ClipsBoundariesBetweenGridLines" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="1563249128" result="Passed" start-time="2026-09-29 07:56:09Z" end-time="2026-09-29 07:56:12Z" duration="2.723987" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1078" name="LargerFormation_BuildsAHigherLeeSidePile" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.LargerFormation_BuildsAHigherLeeSidePile" methodname="LargerFormation_BuildsAHigherLeeSidePile" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="1365975709" result="Passed" start-time="2026-09-29 07:56:12Z" end-time="2026-09-29 07:56:12Z" duration="0.000680" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1079" name="ObjectWake_FadesOutSoonAfterTheConfiguredShortLength" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.ObjectWake_FadesOutSoonAfterTheConfiguredShortLength" methodname="ObjectWake_FadesOutSoonAfterTheConfiguredShortLength" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="1194967439" result="Passed" start-time="2026-09-29 07:56:12Z" end-time="2026-09-29 07:56:12Z" duration="0.000241" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1077" name="PhysicalRock_CreatesALeeSideWakeButNotAnUpwindPile" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.PhysicalRock_CreatesALeeSideWakeButNotAnUpwindPile" methodname="PhysicalRock_CreatesALeeSideWakeButNotAnUpwindPile" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="1602922865" result="Passed" start-time="2026-09-29 07:56:12Z" end-time="2026-09-29 07:56:12Z" duration="0.000212" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1069" name="Settings_ProvideAuthoredDepositedDustMaterialAndBoundedTuning" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.Settings_ProvideAuthoredDepositedDustMaterialAndBoundedTuning" methodname="Settings_ProvideAuthoredDepositedDustMaterialAndBoundedTuning" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="1685471059" result="Passed" start-time="2026-09-29 07:56:12Z" end-time="2026-09-29 07:56:12Z" duration="0.017353" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1076" name="TerrainRelief_KeepsAShallowBedAndRaisesWindShapedCrests" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.TerrainRelief_KeepsAShallowBedAndRaisesWindShapedCrests" methodname="TerrainRelief_KeepsAShallowBedAndRaisesWindShapedCrests" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="76098017" result="Passed" start-time="2026-09-29 07:56:12Z" end-time="2026-09-29 07:56:12Z" duration="0.013040" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1071" name="TerrainSandPlan_IsIndependentOfFormationSettings" fullname="BooterBigArm.Tests.TopDown3DDustDepositionTests.TerrainSandPlan_IsIndependentOfFormationSettings" methodname="TerrainSandPlan_IsIndependentOfFormationSettings" classname="BooterBigArm.Tests.TopDown3DDustDepositionTests" runstate="Runnable" seed="1100981083" result="Passed" start-time="2026-09-29 07:56:12Z" end-time="2026-09-29 07:56:12Z" duration="0.011040" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
