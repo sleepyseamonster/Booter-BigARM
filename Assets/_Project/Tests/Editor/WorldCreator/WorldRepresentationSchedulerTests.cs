@@ -75,6 +75,34 @@ namespace BooterBigArm.Tests.WorldCreator
         }
 
         [Test]
+        public async Task FrameRejectedResultCanBeRequestedAndIntegratedAgain()
+        {
+            var fixture = HybridTerrainComparisonPanelExporter.BuildProofFixture(false);
+            var pool = new WorldRepresentationBufferPool();
+            var compiler = CreateCompiler(fixture, pool);
+            using var cache = new WorldRepresentationCache(4, 256 * 1024L);
+            var origin = new AbsoluteWorldPosition(0d, 0d, 0d);
+            var narrowFrame = new LocalOriginFrame(fixture.Model.Encode(origin), origin, 50d);
+            using var scheduler = new WorldRepresentationScheduler(compiler, cache, narrowFrame);
+            var key = WorldRepresentationCompilerTests.CreateKey(fixture, WorldRepresentationTier.Near, 0);
+
+            var first = await scheduler.RequestAsync(key);
+            Assert.That(first.State, Is.EqualTo(WorldRepresentationRequestState.QueuedForIntegration));
+            Assert.That(scheduler.DrainIntegrationQueue(1, TimeSpan.FromMilliseconds(20d)), Is.EqualTo(1));
+            Assert.That(scheduler.CaptureMetrics().StaleRejected, Is.EqualTo(1));
+            Assert.That(cache.TryGet(key, out _), Is.False);
+            Assert.That(pool.OutstandingLeases, Is.Zero);
+
+            Assert.That(scheduler.TryRebase(CreateFrame(fixture, 0d)), Is.True);
+            var second = await scheduler.RequestAsync(key);
+            Assert.That(second.State, Is.EqualTo(WorldRepresentationRequestState.QueuedForIntegration));
+            Assert.That(scheduler.DrainIntegrationQueue(1, TimeSpan.FromMilliseconds(20d)), Is.EqualTo(1));
+            Assert.That(cache.TryGet(key, out var integrated), Is.True);
+            Assert.That(integrated.HasLocalFrame, Is.True);
+            Assert.That(scheduler.CaptureMetrics().BuildsStarted, Is.EqualTo(2));
+        }
+
+        [Test]
         public async Task MainThreadIntegrationHonorsItemBudget()
         {
             var fixture = HybridTerrainComparisonPanelExporter.BuildProofFixture(false);
