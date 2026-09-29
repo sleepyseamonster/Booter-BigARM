@@ -16,6 +16,15 @@ namespace BooterBigArm.Tests.WorldCreator
         public async Task ActualRepresentationCompilerKeepsCanyonVertexAcrossTiers()
         {
             using var runtime = WorldCreatorProductionRuntime.Create(24681357L);
+            Assert.That(runtime.Query.TrySampleSurface(
+                new AbsoluteWorldPosition(417d, 0d, 342d),
+                out var floorSample, out var floorError), Is.True, floorError);
+            var floorKinds = floorSample.Semantic &
+                (WorldSurfaceSemantic.CanyonFloor | WorldSurfaceSemantic.CanyonShelf |
+                 WorldSurfaceSemantic.CanyonWall);
+            Assert.That(floorKinds == WorldSurfaceSemantic.CanyonFloor
+                || floorKinds == WorldSurfaceSemantic.CanyonShelf
+                || floorKinds == WorldSurfaceSemantic.CanyonWall, Is.True);
             var pool = new WorldRepresentationBufferPool();
             var compiler = new WorldRepresentationCompiler(runtime.Query, pool,
                 runtime.Profile.CreateRepresentationProfile(), runtime.SourceFingerprint);

@@ -47,6 +47,14 @@ comparison remains required before cutover.
 The actual representation compiler now agrees at one shared canyon vertex across its
 25/17/17 near/mid/far grids; the 2-of-2 mirror result still leaves full silhouette,
 adjacent tiles, lifecycle, and Player pacing open.
+The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
+actual near representation even with cliff decoration disabled. White-albedo isolation on
+a disposable terrain material removes it; this is a material/lighting investigation,
+not a reason to change the source textures or assert production-scene color. The query
+also ORs floor and wall semantics at canyon overlaps. A mirror-only nearest-segment
+semantic fix passed 2 focused tests, but did not cure the render patch. Resolve both
+before visual acceptance; [the receipt](Evidence/WorldCreator/CanyonSlice/README.md)
+contains the same-camera images, render harness, and test result.
 
 ### Objective, authority, and fixture
 

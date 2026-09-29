@@ -1,0 +1,197 @@
+using System.IO;
+using System.Threading;
+using BooterBigArm.TopDown3D;
+using BooterBigArm.TopDown3D.WorldCreator;
+using UnityEditor;
+using UnityEngine;
+
+namespace BooterBigArm.Editor.WorldCreator
+{
+    public static class TempCanyonRender
+    {
+        public static void Run()
+        {
+            var tier = System.Environment.GetEnvironmentVariable("CANYON_RENDER_TIER") ?? "near";
+            var pose = System.Environment.GetEnvironmentVariable("CANYON_RENDER_POSE") ?? "overview";
+            var decorate = System.Environment.GetEnvironmentVariable("CANYON_RENDER_DECORATE") != "0";
+            var coarseQuads = tier == "far" ? 1 : tier == "mid" ? 4 : 12;
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(
+                "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset");
+            using var runtime = WorldCreatorProductionRuntime.Create(24681357L);
+            var generator = new TopDown3DWorldGenerator(settings, runtime);
+            var compiler = new WorldRepresentationCompiler(runtime.Query,
+                runtime.Authority.Materials, new WorldRepresentationBufferPool(),
+                runtime.Profile.CreateRepresentationProfile(), runtime.SourceFingerprint);
+            var ground = AssetDatabase.LoadAssetAtPath<Material>(
+                "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat");
+            Material materialOverride = null;
+            if (System.Environment.GetEnvironmentVariable("CANYON_RENDER_FORCE_FAR_MATERIAL") == "1"
+                || System.Environment.GetEnvironmentVariable("CANYON_RENDER_WHITE_ALBEDO") == "1"
+                || System.Environment.GetEnvironmentVariable("CANYON_RENDER_WHITE_ROCK") == "1")
+            {
+                materialOverride = new Material(ground);
+                if (System.Environment.GetEnvironmentVariable("CANYON_RENDER_FORCE_FAR_MATERIAL") == "1")
+                {
+                    materialOverride.SetFloat("_DetailFadeStart", 0f);
+                    materialOverride.SetFloat("_DetailFadeEnd", 1f);
+                }
+                if (System.Environment.GetEnvironmentVariable("CANYON_RENDER_WHITE_ALBEDO") == "1")
+                    foreach (var property in new[] { "_BaseMap", "_SweptSandMap", "_GravelMap",
+                        "_RockyMap", "_RockyTransitionMap", "_RockyMidTransitionMap" })
+                        materialOverride.SetTexture(property, Texture2D.whiteTexture);
+                if (System.Environment.GetEnvironmentVariable("CANYON_RENDER_WHITE_ROCK") == "1")
+                    foreach (var property in new[] { "_RockyMap", "_RockyTransitionMap",
+                        "_RockyMidTransitionMap" })
+                        materialOverride.SetTexture(property, Texture2D.whiteTexture);
+                ground = materialOverride;
+            }
+            foreach (var point in new[] { new Vector2(417f, 342f),
+                new Vector2(416f, 319f), new Vector2(470f, 342f) })
+            {
+                var sample = generator.Sample(point.x, point.y);
+                Debug.Log($"CANYON SURFACE {point} h={sample.Height:F2} sand={sample.SandWeight:F2} gravel={sample.GravelWeight:F2} bedrock={sample.BedrockWeight:F2} deposit={sample.DepositWeight:F2} weather={sample.Weathering:F2} lithology={sample.Lithology:F2} talus={sample.Talus:F2}");
+                var absolute = new AbsoluteWorldPosition(point.x, 0d, point.y);
+                if (runtime.Authority.Materials.TrySample(absolute,
+                    out var material, out var materialError))
+                {
+                    var packed = WorldTerrainMaterialPackingAdapter.Pack(material);
+                    Debug.Log($"CANYON MATERIAL {point} strata={material.StrataExposure:F2} erosion={material.Erosion:F2} deposit={material.Deposit:F2} sediment={material.Sediment:F2} packed={packed}");
+                }
+                else Debug.LogError(materialError);
+            }
+            var sceneRoot = new GameObject("Canyon render proof");
+            var lightObject = new GameObject("Sun");
+            var cameraObject = new GameObject("Camera");
+            RenderTexture texture = null;
+            Texture2D output = null;
+            try
+            {
+                for (var b = 10; b <= 28; b++)
+                for (var a = 15; a <= 31; a++)
+                {
+                    var coordinate = new Vector2Int(a, b);
+                    var chunkObject = new GameObject($"Chunk {a},{b}");
+                    chunkObject.transform.SetParent(sceneRoot.transform, false);
+                    chunkObject.transform.position = new Vector3(
+                        a * settings.ChunkSize, 0f, b * settings.ChunkSize);
+                    var detailed = tier == "near"
+                        && a >= 21 && a <= 25 && b >= 17 && b <= 20;
+                    Mesh mesh;
+                    if (detailed)
+                    {
+                        var key = runtime.CreateRepresentationKey(
+                            WorldRepresentationTier.Near, a, b, settings.ChunkSize);
+                        using var result = compiler.BuildAsync(key,
+                            CancellationToken.None).GetAwaiter().GetResult();
+                        mesh = TopDown3DChunkMeshBuilder.BuildMesh(result,
+                            $"Actual representation near {a},{b}");
+                    }
+                    else mesh = BuildCoarseMesh(settings, runtime, coordinate, coarseQuads);
+                    chunkObject.AddComponent<MeshFilter>().sharedMesh = mesh;
+                    chunkObject.AddComponent<MeshRenderer>().sharedMaterial = ground;
+                    var chunk = chunkObject.AddComponent<TopDown3DGeneratedChunk>();
+                    chunk.Initialize(coordinate, mesh);
+                    if (detailed && decorate)
+                        foreach (var _ in TopDown3DCliffFaceDecorator.DecorateSteps(
+                            chunk, settings, runtime, Vector2.zero, null)) { }
+                }
+
+                var light = lightObject.AddComponent<Light>();
+                light.type = LightType.Directional;
+                light.intensity = 1.7f;
+                light.color = new Color(1f, 0.78f, 0.65f);
+                lightObject.transform.rotation = Quaternion.Euler(35f, -35f, 0f);
+                RenderSettings.ambientLight = new Color(0.52f, 0.38f, 0.33f);
+                var camera = cameraObject.AddComponent<Camera>();
+                if (pose == "game-floor" || pose == "game-rim")
+                {
+                    var point = pose == "game-floor"
+                        ? new Vector2(417f, 342f) : new Vector2(416f, 319f);
+                    var target = new Vector3(point.x,
+                        generator.Sample(point.x, point.y).Height + 1.15f, point.y);
+                    var rotation = Quaternion.Euler(50f, 40f, 0f);
+                    camera.transform.SetPositionAndRotation(
+                        target - rotation * Vector3.forward * 25f, rotation);
+                    camera.fieldOfView = 48f;
+                }
+                else
+                {
+                    camera.transform.position = new Vector3(535f, 165f, 212f);
+                    camera.transform.LookAt(new Vector3(417f, -9f, 343f));
+                    camera.fieldOfView = 58f;
+                }
+                camera.nearClipPlane = 0.3f;
+                camera.farClipPlane = 500f;
+                camera.clearFlags = CameraClearFlags.SolidColor;
+                camera.backgroundColor = new Color(0.74f, 0.48f, 0.37f);
+                texture = new RenderTexture(1600, 900, 24);
+                camera.targetTexture = texture;
+                camera.Render();
+                RenderTexture.active = texture;
+                output = new Texture2D(1600, 900, TextureFormat.RGB24, false);
+                output.ReadPixels(new Rect(0, 0, 1600, 900), 0, 0);
+                output.Apply();
+                var outputPath = "/tmp/booter-canyon-" + tier + "-" + pose + ".png";
+                File.WriteAllBytes(outputPath, output.EncodeToPNG());
+                Debug.Log("CANYON RENDER " + outputPath);
+            }
+            finally
+            {
+                RenderTexture.active = null;
+                Object.DestroyImmediate(output);
+                Object.DestroyImmediate(texture);
+                Object.DestroyImmediate(materialOverride);
+                Object.DestroyImmediate(cameraObject);
+                Object.DestroyImmediate(lightObject);
+                Object.DestroyImmediate(sceneRoot);
+            }
+        }
+
+        private static Mesh BuildCoarseMesh(TopDown3DWorldSettings settings,
+            WorldCreatorProductionRuntime runtime, Vector2Int coordinate, int quads)
+        {
+            var vertices = new Vector3[(quads + 1) * (quads + 1)];
+            var colors = new Color[vertices.Length];
+            var triangles = new int[quads * quads * 6];
+            var step = settings.ChunkSize / quads;
+            for (var z = 0; z <= quads; z++)
+            for (var x = 0; x <= quads; x++)
+            {
+                var localX = x * step;
+                var localZ = z * step;
+                var absolute = new AbsoluteWorldPosition(
+                    coordinate.x * settings.ChunkSize + localX,
+                    0d, coordinate.y * settings.ChunkSize + localZ);
+                if (!runtime.Query.TrySampleSurface(absolute, out var surface, out var error))
+                    throw new System.InvalidOperationException(error);
+                if (!runtime.Authority.Materials.TrySample(absolute,
+                    out var material, out error))
+                    throw new System.InvalidOperationException(error);
+                vertices[z * (quads + 1) + x] = new Vector3(localX,
+                    (float)surface.Position.Vertical, localZ);
+                colors[z * (quads + 1) + x] =
+                    WorldTerrainMaterialPackingAdapter.Pack(material);
+            }
+            var index = 0;
+            for (var z = 0; z < quads; z++)
+            for (var x = 0; x < quads; x++)
+            {
+                var bottom = z * (quads + 1) + x;
+                var top = bottom + quads + 1;
+                triangles[index++] = bottom;
+                triangles[index++] = top;
+                triangles[index++] = bottom + 1;
+                triangles[index++] = bottom + 1;
+                triangles[index++] = top;
+                triangles[index++] = top + 1;
+            }
+            var mesh = new Mesh();
+            mesh.vertices = vertices;
+            mesh.triangles = triangles;
+            mesh.colors = colors;
+            mesh.RecalculateNormals();
+            mesh.RecalculateBounds();
+            return mesh;
+        }
+    }
+}
