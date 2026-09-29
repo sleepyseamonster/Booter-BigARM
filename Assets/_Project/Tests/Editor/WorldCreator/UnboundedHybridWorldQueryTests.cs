@@ -10,6 +10,36 @@ namespace BooterBigArm.Tests.WorldCreator
 {
     public sealed class UnboundedHybridWorldQueryTests
     {
+        private sealed class ForwardingContextProvider : IWorldCoordinateContextProvider
+        {
+            private readonly IWorldCoordinateContextProvider inner;
+            internal ForwardingContextProvider(IWorldCoordinateContextProvider inner) => this.inner = inner;
+            public bool TrySample(WorldIdentity world, IWorldCoordinateModel model,
+                WorldCoordinateAddress address, out WorldCoordinateContext context, out string error)
+                => inner.TrySample(world, model, address, out context, out error);
+        }
+
+        [Test]
+        public void NeighborLandscapeFastPathMatchesCompleteContextSampling()
+        {
+            var fixture = HybridTerrainComparisonPanelExporter.BuildProofFixture(false);
+            var model = new NonCanonTechnicalCoordinateModel();
+            var fast = new UnboundedHybridWorldQueryService(fixture.World, model, fixture.Context,
+                CanyonPlannerProfile.CreateNonCanonTechnicalProofProfile(), includeCanyonExcavation: false);
+            var reference = new UnboundedHybridWorldQueryService(fixture.World, model,
+                new ForwardingContextProvider(fixture.Context),
+                CanyonPlannerProfile.CreateNonCanonTechnicalProofProfile(), includeCanyonExcavation: false);
+            for (var i = 0; i < 40; i++)
+            {
+                var a = (i % 8 - 4) * 71.37d + (i % 3) * 0.13d;
+                var b = (i / 8 - 2) * 89.61d - (i % 4) * 0.17d;
+                var position = new AbsoluteWorldPosition(a, 0d, b);
+                Assert.That(fast.TrySampleSurface(position, out var actual, out var fastError), Is.True, fastError);
+                Assert.That(reference.TrySampleSurface(position, out var expected, out var referenceError), Is.True, referenceError);
+                Assert.That(actual, Is.EqualTo(expected), $"Surface changed at {position}.");
+            }
+        }
+
         [Test]
         public void RuntimeProofCoordinateAdapterRoundTripsFarAddressesWithoutDefiningGlobeRules()
         {

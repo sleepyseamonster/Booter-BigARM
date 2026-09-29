@@ -44,10 +44,10 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             }
 
             const double epsilon = 0.5d;
-            if (!TryRawHeight(position.HorizontalA + epsilon, position.HorizontalB, out var right, out _, out _, out _, out error)
-                || !TryRawHeight(position.HorizontalA - epsilon, position.HorizontalB, out var left, out _, out _, out _, out error)
-                || !TryRawHeight(position.HorizontalA, position.HorizontalB + epsilon, out var forward, out _, out _, out _, out error)
-                || !TryRawHeight(position.HorizontalA, position.HorizontalB - epsilon, out var back, out _, out _, out _, out error))
+            if (!TryRawHeight(position.HorizontalA + epsilon, position.HorizontalB, out var right, out _, out _, out _, out error, false)
+                || !TryRawHeight(position.HorizontalA - epsilon, position.HorizontalB, out var left, out _, out _, out _, out error, false)
+                || !TryRawHeight(position.HorizontalA, position.HorizontalB + epsilon, out var forward, out _, out _, out _, out error, false)
+                || !TryRawHeight(position.HorizontalA, position.HorizontalB - epsilon, out var back, out _, out _, out _, out error, false))
             {
                 sample = default;
                 return false;
@@ -160,11 +160,29 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             out WorldSurfaceSemantic semantic,
             out WorldFeatureId featureId,
             out WorldCoordinateContext context,
-            out string error)
+            out string error,
+            bool needContextIdentity = true)
         {
             var queryPosition = new AbsoluteWorldPosition(horizontalA, 0d, horizontalB);
-            var address = coordinateModel.Encode(queryPosition);
-            if (!contextProvider.TrySample(plan.World, coordinateModel, address, out context, out error))
+            WorldLandscapeParameters landscape;
+            WorldFeatureId contextId;
+            bool sampledContext;
+            if (!needContextIdentity && contextProvider is WorldCoordinateContextSampler sampler
+                && coordinateModel is NonCanonTechnicalCoordinateModel)
+            {
+                context = null;
+                contextId = WorldFeatureId.Empty;
+                sampledContext = sampler.TrySampleLandscape(queryPosition, out landscape, out error);
+            }
+            else
+            {
+                var address = coordinateModel.Encode(queryPosition);
+                sampledContext = contextProvider.TrySample(plan.World, coordinateModel,
+                    address, out context, out error);
+                landscape = sampledContext ? context.Landscape : default;
+                contextId = sampledContext ? context.ContextId : WorldFeatureId.Empty;
+            }
+            if (!sampledContext)
             {
                 height = default;
                 semantic = default;
@@ -172,7 +190,6 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 return false;
             }
 
-            var landscape = context.Landscape;
             var seedPhase = (plan.World.Seed & 0xffffL) * 0.00013d;
             var directionalA = Math.Cos(landscape.StructuralDirection * Math.PI * 2d);
             var directionalB = Math.Sin(landscape.StructuralDirection * Math.PI * 2d);
@@ -192,7 +209,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             }
 
             semantic = WorldSurfaceSemantic.BroadGround;
-            featureId = context.ContextId;
+            featureId = contextId;
 
             var nearestCanyonDistance = double.MaxValue;
             var strongestCanyonCut = 0d;

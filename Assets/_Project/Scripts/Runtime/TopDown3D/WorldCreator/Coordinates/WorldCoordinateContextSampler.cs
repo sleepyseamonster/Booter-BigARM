@@ -96,6 +96,26 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             return true;
         }
 
+        // The technical Cartesian query already has the exact position. Neighbor heights
+        // only need landscape parameters, not a canonical feature identity or contribution list.
+        internal bool TrySampleLandscape(AbsoluteWorldPosition position,
+            out WorldLandscapeParameters landscape, out string error)
+        {
+            landscape = default;
+            if (!provinceCatalog.TryValidate(out error) || !strataCatalog.TryValidate(out error))
+                return false;
+            if (string.IsNullOrWhiteSpace(influenceField.StableId) || influenceField.Version < 1)
+            {
+                error = "The landscape influence field has an invalid stable identity or version.";
+                return false;
+            }
+            var set = influenceField.Evaluate(position);
+            if (!TryResolveContributions(set, out var resolved, out error)) return false;
+            landscape = Aggregate(resolved, set.DeclaredDiscontinuitySignal).Landscape;
+            error = null;
+            return true;
+        }
+
         private bool TryResolveContributions(
             WorldLandscapeInfluenceSet set,
             out ResolvedContribution[] resolved,
