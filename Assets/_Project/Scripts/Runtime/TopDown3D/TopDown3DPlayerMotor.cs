@@ -128,6 +128,7 @@ namespace BooterBigArm.TopDown3D
         private Vector3 lastPublishedFacing = Vector3.forward;
         private bool hasPublishedFacing;
         private object actionConstraintOwner;
+        private TopDown3DProceduralWorld terrainWorld;
 
         public Vector3 Position => body != null ? body.position : transform.position;
         public Vector3 Velocity => body != null ? body.linearVelocity : Vector3.zero;
@@ -149,6 +150,11 @@ namespace BooterBigArm.TopDown3D
         {
             input = inputRouter;
             cameraBasis = movementCamera;
+        }
+
+        internal void ConfigureTerrainReadiness(TopDown3DProceduralWorld world)
+        {
+            terrainWorld = world;
         }
 
         public void Teleport(Vector3 position)
@@ -348,6 +354,18 @@ namespace BooterBigArm.TopDown3D
                 stopDeceleration,
                 directionChangeAcceleration);
             var nextPlanar = Vector3.MoveTowards(currentPlanar, targetPlanar, rate * Time.fixedDeltaTime);
+            // Terrain arrives asynchronously. Keep the capsule on supported ground
+            // until the next streamed chunk has a live collider.
+            if (terrainWorld != null && nextPlanar.sqrMagnitude > 0.0001f)
+            {
+                var lookAhead = capsule.radius + nextPlanar.magnitude * Time.fixedDeltaTime + 0.1f;
+                var projected = body.position + nextPlanar.normalized * lookAhead;
+                if (!terrainWorld.HasTerrainCollisionAt(projected))
+                {
+                    nextPlanar = Vector3.zero;
+                    SprintActive = false;
+                }
+            }
             PlanarAcceleration = (nextPlanar - currentPlanar) / Mathf.Max(0.0001f, Time.fixedDeltaTime);
 
             var verticalVelocity = currentVelocity.y;

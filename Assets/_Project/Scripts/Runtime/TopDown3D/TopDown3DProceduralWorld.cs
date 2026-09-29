@@ -217,6 +217,9 @@ namespace BooterBigArm.TopDown3D
                 worldCreatorRuntime,
                 groundMaterial,
                 IsNearTerrainLoaded);
+            if (streamingTarget != null
+                && streamingTarget.TryGetComponent<TopDown3DPlayerMotor>(out var playerMotor))
+                playerMotor.ConfigureTerrainReadiness(this);
             EnsureSafeStreamingTarget();
             SuspendStreamingTargetUntilInitialTerrain();
             farLandscape.Refresh(streamingTarget != null ? streamingTarget.position : Vector3.zero, true);
@@ -722,6 +725,16 @@ namespace BooterBigArm.TopDown3D
             return ChebyshevDistance(coordinate, currentCenterChunk) <= TerrainCollisionStreamingRadius;
         }
 
+        internal bool HasTerrainCollisionAt(Vector3 localPosition)
+        {
+            if (settings == null || worldGenerator == null) return false;
+            var coordinate = worldGenerator.WorldToChunk(settings, localPosition);
+            return loadedChunks.TryGetValue(coordinate, out var chunk)
+                && chunk != null
+                && chunk.TryGetComponent<MeshCollider>(out var collider)
+                && collider.enabled && collider.sharedMesh != null;
+        }
+
         private void QueueTerrainCollider(Vector2Int coordinate)
         {
             if (ShouldHaveTerrainCollider(coordinate)
@@ -1155,6 +1168,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDestroy()
         {
+            if (suspendedMotor != null) suspendedMotor.ConfigureTerrainReadiness(null);
             CancelActiveDecoration(false);
             activeFormationRefresh?.Dispose();
             activeFormationRefresh = null;

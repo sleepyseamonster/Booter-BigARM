@@ -84,6 +84,53 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void MovementReadinessRequiresTheProjectedChunkCollider()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
+            var terrainMaterial = AssetDatabase.LoadAssetAtPath<Material>(TerrainMaterialPath);
+            var rockMaterial = AssetDatabase.LoadAssetAtPath<Material>(RockMaterialPath);
+            var worldObject = new GameObject("Movement terrain readiness");
+            var targetObject = new GameObject("Movement target");
+            var chunkObject = new GameObject("Ready terrain chunk");
+            var mesh = new Mesh();
+            try
+            {
+                targetObject.AddComponent<CapsuleCollider>();
+                targetObject.AddComponent<Rigidbody>().useGravity = false;
+                var world = worldObject.AddComponent<TopDown3DProceduralWorld>();
+                world.Configure(settings, targetObject.transform, terrainMaterial, rockMaterial);
+                InvokePrivate(world, "Start");
+
+                var coordinate = world.CurrentCenterChunk;
+                var center = new Vector3((coordinate.x + 0.5f) * settings.ChunkSize, 0f,
+                    (coordinate.y + 0.5f) * settings.ChunkSize);
+                var neighbor = center + Vector3.right * settings.ChunkSize;
+                Assert.That(world.HasTerrainCollisionAt(center), Is.False);
+
+                var chunk = chunkObject.AddComponent<TopDown3DGeneratedChunk>();
+                chunk.Initialize(coordinate, mesh);
+                var chunks = (System.Collections.IDictionary)GetPrivateField(world, "loadedChunks");
+                chunks.Add(coordinate, chunk);
+                var collider = chunkObject.AddComponent<MeshCollider>();
+                Assert.That(world.HasTerrainCollisionAt(center), Is.False);
+                mesh.vertices = new[] { Vector3.zero, Vector3.right, Vector3.forward };
+                mesh.triangles = new[] { 0, 1, 2 };
+                collider.sharedMesh = mesh;
+                Assert.That(world.HasTerrainCollisionAt(center), Is.True);
+                Assert.That(world.HasTerrainCollisionAt(neighbor), Is.False);
+                collider.enabled = false;
+                Assert.That(world.HasTerrainCollisionAt(center), Is.False);
+            }
+            finally
+            {
+                Object.DestroyImmediate(worldObject);
+                Object.DestroyImmediate(targetObject);
+                Object.DestroyImmediate(chunkObject);
+                if (mesh != null) Object.DestroyImmediate(mesh);
+            }
+        }
+
+        [Test]
         public void UnfinishedDecorationCanBeCancelledBeforeChunkPublication()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
