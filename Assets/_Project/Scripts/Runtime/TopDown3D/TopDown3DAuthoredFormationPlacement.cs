@@ -85,8 +85,8 @@ namespace BooterBigArm.TopDown3D
             if (!generator.TryToLocal(reservation.Center, out var localCenter)) yield break;
             var seed = Hash(reservation.Id.ToString());
             var source = template.Members;
-            // The workbench's approved rocks supply the detailed mesh library. Its seeded
-            // composition rules make a fresh, repeatable arrangement for each world reservation.
+            // Select one complete baked workbench composition for this stable reservation.
+            // Keep each rock's mesh and pose paired; vary only the whole stage below.
             IReadOnlyList<TopDown3DAuthoredFormationAsset.ApprovedStageEntry> stage;
             using (BuildProceduralStageMarker.Auto())
                 stage = BuildProceduralStage(template, reservation.Id.ToString());
