@@ -20,6 +20,162 @@ separate topology step. Focused EditMode checks establish mesh endpoints, outwar
 LOD reduction and deterministic rebuild/rebase; appearance and contact remain unaccepted
 until an in-game view and traversal review.
 
+## Next implementation slice: one generated layered canyon
+
+**Planning status, 2026-09-28:** ready for a bounded technical implementation after Batch 0
+revalidation; production visual acceptance, target-machine limits, and any topology/save
+cutover remain user gates. This section makes the next slice executable. It extends the
+connected-bedrock checkpoint and the generation contract below. Earlier rejected rock
+clusters, flat stickers, and generic broad-rock walls are evidence, not fallback paths.
+
+### Objective, authority, and fixture
+
+Generate **one representative canyon from the canonical World Creator query**, then make its
+terrain, visible rock layers, Rock Workbench-derived accents, and toe debris describe the
+same geological feature. Success is a repeatable, navigable top/edge/face/apron/floor view
+from the production camera, with the same landform recognizable in near, middle, and far
+representations. The supplied 2026-09-28 reference image is already preserved as
+[SteppedMesaCliffs_2026-09-28.png](VisualReferences/Terrain/SteppedMesaCliffs_2026-09-28.png)
+and is a composition and material target; it does not set exact world scale, camera values,
+rock density, or a new region of canon. Open floor and quiet stretches are intentional parts
+of the result.
+
+The [World Creator charter](WORLD_CREATOR_CHARTER.md) keeps the first playable territory
+free of deep canyon cuts. For this slice, use an **isolated exact project mirror** with a
+cloned proof profile that enables the existing canyon excavation path. Fix the seed,
+absolute route/feature ID, camera poses, quality, lighting, and source fingerprint in an
+evidence receipt before iterating. Choose the representative feature by a deterministic
+bounded scan of the existing `CanyonSystemPlanner`, then record its exact ID and coordinates;
+do not hand-place a canyon or silently turn on canyon excavation in the production profile.
+The mirror exercises the production query, representation, decoration, and collider code
+with a proof-only profile difference. The first-area rule and production scene remain intact.
+
+Gottspan owns scope, integration, and the final evidence audit. Babineaux owns the safe
+Unity/editor and automation handoff. Gear Ball handles an eventual task-owned local commit
+only after verification; a push or release needs separate authority. The user owns the
+creative acceptance of the image target, hands-on traversal, target hardware/quality bar,
+and any change to first-area geography or existing-save compatibility. No lore change is
+needed. This plan authorizes planning only; implementation is a later instruction.
+
+### Current source boundary and known conflict
+
+| Boundary | Current fact and planned role |
+| --- | --- |
+| Terrain truth | `WorldCreatorProductionRuntime` and `UnboundedHybridWorldQueryService` own the world query; `CanyonSystemPlanner`, `HybridTerrainPlan`, and the history provider supply canyon/landform causes. Extend this path, never a chunk-local terrain generator. |
+| Cliff detection | `WorldCliffSectionStudy` emits absolute 3 m candidate sections for the current decorator. Broad-ground `ParentFeatureId` is empty; per-position context IDs are not shared cliff IDs. Its rim/toe samples and strata family are useful inputs. |
+| Present face | `TopDown3DCliffFaceDecorator` reciprocally joins compatible neighbors and `TopDown3DCliffFaceMeshBuilder` makes closed, colliding LOD0/LOD1 spans. This is a connected local span, not a stable canyon-wide parent, a layered wall, or a far-landscape feature. |
+| Workbench source | `CliffWallSampleReference.prefab` preserves 18 editable rocks; the dedicated `TopDown3DCliffStoneBaker` produced five A-E recipes at three LODs in `Resources/WorldCreator/CliffStones`. The current connected face uses generated bedrock and the light-gray material, not these source-derived stones. The five recipes are vocabulary for selective accents, not an 18-rock wall stamp. |
+| Streaming | `TopDown3DProceduralWorld` schedules near terrain, decoration, formation refresh, and middle/far landscape separately. A cliff currently arrives with decoration after terrain. Any added face/debris work must fit that lifecycle and dispose with its owning chunk. |
+| Material and persistence | `WorldSurfaceMaterialService` supplies exposure; the terrain packing adapter and shader display it. `WorldPersistenceManifest` checks topology, landform, material, and decoration versions separately. Cosmetic layers, new collision/topology, and saved-place changes cannot share one unexamined version decision. |
+
+The [2026-09-28 cliff survey](Evidence/WorldCreator/CliffStudy/README.md) sampled the
+**uncommitted** topology-13 query at seed `24681357`; it found 129 steep candidates in four
+48 m windows, but no parent cliff and no caprock/ledge/apron proof. That survey describes
+the first-area broad ground, not the future canyon fixture. The working tree also has
+uncommitted query/profile/representation edits, a large scene edit, unrelated assets, and
+`Temp/UnityLockfile`. Batch 0 must record exact hashes and owner state again. Do not run
+batchmode on the live checkout, activate Unity, overwrite the scene/profile, or include
+pre-existing changes in this slice's Git batch.
+
+### Compared approaches and selected design
+
+| Approach | Benefit | Limitation and decision |
+| --- | --- | --- |
+| Only retune terrain material plus raise rock density | Minimal mesh and serialization risk; useful for exposure color. | Cannot make caprock, ledges, a continuous face, or source-linked talus. Use material response within the selected design, never as the whole slice. |
+| Tile complete baked Workbench wall modules along the canyon | Strong authored shape and bounded runtime mesh cost. | Repeats a recognizable stamp, creates curved-rim gaps, and can misfit changing drop. Use five source-derived recipes as restrained accents and debris families under a parent plan. |
+| Extend the connected closed bedrock span with one absolute parent-face plan | Existing runtime owner, collision path, and chunk lifecycle; can fit variable rims and toes. | Needs stable grouping, strata/LOD agreement, contact, and profiling. **Selected** as the continuous mass, with selective baked accents and material/debris response. |
+
+One canyon/face plan owns the canyon feature ID, side, deterministic section order, rim/toe
+stations, strata family and phase, protected openings, and debris source. `WorldCliffSectionStudy`
+remains a candidate sampler. A new pure `WorldCliffFacePlanner` in
+`WorldCreator/Landforms/WorldCliffFacePlanner.cs` groups candidates by their existing
+canyon `ParentFeatureId` and side, with a bounded absolute halo; it does not invent a new
+terrain query or treat empty broad-ground parents as canyon IDs. Chunk coordinates only clip
+and realize its spans. Existing
+`TopDown3DCliffFaceDecorator` and mesh builder consume those plans rather than making
+independent layout decisions. Layer boundaries use the same geological datum and sampled
+terrain heights for cap, exposed bands, ledges, and toe. The authoring source stays in the
+Workbench; the runtime consumes baked A-E meshes and the existing material path. Broad
+landscape sand remains terrain-owned; formation contact sand stays formation-owned.
+
+### Procedural and save contract
+
+- **Identity and ownership:** derive the parent from world seed, the relevant landform
+  version, canyon feature/side, and an absolute owner address. Section and accent IDs use
+  stable parent ordinals; never use load order, instance IDs, local-origin coordinates, or
+  requesting chunk as identity. Keep the first-area broad-ground case separate from a
+  canyon parent; do not treat its per-position `DominantFeatureId` as a shared face.
+- **Streaming:** query a bounded absolute halo so adjacent chunks choose the same parent
+  and endpoint stations. Each near chunk owns only its clipped mesh, collider, accent roots,
+  and debris instances. A pending or unloaded near chunk falls back to truthful middle/far
+  terrain; unload releases meshes and collision; reload/rebase regenerates identical plans.
+- **Authored constraints:** screen full parent and child footprints against site/approach,
+  spawn, formation envelopes, Booter and BigARM reserved routes, camera sightlines, and
+  planned openings before accepting geometry. A visual ledge is not declared climbable
+  without a matching contact/top-out and route contract.
+- **Persistence:** static bedrock and debris regenerate and write no mutable save payload.
+  If a later version makes rock harvestable or destructible, save only deltas keyed by stable
+  feature IDs. Do not add that gameplay in this slice. Geometry/collision changes require
+  an explicit topology or landform version and saved-place compatibility decision before
+  production cutover; material or arrangement-only changes use their corresponding domains.
+- **Proof:** hash plans and mesh endpoints for repeated seed, changed build order, border
+  requests from both sides, unload/reload, and local-origin rebase. Compare saved-place
+  compatibility with the same old manifest before accepting any version bump.
+
+### Dependency-ordered batches and stop gates
+
+| Batch | Task-owned boundary and output | Gate before continuing |
+| --- | --- | --- |
+| **0. Revalidate and lock the fixture** | Record `git status`, relevant diffs, `.meta`/GUID inventory, Unity lock, pinned editor, profile versions, source fingerprint, selected generated canyon ID/coordinates, five fixed camera poses, and a full-content baseline. Use a disposable mirror of the current task-relevant working-tree content, excluding `Library/`, `Temp/`, `Logs/`, `UserSettings/`, and unrelated `Assets/_Recovery/`; do not import into the live project. Existing study exporter and canyon proof tools may inspect candidates but must be checked for writes first. | Stop if the canyon cannot be reproduced by the existing query, the mirror differs from the chosen source snapshot, owner changes are unresolved, or baseline content cannot be compared. |
+| **1. Parent-face plan** | Add `WorldCreator/Landforms/WorldCliffFacePlanner.cs` in the existing runtime assembly. Consume `WorldCliffSectionStudy` candidates and their canyon `ParentFeatureId`, verify the canyon semantic/side, and group them through a bounded absolute halo with route/semantic checks. Keep `WorldCliffSectionStudy.cs` a sampler; change it only if the fixture proves a missing input. Add `Tests/Editor/WorldCreator/WorldCliffFacePlannerTests.cs` for ID/order, both sides of a border, openings, and two seeds. Do not alter terrain heights. | Every section in the selected continuous face resolves to one stable parent and station sequence without gaps, duplicate owners, or blocked reserved routes. |
+| **2. Layered continuous mass** | Adapt `TopDown3DCliffFaceDecorator.cs` and `TopDown3DCliffFaceMeshBuilder.cs` to use parent station data. Keep a closed mesh and simplified static collider; vary cap thickness, recessed strata, ledge rhythm, fractured corners, and quiet runs along the parent. Use existing `CliffWall_LightGray.mat` and `WorldSurfaceMaterialService`/terrain packing for matching exposure. Add narrow mesh/contact tests beside `TopDown3DCliffFaceDecoratorTests.cs`. | At fixed cameras, top/edge/face/toe are legible and the body joins across 18 m boundaries; automated geometry proof shows no open ends, inverted normals, collider voids, or new route obstruction. |
+| **3. Workbench accents and source-linked debris** | Consume the existing baked `CliffStone_A-E_LOD0-2` assets through a bounded catalog/selection path; preserve `CliffWallSampleReference.prefab` and its `.meta`. Add parent-owned buttress/crown/ledge accents and a toe-origin talus fan through `TopDown3DNaturalObjectPlanner`/decorator only where they fit. Reuse existing `Cliff`/`Talus` families when suitable; change the dedicated baker or assets only if the fixed-camera proof identifies a specific missing shape. | No repeated full-wall stamp, floating rock, unrelated valley-floor scatter, or route closure. Accent/debris IDs and counts remain stable across reload and chunk order. |
+| **4. Distance and lifecycle integration** | Extend `WorldRepresentationCompiler`/middle-far landscape only as needed so the parent canyon wall and cap silhouette persist before near decoration loads; keep one world query. Update `TopDown3DProceduralWorld` scheduling/cleanup if the proof shows popping, stale roots, or collider work spikes. Document any serialized profile/settings field and its `.meta` reference impact before editing. | The same canyon remains recognizable at near, middle, and far range; moving through two chunk-ring transitions shows no geometry seam, false landmark, collider linger, or unbounded pending queue. |
+| **5. Candidate review and cutover decision** | Refresh the isolated mirror from the final source snapshot; run focused import, EditMode, validator, deterministic, contact, and performance checks. Capture the five camera poses and prepare a normal-content build for the user's traversal review. Update this plan, the relevant world standard, and evidence receipt with actual outcomes. | Stop for user visual and hands-on acceptance. Broader generation, first-area canyon enablement, topology/save migration, and release remain separate decisions. |
+
+### Proof matrix and evidence limits
+
+| Claim | Required evidence | What it cannot prove |
+| --- | --- | --- |
+| Structure and reference safety | Exact task-owned diff, `.meta`/GUID comparison, source prefab/catalog references, `git diff --check`; inspect index before a docs or implementation commit. | Unity import or visual quality. |
+| Unity compatibility | Pinned `6000.4.0f1` isolated-mirror import/compile and non-mutating `WorldCreatorProductionPathValidator`; inspect logs and exit state. | Gameplay contact or a correct landscape. |
+| Deterministic generation | Focused EditMode tests for parent ID, station/strata phase, canyon versus first-area grouping, border ownership, build order, reload, rebase, and saved-place manifest handling. Require tests that fail if the intended relationship breaks. | Appearance or frame pacing. |
+| Visible and physical agreement | Mesh endpoint/normal/closed-volume checks, terrain-triangle contact probes, simplified collider probes from above/below/along the face, route/formation/spawn clearances, and near/mid/far plan equality. | Hands-on climb feel or the full game-camera composition. |
+| Visual result | Same seed, absolute positions, camera transforms, light, resolution, and quality for baseline/candidate stills. Review below, above, along the wall, overlook, and quiet floor. The user accepts or rejects cap/strata/apron hierarchy, readable negative space, repetition, and likeness to the supplied reference. | Determinism or target-machine performance. |
+| Streaming and performance | Controlled full-content Development Player with `-topDown3DFullContentProfile`, plus a non-Development visual build when available. Record build SHA, source fingerprint, scene/seed/route, quality/resolution, CPU/GPU frame percentiles and hitches, pending terrain/decoration drain, mesh/collider creation and cooking, triangles/renderers, memory, and two ring crossings against an exact baseline. | Target-machine pass until the user specifies hardware and thresholds; reduced-stress or decoration-disabled runs do not qualify. |
+| Save continuity | Old-manifest load/compatibility result, same-place reconstruction, and explicit version-domain decision before any production geography change. | Approval to migrate or invalidate existing saves. |
+
+No gameplay smoke test is assigned to an agent. Hands-on traversal is user-owned. The
+Unity GUI currently owns the live checkout, so all batchmode proof must use a fresh exact
+mirror and inspect its NUnit XML as well as its process result. Static checks in this
+planning turn establish only document/source coherence; no Unity or visual proof is claimed.
+
+### Risks, decisions, and completion boundary
+
+- **Most likely failure:** local connected spans can still look like a row of similar
+  walls. Compare parent-level quiet intervals, cap continuity, ledge rhythm, and toe debris
+  before increasing stone count. If the selected canyon needs a truly vertical or
+  overhanging cut that the heightfield cannot express, stop after the fitted-face proof;
+  design a bounded feature-geometry/topology change with near/mid/far and save review.
+- **Contact and streaming risk:** decoration is later than terrain and the current face
+  cooks a runtime `MeshCollider` from its low-detail mesh. Measure that cost and the period
+  before collision arrives; do not claim the face is traversally safe merely because the
+  rendered span is closed.
+- **Asset risk:** the broad authored-formation bake can discover the source cliff prefab.
+  Use only the dedicated cliff bake path after source/asset ownership review; preserve the
+  original 18 workbenches, transforms, nonuniform scale, `.meta` files, and GUIDs.
+- **Open user decisions:** accept/revise the fixed-camera visual result and hands-on route;
+  specify target hardware/performance limits for final full-content acceptance; decide
+  whether any later deep canyon enters the first playable territory or requires a
+  topology/save change. These are not defaults for an agent to infer.
+
+The **technical slice** is done when the fixed canyon is deterministic, visibly layered,
+source-linked, collidable where represented, seam-free through streaming, and measured
+against its full-content baseline with all proof receipts recorded. The **product slice** is
+done only after the user accepts its game-camera look and traversal and the agreed target
+profile passes. Stop at the first failed gate; repair that batch before widening density,
+generating additional canyon families, or changing the production profile.
+
 Superseded source-rock iteration, 2026-09-28: the earlier two broad catalog rocks were superseded by
 five runtime rock recipes baked from the user's `CliffWallSampleReference.prefab`, each with
 three LODs. The steep-section query remained the terrain authority. That decorator packed
