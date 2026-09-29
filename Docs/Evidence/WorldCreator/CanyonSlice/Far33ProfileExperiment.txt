@@ -1,0 +1,22 @@
+Mirror-only far-tier trial. Apply on top of the canyon-enabled, terraced mirror candidate;
+restore the original lines after profiling. This is a provenance record, not a production patch.
+
+Assets/_Project/Resources/WorldCreator/ProductionWorldCreatorProfile.asset
+-  farResolution: 17
++  farResolution: 33
+
+Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Runtime/WorldCreatorProductionProfile.cs
+-        [SerializeField, Range(3, 17)] private int farResolution = 17;
++        [SerializeField, Range(3, 33)] private int farResolution = 17;
+
+Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Representation/WorldRepresentationContracts.cs
+-            if (!(NearResolution > MidResolution && MidResolution >= FarResolution))
+-                throw new ArgumentException("Representation grid counts must decrease from near to middle and cannot increase from middle to far.");
++            if (!(NearResolution > MidResolution
++                && FarResolution - 1 < 4 * (MidResolution - 1)))
++                throw new ArgumentException("Representation sample spacing must increase from near to middle to far.");
+
+For the far render-only pass, CANYON_RENDER_DENSE_TIERS=1 instead constructs
+WorldRepresentationBuildProfile(49, 33, 33) in the temporary render harness. The
+Development Player trial used the three mirror profile/contract changes above, with
+near=25, middle=17, and far=33.

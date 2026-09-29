@@ -52,6 +52,13 @@ sampled cross-tier vertices: 25 near edge vertices, 17 middle edge vertices, fiv
 and two near/far shared points passed a mirror-only geometry/material check. The broad cut
 persists in actual middle/far renders, but the middle tier is visibly angular and the far
 tier smooths away most shelves. Coincident samples do not establish a continuous silhouette.
+An isolated 33×33 far-tier trial reduced sampled cross-section height error and restored
+several visible shelves, but used four times the far vertices and tripled warmed tile-build
+time. Two full-content Player routes drained pending work eventually but varied enough to
+preclude a causal frame-rate claim. Every far tile in the fixture contained canyon semantics,
+so whole-tile detail selection offers no reduction. Retain the current 17×17 profile while
+developing feature-local shelf detail and a controlled rendered Player comparison; see the
+[far-tier receipt](Evidence/WorldCreator/CanyonSlice/README.md).
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,
