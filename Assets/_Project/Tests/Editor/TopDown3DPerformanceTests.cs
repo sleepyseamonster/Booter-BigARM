@@ -121,6 +121,115 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void CoarseTerrainMasksOnlyQuadsCoveredByLoadedFinerTiles()
+        {
+            var near = new System.Func<long, long, bool>((a, b) => a == 1L && b == 2L);
+            var midTiles = new HashSet<(long, long)> { (1L, 1L) };
+            var middle = TopDown3DFarLandscape.ComputeHiddenQuads(
+                WorldRepresentationTier.Mid, 0d, 0d, 72d, 17, 18d, near, midTiles);
+            var far = TopDown3DFarLandscape.ComputeHiddenQuads(
+                WorldRepresentationTier.Far, 0d, 0d, 288d, 17, 18d, near, midTiles);
+
+            Assert.That(CountHidden(middle), Is.EqualTo(16));
+            Assert.That(middle[8 * 16 + 4], Is.True);
+            Assert.That(middle[2 * 16 + 4], Is.False);
+            Assert.That(CountHidden(far), Is.EqualTo(17));
+            Assert.That(far[2 * 16 + 1], Is.True);
+            Assert.That(far[5 * 16 + 5], Is.True);
+            Assert.That(far[8 * 16 + 8], Is.False);
+
+            var noFinerTiles = TopDown3DFarLandscape.ComputeHiddenQuads(
+                WorldRepresentationTier.Far, 0d, 0d, 288d, 17, 18d,
+                (_, _) => false, new HashSet<(long, long)>());
+            Assert.That(CountHidden(noFinerTiles), Is.Zero);
+
+            var negative = TopDown3DFarLandscape.ComputeHiddenQuads(
+                WorldRepresentationTier.Mid, -72d, -72d, 72d, 17, 18d,
+                (a, b) => a == -4L && b == -4L, new HashSet<(long, long)>());
+            Assert.That(CountHidden(negative), Is.EqualTo(16));
+            Assert.That(negative[0], Is.True);
+
+            var olderFarGrid = TopDown3DFarLandscape.ComputeHiddenQuads(
+                WorldRepresentationTier.Far, 0d, 0d, 288d, 5, 18d,
+                near, new HashSet<(long, long)>());
+            Assert.That(CountHidden(olderFarGrid), Is.Zero,
+                "A 72 m far quad cannot be removed for one loaded 18 m near chunk.");
+        }
+
+        private static int CountHidden(bool[] quads)
+        {
+            var count = 0;
+            foreach (var hidden in quads)
+                if (hidden) count++;
+            return count;
+        }
+
+        [Test]
+        public void CoarseCoverageRefreshesOnlyTilesAffectedByNearOrMiddleChanges()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);
+            var terrainMaterial = AssetDatabase.LoadAssetAtPath<Material>(TerrainMaterialPath);
+            var worldObject = new GameObject("Selective coarse coverage");
+            try
+            {
+                using var runtime = WorldCreatorProductionRuntime.Create(settings.WorldSeed);
+                var generator = new TopDown3DWorldGenerator(settings, runtime);
+                var landscape = new TopDown3DFarLandscape(worldObject.transform, settings,
+                    generator, runtime, terrainMaterial);
+                try
+                {
+                    var type = typeof(TopDown3DFarLandscape);
+                    var loaded = (IDictionary)type.GetField("loaded",
+                        BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(landscape);
+                    var required = (HashSet<WorldRepresentationKey>)type.GetField("required",
+                        BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(landscape);
+                    var dirty = (HashSet<WorldRepresentationKey>)type.GetField("coverageDirtyTiles",
+                        BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(landscape);
+                    Assert.That(loaded, Is.Not.Null);
+                    Assert.That(required, Is.Not.Null);
+                    Assert.That(dirty, Is.Not.Null);
+                    var span = (double)settings.ChunkSize;
+                    var middle = runtime.CreateRepresentationKey(WorldRepresentationTier.Mid,
+                        0, 0, span * 4d);
+                    var nearFar = runtime.CreateRepresentationKey(WorldRepresentationTier.Far,
+                        0, 0, span * 16d);
+                    var otherFar = runtime.CreateRepresentationKey(WorldRepresentationTier.Far,
+                        1, 0, span * 16d);
+                    var negativeMiddle = runtime.CreateRepresentationKey(WorldRepresentationTier.Mid,
+                        -1, 0, span * 4d);
+                    var negativeFar = runtime.CreateRepresentationKey(WorldRepresentationTier.Far,
+                        -1, 0, span * 16d);
+                    var loadedTileType = loaded.GetType().GetGenericArguments()[1];
+                    loaded.Add(middle, System.Activator.CreateInstance(loadedTileType, true));
+                    loaded.Add(nearFar, System.Activator.CreateInstance(loadedTileType, true));
+                    loaded.Add(otherFar, System.Activator.CreateInstance(loadedTileType, true));
+                    loaded.Add(negativeMiddle, System.Activator.CreateInstance(loadedTileType, true));
+                    loaded.Add(negativeFar, System.Activator.CreateInstance(loadedTileType, true));
+                    required.Add(nearFar);
+                    required.Add(otherFar);
+                    required.Add(negativeMiddle);
+                    required.Add(negativeFar);
+
+                    landscape.NotifyNearCoverageChanged(1, 1);
+                    Assert.That(dirty, Is.EquivalentTo(new[] { middle, nearFar }));
+
+                    dirty.Clear();
+                    landscape.NotifyNearCoverageChanged(-1, 1);
+                    Assert.That(dirty, Is.EquivalentTo(new[] { negativeMiddle, negativeFar }));
+
+                    dirty.Clear();
+                    type.GetMethod("RemoveStaleObjects",
+                        BindingFlags.Instance | BindingFlags.NonPublic)?.Invoke(landscape, null);
+                    Assert.That(loaded.Contains(middle), Is.False);
+                    Assert.That(dirty, Is.EquivalentTo(new[] { nearFar }),
+                        "Removing a middle tile must restore only its covering far tile.");
+                }
+                finally { landscape.Dispose(); }
+            }
+            finally { Object.DestroyImmediate(worldObject); }
+        }
+
+        [Test]
         public void NearMidAndFarTilesCoverTraversalInFullAndReducedProfiles()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(WorldSettingsPath);

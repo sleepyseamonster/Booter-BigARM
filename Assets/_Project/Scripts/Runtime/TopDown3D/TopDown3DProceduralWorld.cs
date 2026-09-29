@@ -215,7 +215,8 @@ namespace BooterBigArm.TopDown3D
                 settings,
                 worldGenerator,
                 worldCreatorRuntime,
-                groundMaterial);
+                groundMaterial,
+                IsNearTerrainLoaded);
             EnsureSafeStreamingTarget();
             SuspendStreamingTargetUntilInitialTerrain();
             farLandscape.Refresh(streamingTarget != null ? streamingTarget.position : Vector3.zero, true);
@@ -325,10 +326,12 @@ namespace BooterBigArm.TopDown3D
                     var coordinate = unloadBuffer[i];
                     if (loadedChunks.TryGetValue(coordinate, out var chunk) && chunk != null)
                     {
+                        chunk.gameObject.SetActive(false);
                         Destroy(chunk.gameObject);
                     }
 
                     loadedChunks.Remove(coordinate);
+                    farLandscape?.NotifyNearCoverageChanged(coordinate.x, coordinate.y);
                     if (activeDecorationStage != 0 && activeDecorationCoordinate == coordinate)
                         CancelActiveDecoration(false);
                     if (formationTreatments.Remove(coordinate)) QueueFormationTerrainNear(coordinate);
@@ -642,6 +645,7 @@ namespace BooterBigArm.TopDown3D
                 var chunk = chunkObject.AddComponent<TopDown3DGeneratedChunk>();
                 chunk.Initialize(coordinate, mesh);
                 loadedChunks.Add(coordinate, chunk);
+                farLandscape?.NotifyNearCoverageChanged(coordinate.x, coordinate.y);
                 QueueFormationTerrainRefresh(coordinate);
                 QueueTerrainCollider(coordinate);
                 if (requiredDecoratedChunks.Contains(coordinate))
@@ -650,6 +654,13 @@ namespace BooterBigArm.TopDown3D
                 }
 
             }
+        }
+
+        private bool IsNearTerrainLoaded(long a, long b)
+        {
+            return a >= int.MinValue && a <= int.MaxValue
+                && b >= int.MinValue && b <= int.MaxValue
+                && loadedChunks.ContainsKey(new Vector2Int((int)a, (int)b));
         }
 
         private void RefreshTerrainCollisionStreaming()

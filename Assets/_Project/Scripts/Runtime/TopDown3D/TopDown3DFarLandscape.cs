@@ -25,6 +25,7 @@ namespace BooterBigArm.TopDown3D
         private readonly TopDown3DWorldGenerator generator;
         private readonly WorldCreatorProductionRuntime runtime;
         private readonly Material material;
+        private readonly Func<long, long, bool> isNearLoaded;
         private readonly HashSet<WorldRepresentationKey> required =
             new HashSet<WorldRepresentationKey>();
         private readonly List<WorldRepresentationKey> pending =
@@ -37,29 +38,61 @@ namespace BooterBigArm.TopDown3D
             new Dictionary<WorldRepresentationKey, int>();
         private readonly Dictionary<WorldRepresentationKey, double> missingIntegrationSince =
             new Dictionary<WorldRepresentationKey, double>();
-        private readonly Dictionary<WorldRepresentationKey, GameObject> loaded =
-            new Dictionary<WorldRepresentationKey, GameObject>();
+        private readonly Dictionary<WorldRepresentationKey, LoadedTile> loaded =
+            new Dictionary<WorldRepresentationKey, LoadedTile>();
         private readonly List<WorldRepresentationKey> removalBuffer =
             new List<WorldRepresentationKey>();
+        private readonly HashSet<WorldRepresentationKey> coverageDirtyTiles =
+            new HashSet<WorldRepresentationKey>();
         private long anchorA = long.MinValue;
         private long anchorB = long.MinValue;
+
+        private sealed class LoadedTile
+        {
+            internal GameObject Object;
+            internal Mesh Mesh;
+            internal MeshRenderer Renderer;
+            internal int Resolution;
+            internal bool[] HiddenQuads;
+        }
 
         internal TopDown3DFarLandscape(
             Transform parent,
             TopDown3DWorldSettings settings,
             TopDown3DWorldGenerator generator,
             WorldCreatorProductionRuntime runtime,
-            Material material)
+            Material material,
+            Func<long, long, bool> isNearLoaded = null)
         {
             this.parent = parent;
             this.settings = settings;
             this.generator = generator;
             this.runtime = runtime;
             this.material = material;
+            this.isNearLoaded = isNearLoaded;
         }
 
         internal int LoadedRepresentationCount => loaded.Count;
         internal int PendingRepresentationCount => pending.Count + requests.Count;
+
+        internal void NotifyNearCoverageChanged(long nearA, long nearB)
+        {
+            var span = (double)settings.ChunkSize;
+            MarkCoveringTiles((nearA + 0.5d) * span, (nearB + 0.5d) * span);
+        }
+
+        private void MarkCoveringTiles(double pointA, double pointB,
+            WorldRepresentationTier? tier = null)
+        {
+            foreach (var key in loaded.Keys)
+            {
+                if (tier.HasValue && key.Tier != tier.Value) continue;
+                var minimum = key.Minimum;
+                if (pointA >= minimum.HorizontalA && pointA < minimum.HorizontalA + key.TileSpan
+                    && pointB >= minimum.HorizontalB && pointB < minimum.HorizontalB + key.TileSpan)
+                    coverageDirtyTiles.Add(key);
+            }
+        }
 
         internal void Refresh(Vector3 targetPosition, bool force)
         {
@@ -167,6 +200,8 @@ namespace BooterBigArm.TopDown3D
                 requests.Remove(removalBuffer[i]);
             }
 
+            RefreshCoverage();
+
             return integrated;
         }
 
@@ -174,10 +209,10 @@ namespace BooterBigArm.TopDown3D
         {
             foreach (var pair in loaded)
             {
-                if (pair.Value != null
+                if (pair.Value.Object != null
                     && runtime.TryToLocal(pair.Key.Minimum, out var local))
                 {
-                    pair.Value.transform.localPosition = new Vector3(local.X, local.Y, local.Z);
+                    pair.Value.Object.transform.localPosition = new Vector3(local.X, local.Y, local.Z);
                 }
             }
         }
@@ -186,7 +221,7 @@ namespace BooterBigArm.TopDown3D
         {
             foreach (var pair in loaded)
             {
-                DestroyOwnedObject(pair.Value);
+                DestroyOwnedObject(pair.Value.Object);
             }
 
             loaded.Clear();
@@ -196,6 +231,7 @@ namespace BooterBigArm.TopDown3D
             retryDue.Clear();
             retryCounts.Clear();
             missingIntegrationSince.Clear();
+            coverageDirtyTiles.Clear();
         }
 
         private bool TryTakeReadyPending(out WorldRepresentationKey key)
@@ -248,43 +284,11 @@ namespace BooterBigArm.TopDown3D
                         checked(centerA + offsetA),
                         checked(centerB + offsetB),
                         span);
-                    // Skip a coarse tile only when the finer tier covers its entire
-                    // rectangle. The rings have different alignment and the near radius
-                    // can shrink in the diagnostic profile, so fixed inner holes are unsafe.
-                    if (!IsFullyCoveredByFinerTier(key, target)) required.Add(key);
+                    // Finer terrain can still be pending. Keep the coarse fallback and
+                    // mask only the quads for finer tiles that have actually loaded.
+                    required.Add(key);
                 }
             }
-        }
-
-        private bool IsFullyCoveredByFinerTier(
-            WorldRepresentationKey key,
-            AbsoluteWorldPosition target)
-        {
-            double finerMinA, finerMinB, finerMaxA, finerMaxB;
-            if (key.Tier == WorldRepresentationTier.Mid)
-            {
-                var nearSpan = (double)settings.ChunkSize;
-                var radius = TopDown3DPlaytestPerformanceProfile.StreamingRadiusOverride > 0
-                    ? Math.Min(settings.StreamingRadius,
-                        TopDown3DPlaytestPerformanceProfile.StreamingRadiusOverride)
-                    : settings.StreamingRadius;
-                finerMinA = (Math.Floor(target.HorizontalA / nearSpan) - radius) * nearSpan;
-                finerMinB = (Math.Floor(target.HorizontalB / nearSpan) - radius) * nearSpan;
-                finerMaxA = finerMinA + (radius * 2 + 1) * nearSpan;
-                finerMaxB = finerMinB + (radius * 2 + 1) * nearSpan;
-            }
-            else
-            {
-                var midSpan = settings.ChunkSize * 4d;
-                finerMinA = (Math.Floor(target.HorizontalA / midSpan) - MidRadius) * midSpan;
-                finerMinB = (Math.Floor(target.HorizontalB / midSpan) - MidRadius) * midSpan;
-                finerMaxA = finerMinA + (MidRadius * 2 + 1) * midSpan;
-                finerMaxB = finerMinB + (MidRadius * 2 + 1) * midSpan;
-            }
-            var minimum = key.Minimum;
-            return minimum.HorizontalA >= finerMinA && minimum.HorizontalB >= finerMinB
-                && minimum.HorizontalA + key.TileSpan <= finerMaxA
-                && minimum.HorizontalB + key.TileSpan <= finerMaxB;
         }
 
         private void RemoveStaleObjects()
@@ -294,8 +298,13 @@ namespace BooterBigArm.TopDown3D
             {
                 if (!required.Contains(pair.Key))
                 {
-                    DestroyOwnedObject(pair.Value);
+                    if (pair.Key.Tier == WorldRepresentationTier.Mid)
+                        MarkCoveringTiles(pair.Key.Minimum.HorizontalA + pair.Key.TileSpan * 0.5d,
+                            pair.Key.Minimum.HorizontalB + pair.Key.TileSpan * 0.5d,
+                            WorldRepresentationTier.Far);
+                    DestroyOwnedObject(pair.Value.Object);
                     removalBuffer.Add(pair.Key);
+                    coverageDirtyTiles.Remove(pair.Key);
                 }
             }
 
@@ -331,6 +340,100 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
+        private void RefreshCoverage()
+        {
+            if (coverageDirtyTiles.Count == 0) return;
+
+            var midTiles = new HashSet<(long, long)>();
+            foreach (var pair in loaded)
+                if (pair.Key.Tier == WorldRepresentationTier.Mid)
+                    midTiles.Add((pair.Key.TileA, pair.Key.TileB));
+
+            foreach (var key in coverageDirtyTiles)
+            {
+                if (!loaded.TryGetValue(key, out var tile)) continue;
+                var quads = tile.Resolution - 1;
+                var hidden = ComputeHiddenQuads(
+                    key.Tier, key.Minimum.HorizontalA, key.Minimum.HorizontalB,
+                    key.TileSpan, tile.Resolution, settings.ChunkSize,
+                    isNearLoaded, midTiles);
+                var changed = tile.HiddenQuads == null;
+                for (var index = 0; !changed && index < hidden.Length; index++)
+                    if (hidden[index] != tile.HiddenQuads[index]) changed = true;
+
+                if (!changed) continue;
+                var triangles = new List<int>(quads * quads * 6);
+                for (var z = 0; z < quads; z++)
+                for (var x = 0; x < quads; x++)
+                {
+                    if (hidden[z * quads + x]) continue;
+                    var bottomLeft = z * tile.Resolution + x;
+                    var topLeft = bottomLeft + tile.Resolution;
+                    triangles.Add(bottomLeft);
+                    triangles.Add(topLeft);
+                    triangles.Add(bottomLeft + 1);
+                    triangles.Add(bottomLeft + 1);
+                    triangles.Add(topLeft);
+                    triangles.Add(topLeft + 1);
+                }
+
+                tile.Mesh.SetTriangles(triangles, 0, true);
+                tile.Renderer.enabled = triangles.Count != 0;
+                tile.HiddenQuads = hidden;
+            }
+            coverageDirtyTiles.Clear();
+        }
+
+        internal static bool[] ComputeHiddenQuads(
+            WorldRepresentationTier tier,
+            double minimumA,
+            double minimumB,
+            double tileSpan,
+            int resolution,
+            double nearSpan,
+            Func<long, long, bool> nearLoaded,
+            HashSet<(long, long)> midTiles)
+        {
+            var quads = resolution - 1;
+            var step = tileSpan / quads;
+            var midSpan = nearSpan * 4d;
+            var hidden = new bool[quads * quads];
+            for (var z = 0; z < quads; z++)
+            for (var x = 0; x < quads; x++)
+            {
+                var a = minimumA + (x + 0.5d) * step;
+                var b = minimumB + (z + 0.5d) * step;
+                var nearA = checked((long)Math.Floor(a / nearSpan));
+                var nearB = checked((long)Math.Floor(b / nearSpan));
+                var quadMinA = minimumA + x * step;
+                var quadMaxA = minimumA + (x + 1) * step;
+                var quadMinB = minimumB + z * step;
+                var quadMaxB = minimumB + (z + 1) * step;
+                var covered = IsInsideCell(quadMinA, quadMaxA, nearSpan, nearA)
+                    && IsInsideCell(quadMinB, quadMaxB, nearSpan, nearB)
+                    && (nearLoaded?.Invoke(nearA, nearB) ?? false);
+                if (!covered && tier == WorldRepresentationTier.Far)
+                {
+                    var midA = checked((long)Math.Floor(a / midSpan));
+                    var midB = checked((long)Math.Floor(b / midSpan));
+                    covered = IsInsideCell(quadMinA, quadMaxA, midSpan, midA)
+                        && IsInsideCell(quadMinB, quadMaxB, midSpan, midB)
+                        && midTiles.Contains((midA, midB));
+                }
+                hidden[z * quads + x] = covered;
+            }
+
+            return hidden;
+        }
+
+        private static bool IsInsideCell(double minimum, double maximum, double span, long cell)
+        {
+            var cellMinimum = cell * span;
+            var tolerance = span * 1e-8d;
+            return minimum >= cellMinimum - tolerance
+                && maximum <= cellMinimum + span + tolerance;
+        }
+
         private void CreateRepresentation(WorldRepresentationBuildResult result)
         {
             if (loaded.ContainsKey(result.Key)
@@ -341,11 +444,6 @@ namespace BooterBigArm.TopDown3D
 
             var name = $"World Creator {result.Key.Tier} {result.Key.TileA},{result.Key.TileB}";
             var mesh = TopDown3DChunkMeshBuilder.BuildMesh(result, name);
-            if (Application.isPlaying)
-            {
-                mesh.UploadMeshData(true);
-            }
-
             var representation = new GameObject(name);
             representation.transform.SetParent(parent, false);
             representation.transform.localPosition = new Vector3(local.X, local.Y, local.Z);
@@ -354,7 +452,18 @@ namespace BooterBigArm.TopDown3D
             renderer.sharedMaterial = material;
             renderer.shadowCastingMode = ShadowCastingMode.Off;
             renderer.receiveShadows = true;
-            loaded.Add(result.Key, representation);
+            loaded.Add(result.Key, new LoadedTile
+            {
+                Object = representation,
+                Mesh = mesh,
+                Renderer = renderer,
+                Resolution = result.Resolution
+            });
+            coverageDirtyTiles.Add(result.Key);
+            if (result.Key.Tier == WorldRepresentationTier.Mid)
+                MarkCoveringTiles(result.Key.Minimum.HorizontalA + result.Key.TileSpan * 0.5d,
+                    result.Key.Minimum.HorizontalB + result.Key.TileSpan * 0.5d,
+                    WorldRepresentationTier.Far);
         }
 
         private static void DestroyOwnedObject(GameObject ownedObject)
@@ -363,6 +472,9 @@ namespace BooterBigArm.TopDown3D
             {
                 return;
             }
+
+            // Destroy is deferred in Play Mode; stop drawing the retired tile now.
+            ownedObject.SetActive(false);
 
             var filter = ownedObject.GetComponent<MeshFilter>();
             if (filter != null && filter.sharedMesh != null)
