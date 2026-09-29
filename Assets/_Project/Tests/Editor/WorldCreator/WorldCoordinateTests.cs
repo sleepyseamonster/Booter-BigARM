@@ -6,6 +6,29 @@ namespace BooterBigArm.Tests.WorldCreator
     public sealed class WorldCoordinateTests
     {
         [Test]
+        public void TechnicalCartesianAddressParsesExactValuesAndRejectsExtraFields()
+        {
+            var model = new NonCanonTechnicalCoordinateModel();
+            var positions = new[]
+            {
+                new AbsoluteWorldPosition(0d, 0d, 0d),
+                new AbsoluteWorldPosition(-123.125d, 42.5d, 9876.25d),
+                new AbsoluteWorldPosition(9_007_199_254_740_991d, -731.25d, -8_765_432_109_876d)
+            };
+            foreach (var position in positions)
+            {
+                Assert.That(model.TryResolve(model.Encode(position), out var restored), Is.True);
+                Assert.That(restored, Is.EqualTo(position));
+            }
+
+            foreach (var invalid in new[] { "1|2", "1|2|3|4", "x|2|3", "|2|3", "1||3" })
+            {
+                var address = new WorldCoordinateAddress(model.ModelId, model.ModelVersion, invalid);
+                Assert.That(model.TryResolve(address, out _), Is.False, invalid);
+            }
+        }
+
+        [Test]
         public void OpaqueAddress_RoundTripsFarBeyondUnityFloatPrecision()
         {
             var model = new NonCanonCoordinateModel();

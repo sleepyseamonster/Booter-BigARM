@@ -27,11 +27,18 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         {
             absolutePosition = default;
             if (!address.IsCompatibleWith(this)) return false;
-            var parts = address.CanonicalValue.Split('|');
-            if (parts.Length != 3
-                || !double.TryParse(parts[0], NumberStyles.Float, CultureInfo.InvariantCulture, out var horizontalA)
-                || !double.TryParse(parts[1], NumberStyles.Float, CultureInfo.InvariantCulture, out var vertical)
-                || !double.TryParse(parts[2], NumberStyles.Float, CultureInfo.InvariantCulture, out var horizontalB))
+            var value = address.CanonicalValue.AsSpan();
+            var firstSeparator = value.IndexOf('|');
+            if (firstSeparator < 0) return false;
+            var remainder = value.Slice(firstSeparator + 1);
+            var secondSeparator = remainder.IndexOf('|');
+            if (secondSeparator < 0 || remainder.Slice(secondSeparator + 1).IndexOf('|') >= 0
+                || !double.TryParse(value.Slice(0, firstSeparator), NumberStyles.Float,
+                    CultureInfo.InvariantCulture, out var horizontalA)
+                || !double.TryParse(remainder.Slice(0, secondSeparator), NumberStyles.Float,
+                    CultureInfo.InvariantCulture, out var vertical)
+                || !double.TryParse(remainder.Slice(secondSeparator + 1), NumberStyles.Float,
+                    CultureInfo.InvariantCulture, out var horizontalB))
             {
                 return false;
             }
