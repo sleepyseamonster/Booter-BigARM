@@ -55,6 +55,13 @@ also ORs floor and wall semantics at canyon overlaps. A mirror-only nearest-segm
 semantic fix passed 2 focused tests, but did not cure the render patch. Resolve both
 before visual acceptance; [the receipt](Evidence/WorldCreator/CanyonSlice/README.md)
 contains the same-camera images, render harness, and test result.
+The next mirror pass laid the Workbench talus on its side with analytic box support;
+its 20-chunk contact/identity fixture passed 2 of 2 and measured at most 0.22 m
+center contact error. A canyon-floor material response reduced the most saturated
+patch in a fixed camera, but the adjoining slope and repeated face remain below the
+reference target. The canyon-enabled mirror's material suite passed 6 of 7; the dust
+plan's rebase-equality test failed and requires baseline attribution. These are
+candidate experiments, not a production cutover.
 
 ### Objective, authority, and fixture
 

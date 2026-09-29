@@ -1,0 +1,10 @@
+--- current/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Materials/WorldSurfaceMaterialService.cs
++++ mirror/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Materials/WorldSurfaceMaterialService.cs
+@@ -243,0 +244,7 @@
++            if (canyonFloor)
++            {
++                // A floor collects broken stone but exposes less intact caprock than the wall.
++                strataExposure *= 0.25f;
++                deposit *= 0.55f;
++                erosion = Math.Max(erosion, 0.58f);
++            }

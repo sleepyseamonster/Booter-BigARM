@@ -18,7 +18,7 @@
 @@ -227,0 +228,2 @@
 +            root.transform.localPosition += Vector3.up *
 +                (-bounds.min.y * root.transform.localScale.y - 0.30f);
-@@ -241,52 +243,82 @@
+@@ -241,52 +243,92 @@
 -            WorldCliffSectionCandidate first,
 -            WorldCliffSectionCandidate last,
 -            Vector3 firstOutward, Vector3 lastOutward, int seed)
@@ -84,24 +84,34 @@
 +
 +                var root = new GameObject($"Cliff Toe Debris {candidate.Id}");
 +                root.transform.SetParent(chunk.DecorationRoot, false);
-+                root.transform.localRotation = Quaternion.Euler(0f,
-+                    (float)(Hash01(span.First.OwnerCellA,
-+                        span.Last.OwnerCellB, 257 + candidate.Ordinal) * 360d), 0f);
-+                var horizontalScale = candidate.TargetWidth
-+                    / Mathf.Max(source.bounds.size.x, source.bounds.size.z);
-+                var verticalScale = horizontalScale * Mathf.Lerp(0.88f, 1.20f,
++                var bounds = source.bounds;
++                var yaw = (float)(Hash01(span.First.OwnerCellA,
++                    span.Last.OwnerCellB, 257 + candidate.Ordinal) * 360d);
++                var tumble = Mathf.Lerp(68f, 105f,
 +                    (float)Hash01(span.First.OwnerCellA,
 +                        span.Last.OwnerCellB, 263 + candidate.Ordinal));
-+                root.transform.localScale = new Vector3(horizontalScale,
-+                    verticalScale, horizontalScale);
-+                var bounds = source.bounds;
-+                var horizontalOffset = root.transform.localRotation * new Vector3(
-+                    -bounds.center.x * horizontalScale, 0f,
-+                    -bounds.center.z * horizontalScale);
-+                root.transform.localPosition = chunk.transform.InverseTransformPoint(
-+                    new Vector3(local.X, local.Y, local.Z)) + horizontalOffset
-+                    + Vector3.up * (-bounds.min.y * verticalScale
-+                        - Mathf.Min(0.32f, candidate.TargetWidth * 0.10f));
++                var roll = Mathf.Lerp(-22f, 22f,
++                    (float)Hash01(span.First.OwnerCellA,
++                        span.Last.OwnerCellB, 269 + candidate.Ordinal));
++                root.transform.localRotation = Quaternion.Euler(tumble, yaw, roll);
++                var scale = candidate.TargetWidth / Mathf.Max(
++                    bounds.size.x, bounds.size.y, bounds.size.z);
++                root.transform.localScale = new Vector3(scale, scale * 0.85f, scale);
++                var ground = chunk.transform.InverseTransformPoint(
++                    new Vector3(local.X, local.Y, local.Z));
++                var rotatedCenter = root.transform.localRotation * Vector3.Scale(
++                    bounds.center, root.transform.localScale);
++                var half = Vector3.Scale(bounds.size * 0.41f,
++                    root.transform.localScale);
++                var rotation = root.transform.localRotation;
++                var supportY = Mathf.Abs((rotation * Vector3.right).y) * half.x
++                    + Mathf.Abs((rotation * Vector3.up).y) * half.y
++                    + Mathf.Abs((rotation * Vector3.forward).y) * half.z;
++                var burial = Mathf.Min(0.24f, candidate.TargetWidth * 0.08f);
++                root.transform.localPosition = ground
++                    + new Vector3(-rotatedCenter.x,
++                        supportY - rotatedCenter.y - burial,
++                        -rotatedCenter.z);
 +                root.AddComponent<TopDown3DTraversalObstacle>();
 +                var collider = root.AddComponent<BoxCollider>();
 +                collider.center = bounds.center;
