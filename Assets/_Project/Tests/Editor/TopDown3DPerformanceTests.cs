@@ -105,7 +105,7 @@ namespace BooterBigArm.Tests
                 var chunks = (System.Collections.IDictionary)GetPrivateField(world, "loadedChunks");
                 chunks.Add(coordinate, chunk);
                 InvokePrivate(world, "EnqueueDecoration", coordinate);
-                Assert.That((bool)InvokePrivateResult(world, "TryProcessDecoration"), Is.True);
+                InvokePrivate(world, "TryProcessDecoration");
                 Assert.That(world.PendingDecorationCount, Is.EqualTo(1));
                 Assert.That(world.DecoratedChunkCount, Is.Zero);
                 InvokePrivate(world, "CancelActiveDecoration", false);

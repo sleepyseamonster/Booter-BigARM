@@ -297,17 +297,16 @@ namespace BooterBigArm.TopDown3D
                 if (force)
                 {
                     var immediateRadius = Mathf.Min(settings.ImmediateLoadRadius, streamingRadius);
+                    var immediate = new List<Vector2Int>();
                     for (var i = pendingChunks.Count - 1; i >= 0; i--)
                     {
                         var coordinate = pendingChunks[i];
-                        if (ChebyshevDistance(coordinate, center) > immediateRadius)
-                        {
-                            continue;
-                        }
-
-                        RequestChunkTerrain(coordinate);
+                        if (ChebyshevDistance(coordinate, center) > immediateRadius) continue;
+                        immediate.Add(coordinate);
                         pendingChunks.RemoveAt(i);
                     }
+                    immediate.Sort(ComparePendingChunks);
+                    foreach (var coordinate in immediate) RequestChunkTerrain(coordinate);
 
                 }
 
@@ -530,7 +529,6 @@ namespace BooterBigArm.TopDown3D
                     found = true;
                     coordinate = pair.Key;
                     request = pair.Value;
-                    break;
                 }
             }
 
