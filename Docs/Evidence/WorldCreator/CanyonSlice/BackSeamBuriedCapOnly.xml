@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 16:31:23Z" end-time="2026-09-29 16:31:27Z" duration="3.6655207">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 16:31:23Z" end-time="2026-09-29 16:31:27Z" duration="3.665521" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1540" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 16:31:24Z" end-time="2026-09-29 16:31:27Z" duration="3.654909" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="58856" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1541" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 16:31:24Z" end-time="2026-09-29 16:31:27Z" duration="3.649003" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1542" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 16:31:24Z" end-time="2026-09-29 16:31:27Z" duration="3.643153" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1543" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-09-29 16:31:24Z" end-time="2026-09-29 16:31:27Z" duration="3.636649" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1426" name="TempCanyonFaceProofTests" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-29 16:31:24Z" end-time="2026-09-29 16:31:27Z" duration="3.633557" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1432" name="ReportNearFaceContactAgainstRenderedTerrainTriangles" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.ReportNearFaceContactAgainstRenderedTerrainTriangles" methodname="ReportNearFaceContactAgainstRenderedTerrainTriangles" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="988431143" result="Passed" start-time="2026-09-29 16:31:24Z" end-time="2026-09-29 16:31:27Z" duration="3.624391" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON HIGH CONTACT face=Cliff Bedrock bee2dc237575adb517b953de3be4ea30 to 38862771145ba6e42e43cf23aba863e6 triangle=95 station=3 side=11 delta=0.970 abs=(400.75,307.49)
+CANYON HIGH CONTACT face=Cliff Bedrock 93c1e4f4022a7dd4a8d3eb23b3453ac0 to bee2dc237575adb517b953de3be4ea30 triangle=23 station=0 side=11 delta=0.944 abs=(405.92,307.92)
+CANYON HIGH CONTACT face=Cliff Bedrock 1e2de326ff4c243e4dedbe2dd06cdba5 to 93c1e4f4022a7dd4a8d3eb23b3453ac0 triangle=95 station=3 side=11 delta=0.946 abs=(406.66,307.99)
+CANYON HIGH CONTACT face=Streamed Decoration triangle=95 station=3 side=11 delta=0.970 abs=(400.75,307.49)
+CANYON HIGH CONTACT face=Streamed Decoration triangle=23 station=0 side=11 delta=0.944 abs=(405.92,307.92)
+CANYON HIGH CONTACT face=Streamed Decoration triangle=95 station=3 side=11 delta=0.946 abs=(406.66,307.99)
+CANYON HIGH CONTACT face=Cliff Bedrock 5cc7b04e4e32d76e4a9a53a08d34f6aa to f76a52e5171fc2bf7944a77ce99fd4f5 triangle=23 station=0 side=11 delta=0.961 abs=(453.92,313.92)
+CANYON HIGH CONTACT face=Cliff Bedrock 7a2cdd151f5c8730f7326de7f018a76d to 5cc7b04e4e32d76e4a9a53a08d34f6aa triangle=95 station=3 side=11 delta=0.977 abs=(454.65,313.98)
+CANYON HIGH CONTACT face=Streamed Decoration triangle=23 station=0 side=11 delta=0.961 abs=(453.92,313.92)
+CANYON HIGH CONTACT face=Streamed Decoration triangle=95 station=3 side=11 delta=0.977 abs=(454.65,313.98)
+CANYON TRIANGLE CONTACT faces=28 vertices=10080 max=0.300 p95=0.300 above025=5982 above100=0 below100=824
+CANYON TRIANGLE INTERIOR visual=3360 visualMax=0.977 visualP95=0.419 visualAbove100=0 collider=3360 colliderMax=0.977 colliderP95=0.419 colliderAbove100=0
+CANYON FACE MAXIMA visualUnder050=17 visualUnder100=28 colliderUnder050=17 colliderUnder100=28
+Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

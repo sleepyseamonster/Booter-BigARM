@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 16:50:37Z" end-time="2026-09-29 16:50:37Z" duration="0.0534285">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="461" result="Passed" start-time="2026-09-29 16:50:37Z" end-time="2026-09-29 16:50:37Z" duration="0.053429" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1541" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="461" result="Passed" start-time="2026-09-29 16:50:37Z" end-time="2026-09-29 16:50:37Z" duration="0.043088" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="59621" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1542" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="461" result="Passed" start-time="2026-09-29 16:50:37Z" end-time="2026-09-29 16:50:37Z" duration="0.037269" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1543" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="461" result="Passed" start-time="2026-09-29 16:50:37Z" end-time="2026-09-29 16:50:37Z" duration="0.031559" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1544" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="112" result="Passed" start-time="2026-09-29 16:50:37Z" end-time="2026-09-29 16:50:37Z" duration="0.025352" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1426" name="TempCanyonFaceProofTests" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-09-29 16:50:37Z" end-time="2026-09-29 16:50:37Z" duration="0.022674" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1427" name="BuriedBackSeamKeepsFittedEndpointGeometryAcrossAdjacentFaces" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.BuriedBackSeamKeepsFittedEndpointGeometryAcrossAdjacentFaces" methodname="BuriedBackSeamKeepsFittedEndpointGeometryAcrossAdjacentFaces" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1404640863" result="Passed" start-time="2026-09-29 16:50:37Z" end-time="2026-09-29 16:50:37Z" duration="0.014553" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

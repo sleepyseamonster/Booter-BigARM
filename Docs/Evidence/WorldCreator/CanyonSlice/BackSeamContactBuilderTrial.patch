@@ -1,0 +1,63 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceMeshBuilder.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceMeshBuilder.cs
+@@ -74,7 +74,7 @@
+                 {
+                     var vertex = vertices[index];
+                     vertex.y = Mathf.Min(vertex.y,
+-                        renderedTerrainHeight(vertex) + 0.30f);
++                        renderedTerrainHeight(vertex) + 0.15f);
+                     vertices[index] = vertex;
+                 }
+             }
+@@ -87,8 +87,18 @@
+                 var b = (station + 1) * RingSize + side;
+                 var c = station * RingSize + next;
+                 var d = (station + 1) * RingSize + next;
+-                AddTriangle(triangles, a, c, b);
+-                AddTriangle(triangles, c, d, b);
++                if (side == RingSize - 1 && renderedTerrainHeight != null)
++                {
++                    AddBuriedBackTriangle(vertices, seamWeights, triangles,
++                        a, c, b, renderedTerrainHeight);
++                    AddBuriedBackTriangle(vertices, seamWeights, triangles,
++                        c, d, b, renderedTerrainHeight);
++                }
++                else
++                {
++                    AddTriangle(triangles, a, c, b);
++                    AddTriangle(triangles, c, d, b);
++                }
+             }
+
+             var firstCap = vertices.Count;
+@@ -103,7 +113,7 @@
+                 {
+                     var vertex = vertices[cap];
+                     vertex.y = Mathf.Min(vertex.y,
+-                        renderedTerrainHeight(vertex) + 0.30f);
++                        renderedTerrainHeight(vertex) - 2.0f);
+                     vertices[cap] = vertex;
+                 }
+             }
+@@ -161,6 +171,21 @@
+             triangles.Add(c);
+         }
+
++        private static void AddBuriedBackTriangle(
++            List<Vector3> vertices, List<float> seamWeights,
++            List<int> triangles, int a, int b, int c,
++            Func<Vector3, float> renderedTerrainHeight)
++        {
++            var center = (vertices[a] + vertices[b] + vertices[c]) / 3f;
++            center.y = Mathf.Min(center.y, renderedTerrainHeight(center) - 2f);
++            var middle = vertices.Count;
++            vertices.Add(center);
++            seamWeights.Add(0f);
++            AddTriangle(triangles, a, b, middle);
++            AddTriangle(triangles, b, c, middle);
++            AddTriangle(triangles, c, a, middle);
++        }
++
+         private static float Hash01(int seed, int station)
+         {
+             unchecked

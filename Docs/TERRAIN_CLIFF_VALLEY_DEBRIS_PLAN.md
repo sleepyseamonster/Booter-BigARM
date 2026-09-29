@@ -132,6 +132,14 @@ fixture passes with vertex-color hashing; triangle-interior contact still reache
 streaming completion differs between runs. Keep this trial in the mirror until
 parent-landform silhouette, continuous face/collider contact, equal-state frame cost,
 save/version authority, and hands-on traversal and visual acceptance are resolved.
+The subsequent [buried back-seam contact trial](Evidence/WorldCreator/CanyonSlice/BackSeamContactTrial.md)
+reduces sampled fitted-face triangle-interior contact from 0.992 m to 0.394 m
+while preserving normal/reverse/rebase identity. The closer fit also accepts 248
+faces instead of 122 across the 49-chunk fixture; a comparable settled Player
+stop carries about 100 additional colliders and 200 additional renderers and
+decoration meshes. The actual game-camera composition remains far from the
+reference. Retain this as a mirror candidate until the face cost, parent shape,
+camera framing, continuous contact, traversal, and save/version gates close.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,
