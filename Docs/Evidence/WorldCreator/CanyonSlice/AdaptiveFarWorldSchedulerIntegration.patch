@@ -1,0 +1,12 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DProceduralWorld.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DProceduralWorld.cs
+@@ -236,7 +236,8 @@
+                 farLandscape?.Refresh(streamingTarget.position, false);
+             }
+             ProcessPendingChunks(EffectiveChunksBuiltPerFrame);
+-            farLandscape?.ProcessReady(2, 2);
++            farLandscape?.ProcessReady(2, 2,
++                PendingTerrainChunkCount == 0 && PendingDecorationCount == 0);
+         }
+ 
+         private void RefreshChunks(bool force)

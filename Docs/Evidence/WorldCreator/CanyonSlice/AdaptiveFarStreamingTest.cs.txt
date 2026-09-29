@@ -1,0 +1,112 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
+using BooterBigArm.TopDown3D;
+using BooterBigArm.TopDown3D.WorldCreator;
+using NUnit.Framework;
+using UnityEditor;
+using UnityEngine;
+
+namespace BooterBigArm.Tests.WorldCreator
+{
+    public sealed class TempCanyonAdaptiveStreamingTests
+    {
+        [Test]
+        public async Task AdaptiveFarUpgradeKeepsFallbackAndCoverageRanges()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(
+                "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset");
+            var material = AssetDatabase.LoadAssetAtPath<Material>(
+                "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat");
+            Assert.That(settings, Is.Not.Null);
+            Assert.That(material, Is.Not.Null);
+            var owner = new GameObject("Adaptive far lifecycle proof");
+            var nearLoaded = false;
+            try
+            {
+                using var runtime = WorldCreatorProductionRuntime.Create(24681357L);
+                var generator = new TopDown3DWorldGenerator(settings, runtime);
+                var landscape = new TopDown3DFarLandscape(owner.transform, settings,
+                    generator, runtime, material,
+                    (a, b) => nearLoaded && a == 23L && b == 19L);
+                try
+                {
+                    var key = runtime.CreateRepresentationKey(
+                        WorldRepresentationTier.Far, 1, 1, 288d);
+                    var compiler = new WorldRepresentationCompiler(runtime.Query,
+                        runtime.Authority.Materials, new WorldRepresentationBufferPool(),
+                        runtime.Profile.CreateRepresentationProfile(), runtime.SourceFingerprint);
+                    using var result = await compiler.BuildAsync(key, CancellationToken.None);
+                    var type = typeof(TopDown3DFarLandscape);
+                    var create = type.GetMethod("CreateRepresentation",
+                        BindingFlags.Instance | BindingFlags.NonPublic);
+                    var loaded = (IDictionary)type.GetField("loaded",
+                        BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(landscape);
+                    var required = (HashSet<WorldRepresentationKey>)type.GetField("required",
+                        BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(landscape);
+                    Assert.That(create, Is.Not.Null);
+                    Assert.That(loaded, Is.Not.Null);
+                    Assert.That(required, Is.Not.Null);
+                    required.Add(key);
+                    create.Invoke(landscape, new object[] { result });
+                    Assert.That(loaded.Contains(key), Is.True);
+                    var tile = loaded[key];
+                    var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+                    var tileType = tile.GetType();
+                    var filter = (MeshFilter)tileType.GetField("Filter", flags)?.GetValue(tile);
+                    Assert.That(filter, Is.Not.Null);
+                    Assert.That(filter.sharedMesh.vertexCount, Is.EqualTo(289));
+
+                    for (var i = 0; i < 250 && filter.sharedMesh.vertexCount == 289; i++)
+                    {
+                        landscape.ProcessReady(0, 1, true);
+                        await Task.Delay(20);
+                    }
+                    Assert.That(filter.sharedMesh.vertexCount, Is.GreaterThan(289));
+                    var starts = (int[])tileType.GetField("CellTriangleStarts", flags)?.GetValue(tile);
+                    var original = (int[])tileType.GetField("OriginalTriangles", flags)?.GetValue(tile);
+                    Assert.That(starts, Has.Length.EqualTo(257));
+                    Assert.That(original, Has.Length.GreaterThan(512 * 3));
+                    Assert.That(filter.sharedMesh.triangles.Length, Is.EqualTo(original.Length));
+
+                    nearLoaded = true;
+                    landscape.NotifyNearCoverageChanged(23, 19);
+                    landscape.ProcessReady(0, 0, true);
+                    var cell = 3 * 16 + 7;
+                    Assert.That(filter.sharedMesh.triangles.Length,
+                        Is.EqualTo(original.Length - (starts[cell + 1] - starts[cell])));
+                    nearLoaded = false;
+                    landscape.NotifyNearCoverageChanged(23, 19);
+                    landscape.ProcessReady(0, 0, true);
+                    Assert.That(filter.sharedMesh.triangles.Length, Is.EqualTo(original.Length));
+
+                    var firstVertices = filter.sharedMesh.vertices;
+                    var firstColors = filter.sharedMesh.colors;
+                    var firstTriangles = filter.sharedMesh.triangles;
+                    landscape.Refresh(new Vector3(2000f, 0f, 2000f), true);
+                    Assert.That(loaded.Contains(key), Is.False, "The far tile must unload outside the ring.");
+                    landscape.Refresh(new Vector3(416f, 0f, 342f), true);
+                    Assert.That(required.Contains(key), Is.True);
+                    create.Invoke(landscape, new object[] { result });
+                    tile = loaded[key];
+                    filter = (MeshFilter)tileType.GetField("Filter", flags)?.GetValue(tile);
+                    Assert.That(filter.sharedMesh.vertexCount, Is.EqualTo(289));
+                    for (var i = 0; i < 250 && filter.sharedMesh.vertexCount == 289; i++)
+                    {
+                        landscape.ProcessReady(0, 1, true);
+                        await Task.Delay(20);
+                    }
+                    Assert.That(filter.sharedMesh.vertexCount, Is.GreaterThan(289));
+                    Assert.That(filter.sharedMesh.vertices, Is.EqualTo(firstVertices));
+                    Assert.That(filter.sharedMesh.colors, Is.EqualTo(firstColors));
+                    Assert.That(filter.sharedMesh.triangles, Is.EqualTo(firstTriangles));
+                }
+                finally { landscape.Dispose(); }
+            }
+            finally { UnityEngine.Object.DestroyImmediate(owner); }
+        }
+    }
+}

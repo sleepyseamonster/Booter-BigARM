@@ -1,0 +1,332 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DFarLandscape.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DFarLandscape.cs
+@@ -1,5 +1,6 @@
+ using System;
+ using System.Collections.Generic;
++using System.Threading;
+ using System.Threading.Tasks;
+ using BooterBigArm.TopDown3D.WorldCreator;
+ using Unity.Profiling;
+@@ -32,6 +33,8 @@
+             new List<WorldRepresentationKey>();
+         private readonly Dictionary<WorldRepresentationKey, Task<WorldRepresentationRequestOutcome>> requests =
+             new Dictionary<WorldRepresentationKey, Task<WorldRepresentationRequestOutcome>>();
++        private readonly Dictionary<WorldRepresentationKey, AdaptiveRequest> adaptiveRequests =
++            new Dictionary<WorldRepresentationKey, AdaptiveRequest>();
+         private readonly Dictionary<WorldRepresentationKey, double> retryDue =
+             new Dictionary<WorldRepresentationKey, double>();
+         private readonly Dictionary<WorldRepresentationKey, int> retryCounts =
+@@ -51,9 +54,30 @@
+         {
+             internal GameObject Object;
+             internal Mesh Mesh;
++            internal MeshFilter Filter;
+             internal MeshRenderer Renderer;
+             internal int Resolution;
+             internal bool[] HiddenQuads;
++            internal int[] OriginalTriangles;
++            internal int[] CellTriangleStarts;
++            internal TopDown3DAdaptiveFarMeshPlanner.Snapshot AdaptiveSnapshot;
++            internal int AdaptiveAttempts;
++            internal double AdaptiveRetryDue;
++        }
++
++        private sealed class AdaptiveRequest
++        {
++            internal AdaptiveRequest(Task<TopDown3DAdaptiveFarMeshPlanner.Geometry> task,
++                CancellationTokenSource cancellation)
++            {
++                Task = task;
++                Cancellation = cancellation;
++                StartedAt = Time.realtimeSinceStartupAsDouble;
++            }
++
++            internal Task<TopDown3DAdaptiveFarMeshPlanner.Geometry> Task;
++            internal CancellationTokenSource Cancellation;
++            internal double StartedAt;
+         }
+ 
+         internal TopDown3DFarLandscape(
+@@ -73,7 +97,8 @@
+         }
+ 
+         internal int LoadedRepresentationCount => loaded.Count;
+-        internal int PendingRepresentationCount => pending.Count + requests.Count;
++        internal int PendingRepresentationCount => pending.Count + requests.Count
++            + adaptiveRequests.Count;
+ 
+         internal void NotifyNearCoverageChanged(long nearA, long nearB)
+         {
+@@ -118,7 +143,8 @@
+             RemoveStaleObjects();
+             foreach (var key in required)
+             {
+-                if (!loaded.ContainsKey(key) && !requests.ContainsKey(key))
++                if (!loaded.ContainsKey(key) && !requests.ContainsKey(key)
++                    && !adaptiveRequests.ContainsKey(key))
+                 {
+                     pending.Add(key);
+                 }
+@@ -127,12 +153,17 @@
+             pending.Sort((left, right) => left.CompareTo(right));
+         }
+ 
+-        internal int ProcessReady(int requestBudget, int integrationBudget)
+-        {
++        internal int ProcessReady(int requestBudget, int integrationBudget,
++            bool allowAdaptive = true)
++        {
++            if (!allowAdaptive)
++                foreach (var pair in adaptiveRequests)
++                    pair.Value.Cancellation.Cancel();
+             var requestsToStart = Mathf.Max(0, requestBudget);
+             while (requestsToStart-- > 0 && TryTakeReadyPending(out var key))
+             {
+-                if (!required.Contains(key) || loaded.ContainsKey(key) || requests.ContainsKey(key))
++                if (!required.Contains(key) || loaded.ContainsKey(key)
++                    || requests.ContainsKey(key) || adaptiveRequests.ContainsKey(key))
+                 {
+                     continue;
+                 }
+@@ -141,10 +172,11 @@
+             }
+ 
+             var integrated = 0;
++            var handled = 0;
+             removalBuffer.Clear();
+             foreach (var pair in requests)
+             {
+-                if (integrated >= integrationBudget || !pair.Value.IsCompleted)
++                if (handled >= integrationBudget || !pair.Value.IsCompleted)
+                 {
+                     continue;
+                 }
+@@ -183,16 +215,14 @@
+                     continue;
+                 }
+ 
+-                using (IntegrateMarker.Auto())
+-                {
+-                    CreateRepresentation(result);
+-                }
++                using (IntegrateMarker.Auto()) CreateRepresentation(result);
++                integrated++;
+ 
+                 removalBuffer.Add(pair.Key);
+                 retryDue.Remove(pair.Key);
+                 retryCounts.Remove(pair.Key);
+                 missingIntegrationSince.Remove(pair.Key);
+-                integrated++;
++                handled++;
+             }
+ 
+             for (var i = 0; i < removalBuffer.Count; i++)
+@@ -200,9 +230,92 @@
+                 requests.Remove(removalBuffer[i]);
+             }
+ 
++            if (allowAdaptive && adaptiveRequests.Count == 0)
++                StartNextAdaptiveUpgrade();
++
++            removalBuffer.Clear();
++            foreach (var pair in adaptiveRequests)
++            {
++                if (!allowAdaptive || handled >= integrationBudget
++                    || !pair.Value.Task.IsCompleted) continue;
++                try
++                {
++                    var geometry = pair.Value.Task.GetAwaiter().GetResult();
++                    if (required.Contains(pair.Key)
++                        && loaded.TryGetValue(pair.Key, out var tile))
++                    {
++                        using (IntegrateMarker.Auto())
++                        {
++                            var previousMesh = tile.Mesh;
++                            var nextMesh = geometry.CreateMesh(previousMesh.name);
++                            tile.Filter.sharedMesh = nextMesh;
++                            tile.Mesh = nextMesh;
++                            tile.OriginalTriangles = geometry.Triangles;
++                            tile.CellTriangleStarts = geometry.CellStarts;
++                            tile.AdaptiveSnapshot = null;
++                            tile.HiddenQuads = null;
++                            coverageDirtyTiles.Add(pair.Key);
++                            if (Application.isPlaying)
++                                UnityEngine.Object.Destroy(previousMesh);
++                            else
++                                UnityEngine.Object.DestroyImmediate(previousMesh);
++                        }
++                        Debug.Log($"[CanyonAdaptiveFar] tile={pair.Key.TileA},{pair.Key.TileB} vertices={geometry.Vertices.Length} triangles={geometry.Triangles.Length / 3} selected={geometry.SelectedCells} samples={geometry.SurfaceSamples} elapsedMs={(Time.realtimeSinceStartupAsDouble - pair.Value.StartedAt) * 1000d:F1}");
++                        integrated++;
++                    }
++                }
++                catch (OperationCanceledException)
++                {
++                    // Keep the base far mesh and its immutable snapshot for the next quiet window.
++                }
++                catch (Exception exception)
++                {
++                    Debug.LogError($"World Creator adaptive far {pair.Key.TileA},{pair.Key.TileB} failed: {exception}");
++                    if (loaded.TryGetValue(pair.Key, out var tile))
++                    {
++                        tile.AdaptiveAttempts++;
++                        tile.AdaptiveRetryDue = Time.realtimeSinceStartupAsDouble
++                            + Math.Min(30d, 0.5d * (1 << Math.Min(6, tile.AdaptiveAttempts - 1)));
++                    }
++                }
++                pair.Value.Cancellation.Dispose();
++                removalBuffer.Add(pair.Key);
++                handled++;
++            }
++            for (var i = 0; i < removalBuffer.Count; i++)
++                adaptiveRequests.Remove(removalBuffer[i]);
++
+             RefreshCoverage();
+ 
+             return integrated;
++        }
++
++        private void StartNextAdaptiveUpgrade()
++        {
++            var coarse = runtime.Query as IWorldCoarseSurfaceQuery;
++            var materials = runtime.Materials as IWorldSurfaceMaterialFromSurfaceService;
++            if (coarse == null || materials == null) return;
++            var now = Time.realtimeSinceStartupAsDouble;
++            var found = false;
++            var selected = default(WorldRepresentationKey);
++            TopDown3DAdaptiveFarMeshPlanner.Snapshot snapshot = null;
++            foreach (var pair in loaded)
++            {
++                var tile = pair.Value;
++                if (!required.Contains(pair.Key) || tile.AdaptiveSnapshot == null
++                    || tile.AdaptiveAttempts >= 7 || tile.AdaptiveRetryDue > now)
++                    continue;
++                if (found && pair.Key.CompareTo(selected) >= 0) continue;
++                found = true;
++                selected = pair.Key;
++                snapshot = tile.AdaptiveSnapshot;
++            }
++            if (!found) return;
++            var cancellation = new CancellationTokenSource();
++            var token = cancellation.Token;
++            var task = Task.Run(() => TopDown3DAdaptiveFarMeshPlanner.Build(
++                snapshot, coarse, materials, token), token);
++            adaptiveRequests.Add(selected, new AdaptiveRequest(task, cancellation));
+         }
+ 
+         internal void RepositionForCurrentFrame()
+@@ -225,6 +338,14 @@
+             }
+ 
+             loaded.Clear();
++            foreach (var pair in adaptiveRequests)
++            {
++                pair.Value.Cancellation.Cancel();
++                pair.Value.Cancellation.Dispose();
++                _ = pair.Value.Task.ContinueWith(task => { _ = task.Exception; },
++                    TaskContinuationOptions.OnlyOnFaulted);
++            }
++            adaptiveRequests.Clear();
+             requests.Clear();
+             pending.Clear();
+             required.Clear();
+@@ -241,7 +362,8 @@
+             {
+                 var candidate = pending[i];
+                 if (!required.Contains(candidate) || loaded.ContainsKey(candidate)
+-                    || requests.ContainsKey(candidate))
++                    || requests.ContainsKey(candidate)
++                    || adaptiveRequests.ContainsKey(candidate))
+                 {
+                     pending.RemoveAt(i--);
+                     continue;
+@@ -329,6 +451,19 @@
+                 retryCounts.Remove(removalBuffer[i]);
+                 missingIntegrationSince.Remove(removalBuffer[i]);
+             }
++
++            removalBuffer.Clear();
++            foreach (var pair in adaptiveRequests)
++            {
++                if (required.Contains(pair.Key)) continue;
++                pair.Value.Cancellation.Cancel();
++                pair.Value.Cancellation.Dispose();
++                _ = pair.Value.Task.ContinueWith(task => { _ = task.Exception; },
++                    TaskContinuationOptions.OnlyOnFaulted);
++                removalBuffer.Add(pair.Key);
++            }
++            for (var i = 0; i < removalBuffer.Count; i++)
++                adaptiveRequests.Remove(removalBuffer[i]);
+ 
+             removalBuffer.Clear();
+             foreach (var pair in retryCounts)
+@@ -362,11 +497,20 @@
+                     if (hidden[index] != tile.HiddenQuads[index]) changed = true;
+ 
+                 if (!changed) continue;
+-                var triangles = new List<int>(quads * quads * 6);
++                var triangles = new List<int>(tile.OriginalTriangles?.Length
++                    ?? quads * quads * 6);
+                 for (var z = 0; z < quads; z++)
+                 for (var x = 0; x < quads; x++)
+                 {
+                     if (hidden[z * quads + x]) continue;
++                    if (tile.CellTriangleStarts != null)
++                    {
++                        var cell = z * quads + x;
++                        for (var index = tile.CellTriangleStarts[cell];
++                             index < tile.CellTriangleStarts[cell + 1]; index++)
++                            triangles.Add(tile.OriginalTriangles[index]);
++                        continue;
++                    }
+                     var bottomLeft = z * tile.Resolution + x;
+                     var topLeft = bottomLeft + tile.Resolution;
+                     triangles.Add(bottomLeft);
+@@ -436,33 +580,38 @@
+ 
+         private void CreateRepresentation(WorldRepresentationBuildResult result)
+         {
+-            if (loaded.ContainsKey(result.Key)
+-                || !runtime.TryToLocal(result.Key.Minimum, out var local))
++            var key = result.Key;
++            if (loaded.ContainsKey(key)
++                || !runtime.TryToLocal(key.Minimum, out var local))
+             {
+                 return;
+             }
+ 
+-            var name = $"World Creator {result.Key.Tier} {result.Key.TileA},{result.Key.TileB}";
++            var name = $"World Creator {key.Tier} {key.TileA},{key.TileB}";
+             var mesh = TopDown3DChunkMeshBuilder.BuildMesh(result, name);
++            TopDown3DAdaptiveFarMeshPlanner.TryCapture(result, out var adaptiveSnapshot);
+             var representation = new GameObject(name);
+             representation.transform.SetParent(parent, false);
+             representation.transform.localPosition = new Vector3(local.X, local.Y, local.Z);
+-            representation.AddComponent<MeshFilter>().sharedMesh = mesh;
++            var filter = representation.AddComponent<MeshFilter>();
++            filter.sharedMesh = mesh;
+             var renderer = representation.AddComponent<MeshRenderer>();
+             renderer.sharedMaterial = material;
+             renderer.shadowCastingMode = ShadowCastingMode.Off;
+             renderer.receiveShadows = true;
+-            loaded.Add(result.Key, new LoadedTile
++            loaded.Add(key, new LoadedTile
+             {
+                 Object = representation,
+                 Mesh = mesh,
++                Filter = filter,
+                 Renderer = renderer,
+-                Resolution = result.Resolution
++                Resolution = result.Resolution,
++                AdaptiveSnapshot = adaptiveSnapshot
+             });
+-            coverageDirtyTiles.Add(result.Key);
+-            if (result.Key.Tier == WorldRepresentationTier.Mid)
+-                MarkCoveringTiles(result.Key.Minimum.HorizontalA + result.Key.TileSpan * 0.5d,
+-                    result.Key.Minimum.HorizontalB + result.Key.TileSpan * 0.5d,
++            coverageDirtyTiles.Add(key);
++            if (key.Tier == WorldRepresentationTier.Mid)
++                MarkCoveringTiles(key.Minimum.HorizontalA + key.TileSpan * 0.5d,
++                    key.Minimum.HorizontalB + key.TileSpan * 0.5d,
+                     WorldRepresentationTier.Far);
+         }
+ 

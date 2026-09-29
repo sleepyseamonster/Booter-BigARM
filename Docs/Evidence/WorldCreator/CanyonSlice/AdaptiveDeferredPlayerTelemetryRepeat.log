@@ -1,0 +1,80 @@
+[TopDown3D Performance] Full-content telemetry mode enabled: production rendering, streaming, decoration, and generation settings remain unchanged.
+[TopDown3D Performance] mode=full-content fps=0.5 frameMs avg=2093.04 p95=2093.04 p99=2093.04 cpu=0.00 gpu=0.00 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=5 chunks=0 decorated=0 pendingTerrain=225 pendingDecoration=0 pendingTerrainCollider=0 renderers=0 colliders=0 decorationMeshes=0
+[CanyonBenchmark] begin seed=24681357 source=96ef0728256ce0e5c5524173e588aa7f
+[CanyonBenchmark] waypoint=0 abs=(416.74,342.39) center=(0, 0) loaded=1 decorated=0 pendingTerrain=224 pendingDecoration=2
+[TopDown3D Performance] mode=full-content fps=63.9 frameMs avg=15.66 p95=9.33 p99=91.25 cpu=7.82 gpu=4.66 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=35 chunks=22 decorated=1 pendingTerrain=203 pendingDecoration=21 pendingTerrainCollider=0 renderers=36 colliders=16 decorationMeshes=14
+[TopDown3D Performance] mode=full-content fps=84.2 frameMs avg=11.88 p95=24.97 p99=91.25 cpu=10.27 gpu=7.93 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=50 chunks=106 decorated=7 pendingTerrain=119 pendingDecoration=42 pendingTerrainCollider=0 renderers=335 colliders=113 decorationMeshes=166
+[TopDown3D Performance] mode=full-content fps=92.5 frameMs avg=10.81 p95=16.80 p99=89.86 cpu=30.20 gpu=3.67 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=52 chunks=175 decorated=12 pendingTerrain=50 pendingDecoration=69 pendingTerrainCollider=0 renderers=713 colliders=196 decorationMeshes=238
+[TopDown3D Performance] mode=full-content fps=76.6 frameMs avg=13.05 p95=33.33 p99=91.77 cpu=8.32 gpu=3.40 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=55 chunks=225 decorated=22 pendingTerrain=0 pendingDecoration=27 pendingTerrainCollider=0 renderers=1141 colliders=334 decorationMeshes=391
+[TopDown3D Performance] mode=full-content fps=59.1 frameMs avg=16.93 p95=42.38 p99=91.77 cpu=25.05 gpu=2.64 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=54 chunks=225 decorated=40 pendingTerrain=0 pendingDecoration=9 pendingTerrainCollider=0 renderers=2102 colliders=747 decorationMeshes=949
+[CanyonBenchmark] settled=0 center=(22, 19) loaded=225 decorated=41 pendingTerrain=0 pendingDecoration=46 terrainColliders=9 decorationColliders=761 adaptiveFar=0/49
+[CanyonBenchmark] waypoint=1 abs=(452.74,342.39) center=(22, 19) loaded=225 decorated=41 pendingTerrain=0 pendingDecoration=46
+[TopDown3D Performance] mode=full-content fps=63.9 frameMs avg=15.64 p95=34.30 p99=65.41 cpu=9.14 gpu=4.64 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=58 chunks=240 decorated=31 pendingTerrain=0 pendingDecoration=18 pendingTerrainCollider=0 renderers=1762 colliders=621 decorationMeshes=814
+[TopDown3D Performance] mode=full-content fps=78.3 frameMs avg=12.78 p95=32.36 p99=65.41 cpu=8.35 gpu=4.47 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=66 chunks=240 decorated=39 pendingTerrain=0 pendingDecoration=10 pendingTerrainCollider=0 renderers=2413 colliders=830 decorationMeshes=1027
+[CanyonAdaptiveFar] tile=-2,0 vertices=679 triangles=1292 selected=96 samples=492 elapsedMs=57.4
+[CanyonAdaptiveFar] tile=3,0 vertices=636 triangles=1206 selected=96 samples=470 elapsedMs=58.2
+[CanyonAdaptiveFar] tile=4,2 vertices=601 triangles=1136 selected=94 samples=452 elapsedMs=49.9
+[CanyonAdaptiveFar] tile=1,3 vertices=827 triangles=1588 selected=96 samples=560 elapsedMs=66.5
+[CanyonAdaptiveFar] tile=0,3 vertices=548 triangles=1030 selected=74 samples=416 elapsedMs=49.1
+[CanyonAdaptiveFar] tile=1,1 vertices=766 triangles=1466 selected=96 samples=526 elapsedMs=58.3
+[CanyonAdaptiveFar] tile=-2,2 vertices=761 triangles=1456 selected=96 samples=538 elapsedMs=66.5
+[CanyonAdaptiveFar] tile=3,2 vertices=413 triangles=760 selected=32 samples=330 elapsedMs=41.7
+[CanyonAdaptiveFar] tile=1,0 vertices=682 triangles=1298 selected=96 samples=495 elapsedMs=58.7
+[CanyonAdaptiveFar] tile=0,4 vertices=640 triangles=1214 selected=96 samples=472 elapsedMs=59.1
+[CanyonAdaptiveFar] tile=-1,2 vertices=658 triangles=1250 selected=96 samples=480 elapsedMs=58.4
+[CanyonAdaptiveFar] tile=2,1 vertices=821 triangles=1576 selected=96 samples=560 elapsedMs=74.4
+[CanyonAdaptiveFar] tile=-1,-2 vertices=757 triangles=1448 selected=96 samples=519 elapsedMs=58.3
+[CanyonAdaptiveFar] tile=3,-1 vertices=745 triangles=1424 selected=96 samples=519 elapsedMs=66.9
+[TopDown3D Performance] mode=full-content fps=92.3 frameMs avg=10.83 p95=24.15 p99=41.66 cpu=8.31 gpu=4.51 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=59 chunks=240 decorated=49 pendingTerrain=0 pendingDecoration=0 pendingTerrainCollider=0 renderers=2828 colliders=962 decorationMeshes=1165
+[CanyonAdaptiveFar] tile=-1,3 vertices=721 triangles=1376 selected=96 samples=518 elapsedMs=57.5
+[CanyonAdaptiveFar] tile=2,-2 vertices=713 triangles=1360 selected=96 samples=513 elapsedMs=59.2
+[CanyonAdaptiveFar] tile=3,-2 vertices=549 triangles=1032 selected=73 samples=413 elapsedMs=50.8
+[CanyonAdaptiveFar] tile=2,0 vertices=701 triangles=1336 selected=96 samples=500 elapsedMs=58.5
+[CanyonAdaptiveFar] tile=3,3 vertices=716 triangles=1366 selected=96 samples=512 elapsedMs=66.9
+[CanyonAdaptiveFar] tile=-2,-1 vertices=605 triangles=1144 selected=88 samples=448 elapsedMs=49.3
+[CanyonAdaptiveFar] tile=2,-1 vertices=777 triangles=1488 selected=96 samples=533 elapsedMs=66.6
+[CanyonAdaptiveFar] tile=0,2 vertices=719 triangles=1372 selected=96 samples=516 elapsedMs=58.4
+[CanyonAdaptiveFar] tile=-1,1 vertices=743 triangles=1420 selected=96 samples=523 elapsedMs=58.6
+[CanyonAdaptiveFar] tile=4,-2 vertices=537 triangles=1008 selected=70 samples=408 elapsedMs=49.4
+[CanyonAdaptiveFar] tile=-1,-1 vertices=689 triangles=1312 selected=96 samples=499 elapsedMs=58.3
+[CanyonAdaptiveFar] tile=3,4 vertices=453 triangles=840 selected=46 samples=354 elapsedMs=42.5
+[CanyonBenchmark] settled=1 center=(25, 19) loaded=240 decorated=49 pendingTerrain=0 pendingDecoration=0 terrainColliders=9 decorationColliders=953 adaptiveFar=26/49
+[CanyonBenchmark] waypoint=2 abs=(488.74,342.39) center=(25, 19) loaded=240 decorated=49 pendingTerrain=0 pendingDecoration=0
+[TopDown3D Performance] mode=full-content fps=75.9 frameMs avg=13.17 p95=32.90 p99=83.63 cpu=8.37 gpu=5.77 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=58 chunks=255 decorated=37 pendingTerrain=0 pendingDecoration=12 pendingTerrainCollider=0 renderers=2260 colliders=774 decorationMeshes=955
+[TopDown3D Performance] mode=full-content fps=69.1 frameMs avg=14.47 p95=33.35 p99=74.12 cpu=8.30 gpu=5.80 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=58 chunks=255 decorated=48 pendingTerrain=0 pendingDecoration=1 pendingTerrainCollider=0 renderers=2861 colliders=964 decorationMeshes=1141
+[CanyonAdaptiveFar] tile=2,4 vertices=782 triangles=1498 selected=96 samples=547 elapsedMs=65.0
+[CanyonAdaptiveFar] tile=-2,1 vertices=794 triangles=1522 selected=96 samples=542 elapsedMs=66.7
+[CanyonAdaptiveFar] tile=-2,3 vertices=796 triangles=1526 selected=96 samples=550 elapsedMs=66.9
+[CanyonAdaptiveFar] tile=1,4 vertices=716 triangles=1366 selected=96 samples=507 elapsedMs=65.9
+[CanyonAdaptiveFar] tile=-2,-2 vertices=796 triangles=1526 selected=96 samples=540 elapsedMs=66.4
+[CanyonAdaptiveFar] tile=-1,4 vertices=750 triangles=1434 selected=96 samples=526 elapsedMs=66.8
+[CanyonAdaptiveFar] tile=1,-2 vertices=585 triangles=1104 selected=90 samples=439 elapsedMs=50.2
+[CanyonAdaptiveFar] tile=1,2 vertices=667 triangles=1268 selected=96 samples=491 elapsedMs=58.4
+[CanyonAdaptiveFar] tile=1,-1 vertices=788 triangles=1510 selected=96 samples=544 elapsedMs=65.2
+[CanyonAdaptiveFar] tile=4,4 vertices=532 triangles=998 selected=68 samples=407 elapsedMs=51.0
+[CanyonAdaptiveFar] tile=3,1 vertices=701 triangles=1336 selected=96 samples=504 elapsedMs=58.6
+[CanyonAdaptiveFar] tile=0,-2 vertices=802 triangles=1538 selected=96 samples=542 elapsedMs=66.6
+[CanyonAdaptiveFar] tile=2,2 vertices=745 triangles=1424 selected=96 samples=534 elapsedMs=66.8
+[CanyonAdaptiveFar] tile=4,1 vertices=751 triangles=1436 selected=96 samples=527 elapsedMs=66.7
+[CanyonAdaptiveFar] tile=0,0 vertices=616 triangles=1166 selected=92 samples=460 elapsedMs=58.3
+[CanyonAdaptiveFar] tile=2,3 vertices=841 triangles=1616 selected=96 samples=579 elapsedMs=66.7
+[CanyonAdaptiveFar] tile=-1,0 vertices=703 triangles=1340 selected=96 samples=506 elapsedMs=58.3
+[CanyonAdaptiveFar] tile=0,-1 vertices=591 triangles=1116 selected=83 samples=440 elapsedMs=50.2
+[CanyonAdaptiveFar] tile=4,0 vertices=653 triangles=1240 selected=96 samples=482 elapsedMs=58.4
+[CanyonAdaptiveFar] tile=4,-1 vertices=780 triangles=1494 selected=96 samples=535 elapsedMs=66.9
+[CanyonAdaptiveFar] tile=-2,4 vertices=796 triangles=1526 selected=96 samples=549 elapsedMs=67.8
+[CanyonAdaptiveFar] tile=4,3 vertices=772 triangles=1478 selected=96 samples=546 elapsedMs=66.7
+[CanyonAdaptiveFar] tile=0,1 vertices=748 triangles=1430 selected=96 samples=519 elapsedMs=66.6
+[TopDown3D Performance] mode=full-content fps=115.2 frameMs avg=8.68 p95=9.24 p99=16.65 cpu=9.20 gpu=5.40 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=58 chunks=255 decorated=49 pendingTerrain=0 pendingDecoration=0 pendingTerrainCollider=0 renderers=3118 colliders=1025 decorationMeshes=1175
+[CanyonBenchmark] settled=2 center=(26, 19) loaded=255 decorated=49 pendingTerrain=0 pendingDecoration=0 terrainColliders=9 decorationColliders=1016 adaptiveFar=49/49
+[CanyonBenchmark] waypoint=3 abs=(452.74,342.39) center=(26, 19) loaded=255 decorated=49 pendingTerrain=0 pendingDecoration=0
+[TopDown3D Performance] mode=full-content fps=99.5 frameMs avg=10.05 p95=16.69 p99=41.68 cpu=9.23 gpu=3.70 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=61 chunks=255 decorated=49 pendingTerrain=0 pendingDecoration=0 pendingTerrainCollider=0 renderers=2845 colliders=962 decorationMeshes=1165
+[TopDown3D Performance] mode=full-content fps=120.0 frameMs avg=8.33 p95=9.21 p99=9.23 cpu=8.33 gpu=3.76 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=58 chunks=255 decorated=49 pendingTerrain=0 pendingDecoration=0 pendingTerrainCollider=0 renderers=2845 colliders=962 decorationMeshes=1165
+[TopDown3D Performance] mode=full-content fps=120.0 frameMs avg=8.33 p95=9.21 p99=9.23 cpu=7.48 gpu=3.78 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=59 chunks=255 decorated=49 pendingTerrain=0 pendingDecoration=0 pendingTerrainCollider=0 renderers=2845 colliders=962 decorationMeshes=1165
+[CanyonBenchmark] settled=3 center=(25, 19) loaded=255 decorated=49 pendingTerrain=0 pendingDecoration=0 terrainColliders=9 decorationColliders=953 adaptiveFar=49/49
+[CanyonBenchmark] waypoint=4 abs=(416.74,342.39) center=(25, 19) loaded=255 decorated=49 pendingTerrain=0 pendingDecoration=0
+[TopDown3D Performance] mode=full-content fps=91.3 frameMs avg=10.95 p95=24.98 p99=41.66 cpu=7.39 gpu=5.12 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=57 chunks=253 decorated=44 pendingTerrain=0 pendingDecoration=5 pendingTerrainCollider=0 renderers=2446 colliders=831 decorationMeshes=1028
+[TopDown3D Performance] mode=full-content fps=74.4 frameMs avg=13.44 p95=25.88 p99=41.67 cpu=8.35 gpu=6.07 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=53 chunks=252 decorated=49 pendingTerrain=0 pendingDecoration=0 pendingTerrainCollider=0 renderers=2532 colliders=893 decorationMeshes=1133
+[TopDown3D Performance] mode=full-content fps=116.5 frameMs avg=8.58 p95=9.44 p99=15.70 cpu=8.34 gpu=5.54 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=55 chunks=252 decorated=49 pendingTerrain=0 pendingDecoration=0 pendingTerrainCollider=0 renderers=2532 colliders=893 decorationMeshes=1133
+[CanyonBenchmark] settled=4 center=(22, 19) loaded=252 decorated=49 pendingTerrain=0 pendingDecoration=0 terrainColliders=9 decorationColliders=884 adaptiveFar=49/49
+[CanyonBenchmark] complete

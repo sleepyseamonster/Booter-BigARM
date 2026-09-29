@@ -1,0 +1,275 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using BooterBigArm.TopDown3D.WorldCreator;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+namespace BooterBigArm.TopDown3D
+{
+    /// <summary>
+    /// Mirror candidate. Plans canyon shelf detail from canonical absolute samples on a
+    /// worker; only the returned arrays are uploaded to a Unity Mesh on the main thread.
+    /// </summary>
+    internal static class TopDown3DAdaptiveFarMeshPlanner
+    {
+        private const int Resolution = 17;
+        private const int MaximumSelectedCells = 96;
+        private const float MinimumCenterError = 1f;
+        private const WorldSurfaceSemantic CanyonKinds = WorldSurfaceSemantic.CanyonFloor
+            | WorldSurfaceSemantic.CanyonShelf | WorldSurfaceSemantic.CanyonWall;
+
+        internal readonly struct BasePoint
+        {
+            internal BasePoint(AbsoluteWorldPosition absolute, Vector3 normal, Color color)
+            {
+                Absolute = absolute;
+                Normal = normal;
+                Color = color;
+            }
+
+            internal AbsoluteWorldPosition Absolute { get; }
+            internal Vector3 Normal { get; }
+            internal Color Color { get; }
+        }
+
+        internal sealed class Snapshot
+        {
+            internal Snapshot(WorldRepresentationKey key, BasePoint[] points)
+            {
+                Key = key;
+                Points = points;
+            }
+
+            internal WorldRepresentationKey Key { get; }
+            internal BasePoint[] Points { get; }
+        }
+
+        internal sealed class Geometry
+        {
+            internal Geometry(WorldRepresentationKey key,
+                Vector3[] vertices, Vector3[] normals, Color[] colors,
+                Vector2[] uvs, int[] triangles, int[] cellStarts,
+                int selectedCells, int surfaceSamples)
+            {
+                Key = key;
+                Vertices = vertices;
+                Normals = normals;
+                Colors = colors;
+                Uvs = uvs;
+                Triangles = triangles;
+                CellStarts = cellStarts;
+                SelectedCells = selectedCells;
+                SurfaceSamples = surfaceSamples;
+            }
+
+            internal WorldRepresentationKey Key { get; }
+            internal Vector3[] Vertices { get; }
+            internal Vector3[] Normals { get; }
+            internal Color[] Colors { get; }
+            internal Vector2[] Uvs { get; }
+            internal int[] Triangles { get; }
+            internal int[] CellStarts { get; }
+            internal int SelectedCells { get; }
+            internal int SurfaceSamples { get; }
+
+            internal Mesh CreateMesh(string name)
+            {
+                var mesh = new Mesh { name = name };
+                mesh.indexFormat = Vertices.Length > ushort.MaxValue
+                    ? IndexFormat.UInt32 : IndexFormat.UInt16;
+                mesh.SetVertices(Vertices);
+                mesh.SetTriangles(Triangles, 0, true);
+                mesh.SetNormals(Normals);
+                mesh.SetColors(Colors);
+                mesh.SetUVs(0, Uvs);
+                mesh.RecalculateBounds();
+                return mesh;
+            }
+        }
+
+        internal static bool TryCapture(WorldRepresentationBuildResult result,
+            out Snapshot snapshot)
+        {
+            snapshot = null;
+            if (result.Key.Tier != WorldRepresentationTier.Far
+                || result.Resolution != Resolution) return false;
+            var points = new BasePoint[result.VertexCount];
+            var canyon = false;
+            for (var index = 0; index < points.Length; index++)
+            {
+                var absolute = result.GetAbsolutePosition(index);
+                result.GetNormal(index, out var a, out var y, out var b);
+                var color = WorldTerrainMaterialPackingAdapter.Pack(result.GetMaterial(index));
+                points[index] = new BasePoint(absolute, new Vector3(a, y, b), color);
+                if ((result.GetSemantic(index) & CanyonKinds) != 0) canyon = true;
+            }
+            if (!canyon) return false;
+            snapshot = new Snapshot(result.Key, points);
+            return true;
+        }
+
+        internal static Geometry Build(Snapshot snapshot,
+            IWorldCoarseSurfaceQuery query,
+            IWorldSurfaceMaterialFromSurfaceService materials,
+            CancellationToken cancellationToken)
+        {
+            if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));
+            if (query == null) throw new ArgumentNullException(nameof(query));
+            if (materials == null) throw new ArgumentNullException(nameof(materials));
+            var points = snapshot.Points;
+            var key = snapshot.Key;
+            var min = key.Minimum;
+            var step = key.TileSpan / (Resolution - 1);
+            const int cellsPerSide = Resolution - 1;
+            const int cellCount = cellsPerSide * cellsPerSide;
+            var centers = new WorldSurfaceSample[cellCount];
+            var errors = new float[cellCount];
+            var ranking = new List<int>(cellCount);
+            var surfaceSamples = 0;
+
+            for (var z = 0; z < cellsPerSide; z++)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                for (var x = 0; x < cellsPerSide; x++)
+                {
+                    var cell = z * cellsPerSide + x;
+                    var p = new AbsoluteWorldPosition(min.HorizontalA + (x + 0.5d) * step,
+                        0d, min.HorizontalB + (z + 0.5d) * step);
+                    if (!query.TrySampleCoarseSurface(p, out centers[cell], out var error))
+                        throw new InvalidOperationException(error);
+                    surfaceSamples++;
+                    var bl = z * Resolution + x;
+                    var mean = (points[bl].Absolute.Vertical + points[bl + 1].Absolute.Vertical
+                        + points[bl + Resolution].Absolute.Vertical
+                        + points[bl + Resolution + 1].Absolute.Vertical) * 0.25d;
+                    errors[cell] = Mathf.Abs((float)(centers[cell].Position.Vertical - mean));
+                    if (errors[cell] >= MinimumCenterError) ranking.Add(cell);
+                }
+            }
+            ranking.Sort((a, b) =>
+            {
+                var byError = errors[b].CompareTo(errors[a]);
+                return byError != 0 ? byError : a.CompareTo(b);
+            });
+            var selectedCount = Mathf.Min(MaximumSelectedCells, ranking.Count);
+            var selected = new bool[cellCount];
+            for (var i = 0; i < selectedCount; i++) selected[ranking[i]] = true;
+            var splitEdges = new HashSet<long>();
+            for (var z = 0; z < cellsPerSide; z++)
+            for (var x = 0; x < cellsPerSide; x++)
+            {
+                if (!selected[z * cellsPerSide + x]) continue;
+                var bl = z * Resolution + x;
+                var br = bl + 1;
+                var tl = bl + Resolution;
+                var tr = tl + 1;
+                if (x > 0) splitEdges.Add(EdgeKey(bl, tl));
+                if (x < cellsPerSide - 1) splitEdges.Add(EdgeKey(br, tr));
+                if (z > 0) splitEdges.Add(EdgeKey(bl, br));
+                if (z < cellsPerSide - 1) splitEdges.Add(EdgeKey(tl, tr));
+            }
+
+            var vertices = new List<Vector3>(Resolution * Resolution + selectedCount * 6);
+            var normals = new List<Vector3>(vertices.Capacity);
+            var colors = new List<Color>(vertices.Capacity);
+            var uvs = new List<Vector2>(vertices.Capacity);
+            var triangles = new List<int>(cellCount * 6 + selectedCount * 24);
+            foreach (var point in points)
+            {
+                var p = point.Absolute;
+                vertices.Add(new Vector3((float)(p.HorizontalA - min.HorizontalA),
+                    (float)p.Vertical, (float)(p.HorizontalB - min.HorizontalB)));
+                normals.Add(point.Normal);
+                colors.Add(point.Color);
+                uvs.Add(new Vector2((float)(p.HorizontalA / key.TileSpan),
+                    (float)(p.HorizontalB / key.TileSpan)));
+            }
+
+            int AddSample(WorldSurfaceSample sample)
+            {
+                var p = sample.Position;
+                var horizontal = new AbsoluteWorldPosition(p.HorizontalA, 0d, p.HorizontalB);
+                if (!materials.TrySampleFromSurface(horizontal, sample, out var material,
+                    out var error)) throw new InvalidOperationException(error);
+                var index = vertices.Count;
+                vertices.Add(new Vector3((float)(p.HorizontalA - min.HorizontalA),
+                    (float)p.Vertical, (float)(p.HorizontalB - min.HorizontalB)));
+                normals.Add(new Vector3(sample.NormalA, sample.NormalVertical, sample.NormalB));
+                colors.Add(WorldTerrainMaterialPackingAdapter.Pack(material));
+                uvs.Add(new Vector2((float)(p.HorizontalA / key.TileSpan),
+                    (float)(p.HorizontalB / key.TileSpan)));
+                return index;
+            }
+
+            var edgeVertices = new Dictionary<long, int>();
+            int EdgeVertex(int a, int b)
+            {
+                var edge = EdgeKey(a, b);
+                if (edgeVertices.TryGetValue(edge, out var cached)) return cached;
+                var first = points[a].Absolute;
+                var last = points[b].Absolute;
+                var p = new AbsoluteWorldPosition(
+                    (first.HorizontalA + last.HorizontalA) * 0.5d, 0d,
+                    (first.HorizontalB + last.HorizontalB) * 0.5d);
+                if (!query.TrySampleCoarseSurface(p, out var sample, out var error))
+                    throw new InvalidOperationException(error);
+                surfaceSamples++;
+                var index = AddSample(sample);
+                edgeVertices.Add(edge, index);
+                return index;
+            }
+
+            var starts = new int[cellCount + 1];
+            var perimeter = new List<int>(8);
+            for (var z = 0; z < cellsPerSide; z++)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                for (var x = 0; x < cellsPerSide; x++)
+                {
+                    var cell = z * cellsPerSide + x;
+                    starts[cell] = triangles.Count;
+                    var bl = z * Resolution + x;
+                    var br = bl + 1;
+                    var tl = bl + Resolution;
+                    var tr = tl + 1;
+                    var left = splitEdges.Contains(EdgeKey(bl, tl));
+                    var top = splitEdges.Contains(EdgeKey(tl, tr));
+                    var right = splitEdges.Contains(EdgeKey(br, tr));
+                    var bottom = splitEdges.Contains(EdgeKey(bl, br));
+                    if (!selected[cell] && !left && !top && !right && !bottom)
+                    {
+                        triangles.Add(bl); triangles.Add(tl); triangles.Add(br);
+                        triangles.Add(br); triangles.Add(tl); triangles.Add(tr);
+                        continue;
+                    }
+                    var center = AddSample(centers[cell]);
+                    perimeter.Clear();
+                    perimeter.Add(bl);
+                    if (left) perimeter.Add(EdgeVertex(bl, tl));
+                    perimeter.Add(tl);
+                    if (top) perimeter.Add(EdgeVertex(tl, tr));
+                    perimeter.Add(tr);
+                    if (right) perimeter.Add(EdgeVertex(br, tr));
+                    perimeter.Add(br);
+                    if (bottom) perimeter.Add(EdgeVertex(bl, br));
+                    for (var i = 0; i < perimeter.Count; i++)
+                    {
+                        triangles.Add(center);
+                        triangles.Add(perimeter[i]);
+                        triangles.Add(perimeter[(i + 1) % perimeter.Count]);
+                    }
+                }
+            }
+            starts[cellCount] = triangles.Count;
+            return new Geometry(key, vertices.ToArray(), normals.ToArray(), colors.ToArray(),
+                uvs.ToArray(), triangles.ToArray(), starts, selectedCount, surfaceSamples);
+        }
+
+        private static long EdgeKey(int a, int b)
+        {
+            if (a > b) { var swap = a; a = b; b = swap; }
+            return ((long)a << 32) | (uint)b;
+        }
+    }
+}

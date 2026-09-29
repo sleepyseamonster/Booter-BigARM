@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 09:50:40Z" end-time="2026-09-29 09:50:42Z" duration="1.8591808">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 09:50:40Z" end-time="2026-09-29 09:50:42Z" duration="1.859181" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1532" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 09:50:40Z" end-time="2026-09-29 09:50:42Z" duration="1.841337" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="63180" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1533" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 09:50:40Z" end-time="2026-09-29 09:50:42Z" duration="1.820085" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1534" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 09:50:40Z" end-time="2026-09-29 09:50:42Z" duration="1.814188" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1535" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="103" result="Passed" start-time="2026-09-29 09:50:40Z" end-time="2026-09-29 09:50:42Z" duration="1.808617" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1424" name="TempCanyonAdaptiveStreamingTests" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonAdaptiveStreamingTests" classname="BooterBigArm.Tests.WorldCreator.TempCanyonAdaptiveStreamingTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-29 09:50:40Z" end-time="2026-09-29 09:50:42Z" duration="1.805838" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1425" name="AdaptiveFarUpgradeKeepsFallbackAndCoverageRanges" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonAdaptiveStreamingTests.AdaptiveFarUpgradeKeepsFallbackAndCoverageRanges" methodname="AdaptiveFarUpgradeKeepsFallbackAndCoverageRanges" classname="BooterBigArm.Tests.WorldCreator.TempCanyonAdaptiveStreamingTests" runstate="Runnable" seed="1320777532" result="Passed" start-time="2026-09-29 09:50:40Z" end-time="2026-09-29 09:50:42Z" duration="1.798811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[CanyonAdaptiveFar] tile=1,1 vertices=766 triangles=1466 selected=96 samples=526 elapsedMs=91.8
+[CanyonAdaptiveFar] tile=1,1 vertices=766 triangles=1466 selected=96 samples=526 elapsedMs=93.0
+Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

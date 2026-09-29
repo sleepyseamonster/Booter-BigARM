@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Passed" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 09:51:48Z" end-time="2026-09-29 09:51:53Z" duration="4.9970723">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 09:51:48Z" end-time="2026-09-29 09:51:53Z" duration="4.997072" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1532" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 09:51:48Z" end-time="2026-09-29 09:51:53Z" duration="4.987607" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="63274" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1533" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 09:51:48Z" end-time="2026-09-29 09:51:53Z" duration="4.982553" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1534" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 09:51:48Z" end-time="2026-09-29 09:51:53Z" duration="4.979352" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1161" name="TopDown3DPerformanceTests" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-29 09:51:48Z" end-time="2026-09-29 09:51:53Z" duration="4.971991" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1167" name="CoarseCoverageRefreshesOnlyTilesAffectedByNearOrMiddleChanges" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.CoarseCoverageRefreshesOnlyTilesAffectedByNearOrMiddleChanges" methodname="CoarseCoverageRefreshesOnlyTilesAffectedByNearOrMiddleChanges" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="543757019" result="Passed" start-time="2026-09-29 09:51:48Z" end-time="2026-09-29 09:51:50Z" duration="1.394421" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1166" name="CoarseTerrainMasksOnlyQuadsCoveredByLoadedFinerTiles" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.CoarseTerrainMasksOnlyQuadsCoveredByLoadedFinerTiles" methodname="CoarseTerrainMasksOnlyQuadsCoveredByLoadedFinerTiles" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="2056735062" result="Passed" start-time="2026-09-29 09:51:50Z" end-time="2026-09-29 09:51:50Z" duration="0.002113" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1171" name="FailedDistanceTerrainIsQueuedForBoundedRetryWithoutMoving" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.FailedDistanceTerrainIsQueuedForBoundedRetryWithoutMoving" methodname="FailedDistanceTerrainIsQueuedForBoundedRetryWithoutMoving" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="1506955883" result="Passed" start-time="2026-09-29 09:51:50Z" end-time="2026-09-29 09:51:50Z" duration="0.012686" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[World Creator Mid representation -3,-3 Failed: test failure
+]]></output>
+            </test-case>
+            <test-case id="1169" name="FailedNearTerrainIsQueuedForBoundedRetryWithoutChangingChunks" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.FailedNearTerrainIsQueuedForBoundedRetryWithoutChangingChunks" methodname="FailedNearTerrainIsQueuedForBoundedRetryWithoutChangingChunks" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="496741172" result="Passed" start-time="2026-09-29 09:51:50Z" end-time="2026-09-29 09:51:50Z" duration="0.049121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[World Creator near representation (3, 0) Failed: test failure
+]]></output>
+            </test-case>
+            <test-case id="1162" name="FastTerrainPathRetainsMediumShaleTransitionAlbedo" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.FastTerrainPathRetainsMediumShaleTransitionAlbedo" methodname="FastTerrainPathRetainsMediumShaleTransitionAlbedo" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="381645331" result="Passed" start-time="2026-09-29 09:51:50Z" end-time="2026-09-29 09:51:50Z" duration="0.003860" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1164" name="MovementReadinessRequiresTheProjectedChunkCollider" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.MovementReadinessRequiresTheProjectedChunkCollider" methodname="MovementReadinessRequiresTheProjectedChunkCollider" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="162770642" result="Passed" start-time="2026-09-29 09:51:50Z" end-time="2026-09-29 09:51:50Z" duration="0.014149" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1168" name="NearMidAndFarTilesCoverTraversalInFullAndReducedProfiles" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.NearMidAndFarTilesCoverTraversalInFullAndReducedProfiles" methodname="NearMidAndFarTilesCoverTraversalInFullAndReducedProfiles" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="85086490" result="Passed" start-time="2026-09-29 09:51:50Z" end-time="2026-09-29 09:51:52Z" duration="2.232586" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1163" name="StartupQueuesImmediateTerrainWithoutSynchronousMeshConstruction" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.StartupQueuesImmediateTerrainWithoutSynchronousMeshConstruction" methodname="StartupQueuesImmediateTerrainWithoutSynchronousMeshConstruction" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="753271077" result="Passed" start-time="2026-09-29 09:51:52Z" end-time="2026-09-29 09:51:52Z" duration="0.007859" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1165" name="UnfinishedDecorationCanBeCancelledBeforeChunkPublication" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.UnfinishedDecorationCanBeCancelledBeforeChunkPublication" methodname="UnfinishedDecorationCanBeCancelledBeforeChunkPublication" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="1725289373" result="Passed" start-time="2026-09-29 09:51:52Z" end-time="2026-09-29 09:51:52Z" duration="0.017082" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1170" name="WaitingNearTerrainDoesNotBlockAnotherCompletedRequest" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.WaitingNearTerrainDoesNotBlockAnotherCompletedRequest" methodname="WaitingNearTerrainDoesNotBlockAnotherCompletedRequest" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="1613776186" result="Passed" start-time="2026-09-29 09:51:52Z" end-time="2026-09-29 09:51:53Z" duration="1.225595" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[World Creator near representation (3, 0) Failed: independent failure
+Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

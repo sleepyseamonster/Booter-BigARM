@@ -62,9 +62,15 @@ developing feature-local shelf detail and a controlled rendered Player compariso
 A mirror-only curvature-local far mesh now demonstrates that direction: 96 selected cells
 use 766 vertices on the measured tile and reduce mean cross-section height error from
 0.792 m to 0.405 m, with matching far-tile borders and rebase-stable vertex/color output.
-The current runtime coverage mask assumes two triangles per cell and would overwrite that
-mesh, so the prototype still needs background-safe sampling, per-cell coverage integration,
-and a full-content Player comparison before it can be promoted.
+The isolated mirror now integrates that mesh after a 17×17 far fallback, using one
+background upgrade at a time and per-cell coverage ranges. A focused lifecycle test
+proved deterministic unload/reload and coverage restoration; the final focused
+performance suite passed 10 of 10. Three rendered full-content Player routes reached
+49/49 upgraded far tiles, but first-arrival spikes varied sharply and route centers
+did not match the earlier baseline. The [streaming receipt](Evidence/WorldCreator/CanyonSlice/README.md)
+preserves the mirror code, tests, and raw telemetry. Keep the runtime integration
+mirror-only until a same-center performance comparison, visible swap review, and
+production-camera visual acceptance support a cutover.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,
