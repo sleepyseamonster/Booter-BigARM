@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 15:34:21Z" end-time="2026-09-29 15:34:48Z" duration="27.4880982">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 15:34:21Z" end-time="2026-09-29 15:34:48Z" duration="27.488098" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1540" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 15:34:21Z" end-time="2026-09-29 15:34:48Z" duration="27.470441" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="40460" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1541" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 15:34:21Z" end-time="2026-09-29 15:34:48Z" duration="27.463928" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1542" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 15:34:21Z" end-time="2026-09-29 15:34:48Z" duration="27.454906" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1543" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-09-29 15:34:21Z" end-time="2026-09-29 15:34:48Z" duration="27.443419" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1426" name="TempCanyonFaceProofTests" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-29 15:34:21Z" end-time="2026-09-29 15:34:48Z" duration="27.439896" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1439" name="VisibleRightWallIsDeterministicAfterReloadAndRebase" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.VisibleRightWallIsDeterministicAfterReloadAndRebase" methodname="VisibleRightWallIsDeterministicAfterReloadAndRebase" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="61987506" result="Passed" start-time="2026-09-29 15:34:21Z" end-time="2026-09-29 15:34:48Z" duration="27.429081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON RIM OUTCROP 6362c251928e67bee87883868a3eabe4 anchor=(473.5,387.6) centerY=-23.4
+CANYON RIM OUTCROP 9bf23f4c6df451550cab05e5127c1e4c anchor=(464.6,400.5) centerY=-5.1
+CANYON RIM OUTCROP 3dbf7bca225f69f3faf189ecbe29bc76 anchor=(482.9,407.3) centerY=-11.4
+CANYON RIM OUTCROP 0d8ca46bb767003eea90fd3b1af1ccd0 anchor=(501.0,408.9) centerY=-6.9
+CANYON RIM OUTCROP 6fdf7e58c71c890f62b08ccbc1d976b9 anchor=(518.6,406.8) centerY=-11.2
+CANYON RIM OUTCROP 65c5e063e0d84b1147f23d712a134635 anchor=(513.4,408.9) centerY=-5.4
+CANYON RIM OUTCROP 83b72a39d9e928b7c7388715416ec36f anchor=(524.6,409.1) centerY=-7.2
+CANYON RIM OUTCROP a8f0dfb1a12b07a15a16d5e4c68ce99d anchor=(542.4,409.7) centerY=-14.2
+CANYON RIM OUTCROP 184d96d62595639d451d36a48651a0e0 anchor=(461.6,421.1) centerY=23.8
+CANYON RIM OUTCROP d473d62e4cf7943796a5f9e2daad4291 anchor=(467.4,424.7) centerY=29.6
+CANYON RIM OUTCROP 6120ed3b315cb16c6ffa64f815b41038 anchor=(482.8,424.0) centerY=7.5
+CANYON RIM OUTCROP 2e62ffd8a70c8207f73ee31945a4285a anchor=(518.6,429.9) centerY=22.8
+CANYON RIM OUTCROP 5152477e58608ad9b93f7f881948016b anchor=(513.4,431.8) centerY=27.0
+CANYON RIM OUTCROP c5f83f2b1aa65809273111bf07e0c476 anchor=(518.9,431.3) centerY=25.4
+CANYON RIM OUTCROP b80e7bd5d3b9d1661fedcb627a2cdea8 anchor=(539.4,430.4) centerY=15.4
+CANYON RIM OUTCROP 959614d2b8ffd3234fdcdab2240c1f5b anchor=(546.0,415.5) centerY=-0.8
+CANYON RIM OUTCROP 39bf1942983ffa5211444761dbb0dc31 anchor=(551.5,433.0) centerY=16.2
+CANYON RIM OUTCROP e54a3dffc4912b9bd1fd6d2f874be27b anchor=(483.1,447.7) centerY=41.5
+CANYON RIM OUTCROP d8c85fb3f5bbec9ecbe439e9a578c28a anchor=(489.0,448.2) centerY=40.3
+CANYON RIM OUTCROP 30465dc7d8360125a32bac6d17b92c55 anchor=(551.6,435.4) centerY=21.1
+CANYON FIXTURE faces=122 stones=151 talus=102 buttress=29 contactGapMax=0.22 poorContacts=0 elapsedMs=8620
+CANYON RIM OUTCROP 30465dc7d8360125a32bac6d17b92c55 anchor=(551.6,435.4) centerY=21.1
+CANYON RIM OUTCROP d8c85fb3f5bbec9ecbe439e9a578c28a anchor=(489.0,448.2) centerY=40.3
+CANYON RIM OUTCROP e54a3dffc4912b9bd1fd6d2f874be27b anchor=(483.1,447.7) centerY=41.5
+CANYON RIM OUTCROP 959614d2b8ffd3234fdcdab2240c1f5b anchor=(546.0,415.5) centerY=-0.8
+CANYON RIM OUTCROP 39bf1942983ffa5211444761dbb0dc31 anchor=(551.5,433.0) centerY=16.2
+CANYON RIM OUTCROP b80e7bd5d3b9d1661fedcb627a2cdea8 anchor=(539.4,430.4) centerY=15.4
+CANYON RIM OUTCROP 2e62ffd8a70c8207f73ee31945a4285a anchor=(518.6,429.9) centerY=22.8
+CANYON RIM OUTCROP 5152477e58608ad9b93f7f881948016b anchor=(513.4,431.8) centerY=27.0
+CANYON RIM OUTCROP c5f83f2b1aa65809273111bf07e0c476 anchor=(518.9,431.3) centerY=25.4
+CANYON RIM OUTCROP 6120ed3b315cb16c6ffa64f815b41038 anchor=(482.8,424.0) centerY=7.5
+CANYON RIM OUTCROP 184d96d62595639d451d36a48651a0e0 anchor=(461.6,421.1) centerY=23.8
+CANYON RIM OUTCROP d473d62e4cf7943796a5f9e2daad4291 anchor=(467.4,424.7) centerY=29.6
+CANYON RIM OUTCROP a8f0dfb1a12b07a15a16d5e4c68ce99d anchor=(542.4,409.7) centerY=-14.2
+CANYON RIM OUTCROP 83b72a39d9e928b7c7388715416ec36f anchor=(524.6,409.1) centerY=-7.2
+CANYON RIM OUTCROP 6fdf7e58c71c890f62b08ccbc1d976b9 anchor=(518.6,406.8) centerY=-11.2
+CANYON RIM OUTCROP 65c5e063e0d84b1147f23d712a134635 anchor=(513.4,408.9) centerY=-5.4
+CANYON RIM OUTCROP 0d8ca46bb767003eea90fd3b1af1ccd0 anchor=(501.0,408.9) centerY=-6.9
+CANYON RIM OUTCROP 3dbf7bca225f69f3faf189ecbe29bc76 anchor=(482.9,407.3) centerY=-11.4
+CANYON RIM OUTCROP 9bf23f4c6df451550cab05e5127c1e4c anchor=(464.6,400.5) centerY=-5.1
+CANYON RIM OUTCROP 6362c251928e67bee87883868a3eabe4 anchor=(473.5,387.6) centerY=-23.4
+CANYON FIXTURE faces=122 stones=151 talus=102 buttress=29 contactGapMax=0.22 poorContacts=0 elapsedMs=8455
+CANYON RIM OUTCROP 6362c251928e67bee87883868a3eabe4 anchor=(473.5,387.6) centerY=-23.4
+CANYON RIM OUTCROP 9bf23f4c6df451550cab05e5127c1e4c anchor=(464.6,400.5) centerY=-5.1
+CANYON RIM OUTCROP 3dbf7bca225f69f3faf189ecbe29bc76 anchor=(482.9,407.3) centerY=-11.4
+CANYON RIM OUTCROP 0d8ca46bb767003eea90fd3b1af1ccd0 anchor=(501.0,408.9) centerY=-6.9
+CANYON RIM OUTCROP 6fdf7e58c71c890f62b08ccbc1d976b9 anchor=(518.6,406.8) centerY=-11.2
+CANYON RIM OUTCROP 65c5e063e0d84b1147f23d712a134635 anchor=(513.4,408.9) centerY=-5.4
+CANYON RIM OUTCROP 83b72a39d9e928b7c7388715416ec36f anchor=(524.6,409.1) centerY=-7.2
+CANYON RIM OUTCROP a8f0dfb1a12b07a15a16d5e4c68ce99d anchor=(542.4,409.7) centerY=-14.2
+CANYON RIM OUTCROP 184d96d62595639d451d36a48651a0e0 anchor=(461.6,421.1) centerY=23.8
+CANYON RIM OUTCROP d473d62e4cf7943796a5f9e2daad4291 anchor=(467.4,424.7) centerY=29.6
+CANYON RIM OUTCROP 6120ed3b315cb16c6ffa64f815b41038 anchor=(482.8,424.0) centerY=7.5
+CANYON RIM OUTCROP 2e62ffd8a70c8207f73ee31945a4285a anchor=(518.6,429.9) centerY=22.8
+CANYON RIM OUTCROP 5152477e58608ad9b93f7f881948016b anchor=(513.4,431.8) centerY=27.0
+CANYON RIM OUTCROP c5f83f2b1aa65809273111bf07e0c476 anchor=(518.9,431.3) centerY=25.4
+CANYON RIM OUTCROP b80e7bd5d3b9d1661fedcb627a2cdea8 anchor=(539.4,430.4) centerY=15.4
+CANYON RIM OUTCROP 959614d2b8ffd3234fdcdab2240c1f5b anchor=(546.0,415.5) centerY=-0.8
+CANYON RIM OUTCROP 39bf1942983ffa5211444761dbb0dc31 anchor=(551.5,433.0) centerY=16.2
+CANYON RIM OUTCROP e54a3dffc4912b9bd1fd6d2f874be27b anchor=(483.1,447.7) centerY=41.5
+CANYON RIM OUTCROP d8c85fb3f5bbec9ecbe439e9a578c28a anchor=(489.0,448.2) centerY=40.3
+CANYON RIM OUTCROP 30465dc7d8360125a32bac6d17b92c55 anchor=(551.6,435.4) centerY=21.1
+CANYON FIXTURE faces=122 stones=151 talus=102 buttress=29 contactGapMax=0.22 poorContacts=0 elapsedMs=8514
+Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

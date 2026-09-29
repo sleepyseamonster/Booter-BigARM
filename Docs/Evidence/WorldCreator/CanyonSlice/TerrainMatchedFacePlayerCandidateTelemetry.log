@@ -1,0 +1,40 @@
+[TopDown3D Performance] Full-content telemetry mode enabled: production rendering, streaming, decoration, and generation settings remain unchanged.
+[TopDown3D Performance] mode=full-content fps=0.5 frameMs avg=2184.51 p95=2184.51 p99=2184.51 cpu=0.00 gpu=0.00 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=5 chunks=0 decorated=0 pendingTerrain=225 pendingDecoration=0 pendingTerrainCollider=0 renderers=0 colliders=0 decorationMeshes=0
+[CanyonBenchmark] begin seed=24681357 source=96ef0728256ce0e5c5524173e588aa7f
+[CanyonBenchmark] placed=0 abs=(416.74,-67.89,342.39) motor=False kinematic=True
+[CanyonBenchmark] waypoint=0 abs=(416.74,342.39) center=(-1, -1) loaded=6 decorated=1 pendingTerrain=219 pendingDecoration=36
+[TopDown3D Performance] mode=full-content fps=26.0 frameMs avg=38.42 p95=25.01 p99=2184.51 cpu=6.59 gpu=1.01 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=14 chunks=0 decorated=0 pendingTerrain=247 pendingDecoration=0 pendingTerrainCollider=0 renderers=0 colliders=0 decorationMeshes=0
+[TopDown3D Performance] mode=full-content fps=92.5 frameMs avg=10.81 p95=12.36 p99=25.08 cpu=8.59 gpu=2.50 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=33 chunks=11 decorated=1 pendingTerrain=214 pendingDecoration=10 pendingTerrainCollider=0 renderers=11 colliders=9 decorationMeshes=0
+[TopDown3D Performance] mode=full-content fps=110.6 frameMs avg=9.04 p95=16.25 p99=17.60 cpu=7.70 gpu=2.81 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=46 chunks=68 decorated=4 pendingTerrain=157 pendingDecoration=45 pendingTerrainCollider=0 renderers=169 colliders=29 decorationMeshes=2
+[TopDown3D Performance] mode=full-content fps=79.5 frameMs avg=12.58 p95=17.12 p99=91.60 cpu=9.35 gpu=2.41 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=51 chunks=116 decorated=9 pendingTerrain=109 pendingDecoration=40 pendingTerrainCollider=0 renderers=233 colliders=35 decorationMeshes=6
+[TopDown3D Performance] mode=full-content fps=57.4 frameMs avg=17.42 p95=49.49 p99=232.66 cpu=8.58 gpu=3.89 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=54 chunks=169 decorated=14 pendingTerrain=56 pendingDecoration=35 pendingTerrainCollider=0 renderers=361 colliders=64 decorationMeshes=30
+[CanyonBenchmark] settled=0 center=(23, 19) loaded=201 decorated=18 pendingTerrain=24 pendingDecoration=31 terrainColliders=9 decorationColliders=97 adaptiveFar=0/49
+[CanyonBenchmark] actual=0 abs=(416.74,-67.89,342.39) camera=(406.41, -47.59, 330.08)
+[CanyonBenchmark] placed=1 abs=(452.74,-80.83,342.39) motor=False kinematic=True
+[CanyonBenchmark] waypoint=1 abs=(452.74,342.39) center=(23, 19) loaded=201 decorated=18 pendingTerrain=24 pendingDecoration=31
+[TopDown3D Performance] mode=full-content fps=107.6 frameMs avg=9.29 p95=9.53 p99=17.12 cpu=8.33 gpu=6.46 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=58 chunks=191 decorated=15 pendingTerrain=54 pendingDecoration=34 pendingTerrainCollider=0 renderers=378 colliders=61 decorationMeshes=30
+[TopDown3D Performance] mode=full-content fps=83.6 frameMs avg=11.96 p95=24.88 p99=83.40 cpu=12.48 gpu=3.81 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=58 chunks=234 decorated=22 pendingTerrain=5 pendingDecoration=27 pendingTerrainCollider=0 renderers=583 colliders=97 decorationMeshes=42
+[TopDown3D Performance] mode=full-content fps=77.7 frameMs avg=12.87 p95=33.69 p99=58.54 cpu=24.81 gpu=4.15 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=57 chunks=239 decorated=30 pendingTerrain=0 pendingDecoration=19 pendingTerrainCollider=0 renderers=987 colliders=197 decorationMeshes=54
+[CanyonBenchmark] settled=1 center=(25, 19) loaded=239 decorated=39 pendingTerrain=0 pendingDecoration=37 terrainColliders=9 decorationColliders=258 adaptiveFar=0/49
+[CanyonBenchmark] placed=2 abs=(488.74,-74.28,342.39) motor=False kinematic=True
+[CanyonBenchmark] waypoint=2 abs=(488.74,342.39) center=(25, 19) loaded=239 decorated=39 pendingTerrain=0 pendingDecoration=37
+[TopDown3D Performance] mode=full-content fps=67.5 frameMs avg=14.81 p95=49.51 p99=58.33 cpu=8.06 gpu=3.06 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=56 chunks=210 decorated=28 pendingTerrain=30 pendingDecoration=21 pendingTerrainCollider=0 renderers=999 colliders=216 decorationMeshes=95
+[TopDown3D Performance] mode=full-content fps=51.8 frameMs avg=19.31 p95=50.00 p99=175.30 cpu=50.59 gpu=9.57 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=62 chunks=240 decorated=35 pendingTerrain=0 pendingDecoration=14 pendingTerrainCollider=0 renderers=1219 colliders=274 decorationMeshes=135
+[TopDown3D Performance] mode=full-content fps=54.1 frameMs avg=18.50 p95=49.58 p99=175.30 cpu=16.02 gpu=5.61 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=62 chunks=240 decorated=45 pendingTerrain=0 pendingDecoration=4 pendingTerrainCollider=0 renderers=1492 colliders=363 decorationMeshes=219
+[CanyonBenchmark] settled=2 center=(27, 19) loaded=240 decorated=49 pendingTerrain=0 pendingDecoration=0 terrainColliders=9 decorationColliders=394 adaptiveFar=31/49
+[CanyonBenchmark] actual=2 abs=(488.74,-74.28,342.39) camera=(478.41, -53.98, 330.08)
+[CanyonBenchmark] camera-hit=Booter Perspective 3D Controller distance=0.00 root=Booter Perspective 3D Controller
+[CanyonBenchmark] placed=3 abs=(452.74,-80.83,342.39) motor=False kinematic=True
+[CanyonBenchmark] waypoint=3 abs=(452.74,342.39) center=(27, 19) loaded=240 decorated=49 pendingTerrain=0 pendingDecoration=0
+[TopDown3D Performance] mode=full-content fps=76.8 frameMs avg=13.03 p95=41.28 p99=50.05 cpu=16.72 gpu=7.05 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=59 chunks=233 decorated=36 pendingTerrain=7 pendingDecoration=13 pendingTerrainCollider=0 renderers=1243 colliders=291 decorationMeshes=177
+[TopDown3D Performance] mode=full-content fps=80.4 frameMs avg=12.44 p95=33.76 p99=57.80 cpu=8.40 gpu=2.32 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=58 chunks=240 decorated=49 pendingTerrain=0 pendingDecoration=0 pendingTerrainCollider=0 renderers=1468 colliders=358 decorationMeshes=227
+[TopDown3D Performance] mode=full-content fps=119.7 frameMs avg=8.35 p95=9.02 p99=9.28 cpu=8.44 gpu=3.14 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=56 chunks=240 decorated=49 pendingTerrain=0 pendingDecoration=0 pendingTerrainCollider=0 renderers=1468 colliders=358 decorationMeshes=227
+[CanyonBenchmark] settled=3 center=(25, 19) loaded=240 decorated=49 pendingTerrain=0 pendingDecoration=0 terrainColliders=9 decorationColliders=349 adaptiveFar=49/49
+[CanyonBenchmark] placed=4 abs=(416.74,-67.89,342.39) motor=False kinematic=True
+[CanyonBenchmark] waypoint=4 abs=(416.74,342.39) center=(25, 19) loaded=240 decorated=49 pendingTerrain=0 pendingDecoration=0
+[TopDown3D Performance] mode=full-content fps=119.0 frameMs avg=8.40 p95=8.71 p99=9.27 cpu=7.98 gpu=3.65 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=56 chunks=210 decorated=35 pendingTerrain=30 pendingDecoration=14 pendingTerrainCollider=0 renderers=876 colliders=221 decorationMeshes=154
+[TopDown3D Performance] mode=full-content fps=111.6 frameMs avg=8.96 p95=16.18 p99=24.98 cpu=16.34 gpu=4.28 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=58 chunks=219 decorated=38 pendingTerrain=21 pendingDecoration=46 pendingTerrainCollider=0 renderers=1109 colliders=266 decorationMeshes=167
+[TopDown3D Performance] mode=full-content fps=82.2 frameMs avg=12.17 p95=33.39 p99=50.02 cpu=8.17 gpu=3.01 resolution=1034x546 scale=1.00 textureMipLimit=0 managedMB=56 chunks=240 decorated=49 pendingTerrain=0 pendingDecoration=0 pendingTerrainCollider=0 renderers=1385 colliders=339 decorationMeshes=213
+[CanyonBenchmark] settled=4 center=(23, 19) loaded=240 decorated=49 pendingTerrain=0 pendingDecoration=0 terrainColliders=9 decorationColliders=330 adaptiveFar=49/49
+[CanyonBenchmark] actual=4 abs=(416.74,-67.89,342.39) camera=(406.41, -47.59, 330.08)
+[CanyonBenchmark] complete

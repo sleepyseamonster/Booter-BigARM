@@ -122,6 +122,16 @@ separate fused 36 m wall volume: both read as freestanding boulders. Continue th
 terrain-derived parent cliff and near/middle/far strata as the large-scale source;
 use approved Workbench geometry for rooted edge breaks and talus where its source
 shape, terrain footprint, and navigation clearance can be proven together.
+The [terrain-matched fitted-face trial](Evidence/WorldCreator/CanyonSlice/TerrainMatchedFaceTrial.md)
+isolates the dark rectangular right-wall bars to the fitted-face overlay material.
+Sampling the canonical terrain material for the same face meshes removes those bars
+in a fixed overview, but thin contact lines remain. Its 49-chunk normal/reverse/rebase
+fixture passes with vertex-color hashing; triangle-interior contact still reaches
+0.992 m. A same-binary rendered Player pair completes the five-stop route and later
+49/49 streaming coverage, but the actual camera remains dark and narrow and early
+streaming completion differs between runs. Keep this trial in the mirror until
+parent-landform silhouette, continuous face/collider contact, equal-state frame cost,
+save/version authority, and hands-on traversal and visual acceptance are resolved.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,
