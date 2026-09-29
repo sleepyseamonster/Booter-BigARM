@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 06:40:32Z" end-time="2026-09-29 06:40:41Z" duration="9.0661278">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-09-29 06:40:32Z" end-time="2026-09-29 06:40:41Z" duration="9.066128" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1526" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-09-29 06:40:32Z" end-time="2026-09-29 06:40:41Z" duration="9.058599" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="88442" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1527" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-09-29 06:40:32Z" end-time="2026-09-29 06:40:41Z" duration="9.054662" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1528" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="447" result="Passed" start-time="2026-09-29 06:40:32Z" end-time="2026-09-29 06:40:41Z" duration="9.050894" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1529" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-09-29 06:40:32Z" end-time="2026-09-29 06:40:41Z" duration="9.042943" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1424" name="TempCanyonFaceProofTests" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29 06:40:32Z" end-time="2026-09-29 06:40:41Z" duration="9.040555" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1425" name="ActualRepresentationCompilerKeepsCanyonVertexAcrossTiers" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.ActualRepresentationCompilerKeepsCanyonVertexAcrossTiers" methodname="ActualRepresentationCompilerKeepsCanyonVertexAcrossTiers" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="249440940" result="Passed" start-time="2026-09-29 06:40:32Z" end-time="2026-09-29 06:40:32Z" duration="0.340033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON TIERS near=-72.182 mid=-72.182 far=-72.182 feature=9019ff4da6f11803382f8c3cc10b141a semantic=BroadGround, CanyonFloor, CanyonWall, BoundedLandform
+]]></output>
+              </test-case>
+              <test-case id="1426" name="CanyonWallProducesConnectedPhysicalFaceAndSourceRocks" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.CanyonWallProducesConnectedPhysicalFaceAndSourceRocks" methodname="CanyonWallProducesConnectedPhysicalFaceAndSourceRocks" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="2022591352" result="Passed" start-time="2026-09-29 06:40:32Z" end-time="2026-09-29 06:40:41Z" duration="8.693116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON FIXTURE faces=178 stones=66 talus=40 buttress=26 contactGapMax=0.14 poorContacts=0 elapsedMs=2444
+CANYON FIXTURE faces=178 stones=66 talus=40 buttress=26 contactGapMax=0.14 poorContacts=0 elapsedMs=2415
+CANYON FIXTURE faces=178 stones=66 talus=40 buttress=26 contactGapMax=0.14 poorContacts=0 elapsedMs=2423
+Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

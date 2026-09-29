@@ -44,6 +44,9 @@ within 0.14 m and raycastable face collision, and showed the terraces flatten in
 18 m-sampled far view. The [receipt](Evidence/WorldCreator/CanyonSlice/README.md)
 preserves the proof code, patches, images, and XML; a real representation and streaming
 comparison remains required before cutover.
+The actual representation compiler now agrees at one shared canyon vertex across its
+25/17/17 near/mid/far grids; the 2-of-2 mirror result still leaves full silhouette,
+adjacent tiles, lifecycle, and Player pacing open.
 
 ### Objective, authority, and fixture
 

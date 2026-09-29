@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using BooterBigArm.TopDown3D;
 using BooterBigArm.TopDown3D.WorldCreator;
 using NUnit.Framework;
@@ -10,6 +12,51 @@ namespace BooterBigArm.Tests.WorldCreator
 {
     public sealed class TempCanyonFaceProofTests
     {
+        [Test]
+        public async Task ActualRepresentationCompilerKeepsCanyonVertexAcrossTiers()
+        {
+            using var runtime = WorldCreatorProductionRuntime.Create(24681357L);
+            var pool = new WorldRepresentationBufferPool();
+            var compiler = new WorldRepresentationCompiler(runtime.Query, pool,
+                runtime.Profile.CreateRepresentationProfile(), runtime.SourceFingerprint);
+            var nearKey = runtime.CreateRepresentationKey(WorldRepresentationTier.Near,
+                23, 19, 18d);
+            var midKey = runtime.CreateRepresentationKey(WorldRepresentationTier.Mid,
+                5, 4, 72d);
+            var farKey = runtime.CreateRepresentationKey(WorldRepresentationTier.Far,
+                1, 1, 288d);
+            using var near = await compiler.BuildAsync(nearKey, CancellationToken.None);
+            using var mid = await compiler.BuildAsync(midKey, CancellationToken.None);
+            using var far = await compiler.BuildAsync(farKey, CancellationToken.None);
+            Assert.That(near.Resolution, Is.EqualTo(25));
+            Assert.That(mid.Resolution, Is.EqualTo(17));
+            Assert.That(far.Resolution, Is.EqualTo(17));
+            var nearIndex = 0;
+            var midIndex = 12 * mid.Resolution + 12;
+            var farIndex = 3 * far.Resolution + 7;
+            foreach (var result in new[] { near, mid, far })
+            {
+                var index = result.Key.Tier == WorldRepresentationTier.Near
+                    ? nearIndex : result.Key.Tier == WorldRepresentationTier.Mid
+                        ? midIndex : farIndex;
+                var absolute = result.GetAbsolutePosition(index);
+                Assert.That(absolute.HorizontalA, Is.EqualTo(414d));
+                Assert.That(absolute.HorizontalB, Is.EqualTo(342d));
+                Assert.That(absolute.Vertical, Is.EqualTo(result.GetHeight(index)));
+            }
+            Assert.That(near.GetFeatureId(nearIndex), Is.EqualTo(mid.GetFeatureId(midIndex)));
+            Assert.That(mid.GetFeatureId(midIndex), Is.EqualTo(far.GetFeatureId(farIndex)));
+            Assert.That(near.GetSemantic(nearIndex), Is.EqualTo(mid.GetSemantic(midIndex)));
+            Assert.That(mid.GetSemantic(midIndex), Is.EqualTo(far.GetSemantic(farIndex)));
+            Assert.That(mid.GetHeight(midIndex), Is.EqualTo(far.GetHeight(farIndex)));
+            Assert.That(Mathf.Abs(near.GetHeight(nearIndex) - mid.GetHeight(midIndex)),
+                Is.LessThan(0.5f));
+            Assert.That(near.HasCollision, Is.True);
+            Assert.That(mid.HasCollision, Is.False);
+            Assert.That(far.HasCollision, Is.False);
+            UnityEngine.Debug.Log($"CANYON TIERS near={near.GetHeight(nearIndex):F3} mid={mid.GetHeight(midIndex):F3} far={far.GetHeight(farIndex):F3} feature={near.GetFeatureId(nearIndex)} semantic={near.GetSemantic(nearIndex)}");
+        }
+
         [Test]
         public void CanyonWallProducesConnectedPhysicalFaceAndSourceRocks()
         {
