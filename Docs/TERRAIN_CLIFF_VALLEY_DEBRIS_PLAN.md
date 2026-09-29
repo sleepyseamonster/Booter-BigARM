@@ -32,6 +32,14 @@ remaining slice executable. It extends the
 connected-bedrock checkpoint and the generation contract below. Earlier rejected rock
 clusters, flat stickers, and generic broad-rock walls are evidence, not fallback paths.
 
+The [canyon morphology investigation](Evidence/WorldCreator/CanyonSlice/README.md)
+found that the current 55 m wide, 80 m deep generated cut has no safe talus apron. Its
+`CanyonShelfProfile` values are generated but not consumed by the excavation query. A
+mirror-only 195 m wide cut using those shelf values creates a more useful terrain-driven
+terrace candidate, but the 20-chunk proof is too repetitive and unprofiled. Refine the
+parent landform and its material/distance treatment in the mirror before a topology
+version or saved-place cutover. Keep the user's dirty query/profile/scene edits intact.
+
 ### Objective, authority, and fixture
 
 Generate **one representative canyon from the canonical World Creator query**, then make its
