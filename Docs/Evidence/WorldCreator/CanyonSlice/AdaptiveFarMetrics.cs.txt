@@ -1,0 +1,146 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using BooterBigArm.TopDown3D.WorldCreator;
+using UnityEngine;
+
+namespace BooterBigArm.Editor.WorldCreator
+{
+    public static class TempCanyonAdaptiveFarMetrics
+    {
+        public static void Run()
+        {
+            using var runtime = WorldCreatorProductionRuntime.Create(24681357L);
+            var compiler = new WorldRepresentationCompiler(runtime.Query,
+                runtime.Authority.Materials, new WorldRepresentationBufferPool(),
+                runtime.Profile.CreateRepresentationProfile(), runtime.SourceFingerprint);
+            var coarse = (IWorldCoarseSurfaceQuery)runtime.Query;
+            var materials = (IWorldSurfaceMaterialFromSurfaceService)runtime.Authority.Materials;
+            using var leftResult = compiler.BuildAsync(runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Far, 1, 1, 288d), CancellationToken.None)
+                .GetAwaiter().GetResult();
+            using var rightResult = compiler.BuildAsync(runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Far, 2, 1, 288d), CancellationToken.None)
+                .GetAwaiter().GetResult();
+            var left = TempCanyonAdaptiveFarMeshBuilder.Build(leftResult, coarse, materials,
+                "Adaptive left", out var leftMetrics, out var leftCellStarts);
+            var right = TempCanyonAdaptiveFarMeshBuilder.Build(rightResult, coarse, materials,
+                "Adaptive right", out var rightMetrics, out var rightCellStarts);
+            try
+            {
+                double sum = 0d, maximum = 0d;
+                var count = 0;
+                foreach (var z in new[] { 342d, 360d, 378d })
+                for (var x = 288d; x <= 576d; x += 1d)
+                {
+                    var p = new AbsoluteWorldPosition(x, 0d, z);
+                    if (!coarse.TrySampleCoarseSurface(p, out var truth, out var error))
+                        throw new InvalidOperationException(error);
+                    var approximation = SampleMeshHeight(left, x - 288d, z - 288d);
+                    var difference = Math.Abs(approximation - truth.Position.Vertical);
+                    sum += difference;
+                    maximum = Math.Max(maximum, difference);
+                    count++;
+                }
+
+                var leftBorder = Border(left, 288f, 288d);
+                var rightBorder = Border(right, 0f, 288d);
+                if (leftBorder.Count != 17 || rightBorder.Count != 17)
+                    throw new InvalidOperationException($"Border vertex count differs: {leftBorder.Count}, {rightBorder.Count}");
+                foreach (var pair in leftBorder)
+                    if (!rightBorder.TryGetValue(pair.Key, out var height)
+                        || Math.Abs(pair.Value - height) > 0.00001f)
+                        throw new InvalidOperationException($"Far seam mismatch at z={pair.Key}");
+                var inverted = CountInverted(left) + CountInverted(right);
+                if (inverted != 0) throw new InvalidOperationException($"Inverted triangles: {inverted}");
+                var originalTriangles = left.triangles;
+                if (leftCellStarts.Length != 257 || rightCellStarts.Length != 257
+                    || leftCellStarts[256] != originalTriangles.Length)
+                    throw new InvalidOperationException("Adaptive cell ranges are incomplete.");
+                var visible = new List<int>(originalTriangles.Length);
+                var hiddenCellCount = 0;
+                for (var cell = 0; cell < 256; cell++)
+                {
+                    var x = cell % 16;
+                    var z = cell / 16;
+                    if (x >= 4 && x < 12 && z >= 4 && z < 12)
+                    {
+                        hiddenCellCount++;
+                        continue;
+                    }
+                    for (var index = leftCellStarts[cell]; index < leftCellStarts[cell + 1]; index++)
+                        visible.Add(originalTriangles[index]);
+                }
+                left.SetTriangles(visible, 0, false);
+                if (hiddenCellCount != 64 || left.triangles.Length != visible.Count)
+                    throw new InvalidOperationException("Adaptive coverage mask did not preserve cell ranges.");
+                left.SetTriangles(originalTriangles, 0, false);
+                if (!runtime.TryRebase(new AbsoluteWorldPosition(18d, 0d, 0d)))
+                    throw new InvalidOperationException("Unable to rebase the mirror runtime.");
+                var repeat = TempCanyonAdaptiveFarMeshBuilder.Build(leftResult, coarse, materials,
+                    "Adaptive repeat", out _, out var repeatCellStarts);
+                try
+                {
+                    if (!left.vertices.SequenceEqual(repeat.vertices)
+                        || !left.triangles.SequenceEqual(repeat.triangles)
+                        || !left.colors.SequenceEqual(repeat.colors)
+                        || !leftCellStarts.SequenceEqual(repeatCellStarts))
+                        throw new InvalidOperationException("Adaptive geometry changed after origin rebase.");
+                }
+                finally { UnityEngine.Object.DestroyImmediate(repeat); }
+                Debug.Log($"CANYON ADAPTIVE METRICS samples={count} meanError={sum / count:F3} maxError={maximum:F3} leftCandidates={leftMetrics.CandidateCells} leftSelected={leftMetrics.SelectedCells} leftVertices={leftMetrics.Vertices} leftTriangles={leftMetrics.Triangles} leftExtraSamples={leftMetrics.ExtraSurfaceSamples} leftBuildMs={leftMetrics.ElapsedMs:F2} rightCandidates={rightMetrics.CandidateCells} rightSelected={rightMetrics.SelectedCells} rightVertices={rightMetrics.Vertices} rightTriangles={rightMetrics.Triangles} rightExtraSamples={rightMetrics.ExtraSurfaceSamples} rightBuildMs={rightMetrics.ElapsedMs:F2} sharedBorderVertices={leftBorder.Count} inverted={inverted} coverageCells=256 hiddenCells={hiddenCellCount} rebaseStable=1");
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(left);
+                UnityEngine.Object.DestroyImmediate(right);
+            }
+        }
+
+        private static SortedDictionary<double, float> Border(Mesh mesh, float x, double originZ)
+        {
+            var border = new SortedDictionary<double, float>();
+            foreach (var vertex in mesh.vertices)
+                if (Math.Abs(vertex.x - x) < 0.00001f)
+                    border.Add(originZ + vertex.z, vertex.y);
+            return border;
+        }
+
+        private static int CountInverted(Mesh mesh)
+        {
+            var vertices = mesh.vertices;
+            var triangles = mesh.triangles;
+            var inverted = 0;
+            for (var i = 0; i < triangles.Length; i += 3)
+            {
+                var a = vertices[triangles[i]];
+                var b = vertices[triangles[i + 1]];
+                var c = vertices[triangles[i + 2]];
+                if (Vector3.Cross(b - a, c - a).y <= 0.00001f) inverted++;
+            }
+            return inverted;
+        }
+
+        private static double SampleMeshHeight(Mesh mesh, double x, double z)
+        {
+            var vertices = mesh.vertices;
+            var triangles = mesh.triangles;
+            for (var i = 0; i < triangles.Length; i += 3)
+            {
+                var a = vertices[triangles[i]];
+                var b = vertices[triangles[i + 1]];
+                var c = vertices[triangles[i + 2]];
+                var denominator = (b.z - c.z) * (a.x - c.x)
+                    + (c.x - b.x) * (a.z - c.z);
+                if (Math.Abs(denominator) < 0.000001d) continue;
+                var u = ((b.z - c.z) * (x - c.x) + (c.x - b.x) * (z - c.z)) / denominator;
+                var v = ((c.z - a.z) * (x - c.x) + (a.x - c.x) * (z - c.z)) / denominator;
+                var w = 1d - u - v;
+                if (u < -0.00001d || v < -0.00001d || w < -0.00001d) continue;
+                return u * a.y + v * b.y + w * c.y;
+            }
+            throw new InvalidOperationException($"No adaptive triangle at {x},{z}");
+        }
+    }
+}

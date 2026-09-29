@@ -59,6 +59,12 @@ preclude a causal frame-rate claim. Every far tile in the fixture contained cany
 so whole-tile detail selection offers no reduction. Retain the current 17×17 profile while
 developing feature-local shelf detail and a controlled rendered Player comparison; see the
 [far-tier receipt](Evidence/WorldCreator/CanyonSlice/README.md).
+A mirror-only curvature-local far mesh now demonstrates that direction: 96 selected cells
+use 766 vertices on the measured tile and reduce mean cross-section height error from
+0.792 m to 0.405 m, with matching far-tile borders and rebase-stable vertex/color output.
+The current runtime coverage mask assumes two triangles per cell and would overwrite that
+mesh, so the prototype still needs background-safe sampling, per-cell coverage integration,
+and a full-content Player comparison before it can be promoted.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,

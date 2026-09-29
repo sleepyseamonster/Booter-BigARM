@@ -1,0 +1,215 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using BooterBigArm.TopDown3D.WorldCreator;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+namespace BooterBigArm.Editor.WorldCreator
+{
+    // Disposable proof: add canonical query samples only to high-error cells of a 17x17 far tile.
+    public static class TempCanyonAdaptiveFarMeshBuilder
+    {
+        private const float MinimumCenterError = 1f;
+        private const int DefaultMaximumSelectedCells = 64;
+
+        public readonly struct Metrics
+        {
+            public Metrics(int candidateCells, int selectedCells, int vertices, int triangles,
+                int extraSurfaceSamples, double elapsedMs)
+            {
+                CandidateCells = candidateCells;
+                SelectedCells = selectedCells;
+                Vertices = vertices;
+                Triangles = triangles;
+                ExtraSurfaceSamples = extraSurfaceSamples;
+                ElapsedMs = elapsedMs;
+            }
+
+            public int CandidateCells { get; }
+            public int SelectedCells { get; }
+            public int Vertices { get; }
+            public int Triangles { get; }
+            public int ExtraSurfaceSamples { get; }
+            public double ElapsedMs { get; }
+        }
+
+        public static Mesh Build(WorldRepresentationBuildResult baseline,
+            IWorldCoarseSurfaceQuery query,
+            IWorldSurfaceMaterialFromSurfaceService materials,
+            string name, out Metrics metrics, out int[] cellTriangleStarts)
+        {
+            if (baseline == null) throw new ArgumentNullException(nameof(baseline));
+            if (query == null) throw new ArgumentNullException(nameof(query));
+            if (materials == null) throw new ArgumentNullException(nameof(materials));
+            if (baseline.Key.Tier != WorldRepresentationTier.Far || baseline.Resolution != 17)
+                throw new ArgumentException("This proof expects a 17x17 far representation.");
+            var watch = Stopwatch.StartNew();
+            var count = baseline.Resolution;
+            var cells = (count - 1) * (count - 1);
+            var centers = new WorldSurfaceSample[cells];
+            var errors = new float[cells];
+            var ranking = new List<int>(cells);
+            var extraSamples = 0;
+            var min = baseline.Key.Minimum;
+            var step = baseline.Key.TileSpan / (count - 1);
+            for (var z = 0; z < count - 1; z++)
+            for (var x = 0; x < count - 1; x++)
+            {
+                var cell = z * (count - 1) + x;
+                var p = new AbsoluteWorldPosition(min.HorizontalA + (x + 0.5d) * step,
+                    0d, min.HorizontalB + (z + 0.5d) * step);
+                if (!query.TrySampleCoarseSurface(p, out centers[cell], out var error))
+                    throw new InvalidOperationException(error);
+                extraSamples++;
+                var bl = z * count + x;
+                var mean = (baseline.GetHeight(bl) + baseline.GetHeight(bl + 1)
+                    + baseline.GetHeight(bl + count)
+                    + baseline.GetHeight(bl + count + 1)) * 0.25f;
+                errors[cell] = Mathf.Abs((float)centers[cell].Position.Vertical - mean);
+                if (errors[cell] >= MinimumCenterError) ranking.Add(cell);
+            }
+
+            ranking.Sort((a, b) =>
+            {
+                var byError = errors[b].CompareTo(errors[a]);
+                return byError != 0 ? byError : a.CompareTo(b);
+            });
+            var selected = new bool[cells];
+            var maximumSelectedCells = DefaultMaximumSelectedCells;
+            if (int.TryParse(Environment.GetEnvironmentVariable("CANYON_ADAPTIVE_MAX_CELLS"),
+                out var configuredMaximum))
+                maximumSelectedCells = Mathf.Clamp(configuredMaximum, 1, cells);
+            var selectedCount = Mathf.Min(maximumSelectedCells, ranking.Count);
+            for (var i = 0; i < selectedCount; i++) selected[ranking[i]] = true;
+
+            // Only internal edges receive midpoints. At tile borders the untouched 17
+            // canonical samples meet neighboring far tiles exactly, regardless of selection.
+            var splitEdges = new HashSet<long>();
+            for (var z = 0; z < count - 1; z++)
+            for (var x = 0; x < count - 1; x++)
+            {
+                if (!selected[z * (count - 1) + x]) continue;
+                var bl = z * count + x;
+                var br = bl + 1;
+                var tl = bl + count;
+                var tr = tl + 1;
+                if (x > 0) splitEdges.Add(EdgeKey(bl, tl));
+                if (x < count - 2) splitEdges.Add(EdgeKey(br, tr));
+                if (z > 0) splitEdges.Add(EdgeKey(bl, br));
+                if (z < count - 2) splitEdges.Add(EdgeKey(tl, tr));
+            }
+
+            var vertices = new List<Vector3>(baseline.VertexCount + selectedCount * 4);
+            var normals = new List<Vector3>(vertices.Capacity);
+            var colors = new List<Color>(vertices.Capacity);
+            var uvs = new List<Vector2>(vertices.Capacity);
+            var triangles = new List<int>(baseline.IndexCount + selectedCount * 24);
+            for (var i = 0; i < baseline.VertexCount; i++)
+            {
+                var absolute = baseline.GetAbsolutePosition(i);
+                baseline.GetNormal(i, out var normalA, out var normalY, out var normalB);
+                vertices.Add(new Vector3((float)(absolute.HorizontalA - min.HorizontalA),
+                    (float)absolute.Vertical, (float)(absolute.HorizontalB - min.HorizontalB)));
+                normals.Add(new Vector3(normalA, normalY, normalB));
+                colors.Add(WorldTerrainMaterialPackingAdapter.Pack(baseline.GetMaterial(i)));
+                uvs.Add(new Vector2((float)(absolute.HorizontalA / baseline.Key.TileSpan),
+                    (float)(absolute.HorizontalB / baseline.Key.TileSpan)));
+            }
+
+            int AddSample(WorldSurfaceSample surface)
+            {
+                var absolute = surface.Position;
+                var p = new AbsoluteWorldPosition(absolute.HorizontalA, 0d, absolute.HorizontalB);
+                if (!materials.TrySampleFromSurface(p, surface, out var material, out var error))
+                    throw new InvalidOperationException(error);
+                var index = vertices.Count;
+                vertices.Add(new Vector3((float)(absolute.HorizontalA - min.HorizontalA),
+                    (float)absolute.Vertical, (float)(absolute.HorizontalB - min.HorizontalB)));
+                normals.Add(new Vector3(surface.NormalA, surface.NormalVertical, surface.NormalB));
+                colors.Add(WorldTerrainMaterialPackingAdapter.Pack(material));
+                uvs.Add(new Vector2((float)(absolute.HorizontalA / baseline.Key.TileSpan),
+                    (float)(absolute.HorizontalB / baseline.Key.TileSpan)));
+                return index;
+            }
+
+            var edgeVertices = new Dictionary<long, int>();
+            int EdgeVertex(int a, int b)
+            {
+                var key = EdgeKey(a, b);
+                if (edgeVertices.TryGetValue(key, out var existing)) return existing;
+                var first = baseline.GetAbsolutePosition(a);
+                var last = baseline.GetAbsolutePosition(b);
+                var p = new AbsoluteWorldPosition(
+                    (first.HorizontalA + last.HorizontalA) * 0.5d, 0d,
+                    (first.HorizontalB + last.HorizontalB) * 0.5d);
+                if (!query.TrySampleCoarseSurface(p, out var surface, out var error))
+                    throw new InvalidOperationException(error);
+                extraSamples++;
+                var index = AddSample(surface);
+                edgeVertices.Add(key, index);
+                return index;
+            }
+
+            var perimeter = new List<int>(8);
+            cellTriangleStarts = new int[cells + 1];
+            for (var z = 0; z < count - 1; z++)
+            for (var x = 0; x < count - 1; x++)
+            {
+                var cell = z * (count - 1) + x;
+                cellTriangleStarts[cell] = triangles.Count;
+                var bl = z * count + x;
+                var br = bl + 1;
+                var tl = bl + count;
+                var tr = tl + 1;
+                var left = splitEdges.Contains(EdgeKey(bl, tl));
+                var top = splitEdges.Contains(EdgeKey(tl, tr));
+                var right = splitEdges.Contains(EdgeKey(br, tr));
+                var bottom = splitEdges.Contains(EdgeKey(bl, br));
+                if (!selected[cell] && !left && !top && !right && !bottom)
+                {
+                    triangles.Add(bl); triangles.Add(tl); triangles.Add(br);
+                    triangles.Add(br); triangles.Add(tl); triangles.Add(tr);
+                    continue;
+                }
+                var center = AddSample(centers[cell]);
+                perimeter.Clear();
+                perimeter.Add(bl);
+                if (left) perimeter.Add(EdgeVertex(bl, tl));
+                perimeter.Add(tl);
+                if (top) perimeter.Add(EdgeVertex(tl, tr));
+                perimeter.Add(tr);
+                if (right) perimeter.Add(EdgeVertex(br, tr));
+                perimeter.Add(br);
+                if (bottom) perimeter.Add(EdgeVertex(bl, br));
+                for (var i = 0; i < perimeter.Count; i++)
+                {
+                    triangles.Add(center);
+                    triangles.Add(perimeter[i]);
+                    triangles.Add(perimeter[(i + 1) % perimeter.Count]);
+                }
+            }
+            cellTriangleStarts[cells] = triangles.Count;
+
+            var mesh = new Mesh { name = name };
+            mesh.indexFormat = vertices.Count > ushort.MaxValue
+                ? IndexFormat.UInt32 : IndexFormat.UInt16;
+            mesh.SetVertices(vertices);
+            mesh.SetTriangles(triangles, 0, true);
+            mesh.SetNormals(normals);
+            mesh.SetColors(colors);
+            mesh.SetUVs(0, uvs);
+            mesh.RecalculateBounds();
+            watch.Stop();
+            metrics = new Metrics(ranking.Count, selectedCount, vertices.Count, triangles.Count / 3,
+                extraSamples, watch.Elapsed.TotalMilliseconds);
+            return mesh;
+        }
+
+        private static long EdgeKey(int a, int b)
+        {
+            if (a > b) { var swap = a; a = b; b = swap; }
+            return ((long)a << 32) | (uint)b;
+        }
+    }
+}
