@@ -1,0 +1,51 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs
+@@ -152,10 +152,10 @@
+         {
+             var first = span.First;
+             var last = span.Last;
+-            if (!TryToChunkLocal(chunk, runtime, first.Rim, out var firstRim)
+-                || !TryToChunkLocal(chunk, runtime, first.Toe, out var firstToe)
+-                || !TryToChunkLocal(chunk, runtime, last.Rim, out var lastRim)
+-                || !TryToChunkLocal(chunk, runtime, last.Toe, out var lastToe)) return false;
++            if (!TryToChunkLocal(chunk, settings, runtime, first.Rim, out var firstRim)
++                || !TryToChunkLocal(chunk, settings, runtime, first.Toe, out var firstToe)
++                || !TryToChunkLocal(chunk, settings, runtime, last.Rim, out var lastRim)
++                || !TryToChunkLocal(chunk, settings, runtime, last.Toe, out var lastToe)) return false;
+ 
+             var firstOutward = new Vector3((float)first.OutwardA, 0f, (float)first.OutwardB);
+             var lastOutward = new Vector3((float)last.OutwardA, 0f, (float)last.OutwardB);
+@@ -253,11 +253,9 @@
+                     return cached;
+                 var point = new AbsoluteWorldPosition(sampleA * step,
+                     0d, sampleB * step);
+-                if (!runtime.Query.TrySampleSurface(point, out var surface, out var error)
+-                    || !runtime.TryToLocal(surface.Position, out var frameLocal))
++                if (!runtime.Query.TrySampleSurface(point, out var surface, out var error))
+                     throw new InvalidOperationException(error ?? "Near terrain height was outside the local frame.");
+-                var height = chunk.transform.InverseTransformPoint(
+-                    new Vector3(frameLocal.X, frameLocal.Y, frameLocal.Z)).y;
++                var height = (float)surface.Position.Vertical;
+                 heights.Add((sampleA, sampleB), height);
+                 return height;
+             }
+@@ -482,12 +480,16 @@
+         }
+ 
+         private static bool TryToChunkLocal(TopDown3DGeneratedChunk chunk,
+-            WorldCreatorProductionRuntime runtime, AbsoluteWorldPosition position,
++            TopDown3DWorldSettings settings, WorldCreatorProductionRuntime runtime,
++            AbsoluteWorldPosition position,
+             out Vector3 local)
+         {
+             local = default;
+-            if (!runtime.TryToLocal(position, out var point)) return false;
+-            local = chunk.transform.InverseTransformPoint(new Vector3(point.X, point.Y, point.Z));
++            if (!runtime.TryToLocal(position, out _)) return false;
++            local = new Vector3(
++                (float)(position.HorizontalA - chunk.Coordinate.x * (double)settings.ChunkSize),
++                (float)position.Vertical,
++                (float)(position.HorizontalB - chunk.Coordinate.y * (double)settings.ChunkSize));
+             return true;
+         }
+ 
