@@ -1,0 +1,20 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Materials/WorldSurfaceMaterialService.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Materials/WorldSurfaceMaterialService.cs
+@@ -241,6 +241,17 @@
+                 + (disturbed ? 0.12f : 0f)
+                 - slope01 * 0.42f
+                 - windExposure * 0.12f);
++            if (canyonFloor)
++            {
++                // The low floor holds mixed gravel and some sand; steep transitions
++                // expose more broken shale instead of the bright base-sand texture.
++                var steepFloor = Clamp01((slope - 18f) / 24f);
++                steepFloor = steepFloor * steepFloor * (3f - 2f * steepFloor);
++                strataExposure = Math.Max(strataExposure * 0.30f,
++                    0.17f + 0.25f * steepFloor);
++                deposit *= 0.35f * (1f - 0.65f * steepFloor);
++                erosion = Math.Max(erosion, 0.74f + 0.17f * steepFloor);
++            }
+ 
+             return new WorldSurfaceMaterialSample(
+                 surface.Position,

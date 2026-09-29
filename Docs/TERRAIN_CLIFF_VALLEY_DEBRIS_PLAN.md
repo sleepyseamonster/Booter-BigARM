@@ -91,6 +91,21 @@ later stops. First-arrival p99 varied from 483 ms in the control to 50 ms in the
 candidate, so one paired run does not establish a causal performance gain. Keep the
 adaptive scheduler and all visual/topology changes in the mirror pending repeatable
 frame attribution and the camera/material corrections above.
+The mirror's next material candidate lowers canyon-floor sand deposition and raises
+gravel/shale exposure. Seven focused material tests pass, and the fixed-camera and
+rendered Player images lose the vivid red mottling, though the floor is now too smooth
+and dark. The obstructing far-waypoint object was a Workbench buttress whose box
+overlapped canonically walkable canyon floor. A terrain-affordance footprint screen
+keeps 10 of 26 large buttresses in the 20-chunk fixture while retaining all 178
+bedrock spans and 40 talus stones. Normal, reverse, and rebased fixtures agree; a
+focused nine-chunk test and rendered Player show the exact waypoint and a restored
+25 m camera view. The older single-chunk rock-presence assertion also fails in a
+screen-disabled control under this canyon-enabled mirror, so it needs reconciliation
+before production cutover. The [material and clearance receipt](Evidence/WorldCreator/CanyonSlice/README.md)
+contains exact code, images, XML, and Player telemetry. Continue with more varied
+floor texture and rock silhouettes, a production-camera vista that shows the parent
+landform, and repeatable frame attribution before deciding versions or touching the
+dirty production World Creator assets.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,

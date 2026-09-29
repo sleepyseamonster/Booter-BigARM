@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 10:21:06Z" end-time="2026-09-29 10:21:15Z" duration="9.44123">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 10:21:06Z" end-time="2026-09-29 10:21:15Z" duration="9.441230" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1532" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 10:21:06Z" end-time="2026-09-29 10:21:15Z" duration="9.432005" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="64411" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1533" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 10:21:06Z" end-time="2026-09-29 10:21:15Z" duration="9.426289" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1534" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-09-29 10:21:06Z" end-time="2026-09-29 10:21:15Z" duration="9.420483" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1535" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="103" result="Passed" start-time="2026-09-29 10:21:06Z" end-time="2026-09-29 10:21:15Z" duration="9.415113" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1521" name="WorldSurfaceMaterialTests" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-29 10:21:06Z" end-time="2026-09-29 10:21:15Z" duration="9.412760" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1525" name="CausalSurfaceResponse_DistinguishesExposedAndDepositionalGround" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.CausalSurfaceResponse_DistinguishesExposedAndDepositionalGround" methodname="CausalSurfaceResponse_DistinguishesExposedAndDepositionalGround" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="2052648805" result="Passed" start-time="2026-09-29 10:21:06Z" end-time="2026-09-29 10:21:06Z" duration="0.486207" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1523" name="CoarseMaterialUsesCoarseSurfaceNormalWithoutDetailedCacheContamination" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.CoarseMaterialUsesCoarseSurfaceNormalWithoutDetailedCacheContamination" methodname="CoarseMaterialUsesCoarseSurfaceNormalWithoutDetailedCacheContamination" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="1333863680" result="Passed" start-time="2026-09-29 10:21:06Z" end-time="2026-09-29 10:21:06Z" duration="0.014628" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1526" name="NearMidFarRepresentations_ShareOneMaterialContract" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.NearMidFarRepresentations_ShareOneMaterialContract" methodname="NearMidFarRepresentations_ShareOneMaterialContract" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="503236598" result="Passed" start-time="2026-09-29 10:21:06Z" end-time="2026-09-29 10:21:07Z" duration="0.255838" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1527" name="RepresentationIdentity_ChangesWithMaterialVersion" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.RepresentationIdentity_ChangesWithMaterialVersion" methodname="RepresentationIdentity_ChangesWithMaterialVersion" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="298003248" result="Passed" start-time="2026-09-29 10:21:07Z" end-time="2026-09-29 10:21:07Z" duration="0.001245" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1528" name="SemanticDustPlan_IsContinuousAndRebaseStable" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.SemanticDustPlan_IsContinuousAndRebaseStable" methodname="SemanticDustPlan_IsContinuousAndRebaseStable" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="803604831" result="Passed" start-time="2026-09-29 10:21:07Z" end-time="2026-09-29 10:21:15Z" duration="8.641084" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1522" name="SemanticMaterialSample_IsDeterministicBoundedAndContextDriven" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.SemanticMaterialSample_IsDeterministicBoundedAndContextDriven" methodname="SemanticMaterialSample_IsDeterministicBoundedAndContextDriven" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="1719609102" result="Passed" start-time="2026-09-29 10:21:15Z" end-time="2026-09-29 10:21:15Z" duration="0.000705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1524" name="SharedBoundary_HasExactMaterialContinuity" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.SharedBoundary_HasExactMaterialContinuity" methodname="SharedBoundary_HasExactMaterialContinuity" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="1460832232" result="Passed" start-time="2026-09-29 10:21:15Z" end-time="2026-09-29 10:21:15Z" duration="0.004915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

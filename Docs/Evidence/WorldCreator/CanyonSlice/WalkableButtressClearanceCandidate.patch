@@ -1,0 +1,259 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs
+@@ -43,7 +43,7 @@
+             if (cliffMaterial == null) yield break;
+ 
+             var profile = new WorldCliffStudyProfile(
+-                CellSpan, 0.75d, 8, 43f, 1.75d, 3, 5d, 3d);
++                CellSpan, 0.75d, 8, 43f, 1.75d, 3, 9d, 4.5d);
+             var study = new WorldCliffSectionStudy(
+                 runtime.Identity, runtime.CoordinateModel, runtime.Query, profile);
+             var chunkSize = (double)settings.ChunkSize;
+@@ -195,36 +195,44 @@
+             });
+             group.RecalculateBounds();
+             AddWorkbenchButtress(face.transform, first, last, firstToe, lastToe,
+-                firstOutward, lastOutward, seed);
++                firstOutward, lastOutward, seed, runtime);
+             AddToeDebris(chunk, settings, runtime, spawnExclusionCenter,
+-                formations, first, last, firstOutward, lastOutward, seed);
++                formations, span, seed);
+             return true;
+         }
+ 
+         private static void AddWorkbenchButtress(Transform parent,
+             WorldCliffSectionCandidate first, WorldCliffSectionCandidate last,
+             Vector3 firstToe, Vector3 lastToe,
+-            Vector3 firstOutward, Vector3 lastOutward, int seed)
++            Vector3 firstOutward, Vector3 lastOutward, int seed,
++            WorldCreatorProductionRuntime runtime)
+         {
+             var drop = Mathf.Min((float)first.VerticalDrop, (float)last.VerticalDrop);
+-            if (drop < 4f || Hash01(first.OwnerCellA, first.OwnerCellB, 211) > 0.23d)
++            if (drop < 4f || Hash01(first.OwnerCellA, first.OwnerCellB, 211) > 0.10d)
+                 return;
+             var variant = Mathf.Min(4, (int)(Hash01(first.OwnerCellA,
+                 last.OwnerCellB, 223) * 5d));
+             if (!TryGetCliffStone(variant, 0, out var source)) return;
+             var outward = (firstOutward + lastOutward).normalized;
+-            var root = new GameObject($"Workbench Cliff Buttress {first.Id}");
+-            root.transform.SetParent(parent, false);
+-            root.transform.localPosition = Vector3.Lerp(firstToe, lastToe, 0.5f)
++            var position = Vector3.Lerp(firstToe, lastToe, 0.5f)
+                 + outward * 0.25f + Vector3.down * 0.23f;
+-            root.transform.localRotation = Quaternion.Euler(0f,
++            var rotation = Quaternion.Euler(0f,
+                 Mathf.Atan2(outward.x, outward.z) * Mathf.Rad2Deg
+                     + (float)(Hash01(first.OwnerCellA, last.OwnerCellB, 227) * 40d - 20d),
+                 0f);
+-            var scale = Mathf.Lerp(1.25f, 2.05f,
++            var scale = Mathf.Lerp(3.5f, 5.5f,
+                 (float)Hash01(first.OwnerCellA, last.OwnerCellB, 229));
+-            root.transform.localScale = new Vector3(scale, scale * 2.8f, scale);
++            var size = new Vector3(scale, scale * 2.0f, scale);
+             var bounds = source.bounds;
++            position += Vector3.up * (-bounds.min.y * size.y - 0.30f);
++            if (!IsButtressFootprintClear(parent, position, rotation, size,
++                    bounds, runtime)) return;
++
++            var root = new GameObject($"Workbench Cliff Buttress {first.Id}");
++            root.transform.SetParent(parent, false);
++            root.transform.localPosition = position;
++            root.transform.localRotation = rotation;
++            root.transform.localScale = size;
+             root.AddComponent<TopDown3DTraversalObstacle>();
+             var collider = root.AddComponent<BoxCollider>();
+             collider.center = bounds.center;
+@@ -232,64 +240,140 @@
+             AddStoneLods(root.transform, variant, first, last, seed, bounds.size);
+         }
+ 
++        private static bool IsButtressFootprintClear(Transform parent,
++            Vector3 position, Quaternion rotation, Vector3 scale, Bounds sourceBounds,
++            WorldCreatorProductionRuntime runtime)
++        {
++            var localToWorld = parent.localToWorldMatrix
++                * Matrix4x4.TRS(position, rotation, scale);
++            var halfX = sourceBounds.size.x * 0.41f + 0.8f / scale.x;
++            var halfZ = sourceBounds.size.z * 0.41f + 0.8f / scale.z;
++            for (var z = -2; z <= 2; z++)
++            for (var x = -2; x <= 2; x++)
++            {
++                var local = sourceBounds.center + new Vector3(
++                    halfX * x * 0.5f, 0f, halfZ * z * 0.5f);
++                var world = localToWorld.MultiplyPoint3x4(local);
++                var absolute = runtime.ToAbsolute(world.x, 0f, world.z);
++                if (!runtime.Query.TrySampleSurface(absolute, out var surface, out var error))
++                    throw new InvalidOperationException(error);
++                if ((surface.Semantic & WorldSurfaceSemantic.CanyonFloor) == 0) continue;
++                var halfHeight = sourceBounds.size.y * 0.41f;
++                var bottom = localToWorld.MultiplyPoint3x4(
++                    local - Vector3.up * halfHeight).y;
++                var top = localToWorld.MultiplyPoint3x4(
++                    local + Vector3.up * halfHeight).y;
++                if (surface.Position.Vertical < bottom - 1.6d
++                    || surface.Position.Vertical > top + 0.3d) continue;
++                if (!runtime.Query.TrySampleAffordance(absolute,
++                        WorldAgentProfile.BooterProof, out var booter, out error)
++                    || !runtime.Query.TrySampleAffordance(absolute,
++                        WorldAgentProfile.BigArmProof, out var bigArm, out error))
++                    throw new InvalidOperationException(error);
++                if (booter.Walkable || bigArm.Walkable
++                    || booter.ReservedRoute || bigArm.ReservedRoute) return false;
++            }
++            return true;
++        }
++
+         private static void AddToeDebris(
+             TopDown3DGeneratedChunk chunk,
+             TopDown3DWorldSettings settings,
+             WorldCreatorProductionRuntime runtime,
+             Vector2 spawnExclusionCenter,
+             IReadOnlyList<TopDown3DRockFormationPlan> formations,
+-            WorldCliffSectionCandidate first,
+-            WorldCliffSectionCandidate last,
+-            Vector3 firstOutward, Vector3 lastOutward, int seed)
+-        {
+-            if (Hash01(first.OwnerCellA, first.OwnerCellB, 239) > 0.36d) return;
+-            var outward = (firstOutward + lastOutward).normalized;
+-            var distance = 1.4d + Hash01(first.OwnerCellA, last.OwnerCellB, 241) * 2.6d;
+-            var point = new AbsoluteWorldPosition(
+-                (first.Toe.HorizontalA + last.Toe.HorizontalA) * 0.5d + outward.x * distance,
+-                0d,
+-                (first.Toe.HorizontalB + last.Toe.HorizontalB) * 0.5d + outward.z * distance);
+-            var chunkSize = (double)settings.ChunkSize;
+-            if (point.HorizontalA < chunk.Coordinate.x * chunkSize
+-                || point.HorizontalA >= (chunk.Coordinate.x + 1d) * chunkSize
+-                || point.HorizontalB < chunk.Coordinate.y * chunkSize
+-                || point.HorizontalB >= (chunk.Coordinate.y + 1d) * chunkSize)
+-                return;
+-            if (!runtime.Query.TrySampleSurface(point, out var surface, out _)
+-                || (surface.Semantic & (WorldSurfaceSemantic.SiteReservation
+-                    | WorldSurfaceSemantic.Approach)) != 0
+-                || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BooterProof,
+-                    out var booter, out _)
+-                || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BigArmProof,
+-                    out var bigArm, out _)
+-                || booter.ReservedRoute || bigArm.ReservedRoute
+-                || booter.SlopeDegrees > 27f || bigArm.SlopeDegrees > 27f
+-                || !runtime.TryToLocal(surface.Position, out var local)) return;
+-            var center = new Vector2(local.X, local.Z);
+-            if (Vector2.Distance(center, spawnExclusionCenter)
+-                < settings.ClearSpawnRadius + 2f) return;
+-            if (formations != null)
+-                for (var i = 0; i < formations.Count; i++)
+-                    if (Vector2.Distance(center, formations[i].EnvelopeCenter)
+-                        < formations[i].EnvelopeRadius + 1f) return;
+-
+-            var variant = Mathf.Min(4, (int)(Hash01(first.OwnerCellA,
+-                last.OwnerCellB, 251) * 5d));
+-            if (!TryGetCliffStone(variant, 0, out var source)) return;
+-            var root = new GameObject($"Cliff Toe Debris {first.Id}");
+-            root.transform.SetParent(chunk.DecorationRoot, false);
+-            root.transform.localPosition = chunk.transform.InverseTransformPoint(
+-                new Vector3(local.X, local.Y, local.Z)) + Vector3.down * 0.12f;
+-            root.transform.localRotation = Quaternion.Euler(0f,
+-                (float)(Hash01(first.OwnerCellA, last.OwnerCellB, 257) * 360d), 0f);
+-            var scale = Mathf.Lerp(0.85f, 1.35f,
+-                (float)Hash01(first.OwnerCellA, last.OwnerCellB, 263));
+-            root.transform.localScale = new Vector3(scale, scale * 1.15f, scale);
+-            root.AddComponent<TopDown3DTraversalObstacle>();
+-            var collider = root.AddComponent<BoxCollider>();
+-            collider.center = source.bounds.center;
+-            collider.size = source.bounds.size * 0.85f;
+-            AddStoneLods(root.transform, variant, first, last, seed, source.bounds.size);
++            WorldCliffFaceSpan span, int seed)
++        {
++            var candidates = WorldCliffDebrisPlanner.Plan(runtime.Identity,
++                runtime.CoordinateModel, span);
++            foreach (var candidate in candidates)
++            {
++                var point = candidate.Position;
++                if (!TryGetCliffStone(candidate.SourceRockVariant, 0, out var source)
++                    || !IsDebrisFootprintClear(candidate, settings, runtime,
++                        spawnExclusionCenter, formations, out var local)) continue;
++
++                var root = new GameObject($"Cliff Toe Debris {candidate.Id}");
++                root.transform.SetParent(chunk.DecorationRoot, false);
++                var bounds = source.bounds;
++                var yaw = (float)(Hash01(span.First.OwnerCellA,
++                    span.Last.OwnerCellB, 257 + candidate.Ordinal) * 360d);
++                var tumble = Mathf.Lerp(68f, 105f,
++                    (float)Hash01(span.First.OwnerCellA,
++                        span.Last.OwnerCellB, 263 + candidate.Ordinal));
++                var roll = Mathf.Lerp(-22f, 22f,
++                    (float)Hash01(span.First.OwnerCellA,
++                        span.Last.OwnerCellB, 269 + candidate.Ordinal));
++                root.transform.localRotation = Quaternion.Euler(tumble, yaw, roll);
++                var scale = candidate.TargetWidth / Mathf.Max(
++                    bounds.size.x, bounds.size.y, bounds.size.z);
++                root.transform.localScale = new Vector3(scale, scale * 0.85f, scale);
++                var ground = chunk.transform.InverseTransformPoint(
++                    new Vector3(local.X, local.Y, local.Z));
++                var rotatedCenter = root.transform.localRotation * Vector3.Scale(
++                    bounds.center, root.transform.localScale);
++                var half = Vector3.Scale(bounds.size * 0.41f,
++                    root.transform.localScale);
++                var rotation = root.transform.localRotation;
++                var supportY = Mathf.Abs((rotation * Vector3.right).y) * half.x
++                    + Mathf.Abs((rotation * Vector3.up).y) * half.y
++                    + Mathf.Abs((rotation * Vector3.forward).y) * half.z;
++                var burial = Mathf.Min(0.24f, candidate.TargetWidth * 0.08f);
++                root.transform.localPosition = ground
++                    + new Vector3(-rotatedCenter.x,
++                        supportY - rotatedCenter.y - burial,
++                        -rotatedCenter.z);
++                root.AddComponent<TopDown3DTraversalObstacle>();
++                var collider = root.AddComponent<BoxCollider>();
++                collider.center = bounds.center;
++                collider.size = bounds.size * 0.82f;
++                AddStoneLods(root.transform, candidate.SourceRockVariant,
++                    span.First, span.Last, seed, bounds.size);
++            }
++        }
++
++        private static bool IsDebrisFootprintClear(
++            WorldCliffDebrisCandidate candidate,
++            TopDown3DWorldSettings settings,
++            WorldCreatorProductionRuntime runtime,
++            Vector2 spawnExclusionCenter,
++            IReadOnlyList<TopDown3DRockFormationPlan> formations,
++            out LocalWorldPosition local)
++        {
++            local = default;
++            var radius = candidate.TargetWidth * 0.5f + 0.35f;
++            var offsets = new[]
++            {
++                Vector2.zero, Vector2.right * radius, Vector2.left * radius,
++                Vector2.up * radius, Vector2.down * radius
++            };
++            for (var i = 0; i < offsets.Length; i++)
++            {
++                var point = new AbsoluteWorldPosition(
++                    candidate.Position.HorizontalA + offsets[i].x,
++                    0d,
++                    candidate.Position.HorizontalB + offsets[i].y);
++                if (!runtime.Query.TrySampleSurface(point, out var surface, out _)
++                    || (surface.Semantic & (WorldSurfaceSemantic.SiteReservation
++                        | WorldSurfaceSemantic.Approach)) != 0
++                    || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BooterProof,
++                        out var booter, out _)
++                    || !runtime.Query.TrySampleAffordance(point, WorldAgentProfile.BigArmProof,
++                        out var bigArm, out _)
++                    || booter.ReservedRoute || bigArm.ReservedRoute
++                    || booter.SlopeDegrees > 27f || bigArm.SlopeDegrees > 27f
++                    || !runtime.TryToLocal(surface.Position, out var sampleLocal)) return false;
++                var center = new Vector2(sampleLocal.X, sampleLocal.Z);
++                if (Vector2.Distance(center, spawnExclusionCenter)
++                    < settings.ClearSpawnRadius + radius) return false;
++                if (formations != null)
++                    for (var formation = 0; formation < formations.Count; formation++)
++                        if (Vector2.Distance(center, formations[formation].EnvelopeCenter)
++                            < formations[formation].EnvelopeRadius + radius) return false;
++                if (i == 0) local = sampleLocal;
++            }
++
++            return true;
+         }
+ 
+         private static void AddStoneLods(Transform root, int variant,
