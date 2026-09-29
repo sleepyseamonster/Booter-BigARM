@@ -1,0 +1,203 @@
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using BooterBigArm.TopDown3D;
+using BooterBigArm.TopDown3D.WorldCreator;
+using NUnit.Framework;
+using UnityEditor;
+using UnityEngine;
+
+namespace BooterBigArm.Tests.WorldCreator
+{
+    public sealed class TempCanyonFaceProofTests
+    {
+        [Test]
+        public async Task ActualRepresentationCompilerKeepsCanyonVertexAcrossTiers()
+        {
+            using var runtime = WorldCreatorProductionRuntime.Create(24681357L);
+            Assert.That(runtime.Query.TrySampleSurface(
+                new AbsoluteWorldPosition(417d, 0d, 342d),
+                out var floorSample, out var floorError), Is.True, floorError);
+            var floorKinds = floorSample.Semantic &
+                (WorldSurfaceSemantic.CanyonFloor | WorldSurfaceSemantic.CanyonShelf |
+                 WorldSurfaceSemantic.CanyonWall);
+            Assert.That(floorKinds == WorldSurfaceSemantic.CanyonFloor
+                || floorKinds == WorldSurfaceSemantic.CanyonShelf
+                || floorKinds == WorldSurfaceSemantic.CanyonWall, Is.True);
+            var pool = new WorldRepresentationBufferPool();
+            var compiler = new WorldRepresentationCompiler(runtime.Query, pool,
+                runtime.Profile.CreateRepresentationProfile(), runtime.SourceFingerprint);
+            var nearKey = runtime.CreateRepresentationKey(WorldRepresentationTier.Near,
+                23, 19, 18d);
+            var midKey = runtime.CreateRepresentationKey(WorldRepresentationTier.Mid,
+                5, 4, 72d);
+            var farKey = runtime.CreateRepresentationKey(WorldRepresentationTier.Far,
+                1, 1, 288d);
+            using var near = await compiler.BuildAsync(nearKey, CancellationToken.None);
+            using var mid = await compiler.BuildAsync(midKey, CancellationToken.None);
+            using var far = await compiler.BuildAsync(farKey, CancellationToken.None);
+            Assert.That(near.Resolution, Is.EqualTo(25));
+            Assert.That(mid.Resolution, Is.EqualTo(17));
+            Assert.That(far.Resolution, Is.EqualTo(17));
+            var nearIndex = 0;
+            var midIndex = 12 * mid.Resolution + 12;
+            var farIndex = 3 * far.Resolution + 7;
+            foreach (var result in new[] { near, mid, far })
+            {
+                var index = result.Key.Tier == WorldRepresentationTier.Near
+                    ? nearIndex : result.Key.Tier == WorldRepresentationTier.Mid
+                        ? midIndex : farIndex;
+                var absolute = result.GetAbsolutePosition(index);
+                Assert.That(absolute.HorizontalA, Is.EqualTo(414d));
+                Assert.That(absolute.HorizontalB, Is.EqualTo(342d));
+                Assert.That(absolute.Vertical, Is.EqualTo(result.GetHeight(index)));
+            }
+            Assert.That(near.GetFeatureId(nearIndex), Is.EqualTo(mid.GetFeatureId(midIndex)));
+            Assert.That(mid.GetFeatureId(midIndex), Is.EqualTo(far.GetFeatureId(farIndex)));
+            Assert.That(near.GetSemantic(nearIndex), Is.EqualTo(mid.GetSemantic(midIndex)));
+            Assert.That(mid.GetSemantic(midIndex), Is.EqualTo(far.GetSemantic(farIndex)));
+            Assert.That(mid.GetHeight(midIndex), Is.EqualTo(far.GetHeight(farIndex)));
+            Assert.That(Mathf.Abs(near.GetHeight(nearIndex) - mid.GetHeight(midIndex)),
+                Is.LessThan(0.5f));
+            Assert.That(near.HasCollision, Is.True);
+            Assert.That(mid.HasCollision, Is.False);
+            Assert.That(far.HasCollision, Is.False);
+            UnityEngine.Debug.Log($"CANYON TIERS near={near.GetHeight(nearIndex):F3} mid={mid.GetHeight(midIndex):F3} far={far.GetHeight(farIndex):F3} feature={near.GetFeatureId(nearIndex)} semantic={near.GetSemantic(nearIndex)}");
+        }
+
+        [Test]
+        public async Task CanyonBoundaryMatchesAdjacentTilesAndProductionMaterialAcrossTiers()
+        {
+            using var runtime = WorldCreatorProductionRuntime.Create(24681357L);
+            var compiler = new WorldRepresentationCompiler(runtime.Query,
+                runtime.Authority.Materials, new WorldRepresentationBufferPool(),
+                runtime.Profile.CreateRepresentationProfile(), runtime.SourceFingerprint);
+            using var nearLeft = await compiler.BuildAsync(runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Near, 23, 19, 18d), CancellationToken.None);
+            using var nearRight = await compiler.BuildAsync(runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Near, 24, 19, 18d), CancellationToken.None);
+            using var midLeft = await compiler.BuildAsync(runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Mid, 5, 4, 72d), CancellationToken.None);
+            using var midRight = await compiler.BuildAsync(runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Mid, 6, 4, 72d), CancellationToken.None);
+            using var far = await compiler.BuildAsync(runtime.CreateRepresentationKey(
+                WorldRepresentationTier.Far, 1, 1, 288d), CancellationToken.None);
+
+            for (var z = 0; z < 25; z++)
+                AssertSame(nearLeft, z * 25 + 24, nearRight, z * 25,
+                    $"near boundary z={z}");
+            for (var z = 0; z < 17; z++)
+                AssertSame(midLeft, z * 17 + 16, midRight, z * 17,
+                    $"mid boundary z={z}");
+            for (var z = 0; z <= 4; z++)
+            {
+                var nearZ = z * 6;
+                var midZ = 12 + z;
+                AssertSame(nearLeft, nearZ * 25 + 24,
+                    midLeft, midZ * 17 + 16, $"near/mid z={z}");
+            }
+            AssertSame(nearLeft, 24, far, 3 * 17 + 8, "near/far (432,342)");
+            AssertSame(nearLeft, 24 * 25 + 24, far, 4 * 17 + 8,
+                "near/far (432,360)");
+        }
+
+        private static void AssertSame(WorldRepresentationBuildResult left, int leftIndex,
+            WorldRepresentationBuildResult right, int rightIndex, string context)
+        {
+            var a = left.GetAbsolutePosition(leftIndex);
+            var b = right.GetAbsolutePosition(rightIndex);
+            Assert.That(a.HorizontalA, Is.EqualTo(b.HorizontalA), context);
+            Assert.That(a.HorizontalB, Is.EqualTo(b.HorizontalB), context);
+            Assert.That(left.GetHeight(leftIndex), Is.EqualTo(right.GetHeight(rightIndex)),
+                context + " height");
+            Assert.That(left.GetFeatureId(leftIndex), Is.EqualTo(right.GetFeatureId(rightIndex)),
+                context + " feature");
+            Assert.That(left.GetSemantic(leftIndex), Is.EqualTo(right.GetSemantic(rightIndex)),
+                context + " semantic");
+            Assert.That(left.GetMaterial(leftIndex), Is.EqualTo(right.GetMaterial(rightIndex)),
+                context + " material");
+        }
+
+        [Test]
+        public void CanyonWallProducesConnectedPhysicalFaceAndSourceRocks()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(
+                "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset");
+            Assert.That(settings, Is.Not.Null);
+            using var runtime = WorldCreatorProductionRuntime.Create(24681357L);
+            Assert.That(runtime.Profile.IncludeCanyonsInInitialPlayableArea, Is.True);
+            var coordinates = Enumerable.Range(17, 4)
+                .SelectMany(b => Enumerable.Range(21, 5)
+                    .Select(a => new Vector2Int(a, b))).ToArray();
+            var firstPass = Capture(coordinates, settings, runtime);
+            var secondPass = Capture(coordinates.Reverse().ToArray(), settings, runtime);
+            Assert.That(secondPass.ids, Is.EquivalentTo(firstPass.ids));
+            Assert.That(runtime.TryRebase(new AbsoluteWorldPosition(18d, 0d, 0d)), Is.True);
+            var rebased = Capture(coordinates, settings, runtime);
+            Assert.That(rebased.ids, Is.EquivalentTo(firstPass.ids));
+            Assert.That(firstPass.faces, Is.GreaterThan(0));
+            Assert.That(firstPass.stones, Is.GreaterThan(0));
+        }
+
+        private static (int faces, int stones, string[] ids) Capture(
+            Vector2Int[] coordinates, TopDown3DWorldSettings settings,
+            WorldCreatorProductionRuntime runtime)
+        {
+            var totalFaces = 0;
+            var totalStones = 0;
+            var ids = new System.Collections.Generic.List<string>();
+            var maximumContactGap = 0f;
+            var poorContacts = 0;
+            var clock = Stopwatch.StartNew();
+            foreach (var coordinate in coordinates)
+            {
+                var root = new GameObject("Canyon fixture chunk");
+                try
+                {
+                    var absolute = new AbsoluteWorldPosition(
+                        coordinate.x * (double)settings.ChunkSize, 0d,
+                        coordinate.y * (double)settings.ChunkSize);
+                    Assert.That(runtime.TryToLocal(absolute, out var local), Is.True);
+                    root.transform.position = new Vector3(local.X, local.Y, local.Z);
+                    var chunk = root.AddComponent<TopDown3DGeneratedChunk>();
+                    chunk.Initialize(coordinate, null);
+                    foreach (var _ in TopDown3DCliffFaceDecorator.DecorateSteps(
+                        chunk, settings, runtime, Vector2.zero, null)) { }
+                    Physics.SyncTransforms();
+                    foreach (var faceCollider in root.GetComponentsInChildren<MeshCollider>())
+                    {
+                        var bounds = faceCollider.bounds;
+                        var ray = new Ray(bounds.center + Vector3.up * (bounds.extents.y + 1f),
+                            Vector3.down);
+                        Assert.That(faceCollider.Raycast(ray, out _, bounds.size.y + 2f), Is.True,
+                            faceCollider.gameObject.name);
+                    }
+                    totalFaces += root.GetComponentsInChildren<MeshCollider>().Length;
+                    totalStones += root.GetComponentsInChildren<BoxCollider>().Length;
+                    foreach (var collider in root.GetComponentsInChildren<BoxCollider>())
+                    {
+                        if (!collider.gameObject.name.StartsWith("Cliff Toe Debris")) continue;
+                        var absolutePoint = runtime.ToAbsolute(
+                            collider.bounds.center.x, 0f, collider.bounds.center.z);
+                        Assert.That(runtime.Query.TrySampleSurface(absolutePoint,
+                            out var surface, out var error), Is.True, error);
+                        Assert.That(runtime.TryToLocal(surface.Position, out var ground), Is.True);
+                        var gap = Mathf.Abs(collider.bounds.min.y - ground.Y);
+                        maximumContactGap = Mathf.Max(maximumContactGap, gap);
+                        if (gap > 1f) poorContacts++;
+                    }
+                    ids.AddRange(root.GetComponentsInChildren<MeshCollider>()
+                        .Select(collider => collider.gameObject.name));
+                    ids.AddRange(root.GetComponentsInChildren<BoxCollider>()
+                        .Select(collider => collider.gameObject.name));
+                }
+                finally { Object.DestroyImmediate(root); }
+            }
+            clock.Stop();
+            UnityEngine.Debug.Log($"CANYON FIXTURE faces={totalFaces} stones={totalStones} talus={ids.Count(id => id.StartsWith("Cliff Toe Debris"))} buttress={ids.Count(id => id.StartsWith("Workbench Cliff Buttress"))} contactGapMax={maximumContactGap:F2} poorContacts={poorContacts} elapsedMs={clock.ElapsedMilliseconds}");
+            Assert.That(poorContacts, Is.Zero);
+            return (totalFaces, totalStones, ids.OrderBy(id => id).ToArray());
+        }
+    }
+}

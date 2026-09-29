@@ -1,10 +1,12 @@
 # Terrain Cliff, Valley, and Debris Plan
 
-Status: a connected bedrock-face runtime pass is implemented, 2026-09-28; sparse vertical
-landforms, valley/debris integration and final visual decisions remain proposed. This
-document records the audit, rejected iterations and next proof. The current pass does not
-alter accepted terrain heights, enable canyons in the first playable area, or change save
-authority.
+Status: the connected bedrock-face and sparse Rock Workbench runtime path are implemented;
+one terraced canyon topology, fallen talus, and floor-material response remain in an
+isolated Unity mirror. The mirror has deterministic, collision, adjacent-vertex,
+and full-content Development Player evidence. The reference-image composition, complete
+near/middle/far silhouette, continuous hands-on traversal, and topology/save compatibility
+are still open. Production terrain heights, first-area canyon policy, and save authority
+have not changed.
 
 Connected-bedrock checkpoint, 2026-09-28: the disconnected three-to-seven-stone clusters
 shown in the user's screenshot have been removed from near-chunk cliff decoration. Sustained
@@ -26,8 +28,9 @@ until an in-game view and traversal review.
 bedrock mesh, and sparse Rock Workbench buttress/toe pass are implemented. The generated
 canyon fixture and focused tests are recorded in
 [the canyon implementation receipt](Evidence/WorldCreator/CanyonSlice/README.md).
-Fixed-camera visual review, terrain-triangle contact, streaming-ring proof, full-content
-Player profiling, and any topology/save cutover remain open gates. This section makes the
+Fixed-camera visual review, full-footprint terrain contact, streaming-ring proof, and any
+topology/save cutover remain open gates. A full-content Development Player route has been
+profiled, with arrival hitches still requiring a budget and attribution. This section makes the
 remaining slice executable. It extends the
 connected-bedrock checkpoint and the generation contract below. Earlier rejected rock
 clusters, flat stickers, and generic broad-rock walls are evidence, not fallback paths.
@@ -44,9 +47,11 @@ within 0.14 m and raycastable face collision, and showed the terraces flatten in
 18 m-sampled far view. The [receipt](Evidence/WorldCreator/CanyonSlice/README.md)
 preserves the proof code, patches, images, and XML; a real representation and streaming
 comparison remains required before cutover.
-The actual representation compiler now agrees at one shared canyon vertex across its
-25/17/17 near/mid/far grids; the 2-of-2 mirror result still leaves full silhouette,
-adjacent tiles, lifecycle, and Player pacing open.
+The actual representation compiler agrees at adjacent near and middle boundaries and at
+sampled cross-tier vertices: 25 near edge vertices, 17 middle edge vertices, five near/middle
+and two near/far shared points passed a mirror-only geometry/material check. The broad cut
+persists in actual middle/far renders, but the middle tier is visibly angular and the far
+tier smooths away most shelves. Coincident samples do not establish a continuous silhouette.
 The fixed 50°/40°/25 m/48° gameplay-camera diagnostic revealed a red/black patch on the
 actual near representation even with cliff decoration disabled. White-albedo isolation on
 a disposable terrain material removes it; this is a material/lighting investigation,
@@ -60,8 +65,13 @@ its 20-chunk contact/identity fixture passed 2 of 2 and measured at most 0.22 m
 center contact error. A canyon-floor material response reduced the most saturated
 patch in a fixed camera, but the adjoining slope and repeated face remain below the
 reference target. The canyon-enabled mirror's material suite passed 6 of 7; the dust
-plan's rebase-equality test failed and requires baseline attribution. These are
-candidate experiments, not a production cutover.
+plan's rebase-equality test failed. A subsequent source-linked wake quantization fix passed
+the full 7-test material suite, 11 deposition tests and a focused wake taper test. The
+full-content Development Player traversed five automated waypoints across two chunk-center
+steps in each direction, settled its pending queues, and exposed 41–75 ms arrival-window p99
+hitches plus a 783 ms first-arrival window. Those measurements are a diagnostic, not a
+target-machine acceptance. The floor-material and terraced topology changes remain mirror
+candidates; the [receipt](Evidence/WorldCreator/CanyonSlice/README.md) retains the exact proof.
 
 ### Objective, authority, and fixture
 
@@ -90,7 +100,8 @@ Unity/editor and automation handoff. Gear Ball handles an eventual task-owned lo
 only after verification; a push or release needs separate authority. The user owns the
 creative acceptance of the image target, hands-on traversal, target hardware/quality bar,
 and any change to first-area geography or existing-save compatibility. No lore change is
-needed. This plan authorizes planning only; implementation is a later instruction.
+needed. The user subsequently authorized implementation; production topology cutover still
+requires the compatibility decision and accepted visual result described here.
 
 ### Current source boundary and known conflict
 
