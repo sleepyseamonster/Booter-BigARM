@@ -384,6 +384,10 @@ namespace BooterBigArm.TopDown3D
                 // Allow many small steps, but stop as soon as the frame's time is spent.
                 var count = Mathf.Max(0, budget * 128);
                 var startedAt = Time.realtimeSinceStartupAsDouble;
+                // Keep nearby collision and terrain ahead of decoration, then advance
+                // one decoration step before distant terrain and ground refreshes.
+                if (!TryCreatePendingTerrainCollider() && !TryIntegrateRequestedTerrainWithin(1))
+                    TryProcessDecoration();
                 for (var i = 0; i < count; i++)
                 {
                     if (!TryCreatePendingTerrainCollider()
@@ -521,12 +525,18 @@ namespace BooterBigArm.TopDown3D
 
         private bool TryIntegrateRequestedTerrain()
         {
+            return TryIntegrateRequestedTerrainWithin(int.MaxValue);
+        }
+
+        private bool TryIntegrateRequestedTerrainWithin(int maximumDistance)
+        {
             var found = false;
             var coordinate = default(Vector2Int);
             var request = default(TerrainRequest);
             foreach (var pair in terrainRequests)
             {
-                if (!pair.Value.Task.IsCompleted
+                if (ChebyshevDistance(pair.Key, currentCenterChunk) > maximumDistance
+                    || !pair.Value.Task.IsCompleted
                     || (found && ComparePendingChunks(pair.Key, coordinate) >= 0)) continue;
 
                 var candidateOutcome = pair.Value.Task.GetAwaiter().GetResult();
