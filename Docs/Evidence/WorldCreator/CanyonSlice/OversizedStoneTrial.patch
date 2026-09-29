@@ -1,0 +1,11 @@
+--- a/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs
++++ b/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs
+@@ -288,7 +288,7 @@
+                 Mathf.Atan2(outward.x, outward.z) * Mathf.Rad2Deg
+                     + (float)(Hash01(first.OwnerCellA, last.OwnerCellB, 227) * 40d - 20d),
+                 0f);
+-            var scale = Mathf.Lerp(3.5f, 5.5f,
++            var scale = Mathf.Lerp(8f, 14f,
+                 (float)Hash01(first.OwnerCellA, last.OwnerCellB, 229));
+             var size = new Vector3(scale, scale * 2.0f, scale);
+             var bounds = source.bounds;

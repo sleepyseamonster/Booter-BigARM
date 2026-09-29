@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-29 14:26:01Z" end-time="2026-09-29 14:26:07Z" duration="5.6289006">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 14:26:01Z" end-time="2026-09-29 14:26:07Z" duration="5.628901" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1540" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/booter-canyon-zDplUi/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 14:26:01Z" end-time="2026-09-29 14:26:07Z" duration="5.615178" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="67865" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1541" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 14:26:01Z" end-time="2026-09-29 14:26:07Z" duration="5.605280" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1542" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="460" result="Passed" start-time="2026-09-29 14:26:01Z" end-time="2026-09-29 14:26:07Z" duration="5.598801" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1543" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-09-29 14:26:01Z" end-time="2026-09-29 14:26:07Z" duration="5.585795" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1426" name="TempCanyonFaceProofTests" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-29 14:26:01Z" end-time="2026-09-29 14:26:07Z" duration="5.582589" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1428" name="AuditRealizedAuthoredFormationsAcrossVisibleCanyon" fullname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests.AuditRealizedAuthoredFormationsAcrossVisibleCanyon" methodname="AuditRealizedAuthoredFormationsAcrossVisibleCanyon" classname="BooterBigArm.Tests.WorldCreator.TempCanyonFaceProofTests" runstate="Runnable" seed="1790757397" result="Passed" start-time="2026-09-29 14:26:01Z" end-time="2026-09-29 14:26:07Z" duration="5.572989" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CANYON AUTHORED FORMATION chunk=26,18 id=c2f88d96a2088115830c330282cb3713 template=MixedPileScatter members=19 center=(484.07, 332.56) radius=9.0 height=4.1
+CANYON AUTHORED FORMATION chunk=28,19 id=595f77666616ee258e77033a32e668e4 template=HandbuiltSpire members=20 center=(505.79, 345.73) radius=5.2 height=6.1
+CANYON AUTHORED FORMATION chunk=27,20 id=bc3fa14e4e83fce8333701125d87d7c1 template=MixedPileScatter members=19 center=(486.89, 362.82) radius=9.5 height=4.6
+CANYON AUTHORED FORMATION chunk=27,20 id=f66bb1e9c66b7bb3c47b7ad1e79037f2 template=HandbuiltSpire members=22 center=(490.07, 372.94) radius=5.4 height=6.6
+CANYON AUTHORED FORMATION chunk=28,20 id=15424df916471254a07826ef5d51c32c template=HandbuiltSpire members=18 center=(517.82, 375.75) radius=5.4 height=7.1
+CANYON AUTHORED FORMATION chunk=30,20 id=3e0a10176509003b005ad833158ffad6 template=HandbuiltSpire members=20 center=(555.13, 373.58) radius=5.4 height=6.0
+CANYON AUTHORED REALIZATION formations=6 members=118 chunks=5/49 elapsedMs=3904
+Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

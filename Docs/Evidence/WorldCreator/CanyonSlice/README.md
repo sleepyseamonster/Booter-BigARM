@@ -206,3 +206,7 @@ The [separate trial receipt](WidenedApronTrial.md) records the canonical approve
 ## Parent-wall warp rejection, 2026-09-29
 
 The [parent-wall trial](ParentWallWarpTrial.md) tested a broad wall-only terrain warp against the widened-apron control. The 14 focused checks passed, but the actual middle-tier image developed harsh triangular strata; higher sample density and wider erosion transitions did not produce an acceptable layered cliff. The mirror query was restored, and no live Unity asset changed.
+
+## Workbench scale trials, 2026-09-29
+
+The [Workbench scale receipt](WorkbenchScaleTrials.md) rejects oversized individual cliff stones, which read as dark pebbles glued to a pale wall. Doubling approved spire composites on steep canyon shoulders produced no new realized wall formation under the full-footprint screen. Both mirror changes were restored. The next candidate needs a deliberately authored, baked wall/mesa formation rather than a scale multiplier.
