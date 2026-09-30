@@ -12,6 +12,8 @@ This is a **provisional Blender scene**, built for visual review before Unity in
 - `BrokenWorldBadlandsRockDetailStudy.png` and `BrokenWorldBadlandsRockDetailCloseup.png` show the rock-detail pass and a formation close-up.
 - `apply_badlands_realism_to_open_study.py` applies a ground, placement, and composition pass to the same open `.blend` without resetting the user's edited sun.
 - `BrokenWorldBadlandsRealismStudy.png` is a review render from the saved working file after that pass.
+- `expand_badlands_authoring_area.py` extends the terrain in the currently open working file while copying every existing center vertex and its ground mask color.
+- `BrokenWorldBadlandsExpandedOverview.png` is the full-area review render from the saved working file.
 
 Run from the repository root with the Steam Blender executable on this macOS host:
 
@@ -27,6 +29,8 @@ The source script rebuilds its output files and is not an in-place editor for us
 The user-facing working file remains `BrokenWorldBadlandsStudy.blend`. The rock-detail pass was applied to that same open file, preserving its edited sun and view. It adds denser rock meshes, broken silhouettes, shaped tops, smoother side normals, box-projected albedo, fine bump detail, and a soft fill light. The separate review render also tries slightly deeper rock grounding; the in-place update preserves the user's rock transforms. These meshes have not been optimized or imported for Unity.
 
 The next in-place pass expanded the terrain from 90 m to 180 m, smoothed its surface, reduced the ground material's orange saturation, mixed in broad gravel variation, settled 145 existing rocks, varied five buttress positions and heights, and added 100 small talus fragments near formations. It added an interior review camera while retaining the original elevated camera. The live scene was saved in the same `.blend`. The render still shows a finite study boundary at its upper corners, and the ground remains a provisional material study rather than a finished texture set.
+
+The current working scene is now 360 m × 360 m, four times the previous area. The authored 180 m × 180 m center retains its 0.75 m mesh spacing and all 58,081 original vertex positions; the new 90 m wide band on every side uses 2.5 m spacing and low, broad relief. All 245 pre-existing rocks and talus pieces retain their transforms. The original cameras remain, and the new `Expanded authoring overview camera` is active for reviewing the whole canvas. The expanded ground is deliberately sparse for future visual authoring. The saved mesh has 97,969 vertices and 194,688 terrain triangles, compared with 58,081 vertices and 115,200 terrain triangles before expansion. Its finite edge is visible in the full-area render; this is still a bounded Blender study, not a Unity world or streamed terrain.
 
 ## Review gate
 
