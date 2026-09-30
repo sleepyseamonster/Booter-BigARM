@@ -18,4 +18,8 @@ This directory contains durable contracts and working surfaces for persistent re
 
 - [Lorekeeper](./Lorekeeper/README.md) — worldbuilding, storytelling, lore, plot, and thematic specialist with a bounded read-only-by-default bridge to the Arc & Dust source repository.
 
+## Persistent 3D Modeling Specialist
+
+- [Blender](./Blender/README.md) — Blender modeling research, source asset creation, mesh quality, and Unity-ready asset handoff under Gottspan's coordination.
+
 Task specialists do not need permanent folders by default. Gottspan assigns temporary specialist seats through bounded task briefs and records only information that needs to survive the task.

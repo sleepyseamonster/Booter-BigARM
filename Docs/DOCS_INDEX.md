@@ -35,6 +35,8 @@ These should be treated as the source of truth unless they are intentionally rev
   Bounded durable project facts and known management gaps; it does not replace live inspection.
 - [Agents/Lorekeeper/README.md](./Agents/Lorekeeper/README.md)
   The persistent worldbuilding, storytelling, lore, plot, and thematic specialist, including the read-only-by-default bridge to the Arc & Dust source repository.
+- [Agents/Blender/README.md](./Agents/Blender/README.md)
+  The persistent Blender modeling specialist and entry point for 3D asset research, authoring, and Unity handoff.
 
 ## Program Plans
 
