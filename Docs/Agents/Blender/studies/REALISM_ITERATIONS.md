@@ -12,7 +12,7 @@ Target: improve the same `BrokenWorldBadlandsStudy.blend` through inspected pass
 
 ## Current application status
 
-Pass one was applied through the live Blender console and saved in the same working file. The Mac then locked and computer control reported that automatic unlock was unavailable. Passes two through five have been applied and inspected in a temporary render candidate at `/tmp/badlands-realism-iterations/BrokenWorldBadlandsStudy.blend`. They are **not yet in the open working scene**. Do not overwrite the working file externally; apply the functions in the open scene after the user unlocks the Mac, then save and verify it.
+All six passes were applied through the live Blender console and saved in the same working file. A temporary Mac lock interrupted live access; it is now resolved. Pass six follows the user’s renewed exposed-bedrock reference: muted brown soil, charcoal shale with restrained mineral highlights, finer pebbles, and short ripple shading limited to sandy gaps. Existing in-editor placement changes, including `Exposed shale plate 044.001`, were preserved. Temporary render candidates are diagnostic only; the open working scene is edited through its console and never overwritten from another process.
 
 ## Passes and evidence
 
@@ -20,18 +20,22 @@ Pass one was applied through the live Blender console and saved in the same work
 | --- | --- | --- |
 | Baseline | Smooth tapered rocks, sparse connecting debris, uniformly orange light, and a finite ground/background join. | [Baseline wide](RealismBaselineWide.png) |
 | 1, applied live | Replaced 245 formation, stone, and talus meshes with fractured planes, irregular wedge tops, shallow joints, and chipped edges. A first overly columnar draft was revised before live application. Originals remain in a hidden archive collection. | [Close inspection](RealismPass01Close.png) |
-| 2, candidate | Added 189 exposed shale plates, clustered fine/medium debris, small sand deposits, a distant surface continuation, coordinated bump/roughness, and separated sun/environment lighting. Cycles inspection exposed pale soil and overly smooth rock tops. | [Rejected material balance](RealismPass02Close.png) |
-| 3, candidate | Replaced the smooth top texture with the fractured texture, cut shallow irregular fissures into upward faces, and restored burnt-rust ground color. | [Correction draft](RealismPass03Draft.png) |
-| 4, candidate | Added low irregular middle-distance erosion banks and 140 shared strata instances. Central terrain remains low and open. Cycles wide inspection exposed a hard sky band. | [Close](RealismPass04Close.png), [wide with clipping defect](RealismPass04Wide.png) |
-| 5, candidate | Extended review-camera far clipping from 1 km to 10 km and made atmospheric density decay with height. This removes the hard horizontal atmosphere band; exposure increased slightly for readable shadow detail. | [Ground-level candidate](RealismCandidateGroundLevel.png), [close candidate](RealismCandidateClose.png), [wide candidate](RealismCandidateWide.png) |
+| 2, applied live | Added 189 exposed shale plates, clustered fine/medium debris, small sand deposits, a distant surface continuation, coordinated bump/roughness, and separated sun/environment lighting. Cycles inspection exposed pale soil and overly smooth rock tops. | [Rejected material balance](RealismPass02Close.png) |
+| 3, applied live | Replaced the smooth top texture with the fractured texture, cut shallow irregular fissures into upward faces, and restored burnt-rust ground color. | [Correction draft](RealismPass03Draft.png) |
+| 4, applied live | Added low irregular middle-distance erosion banks and 140 shared strata instances. Central terrain remains low and open. Cycles wide inspection exposed a hard sky band. | [Close](RealismPass04Close.png), [wide with clipping defect](RealismPass04Wide.png) |
+| 5, applied live | Extended review-camera far clipping from 1 km to 10 km and made atmospheric density decay with height. This removes the hard horizontal atmosphere band; exposure increased slightly for readable shadow detail. | [Ground-level candidate](RealismCandidateGroundLevel.png), [close candidate](RealismCandidateClose.png), [wide candidate](RealismCandidateWide.png) |
 
-The review renderer uses fixed close/wide/ground-level cameras. Final candidate close and ground-level images use Cycles Metal, 48 samples and denoising at 1400 × 840; wide uses 32 samples. Drafts are explicitly retained as iteration evidence, not presented as the final working-scene state.
+| 6, applied live | Reduced soil saturation and the orange light cast, made soil matte, tuned mineral sheen, added fine embedded pebbles, and restricted short distorted ripple bump to intermittent dirt pockets. Rejected a test with overly glossy stones and pale soil, then reduced reflections and restored warm brown. Reduced excessive image-derived bump so the ground reads as fine sediment. Terrain geometry remains unchanged by this pass. | [Saved-scene close](RealismFinalClose.png), [surface](RealismFinalSurface.png), [wide](RealismFinalWide.png) |
 
-## Resume and verification
+The review renderer uses fixed close/wide/ground-level cameras. Saved-scene final images use Cycles Metal, 48 samples and denoising at 1400 × 840. Earlier candidate close and ground-level images used 48 samples; their wide view used 32 samples. Drafts and candidate images are retained as iteration evidence. `RealismFinal*.png` is the final saved working-scene evidence.
 
-In the existing Blender Python console, import `author_badlands_realism.py` with `runpy.run_path`, then call `pass_two()`, `pass_three()`, `pass_four()`, and `pass_five()` in order. The functions have terrain markers to prevent repeated application. Save the same file and return the editor to a 3D view. Render the saved working file with `render_realism_review.py` and confirm the inspected candidate survived application.
+## Application and verification
+
+Authoring runs in the existing Blender Python console via `runpy.run_path`. Functions `pass_one()` through `pass_six()` have terrain markers to prevent repeated application. Render the saved working file with `render_realism_review.py`; close, wide, ground-level, and surface views are available. Save in the same path and leave the editor in a 3D view.
 
 Candidate structural inspection after pass four: 97,969 terrain vertices, 360 × 360 m authoring area, terrain height range approximately −0.70 to 4.07 m, 247 archived original objects, 585 visible mesh objects, and 2,303,249 unique source vertices. No nonfinite vertex coordinates were found. Seven surface images in used visible materials were packed. The exact user panorama remains in the world shader and is not replaced or edited. Pass five changes only camera limits, atmosphere bounds/density, and exposure.
+
+Final saved-file inspection confirms all six pass markers, the same terrain dimensions and height range, 247 archived originals, 587 visible mesh objects, and 2,471,443 unique source vertices. Nine image datablocks used by visible surface materials are packed, including repeated datablocks retained in the live scene. There are no nonfinite vertex coordinates. The user's added plate remains present. Close, surface, and wide renders were produced from this saved working file and visually inspected. The wide view shows localized ripple patches; the surface view verifies matte soil and restrained rock sheen. Python syntax and scoped Git whitespace checks passed. No Unity assets or runtime systems were modified or tested.
 
 ## Remaining visual limits
 

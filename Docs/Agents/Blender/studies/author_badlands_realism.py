@@ -1,7 +1,9 @@
 """Inspected realism passes for the existing open Blender study.
 
-Import this file and call pass_one() or pass_two() from Blender's console.
-The original rock objects are retained in a hidden archive collection.
+Import with runpy.run_path and call pass_one() through pass_six() in order
+from the existing Blender console, inspecting renders between passes.
+Per-pass terrain markers prevent repeated application. The original rock
+objects and terrain are retained in a hidden archive collection.
 """
 from pathlib import Path
 from math import cos, sin, pi, exp
@@ -519,6 +521,92 @@ def pass_five():
     bpy.context.scene.view_settings.exposure=.4
     t['geology_pass_five']=True
     print('PASS FIVE: extended camera range and height-faded atmosphere')
+
+
+def pass_six():
+    """Reference-led muted soil, mineral glints, pebbles and local sand ripples."""
+    t=terrain()
+    if not t.get('geology_pass_five'): raise RuntimeError('Apply the inspected earlier passes first')
+    if t.get('geology_pass_six'): return
+    n,l=t.active_material.node_tree.nodes,t.active_material.node_tree.links
+    balance=n['Restrained rust palette']
+    balance.inputs['Saturation'].default_value=.70
+    balance.inputs['Value'].default_value=.86
+    n['Burnt rust mineral balance'].inputs[2].default_value=(.86,.64,.46,1)
+    bs=n['Dry badlands ground']
+    bs.inputs['Specular IOR Level'].default_value=.15
+    n['Shale relief matching color'].inputs['Strength'].default_value=.24
+    n['Shale relief matching color'].inputs['Distance'].default_value=.024
+    n['Continuous fine ground grain'].inputs['Scale'].default_value=85
+    n['Fine dirt and chip relief'].inputs['Distance'].default_value=.0025
+    position=n['World-position mapping'].outputs['Position']
+    # Short wind ripples only in intermittent dirt pockets. No terrain vertex
+    # heights change and no full-landscape periodic waves are reintroduced.
+    rotation=n.new('ShaderNodeVectorRotate'); rotation.rotation_type='AXIS_ANGLE'
+    rotation.inputs['Axis'].default_value=(0,0,1); rotation.inputs['Angle'].default_value=.42
+    l.new(position,rotation.inputs['Vector'])
+    wave=n.new('ShaderNodeTexWave'); wave.name='Short warped wind ripples'
+    wave.wave_type='BANDS'; wave.bands_direction='X'
+    wave.inputs['Scale'].default_value=1.65; wave.inputs['Distortion'].default_value=5
+    wave.inputs['Detail'].default_value=3; wave.inputs['Detail Scale'].default_value=.65
+    l.new(rotation.outputs['Vector'],wave.inputs['Vector'])
+    pockets=n.new('ShaderNodeTexNoise'); pockets.name='Intermittent sandy ripple pockets'
+    pockets.inputs['Scale'].default_value=.19; pockets.inputs['Detail'].default_value=2
+    l.new(position,pockets.inputs['Vector'])
+    pocketmask=n.new('ShaderNodeMapRange')
+    pocketmask.inputs['From Min'].default_value=.50; pocketmask.inputs['From Max'].default_value=.66
+    l.new(pockets.outputs['Fac'],pocketmask.inputs['Value'])
+    dirt=n.new('ShaderNodeMath'); dirt.operation='SUBTRACT'; dirt.inputs[0].default_value=1
+    l.new(n['Dirt to sparse shale edge'].outputs['Color'],dirt.inputs[1])
+    mask=n.new('ShaderNodeMath'); mask.operation='MULTIPLY'
+    l.new(dirt.outputs[0],mask.inputs[0]); l.new(pocketmask.outputs[0],mask.inputs[1])
+    relief=n.new('ShaderNodeMath'); relief.operation='MULTIPLY'
+    l.new(mask.outputs[0],relief.inputs[0]); l.new(wave.outputs['Color'],relief.inputs[1])
+    bump=n.new('ShaderNodeBump'); bump.name='Fine ripples in sandy gaps only'
+    bump.inputs['Strength'].default_value=.45; bump.inputs['Distance'].default_value=.018
+    previous=bs.inputs['Normal'].links[0].from_socket
+    l.new(previous,bump.inputs['Normal']); l.new(relief.outputs[0],bump.inputs['Height'])
+    l.new(bump.outputs['Normal'],bs.inputs['Normal'])
+    rock=rock_material(); rn,rl=rock.node_tree.nodes,rock.node_tree.links
+    rbs=rn['Principled BSDF']; old=rbs.inputs['Roughness'].links[0].from_socket
+    rough=rn.new('ShaderNodeMapRange'); rough.name='Dry shale mineral sheen'
+    rough.inputs['To Min'].default_value=.38; rough.inputs['To Max'].default_value=.65
+    rl.new(old,rough.inputs['Value']); rl.new(rough.outputs[0],rbs.inputs['Roughness'])
+    rbs.inputs['Specular IOR Level'].default_value=.40
+    rbs.inputs['Metallic'].default_value=0
+    for node in rn:
+        if node.type=='BUMP':
+            node.inputs['Distance'].default_value=.025 if node.inputs['Distance'].default_value>.04 else .002
+    # Finer partly embedded fragments fill the scale gap below existing stones.
+    rng=random.Random(67302)
+    sources=[chip_mesh(67302+i*71) for i in range(8)]
+    proto=[([v.co.copy() for v in mesh.vertices],[tuple(p.vertices) for p in mesh.polygons]) for mesh in sources]
+    verts,faces=[],[]
+    for i in range(7500):
+        x,y=rng.uniform(-48,76),rng.uniform(-48,55)
+        patch=noise.noise(Vector((x*.11,y*.11,231)))
+        if patch<-.10 or (abs(x)<2.7 and rng.random()<.8): continue
+        size=rng.uniform(.055,.21)
+        z=ground(x,y)-size*.045
+        angle=rng.uniform(0,2*pi); ca,sa=cos(angle),sin(angle)
+        points,polys=rng.choice(proto); start=len(verts)
+        for p in points:
+            verts.append((x+size*(p.x*ca-p.y*sa),y+size*(p.x*sa+p.y*ca),z+size*p.z*.65))
+        faces.extend(tuple(start+j for j in poly) for poly in polys)
+    mesh=bpy.data.meshes.new('Fine partially embedded shale pebbles')
+    mesh.from_pydata(verts,[],faces); mesh.materials.append(rock); mesh.update()
+    for poly in mesh.polygons: poly.use_smooth=True
+    obj=bpy.data.objects.new('Fine pebbles between bedrock exposures',mesh); collection(DETAIL).objects.link(obj)
+    obj['scatter_seed']=67302
+    sun=bpy.data.objects['Low twilight sun']; sun.data.color=(1,.86,.70)
+    sun.data.energy=2.8; sun.data.angle=.025
+    sun.rotation_euler=Vector((.8,-.35,-.60)).to_track_quat('-Z','Y').to_euler()
+    ambient=bpy.context.scene.world.node_tree.nodes['Balanced diffuse environment']
+    ambient.inputs['Color'].default_value=(.37,.39,.42,1); ambient.inputs['Strength'].default_value=.27
+    bpy.context.scene.view_settings.exposure=.15
+    camera('Geology surface review',(23,-25,1.6),(27,-21,.2),40)
+    t['geology_pass_six']=True
+    print('PASS SIX: muted soil, charcoal shale sheen, fine pebbles and localized sand ripples')
 
 
 if __name__=='__main__':

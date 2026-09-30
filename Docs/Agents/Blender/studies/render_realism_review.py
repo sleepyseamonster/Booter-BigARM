@@ -11,7 +11,7 @@ from pathlib import Path
 import bpy
 
 p=argparse.ArgumentParser()
-p.add_argument('--view',choices=['close','wide','ground-level'],default='wide')
+p.add_argument('--view',choices=['close','wide','ground-level','surface'],default='wide')
 p.add_argument('--output',required=True)
 p.add_argument('--path-traced',action='store_true')
 p.add_argument('--samples',type=int,default=32)
