@@ -56,6 +56,65 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void GroundStampRaisesAndPaintsTheSameTerrainMeshUsedByCollision()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(
+                TopDown3DPrototypeBuilder.WorldSettingsPath);
+            var terrainMaterial = AssetDatabase.LoadAssetAtPath<Material>(
+                TopDown3DPrototypeBuilder.TerrainMaterialPath);
+            var root = new GameObject("Ground Stamp Preview Test");
+            try
+            {
+                var sandbox = root.AddComponent<TopDown3DLandscapeAuthoringSandbox>();
+                sandbox.Configure(settings, terrainMaterial, null, Vector2Int.zero);
+                var sandboxData = new SerializedObject(sandbox);
+                sandboxData.FindProperty("terrainRadiusInChunks").intValue = 0;
+                sandboxData.FindProperty("landscapeSand").floatValue = 0f;
+                sandboxData.FindProperty("landscapeClutter").floatValue = 0f;
+                sandboxData.ApplyModifiedPropertiesWithoutUndo();
+
+                var stampObject = new GameObject("Hand Placed Ground Stamp");
+                stampObject.transform.SetParent(root.transform);
+                stampObject.transform.position = new Vector3(
+                    settings.ChunkSize * 0.5f, 0f, settings.ChunkSize * 0.5f);
+                var stamp = stampObject.AddComponent<TopDown3DLandscapeGroundStamp>();
+                var stampData = new SerializedObject(stamp);
+                stampData.FindProperty("surface").enumValueIndex =
+                    (int)TopDown3DGroundStampSurface.ShaleGravel;
+                stampData.ApplyModifiedPropertiesWithoutUndo();
+
+                TopDown3DLandscapeAuthoringSandboxEditor.BuildTerrainContext(sandbox);
+                var terrain = root.transform.Find("__Generated Terrain Context")
+                    .GetComponentInChildren<TopDown3DGroundSurface>();
+                var mesh = terrain.GetComponent<MeshFilter>().sharedMesh;
+                Assert.That(terrain.GetComponent<MeshCollider>().sharedMesh, Is.SameAs(mesh));
+                var vertices = mesh.vertices;
+                var colors = mesh.colors;
+                var center = new Vector2(stampObject.transform.position.x,
+                    stampObject.transform.position.z);
+                var nearest = 0;
+                var nearestDistance = float.PositiveInfinity;
+                for (var i = 0; i < vertices.Length; i++)
+                {
+                    var distance = (new Vector2(vertices[i].x, vertices[i].z) - center).sqrMagnitude;
+                    if (distance >= nearestDistance) continue;
+                    nearestDistance = distance;
+                    nearest = i;
+                }
+                var generatedHeight = new TopDown3DWorldGenerator(settings).SampleHeight(
+                    vertices[nearest].x, vertices[nearest].z);
+                Assert.That(vertices[nearest].y, Is.GreaterThan(generatedHeight + 0.2f));
+                Assert.That(colors[nearest].g, Is.GreaterThan(0.95f));
+            }
+            finally
+            {
+                TopDown3DLandscapeAuthoringSandboxEditor.ClearTerrainContext(
+                    root.GetComponent<TopDown3DLandscapeAuthoringSandbox>());
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
         public void CenteredMixedStageIsTheOnlyGeneratedTerrainContext()
         {
             var settings = AssetDatabase.LoadAssetAtPath<TopDown3DWorldSettings>(

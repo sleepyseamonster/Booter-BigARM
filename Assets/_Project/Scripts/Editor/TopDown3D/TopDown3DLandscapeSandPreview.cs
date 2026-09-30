@@ -28,7 +28,8 @@ namespace BooterBigArm.Editor
                 / Mathf.Max(0.0001f, sandbox.WorldSettings.DustMaximumBaseHeight);
             var buildup = sandbox.SandBuildup;
             var hasFormationBerms = formationContacts != null && formationContacts.Count > 0 && buildup > 0f;
-            if (landscapeAmount <= 0f && !hasFormationBerms) return;
+            var stamps = sandbox.GetComponentsInChildren<TopDown3DLandscapeGroundStamp>(true);
+            if (landscapeAmount <= 0f && !hasFormationBerms && stamps.Length == 0) return;
 
             var tiles = new List<BaseTile>(terrain.Length);
             foreach (var collider in terrain) tiles.Add(new BaseTile(collider));
@@ -69,11 +70,22 @@ namespace BooterBigArm.Editor
 
             foreach (var tile in tiles)
             {
-                if (landscapeAmount <= 0f && !tile.Intersects(influence)) continue;
+                var hasStamp = false;
+                foreach (var stamp in stamps)
+                {
+                    if (stamp == null || !stamp.isActiveAndEnabled) continue;
+                    var diameter = stamp.Radius * 2f;
+                    if (!tile.Intersects(new Bounds(stamp.transform.position,
+                            new Vector3(diameter, 2f, diameter)))) continue;
+                    hasStamp = true;
+                    break;
+                }
+                if (landscapeAmount <= 0f && !hasStamp
+                    && (!hasFormationBerms || !tile.Intersects(influence))) continue;
                 // Broad landscape sand intentionally uses the accepted 20 cm preview density.
                 // A formation-only review keeps the tighter 10 cm contact resolution.
                 var previewSpacing = landscapeAmount > 0f ? 0.2f : 0.1f;
-                ApplyToTile(sandbox, tile, previewSpacing, DepositAt);
+                ApplyToTile(sandbox, tile, previewSpacing, DepositAt, stamps);
             }
             Physics.SyncTransforms();
         }
@@ -111,7 +123,8 @@ namespace BooterBigArm.Editor
             TopDown3DLandscapeAuthoringSandbox sandbox,
             BaseTile tile,
             float previewSpacing,
-            Func<Vector2, TopDown3DDustDepositionSample> depositAt)
+            Func<Vector2, TopDown3DDustDepositionSample> depositAt,
+            TopDown3DLandscapeGroundStamp[] stamps)
         {
             var subdivisions = Mathf.Max(1, Mathf.CeilToInt(tile.Step / previewSpacing));
             var quads = (tile.Resolution - 1) * subdivisions;
@@ -124,6 +137,14 @@ namespace BooterBigArm.Editor
             var bankMasks = new Vector2[vertices.Length];
             var triangles = new int[quads * quads * 6];
             var visible = false;
+            float StampHeightAt(Vector2 point)
+            {
+                var height = 0f;
+                foreach (var stamp in stamps)
+                    if (stamp != null && stamp.isActiveAndEnabled)
+                        height = Mathf.Max(height, stamp.HeightAt(point));
+                return height;
+            }
             for (var z = 0; z < size; z++)
             {
                 for (var x = 0; x < size; x++)
@@ -135,18 +156,23 @@ namespace BooterBigArm.Editor
                         Mathf.Round(tile.Origin.z / step + z) * step);
                     var basis = tile.Sample(point);
                     var deposit = depositAt(point);
-                    visible |= deposit.Height > 0.00001f;
+                    var stampHeight = StampHeightAt(point);
+                    visible |= deposit.Height > 0.00001f || stampHeight > 0.00001f;
                     vertices[index] = new Vector3(
                         point.x - tile.Origin.x,
-                        basis.Height + deposit.Height,
+                        basis.Height + deposit.Height + stampHeight,
                         point.y - tile.Origin.z);
                     var normal = basis.Normal;
-                    if (deposit.Height > 0f)
+                    if (deposit.Height > 0f || stampHeight > 0f)
                     {
                         var dx = (depositAt(point + Vector2.right * step).Height
-                            - depositAt(point - Vector2.right * step).Height) / (2f * step);
+                            + StampHeightAt(point + Vector2.right * step)
+                            - depositAt(point - Vector2.right * step).Height
+                            - StampHeightAt(point - Vector2.right * step)) / (2f * step);
                         var dz = (depositAt(point + Vector2.up * step).Height
-                            - depositAt(point - Vector2.up * step).Height) / (2f * step);
+                            + StampHeightAt(point + Vector2.up * step)
+                            - depositAt(point - Vector2.up * step).Height
+                            - StampHeightAt(point - Vector2.up * step)) / (2f * step);
                         normal = new Vector3(
                             normal.x - dx * normal.y,
                             normal.y,
@@ -154,11 +180,22 @@ namespace BooterBigArm.Editor
                     }
                     normals[index] = normal;
                     var coverage = deposit.Weight;
-                    colors[index] = new Color(
+                    var color = new Color(
                         Mathf.Lerp(basis.Color.r, 1f, coverage),
                         basis.Color.g * (1f - coverage),
                         basis.Color.b * (1f - coverage),
                         basis.Color.a);
+                    foreach (var stamp in stamps)
+                    {
+                        if (stamp == null || !stamp.isActiveAndEnabled
+                            || stamp.Surface == TopDown3DGroundStampSurface.KeepExisting) continue;
+                        var weight = stamp.SurfaceWeight(point);
+                        if (weight <= 0f) continue;
+                        visible = true;
+                        var target = SurfaceColor(stamp.Surface, color.a);
+                        color = Color.Lerp(color, target, weight);
+                    }
+                    colors[index] = color;
                     uvs[index] = point / sandbox.WorldSettings.ChunkSize;
                     bankMasks[index] = new Vector2(
                         0f,
@@ -197,6 +234,18 @@ namespace BooterBigArm.Editor
             mesh.SetTriangles(triangles, 0, true);
             mesh.RecalculateBounds();
             tile.Collider.sharedMesh = mesh;
+        }
+
+        private static Color SurfaceColor(TopDown3DGroundStampSurface surface, float weathering)
+        {
+            switch (surface)
+            {
+                case TopDown3DGroundStampSurface.RedDirt: return new Color(0f, 0f, 0f, weathering);
+                case TopDown3DGroundStampSurface.TanSand: return new Color(1f, 0f, 0f, weathering);
+                case TopDown3DGroundStampSurface.ShaleGravel: return new Color(0f, 1f, 0f, weathering);
+                case TopDown3DGroundStampSurface.RockyShale: return new Color(0f, 0.3f, 1f, weathering);
+                default: throw new ArgumentOutOfRangeException(nameof(surface));
+            }
         }
 
         private readonly struct Surface
