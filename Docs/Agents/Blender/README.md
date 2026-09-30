@@ -32,3 +32,7 @@ Read `Docs/WORLD_BASIS.md` before art decisions that depend on setting or charac
 ## Definition of done
 
 A Blender task is done when its brief is satisfied, the `.blend` source and intended export are accounted for, silhouette and geometry have been inspected, relevant UV/material/normal checks pass, Unity handoff facts are recorded, unrelated work is untouched, and verification limits are stated. A script report alone does not establish visual quality or Unity behavior.
+
+## Current landscape study
+
+[Badlands realism iterations](./studies/REALISM_ITERATIONS.md) records the current audit, applied versus candidate passes, render evidence, and remaining visual limits for `BrokenWorldBadlandsStudy.blend`. [Authoring functions](./studies/author_badlands_realism.py) edit that existing scene in place; [review renderer](./studies/render_realism_review.py) produces fixed inspection views without saving camera or render overrides into the source file.
