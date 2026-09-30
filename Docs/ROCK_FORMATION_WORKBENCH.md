@@ -25,7 +25,9 @@ The same command remains available from the Hierarchy-oriented menu at:
 
 `GameObject > Booter & BigARM > Top Down 3D > New Random Rock`
 
-The main standalone Rock Inspector intentionally shows only `Body Width`, `Body Length`, `Lopsidedness`, `Compaction`, `Major Fractures`, `Edge Damage`, and `Show Editing Volumes`. Body dimensions describe the source before its automatic resting pose. Click `Generate New Rock` for a new seed and bounded bell-shaped dimensions, or `Regenerate This Rock` to preserve the current seed and displayed dimensions. Mesh, collider, material, detailed surface, seed-gallery, formation, and repair controls are under `Advanced`.
+The main standalone Rock Inspector shows `Body Width`, `Body Length`, `Lopsidedness`, `Compaction`, `Major Fractures`, `Edge Damage`, `Rock Surface`, and `Show Editing Volumes`. Body dimensions describe the source before its automatic resting pose. Click `Generate New Rock` for a new seed and bounded bell-shaped dimensions, or `Regenerate This Rock` to preserve the current seed and displayed dimensions. Mesh, collider, detailed surface, seed-gallery, formation, and repair controls are under `Advanced`.
+
+`Rock Surface` is directly available in the main Rock Workbench Inspector for hand-built areas. Choose `Dark Fractured Desert`, `Cliff Gray`, or `Light Cliff Gray` per rock; `Neutral Weathered` retains the material's baseline colors. The gray choices reuse the existing textured rock material with different stone, crack, and mineral tones, so changing one rock does not recolor the shared material or neighboring rocks. This is a rock-authoring control; it does not replace or repaint the generated terrain.
 
 Standalone rocks use the accepted small physical scale directly in meter-valued settings while the Rock Workbench root stays at `(1, 1, 1)`. Existing older standalone rocks are converted once when regenerated. Formation members keep their formation-owned scale. The visible rock always uses the normal project Rock Workbench material; there is no diagnostic or A/B material path.
 

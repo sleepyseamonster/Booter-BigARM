@@ -296,22 +296,30 @@ namespace BooterBigArm.Editor
                 return;
             }
 
-            if (authoring.SurfacePreset == TopDown3DRockSurfacePreset.LightCliffGray)
+            if (authoring.SurfacePreset == TopDown3DRockSurfacePreset.LightCliffGray
+                || authoring.SurfacePreset == TopDown3DRockSurfacePreset.CliffGray)
             {
-                // The existing side albedo is gray. This preset removes the charcoal
-                // multiplier without changing the shared material or its texture maps.
+                // The shared albedo is gray. The two presets change its tone while
+                // keeping the same textured geology and serialized material reference.
                 var cliffCool = SeedToUnitFloat(authoring.GenerationSeed ^ unchecked((int)0x3C6EF372));
                 var cliffValue = SeedToUnitFloat(authoring.GenerationSeed ^ unchecked((int)0xBB67AE85));
                 var cliffVariation = authoring.ColorVariation;
-                var cliffBrightness = Mathf.Lerp(1.18f, Mathf.Lerp(1.3f, 1.48f, cliffValue), cliffVariation);
+                var light = authoring.SurfacePreset == TopDown3DRockSurfacePreset.LightCliffGray;
+                var cliffBrightness = light
+                    ? Mathf.Lerp(1.18f, Mathf.Lerp(1.3f, 1.48f, cliffValue), cliffVariation)
+                    : Mathf.Lerp(0.91f, Mathf.Lerp(1.0f, 1.1f, cliffValue), cliffVariation);
                 var temperature = Mathf.Lerp(-0.025f, 0.025f, cliffCool) * cliffVariation;
                 properties.SetColor(BaseColorId, new Color(
                     cliffBrightness + temperature,
                     cliffBrightness,
                     cliffBrightness - temperature,
                     1f));
-                properties.SetColor(CrackColorId, new Color(0.12f, 0.12f, 0.125f, 1f));
-                properties.SetColor(MineralColorId, new Color(0.66f, 0.67f, 0.69f, 1f));
+                properties.SetColor(CrackColorId, light
+                    ? new Color(0.12f, 0.12f, 0.125f, 1f)
+                    : new Color(0.085f, 0.088f, 0.095f, 1f));
+                properties.SetColor(MineralColorId, light
+                    ? new Color(0.66f, 0.67f, 0.69f, 1f)
+                    : new Color(0.52f, 0.54f, 0.56f, 1f));
                 properties.SetColor(DustColorId, authoring.EnvironmentDustColor);
                 properties.SetFloat(SmoothnessMinId, 0.025f);
                 properties.SetFloat(SmoothnessMaxId, 0.2f);

@@ -1585,6 +1585,47 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void CliffGrayPresetSitsBetweenDarkAndLightWithoutChangingSharedMaterial()
+        {
+            var root = new GameObject("Cliff Gray Preset Test");
+            try
+            {
+                var authoring = root.AddComponent<TopDown3DRockWorkbenchAuthoring>();
+                var renderer = root.GetComponent<MeshRenderer>();
+                var material = AssetDatabase.LoadAssetAtPath<Material>(WorkbenchMaterialPath);
+                authoring.Configure(material);
+                renderer.sharedMaterial = material;
+                authoring.SetGenerationSeed(10101);
+                var brightness = new float[3];
+                var presets = new[]
+                {
+                    TopDown3DRockSurfacePreset.DarkFracturedDesert,
+                    TopDown3DRockSurfacePreset.CliffGray,
+                    TopDown3DRockSurfacePreset.LightCliffGray
+                };
+                for (var i = 0; i < presets.Length; i++)
+                {
+                    authoring.SetSurfacePreset(presets[i]);
+                    TopDown3DRockWorkbenchPreview.ApplySurfaceProperties(
+                        authoring, renderer, new Vector3(4f, 3f, 4f), 10101,
+                        Vector3.zero, 0f, 1f);
+                    var properties = new MaterialPropertyBlock();
+                    renderer.GetPropertyBlock(properties);
+                    brightness[i] = properties.GetColor(Shader.PropertyToID("_BaseColor")).grayscale;
+                }
+
+                Assert.That(brightness[0], Is.LessThan(brightness[1]));
+                Assert.That(brightness[1], Is.LessThan(brightness[2]));
+                Assert.That(renderer.sharedMaterial, Is.SameAs(material));
+                Assert.That(material.GetColor("_BaseColor"), Is.EqualTo(Color.white));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
         public void CliffWallSourcePreservesEditableRocksWithoutPretendingToBeGameplayMesh()
         {
             var source = AssetDatabase.LoadAssetAtPath<GameObject>(

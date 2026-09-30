@@ -21,7 +21,8 @@ namespace BooterBigArm.TopDown3D
     {
         NeutralWeathered,
         DarkFracturedDesert,
-        LightCliffGray
+        LightCliffGray,
+        CliffGray
     }
 
     /// <summary>

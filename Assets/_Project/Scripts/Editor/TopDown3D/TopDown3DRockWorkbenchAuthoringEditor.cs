@@ -171,6 +171,9 @@ namespace BooterBigArm.Editor
                 serializedObject.FindProperty("generatedEdgeDamage"),
                 new GUIContent("Edge Damage"));
             EditorGUILayout.PropertyField(
+                serializedObject.FindProperty("surfacePreset"),
+                new GUIContent("Rock Surface", "Choose dark stone, gray stone, or light gray stone for this rock."));
+            EditorGUILayout.PropertyField(
                 serializedObject.FindProperty("showSourceVolumes"),
                 new GUIContent("Show Editing Volumes"));
             if (!authoring.IsFormationMember)
@@ -295,7 +298,6 @@ namespace BooterBigArm.Editor
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Surface", EditorStyles.boldLabel);
-            DrawProperty("surfacePreset");
             DrawProperty("colorVariation");
             DrawProperty("environmentDustColor");
             DrawProperty("geologyScale");
