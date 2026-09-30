@@ -491,6 +491,9 @@ namespace BooterBigArm.TopDown3D
             var abundanceFactor = useSharedRockAbundance
                 ? SampleRockAbundance(settings, candidate.Position)
                 : 1f;
+            // Formations retain their distinct rock-rich islands. Cosmetic gravel and
+            // shale also need a low background presence across the flatter first region.
+            abundanceFactor = Mathf.Max(0.45f, abundanceFactor);
             var surface = generator.Sample(candidate.Position.x, candidate.Position.y);
             float geologyFactor;
             switch (layer)

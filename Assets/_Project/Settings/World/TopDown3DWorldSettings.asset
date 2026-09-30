@@ -16,7 +16,7 @@ MonoBehaviour:
   chunkSize: 18
   quadsPerAxis: 24
   streamingRadius: 7
-  decorationStreamingRadius: 3
+  decorationStreamingRadius: 4
   immediateLoadRadius: 2
   chunksBuiltPerFrame: 2
   unloadPadding: 1
@@ -49,8 +49,8 @@ MonoBehaviour:
   physicalRockAdditionalBurialFraction: 0.12
   resourceCatalog: {fileID: 11400000, guid: 70f7abf6fb143476ca72d1f9eba36e18, type: 2}
   resourceGenerationVersion: 1
-  scatterObjectsPerChunk: 0
-  groundDetailsPerChunk: 0
+  scatterObjectsPerChunk: 32
+  groundDetailsPerChunk: 72
   clutterClusterFrequency: 0.08
   clutterClusterStrength: 0.9
   rockAbundanceFrequency: 0.035
@@ -84,7 +84,7 @@ MonoBehaviour:
   scatterSpacing: 0.18
   groundDetailSpacing: 0.04
   fineGrayClutterMaterial: {fileID: 2100000, guid: 50ec2ac4616046718215ccc257883321, type: 2}
-  fineGrayClutterPerChunk: 0
+  fineGrayClutterPerChunk: 48
   fineGrayClusterFrequency: 0.12
   fineGrayClusterStrength: 1
   fineGrayClutterSpacing: 0.006

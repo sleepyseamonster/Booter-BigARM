@@ -42,7 +42,7 @@ namespace BooterBigArm.Tests
 
             Assert.That(first.CosmeticPlacements, Is.EqualTo(second.CosmeticPlacements));
             Assert.That(first.PhysicalFormations, Is.EqualTo(second.PhysicalFormations));
-            Assert.That(first.CosmeticPlacements, Is.Empty);
+            Assert.That(first.CosmeticPlacements, Is.Not.Empty);
             Assert.That(first.CosmeticPlacements.All(placement =>
                 Mathf.FloorToInt(placement.Position.x / settings.ChunkSize) == coordinate.x
                 && Mathf.FloorToInt(placement.Position.z / settings.ChunkSize) == coordinate.y), Is.True);
@@ -91,7 +91,6 @@ namespace BooterBigArm.Tests
                 Vector2Int.zero,
                 center);
 
-            Assert.That(plan.CosmeticPlacements, Is.Empty);
             Assert.That(plan.CosmeticPlacements.All(placement =>
                 Vector2.Distance(
                     new Vector2(placement.Position.x, placement.Position.z),
@@ -493,20 +492,30 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void LegacyGroundClutter_IsDisabledInProduction()
+        public void ProductionGroundClutter_PopulatesAllCosmeticLayers()
         {
             var settings = LoadSettings();
-            Assert.That(settings.ScatterObjectsPerChunk, Is.Zero);
-            Assert.That(settings.GroundDetailsPerChunk, Is.Zero);
-            Assert.That(settings.FineGrayClutterPerChunk, Is.Zero);
+            Assert.That(settings.ScatterObjectsPerChunk, Is.GreaterThan(0));
+            Assert.That(settings.GroundDetailsPerChunk, Is.GreaterThan(0));
+            Assert.That(settings.FineGrayClutterPerChunk, Is.GreaterThan(0));
             var generator = new TopDown3DWorldGenerator(settings);
             var plan = TopDown3DNaturalObjectPlanner.BuildChunkPlan(
                 settings,
                 generator,
                 settings.NaturalObjectCatalog,
-                new Vector2Int(3, -2),
+                new Vector2Int(27, 17),
                 DistantExclusion);
-            Assert.That(plan.CosmeticPlacements, Is.Empty);
+            TestContext.WriteLine($"Cosmetic placements by layer: "
+                + string.Join(", ", plan.CosmeticPlacements
+                    .GroupBy(placement => placement.Layer)
+                    .Select(group => $"{group.Key}={group.Count()}")));
+            Assert.That(plan.CosmeticPlacements.Select(placement => placement.Layer).Distinct(),
+                Is.EquivalentTo(new[]
+                {
+                    TopDown3DNaturalObjectLayer.Scatter,
+                    TopDown3DNaturalObjectLayer.GroundDetail,
+                    TopDown3DNaturalObjectLayer.FineGrayCluster
+                }));
         }
 
         [Test]
