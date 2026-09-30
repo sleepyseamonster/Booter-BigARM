@@ -18,7 +18,7 @@ Verify version-sensitive Blender API and export settings against the installed B
 ## Boundaries
 
 - Keep agent documents and scripts here in `Docs/Agents/Blender/`.
-- Put approved source and exported production assets under `Assets/_Project/Art/` in stable asset-specific folders; do not drop `.blend` files or exports in this agent folder.
+- Put approved source and exported production assets under `Assets/_Project/Art/` in stable asset-specific folders. A provisional visual study may live in `studies/` here until review; do not make it a Unity production asset by placement alone.
 - Preserve Unity `.meta` files and references. Coordinate imported content and prefab changes with Babineaux.
 - No work in `Legacy2D/`, `Unreal/`, or `Engine/` without explicit task scope.
 - Prefer inspection and a bounded sample over broad automated conversion.
