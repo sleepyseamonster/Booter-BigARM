@@ -26,6 +26,8 @@ This is a **provisional Blender scene**, built for visual review before Unity in
 - `apply_distinct_tileable_ground_to_open_study.py` applies the new three-surface material to the currently open working file.
 - `BrokenWorldBadlandsDistinctGroundClose.png` and `BrokenWorldBadlandsDistinctGroundTopdown.png` review that saved material from close and overhead views.
 - `BrokenWorldBadlandsWideHorizon.png` is the wide review render from the saved file.
+- `replace_periodic_terrain_ridges.py` removes the sine-based terrain ripples from the same open working file and replaces them with low, irregular plateau relief.
+- `BrokenWorldBadlandsIrregularTerrainReview.png` reviews the saved correction from a low oblique angle.
 
 Run from the repository root with the Steam Blender executable on this macOS host:
 
@@ -57,6 +59,8 @@ The current ground material, `StudyGround_DistinctTileableShaleAndDirt`, replace
 The rock refinement pass is saved in that **same open file**. It affects the low shelf, 20 formation pieces, 125 scattered stones, 100 talus pieces, and six combined scree apron meshes. Non-destructive modifiers chip and bevel the exposed edges, subdivide the underlying faces, and add broad and fine erosion at different scales. Smooth normals remove the obvious polygon shading while retaining the layered material boundaries. Existing rock transforms, materials, debris buildup, terrain, and cameras are preserved. The close render shows a less faceted shelf and stones; the shelf still has a deliberately authored layered profile and needs further sculpted fracture detail and physically calibrated PBR textures before it can meet the photo reference at extreme close range. These modifiers increase viewport and render geometry and should be baked and optimized before Unity import.
 
 The exact second PNG is packed into the same `.blend` as an equirectangular World environment. `Wide horizon terrain review camera` is active; the earlier cameras remain available. This is a 1774 × 887 **8-bit PNG**, so it is a low-dynamic-range panoramic environment, not a true HDR radiance image. The existing sun and area lights still supply stronger lighting. The rendered review shows a visible join where the finite study terrain meets the image's baked landscape; the image also cannot supply missing views or HDR highlight values. These are limitations to resolve before treating it as a seamless game sky or lighting source.
+
+The terrain correction is saved in that **same open working file**. The original height formulas contained several sine products that created parallel, evenly spaced ripples. `replace_periodic_terrain_ridges.py` subtracts only those known ripple terms and adds domain-warped noise with short transitions between low plateaus. It preserves the broad wash, 360 m mesh, ground masks, tileable shale/dirt material, cameras, and lights. All 245 formation/stone/talus objects, the low shelf, and the six combined scree meshes follow the local height change, keeping the rock clusters grounded. The script has an in-file completion marker so it does not apply the change twice. The low-angle review render no longer shows the regular bands. This remains a provisional mostly flat terrain study; the plateau profile and rock contact still need visual acceptance in the user's preferred viewpoints.
 
 ## Review gate
 
