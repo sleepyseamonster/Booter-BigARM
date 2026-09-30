@@ -31,6 +31,10 @@ The review renderer uses fixed close/wide/ground-level cameras. Pass-six saved-s
 
 ## Application and verification
 
+### Inspected candidates awaiting the open editor
+
+Two further source-art passes have been tested in a temporary copy of the saved scene, not applied to the working `.blend`: `refine_exposed_shale_plates.py` breaks up and thins the exposed plate rims, and `add_shale_contact_spalls.py` places small fragments near those plate margins. The first spall draft was visually too large and was reduced. Close/surface and wide candidate renders show a modest improvement in plate silhouette and contact debris without raising the flat terrain or adding a cliff. The 190 plate objects retain 13 shared sources; 2,090 spalls are combined into 32 spatial meshes with 31,350 faces. A candidate geometry check found no open mesh edges or nonfinite coordinates. The Mac was locked during the application attempt, so these passes still require execution and fresh visual review in the user's open Blender scene before claiming them as applied.
+
 Authoring runs in the existing Blender Python console via `runpy.run_path`. Functions `pass_one()` through `pass_six()` and `repair_fractured_rock_topology.py` have terrain markers to prevent repeated application. Render the saved working file with `render_realism_review.py`; close, wide, ground-level, and surface views are available. Save in the same path and leave the editor in a 3D view.
 
 Candidate structural inspection after pass four: 97,969 terrain vertices, 360 × 360 m authoring area, terrain height range approximately −0.70 to 4.07 m, 247 archived original objects, 585 visible mesh objects, and 2,303,249 unique source vertices. No nonfinite vertex coordinates were found. Seven surface images in used visible materials were packed. The exact user panorama remains in the world shader and is not replaced or edited. Pass five changes only camera limits, atmosphere bounds/density, and exposure.
