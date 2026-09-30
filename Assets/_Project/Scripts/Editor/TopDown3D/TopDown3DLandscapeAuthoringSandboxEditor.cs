@@ -199,6 +199,32 @@ namespace BooterBigArm.Editor
                 EditorGUILayout.LabelField("Landscape Terrain Ground", EditorStyles.boldLabel);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("centerChunk"),
                     new GUIContent("Terrain Location"));
+                if (GUILayout.Button("Use Current Player-Start Region"))
+                {
+                    var profile = Resources.Load<WorldCreatorProductionProfile>(
+                        WorldCreatorProductionProfile.ResourcePath);
+                    if (profile == null || sandbox.WorldSettings == null
+                        || !profile.TryGetCanyonShowcasePosition(sandbox.WorldSettings.WorldSeed,
+                            out var start, out _, out _))
+                    {
+                        EditorUtility.DisplayDialog("Player-Start Region",
+                            "The current world profile has no fixed player-start region for this seed.", "OK");
+                    }
+                    else
+                    {
+                        var size = sandbox.WorldSettings.ChunkSize;
+                        serializedObject.FindProperty("centerChunk").vector2IntValue = new Vector2Int(
+                            Mathf.FloorToInt(start.x / size), Mathf.FloorToInt(start.y / size));
+                        serializedObject.ApplyModifiedProperties();
+                        BuildTerrainContext(sandbox);
+                        if (SceneView.lastActiveSceneView != null)
+                        {
+                            SceneView.lastActiveSceneView.pivot = new Vector3(start.x, 0f, start.y);
+                            SceneView.lastActiveSceneView.Repaint();
+                        }
+                        serializedObject.Update();
+                    }
+                }
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("terrainRadiusInChunks"),
                     new GUIContent("Terrain Radius In Chunks"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("landscapeSand"),

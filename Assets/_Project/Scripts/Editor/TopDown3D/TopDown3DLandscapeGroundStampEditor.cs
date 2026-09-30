@@ -1,4 +1,5 @@
 using BooterBigArm.TopDown3D;
+using BooterBigArm.TopDown3D.WorldCreator;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace BooterBigArm.Editor
             if (sandbox == null)
             {
                 foreach (var candidate in Object.FindObjectsByType<TopDown3DLandscapeAuthoringSandbox>(
-                             FindObjectsInactive.Include, FindObjectsSortMode.None))
+                             FindObjectsInactive.Include))
                 {
                     if (candidate.gameObject.scene.path != LandscapeAuthoringSandboxBuilder.ScenePath
                         || candidate.RockReference != null) continue;
@@ -35,7 +36,22 @@ namespace BooterBigArm.Editor
             var stampObject = new GameObject("Ground Paint and Sand Bank Stamp");
             Undo.RegisterCreatedObjectUndo(stampObject, "Add Ground Stamp");
             Undo.SetTransformParent(stampObject.transform, sandbox.transform, "Add Ground Stamp");
-            stampObject.transform.position = sandbox.transform.position;
+            var position = sandbox.transform.position;
+            if (sandbox.RockReference == null && sandbox.WorldSettings != null)
+            {
+                var size = sandbox.WorldSettings.ChunkSize;
+                position = new Vector3(
+                    (sandbox.CenterChunk.x + 0.5f) * size, 0f,
+                    (sandbox.CenterChunk.y + 0.5f) * size);
+                var profile = Resources.Load<WorldCreatorProductionProfile>(
+                    WorldCreatorProductionProfile.ResourcePath);
+                if (profile != null && profile.TryGetCanyonShowcasePosition(
+                        sandbox.WorldSettings.WorldSeed, out var start, out _, out _)
+                    && Mathf.FloorToInt(start.x / size) == sandbox.CenterChunk.x
+                    && Mathf.FloorToInt(start.y / size) == sandbox.CenterChunk.y)
+                    position = new Vector3(start.x, 0f, start.y);
+            }
+            stampObject.transform.position = position;
             Undo.AddComponent<TopDown3DLandscapeGroundStamp>(stampObject);
             Selection.activeGameObject = stampObject;
             TopDown3DLandscapeAuthoringSandboxEditor.BuildTerrainContext(sandbox);

@@ -36,6 +36,8 @@ The per-chunk combined meshes are destroyed with their owning streamed chunk. Th
 
 The Landscape Authoring Sandbox previews the surrounding ground from the same production authorities without turning the preview into a second generator:
 
+For the active player-start area, select the `Landscape Authoring Sandbox` ground object and click `Use Current Player-Start Region` before placing stamps. The tool reads the current production profile and selects its terrain chunk; it does not modify the profile or production scene.
+
 - `Landscape Sand` is a terrain-owned generator. It adds broad, deterministic semantic deposition from world identity and terrain material fields even when no rock formation exists.
 - `Raised Sand Relief (m)` lives on the separate `Landscape Authoring Sandbox` authority and controls the actual raised terrain-sand geometry independently from coverage. Mixed formation workbenches only preview that terrain-owned result and cannot retune it. The same continuous world-space windrow field shapes low beds, irregular crests, and scoured gaps without changing rock scale or formation layout.
 - `Sand Buildup` remains a separate formation-contact contributor. The preview composites those local banks with the terrain sand without making either generator own the other.
