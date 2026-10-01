@@ -58,7 +58,13 @@ Pass-fifteen saved-file inspection confirmed 23 trim markers, 65,098 faces on th
 
 Pass-sixteen saved-file inspection confirmed its repair marker, 1,818 vertices, 3,628 triangles, zero nonmanifold edges, and no remaining 16-sided face. The live file is saved with `Formation_00_Buttress_2` selected for review. Other rock artifacts visible outside this local patch remain for a later pass. The landscape goal is paused at the user's request.
 
-## Remaining visual limits
+## October 1 reference-rock addition
+
+Following a new user reference and an explicit minimal-face brief, added `ReferenceRock_FracturedSlate_01` to the same live study and saved it with the rock selected. This is a separate asset addition, not another remesh of the existing formations. The broader landscape goal remains paused and earlier lumpiness feedback remains unresolved.
+
+The rock has 74 triangles, 39 source vertices, one material, and three baked 2048 px maps carrying fine cracks, chipped edges, and surface relief. The source is closed and has no degenerate faces. FBX and GLB exports were reimported and checked; the saved-scene comparison preserved all 879 existing objects in the checked properties and added exactly one rock. Neutral, geometry, back, elevated, and saved-scene views were inspected. [Asset, proof, and material notes](reference_rock/README.md).
+
+## Remaining visual limits (existing landscape)
 
 - This is a stronger geological study, **not photorealistic acceptance**. Some major silhouettes still read as simple fractured wedges, and repeated strata scale remains visible.
 - Broad open areas still need more locally authored transitions between embedded bedrock, gravel, and fine sediment to reach the reference's richness.

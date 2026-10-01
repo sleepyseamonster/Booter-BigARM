@@ -1,0 +1,74 @@
+{
+  "source": {
+    "triangles": 74,
+    "vertices": 39,
+    "materials": 1,
+    "uv_layers": 1,
+    "nonmanifold_edges": 0,
+    "degenerate_faces": 0,
+    "finite": true,
+    "dimensions_metres": [
+      2.8495999574661255,
+      1.5999999642372131,
+      3.319999933242798
+    ],
+    "modifiers": 0
+  },
+  "packed_runtime_images": [
+    "ReferenceSlate_BaseColor",
+    "ReferenceSlate_Roughness",
+    "ReferenceSlate_NormalGL"
+  ],
+  "glb": {
+    "triangles": 74,
+    "vertices": 196,
+    "materials": 1,
+    "uv_layers": 1,
+    "nonmanifold_edges": 196,
+    "degenerate_faces": 0,
+    "finite": true,
+    "dimensions_metres": [
+      2.8495999574661255,
+      1.5999999642372131,
+      3.319999933242798
+    ],
+    "modifiers": 0
+  },
+  "fbx": {
+    "triangles": 74,
+    "vertices": 39,
+    "materials": 1,
+    "uv_layers": 1,
+    "nonmanifold_edges": 0,
+    "degenerate_faces": 0,
+    "finite": true,
+    "dimensions_metres": [
+      2.8495999574661255,
+      1.600000262260437,
+      3.3200002873350485
+    ],
+    "modifiers": 0
+  },
+  "study": {
+    "preserved_objects": 879,
+    "changed_existing_objects": [],
+    "added_objects": [
+      "ReferenceRock_FracturedSlate_01"
+    ],
+    "rock": {
+      "triangles": 74,
+      "vertices": 39,
+      "materials": 1,
+      "uv_layers": 1,
+      "nonmanifold_edges": 0,
+      "degenerate_faces": 0,
+      "finite": true,
+      "dimensions_metres": [
+        2.854952096939087,
+        1.975414752960205,
+        3.3199998438358307
+      ],
+      "modifiers": 0
+    }
+  }
+}
