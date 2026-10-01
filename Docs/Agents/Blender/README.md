@@ -36,3 +36,5 @@ A Blender task is done when its brief is satisfied, the `.blend` source and inte
 ## Current landscape study
 
 [Badlands realism iterations](./studies/REALISM_ITERATIONS.md) records the current audit, applied versus candidate passes, render evidence, and remaining visual limits for `BrokenWorldBadlandsStudy.blend`. [Authoring functions](./studies/author_badlands_realism.py) edit that existing scene in place; [review renderer](./studies/render_realism_review.py) produces fixed inspection views without saving camera or render overrides into the source file.
+
+The [October 1 handoff](./studies/HANDOFF_2026-10-01.md) captures the saved scene, the paused goal, the user's newest geometry feedback, measured rock budgets, preservation rules, and the next candidate pass.
