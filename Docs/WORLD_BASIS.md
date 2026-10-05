@@ -4,7 +4,7 @@ This document is the canonical baseline for the game's setting, tone, and core f
 
 ## High Concept
 
-Booter & BigARM is a top-down, 2D pixel art survival crafting game set on a dead world called the Broken World.
+Booter & BigARM is an elevated top-down, fully 3D survival crafting game set on a dead world called the Broken World.
 
 The game is about endurance, deliberate movement, and living inside a hostile system rather than conquering it.
 

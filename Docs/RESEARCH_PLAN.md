@@ -20,7 +20,9 @@ Current status:
 - The project already has a CLI build bridge in `Assets/_Project/Scripts/Editor/BuildAutomation.cs`.
 - `Docs/UNITY_AUTOMATION.md` documents the current command-line workflow and now reflects explicit build-target validation.
 
-## Priority 2: 2D URP Pipeline For Top-Down Games
+## Preserved Priority 2: Legacy 2D URP Pipeline
+
+This topic was completed for the isolated legacy prototype. It is retained as historical research, not a current production priority.
 
 Goal:
 - Keep the render setup clean, performant, and readable for a 2D top-down game.

@@ -40,6 +40,8 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md](./Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md)
+  The proposed data-to-Blender-to-Unity plan for a bounded Death Valley-inspired landscape slice.
 - [TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md](./TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md)
   Proposed audit, method comparison, controlled visual experiment, and staged plan for cliffs, valleys, and source-linked debris.
 - [IRONSTONE_FORMATION_MINERALIZATION_PLAN.md](./IRONSTONE_FORMATION_MINERALIZATION_PLAN.md)

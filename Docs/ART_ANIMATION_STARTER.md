@@ -1,6 +1,8 @@
 # Art And Animation Starter
 
-This document defines the first-pass workflow for creating production art and sprite animation in Booter & BigARM.
+**Historical legacy-2D reference.** This document's pixel-art, sprite, and URP 2D workflow is preserved for the former prototype. New production art follows the root TopDown3D project and the relevant 3D asset/Unity handoff guidance.
+
+This document defined the first-pass workflow for art and sprite animation in the former 2D prototype.
 
 It is intentionally small. The goal is to start making usable assets without locking the project into a brittle pipeline too early.
 
