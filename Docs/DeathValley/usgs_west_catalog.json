@@ -1,0 +1,243 @@
+{
+  "acquired_utc": "2026-10-06T23:39:20.340434+00:00",
+  "source": "https://tnmaccess.nationalmap.gov/api/v1/products",
+  "corridor_bounds_epsg26911": [
+    518352,
+    4006200,
+    520400,
+    4008248
+  ],
+  "query_bbox_epsg4326": [
+    -116.79585992526361,
+    36.200400234084235,
+    -116.77302565929512,
+    36.21890514442089
+  ],
+  "datasets": {
+    "one_third_arc_second": {
+      "request": {
+        "bbox": "-116.79585992526361,36.200400234084235,-116.77302565929512,36.21890514442089",
+        "datasets": "National Elevation Dataset (NED) 1/3 arc-second",
+        "max": 1000
+      },
+      "total": 4,
+      "items": [
+        {
+          "title": "USGS 1/3 Arc Second n37w117 20071201",
+          "moreInfo": "This tile of the 3D Elevation Program (3DEP) seamless products is 1/3 Arc Second resolution. 3DEP data serve as the elevation layer of The National Map, and provide basic elevation information for Earth science studies and mapping applications in the United States. Scientists and resource managers use 3DEP data for global change research, hydrologic modeling, resource monitoring, mapping and visualization, and many other applications. 3DEP data compose an elevation dataset that consists of seamless layers and a high resolution layer. Each of these layers consists of the best available raster elevation data of the conterminous United States, Alaska, Hawaii, territorial islands, Mexico and Canada. 3DEP data are updated continually as [...]",
+          "sourceId": "6aa363b31ba49ba2943adf59",
+          "sourceName": "ScienceBase",
+          "sourceOriginId": null,
+          "sourceOriginName": "gda",
+          "metaUrl": "https://www.sciencebase.gov/catalog/item/6aa363b31ba49ba2943adf59",
+          "vendorMetaUrl": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1-3_arc-second/historical-seamless/USGS_13_n37w117_20071201.xml",
+          "publicationDate": "2007-12-01",
+          "lastUpdated": "2026-09-10T20:25:53.552-06:00",
+          "dateCreated": "2026-09-10T20:13:07.331-06:00",
+          "sizeInBytes": 405117187,
+          "extent": "1 x 1 degree",
+          "format": "GeoTIFF",
+          "downloadURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20071201.tif",
+          "downloadURLRaster": null,
+          "previewGraphicURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20071201.jpg",
+          "downloadLazURL": null,
+          "urls": {
+            "TIFF": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20071201.tif"
+          },
+          "datasets": [],
+          "boundingBox": {
+            "minX": -117.00055555609345,
+            "maxX": -115.99944444390536,
+            "minY": 35.99944444390684,
+            "maxY": 37.00055555609492
+          },
+          "bestFitIndex": 0.0,
+          "body": "This tile of the 3D Elevation Program (3DEP) seamless products is 1/3 Arc Second resolution. 3DEP data serve as the elevation layer of The National Map, and provide basic elevation information for Earth science studies and mapping applications in the United States. Scientists and resource managers use 3DEP data for global change research, hydrologic modeling, resource monitoring, mapping and visualization, and many other applications. 3DEP data compose an elevation dataset that consists of seamless layers and a high resolution layer. Each of these layers consists of the best available raster elevation data of the conterminous United States, Alaska, Hawaii, territorial islands, Mexico and Canada. 3DEP data are updated continually as new data become available. Seamless 3DEP data are derived from diverse source data that are processed to a common coordinate system and unit of vertical measure. These data are distributed in geographic coordinates in units of decimal degrees, and in conformance with the North American Datum of 1983 (NAD 83). All elevation values are in meters and, over the conterminous United States, are referenced to the North American Vertical Datum of 1988 (NAVD 88). The vertical reference will vary in other areas. Seamless 3DEP data are available nationally (except for Alaska) at resolutions of 1 arc-second (approximately 30 meters) and 1/3 arc-second (approximately 10 meters). In most of Alaska, only lower resolution source data are available. As a result, most seamless 3DEP data for Alaska are at 2 arc-second (approximately 60 meters) grid spacing. Part of Alaska is available at the 1 and 1/3 arc-second resolutions from interferometric synthetic aperture radar (ifsar) collections starting in 2010. Plans are in place for collection of statewide ifsar in Alaska. All 3DEP products are public domain.",
+          "processingUrl": "processingUrl",
+          "modificationInfo": "2026-09-10"
+        },
+        {
+          "title": "USGS 1/3 Arc Second n37w117 20260112",
+          "moreInfo": "This tile of the 3D Elevation Program (3DEP) seamless products is 1/3 Arc Second resolution. 3DEP data serve as the elevation layer of The National Map, and provide basic elevation information for Earth science studies and mapping applications in the United States. Scientists and resource managers use 3DEP data for global change research, hydrologic modeling, resource monitoring, mapping and visualization, and many other applications. 3DEP data compose an elevation dataset that consists of seamless layers and a high resolution layer. Each of these layers consists of the best available raster elevation data of the conterminous United States, Alaska, Hawaii, territorial islands, Mexico and Canada. 3DEP data are updated continually as [...]",
+          "sourceId": "69685aebd4be021259f1f798",
+          "sourceName": "ScienceBase",
+          "sourceOriginId": null,
+          "sourceOriginName": "gda",
+          "metaUrl": "https://www.sciencebase.gov/catalog/item/69685aebd4be021259f1f798",
+          "vendorMetaUrl": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1-3_arc-second/NV_Southern_D23/USGS_13_n37w117_20260112.xml",
+          "publicationDate": "2026-01-13",
+          "lastUpdated": "2026-06-08T20:30:35.774-06:00",
+          "dateCreated": "2026-01-14T20:11:39.796-07:00",
+          "sizeInBytes": 420600989,
+          "extent": "1 x 1 degree",
+          "format": "GeoTIFF",
+          "downloadURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20260112.tif",
+          "downloadURLRaster": null,
+          "previewGraphicURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20260112.jpg",
+          "downloadLazURL": null,
+          "urls": {
+            "TIFF": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20260112.tif"
+          },
+          "datasets": [],
+          "boundingBox": {
+            "minX": -117.00055555609345,
+            "maxX": -115.99944444390536,
+            "minY": 35.99944444390684,
+            "maxY": 37.00055555609492
+          },
+          "bestFitIndex": 0.0,
+          "body": "This tile of the 3D Elevation Program (3DEP) seamless products is 1/3 Arc Second resolution. 3DEP data serve as the elevation layer of The National Map, and provide basic elevation information for Earth science studies and mapping applications in the United States. Scientists and resource managers use 3DEP data for global change research, hydrologic modeling, resource monitoring, mapping and visualization, and many other applications. 3DEP data compose an elevation dataset that consists of seamless layers and a high resolution layer. Each of these layers consists of the best available raster elevation data of the conterminous United States, Alaska, Hawaii, territorial islands, Mexico and Canada. 3DEP data are updated continually as new data become available. Seamless 3DEP data are derived from diverse source data that are processed to a common coordinate system and unit of vertical measure. These data are distributed in geographic coordinates in units of decimal degrees, and in conformance with the North American Datum of 1983 (NAD 83). All elevation values are in meters and, over the conterminous United States, are referenced to the North American Vertical Datum of 1988 (NAVD 88). The vertical reference will vary in other areas. Seamless 3DEP data are available nationally (except for Alaska) at resolutions of 1 arc-second (approximately 30 meters) and 1/3 arc-second (approximately 10 meters). In most of Alaska, only lower resolution source data are available. As a result, most seamless 3DEP data for Alaska are at 2 arc-second (approximately 60 meters) grid spacing. Part of Alaska is available at the 1 and 1/3 arc-second resolutions from interferometric synthetic aperture radar (ifsar) collections starting in 2010. Plans are in place for collection of statewide ifsar in Alaska. All 3DEP products are public domain.",
+          "processingUrl": "processingUrl",
+          "modificationInfo": "2026-06-08"
+        },
+        {
+          "title": "USGS 1/3 Arc Second n37w117 20260610",
+          "moreInfo": "This tile of the 3D Elevation Program (3DEP) seamless products is 1/3 Arc Second resolution. 3DEP data serve as the elevation layer of The National Map, and provide basic elevation information for Earth science studies and mapping applications in the United States. Scientists and resource managers use 3DEP data for global change research, hydrologic modeling, resource monitoring, mapping and visualization, and many other applications. 3DEP data compose an elevation dataset that consists of seamless layers and a high resolution layer. Each of these layers consists of the best available raster elevation data of the conterminous United States, Alaska, Hawaii, territorial islands, Mexico and Canada. 3DEP data are updated continually as [...]",
+          "sourceId": "6a2b874a1ba49b4b7a9c3647",
+          "sourceName": "ScienceBase",
+          "sourceOriginId": null,
+          "sourceOriginName": "gda",
+          "metaUrl": "https://www.sciencebase.gov/catalog/item/6a2b874a1ba49b4b7a9c3647",
+          "vendorMetaUrl": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1-3_arc-second/CA_FEMAR9Southeast_D24/USGS_13_n37w117_20260610.xml",
+          "publicationDate": "2026-06-10",
+          "lastUpdated": "2026-06-11T22:14:31.764-06:00",
+          "dateCreated": "2026-06-11T22:12:58.956-06:00",
+          "sizeInBytes": 429973876,
+          "extent": "1 x 1 degree",
+          "format": "GeoTIFF",
+          "downloadURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20260610.tif",
+          "downloadURLRaster": null,
+          "previewGraphicURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20260610.jpg",
+          "downloadLazURL": null,
+          "urls": {
+            "TIFF": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20260610.tif"
+          },
+          "datasets": [],
+          "boundingBox": {
+            "minX": -117.00055555609345,
+            "maxX": -115.99944444390536,
+            "minY": 35.99944444390684,
+            "maxY": 37.00055555609492
+          },
+          "bestFitIndex": 0.0,
+          "body": "This tile of the 3D Elevation Program (3DEP) seamless products is 1/3 Arc Second resolution. 3DEP data serve as the elevation layer of The National Map, and provide basic elevation information for Earth science studies and mapping applications in the United States. Scientists and resource managers use 3DEP data for global change research, hydrologic modeling, resource monitoring, mapping and visualization, and many other applications. 3DEP data compose an elevation dataset that consists of seamless layers and a high resolution layer. Each of these layers consists of the best available raster elevation data of the conterminous United States, Alaska, Hawaii, territorial islands, Mexico and Canada. 3DEP data are updated continually as new data become available. Seamless 3DEP data are derived from diverse source data that are processed to a common coordinate system and unit of vertical measure. These data are distributed in geographic coordinates in units of decimal degrees, and in conformance with the North American Datum of 1983 (NAD 83). All elevation values are in meters and, over the conterminous United States, are referenced to the North American Vertical Datum of 1988 (NAVD 88). The vertical reference will vary in other areas. Seamless 3DEP data are available nationally (except for Alaska) at resolutions of 1 arc-second (approximately 30 meters) and 1/3 arc-second (approximately 10 meters). In most of Alaska, only lower resolution source data are available. As a result, most seamless 3DEP data for Alaska are at 2 arc-second (approximately 60 meters) grid spacing. Part of Alaska is available at the 1 and 1/3 arc-second resolutions from interferometric synthetic aperture radar (ifsar) collections starting in 2010. Plans are in place for collection of statewide ifsar in Alaska. All 3DEP products are public domain.",
+          "processingUrl": "processingUrl",
+          "modificationInfo": "2026-06-11"
+        },
+        {
+          "title": "USGS 13 arc-second n37w117 1 x 1 degree",
+          "moreInfo": "This tile of the 3D Elevation Program (3DEP) seamless products is 13 arc-second resolution. 3DEP data serve as the elevation layer of The National Map, and provide basic elevation information for Earth science studies and mapping applications in the United States. Scientists and resource managers use 3DEP data for global change research, hydrologic modeling, resource monitoring, mapping and visualization, and many other applications. 3DEP data compose an elevation dataset that consists of seamless layers and a high resolution layer. Each of these layers consists of the best available raster elevation data of the conterminous United States, Alaska, Hawaii, territorial islands, Mexico and Canada. 3DEP data are updated continually as [...]",
+          "sourceId": "5f77848682ce1d74e7d6c791",
+          "sourceName": "ScienceBase",
+          "sourceOriginId": null,
+          "sourceOriginName": "gda",
+          "metaUrl": "https://www.sciencebase.gov/catalog/item/5f77848682ce1d74e7d6c791",
+          "vendorMetaUrl": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1-3_arc-second/undefined/USGS_13_n37w117_20130911.xml",
+          "publicationDate": "2013-01-01",
+          "lastUpdated": "2026-01-14T20:49:57.982-07:00",
+          "dateCreated": "2020-10-02T13:50:30.836-06:00",
+          "sizeInBytes": 400256,
+          "extent": "1 x 1 degree",
+          "format": "GeoTIFF",
+          "downloadURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20130911.tif",
+          "downloadURLRaster": null,
+          "previewGraphicURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20130911.jpg",
+          "downloadLazURL": null,
+          "urls": {
+            "TIFF": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n37w117/USGS_13_n37w117_20130911.tif"
+          },
+          "datasets": [],
+          "boundingBox": {
+            "minX": -117.0005555556,
+            "maxX": -115.9994444444,
+            "minY": 35.99944444444,
+            "maxY": 37.00055555556
+          },
+          "bestFitIndex": 0.0,
+          "body": "This tile of the 3D Elevation Program (3DEP) seamless products is 13 arc-second resolution. 3DEP data serve as the elevation layer of The National Map, and provide basic elevation information for Earth science studies and mapping applications in the United States. Scientists and resource managers use 3DEP data for global change research, hydrologic modeling, resource monitoring, mapping and visualization, and many other applications. 3DEP data compose an elevation dataset that consists of seamless layers and a high resolution layer. Each of these layers consists of the best available raster elevation data of the conterminous United States, Alaska, Hawaii, territorial islands, Mexico and Canada. 3DEP data are updated continually as new data become available. Seamless 3DEP data are derived from diverse source data that are processed to a common coordinate system and unit of vertical measure. These data are distributed in geographic coordinates in units of decimal degrees, and in conformance with the North American Datum of 1983 (NAD 83). All elevation values are in meters and, over the conterminous United States, are referenced to the North American Vertical Datum of 1988 (NAVD 88). The vertical reference will vary in other areas. Seamless 3DEP data are available nationally (except for Alaska) at resolutions of 1 arc-second (approximately 30 meters) and 1/3 arc-second (approximately 10 meters). In most of Alaska, only lower resolution source data are available. As a result, most seamless 3DEP data for Alaska are at 2 arc-second (approximately 60 meters) grid spacing. Part of Alaska is available at the 1 and 1/3 arc-second resolutions from interferometric synthetic aperture radar (ifsar) collections starting in 2010. Plans are in place for collection of statewide ifsar in Alaska. All 3DEP products are public domain.",
+          "processingUrl": "processingUrl",
+          "modificationInfo": "2026-01-14"
+        }
+      ]
+    },
+    "one_meter": {
+      "request": {
+        "bbox": "-116.79585992526361,36.200400234084235,-116.77302565929512,36.21890514442089",
+        "datasets": "Digital Elevation Model (DEM) 1 meter",
+        "max": 1000
+      },
+      "total": 2,
+      "items": [
+        {
+          "title": "USGS 1 Meter 11 x51y401 CA_FEMAR9Southeast_D24",
+          "moreInfo": "This is a tile of the standard one-meter resolution digital elevation model (DEM) produced through the 3D Elevation Program (3DEP) . The elevations in this DEM represent the topographic bare-earth surface. USGS standard one-meter DEMs are produced exclusively from high resolution light detection and ranging (lidar) source data of one-meter or higher resolution. One-meter DEM surfaces are seamless within collection projects, but, not necessarily seamless across projects. The spatial reference used for tiles of the one-meter DEM within the conterminous United States (CONUS) is Universal Transverse Mercator (UTM) in units of meters, and in conformance with the North American Datum of 1983 (NAD83). All bare earth elevation values are in [...]",
+          "sourceId": "6a2b6bc01ba49b01a0cf23b7",
+          "sourceName": "ScienceBase",
+          "sourceOriginId": null,
+          "sourceOriginName": "gda",
+          "metaUrl": "https://www.sciencebase.gov/catalog/item/6a2b6bc01ba49b01a0cf23b7",
+          "vendorMetaUrl": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/CA_FEMAR9Southeast_D24/USGS_1M_11_x51y401_CA_FEMAR9Southeast_D24.xml",
+          "publicationDate": "2026-06-08",
+          "lastUpdated": "2026-06-11T20:37:18.717-06:00",
+          "dateCreated": "2026-06-11T20:15:28.744-06:00",
+          "sizeInBytes": 299758735,
+          "extent": "10000 x 10000 meter",
+          "format": "GeoTIFF",
+          "downloadURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x51y401_CA_FEMAR9Southeast_D24.tif",
+          "downloadURLRaster": null,
+          "previewGraphicURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/browse/USGS_1M_11_x51y401_CA_FEMAR9Southeast_D24.jpg",
+          "downloadLazURL": null,
+          "urls": {
+            "TIFF": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x51y401_CA_FEMAR9Southeast_D24.tif"
+          },
+          "datasets": [],
+          "boundingBox": {
+            "minX": -116.88884287699995,
+            "maxX": -116.77743135899999,
+            "minY": 36.14451176700004,
+            "maxY": 36.23482292700004
+          },
+          "bestFitIndex": 0.0,
+          "body": "This is a tile of the standard one-meter resolution digital elevation model (DEM) produced through the 3D Elevation Program (3DEP) . The elevations in this DEM represent the topographic bare-earth surface. USGS standard one-meter DEMs are produced exclusively from high resolution light detection and ranging (lidar) source data of one-meter or higher resolution. One-meter DEM surfaces are seamless within collection projects, but, not necessarily seamless across projects. The spatial reference used for tiles of the one-meter DEM within the conterminous United States (CONUS) is Universal Transverse Mercator (UTM) in units of meters, and in conformance with the North American Datum of 1983 (NAD83). All bare earth elevation values are in meters and are referenced to the North American Vertical Datum of 1988 (NAVD88). Each tile is distributed in the UTM Zone in which it lies. If a tile crosses two UTM zones, it is delivered in both zones. The one-meter DEM is the highest resolution standard DEM offered in the 3DEP product suite. Other 3DEP products are nationally seamless DEMs in resolutions of 1/3, 1, and 2 arc seconds. These seamless DEMs were referred to as the National Elevation Dataset (NED) from about 2000 through 2015 at which time they became the seamless DEM layers under the 3DEP program and lost the NED branding. Other 3DEP products include five-meter DEMs in Alaska as well as various source datasets including the lidar point cloud and interferometric synthetic aperture radar (Ifsar) digital surface models and intensity images. All 3DEP products are public domain.",
+          "processingUrl": "processingUrl",
+          "modificationInfo": "2026-06-11"
+        },
+        {
+          "title": "USGS 1 Meter 11 x52y401 CA_FEMAR9Southeast_D24",
+          "moreInfo": "This is a tile of the standard one-meter resolution digital elevation model (DEM) produced through the 3D Elevation Program (3DEP) . The elevations in this DEM represent the topographic bare-earth surface. USGS standard one-meter DEMs are produced exclusively from high resolution light detection and ranging (lidar) source data of one-meter or higher resolution. One-meter DEM surfaces are seamless within collection projects, but, not necessarily seamless across projects. The spatial reference used for tiles of the one-meter DEM within the conterminous United States (CONUS) is Universal Transverse Mercator (UTM) in units of meters, and in conformance with the North American Datum of 1983 (NAD83). All bare earth elevation values are in [...]",
+          "sourceId": "6a2b6bba1ba49b01a0cf2379",
+          "sourceName": "ScienceBase",
+          "sourceOriginId": null,
+          "sourceOriginName": "gda",
+          "metaUrl": "https://www.sciencebase.gov/catalog/item/6a2b6bba1ba49b01a0cf2379",
+          "vendorMetaUrl": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/CA_FEMAR9Southeast_D24/USGS_1M_11_x52y401_CA_FEMAR9Southeast_D24.xml",
+          "publicationDate": "2026-06-08",
+          "lastUpdated": "2026-06-11T20:35:47.758-06:00",
+          "dateCreated": "2026-06-11T20:15:22.238-06:00",
+          "sizeInBytes": 350131806,
+          "extent": "10000 x 10000 meter",
+          "format": "GeoTIFF",
+          "downloadURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x52y401_CA_FEMAR9Southeast_D24.tif",
+          "downloadURLRaster": null,
+          "previewGraphicURL": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/browse/USGS_1M_11_x52y401_CA_FEMAR9Southeast_D24.jpg",
+          "downloadLazURL": null,
+          "urls": {
+            "TIFF": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x52y401_CA_FEMAR9Southeast_D24.tif"
+          },
+          "datasets": [],
+          "boundingBox": {
+            "minX": -116.77768631599997,
+            "maxX": -116.66614845599997,
+            "minY": 36.144253855000045,
+            "maxY": 36.23466766900003
+          },
+          "bestFitIndex": 0.0,
+          "body": "This is a tile of the standard one-meter resolution digital elevation model (DEM) produced through the 3D Elevation Program (3DEP) . The elevations in this DEM represent the topographic bare-earth surface. USGS standard one-meter DEMs are produced exclusively from high resolution light detection and ranging (lidar) source data of one-meter or higher resolution. One-meter DEM surfaces are seamless within collection projects, but, not necessarily seamless across projects. The spatial reference used for tiles of the one-meter DEM within the conterminous United States (CONUS) is Universal Transverse Mercator (UTM) in units of meters, and in conformance with the North American Datum of 1983 (NAD83). All bare earth elevation values are in meters and are referenced to the North American Vertical Datum of 1988 (NAVD88). Each tile is distributed in the UTM Zone in which it lies. If a tile crosses two UTM zones, it is delivered in both zones. The one-meter DEM is the highest resolution standard DEM offered in the 3DEP product suite. Other 3DEP products are nationally seamless DEMs in resolutions of 1/3, 1, and 2 arc seconds. These seamless DEMs were referred to as the National Elevation Dataset (NED) from about 2000 through 2015 at which time they became the seamless DEM layers under the 3DEP program and lost the NED branding. Other 3DEP products include five-meter DEMs in Alaska as well as various source datasets including the lidar point cloud and interferometric synthetic aperture radar (Ifsar) digital surface models and intensity images. All 3DEP products are public domain.",
+          "processingUrl": "processingUrl",
+          "modificationInfo": "2026-06-11"
+        }
+      ]
+    }
+  },
+  "note": "Catalog intersection is evidence of candidate products, not proof that every location has 1 m data; use product footprints and metadata before asserting local resolution."
+}

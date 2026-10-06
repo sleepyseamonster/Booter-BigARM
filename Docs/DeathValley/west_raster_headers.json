@@ -1,0 +1,46 @@
+{
+  "candidate_bounds_m": [
+    518352,
+    4006200,
+    520400,
+    4008248
+  ],
+  "sources": [
+    {
+      "title": "USGS 1 Meter 11 x51y401 CA_FEMAR9Southeast_D24",
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x51y401_CA_FEMAR9Southeast_D24.tif",
+      "epsg": 26911,
+      "resolution_m": [
+        1.0,
+        1.0
+      ],
+      "bounds_m": [
+        509993.999700327,
+        3999993.9999938635,
+        520005.999700327,
+        4010005.9999938635
+      ],
+      "nodata": -999999.0,
+      "metadata_url": "https://www.sciencebase.gov/catalog/item/6a2b6bc01ba49b01a0cf23b7",
+      "interpretation": "Raster header verified. Interior samples and vertical metadata not yet verified."
+    },
+    {
+      "title": "USGS 1 Meter 11 x52y401 CA_FEMAR9Southeast_D24",
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x52y401_CA_FEMAR9Southeast_D24.tif",
+      "epsg": 26911,
+      "resolution_m": [
+        1.0,
+        1.0
+      ],
+      "bounds_m": [
+        519993.9996815373,
+        3999994.000041147,
+        530005.9996815373,
+        4010006.000041147
+      ],
+      "nodata": -999999.0,
+      "metadata_url": "https://www.sciencebase.gov/catalog/item/6a2b6bba1ba49b01a0cf2379",
+      "interpretation": "Raster header verified. Interior samples and vertical metadata not yet verified."
+    }
+  ]
+}

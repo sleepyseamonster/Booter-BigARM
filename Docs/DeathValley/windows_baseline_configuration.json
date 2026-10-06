@@ -1,0 +1,46 @@
+{
+  "date_local": "2026-10-06",
+  "cpu": [
+    "Intel(R) Core(TM) i7-9700K CPU @ 3.60GHz"
+  ],
+  "ram_gib": 63.93,
+  "gpu": [
+    "NVIDIA GeForce RTX 3060 Ti"
+  ],
+  "editor": "6000.4.0f1",
+  "build_target": "StandaloneWindows64",
+  "scene": "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity",
+  "resolution_proposed": "1920x1080",
+  "far_clip_m": 8000,
+  "provisional_frame_targets": {
+    "p95_ms": 16.7,
+    "p99_ms": 33.3
+  },
+  "required_measurements": [
+    "Cold startup time",
+    "Repeat startup time",
+    "CPU/GPU and frame-time distributions",
+    "Native process and terrain/texture memory",
+    "Terrain/collider counts",
+    "Same-view basin/mountain captures",
+    "Ordinary and focus-edge crossings by both actors"
+  ],
+  "player_run_state": "Not run; hands-on review is user-owned",
+  "memory_target": "Record baseline before setting an acceptance threshold",
+  "quality_configuration": {
+    "serialized_current_index": 0,
+    "serialized_quality_names": [
+      "Very Low",
+      "Low",
+      "Medium",
+      "High",
+      "Very High",
+      "Ultra"
+    ],
+    "player_quality_note": "Record actual QualitySettings.GetQualityLevel and resolution during the user run; serialized Editor index alone does not prove Player quality."
+  },
+  "scene_guid": "4de5dd018ee194314a00fd369e2d3eeb",
+  "snapshot_scene": "Assets/_Project/Scenes/TopDown3D/BadwaterFourSlices.unity",
+  "current_scene": "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity",
+  "snapshot_note": "Baseline snapshot precedes coordinated scene promotion. Terrain and mechanics snapshot is retained; future comparison must use the same GUID and revalidate current scene references."
+}

@@ -1,0 +1,13 @@
+{
+  "suite": "Build guards plus canonical saved terrain/source validator",
+  "result": "Passed",
+  "total": 8,
+  "passed": 8,
+  "failed": 0,
+  "skipped": 0,
+  "duration_seconds": 2.5597104,
+  "xml_path": "Logs/DeathValleyInventory/windows-build-tests.xml",
+  "xml_sha256": "103d172bb16017c2a38c326307e26259e3e3c40c0ca56101ccac27874f08fa9c",
+  "source_snapshot": "Before Greater Wasteland scene promotion",
+  "limits": "No Player traversal or performance; seven build-output guard cases and one structural/source validator."
+}
