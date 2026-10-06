@@ -18,6 +18,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Transform booterTransform;
         [SerializeField] private TopDown3DProceduralWorld proceduralWorld;
         [SerializeField] private TopDown3DResourceWorldState resourceWorldState;
+        [SerializeField] private TopDown3DPlacedHarvesterState harvesterState;
         [SerializeField] private int worldSeed;
         [SerializeField] private string fileName = "booter-bigarm-save.json";
 
@@ -190,7 +191,8 @@ namespace BooterBigArm.TopDown3D
                 resourceWorldState != null ? resourceWorldState.CaptureSnapshot() : null,
                 savedPlaces,
                 worldDeltas.Values,
-                nextSavedPlaceSequence);
+                nextSavedPlaceSequence,
+                harvesterState != null ? harvesterState.CaptureSnapshot() : null);
         }
 
         public bool Save()
@@ -361,6 +363,22 @@ namespace BooterBigArm.TopDown3D
                 error = "The save contains resource deltas but no resource state is available.";
                 return false;
             }
+            if (harvesterState != null)
+            {
+                var harvesterSnapshot = snapshot.Harvesters
+                    ?? TopDown3DPlacedHarvesterSnapshot.Create(
+                        worldSeed, 0d, 0L, Array.Empty<TopDown3DPlacedHarvesterRecord>());
+                if (!harvesterState.CanApplySnapshot(harvesterSnapshot))
+                {
+                    error = "The placed-harvester snapshot is incompatible.";
+                    return false;
+                }
+            }
+            else if (snapshot.Harvesters != null)
+            {
+                error = "The save contains placed harvesters but no harvester state is available.";
+                return false;
+            }
 
             prepared = new PreparedWorldState(
                 booterAbsolute,
@@ -390,6 +408,7 @@ namespace BooterBigArm.TopDown3D
             var rollbackBigArm = bigArmState != null ? bigArmState.CaptureSnapshot(cargo) : null;
             var rollbackCargo = cargo != null ? cargo.CaptureSnapshot() : null;
             var rollbackResources = resourceWorldState != null ? resourceWorldState.CaptureSnapshot() : null;
+            var rollbackHarvesters = harvesterState != null ? harvesterState.CaptureSnapshot() : null;
             var rollbackPlaces = new List<SavedPlaceRecord>(savedPlaces);
             var rollbackDeltas = new Dictionary<string, TopDown3DWorldDeltaSnapshot>(worldDeltas);
             var rollbackSequence = nextSavedPlaceSequence;
@@ -415,6 +434,10 @@ namespace BooterBigArm.TopDown3D
                     throw new InvalidOperationException("BigARM cargo snapshot was rejected.");
                 if (resourceWorldState != null && !resourceWorldState.ApplySnapshot(snapshot.Resources))
                     throw new InvalidOperationException("Resource delta snapshot was rejected.");
+                if (harvesterState != null && !harvesterState.ApplySnapshot(
+                        snapshot.Harvesters ?? TopDown3DPlacedHarvesterSnapshot.Create(
+                            worldSeed, 0d, 0L, Array.Empty<TopDown3DPlacedHarvesterRecord>())))
+                    throw new InvalidOperationException("Placed-harvester snapshot was rejected.");
 
                 savedPlaces.Clear();
                 savedPlaces.AddRange(prepared.SavedPlaces);
@@ -431,6 +454,8 @@ namespace BooterBigArm.TopDown3D
                 if (cargo != null && rollbackCargo != null) cargo.ApplySnapshot(rollbackCargo);
                 if (resourceWorldState != null && rollbackResources != null)
                     resourceWorldState.ApplySnapshot(rollbackResources);
+                if (harvesterState != null && rollbackHarvesters != null)
+                    harvesterState.ApplySnapshot(rollbackHarvesters);
                 savedPlaces.Clear();
                 savedPlaces.AddRange(rollbackPlaces);
                 worldDeltas.Clear();
@@ -482,6 +507,10 @@ namespace BooterBigArm.TopDown3D
                 resourceWorldState = proceduralWorld != null
                     ? proceduralWorld.ResourceWorldState ?? proceduralWorld.GetComponent<TopDown3DResourceWorldState>()
                     : FindFirstObjectByType<TopDown3DResourceWorldState>();
+            if (harvesterState == null)
+                harvesterState = proceduralWorld != null
+                    ? proceduralWorld.GetComponent<TopDown3DPlacedHarvesterState>()
+                    : FindFirstObjectByType<TopDown3DPlacedHarvesterState>();
         }
 
         private bool ContainsSavedPlace(WorldFeatureId id)

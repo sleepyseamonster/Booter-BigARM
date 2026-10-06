@@ -134,6 +134,14 @@ namespace BooterBigArm.TopDown3D
 
         public TopDown3DInventoryResult TryRemove(string itemId, int quantity)
         {
+            return TryRemove(itemId, quantity, null);
+        }
+
+        internal TopDown3DInventoryResult TryRemove(
+            string itemId,
+            int quantity,
+            Func<bool> commitCondition)
+        {
             if (string.IsNullOrWhiteSpace(itemId) || quantity <= 0)
             {
                 return Failure(TopDown3DInventoryResultCode.InvalidRequest, "Remove requires an item ID and positive quantity.");
@@ -171,6 +179,13 @@ namespace BooterBigArm.TopDown3D
                 var removed = Math.Min(slot.Quantity, remaining);
                 slot.Set(itemId, slot.Quantity - removed);
                 remaining -= removed;
+            }
+
+            if (commitCondition != null && !commitCondition())
+            {
+                return Failure(
+                    TopDown3DInventoryResultCode.CommitConditionRejected,
+                    "The inventory transaction's commit condition was rejected.");
             }
 
             Commit(nextSlots);

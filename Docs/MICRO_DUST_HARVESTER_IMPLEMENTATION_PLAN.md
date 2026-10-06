@@ -1,6 +1,8 @@
 # Micro Dust Harvester Implementation Plan
 
-Status: proposed for the TopDown3D production lane; planning only
+Status: implemented in the TopDown3D production lane; five new harvester tests and eight related inventory/persistence Unity EditMode tests passed in an isolated project copy on 2026-10-05. Hands-on visual and animation acceptance remains with the user.
+
+Verification note: the full prototype validator opened the scene and completed its checks, then reported two pre-existing authored formations, `MixedPileScatter` and `HandbuiltSpire`, needing gameplay rebakes. No harvester-specific validator error was reported. The player's foreground Unity session was left untouched.
 
 Planning owner: Gottspan. Product and creative authority: user.
 
@@ -8,7 +10,7 @@ Planning owner: Gottspan. Product and creative authority: user.
 
 **Done means:** Booter can carry and place one or more small canisters on valid ground, see each device draw in airborne dust and visibly fill, and pick one up at any fill level. A successful pickup returns a canister and all accrued dust for resource use. Deployed state survives chunk unload/reload and an explicit game save/load. Placement and pickup never duplicate or lose items. Keyboard/mouse and gamepad prompts use the existing input router.
 
-**In scope:** TopDown3D item definitions/catalog, a focused deployment action, placed-device world state and save integration, chunk presentation, interaction/animation, local VFX, HUD feedback, authored prefab and tuning, focused tests, production-scene wiring, and documentation. This plan does not implement the feature.
+**In scope:** TopDown3D item definitions/catalog, a focused deployment action, placed-device world state and save integration, chunk presentation, interaction/animation, local VFX, HUD feedback, tuning, focused tests, production-scene wiring, and documentation. The first visual is assembled from runtime primitives rather than an authored prefab.
 
 **Out of scope:** crafting recipes, consumption of dust, weather-based yield, automatic collection while the application is closed, a new global dust simulation, terraforming, a general placeable-object framework, multiplayer, a new autosave/menu flow, and work in `Legacy2D/`, `Unreal/`, or `Engine/`.
 

@@ -229,6 +229,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DBigArmCompanionSnapshot bigArm;
         [SerializeField] private bool hasResources;
         [SerializeField] private TopDown3DResourceWorldSnapshot resources;
+        [SerializeField] private TopDown3DPlacedHarvesterSnapshot harvesters;
         [SerializeField] private List<string> savedPlacePayloads = new List<string>();
         [SerializeField] private List<TopDown3DWorldDeltaSnapshot> worldDeltas =
             new List<TopDown3DWorldDeltaSnapshot>();
@@ -249,6 +250,7 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DBigArmCompanionSnapshot BigArm => bigArm;
         public bool HasResources => hasResources;
         public TopDown3DResourceWorldSnapshot Resources => resources;
+        public TopDown3DPlacedHarvesterSnapshot Harvesters => harvesters;
         public IReadOnlyList<string> SavedPlacePayloads => savedPlacePayloads;
         public IReadOnlyList<TopDown3DWorldDeltaSnapshot> WorldDeltas => worldDeltas;
         public long NextSavedPlaceSequence => nextSavedPlaceSequence;
@@ -341,7 +343,8 @@ namespace BooterBigArm.TopDown3D
             TopDown3DResourceWorldSnapshot resourceSnapshot,
             IEnumerable<SavedPlaceRecord> savedPlaces,
             IEnumerable<TopDown3DWorldDeltaSnapshot> deltas,
-            long nextSequence)
+            long nextSequence,
+            TopDown3DPlacedHarvesterSnapshot harvesterSnapshot = null)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (savedPlaces == null) throw new ArgumentNullException(nameof(savedPlaces));
@@ -377,6 +380,7 @@ namespace BooterBigArm.TopDown3D
                 bigArm = companion,
                 hasResources = resourceSnapshot != null,
                 resources = resourceSnapshot,
+                harvesters = harvesterSnapshot,
                 savedPlacePayloads = placePayloads,
                 worldDeltas = orderedDeltas,
                 nextSavedPlaceSequence = nextSequence

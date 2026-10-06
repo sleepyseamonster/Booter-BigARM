@@ -29,6 +29,8 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private string cameraLookAheadActionName = "CameraLookAhead";
         [SerializeField] private string sprintActionName = "Sprint";
         [SerializeField] private string interactActionName = "Interact";
+        [SerializeField] private string deployCanisterActionName = "DeployCanister";
+        [SerializeField] private string pickupCanisterActionName = "PickupCanister";
         [SerializeField] private string recallActionName = "RecallBigArm";
         [SerializeField] private string toggleInventoryActionName = "ToggleInventory";
         [SerializeField] private string uiCancelActionName = "Cancel";
@@ -41,6 +43,8 @@ namespace BooterBigArm.TopDown3D
         private InputAction cameraLookAheadAction;
         private InputAction sprintAction;
         private InputAction interactAction;
+        private InputAction deployCanisterAction;
+        private InputAction pickupCanisterAction;
         private InputAction recallAction;
         private InputAction toggleInventoryAction;
         private InputAction uiCancelAction;
@@ -60,6 +64,8 @@ namespace BooterBigArm.TopDown3D
 
         public event Action RecallRequested;
         public event Action InteractRequested;
+        public event Action DeployCanisterRequested;
+        public event Action PickupCanisterRequested;
         public event Action InventoryToggleRequested;
         public event Action UiCancelRequested;
         public event Action<TopDown3DInputMode> ModeChanged;
@@ -116,6 +122,8 @@ namespace BooterBigArm.TopDown3D
             sprintAction.performed += HandleSprint;
             sprintAction.canceled += HandleSprint;
             interactAction.performed += HandleInteract;
+            deployCanisterAction.performed += HandleDeployCanister;
+            pickupCanisterAction.performed += HandlePickupCanister;
             recallAction.performed += HandleRecall;
             toggleInventoryAction.performed += HandleToggleInventory;
             uiCancelAction.performed += HandleUiCancel;
@@ -166,6 +174,11 @@ namespace BooterBigArm.TopDown3D
                 interactAction.performed -= HandleInteract;
             }
 
+            if (deployCanisterAction != null)
+                deployCanisterAction.performed -= HandleDeployCanister;
+            if (pickupCanisterAction != null)
+                pickupCanisterAction.performed -= HandlePickupCanister;
+
             if (toggleInventoryAction != null)
             {
                 toggleInventoryAction.performed -= HandleToggleInventory;
@@ -203,6 +216,8 @@ namespace BooterBigArm.TopDown3D
             cameraLookAheadAction = null;
             sprintAction = null;
             interactAction = null;
+            deployCanisterAction = null;
+            pickupCanisterAction = null;
             recallAction = null;
             toggleInventoryAction = null;
             uiCancelAction = null;
@@ -228,6 +243,8 @@ namespace BooterBigArm.TopDown3D
             cameraLookAheadAction = gameplayMap?.FindAction(cameraLookAheadActionName, false);
             sprintAction = gameplayMap?.FindAction(sprintActionName, false);
             interactAction = gameplayMap?.FindAction(interactActionName, false);
+            deployCanisterAction = gameplayMap?.FindAction(deployCanisterActionName, false);
+            pickupCanisterAction = gameplayMap?.FindAction(pickupCanisterActionName, false);
             recallAction = gameplayMap?.FindAction(recallActionName, false);
             toggleInventoryAction = systemMap?.FindAction(toggleInventoryActionName, false);
             uiCancelAction = uiMap?.FindAction(uiCancelActionName, false);
@@ -237,6 +254,8 @@ namespace BooterBigArm.TopDown3D
                 && cameraLookAheadAction != null
                 && sprintAction != null
                 && interactAction != null
+                && deployCanisterAction != null
+                && pickupCanisterAction != null
                 && recallAction != null
                 && systemMap != null
                 && uiMap != null
@@ -294,6 +313,18 @@ namespace BooterBigArm.TopDown3D
             {
                 InteractRequested?.Invoke();
             }
+        }
+
+        private void HandleDeployCanister(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                DeployCanisterRequested?.Invoke();
+        }
+
+        private void HandlePickupCanister(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                PickupCanisterRequested?.Invoke();
         }
 
         private void HandleToggleInventory(InputAction.CallbackContext context)

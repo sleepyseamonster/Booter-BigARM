@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -66,7 +67,14 @@ namespace BooterBigArm.TopDown3D.Editor
                 TopDown3DPackingPreference.Normal);
             EditorUtility.SetDirty(item);
             var itemCatalog = LoadOrCreate<TopDown3DItemCatalog>(ItemCatalogPath);
-            itemCatalog.Configure(new[] { item });
+            var itemDefinitions = new List<TopDown3DItemDefinition> { item };
+            foreach (var existing in itemCatalog.Definitions)
+            {
+                if (existing != null && existing != item
+                    && existing.ItemId != item.ItemId)
+                    itemDefinitions.Add(existing);
+            }
+            itemCatalog.Configure(itemDefinitions);
             EditorUtility.SetDirty(itemCatalog);
 
             var shader = Shader.Find("Universal Render Pipeline/Lit");

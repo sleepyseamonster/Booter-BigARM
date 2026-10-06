@@ -1756,6 +1756,8 @@ MonoBehaviour:
   cameraLookAheadActionName: CameraLookAhead
   sprintActionName: Sprint
   interactActionName: Interact
+  deployCanisterActionName: DeployCanister
+  pickupCanisterActionName: PickupCanister
   recallActionName: RecallBigArm
   toggleInventoryActionName: ToggleInventory
   uiCancelActionName: Cancel
@@ -1840,6 +1842,7 @@ MonoBehaviour:
   booterTransform: {fileID: 690964292}
   proceduralWorld: {fileID: 634186676}
   resourceWorldState: {fileID: 634186677}
+  harvesterState: {fileID: 634186679}
   worldSeed: 24681357
   fileName: booter-bigarm-save.json
 --- !u!4 &542432046
@@ -2157,6 +2160,7 @@ GameObject:
   - component: {fileID: 634186678}
   - component: {fileID: 634186676}
   - component: {fileID: 634186677}
+  - component: {fileID: 634186679}
   m_Layer: 0
   m_Name: Deterministic Streamed 3D World
   m_TagString: Untagged
@@ -2193,6 +2197,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DResourceWorldState
   resourceGenerationVersion: 1
+--- !u!114 &634186679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634186675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41f4b36a7be4ed080466fdea1ead488, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlacedHarvesterState
+  world: {fileID: 634186676}
+  settings: {fileID: 11400000, guid: 42334e1f3d5d4f3c87768a3691d33eed, type: 2}
 --- !u!4 &634186678
 Transform:
   m_ObjectHideFlags: 0
@@ -2706,6 +2724,8 @@ MonoBehaviour:
   inventory: {fileID: 690964290}
   motor: {fileID: 690964288}
   animationDriver: {fileID: 690964287}
+  harvesterState: {fileID: 634186679}
+  proceduralWorld: {fileID: 634186676}
 --- !u!114 &690964287
 MonoBehaviour:
   m_ObjectHideFlags: 0

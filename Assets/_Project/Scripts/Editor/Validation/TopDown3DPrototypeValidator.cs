@@ -56,6 +56,9 @@ namespace BooterBigArm.Editor
             ValidateAssetExists(
                 global::BooterBigArm.TopDown3D.Editor.TopDown3DIronstoneAssetBuilder.IronstoneItemPath,
                 errors);
+            ValidateAssetExists("Assets/_Project/Settings/Items/Item_MicroDustHarvester.asset", errors);
+            ValidateAssetExists("Assets/_Project/Settings/Items/Item_AirborneDust.asset", errors);
+            ValidateAssetExists("Assets/_Project/Resources/Harvester/MicroDustHarvesterSettings.asset", errors);
             ValidateAssetExists(
                 global::BooterBigArm.TopDown3D.Editor.TopDown3DIronstoneAssetBuilder.ResourceCatalogPath,
                 errors);
@@ -630,9 +633,11 @@ namespace BooterBigArm.Editor
             var itemError = "catalog missing";
             var itemCatalogValid = itemCatalog != null && itemCatalog.TryValidate(out itemError);
             if (!itemCatalogValid
-                || item == null || itemCatalog.Definitions.Count != 1
+                || item == null || itemCatalog.Definitions.Count != 3
                 || itemCatalog.Definitions[0] != item
-                || item.ItemId != "resource.ironstone_ore" || item.MaxStack != 99)
+                || item.ItemId != "resource.ironstone_ore" || item.MaxStack != 99
+                || !itemCatalog.TryGetDefinition(TopDown3DHarvesterSettings.CanisterItemId, out _)
+                || !itemCatalog.TryGetDefinition(TopDown3DHarvesterSettings.DustItemId, out _))
             {
                 errors.Add($"Ironstone item catalog is invalid or non-canonical: {itemError}");
             }
@@ -1090,6 +1095,7 @@ namespace BooterBigArm.Editor
                 ValidateSingle<TopDown3DInteractionController>(roots, errors);
                 ValidateSingle<TopDown3DPlayerActionController>(roots, errors);
                 ValidateSingle<TopDown3DResourceWorldState>(roots, errors);
+                ValidateSingle<TopDown3DPlacedHarvesterState>(roots, errors);
                 ValidateSingle<TopDown3DInventoryCanvas>(roots, errors);
                 ValidateSingle<TopDown3DInventoryUiController>(roots, errors);
                 ValidateSingle<TopDown3DInteractionFeedbackHud>(roots, errors);

@@ -84,6 +84,14 @@ namespace BooterBigArm.TopDown3D
         internal WorldCreatorProductionRuntime ProductionRuntime => worldCreatorRuntime;
         internal TopDown3DResourceWorldState ResourceWorldState => resourceWorldState;
 
+        internal bool TryGetLoadedChunkAt(Vector3 localPosition, out TopDown3DGeneratedChunk chunk)
+        {
+            chunk = null;
+            return settings != null && worldGenerator != null
+                && loadedChunks.TryGetValue(worldGenerator.WorldToChunk(settings, localPosition), out chunk)
+                && chunk != null && chunk.TryGetComponent<MeshCollider>(out _);
+        }
+
         internal bool TryLocalToAbsolute(Vector3 localPosition, out AbsoluteWorldPosition absolute)
         {
             if (worldCreatorRuntime == null)

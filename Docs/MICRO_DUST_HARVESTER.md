@@ -28,3 +28,11 @@ The charge and airborne sand are the in-world explanation. The gameplay loop is 
 The current TopDown3D prototype already has a player inventory, an interactable/gather action, world-delta storage in `TopDown3DGameStateSaveService`, and chunk streaming. The implementation should add a dedicated placed-device state and interaction instead of treating the canister as an Ironstone node or a cosmetic generated prop. The existing world-delta store has a fixed record bound, so the implementation must reject placement cleanly when it cannot persist another device.
 
 Before accepting runtime behavior, verify inventory transfer is atomic, device state survives the streaming lifecycle, and any new animation/event wiring does not change existing gather or cargo interactions. Hands-on gameplay feel and visual acceptance remain a separate player check.
+
+## Current playable slice
+
+The TopDown3D production scene has a world-owned harvester registry and a separate 32-device limit. Press **G** (gamepad D-pad down) to preview a placement, press it again to set the canister down, or press **C** (gamepad East) to cancel. Face a placed canister and press **E** (gamepad South) or **C** (gamepad East) to pick it up. Booter uses the existing reach/gather animation for both actions. The visible device has a rising dust fill and local inward-moving particles; its target prompt shows the current amount and capacity.
+
+Each canister holds up to 100 dust at a rate of one unit per 10 seconds of active game time. These are provisional values in `MicroDustHarvesterSettings.asset`. Pickup grants the empty canister and a separate airborne-dust inventory stack in one transaction. If both do not fit, the deployed device remains in place. An explicit game save includes the placed records and their collection clock; the game does not grant offline progress.
+
+There is no permanent starting canister or crafting recipe yet. For a prototype play session, use **Booter & BigARM > Top Down 3D > Grant Micro Dust Harvester (Play Mode)** in the Unity Editor, then use the controls above. The menu command grants one canister to the active player inventory and does not define the future economy source.

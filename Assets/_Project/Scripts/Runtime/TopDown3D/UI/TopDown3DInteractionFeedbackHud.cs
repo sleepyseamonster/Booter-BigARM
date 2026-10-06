@@ -16,6 +16,7 @@ namespace BooterBigArm.TopDown3D
 
         private Text label;
         private float feedbackRemaining;
+        private float promptRefreshRemaining;
         private bool subscribed;
 
         public string DisplayedText => label != null ? label.text : string.Empty;
@@ -93,6 +94,12 @@ namespace BooterBigArm.TopDown3D
         {
             if (feedbackRemaining <= 0f)
             {
+                promptRefreshRemaining -= Time.unscaledDeltaTime;
+                if (promptRefreshRemaining <= 0f)
+                {
+                    promptRefreshRemaining = 0.25f;
+                    RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
+                }
                 return;
             }
 
@@ -111,6 +118,12 @@ namespace BooterBigArm.TopDown3D
             }
 
             EnsureVisualTree();
+            if (actionController != null && actionController.IsPlacingHarvester)
+            {
+                label.text = actionController.PlacementPrompt;
+                label.enabled = true;
+                return;
+            }
             var binding = input != null
                 ? input.GetBindingDisplayName("Gameplay/Interact", "E")
                 : "E";
@@ -165,6 +178,7 @@ namespace BooterBigArm.TopDown3D
             if (actionController != null)
             {
                 actionController.FeedbackRequested += ShowFeedback;
+                actionController.PlacementChanged += HandlePlacementChanged;
             }
 
             if (input != null)
@@ -190,6 +204,7 @@ namespace BooterBigArm.TopDown3D
             if (actionController != null)
             {
                 actionController.FeedbackRequested -= ShowFeedback;
+                actionController.PlacementChanged -= HandlePlacementChanged;
             }
 
             if (input != null)
@@ -201,6 +216,11 @@ namespace BooterBigArm.TopDown3D
         }
 
         private void HandlePromptDeviceChanged(TopDown3DPromptDevice _)
+        {
+            RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
+        }
+
+        private void HandlePlacementChanged()
         {
             RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
         }

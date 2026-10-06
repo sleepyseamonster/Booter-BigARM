@@ -68,6 +68,9 @@ namespace BooterBigArm.TopDown3D
                 candidate ??= collider != null
                     ? collider.GetComponentInParent<TopDown3DIronstoneNode>()
                     : null;
+                candidate ??= collider != null
+                    ? collider.GetComponentInParent<TopDown3DHarvesterView>()
+                    : null;
                 if (candidate == null || !candidate.IsAvailable)
                 {
                     continue;
@@ -127,7 +130,8 @@ namespace BooterBigArm.TopDown3D
 
             return hit.collider == targetCollider
                 || hit.collider.GetComponentInParent<MonoBehaviour>() == target.UnityObject
-                || hit.collider.GetComponentInParent<TopDown3DIronstoneNode>() == target.UnityObject;
+                || hit.collider.GetComponentInParent<TopDown3DIronstoneNode>() == target.UnityObject
+                || hit.collider.GetComponentInParent<TopDown3DHarvesterView>() == target.UnityObject;
         }
 
         private void OnDisable()

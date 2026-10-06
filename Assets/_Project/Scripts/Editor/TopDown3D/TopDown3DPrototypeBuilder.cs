@@ -918,6 +918,9 @@ namespace BooterBigArm.Editor
                 world.Configure(settings, player.transform, terrainMaterial, rockMaterial);
                 world.gameObject.AddComponent<TopDown3DResourceWorldState>()
                     .Configure(settings.ResourceGenerationVersion);
+                var harvesters = world.gameObject.AddComponent<TopDown3DPlacedHarvesterState>();
+                harvesters.Configure(world, TopDown3DHarvesterSettings.Load());
+                actionController.ConfigureHarvester(harvesters, world);
 
                 var bigArm = CreateBigArm(settings, bigArmMaterial, inventory.ItemCatalog, packingSettings);
                 actionController.ConfigureCargo(bigArm.GetComponent<TopDown3DBigArmCargo>());
