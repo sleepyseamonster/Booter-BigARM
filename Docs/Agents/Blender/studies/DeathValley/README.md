@@ -1,4 +1,4 @@
-# Death Valley terrain master and future Unity handoff
+# Death Valley terrain exploration and future Unity handoff
 
 **State (2026-10-05):** Reproducible geographic and Blender prototype. It is not a finished Unity game world or accepted production art.
 
@@ -6,7 +6,8 @@
 
 | Artifact | Use | Limit |
 | --- | --- | --- |
-| `DeathValleyTerrainMaster.blend` | **Open this single project file for terrain review.** It contains the full regional 200 m terrain, 10 m Mosaic Canyon terrain, and a 500 × 500 m 1 m patch. Natural-color Landsat covers the full regional surface; higher resolution USGS NAIP colors Mosaic. The Mosaic surfaces add a subtle CC0 scanned ground normal and roughness. Three camera markers cover the map, elevated Mosaic, and 1 m patch. | Satellite and aerial color contain baked lighting and roads. They are geographic study textures, not finished game materials. Do not import the entire overview into Unity as one mesh. |
+| `DeathValleyExplore.blend` | **Open this for free exploration.** It contains the whole 176.2 × 215.4 km regional terrain at 200 m spacing, split into 42 Blender mesh objects. It opens in the ordinary 3D viewport over Racetrack Playa, with natural-color Landsat surface reference. | All 42 objects are loaded; this scene does not stream chunks. The 200 m DEM shows the playa basin and surrounding topography, not individual stones or trails. No close tiles, game assets, or cameras are present. |
+| `DeathValleyTerrainMaster.blend` | Earlier multi-resolution technique study with the regional mesh, Mosaic 10 m terrain and 1 m patch | Preserved for later detail decisions; it is not the current exploration scene. |
 | `DeathValleyRegionalStudy.blend`, `DeathValleyMosaicDetail.blend` | Earlier separate studies and the experimental rock/scatter setup | Kept for provenance and a later rock pass; these are not the current review scene. |
 | `rock_exports/*.fbx` | Individual centered rock prototypes with UVs, contact pivots and metre scale | Procedural Blender shaders do not transfer; assign reviewed Unity materials after import |
 | `rock_maps/*` | Five families with 512 px base color, OpenGL +Y normal, roughness and height starter maps | Procedural art studies, not scanned rock or baked high-poly detail; test normal orientation in the Unity material path |
@@ -30,13 +31,13 @@ The close ground material is [Poly Haven Rocks Ground 09](https://polyhaven.com/
 
 ## Review in Blender first
 
-Open `DeathValleyTerrainMaster.blend`. Frame **1** selects the regional map camera, frame **2** the 10 m Mosaic elevated camera, and frame **3** the 1 m patch camera. Press Numpad **0** to enter the camera if Blender opens in a free view. Use Material Preview or Rendered shading to see the terrain textures. The regional, 10 m, and 1 m surfaces are separate named collections, but they share one scene and one geographic origin. The 1 m patch is terrain only; rocks and scatter are deferred. The imagery and scanned ground maps are packed into the file.
+Open `DeathValleyExplore.blend`. It starts in **User Perspective** over Racetrack Playa, marked by a named viewport empty. Orbit with middle mouse, pan with Shift + middle mouse, and zoom with the wheel. Press **Home** while the pointer is over the viewport to frame the entire regional terrain; then zoom and pan to any range or valley. To return to Racetrack, select its marker in the Outliner and press Numpad **Period** (Frame Selected), or reopen the saved file. The viewport clip distance is 500 km so distant geometry remains visible. The image is packed into the file. The scene has no camera object.
 
 This phase stays in Blender until the user has seen and assessed its scale and art direction. Do not move these studies into Unity merely because exports exist.
 
 ## Terrain batching for the full landscape
 
-The master scene already covers the park bounding rectangle and surrounding ranges at 200 m spacing. Add detail **by area of interest**, not by raising the entire park to 1 m. Each new batch should use an aligned metric grid, keep a small border that blends to its parent grid, and enter the master file as a named collection with a review camera. Mosaic demonstrates the first 2 km terrain batch at 10 m and a selected 500 m patch at 1 m. This keeps the valley and mountains navigable in Blender while allowing close terrain to be refined one place at a time. The next batches should be chosen after reviewing the current map and camera view, using the places the game needs rather than a uniform tiling of all 38,000 km².
+The exploration scene already covers the park bounding rectangle and surrounding ranges at 200 m spacing. Its 1,897,674 triangles were navigable in Blender's Material Preview during review, so runtime chunk loading is unnecessary for this pass. The 42 mesh objects are convenient source chunks, but Blender loads them together. If a later visual goal requires closer terrain, add aligned high-resolution batches only at chosen areas. The preserved Mosaic study demonstrates that technique; it is outside the current exploration scene. The full region should not be raised uniformly to 1 m.
 
 ## Rebuild
 
@@ -49,7 +50,7 @@ python Docs/Agents/Blender/tools/death_valley/prepare_detail.py --source '/Users
 python Docs/Agents/Blender/tools/death_valley/make_rock_maps.py --output '/Users/worldbuilder/Desktop/Death Valley Terrain Data/prepared/rock_maps'
 ```
 
-Then run `build_region_study.py` in Blender background mode with `--manifest`, `--detail-manifest`, `--scan-manifest`, `--overview-color '/Users/worldbuilder/Desktop/Death Valley Terrain Data/prepared/overview/landsat_natural_fallback.png'`, and `--output` to rebuild the terrain master. The optional detail and scan arguments can be omitted for a lighter regional study. `verify_pipeline.py` checks the underlying arrays, geology codes, source hashes, FBX files, and maps. `build_region_study.py` packs its imagery and scan maps into the saved `.blend`. The separate `build_detail_study.py` remains available for the later rock pass.
+Run `build_explore_scene.py` in Blender background mode with `--manifest`, `--overview-color '/Users/worldbuilder/Desktop/Death Valley Terrain Data/prepared/overview/landsat_natural_fallback.png'`, and `--output` to rebuild the free-navigation scene. `verify_pipeline.py` checks the underlying geographic arrays and source hashes. The explore builder packs its image into the saved `.blend`. The other builders remain for later detail work.
 
 For the scanned ground, pass `--scan-manifest Docs/Agents/Blender/studies/DeathValley/scan_materials/rocks_ground_09/manifest.json` to `build_detail_study.py`. `fetch_polyhaven_material.py` can recreate those files from the saved API file listing under the external raw data folder; it validates the provider MD5 values.
 
@@ -70,7 +71,7 @@ After Blender visual review, Babineaux's Unity batch should import a small selec
 
 ## Measured checks and current visual assessment
 
-- Terrain master: 42 overview tiles, two stitched Mosaic tiles, and four 1 m patch tiles. The saved file has 2,480,454 evaluated terrain triangles, UVs on every tile, and no loose vertices. The 1 m tile edges share source samples from the same 501 × 501 raster. The earlier separate detail study remains available for the later rock pass.
+- Exploration scene: 42 regional tiles and 1,897,674 terrain triangles, all visible in a single free Blender viewport. The saved view shows Racetrack Playa; **Home** was tested to frame the entire terrain. The earlier master has two stitched Mosaic tiles and four 1 m patch tiles, with 2,480,454 evaluated terrain triangles; those details are not loaded in the exploration scene.
 - Geometry Nodes preview: 140 slabs, 100 cliff blocks, 240 dark boulders, 450 talus shards and 700 pebbles, 1,630 total, seeded from local coordinates and filtered by slope, geology, talus/wash hints. This count is not a runtime density recommendation.
 - Blender's read-only `inspect_blend.py` found UVs and closed rock meshes with no nonmanifold edges or loose vertices. The terrain has intentional open boundary edges; Geometry Nodes point carriers intentionally have loose vertices.
 - The pipeline verifier passed for the regional and Mosaic grids, categorical geology, 1 m patch, five FBX exports and 20 generated maps. The 10 m Mosaic sample near the NPS trailhead differed by roughly 0.32 m from a separate USGS EPQS point response. This is a local check, not a blanket accuracy guarantee.
