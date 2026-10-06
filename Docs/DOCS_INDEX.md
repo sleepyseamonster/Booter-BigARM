@@ -40,6 +40,8 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [BADWATER_GAMEPLAY_TERRAIN_PLAN.md](./BADWATER_GAMEPLAY_TERRAIN_PLAN.md)
+  Audited, profile-first gameplay plan for the four-slice geographic terrain scene and its conditional collision and asset-streaming gates.
 - [MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md](./MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md)
   Candidate designs and an implementation-ready TopDown3D plan for the player-placed micro dust harvester.
 - [Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md](./Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md)
