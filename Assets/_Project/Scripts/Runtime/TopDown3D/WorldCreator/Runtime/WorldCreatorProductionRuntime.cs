@@ -7,7 +7,7 @@ using UnityEngine;
 namespace BooterBigArm.TopDown3D.WorldCreator
 {
     /// <summary>
-    /// Owns the topology-v2 production query and representation path. The coordinate and
+    /// Owns the versioned production query and representation path. The coordinate and
     /// landscape profile behind this runtime are explicitly disposable non-canon adapters.
     /// </summary>
     public sealed class WorldCreatorProductionRuntime : IDisposable
@@ -229,7 +229,15 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                     Identity,
                     CoordinateModel,
                     NonCanonProofHistory),
-                Profile.IncludeCanyonsInInitialPlayableArea);
+                true,
+                Profile.IncludeCanyonsInInitialPlayableArea
+                    ? double.NaN : Profile.GentlePrototypeCenter.x,
+                Profile.IncludeCanyonsInInitialPlayableArea
+                    ? double.NaN : Profile.GentlePrototypeCenter.y,
+                Profile.IncludeCanyonsInInitialPlayableArea
+                    ? 0d : Profile.GentlePrototypeRadius,
+                Profile.IncludeCanyonsInInitialPlayableArea
+                    ? 0d : Profile.GentlePrototypeTransition);
             Materials = new WorldSurfaceMaterialService(
                 Identity,
                 CoordinateModel,

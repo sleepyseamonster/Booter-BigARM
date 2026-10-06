@@ -34,6 +34,21 @@ namespace BooterBigArm.Tests.WorldCreator
         }
 
         [Test]
+        public void CoarseMaterialUsesCoarseSurfaceNormalWithoutDetailedCacheContamination()
+        {
+            using var runtime = WorldCreatorProductionRuntime.Create(3496479);
+            var position = new AbsoluteWorldPosition(72d, 0d, 84d);
+            Assert.That(runtime.Materials.TrySample(position, out _, out var error), Is.True, error);
+            var coarseQuery = (IWorldCoarseSurfaceQuery)runtime.Query;
+            Assert.That(coarseQuery.TrySampleCoarseSurface(position, out var coarse, out error), Is.True, error);
+            var surfaceMaterials = (IWorldSurfaceMaterialFromSurfaceService)runtime.Materials;
+            Assert.That(surfaceMaterials.TrySampleFromSurface(position, coarse, out var material, out error), Is.True, error);
+            var expectedSlope = (float)(Math.Acos(Math.Max(-1f, Math.Min(1f, coarse.NormalVertical))) * 180d / Math.PI);
+            Assert.That(material.Position, Is.EqualTo(coarse.Position));
+            Assert.That(material.SlopeDegrees, Is.EqualTo(expectedSlope));
+        }
+
+        [Test]
         public void SharedBoundary_HasExactMaterialContinuity()
         {
             using var runtime = WorldCreatorProductionRuntime.Create(3496479);
@@ -104,7 +119,7 @@ namespace BooterBigArm.Tests.WorldCreator
         }
 
         [Test]
-        public async Task NearMidFarRepresentations_ShareOneMaterialContract()
+        public async Task NearMidFarRepresentations_UseCanonicalMaterialsForTheirSurfaceTier()
         {
             using var runtime = WorldCreatorProductionRuntime.Create(3496479);
             var keys = new[]
@@ -122,8 +137,10 @@ namespace BooterBigArm.Tests.WorldCreator
             Assert.That(runtime.TryGetIntegrated(keys[1], out var mid), Is.True);
             Assert.That(runtime.TryGetIntegrated(keys[2], out var far), Is.True);
 
-            AssertCornerContract(near, mid);
-            AssertCornerContract(near, far);
+            AssertTierCornerContract(runtime, near, false);
+            AssertTierCornerContract(runtime, mid, true);
+            AssertTierCornerContract(runtime, far, true);
+            AssertCornerContract(mid, far);
             Assert.That(near.HasCollision, Is.True);
             Assert.That(mid.HasCollision, Is.False);
             Assert.That(far.HasCollision, Is.False);
@@ -199,6 +216,38 @@ namespace BooterBigArm.Tests.WorldCreator
             for (var z = 0; z < before.VerticesPerAxis; z++)
                 for (var x = 0; x < before.VerticesPerAxis; x++)
                     Assert.That(after.GetSample(x, z), Is.EqualTo(before.GetSample(x, z)));
+        }
+
+        private static void AssertTierCornerContract(
+            WorldCreatorProductionRuntime runtime,
+            WorldRepresentationBuildResult representation,
+            bool coarse)
+        {
+            var corners = new[]
+            {
+                0,
+                representation.Resolution - 1,
+                representation.VertexCount - representation.Resolution,
+                representation.VertexCount - 1
+            };
+            var materials = (IWorldSurfaceMaterialFromSurfaceService)runtime.Materials;
+            foreach (var index in corners)
+            {
+                var actualPosition = representation.GetAbsolutePosition(index);
+                var position = new AbsoluteWorldPosition(actualPosition.HorizontalA, 0d, actualPosition.HorizontalB);
+                WorldSurfaceSample surface;
+                string error;
+                var sampled = coarse
+                    ? ((IWorldCoarseSurfaceQuery)runtime.Query).TrySampleCoarseSurface(position, out surface, out error)
+                    : runtime.Query.TrySampleSurface(position, out surface, out error);
+                Assert.That(sampled, Is.True, error);
+                Assert.That(materials.TrySampleFromSurface(position, surface, out var expected, out error), Is.True, error);
+                var actual = representation.GetMaterial(index);
+                Assert.That(representation.GetHeight(index), Is.EqualTo((float)surface.Position.Vertical));
+                Assert.That(actual, Is.EqualTo(expected));
+                Assert.That(WorldTerrainMaterialPackingAdapter.Pack(actual),
+                    Is.EqualTo(WorldTerrainMaterialPackingAdapter.Pack(expected)));
+            }
         }
 
         private static void AssertCornerContract(

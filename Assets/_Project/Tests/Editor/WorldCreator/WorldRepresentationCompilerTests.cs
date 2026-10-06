@@ -45,6 +45,73 @@ namespace BooterBigArm.Tests.WorldCreator
         }
 
         [Test]
+        public async Task NearDetailNoiseOnlyChangesNearRepresentationHeightAndMaterialSlope()
+        {
+            var fixture = HybridTerrainComparisonPanelExporter.BuildProofFixture(false);
+            var query = new HybridTerrainWindowQueryService(fixture.Plan, fixture.Model, fixture.Context, false);
+            var position = new AbsoluteWorldPosition(72d, 0d, 72d);
+            Assert.That(query.TrySampleSurface(position, out var detailed, out var detailedError), Is.True, detailedError);
+            Assert.That(query.TrySampleCoarseSurface(position, out var coarse, out var coarseError), Is.True, coarseError);
+            Assert.That(detailed.Semantic, Is.EqualTo(coarse.Semantic));
+            Assert.That(detailed.DominantFeatureId, Is.EqualTo(coarse.DominantFeatureId));
+            // Current Little Noise is bounded by 0.10 m and Fine Noise by 0.075 m.
+            const double maximumNearDetailOffset = 0.175d;
+            Assert.That(Math.Abs(detailed.Position.Vertical - coarse.Position.Vertical), Is.LessThanOrEqualTo(maximumNearDetailOffset));
+            var largestNearDetailOffset = 0d;
+            for (var b = 72d; b <= 84d; b += 3d)
+            {
+                for (var a = 72d; a <= 84d; a += 3d)
+                {
+                    var detailPosition = new AbsoluteWorldPosition(a, 0d, b);
+                    Assert.That(query.TrySampleSurface(detailPosition, out var detailedBump, out detailedError), Is.True, detailedError);
+                    Assert.That(query.TrySampleCoarseSurface(detailPosition, out var coarseBump, out coarseError), Is.True, coarseError);
+                    largestNearDetailOffset = Math.Max(
+                        largestNearDetailOffset,
+                        Math.Abs(detailedBump.Position.Vertical - coarseBump.Position.Vertical));
+                    Assert.That(Math.Abs(detailedBump.Position.Vertical - coarseBump.Position.Vertical),
+                        Is.LessThanOrEqualTo(maximumNearDetailOffset));
+                }
+            }
+            Assert.That(largestNearDetailOffset, Is.GreaterThan(0.1d));
+            var layeredPosition = new AbsoluteWorldPosition(96d, 0d, 33d);
+            Assert.That(query.TrySampleSurface(layeredPosition, out var layered, out detailedError), Is.True, detailedError);
+            Assert.That(query.TrySampleCoarseSurface(layeredPosition, out var layeredCoarse, out coarseError), Is.True, coarseError);
+            Assert.That(Math.Abs(layered.Position.Vertical - layeredCoarse.Position.Vertical), Is.GreaterThan(0.16d));
+
+            var pool = new WorldRepresentationBufferPool();
+            var compiler = new WorldRepresentationCompiler(
+                query,
+                pool,
+                WorldRepresentationBuildProfile.CreateNonCanonTechnicalProofProfile(),
+                fixture.Plan.Fingerprint);
+            var near = await compiler.BuildAsync(CreateKey(fixture, WorldRepresentationTier.Near, 0), CancellationToken.None);
+            var mid = await compiler.BuildAsync(CreateKey(fixture, WorldRepresentationTier.Mid, 0), CancellationToken.None);
+            var far = await compiler.BuildAsync(CreateKey(fixture, WorldRepresentationTier.Far, 0), CancellationToken.None);
+            try
+            {
+                var nearIndex = near.VertexCount / 2;
+                var midIndex = mid.VertexCount / 2;
+                var farIndex = far.VertexCount / 2;
+                Assert.That(near.GetHeight(nearIndex), Is.EqualTo((float)detailed.Position.Vertical));
+                Assert.That(mid.GetHeight(midIndex), Is.EqualTo((float)coarse.Position.Vertical));
+                Assert.That(far.GetHeight(farIndex), Is.EqualTo((float)coarse.Position.Vertical));
+                var detailedSlope = (float)(Math.Acos(Math.Max(-1f, Math.Min(1f, detailed.NormalVertical))) * 180d / Math.PI);
+                var coarseSlope = (float)(Math.Acos(Math.Max(-1f, Math.Min(1f, coarse.NormalVertical))) * 180d / Math.PI);
+                Assert.That(near.GetMaterial(nearIndex).SlopeDegrees, Is.EqualTo(detailedSlope));
+                Assert.That(mid.GetMaterial(midIndex).SlopeDegrees, Is.EqualTo(coarseSlope));
+                Assert.That(far.GetMaterial(farIndex).SlopeDegrees, Is.EqualTo(coarseSlope));
+            }
+            finally
+            {
+                near.Dispose();
+                mid.Dispose();
+                far.Dispose();
+            }
+
+            Assert.That(pool.OutstandingLeases, Is.Zero);
+        }
+
+        [Test]
         public async Task RebaseChangesOnlyReusableLocalBuffers()
         {
             var fixture = HybridTerrainComparisonPanelExporter.BuildProofFixture(false);

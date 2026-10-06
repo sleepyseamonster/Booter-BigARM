@@ -41,6 +41,39 @@ namespace BooterBigArm.Tests.WorldCreator
         }
 
         [Test]
+        public void GeneratedFlatCoreIsLevelAcrossDetailTiersAndCacheReload()
+        {
+            var fixture = HybridTerrainComparisonPanelExporter.BuildProofFixture(false);
+            var service = new UnboundedHybridWorldQueryService(
+                fixture.World,
+                fixture.Model,
+                fixture.Context,
+                CanyonPlannerProfile.CreateNonCanonTechnicalProofProfile(),
+                includeCanyonExcavation: false);
+            var core = new[]
+            {
+                new AbsoluteWorldPosition(124d, 0d, -135d),
+                new AbsoluteWorldPosition(144d, 0d, -135d),
+                new AbsoluteWorldPosition(104d, 0d, -135d),
+                new AbsoluteWorldPosition(124d, 0d, -115d),
+                new AbsoluteWorldPosition(124d, 0d, -155d)
+            };
+            Assert.That(service.TrySampleSurface(core[0], out var center, out var error), Is.True, error);
+            Assert.That(center.NormalVertical, Is.EqualTo(1f));
+            for (var i = 0; i < core.Length; i++)
+            {
+                Assert.That(service.TrySampleSurface(core[i], out var detailed, out error), Is.True, error);
+                Assert.That(service.TrySampleCoarseSurface(core[i], out var coarse, out error), Is.True, error);
+                Assert.That(detailed.Position.Vertical, Is.EqualTo(center.Position.Vertical));
+                Assert.That(coarse.Position.Vertical, Is.EqualTo(center.Position.Vertical));
+            }
+
+            service.ClearCaches();
+            Assert.That(service.TrySampleSurface(core[0], out var rebuilt, out error), Is.True, error);
+            Assert.That(rebuilt, Is.EqualTo(center));
+        }
+
+        [Test]
         public void RuntimeProofCoordinateAdapterRoundTripsFarAddressesWithoutDefiningGlobeRules()
         {
             var model = new NonCanonTechnicalCoordinateModel();

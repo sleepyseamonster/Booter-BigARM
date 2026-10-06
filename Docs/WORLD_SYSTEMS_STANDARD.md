@@ -2,6 +2,10 @@
 
 This is the baseline for deterministic procedural generation, chunk streaming, and save/load architecture in Booter & BigARM.
 
+For the current 3D prototype, natural objects and Ironstone are prepared together under an inactive chunk decoration root and published as soon as that chunk's decoration is complete. Camera direction and player distance never delay publication. The initial nearby ring remains behind the loading cover until terrain collision and all decoration in that ring are ready; it does not time out into a partially decorated world. The existing decoration streaming radius prefetches beyond the immediate collision ring, and the frame scheduler advances decoration ahead of distant terrain while giving distant terrain regular turns. Measured Player frame time and renderer/collider counts must accompany any future radius increase. Chunk unload still owns the generated objects; seed and absolute coordinates, not camera state, determine their contents.
+
+The production scene currently leaves `generateProceduralRockFormations` off. Chunk decoration skips physical formation planning and cliff-face rock geometry while retaining deterministic scatter, ground-detail, and fine-gray clutter rocks. This temporary mode does not change terrain generation or its near/middle/far streaming seams.
+
 ## Project-Wide Priority
 
 Procedural generation is the first architectural compatibility check for every new or extended gameplay system. This priority applies to movement, traversal, survival, harvesting, inventory, companions, encounters, quests, landmarks, presentation, and tools—not only terrain generation.
@@ -47,12 +51,17 @@ Relevant sources:
 - [Random.state](https://docs.unity3d.com/ja/6000.0/ScriptReference/Random-state.html)
 - [Editor script determinism](https://docs.unity3d.com/kr/6000.0/Manual/build-deterministic-editor-scripts.html)
 
+### Provisional Generated Flats
+
+The first playable area's non-canon terrain query derives large flat regions from the world seed and absolute 256 m owner cells. Candidate cores have 45–75 m radii, with 28–30 m transitions and gently uneven boundaries. Each core uses one coarse terrain height sampled at its center, so near geometry, collision, and distance representations agree there. The middle and far meshes use 4.5 m and 18 m vertex spacing respectively so their triangles can follow those transitions. Authored landforms and history operations apply afterward and retain authority over generated base terrain. Flat regions create no saved entity or mutable state; topology version changes identify regenerated geometry.
+
 ## Chunking And Streaming
 
 - Represent the world as chunks or regions that can be generated, loaded, and unloaded independently.
 - Keep chunk identity stable so the same chunk can be reconstructed later from the same seed and coordinate.
 - Use additive scene loading only when authored scene content is the right tool; do not use scenes as the primary save-file format.
 - Prefer asynchronous loading for runtime content that can be streamed in or out.
+- Keep middle and far terrain as fallbacks while finer chunks are pending, and hide only coarse quads covered by finer meshes that have actually loaded. Recompute that presentation mask when chunks load or unload.
 - Until generation moves to jobs or asynchronous content loading, enforce a per-frame chunk-build budget, load the immediate traversal area first, and use unload hysteresis so boundary crossings do not create one-frame work spikes or repeated churn.
 - Keep authored content and generated data separate so world generation can evolve without rewriting save files.
 

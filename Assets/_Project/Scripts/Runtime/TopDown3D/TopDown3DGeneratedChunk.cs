@@ -112,6 +112,11 @@ namespace BooterBigArm.TopDown3D
             colliderCountBuffer.Clear();
         }
 
+        public void PublishDecoration()
+        {
+            if (decorationRoot != null) decorationRoot.gameObject.SetActive(true);
+        }
+
         public void ClearDecoration()
         {
             formationGroundValid = false;
@@ -146,6 +151,7 @@ namespace BooterBigArm.TopDown3D
             var rootObject = new GameObject("Streamed Decoration");
             decorationRoot = rootObject.transform;
             decorationRoot.SetParent(transform, false);
+            if (Application.isPlaying) rootObject.SetActive(false);
             return decorationRoot;
         }
 

@@ -136,6 +136,7 @@ namespace BooterBigArm.TopDown3D
             private readonly TopDown3DNaturalObjectCatalog catalog;
             private readonly Vector2Int coordinate;
             private readonly Vector2 spawnExclusionCenter;
+            private readonly bool includeFormations;
             private readonly List<TopDown3DNaturalObjectPlacement> placements =
                 new List<TopDown3DNaturalObjectPlacement>();
             private TopDown3DGeologicalRockAdapter.Work formations;
@@ -147,13 +148,14 @@ namespace BooterBigArm.TopDown3D
 
             internal Work(TopDown3DWorldSettings settings, TopDown3DWorldGenerator generator,
                 TopDown3DNaturalObjectCatalog catalog, Vector2Int coordinate,
-                Vector2 spawnExclusionCenter)
+                Vector2 spawnExclusionCenter, bool includeFormations = true)
             {
                 this.settings = settings;
                 this.generator = generator;
                 this.catalog = catalog;
                 this.coordinate = coordinate;
                 this.spawnExclusionCenter = spawnExclusionCenter;
+                this.includeFormations = includeFormations;
             }
 
             internal void Step()
@@ -164,9 +166,13 @@ namespace BooterBigArm.TopDown3D
                     if (settings != null && catalog != null)
                         BuildCosmeticPlacements(settings, generator, catalog, coordinate,
                             spawnExclusionCenter, placements);
-                    formations = new TopDown3DGeologicalRockAdapter.Work(settings, generator,
-                        catalog, coordinate, spawnExclusionCenter);
-                    stage = 1;
+                    if (includeFormations)
+                    {
+                        formations = new TopDown3DGeologicalRockAdapter.Work(settings, generator,
+                            catalog, coordinate, spawnExclusionCenter);
+                        stage = 1;
+                    }
+                    else stage = 2;
                 }
                 else if (stage == 1)
                 {
@@ -179,13 +185,15 @@ namespace BooterBigArm.TopDown3D
                 }
                 else
                 {
+                    var physicalFormations = formations?.Output
+                        ?? new List<TopDown3DRockFormationPlan>();
                     List<TopDown3DResourceNodePlacement> resources;
                     using (PlanResourceNodesMarker.Auto())
                         resources = settings != null && catalog != null
                             ? TopDown3DResourceNodePlanner.BuildChunkPlacements(settings, generator,
-                                settings.ResourceCatalog, coordinate, spawnExclusionCenter, formations.Output)
+                                settings.ResourceCatalog, coordinate, spawnExclusionCenter, physicalFormations)
                             : new List<TopDown3DResourceNodePlacement>();
-                    Result = new TopDown3DNaturalObjectChunkPlan(placements, formations.Output, resources);
+                    Result = new TopDown3DNaturalObjectChunkPlan(placements, physicalFormations, resources);
                     stage = 3;
                 }
             }

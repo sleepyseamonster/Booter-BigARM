@@ -146,7 +146,8 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                     widthParameter,
                     depthParameter,
                     branchSeed,
-                    profile.BooterClearWidth * 1.25f);
+                    profile.BooterClearWidth * 1.25f,
+                    false);
                 draftLocalNodes.Add(new LocalNodeDraft(branchId, branchPosition, branchSection));
             }
 
@@ -449,11 +450,14 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             float widthParameter,
             float depthParameter,
             ulong seed,
-            float minimumWidth)
+            float minimumWidth,
+            bool major = true)
         {
             widthParameter = Clamp01(widthParameter);
             depthParameter = Clamp01(depthParameter);
-            var width = Lerp(18f, 112f, widthParameter) * Lerp(0.86f, 1.14f, UnitFloat(seed));
+            var width = (major ? Lerp(110f, 330f, widthParameter)
+                : Lerp(18f, 112f, widthParameter))
+                * Lerp(0.86f, 1.14f, UnitFloat(seed));
             width = Math.Max(minimumWidth, width);
             var depth = Lerp(16f, 138f, depthParameter) * Lerp(0.88f, 1.12f, UnitFloat(seed >> 19));
             var lower = Lerp(0.16f, 0.27f, UnitFloat(seed >> 7));

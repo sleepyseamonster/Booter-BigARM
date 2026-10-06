@@ -140,4 +140,9 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         bool TrySampleVolume(AbsoluteWorldPosition position, out WorldVolumeSample sample, out string error);
         bool TrySampleAffordance(AbsoluteWorldPosition position, WorldAgentProfile agent, out WorldAffordanceSample sample, out string error);
     }
+
+    public interface IWorldCoarseSurfaceQuery
+    {
+        bool TrySampleCoarseSurface(AbsoluteWorldPosition position, out WorldSurfaceSample sample, out string error);
+    }
 }

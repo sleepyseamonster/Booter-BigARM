@@ -32,6 +32,7 @@ namespace BooterBigArm.TopDown3D
             new ProfilerMarker("TopDown3D.World.DecorateResourceNodes");
 
         [SerializeField] private TopDown3DWorldSettings settings;
+        [SerializeField] private bool generateProceduralRockFormations;
         [SerializeField] private Transform streamingTarget;
         [SerializeField] private Material groundMaterial;
         [SerializeField] private Material propMaterial;
@@ -44,6 +45,11 @@ namespace BooterBigArm.TopDown3D
         private readonly Queue<Vector2Int> pendingDecorations = new Queue<Vector2Int>();
         private readonly HashSet<Vector2Int> queuedDecorations = new HashSet<Vector2Int>();
         private readonly HashSet<Vector2Int> decoratedChunks = new HashSet<Vector2Int>();
+        private readonly HashSet<Vector2Int> pendingDecorationPublications = new HashSet<Vector2Int>();
+        private bool waitingForInitialPresentation;
+        private Vector2Int initialPresentationCenter;
+        private double initialPresentationStartedAt;
+        private GUIStyle initialPresentationStyle;
         private readonly Queue<Vector2Int> pendingFormationRefreshes = new Queue<Vector2Int>();
         private readonly HashSet<Vector2Int> queuedFormationRefreshes = new HashSet<Vector2Int>();
         private IEnumerator<int> activeFormationRefresh;
@@ -158,6 +164,8 @@ namespace BooterBigArm.TopDown3D
             + (activeDecorationStage != 0 ? 1 : 0) + queuedFormationRefreshes.Count
             + (activeFormationRefresh != null ? 1 : 0);
         public int DecoratedChunkCount => decoratedChunks.Count;
+        public int PendingDecorationPublicationCount => pendingDecorationPublications.Count;
+        public bool InitialPresentationReady => !waitingForInitialPresentation;
         public int TerrainRendererCount => loadedChunks.Count;
         public int TerrainColliderCount => CountEnabledTerrainColliders();
         public int DecorationRendererCount => SumDecorationRenderers();
@@ -232,6 +240,12 @@ namespace BooterBigArm.TopDown3D
             SuspendStreamingTargetUntilInitialTerrain();
             farLandscape.Refresh(streamingTarget != null ? streamingTarget.position : Vector3.zero, true);
             RefreshChunks(true);
+            if (Application.isPlaying)
+            {
+                initialPresentationCenter = currentCenterChunk;
+                initialPresentationStartedAt = Time.realtimeSinceStartupAsDouble;
+                waitingForInitialPresentation = true;
+            }
         }
 
         private void Update()
@@ -245,6 +259,73 @@ namespace BooterBigArm.TopDown3D
             }
             ProcessPendingChunks(EffectiveChunksBuiltPerFrame);
             farLandscape?.ProcessReady(2, 2);
+        }
+
+        private void LateUpdate()
+        {
+            TryFinishInitialPresentation();
+            PublishReadyDecorations();
+        }
+
+        private void OnGUI()
+        {
+            if (!waitingForInitialPresentation) return;
+            GUI.DrawTexture(new Rect(0f, 0f, Screen.width, Screen.height),
+                Texture2D.blackTexture);
+            initialPresentationStyle ??= new GUIStyle(GUI.skin.label)
+            {
+                alignment = TextAnchor.MiddleCenter
+            };
+            initialPresentationStyle.fontSize = Mathf.Max(16, Screen.height / 32);
+            GUI.Label(new Rect(0f, 0f, Screen.width, Screen.height),
+                "Preparing world...", initialPresentationStyle);
+        }
+
+        private void TryFinishInitialPresentation()
+        {
+            if (!waitingForInitialPresentation) return;
+            if (!loadedChunks.TryGetValue(initialPresentationCenter, out var centerChunk)
+                || centerChunk == null || !centerChunk.TryGetComponent<MeshCollider>(out _))
+                return;
+            var radius = Mathf.Min(2, EffectiveDecorationStreamingRadius);
+            var allReady = radius == 0;
+            if (radius > 0)
+            {
+                allReady = true;
+                for (var z = -radius; z <= radius; z++)
+                for (var x = -radius; x <= radius; x++)
+                    if (!decoratedChunks.Contains(new Vector2Int(
+                            initialPresentationCenter.x + x, initialPresentationCenter.y + z)))
+                        allReady = false;
+            }
+            if (!allReady) return;
+            for (var z = -radius; z <= radius; z++)
+            for (var x = -radius; x <= radius; x++)
+            {
+                var coordinate = new Vector2Int(initialPresentationCenter.x + x,
+                    initialPresentationCenter.y + z);
+                if (!decoratedChunks.Contains(coordinate)) continue;
+                if (loadedChunks.TryGetValue(coordinate, out var chunk) && chunk != null)
+                    chunk.PublishDecoration();
+                pendingDecorationPublications.Remove(coordinate);
+            }
+            waitingForInitialPresentation = false;
+            Debug.Log($"[TopDown3D World] Initial presentation ready in "
+                + $"{Time.realtimeSinceStartupAsDouble - initialPresentationStartedAt:F1}s "
+                + $"with {decoratedChunks.Count} decorated chunks.", this);
+            ResumeStreamingTargetAfterInitialTerrain();
+        }
+
+        private void PublishReadyDecorations()
+        {
+            if (pendingDecorationPublications.Count == 0) return;
+            foreach (var coordinate in pendingDecorationPublications)
+            {
+                if (decoratedChunks.Contains(coordinate)
+                    && loadedChunks.TryGetValue(coordinate, out var chunk) && chunk != null)
+                    chunk.PublishDecoration();
+            }
+            pendingDecorationPublications.Clear();
         }
 
         private void RefreshChunks(bool force)
@@ -351,6 +432,7 @@ namespace BooterBigArm.TopDown3D
                     terrainRetryCounts.Remove(coordinate);
                     missingTerrainIntegrationSince.Remove(coordinate);
                     decoratedChunks.Remove(coordinate);
+                    pendingDecorationPublications.Remove(coordinate);
                     queuedDecorations.Remove(coordinate);
                     queuedTerrainColliders.Remove(coordinate);
                 }
@@ -373,6 +455,7 @@ namespace BooterBigArm.TopDown3D
                     }
 
                     decoratedChunks.Remove(coordinate);
+                    pendingDecorationPublications.Remove(coordinate);
                     if (activeDecorationStage != 0 && activeDecorationCoordinate == coordinate)
                         CancelActiveDecoration(false);
                     if (formationTreatments.Remove(coordinate)) QueueFormationTerrainNear(coordinate);
@@ -395,31 +478,26 @@ namespace BooterBigArm.TopDown3D
                 // Allow many small steps, but stop as soon as the frame's time is spent.
                 var count = Mathf.Max(0, budget * 128);
                 var startedAt = Time.realtimeSinceStartupAsDouble;
+                // Keep requesting the next ring while decoration is busy, so prefetch
+                // does not wait for every already loaded chunk to be decorated.
+                TryRequestNextPendingTerrain();
                 // Keep nearby collision and terrain ahead of decoration, then advance
                 // one decoration step before distant terrain and ground refreshes.
                 if (!TryCreatePendingTerrainCollider() && !TryIntegrateRequestedTerrainWithin(1))
                     TryProcessDecoration();
                 for (var i = 0; i < count; i++)
                 {
+                    // Near terrain and collision stay first. Give distant terrain a regular
+                    // turn while advancing nearby clutter and resources ahead of it.
                     if (!TryCreatePendingTerrainCollider()
-                        && !TryIntegrateRequestedTerrain()
+                        && !TryIntegrateRequestedTerrainWithin(1)
                         && !TryRequestDueTerrainRetry()
+                        && !(i % 4 == 0 && TryIntegrateRequestedTerrain())
+                        && !TryProcessDecoration()
                         && !TryRefreshPendingFormationTerrain()
-                        && !TryProcessDecoration())
+                        && !TryIntegrateRequestedTerrain())
                     {
-                        if (pendingChunkCursor >= pendingChunks.Count)
-                        {
-                            break;
-                        }
-
-                        // Bound cold terrain builds so decoration queries can make progress.
-                        if (terrainRequests.Count >= 32) break;
-
-                        var coordinate = pendingChunks[pendingChunkCursor++];
-                        if (requiredChunks.Contains(coordinate))
-                        {
-                            RequestChunkTerrain(coordinate);
-                        }
+                        if (!TryRequestNextPendingTerrain()) break;
                     }
 
                     var elapsedMilliseconds =
@@ -436,6 +514,20 @@ namespace BooterBigArm.TopDown3D
                     pendingChunkCursor = 0;
                 }
             }
+        }
+
+        private bool TryRequestNextPendingTerrain()
+        {
+            // Bound cold terrain builds so decoration queries can make progress.
+            if (terrainRequests.Count >= 32) return false;
+            while (pendingChunkCursor < pendingChunks.Count)
+            {
+                var coordinate = pendingChunks[pendingChunkCursor++];
+                if (!requiredChunks.Contains(coordinate)) continue;
+                RequestChunkTerrain(coordinate);
+                return true;
+            }
+            return false;
         }
 
         private int ComparePendingChunks(Vector2Int left, Vector2Int right)
@@ -465,6 +557,18 @@ namespace BooterBigArm.TopDown3D
 
             var initialTargetPosition = streamingTarget.position;
             var desired = new Vector2(initialTargetPosition.x, initialTargetPosition.z);
+            var showcaseStart = false;
+            var showcaseYaw = 0f;
+            var showcasePitch = 0f;
+            if (worldCreatorRuntime != null
+                && worldCreatorRuntime.Profile.TryGetCanyonShowcasePosition(settings.WorldSeed,
+                    out var showcase, out showcaseYaw, out showcasePitch)
+                && worldCreatorRuntime.TryToLocal(
+                    new AbsoluteWorldPosition(showcase.x, 0d, showcase.y), out var localShowcase))
+            {
+                desired = new Vector2(localShowcase.X, localShowcase.Z);
+                showcaseStart = true;
+            }
             worldGenerator ??= new TopDown3DWorldGenerator(settings, worldCreatorRuntime);
             if (!worldGenerator.TryFindWalkablePosition(
                     desired,
@@ -500,6 +604,8 @@ namespace BooterBigArm.TopDown3D
                 : null;
             if (cameraRig != null)
             {
+                if (showcaseStart)
+                    cameraRig.SetViewAngles(showcaseYaw, showcasePitch);
                 cameraRig.SnapToTarget();
             }
 
@@ -841,7 +947,8 @@ namespace BooterBigArm.TopDown3D
                     activeDecorationToken = chunk.GenerationToken;
                     activeDecorationOrigin = worldCreatorRuntime.CurrentFrame.OriginPosition;
                     activeDecorationPlan = new TopDown3DNaturalObjectPlanner.Work(settings,
-                        worldGenerator, settings.NaturalObjectCatalog, coordinate, spawnExclusionCenter);
+                        worldGenerator, settings.NaturalObjectCatalog, coordinate, spawnExclusionCenter,
+                        generateProceduralRockFormations);
                     activeDecorationStage = 1;
                     break;
                 }
@@ -898,10 +1005,14 @@ namespace BooterBigArm.TopDown3D
                     {
                         activeResources.Dispose();
                         activeResources = null;
-                        activeCliffFaces = TopDown3DCliffFaceDecorator.DecorateSteps(
-                            activeChunk, settings, worldCreatorRuntime, spawnExclusionCenter,
-                            activeChunkPlan.PhysicalFormations).GetEnumerator();
-                        activeDecorationStage = 4;
+                        if (generateProceduralRockFormations)
+                        {
+                            activeCliffFaces = TopDown3DCliffFaceDecorator.DecorateSteps(
+                                activeChunk, settings, worldCreatorRuntime, spawnExclusionCenter,
+                                activeChunkPlan.PhysicalFormations).GetEnumerator();
+                            activeDecorationStage = 4;
+                        }
+                        else activeDecorationStage = 5;
                     }
                 }
                 else if (activeDecorationStage == 4)
@@ -919,6 +1030,7 @@ namespace BooterBigArm.TopDown3D
                         worldGenerator, groundMaterial, spawnExclusionCenter);
                     activeChunk.RefreshDecorationCounts();
                     decoratedChunks.Add(activeDecorationCoordinate);
+                    pendingDecorationPublications.Add(activeDecorationCoordinate);
                     activeDecorationStage = 0;
                     activeChunkPlan = null;
                 }
@@ -1100,7 +1212,7 @@ namespace BooterBigArm.TopDown3D
 
         private void ResumeStreamingTargetAfterInitialTerrain()
         {
-            if (!waitingForInitialTerrain)
+            if (!waitingForInitialTerrain || waitingForInitialPresentation)
             {
                 return;
             }
@@ -1189,6 +1301,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDestroy()
         {
+            waitingForInitialPresentation = false;
             if (suspendedMotor != null) suspendedMotor.ConfigureTerrainReadiness(null);
             CancelActiveDecoration(false);
             activeFormationRefresh?.Dispose();

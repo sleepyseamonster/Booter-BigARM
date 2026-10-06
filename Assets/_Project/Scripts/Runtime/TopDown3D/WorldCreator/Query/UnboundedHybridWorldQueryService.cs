@@ -8,7 +8,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
     /// effectively unbounded absolute query space. Cache cells index disposable data only;
     /// they never author geography, identity, thematic coordinates, or persisted deltas.
     /// </summary>
-    public sealed class UnboundedHybridWorldQueryService : IWorldQueryService
+    public sealed class UnboundedHybridWorldQueryService : IWorldQueryService, IWorldCoarseSurfaceQuery
     {
         private readonly object gate = new object();
         private readonly WorldIdentity world;
@@ -17,6 +17,10 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         private readonly CanyonSystemPlanner canyonPlanner;
         private readonly IWorldHistoryPlanProvider historyProvider;
         private readonly bool includeCanyonExcavation;
+        private readonly double gentleCenterA;
+        private readonly double gentleCenterB;
+        private readonly double gentleRadius;
+        private readonly double gentleTransition;
         private readonly int maximumCanyonPlans;
         private readonly int maximumTerrainWindows;
         private readonly Dictionary<CanyonSystemCellIndex, CanyonCacheEntry> canyonPlans =
@@ -42,7 +46,11 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             int maximumCanyonPlans = 96,
             int maximumTerrainWindows = 24,
             IWorldHistoryPlanProvider historyProvider = null,
-            bool includeCanyonExcavation = true)
+            bool includeCanyonExcavation = true,
+            double gentleCenterA = double.NaN,
+            double gentleCenterB = double.NaN,
+            double gentleRadius = 0d,
+            double gentleTransition = 0d)
         {
             this.world = world;
             this.coordinateModel = coordinateModel ?? throw new ArgumentNullException(nameof(coordinateModel));
@@ -53,6 +61,10 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             this.maximumTerrainWindows = maximumTerrainWindows;
             this.historyProvider = historyProvider;
             this.includeCanyonExcavation = includeCanyonExcavation;
+            this.gentleCenterA = gentleCenterA;
+            this.gentleCenterB = gentleCenterB;
+            this.gentleRadius = gentleRadius;
+            this.gentleTransition = gentleTransition;
             canyonPlanner = new CanyonSystemPlanner(contextProvider, canyonProfile);
         }
 
@@ -65,6 +77,17 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             }
 
             return query.TrySampleSurface(position, out sample, out error);
+        }
+
+        public bool TrySampleCoarseSurface(AbsoluteWorldPosition position, out WorldSurfaceSample sample, out string error)
+        {
+            if (!TryGetWindow(position, out var query, out error))
+            {
+                sample = default;
+                return false;
+            }
+
+            return query.TrySampleCoarseSurface(position, out sample, out error);
         }
 
         public bool TrySampleVolume(AbsoluteWorldPosition position, out WorldVolumeSample sample, out string error)
@@ -197,7 +220,8 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                         terrain,
                         coordinateModel,
                         contextProvider,
-                        includeCanyonExcavation);
+                        includeCanyonExcavation,
+                        gentleCenterA, gentleCenterB, gentleRadius, gentleTransition);
                     var node = terrainRecency.AddLast(cell);
                     terrainWindows.Add(cell, new TerrainCacheEntry(query, node));
                     terrainWindowBuilds++;

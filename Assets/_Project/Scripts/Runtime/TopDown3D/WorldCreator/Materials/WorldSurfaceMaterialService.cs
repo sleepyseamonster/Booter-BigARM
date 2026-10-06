@@ -86,11 +86,20 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             out string error);
     }
 
+    public interface IWorldSurfaceMaterialFromSurfaceService : IWorldSurfaceMaterialService
+    {
+        bool TrySampleFromSurface(
+            AbsoluteWorldPosition position,
+            WorldSurfaceSample surface,
+            out WorldSurfaceMaterialSample sample,
+            out string error);
+    }
+
     /// <summary>
     /// Resolves renderer-independent dry-world surface response from coordinate context and
     /// canonical surface semantics. It contains no texture, shader-channel, or Unity-mesh contract.
     /// </summary>
-    public sealed class WorldSurfaceMaterialService : IWorldSurfaceMaterialService
+    public sealed class WorldSurfaceMaterialService : IWorldSurfaceMaterialFromSurfaceService
     {
         private const int MaximumCachedSamples = 65536;
         private readonly object gate = new object();
@@ -160,6 +169,24 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             return true;
         }
 
+        public bool TrySampleFromSurface(
+            AbsoluteWorldPosition position,
+            WorldSurfaceSample surface,
+            out WorldSurfaceMaterialSample sample,
+            out string error)
+        {
+            var address = coordinateModel.Encode(position);
+            if (!contextProvider.TrySample(world, coordinateModel, address, out var context, out error))
+            {
+                sample = default;
+                return false;
+            }
+
+            sample = Resolve(surface, context);
+            error = null;
+            return true;
+        }
+
         private static WorldSurfaceMaterialSample Resolve(
             WorldSurfaceSample surface,
             WorldCoordinateContext context)
@@ -214,6 +241,17 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 + (disturbed ? 0.12f : 0f)
                 - slope01 * 0.42f
                 - windExposure * 0.12f);
+            if (canyonFloor)
+            {
+                // The low floor holds mixed gravel and some sand; steep transitions
+                // expose more broken shale instead of the bright base-sand texture.
+                var steepFloor = Clamp01((slope - 18f) / 24f);
+                steepFloor = steepFloor * steepFloor * (3f - 2f * steepFloor);
+                strataExposure = Math.Max(strataExposure * 0.30f,
+                    0.17f + 0.25f * steepFloor);
+                deposit *= 0.35f * (1f - 0.65f * steepFloor);
+                erosion = Math.Max(erosion, 0.74f + 0.17f * steepFloor);
+            }
 
             return new WorldSurfaceMaterialSample(
                 surface.Position,
@@ -266,7 +304,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         }
     }
 
-    internal sealed class QueryDerivedSurfaceMaterialService : IWorldSurfaceMaterialService
+    internal sealed class QueryDerivedSurfaceMaterialService : IWorldSurfaceMaterialFromSurfaceService
     {
         private readonly IWorldQueryService query;
 
@@ -285,6 +323,16 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                 sample = default;
                 return false;
             }
+
+            return TrySampleFromSurface(position, surface, out sample, out error);
+        }
+
+        public bool TrySampleFromSurface(
+            AbsoluteWorldPosition position,
+            WorldSurfaceSample surface,
+            out WorldSurfaceMaterialSample sample,
+            out string error)
+        {
             var wall = (surface.Semantic & WorldSurfaceSemantic.CanyonWall) != 0;
             var floor = (surface.Semantic & WorldSurfaceSemantic.CanyonFloor) != 0;
             var shelf = (surface.Semantic & WorldSurfaceSemantic.CanyonShelf) != 0;

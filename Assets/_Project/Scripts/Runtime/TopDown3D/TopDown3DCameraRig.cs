@@ -55,6 +55,13 @@ namespace BooterBigArm.TopDown3D
             SnapToTarget();
         }
 
+        public void SetViewAngles(float yaw, float pitch)
+        {
+            yawDegrees = Mathf.Repeat(yaw, 360f);
+            pitchDegrees = Mathf.Clamp(pitch, minimumPitchDegrees, maximumPitchDegrees);
+            SnapToTarget();
+        }
+
         private void Awake()
         {
             outputCamera = GetComponent<Camera>();

@@ -17,16 +17,24 @@ MonoBehaviour:
   strataCatalog: {fileID: 11400000, guid: 9ad930256e5a14c469a2660675bae5fb, type: 2}
   influenceProfile: {fileID: 11400000, guid: eda16be9ddbee43e681981c092c0e548, type: 2}
   includeCanyonsInInitialPlayableArea: 0
-  topologyVersion: 2
+  startAtCanyonShowcase: 1
+  canyonShowcaseWorldSeed: 24681357
+  canyonShowcasePosition: {x: 488, y: 312}
+  canyonShowcaseYawDegrees: 270
+  canyonShowcasePitchDegrees: 26
+  renderFittedCliffFaces: 0
+  gentlePrototypeRadius: 360
+  gentlePrototypeTransition: 120
+  topologyVersion: 16
   coordinateVersion: 1
   landformVersion: 2
-  materialVersion: 1
-  decorationVersion: 2
+  materialVersion: 3
+  decorationVersion: 3
   resourceVersion: 1
   siteVersion: 2
   nearResolution: 25
-  midResolution: 9
-  farResolution: 5
+  midResolution: 17
+  farResolution: 17
   maximumCanyonPlans: 96
   maximumTerrainWindows: 24
   maximumRepresentationEntries: 256

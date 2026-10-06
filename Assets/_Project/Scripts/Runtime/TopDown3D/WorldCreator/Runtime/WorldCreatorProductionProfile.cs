@@ -9,7 +9,7 @@ namespace BooterBigArm.TopDown3D.WorldCreator
     public sealed class WorldCreatorProductionProfile : ScriptableObject
     {
         public const string ResourcePath = "WorldCreator/ProductionWorldCreatorProfile";
-        public const int CurrentTopologyVersion = 2;
+        public const int CurrentTopologyVersion = 16;
         public const int CurrentLandformVersion = 2;
         public const int CurrentSiteVersion = 2;
 
@@ -22,6 +22,14 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         [Header("Provisional first playable area")]
         [Tooltip("Temporary non-canon fallback until the user-authored coordinate regions replace it.")]
         [SerializeField] private bool includeCanyonsInInitialPlayableArea;
+        [SerializeField] private bool startAtCanyonShowcase;
+        [SerializeField] private int canyonShowcaseWorldSeed = 24681357;
+        [SerializeField] private Vector2 canyonShowcasePosition = new Vector2(488f, 312f);
+        [SerializeField] private float canyonShowcaseYawDegrees = 180f;
+        [SerializeField] private float canyonShowcasePitchDegrees = 26f;
+        [SerializeField] private bool renderFittedCliffFaces = true;
+        [SerializeField, Min(1f)] private float gentlePrototypeRadius = 360f;
+        [SerializeField, Min(1f)] private float gentlePrototypeTransition = 120f;
 
         [Header("Independent world versions")]
         [SerializeField, Min(1)] private int topologyVersion = CurrentTopologyVersion;
@@ -34,8 +42,8 @@ namespace BooterBigArm.TopDown3D.WorldCreator
 
         [Header("Representation budgets")]
         [SerializeField, Range(3, 65)] private int nearResolution = 25;
-        [SerializeField, Range(3, 33)] private int midResolution = 9;
-        [SerializeField, Range(3, 17)] private int farResolution = 5;
+        [SerializeField, Range(3, 33)] private int midResolution = 17;
+        [SerializeField, Range(3, 17)] private int farResolution = 17;
         [SerializeField, Range(9, 256)] private int maximumCanyonPlans = 96;
         [SerializeField, Range(1, 64)] private int maximumTerrainWindows = 24;
         [SerializeField, Range(16, 512)] private int maximumRepresentationEntries = 256;
@@ -49,6 +57,18 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         public StrataFamilyCatalog StrataCatalog => strataCatalog;
         public NonCanonProofInfluenceProfile InfluenceProfile => influenceProfile;
         public bool IncludeCanyonsInInitialPlayableArea => includeCanyonsInInitialPlayableArea;
+        public bool RenderFittedCliffFaces => renderFittedCliffFaces;
+        public Vector2 GentlePrototypeCenter => canyonShowcasePosition;
+        public float GentlePrototypeRadius => gentlePrototypeRadius;
+        public float GentlePrototypeTransition => gentlePrototypeTransition;
+        public bool TryGetCanyonShowcasePosition(int worldSeed, out Vector2 position,
+            out float yawDegrees, out float pitchDegrees)
+        {
+            position = canyonShowcasePosition;
+            yawDegrees = canyonShowcaseYawDegrees;
+            pitchDegrees = canyonShowcasePitchDegrees;
+            return startAtCanyonShowcase && worldSeed == canyonShowcaseWorldSeed;
+        }
         public int MaximumCanyonPlans => maximumCanyonPlans;
         public int MaximumTerrainWindows => maximumTerrainWindows;
         public int MaximumRepresentationEntries => maximumRepresentationEntries;
@@ -85,6 +105,12 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             if (topologyVersion != CurrentTopologyVersion)
             {
                 error = $"The production runtime requires topology version {CurrentTopologyVersion}.";
+                return false;
+            }
+
+            if (gentlePrototypeRadius <= 0f || gentlePrototypeTransition <= 0f)
+            {
+                error = "The gentle prototype region needs a positive radius and transition.";
                 return false;
             }
 
@@ -172,6 +198,8 @@ namespace BooterBigArm.TopDown3D.WorldCreator
         private void OnValidate()
         {
             topologyVersion = CurrentTopologyVersion;
+            gentlePrototypeRadius = Mathf.Max(1f, gentlePrototypeRadius);
+            gentlePrototypeTransition = Mathf.Max(1f, gentlePrototypeTransition);
             coordinateVersion = Mathf.Max(1, coordinateVersion);
             landformVersion = CurrentLandformVersion;
             materialVersion = Mathf.Max(1, materialVersion);

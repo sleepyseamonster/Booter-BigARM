@@ -65,6 +65,10 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             {
                 var buffers = lease.Buffers;
                 var step = key.TileSpan / (resolution - 1);
+                var surfaceMaterials = materials as IWorldSurfaceMaterialFromSurfaceService;
+                var coarseQuery = key.Tier != WorldRepresentationTier.Near && surfaceMaterials != null
+                    ? query as IWorldCoarseSurfaceQuery
+                    : null;
                 for (var z = 0; z < resolution; z++)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
@@ -73,18 +77,22 @@ namespace BooterBigArm.TopDown3D.WorldCreator
                         var index = z * resolution + x;
                         var absoluteA = key.Minimum.HorizontalA + x * step;
                         var absoluteB = key.Minimum.HorizontalB + z * step;
-                        if (!query.TrySampleSurface(
-                                new AbsoluteWorldPosition(absoluteA, 0d, absoluteB),
-                                out var sample,
-                                out var error))
+                        var position = new AbsoluteWorldPosition(absoluteA, 0d, absoluteB);
+                        WorldSurfaceSample sample;
+                        string error;
+                        var sampled = coarseQuery != null
+                            ? coarseQuery.TrySampleCoarseSurface(position, out sample, out error)
+                            : query.TrySampleSurface(position, out sample, out error);
+                        if (!sampled)
                         {
                             throw new InvalidOperationException(error);
                         }
 
-                        if (!materials.TrySample(
-                                new AbsoluteWorldPosition(absoluteA, 0d, absoluteB),
-                                out var material,
-                                out error))
+                        WorldSurfaceMaterialSample material;
+                        var materialSampled = coarseQuery != null
+                            ? surfaceMaterials.TrySampleFromSurface(position, sample, out material, out error)
+                            : materials.TrySample(position, out material, out error);
+                        if (!materialSampled)
                         {
                             throw new InvalidOperationException(error);
                         }

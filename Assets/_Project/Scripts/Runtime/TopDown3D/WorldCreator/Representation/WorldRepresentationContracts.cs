@@ -73,8 +73,10 @@ namespace BooterBigArm.TopDown3D.WorldCreator
             NearResolution = RequireResolution(nearResolution, nameof(nearResolution));
             MidResolution = RequireResolution(midResolution, nameof(midResolution));
             FarResolution = RequireResolution(farResolution, nameof(farResolution));
-            if (!(NearResolution > MidResolution && MidResolution > FarResolution))
-                throw new ArgumentException("Representation resolutions must strictly decrease from near to far.");
+            // Middle and far tiles cover progressively larger areas. Equal grid counts
+            // still give a lower vertex density in each more distant tier.
+            if (!(NearResolution > MidResolution && MidResolution >= FarResolution))
+                throw new ArgumentException("Representation grid counts must decrease from near to middle and cannot increase from middle to far.");
         }
 
         public int NearResolution { get; }

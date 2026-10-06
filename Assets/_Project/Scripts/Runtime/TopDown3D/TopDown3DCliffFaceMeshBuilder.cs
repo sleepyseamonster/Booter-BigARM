@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,8 @@ namespace BooterBigArm.TopDown3D
             Vector3 firstRim, Vector3 firstToe, Vector3 firstOutward,
             Vector3 lastRim, Vector3 lastToe, Vector3 lastOutward,
             int seed, bool near, float strataShift = 0f,
-            float firstRhythm = 0f, float lastRhythm = 0f)
+            float firstRhythm = 0f, float lastRhythm = 0f,
+            Func<Vector3, float> renderedTerrainHeight = null)
         {
             var stations = near ? 5 : 2;
             var vertices = new List<Vector3>(stations * RingSize + 2);
@@ -66,6 +68,17 @@ namespace BooterBigArm.TopDown3D
                     seamWeights.Add(side == 4 || side == 7 || side == 10 ? 1f : 0f);
             }
 
+            if (renderedTerrainHeight != null)
+            {
+                for (var index = 0; index < vertices.Count; index++)
+                {
+                    var vertex = vertices[index];
+                    vertex.y = Mathf.Min(vertex.y,
+                        renderedTerrainHeight(vertex) + 0.15f);
+                    vertices[index] = vertex;
+                }
+            }
+
             for (var station = 0; station < stations - 1; station++)
             for (var side = 0; side < RingSize; side++)
             {
@@ -74,8 +87,18 @@ namespace BooterBigArm.TopDown3D
                 var b = (station + 1) * RingSize + side;
                 var c = station * RingSize + next;
                 var d = (station + 1) * RingSize + next;
-                AddTriangle(triangles, a, c, b);
-                AddTriangle(triangles, c, d, b);
+                if (side == RingSize - 1 && renderedTerrainHeight != null)
+                {
+                    AddBuriedBackTriangle(vertices, seamWeights, triangles,
+                        a, c, b, renderedTerrainHeight);
+                    AddBuriedBackTriangle(vertices, seamWeights, triangles,
+                        c, d, b, renderedTerrainHeight);
+                }
+                else
+                {
+                    AddTriangle(triangles, a, c, b);
+                    AddTriangle(triangles, c, d, b);
+                }
             }
 
             var firstCap = vertices.Count;
@@ -84,6 +107,16 @@ namespace BooterBigArm.TopDown3D
             var lastCap = vertices.Count;
             vertices.Add(AverageRing(vertices, (stations - 1) * RingSize));
             seamWeights.Add(0f);
+            if (renderedTerrainHeight != null)
+            {
+                foreach (var cap in new[] { firstCap, lastCap })
+                {
+                    var vertex = vertices[cap];
+                    vertex.y = Mathf.Min(vertex.y,
+                        renderedTerrainHeight(vertex) - 2.0f);
+                    vertices[cap] = vertex;
+                }
+            }
             for (var side = 0; side < RingSize; side++)
             {
                 var next = (side + 1) % RingSize;
@@ -136,6 +169,21 @@ namespace BooterBigArm.TopDown3D
             triangles.Add(a);
             triangles.Add(b);
             triangles.Add(c);
+        }
+
+        private static void AddBuriedBackTriangle(
+            List<Vector3> vertices, List<float> seamWeights,
+            List<int> triangles, int a, int b, int c,
+            Func<Vector3, float> renderedTerrainHeight)
+        {
+            var center = (vertices[a] + vertices[b] + vertices[c]) / 3f;
+            center.y = Mathf.Min(center.y, renderedTerrainHeight(center) - 2f);
+            var middle = vertices.Count;
+            vertices.Add(center);
+            seamWeights.Add(0f);
+            AddTriangle(triangles, a, b, middle);
+            AddTriangle(triangles, b, c, middle);
+            AddTriangle(triangles, c, a, middle);
         }
 
         private static float Hash01(int seed, int station)

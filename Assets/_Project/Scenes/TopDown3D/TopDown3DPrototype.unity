@@ -20,9 +20,9 @@ RenderSettings:
   m_FogDensity: 0.0295
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.24634105, g: 0.26476377, b: 0.31634104, a: 1}
-  m_AmbientEquatorColor: {r: 0.3453002, g: 0.20555241, b: 0.15895915, a: 1}
-  m_AmbientGroundColor: {r: 0.10817052, g: 0.06290231, b: 0.051845472, a: 1}
+  m_AmbientSkyColor: {r: 0.3079263, g: 0.33095473, b: 0.3954263, a: 1}
+  m_AmbientEquatorColor: {r: 0.44889024, g: 0.2672181, b: 0.2066469, a: 1}
+  m_AmbientGroundColor: {r: 0.16225578, g: 0.09435347, b: 0.07776821, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.055, g: 0.025, b: 0.05, a: 1}
@@ -373,84 +373,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54059877}
   m_CullTransparentMesh: 1
---- !u!1 &54401395
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 54401397}
-  - component: {fileID: 54401396}
-  m_Layer: 0
-  m_Name: Mixed Formation Ground
-  m_TagString: EditorOnly
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &54401396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54401395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e52f8f817ba440880ca1fae87af6bcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DLandscapeAuthoringSandbox
-  worldSettings: {fileID: 11400000, guid: 05e0954f75e1049c2b66791f7615c4b8, type: 2}
-  terrainMaterial: {fileID: 2100000, guid: e7ce6c68c4df84590a0e6dbe0cda5369, type: 2}
-  regularRockMaterial: {fileID: 0}
-  centerChunk: {x: 1, y: 0}
-  terrainRadiusInChunks: 1
-  rockReference: {fileID: 821206193611995965, guid: cdf2a535a70e74d22981b0b4f16aeca5, type: 3}
-  variationEnabled: 0
-  variationSeed: 12
-  rockBurial: 0.11067194
-  maximumRockBurial: 0.74308294
-  burialRangeVersion: 1
-  maximumRockTilt: 35
-  sandBuildup: 0.267
-  sandBuildupVersion: 1
-  groundClutter: 1
-  landscapeSand: 0.55
-  landscapeSandRelief: 0.32
-  landscapeClutter: 1
-  contactSandWidth: 0.48
-  contactSandOpacity: 0.72
-  contactSandColor: {r: 0.58, g: 0.27, b: 0.12, a: 1}
-  contactSandTrimColor: {r: 0.58, g: 0.27, b: 0.12, a: 1}
-  contactSandFeather: 0.14
-  contactSandBaseFeather: 0.5
-  contactSandTopFeather: 0
-  contactSandWaviness: 0.38
-  contactSandNoiseScale: 2.2
-  contactSandDirectionalBuildup: 0
-  contactSandTrimWidth: 0.186
-  contactSandTrimHeight: 0.024
-  contactSandTrimCurve: 5
-  pebbleDepth: 0.015
-  blowingSand: 0
-  blowingSandOffDefaultApplied: 1
---- !u!4 &54401397
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54401395}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &70757339
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,6 +2103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DProceduralWorld
   settings: {fileID: 11400000, guid: 05e0954f75e1049c2b66791f7615c4b8, type: 2}
+  generateProceduralRockFormations: 0
   streamingTarget: {fileID: 690964292}
   groundMaterial: {fileID: 2100000, guid: e7ce6c68c4df84590a0e6dbe0cda5369, type: 2}
   propMaterial: {fileID: 2100000, guid: ed16b59818c6b46d3b621f19650e57ec, type: 2}
@@ -2786,6 +2709,12 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  climbingEnabled: 1
+  climbProbeDistance: 1.2
+  inclineClimbSpeed: 2.5
+  scrambleClimbSpeed: 1.6
+  wallClimbSpeed: 1.1
+  overhangClimbSpeed: 0.7
   smartTraversalEnabled: 1
   minimumTraversalInput: 0.5
   minimumTraversalSpeed: 2.8
@@ -2858,6 +2787,7 @@ MonoBehaviour:
   hunger: 100
   thirst: 100
   oxygen: 100
+  reserve: 100
   initialized: 0
 --- !u!4 &690964292
 Transform:
@@ -3579,6 +3509,11 @@ MonoBehaviour:
   trailRetentionDistance: 180
   groundClearance: 0.82
   stuckCheckSeconds: 1.25
+  maximumRouteSlope: 38
+  maximumStepUp: 0.55
+  maximumStepDown: 0.75
+  routeCellSize: 1.25
+  routeReplanSeconds: 0.75
   movementMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -6138,21 +6073,21 @@ MonoBehaviour:
   cycle01: 0.12
   centerElevationDegrees: 19
   elevationAmplitudeDegrees: 7
-  centerAzimuthDegrees: -32
+  centerAzimuthDegrees: 18
   azimuthAmplitudeDegrees: 14
   deepTwilightSunColor: {r: 1, g: 0.38, b: 0.16, a: 1}
   brightTwilightSunColor: {r: 1, g: 0.79, b: 0.52, a: 1}
   deepTwilightIntensity: 0.68
   brightTwilightIntensity: 1.18
-  shadowStrength: 0.96
+  shadowStrength: 0.82
   shadowBias: 0.2
   shadowNormalBias: 0.35
-  deepTwilightAmbient: {r: 0.16, g: 0.075, b: 0.1, a: 1}
-  brightTwilightAmbient: {r: 0.38, g: 0.23, b: 0.17, a: 1}
-  deepTwilightSkyFill: {r: 0.12, g: 0.13, b: 0.19, a: 1}
-  brightTwilightSkyFill: {r: 0.27, g: 0.29, b: 0.34, a: 1}
-  deepTwilightGroundFill: {r: 0.045, g: 0.025, b: 0.035, a: 1}
-  brightTwilightGroundFill: {r: 0.12, g: 0.07, b: 0.055, a: 1}
+  deepTwilightAmbient: {r: 0.208, g: 0.0975, b: 0.13, a: 1}
+  brightTwilightAmbient: {r: 0.494, g: 0.299, b: 0.221, a: 1}
+  deepTwilightSkyFill: {r: 0.15, g: 0.1625, b: 0.2375, a: 1}
+  brightTwilightSkyFill: {r: 0.3375, g: 0.3625, b: 0.425, a: 1}
+  deepTwilightGroundFill: {r: 0.0675, g: 0.0375, b: 0.0525, a: 1}
+  brightTwilightGroundFill: {r: 0.18, g: 0.105, b: 0.0825, a: 1}
   deepTwilightSkyTint: {r: 0.36, g: 0.1, b: 0.12, a: 1}
   brightTwilightSkyTint: {r: 0.86, g: 0.34, b: 0.16, a: 1}
   skyGroundColor: {r: 0.11, g: 0.045, b: 0.035, a: 1}
@@ -6177,7 +6112,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.96
+    m_Strength: 0.82
     m_Bias: 0.2
     m_NormalBias: 0.35
     m_NearPlane: 0.1
@@ -6230,7 +6165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325570783}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20241739, y: -0.18498775, z: 0.03896926, w: 0.96087885}
+  m_LocalRotation: {x: 0.19992158, y: 0.23842911, z: -0.050227143, w: 0.9490312}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11378,4 +11313,3 @@ SceneRoots:
   - {fileID: 204051243}
   - {fileID: 1015305376}
   - {fileID: 542432046}
-  - {fileID: 54401397}

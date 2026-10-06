@@ -17,12 +17,20 @@ namespace BooterBigArm.Tests
             "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DWorldGenerator.cs";
 
         [Test]
-        public void ProductionProfile_IsExplicitlyNonCanonAndTopologyV2()
+        public void ProductionProfile_KeepsSeededGentlePrototypeStart()
         {
             var profile = WorldCreatorProductionProfile.LoadRequired();
 
             Assert.That(profile.NonCanonProofOnly, Is.True);
             Assert.That(profile.IncludeCanyonsInInitialPlayableArea, Is.False);
+            Assert.That(profile.GentlePrototypeRadius, Is.EqualTo(360f));
+            Assert.That(profile.GentlePrototypeTransition, Is.EqualTo(120f));
+            Assert.That(profile.TryGetCanyonShowcasePosition(24681357, out var showcase, out var yaw, out var pitch), Is.True);
+            Assert.That(showcase.x, Is.EqualTo(488f).Within(0.01f));
+            Assert.That(showcase.y, Is.EqualTo(312f).Within(0.01f));
+            Assert.That(yaw, Is.EqualTo(270f));
+            Assert.That(pitch, Is.EqualTo(26f));
+            Assert.That(profile.TryGetCanyonShowcasePosition(24681358, out _, out _, out _), Is.False);
             Assert.That(profile.InfluenceProfile.StableId, Does.StartWith("proof.non-canon."));
             Assert.That(profile.CreateVersionManifest().Topology,
                 Is.EqualTo(WorldCreatorProductionProfile.CurrentTopologyVersion));
@@ -32,61 +40,49 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void InitialPlayableArea_SuppressesCanyonsWithoutFlatteningTerrain()
+        public void InitialPlayableArea_HasGentleNoiseInsteadOfDeepCanyon()
         {
             using var runtime = WorldCreatorProductionRuntime.Create(LoadSettings().WorldSeed);
-            const int size = 21;
-            const double spacing = 18d;
-            var heights = new double[size, size];
-            var minimum = double.MaxValue;
-            var maximum = double.MinValue;
-            var canyonSemantics = WorldSurfaceSemantic.CanyonFloor
-                | WorldSurfaceSemantic.CanyonShelf
-                | WorldSurfaceSemantic.CanyonWall;
-            for (var z = 0; z < size; z++)
-            {
-                for (var x = 0; x < size; x++)
-                {
-                    var position = new AbsoluteWorldPosition(
-                        (x - size / 2) * spacing,
-                        0d,
-                        (z - size / 2) * spacing);
-                    Assert.That(runtime.Query.TrySampleSurface(position, out var sample, out var error), Is.True, error);
-                    Assert.That(sample.Semantic & canyonSemantics, Is.EqualTo(WorldSurfaceSemantic.None));
-                    heights[x, z] = sample.Position.Vertical;
-                    minimum = Math.Min(minimum, sample.Position.Vertical);
-                    maximum = Math.Max(maximum, sample.Position.Vertical);
-                }
-            }
-
-            var localHighs = 0;
-            var localLows = 0;
-            for (var z = 1; z < size - 1; z++)
-            {
-                for (var x = 1; x < size - 1; x++)
-                {
-                    var center = heights[x, z];
-                    if (center > heights[x - 1, z]
-                        && center > heights[x + 1, z]
-                        && center > heights[x, z - 1]
-                        && center > heights[x, z + 1])
-                    {
-                        localHighs++;
-                    }
-
-                    if (center < heights[x - 1, z]
-                        && center < heights[x + 1, z]
-                        && center < heights[x, z - 1]
-                        && center < heights[x, z + 1])
-                    {
-                        localLows++;
-                    }
-                }
-            }
-
-            Assert.That(maximum - minimum, Is.GreaterThan(12d));
-            Assert.That(localHighs, Is.GreaterThan(0));
-            Assert.That(localLows, Is.GreaterThan(0));
+            var flatQuery = new UnboundedHybridWorldQueryService(runtime.Identity,
+                runtime.CoordinateModel, runtime.ContextProvider,
+                CanyonPlannerProfile.CreateNonCanonTechnicalProofProfile(),
+                historyProvider: new NonCanonProofHistoryProvider(runtime.Identity,
+                    runtime.CoordinateModel, runtime.NonCanonProofHistory),
+                includeCanyonExcavation: false);
+            var fullQuery = new UnboundedHybridWorldQueryService(runtime.Identity,
+                runtime.CoordinateModel, runtime.ContextProvider,
+                CanyonPlannerProfile.CreateNonCanonTechnicalProofProfile(),
+                historyProvider: new NonCanonProofHistoryProvider(runtime.Identity,
+                    runtime.CoordinateModel, runtime.NonCanonProofHistory));
+            var center = new AbsoluteWorldPosition(488d, 0d, 222d);
+            var rim = new AbsoluteWorldPosition(488d, 0d, 312d);
+            Assert.That(runtime.Query.TrySampleSurface(center, out var floor, out var error),
+                Is.True, error);
+            Assert.That(runtime.Query.TrySampleSurface(rim, out var shoulder, out error),
+                Is.True, error);
+            Assert.That(floor.Semantic & (WorldSurfaceSemantic.CanyonFloor
+                | WorldSurfaceSemantic.CanyonShelf | WorldSurfaceSemantic.CanyonWall),
+                Is.EqualTo(WorldSurfaceSemantic.None));
+            Assert.That(shoulder.Semantic & (WorldSurfaceSemantic.CanyonFloor
+                | WorldSurfaceSemantic.CanyonShelf | WorldSurfaceSemantic.CanyonWall),
+                Is.EqualTo(WorldSurfaceSemantic.None));
+            Assert.That(flatQuery.TrySampleSurface(center, out var originalNoise,
+                out error), Is.True, error);
+            Assert.That(floor.Position.Vertical,
+                Is.EqualTo(originalNoise.Position.Vertical).Within(0.00001d));
+            var outside = new AbsoluteWorldPosition(1088d, 0d, 312d);
+            Assert.That(runtime.Query.TrySampleSurface(outside, out var outerSurface,
+                out error), Is.True, error);
+            Assert.That(fullQuery.TrySampleSurface(outside, out var originalCanyon,
+                out error), Is.True, error);
+            Assert.That(outerSurface.Position.Vertical,
+                Is.EqualTo(originalCanyon.Position.Vertical).Within(0.00001d));
+            Assert.That(outerSurface.Semantic, Is.EqualTo(originalCanyon.Semantic));
+            Assert.That(Math.Abs(shoulder.Position.Vertical - floor.Position.Vertical),
+                Is.LessThan(12d));
+            Assert.That(runtime.Query.TrySampleAffordance(rim, WorldAgentProfile.BooterProof,
+                out var affordance, out error), Is.True, error);
+            Assert.That(affordance.Walkable, Is.True);
         }
 
         [Test]

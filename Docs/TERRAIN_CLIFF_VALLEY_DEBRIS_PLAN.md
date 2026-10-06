@@ -1,12 +1,23 @@
 # Terrain Cliff, Valley, and Debris Plan
 
-Status: the connected bedrock-face and sparse Rock Workbench runtime path are implemented;
-one terraced canyon topology, fallen talus, and floor-material response remain in an
-isolated Unity mirror. The mirror has deterministic, collision, adjacent-vertex,
-and full-content Development Player evidence. The reference-image composition, complete
-near/middle/far silhouette, continuous hands-on traversal, and topology/save compatibility
-are still open. Production terrain heights, first-area canyon policy, and save authority
-have not changed.
+Status, 2026-10-05: the user has set the first prototype region around `(488, 312)` to
+mostly flat terrain. Big Noise height amplitude is now `0.25` (formerly `0.64`) and Little
+Noise amplitude is `0.10` (formerly `0.24`) in the 360 m core, with a 120 m transition
+toward the retained canyon system outside that region. Topology version `16` identifies
+this changed ground. The same seed,
+prototype start, source Rock Workbench recipes, chunk streaming, terrain material response,
+and twilight calibration remain. The fitted face overlay stays suppressed because its
+contact made dark visual tears; the terrain mesh remains the visible and colliding ground.
+[The gentle first-region receipt](Evidence/WorldCreator/gentle-prototype-region-2026-09-29.md)
+records the current implementation, isolated Player capture, and proof limits.
+[The off-camera formation receipt](Evidence/WorldCreator/offscreen-formation-publication-2026-09-29.md)
+records the staged publication, first-view preparation, four-chunk prefetch budget, and Player proof.
+[The canyon live-slice receipt](Evidence/WorldCreator/canyon-live-slice-2026-09-29.md) records
+the previous deep-canyon iteration and proof. The historical mirror-only findings below
+describe the route to that cutover and should not be read as the current profile state.
+The reference-image composition, distant mesa hierarchy, fuller rock distribution,
+fitted-face contact repair, multi-region lighting review, continuous traversal, and
+unload/reload performance proof remain open.
 
 Connected-bedrock checkpoint, 2026-09-28: the disconnected three-to-seven-stone clusters
 shown in the user's screenshot have been removed from near-chunk cliff decoration. Sustained

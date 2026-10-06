@@ -216,10 +216,10 @@ namespace BooterBigArm.Editor
                     "TopDown3D initial loading must build a two-chunk radius before budgeted outer-ring streaming begins.");
             }
 
-            if (settings.DecorationStreamingRadius > 3)
+            if (settings.DecorationStreamingRadius > 4)
             {
                 errors.Add(
-                    "TopDown3D presentation decoration must stay within a three-chunk radius; terrain and collision coverage remain authoritative at the seven-chunk streaming radius.");
+                    "TopDown3D presentation decoration must stay within a four-chunk radius; terrain and collision coverage remain authoritative at the seven-chunk streaming radius.");
             }
 
             if (settings.TerrainGenerationVersion < 2)
