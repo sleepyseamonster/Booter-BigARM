@@ -1,6 +1,6 @@
 # Badwater four-slice terrain study
 
-**Status (2026-10-06):** [BadwaterGameSlice.blend](./BadwaterGameSlice.blend) contains the original southwest terrain slice and the three adjoining slices marked in the user's screenshot: northwest, northeast, and southeast. They form one measured **4.096 × 4.096 km** scene at the Badwater basin edge. The saved viewport frames the four-slice terrain; **Numpad 0** returns to the basin-eye camera. A [separate Unity terrain review scene](./UNITY_BADWATER_SCENE.md) is now available, but this is not yet a streamed gameplay world.
+**Status (2026-10-06):** [BadwaterGameSlice.blend](./BadwaterGameSlice.blend) contains the original southwest terrain slice and the three adjoining slices marked in the user's screenshot: northwest, northeast, and southeast. They form one measured **4.096 × 4.096 km** scene at the Badwater basin edge. The saved viewport frames the four-slice terrain; **Numpad 0** returns to the basin-eye camera. A [separate playable Unity terrain scene](./UNITY_BADWATER_SCENE.md) is now available, but this is not yet a streamed gameplay world.
 
 ## Geographic layout and geometry budget
 
