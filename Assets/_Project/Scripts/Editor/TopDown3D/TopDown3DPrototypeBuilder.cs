@@ -1037,7 +1037,7 @@ namespace BooterBigArm.Editor
         {
             const float startX = -4.2f;
             const float startZ = -2.5f;
-            var bigArm = new GameObject("BigARM Simple Follow AI");
+            var bigArm = new GameObject("Legger");
             bigArm.transform.position = new Vector3(
                 startX,
                 new TopDown3DWorldGenerator(settings).SampleHeight(startX, startZ) + 0.82f,
@@ -1056,7 +1056,7 @@ namespace BooterBigArm.Editor
                 bigArm.AddComponent<TopDown3DBigArmCargoVisuals>().Configure(cargo);
 
             var bodyVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            bodyVisual.name = "BigARM Rectangular Prism";
+            bodyVisual.name = "Legger Greybox Body";
             bodyVisual.transform.SetParent(bigArm.transform, false);
             bodyVisual.transform.localPosition = new Vector3(0f, 0.3f, 0f);
             bodyVisual.transform.localScale = new Vector3(1.05f, 2.2f, 1.25f);

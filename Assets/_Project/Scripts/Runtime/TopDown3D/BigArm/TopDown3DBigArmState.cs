@@ -6,7 +6,7 @@ namespace BooterBigArm.TopDown3D
     [DisallowMultipleComponent]
     public sealed class TopDown3DBigArmState : MonoBehaviour
     {
-        [SerializeField] private string companionId = "bigarm.primary";
+        [SerializeField] private string companionId = "legger.primary";
         [SerializeField] private Vector3 authoritativePosition;
         [SerializeField] private string task = "Follow";
         [SerializeField] private bool detailSimulationLoaded = true;
@@ -28,7 +28,8 @@ namespace BooterBigArm.TopDown3D
         public bool ApplySnapshot(TopDown3DBigArmCompanionSnapshot snapshot)
         {
             if (snapshot == null || string.IsNullOrWhiteSpace(snapshot.CompanionId) || !IsFinite(snapshot.AuthoritativePosition)) return false;
-            companionId = snapshot.CompanionId;
+            // Old saves still refer to the same companion under his former identity.
+            companionId = snapshot.CompanionId == "bigarm.primary" ? "legger.primary" : snapshot.CompanionId;
             authoritativePosition = snapshot.AuthoritativePosition;
             task = snapshot.Task;
             detailSimulationLoaded = snapshot.DetailSimulationLoaded;

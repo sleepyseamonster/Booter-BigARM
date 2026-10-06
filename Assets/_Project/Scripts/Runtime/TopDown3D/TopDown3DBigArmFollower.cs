@@ -96,7 +96,7 @@ namespace BooterBigArm.TopDown3D
 
         public void RequestRecall()
         {
-            // "Recall" means ask BigARM to traverse back urgently. It never relocates him.
+            // "Recall" asks the Legger to traverse back urgently. It never relocates him.
             callRequested = true;
         }
 
@@ -241,7 +241,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             // Booter is placed from the generated world's current safe-spawn elevation, while
-            // BigARM's serialized position can still contain the older prototype elevation.
+            // The Legger's serialized position can still contain the older prototype elevation.
             // Use Booter's live height as the startup reference and a deliberately broad one-time
             // terrain probe. Normal following keeps the tighter projection window below.
             var startupProbe = body.position;
@@ -263,10 +263,11 @@ namespace BooterBigArm.TopDown3D
             InvalidateRoute();
             State = FollowState.Idle;
             ResetStuckTracking();
+            GetComponent<TopDown3DBigArmState>()?.PublishPosition(body.position);
             return true;
         }
 
-        internal void PrepareInitialGroundHeight(float groundHeight)
+        internal void PrepareInitialWorldStartPosition(Vector3 groundPosition)
         {
             if (startupGroundingComplete)
             {
@@ -278,14 +279,14 @@ namespace BooterBigArm.TopDown3D
                 body = GetComponent<Rigidbody>();
             }
 
-            var position = body != null ? body.position : transform.position;
-            position.y = groundHeight + groundClearance;
+            var position = groundPosition + Vector3.up * groundClearance;
             if (body != null)
             {
                 body.position = position;
             }
 
             transform.position = position;
+            GetComponent<TopDown3DBigArmState>()?.PublishPosition(position);
         }
 
         private void UpdateCatchUpIntent(float distanceToBooter)

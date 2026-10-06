@@ -455,7 +455,8 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            var desired = new Vector2(streamingTarget.position.x, streamingTarget.position.z);
+            var initialTargetPosition = streamingTarget.position;
+            var desired = new Vector2(initialTargetPosition.x, initialTargetPosition.z);
             worldGenerator ??= new TopDown3DWorldGenerator(settings, worldCreatorRuntime);
             if (!worldGenerator.TryFindWalkablePosition(
                     desired,
@@ -497,9 +498,21 @@ namespace BooterBigArm.TopDown3D
             var companion = FindFirstObjectByType<TopDown3DBigArmFollower>();
             if (companion != null)
             {
-                var companionPosition = companion.transform.position;
-                companion.PrepareInitialGroundHeight(
-                    worldGenerator.SampleHeight(companionPosition.x, companionPosition.z));
+                // Relocate the initial scene pair together before streaming begins. Once terrain
+                // exists, the Legger must traverse it; this is never used for catch-up or recall.
+                var initialOffset = companion.transform.position - initialTargetPosition;
+                var companionDesired = new Vector2(
+                    spawnPosition.x + initialOffset.x, spawnPosition.z + initialOffset.z);
+                if (!worldGenerator.TryFindWalkablePosition(
+                        companionDesired, settings.SafeSpawnSearchRadius,
+                        settings.SafeSpawnSearchStep, settings.MaximumSafeSpawnSlope,
+                        out var companionGround))
+                {
+                    companionGround = new Vector3(companionDesired.x,
+                        worldGenerator.SampleHeight(companionDesired.x, companionDesired.y),
+                        companionDesired.y);
+                }
+                companion.PrepareInitialWorldStartPosition(companionGround);
             }
         }
 

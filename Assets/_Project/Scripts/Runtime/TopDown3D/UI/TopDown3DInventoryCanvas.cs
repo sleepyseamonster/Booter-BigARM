@@ -47,16 +47,16 @@ namespace BooterBigArm.TopDown3D
         public void InitializeDual(int bootCapacity, int cargoCapacity, Action<int> bootActivated, Action<int> bootSelected, Action<int> cargoActivated, Action<int> cargoSelected, Action autoPack)
         {
             Initialize(bootCapacity, bootActivated, bootSelected);
-            var grid = EnsureRect("BigARM Mount Grid", panel);
+            var grid = EnsureRect("Legger Mount Grid", panel);
             grid.anchorMin = new Vector2(0f, 1f); grid.anchorMax = new Vector2(0f, 1f); grid.pivot = new Vector2(0f, 1f);
             grid.anchoredPosition = new Vector2(472f, -94f); grid.sizeDelta = new Vector2(416f, 280f);
             var layout = grid.GetComponent<GridLayoutGroup>() ?? grid.gameObject.AddComponent<GridLayoutGroup>();
             layout.cellSize = new Vector2(86f, 70f); layout.spacing = new Vector2(6f, 6f); layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount; layout.constraintCount = 4;
-            var title = EnsureText("BigARM Title", panel); title.text = "LEGGER LOADFRAME"; title.fontSize = 19; title.fontStyle = FontStyle.Bold; Place(title.rectTransform, new Vector2(472f, -66f), new Vector2(416f, 28f));
+            var title = EnsureText("Legger Title", panel); title.text = "LEGGER LOADFRAME"; title.fontSize = 19; title.fontStyle = FontStyle.Bold; Place(title.rectTransform, new Vector2(472f, -66f), new Vector2(416f, 28f));
             while (cargoSlotViews.Count < cargoCapacity)
             {
                 var index = cargoSlotViews.Count;
-                var slotObject = new GameObject($"BigARM Mount {index + 1}", typeof(RectTransform), typeof(Image), typeof(Button));
+                var slotObject = new GameObject($"Legger Mount {index + 1}", typeof(RectTransform), typeof(Image), typeof(Button));
                 slotObject.transform.SetParent(grid, false);
                 cargoSlotViews.Add(slotObject.AddComponent<TopDown3DInventorySlotView>());
             }
@@ -65,7 +65,7 @@ namespace BooterBigArm.TopDown3D
                 cargoSlotViews[i].gameObject.SetActive(i < cargoCapacity);
                 if (i < cargoCapacity) cargoSlotViews[i].Initialize(i, cargoActivated, cargoSelected);
             }
-            cargoSummary = EnsureText("BigARM Load Summary", panel); cargoSummary.fontSize = 16; cargoSummary.alignment = TextAnchor.UpperLeft; Place(cargoSummary.rectTransform, new Vector2(472f, -392f), new Vector2(416f, 58f));
+            cargoSummary = EnsureText("Legger Load Summary", panel); cargoSummary.fontSize = 16; cargoSummary.alignment = TextAnchor.UpperLeft; Place(cargoSummary.rectTransform, new Vector2(472f, -392f), new Vector2(416f, 58f));
             autoPackButton = EnsureButton("Auto-Pack", panel, "AUTO-PACK", autoPack); Place(autoPackButton.GetComponent<RectTransform>(), new Vector2(472f, -470f), new Vector2(190f, 42f));
         }
 

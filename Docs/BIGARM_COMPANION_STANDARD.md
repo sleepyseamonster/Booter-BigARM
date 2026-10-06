@@ -2,7 +2,7 @@
 
 This document is the canonical implementation baseline for how the Legger exists, moves, and coordinates with Booter. The user's current direction controls when it conflicts with older mobile-base language.
 
-**Character name (2026-09-28):** the Legger, formerly BigARM. Existing `BigARM` code and asset identifiers remain stable until an intentional reference-safe naming pass.
+**Character name:** the Legger. The former BigARM name survives only in internal code, serialized field names, and older saves while references are migrated safely. The production scene and newly created companion use Legger; legacy companion IDs load as `legger.primary`.
 
 ## Locked Direction
 

@@ -3517,7 +3517,7 @@ GameObject:
   - component: {fileID: 812448496}
   - component: {fileID: 812448495}
   m_Layer: 0
-  m_Name: BigARM Simple Follow AI
+  m_Name: Legger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3659,7 +3659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ccc3e5fc186e44b7b5fa497c06e8c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DBigArmState
-  companionId: bigarm.primary
+  companionId: legger.primary
   authoritativePosition: {x: 0, y: 0, z: 0}
   task: Follow
   detailSimulationLoaded: 1
@@ -9636,7 +9636,7 @@ GameObject:
   - component: {fileID: 1842055311}
   - component: {fileID: 1842055310}
   m_Layer: 0
-  m_Name: BigARM Rectangular Prism
+  m_Name: Legger Greybox Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
