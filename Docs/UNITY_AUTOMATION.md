@@ -2,7 +2,11 @@
 
 This project currently has no MCP bridge exposed in the workspace. The practical control path is the local Unity editor executable plus editor-side automation scripts.
 
-## Installed Editor
+## Platform Routing
+
+For the restored Windows checkout, start with [LOCAL_WORKSPACE.md](./LOCAL_WORKSPACE.md) and its PowerShell preflight. The macOS paths below describe the earlier workstation and must not be used as Windows executable or project paths.
+
+## Previous Workstation Editor
 
 - Unity version: `6000.4.0f1`
 - Editor binary: `/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/MacOS/Unity`
@@ -67,7 +71,7 @@ Editor Play Mode and Development Players use the full world content and producti
 - The perspective foundation validator is `BooterBigArm.Editor.TopDown3DPrototypeValidator.ValidateFromCli`. It verifies protected assets, production Build Settings inclusion, perspective camera/renderer topology, scene component ownership, missing scripts, and compact BigARM scale.
 - The GUI menu `Booter & BigARM/Top Down 3D` provides guarded Build, Open, and Validate commands.
 - The Unity Test Framework package is installed, and focused non-smoke EditMode tests exist in `BooterBigArm.Editor.Tests`. Use the Unity menu command `Booter & BigARM/Validation/Run Conversion EditMode Tests` while the GUI owns the project.
-- VS Code attach/debugging is already configured in [`.vscode/launch.json`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/.vscode/launch.json).
+- VS Code attach/debugging is already configured in [`.vscode/launch.json`](../.vscode/launch.json).
 
 ### Perspective Foundation Commands
 

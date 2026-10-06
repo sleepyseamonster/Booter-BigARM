@@ -29,6 +29,7 @@ builds/
 .DS_Store
 
 # Local Python caches and Blender save backups
+.venv/
 __pycache__/
 *.py[cod]
 *.blend[1-9]

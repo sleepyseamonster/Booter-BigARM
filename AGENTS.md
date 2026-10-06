@@ -2,6 +2,13 @@
 
 This file defines the operating rules for the Booter & BigARM repository and routes work among preserved implementations.
 
+## Local Workspace And Resumption
+
+- Work only in this repository's `main` branch, tracking `origin/main`, as selected by the user's Booter-BigARM link on 2026-10-06. A later explicit user branch instruction supersedes this scope.
+- Load [Docs/LOCAL_WORKSPACE.md](./Docs/LOCAL_WORKSPACE.md) when starting on this Windows checkout or restoring local tools and packages. It routes the existing agent packages, the latest publication checkpoint, and Windows preflight.
+- Derive local paths from the checkout root. Retained macOS paths and prior-machine validation records do not establish installed tools or fresh validation on Windows.
+- Preserve pinned package versions and the existing five agent roles. Setup does not authorize resuming the paused Badwater implementation goal or promoting retained build evidence to current-machine proof.
+
 ## Separate Work Areas
 
 - The repository-root Unity project is the sole active production area as of 2026-09-21. New implementation, research, tooling, documentation and generated-content conventions must serve the Unity TopDown3D production lane.
