@@ -7,6 +7,7 @@ This file defines the operating rules for the Booter & BigARM repository and rou
 - Work only in this repository's `main` branch, tracking `origin/main`, as selected by the user's Booter-BigARM link on 2026-10-06. A later explicit user branch instruction supersedes this scope.
 - Load [Docs/LOCAL_WORKSPACE.md](./Docs/LOCAL_WORKSPACE.md) when starting on this Windows checkout or restoring local tools and packages. It routes the existing agent packages, the latest publication checkpoint, and Windows preflight.
 - Derive local paths from the checkout root. Retained macOS paths and prior-machine validation records do not establish installed tools or fresh validation on Windows.
+- Use [Docs/REPOSITORY_ORGANIZATION.md](./Docs/REPOSITORY_ORGANIZATION.md) for file placement, transfer receipts, Blender source archives, and duplicate handling. Dated `PreviousSave` Blender files are retained versions, not the active authoring source.
 - Preserve pinned package versions and the existing five agent roles. Setup does not authorize resuming the paused Badwater implementation goal or promoting retained build evidence to current-machine proof.
 
 ## Separate Work Areas

@@ -1,2 +1,2 @@
-Docs/Agents/Blender/studies/BrokenWorldBadlandsStudy.blend filter=lfs diff=lfs merge=lfs -text
-Docs/Agents/Blender/studies/DeathValley/BadwaterGameSlice.blend filter=lfs diff=lfs merge=lfs -text
+# Editable Blender sources, including dated recovered saves, use Git LFS.
+Docs/Agents/Blender/**/*.blend filter=lfs diff=lfs merge=lfs -text

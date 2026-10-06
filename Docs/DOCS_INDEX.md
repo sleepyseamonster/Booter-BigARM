@@ -25,6 +25,12 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Agent Operations
 
+- [REPOSITORY_ORGANIZATION.md](./REPOSITORY_ORGANIZATION.md)
+  Repository ownership, Blender source storage, transfer receipts, and safe duplicate handling.
+
+- [Evidence/Repository/organization-audit-2026-10-06.md](./Evidence/Repository/organization-audit-2026-10-06.md)
+  Complete Blender transfer accounting and repository-wide layout, reference, metadata, and duplicate audit.
+
 - [LOCAL_WORKSPACE.md](./LOCAL_WORKSPACE.md)
   Windows checkout setup, package restoration, existing agent roles, and the October 6 resume checkpoint.
 

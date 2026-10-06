@@ -1,0 +1,1824 @@
+{
+  "incoming_folder": "wetransfer_blender_2026-10-06_2121",
+  "date": "2026-10-06",
+  "source_file_count": 252,
+  "source_bytes": 756017456,
+  "actions": {
+    "existing-identical-file": 210,
+    "recovered-previous-save": 2,
+    "lfs-reference-archive": 1,
+    "superseded-baseline-snapshot": 2,
+    "inert-bytecode-archive": 37
+  },
+  "records": [
+    {
+      "source": "Blender/DEATH_VALLEY_BUILD_PLAN.md",
+      "size": 16212,
+      "sha256": "80b091fce719ef6d314ed186dcb19c4c0725a9e2c9a79807d3581631259f4086",
+      "destination": "Docs/Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/DEATH_VALLEY_EXPANSION_PLAN.md",
+      "size": 14002,
+      "sha256": "d912248dbabbfe77ec5ae065e25b9e3023791aaf9e3f4c1b6c5a2353f7cd132e",
+      "destination": "Docs/Agents/Blender/DEATH_VALLEY_EXPANSION_PLAN.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/README.md",
+      "size": 3560,
+      "sha256": "03f57056e8f6b0425baa8305d7205cbda0f2678918aacbe19da884bfd05c9e90",
+      "destination": "Docs/Agents/Blender/README.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/instructions/RUNTIME_LOAD_POLICY.md",
+      "size": 1534,
+      "sha256": "311fb5af0f0c093293ec62092ab5644f47fe7ed55d5387e05fb8cbc9bff2dbe3",
+      "destination": "Docs/Agents/Blender/instructions/RUNTIME_LOAD_POLICY.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/research/DEATH_VALLEY_TERRAIN_PIPELINE.md",
+      "size": 16131,
+      "sha256": "80a4f78461b568808ca66bb85ec6050ea2da9fd3ca9777a0ab13ac7a187b3ebf",
+      "destination": "Docs/Agents/Blender/research/DEATH_VALLEY_TERRAIN_PIPELINE.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/research/MODELING_TECHNIQUES.md",
+      "size": 3952,
+      "sha256": "ea30f87b9228d2c976234241cebe1304b9d39412ca979354e289526d632d8e35",
+      "destination": "Docs/Agents/Blender/research/MODELING_TECHNIQUES.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/sops/MODEL_TO_UNITY.md",
+      "size": 2221,
+      "sha256": "b13e81cc43b2347abe941cdd3d1059bd37527553e09256de6c6f7ad5494902cc",
+      "destination": "Docs/Agents/Blender/sops/MODEL_TO_UNITY.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsDistinctGroundClose.png",
+      "size": 3480806,
+      "sha256": "21ba36996f41771c0c2fcfa50bcb3a4a7af8e421a61b4a0ab0e5b86729e197da",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsDistinctGroundClose.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsDistinctGroundTopdown.png",
+      "size": 3273376,
+      "sha256": "dafa17e0fb71c02a717684f249afb96408297371fb627b8983618ce4fe090638",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsDistinctGroundTopdown.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsExpandedOverview.png",
+      "size": 1434354,
+      "sha256": "56780fc5d490fc9da55f1322fc1cec2459e918a81536056d3f979da63ce4e04b",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsExpandedOverview.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsIrregularTerrainReview.png",
+      "size": 1350639,
+      "sha256": "f86507cdd4ccd21ce8f78031b7888b7514675917edd53a480e5b7c591fc2337b",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsIrregularTerrainReview.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsLayeredGroundClose.png",
+      "size": 1575848,
+      "sha256": "c8e339fddaef90d49aa0bdf6269ee2a8b3f2cea48efcd61cfffc971a2ac5c7ed",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsLayeredGroundClose.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsLayeredGroundWide.png",
+      "size": 1085105,
+      "sha256": "435e878bc9b684ea85e6b1cbe2f3422cd7d04097cc64ca4b368d681fd579aaf4",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsLayeredGroundWide.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsRealismStudy.png",
+      "size": 1617230,
+      "sha256": "31f6a24d50724e79ceac956837d842057c8c220705bc19d25484b7019757deec",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsRealismStudy.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsReferenceDebrisClose.png",
+      "size": 1855561,
+      "sha256": "2e3f1555526b96cb9d7b84cb07a8d4d8e8a8bc9aeb78956a01bfb7d0dd47fcf3",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsReferenceDebrisClose.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsRefinedRocksClose.png",
+      "size": 3066255,
+      "sha256": "e61c6acfea21bf77d8f9598165871f71f5d0fbdf6538497c924e8381545d898f",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsRefinedRocksClose.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsRockDetailCloseup.png",
+      "size": 1986762,
+      "sha256": "1ec7dd3ba735b0e069626d2f4b474d7e2896be5d284bde973753a61b714d4834",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsRockDetailCloseup.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsRockDetailStudy.png",
+      "size": 1715200,
+      "sha256": "6296b77415bc2c582fd914d4d85a62cf10130479f430a8a6ae07aceba810fe9b",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsRockDetailStudy.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsSoftOverlapClose.png",
+      "size": 1624697,
+      "sha256": "c4a90902699eca513653df292e83d48563940255ae1ac86c625eab8f49214f95",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsSoftOverlapClose.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsSoftOverlapTopdown.png",
+      "size": 1595782,
+      "sha256": "66e5ec527f0cb4859c50e03a4dbd918127ec2f3f079dca84b0d19353820a8cb3",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsSoftOverlapTopdown.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsStudy.blend",
+      "size": 145141738,
+      "sha256": "4bb7ff7d2b0b3eb0d690bf181ecc485315541f842b934929c4374603d8db5726",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsStudy.blend",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsStudy.blend1",
+      "size": 145141198,
+      "sha256": "2b4c3e5f075e302e98e131667567eedbd794536a126b92c5a765262ef05e74c8",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsStudy_PreviousSave_2026-10-06.blend",
+      "action": "recovered-previous-save"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsStudy.png",
+      "size": 1702042,
+      "sha256": "692f34d211b89b3b32cea9f73edf10cfdf7e51802710afd342eda9fdb833060e",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsStudy.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/BrokenWorldBadlandsWideHorizon.png",
+      "size": 1367457,
+      "sha256": "e6ab881abc1ba381313cdeebfdc62cadcd2e4e900476880bff8bed8b5e49e77c",
+      "destination": "Docs/Agents/Blender/studies/BrokenWorldBadlandsWideHorizon.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/BADWATER_GAME_SLICE.md",
+      "size": 7939,
+      "sha256": "4e54185194205cc7eb8a6d248307a85dd3fece3a9b9b6a1fe6799ed66456058b",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/BADWATER_GAME_SLICE.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/BadwaterGameSlice.blend",
+      "size": 134,
+      "sha256": "ce91ef43ce4df2a0a056ca9099ccf8b16e33170a12b8f1205452a51d39aa74aa",
+      "materialized_source": "Docs/Agents/Blender/studies/DeathValley/BadwaterGameSlice.blend",
+      "lfs_oid": "76f82d589a0ff2ed693f3a9f5eebd57a62b1e5c326729e2f00ec00093a9b6ac7",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/references/BadwaterGameSlice.lfs-pointer.txt",
+      "action": "lfs-reference-archive"
+    },
+    {
+      "source": "Blender/studies/DeathValley/DeathValleyExplore.blend",
+      "size": 34557591,
+      "sha256": "2a373a71557ab393ba72936612b4d688a62052d5bbc15e2df6e62249f58b7f22",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExplore.blend",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/DeathValleyExploreExpanded.blend",
+      "size": 89160187,
+      "sha256": "15f320cf2d3fa5b44161004d6db8a4ad4caefda39b32ec2f55c0e9025dc27697",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExploreExpanded.blend",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/DeathValleyMosaicDetail.blend",
+      "size": 11018700,
+      "sha256": "64acb375d24b276308eb46402f670447486205cf447cd3a8ca9d10cbaac7aaa1",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/DeathValleyMosaicDetail.blend",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/DeathValleyRegionalStudy.blend",
+      "size": 37003791,
+      "sha256": "aa07023a078cc0c379611a2d35fe54ff32a518af829ed0c443bb8dcfc243c50a",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/DeathValleyRegionalStudy.blend",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/DeathValleyTerrainMaster.blend",
+      "size": 48318153,
+      "sha256": "3ccfee8473ad9641c65d326bef551cc17c7872e4901f0ae4644f08f7897babe0",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/DeathValleyTerrainMaster.blend",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/EXPANDED_VIEWER.md",
+      "size": 6189,
+      "sha256": "b4c0fd3c3a97f7d578e216edadbf356dd83c5384f1affb048e76ea8c219adb81",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/EXPANDED_VIEWER.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/README.md",
+      "size": 15921,
+      "sha256": "0b2b3dbf40cf082348fa83305935d14521d2a9ccc4e0c635ca2464be51b1a409",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/README.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/UNITY_BADWATER_SCENE.md",
+      "size": 6387,
+      "sha256": "981ae85083733db116ed338357a8344867a433ce9b635b837cc14ad56519b10a",
+      "baseline_commit": "4f2fe41c8e6074f99b6e55fb92a32e41f6fe9a54",
+      "current_file": "Docs/Agents/Blender/studies/DeathValley/UNITY_BADWATER_SCENE.md",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/snapshots/studies/DeathValley/UNITY_BADWATER_SCENE.md.snapshot",
+      "action": "superseded-baseline-snapshot"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/badwater_basin_eye_view.png",
+      "size": 1340383,
+      "sha256": "2429de47981a7c20a139a9932541562aaf1ec08187268370e048e816339fbd45",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/badwater_basin_eye_view.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/badwater_corridor.png",
+      "size": 1973454,
+      "sha256": "682c581f6e4b176c9b8d02e60dd2b4d90982c1a3ee81a4b3e6372cf987611fea",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/badwater_corridor.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/badwater_four_slices_eye.png",
+      "size": 1345108,
+      "sha256": "80c81cef9c5510ac4609b053aa1743dfec2e2f6ab96fa4f58d3f6b06461c2c4d",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/badwater_four_slices_eye.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/badwater_four_slices_map.png",
+      "size": 1447453,
+      "sha256": "f9b1d7ec70e12f94419b996ea69e405bb8420d26e5b03bfc7e98fad57e65c335",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/badwater_four_slices_map.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/badwater_oblique.png",
+      "size": 1994777,
+      "sha256": "a66f32862b5b3f95d3f687c7f1966ada8684525b4b1269f4ec4bbeced66d1100",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/badwater_oblique.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/badwater_slice_game_view.png",
+      "size": 1324915,
+      "sha256": "12b7d1f69b465df309e46a3221e427872bb19555d6c0048ddd4ec50bd58d11b2",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/badwater_slice_game_view.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/badwater_slice_ground_detail.png",
+      "size": 1230511,
+      "sha256": "764a58e0e02acb0967184b48085dcf0a6432c6fd80502d4de9067459bcb0b1cd",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/badwater_slice_ground_detail.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/badwater_slice_surface_close.png",
+      "size": 1417896,
+      "sha256": "3d329bcea9429a1aceb5081e201ea2dd6a84ee36b610c460da689044c968ac72",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/badwater_slice_surface_close.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/badwater_slice_transition.png",
+      "size": 1346007,
+      "sha256": "b98ef7beb1802ec582f645b4b4cb6ce92eea23c07d7f605c0929543d8edc5168",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/badwater_slice_transition.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/badwater_slice_wide.png",
+      "size": 1295912,
+      "sha256": "d1b80f6b07d341fcfe73a6fae29d23a7510ef633d9b687c92001d15d8d84c354",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/badwater_slice_wide.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/canyon_patch_oblique.png",
+      "size": 1617907,
+      "sha256": "438de43b7467ab654916a26d9e782fa6271948118ad434e06710526def045556",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/canyon_patch_oblique.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/expanded_region.png",
+      "size": 1912278,
+      "sha256": "dbd00fdc4674034eee906681918a630a5e401025d24390ee83ac36355c113686",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/expanded_region.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/mosaic_1m_detail_elevated.png",
+      "size": 1112545,
+      "sha256": "4416d86aa133b74cffc67407330ddb96a937cd9c11138583b31520b243dd7f17",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/mosaic_1m_detail_elevated.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/mosaic_1m_detail_ground.png",
+      "size": 1239472,
+      "sha256": "e896f1de56ac1ca9160eac29064dbf7e54ac81ac3ad885f86eac4ad277c7a3f9",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/mosaic_1m_detail_ground.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/mosaic_elevated.png",
+      "size": 1048379,
+      "sha256": "409467e4f839b573cb8d2e86e25225f5addb2559af7dc4795a8e31b1ccda32d3",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/mosaic_elevated.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/overview_map.png",
+      "size": 2286479,
+      "sha256": "589fa7e752503f5b4c539f1cd225e34df2d5b0cc3166f96f6ef696106e80fbd0",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/overview_map.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/terrain_master_1m.png",
+      "size": 1436686,
+      "sha256": "f051c84146a6e82c02df8b09169f8ce8e8badd1410e07d92ab98b0fecb81017d",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/terrain_master_1m.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/terrain_master_mosaic.png",
+      "size": 1285513,
+      "sha256": "ab2d6e7ff44604a0cc7b58563aacdb13c428d98e5cf944fe7a640d6b12be3437",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/terrain_master_mosaic.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/previews/terrain_master_overview.png",
+      "size": 2730979,
+      "sha256": "02f928d2db3191cb605ed3b53bcbdf0ea913bd4cc48995d3fdf8357c0c2c2975",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/previews/terrain_master_overview.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_exports/AngularDarkBoulder.fbx",
+      "size": 16828,
+      "sha256": "ca63809f8d17e371da193cb8ff5a06180e4b691ba3d3326db26d6a8bb96bd520",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_exports/AngularDarkBoulder.fbx",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_exports/FracturedCliffBlock.fbx",
+      "size": 16812,
+      "sha256": "d2aa5fbdb9d3c4909521f32e9a363115f85a8502815ca0356262d4143dc9db9b",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_exports/FracturedCliffBlock.fbx",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_exports/Pebble.fbx",
+      "size": 16396,
+      "sha256": "bd83ab865ff93a2f5e8a4929e2b4f21bb0e5684e2195cf3777b7d933b197c48b",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_exports/Pebble.fbx",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_exports/StratifiedSlab.fbx",
+      "size": 17132,
+      "sha256": "7dca5e03363ee35afed2f0e6e0f21db87af6ada6367e1da40f0202033f00ea0a",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_exports/StratifiedSlab.fbx",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_exports/TalusShard.fbx",
+      "size": 16316,
+      "sha256": "8e798c87978ac9a3ee1ec4dd3e78037bbc22aaaf49908ae37d89c4b1e1a7ba5b",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_exports/TalusShard.fbx",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/AngularDarkBoulder_basecolor.png",
+      "size": 76170,
+      "sha256": "4b823ba64b1c3c3834b6c6875e1c4828257744a5b51b5b5b27ed15b5718d9d8d",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/AngularDarkBoulder_basecolor.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/AngularDarkBoulder_height.png",
+      "size": 96998,
+      "sha256": "e797ba09f5947c2ca7bee60bb5793fa9fc172d0990a906ecea0a210a432e528c",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/AngularDarkBoulder_height.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/AngularDarkBoulder_normal_gl.png",
+      "size": 222316,
+      "sha256": "7d80f2184c607f2f831a2c03bbe832d297c30b77a8c22341e0afb32cc1c91a9e",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/AngularDarkBoulder_normal_gl.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/AngularDarkBoulder_roughness.png",
+      "size": 122757,
+      "sha256": "3845503e72f7259a495d5aa178de83486b92957396ddeb44e5b92025638c6e79",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/AngularDarkBoulder_roughness.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/FracturedCliffBlock_basecolor.png",
+      "size": 115866,
+      "sha256": "92364a0ec9b3b284ed9559460bcdc1edd3f391c2eaecc2304cc2622a645b6c8f",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/FracturedCliffBlock_basecolor.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/FracturedCliffBlock_height.png",
+      "size": 98264,
+      "sha256": "e4e71445115a2058b31c03942942bf31d9974f29dba89bdbb0079c6f6b8f6c37",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/FracturedCliffBlock_height.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/FracturedCliffBlock_normal_gl.png",
+      "size": 222587,
+      "sha256": "131abcdf6cc05fd1fd3c195597514b513945e48f56c43f85b3100cb867bbb400",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/FracturedCliffBlock_normal_gl.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/FracturedCliffBlock_roughness.png",
+      "size": 122412,
+      "sha256": "51a28b30e0caf33e08165b72efd17cd4bd7cd6771cc61a250cd2fcfc69d65706",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/FracturedCliffBlock_roughness.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/Pebble_basecolor.png",
+      "size": 110427,
+      "sha256": "5fd74b6047af89f365e994d2e96dd46df88b3a6f10256c9c2c4e239743a81792",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/Pebble_basecolor.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/Pebble_height.png",
+      "size": 96031,
+      "sha256": "8b38038d6f328ed7de901aa34b3f80411c4dc54c7feab1d412ad1870a9ca9ba1",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/Pebble_height.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/Pebble_normal_gl.png",
+      "size": 221117,
+      "sha256": "a56c161dbd71b01480e085def9742901e573673d58389efaa5e1f3b14af02bf3",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/Pebble_normal_gl.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/Pebble_roughness.png",
+      "size": 122661,
+      "sha256": "136cb9062a7ad6b739b2d1f50572ea9731fad468b9945c9b06c1dcb7f908d93a",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/Pebble_roughness.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/StratifiedSlab_basecolor.png",
+      "size": 129739,
+      "sha256": "1426ea1310f1d9493eb31b71bcd33278576da4c14e4e91a1cd587e215bc503f8",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/StratifiedSlab_basecolor.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/StratifiedSlab_height.png",
+      "size": 99350,
+      "sha256": "d08c1a10ca0f6a5dd7abe5eb34cfb92ccfc8759b12b92168b91545b35ee80a12",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/StratifiedSlab_height.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/StratifiedSlab_normal_gl.png",
+      "size": 224338,
+      "sha256": "ef7a038caf7418ce51497c72b047aecaf5256ca1aa276440df5b555fa40e235f",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/StratifiedSlab_normal_gl.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/StratifiedSlab_roughness.png",
+      "size": 122289,
+      "sha256": "d416a4237be19ff8cb9bad0d41d6a8e6eb4ffeba53465dd92fca3051d7dd7bbe",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/StratifiedSlab_roughness.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/TalusShard_basecolor.png",
+      "size": 121123,
+      "sha256": "78265448710f546af7f26b063c1c73712a4174bb186d753a3ae6cb22c76b90f3",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/TalusShard_basecolor.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/TalusShard_height.png",
+      "size": 97991,
+      "sha256": "dbf8d29c12a23dd653aa2a32a34563e98d903f00ba52d763def711d66ef969ce",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/TalusShard_height.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/TalusShard_normal_gl.png",
+      "size": 223197,
+      "sha256": "98c493e0c126b9a8ee789ef74a0c206a4fa4026b4ce364c9dfeb7e97d8d032af",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/TalusShard_normal_gl.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/rock_maps/TalusShard_roughness.png",
+      "size": 122944,
+      "sha256": "1e427928e0efc07b4a6309e5156d705424654d8e2a27335f93e8ec7d94e3fac7",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/rock_maps/TalusShard_roughness.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/scan_materials/rocks_ground_09/manifest.json",
+      "size": 1227,
+      "sha256": "1b53312fbfafd95ae37d29fe9479ba45c6906c936d237e1fb6860af1934f81bc",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/scan_materials/rocks_ground_09/manifest.json",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/scan_materials/rocks_ground_09/rocks_ground_09_diffuse.jpg",
+      "size": 919947,
+      "sha256": "f4e38bc77bc3879a0750c9187e5563ca57ae0a861244526f08c0907783e2efac",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/scan_materials/rocks_ground_09/rocks_ground_09_diffuse.jpg",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/scan_materials/rocks_ground_09/rocks_ground_09_displacement.png",
+      "size": 2020483,
+      "sha256": "7a1cd6d3500d187d2c810b47931d2053876e79c78ff06df58996e9c9091d04dc",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/scan_materials/rocks_ground_09/rocks_ground_09_displacement.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/scan_materials/rocks_ground_09/rocks_ground_09_nor_gl.jpg",
+      "size": 1296540,
+      "sha256": "92ad8dcb6e3767be961217a25a5578dc3003ef9b33a17d4b043069a0a49dbdde",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/scan_materials/rocks_ground_09/rocks_ground_09_nor_gl.jpg",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/DeathValley/scan_materials/rocks_ground_09/rocks_ground_09_rough.jpg",
+      "size": 429334,
+      "sha256": "c262992236919b520cf4686e5f91ce5546a762bf5abd525c170b31fe494aee21",
+      "destination": "Docs/Agents/Blender/studies/DeathValley/scan_materials/rocks_ground_09/rocks_ground_09_rough.jpg",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/HANDOFF_2026-10-01.md",
+      "size": 11234,
+      "sha256": "d27fb3400478c09a03c83cb4c58b6cc421d67ff2973039652d0df0113b1b0144",
+      "destination": "Docs/Agents/Blender/studies/HANDOFF_2026-10-01.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/README.md",
+      "size": 13466,
+      "sha256": "3970aee304d6105bf39f962cdfcaa207aa2e38cd6be5803f6100dc05d6e5ddef",
+      "destination": "Docs/Agents/Blender/studies/README.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/REALISM_ITERATIONS.md",
+      "size": 16567,
+      "sha256": "9d770056139e5ee3a7c868d3e3b57f2249d5d5e213d6687b0e08b9241d08a939",
+      "destination": "Docs/Agents/Blender/studies/REALISM_ITERATIONS.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismBaselineWide.png",
+      "size": 1606120,
+      "sha256": "a73cd0986335c1be7c2a49000cd1511e0f4fc1952bea6e45e02f606e2d6e96b2",
+      "destination": "Docs/Agents/Blender/studies/RealismBaselineWide.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismBlackVolcanicClose.png",
+      "size": 1951829,
+      "sha256": "59c2b4fb80dfaf5f34a967e12128d4d6b3c97c720de6189c7e5eba133437bcf3",
+      "destination": "Docs/Agents/Blender/studies/RealismBlackVolcanicClose.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismBuriedBasesClose.png",
+      "size": 1952056,
+      "sha256": "2ff7f21936cbc162201f91b7356ef5731bcb46b34693bd5f781adb477c25b44d",
+      "destination": "Docs/Agents/Blender/studies/RealismBuriedBasesClose.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismButtressTip.png",
+      "size": 512103,
+      "sha256": "48ca30512e20c9ff1581e068bdd69e5db6849b385edfdaebb876f263fa5a5e56",
+      "destination": "Docs/Agents/Blender/studies/RealismButtressTip.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismCandidateClose.png",
+      "size": 1986696,
+      "sha256": "25928d997a4cf4b6d60256ee534980d7f0b432d6a6280dd07fb3fce319ac97df",
+      "destination": "Docs/Agents/Blender/studies/RealismCandidateClose.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismCandidateGroundLevel.png",
+      "size": 1730763,
+      "sha256": "f4713371bbca790c8c10073cc85ded9434590097ec37f7ca3cfb22a0905adea5",
+      "destination": "Docs/Agents/Blender/studies/RealismCandidateGroundLevel.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismCandidateWide.png",
+      "size": 1698207,
+      "sha256": "17ca0b45aefc2449de9d4c421b945689bdf5da406f6fbd670819f589200f06ba",
+      "destination": "Docs/Agents/Blender/studies/RealismCandidateWide.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismClutterSurface.png",
+      "size": 2099886,
+      "sha256": "8f3ec4df0309ceacbdc759a4a7ff9036b1eacb0ddeff877ae93029045813e8c8",
+      "destination": "Docs/Agents/Blender/studies/RealismClutterSurface.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismFinalClose.png",
+      "size": 2031268,
+      "sha256": "faf185fec3b5cc1c66f974797c592b6550d8b79350fbbfa073779edbb3f4e7d7",
+      "destination": "Docs/Agents/Blender/studies/RealismFinalClose.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismFinalSurface.png",
+      "size": 2020382,
+      "sha256": "e2fec181556c4f14076273151a87f34ee1991cdc21852d37a09c43b3f4738350",
+      "destination": "Docs/Agents/Blender/studies/RealismFinalSurface.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismFinalWide.png",
+      "size": 1743975,
+      "sha256": "e8c41f9263f6efb4b9c8f0536bcd2412d3a506e0dee4d3fee7da4803c8787559",
+      "destination": "Docs/Agents/Blender/studies/RealismFinalWide.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismPaletteDraft.png",
+      "size": 2006873,
+      "sha256": "804cb89796786268dc29e983b227ec2c07f948ba138de0d0464a4605f23388e3",
+      "destination": "Docs/Agents/Blender/studies/RealismPaletteDraft.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismPass01Close.png",
+      "size": 2016090,
+      "sha256": "ceebe19697592bcbf0a712cb232fdd4b6d05f38f8e0a0bdce59534151ae796d3",
+      "destination": "Docs/Agents/Blender/studies/RealismPass01Close.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismPass02Close.png",
+      "size": 2067451,
+      "sha256": "f4416daf5377ebd8d30cb1b1f982cb0e98bff445a2dba309dbda67b78fd1e429",
+      "destination": "Docs/Agents/Blender/studies/RealismPass02Close.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismPass03Draft.png",
+      "size": 1937785,
+      "sha256": "e039fc48e4a35da6936dc66ba06d1806645caa314b3e98c82995c461a686de46",
+      "destination": "Docs/Agents/Blender/studies/RealismPass03Draft.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismPass04Close.png",
+      "size": 1949959,
+      "sha256": "3c691f6283efd7217b9ac00f5c7b061de252bc607ad2bc1e4a770b1f856f9db7",
+      "destination": "Docs/Agents/Blender/studies/RealismPass04Close.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismPass04Wide.png",
+      "size": 1698748,
+      "sha256": "d4f3a0106c692464e600dc4939b780b36b7081cf8a79eced28a584da4bd0724a",
+      "destination": "Docs/Agents/Blender/studies/RealismPass04Wide.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismPass16Patch.png",
+      "size": 670518,
+      "sha256": "74d9789299cd896445f9cbc4b4d56bf351c07160072051abad9bfc17dea7289d",
+      "destination": "Docs/Agents/Blender/studies/RealismPass16Patch.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismTopologyClose.png",
+      "size": 1992918,
+      "sha256": "e7918883b5ef616344e07b2dab91c87191b85324952232903fe1e8ff0718d766",
+      "destination": "Docs/Agents/Blender/studies/RealismTopologyClose.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/RealismTopologySurface.png",
+      "size": 2004158,
+      "sha256": "ec3771a5dda084554c38f3a6fbf31b2548700b994e7535f9ef77dab95f01401b",
+      "destination": "Docs/Agents/Blender/studies/RealismTopologySurface.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/__pycache__/add_shale_contact_spalls.cpython-313.pyc",
+      "size": 8626,
+      "sha256": "bbc703ab4be57a72f98002d247a9be95127e710dcd151059011fd4942ed9dae5",
+      "available_source": "Docs/Agents/Blender/studies/add_shale_contact_spalls.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/studies/add_shale_contact_spalls.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/studies/__pycache__/apply_black_volcanic_rock.cpython-313.pyc",
+      "size": 7462,
+      "sha256": "f5541f60404ce82cebf7dbb130765da630368e1b2baf1584795e07ab899408ef",
+      "available_source": "Docs/Agents/Blender/studies/apply_black_volcanic_rock.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/studies/apply_black_volcanic_rock.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/studies/__pycache__/build_black_volcanic_pbr.cpython-313.pyc",
+      "size": 10832,
+      "sha256": "550d4c7428a55a1e0bf21ae6725547831b6f106b506e3a676094225147e6eff4",
+      "available_source": "Docs/Agents/Blender/studies/build_black_volcanic_pbr.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/studies/build_black_volcanic_pbr.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/studies/__pycache__/irregularize_clutter_stones.cpython-313.pyc",
+      "size": 9515,
+      "sha256": "9a014169c5d71d62e2da0d567493abd26ef535770071dee3b7e6261800792c0a",
+      "available_source": "Docs/Agents/Blender/studies/irregularize_clutter_stones.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/studies/irregularize_clutter_stones.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/studies/__pycache__/refine_buttress_tip.cpython-313.pyc",
+      "size": 6032,
+      "sha256": "f839bc67cc6aea8f8c5958be1ab77fb04431537893ab419bbd8e775f8fc03302",
+      "available_source": "Docs/Agents/Blender/studies/refine_buttress_tip.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/studies/refine_buttress_tip.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/studies/__pycache__/refine_exposed_shale_plates.cpython-313.pyc",
+      "size": 5892,
+      "sha256": "34a2228574dd42790446e17f4367bb7e9d7e0d1ca14347d6be2ad3dd364c94a5",
+      "available_source": "Docs/Agents/Blender/studies/refine_exposed_shale_plates.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/studies/refine_exposed_shale_plates.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/studies/__pycache__/reshape_scree_aprons.cpython-313.pyc",
+      "size": 6819,
+      "sha256": "39130859899244bdf0f939ec8ac7b70682dbc2709a5d0d3cd4df810f40b0fa2f",
+      "available_source": "Docs/Agents/Blender/studies/reshape_scree_aprons.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/studies/reshape_scree_aprons.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/studies/__pycache__/round_scree_pebbles.cpython-313.pyc",
+      "size": 5834,
+      "sha256": "e815aa1d61c9506b5e0e21d5e7e1484efd0c757e02aabc674de9a39cd1c1b97c",
+      "available_source": "Docs/Agents/Blender/studies/round_scree_pebbles.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/studies/round_scree_pebbles.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/studies/__pycache__/trim_buried_rock_bases.cpython-313.pyc",
+      "size": 10002,
+      "sha256": "9bee2caea2f4eb0f57b1357c7f4cfd3e7f3e4609eca4a040b39f8bd81841603e",
+      "available_source": "Docs/Agents/Blender/studies/trim_buried_rock_bases.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/studies/trim_buried_rock_bases.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/studies/add_shale_contact_spalls.py",
+      "size": 4381,
+      "sha256": "42ca9fd38046726e7c9f891ce8ed6a3ae1f2ddf01cd2599ea343108a2f04da8b",
+      "destination": "Docs/Agents/Blender/studies/add_shale_contact_spalls.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/apply_badlands_realism_to_open_study.py",
+      "size": 9027,
+      "sha256": "81e4d32d2c226da008e33a8957f40810a6ee34062c62eb0575399a6806a8352f",
+      "destination": "Docs/Agents/Blender/studies/apply_badlands_realism_to_open_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/apply_black_volcanic_rock.py",
+      "size": 4537,
+      "sha256": "7802dcba3cfe4b25f510bf7a237881f2a40294cd985506243e695d4e0d5159f2",
+      "destination": "Docs/Agents/Blender/studies/apply_black_volcanic_rock.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/apply_distinct_tileable_ground_to_open_study.py",
+      "size": 5697,
+      "sha256": "beac7e8f59e0f718237aef20a19b4d9ac8472994ca42ee56c59bad91af2a871d",
+      "destination": "Docs/Agents/Blender/studies/apply_distinct_tileable_ground_to_open_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/apply_layered_ground_to_open_study.py",
+      "size": 10915,
+      "sha256": "dfbb8f27a4fcd5196f1df8a71d45d4cc5a471b04b7cb56220cc415f3844bf6bd",
+      "destination": "Docs/Agents/Blender/studies/apply_layered_ground_to_open_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/apply_reference_debris_to_open_study.py",
+      "size": 10221,
+      "sha256": "17f9447adcd592797e1f2267f998a32a630072b8526aef2dbff0853159e68257",
+      "destination": "Docs/Agents/Blender/studies/apply_reference_debris_to_open_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/apply_rock_detail_to_open_study.py",
+      "size": 2618,
+      "sha256": "c0bff762db4931b027433fbfdc2dd66507588f6ca2654abb6320cddd436e846f",
+      "destination": "Docs/Agents/Blender/studies/apply_rock_detail_to_open_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/apply_wide_horizon_panorama_to_open_study.py",
+      "size": 3329,
+      "sha256": "d266b956ace42a65615f2c8471aa7360d9b857547108aa774448ffca7bc344f6",
+      "destination": "Docs/Agents/Blender/studies/apply_wide_horizon_panorama_to_open_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/author_badlands_realism.py",
+      "size": 32033,
+      "sha256": "cce35a34306167099a610c6ab82549cff8771c643fdf02f80fb6e98de7ade983",
+      "destination": "Docs/Agents/Blender/studies/author_badlands_realism.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/build_badlands_rock_detail_study.py",
+      "size": 13872,
+      "sha256": "c07c074c5997fc88f850590264b1967a4b8aef2d9340d2f5026f900ce6799af4",
+      "destination": "Docs/Agents/Blender/studies/build_badlands_rock_detail_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/build_badlands_study.py",
+      "size": 10858,
+      "sha256": "75793c00b60a3536be6eaece1ec423bd99179e15bb29186ee9d8b86f0008dda1",
+      "destination": "Docs/Agents/Blender/studies/build_badlands_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/build_black_volcanic_pbr.py",
+      "size": 5510,
+      "sha256": "82497d3765c4f6121e8396f736d9b89aac6f432804f0a20fa7f5e60238e6cbde",
+      "destination": "Docs/Agents/Blender/studies/build_black_volcanic_pbr.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/expand_badlands_authoring_area.py",
+      "size": 5449,
+      "sha256": "f2a9aaace9b71dcfaebc4f1c1e9fbd4ef924fdac7cc61a4c9773a1e021d9ba11",
+      "destination": "Docs/Agents/Blender/studies/expand_badlands_authoring_area.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/irregularize_clutter_stones.py",
+      "size": 4966,
+      "sha256": "dda93f11e4543ed6e54d2d6e919164af2c0369a74a9283bc356c03d31440c55b",
+      "destination": "Docs/Agents/Blender/studies/irregularize_clutter_stones.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/make_seamless_ground_tiles.py",
+      "size": 2467,
+      "sha256": "a67fcf5811db5a870181d5148e1a0784fcd7218386bdfedbac4f50548ac4ab9d",
+      "destination": "Docs/Agents/Blender/studies/make_seamless_ground_tiles.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/README.md",
+      "size": 5454,
+      "sha256": "e8bc89b376c62aa91cd34270cc2b9c60c7dd54fdd4e319a2d66f57b2f416a6ea",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/README.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/Reference.png",
+      "size": 2782476,
+      "sha256": "6c1489cc0e50ba6d93d9eae66e2d980b6eb70d0f3fa9e6954d253de3d0971e9d",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/Reference.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/ReferenceSlate.blend",
+      "size": 18130511,
+      "sha256": "b7ee4fe236f4c4476a244c0ee5c8f43c070a15ee0317e501efbd78b4f5a3134a",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/ReferenceSlate.blend",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/ReferenceSlate.blend1",
+      "size": 16162939,
+      "sha256": "676b18716f3bfe570863427b66be1800f4487b2fb046521152105ac26ac2a0c5",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/ReferenceSlate_PreviousSave_2026-10-06.blend",
+      "action": "recovered-previous-save"
+    },
+    {
+      "source": "Blender/studies/reference_rock/ReferenceSlate.fbx",
+      "size": 24492,
+      "sha256": "eaa321857b8f6a19306406d5a2731fb48ed59a2b5198762907711d6c28f8243e",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/ReferenceSlate.fbx",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/ReferenceSlate.glb",
+      "size": 17976984,
+      "sha256": "d48d2b5b731d80e154e0890dbfc4240fe9e9a1b6eb581b293ed206bb2ecd6d52",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/ReferenceSlate.glb",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/ReferenceSlate_Back.png",
+      "size": 1915736,
+      "sha256": "6f360fa5c837420a1275bd6aa845d41979f29f94345d84636d1c74d46edb1f7c",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/ReferenceSlate_Back.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/ReferenceSlate_Beauty.png",
+      "size": 1934884,
+      "sha256": "0ea1cedead15c0043b0e031683f76d488257f05b0509060fb96a25e051f6642d",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/ReferenceSlate_Beauty.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/ReferenceSlate_Elevated.png",
+      "size": 1869500,
+      "sha256": "2e54f28d18c840b6d2b4946c4c84ed4f06a7817c31af943d0d147f554496b601",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/ReferenceSlate_Elevated.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/ReferenceSlate_Geometry.png",
+      "size": 932158,
+      "sha256": "e07a72168ea58872d0c2fcad2aaf40a32c731118f65f48948bf24829213213b0",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/ReferenceSlate_Geometry.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/ReferenceSlate_InStudy.png",
+      "size": 2443838,
+      "sha256": "e2e9c917bd91fe2f3cb797bec51923af4089b5db9d8a13706421ffc5c58ac730",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/ReferenceSlate_InStudy.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/add_reference_rock_to_study.py",
+      "size": 3095,
+      "sha256": "151f1b2da92b6f3e72a9491b2d39b33263f36c2c1e47d05614e1d247f4bf9510",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/add_reference_rock_to_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/build_reference_rock.py",
+      "size": 9640,
+      "sha256": "fbb210e7dce5dfe6e80cea51fb382a3f7f7b2eec12bc6ed5a41060ecbc95d84d",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/build_reference_rock.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/mesh_report.json",
+      "size": 350,
+      "sha256": "c5f690a7313ac31ea8b98a63d6f4a04342889dc86edbe08dd6bc146378bcb865",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/mesh_report.json",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/render_in_study.py",
+      "size": 1160,
+      "sha256": "b3300b33030c50a31e50c4ba55281b6a1c24438c3eb3c28335dbc7c1b80676d3",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/render_in_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/textures/FracturedRock_SurfaceSource.png",
+      "size": 3846881,
+      "sha256": "4d702d3fa3f9eba729a142c61edd4f2d048da37ffeb5cd8e64b659832746b988",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/textures/FracturedRock_SurfaceSource.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/textures/ReferenceSlate_BaseColor.png",
+      "size": 6835728,
+      "sha256": "b92de8d00631c58659b438911ea3ddc67a55c53042374834db91a681e6d61e23",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/textures/ReferenceSlate_BaseColor.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/textures/ReferenceSlate_NormalGL.png",
+      "size": 7931188,
+      "sha256": "94643445a1b2586032d236da09eca351accc9e5e1ac64ff8546cd2afbc2348ce",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/textures/ReferenceSlate_NormalGL.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/textures/ReferenceSlate_Roughness.png",
+      "size": 3279368,
+      "sha256": "5b513a20e4e0c8649eca82bebc07bb64829580065366ba1c4f32638f8d2a9d4f",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/textures/ReferenceSlate_Roughness.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/validation_report.json",
+      "size": 1524,
+      "sha256": "ab4540ce76f17d81ae7401a8faa91ba19176c5aca0a6c9340e52a1ffdd0c1bb6",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/validation_report.json",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reference_rock/verify_reference_rock.py",
+      "size": 4302,
+      "sha256": "82e4e9ce75ce599ceb3f0811c37387eb3e00a2734f222ae9983b927cd34f3d89",
+      "destination": "Docs/Agents/Blender/studies/reference_rock/verify_reference_rock.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/references/BadlandsExposedBedrockReference.png",
+      "size": 2600343,
+      "sha256": "328514fa517b78d469805d4a54681d2522f2f8b42699e72cb62bd1f1abf274cc",
+      "destination": "Docs/Agents/Blender/studies/references/BadlandsExposedBedrockReference.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/references/BadlandsFracturedOutcropsReference.png",
+      "size": 2664774,
+      "sha256": "bb37b04c5f4693b0041e4dc5c7389a948c62d3a7c66a3e27fa2cddfccc13c237",
+      "destination": "Docs/Agents/Blender/studies/references/BadlandsFracturedOutcropsReference.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/references/BadlandsPaletteAndDebrisReference.png",
+      "size": 2769627,
+      "sha256": "370897893ba181f672a0aa29a03a7930361bb404058939af7813b74ae480ce7e",
+      "destination": "Docs/Agents/Blender/studies/references/BadlandsPaletteAndDebrisReference.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/references/BadlandsWideHorizonPanorama.png",
+      "size": 2099393,
+      "sha256": "a6e36819282b239e474efccdf2f39303b99164b25cf95a1762d9a2f5857ac381",
+      "destination": "Docs/Agents/Blender/studies/references/BadlandsWideHorizonPanorama.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/refine_badlands_rock_realism.py",
+      "size": 3375,
+      "sha256": "a6492c867cdcb3b69aee07afcc1b1ffee1d8fbc7d5742848e4ec6a9008e43774",
+      "destination": "Docs/Agents/Blender/studies/refine_badlands_rock_realism.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/refine_buttress_tip.py",
+      "size": 3078,
+      "sha256": "69cb7a3f4ae395e07dc5d200813bbfbe74224f4fa65c75ad2638a39035add2ef",
+      "destination": "Docs/Agents/Blender/studies/refine_buttress_tip.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/refine_exposed_shale_plates.py",
+      "size": 2976,
+      "sha256": "efe5df5b94349c594f6ebe365af69db19be88ff4bed787f461c90dc678f6250d",
+      "destination": "Docs/Agents/Blender/studies/refine_exposed_shale_plates.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/render_realism_review.py",
+      "size": 1534,
+      "sha256": "bd6740d7e1fa8ea88f9162e36811f90457f542674e4d06079c23ea764ae413a4",
+      "destination": "Docs/Agents/Blender/studies/render_realism_review.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/repair_dissolved_buttress_patch.py",
+      "size": 4049,
+      "sha256": "0ae9720aeadb5ae0ad150c036b8c685d8e6c8142175bf37a3e9d1f6f677fbe5b",
+      "destination": "Docs/Agents/Blender/studies/repair_dissolved_buttress_patch.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/repair_fractured_rock_topology.py",
+      "size": 3417,
+      "sha256": "4fd54e2ff0a9aaf824eb8f2988353a446487ed4df5f9c08fb59d77ca4ea322eb",
+      "destination": "Docs/Agents/Blender/studies/repair_fractured_rock_topology.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/replace_periodic_terrain_ridges.py",
+      "size": 4017,
+      "sha256": "1d5a4b34cf74817ff846eb2d911141c2740111eff120156112841eb34ae8c46a",
+      "destination": "Docs/Agents/Blender/studies/replace_periodic_terrain_ridges.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/reshape_scree_aprons.py",
+      "size": 3392,
+      "sha256": "5b1ef2ddd13a294aeb9a040bcd928137e5f5db7527ea925bc84b7a585d8f8fa5",
+      "destination": "Docs/Agents/Blender/studies/reshape_scree_aprons.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/round_scree_pebbles.py",
+      "size": 3059,
+      "sha256": "c64bdb399c89704aeef5f9b42336ce4183104a9dd5f34fb3c980f664a441cabe",
+      "destination": "Docs/Agents/Blender/studies/round_scree_pebbles.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/soften_ground_texture_repeats.py",
+      "size": 6427,
+      "sha256": "662eef7de0c829d45e8875e49d382825de373768cbb2a9237a56e8b60d3c2a79",
+      "destination": "Docs/Agents/Blender/studies/soften_ground_texture_repeats.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/BadlandsCompactedRustSoil.png",
+      "size": 3623903,
+      "sha256": "8eb78e217075722f20a04cee541e0ca4059d07af5fd5b0346c8dbd10e6b27aa7",
+      "destination": "Docs/Agents/Blender/studies/textures/BadlandsCompactedRustSoil.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/BadlandsDarkScree.png",
+      "size": 3858925,
+      "sha256": "81d63cffb0a65dd7c869333ec7d9cae4623de4b95cf4a7f0e4b6e5d32c85ae75",
+      "destination": "Docs/Agents/Blender/studies/textures/BadlandsDarkScree.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/BadlandsDenseShaleTile.png",
+      "size": 4240803,
+      "sha256": "ed2f3e68b431c96e7f7ecfa22c40d84ec29843f0bb3403350824948000703790",
+      "destination": "Docs/Agents/Blender/studies/textures/BadlandsDenseShaleTile.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/BadlandsEmbeddedShaleGravel.png",
+      "size": 3820288,
+      "sha256": "45554c2a91e235f3b9d73393b5a769382e65a17413c030e886a405bb433a283c",
+      "destination": "Docs/Agents/Blender/studies/textures/BadlandsEmbeddedShaleGravel.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/BadlandsRustDirtTile.png",
+      "size": 3836917,
+      "sha256": "0b03a1818d417f55c007fc031e954078ba28d794237078ec5eead5b75aeda6e9",
+      "destination": "Docs/Agents/Blender/studies/textures/BadlandsRustDirtTile.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/BadlandsSparseShaleTile.png",
+      "size": 4107703,
+      "sha256": "33f84315db7fb7e1193e0773cd018162a3baa6ce8c4c03cc32195e00880cf311",
+      "destination": "Docs/Agents/Blender/studies/textures/BadlandsSparseShaleTile.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/VolcanicBlackBasaltAlbedo_v1.png",
+      "size": 3162381,
+      "sha256": "53cd69c5fc4e47843eedd35e138f4a88ef241eda64811d38a60c9e0067932e62",
+      "destination": "Docs/Agents/Blender/studies/textures/VolcanicBlackBasaltAlbedo_v1.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/VolcanicBlackBasalt_AO.png",
+      "size": 686256,
+      "sha256": "219e291108c6089e01324f495fa48976b5ebcde2d0ab287675ed4d3dbba97a18",
+      "destination": "Docs/Agents/Blender/studies/textures/VolcanicBlackBasalt_AO.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/VolcanicBlackBasalt_Albedo.png",
+      "size": 1881505,
+      "sha256": "cd4780de2deae26b05f5617579b89eea793359a66d9aff498529cc04648e078d",
+      "destination": "Docs/Agents/Blender/studies/textures/VolcanicBlackBasalt_Albedo.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/VolcanicBlackBasalt_Height16.png",
+      "size": 1985250,
+      "sha256": "27708e12c33c80f03265603d6f5c128f0df464277d0d3d9622bdd7629b1bc6a7",
+      "destination": "Docs/Agents/Blender/studies/textures/VolcanicBlackBasalt_Height16.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/VolcanicBlackBasalt_Metallic.png",
+      "size": 1097,
+      "sha256": "c8b6bb3e837f846489438b47ae42f3960b820a17095ea66df3c5fa00fcd60665",
+      "destination": "Docs/Agents/Blender/studies/textures/VolcanicBlackBasalt_Metallic.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/VolcanicBlackBasalt_NormalGL.png",
+      "size": 2663845,
+      "sha256": "0d6fb1f38695562ee184c2cb3b564a42e7fc24753c6390937a8213f07dc1b5b1",
+      "destination": "Docs/Agents/Blender/studies/textures/VolcanicBlackBasalt_NormalGL.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/VolcanicBlackBasalt_README.md",
+      "size": 2577,
+      "sha256": "bb55f74f90ef00770ed2ce65fb7152dd62d809934143a9825f53763f39def962",
+      "destination": "Docs/Agents/Blender/studies/textures/VolcanicBlackBasalt_README.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/VolcanicBlackBasalt_RepeatPreview.png",
+      "size": 1417128,
+      "sha256": "cbe3e2ee959e64ff627991dfc381f99dd59676eff8cb06e9f6e8ae0dc52e157f",
+      "destination": "Docs/Agents/Blender/studies/textures/VolcanicBlackBasalt_RepeatPreview.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/VolcanicBlackBasalt_Roughness.png",
+      "size": 600934,
+      "sha256": "25ae34f334a3459426add811db018bf3f5d388c621f59b139c98ae6fea4a917b",
+      "destination": "Docs/Agents/Blender/studies/textures/VolcanicBlackBasalt_Roughness.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/sources/BadlandsDenseShaleGenerated.png",
+      "size": 3921242,
+      "sha256": "7692eac04771264e32655fdcdbf389249936ff8e2cffdd4ae104e6711c84f6da",
+      "destination": "Docs/Agents/Blender/studies/textures/sources/BadlandsDenseShaleGenerated.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/sources/BadlandsRustDirtGenerated.png",
+      "size": 3689815,
+      "sha256": "772d5d8d79263404852ef942f3cf0fb95d5e5cc8fb7d01c4daad99bdab8be2a9",
+      "destination": "Docs/Agents/Blender/studies/textures/sources/BadlandsRustDirtGenerated.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/textures/sources/BadlandsSparseShaleGenerated.png",
+      "size": 3777670,
+      "sha256": "fa8f5b3fd66fc856bf9260b0ab81a07ce6d80c9b3caad3cc6e4ffbaf2e916b97",
+      "destination": "Docs/Agents/Blender/studies/textures/sources/BadlandsSparseShaleGenerated.png",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/studies/trim_buried_rock_bases.py",
+      "size": 5041,
+      "sha256": "20a976dfe9bb350ee38620a96f4e03a2d1cd83b4c82183561f762171e28a78d5",
+      "destination": "Docs/Agents/Blender/studies/trim_buried_rock_bases.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/templates/ASSET_BRIEF.md",
+      "size": 755,
+      "sha256": "ce291c7aece1f62c698c1114704729357c20b547b65408831f18e7842fad9870",
+      "destination": "Docs/Agents/Blender/templates/ASSET_BRIEF.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/README.md",
+      "size": 834,
+      "sha256": "dfaf516f6282d65c9a4cfedb62064c657c4f775ce0999057b2b929c1c57026aa",
+      "destination": "Docs/Agents/Blender/tools/README.md",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/.gitignore",
+      "size": 19,
+      "sha256": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793",
+      "destination": "Docs/Agents/Blender/tools/death_valley/.gitignore",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/BadwaterUnitySceneBuilder.cs",
+      "size": 15646,
+      "sha256": "17e7598bc3ea782335356b34672ab3507be9a44affe77da423cb931d22e38406",
+      "baseline_commit": "4f2fe41c8e6074f99b6e55fb92a32e41f6fe9a54",
+      "current_file": "Docs/Agents/Blender/tools/death_valley/BadwaterUnitySceneBuilder.cs",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/snapshots/tools/death_valley/BadwaterUnitySceneBuilder.cs.snapshot",
+      "action": "superseded-baseline-snapshot"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/build_detail_study.cpython-313.pyc",
+      "size": 25018,
+      "sha256": "487595eaa8d87a4f0a7a85ce0c3ccc92c64a95f8c1947026c3d51f43cacc99d0",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/build_detail_study.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/build_detail_study.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/build_explore_scene.cpython-313.pyc",
+      "size": 17492,
+      "sha256": "95c9cf4392057bbf8f51b45d7f12b43a98d1a2ee9571c30c8dc22a1b6808f8cb",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/build_explore_scene.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/build_explore_scene.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/build_game_slice_scene.cpython-313.pyc",
+      "size": 26436,
+      "sha256": "4888c4b6a69d6c0a5e28e3542bcb25a75e47985d2d9012bd7acf6efb25eddbf9",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/build_game_slice_scene.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/build_game_slice_scene.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/build_region_study.cpython-313.pyc",
+      "size": 38424,
+      "sha256": "f24c8cdc0a361f21eb03c46d1f201eb97612fce82f7d802c74d2d64cb074d128",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/build_region_study.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/build_region_study.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/export_badwater_unity_source.cpython-313.pyc",
+      "size": 5397,
+      "sha256": "08df91d12902ceeda850db3185c95093f57376e2f68e770b02f4051c7ea838e3",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/export_badwater_unity_source.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/export_badwater_unity_source.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/fetch_landsat_reference.cpython-313.pyc",
+      "size": 6052,
+      "sha256": "a1d8bd1c176316be80ad204fbcf48af8fdbb05e8f962472d3e3644b608093f5f",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/fetch_landsat_reference.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/fetch_landsat_reference.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/fetch_polyhaven_material.cpython-313.pyc",
+      "size": 4660,
+      "sha256": "5f737cf2cab64241c8a4b7dad205f89ff21bb3ccf6cfc7337dd6f21a6a34a8f1",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/fetch_polyhaven_material.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/fetch_polyhaven_material.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/game_slice_grid.cpython-313.pyc",
+      "size": 1860,
+      "sha256": "9b4cdde51873ca3df43c14419c1fcd78cb8fc40fa4e56e2151e6ad16706ede33",
+      "available_source": null,
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/game_slice_grid.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/inspect_dem_catalog.cpython-313.pyc",
+      "size": 5009,
+      "sha256": "f3eb4d9c33eb4d6f2d839086aa3024ac624ac1b914cf97d5fdc9432d31a21810",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/inspect_dem_catalog.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/inspect_dem_catalog.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/make_imagery_composite.cpython-313.pyc",
+      "size": 4930,
+      "sha256": "f53a392568b14f9f34e9ceeeda7ee05e51ab15ce9cf4865a5ad233e0c7023b67",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/make_imagery_composite.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/make_imagery_composite.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/make_rock_maps.cpython-313.pyc",
+      "size": 6899,
+      "sha256": "f64b4e9bde55c90ee4bddf3b829f8aca076374b4841581bf9dcd45c65031f4a0",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/make_rock_maps.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/make_rock_maps.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/match_detail_color.cpython-313.pyc",
+      "size": 6859,
+      "sha256": "302c0312b37c70f4bc15f7a0ae043506ff6b1682089835ec2cfd017af57916d1",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/match_detail_color.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/match_detail_color.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/measure_detail.cpython-313.pyc",
+      "size": 5877,
+      "sha256": "87ccabc039eb1fa57fbd5f41db8f047daaa2ec1758c197621ca959bab3ad7af9",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/measure_detail.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/measure_detail.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/prepare_corridor.cpython-313.pyc",
+      "size": 3626,
+      "sha256": "3634b03a48d7fa93e624d2e50d594887df3d4485c43d1796d5a56d2634c1a8b2",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/prepare_corridor.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/prepare_corridor.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/prepare_detail.cpython-313.pyc",
+      "size": 5778,
+      "sha256": "c133d2363526e81d5dd0e8df53e3e34dbfdf9923531f470177ed809680799714",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/prepare_detail.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/prepare_detail.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/prepare_four_slices.cpython-313.pyc",
+      "size": 14067,
+      "sha256": "a15657ca42933a7c0767ed601feb5df4a8f4859dc0a96061887c28a41f5b9e17",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/prepare_four_slices.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/prepare_four_slices.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/prepare_game_slice.cpython-313.pyc",
+      "size": 15164,
+      "sha256": "ead84934038287f8968a800061e0be5a95faf006151bad7e19c48084472da93c",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/prepare_game_slice.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/prepare_game_slice.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/prepare_region.cpython-313.pyc",
+      "size": 19722,
+      "sha256": "0597a7720a9e2d5e6993558140a4285dc7e7d8f77f17453ee73ca3a04c3e63b0",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/prepare_region.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/prepare_region.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/rasterize_geology.cpython-313.pyc",
+      "size": 9346,
+      "sha256": "4d329a56ce41d515f5a25d1d9c4d54136f6c9d058f08bfa9ec7c854213c065e4",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/rasterize_geology.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/rasterize_geology.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/rebuild_expanded_viewer.cpython-313.pyc",
+      "size": 3296,
+      "sha256": "a9c7221bce1520fc47e76625b9e356ecf7edcda471344e478a2564c882c12126",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/rebuild_expanded_viewer.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/rebuild_expanded_viewer.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/rebuild_game_slice.cpython-313.pyc",
+      "size": 3088,
+      "sha256": "cfd8037de2f9133f57736ef95e08e64ab26c2dd76ea3fa72079aaba6b66a8d8c",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/rebuild_game_slice.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/rebuild_game_slice.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/render_explore_previews.cpython-313.pyc",
+      "size": 6966,
+      "sha256": "ae56e80b5f8e81789d992bce5a4bdab4fc0fe2e4addfb5fc1cfa9fcd888f968d",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/render_explore_previews.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/render_explore_previews.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/render_four_slices_preview.cpython-313.pyc",
+      "size": 4675,
+      "sha256": "778202ba2dd1e6d9be37a7254a886fb5bf83c63708b13fbd6f94319709678d14",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/render_four_slices_preview.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/render_four_slices_preview.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/render_game_slice_previews.cpython-313.pyc",
+      "size": 7714,
+      "sha256": "b2758acf1543cda2439586ce7bee521c2d87c6e6ede687d11b980f2f4cdbe047",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/render_game_slice_previews.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/render_game_slice_previews.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/verify_four_slices.cpython-313.pyc",
+      "size": 9918,
+      "sha256": "ebe065542d6fd648a79b0760f85eaf98d9837720ad9b9419549c54230556c080",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/verify_four_slices.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/verify_four_slices.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/verify_game_slice.cpython-313.pyc",
+      "size": 10332,
+      "sha256": "0e4982a395d528c81f7d57c9d3f466751f642a2d076570c9363934914d096647",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/verify_game_slice.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/verify_game_slice.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/verify_game_slice_scene.cpython-313.pyc",
+      "size": 10801,
+      "sha256": "5cdeeacd47949dd4e481917c66730a827e29b9bda63b0fedaa045cac90ea555a",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/verify_game_slice_scene.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/verify_game_slice_scene.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/__pycache__/verify_pipeline.cpython-313.pyc",
+      "size": 8234,
+      "sha256": "c01135f8e1bdb378dd8d9c71a56bc4aac8d65cacbc065c817b520269fe0ba59a",
+      "available_source": "Docs/Agents/Blender/tools/death_valley/verify_pipeline.py",
+      "destination": "Docs/Agents/Blender/archives/2026-10-06-transfer/bytecode/tools/death_valley/verify_pipeline.cpython-313.pyc.bin",
+      "action": "inert-bytecode-archive"
+    },
+    {
+      "source": "Blender/tools/death_valley/badwater_canyon_patch.json",
+      "size": 259,
+      "sha256": "ebc2a0d442e6e3c74be246db639e97de662bc33421a0ea06a252adf22278a863",
+      "destination": "Docs/Agents/Blender/tools/death_valley/badwater_canyon_patch.json",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/badwater_corridor.json",
+      "size": 781,
+      "sha256": "32d747b2729fc6f32c81a10b0109f1e4870bc2822f101f8019ccbb47a5ea7d4a",
+      "destination": "Docs/Agents/Blender/tools/death_valley/badwater_corridor.json",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/badwater_four_slices.json",
+      "size": 1250,
+      "sha256": "760136f38fd25deb05a71d08087cf6e3f759a17661eddf22a6014e18d315f315",
+      "destination": "Docs/Agents/Blender/tools/death_valley/badwater_four_slices.json",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/badwater_game_slice.json",
+      "size": 913,
+      "sha256": "b1b4c186aaf801d3927bf6ff059f2ceae492cfc02a5290e3fb84a223d54e71f8",
+      "destination": "Docs/Agents/Blender/tools/death_valley/badwater_game_slice.json",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/badwater_transition_pilot.json",
+      "size": 254,
+      "sha256": "6eb1e10ba689535323d697d4205620db4fb952f729fb42f613df886aba57334a",
+      "destination": "Docs/Agents/Blender/tools/death_valley/badwater_transition_pilot.json",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/build_detail_study.py",
+      "size": 14467,
+      "sha256": "646c428a41eae6f1e55deb5db7002d8781f5a85226db4bb1d24fc1511aaf0182",
+      "destination": "Docs/Agents/Blender/tools/death_valley/build_detail_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/build_explore_scene.py",
+      "size": 11205,
+      "sha256": "d1cb2e0549df9d6adf3ddbb509799b21fd9f8c72776b80194218b8d8a44dc3f5",
+      "destination": "Docs/Agents/Blender/tools/death_valley/build_explore_scene.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/build_game_slice_scene.py",
+      "size": 16711,
+      "sha256": "400d3be9615413f43845df0bc306a428ccf71f23f0d2b56b70675e7666ea0d02",
+      "destination": "Docs/Agents/Blender/tools/death_valley/build_game_slice_scene.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/build_region_study.py",
+      "size": 25369,
+      "sha256": "53877935ade33945488a1e6c41a195f8591a1ad9fc278e9ddf58d20d2c9337da",
+      "destination": "Docs/Agents/Blender/tools/death_valley/build_region_study.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/export_badwater_unity_source.py",
+      "size": 3165,
+      "sha256": "4d391be9abd0e380a515c8fb1ca8b23e1a8ada3abbf673cce15462794b1dd1bc",
+      "destination": "Docs/Agents/Blender/tools/death_valley/export_badwater_unity_source.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/fetch_landsat_reference.py",
+      "size": 3489,
+      "sha256": "2bcdcd7f6c83e0210a92d137c2d5d013ee75fb088cff3ef3e122846cd82caab3",
+      "destination": "Docs/Agents/Blender/tools/death_valley/fetch_landsat_reference.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/fetch_polyhaven_material.py",
+      "size": 2538,
+      "sha256": "34c8a2e695343927a7a367dc4879b7dc1e31edb8ba60203f0497c959f04a5d80",
+      "destination": "Docs/Agents/Blender/tools/death_valley/fetch_polyhaven_material.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/inspect_dem_catalog.py",
+      "size": 2515,
+      "sha256": "9fff220957fb5a8117ac5b57edd8fd18e26a17ee245884b2ac53c5ac3ba6fafd",
+      "destination": "Docs/Agents/Blender/tools/death_valley/inspect_dem_catalog.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/make_imagery_composite.py",
+      "size": 2538,
+      "sha256": "218e65a1f34aac94a515927f83deb11211db7226ffec760256bf5390d7f6cacf",
+      "destination": "Docs/Agents/Blender/tools/death_valley/make_imagery_composite.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/make_rock_maps.py",
+      "size": 3609,
+      "sha256": "d68294e411285d31d80befff6d3d41072872ddcaeb122ead103baaff2c95b358",
+      "destination": "Docs/Agents/Blender/tools/death_valley/make_rock_maps.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/match_detail_color.py",
+      "size": 3582,
+      "sha256": "d131eebcddbb70266e97b6eef5d94d1f9a2bece5cf13c6616e5eb0437d060383",
+      "destination": "Docs/Agents/Blender/tools/death_valley/match_detail_color.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/measure_detail.py",
+      "size": 3083,
+      "sha256": "f8904e4edadd8ea0ea21076e895905b52aadd6fd934bdb26da19feb0c4369fd9",
+      "destination": "Docs/Agents/Blender/tools/death_valley/measure_detail.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/prepare_corridor.py",
+      "size": 2420,
+      "sha256": "a025b753cbe1a9bd79b11b5647dffb9c89faecb65d0e182c6c05dcba264ebee9",
+      "destination": "Docs/Agents/Blender/tools/death_valley/prepare_corridor.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/prepare_detail.py",
+      "size": 3308,
+      "sha256": "43a9b232fec4e433011701f2c574e088ea6f84d85a023ff563d34bdc740a732f",
+      "destination": "Docs/Agents/Blender/tools/death_valley/prepare_detail.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/prepare_four_slices.py",
+      "size": 8896,
+      "sha256": "e52a4f066c3c743a37a4d5c756c791f5c3e38f0000f60c5920b511a30701f92f",
+      "destination": "Docs/Agents/Blender/tools/death_valley/prepare_four_slices.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/prepare_game_slice.py",
+      "size": 10000,
+      "sha256": "c1f80ac76ecaa64a5c14e29dfe435e9cac26386b2430859a292cd69765600d67",
+      "destination": "Docs/Agents/Blender/tools/death_valley/prepare_game_slice.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/prepare_region.py",
+      "size": 11834,
+      "sha256": "c3092e955e504d2e1613e106cd02ae1806225c5bb2a5d0c9808ee06f5dd25df2",
+      "destination": "Docs/Agents/Blender/tools/death_valley/prepare_region.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/rasterize_geology.py",
+      "size": 5874,
+      "sha256": "0ab1e6eb26a4cdf6715276a2ddfe3e6471062e8cf5312a347f489e1e8143d123",
+      "destination": "Docs/Agents/Blender/tools/death_valley/rasterize_geology.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/rebuild_expanded_viewer.py",
+      "size": 2077,
+      "sha256": "664721fd54f72aabd09aaf4fea43a346a10e86a20dbba24c41ac47884019437b",
+      "destination": "Docs/Agents/Blender/tools/death_valley/rebuild_expanded_viewer.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/rebuild_game_slice.py",
+      "size": 1685,
+      "sha256": "64501718a7c5e885f13c018e53dcd0433666813d20d3b1b1f9bff3fabbf36b77",
+      "destination": "Docs/Agents/Blender/tools/death_valley/rebuild_game_slice.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/region.json",
+      "size": 1274,
+      "sha256": "769ba982bbba73910775b13b103eab1f585d8ad9c8c2afeadfc582a13037438f",
+      "destination": "Docs/Agents/Blender/tools/death_valley/region.json",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/region_full_tiles.json",
+      "size": 916,
+      "sha256": "e71009b2d0486b2e471a9d5e1bf05749d5270ba0c917b801d7800df29f322980",
+      "destination": "Docs/Agents/Blender/tools/death_valley/region_full_tiles.json",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/render_explore_previews.py",
+      "size": 3849,
+      "sha256": "6d1c797fe93b4e3de16469e02a5868a5d8469943b8b0c3aaf88a43ccb3d8a5a2",
+      "destination": "Docs/Agents/Blender/tools/death_valley/render_explore_previews.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/render_four_slices_preview.py",
+      "size": 2155,
+      "sha256": "b459c39e69b95f9471d96cdcfd9f023bf9d23262f7ac4f4752d3d2efb629e527",
+      "destination": "Docs/Agents/Blender/tools/death_valley/render_four_slices_preview.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/render_game_slice_previews.py",
+      "size": 4151,
+      "sha256": "1870cfc74c992af84a596ee538fc40444acdce88a85c31763d86e4edc9a48498",
+      "destination": "Docs/Agents/Blender/tools/death_valley/render_game_slice_previews.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/requirements.txt",
+      "size": 71,
+      "sha256": "1301b206e6f642803f9eeb8b1348bc9151eccad75f06af48a58271802eb66beb",
+      "destination": "Docs/Agents/Blender/tools/death_valley/requirements.txt",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/verify_four_slices.py",
+      "size": 6033,
+      "sha256": "8a701dd72e384d4a43723db35ac43bc01c2d2dc1576acf1c44221c31a632b2fb",
+      "destination": "Docs/Agents/Blender/tools/death_valley/verify_four_slices.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/verify_game_slice.py",
+      "size": 6159,
+      "sha256": "4d0bcad5a60ce7cb69e41240fb2666f15618cca49afb3f78220eb9ddcf63101e",
+      "destination": "Docs/Agents/Blender/tools/death_valley/verify_game_slice.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/verify_game_slice_scene.py",
+      "size": 5463,
+      "sha256": "657fe64362612d8a44c9f93360f8a3705cdb9c32d139bcfd768faab953b8960f",
+      "destination": "Docs/Agents/Blender/tools/death_valley/verify_game_slice_scene.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/death_valley/verify_pipeline.py",
+      "size": 4480,
+      "sha256": "3c2d636008db38fca70f8d4be444e0c81b2dcdcfa6bcb82a7b930d273090b109",
+      "destination": "Docs/Agents/Blender/tools/death_valley/verify_pipeline.py",
+      "action": "existing-identical-file"
+    },
+    {
+      "source": "Blender/tools/inspect_blend.py",
+      "size": 2394,
+      "sha256": "72a570b58d8b0622dd5477f4a130b2a10e36b4840778dea14bad634273e9da20",
+      "destination": "Docs/Agents/Blender/tools/inspect_blend.py",
+      "action": "existing-identical-file"
+    }
+  ],
+  "retained_original_folder": "Logs/TransferHolding/wetransfer_blender_2026-10-06_2121",
+  "cleanup_status": "Verified redundant incoming copies retained locally after automatic deletion review rejected the action; original transfer moved intact into ignored holding storage."
+}

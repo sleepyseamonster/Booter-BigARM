@@ -1,0 +1,1448 @@
+{
+  "date": "2026-10-06",
+  "baseline_commit": "06cd06d22a71ce63ce49205b516399f891fbde3f",
+  "baseline_tracked_file_count": 5854,
+  "baseline_tracked_bytes": 1598297895,
+  "inventory_scope": "All tracked files, hashing materialized working-tree bytes; all 252 incoming files including ignored cache and backup files. Generated local directories excluded from content inventory. Package-cache metadata indexed only for GUID resolution.",
+  "baseline_areas": {
+    "root files": {
+      "file_count": 4,
+      "bytes": 19318
+    },
+    ".vscode": {
+      "file_count": 3,
+      "bytes": 2143
+    },
+    "Assets": {
+      "file_count": 3957,
+      "bytes": 506345427
+    },
+    "Docs": {
+      "file_count": 574,
+      "bytes": 813390047
+    },
+    "Engine": {
+      "file_count": 1276,
+      "bytes": 278446567
+    },
+    "Packages": {
+      "file_count": 2,
+      "bytes": 18465
+    },
+    "ProjectSettings": {
+      "file_count": 26,
+      "bytes": 60346
+    },
+    "Tools": {
+      "file_count": 1,
+      "bytes": 2726
+    },
+    "Unreal": {
+      "file_count": 11,
+      "bytes": 12856
+    }
+  },
+  "existing_duplicate_groups": [
+    {
+      "sha256": "2b25346e9842037c20d4bc356e98c8a505a7881a701779d4942ab3eeaa50b487",
+      "paths": [
+        "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX",
+        "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX"
+      ]
+    },
+    {
+      "sha256": "2a86c14532e41065c8fe515839b56bbb43e57d49cbff563d2f003f401de09b75",
+      "paths": [
+        "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM.FBX",
+        "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM_Mirror.FBX"
+      ]
+    },
+    {
+      "sha256": "0d0685adae814d11ac45ee453af0d33ea11b6db25dfca7f287210fb3f5c05619",
+      "paths": [
+        "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM.FBX",
+        "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM_Mirror.FBX"
+      ]
+    },
+    {
+      "sha256": "693e05893d05da84f4d76efeeaeafd5391c7dce9dddb8d57231ba427f97e1872",
+      "paths": [
+        "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@StrafeLeftRunForwards.fbx",
+        "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@StrafeRightRunForwards.fbx"
+      ]
+    },
+    {
+      "sha256": "db2ea1a2b54d11c0e45d01f6c33e9870c03b863de222b5f40da48d54b254f968",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldGravelAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "6b627be22f0fc68014ffe5b4b9a78a1309fe9b36a02080956a1a6b50b6b1b80c",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldGravelTransitionAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldGravelTransitionAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "4b7092223214288f389ff8b2bf1357ec82bd0e1c9f11f1b4f39f6c89647173d9",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldMixedRockyAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "85394767d5d512431426ea25b27322865f84f53cacb47b5b25e4cc6307b8425c",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyHeight.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldMixedRockyHeight.png"
+      ]
+    },
+    {
+      "sha256": "974b2715f089879afc89d2a868590f9d692b2b643f38b7bd05f4c292c86c6e38",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldMixedRockyNormal.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldMixedRockyNormal.png"
+      ]
+    },
+    {
+      "sha256": "8266fa421d683cc19c396f2788a9b98075ed0b5c0754087c9a3d9da81df931dc",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldRockyMidTransitionAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "0b3e372db201f3cb395cf9aa6375476f33f6f1581b7633516dd0e6d0e8444f83",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionHeight.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldRockyMidTransitionHeight.png"
+      ]
+    },
+    {
+      "sha256": "17cc0beb83c95d7a64d41ab419e57e8d30db8c5a55cc2f1cac0c72d8132f1ec2",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyMidTransitionNormal.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldRockyMidTransitionNormal.png"
+      ]
+    },
+    {
+      "sha256": "214995602fa935f569ca9e61017afb0757facdd700bf22760fd86edabe81565b",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldRockyTransitionAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "60c5aa8b0008dfa14f3f091eb6d46f2dc26f86b108440504858f200205aa917e",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionHeight.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldRockyTransitionHeight.png"
+      ]
+    },
+    {
+      "sha256": "03e801238f0f602e1bc53c24324ddea5319172eb3c6b3cb5b5f56d3f4198b83c",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldRockyTransitionNormal.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldRockyTransitionNormal.png"
+      ]
+    },
+    {
+      "sha256": "53f8f5bb5584bbca5ebfa0ffa6328a98a39d4265b3d34f7b2e392df6fc1552fd",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldSandDirtAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "101205e5c683842536a5b7af9727e51fce862730f572b1d04e9dfaee849702f9",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSweptSandAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldSweptSandAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "b765f5506f284be9626e928ae541a6c7361423d035a86026d25fcc2246ecae2a",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/BrokenWorldSweptSandTransitionAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/BrokenWorldSweptSandTransitionAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "ebfba258f1e611bc0476fd919e5ff456426bc89e0425acc913da6d23b9d88e59",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/MixedGroundPebbles_Albedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/MixedGroundPebbles_Albedo.png"
+      ]
+    },
+    {
+      "sha256": "a365bcafbdff108bcc2b8a9832cbbdfcad6f33860d8085160ae97e5d5a3e06a9",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/MixedGroundPebbles_Height.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/MixedGroundPebbles_Height.png"
+      ]
+    },
+    {
+      "sha256": "03d355a49aadc06e5c69dd06b043ebb0ff15e40f10bba9c9f56a30519c937e6c",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/NearRockPebbles_Albedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/NearRockPebbles_Albedo.png"
+      ]
+    },
+    {
+      "sha256": "b553805cc72abc39549119f4ba30527dd5bfc41e23d637ae3aaa98f3fa343c29",
+      "paths": [
+        "Assets/_Project/Art/Environment/Ground/SandDirt/NearRockPebbles_Height.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Ground/SandDirt/NearRockPebbles_Height.png"
+      ]
+    },
+    {
+      "sha256": "3642f4f96cd95226ba7636b355aabdfc0b8040d643f350be24e35f25d5e8098c",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/BrokenWorldRockSurfaceAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "e5419c63626e6074a9984659c711cd8ceb4d3218ae545ea10e1fca444ae59bf4",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceDarkAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/BrokenWorldRockSurfaceDarkAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "be2e973b44524df7ae6d181cea159c1f12a34ddf45e008cb3ec6fb115d51850a",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealAlbedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/BrokenWorldRockSurfaceTealAlbedo.png"
+      ]
+    },
+    {
+      "sha256": "7a1d63dad6c8980e9a3caf683304d04a64f9176146df689a5634d00e6df21c43",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/BrokenWorldRockSurfaceTealLusterMask.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/BrokenWorldRockSurfaceTealLusterMask.png"
+      ]
+    },
+    {
+      "sha256": "08e5dadfc550b3d2b079cf9fea68123e93eb27c671e8faa593912f905e6e44ed",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchCrack_Mask.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchCrack_Mask.png"
+      ]
+    },
+    {
+      "sha256": "37051bf612d74a49ab4e226e846283a071ea33357cf381a51b4e68bfc74f47aa",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Albedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchGrit_Albedo.png"
+      ]
+    },
+    {
+      "sha256": "9cb01495f11c5c3d33040db45d81294c7419a3f5bbc80aee8052cd9d7c33f022",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Normal.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchGrit_Normal.png"
+      ]
+    },
+    {
+      "sha256": "7981fc0b167fe53f34340d86eb5ae92511941350312894e3317962ff0129dc8a",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchGrit_Surface.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchGrit_Surface.png"
+      ]
+    },
+    {
+      "sha256": "01718802610a6efb1180aaef4ecd1aa842306759d31ebcbc36fdb9fc0f3058a1",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.png"
+      ]
+    },
+    {
+      "sha256": "11e4d346d8ce25a009aa4626b96573bb307b9cb410b6af4ef85d7ea94825e736",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.psd",
+        "Engine/Assets/SurfaceLibrary/SourceArt/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.psd"
+      ]
+    },
+    {
+      "sha256": "745f27f388a8214d2095784b367c3f5cbad093f0ac19141e3b5c59a6f768476e",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Normal.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchSide_Normal.png"
+      ]
+    },
+    {
+      "sha256": "1ab84e3185fecc32e70d18830dc2c8ce23ba4ceacd088853760af9b570a4cc3c",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Surface.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchSide_Surface.png"
+      ]
+    },
+    {
+      "sha256": "9412107509697ade178c89af2607b8d769ace0f772a7863e78e5622c04e5528c",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Albedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchTop_Albedo.png"
+      ]
+    },
+    {
+      "sha256": "0e4d9272fabc2e65a04ad0e81a199498bb5bf33c7dee2b55fd0c1ad5d4f1d8df",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Normal.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchTop_Normal.png"
+      ]
+    },
+    {
+      "sha256": "fee7bffc3d51b74b6acb5f1bf3b78a828619ef63c26bf41e654a1520026fc5d7",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchTop_Surface.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchTop_Surface.png"
+      ]
+    },
+    {
+      "sha256": "dd6029fb28d5030402f5cd9c3ba8ea55718d092bdc31c357ed86d989784e3371",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Albedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchUnderside_Albedo.png"
+      ]
+    },
+    {
+      "sha256": "d45fbc43f1d24bdc8c66e89564d84432fb04793a8e2ae1fc1eba94b79ea8e2a0",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Normal.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchUnderside_Normal.png"
+      ]
+    },
+    {
+      "sha256": "d2715b07ee807a2ad81c2a01308113bb6e6145b094817125725afb057e1d55d9",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchUnderside_Surface.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/Layered/RockWorkbenchUnderside_Surface.png"
+      ]
+    },
+    {
+      "sha256": "74e73901a2db8fd6f09a99b0162e36e7ebc09a85506930f79b9b01b933731658",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchGrit_Source.png",
+        "Engine/Assets/SurfaceLibrary/SourceArt/Rocks/Workbench/Layered/Source/RockWorkbenchGrit_Source.png"
+      ]
+    },
+    {
+      "sha256": "fd47e3722b5dbb999e9401c392b98035a5dfd0bd10fe6e766434eb159775b649",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchSide_Source.png",
+        "Engine/Assets/SurfaceLibrary/SourceArt/Rocks/Workbench/Layered/Source/RockWorkbenchSide_Source.png"
+      ]
+    },
+    {
+      "sha256": "3484a74d14e3e47220952180bea61571cda5b0f562f04333333ac2b15190e2e5",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchTop_Source.png",
+        "Engine/Assets/SurfaceLibrary/SourceArt/Rocks/Workbench/Layered/Source/RockWorkbenchTop_Source.png"
+      ]
+    },
+    {
+      "sha256": "1dbe25fdd90fa934b67046215c2ea9c1c1220b7dcef081cfe98c992a1c3bf7e5",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/Source/RockWorkbenchUnderside_Source.png",
+        "Engine/Assets/SurfaceLibrary/SourceArt/Rocks/Workbench/Layered/Source/RockWorkbenchUnderside_Source.png"
+      ]
+    },
+    {
+      "sha256": "fe090743a10cf652f935a7c35f9f91291dd9e42511525e58d66538a226d2f2e6",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Albedo.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/RockWorkbenchNeutral_Albedo.png"
+      ]
+    },
+    {
+      "sha256": "4e94f09f2be3541ab60688cabec0ac54c10d21de01dbcacc7474fb64e12a44c5",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Normal.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/RockWorkbenchNeutral_Normal.png"
+      ]
+    },
+    {
+      "sha256": "2286389e445fb3ee12f550f14209cc2faffd5ab3b99f6785af2aa1fee911f040",
+      "paths": [
+        "Assets/_Project/Art/Environment/Rocks/Workbench/RockWorkbenchNeutral_Surface.png",
+        "Engine/Assets/SurfaceLibrary/Textures/Rocks/Workbench/RockWorkbenchNeutral_Surface.png"
+      ]
+    },
+    {
+      "sha256": "a6e36819282b239e474efccdf2f39303b99164b25cf95a1762d9a2f5857ac381",
+      "paths": [
+        "Assets/_Project/Art/Environment/Sky/MartianSunsetBasin.png",
+        "Docs/Agents/Blender/studies/references/BadlandsWideHorizonPanorama.png",
+        "Engine/Assets/Skyboxes/Samples/martian-sunset-basin-01.png"
+      ]
+    },
+    {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "paths": [
+        "Assets/_Project/Audio/.gitkeep",
+        "Assets/_Project/Legacy2D/Art/Ground/Base/.gitkeep",
+        "Assets/_Project/Legacy2D/Art/Ground/Overlay/.gitkeep"
+      ]
+    },
+    {
+      "sha256": "41ad892316a74423fe9063b4ad07a6380aab5bbec2b3f57f8ec20b9c5bc0cc28",
+      "paths": [
+        "Assets/_Project/Legacy2D/Art/Dust/DustCanister.png",
+        "Assets/_Project/UI/Items/MicroDustHarvester.png"
+      ]
+    },
+    {
+      "sha256": "c5048eeaefab8e848259cf17fefebe68a770c093cff04c21ae6d4d2d7a360b04",
+      "paths": [
+        "Assets/_Project/Legacy2D/Art/Dust/DustResource.png",
+        "Assets/_Project/UI/Items/AirborneDust.png"
+      ]
+    },
+    {
+      "sha256": "10eb96e3752d96c4167a638f52c29fe9e015403c3e208eb181f5d5d2b819160c",
+      "paths": [
+        "Assets/_Project/Materials/TopDown3D/Greybox_Terrain.mat",
+        "Assets/_Project/Resources/WorldCreator/CanyonTerrainFace.mat",
+        "Docs/Evidence/WorldCreator/CanyonSlice/TerrainMatchedFaceMaterialTrial.mat.txt"
+      ]
+    },
+    {
+      "sha256": "2448d668ad5a4faf9b5db448145ac726f738cff843f2c23df9074f4497b94182",
+      "paths": [
+        "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceMeshBuilder.cs",
+        "Docs/Evidence/WorldCreator/CanyonSlice/BackSeamContactBuilderTrial.cs.txt"
+      ]
+    },
+    {
+      "sha256": "51270363a0eafe81c38fc39203364ffac6bbcceb6e32c99e13bf051a818f385a",
+      "paths": [
+        "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Materials/WorldSurfaceMaterialService.cs",
+        "Docs/Evidence/WorldCreator/CanyonSlice/MixedFloorMaterialCandidate.cs.txt"
+      ]
+    },
+    {
+      "sha256": "00e60bb8cc8c09172026c2956db70ea819bbf3aa13106022bf31652d6451ed0f",
+      "paths": [
+        "Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md",
+        "Engine/Research/UnityReference/Documents/3D_CONVERSION_AUDIT_AND_CHECKLIST.md"
+      ]
+    },
+    {
+      "sha256": "5498211fee606a3c4541458c5235290b76de7490e519d67a0e00bc8ca89ec7d4",
+      "paths": [
+        "Docs/3D_CONVERSION_START_READINESS.md",
+        "Engine/Research/UnityReference/Documents/3D_CONVERSION_START_READINESS.md"
+      ]
+    },
+    {
+      "sha256": "370897893ba181f672a0aa29a03a7930361bb404058939af7813b74ae480ce7e",
+      "paths": [
+        "Docs/Agents/Blender/studies/references/BadlandsPaletteAndDebrisReference.png",
+        "Docs/VisualReferences/Terrain/SteppedMesaCliffs_2026-09-28.png"
+      ]
+    },
+    {
+      "sha256": "95a7e85bafe622d297e764291e5da0304c02e902db730419ee6fd2f08f0df16c",
+      "paths": [
+        "Docs/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+        "Engine/Research/UnityReference/Documents/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_PLAN.md"
+      ]
+    },
+    {
+      "sha256": "9c5f3aaf11cff7701f7a2a44263b164557e0fdb2ea0b88fb9e8d2a083cb5e5dc",
+      "paths": [
+        "Docs/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_STATUS.md",
+        "Engine/Research/UnityReference/Documents/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_STATUS.md"
+      ]
+    },
+    {
+      "sha256": "0499badc5abe50eb1137899dc312ad5eece3bfd41168b8173311a550cd7a964c",
+      "paths": [
+        "Docs/ConversionEvidence/LEGACY_BASELINE_2026-08-12.md",
+        "Engine/Research/UnityReference/Documents/ConversionEvidence/LEGACY_BASELINE_2026-08-12.md"
+      ]
+    },
+    {
+      "sha256": "c34d86a4ced6464732af3c359e912836969e5af29a71d86a0c6aa1a272659f06",
+      "paths": [
+        "Docs/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md",
+        "Engine/Research/UnityReference/Documents/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md"
+      ]
+    },
+    {
+      "sha256": "b0db633387bf9feee456554a9008dc9cc451470c7296b73aa5b1b5f6e8d2a31a",
+      "paths": [
+        "Docs/ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md",
+        "Engine/Research/UnityReference/Documents/ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md"
+      ]
+    },
+    {
+      "sha256": "14115b1123f513215dcbd3a30eec40d6b59433c03f2bb72a22a51b31eae6ce6b",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_0_READINESS_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_0_READINESS_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "8089789365eeec73c184808a4b5f35b943ad864363c21ac89cf11f1320b8615d",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_10_FULL_CONTENT_REVIEW_BUILD_RECEIPT_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_10_FULL_CONTENT_REVIEW_BUILD_RECEIPT_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "17bb56ab4f5493b85a640bfc408f755ac1e1a7297fb0b57492e80ece035cfc25",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_10_VERTICAL_SLICE_GATE_REPORT_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_10_VERTICAL_SLICE_GATE_REPORT_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "0c82e1f2a8f1d6342b17e151a05d162cc55cd8727c045a11d6091a13d900a846",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_10_VISUAL_AND_TARGET_PROFILE_HANDOFF_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_10_VISUAL_AND_TARGET_PROFILE_HANDOFF_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "dd34c761f34b3158044434591d0d455420640b083198c4d113d5611cd699202c",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_6_PRECUTOVER_BASELINE_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_6_PRECUTOVER_BASELINE_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "3771d38d9aae0d21f95961c13510f338b4752546eafb28f770f021dc791c591d",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_6_TOPOLOGY_V2_CUTOVER_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_6_TOPOLOGY_V2_CUTOVER_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "26858b7371b59d260cf03039200958148727ff0f03da3107c275adf59970c768",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_7_GEOLOGICAL_ROCK_EVOLUTION_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_7_GEOLOGICAL_ROCK_EVOLUTION_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "02cae608df2abaa33e19376b85e8f4fad09e1f27edbf87c222a79f94e2f4457a",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_7_PRECUTOVER_BASELINE_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_7_PRECUTOVER_BASELINE_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "716a5515794fab72dab8280a53d81985bdf02022b6db93547416e818cc02b30c",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_8_PRECUTOVER_BASELINE_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_8_PRECUTOVER_BASELINE_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "1c5707b78c509ec1580c9e39028c2b7df6b2565324ae03804b0f5fc6e06a6905",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_8_SEMANTIC_MATERIAL_AND_DUST_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_8_SEMANTIC_MATERIAL_AND_DUST_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "f3e44c3b5294549f7f07f88db5dfd40b18ad4d859d4e48fcfb2b4de243a45117",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_9_PERSISTENCE_AND_SAVED_PLACES_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_9_PERSISTENCE_AND_SAVED_PLACES_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "054ceb5fd456706f57fcb5462542b48a71ec98c5a353aba5bf9e77e9d721a7da",
+      "paths": [
+        "Docs/Evidence/WorldCreator/BATCH_9_PRECUTOVER_RESOURCE_BASELINE_2026-08-24.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/BATCH_9_PRECUTOVER_RESOURCE_BASELINE_2026-08-24.md"
+      ]
+    },
+    {
+      "sha256": "00d105c964fd73c3138f9baae37631d807615388b710dd31b405d4c4a2b3afac",
+      "paths": [
+        "Docs/Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Side_2026-09-06.png",
+        "Engine/References/Visuals/MixedPileScatter_Side_2026-09-06.png"
+      ]
+    },
+    {
+      "sha256": "b48a0a4866291ff6f754a8f858817cd5d7b4732afcf7717391329a04e52eef38",
+      "paths": [
+        "Docs/Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Top_2026-09-06.png",
+        "Engine/References/Visuals/MixedPileScatter_Top_2026-09-06.png"
+      ]
+    },
+    {
+      "sha256": "1cfb9a9617e5650702d62b0ff58a92cddc67c50603b1417809a54264c9ab04dd",
+      "paths": [
+        "Docs/Evidence/WorldCreator/RockCompositionReference/NearRockPebbleTexturePrompts_2026-09-06.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/RockCompositionReference/NearRockPebbleTexturePrompts_2026-09-06.md"
+      ]
+    },
+    {
+      "sha256": "2f5dee6f91f2b2a61f47b6b96e1b195636786961d4b50b75c00064d3d41e3c0f",
+      "paths": [
+        "Docs/Evidence/WorldCreator/RockCompositionReference/PebbleTexturePrompts_2026-09-06.md",
+        "Engine/Research/UnityReference/Documents/Evidence/WorldCreator/RockCompositionReference/PebbleTexturePrompts_2026-09-06.md"
+      ]
+    },
+    {
+      "sha256": "13989008d02eb35efeb1332956d853b6269ca206ca685a446faa620a1889a59f",
+      "paths": [
+        "Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md",
+        "Engine/Research/UnityReference/Documents/GAMEPLAY_ARCHITECTURE_BASELINES.md"
+      ]
+    },
+    {
+      "sha256": "dd6b5f2c286f54f6f556176e56b05f014406790d131f554d25441efffae689e7",
+      "paths": [
+        "Docs/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md",
+        "Engine/Research/UnityReference/Documents/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md"
+      ]
+    },
+    {
+      "sha256": "8f424df157ca068062430c9d5e572ed65091a3f30be8d32a1895591df7d4ea69",
+      "paths": [
+        "Docs/INVENTORY_AND_ITEM_MANAGEMENT_SYSTEM.md",
+        "Engine/Research/UnityReference/Documents/INVENTORY_AND_ITEM_MANAGEMENT_SYSTEM.md"
+      ]
+    },
+    {
+      "sha256": "06665746f77b7be2d8175be0dd3b599ce4aba656c7785afcab1e73b5241508f8",
+      "paths": [
+        "Docs/IRONSTONE_MINING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+        "Engine/Research/UnityReference/Documents/IRONSTONE_MINING_AND_INVENTORY_IMPLEMENTATION_PLAN.md"
+      ]
+    },
+    {
+      "sha256": "808f7259f8fb7fe37696adc6402083b24ecfb51b4977a44d81470d74478d60f3",
+      "paths": [
+        "Docs/IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md",
+        "Engine/Research/UnityReference/Documents/IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md"
+      ]
+    },
+    {
+      "sha256": "52e7e392673990abda5b29ed74d8b6b16493127c670f1b897955911b009d4be6",
+      "paths": [
+        "Docs/ISOMETRIC_DIRECTION_BRIEF.md",
+        "Engine/Research/UnityReference/Documents/ISOMETRIC_DIRECTION_BRIEF.md"
+      ]
+    },
+    {
+      "sha256": "a0fa4e7c6ba501ac06ee348d66ae31a106b0070bef1d4bb5daa699c362933909",
+      "paths": [
+        "Docs/LEGACY_2D_BOUNDARY.md",
+        "Engine/Research/UnityReference/Documents/LEGACY_2D_BOUNDARY.md"
+      ]
+    },
+    {
+      "sha256": "c7ce89e4f7aca839ad47e744d736ef8f938b6eac15a5935f888fcf4115820c9f",
+      "paths": [
+        "Docs/PERFORMANCE_AUDIT_AND_OPTIMIZATION.md",
+        "Engine/Research/UnityReference/Documents/PERFORMANCE_AUDIT_AND_OPTIMIZATION.md"
+      ]
+    },
+    {
+      "sha256": "e63f044424160de04089d693910975bb99df566152f0d47f276aaaf6e0991437",
+      "paths": [
+        "Docs/PROCEDURAL_ESCARPMENT_SYSTEM.md",
+        "Engine/Research/UnityReference/Documents/PROCEDURAL_ESCARPMENT_SYSTEM.md"
+      ]
+    },
+    {
+      "sha256": "c86eb4ab25ef5148de90b7205026888e01f8cfc0f1a57ed2a9343de49417fbfb",
+      "paths": [
+        "Docs/PROTOTYPE_UI_PLAN.md",
+        "Engine/Research/UnityReference/Documents/PROTOTYPE_UI_PLAN.md"
+      ]
+    },
+    {
+      "sha256": "0f303326ba5e690b47974977fb0f11dcbe08fd80df407d8788ea0756c24e24f7",
+      "paths": [
+        "Docs/ROCK_FORMATION_MESH_FUSION_PLAN.md",
+        "Engine/Research/UnityReference/Documents/ROCK_FORMATION_MESH_FUSION_PLAN.md"
+      ]
+    },
+    {
+      "sha256": "6bc840683123905adde130e86ad0f24edb410e2358a14bd99b08c4994f8137e7",
+      "paths": [
+        "Docs/ROCK_LANDMARK_WORKBENCH.md",
+        "Engine/Research/UnityReference/Documents/ROCK_LANDMARK_WORKBENCH.md"
+      ]
+    },
+    {
+      "sha256": "c4c5e5d86209b76d639907b48f741d26f405af1241265f9491d1d575f3c43793",
+      "paths": [
+        "Docs/ROCK_WORKBENCH_LAYERED_MATERIAL.md",
+        "Engine/Research/UnityReference/Documents/ROCK_WORKBENCH_LAYERED_MATERIAL.md"
+      ]
+    },
+    {
+      "sha256": "13923975afc9ddfef60821a3a6f8467d168276171bd16a2fa624d6eeb77ce9e3",
+      "paths": [
+        "Docs/Research/CRIMSON_DESERT_GAMESCOM_DEV_2026_TECHNICAL_NOTES.md",
+        "Engine/Research/UnityReference/Documents/Research/CRIMSON_DESERT_GAMESCOM_DEV_2026_TECHNICAL_NOTES.md"
+      ]
+    },
+    {
+      "sha256": "8f35cc3ed9cb9e56bcf7af80f04da95eaa2b3bd04dee99ed79e9acff1d463e9b",
+      "paths": [
+        "Docs/RuleTileTemplates/RuleGroundRuleTileSheet.md",
+        "Engine/Research/UnityReference/Documents/RuleTileTemplates/RuleGroundRuleTileSheet.md"
+      ]
+    },
+    {
+      "sha256": "4faef20367ddc6ef923f4ccc6e71e24add8f419501946bc9988c4542ee433fd5",
+      "paths": [
+        "Docs/SMART_TRAVERSAL_STANDARD.md",
+        "Engine/Research/UnityReference/Documents/SMART_TRAVERSAL_STANDARD.md"
+      ]
+    },
+    {
+      "sha256": "a2e63090c4207ee209f4eff70dd5cb60fe263f5176d0fc8f6fde28028baf8c08",
+      "paths": [
+        "Docs/TOP_DOWN_3D_FOUNDATION_PLAN.md",
+        "Engine/Research/UnityReference/Documents/TOP_DOWN_3D_FOUNDATION_PLAN.md"
+      ]
+    },
+    {
+      "sha256": "23d9ce50692428cb41dc795e9bbe958971315d08a7644a5cbd83eff9f8b6a5fd",
+      "paths": [
+        "Docs/TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md",
+        "Engine/Research/UnityReference/Documents/TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md"
+      ]
+    },
+    {
+      "sha256": "c0d97f64c8ad1da2bd698bae44a292fe16aa8478dd3db489369064479f2804b3",
+      "paths": [
+        "Docs/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md",
+        "Engine/Research/UnityReference/Documents/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md"
+      ]
+    },
+    {
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "paths": [
+        "Docs/ThirdParty/Manifold/LICENSE",
+        "Engine/Research/UnityReference/Documents/ThirdParty/Manifold/LICENSE"
+      ]
+    },
+    {
+      "sha256": "51a1c15a4e3684ef94d3be7f7b070d1fd86bb59766fcd55cd8e6c15b5b4d3859",
+      "paths": [
+        "Docs/ThirdParty/Manifold/README.md",
+        "Engine/Research/UnityReference/Documents/ThirdParty/Manifold/README.md"
+      ]
+    },
+    {
+      "sha256": "45e5780af03576c0a5e08b53265118cb3eeb9f9c389609dbe9e1ed3b5b46df46",
+      "paths": [
+        "Docs/UNITY_TILEMAP_PROCGEN_REFERENCE.md",
+        "Engine/Research/UnityReference/Documents/UNITY_TILEMAP_PROCGEN_REFERENCE.md"
+      ]
+    },
+    {
+      "sha256": "376c6f31df51e58b053a65ab8a0fae1d7f31453022d54d26e72bc7e493d72ffe",
+      "paths": [
+        "Docs/URP_2D_STANDARD.md",
+        "Engine/Research/UnityReference/Documents/URP_2D_STANDARD.md"
+      ]
+    },
+    {
+      "sha256": "01c2a3dba211e07c5374eb9b74b77c81010d3fcdf9d40dcc841653a8f6b96e8c",
+      "paths": [
+        "Docs/WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md",
+        "Engine/Research/UnityReference/Documents/WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md"
+      ]
+    },
+    {
+      "sha256": "6ef7a933ebcf676dd1b9da34c5b83f3d87370744abfce43371a451cc255b1250",
+      "paths": [
+        "Docs/WORLD_CREATOR_ARCHITECTURE_PLAN.md",
+        "Engine/Research/UnityReference/Documents/WORLD_CREATOR_ARCHITECTURE_PLAN.md"
+      ]
+    },
+    {
+      "sha256": "502cf88013728abfea7edd0d80c6cfc52001294f69c538b54437aaa78a048ecc",
+      "paths": [
+        "Docs/WORLD_CREATOR_CHARTER.md",
+        "Engine/Research/UnityReference/Documents/WORLD_CREATOR_CHARTER.md"
+      ]
+    },
+    {
+      "sha256": "c7b6cdd7fda9e54cd742e827cbb08926ee6f379083f4b35a0b5d46d8c8431c90",
+      "paths": [
+        "Docs/WORLD_GEN_REFERENCE_NOTES.md",
+        "Engine/Research/UnityReference/Documents/WORLD_GEN_REFERENCE_NOTES.md"
+      ]
+    },
+    {
+      "sha256": "7403b94bfd7a6d0743adc3b7b8ba09e48ac64557fce99bca49cb670690ea2150",
+      "paths": [
+        "Docs/WORLD_GEN_RESEARCH_SUMMARY.md",
+        "Engine/Research/UnityReference/Documents/WORLD_GEN_RESEARCH_SUMMARY.md"
+      ]
+    },
+    {
+      "sha256": "5f48ffcbea2b630bc39e7406574ffb6e47f167a08934afcbc00c6036a6a6024b",
+      "paths": [
+        "Engine/Assets/GoldenRockPresets/01-Golden-Rock.json",
+        "Engine/Evidence/L2-golden-contact/inputs/rock.json"
+      ]
+    },
+    {
+      "sha256": "beed5089d6d78619d69c5c8fb4807bff0297b91d28be76bee2cbab1c420cbee9",
+      "paths": [
+        "Engine/Evidence/EXP-001-sources-02.json",
+        "Engine/Evidence/EXP-001-sources-final.json",
+        "Engine/Evidence/F1-sources-final.json",
+        "Engine/Evidence/TEXTURE-001-sources.json"
+      ]
+    },
+    {
+      "sha256": "46e1b740873cc949babce8921e1b4806c847f173062769a1f0822518b8eb7478",
+      "paths": [
+        "Engine/Evidence/F1-verification-final/captures/verification.json",
+        "Engine/Evidence/F1-verification/captures/verification.json"
+      ]
+    },
+    {
+      "sha256": "4864770ce633db9be58551e3a1721bd3783ee26fd6e15242146a942187738cb2",
+      "paths": [
+        "Engine/Evidence/F1-verification-final/invalid-argument/output.log",
+        "Engine/Evidence/F1-verification/invalid-argument/output.log",
+        "Engine/Evidence/OR1-verification-final/invalid-argument/output.log",
+        "Engine/Evidence/OR1-verification/invalid-argument/output.log"
+      ]
+    },
+    {
+      "sha256": "3c8ee3c32ba9e05609066f9863a2f629501f5f5d24141aada2479d783c95902e",
+      "paths": [
+        "Engine/Evidence/FORMATION-parity-checks/v3.txt",
+        "Engine/Evidence/ROCK-transfer-native-final/output.log"
+      ]
+    },
+    {
+      "sha256": "ac591dec20578d237f00c95a6ecababf9e170bf81aecbdccd4da0d13e5d6d5e9",
+      "paths": [
+        "Engine/Evidence/FORMATION-parity-metal/origin.png",
+        "Engine/Evidence/FORMATION-parity-metal/returned.png"
+      ]
+    },
+    {
+      "sha256": "43764197abdac952a8036524cf84cfdfb0e4c69ea0ebc69006f9a40e58140314",
+      "paths": [
+        "Engine/Evidence/FORMATION-parity-metal/stream.json",
+        "Engine/Evidence/L2-stream-corrected/check/captures/stream.json",
+        "Engine/Evidence/L3-adoption-attribution/check/captures/stream.json",
+        "Engine/Evidence/TERRAIN-preview-metal/stream.json"
+      ]
+    },
+    {
+      "sha256": "7509d964487ad8420b302f74e94d17dd7425bed3f6b7310d195ffc2aad0a2805",
+      "paths": [
+        "Engine/Evidence/L1-environment/captures/baseline.png.inspection.json",
+        "Engine/Evidence/L1-environment/captures/calibration-tone.png.inspection.json",
+        "Engine/Evidence/L1-environment/captures/preview-tone.png.inspection.json"
+      ]
+    },
+    {
+      "sha256": "dcf995b97f55d874b1ddcef4f7b220c3d40da2a42172058fab7c9a3c5f9d2cb8",
+      "paths": [
+        "Engine/Evidence/L1-environment/captures/calibration-linear.png",
+        "Engine/Evidence/L1-environment/captures/calibration-tone.png"
+      ]
+    },
+    {
+      "sha256": "cac353e7d26a2c182e83e3a9ff7e8a1ca0def0b48a9d9868fa4aa7fdc1a04d92",
+      "paths": [
+        "Engine/Evidence/L1-environment/captures/calibration-linear.png.inspection.json",
+        "Engine/Evidence/L1-environment/captures/preview-linear.png.inspection.json"
+      ]
+    },
+    {
+      "sha256": "5a768e80862df7afd29f62a59bbfa8c21cfd4ed49661276a9755c7dcdf723072",
+      "paths": [
+        "Engine/Evidence/L1-environment/captures/normals-exposed.png",
+        "Engine/Evidence/L1-environment/captures/normals.png"
+      ]
+    },
+    {
+      "sha256": "97fbe019ce6d134bcd77d95e45cdf669dbcd6534f106cdf026388c8d1ce229a6",
+      "paths": [
+        "Engine/Evidence/L1-environment/captures/preview-linear.png",
+        "Engine/Evidence/L1-environment/captures/preview-tone.png"
+      ]
+    },
+    {
+      "sha256": "3785ab535b6aff31a974ebdf9b1d5facbaf83ce4b7adaf55ed543e78607984a7",
+      "paths": [
+        "Engine/Evidence/L2-bench-immediate/captures/result.json",
+        "Engine/Evidence/L2-bench-vsync/captures/result.json"
+      ]
+    },
+    {
+      "sha256": "9690f86ade0437e30dc02e7202161282cb600579d801ca693b2204cac9e711df",
+      "paths": [
+        "Engine/Evidence/L2-bench-immediate/run/output.log",
+        "Engine/Evidence/L2-bench-vsync/run/output.log"
+      ]
+    },
+    {
+      "sha256": "c1427059383be359ca2b3a50f03634fc7c238b5aead95172b8e3040ca0a892ca",
+      "paths": [
+        "Engine/Evidence/L2-stream-corrected/check/captures/distant.png",
+        "Engine/Evidence/L3-adoption-attribution/check/captures/distant.png"
+      ]
+    },
+    {
+      "sha256": "3ae4d186fb19ec5199fcd09eada7db9e6eb87737a20357d267be7203cf008e73",
+      "paths": [
+        "Engine/Evidence/L2-stream-corrected/check/captures/origin.png",
+        "Engine/Evidence/L2-stream-corrected/check/captures/returned.png",
+        "Engine/Evidence/L3-adoption-attribution/check/captures/returned.png"
+      ]
+    },
+    {
+      "sha256": "603b65b7bb954e7eecf4389b1f8ca0e20fcccfb540c4d2b6a5b47a63ebd04ac4",
+      "paths": [
+        "Engine/Evidence/L2-stream-corrected/check/result.json",
+        "Engine/Evidence/L3-adoption-attribution/check/result.json"
+      ]
+    },
+    {
+      "sha256": "cf4c9b9c87d0d0af81ccb768ebc672896858d4699d81a09250d43cb3e47620f6",
+      "paths": [
+        "Engine/Evidence/M1-final-verification/captures/baseline.png",
+        "Engine/Evidence/M1-native-01/captures/baseline.png",
+        "Engine/Evidence/M1-package-native/captures/baseline.png"
+      ]
+    },
+    {
+      "sha256": "7019108ba74e667c9a6579d068f6121675ee6c2a73d71ea7bb78179485d37d19",
+      "paths": [
+        "Engine/Evidence/M1-final-verification/captures/normals.png",
+        "Engine/Evidence/M1-native-final/captures/normals.png"
+      ]
+    },
+    {
+      "sha256": "d99b3bfc7f17ece95057adabcbc2bb68480eeba82911c5a369eb0d6f56fbf5cd",
+      "paths": [
+        "Engine/Evidence/M1-final-verification/captures/verification.json",
+        "Engine/Evidence/M1-native-01/captures/verification.json",
+        "Engine/Evidence/M1-native-final/captures/verification.json",
+        "Engine/Evidence/M1-package-native/captures/verification.json",
+        "Engine/Evidence/P03-native-initial/captures/verification.json"
+      ]
+    },
+    {
+      "sha256": "f9d077b428fed905278b145709a3204c6eccd4cc4ce39dcf3d94fa5f51c98cc5",
+      "paths": [
+        "Engine/Evidence/M1-final-verification/inspection.json",
+        "Engine/Evidence/M1-native-01/inspection.json",
+        "Engine/Evidence/M1-native-final/inspection.json",
+        "Engine/Evidence/M1-package-native/inspection.json"
+      ]
+    },
+    {
+      "sha256": "62c9c0f921d7dedfb4fc980bcca67368b9a31430405e92e1b17135894fb2fe38",
+      "paths": [
+        "Engine/Evidence/M1-final-verification/invalid-argument/output.log",
+        "Engine/Evidence/M1-native-final/invalid-argument/output.log",
+        "Engine/Evidence/M1-package-native/invalid-argument/output.log"
+      ]
+    },
+    {
+      "sha256": "ecb6415956676c15e2726405523782ece250c751a8f9ce9f293b64b7c1c3068b",
+      "paths": [
+        "Engine/Evidence/M1-native-final/captures/color-hdr.png",
+        "Engine/Evidence/M1-package-native/captures/color-restored.png"
+      ]
+    },
+    {
+      "sha256": "d43b991b916295b00c6e02312c793a416559dfebeee9b320b8e7529d159b3a7c",
+      "paths": [
+        "Engine/Evidence/M1-native-final/captures/front-cull.png",
+        "Engine/Evidence/M1-package-native/captures/front-cull.png"
+      ]
+    },
+    {
+      "sha256": "0f3baba2d3487d66986a9b7b09eac83832ac479560bad7cb9ddb8f1177f6debf",
+      "paths": [
+        "Engine/Evidence/M1-package-native/captures/baked.png",
+        "Engine/Evidence/M1-package-native/captures/normals.png"
+      ]
+    },
+    {
+      "sha256": "677bb7b06ef0e388214ed3756b3f19468d3f798f9f9cd12e1bbd025f89814f1e",
+      "paths": [
+        "Engine/Evidence/M1-roadmap-final/output.log",
+        "Engine/Evidence/M1-sequence-closeout/output.log"
+      ]
+    },
+    {
+      "sha256": "632916891067cff68949f6af0968b71e80de957d540708d06d2f1c6505254262",
+      "paths": [
+        "Engine/Evidence/OR1-verification-final/captures/verification.json",
+        "Engine/Evidence/OR1-verification/captures/verification.json"
+      ]
+    },
+    {
+      "sha256": "45801d9054dc540b9d2fe4e33c9a42e56d972f5fd51684bdcc8737cba03b2f47",
+      "paths": [
+        "Engine/Evidence/P03-native-corrected/captures/color-restored.png",
+        "Engine/Evidence/P03-native-final/captures/color-restored.png"
+      ]
+    },
+    {
+      "sha256": "79edea821a77c043df68c170b00d1ab774a34a8383160de8c3bf7eb72ac84985",
+      "paths": [
+        "Engine/Evidence/P03-native-corrected/captures/texture-resources.json",
+        "Engine/Evidence/P03-native-final/captures/texture-resources.json"
+      ]
+    },
+    {
+      "sha256": "6453e79164eb0be92b9de2b9c5546d1c3f52a61cdec1d0cc2ee2c7db627efa3d",
+      "paths": [
+        "Engine/Evidence/P03-native-corrected/captures/verification.json",
+        "Engine/Evidence/P03-native-final/captures/verification.json"
+      ]
+    },
+    {
+      "sha256": "2e274b4c48a54dbfd29d95721099377d5dc882ecab1b06c46106c12e5045e610",
+      "paths": [
+        "Engine/Evidence/P03-native-corrected/inspection.json",
+        "Engine/Evidence/P03-native-final/inspection.json"
+      ]
+    },
+    {
+      "sha256": "236e5ba7424d3f57a3e52af08d3715ebbb1ab7e0a934cf10cc781b1a0e63763e",
+      "paths": [
+        "Engine/Evidence/P03-native-corrected/invalid-argument/output.log",
+        "Engine/Evidence/P03-native-final/invalid-argument/output.log"
+      ]
+    },
+    {
+      "sha256": "719027c62e4f7d182cd7b22c435269cf1f3dabc68cee57ca3aa9908b9d964012",
+      "paths": [
+        "Engine/Evidence/P11-animation/captures/cpu-normals.png",
+        "Engine/Evidence/P11-animation/captures/gpu-normals.png"
+      ]
+    },
+    {
+      "sha256": "35b36de0f893fe2643fcf92a4203973aa91f62c66dd44717951a56d2ec1c4986",
+      "paths": [
+        "Engine/Evidence/P11-animation/captures/cpu-walk.png",
+        "Engine/Evidence/P11-animation/captures/gpu-walk.png"
+      ]
+    },
+    {
+      "sha256": "3eb46c0dfcbf74848fc3ec7c186e2ec931e89eb23d4b5917f529e761e202881a",
+      "paths": [
+        "Engine/Evidence/P12-runtime/output.log",
+        "Engine/Evidence/P13-runtime/output.log"
+      ]
+    },
+    {
+      "sha256": "76e007e777029e892fcfb644a2d25b095ff3fb33b72a1e5f9d9ef9e02c3f37fd",
+      "paths": [
+        "Engine/Evidence/P14-P15-generation/output.log",
+        "Engine/Evidence/ROCK-showcase-native/output.log",
+        "Engine/Evidence/ROCK-transfer-legacy/output.log"
+      ]
+    },
+    {
+      "sha256": "38903de7c8c510d7e54df73c5054c540ddf6d3b62cf9745f6ae5fc27e79f916c",
+      "paths": [
+        "Engine/Evidence/P16-P17-render/captures/edited.png",
+        "Engine/Evidence/ROCK-delivery-package/captures/edited.png"
+      ]
+    },
+    {
+      "sha256": "b7535a7c46fded1eae0642ccfdbeae2f579020905c8c7cf31172b4a5883453e6",
+      "paths": [
+        "Engine/Evidence/P16-P17-render/captures/lod0.png",
+        "Engine/Evidence/P16-P17-render/captures/undo.png",
+        "Engine/Evidence/ROCK-delivery-package/captures/lod0.png",
+        "Engine/Evidence/ROCK-delivery-package/captures/undo.png"
+      ]
+    },
+    {
+      "sha256": "4d25ba6888cd59d7e68a1b46104769e5c0d40b8b977802637f634a1bb37d40e6",
+      "paths": [
+        "Engine/Evidence/P16-P17-render/captures/lod1.png",
+        "Engine/Evidence/ROCK-delivery-package/captures/lod1.png"
+      ]
+    },
+    {
+      "sha256": "e5d6ac0a642c936f96bf0f7c88ed3a8455fb08609d74202651fc75b783fd2e7e",
+      "paths": [
+        "Engine/Evidence/P16-P17-render/captures/lod2.png",
+        "Engine/Evidence/ROCK-delivery-package/captures/lod2.png"
+      ]
+    },
+    {
+      "sha256": "a085ed38154de35711999d09771083ba3c3a722d52cd159362cd6209c0f5b85b",
+      "paths": [
+        "Engine/Evidence/P16-P17-render/captures/opposite.png",
+        "Engine/Evidence/ROCK-delivery-package/captures/opposite.png"
+      ]
+    },
+    {
+      "sha256": "26766f21d9514822c150f121bb2692fe692cb0264aebbd58d1ac464345180f48",
+      "paths": [
+        "Engine/Evidence/P20-render/captures/origin.png",
+        "Engine/Evidence/P20-render/captures/returned.png"
+      ]
+    },
+    {
+      "sha256": "0ace0815479b374af7c4ce8e07ff331fbcd46abe088edbddfdbf5576c56b16f7",
+      "paths": [
+        "Engine/Evidence/P21-checkpoint-native/output.log",
+        "Engine/Evidence/TERRAIN-preview-checks/save.txt"
+      ]
+    },
+    {
+      "sha256": "534563804e0327edaed0edcd00308dacb413ef5671969b406b80f3f7c2485a66",
+      "paths": [
+        "Engine/Evidence/ROCK-art-adapters/output.log",
+        "Engine/Evidence/ROCK-delivery-native/output.log",
+        "Engine/Evidence/ROCK-transfer-documents/output.log",
+        "Engine/Evidence/SCENE-camera-documents/output.log"
+      ]
+    },
+    {
+      "sha256": "9268b01a52af2b941e714fdd706f5652822fca7a6c7a8bd72b494506a4ee4d0c",
+      "paths": [
+        "Engine/Evidence/ROCK-transfer-final/boulder/captures/export/material.json",
+        "Engine/Evidence/ROCK-transfer-final/outcrop/captures/export/material.json",
+        "Engine/Evidence/ROCK-transfer-final/pile/captures/export/material.json",
+        "Engine/Evidence/ROCK-transfer-final/scatter/captures/export/material.json"
+      ]
+    },
+    {
+      "sha256": "ab95237717f27a850bc8d9f531f348032404ade07a6c0e954269b45c3dec10d9",
+      "paths": [
+        "Engine/Evidence/ROCK-transfer-final/boulder/captures/export/mesh.bin",
+        "Engine/Evidence/ROCK-transfer-final/material-control/captures/export/mesh.bin"
+      ]
+    },
+    {
+      "sha256": "9032fd9a5c4288e4e429f462fc9e7b3d59c02d82e559ec58af9372a44b7744fc",
+      "paths": [
+        "Engine/Evidence/ROCK-transfer-final/boulder/captures/export/model.json",
+        "Engine/Evidence/ROCK-transfer-final/material-control/captures/export/model.json"
+      ]
+    },
+    {
+      "sha256": "a3ace564d0d7eef63cdf1ab949dc6bd83bd32afe21e9e63f5113478f6fdf7015",
+      "paths": [
+        "Engine/Evidence/ROCK-transfer-final/boulder/captures/export/rock.json",
+        "Engine/Evidence/ROCK-transfer-final/material-control/captures/export/rock.json"
+      ]
+    },
+    {
+      "sha256": "ab6aa185ae6ff1f959a1b32198beb39d51ee81583ef0bf3e943b12e591341a70",
+      "paths": [
+        "Engine/Evidence/SCENE-camera-final/captures/orbit.png",
+        "Engine/Evidence/SCENE-camera-final/captures/recenter.png"
+      ]
+    },
+    {
+      "sha256": "37be3e449f74fe07406f0fd1c924425024915b965c618c35b5028f35121dcebb",
+      "paths": [
+        "Engine/Evidence/SURFACE-transfer-final/output.log",
+        "Engine/Evidence/SURFACE-transfer/output.log",
+        "Engine/Evidence/TEXTURE-research-assets/output.log"
+      ]
+    },
+    {
+      "sha256": "1cc86f9cf22e99a8bf33f1729b8c9f85d0d15dc0c820ae520f0249493064d083",
+      "paths": [
+        "Engine/Evidence/TERRAIN-preview-metal/origin.png",
+        "Engine/Evidence/TERRAIN-preview-metal/returned.png"
+      ]
+    },
+    {
+      "sha256": "3ac5d0428f698842fbb565db35b1ec4d780113b70881fb9ddcb02b1bddd8b0af",
+      "paths": [
+        "Engine/Evidence/TEXTURE-001-final-measurements/commands.json",
+        "Engine/Evidence/TEXTURE-001-measurements-ktx/commands.json"
+      ]
+    },
+    {
+      "sha256": "ac2e0d253b1584316a36a0fae1d4407fa3ebcb15f27021ab479b23d27f0c9c08",
+      "paths": [
+        "Engine/Research/Licenses/bgfx.txt",
+        "Engine/Research/Licenses/bimg.txt",
+        "Engine/Research/Licenses/bx.txt"
+      ]
+    }
+  ],
+  "structure": {
+    "unity_asset_guid_count": 2043,
+    "package_guid_count": 14941,
+    "duplicate_asset_guids": [],
+    "asset_meta_pair_errors": [],
+    "unresolved_yaml_guids": [
+      {
+        "file": "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset",
+        "guid": "e5c6678ed2aaa91408dd3df699057aae"
+      },
+      {
+        "file": "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset",
+        "guid": "03cfc4915c15d504a9ed85ecc404e607"
+      },
+      {
+        "file": "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset",
+        "guid": "53a11f4ebaebf4049b3638ef78dc9664"
+      },
+      {
+        "file": "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset",
+        "guid": "5688ab254e4c0634f8d6c8e0792331ca"
+      },
+      {
+        "file": "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset",
+        "guid": "24ec0e140fb444a44ab96ee80844e18e"
+      },
+      {
+        "file": "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset",
+        "guid": "57d7c4c16e2765b47a4d2069b311bffe"
+      },
+      {
+        "file": "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset",
+        "guid": "8f96cd657dc40064aa21efcc7e50a2e7"
+      }
+    ],
+    "missing_markdown_targets": [
+      {
+        "file": "Engine/Docs/GOLDEN_ROCK_TRANSFER_RESULT.md",
+        "target": "../out/golden-rock-workbench/Launch-Rock-Generator.command"
+      },
+      {
+        "file": "Engine/Docs/GOLDEN_ROCK_TRANSFER_RESULT.md",
+        "target": "../out/golden-rock-review/native-final/result.json"
+      },
+      {
+        "file": "Engine/Docs/GOLDEN_ROCK_TRANSFER_RESULT.md",
+        "target": "../out/golden-rock-review/golden-metal/result.json"
+      },
+      {
+        "file": "Engine/Docs/GOLDEN_ROCK_TRANSFER_RESULT.md",
+        "target": "../out/golden-rock-review/package-final/result.json"
+      },
+      {
+        "file": "Engine/Docs/GOLDEN_ROCK_TRANSFER_RESULT.md",
+        "target": "../out/golden-rock-review/package-final/rock.png"
+      },
+      {
+        "file": "Engine/Docs/OUTDOOR_LIGHTING_L1_RESULT.md",
+        "target": "../out/rock-workbench-lighting/Launch-Rock-Generator.command"
+      },
+      {
+        "file": "Engine/Docs/ROCK_AUTHORING_V5_RESULT.md",
+        "target": "../out/rock-workbench-v5/Launch-Rock-Generator.command"
+      },
+      {
+        "file": "Engine/Docs/ROCK_AUTHORING_V5_RESULT.md",
+        "target": "../out/rock-authoring-v5-review/native-final/result.json"
+      },
+      {
+        "file": "Engine/Docs/ROCK_AUTHORING_V5_RESULT.md",
+        "target": "../out/rock-authoring-v5-review/ui-final/result.json"
+      },
+      {
+        "file": "Engine/Docs/ROCK_AUTHORING_V5_RESULT.md",
+        "target": "../out/rock-authoring-v5-review/ui-final/rock.png"
+      },
+      {
+        "file": "Engine/Docs/SINGLE_ROCK_PARITY.md",
+        "target": "../out/single-rock-workbench/Launch-Rock-Generator.command"
+      },
+      {
+        "file": "Engine/Docs/SINGLE_ROCK_PARITY.md",
+        "target": "../out/single-rock-parity/silhouettes-verified/silhouette-comparison.png"
+      },
+      {
+        "file": "Engine/Docs/UNITY_FORMATION_PARITY_RESULT.md",
+        "target": "../out/unity-formation-parity/Launch-Wasteland.command"
+      },
+      {
+        "file": "Engine/Docs/UNITY_FORMATION_PARITY_RESULT.md",
+        "target": "../out/formation-workbench-v4/Launch-Rock-Generator.command"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/3D_CONVERSION_START_READINESS.md",
+        "target": "./PROJECT_STATUS.md"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/ART_ANIMATION_STARTER.md",
+        "target": "./WORLD_BASIS.md"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md",
+        "target": "./IsometricLab_Orthographic.png"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md",
+        "target": "./IsometricLab_MildPerspective.png"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md",
+        "target": "./IsometricLab_HarvestProof.png"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md",
+        "target": "./IsometricLab_PickupAndMovementProof.png"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md",
+        "target": "./IsometricLab_RampAndScaleProof.png"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md",
+        "target": "./Evidence/Ironstone"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/ROCK_QUALITY_AND_PRODUCTION_PLAN.md",
+        "target": "./Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Top_2026-09-06.png"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/ROCK_QUALITY_AND_PRODUCTION_PLAN.md",
+        "target": "./Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Side_2026-09-06.png"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/ROCK_QUALITY_AND_PRODUCTION_PLAN.md",
+        "target": "../Assets/_Project/Art/Environment/Rocks/Source/MixedPileScatterReference.prefab"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/ROCK_QUALITY_AND_PRODUCTION_PLAN.md",
+        "target": "../Assets/_Project/Art/Environment/Rocks/Source/MixedPileScatterReferenceMeshes.asset"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/RuleTileTemplates/RuleGroundRuleTileSheet.md",
+        "target": "RuleGroundRuleTileSheet.png"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/WORLD_CREATOR_ARCHITECTURE_PLAN.md",
+        "target": "./WORLD_BASIS.md"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/WORLD_CREATOR_CHARTER.md",
+        "target": "./WORLD_BASIS.md"
+      },
+      {
+        "file": "Engine/Research/UnityReference/Documents/WORLD_CREATOR_CHARTER.md",
+        "target": "./Agents/Lorekeeper/README.md"
+      },
+      {
+        "file": "Engine/UIUX/MINIMAL_VIEWER.md",
+        "target": "../out/engine-windowed-fullscreen/Launch-Rock-Generator.command"
+      },
+      {
+        "file": "Engine/UIUX/MINIMAL_VIEWER.md",
+        "target": "../out/scene-only-review/native/result.json"
+      }
+    ]
+  },
+  "transfer_receipt": "Docs/Agents/Blender/archives/2026-10-06-transfer/transfer-manifest.json",
+  "transfer_actions": {
+    "existing-identical-file": 210,
+    "recovered-previous-save": 2,
+    "lfs-reference-archive": 1,
+    "superseded-baseline-snapshot": 2,
+    "inert-bytecode-archive": 37
+  },
+  "cleanup_status": "Verified redundant incoming copies retained locally after automatic deletion review rejected the action; original transfer moved intact into ignored holding storage.",
+  "concurrent_work": {
+    "area": "Docs/DeathValley",
+    "handling": "Separate active writer created coverage analysis and modified development-build automation/tests after the initial checkpoint. All such files remain untouched and unstaged by this pass. Hashes are observation snapshots.",
+    "files_at_observation": [
+      {
+        "path": "Docs/DeathValley/audit_coverage.py",
+        "size": 17859,
+        "sha256_at_observation": "2a7546b05f3891e0fbfa718d15c6c05a402e214d3786129e7f8bd29dd8ceab6a"
+      },
+      {
+        "path": "Docs/DeathValley/candidate_east.json",
+        "size": 200,
+        "sha256_at_observation": "ca19f74c9afba8d2acdbf06eb1a0c3532a3b0a94067bade6e2df2e8cad054d9d"
+      },
+      {
+        "path": "Docs/DeathValley/candidate_north.json",
+        "size": 203,
+        "sha256_at_observation": "857ae374ad69abf7d86d8f28308abc6aefaab7eb58cad804bbb9b6a063423a11"
+      },
+      {
+        "path": "Docs/DeathValley/candidate_west.json",
+        "size": 197,
+        "sha256_at_observation": "b1578ea524dc4474b3a4e3bb36136e156ad6e7f3b10b9024ce76bd792211f9b3"
+      },
+      {
+        "path": "Docs/DeathValley/coverage_atlas.html",
+        "size": 522048,
+        "sha256_at_observation": "d6f7482a93d7124ebf1d49b7328d7bc218fbf2af3f0222ec989b70a8fa762e5d"
+      },
+      {
+        "path": "Docs/DeathValley/coverage_badwater.svg",
+        "size": 213384,
+        "sha256_at_observation": "171d31913c00a8076d4841525d9a0bce73f02aebfb7d60b7d274e7702d4a75a9"
+      },
+      {
+        "path": "Docs/DeathValley/coverage_catalog.json",
+        "size": 223059,
+        "sha256_at_observation": "0ba5decf2d2b53b345fbd1c7919d82f4e43824417f3bf11d5497c25f21d1c12b"
+      },
+      {
+        "path": "Docs/DeathValley/coverage_overview.svg",
+        "size": 122745,
+        "sha256_at_observation": "aa79dd8d167b8fb7b844762b8fd500352376e193cc4341a4a239e8a274e66484"
+      },
+      {
+        "path": "Docs/DeathValley/local_preflight.json",
+        "size": 841,
+        "sha256_at_observation": "d27c56e240523eec35f6c309777b4cdacc9a937feb16bfeec536b21c3a1e7237"
+      },
+      {
+        "path": "Docs/DeathValley/nps_deva_boundary.json",
+        "size": 856854,
+        "sha256_at_observation": "2d5668fbbc12d1c98b837fa341fffc21e625030577689b6f4a2fd9303cf55afe"
+      },
+      {
+        "path": "Docs/DeathValley/unity_tiles.csv",
+        "size": 64138,
+        "sha256_at_observation": "1d7b924fe3d51aee03bd49dcdb40389b8e9e93dc05394f5c5489e0f8f213b6c1"
+      },
+      {
+        "path": "Docs/DeathValley/usgs_west_catalog.json",
+        "size": 26621,
+        "sha256_at_observation": "edf1a8034904dcc2708b1d5704e46fc0f46860f14331b7edf2059457a39e5646"
+      },
+      {
+        "path": "Docs/DeathValley/verify_west_source.py",
+        "size": 6266,
+        "sha256_at_observation": "42374bf96476216a627549a6f41259c9e1a008f91eb86f765ff9ac909c0b5064"
+      },
+      {
+        "path": "Docs/DeathValley/west_raster_headers.json",
+        "size": 1504,
+        "sha256_at_observation": "9731007c4b5b173a2908f1aea720cb9dad5da34079fbfa36c5311691ff23601f"
+      },
+      {
+        "path": "Docs/DeathValley/west_source_assessment.json",
+        "size": 2615,
+        "sha256_at_observation": "a57eb1234bd8b13d8bc4b9258c4e121d0932b341b95a84a3608e62dda2d7c03d"
+      }
+    ],
+    "additional_paths_observed": [
+      "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterDevelopmentBuild.cs",
+      "Assets/_Project/Tests/Editor/BadwaterDevelopmentBuildTests.cs",
+      "Assets/_Project/Tests/Editor/BadwaterDevelopmentBuildTests.cs.meta"
+    ]
+  }
+}

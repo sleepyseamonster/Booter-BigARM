@@ -50,17 +50,27 @@ try {
     Report ($LASTEXITCODE -eq 0) 'Current Git LFS objects pass integrity checks'
     $lfsPaths = @(git lfs ls-files --name-only)
     foreach ($path in $lfsPaths) {
+        # Literal pointer receipts are archival text, not LFS-managed assets.
+        $filter = git check-attr filter -- $path
+        if ($filter -notmatch ': filter: lfs$') { continue }
         $valid = $false
         if (Test-Path -LiteralPath $path) {
-            $pointer = @(git show "HEAD:$path")
-            $oidLine = $pointer | Where-Object { $_ -match '^oid sha256:' }
-            if ($oidLine) {
-                $expected = ($oidLine -split ':', 2)[1]
-                $actual = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash
-                $valid = $actual -eq $expected
+            # Check the index candidate, including new and renormalized sources.
+            # Bound the blob before reading so an old large Git binary is not emitted.
+            $blobSize = git cat-file -s ":$path"
+            if ($LASTEXITCODE -eq 0 -and [long]$blobSize -le 1024) {
+                $pointer = @(git show ":$path")
+                $oidLine = $pointer | Where-Object { $_ -match '^oid sha256:[0-9a-f]{64}$' }
+                $sizeLine = $pointer | Where-Object { $_ -match '^size [0-9]+$' }
+                if ($oidLine -and $sizeLine) {
+                    $expected = ($oidLine -split ':', 2)[1]
+                    $expectedSize = [long](($sizeLine -split ' ', 2)[1])
+                    $actual = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash
+                    $valid = $actual -eq $expected -and (Get-Item -LiteralPath $path).Length -eq $expectedSize
+                }
             }
         }
-        Report $valid "Blender LFS source is materialized: $path"
+        Report $valid "LFS source matches indexed object: $path"
     }
 
     git diff --check
