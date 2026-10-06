@@ -1,0 +1,49 @@
+# Death Valley full-tile expansion and Badwater detail plan
+
+**Status:** Implementation plan, 2026-10-05. The existing `DeathValleyExplore.blend` remains the current viewer. This plan has not yet expanded its terrain or built the Badwater detail area.
+
+## Outcome and boundaries
+
+Deliver a new Blender scene in which every regional terrain tile is a full 32 × 32 km square, then add a selectively detailed, freely navigable terrain study spanning the cliff and canyon terrain, part of Badwater Basin, and the mountains to its east indicated in the user's October 5 screenshots. The result is for visual exploration in Blender. Keep real topography and geographically aligned color visible at broad and detail scales.
+
+This phase contains terrain, imagery reference, geographic labels, and viewport navigation only. It excludes rocks, ground clutter, game assets, game cameras, displacement beyond the source DEM, and Unity integration. Do not overwrite the open `DeathValleyExplore.blend`, the preserved Mosaic/master studies, or the unrelated dirty badlands and Unity files. No Google Maps/Earth extraction or paid tool is needed.
+
+**Done means:** a separately named expanded `.blend` opens and navigates in Blender; the edge tiles are full squares with real source elevation and image coverage; a georeferenced Badwater study boundary is visible and covers the requested landforms; the selected terrain detail is more informative than the 200 m overview; source provenance, tile alignment, viewport cost, and visual limitations are documented. User visual acceptance of the exact detail boundary and appearance remains a review gate, not something a script can assert.
+
+## Source of truth and grid math
+
+The current [region configuration](./tools/death_valley/region.json), external source manifest in `/Users/worldbuilder/Desktop/Death Valley Terrain Data/manifest.json`, [exploration builder](./tools/death_valley/build_explore_scene.py), and the installed Blender 5.2.2 LTS scene are the implementation baseline. The current EPSG:26911 rectangle is `[399400, 3928800, 575600, 4144200]` metres at 200 m sample spacing. The builder cuts at 160 cells per tile, or 32 km. Its 881 × 1077 cells yield 6 × 7 objects, with the final east and south tiles clipped.
+
+| Grid | EPSG:26911 bounds, metres | Cells / vertices | Terrain triangles |
+| --- | --- | --- | --- |
+| Current | `[399400, 3928800, 575600, 4144200]` | 881 × 1077 cells; 882 × 1078 vertices | 1,897,674 |
+| Full 6 × 7 tiles | `[399400, 3920200, 591400, 4144200]` | 960 × 1120 cells; 961 × 1121 vertices | 2,150,400 |
+
+Extend **15.8 km east and 8.6 km south**. The west and north edges stay fixed; this matches the clipped sides shown in the screenshot and preserves a simple 160-cell tile lattice. The added ground needs new elevation and color samples; do not extrapolate the existing raster or stretch the edge meshes. The projected origin may change, but geographic positions and marker coordinates must remain fixed.
+
+Use the existing [USGS 3DEP elevation service](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer) for the expanded float grid and [USGS NAIP service](https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer) where it covers the study. Make one consistent full-extent regional color reference; the current Landsat reference is used because NAIP has a gap across the wider rectangle. Record the exact service requests, dates, response paths, source/product metadata, checksums, CRS, vertical-datum caveat, NoData, bounds, and resampling. A live image service can change, so compare overlap against the saved current snapshot instead of assuming identical values. Keep raw and prepared data outside Unity imports and Git.
+
+## Build sequence and proof
+
+| Step | Work | Required check |
+| --- | --- | --- |
+| **1. Preserve and acquire** | Copy the current config into a versioned expansion config with the full-tile bounds. Prepare the new overview in a separate external data directory; regenerate the aligned categorical geology grid and complete regional color image. Reuse the existing acquisition and Blender scripts where practical. | New manifest reports 961 × 1121 vertices, 200 m spacing, finite plausible elevations, complete image coverage or explicitly documented fallback, and source hashes. Compare several old/new overlap points and inspect the added strips for NoData or color seams. |
+| **2. Build expanded viewer** | Build `DeathValleyExploreExpanded.blend` from the new manifest, retaining free User Perspective navigation and geographic markers. Keep 42 named mesh objects, each 160 × 160 cells. Preserve the original viewer as a known-good fallback. | Inspect all tile bounds and shared edge heights/positions; 42 full tiles and 2,150,400 evaluated triangles; no camera objects, holes, flipped axes, or visible seams. Open the file in Blender Material Preview, use Home and viewport zoom/pan, and record load time and responsiveness. |
+| **3. Locate Badwater corridor** | Overlay an outline in the expanded viewer based on projected coordinates, using the screenshot arrow as an approximate target. Include identifiable canyon and cliff terrain on the west side, Badwater's basin floor, and the Black Mountains/eastern slopes. Draw a candidate boundary that follows the geography rather than a selected overview object. | Show one annotated map view with named landmarks, EPSG:26911 bounds, approximate width/height, and measured 200 m footprint. Confirm that all requested landforms are inside before acquiring many high-resolution tiles. The user can adjust this boundary by visual review. |
+| **4. Prove one detail batch** | On a representative basin-to-canyon transition, acquire aligned higher-resolution 3DEP terrain and imagery. Test 30 m versus 20 m broad terrain spacing and image resolution in Blender; add a small 10 m subarea only if the source supports a visible improvement. Keep the source DEM intact and use separate collections for detail. | Compare the same views against the 200 m base; inspect source hillshade, elevation correspondence, NoData, image coverage, tile seams, and how the fine edge meets or hides the coarse mesh. Record evaluated triangles, packed-image size, Blender memory, open time, and pan/zoom behavior on this machine. |
+| **5. Cover the selected corridor in batches** | Apply the measured broad-detail spacing over the approved corridor in aligned batches. Reserve 10 m terrain and higher-resolution imagery for the canyons, cliff margins, and basin transitions that need it. Hide or replace overlapping coarse faces to prevent flicker; keep neighboring samples consistent. Add collection visibility controls if both levels together hurt navigation. | The full expanded region and corridor remain navigable without loading a whole-park fine mesh. Inspect west-to-east views across the basin, a canyon approach, the eastern range, and boundary transitions. Verify no holes, duplicate surfaces, mismatched image footprints, or abrupt height steps. |
+| **6. Review and handoff** | Save one portable Blender viewer with packed derived color images if measured size is reasonable, plus a manifest and concise navigation instructions. Keep raw DEM/imagery snapshots external. Compare the requested screenshot area to the new view with the user. | State which landforms and details are actually visible, which are below DEM/image resolution, and the measured viewport cost. Stop this phase before rock or Unity work. |
+
+The corridor's exact box is deliberately a Stage 3 output. A provisional 30–50 km cross-valley envelope is useful for sizing, but should not become a fixed download or art boundary from the screenshot alone. For scale, a 40 × 40 km grid is about 3.56 million triangles at 30 m or 8 million at 20 m, before the 2.15 million-triangle overview. Test a representative batch before choosing one of those costs. A uniform 10 m grid over that same area would be about 32 million triangles and is outside this plan.
+
+## Risks and decisions
+
+- **Source fidelity:** Regional Landsat color and broad 3DEP samples show recognizable geography, not rock-face texture or individual canyon ledges. NAIP and finer elevation may have local coverage gaps; capture them as data facts before building a patch.
+- **Image continuity:** Do not paste new edge imagery against an old color stretch if it produces a visible seam. Build a new full-extent reference or use documented, color-matched imagery batches.
+- **Blender performance:** The overview needs no streaming at its current cost. Use named collections and selective visibility for the corridor first; add a loader only if measured navigation becomes poor.
+- **Scene safety:** Build into a new file and leave the user's currently open Blender scene and unsaved viewport changes untouched. Do not focus Unity.
+- **Geographic selection:** The screenshot identifies a visual region, not survey-accurate bounds. The georeferenced overlay and user review settle the exact corridor before broad detail acquisition.
+
+## Implementation order relative to the larger plan
+
+This is a focused Blender-viewer extension to the [landscape build plan](./DEATH_VALLEY_BUILD_PLAN.md). It updates the regional terrain and adds a chosen detail corridor. The older Mosaic 10 m/1 m work remains a technique reference. Rock creation, material art beyond geographic reference, procedural game-world grammar, and Unity proof are later stages and are not prerequisites for this viewer.

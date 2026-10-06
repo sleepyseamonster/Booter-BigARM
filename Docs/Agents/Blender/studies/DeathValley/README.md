@@ -37,7 +37,7 @@ This phase stays in Blender until the user has seen and assessed its scale and a
 
 ## Terrain batching for the full landscape
 
-The exploration scene already covers the park bounding rectangle and surrounding ranges at 200 m spacing. Its 1,897,674 triangles were navigable in Blender's Material Preview during review, so runtime chunk loading is unnecessary for this pass. The 42 mesh objects are convenient source chunks, but Blender loads them together. If a later visual goal requires closer terrain, add aligned high-resolution batches only at chosen areas. The preserved Mosaic study demonstrates that technique; it is outside the current exploration scene. The full region should not be raised uniformly to 1 m.
+The exploration scene already covers the park bounding rectangle and surrounding ranges at 200 m spacing. Its 1,897,674 triangles were navigable in Blender's Material Preview during review, so runtime chunk loading is unnecessary for this pass. The 42 mesh objects are convenient source chunks, but Blender loads them together. The [next expansion plan](../../DEATH_VALLEY_EXPANSION_PLAN.md) fills the partial east and south tiles with real data and defines a selective Badwater detail corridor. The preserved Mosaic study demonstrates higher-resolution batching; it is outside the current exploration scene. The full region should not be raised uniformly to 1 m.
 
 ## Rebuild
 
