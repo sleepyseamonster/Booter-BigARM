@@ -1,0 +1,23 @@
+{
+  "name": "Badwater four adjoining game-scale terrain slices",
+  "working_crs": "EPSG:26911",
+  "bounds_m": [520400, 4006200, 524496, 4010296],
+  "source_resolution_m": 1,
+  "display_resolution_m": 2,
+  "chunk_size_m": 256,
+  "high_detail_rows": [12, 13],
+  "high_detail_columns": [1, 2],
+  "source_tiles": [
+    {
+      "id": "x52y401",
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x52y401_CA_FEMAR9Southeast_D24.tif",
+      "metadata_url": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/CA_FEMAR9Southeast_D24/USGS_1M_11_x52y401_CA_FEMAR9Southeast_D24.xml"
+    },
+    {
+      "id": "x52y402",
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x52y402_CA_FEMAR9Southeast_D24.tif",
+      "metadata_url": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/CA_FEMAR9Southeast_D24/USGS_1M_11_x52y402_CA_FEMAR9Southeast_D24.xml"
+    }
+  ],
+  "purpose": "One aligned 4096 m square with the original southwest slice and three adjoining north, northeast and east slices. Blender is a geographic/art review scene, not a Unity streaming implementation."
+}

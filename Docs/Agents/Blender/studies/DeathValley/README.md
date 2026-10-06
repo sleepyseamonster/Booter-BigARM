@@ -2,13 +2,13 @@
 
 **State (2026-10-05):** The [expanded Blender viewer](./EXPANDED_VIEWER.md) now covers full regional tiles and a provisional Badwater detail corridor. It is geographic study terrain, not a finished Unity game world or accepted production art.
 
-The new [Badwater game-scale slice](./BADWATER_GAME_SLICE.md) is a separate 2.048 km Blender scene with measured 1 m elevation in a 512 m focus, 2 m surrounding chunks, provisional surface materials and candidate 16-bit height exports. It is the close terrain and chunk handoff study; Unity runtime integration remains to be verified.
+The [Badwater four-slice study](./BADWATER_GAME_SLICE.md) is a separate 4.096 × 4.096 km Blender scene with measured 1 m elevation in a 512 m focus, 2 m surrounding chunks, provisional surface materials and candidate 16-bit height exports. It is the close terrain and chunk handoff study; Unity runtime integration remains to be verified.
 
 ## What is here
 
 | Artifact | Use | Limit |
 | --- | --- | --- |
-| `BadwaterGameSlice.blend` | **Open this to inspect the first game-scale Badwater terrain study.** 64 aligned 256 m chunks, including four 1 m focus chunks, with editable art and geographic material slots. | Source heights are verified; materials are provisional. This is not yet a streamed or playable Unity world. See the [build record](./BADWATER_GAME_SLICE.md). |
+| `BadwaterGameSlice.blend` | **Open this to inspect the four adjoining Badwater terrain slices.** 256 aligned 256 m chunks, including four 1 m focus chunks, with editable art and geographic material slots. The saved viewport shows the full area; Numpad 0 enters the basin-eye camera. | Source heights and seams are verified; materials are provisional. This is not yet a streamed or playable Unity world. See the [build record](./BADWATER_GAME_SLICE.md). |
 | `DeathValleyExploreExpanded.blend` | **Open this for the new terrain review.** One free Blender viewport contains the full 192 × 224 km region, a 48 × 40 km Badwater corridor at 40 m, an 8 × 8 km 20 m basin-edge pilot, and a 2 × 2 km 10 m canyon margin patch. It opens over Badwater. | The candidate boundary needs visual review. All meshes are loaded together; there is no automatic chunk streaming. No game cameras, assets, or rock geometry. See the [build record](./EXPANDED_VIEWER.md). |
 | `DeathValleyExplore.blend` | **Open this for free exploration.** It contains the whole 176.2 × 215.4 km regional terrain at 200 m spacing, split into 42 Blender mesh objects. It opens in the ordinary 3D viewport over Racetrack Playa, with natural-color Landsat surface reference. | All 42 objects are loaded; this scene does not stream chunks. The 200 m DEM shows the playa basin and surrounding topography, not individual stones or trails. No close tiles, game assets, or cameras are present. |
 | `DeathValleyTerrainMaster.blend` | Earlier multi-resolution technique study with the regional mesh, Mosaic 10 m terrain and 1 m patch | Preserved for later detail decisions; it is not the current exploration scene. |

@@ -1,4 +1,4 @@
-"""Rebuild the Badwater game-scale Blender scene from its prepared source snapshot."""
+"""Rebuild a Badwater game-scale Blender scene from a prepared source snapshot."""
 
 from __future__ import annotations
 
@@ -16,13 +16,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--config", type=Path, default=TOOL_DIR / "badwater_game_slice.json")
     parser.add_argument("--blender", type=Path, default=Path(shutil.which("blender") or
                         "/Users/worldbuilder/Library/Application Support/Steam/steamapps/common/Blender/Blender.app/Contents/MacOS/Blender"))
     args = parser.parse_args()
     root = args.data_root.expanduser().resolve()
     inputs = {
         "--manifest": root / "manifest.json",
-        "--config": TOOL_DIR / "badwater_game_slice.json",
+        "--config": args.config.expanduser().resolve(),
         "--color": root / "geographic_color.png",
         "--scan-manifest": STUDY_DIR / "scan_materials/rocks_ground_09/manifest.json",
     }

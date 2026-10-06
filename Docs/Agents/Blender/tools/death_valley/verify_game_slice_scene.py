@@ -26,8 +26,10 @@ def main() -> None:
     with np.load(record["terrain_npz"]) as arrays:
         native = arrays["native_1m"]
     meshes = [obj for obj in bpy.data.objects if obj.type == "MESH"]
-    if len(meshes) != 64:
-        raise RuntimeError(f"Expected 64 chunk meshes, got {len(meshes)}")
+    count = (bounds[2]-bounds[0])//record["chunk_size_m"]
+    expected = count*count
+    if len(meshes) != expected:
+        raise RuntimeError(f"Expected {expected} chunk meshes, got {len(meshes)}")
     cameras = [obj for obj in bpy.data.objects if obj.type == "CAMERA"]
     if len(cameras) != 1 or cameras[0].name != "BasinEyeView_1p7m":
         raise RuntimeError("Expected exactly one basin-eye review camera")
@@ -36,9 +38,9 @@ def main() -> None:
         raise RuntimeError("Basin-eye review camera is not the active scene camera")
     viewports = [area.spaces.active for screen in bpy.data.screens for area in screen.areas
                  if area.type == "VIEW_3D"]
-    if not viewports or not any(space.region_3d.view_perspective == "CAMERA" and
-                                space.lock_camera for space in viewports):
-        raise RuntimeError("Saved scene has no camera-locked viewport")
+    intended_view = "CAMERA" if count == 8 else "PERSP"
+    if not viewports or not any(space.region_3d.view_perspective == intended_view for space in viewports):
+        raise RuntimeError(f"Saved scene has no {intended_view} viewport")
     absolute_xy = json.loads(camera["absolute_xy_epsg26911"])
     x,y = absolute_xy
     ix,iy = round(x-bounds[0]),round(bounds[3]-y)
@@ -50,7 +52,7 @@ def main() -> None:
         abs(float(camera["source_ground_elevation_m"])-ground)>1e-4):
         raise RuntimeError("Basin-eye camera is not 1.7 m above its source DEM position")
     tiles = {(int(obj["chunk_id"][1:3]), int(obj["chunk_id"][5:7])): obj for obj in meshes}
-    if len(tiles) != 64:
+    if len(tiles) != expected:
         raise RuntimeError("Chunk IDs are missing or duplicated")
     max_source_error = 0.0
     edge_vertices = {}
@@ -78,12 +80,12 @@ def main() -> None:
             if x==x1:edge["east"][point]=vertex.co.z
         edge_vertices[key]=edge
         triangles+=sum(len(poly.vertices)-2 for poly in obj.data.polygons)
-    for row in range(8):
-        for col in range(8):
+    for row in range(count):
+        for col in range(count):
             current=edge_vertices[(row,col)]
-            if row<7 and current["south"]!=edge_vertices[(row+1,col)]["north"]:
+            if row<count-1 and current["south"]!=edge_vertices[(row+1,col)]["north"]:
                 raise RuntimeError(f"Mesh north/south seam at {row},{col}")
-            if col<7 and current["east"]!=edge_vertices[(row,col+1)]["west"]:
+            if col<count-1 and current["east"]!=edge_vertices[(row,col+1)]["west"]:
                 raise RuntimeError(f"Mesh east/west seam at {row},{col}")
     result={"mesh_chunks":len(meshes),"triangles":triangles,"packed_images":sum(bool(i.packed_file) for i in bpy.data.images),
             "cameras":1,"basin_eye_height_m":eye_height,"all_mesh_heights_from_1m_source":True,"maximum_mesh_source_error_m":max_source_error,

@@ -9,12 +9,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 from pathlib import Path
 
 import bpy
 import numpy as np
-from mathutils import Vector
+from mathutils import Euler, Vector
 
 
 BASIN_EYE_ABSOLUTE_XY = (520600, 4006750)
@@ -265,14 +266,17 @@ def main() -> None:
         obj["chunk_id"] = tile["id"]
         obj["chunk_size_m"] = 256
         obj["lod_resolution_m"] = spacing
-        obj["height_source"] = config["source_product"]
+        obj["height_source"] = config.get("source_product") or ", ".join(
+            tile_source["id"] for tile_source in config["source_tiles"])
         obj["height_raw_candidate"] = tile["lod1m" if high else "lod2m"]["path"]
         obj["absolute_bounds_epsg26911"] = json.dumps(local)
         triangles += sum(len(poly.vertices)-2 for poly in obj.data.polygons)
     if len(outer.objects) != count*count-4 or len(inner.objects) != 4:
         raise RuntimeError("Unexpected terrain chunk count")
     scene["source_manifest"] = str(args.manifest)
-    scene["source_product"] = config["source_product"]
+    source_product = config.get("source_product") or ", ".join(
+        tile["id"] for tile in config["source_tiles"])
+    scene["source_product"] = source_product
     scene["absolute_bounds_epsg26911"] = json.dumps(bounds)
     scene["local_origin_epsg26911"] = json.dumps(origin)
     scene["chunk_size_m"] = 256
@@ -314,12 +318,20 @@ def main() -> None:
             space.clip_start = 0.1
             space.clip_end = 15000
             space.shading.type = "MATERIAL"
-            space.region_3d.view_perspective = "CAMERA"
-            space.region_3d.view_camera_zoom = 8
-            space.lock_camera = True
-            space.region_3d.view_location = camera.location
-            space.region_3d.view_distance = 100
-            space.region_3d.view_rotation = camera.rotation_euler.to_quaternion()
+            if count > 8:
+                space.region_3d.view_perspective = "PERSP"
+                space.lock_camera = False
+                space.region_3d.view_location = (0, 0, 180)
+                space.region_3d.view_distance = 6300
+                space.region_3d.view_rotation = Euler((math.radians(57), 0,
+                                                       math.radians(-35)), "XYZ").to_quaternion()
+            else:
+                space.region_3d.view_perspective = "CAMERA"
+                space.region_3d.view_camera_zoom = 8
+                space.lock_camera = True
+                space.region_3d.view_location = camera.location
+                space.region_3d.view_distance = 100
+                space.region_3d.view_rotation = camera.rotation_euler.to_quaternion()
     bpy.context.preferences.filepaths.save_version = 0
     args.output.parent.mkdir(parents=True, exist_ok=True)
     bpy.ops.file.pack_all()
