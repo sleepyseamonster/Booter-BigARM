@@ -1,0 +1,66 @@
+{
+  "source": "Assets/_Project/Art/Terrain/BadwaterFourSlices/Source",
+  "bounds_epsg26911_m": [
+    520400,
+    4006200,
+    524496,
+    4010296
+  ],
+  "tile_count": 256,
+  "focus_tiles": [
+    "r12_c01",
+    "r12_c02",
+    "r13_c01",
+    "r13_c02"
+  ],
+  "color_tile_pixels": [
+    128,
+    128
+  ],
+  "color_meters_per_pixel": 2,
+  "height_encoding_m": {
+    "dtype": "little-endian uint16",
+    "row_order": "north to south",
+    "column_order": "west to east",
+    "min_m": -100,
+    "max_m": 1700
+  },
+  "slope_estimate": {
+    "NW": {
+      "area_fraction_over_38_deg": 0.35077,
+      "area_fraction_over_48_deg": 0.13597,
+      "steepest_sample_deg": 86.56,
+      "min_height_m": -84.62,
+      "max_height_m": 907.46
+    },
+    "NE": {
+      "area_fraction_over_38_deg": 0.43403,
+      "area_fraction_over_48_deg": 0.16533,
+      "steepest_sample_deg": 86.09,
+      "min_height_m": 550.84,
+      "max_height_m": 1659.65
+    },
+    "SW": {
+      "area_fraction_over_38_deg": 0.32996,
+      "area_fraction_over_48_deg": 0.13029,
+      "steepest_sample_deg": 86.35,
+      "min_height_m": -84.48,
+      "max_height_m": 952.01
+    },
+    "SE": {
+      "area_fraction_over_38_deg": 0.33898,
+      "area_fraction_over_48_deg": 0.12809,
+      "steepest_sample_deg": 85.66,
+      "min_height_m": 577.62,
+      "max_height_m": 1654.3
+    },
+    "ALL": {
+      "area_fraction_over_38_deg": 0.36343,
+      "area_fraction_over_48_deg": 0.13992,
+      "steepest_sample_deg": 86.56,
+      "min_height_m": -84.62,
+      "max_height_m": 1659.65
+    }
+  },
+  "limits": "Slope uses centered RAW-height differences on tile interiors; it does not prove collider normals, routes, or traversal."
+}

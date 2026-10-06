@@ -1,6 +1,6 @@
 # Badwater gameplay terrain plan
 
-**Status:** Re-audited plan, 2026-10-06. The scene is structurally playable; traversal feel, close-range material quality, and Player performance are unverified.
+**Status:** Implementation in progress, 2026-10-06. The dedicated Development Player builds from an isolated copy of the current working tree; traversal feel, close-range material quality, and Player performance are unverified. See the [baseline evidence](./Evidence/Badwater/gameplay-terrain-baseline-2026-10-06.md).
 
 ## Goal and boundary
 
