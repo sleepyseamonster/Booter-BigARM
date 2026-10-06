@@ -4,7 +4,7 @@ This log preserves the rationale and evidence behind consequential project decis
 
 ## Entry Template
 
-### YYYY-MM-DD — Decision Title
+### YYYY-MM-DD â€” Decision Title
 
 - **Status:** proposed / accepted / superseded
 - **Decision owner:** user / named owner
@@ -16,7 +16,18 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:**
 - **Supersedes:** none / link to prior entry
 
-## 2026-09-21 — Unity-Only Production Return
+## 2026-10-06 â€” Greater Wasteland primary scene
+
+- **Status:** accepted
+- **Decision owner:** user
+- **Decision:** Rename the existing playable Badwater scene to Greater Wasteland and make it the primary Unity gameplay scene. All continuing world mechanics and player controls belong here. Preserve the generated prototype as a disabled reference.
+- **Why:** The user likes this playable terrain and wants to develop it while rethinking procedural generation.
+- **Boundary:** No procedural terrain, generated props, chunk streaming or procedural save integration is added. Existing terrain identities and actor/control wiring remain intact. Procgen implementation waits for explicit approval of a revised approach.
+- **Controlling files updated:** `AGENTS.md`, `Docs/PROJECT_BASELINE.md`, `Docs/PROJECT_STATUS.md`, `ProjectSettings/EditorBuildSettings.asset`, the renamed scene/meta pair and affected scene-path tooling.
+- **Evidence:** User direction on 2026-10-06; focused serialized reference/content checks and coordinated isolated Windows compile/build plus playable-scene and production/legacy-boundary validators. See `Docs/PROJECT_STATUS.md` for logs and proof limits. Hands-on acceptance remains user-owned.
+- **Supersedes:** Prior primary-scene routing and the Badwater plan requirement to keep this scene outside production Build Settings. It does not resume the prior terrain performance sequence.
+
+## 2026-09-21 â€” Unity-Only Production Return
 
 - **Status:** accepted
 - **Decision owner:** user
@@ -28,7 +39,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** New code, assets, tooling and production documentation belong to Unity. The rock lane resumes from the accepted 2026-09-08 visual baseline: deterministic gameplay meshes and the opt-in reservation adapter exist, while assigning the mixed template, runtime sand/clutter integration, and interactive world proof remain separate future work. This decision does not delete or bulk-migrate either preserved engine experiment.
 - **Supersedes:** the active-host direction recorded in `Unreal/Docs/DIRECTION.md` and the earlier proprietary-engine active-host direction in `Engine/Docs/DIRECTION.md`; it does not supersede Unity world, gameplay, or visual decisions.
 
-## 2026-09-05 — Visual-First Rock Production Recovery
+## 2026-09-05 â€” Visual-First Rock Production Recovery
 
 - **Status:** accepted
 - **Decision owner:** user, with sequence managed by Gottspan
@@ -38,12 +49,12 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Evidence:** Live architecture and worktree reassessment, the user's report that scale was correct but A/B textures were not, and the existing landscape plan's editor-baked catalog decision.
 - **Controlling files updated:** `Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md`, `Docs/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md`, `Docs/ROCK_FORMATION_WORKBENCH.md`, `Docs/DOCS_INDEX.md`, and the Rock Workbench authoring/editor implementation.
 - **Consequences / follow-up:** Runtime geology contracts, Integration Workbench code, and their tests are removed. The user now shapes one Golden Rock in the normal hierarchy. Gottspan waits at that gate; production recipe capture, baking, catalog expansion, formations, and terrain integration remain deferred.
-- **Golden Rock update:** The user accepted seed `2126351350` as the first good reference after resizing it to `0.925 × 1.12 m` and rotating the root approximately `(-18.374, 147.048, -85.817)` degrees. That rotation is now treated as a generated resting pose: it is baked into source volumes and followed by local re-grounding, while the reusable root remains identity. Production rollout still waits for comparison of the regenerated result.
-- **Golden Rock approval:** After comparing multiple seeds, the user confirmed that the generator consistently produces liked rocks. The reference calibration is refined to `1 × 0.75 m` with full edge damage; each seed now adds a deterministic vertical-axis turn and a restrained four-to-twelve-percent burial depth. Catalog and world rollout still wait for one contact-variation check.
+- **Golden Rock update:** The user accepted seed `2126351350` as the first good reference after resizing it to `0.925 Ã— 1.12 m` and rotating the root approximately `(-18.374, 147.048, -85.817)` degrees. That rotation is now treated as a generated resting pose: it is baked into source volumes and followed by local re-grounding, while the reusable root remains identity. Production rollout still waits for comparison of the regenerated result.
+- **Golden Rock approval:** After comparing multiple seeds, the user confirmed that the generator consistently produces liked rocks. The reference calibration is refined to `1 Ã— 0.75 m` with full edge damage; each seed now adds a deterministic vertical-axis turn and a restrained four-to-twelve-percent burial depth. Catalog and world rollout still wait for one contact-variation check.
 - **Standalone size distribution:** New-rock width and body length are independently sampled between `0.2 m` and `1.2 m` using a bounded three-sample bell curve centered on `0.7 m`. The limits are rare extremes rather than equally likely sizes; regeneration preserves the seed and displayed dimensions. Formation-owned sizing is unchanged.
 - **Supersedes:** the 2026-09-05 Grounded Geology implementation proposal; it does not supersede the 2026-08-14 Shared Geological Surface Authority.
 
-## 2026-08-12 — Repo And Unity Project Management Model
+## 2026-08-12 â€” Repo And Unity Project Management Model
 
 - **Status:** accepted
 - **Decision owner:** user
@@ -55,7 +66,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** Use bounded briefs, disjoint file ownership, single-writer Unity operations, evidence-first handoffs, and narrow integration commits.
 - **Supersedes:** none
 
-## 2026-08-12 — Isometric 2.5D Conversion Program
+## 2026-08-12 â€” Isometric 2.5D Conversion Program
 
 - **Status:** accepted
 - **Decision owner:** user
@@ -67,7 +78,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** Execute the gated conversion program without in-place scene or asset replacement. The user authorized execution on 2026-08-12, so the recommended spike defaults are recorded in `Docs/ISOMETRIC_DIRECTION_BRIEF.md`; final camera, elevation, aiming, art, platform, sourcing, package, cutover, and cleanup decisions remain gated as documented.
 - **Supersedes:** none; current 2D implementation standards remain active for the preserved legacy path until individually superseded by evidence and the final cutover.
 
-## 2026-08-12 — Protected Isometric Spike Ready For Review
+## 2026-08-12 â€” Protected Isometric Spike Ready For Review
 
 - **Status:** proposed
 - **Decision owner:** user
@@ -79,7 +90,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** Stop at CP-06 until the user chooses proceed, revise, or stop. A proceed decision authorizes planning and implementation of CP-07 only; it does not authorize packages, purchases, Build Settings cutover, production assets, release, or legacy deletion.
 - **Supersedes:** none
 
-## 2026-08-13 — Perspective Top-Down 3D Revision
+## 2026-08-13 â€” Perspective Top-Down 3D Revision
 
 - **Status:** accepted
 - **Decision owner:** user
@@ -91,7 +102,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** Orthographic remains historical comparison evidence only. The first perspective foundation stays in a separate scene, preserves the 2D baseline and prior spike, and does not authorize packages, production assets, save migration, Build Settings changes, cutover, release, or legacy deletion.
 - **Supersedes:** the camera and presentation direction in the 2026-08-12 protected-spike proposal; the preservation contract remains active.
 
-## 2026-08-13 — Right-Stick Perspective Camera Orbit
+## 2026-08-13 â€” Right-Stick Perspective Camera Orbit
 
 - **Status:** accepted
 - **Decision owner:** user
@@ -103,7 +114,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** Physical-controller orbit speed, vertical direction, pitch limits, and interaction with movement remain user-owned feel tuning. This does not authorize free-look mouse behavior, camera lock-on, shoulder swapping, packages, or cutover.
 - **Supersedes:** the fixed-yaw/no-player-orbit camera statement in the initial foundation plan.
 
-## 2026-08-13 — BigARM Companion Direction And Physical Traversal Rule
+## 2026-08-13 â€” BigARM Companion Direction And Physical Traversal Rule
 
 - **Status:** accepted
 - **Decision owner:** user
@@ -115,7 +126,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** The first slice covers loaded-world route following and physical catch-up. The next approved slice must decide how deterministic coarse traversal, multi-anchor streaming, route persistence, and physical re-entry cooperate when BigARM's true location is outside loaded terrain.
 - **Supersedes:** the mobile-habitat, moving-safe-zone, crafting-hub, storage/recovery, home-base, camera-relative recall, and teleport-style distance-recovery assumptions in older documents and prototypes. Protected legacy assets remain preserved as implementation history rather than current design authority.
 
-## 2026-08-13 — Procedural Generation First Across Game Systems
+## 2026-08-13 â€” Procedural Generation First Across Game Systems
 
 - **Status:** accepted
 - **Decision owner:** user
@@ -127,7 +138,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** Every future system brief must complete the procgen compatibility contract before implementation. Concerns may be marked not applicable with a reason. This does not require every mechanic to be random; authored content should constrain and anchor procedural output.
 - **Supersedes:** none; this elevates and broadens the existing deterministic world-generation baseline.
 
-## 2026-08-13 — TopDown3D Production Cutover And Legacy 2D Isolation
+## 2026-08-13 â€” TopDown3D Production Cutover And Legacy 2D Isolation
 
 - **Status:** accepted
 - **Decision owner:** user
@@ -139,7 +150,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** New production work must not depend on the legacy folder. Legacy content remains preserved and usable but is not co-equal production architecture. This decision does not authorize legacy deletion, package removal, save migration, release, or publication.
 - **Supersedes:** The build-entry, renderer-default, and no-cutover constraints in the 2026-08-13 perspective foundation decision. It does not supersede the procedural-generation-first architecture or the legacy preservation requirement.
 
-## 2026-08-14 — Shared Geological Surface Authority
+## 2026-08-14 â€” Shared Geological Surface Authority
 
 - **Status:** accepted
 - **Decision owner:** user
@@ -151,7 +162,7 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:** Terrain generation is version 2, natural-object generation is version 3, and physical-rock generation is version 5. The representative family is integrated; fixed-camera visual acceptance and controlled Development Player profiling remain required before adding biome breadth or claiming final visual/performance quality. This does not authorize packages, purchases, publication, release, legacy deletion, or gameplay-system changes.
 - **Supersedes:** The static `TopDown3DHeightSampler` plus separate escarpment sampler as the future production terrain architecture; it does not erase prior test evidence for the foundation that used them.
 
-## 2026-08-24 — World Creator Charter And Hybrid Causal Architecture
+## 2026-08-24 â€” World Creator Charter And Hybrid Causal Architecture
 
 - **Status:** accepted
 - **Decision owner:** Gottspan under the user's explicit approval delegation; the user retains creative and product authority

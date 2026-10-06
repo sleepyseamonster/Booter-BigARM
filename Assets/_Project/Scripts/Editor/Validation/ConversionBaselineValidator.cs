@@ -12,7 +12,7 @@ namespace BooterBigArm.Editor
     {
         public const string PrototypeScenePath = "Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity";
         public const string SampleScenePath = "Assets/_Project/Legacy2D/Scenes/SampleScene.unity";
-        public const string ProductionScenePath = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
+        public const string ProductionScenePath = "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity";
         public const string ConversionScenePath = "Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity";
         public const string PipelineAssetPath = "Assets/_Project/Settings/Rendering/URP/UniversalRP.asset";
         public const string LegacyRendererPath = "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset";

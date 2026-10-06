@@ -1,6 +1,8 @@
 # Badwater gameplay terrain plan
 
-**Status:** Implementation in progress, 2026-10-06. The dedicated Development Player builds from an isolated copy of the current working tree; traversal feel, close-range material quality, and Player performance are unverified. See the [baseline evidence](./Evidence/Badwater/gameplay-terrain-baseline-2026-10-06.md).
+**Current direction (2026-10-06):** The user promoted this playable scene to `Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity` as the primary gameplay scene. Procedural generation is deferred pending redesign. The separate-study scope and Build Settings restrictions below are superseded; the prior streaming/material/performance sequence remains deferred. See [PROJECT_STATUS.md](./PROJECT_STATUS.md).
+
+**Historical implementation status:** Implementation in progress, 2026-10-06. The dedicated Development Player builds from an isolated copy of the current working tree; traversal feel, close-range material quality, and Player performance are unverified. See the [baseline evidence](./Evidence/Badwater/gameplay-terrain-baseline-2026-10-06.md).
 
 **Scoped Editor defect repair:** The user's visible-seam report authorized correcting terrain stitching and ground wiring; see the [October 6 repair](./Evidence/Badwater/terrain-seam-repair-2026-10-06.md). All tiles now use compatible 257² render grids, while retaining the original four 1 m and 252 2 m DEM sources. Earlier statements below about unchanged TerrainData and mixed rendering resolutions describe the pre-repair baseline. The wider streaming/material/performance sequence remains deferred; this repair does not establish Player performance or authorize executable packaging.
 

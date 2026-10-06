@@ -13,7 +13,7 @@ namespace BooterBigArm.Editor
 {
     public static class BadwaterTerrainSeamRepair
     {
-        public const string ScenePath = "Assets/_Project/Scenes/TopDown3D/BadwaterFourSlices.unity";
+        public const string ScenePath = "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity";
         private const string SourceRoot = "Assets/_Project/Art/Terrain/BadwaterFourSlices";
 
         [MenuItem("Booter & BigARM/Badwater Terrain/Repair Saved Terrain Seams")]

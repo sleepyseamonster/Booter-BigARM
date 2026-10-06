@@ -11,7 +11,7 @@ namespace BooterBigArm.Editor
     public static class RepositoryPlayabilityAudit
     {
         private const string World = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
-        private const string Valley = "Assets/_Project/Scenes/TopDown3D/BadwaterFourSlices.unity";
+        private const string Valley = "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity";
 
         public static void ValidateBothFromCli()
         {

@@ -9,7 +9,7 @@ namespace BooterBigArm.Editor
     // Read-only methods mirrored from the canonical isolated terrain builder for this audit.
     public static class BadwaterTerrainReadbackAudit
     {
-        private const string ScenePath = "Assets/_Project/Scenes/TopDown3D/BadwaterFourSlices.unity";
+        private const string ScenePath = "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity";
         private const string Root = "Assets/_Project/Art/Terrain/BadwaterFourSlices";
         private const float MinimumElevation = -100f;
         private const float ElevationRange = 1800f;

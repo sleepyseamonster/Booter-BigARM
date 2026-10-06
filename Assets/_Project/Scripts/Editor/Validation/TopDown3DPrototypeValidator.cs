@@ -1046,16 +1046,16 @@ namespace BooterBigArm.Editor
                 if (string.Equals(scene.path, TopDown3DPrototypeBuilder.ScenePath, StringComparison.Ordinal))
                 {
                     foundProductionScene = true;
-                    if (!scene.enabled)
+                    if (scene.enabled)
                     {
-                        errors.Add("TopDown3DPrototype must be enabled as the primary production scene.");
+                        errors.Add("TopDown3DPrototype is a preserved generator reference and must remain disabled in Build Settings.");
                     }
                 }
             }
 
             if (!foundProductionScene)
             {
-                errors.Add("TopDown3DPrototype must be present in production Build Settings.");
+                errors.Add("TopDown3DPrototype must remain registered as a disabled reference scene.");
             }
         }
 

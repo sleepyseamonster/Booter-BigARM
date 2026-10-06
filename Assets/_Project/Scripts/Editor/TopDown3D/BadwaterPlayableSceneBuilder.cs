@@ -16,7 +16,7 @@ namespace BooterBigArm.Editor
     /// </summary>
     public static class BadwaterPlayableSceneBuilder
     {
-        private const string TerrainScenePath = "Assets/_Project/Scenes/TopDown3D/BadwaterFourSlices.unity";
+        private const string TerrainScenePath = "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity";
         private const string PrototypeScenePath = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
         private const float SpawnX = 520600f - 522448f;
         private const float SpawnZ = 4006750f - 4008248f;

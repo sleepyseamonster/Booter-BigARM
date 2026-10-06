@@ -71,9 +71,9 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 
 ## Working Rules For New Content
 
-- Treat procedural generation as a project-wide architectural priority for every new or extended gameplay system.
+- Preserve future procedural compatibility when designing gameplay seams, but Greater Wasteland currently uses its fixed authored terrain. The user deferred procedural generation on 2026-10-06; do not implement or activate it without a new approval.
 - Before implementation, state how the system interacts with deterministic world identity, chunk streaming and unload/reload, stable generated-object identity, authored constraints, and persisted runtime deltas. Mark a concern not applicable only when the reason is explicit.
-- Do not design gameplay around a permanently authored or always-loaded world when the production system must operate in the procedural world. A bounded throwaway prototype may make that tradeoff only when the task says so.
+- Greater Wasteland currently uses its fixed, always-loaded terrain by explicit user direction. Keep new gameplay separable from that loading assumption where practical, but do not implement generation or streaming until its redesign is approved.
 - Procedural-generation-first does not mean randomizing every feature. Hand-authored rules, landmarks, encounters, and narrative content should constrain, anchor, and improve the generated world.
 - Put gameplay scripts in a dedicated scripts folder, ideally with asmdefs once the codebase grows.
 - Keep scenes minimal and purpose-built.
@@ -88,7 +88,9 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 
 - Editor version: `6000.4.0f1`
 - Pipeline: URP
-- Primary production scene and first enabled build scene: `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`
+- Primary production scene and only enabled build scene: `Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity`
+- Greater Wasteland is the existing playable Badwater terrain, promoted on 2026-10-06. All continuing gameplay mechanics and player controls target this scene. Do not add procedural terrain, generated props, chunk streaming, or procedural save integration until the user approves a redesigned generation approach.
+- `TopDown3DPrototype.unity` remains a disabled generated-world reference; do not copy its generator or save service into Greater Wasteland.
 - Preserved legacy scenes: `Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity` and `Assets/_Project/Legacy2D/Scenes/SampleScene.unity`; both remain disabled in Build Settings.
 - Current production renderer settings: `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset` with the 3D renderer at index 1 as the default.
 - The preserved 2D renderer is `Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset` at index 0; legacy scene cameras select index 0 explicitly.

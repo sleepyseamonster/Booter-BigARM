@@ -10,7 +10,8 @@ This document captures the current Unity project state so future changes can be 
 
 ## Current Files Of Interest
 
-- `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity` — primary production scene and only enabled build scene.
+- `Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity` — primary production scene and only enabled build scene; promoted from playable Badwater on 2026-10-06 with existing controls and mechanics retained. Procedural generation is deferred pending redesign.
+- `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity` — preserved generated-world reference, disabled in Build Settings.
 - `Assets/_Project/Scripts/Runtime/TopDown3D/` — production runtime assembly.
 - `Assets/_Project/Legacy2D/Scenes/` — preserved 2D prototype and sample scenes, disabled in Build Settings.
 - `Assets/_Project/Legacy2D/Scripts/Runtime/` — preserved 2D runtime assembly.

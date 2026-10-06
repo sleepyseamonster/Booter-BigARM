@@ -4,7 +4,13 @@ This is the shared implementation pulse for Booter & BigARM. It records what liv
 
 Last reconciled: 2026-09-21 by Gottspan for production-host routing and Unity rock-work resumption. Existing workstream proof rows retain their earlier evidence boundaries.
 
-## Windows Editor Audit — 2026-10-06
+## Greater Wasteland production scene â€” 2026-10-06
+
+The user selected the existing playable Badwater terrain as **Greater Wasteland**, the primary scene for all continuing mechanics and controls. Its scene GUID, 256 terrain tiles, spawn, actors, input, camera, HUD and atmosphere wiring are retained. `GreaterWasteland.unity` is the only enabled build scene; `TopDown3DPrototype.unity` is a disabled generated-world reference. Do not add procedural terrain, generated props, chunk streaming or procedural save integration to Greater Wasteland until the user approves a redesigned generation approach. This promotes the current playable setup; it does not claim harvesting, persistence or other deferred mechanics are complete.
+
+Verification: serialized checks confirm unchanged scene wiring/metadata, 256 terrains and ground markers, valid project/package GUID references and primary build routing. The coordinated terrain agent compiled and built the renamed scene in an isolated Unity 6000.4.0f1 Windows copy; the playable scene validator passed. After syncing the final HUD installer, `ConversionBaselineValidator.ValidateFromCli` exited 0 with "Production and legacy-boundary validation passed." Logs: ignored `Logs/DeathValleyInventory/windows-development-build.log` and `greater-wasteland-conversion-validator.log`. The live GUI was untouched; no gameplay test or Player run was performed. Earlier terrain/controls evidence below retains its original scope.
+
+## Windows Editor Audit â€” 2026-10-06
 
 The subsequent [Death Valley seam repair](./Evidence/Badwater/terrain-seam-repair-2026-10-06.md) resolves the missing-ground-marker finding and the user's visible cracks. Every tile now has a compatible rendering grid and persistent native neighbor stitching; all 480 shared edges match exactly. Nine focused background Editor checks pass, including the original Death Valley controls check. The earlier audit below remains historical evidence; its two unrelated existing-system failures and incomplete full-suite result are unchanged.
 
@@ -15,8 +21,8 @@ The [Editor playability audit](./Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md
 - The repository-root Unity project is again the sole active production implementation. `Unreal/`, `Engine/`, and `Assets/_Project/Legacy2D/` are preserved references and receive no new production work without a new explicit user decision.
 - The user has revised the presentation direction to a perspective, elevated top-down game with a fully 3D runtime world and assets.
 - Gottspan owns the conversion program under the user's creative and product authority.
-- The perspective foundation was accepted and cut over as the primary production path. `TopDown3DPrototype.unity` is the first enabled Build Settings scene; former 2D scenes remain disabled, isolated legacy reference content.
-- The active landscape plan is [TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md](./TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md). The earlier [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md) remains historical foundation rationale and evidence.
+- The perspective foundation was accepted and cut over as the primary production path. `GreaterWasteland.unity` is the only enabled Build Settings scene; former 2D scenes remain disabled, isolated legacy reference content.
+- The prior landscape plan is [TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md](./TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md). The earlier [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md) remains historical foundation rationale and evidence.
 - The current evidence packet is [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md).
 - The former isometric lab and its audit remain historical comparison evidence, not the camera direction for new work.
 - The existing 2D prototype remains a protected comparison baseline, not the production implementation.
