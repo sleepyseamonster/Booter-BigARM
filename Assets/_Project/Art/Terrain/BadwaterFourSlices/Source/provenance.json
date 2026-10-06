@@ -1,0 +1,25 @@
+{
+  "working_crs": "EPSG:26911",
+  "bounds_m": [
+    520400,
+    4006200,
+    524496,
+    4010296
+  ],
+  "local_center_epsg26911_m": [
+    522448,
+    4008248
+  ],
+  "height_encoding": {
+    "dtype": "little-endian uint16",
+    "row_order": "north to south",
+    "column_order": "west to east",
+    "min_m": -100,
+    "max_m": 1700
+  },
+  "terrain_manifest_sha256": "a33167453a29af5b46e0b5483e70e24594ee54e4ef01a946db5fa7b0ef022ded",
+  "geographic_color_sha256": "858a85f109ad446159d06c1ca60a7a99e19deda85c8dd5e54639e9859a3bfcc2",
+  "tile_count": 256,
+  "focus_tile_count": 4,
+  "source": "USGS 3DEP 1 m DEM; USGS NAIP color with recorded Landsat fallback"
+}

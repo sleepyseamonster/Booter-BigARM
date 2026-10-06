@@ -2,7 +2,7 @@
 
 **State (2026-10-05):** The [expanded Blender viewer](./EXPANDED_VIEWER.md) now covers full regional tiles and a provisional Badwater detail corridor. It is geographic study terrain, not a finished Unity game world or accepted production art.
 
-The [Badwater four-slice study](./BADWATER_GAME_SLICE.md) is a separate 4.096 × 4.096 km Blender scene with measured 1 m elevation in a 512 m focus, 2 m surrounding chunks, provisional surface materials and candidate 16-bit height exports. It is the close terrain and chunk handoff study; Unity runtime integration remains to be verified.
+The [Badwater four-slice study](./BADWATER_GAME_SLICE.md) is a separate 4.096 × 4.096 km Blender scene with measured 1 m elevation in a 512 m focus, 2 m surrounding chunks, provisional surface materials and candidate 16-bit height exports. A [separate Unity Scene view terrain scene](./UNITY_BADWATER_SCENE.md) now contains the same 256 named terrain tiles and geographic color reference; runtime streaming and gameplay integration remain to be built.
 
 ## What is here
 

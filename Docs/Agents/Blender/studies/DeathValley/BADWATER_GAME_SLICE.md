@@ -1,6 +1,6 @@
 # Badwater four-slice terrain study
 
-**Status (2026-10-05):** [BadwaterGameSlice.blend](./BadwaterGameSlice.blend) now contains the original southwest terrain slice and the three adjoining slices marked in the user's screenshot: northwest, northeast, and southeast. They form one measured **4.096 × 4.096 km** scene at the Badwater basin edge. The saved viewport frames the four-slice terrain; **Numpad 0** returns to the basin-eye camera. This is a Blender terrain and surface study, not yet a gameplay-ready Unity world.
+**Status (2026-10-06):** [BadwaterGameSlice.blend](./BadwaterGameSlice.blend) contains the original southwest terrain slice and the three adjoining slices marked in the user's screenshot: northwest, northeast, and southeast. They form one measured **4.096 × 4.096 km** scene at the Badwater basin edge. The saved viewport frames the four-slice terrain; **Numpad 0** returns to the basin-eye camera. A [separate Unity terrain review scene](./UNITY_BADWATER_SCENE.md) is now available, but this is not yet a streamed gameplay world.
 
 ## Geographic layout and geometry budget
 
@@ -30,9 +30,9 @@ These masks and shader bumps change **appearance only**. Aerial imagery contains
 
 ## Blender review and Unity handoff
 
-The scene opens in a wide perspective view of all four slices. `BasinEyeView_1p7m` remains at EPSG:26911 `(520600, 4006750)`, exactly 1.7 m above the recorded ground, facing the eastern slopes. Press **Numpad 0** in the 3D viewport to see through it. **View → Navigation → Walk Navigation** gives mouse-look and W/A/S/D movement. The camera is a Blender review viewpoint, not a Unity game camera.
+The scene opens in a top orthographic view of all four slices. `BasinEyeView_1p7m` remains at EPSG:26911 `(520600, 4006750)`, exactly 1.7 m above the recorded ground, facing the eastern slopes. Press **Numpad 0** in the 3D viewport to see through it. **View → Navigation → Walk Navigation** gives mouse-look and W/A/S/D movement. The camera is a Blender review viewpoint, not a Unity game camera.
 
-The external manifest records absolute bounds and stable `rNN_cNN` identities for every 256 m chunk. It includes 129² little-endian unsigned 16-bit candidate height exports for all chunks and 257² exports for the four focus chunks. Unity importer orientation, vertical scaling, collision, LOD transitions and runtime streaming still need their own proof. The Blender edge triangulation bridges the 1 m focus and 2 m context, but Unity must reproduce that seam if these heights are imported there.
+The external manifest records absolute bounds and stable `rNN_cNN` identities for every 256 m chunk. It includes 129² little-endian unsigned 16-bit candidate height exports for all chunks and 257² exports for the four focus chunks. The [Unity review scene](./UNITY_BADWATER_SCENE.md) verifies import orientation, vertical scaling, native Terrain colliders, and matching height borders in an isolated Unity project. The Blender edge triangulation bridges the 1 m focus and 2 m context exactly; Unity Terrain instead straightens only the focus perimeter's intermediate 1 m vertices where they touch 2 m tiles. Runtime streaming and main-editor visual acceptance remain open.
 
 - Deterministic world identity: fixed source bounds, chunk IDs and this versioned data manifest identify the bounded geographic sample.
 - Chunk load and unload: each tile is independently addressable; the Blender scene itself loads all tiles, and no Unity loader exists for these exports.
