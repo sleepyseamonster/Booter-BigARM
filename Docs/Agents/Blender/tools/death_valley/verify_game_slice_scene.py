@@ -38,9 +38,20 @@ def main() -> None:
         raise RuntimeError("Basin-eye review camera is not the active scene camera")
     viewports = [area.spaces.active for screen in bpy.data.screens for area in screen.areas
                  if area.type == "VIEW_3D"]
-    intended_view = "CAMERA" if count == 8 else "PERSP"
-    if not viewports or not any(space.region_3d.view_perspective == intended_view for space in viewports):
-        raise RuntimeError(f"Saved scene has no {intended_view} viewport")
+    layout = bpy.data.screens.get("Layout")
+    layout_views = [area.spaces.active for area in layout.areas if area.type == "VIEW_3D"] if layout else []
+    intended_view = "CAMERA" if count == 8 else "ORTHO"
+    if not viewports or not layout_views or not any(
+            space.region_3d.view_perspective == intended_view for space in layout_views):
+        raise RuntimeError(f"Saved Layout screen has no {intended_view} viewport")
+    if count > 8 and not any(
+            space.region_3d.view_perspective == "ORTHO" and
+            abs(space.region_3d.view_rotation.w) > 0.999 and
+            abs(space.region_3d.view_location.x) < 1 and
+            abs(space.region_3d.view_location.y) < 1 and
+            5000 < space.region_3d.view_distance < 7000
+            for space in layout_views):
+        raise RuntimeError("Saved Layout viewport does not frame the full four-slice map")
     absolute_xy = json.loads(camera["absolute_xy_epsg26911"])
     x,y = absolute_xy
     ix,iy = round(x-bounds[0]),round(bounds[3]-y)

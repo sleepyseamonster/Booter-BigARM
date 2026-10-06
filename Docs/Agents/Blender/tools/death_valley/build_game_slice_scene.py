@@ -319,12 +319,18 @@ def main() -> None:
             space.clip_end = 15000
             space.shading.type = "MATERIAL"
             if count > 8:
-                space.region_3d.view_perspective = "PERSP"
                 space.lock_camera = False
-                space.region_3d.view_location = (0, 0, 180)
-                space.region_3d.view_distance = 6300
-                space.region_3d.view_rotation = Euler((math.radians(57), 0,
-                                                       math.radians(-35)), "XYZ").to_quaternion()
+                if screen.name == "Layout":
+                    space.region_3d.view_perspective = "ORTHO"
+                    space.region_3d.view_location = (0, 0, 788)
+                    space.region_3d.view_distance = 6083
+                    space.region_3d.view_rotation = Euler((0, 0, 0), "XYZ").to_quaternion()
+                else:
+                    space.region_3d.view_perspective = "PERSP"
+                    space.region_3d.view_location = (0, 0, 180)
+                    space.region_3d.view_distance = 6300
+                    space.region_3d.view_rotation = Euler((math.radians(57), 0,
+                                                           math.radians(-35)), "XYZ").to_quaternion()
             else:
                 space.region_3d.view_perspective = "CAMERA"
                 space.region_3d.view_camera_zoom = 8
