@@ -107,7 +107,7 @@ Run the focused EditMode suite:
 
 - Do not start batchmode against this project while the Unity GUI has it open.
 - Do not activate, focus, raise, or send keystrokes to Unity during normal repo work, automation, validation, or background launch. Preserve the user's foreground application.
-- Foreground mode is allowed only for an explicit current request for visible interactive Unity work. Do not require the user to focus Unity for ordinary agent progress.
+- Keep scene opening, repairs, validation, and appearance checks in the background. Foreground mode is allowed only when the user explicitly asks to bring that window forward. Do not require the user to focus Unity for ordinary agent progress.
 - Batchmode may import or serialize assets even when used for compilation; inspect Git state before and after it runs.
 - Scene build and repair entry points are mutating tools. Run them only when their output is the requested change and the affected scene/assets are owned by the task.
 - Do not create or run gameplay smoke tests unless the user explicitly requests them; hands-on acceptance is user-owned for this project.

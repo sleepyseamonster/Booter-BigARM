@@ -49,7 +49,7 @@ This file defines the operating rules for the Booter & BigARM repository and rou
 - Never edit `Library/`, `Temp/`, `Logs/`, or `UserSettings/` as project content.
 - Never make broad project-setting changes without a reason.
 - Never assume package versions or editor behavior without checking the repo state first.
-- Do not activate, focus, raise, or send keystrokes to the Unity window during normal repository work, automation, validation, or launch. Preserve the user's current foreground application. Unity may be brought forward only when the user explicitly requests visible interactive Unity work in the current task.
+- Do not activate, focus, raise, or send keystrokes to Unity or other app windows during repository work, automation, validation, repairs, or launch. Preserve the user's current foreground application. The user reaffirmed background-only work on 2026-10-06. Opening a scene or checking its appearance does not authorize foreground activation; bring a window forward only when the user explicitly asks to bring it forward.
 - Do not ask the user to focus Unity merely so ordinary agent work can continue. Prefer repository edits, background-safe launch, command-line automation, or a clear handoff when interaction is genuinely required.
 
 ## Preferred Asset Structure
