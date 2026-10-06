@@ -2838,6 +2838,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerInventory
   itemCatalog: {fileID: 11400000, guid: e7deba06225b5461689bc97bc37877dc, type: 2}
   capacity: 16
+  startingItems:
+  - itemId: tool.micro_dust_harvester
+    quantity: 1
 --- !u!114 &690964291
 MonoBehaviour:
   m_ObjectHideFlags: 0

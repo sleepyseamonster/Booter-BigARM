@@ -19,6 +19,43 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void LegacySave_PreservesPlacedCanistersWithoutPresenceFlag()
+        {
+            var legacy = JsonUtility.FromJson<TopDown3DGameStateSnapshot>(
+                "{\"harvesters\":{\"version\":1,\"worldSeed\":0,\"nextSequence\":1,"
+                + "\"records\":[{\"stableId\":\"00000000000000000000000000000001\","
+                + "\"placementSequence\":0}]}}");
+            Assert.That(legacy.HasHarvesters, Is.True);
+            Assert.That(legacy.Harvesters.Records.Count, Is.EqualTo(1));
+
+            var empty = JsonUtility.FromJson<TopDown3DGameStateSnapshot>(
+                "{\"harvesters\":{}}");
+            Assert.That(empty.HasHarvesters, Is.False);
+        }
+
+        [Test]
+        public void StartingCanister_IsAvailableInGameAndSavedInventoryReplacesIt()
+        {
+            var catalog = CreateInventory(2).ItemCatalog;
+            var player = Own(new GameObject("Harvester starting inventory test"));
+            player.SetActive(false);
+            var inventory = player.AddComponent<TopDown3DPlayerInventory>();
+            inventory.Configure(catalog, 2, new[]
+            {
+                new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1)
+            });
+            player.SetActive(true);
+
+            Assert.That(inventory.State.Slots[0].ItemId,
+                Is.EqualTo(TopDown3DHarvesterSettings.CanisterItemId));
+            Assert.That(inventory.State.Slots[0].Quantity, Is.EqualTo(1));
+
+            var savedEmptyInventory = new TopDown3DInventoryState(catalog, 2).CaptureSnapshot();
+            Assert.That(inventory.ApplySnapshot(savedEmptyInventory).Succeeded, Is.True);
+            Assert.That(inventory.State.OccupiedSlotCount, Is.Zero);
+        }
+
+        [Test]
         public void Accrual_IsFractionalCappedAndIdempotentAtSameTime()
         {
             var settings = Own(ScriptableObject.CreateInstance<TopDown3DHarvesterSettings>());

@@ -53,6 +53,8 @@ namespace BooterBigArm.TopDown3D
         {
             proceduralWorld = world;
             resourceWorldState = resources;
+            harvesterState = world != null
+                ? world.GetComponent<TopDown3DPlacedHarvesterState>() : null;
             worldPersistenceExplicitlyConfigured = true;
         }
 
@@ -365,16 +367,17 @@ namespace BooterBigArm.TopDown3D
             }
             if (harvesterState != null)
             {
-                var harvesterSnapshot = snapshot.Harvesters
-                    ?? TopDown3DPlacedHarvesterSnapshot.Create(
+                var harvesterSnapshot = snapshot.HasHarvesters
+                    ? snapshot.Harvesters
+                    : TopDown3DPlacedHarvesterSnapshot.Create(
                         worldSeed, 0d, 0L, Array.Empty<TopDown3DPlacedHarvesterRecord>());
-                if (!harvesterState.CanApplySnapshot(harvesterSnapshot))
+                if (harvesterSnapshot == null || !harvesterState.CanApplySnapshot(harvesterSnapshot))
                 {
                     error = "The placed-harvester snapshot is incompatible.";
                     return false;
                 }
             }
-            else if (snapshot.Harvesters != null)
+            else if (snapshot.HasHarvesters)
             {
                 error = "The save contains placed harvesters but no harvester state is available.";
                 return false;
@@ -435,8 +438,9 @@ namespace BooterBigArm.TopDown3D
                 if (resourceWorldState != null && !resourceWorldState.ApplySnapshot(snapshot.Resources))
                     throw new InvalidOperationException("Resource delta snapshot was rejected.");
                 if (harvesterState != null && !harvesterState.ApplySnapshot(
-                        snapshot.Harvesters ?? TopDown3DPlacedHarvesterSnapshot.Create(
-                            worldSeed, 0d, 0L, Array.Empty<TopDown3DPlacedHarvesterRecord>())))
+                        snapshot.HasHarvesters ? snapshot.Harvesters
+                            : TopDown3DPlacedHarvesterSnapshot.Create(
+                                worldSeed, 0d, 0L, Array.Empty<TopDown3DPlacedHarvesterRecord>())))
                     throw new InvalidOperationException("Placed-harvester snapshot was rejected.");
 
                 savedPlaces.Clear();
@@ -507,10 +511,10 @@ namespace BooterBigArm.TopDown3D
                 resourceWorldState = proceduralWorld != null
                     ? proceduralWorld.ResourceWorldState ?? proceduralWorld.GetComponent<TopDown3DResourceWorldState>()
                     : FindFirstObjectByType<TopDown3DResourceWorldState>();
-            if (harvesterState == null)
+            if (harvesterState == null && !worldPersistenceExplicitlyConfigured)
                 harvesterState = proceduralWorld != null
                     ? proceduralWorld.GetComponent<TopDown3DPlacedHarvesterState>()
-                    : FindFirstObjectByType<TopDown3DPlacedHarvesterState>();
+                    : null;
         }
 
         private bool ContainsSavedPlace(WorldFeatureId id)

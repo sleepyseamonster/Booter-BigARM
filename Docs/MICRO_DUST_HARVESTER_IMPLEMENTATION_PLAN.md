@@ -1,6 +1,6 @@
 # Micro Dust Harvester Implementation Plan
 
-Status: implemented in the TopDown3D production lane; five new harvester tests and eight related inventory/persistence Unity EditMode tests passed in an isolated project copy on 2026-10-05. Hands-on visual and animation acceptance remains with the user.
+Status: implemented in the TopDown3D production lane; Booter starts with one reusable canister. Seven harvester tests and ten related inventory/persistence Unity EditMode tests passed in an isolated project copy on 2026-10-05. Hands-on visual and animation acceptance remains with the user.
 
 Verification note: the full prototype validator opened the scene and completed its checks, then reported two pre-existing authored formations, `MixedPileScatter` and `HandbuiltSpire`, needing gameplay rebakes. No harvester-specific validator error was reported. The player's foreground Unity session was left untouched.
 
@@ -53,7 +53,7 @@ Start with the **quiet camp tool**. The other directions can be tested later wit
 4. Interact with a nearby canister to pick it up, including when empty or partially full. The action locks movement briefly and uses a reach/pickup animation. Completion rechecks range, identity, and inventory capacity. It atomically adds one canister plus all integer dust units, then removes the deployed record. If either item cannot fit, leave the device and its dust in place and report why.
 5. First-pass values are **tuning proposals, not accepted balance**: capacity 100 units, 1 unit every 10 seconds of active game time, one-unit display increments, and an initial deployed-device cap of 32 per save. Keep these in one authored settings asset. The user can tune them after a hands-on pass.
 
-The plan permits multiple canisters because each has its own identity and placement record. The cap bounds save size and view cost. There is no free starting supply or new crafting recipe in this slice; the implementation must define a test/authoring grant path without making a permanent economy rule.
+The plan permits multiple canisters because each has its own identity and placement record. The cap bounds save size and view cost. Booter starts a new game with one reusable canister, so the loop is accessible in the game itself. A crafting or loot source for additional devices is outside this slice.
 
 ## 4. Authority and persistence design
 

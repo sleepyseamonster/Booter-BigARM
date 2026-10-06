@@ -229,6 +229,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DBigArmCompanionSnapshot bigArm;
         [SerializeField] private bool hasResources;
         [SerializeField] private TopDown3DResourceWorldSnapshot resources;
+        [SerializeField] private bool hasHarvesters;
         [SerializeField] private TopDown3DPlacedHarvesterSnapshot harvesters;
         [SerializeField] private List<string> savedPlacePayloads = new List<string>();
         [SerializeField] private List<TopDown3DWorldDeltaSnapshot> worldDeltas =
@@ -250,6 +251,10 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DBigArmCompanionSnapshot BigArm => bigArm;
         public bool HasResources => hasResources;
         public TopDown3DResourceWorldSnapshot Resources => resources;
+        // Earlier saves wrote the harvester object without a presence flag.
+        public bool HasHarvesters => hasHarvesters
+            || (harvesters != null && harvesters.Records != null
+                && harvesters.Records.Count > 0);
         public TopDown3DPlacedHarvesterSnapshot Harvesters => harvesters;
         public IReadOnlyList<string> SavedPlacePayloads => savedPlacePayloads;
         public IReadOnlyList<TopDown3DWorldDeltaSnapshot> WorldDeltas => worldDeltas;
@@ -380,6 +385,7 @@ namespace BooterBigArm.TopDown3D
                 bigArm = companion,
                 hasResources = resourceSnapshot != null,
                 resources = resourceSnapshot,
+                hasHarvesters = harvesterSnapshot != null,
                 harvesters = harvesterSnapshot,
                 savedPlacePayloads = placePayloads,
                 worldDeltas = orderedDeltas,

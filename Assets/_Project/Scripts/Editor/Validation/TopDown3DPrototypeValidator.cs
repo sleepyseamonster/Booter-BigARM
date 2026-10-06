@@ -1092,6 +1092,12 @@ namespace BooterBigArm.Editor
                 ValidateSingle<TopDown3DBigArmCargoAccess>(roots, errors);
                 ValidateSingle<TopDown3DGameStateSaveService>(roots, errors);
                 ValidateSingle<TopDown3DPlayerInventory>(roots, errors);
+                var playerInventory = FindComponents<TopDown3DPlayerInventory>(roots).FirstOrDefault();
+                if (playerInventory != null
+                    && (playerInventory.StartingItems.Count != 1
+                        || playerInventory.StartingItems[0].ItemId != TopDown3DHarvesterSettings.CanisterItemId
+                        || playerInventory.StartingItems[0].Quantity != 1))
+                    errors.Add("Booter must start with one micro dust harvester canister.");
                 ValidateSingle<TopDown3DInteractionController>(roots, errors);
                 ValidateSingle<TopDown3DPlayerActionController>(roots, errors);
                 ValidateSingle<TopDown3DResourceWorldState>(roots, errors);

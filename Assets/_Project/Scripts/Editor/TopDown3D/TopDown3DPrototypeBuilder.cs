@@ -903,7 +903,8 @@ namespace BooterBigArm.Editor
                 inventory.Configure(
                     LoadRequiredAsset<TopDown3DItemCatalog>(
                         global::BooterBigArm.TopDown3D.Editor.TopDown3DIronstoneAssetBuilder.ItemCatalogPath),
-                    TopDown3DPlayerInventory.DefaultCapacity);
+                    TopDown3DPlayerInventory.DefaultCapacity,
+                    new[] { new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1) });
                 var interaction = player.AddComponent<TopDown3DInteractionController>();
                 interaction.Configure(motor);
                 var actionController = player.AddComponent<TopDown3DPlayerActionController>();
