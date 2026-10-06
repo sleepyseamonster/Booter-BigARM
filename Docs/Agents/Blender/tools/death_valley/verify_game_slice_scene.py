@@ -28,8 +28,27 @@ def main() -> None:
     meshes = [obj for obj in bpy.data.objects if obj.type == "MESH"]
     if len(meshes) != 64:
         raise RuntimeError(f"Expected 64 chunk meshes, got {len(meshes)}")
-    if any(obj.type == "CAMERA" for obj in bpy.data.objects):
-        raise RuntimeError("Saved game slice contains a camera")
+    cameras = [obj for obj in bpy.data.objects if obj.type == "CAMERA"]
+    if len(cameras) != 1 or cameras[0].name != "BasinEyeView_1p7m":
+        raise RuntimeError("Expected exactly one basin-eye review camera")
+    camera = cameras[0]
+    if bpy.context.scene.camera != camera:
+        raise RuntimeError("Basin-eye review camera is not the active scene camera")
+    viewports = [area.spaces.active for screen in bpy.data.screens for area in screen.areas
+                 if area.type == "VIEW_3D"]
+    if not viewports or not any(space.region_3d.view_perspective == "CAMERA" and
+                                space.lock_camera for space in viewports):
+        raise RuntimeError("Saved scene has no camera-locked viewport")
+    absolute_xy = json.loads(camera["absolute_xy_epsg26911"])
+    x,y = absolute_xy
+    ix,iy = round(x-bounds[0]),round(bounds[3]-y)
+    ground = float(native[iy,ix])
+    eye_height = float(camera.location.z)-ground
+    if (abs(camera.location.x-(x-origin[0]))>1e-4 or
+        abs(camera.location.y-(y-origin[1]))>1e-4 or
+        abs(eye_height-1.7)>1e-4 or
+        abs(float(camera["source_ground_elevation_m"])-ground)>1e-4):
+        raise RuntimeError("Basin-eye camera is not 1.7 m above its source DEM position")
     tiles = {(int(obj["chunk_id"][1:3]), int(obj["chunk_id"][5:7])): obj for obj in meshes}
     if len(tiles) != 64:
         raise RuntimeError("Chunk IDs are missing or duplicated")
@@ -67,7 +86,7 @@ def main() -> None:
             if col<7 and current["east"]!=edge_vertices[(row,col+1)]["west"]:
                 raise RuntimeError(f"Mesh east/west seam at {row},{col}")
     result={"mesh_chunks":len(meshes),"triangles":triangles,"packed_images":sum(bool(i.packed_file) for i in bpy.data.images),
-            "cameras":0,"all_mesh_heights_from_1m_source":True,"maximum_mesh_source_error_m":max_source_error,
+            "cameras":1,"basin_eye_height_m":eye_height,"all_mesh_heights_from_1m_source":True,"maximum_mesh_source_error_m":max_source_error,
             "all_mesh_edges_identical":True,"note":"Art material bump is shading only; it does not change the DEM mesh."}
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(result,indent=2)+"\n")

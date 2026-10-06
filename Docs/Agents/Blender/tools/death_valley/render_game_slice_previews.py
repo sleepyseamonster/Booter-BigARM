@@ -89,6 +89,13 @@ def main() -> None:
     render_perspective("badwater_slice_surface_close", (-724, -424, -32),
                        (-724, -424, -38), path)
     out["badwater_slice_surface_close"] = str(path)
+    eye_camera = bpy.data.objects.get("BasinEyeView_1p7m")
+    if eye_camera is not None:
+        scene.camera = eye_camera
+        path = args.output_dir / "badwater_basin_eye_view.png"
+        scene.render.filepath = str(path)
+        bpy.ops.render.render(write_still=True)
+        out["badwater_basin_eye_view"] = str(path)
     bpy.data.objects.remove(light, do_unlink=True)
     print(json.dumps(out))
 

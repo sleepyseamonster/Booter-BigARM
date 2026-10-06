@@ -2,19 +2,23 @@
 
 This is a Blender visual/source scene and a candidate height-tile handoff. It
 does not contain a Unity streaming implementation, collision, or game camera.
+The basin-eye camera is a Blender review viewpoint only.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import math
 import sys
 from pathlib import Path
 
 import bpy
 import numpy as np
-from mathutils import Euler
+from mathutils import Vector
+
+
+BASIN_EYE_ABSOLUTE_XY = (520600, 4006750)
+BASIN_EYE_HEIGHT_M = 1.7
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_region_study import collection, mesh_tile
@@ -275,6 +279,28 @@ def main() -> None:
     scene["visible_terrain_triangles"] = triangles
     scene["material_status"] = "Provisional art surface; geographic slot 1 is comparison only"
     scene["runtime_status"] = "Unity import, streaming, collision and gameplay unverified"
+    eye_x, eye_y = BASIN_EYE_ABSOLUTE_XY
+    eye_row = round(bounds[3] - eye_y)
+    eye_col = round(eye_x - bounds[0])
+    if not (0 <= eye_row < native.shape[0] and 0 <= eye_col < native.shape[1]):
+        raise ValueError("Basin-eye viewpoint is outside the prepared elevation source")
+    ground_z = float(native[eye_row, eye_col])
+    cameras = collection("Blender_Review_Cameras_NotGameAssets")
+    camera_data = bpy.data.cameras.new("BasinEyeView_1p7m")
+    camera_data.type = "PERSP"
+    camera_data.lens = 28
+    camera_data.clip_start = 0.05
+    camera_data.clip_end = 10000
+    camera = bpy.data.objects.new("BasinEyeView_1p7m", camera_data)
+    cameras.objects.link(camera)
+    camera.location = (eye_x-origin[0], eye_y-origin[1], ground_z+BASIN_EYE_HEIGHT_M)
+    target = Vector((521500-origin[0], 4007000-origin[1], 30))
+    camera.rotation_euler = (target-camera.location).to_track_quat("-Z", "Y").to_euler()
+    camera["absolute_xy_epsg26911"] = json.dumps(BASIN_EYE_ABSOLUTE_XY)
+    camera["source_ground_elevation_m"] = ground_z
+    camera["eye_height_above_source_m"] = BASIN_EYE_HEIGHT_M
+    camera["purpose"] = "Blender ground-level review; not a Unity game camera"
+    scene.camera = camera
     scene.render.engine = "BLENDER_EEVEE"
     scene.render.resolution_x = 1200
     scene.render.resolution_y = 900
@@ -288,11 +314,13 @@ def main() -> None:
             space.clip_start = 0.1
             space.clip_end = 15000
             space.shading.type = "MATERIAL"
-            space.region_3d.view_perspective = "PERSP"
-            space.region_3d.view_location = (-370, -260, 160)
-            space.region_3d.view_distance = 1850
-            space.region_3d.view_rotation = Euler((math.radians(57), 0,
-                                                   math.radians(-35)), "XYZ").to_quaternion()
+            space.region_3d.view_perspective = "CAMERA"
+            space.region_3d.view_camera_zoom = 8
+            space.lock_camera = True
+            space.region_3d.view_location = camera.location
+            space.region_3d.view_distance = 100
+            space.region_3d.view_rotation = camera.rotation_euler.to_quaternion()
+    bpy.context.preferences.filepaths.save_version = 0
     args.output.parent.mkdir(parents=True, exist_ok=True)
     bpy.ops.file.pack_all()
     bpy.ops.wm.save_as_mainfile(filepath=str(args.output))
