@@ -8,22 +8,25 @@ It exists to reduce overlap and to make it easier to tell which docs are canonic
 
 These should be treated as the source of truth unless they are intentionally revised.
 
-- [WORLD_BASIS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_BASIS.md)
+- [WORLD_BASIS.md](./WORLD_BASIS.md)
   The setting, tone, and core world fantasy.
 - [WORLD_CREATOR_CHARTER.md](./WORLD_CREATOR_CHARTER.md)
   The approved product promise, quality bar, lore constraints, and non-negotiable principles for the effectively infinite World Creator.
-- [WORLD_SYSTEMS_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_SYSTEMS_STANDARD.md)
+- [WORLD_SYSTEMS_STANDARD.md](./WORLD_SYSTEMS_STANDARD.md)
   The procedural generation, chunking, and save/load baseline.
-- [PROJECT_STRUCTURE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/PROJECT_STRUCTURE.md)
+- [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md)
   The target layout for `Assets/_Project/`.
 - [LEGACY_2D_BOUNDARY.md](./LEGACY_2D_BOUNDARY.md)
   The production-versus-legacy asset, assembly, renderer, and Build Settings boundary after the accepted TopDown3D cutover.
-- [UNITY_PROJECT_STANDARDS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/UNITY_PROJECT_STANDARDS.md)
+- [UNITY_PROJECT_STANDARDS.md](./UNITY_PROJECT_STANDARDS.md)
   Compact naming and organization standards.
-- [AGENT_AND_UNITY_PRACTICES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/AGENT_AND_UNITY_PRACTICES.md)
+- [AGENT_AND_UNITY_PRACTICES.md](./AGENT_AND_UNITY_PRACTICES.md)
   Working norms for Codex and Unity repo practice.
 
 ## Agent Operations
+
+- [LOCAL_WORKSPACE.md](./LOCAL_WORKSPACE.md)
+  Windows checkout setup, package restoration, existing agent roles, and the October 6 resume checkpoint.
 
 - [Agents/Gottspan/README.md](./Agents/Gottspan/README.md)
   The canonical repo-manager contract and entry point for project coordination.
@@ -83,28 +86,31 @@ These define current preferred approaches or sequencing.
   The deterministic TopDown3D natural-object placement, cost-layer, rendering, art, performance, and proof contract.
 - [IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md](./IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md)
   The implemented deterministic Ironstone node, gathering transaction, inventory, UI, and snapshot boundary.
-- [IMPLEMENTATION_SEQUENCE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/IMPLEMENTATION_SEQUENCE.md)
-- [GAMEPLAY_ARCHITECTURE_BASELINES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md)
-- [INPUT_ARCHITECTURE_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/INPUT_ARCHITECTURE_STANDARD.md)
-- [MOVEMENT_CAMERA_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/MOVEMENT_CAMERA_STANDARD.md)
+- [IMPLEMENTATION_SEQUENCE.md](./IMPLEMENTATION_SEQUENCE.md)
+- [GAMEPLAY_ARCHITECTURE_BASELINES.md](./GAMEPLAY_ARCHITECTURE_BASELINES.md)
+- [INPUT_ARCHITECTURE_STANDARD.md](./INPUT_ARCHITECTURE_STANDARD.md)
+- [MOVEMENT_CAMERA_STANDARD.md](./MOVEMENT_CAMERA_STANDARD.md)
 - [CLIMBING_TRAVERSAL_PLAN.md](./CLIMBING_TRAVERSAL_PLAN.md)
   The proposal for steep incline, scramble, wall, and overhang traversal and animation.
 - [SMART_TRAVERSAL_STANDARD.md](./SMART_TRAVERSAL_STANDARD.md)
   The contextual sprint traversal contract, first spin/vault move set, safety boundaries, and extension seam.
 - [SURVIVAL_SYSTEM_STANDARD.md](./SURVIVAL_SYSTEM_STANDARD.md)
   The four-vital player-state, depletion, persistence, procedural-world, and compact HUD contract.
-- [URP_2D_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/URP_2D_STANDARD.md) — legacy 2D maintenance only.
-- [UNITY_AUTOMATION.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/UNITY_AUTOMATION.md)
-- [CODEX_EDITOR_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/CODEX_EDITOR_STANDARD.md)
+- [URP_2D_STANDARD.md](./URP_2D_STANDARD.md) — legacy 2D maintenance only.
+- [UNITY_AUTOMATION.md](./UNITY_AUTOMATION.md)
+- [CODEX_EDITOR_STANDARD.md](./CODEX_EDITOR_STANDARD.md)
 
 ## Project Snapshot Docs
 
 These describe current repo state rather than durable design truth.
 
-- [PROJECT_BASELINE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/PROJECT_BASELINE.md)
+- [Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md](./Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md)
+  Windows Editor scene completeness, runtime control checks, missing Death Valley ground markers, test gaps, and the next repair sequence.
+
+- [PROJECT_BASELINE.md](./PROJECT_BASELINE.md)
 - [PROJECT_STATUS.md](./PROJECT_STATUS.md)
-- [ROADMAP.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/ROADMAP.md)
-- [RESEARCH_PLAN.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/RESEARCH_PLAN.md)
+- [ROADMAP.md](./ROADMAP.md)
+- [RESEARCH_PLAN.md](./RESEARCH_PLAN.md)
 - [ConversionEvidence/LEGACY_BASELINE_2026-08-12.md](./ConversionEvidence/LEGACY_BASELINE_2026-08-12.md)
   The immutable CP-02 scene, renderer, hierarchy, Build Settings, Git-blob, and SHA-256 preservation anchor for the protected 2D path.
 - [ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md](./ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md)
@@ -125,11 +131,11 @@ These are intentionally non-canonical. They preserve ideas, research, or working
 
 - [Engine foundation research](../Engine/Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md)
   Research for the user-directed proprietary engine, standard third-person view and open Greater Wasteland rock workbench; proposed language, libraries, Windows-first platform policy and foundation evidence gates. No engine implementation is claimed.
-- [WORLD_GEN_REFERENCE_NOTES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_GEN_REFERENCE_NOTES.md)
+- [WORLD_GEN_REFERENCE_NOTES.md](./WORLD_GEN_REFERENCE_NOTES.md)
   Distilled world-generation ideas from exploratory discussion.
-- [UNITY_TILEMAP_PROCGEN_REFERENCE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/UNITY_TILEMAP_PROCGEN_REFERENCE.md)
+- [UNITY_TILEMAP_PROCGEN_REFERENCE.md](./UNITY_TILEMAP_PROCGEN_REFERENCE.md)
   Unity-facing implementation notes from exploratory discussion.
-- [WORLD_GEN_RESEARCH_SUMMARY.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_GEN_RESEARCH_SUMMARY.md)
+- [WORLD_GEN_RESEARCH_SUMMARY.md](./WORLD_GEN_RESEARCH_SUMMARY.md)
   External research findings from Unity docs, developer practice, and similar projects.
 
 ## Working Rule

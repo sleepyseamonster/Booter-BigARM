@@ -4,6 +4,10 @@ This is the shared implementation pulse for Booter & BigARM. It records what liv
 
 Last reconciled: 2026-09-21 by Gottspan for production-host routing and Unity rock-work resumption. Existing workstream proof rows retain their earlier evidence boundaries.
 
+## Windows Editor Audit — 2026-10-06
+
+The [Editor playability audit](./Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md) supersedes older snapshot rows for the narrow evidence it establishes: the original generated-world scene passes basic grounding, keyboard/gamepad movement, camera, inventory, and companion motion checks. The original Death Valley scene lacks `TopDown3DGroundSurface` on its 256 terrain owners and fails grounding; adding markers only in runtime memory confirms the repair direction. The focused system run passed 160/162 tests; decoration-radius expectation drift and macOS-only native authoring account for the two failures. The complete broad suite remains unverified. The user's current target is Editor Play mode; temporary executable builds were removed. Visual, physical-controller, extended traversal, and performance acceptance remain separate.
+
 ## Active Program
 
 - The repository-root Unity project is again the sole active production implementation. `Unreal/`, `Engine/`, and `Assets/_Project/Legacy2D/` are preserved references and receive no new production work without a new explicit user decision.

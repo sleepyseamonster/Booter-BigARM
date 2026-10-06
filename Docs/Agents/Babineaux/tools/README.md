@@ -22,6 +22,16 @@ Before adding a helper or automation entry point, confirm that it:
 
 ## Current Inventory
 
+### Editor playability audit
+
+- **Report:** [Editor playability audit, 2026-10-06](../../../Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md).
+- **Structural entry point:** `Assets/_Project/Scripts/Editor/Validation/RepositoryPlayabilityAudit.cs`, `BooterBigArm.Editor.RepositoryPlayabilityAudit.ValidateBothFromCli`. It opens both scene assets for inspection without saving, invokes the existing validators, performs terrain readback, and warns about missing Death Valley ground markers.
+- **Terrain readback:** `Assets/_Project/Scripts/Editor/Validation/BadwaterTerrainReadbackAudit.cs`. Only the read-only methods from the retained isolated terrain builder are mirrored here; its optional `-badwaterReport` writes a JSON report to the explicitly selected output path.
+- **Runtime checks:** `Assets/_Project/Tests/Editor/ScenePlayabilityAuditTests.cs`, filter `BooterBigArm.Tests.ScenePlayabilityAuditTests`. Marked `Explicit`; run only for an authorized playability check. Tests temporarily change in-memory background/input routing settings, drive simulated devices, and restore them. A diagnostic case temporarily adds missing terrain markers in Play mode; no scene is saved.
+- **Progress logging:** `Assets/_Project/Tests/Editor/AuditTestCallbacks.cs` registers test callbacks only with `-repositoryAuditProgress`.
+- **Proof:** Both existing structural scene validators and terrain readback pass. Original game-world runtime controls pass. Original Death Valley grounding fails; the in-memory marker diagnostic passes. See the report for the exact test boundaries and incomplete broad-suite result.
+- **Prerequisites:** Pinned Unity editor, restored packages, and exclusive project ownership; preserve foreground focus. No standalone executable or new package is required.
+
 ### `launch-unity.sh`
 
 - **Purpose:** Open this project in its pinned Unity editor without activating it, avoid a duplicate target-project session, and wait for the real editor window while preserving the user's foreground application.
