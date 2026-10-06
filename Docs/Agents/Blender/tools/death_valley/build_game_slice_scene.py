@@ -103,11 +103,15 @@ def materials(color_path: Path, mask_path: Path, scan_manifest: Path):
     rock_weight.operation = "MAXIMUM"
     l.new(bedrock, rock_weight.inputs[0])
     l.new(talus, rock_weight.inputs[1])
+    rock_strength = n.new("ShaderNodeMath")
+    rock_strength.operation = "MULTIPLY"
+    rock_strength.inputs[1].default_value = 0.23
+    l.new(rock_weight.outputs[0], rock_strength.inputs[0])
     strength = n.new("ShaderNodeMath")
-    strength.operation = "MULTIPLY"
+    strength.operation = "ADD"
     strength.inputs[1].default_value = 0.17
-    l.new(rock_weight.outputs[0], strength.inputs[0])
-    rough_color = mix_color(n, l, "Scan detail only on rock", strength.outputs[0],
+    l.new(rock_strength.outputs[0], strength.inputs[0])
+    rough_color = mix_color(n, l, "Subtle scanned grain on alluvium, stronger on rock", strength.outputs[0],
                            base, diffuse.outputs["Color"])
     l.new(rough_color, p.inputs["Base Color"])
 
@@ -125,7 +129,16 @@ def materials(color_path: Path, mask_path: Path, scan_manifest: Path):
     bump.inputs["Distance"].default_value = 0.07
     l.new(noise.outputs["Fac"], bump.inputs["Height"])
     l.new(normal.outputs["Normal"], bump.inputs["Normal"])
-    l.new(bump.outputs["Normal"], p.inputs["Normal"])
+    fine_noise = n.new("ShaderNodeTexNoise")
+    fine_noise.inputs["Scale"].default_value = 8.0
+    fine_noise.inputs["Detail"].default_value = 3
+    l.new(geometry.outputs["Position"], fine_noise.inputs["Vector"])
+    fine_bump = n.new("ShaderNodeBump")
+    fine_bump.inputs["Strength"].default_value = 0.42
+    fine_bump.inputs["Distance"].default_value = 0.035
+    l.new(fine_noise.outputs["Fac"], fine_bump.inputs["Height"])
+    l.new(bump.outputs["Normal"], fine_bump.inputs["Normal"])
+    l.new(fine_bump.outputs["Normal"], p.inputs["Normal"])
     rough = image_node(n, l, "CC0 rocky ground roughness", scan_path("Rough"),
                        scale.outputs["Vector"], non_color=True)
     l.new(rough.outputs["Color"], p.inputs["Roughness"])

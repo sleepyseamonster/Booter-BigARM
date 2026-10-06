@@ -85,6 +85,10 @@ def main() -> None:
     render_perspective("badwater_slice_game_view", (-724, -424, -10),
                        (-374, -174, 45), path)
     out["badwater_slice_game_view"] = str(path)
+    path = args.output_dir / "badwater_slice_surface_close.png"
+    render_perspective("badwater_slice_surface_close", (-724, -424, -32),
+                       (-724, -424, -38), path)
+    out["badwater_slice_surface_close"] = str(path)
     bpy.data.objects.remove(light, do_unlink=True)
     print(json.dumps(out))
 
