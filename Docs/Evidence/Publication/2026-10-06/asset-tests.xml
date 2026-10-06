@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Passed" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-06 17:52:44Z" end-time="2026-10-06 17:52:46Z" duration="2.1279575">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-10-06 17:52:44Z" end-time="2026-10-06 17:52:46Z" duration="2.127958" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1531" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/badwater-unity-u3tA54/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-10-06 17:52:44Z" end-time="2026-10-06 17:52:46Z" duration="2.121899" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70775" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1532" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-10-06 17:52:44Z" end-time="2026-10-06 17:52:46Z" duration="2.119596" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1533" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-10-06 17:52:44Z" end-time="2026-10-06 17:52:46Z" duration="2.117491" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1043" name="TopDown3DAuthoredFormationTemplateTests" fullname="BooterBigArm.Tests.TopDown3DAuthoredFormationTemplateTests" classname="BooterBigArm.Tests.TopDown3DAuthoredFormationTemplateTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-06 17:52:44Z" end-time="2026-10-06 17:52:46Z" duration="1.556651" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1046" name="FormationCatalogContainsBothTemplatesAndSelectsDeterministically" fullname="BooterBigArm.Tests.TopDown3DAuthoredFormationTemplateTests.FormationCatalogContainsBothTemplatesAndSelectsDeterministically" methodname="FormationCatalogContainsBothTemplatesAndSelectsDeterministically" classname="BooterBigArm.Tests.TopDown3DAuthoredFormationTemplateTests" runstate="Runnable" seed="1992845579" result="Passed" start-time="2026-10-06 17:52:44Z" end-time="2026-10-06 17:52:46Z" duration="1.475462" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="HandbuiltSpireBakeRetainsEveryCapturedRockTransform" fullname="BooterBigArm.Tests.TopDown3DAuthoredFormationTemplateTests.HandbuiltSpireBakeRetainsEveryCapturedRockTransform" methodname="HandbuiltSpireBakeRetainsEveryCapturedRockTransform" classname="BooterBigArm.Tests.TopDown3DAuthoredFormationTemplateTests" runstate="Runnable" seed="1801551182" result="Passed" start-time="2026-10-06 17:52:46Z" end-time="2026-10-06 17:52:46Z" duration="0.004732" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="HandbuiltSpireReferencePreservesAuthoredComposition" fullname="BooterBigArm.Tests.TopDown3DAuthoredFormationTemplateTests.HandbuiltSpireReferencePreservesAuthoredComposition" methodname="HandbuiltSpireReferencePreservesAuthoredComposition" classname="BooterBigArm.Tests.TopDown3DAuthoredFormationTemplateTests" runstate="Runnable" seed="542772579" result="Passed" start-time="2026-10-06 17:52:46Z" end-time="2026-10-06 17:52:46Z" duration="0.064244" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1151" name="TopDown3DNaturalObjectTests" fullname="BooterBigArm.Tests.TopDown3DNaturalObjectTests" classname="BooterBigArm.Tests.TopDown3DNaturalObjectTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-06 17:52:46Z" end-time="2026-10-06 17:52:46Z" duration="0.494777" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1152" name="ChunkPlan_IsDeterministicAndRootChunkOwned" fullname="BooterBigArm.Tests.TopDown3DNaturalObjectTests.ChunkPlan_IsDeterministicAndRootChunkOwned" methodname="ChunkPlan_IsDeterministicAndRootChunkOwned" classname="BooterBigArm.Tests.TopDown3DNaturalObjectTests" runstate="Runnable" seed="383414303" result="Passed" start-time="2026-10-06 17:52:46Z" end-time="2026-10-06 17:52:46Z" duration="0.247471" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1161" name="PhysicalGenerationVersion_DoesNotReshuffleCosmetics" fullname="BooterBigArm.Tests.TopDown3DNaturalObjectTests.PhysicalGenerationVersion_DoesNotReshuffleCosmetics" methodname="PhysicalGenerationVersion_DoesNotReshuffleCosmetics" classname="BooterBigArm.Tests.TopDown3DNaturalObjectTests" runstate="Runnable" seed="1404534585" result="Passed" start-time="2026-10-06 17:52:46Z" end-time="2026-10-06 17:52:46Z" duration="0.069000" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1165" name="ProductionGroundClutter_PopulatesAllCosmeticLayers" fullname="BooterBigArm.Tests.TopDown3DNaturalObjectTests.ProductionGroundClutter_PopulatesAllCosmeticLayers" methodname="ProductionGroundClutter_PopulatesAllCosmeticLayers" classname="BooterBigArm.Tests.TopDown3DNaturalObjectTests" runstate="Runnable" seed="1069023703" result="Passed" start-time="2026-10-06 17:52:46Z" end-time="2026-10-06 17:52:46Z" duration="0.170668" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Cosmetic placements by layer: Scatter=23, GroundDetail=43, FineGrayCluster=38
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestSuite" id="1534" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="95" result="Passed" start-time="2026-10-06 17:52:46Z" end-time="2026-10-06 17:52:46Z" duration="0.017136" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1442" name="WorldCliffFacePlannerTests" fullname="BooterBigArm.Tests.WorldCreator.WorldCliffFacePlannerTests" classname="BooterBigArm.Tests.WorldCreator.WorldCliffFacePlannerTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-06 17:52:46Z" end-time="2026-10-06 17:52:46Z" duration="0.003995" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1443" name="BorderOwnerAndBuildOrderCannotChangeTheSameCanyonSpan" fullname="BooterBigArm.Tests.WorldCreator.WorldCliffFacePlannerTests.BorderOwnerAndBuildOrderCannotChangeTheSameCanyonSpan" methodname="BorderOwnerAndBuildOrderCannotChangeTheSameCanyonSpan" classname="BooterBigArm.Tests.WorldCreator.WorldCliffFacePlannerTests" runstate="Runnable" seed="840859637" result="Passed" start-time="2026-10-06 17:52:46Z" end-time="2026-10-06 17:52:46Z" duration="0.002614" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1444" name="CanyonParentAndStrataCannotJoinAcrossAContact" fullname="BooterBigArm.Tests.WorldCreator.WorldCliffFacePlannerTests.CanyonParentAndStrataCannotJoinAcrossAContact" methodname="CanyonParentAndStrataCannotJoinAcrossAContact" classname="BooterBigArm.Tests.WorldCreator.WorldCliffFacePlannerTests" runstate="Runnable" seed="1049366000" result="Passed" start-time="2026-10-06 17:52:46Z" end-time="2026-10-06 17:52:46Z" duration="0.000203" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

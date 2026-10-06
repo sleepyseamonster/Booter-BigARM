@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="43" result="Passed" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-06 17:34:13Z" end-time="2026-10-06 17:35:22Z" duration="69.2021469">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-10-06 17:34:13Z" end-time="2026-10-06 17:35:22Z" duration="69.202147" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1531" name="BooterBigArm.Editor.Tests.dll" fullname="/private/tmp/badwater-unity-u3tA54/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-10-06 17:34:13Z" end-time="2026-10-06 17:35:22Z" duration="69.195903" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="62328" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1532" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-10-06 17:34:13Z" end-time="2026-10-06 17:35:22Z" duration="69.192382" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1533" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="453" result="Passed" start-time="2026-10-06 17:34:13Z" end-time="2026-10-06 17:35:22Z" duration="69.189813" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1050" name="TopDown3DCliffFaceDecoratorTests" fullname="BooterBigArm.Tests.TopDown3DCliffFaceDecoratorTests" classname="BooterBigArm.Tests.TopDown3DCliffFaceDecoratorTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-06 17:34:13Z" end-time="2026-10-06 17:34:14Z" duration="1.685188" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1051" name="BedrockSpanKeepsItsRimEndpointsAcrossLodsAndFacesOutward" fullname="BooterBigArm.Tests.TopDown3DCliffFaceDecoratorTests.BedrockSpanKeepsItsRimEndpointsAcrossLodsAndFacesOutward" methodname="BedrockSpanKeepsItsRimEndpointsAcrossLodsAndFacesOutward" classname="BooterBigArm.Tests.TopDown3DCliffFaceDecoratorTests" runstate="Runnable" seed="733945042" result="Passed" start-time="2026-10-06 17:34:13Z" end-time="2026-10-06 17:34:13Z" duration="0.016191" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1054" name="GentlePrototypeDoesNotPlaceCanyonWallRocksAfterReload" fullname="BooterBigArm.Tests.TopDown3DCliffFaceDecoratorTests.GentlePrototypeDoesNotPlaceCanyonWallRocksAfterReload" methodname="GentlePrototypeDoesNotPlaceCanyonWallRocksAfterReload" classname="BooterBigArm.Tests.TopDown3DCliffFaceDecoratorTests" runstate="Runnable" seed="295538750" result="Passed" start-time="2026-10-06 17:34:13Z" end-time="2026-10-06 17:34:14Z" duration="1.643061" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1052" name="LayerRhythmSharesTheSameGeometryAtAdjacentSpanEndpoints" fullname="BooterBigArm.Tests.TopDown3DCliffFaceDecoratorTests.LayerRhythmSharesTheSameGeometryAtAdjacentSpanEndpoints" methodname="LayerRhythmSharesTheSameGeometryAtAdjacentSpanEndpoints" classname="BooterBigArm.Tests.TopDown3DCliffFaceDecoratorTests" runstate="Runnable" seed="340519439" result="Passed" start-time="2026-10-06 17:34:14Z" end-time="2026-10-06 17:34:14Z" duration="0.002485" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1053" name="SavedCliffSourceHasFiveBakedRockRecipesWithDescendingLods" fullname="BooterBigArm.Tests.TopDown3DCliffFaceDecoratorTests.SavedCliffSourceHasFiveBakedRockRecipesWithDescendingLods" methodname="SavedCliffSourceHasFiveBakedRockRecipesWithDescendingLods" classname="BooterBigArm.Tests.TopDown3DCliffFaceDecoratorTests" runstate="Runnable" seed="539559452" result="Passed" start-time="2026-10-06 17:34:14Z" end-time="2026-10-06 17:34:14Z" duration="0.013934" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1170" name="TopDown3DPerformanceTests" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-06 17:34:14Z" end-time="2026-10-06 17:34:18Z" duration="3.299147" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1176" name="CoarseCoverageRefreshesOnlyTilesAffectedByNearOrMiddleChanges" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.CoarseCoverageRefreshesOnlyTilesAffectedByNearOrMiddleChanges" methodname="CoarseCoverageRefreshesOnlyTilesAffectedByNearOrMiddleChanges" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="347859606" result="Passed" start-time="2026-10-06 17:34:14Z" end-time="2026-10-06 17:34:14Z" duration="0.009727" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1175" name="CoarseTerrainMasksOnlyQuadsCoveredByLoadedFinerTiles" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.CoarseTerrainMasksOnlyQuadsCoveredByLoadedFinerTiles" methodname="CoarseTerrainMasksOnlyQuadsCoveredByLoadedFinerTiles" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="932707051" result="Passed" start-time="2026-10-06 17:34:14Z" end-time="2026-10-06 17:34:14Z" duration="0.001284" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1180" name="FailedDistanceTerrainIsQueuedForBoundedRetryWithoutMoving" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.FailedDistanceTerrainIsQueuedForBoundedRetryWithoutMoving" methodname="FailedDistanceTerrainIsQueuedForBoundedRetryWithoutMoving" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="1177391305" result="Passed" start-time="2026-10-06 17:34:14Z" end-time="2026-10-06 17:34:14Z" duration="0.012231" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[World Creator Mid representation -3,-3 Failed: test failure
+]]></output>
+            </test-case>
+            <test-case id="1178" name="FailedNearTerrainIsQueuedForBoundedRetryWithoutChangingChunks" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.FailedNearTerrainIsQueuedForBoundedRetryWithoutChangingChunks" methodname="FailedNearTerrainIsQueuedForBoundedRetryWithoutChangingChunks" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="217534253" result="Passed" start-time="2026-10-06 17:34:14Z" end-time="2026-10-06 17:34:14Z" duration="0.019930" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[World Creator near representation (30, 17) Failed: test failure
+]]></output>
+            </test-case>
+            <test-case id="1171" name="FastTerrainPathRetainsMediumShaleTransitionAlbedo" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.FastTerrainPathRetainsMediumShaleTransitionAlbedo" methodname="FastTerrainPathRetainsMediumShaleTransitionAlbedo" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="931985690" result="Passed" start-time="2026-10-06 17:34:14Z" end-time="2026-10-06 17:34:14Z" duration="0.003393" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1173" name="MovementReadinessRequiresTheProjectedChunkCollider" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.MovementReadinessRequiresTheProjectedChunkCollider" methodname="MovementReadinessRequiresTheProjectedChunkCollider" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="1306878470" result="Passed" start-time="2026-10-06 17:34:14Z" end-time="2026-10-06 17:34:14Z" duration="0.014469" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1177" name="NearMidAndFarTilesCoverTraversalInFullAndReducedProfiles" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.NearMidAndFarTilesCoverTraversalInFullAndReducedProfiles" methodname="NearMidAndFarTilesCoverTraversalInFullAndReducedProfiles" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="826115605" result="Passed" start-time="2026-10-06 17:34:14Z" end-time="2026-10-06 17:34:16Z" duration="2.082104" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1172" name="StartupQueuesImmediateTerrainWithoutSynchronousMeshConstruction" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.StartupQueuesImmediateTerrainWithoutSynchronousMeshConstruction" methodname="StartupQueuesImmediateTerrainWithoutSynchronousMeshConstruction" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="1005918707" result="Passed" start-time="2026-10-06 17:34:16Z" end-time="2026-10-06 17:34:16Z" duration="0.006271" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1174" name="UnfinishedDecorationCanBeCancelledBeforeChunkPublication" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.UnfinishedDecorationCanBeCancelledBeforeChunkPublication" methodname="UnfinishedDecorationCanBeCancelledBeforeChunkPublication" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="1681493914" result="Passed" start-time="2026-10-06 17:34:16Z" end-time="2026-10-06 17:34:17Z" duration="0.221073" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1179" name="WaitingNearTerrainDoesNotBlockAnotherCompletedRequest" fullname="BooterBigArm.Tests.TopDown3DPerformanceTests.WaitingNearTerrainDoesNotBlockAnotherCompletedRequest" methodname="WaitingNearTerrainDoesNotBlockAnotherCompletedRequest" classname="BooterBigArm.Tests.TopDown3DPerformanceTests" runstate="Runnable" seed="1352207567" result="Passed" start-time="2026-10-06 17:34:17Z" end-time="2026-10-06 17:34:18Z" duration="0.919105" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[World Creator near representation (30, 17) Failed: independent failure
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1400" name="TopDown3DWorldGeneratorTests" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.676102" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1408" name="DistantRebase_EvictsDisposableLocalDataWithoutChangingAbsoluteKeys" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests.DistantRebase_EvictsDisposableLocalDataWithoutChangingAbsoluteKeys" methodname="DistantRebase_EvictsDisposableLocalDataWithoutChangingAbsoluteKeys" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" seed="1300727548" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.353587" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1405" name="FarAbsoluteCoordinates_RemainDeterministicAndFinite" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests.FarAbsoluteCoordinates_RemainDeterministicAndFinite" methodname="FarAbsoluteCoordinates_RemainDeterministicAndFinite" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" seed="1151917709" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.003564" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1402" name="InitialPlayableArea_HasGentleNoiseInsteadOfDeepCanyon" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests.InitialPlayableArea_HasGentleNoiseInsteadOfDeepCanyon" methodname="InitialPlayableArea_HasGentleNoiseInsteadOfDeepCanyon" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" seed="1963164589" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.007101" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1404" name="NeighboringChunkBoundary_UsesTheExactSameAbsoluteSample" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests.NeighboringChunkBoundary_UsesTheExactSameAbsoluteSample" methodname="NeighboringChunkBoundary_UsesTheExactSameAbsoluteSample" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" seed="238581716" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.001791" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1407" name="OriginRebase_PreservesAbsoluteRepresentationIdentity" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests.OriginRebase_PreservesAbsoluteRepresentationIdentity" methodname="OriginRebase_PreservesAbsoluteRepresentationIdentity" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" seed="1678562830" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.184189" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1410" name="ProductionGeneratorAdapter_ContainsNoLegacyMacroTerrainAlgorithm" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests.ProductionGeneratorAdapter_ContainsNoLegacyMacroTerrainAlgorithm" methodname="ProductionGeneratorAdapter_ContainsNoLegacyMacroTerrainAlgorithm" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" seed="541519389" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.001904" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1401" name="ProductionProfile_KeepsSeededGentlePrototypeStart" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests.ProductionProfile_KeepsSeededGentlePrototypeStart" methodname="ProductionProfile_KeepsSeededGentlePrototypeStart" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" seed="2112629945" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.000478" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1409" name="PrototypeSaveCompatibility_RejectsTopologyV1AndWrongWorld" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests.PrototypeSaveCompatibility_RejectsTopologyV1AndWrongWorld" methodname="PrototypeSaveCompatibility_RejectsTopologyV1AndWrongWorld" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" seed="182526432" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.001939" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1406" name="RepresentationScheduler_ProducesNearCollisionAndNonCollidingFarData" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests.RepresentationScheduler_ProducesNearCollisionAndNonCollidingFarData" methodname="RepresentationScheduler_ProducesNearCollisionAndNonCollidingFarData" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" seed="283217341" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.095569" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1403" name="SurfaceSample_IsDeterministicAndOwnedByWorldQueryService" fullname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests.SurfaceSample_IsDeterministicAndOwnedByWorldQueryService" methodname="SurfaceSample_IsDeterministicAndOwnedByWorldQueryService" classname="BooterBigArm.Tests.TopDown3DWorldGeneratorTests" runstate="Runnable" seed="811140673" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:18Z" duration="0.000859" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestSuite" id="1534" name="WorldCreator" fullname="BooterBigArm.Tests.WorldCreator" runstate="Runnable" testcasecount="95" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:35:22Z" duration="63.499828" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1434" name="UnboundedHybridWorldQueryTests" fullname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests" classname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:47Z" duration="28.441133" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1439" name="CanonicalBoundarySamplesAgreeExactlyAcrossIndependentQueryWindows" fullname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests.CanonicalBoundarySamplesAgreeExactlyAcrossIndependentQueryWindows" methodname="CanonicalBoundarySamplesAgreeExactlyAcrossIndependentQueryWindows" classname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests" runstate="Runnable" seed="153022829" result="Passed" start-time="2026-10-06 17:34:18Z" end-time="2026-10-06 17:34:23Z" duration="4.735429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+              <test-case id="1436" name="GeneratedFlatCoreIsLevelAcrossDetailTiersAndCacheReload" fullname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests.GeneratedFlatCoreIsLevelAcrossDetailTiersAndCacheReload" methodname="GeneratedFlatCoreIsLevelAcrossDetailTiersAndCacheReload" classname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests" runstate="Runnable" seed="1822525209" result="Passed" start-time="2026-10-06 17:34:23Z" end-time="2026-10-06 17:34:28Z" duration="4.684051" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+              <test-case id="1435" name="NeighborLandscapeFastPathMatchesCompleteContextSampling" fullname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests.NeighborLandscapeFastPathMatchesCompleteContextSampling" methodname="NeighborLandscapeFastPathMatchesCompleteContextSampling" classname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests" runstate="Runnable" seed="924404520" result="Passed" start-time="2026-10-06 17:34:28Z" end-time="2026-10-06 17:34:32Z" duration="4.706333" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+              <test-case id="1440" name="OnDemandPlanAndTerrainCachesRemainBoundedAcrossLongTravel" fullname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests.OnDemandPlanAndTerrainCachesRemainBoundedAcrossLongTravel" methodname="OnDemandPlanAndTerrainCachesRemainBoundedAcrossLongTravel" classname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests" runstate="Runnable" seed="409297684" result="Passed" start-time="2026-10-06 17:34:32Z" end-time="2026-10-06 17:34:37Z" duration="4.834375" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+              <test-case id="1438" name="QueryResultsAreIndependentOfWindowRequestOrderAndEviction" fullname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests.QueryResultsAreIndependentOfWindowRequestOrderAndEviction" methodname="QueryResultsAreIndependentOfWindowRequestOrderAndEviction" classname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests" runstate="Runnable" seed="1248815429" result="Passed" start-time="2026-10-06 17:34:37Z" end-time="2026-10-06 17:34:42Z" duration="4.677015" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+              <test-case id="1441" name="RepresentationCompilerCanBuildFarAbsoluteTilesFromUnboundedService" fullname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests.RepresentationCompilerCanBuildFarAbsoluteTilesFromUnboundedService" methodname="RepresentationCompilerCanBuildFarAbsoluteTilesFromUnboundedService" classname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests" runstate="Runnable" seed="260574025" result="Passed" start-time="2026-10-06 17:34:42Z" end-time="2026-10-06 17:34:47Z" duration="4.801495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+              <test-case id="1437" name="RuntimeProofCoordinateAdapterRoundTripsFarAddressesWithoutDefiningGlobeRules" fullname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests.RuntimeProofCoordinateAdapterRoundTripsFarAddressesWithoutDefiningGlobeRules" methodname="RuntimeProofCoordinateAdapterRoundTripsFarAddressesWithoutDefiningGlobeRules" classname="BooterBigArm.Tests.WorldCreator.UnboundedHybridWorldQueryTests" runstate="Runnable" seed="30217113" result="Passed" start-time="2026-10-06 17:34:47Z" end-time="2026-10-06 17:34:47Z" duration="0.000316" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1499" name="WorldRepresentationCompilerTests" fullname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests" classname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-06 17:34:47Z" end-time="2026-10-06 17:35:11Z" duration="24.577071" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1503" name="CacheEnforcesEntryAndByteBudgetsAndReturnsEvictedBuffers" fullname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests.CacheEnforcesEntryAndByteBudgetsAndReturnsEvictedBuffers" methodname="CacheEnforcesEntryAndByteBudgetsAndReturnsEvictedBuffers" classname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests" runstate="Runnable" seed="1467656606" result="Passed" start-time="2026-10-06 17:34:47Z" end-time="2026-10-06 17:34:52Z" duration="4.796907" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+              <test-case id="1501" name="NearDetailNoiseOnlyChangesNearRepresentationHeightAndMaterialSlope" fullname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests.NearDetailNoiseOnlyChangesNearRepresentationHeightAndMaterialSlope" methodname="NearDetailNoiseOnlyChangesNearRepresentationHeightAndMaterialSlope" classname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests" runstate="Runnable" seed="2123633158" result="Passed" start-time="2026-10-06 17:34:52Z" end-time="2026-10-06 17:34:56Z" duration="4.702538" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+              <test-case id="1500" name="NearMidAndFarRetainCanonicalIdentityWithTierSpecificPolicy" fullname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests.NearMidAndFarRetainCanonicalIdentityWithTierSpecificPolicy" methodname="NearMidAndFarRetainCanonicalIdentityWithTierSpecificPolicy" classname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests" runstate="Runnable" seed="2128038171" result="Passed" start-time="2026-10-06 17:34:56Z" end-time="2026-10-06 17:35:01Z" duration="4.729936" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+              <test-case id="1504" name="PoolAllocationsRemainBoundedAfterWarmup" fullname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests.PoolAllocationsRemainBoundedAfterWarmup" methodname="PoolAllocationsRemainBoundedAfterWarmup" classname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests" runstate="Runnable" seed="1939098499" result="Passed" start-time="2026-10-06 17:35:01Z" end-time="2026-10-06 17:35:07Z" duration="5.746715" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+              <test-case id="1502" name="RebaseChangesOnlyReusableLocalBuffers" fullname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests.RebaseChangesOnlyReusableLocalBuffers" methodname="RebaseChangesOnlyReusableLocalBuffers" classname="BooterBigArm.Tests.WorldCreator.WorldRepresentationCompilerTests" runstate="Runnable" seed="679444105" result="Passed" start-time="2026-10-06 17:35:07Z" end-time="2026-10-06 17:35:11Z" duration="4.599006" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[World Creator Batch 2 non-canon proof validation passed.
+World Creator Batch 2 non-canon proof validation passed.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1520" name="WorldSurfaceMaterialTests" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-06 17:35:11Z" end-time="2026-10-06 17:35:22Z" duration="10.472246" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1524" name="CausalSurfaceResponse_DistinguishesExposedAndDepositionalGround" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.CausalSurfaceResponse_DistinguishesExposedAndDepositionalGround" methodname="CausalSurfaceResponse_DistinguishesExposedAndDepositionalGround" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="1300476" result="Passed" start-time="2026-10-06 17:35:11Z" end-time="2026-10-06 17:35:12Z" duration="0.380376" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1522" name="CoarseMaterialUsesCoarseSurfaceNormalWithoutDetailedCacheContamination" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.CoarseMaterialUsesCoarseSurfaceNormalWithoutDetailedCacheContamination" methodname="CoarseMaterialUsesCoarseSurfaceNormalWithoutDetailedCacheContamination" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="1707624503" result="Passed" start-time="2026-10-06 17:35:12Z" end-time="2026-10-06 17:35:12Z" duration="0.002996" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1525" name="NearMidFarRepresentations_UseCanonicalMaterialsForTheirSurfaceTier" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.NearMidFarRepresentations_UseCanonicalMaterialsForTheirSurfaceTier" methodname="NearMidFarRepresentations_UseCanonicalMaterialsForTheirSurfaceTier" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="504251660" result="Passed" start-time="2026-10-06 17:35:12Z" end-time="2026-10-06 17:35:12Z" duration="0.203344" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1526" name="RepresentationIdentity_ChangesWithMaterialVersion" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.RepresentationIdentity_ChangesWithMaterialVersion" methodname="RepresentationIdentity_ChangesWithMaterialVersion" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="1030880208" result="Passed" start-time="2026-10-06 17:35:12Z" end-time="2026-10-06 17:35:12Z" duration="0.000304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1527" name="SemanticDustPlan_IsContinuousAndRebaseStable" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.SemanticDustPlan_IsContinuousAndRebaseStable" methodname="SemanticDustPlan_IsContinuousAndRebaseStable" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="50761153" result="Passed" start-time="2026-10-06 17:35:12Z" end-time="2026-10-06 17:35:22Z" duration="9.877486" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1521" name="SemanticMaterialSample_IsDeterministicBoundedAndContextDriven" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.SemanticMaterialSample_IsDeterministicBoundedAndContextDriven" methodname="SemanticMaterialSample_IsDeterministicBoundedAndContextDriven" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="658689010" result="Passed" start-time="2026-10-06 17:35:22Z" end-time="2026-10-06 17:35:22Z" duration="0.000769" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1523" name="SharedBoundary_HasExactMaterialContinuity" fullname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests.SharedBoundary_HasExactMaterialContinuity" methodname="SharedBoundary_HasExactMaterialContinuity" classname="BooterBigArm.Tests.WorldCreator.WorldSurfaceMaterialTests" runstate="Runnable" seed="923427200" result="Passed" start-time="2026-10-06 17:35:22Z" end-time="2026-10-06 17:35:22Z" duration="0.003965" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /Users/worldbuilder/Library/Application Support/DefaultCompany/Booter & BigARM/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
