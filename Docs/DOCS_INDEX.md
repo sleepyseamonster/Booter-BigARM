@@ -40,6 +40,8 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md](./MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md)
+  Candidate designs and an implementation-ready TopDown3D plan for the player-placed micro dust harvester.
 - [Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md](./Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md)
   The proposed data-to-Blender-to-Unity plan for a bounded Death Valley-inspired landscape slice.
 - [TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md](./TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md)
