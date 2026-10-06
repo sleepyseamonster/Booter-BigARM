@@ -1,0 +1,14 @@
+{
+  "name": "Badwater basin-edge game-scale terrain study",
+  "working_crs": "EPSG:26911",
+  "bounds_m": [520400, 4006200, 522448, 4008248],
+  "source_resolution_m": 1,
+  "display_resolution_m": 2,
+  "chunk_size_m": 256,
+  "high_detail_rows": [4, 5],
+  "high_detail_columns": [1, 2],
+  "source_product": "USGS 1 Meter 11 x52y401 CA_FEMAR9Southeast_D24",
+  "source_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x52y401_CA_FEMAR9Southeast_D24.tif",
+  "source_metadata_url": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/CA_FEMAR9Southeast_D24/USGS_1M_11_x52y401_CA_FEMAR9Southeast_D24.xml",
+  "purpose": "A bounded 2.048 km terrain and material study across the basin floor, fan and eastern rock; 256 m chunks align to Unity heightmap sizes. This is a provisional art and export study, not a streamed Unity world."
+}

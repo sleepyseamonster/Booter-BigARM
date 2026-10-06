@@ -6,7 +6,7 @@
 
 Open the expanded `.blend` in Blender 5.2.2 LTS. It saves a free User Perspective view over Badwater Basin, with a yellow candidate detail boundary. Middle mouse orbits, Shift + middle mouse pans, the wheel zooms, and **Home** frames the full regional map. The Outliner has named `DeathValley_RegionalTerrain_200m`, `BadwaterCorridor40m`, `BadwaterPilot20m`, `BadwaterCanyonPatch10m`, and review-marker collections. Toggle the finer collections if you want to compare the broad terrain. There are no camera objects or game assets.
 
-The expanded file is open in the single Blender window for review. The older file remains preserved on disk; its unsaved viewport changes were discarded at the user's request.
+The expanded file was opened and verified in the single Blender window for regional review. It remains preserved on disk alongside the earlier file. The current close-range review scene is [BadwaterGameSlice.blend](./BadwaterGameSlice.blend).
 
 ## What is built
 
@@ -29,7 +29,7 @@ The new source snapshot and recorded service responses live in `/Users/worldbuil
 - The full-tile elevation, geology, and packed color hashes passed `verify_pipeline.py` in terrain-only mode for each level. Compared with bilinear parent terrain, interior elevation residual RMS was 11.62 m at 40 m, 3.57 m at 20 m, and 1.11 m at 10 m. These differences show added source relief; they do not establish absolute accuracy.
 - Each finer outer edge is fitted to its parent height over a 100 m transition, and image color blends inward separately. The full region, Badwater corridor, oblique corridor, and canyon patch were rendered from temporary review cameras without saving cameras into the `.blend`. The final canyon render no longer shows the initial rectangular color seam.
 
-Blender background mode reopened the final `.blend` and rendered the four previews successfully. The expanded file was then opened in the single Blender GUI window. Free GUI navigation has not been timed. If orbit or pan feels slow, compare the collection visibility first; no streaming loader is installed.
+Blender background mode reopened the final `.blend` and rendered the four previews successfully. The expanded file was also opened in the single Blender GUI window for regional review. Free GUI navigation has not been timed. If orbit or pan feels slow, compare the collection visibility first; no streaming loader is installed.
 
 ## Rebuild entry points
 
