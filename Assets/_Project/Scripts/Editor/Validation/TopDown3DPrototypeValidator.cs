@@ -787,7 +787,9 @@ namespace BooterBigArm.Editor
             if (!shader.isSupported || messages.Length > 0)
             {
                 errors.Add(
-                    $"The volumetric dust shader must compile without messages on the active editor platform. Supported={shader.isSupported}; messages={messages.Length}.");
+                    $"The volumetric dust shader must compile without messages on the active editor platform. Supported={shader.isSupported}; messages={messages.Length}. " +
+                    string.Join("; ", messages.Select(message =>
+                        $"{message.severity} ({message.platform}, line {message.line}): {message.message}")));
             }
         }
 
