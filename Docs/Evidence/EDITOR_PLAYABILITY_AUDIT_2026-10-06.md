@@ -2,6 +2,8 @@
 
 Audited the local `main` checkout restored from `4f2fe41c8e6074f99b6e55fb92a32e41f6fe9a54`, plus the preceding Windows setup changes. The user's current target is **Unity Editor Play mode**. Temporary standalone builds were removed, and no player-build command was retained in the new audit helper.
 
+**Subsequent repair:** The user's visible-crack report led to the [terrain seam repair](./Badwater/terrain-seam-repair-2026-10-06.md). That record supersedes this audit's original Death Valley grounding failure and border-readback readiness implication. Nine focused background checks now pass, including original-scene controls; the findings below describe the earlier candidate.
+
 ## Result
 
 | Scene | Current Editor evidence | Readiness |
@@ -103,7 +105,7 @@ Ignored `Logs/` holds the GUID/local-reference reports, source/readback JSON, fu
 
 ## Closeout and next sequence
 
-The original scenes, runtime gameplay code, terrain data, package versions, Build Settings, and legacy assets remain unchanged. Build/test-generated serializer changes and performance-test artifacts are inspected and removed or restored separately from intentional audit tools. Git author identity was configured repository-locally after the user identified themselves as `sleepyseamonster`, matching the restored publication commit. Windows setup and audit documentation form separate local commit batches. The eight audit C# source/metadata files remain uncommitted: the original Death Valley test still fails, and Gear Ball's publication SOP prohibits committing a failing candidate. Preserve these files for the next authorized scene repair and rerun. No push was performed.
+At this audit's closeout, the original scenes, runtime gameplay code, terrain data, package versions, Build Settings, and legacy assets remained unchanged. Build/test-generated serializer changes and performance-test artifacts were inspected and removed or restored separately from intentional audit tools. Git author identity was configured repository-locally after the user identified themselves as `sleepyseamonster`, matching the restored publication commit. Windows setup and audit documentation formed separate local commit batches. The eight audit C# source/metadata files were retained uncommitted because the original Death Valley test failed. The subsequent authorized seam repair and passing checks are recorded above. No push was performed.
 
 1. Add the missing ground markers to Death Valley's TerrainCollider owners and enforce the contract in its builder/validator.
 2. Re-run the original-scene playability check without diagnostic additions, then inspect controls and appearance in the Editor on a physical keyboard/gamepad.

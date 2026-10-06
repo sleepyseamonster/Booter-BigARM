@@ -106,6 +106,8 @@ These describe current repo state rather than durable design truth.
 
 - [Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md](./Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md)
   Windows Editor scene completeness, runtime control checks, missing Death Valley ground markers, test gaps, and the next repair sequence.
+- [Evidence/Badwater/terrain-seam-repair-2026-10-06.md](./Evidence/Badwater/terrain-seam-repair-2026-10-06.md)
+  Death Valley compatible render grids, exact shared edges, persistent LOD stitching, source preservation, and passing Editor regression checks.
 
 - [PROJECT_BASELINE.md](./PROJECT_BASELINE.md)
 - [PROJECT_STATUS.md](./PROJECT_STATUS.md)

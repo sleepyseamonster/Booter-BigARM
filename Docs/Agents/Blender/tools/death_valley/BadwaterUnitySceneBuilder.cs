@@ -8,6 +8,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using BooterBigArm.Editor;
 
 public static class BadwaterUnitySceneBuilder
 {
@@ -28,6 +29,7 @@ public static class BadwaterUnitySceneBuilder
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
         var parent = new GameObject("Badwater Four Slices | UTM 11N center 522448,4008248");
         var terrainGrid = new Terrain[16, 16];
+        var heightmaps = new Dictionary<Vector2Int, float[,]>();
         int focusCount = 0;
         float maxEdgeAdjustment = 0f;
 
@@ -73,11 +75,11 @@ public static class BadwaterUnitySceneBuilder
             }
 
             var data = new TerrainData();
-            data.heightmapResolution = samples;
+            data.heightmapResolution = BadwaterHeightmapStitching.RenderResolution;
             data.size = new Vector3(256f, ElevationRange, 256f);
             data.alphamapResolution = 128;
             data.baseMapResolution = 128;
-            data.SetHeights(0, 0, heights);
+            heightmaps.Add(new Vector2Int(col, 15 - row), BadwaterHeightmapStitching.PromoteContextGrid(heights));
             string dataPath = Root + "/TerrainData/" + id + ".asset";
             AssetDatabase.CreateAsset(data, dataPath);
 
@@ -105,7 +107,7 @@ public static class BadwaterUnitySceneBuilder
             go.transform.position = new Vector3(col * 256f - 2048f, MinimumElevation, (15 - row) * 256f - 2048f);
             Terrain terrain = go.GetComponent<Terrain>();
             terrain.groupingID = 26911;
-            terrain.allowAutoConnect = false;
+            terrain.allowAutoConnect = true;
             terrain.drawInstanced = true;
             terrain.heightmapPixelError = 8f;
             terrain.basemapDistance = 3000f;
@@ -113,11 +115,13 @@ public static class BadwaterUnitySceneBuilder
         }
         if (focusCount != 4)
             throw new InvalidDataException("Missing 1 m focus tiles.");
+        BadwaterHeightmapStitching.StitchBorders(heightmaps);
         for (int row = 0; row < 16; row++)
         for (int col = 0; col < 16; col++)
         {
             Terrain t = terrainGrid[row, col];
             if (t == null) throw new InvalidDataException("Missing tile: " + row + "," + col);
+            t.terrainData.SetHeights(0, 0, heightmaps[new Vector2Int(col, 15 - row)]);
             t.SetNeighbors(col > 0 ? terrainGrid[row, col - 1] : null,
                 row > 0 ? terrainGrid[row - 1, col] : null,
                 col < 15 ? terrainGrid[row, col + 1] : null,
@@ -161,7 +165,7 @@ public static class BadwaterUnitySceneBuilder
             if (focus) focusCount++;
             int samples = focus ? 257 : 129;
             TerrainData data = terrain.terrainData;
-            if (data == null || data.heightmapResolution != samples ||
+            if (data == null || data.heightmapResolution != BadwaterHeightmapStitching.RenderResolution ||
                 data.size != new Vector3(256f, ElevationRange, 256f))
                 throw new InvalidDataException("Terrain data mismatch: " + id);
             if (terrain.GetComponent<TerrainCollider>()?.terrainData != data)
@@ -174,19 +178,15 @@ public static class BadwaterUnitySceneBuilder
                 throw new InvalidDataException("Missing URP Terrain Lit material: " + id);
 
             byte[] raw = File.ReadAllBytes(Root + "/Source/Heights/" + id + ".bytes");
-            float[,] readback = data.GetHeights(0, 0, samples, samples);
-            for (int northRow = 0; northRow < samples; northRow++)
-            for (int x = 0; x < samples; x++)
-            {
-                int offset = (northRow * samples + x) * 2;
-                float expected = (raw[offset] | raw[offset + 1] << 8) / 65535f;
-                if (focus && (northRow == 0 && row == 12 || northRow == 256 && row == 13) && x % 2 == 1)
-                    expected = (ReadEncoded(raw, samples, northRow, x - 1) + ReadEncoded(raw, samples, northRow, x + 1)) * 0.5f;
-                if (focus && (x == 0 && col == 1 || x == 256 && col == 2) && northRow % 2 == 1)
-                    expected = (ReadEncoded(raw, samples, northRow - 1, x) + ReadEncoded(raw, samples, northRow + 1, x)) * 0.5f;
+            if (!terrain.allowAutoConnect || terrain.groupingID != 26911)
+                throw new InvalidDataException("Persistent neighbor stitching is disabled: " + id);
+            float[,] expectedGrid = BadwaterHeightmapStitching.PromoteContextGrid(
+                BadwaterHeightmapStitching.DecodeSource(raw, samples, row, col));
+            float[,] readback = data.GetHeights(0, 0, 257, 257);
+            for (int z = 0; z < 257; z++)
+            for (int x = 0; x < 257; x++)
                 maxHeightError = Math.Max(maxHeightError,
-                    Math.Abs(readback[samples - 1 - northRow, x] - expected) * ElevationRange);
-            }
+                    Math.Abs(readback[z, x] - expectedGrid[z, x]) * ElevationRange);
         }
         if (focusCount != 4 || maxHeightError > 0.04f)
             throw new InvalidDataException($"Focus count or height readback mismatch: {focusCount}, {maxHeightError} m");
@@ -199,7 +199,7 @@ public static class BadwaterUnitySceneBuilder
             if (col < 15) maxBorderGap = Math.Max(maxBorderGap, EdgeGap(tile, grid[row, col + 1], true));
             if (row < 15) maxBorderGap = Math.Max(maxBorderGap, EdgeGap(tile, grid[row + 1, col], false));
         }
-        if (maxBorderGap > 0.04f) throw new InvalidDataException("Tile border gap: " + maxBorderGap + " m");
+        if (maxBorderGap != 0f) throw new InvalidDataException("Tile border gap: " + maxBorderGap + " m");
         string report = FindArg("-badwaterReport");
         if (!string.IsNullOrEmpty(report))
             File.WriteAllText(report, $"{{\"scene\":\"{scene.path}\",\"tiles\":{terrains.Length},\"focusTiles\":{focusCount},\"maxHeightReadbackErrorMeters\":{maxHeightError.ToString("R", CultureInfo.InvariantCulture)},\"maxBorderGapMeters\":{maxBorderGap.ToString("R", CultureInfo.InvariantCulture)}}}\n");

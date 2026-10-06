@@ -2,6 +2,8 @@
 
 **Status:** Implementation in progress, 2026-10-06. The dedicated Development Player builds from an isolated copy of the current working tree; traversal feel, close-range material quality, and Player performance are unverified. See the [baseline evidence](./Evidence/Badwater/gameplay-terrain-baseline-2026-10-06.md).
 
+**Scoped Editor defect repair:** The user's visible-seam report authorized correcting terrain stitching and ground wiring; see the [October 6 repair](./Evidence/Badwater/terrain-seam-repair-2026-10-06.md). All tiles now use compatible 257² render grids, while retaining the original four 1 m and 252 2 m DEM sources. Earlier statements below about unchanged TerrainData and mixed rendering resolutions describe the pre-repair baseline. The wider streaming/material/performance sequence remains deferred; this repair does not establish Player performance or authorize executable packaging.
+
 ## Goal and boundary
 
 Make the existing four-slice Badwater scene a reliable **playable geographic terrain study** with Booter and Legger, while keeping its measured elevation and tile identities. The entire 4.096 × 4.096 km terrain must remain explorable; close-range game-world quality is a separate art and traversal gate. This bounded scene is not a replacement for the effectively infinite production World Creator. The production scene, generator, and save system remain separate until a later integration decision.

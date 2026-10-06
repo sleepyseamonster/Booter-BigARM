@@ -6,6 +6,8 @@ Last reconciled: 2026-09-21 by Gottspan for production-host routing and Unity ro
 
 ## Windows Editor Audit — 2026-10-06
 
+The subsequent [Death Valley seam repair](./Evidence/Badwater/terrain-seam-repair-2026-10-06.md) resolves the missing-ground-marker finding and the user's visible cracks. Every tile now has a compatible rendering grid and persistent native neighbor stitching; all 480 shared edges match exactly. Nine focused background Editor checks pass, including the original Death Valley controls check. The earlier audit below remains historical evidence; its two unrelated existing-system failures and incomplete full-suite result are unchanged.
+
 The [Editor playability audit](./Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md) supersedes older snapshot rows for the narrow evidence it establishes: the original generated-world scene passes basic grounding, keyboard/gamepad movement, camera, inventory, and companion motion checks. The original Death Valley scene lacks `TopDown3DGroundSurface` on its 256 terrain owners and fails grounding; adding markers only in runtime memory confirms the repair direction. The focused system run passed 160/162 tests; decoration-radius expectation drift and macOS-only native authoring account for the two failures. The complete broad suite remains unverified. The user's current target is Editor Play mode; temporary executable builds were removed. Visual, physical-controller, extended traversal, and performance acceptance remain separate.
 
 ## Active Program

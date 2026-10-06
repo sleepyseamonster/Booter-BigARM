@@ -43,6 +43,17 @@ namespace BooterBigArm.Editor
                 throw new InvalidOperationException("Badwater scene is already playable; refusing duplicate transfer.");
             if (CountTerrain(destination) != 256)
                 throw new InvalidDataException("Badwater scene must contain all 256 source terrain tiles.");
+            foreach (GameObject root in destination.GetRootGameObjects())
+            foreach (Terrain terrain in root.GetComponentsInChildren<Terrain>(true))
+            {
+                if (terrain.terrainData.heightmapResolution != BadwaterHeightmapStitching.RenderResolution || !terrain.allowAutoConnect)
+                    throw new InvalidDataException("Rebuild terrain with compatible grids and persistent neighbor stitching first.");
+                if (terrain.GetComponent<TopDown3DGroundSurface>() == null)
+                    terrain.gameObject.AddComponent<TopDown3DGroundSurface>();
+            }
+            foreach (GameObject root in destination.GetRootGameObjects())
+                if (root.GetComponentsInChildren<Terrain>(true).Length == 256 && root.GetComponent<BadwaterTerrainConnectivity>() == null)
+                    root.AddComponent<BadwaterTerrainConnectivity>();
 
             Scene source = EditorSceneManager.OpenScene(PrototypeScenePath, OpenSceneMode.Additive);
             var moved = new Dictionary<string, GameObject>(StringComparer.Ordinal);
@@ -103,6 +114,7 @@ namespace BooterBigArm.Editor
         {
             Scene scene = EditorSceneManager.OpenScene(TerrainScenePath, OpenSceneMode.Single);
             if (CountTerrain(scene) != 256) throw new InvalidDataException("Terrain count changed.");
+            BadwaterTerrainSeamRepair.Validate(scene);
             if (UnityEngine.Object.FindObjectsByType<TopDown3DProceduralWorld>(FindObjectsSortMode.None).Length != 0)
                 throw new InvalidDataException("Procedural terrain generator would cover the measured terrain.");
             if (UnityEngine.Object.FindObjectsByType<TopDown3DGameStateSaveService>(FindObjectsSortMode.None).Length != 0)

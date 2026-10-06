@@ -26,11 +26,19 @@ Before adding a helper or automation entry point, confirm that it:
 
 - **Report:** [Editor playability audit, 2026-10-06](../../../Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md).
 - **Structural entry point:** `Assets/_Project/Scripts/Editor/Validation/RepositoryPlayabilityAudit.cs`, `BooterBigArm.Editor.RepositoryPlayabilityAudit.ValidateBothFromCli`. It opens both scene assets for inspection without saving, invokes the existing validators, performs terrain readback, and warns about missing Death Valley ground markers.
-- **Terrain readback:** `Assets/_Project/Scripts/Editor/Validation/BadwaterTerrainReadbackAudit.cs`. Only the read-only methods from the retained isolated terrain builder are mirrored here; its optional `-badwaterReport` writes a JSON report to the explicitly selected output path.
+- **Terrain readback:** `Assets/_Project/Scripts/Editor/Validation/BadwaterTerrainReadbackAudit.cs`. Read-only validation follows the retained isolated terrain builder, checks the compatible source-derived grids and exact borders, and optionally writes JSON with `-badwaterReport`.
 - **Runtime checks:** `Assets/_Project/Tests/Editor/ScenePlayabilityAuditTests.cs`, filter `BooterBigArm.Tests.ScenePlayabilityAuditTests`. Marked `Explicit`; run only for an authorized playability check. Tests temporarily change in-memory background/input routing settings, drive simulated devices, and restore them. A diagnostic case temporarily adds missing terrain markers in Play mode; no scene is saved.
 - **Progress logging:** `Assets/_Project/Tests/Editor/AuditTestCallbacks.cs` registers test callbacks only with `-repositoryAuditProgress`.
-- **Proof:** Both existing structural scene validators and terrain readback pass. Original game-world runtime controls pass. Original Death Valley grounding fails; the in-memory marker diagnostic passes. See the report for the exact test boundaries and incomplete broad-suite result.
+- **Proof:** The subsequent [terrain seam repair](../../../Evidence/Badwater/terrain-seam-repair-2026-10-06.md) supersedes the original Death Valley grounding failure. Original-scene controls and the compatible-grid, exact-border, reload, and Play-mode regressions pass. See both reports for their proof boundaries and the incomplete broad-suite result.
 - **Prerequisites:** Pinned Unity editor, restored packages, and exclusive project ownership; preserve foreground focus. No standalone executable or new package is required.
+
+### Death Valley terrain seam repair
+
+- **Owner:** `Assets/_Project/Scripts/Editor/TopDown3D/BadwaterTerrainSeamRepair.cs`; shared height utility: `BadwaterHeightmapStitching.cs` beside it. Scene-local native-link restoration: `Assets/_Project/Scripts/Runtime/TopDown3D/BadwaterTerrainConnectivity.cs`.
+- **Repair:** `Booter & BigARM/Badwater Terrain/Repair Saved Terrain Seams` operates only on the saved, clean Death Valley scene outside Play mode. It updates TerrainData in place from recorded source grids, reconciles shared edges, enables persistent neighbor stitching, installs ground markers, and saves. Original assets are backed up under ignored `Logs/BadwaterSeamRepairBackup`.
+- **Read-only validation:** `Booter & BigARM/Badwater Terrain/Validate Saved Terrain Seams` checks active-scene grid compatibility, ground markers, neighbor links, and exact border samples.
+- **Focused checks in the existing Editor:** `Booter & BigARM/Badwater Terrain/Run Seam And Playability Checks`, defined in `BadwaterTerrainSeamTests.cs`. It requires saved scene edits and no active Play mode, runs the seam fixture plus the explicitly authorized scene audit, writes ignored `Logs/badwater-seam-editor-tests.xml`, and returns to Death Valley without saving scenes.
+- **Rebuild:** Copy `BadwaterHeightmapStitching.cs` beside the retained isolated terrain builder; both use the same interpolation and deterministic border ownership.
 
 ### `launch-unity.sh`
 
