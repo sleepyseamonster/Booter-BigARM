@@ -3,6 +3,8 @@ Library/
 Temp/
 Logs/
 UserSettings/
+Assets/_Recovery/
+Assets/_Recovery.meta
 Obj/
 obj/
 
@@ -25,6 +27,11 @@ builds/
 
 # OS junk
 .DS_Store
+
+# Local Python caches and Blender save backups
+__pycache__/
+*.py[cod]
+*.blend[1-9]
 
 # Rider / Visual Studio generated state
 .vs/

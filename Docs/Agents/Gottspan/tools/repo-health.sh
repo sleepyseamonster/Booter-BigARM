@@ -89,7 +89,7 @@ while IFS= read -r asset_path; do
     echo "      missing meta: $asset_path"
     meta_problems=$((meta_problems + 1))
   fi
-done < <(find Assets -mindepth 1 ! -name '*.meta' ! -name '.DS_Store' -print | sort)
+done < <(find Assets -mindepth 1 ! -name '*.meta' ! -name '.DS_Store' ! -name '.gitkeep' -print | sort)
 
 while IFS= read -r meta_path; do
   asset_path_without_meta="${meta_path%.meta}"
