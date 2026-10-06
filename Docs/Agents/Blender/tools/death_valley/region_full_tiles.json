@@ -1,0 +1,20 @@
+{
+  "name": "death-valley-full-tile-overview-v2",
+  "working_crs": "EPSG:26911",
+  "vertical_units": "metres",
+  "vertical_datum": "NAVD88 (verify against individual 3DEP source metadata)",
+  "overview": {
+    "bounds_m": [399400, 3920200, 591400, 4144200],
+    "resolution_m": 200,
+    "purpose": "Six by seven full 32 km Blender overview tiles; extends the original east and south edge using source data"
+  },
+  "services": {
+    "elevation": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+    "imagery": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer"
+  },
+  "source_references": [
+    "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+    "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer",
+    "https://landsat.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer"
+  ]
+}

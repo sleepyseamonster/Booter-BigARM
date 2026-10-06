@@ -1,0 +1,19 @@
+{
+  "name": "Badwater basin-to-Black Mountains candidate",
+  "status": "candidate from the user's 2026-10-05 map screenshot; geographic boundary awaits visual review",
+  "working_crs": "EPSG:26911",
+  "bounds_m": [495400, 3984200, 543400, 4024200],
+  "markers": [
+    {
+      "name": "Badwater Basin",
+      "xy_m": [520902, 4009463],
+      "source": "NPS Badwater Basin ranger talk position, 36.229805 N, 116.767413 W"
+    },
+    {
+      "name": "Screenshot target approximate",
+      "xy_m": [532600, 4004200],
+      "source": "Approximate projected point from the user's 2026-10-05 Blender screenshot arrow"
+    }
+  ],
+  "purpose": "Review a cross-valley terrain corridor with basin, canyon and cliff margins, and eastern mountains before fixing high-resolution build bounds"
+}

@@ -1,11 +1,12 @@
 # Death Valley terrain exploration and future Unity handoff
 
-**State (2026-10-05):** Reproducible geographic and Blender prototype. It is not a finished Unity game world or accepted production art.
+**State (2026-10-05):** The [expanded Blender viewer](./EXPANDED_VIEWER.md) now covers full regional tiles and a provisional Badwater detail corridor. It is geographic study terrain, not a finished Unity game world or accepted production art.
 
 ## What is here
 
 | Artifact | Use | Limit |
 | --- | --- | --- |
+| `DeathValleyExploreExpanded.blend` | **Open this for the new terrain review.** One free Blender viewport contains the full 192 × 224 km region, a 48 × 40 km Badwater corridor at 40 m, an 8 × 8 km 20 m basin-edge pilot, and a 2 × 2 km 10 m canyon margin patch. It opens over Badwater. | The candidate boundary needs visual review. All meshes are loaded together; there is no automatic chunk streaming. No game cameras, assets, or rock geometry. See the [build record](./EXPANDED_VIEWER.md). |
 | `DeathValleyExplore.blend` | **Open this for free exploration.** It contains the whole 176.2 × 215.4 km regional terrain at 200 m spacing, split into 42 Blender mesh objects. It opens in the ordinary 3D viewport over Racetrack Playa, with natural-color Landsat surface reference. | All 42 objects are loaded; this scene does not stream chunks. The 200 m DEM shows the playa basin and surrounding topography, not individual stones or trails. No close tiles, game assets, or cameras are present. |
 | `DeathValleyTerrainMaster.blend` | Earlier multi-resolution technique study with the regional mesh, Mosaic 10 m terrain and 1 m patch | Preserved for later detail decisions; it is not the current exploration scene. |
 | `DeathValleyRegionalStudy.blend`, `DeathValleyMosaicDetail.blend` | Earlier separate studies and the experimental rock/scatter setup | Kept for provenance and a later rock pass; these are not the current review scene. |
@@ -31,13 +32,13 @@ The close ground material is [Poly Haven Rocks Ground 09](https://polyhaven.com/
 
 ## Review in Blender first
 
-Open `DeathValleyExplore.blend`. It starts in **User Perspective** over Racetrack Playa, marked by a named viewport empty. Orbit with middle mouse, pan with Shift + middle mouse, and zoom with the wheel. Press **Home** while the pointer is over the viewport to frame the entire regional terrain; then zoom and pan to any range or valley. To return to Racetrack, select its marker in the Outliner and press Numpad **Period** (Frame Selected), or reopen the saved file. The viewport clip distance is 500 km so distant geometry remains visible. The image is packed into the file. The scene has no camera object.
+Open `DeathValleyExploreExpanded.blend` for the new review. It starts in **User Perspective** over Badwater Basin with a yellow candidate detail boundary. Orbit with middle mouse, pan with Shift + middle mouse, and zoom with the wheel. Press **Home** while the pointer is over the viewport to frame the entire regional terrain. To jump to Badwater, Racetrack, or the screenshot target, select its marker in the Outliner and press Numpad **Period** (Frame Selected). The viewport clip distance is 500 km. Four geographic color images are packed into the file; the scene has no camera object. The older `DeathValleyExplore.blend` remains available and unchanged.
 
 This phase stays in Blender until the user has seen and assessed its scale and art direction. Do not move these studies into Unity merely because exports exist.
 
 ## Terrain batching for the full landscape
 
-The exploration scene already covers the park bounding rectangle and surrounding ranges at 200 m spacing. Its 1,897,674 triangles were navigable in Blender's Material Preview during review, so runtime chunk loading is unnecessary for this pass. The 42 mesh objects are convenient source chunks, but Blender loads them together. The [next expansion plan](../../DEATH_VALLEY_EXPANSION_PLAN.md) fills the partial east and south tiles with real data and defines a selective Badwater detail corridor. The preserved Mosaic study demonstrates higher-resolution batching; it is outside the current exploration scene. The full region should not be raised uniformly to 1 m.
+The expanded scene fills the partial east and south tiles with real source data. The 200 m regional grid is now 192 × 224 km, split into 42 complete source tiles; it remains one loaded scene. The selective Badwater layers use 40, 20, and 10 m terrain without raising the whole region to that resolution. Underlying broad faces are hidden where fine terrain appears, avoiding overlapping surfaces. A loader is only worth adding if the user finds the measured viewport cost too high. The preserved Mosaic study remains a separate earlier technique test.
 
 ## Rebuild
 
@@ -50,7 +51,7 @@ python Docs/Agents/Blender/tools/death_valley/prepare_detail.py --source '/Users
 python Docs/Agents/Blender/tools/death_valley/make_rock_maps.py --output '/Users/worldbuilder/Desktop/Death Valley Terrain Data/prepared/rock_maps'
 ```
 
-Run `build_explore_scene.py` in Blender background mode with `--manifest`, `--overview-color '/Users/worldbuilder/Desktop/Death Valley Terrain Data/prepared/overview/landsat_natural_fallback.png'`, and `--output` to rebuild the free-navigation scene. `verify_pipeline.py` checks the underlying geographic arrays and source hashes. The explore builder packs its image into the saved `.blend`. The other builders remain for later detail work.
+Run `build_explore_scene.py` in Blender background mode with `--manifest`, `--overview-color '/Users/worldbuilder/Desktop/Death Valley Terrain Data/prepared/overview/landsat_natural_fallback.png'`, and `--output` to rebuild the **older** free-navigation scene. For the expanded viewer, follow the four manifest and color paths in its [build record](./EXPANDED_VIEWER.md) and pass the optional corridor, pilot, and patch arguments to the same builder. `verify_pipeline.py --terrain-only --color` checks each new geographic grid and color hash. The builder packs the derived images into the saved `.blend`.
 
 For the scanned ground, pass `--scan-manifest Docs/Agents/Blender/studies/DeathValley/scan_materials/rocks_ground_09/manifest.json` to `build_detail_study.py`. `fetch_polyhaven_material.py` can recreate those files from the saved API file listing under the external raw data folder; it validates the provider MD5 values.
 
@@ -71,6 +72,7 @@ After Blender visual review, Babineaux's Unity batch should import a small selec
 
 ## Measured checks and current visual assessment
 
+- Expanded viewer: 42 full 32 km source tiles before detail cutouts; 76 mesh objects and 4,754,400 evaluated terrain triangles after layered replacement and omission of one fully covered coarse object; four packed color images; no camera. The four read-only preview renders show the full map, Badwater corridor, oblique terrain, and canyon patch. GUI pan/orbit cost in the new file still needs user visual review.
 - Exploration scene: 42 regional tiles and 1,897,674 terrain triangles, all visible in a single free Blender viewport. The saved view shows Racetrack Playa; **Home** was tested to frame the entire terrain. The earlier master has two stitched Mosaic tiles and four 1 m patch tiles, with 2,480,454 evaluated terrain triangles; those details are not loaded in the exploration scene.
 - Geometry Nodes preview: 140 slabs, 100 cliff blocks, 240 dark boulders, 450 talus shards and 700 pebbles, 1,630 total, seeded from local coordinates and filtered by slope, geology, talus/wash hints. This count is not a runtime density recommendation.
 - Blender's read-only `inspect_blend.py` found UVs and closed rock meshes with no nonmanifold edges or loose vertices. The terrain has intentional open boundary edges; Geometry Nodes point carriers intentionally have loose vertices.

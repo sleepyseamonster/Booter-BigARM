@@ -1,6 +1,6 @@
 # Death Valley full-tile expansion and Badwater detail plan
 
-**Status:** Audited implementation plan, 2026-10-05. The existing `DeathValleyExplore.blend` remains the current viewer. This plan has not yet expanded its terrain or built the Badwater detail area.
+**Status:** Implemented geographic Blender study, 2026-10-05. The new [expanded viewer](./studies/DeathValley/EXPANDED_VIEWER.md) and source pipeline are built and rendered. The existing `DeathValleyExplore.blend` is preserved; user inspection of the candidate corridor and interactive navigation remains open.
 
 ## Outcome and boundaries
 
@@ -42,7 +42,7 @@ The corridor's exact box is deliberately a Stage 3 output. A provisional 30–50
 - **False detail:** The [3DEP dynamic service](https://www.usgs.gov/3d-elevation-program/about-3dep-products-services) draws from multiple source resolutions. Record the actual DEM product/coverage and [product metadata](https://www.usgs.gov/ngp-standards-and-specifications/3dep-product-metadata) for the Badwater corridor and compare relief to the 200 m source; export pixel size is not evidence of native resolution. Do not call interpolated terrain new detail.
 - **Image continuity:** Do not paste new edge imagery against an old color stretch if it produces a visible seam. Build a new full-extent reference or use documented, color-matched imagery batches.
 - **Blender performance:** The overview needs no streaming at its current cost. Use named collections and selective visibility for the corridor first; add a loader only if measured navigation becomes poor.
-- **Scene safety:** Build into a new file and leave the user's currently open Blender scene and unsaved viewport changes untouched. Do not focus Unity.
+- **Scene safety:** Build into a new file. The user then explicitly authorized discarding unsaved changes in the older Blender window, so the expanded file replaced it for visual review. Do not focus Unity.
 - **Geographic selection:** The screenshot identifies a visual region, not survey-accurate bounds. The georeferenced overlay and user review settle the exact corridor before broad detail acquisition.
 
 ## Audit record, 2026-10-05
@@ -55,3 +55,10 @@ The corridor's exact box is deliberately a Stage 3 output. A provisional 30–50
 ## Implementation order relative to the larger plan
 
 This is a focused Blender-viewer extension to the [landscape build plan](./DEATH_VALLEY_BUILD_PLAN.md). It updates the regional terrain and adds a chosen detail corridor. The older Mosaic 10 m/1 m work remains a technique reference. Rock creation, material art beyond geographic reference, procedural game-world grammar, and Unity proof are later stages and are not prerequisites for this viewer.
+
+## Implementation record, 2026-10-05
+
+- Expanded 200 m DEM `[399400, 3920200, 591400, 4144200]` produced 961 × 1121 vertices and 42 complete source tiles. All old/new overlapping elevation samples matched exactly. The new full-extent Landsat reference had no transparent gaps. Geology and source/color hashes passed the focused verifier.
+- Candidate Badwater corridor `[495400, 3984200, 543400, 4024200]` was placed using the screenshot target as a guide and a projected NPS Badwater point. It has a 40 m DEM and NAIP color at 20 m. The basin-edge pilot is 8 × 8 km at 20 m, and a 2 × 2 km eastern canyon patch is at 10 m with 2 m image reference. These are provisional visual bounds, not a claim of survey-accurate screenshot registration.
+- The USGS product catalog query recorded intersecting 1/3 arc-second and 1 m products. Source relief beyond interpolation was measured at every finer level. NAIP coverage in the three detail extents was 99.97%, 99.90%, and 98.58%; recorded Landsat exports filled the remainder. The 2 m patch was broadly color-matched to its parent after a first render exposed a color rectangle.
+- The final `.blend` has 76 mesh objects, 4,754,400 evaluated terrain triangles, four packed color images, and no camera. Parent faces beneath detail and one fully covered coarse object were removed, fine heights were fitted to parent edges, and four temporary-camera renders were visually checked. Blender background mode reopened and rendered the final file. The expanded file is open in the single Blender GUI window; GUI pan/orbit timing and user acceptance remain to be checked there.
