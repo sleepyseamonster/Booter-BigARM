@@ -9,7 +9,8 @@ namespace BooterBigArm.TopDown3D
         Disabled,
         Gameplay,
         Inventory,
-        Radial
+        Radial,
+        SystemMenu
     }
 
     public enum TopDown3DPromptDevice
@@ -50,6 +51,9 @@ namespace BooterBigArm.TopDown3D
         private InputAction recallAction;
         private InputAction toggleInventoryAction;
         private InputAction uiCancelAction;
+        private InputAction menuAction;
+        private TopDown3DInputMode inputUpdateMode;
+        private bool menuRequested, menuBackRequested, awaitMoveNeutral;
         private bool actionsBound;
         private bool awaitLookNeutral;
         private int ignoreMouseLookUntilFrame = -1;
@@ -73,6 +77,7 @@ namespace BooterBigArm.TopDown3D
         public event Action PickupCanisterRequested;
         public event Action InventoryToggleRequested;
         public event Action UiCancelRequested;
+        public event Action MenuToggleRequested;
         public event Action<TopDown3DInputMode> ModeChanged;
         public event Action<TopDown3DPromptDevice> PromptDeviceChanged;
 
@@ -132,6 +137,9 @@ namespace BooterBigArm.TopDown3D
             recallAction.performed += HandleRecall;
             toggleInventoryAction.performed += HandleToggleInventory;
             uiCancelAction.performed += HandleUiCancel;
+            if (menuAction != null) menuAction.performed += HandleMenu;
+            InputSystem.onBeforeUpdate += BeforeInputUpdate;
+            InputSystem.onAfterUpdate += AfterInputUpdate;
             gameplayMap.actionTriggered += HandleActionTriggered;
             systemMap.actionTriggered += HandleActionTriggered;
             uiMap.actionTriggered += HandleActionTriggered;
@@ -146,6 +154,10 @@ namespace BooterBigArm.TopDown3D
 
         private void UnbindActions()
         {
+            if (menuAction != null) menuAction.performed -= HandleMenu;
+            InputSystem.onBeforeUpdate -= BeforeInputUpdate;
+            InputSystem.onAfterUpdate -= AfterInputUpdate;
+            menuRequested = menuBackRequested = false;
             if (moveAction != null)
             {
                 moveAction.performed -= HandleMove;
@@ -229,6 +241,7 @@ namespace BooterBigArm.TopDown3D
             recallAction = null;
             toggleInventoryAction = null;
             uiCancelAction = null;
+            menuAction = null;
             MoveValue = Vector2.zero;
             CameraLookValue = Vector2.zero;
             CameraLookAheadHeld = false;
@@ -257,6 +270,7 @@ namespace BooterBigArm.TopDown3D
             recallAction = gameplayMap?.FindAction(recallActionName, false);
             toggleInventoryAction = systemMap?.FindAction(toggleInventoryActionName, false);
             uiCancelAction = uiMap?.FindAction(uiCancelActionName, false);
+            menuAction = systemMap?.FindAction("ToggleMenu", false);
             if (gameplayMap != null
                 && moveAction != null
                 && lookAction != null
@@ -282,6 +296,12 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleMove(InputAction.CallbackContext context)
         {
+            if (awaitMoveNeutral)
+            {
+                if (context.ReadValue<Vector2>().sqrMagnitude < 0.0484f) awaitMoveNeutral = false;
+                MoveValue = Vector2.zero;
+                return;
+            }
             MoveValue = TopDown3DInputMath.ClampMove(context.ReadValue<Vector2>());
         }
 
@@ -345,7 +365,8 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleToggleInventory(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed && Mode != TopDown3DInputMode.Radial)
+            if (context.phase == InputActionPhase.Performed && Mode != TopDown3DInputMode.Radial
+                && Mode != TopDown3DInputMode.SystemMenu)
             {
                 InventoryToggleRequested?.Invoke();
             }
@@ -355,9 +376,35 @@ namespace BooterBigArm.TopDown3D
         {
             if (context.phase == InputActionPhase.Performed)
             {
+                if (inputUpdateMode == TopDown3DInputMode.SystemMenu)
+                { menuBackRequested = true; return; }
                 UiCancelRequested?.Invoke();
             }
         }
+
+        private void BeforeInputUpdate() => inputUpdateMode = Mode;
+
+        private void HandleMenu(InputAction.CallbackContext context)
+        {
+            if (Application.isPlaying && !Application.isFocused) return;
+            if (inputUpdateMode == TopDown3DInputMode.Disabled) return;
+            var escape = context.control.device is Keyboard;
+            // Escape already belongs to inventory/radial Back in these captured contexts.
+            if (escape && (inputUpdateMode == TopDown3DInputMode.Inventory
+                || inputUpdateMode == TopDown3DInputMode.Radial)) return;
+            if (escape && inputUpdateMode == TopDown3DInputMode.SystemMenu) menuBackRequested = true;
+            else menuRequested = true;
+        }
+
+        private void AfterInputUpdate()
+        {
+            var toggle = menuRequested; var back = menuBackRequested;
+            menuRequested = menuBackRequested = false;
+            if (toggle) MenuToggleRequested?.Invoke();
+            else if (back) UiCancelRequested?.Invoke();
+        }
+
+        public void EnterSystemMenuMode() => SetMode(TopDown3DInputMode.SystemMenu);
 
         public void EnterGameplayMode()
         {
@@ -400,7 +447,9 @@ namespace BooterBigArm.TopDown3D
             if (mode == TopDown3DInputMode.Gameplay && previousMode != TopDown3DInputMode.Gameplay)
             {
                 ignoreMouseLookUntilFrame = Time.frameCount + 1;
-                awaitLookNeutral = previousMode == TopDown3DInputMode.Radial
+                awaitMoveNeutral = previousMode == TopDown3DInputMode.SystemMenu
+                    && Gamepad.current != null && Gamepad.current.leftStick.ReadValue().sqrMagnitude > 0.0484f;
+                awaitLookNeutral = (previousMode == TopDown3DInputMode.Radial || previousMode == TopDown3DInputMode.SystemMenu)
                     && Gamepad.current != null && Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.0484f;
             }
             gameplayMap?.Disable();
@@ -416,6 +465,7 @@ namespace BooterBigArm.TopDown3D
                     systemMap?.Enable();
                     break;
                 case TopDown3DInputMode.Inventory:
+                case TopDown3DInputMode.SystemMenu:
                     uiMap?.Enable();
                     systemMap?.Enable();
                     break;
@@ -434,6 +484,12 @@ namespace BooterBigArm.TopDown3D
                 ReleaseCursor();
             }
             ModeChanged?.Invoke(mode);
+            if (mode == TopDown3DInputMode.Disabled)
+            {
+                // UI teardown can restore module references, which re-enable individual actions.
+                // Disabled remains the final input authority after those listeners finish.
+                gameplayMap?.Disable(); uiMap?.Disable(); radialMap?.Disable(); systemMap?.Disable();
+            }
         }
 
         private static void CaptureCursor()

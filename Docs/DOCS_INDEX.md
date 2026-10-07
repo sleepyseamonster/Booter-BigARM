@@ -123,6 +123,9 @@ These define current preferred approaches or sequencing.
 
 ## Project Snapshot Docs
 
+- [Compact menu implementation evidence](./Evidence/UI/MENU_SYSTEM_IMPLEMENTATION_2026-10-07.md)
+  Start-button menu and GUI, live-world behavior, radial/inventory integration, focused Windows proof, and user acceptance limits.
+
 These describe current repo state rather than durable design truth.
 
 - [Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md](./Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md)

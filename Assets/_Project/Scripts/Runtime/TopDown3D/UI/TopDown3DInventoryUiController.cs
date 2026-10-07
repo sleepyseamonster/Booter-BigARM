@@ -20,6 +20,11 @@ namespace BooterBigArm.TopDown3D
         private bool lastCargoAccess;
         private bool inspectingCargo;
         private int inspectedCargoSlot;
+        private bool suspended, configured;
+        private bool suspendedCargoFocus;
+        private int suspendedSlot;
+        public bool IsConfigured => configured;
+        public bool IsSuspended => suspended;
 
         public bool IsOpen => canvas != null && canvas.IsVisible;
         public int SelectedSource => selectedSource;
@@ -47,6 +52,38 @@ namespace BooterBigArm.TopDown3D
             Subscribe();
             Refresh();
             RefreshControlHints();
+            configured = true;
+        }
+
+        public void SuspendForMenu()
+        {
+            if (!IsOpen || suspended) return;
+            var selected = eventSystem != null ? eventSystem.currentSelectedGameObject : null;
+            var cargoIndex = selected != null ? System.Linq.Enumerable.ToList(canvas.CargoSlotViews)
+                .FindIndex(slot => slot.gameObject == selected) : -1;
+            suspendedCargoFocus = cargoIndex >= 0;
+            suspendedSlot = suspendedCargoFocus ? cargoIndex : lastSelectedSlot;
+            selectedSource = -1; selectedCargoSource = false;
+            suspended = true;
+            canvas.SetSuspended(true);
+        }
+
+        public void ResumeFromMenu()
+        {
+            if (!suspended) return;
+            suspended = false; canvas.SetSuspended(false);
+            RefreshCargoAccess(); Refresh();
+            input.EnterInventoryMode();
+            if (suspendedCargoFocus && lastCargoAccess && suspendedSlot < canvas.CargoSlotViews.Count)
+                eventSystem?.SetSelectedGameObject(canvas.CargoSlotViews[suspendedSlot].gameObject);
+            else RestoreSelection();
+        }
+
+        public void EndSuspensionWithoutResume()
+        {
+            if (!suspended) return;
+            suspended = false; canvas.SetSuspended(false); canvas.SetVisible(false);
+            selectedSource = -1; selectedCargoSource = false;
         }
 
         public void Open(bool focusCargo = false)
@@ -87,7 +124,7 @@ namespace BooterBigArm.TopDown3D
 
         internal void ActivateSlot(int slotIndex)
         {
-            if (!IsOpen || slotIndex < 0 || slotIndex >= inventory.State.Capacity)
+            if (!IsOpen || suspended || input.Mode == TopDown3DInputMode.SystemMenu || slotIndex < 0 || slotIndex >= inventory.State.Capacity)
             {
                 return;
             }
@@ -126,7 +163,7 @@ namespace BooterBigArm.TopDown3D
 
         internal void ActivateCargoSlot(int slotIndex)
         {
-            if (!IsOpen || cargo == null || slotIndex < 0 || slotIndex >= cargo.State.Capacity) return;
+            if (!IsOpen || suspended || input.Mode == TopDown3DInputMode.SystemMenu || cargo == null || slotIndex < 0 || slotIndex >= cargo.State.Capacity) return;
             if (!cargo.IsInAccessRange(inventory.transform.position)) return;
             if (selectedSource >= 0 && !selectedCargoSource)
             {
@@ -154,6 +191,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleAutoPack()
         {
+            if (suspended || input.Mode == TopDown3DInputMode.SystemMenu) return;
             if (cargo == null || !cargo.IsInAccessRange(inventory.transform.position)) return;
             if (cargo.TryAutoPack()) canvas.SetCargoSummary("Auto-packed: stable");
             Refresh();
@@ -174,9 +212,10 @@ namespace BooterBigArm.TopDown3D
         private void HandleToggleRequested()
         {
             if (this == null || canvas == null || input == null) return;
+            if (suspended || input.Mode == TopDown3DInputMode.SystemMenu) return;
             var radial = TopDown3DGameHudCanvas.FindInScene<TopDown3DRadialMenuController>(gameObject.scene);
             if (radial != null && radial.IsCustomizing) return;
-            if (IsOpen)
+            if (IsOpen && !suspended && input.Mode != TopDown3DInputMode.SystemMenu)
             {
                 Close();
             }
@@ -188,7 +227,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleCancelRequested()
         {
-            if (IsOpen)
+            if (IsOpen && !suspended && input.Mode != TopDown3DInputMode.SystemMenu)
             {
                 Close();
             }
@@ -358,6 +397,7 @@ namespace BooterBigArm.TopDown3D
         private void OnDisable()
         {
             Unsubscribe();
+            if (suspended) { suspended = false; canvas?.SetVisible(false); return; }
             if (IsOpen)
             {
                 canvas.SetVisible(false);

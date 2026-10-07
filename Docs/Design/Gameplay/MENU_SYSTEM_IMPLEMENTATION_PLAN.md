@@ -1,6 +1,6 @@
 # Menu system and GUI implementation plan
 
-Date: 2026-10-07. Status: planning only. Gamepad Start opening the menu and the simple supporting-menu direction are approved requirements. GUI dimensions, secondary controls, settings contents, and pause behavior below are proposed defaults. No implementation is authorized by completion of this document.
+Date: 2026-10-07. Status: implemented with focused verification; final visual and physical-controller acceptance remain user-owned. The user authorized this slice and selected live simulation while the menu is open. See the [implementation evidence](../../Evidence/UI/MENU_SYSTEM_IMPLEMENTATION_2026-10-07.md) for actual proof and limits.
 
 Audited and corrected 2026-10-07. See the [plan audit](../../Evidence/UI/MENU_PLAN_AUDIT_2026-10-07.md) for findings, source evidence, and remaining product/proof gates.
 
@@ -16,7 +16,7 @@ The user owns product behavior and visual acceptance. Gottspan owns scope/integr
 
 Production code stays in `Assets/_Project/Scripts/Runtime/TopDown3D/`, assembly `BooterBigArm.TopDown3D.Runtime`, namespace `BooterBigArm.TopDown3D`. Editor-only creation/validation belongs in `BooterBigArm.Editor`; focused tests in `BooterBigArm.Editor.Tests`.
 
-Stop implementation on an unresolved pause decision, a needed gameplay save system, conflicting input ownership, unavailable safe Unity validation, or changes requiring package/settings/archive authority. Do not broaden the menu task to resolve those by assumption. No pushes, branch switches, gameplay smoke tests, or foreground application activation are included.
+Stop implementation on a needed gameplay save system, conflicting input ownership, unavailable safe Unity validation, or changes requiring package/settings/archive authority. Do not broaden the menu task to resolve those by assumption. No pushes, branch switches, gameplay smoke tests, or foreground application activation are included.
 
 ## 3 Sources of truth
 
@@ -56,15 +56,15 @@ Exclude a title-screen flow, journal/map, new crafting/inventory mechanics, devi
 
 | Item | Requirement or proposed default | Implementation gate |
 | --- | --- | --- |
-| Gamepad opener | Approved: Start opens the menu, using `System/ToggleMenu` bound to `<Gamepad>/startButton`. | Add during the approved implementation, not during planning. |
-| Pause policy | Proposed: pause the world while the menu family is open. An optional clarification is pending in chat. | Record the user's answer or obtain a decision before changing simulation behavior. |
+| Gamepad opener | Approved: Start opens the menu, using `System/ToggleMenu` bound to `<Gamepad>/start`. The C# property is `startButton`; the installed package's binding control name is `start`. | Verify the action resolves to the actual controller control. |
+| Simulation policy | Approved: keep the world running while the menu is open. | Do not change timeScale, survival depletion, companion simulation, or harvester progression. |
 | Keyboard | Proposed: Escape opens from gameplay; Escape/Back closes only the top screen thereafter. | Include in plan approval; handle shared Cancel bindings once per press. |
 | Repeated Start | Proposed: close the root; from a child, return to root through dirty-draft protection. | Never bypass a pending discard or exit decision. |
 | Initial settings | Proposed: Master Volume, Menu Text Size, Reduced Menu Motion, with Apply and Back. | Implement real owners and persistence for all three; no graphics controls in this slice. |
 | Exit | Proposed: explicit Exit Game confirmation, default focus Keep Playing. No Save and Exit. | Approved implementation must acknowledge that current session progress is not saved by this menu. |
 | GUI | Proposed: compact iron panel, warm text, amber focus, readable dimmed world. | User visual acceptance after bounded layout review. |
 
-The pause clarification is not needed to finish this plan. Until resolved, pause-specific batches stay conditional; elapsed time without a reply is not approval.
+The user selected live simulation on 2026-10-07. Pause-specific architecture and test rows below remain conditional alternatives and do not apply to this slice. Verify unchanged timeScale instead. Master Volume is omitted because the audited production scene has no useful audio consumer; text size and reduced menu motion remain working settings. Independent Unity validation uses a disposable project copy because the GUI owns the original checkout.
 
 ## 7 World and persistence contract
 
@@ -257,4 +257,4 @@ Stop after this menu slice. Do not add title/load/map/crafting screens, gameplay
 
 ## 15 Readiness and next move
 
-The plan selects routine technical choices and defines GUI layout, source boundaries, batches, and proof. It is ready for review; simulation behavior awaits the pause answer and the proposed settings/exit/GUI defaults require acceptance through implementation authorization. The next move is approval of this bounded slice, followed by Batch 0. No feature source or Unity asset is changed in this planning task.
+The user authorized implementation and live simulation. Continue the bounded batches and record candidate-bound proof. The implementation receipt controls actual results; this plan alone is not proof. Final visual and physical-controller acceptance remain user-owned.

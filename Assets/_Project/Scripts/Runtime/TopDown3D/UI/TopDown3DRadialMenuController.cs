@@ -24,10 +24,8 @@ namespace BooterBigArm.TopDown3D
         private bool watchCallOver, reportedBlocked;
         private float callWatchAfter;
         private Vector2 lastPointer, lastStick;
-        private int page, selected = -1, editPage, editSector;
-        private TopDown3DRadialPreferences preferences, draft;
-        private Action pendingEdit;
-        private string editorMessage = "Select a direction, then an assignment.";
+        private int page, selected = -1;
+        private TopDown3DRadialPreferences preferences;
         public bool IsOpen => open;
         public bool IsCustomizing => editing;
         public TopDown3DRadialPreferences Preferences => preferences;
@@ -35,7 +33,8 @@ namespace BooterBigArm.TopDown3D
 
         public void Configure(TopDown3DInputRouter input, TopDown3DPlayerInventory kit,
             TopDown3DInventoryUiController ui, TopDown3DPlayerActionController playerAction,
-            TopDown3DBigArmFollower follower, TopDown3DBigArmCargo companionCargo, TopDown3DRadialCanvas canvas)
+            TopDown3DBigArmFollower follower, TopDown3DBigArmCargo companionCargo, TopDown3DRadialCanvas canvas,
+            string preferencePath = null)
         {
             router = input; inventory = kit; inventoryUi = ui; action = playerAction;
             legger = follower; cargo = companionCargo; view = canvas;
@@ -49,10 +48,10 @@ namespace BooterBigArm.TopDown3D
             previous = input.InputActions.FindAction("Radial/PreviousPage", true);
             nextEntry = input.InputActions.FindAction("Radial/NextEntry", false);
             previousEntry = input.InputActions.FindAction("Radial/PreviousEntry", false);
+            preferencePathOverride = preferencePath;
             preferences = LoadPreferences(); page = preferences.defaultPage;
             opener.performed += OnOpen;
             router.ModeChanged += OnModeChanged;
-            router.UiCancelRequested += OnEditorCancel;
             InputSystem.onDeviceChange += OnDeviceChange;
         }
 
@@ -207,63 +206,37 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
-        public void OpenCustomization()
+        public Action CustomizationRequested;
+        private string preferencePathOverride;
+        public void OpenCustomization() => CustomizationRequested?.Invoke();
+        public void CancelForSystemMenu() => Close(false);
+        public TopDown3DRadialPreferences BeginSetup()
         {
-            Close(false); inventoryUi.Close(); router.EnterInventoryMode(); editing = true;
-            draft = preferences.Clone(); editPage = page; editSector = 0; pendingEdit = null; DrawEditor();
+            Close(false); editing = true;
+            return preferences.Clone();
         }
-
-        private void DrawEditor()
+        public void EndSetup() => editing = false;
+        public void SetPreferencePathForTests(string path) => preferencePathOverride = path;
+        public bool TryApplySetup(TopDown3DRadialPreferences candidate, out string error)
         {
-            view.ShowEditor(draft, editPage, editSector,
-                index => { editPage = index; editSector = 0; pendingEdit = null; DrawEditor(); },
-                index => { editSector = index; pendingEdit = null; DrawEditor(); },
-                command => { draft.pages[editPage].slots[editSector] = command; DrawEditor(); },
-                () => { var list = new System.Collections.Generic.List<TopDown3DRadialPage>(draft.pages); var p = new TopDown3DRadialPage { name = "Custom " + list.Count }; Array.Clear(p.slots, 0, p.slots.Length); list.Add(p); draft.pages = list.ToArray(); editPage = list.Count - 1; editSector = 0; DrawEditor(); },
-                () => ConfirmEdit("Delete this page? Press Apply to confirm.", () => { var list = new System.Collections.Generic.List<TopDown3DRadialPage>(draft.pages); list.RemoveAt(editPage); draft.pages = list.ToArray(); editPage = Math.Min(editPage, list.Count - 1); editSector = 0; }),
-                () => ConfirmEdit("Change sector count? Press Apply to confirm.", ResizeDraft),
-                ApplyEditor, CancelEditor,
-                () => { if (draft.toggleOpen) { draft.toggleOpen = false; draft.explicitConfirm = false; } else if (draft.explicitConfirm) draft.toggleOpen = true; else draft.explicitConfirm = true; DrawEditor(); },
-                () => { draft.scale = draft.scale >= 1.30f ? 0.85f : Mathf.Min(1.35f, draft.scale + 0.15f); DrawEditor(); },
-                editorMessage);
-        }
-
-        private void ResizeDraft()
-        {
-            var p = draft.pages[editPage]; var slots = new TopDown3DRadialCommand[p.slots.Length == 4 ? 8 : 4];
-            for (var i = 0; i < 4; i++) slots[slots.Length == 8 ? i * 2 : i] = p.slots[p.slots.Length == 8 ? i * 2 : i];
-            p.slots = slots; editSector = 0;
-        }
-        private void ConfirmEdit(string message, Action mutation) { pendingEdit = mutation; editorMessage = message; DrawEditor(); }
-        private void ApplyEditor()
-        {
-            if (pendingEdit != null) { var mutation = pendingEdit; pendingEdit = null; mutation(); if (!editing) return; editorMessage = "Draft changed. Apply layout to save."; DrawEditor(); return; }
-            draft.defaultPage = Math.Min(draft.defaultPage, draft.pages.Length - 1);
-            if (!draft.IsValid()) { editorMessage = "Layout is invalid; check names and pages."; DrawEditor(); return; }
+            error = null;
+            if (candidate == null || !candidate.IsValid()) { error = "Layout is invalid."; return false; }
             try
             {
                 var path = PreferencePath; Directory.CreateDirectory(Path.GetDirectoryName(path));
-                File.WriteAllText(path + ".tmp", JsonUtility.ToJson(draft, true));
+                File.WriteAllText(path + ".tmp", JsonUtility.ToJson(candidate, true));
                 if (File.Exists(path)) File.Replace(path + ".tmp", path, null); else File.Move(path + ".tmp", path);
                 var activeId = preferences.pages[page].id;
-                preferences = draft.Clone();
-                var retainedPage = Array.FindIndex(preferences.pages, p => p.id == activeId);
-                page = retainedPage >= 0 ? retainedPage : preferences.defaultPage;
-                FinishEditor();
+                preferences = candidate.Clone();
+                var retained = Array.FindIndex(preferences.pages, p => p.id == activeId);
+                page = retained >= 0 ? retained : preferences.defaultPage;
+                return true;
             }
             catch (Exception e) when (e is IOException || e is UnauthorizedAccessException)
-            { editorMessage = "Could not save layout. Your draft is retained; try Apply again."; DrawEditor(); }
+            { error = "Could not save layout. Your edits are retained; try Apply again."; return false; }
         }
-        private void CancelEditor()
-        {
-            if (pendingEdit != null) { pendingEdit = null; editorMessage = "Operation canceled; draft retained."; DrawEditor(); return; }
-            if (JsonUtility.ToJson(draft) == JsonUtility.ToJson(preferences)) { FinishEditor(); return; }
-            ConfirmEdit("Discard edits? Press Apply to discard, or Cancel to keep editing.", FinishEditor);
-        }
-        private void FinishEditor() { editing = false; view.SetVisible(false); inventoryUi.Open(); }
-        private void OnEditorCancel() { if (editing) CancelEditor(); }
-        private static string PreferencePath => Path.Combine(Application.persistentDataPath, "radial-layout-v1.json");
-        private static TopDown3DRadialPreferences LoadPreferences()
+        private string PreferencePath => preferencePathOverride ?? Path.Combine(Application.persistentDataPath, "radial-layout-v1.json");
+        private TopDown3DRadialPreferences LoadPreferences()
         {
             try { if (File.Exists(PreferencePath)) { var p = JsonUtility.FromJson<TopDown3DRadialPreferences>(File.ReadAllText(PreferencePath)); if (p != null && p.IsValid()) return p; } }
             catch (Exception e) when (e is IOException || e is ArgumentException || e is UnauthorizedAccessException) { Debug.LogWarning("Radial layout could not be loaded; using defaults."); }
@@ -280,7 +253,7 @@ namespace BooterBigArm.TopDown3D
         private void OnDestroy()
         {
             Close(false); if (opener != null) opener.performed -= OnOpen;
-            if (router != null) { router.ModeChanged -= OnModeChanged; router.UiCancelRequested -= OnEditorCancel; }
+            if (router != null) { router.ModeChanged -= OnModeChanged;  }
             InputSystem.onDeviceChange -= OnDeviceChange;
         }
     }

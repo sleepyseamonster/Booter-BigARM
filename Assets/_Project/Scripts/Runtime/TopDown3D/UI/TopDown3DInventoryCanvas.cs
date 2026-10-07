@@ -31,6 +31,7 @@ namespace BooterBigArm.TopDown3D
         public IReadOnlyList<TopDown3DInventorySlotView> SlotViews => slotViews;
         public IReadOnlyList<TopDown3DInventorySlotView> CargoSlotViews => cargoSlotViews;
         public bool IsVisible => inventoryCanvas != null && inventoryCanvas.enabled;
+        private bool suspended;
         public RectTransform SafeAreaRoot => safeAreaRoot;
         public string ControlHints => controls != null ? controls.text : string.Empty;
 
@@ -99,6 +100,16 @@ namespace BooterBigArm.TopDown3D
             {
                 panel.gameObject.SetActive(visible);
             }
+        }
+
+        public void SetSuspended(bool value)
+        {
+            suspended = value;
+            var group = GetComponent<CanvasGroup>();
+            if (group == null) group = gameObject.AddComponent<CanvasGroup>();
+            group.alpha = value ? 0f : 1f;
+            group.interactable = !value;
+            group.blocksRaycasts = !value;
         }
 
         public void SetDetails(string itemName, string description, string slotSummary)

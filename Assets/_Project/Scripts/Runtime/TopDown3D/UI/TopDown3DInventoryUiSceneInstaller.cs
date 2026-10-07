@@ -9,7 +9,7 @@ namespace BooterBigArm.TopDown3D
 {
     public static class TopDown3DInventoryUiSceneInstaller
     {
-        public static TopDown3DInventoryUiController TryInstallForScene(Scene scene)
+        public static TopDown3DInventoryUiController TryInstallForScene(Scene scene, string preferenceDirectory = null)
         {
             if (!scene.IsValid() || !scene.isLoaded)
             {
@@ -31,6 +31,11 @@ namespace BooterBigArm.TopDown3D
             }
 
             var existing = TopDown3DGameHudCanvas.FindInScene<TopDown3DInventoryUiController>(scene);
+            if (existing != null && existing.IsConfigured)
+            {
+                TopDown3DMenuSceneInstaller.TryInstall(scene, input, existing, eventSystem, preferenceDirectory);
+                return existing;
+            }
             TopDown3DInventoryCanvas canvas;
             if (existing == null)
             {
@@ -46,7 +51,8 @@ namespace BooterBigArm.TopDown3D
             }
 
             existing.Configure(input, inventory, action, canvas, eventSystem);
-            TopDown3DRadialSceneInstaller.TryInstall(scene, input, inventory, action, existing, canvas);
+            TopDown3DRadialSceneInstaller.TryInstall(scene, input, inventory, action, existing, canvas, preferenceDirectory);
+            TopDown3DMenuSceneInstaller.TryInstall(scene, input, existing, eventSystem, preferenceDirectory);
             return existing;
         }
 

@@ -1,8 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System.Linq;
 
 namespace BooterBigArm.TopDown3D
 {
@@ -11,7 +8,7 @@ namespace BooterBigArm.TopDown3D
     {
         private Canvas canvas;
         private RectTransform safe;
-        private GameObject wheelPanel, editorPanel, detailBacking;
+        private GameObject wheelPanel, detailBacking;
         private RectTransform wheel;
         private TopDown3DRadialRingGraphic ring;
         private Text pageTitle, detail, hints;
@@ -46,7 +43,7 @@ namespace BooterBigArm.TopDown3D
 
         public void Refresh(TopDown3DRadialPage page, int selected, string description, string bindings, float scale, bool explicitConfirm = false, int canisterCount = 0)
         {
-            wheelPanel.SetActive(true); if (editorPanel != null) editorPanel.SetActive(false);
+            wheelPanel.SetActive(true);
             wheelPanel.transform.localScale = Vector3.one * scale;
             if (ring.Sectors != page.slots.Length || ring.Selected != selected)
             { ring.Sectors = page.slots.Length; ring.Selected = selected; ring.SetVerticesDirty(); }
@@ -82,52 +79,6 @@ namespace BooterBigArm.TopDown3D
             TopDown3DRadialCommand.AutoPack => "Auto-Pack",
             _ => "—" };
 
-        public void ShowEditor(TopDown3DRadialPreferences draft, int page, int sector,
-            Action<int> selectPage, Action<int> selectSector, Action<TopDown3DRadialCommand> assign,
-            Action add, Action remove, Action resize, Action apply, Action cancel, Action settings, Action scale, string message)
-        {
-            var selectedName = editorPanel != null && EventSystem.current != null
-                && EventSystem.current.currentSelectedGameObject != null
-                && EventSystem.current.currentSelectedGameObject.transform.IsChildOf(editorPanel.transform)
-                ? EventSystem.current.currentSelectedGameObject.name : null;
-            if (editorPanel != null) { editorPanel.SetActive(false); Destroy(editorPanel); }
-            wheelPanel.SetActive(false);
-            editorPanel = Rect("Customize Radial", safe, Vector2.zero, new Vector2(920, 690)).gameObject;
-            var bg = editorPanel.AddComponent<Image>(); bg.color = Back;
-            Label("Title", editorPanel.transform, new Vector2(0, 305), new Vector2(850, 40), "CUSTOMIZE RADIAL", 26);
-            var first = Button("Previous page", editorPanel.transform, new Vector2(-340, 245), () => selectPage((page + draft.pages.Length - 1) % draft.pages.Length));
-            Button("Next page", editorPanel.transform, new Vector2(-130, 245), () => selectPage((page + 1) % draft.pages.Length));
-            Button("Add page", editorPanel.transform, new Vector2(100, 245), add).interactable = draft.pages.Length < 4;
-            Button("Delete page", editorPanel.transform, new Vector2(310, 245), remove).interactable = draft.pages.Length > 1;
-            var nameRect = Rect("Page Name", editorPanel.transform, new Vector2(0, 180), new Vector2(750, 42));
-            nameRect.gameObject.AddComponent<Image>().color = new Color32(48, 52, 49, 255);
-            var nameText = Label("Text", nameRect, Vector2.zero, new Vector2(720, 40), draft.pages[page].name, 20);
-            var input = nameRect.gameObject.AddComponent<InputField>(); input.textComponent = nameText; input.characterLimit = 24; input.text = draft.pages[page].name;
-            input.onEndEdit.AddListener(value => draft.pages[page].name = string.IsNullOrWhiteSpace(value) ? "Field" : value.Trim());
-            var p = draft.pages[page];
-            for (var i = 0; i < p.slots.Length; i++)
-            {
-                var index = i;
-                var pos = p.slots.Length == 8 ? new Vector2(-305 + i % 2 * 160, 110 - i / 2 * 66)
-                    : new Vector2(-225, -15) + TopDown3DRadialGeometry.Point(120, i * 360f / p.slots.Length);
-                var compass = p.slots.Length == 8 ? new[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" }[i]
-                    : new[] { "N", "E", "S", "W" }[i];
-                var button = Button(compass + ": " + Name(p.slots[i]), editorPanel.transform, pos, () => selectSector(index), new Vector2(140, 52));
-                button.GetComponent<Image>().color = index == sector ? new Color32(95, 75, 46, 255) : new Color32(48, 52, 49, 255);
-            }
-            var values = (TopDown3DRadialCommand[])Enum.GetValues(typeof(TopDown3DRadialCommand));
-            for (var i = 0; i < values.Length; i++) { var command = values[i]; Button(command == TopDown3DRadialCommand.Empty ? "Clear slot" : Name(command), editorPanel.transform, new Vector2(220, 90 - i * 53), () => assign(command)); }
-            Button(p.slots.Length == 4 ? "8 sectors" : "4 sectors", editorPanel.transform, new Vector2(-225, -205), resize);
-            Button(draft.toggleOpen ? "Toggle + Confirm" : draft.explicitConfirm ? "Hold + Confirm" : "Hold + Stick Release", editorPanel.transform, new Vector2(220, -205), settings);
-            Button("Scale " + draft.scale.ToString("0.00"), editorPanel.transform, new Vector2(0, -205), scale);
-            Label("Message", editorPanel.transform, new Vector2(0, -258), new Vector2(850, 48), message, 18);
-            Button("Cancel / Back", editorPanel.transform, new Vector2(-125, -310), cancel);
-            Button("Apply layout", editorPanel.transform, new Vector2(125, -310), apply);
-            SetVisible(true);
-            var retained = editorPanel.GetComponentsInChildren<Button>().FirstOrDefault(b => b.name == selectedName);
-            EventSystem.current?.SetSelectedGameObject(retained != null ? retained.gameObject : first.gameObject);
-        }
-
         private static RectTransform Rect(string name, Transform parent, Vector2 position, Vector2 size)
         {
             var rect = new GameObject(name, typeof(RectTransform)).GetComponent<RectTransform>(); rect.SetParent(parent, false);
@@ -137,12 +88,6 @@ namespace BooterBigArm.TopDown3D
         {
             var label = Rect(name, parent, position, size).gameObject.AddComponent<Text>(); label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             label.text = text; label.supportRichText = false; label.fontSize = fontSize; label.color = Ink; label.alignment = TextAnchor.MiddleCenter; label.raycastTarget = false; return label;
-        }
-        private static Button Button(string text, Transform parent, Vector2 position, Action pressed, Vector2? size = null)
-        {
-            var rect = Rect(text, parent, position, size ?? new Vector2(195, 44)); rect.gameObject.AddComponent<Image>().color = new Color32(48, 52, 49, 255);
-            var button = rect.gameObject.AddComponent<Button>(); button.onClick.AddListener(() => pressed());
-            Label("Label", rect, Vector2.zero, rect.sizeDelta, text, 18); return button;
         }
     }
 }

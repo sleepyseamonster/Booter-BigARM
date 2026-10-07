@@ -7,7 +7,7 @@ namespace BooterBigArm.TopDown3D
     {
         public static TopDown3DRadialMenuController TryInstall(Scene scene, TopDown3DInputRouter input,
             TopDown3DPlayerInventory inventory, TopDown3DPlayerActionController action,
-            TopDown3DInventoryUiController inventoryUi, TopDown3DInventoryCanvas inventoryCanvas)
+            TopDown3DInventoryUiController inventoryUi, TopDown3DInventoryCanvas inventoryCanvas, string preferenceDirectory = null)
         {
             if (input.InputActions.FindAction("System/OpenRadial", false) == null) return null;
             var existing = TopDown3DGameHudCanvas.FindInScene<TopDown3DRadialMenuController>(scene);
@@ -31,7 +31,8 @@ namespace BooterBigArm.TopDown3D
             var root = new GameObject("Radial Menu", typeof(RectTransform)); SceneManager.MoveGameObjectToScene(root, scene);
             var view = root.AddComponent<TopDown3DRadialCanvas>(); view.Build();
             var controller = root.AddComponent<TopDown3DRadialMenuController>();
-            controller.Configure(input, inventory, inventoryUi, action, follower, cargo, view);
+            controller.Configure(input, inventory, inventoryUi, action, follower, cargo, view,
+                preferenceDirectory == null ? null : System.IO.Path.Combine(preferenceDirectory, "radial-layout-v1.json"));
             inventoryCanvas.ConfigureRadialCustomization(controller.OpenCustomization);
             return controller;
         }

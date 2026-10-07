@@ -23,7 +23,7 @@ The [Wilds audit](../../Research/UI/MONSTER_HUNTER_WILDS_MENU_AUDIT.md) and [imm
 
 ## Scope and boundaries
 
-The first design review should show a compact supporting menu and an uncomplicated radial setup flow using existing commands. Inventory presentation can be reviewed when it serves a concrete existing task. Pause behavior, save/exit behavior, and final art remain unresolved; this direction does not select their implementation.
+The first design review should show a compact supporting menu and an uncomplicated radial setup flow using existing commands. Inventory presentation can be reviewed when it serves a concrete existing task. The user authorized implementation on 2026-10-07 and selected live simulation while the Start menu is open. Player controls are suppressed while the world continues. Exit confirms that current session progress will not be saved; no gameplay save integration is introduced. Final art remains subject to user review.
 
 Existing Legger presence, cargo range, placement, and capacity rules remain authoritative. The menu does not grant remote cargo access or change companion traversal. The current survival values and their deferred mechanics remain as specified in the [survival standard](./SURVIVAL_SYSTEM_STANDARD.md).
 

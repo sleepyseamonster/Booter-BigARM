@@ -22,6 +22,12 @@ Before adding a helper or automation entry point, confirm that it:
 
 ## Current Inventory
 
+### Compact menu GUI
+
+- **Authoring:** `Assets/_Project/Scripts/Editor/UI/TopDown3DMenuPrefabAuthoring.cs`; `CreateFromCli` writes only the new SystemMenu prefab and initial metadata, refusing replacement. `UpdateOwnedFromCli` explicitly replaces a reviewed task-owned prefab while preserving its GUID. Neither saves gameplay scenes or changes Build Settings.
+- **Validation:** `BooterBigArm.Editor.TopDown3DMenuProductionValidator.ValidateFromCli` opens and validates Greater Wasteland, installs transient UI with isolated preference storage, and checks ownership. It does not save scenes. `CaptureFromCli` renders a disposable GUI scene using temporary render resources and restores pipeline references; diagnostics stay under ignored Logs. `UpdateOwnedPrefabAndCaptureFromCli` is a mutating authoring-plus-validation workflow, never a read-only validator.
+- **Proof and limits:** [menu implementation evidence](../../../Evidence/UI/MENU_SYSTEM_IMPLEMENTATION_2026-10-07.md). Use the pinned editor with exclusive ownership of the validation checkout; do not compete with the user's GUI session or focus app windows.
+
 ### Editor playability audit
 
 - **Report:** [Editor playability audit, 2026-10-06](../../../Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md).
