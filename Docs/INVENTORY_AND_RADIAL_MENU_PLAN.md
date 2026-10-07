@@ -1,6 +1,6 @@
 # Inventory and Radial Menu System
 
-Status: design and implementation sequence for Greater Wasteland, 2026-10-06. The user confirmed a player-customizable menu hub opened by holding left bumper or a keyboard equivalent: north opens player inventory, south opens the Legger's inventory, and west selects the dust canister for placement. Other defaults below are proposals; they do not establish new item economy, companion abilities, or world canon.
+Status: design and implementation sequence for Greater Wasteland, 2026-10-06. The user confirmed a player-customizable menu hub opened by holding left bumper or a keyboard equivalent: north opens player inventory, south opens the Legger's inventory and calls him to sprint toward Booter through pathfinding, and west selects the dust canister for placement. Other defaults below are proposals; they do not establish new item economy, companion abilities, or world canon.
 
 The radial menu provides entry points into inventory and tool selection. The inventory remains the place to inspect, organize, transfer, and assign items. Both use the same item and command authorities so a shortcut never becomes a second inventory or a way around physical reach, capacity, or action constraints.
 
@@ -31,7 +31,7 @@ Start with four cardinal sectors so the confirmed menu entries have large, consi
 | Starting direction | Confirmed entry | Result after selection |
 | --- | --- | --- |
 | North | Player Inventory | Close the radial and open Booter's inventory with Booter's pane selected. |
-| South | Legger Inventory | Close the radial and open the Legger's inventory with his pane selected, subject to physical cargo access. |
+| South | Legger Inventory | Close the radial, open the Legger pane, and request a sprinting pathfinding approach to Booter. Cargo operations unlock within physical access range. |
 | West | Dust Canister | Close the radial, select the carried canister, and enter placement preview. Placement is confirmed separately. |
 | East | Unassigned | No action. Its purpose has not been specified. |
 
@@ -67,7 +67,7 @@ Proposed initial command registry:
 | --- | --- | --- |
 | Player Inventory | Open inventory after closing the wheel with Booter's pane selected | Local inventory exists |
 | Recall Legger | Request physical regroup through the existing companion command | Companion command service is available; never teleport |
-| Legger Inventory | Open the packing screen with the Legger's cargo pane selected | Legger is within the existing cargo access radius |
+| Legger Inventory | Open the Legger pane and request a sprinting pathfinding approach to Booter | Companion and cargo authorities exist; being distant does not disable opening. Cargo operations require physical access. |
 | Auto-Pack Legger Cargo | Repack current companion cargo | Legger is within access radius; packing is legal |
 | Dust Canister | Select the canister and begin placement preview | Player owns a canister and authored-world placement is integrated |
 | Pick Up Dust Canister | Begin pickup of the current reachable deployed canister | Target, reach, and combined reward capacity pass validation |
@@ -104,7 +104,19 @@ Keep routine packing fast. Whole-stack transfer and Auto-Pack stay the default p
 | Auto-Pack | Repack the Legger's cargo without changing owner or total quantity. Require current proximity. |
 | Assign to Radial | Open the customization picker for a supported item action. Sorting later preserves the assignment. |
 
-All operations report their actual result. Keep selection on a failed operation so the player can recover; clear it if its source has disappeared. Read-only cargo summaries may remain visible when separated, but transfer, rearrangement, and Auto-Pack are disabled and explain that the Legger must be nearby. Revalidate proximity at the moment of commit even if the button was enabled when drawn.
+All operations report their actual result. Keep selection on a failed operation so the player can recover; clear it if its source has disappeared. Opening the Legger's inventory works while separated and requests his sprinting approach. His pane remains read-only until he is within reach: transfer, rearrangement, and Auto-Pack are disabled and explain that he is approaching. Revalidate proximity at the moment of commit even if the button was enabled when drawn.
+
+## Legger approach when opening inventory
+
+Every successful transition into the Legger inventory requests an urgent physical approach to Booter through the companion movement authority. Highlighting the south sector alone does not issue that request. Repeated UI refreshes must not repeatedly reset the route or acceleration. If the Legger is already within access range, open directly and keep his safe stopping behavior rather than making him sprint into Booter.
+
+The Legger sprints along a traversable route to Booter's current position, respecting collision, slope, clearance, turning, braking, and cargo load consequences. Inventory input suppression applies to Booter's controls; the companion's navigation and movement continue while the screen is open. Use a safe arrival distance within cargo access range, not Booter's exact occupied position. Refresh the UI from current physical range and unlock cargo operations automatically on arrival.
+
+Show `Legger approaching` while traveling. If navigation cannot find a legal route, show `Legger cannot reach you from here` and keep cargo operations unavailable. Closing inventory restores gameplay and allows Booter to move to a reachable regroup point. Proposed close behavior: the already-issued approach continues through the normal recall task; closing the screen does not abruptly stop him. Losing access again immediately disables cargo operations.
+
+Use [the companion standard](./BIGARM_COMPANION_STANDARD.md) and the existing follower's `RequestRecall` seam as the integration starting point. Its current local route search is bounded and does not prove long-detour navigation across Greater Wasteland. Validate urgent speed and route behavior before claiming sprinting arrival; extend the existing navigation owner if the authored-world requirement exceeds its local search. No teleportation or traversal through blocked terrain is a recovery path.
+
+Approach changes the Legger's real position and active task through the existing companion authority. It does not change deterministic world identity, create a generated object, or introduce streaming. A future authored-world save owner must capture the companion's actual position and task; the inventory screen does not persist a separate copy or restore him beside Booter.
 
 Do not add discard or ground drop until persistent authored-world pickups exist. No silent deletion, invisible transfer, or item creation should be introduced to make a menu option appear complete.
 
@@ -118,6 +130,7 @@ Keep implementation in `BooterBigArm.TopDown3D.Runtime`, under the established r
 - **Radial controller:** owns open/select/cancel/commit lifecycle and dispatches one command. It closes and leaves Radial mode before executing so opening inventory or beginning placement can establish its own state.
 - **Radial view:** draws pages, selection, quantities, and unavailable reasons. It does not consume items or invoke input actions directly.
 - **Inventory operation service:** validates source owner/slot, destination, policy, range, amount, and capacity; prepares mutations before publishing state changes.
+- **Companion movement authority:** receives one urgent approach request when the Legger inventory opens, pathfinds and sprints physically, and supplies arrival or blocked-route status. It continues running in inventory mode.
 - **Preferences persistence:** stores radial layouts and binding overrides separately from world saves, with validated defaults and recovery from corrupt data.
 
 Gameplay movement, camera orbit, sprint, interaction, recall, and harvesting input are suppressed while the wheel is open. Clear stale intent on both transitions. Cancel an incomplete gather without issuing a reward; reject opening during a committed action phase that cannot safely cancel. Modal routing must define this phase explicitly rather than rely on animation timing.
@@ -142,7 +155,7 @@ Save preference edits on Apply, using a temporary file and safe replacement. A f
 
 1. **Inventory correctness and feedback.** Repair owner-aware selection and details, enforce live cargo access, and make selected-stack transfers atomic. Focused EditMode proof covers same-index slots across owners, partial/full transfer, rejected policy/capacity/range, unchanged rejected layouts, and change notifications after both owners are coherent.
 2. **Radial state and input.** Add the layout model, command registry, Radial mode, hold selection, cancel, and page lifecycle. Test binding conflicts, false release on map transitions, one execution per hold, center cancellation, boundary selection, page reset, focus loss, device removal, and stale intent.
-3. **Production menu hub.** Install the four-sector wheel through the existing scene UI lifecycle. North selects the player inventory pane, south selects the physically accessible Legger pane, and west selects canister placement. Add an owner-aware inventory opening API so south does not merely open Booter's details. Until authored placement integration passes, west remains visible with a clear unavailable reason. Validate Greater Wasteland wiring and exactly one EventSystem. Test cardinal mapping, owner focus, inventory/wheel handoffs, and unavailable command feedback.
+3. **Production menu hub and Legger approach.** Install the four-sector wheel through the existing scene UI lifecycle. North selects the player inventory pane, south opens the Legger pane and requests his sprinting pathfinding approach, and west selects canister placement. Add an owner-aware inventory opening API so south does not merely open Booter's details. Cargo operations unlock on physical arrival. Until authored placement integration passes, west remains visible with a clear unavailable reason. Validate Greater Wasteland wiring and exactly one EventSystem. Test cardinal mapping, owner focus, one approach request per opening, companion simulation during inventory mode, urgent speed, safe stopping, blocked routes, arrival/access loss, inventory/wheel handoffs, and unavailable command feedback.
 4. **Player customization and preferences.** Add the controller-friendly editor and versioned preference storage, then optional split and quantity transfer operations. Test assignment continuity through sorting/depletion, page edits, round trips, bad data, and failed writes.
 5. **Authored harvesting integration.** Remove placement's procedural loading dependency through an authored-ground adapter and install the device state/presentation in Greater Wasteland. Prove placement clearance, atomic pickup, partial fill, full inventories, stable device IDs, and the explicitly selected authored-save contract. Keep procedural generation disabled. Integrate authored Ironstone separately without creating unapproved resource placements.
 
@@ -152,4 +165,4 @@ Player acceptance covers right-stick comfort, mouse reach, page switching, reada
 
 ## First release acceptance
 
-A player can hold left bumper or the configured keyboard key, choose north for player inventory, south for the Legger's inventory, or west to select dust-canister placement, and release to enter that system once. Selecting west does not place or consume the canister. They can cancel without side effects, customize entries from inventory, and recover their saved layout after restarting. Sorting or consuming an item does not move its shortcut. The wheel shows why an action is unavailable. The Legger's real position and every inventory quantity remain authoritative. Greater Wasteland runs without introducing generation, streaming, or a second save authority.
+A player can hold left bumper or the configured keyboard key, choose north for player inventory, south for the Legger's inventory, or west to select dust-canister placement, and release to enter that system once. Opening the Legger inventory sends him sprinting toward Booter through legal pathfinding while his pane shows approach status; cargo operations unlock when he physically arrives within reach. A blocked route leaves him at his real position and reports the problem. Selecting west does not place or consume the canister. They can cancel without side effects, customize entries from inventory, and recover their saved layout after restarting. Sorting or consuming an item does not move its shortcut. The wheel shows why an action is unavailable. The Legger's real position and every inventory quantity remain authoritative. Greater Wasteland runs without introducing generation, streaming, or a second save authority.
