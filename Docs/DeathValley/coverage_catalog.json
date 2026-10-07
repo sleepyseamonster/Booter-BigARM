@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "audited_utc": "2026-10-07T00:06:59.169829+00:00",
+  "audited_utc": "2026-10-07T02:13:29.437884+00:00",
   "working_crs": "EPSG:26911",
-  "git_head": "bd712882279ee5403a6bc04e57603681fa1b60e8",
+  "git_head": "8223c10f3f2141df6df6f37fa5ef8436024c2cc5",
   "regions": [
     {
       "id": "original_region",
@@ -14,8 +14,8 @@
         4144200
       ],
       "spacing_m": 200,
-      "config": "Docs/Agents/Blender/tools/death_valley/region.json",
-      "blend": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExplore.blend",
+      "config": "Tools/Art/Blender/death_valley/region.json",
+      "blend": "SourceArt/Blender/Studies/DeathValley/DeathValleyExplore.blend",
       "color": "#8b7c51",
       "footprint_evidence": "versioned_configuration",
       "geometry_evidence": "retained_build_record_not_reopened"
@@ -30,8 +30,8 @@
         4144200
       ],
       "spacing_m": 200,
-      "config": "Docs/Agents/Blender/tools/death_valley/region_full_tiles.json",
-      "blend": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExploreExpanded.blend",
+      "config": "Tools/Art/Blender/death_valley/region_full_tiles.json",
+      "blend": "SourceArt/Blender/Studies/DeathValley/DeathValleyExploreExpanded.blend",
       "color": "#6a6e41",
       "footprint_evidence": "versioned_configuration",
       "geometry_evidence": "retained_build_record_not_reopened"
@@ -46,8 +46,8 @@
         4047800
       ],
       "spacing_m": 10,
-      "config": "Docs/Agents/Blender/tools/death_valley/region.json",
-      "blend": "Docs/Agents/Blender/studies/DeathValley/DeathValleyMosaicDetail.blend",
+      "config": "Tools/Art/Blender/death_valley/region.json",
+      "blend": "SourceArt/Blender/Studies/DeathValley/DeathValleyMosaicDetail.blend",
       "color": "#8661a2",
       "footprint_evidence": "versioned_configuration",
       "geometry_evidence": "retained_build_record_not_reopened"
@@ -62,8 +62,8 @@
         4024200
       ],
       "spacing_m": 40,
-      "config": "Docs/Agents/Blender/tools/death_valley/badwater_corridor.json",
-      "blend": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExploreExpanded.blend",
+      "config": "Tools/Art/Blender/death_valley/badwater_corridor.json",
+      "blend": "SourceArt/Blender/Studies/DeathValley/DeathValleyExploreExpanded.blend",
       "color": "#678f78",
       "footprint_evidence": "versioned_configuration",
       "geometry_evidence": "retained_build_record_not_reopened"
@@ -78,8 +78,8 @@
         4012200
       ],
       "spacing_m": 20,
-      "config": "Docs/Agents/Blender/tools/death_valley/badwater_transition_pilot.json",
-      "blend": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExploreExpanded.blend",
+      "config": "Tools/Art/Blender/death_valley/badwater_transition_pilot.json",
+      "blend": "SourceArt/Blender/Studies/DeathValley/DeathValleyExploreExpanded.blend",
       "color": "#d38d28",
       "footprint_evidence": "versioned_configuration",
       "geometry_evidence": "retained_build_record_not_reopened"
@@ -94,8 +94,8 @@
         4008200
       ],
       "spacing_m": 10,
-      "config": "Docs/Agents/Blender/tools/death_valley/badwater_canyon_patch.json",
-      "blend": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExploreExpanded.blend",
+      "config": "Tools/Art/Blender/death_valley/badwater_canyon_patch.json",
+      "blend": "SourceArt/Blender/Studies/DeathValley/DeathValleyExploreExpanded.blend",
       "color": "#b77952",
       "footprint_evidence": "versioned_configuration",
       "geometry_evidence": "retained_build_record_not_reopened"
@@ -110,8 +110,8 @@
         4010296
       ],
       "spacing_m": 2,
-      "config": "Docs/Agents/Blender/tools/death_valley/badwater_four_slices.json",
-      "blend": "Docs/Agents/Blender/studies/DeathValley/BadwaterGameSlice.blend",
+      "config": "Tools/Art/Blender/death_valley/badwater_four_slices.json",
+      "blend": "SourceArt/Blender/Studies/DeathValley/BadwaterGameSlice.blend",
       "color": "#266aa0",
       "footprint_evidence": "versioned_configuration",
       "geometry_evidence": "retained_build_record_not_reopened"
@@ -126,8 +126,8 @@
         4047400
       ],
       "spacing_m": 1,
-      "config": "Docs/Agents/Blender/tools/death_valley/prepare_detail.py",
-      "blend": "Docs/Agents/Blender/studies/DeathValley/DeathValleyTerrainMaster.blend",
+      "config": "Tools/Art/Blender/death_valley/prepare_detail.py",
+      "blend": "SourceArt/Blender/Studies/DeathValley/DeathValleyTerrainMaster.blend",
       "color": "#8661a2",
       "footprint_evidence": "recorded_build_and_script_default",
       "geometry_evidence": "retained_build_record_not_reopened"
@@ -135,42 +135,42 @@
   ],
   "blender_files": [
     {
-      "path": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExplore.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/DeathValleyExplore.blend",
       "bytes": 34557591,
       "sha256": "2a373a71557ab393ba72936612b4d688a62052d5bbc15e2df6e62249f58b7f22",
       "storage": "materialized_file",
       "readability": "not_reopened_by_this_audit"
     },
     {
-      "path": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExploreExpanded.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/DeathValleyExploreExpanded.blend",
       "bytes": 89160187,
       "sha256": "15f320cf2d3fa5b44161004d6db8a4ad4caefda39b32ec2f55c0e9025dc27697",
       "storage": "materialized_file",
       "readability": "not_reopened_by_this_audit"
     },
     {
-      "path": "Docs/Agents/Blender/studies/DeathValley/DeathValleyRegionalStudy.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/DeathValleyRegionalStudy.blend",
       "bytes": 37003791,
       "sha256": "aa07023a078cc0c379611a2d35fe54ff32a518af829ed0c443bb8dcfc243c50a",
       "storage": "materialized_file",
       "readability": "not_reopened_by_this_audit"
     },
     {
-      "path": "Docs/Agents/Blender/studies/DeathValley/DeathValleyMosaicDetail.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/DeathValleyMosaicDetail.blend",
       "bytes": 11018700,
       "sha256": "64acb375d24b276308eb46402f670447486205cf447cd3a8ca9d10cbaac7aaa1",
       "storage": "materialized_file",
       "readability": "not_reopened_by_this_audit"
     },
     {
-      "path": "Docs/Agents/Blender/studies/DeathValley/DeathValleyTerrainMaster.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/DeathValleyTerrainMaster.blend",
       "bytes": 48318153,
       "sha256": "3ccfee8473ad9641c65d326bef551cc17c7872e4901f0ae4644f08f7897babe0",
       "storage": "materialized_file",
       "readability": "not_reopened_by_this_audit"
     },
     {
-      "path": "Docs/Agents/Blender/studies/DeathValley/BadwaterGameSlice.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/BadwaterGameSlice.blend",
       "bytes": 144116547,
       "sha256": "76f82d589a0ff2ed693f3a9f5eebd57a62b1e5c326729e2f00ec00093a9b6ac7",
       "storage": "materialized_file",
@@ -178,9 +178,9 @@
     }
   ],
   "unity_scene": {
-    "path": "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity",
+    "path": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
     "guid": "4de5dd018ee194314a00fd369e2d3eeb",
-    "sha256": "0f29f5c2474e4ea9e6745b4b0625b356843ca89a8aa90399b911347d95c11c70",
+    "sha256": "fb6b7b90f6a0b77c581b5521c9c07dfe25b2a40eb020e194fb10d2c57a5771fc",
     "terrains": 256,
     "colliders": 256,
     "terrain_data_assets": 256,
@@ -5333,6 +5333,13 @@
         "status": "hash_verified",
         "missing_artifacts": [],
         "checked_artifact_count": 5,
+        "resolved_artifacts": [
+          "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/west_candidate_2m.npz",
+          "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/x51y401_window.tif",
+          "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/x51y401_metadata.xml",
+          "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/x52y401_window.tif",
+          "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/x52y401_metadata.xml"
+        ],
         "limits": "Historical acquisition proof is separate from local file availability and Unity import."
       }
     },
@@ -5361,10 +5368,15 @@
       "size_km": 2.048
     }
   ],
-  "gis_files_in_scanned_roots": [],
+  "gis_files_in_scanned_roots": [
+    "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/west_candidate_2m.npz",
+    "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/x51y401_window.tif",
+    "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/x52y401_window.tif"
+  ],
   "gis_scan_roots": [
     "Docs",
     "Assets",
+    "SourceData",
     "wetransfer_blender_2026-10-06_2121"
   ],
   "recovery": {

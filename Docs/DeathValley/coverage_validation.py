@@ -1,5 +1,6 @@
 """Offline validation shared by the coverage inventory and source verifier."""
 import hashlib
+import json
 import math
 import re
 from pathlib import Path
@@ -103,15 +104,35 @@ def assessment_availability(record, bounds, root):
         files.extend((source.get(name + "_path"), source.get(name + "_sha256")) for name in ("window", "metadata"))
     missing = []
     root = Path(root).resolve()
+    archive = root / "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/manifest.json"
+    archived = {}
+    if archive.is_file():
+        for entry in json.loads(archive.read_text(encoding="utf-8"))["records"]:
+            if entry["source"] in archived:
+                raise ValueError("Ambiguous archived candidate source")
+            archived[entry["source"]] = entry
+    resolved = []
     for name, expected in files:
         if not isinstance(name, str) or Path(name).is_absolute() or not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected):
             raise ValueError("Invalid local artifact path or checksum in assessment")
         path = (root / name).resolve()
         if not path.is_relative_to(root):
             raise ValueError("Assessment artifact escapes the checkout")
+        if name in archived:
+            entry = archived[name]
+            if entry["sha256"] != expected:
+                raise ValueError("Archived candidate version differs from assessment")
+            destination = entry["destination"]
+            if not isinstance(destination, str) or Path(destination).is_absolute():
+                raise ValueError("Invalid archived candidate path")
+            path = (root / destination).resolve()
+            if not path.is_relative_to(root):
+                raise ValueError("Archived candidate path escapes the checkout")
+        resolved.append(path.relative_to(root).as_posix())
         if not path.is_file():
             missing.append(name)
         elif sha256(path) != expected:
             raise ValueError(f"Candidate source artifact changed: {name}")
     return {"status": "unavailable" if missing else "hash_verified", "missing_artifacts": missing,
-            "checked_artifact_count": len(files), "limits": "Historical acquisition proof is separate from local file availability and Unity import."}
+            "checked_artifact_count": len(files), "resolved_artifacts": resolved,
+            "limits": "Historical acquisition proof is separate from local file availability and Unity import."}

@@ -1,0 +1,83 @@
+# Building another Death Valley terrain slice
+
+The recommended production route is **verified GIS elevation → prepared height grids → native Unity Terrain**. Blender is useful for inspection, authored rocks, cliffs and other custom meshes. It is optional for creating the ground heightfield. Unity supports importing real-world heightmaps directly; see [Unity heightmap documentation](https://docs.unity3d.com/6000.0/Documentation/Manual/terrain-Heightmaps.html).
+
+This guide documents the existing contracts and the next implementation boundary. The current tools reproduce or validate specific existing footprints; there is not yet a general command that builds and integrates an arbitrary new 256-chunk slice.
+
+## Size and coordinates
+
+One new 256-chunk section consists of **16 × 16 chunks**, each **256 × 256 metres**, covering **4,096 × 4,096 metres**. A 64-chunk quarter is 2,048 × 2,048 metres. These are different batch sizes.
+
+| Contract | Required value |
+| --- | --- |
+| Projected coordinates | EPSG:26911, metres; east and north |
+| Bounds order | `[east_min, north_min, east_max, north_max]` |
+| Existing playable bounds | `[520400,4006200,524496,4010296]` |
+| Shared Unity origin | East `522448`, north `4008248` |
+| Unity placement | `X = east − 522448`; `Z = north − 4008248`; elevations remain metres |
+| Chunk alignment | Offset from existing minimum easting/northing must be a multiple of 256 m |
+| Inventory identity | Projected lower-left coordinate, chunk size and source version |
+| Tile addressing | Local rows north-to-south and columns west-to-east; `rNN_cNN` alone is not globally unique |
+
+Keep the shared Unity origin when adding a neighboring section. Recentring each section independently would place it over the current scene. Each Terrain transform uses its chunk's southwest corner; the developer map displays those same projected bounds.
+
+**Unselected example:** a full section directly west of the current scene would occupy `[516304,4006200,520400,4010296]`. This is a coordinate example, not an approved or source-verified footprint. The existing verified west candidate covers only `[518352,4006200,520400,4008248]`, one 64-chunk quarter. Its source proof does not establish coverage for the remaining 192 chunks.
+
+## Source preparation
+
+1. Select the new footprint and confirm that it adjoins the existing terrain without overlap. Record a unique batch name, bounds, source spacing, intended detail areas and source versions.
+2. Identify actual USGS DEM products covering the whole footprint. Verify raster CRS, resolution, complete finite coverage, surface type, vertical datum, metadata and hashes. Catalog intersection by itself does not prove coverage. Preserve source windows and metadata under a new versioned `SourceData/Terrain/DeathValley/` directory.
+3. Prepare one consistent measured grid, including the shared boundary samples. For a 4,096 m square, a 1 m vertex grid has 4,097 × 4,097 samples; a 2 m grid has 2,049 × 2,049 samples. Native 1 m preparation followed by strict 2 m decimation preserves common samples. Direct coarse resampling previously changed the retained border and failed verification.
+4. Split the grid into 256 tiles with shared edge vertices. At 2 m spacing each source tile is 129 × 129 samples; at 1 m it is 257 × 257. The current Unity render convention is 257 × 257. Interpolated render vertices do not create new measured detail.
+5. Prepare aligned imagery separately. Preserve source images, projected bounds and hashes. Aerial imagery provides geographic context; close-range gameplay surfaces require their own material work.
+
+The developer overview uses saved Blender terrain sampled at 200 m and displays an 800 m mesh. It is a coverage and navigation reference, not a source of fine gameplay heights. Its packed imagery can guide inspection, but new detailed terrain requires adequate original or newly acquired DEM coverage.
+
+## Height encoding and joins
+
+Keep full precision measured elevations before encoding or authoring changes. The existing source tiles use little-endian uint16 with north-first rows and the range **−100 to 1,700 m**. Their quantization step is approximately **0.02747 m**. A mountain section extending above that range needs an explicitly supported range; silently clipping or reusing the current normalization would produce incorrect terrain.
+
+Validate every internal shared edge and the entire join to Greater Wasteland in world elevation units. Matching raw integers only proves matching heights when both tiles use the same encoding range. Decode north-first rows into Unity's north-positive Z convention. Mixed-resolution borders must agree on the final render samples and on collider readback.
+
+The verified west quarter's retained-border difference was approximately 0.01373 m, inside the existing encoding-step tolerance. That is proof for that source snapshot and boundary only. A new footprint or source version requires its own check. Record source ownership where DEM products overlap so future rebuilds make the same choice.
+
+## Unity creation and integration
+
+Create a candidate under its own `Assets/_Project/Art/Terrain/<batch>/` asset folder and use a separate validation scene outside enabled Build Settings. Generate TerrainData, source assets, materials and colliders with new GUIDs. Preserve the existing terrain's assets and GUIDs.
+
+Validate dimensions, geographic placement, source hashes, height readback, shared borders, neighbor links and collision before adding the candidate to `Assets/_Project/Scenes/Production/GreaterWasteland.unity`. Integration must retain the current player setup, controls and scene GUID. The existing terrain validators currently expect exactly 256 chunks; they must become batch-aware before a second section increases the scene to 512 chunks.
+
+After integration, refresh the coverage catalog so the blue grid represents the new playable footprint, and perform user-owned traversal and visual review. Compare Player measurements before accepting additional loading costs. Streaming, procedural generation and generated-world save integration remain deferred; this workflow adds authored terrain and geographic inventory identities, not a second runtime world manager.
+
+## Current tools and limits
+
+| Entry point | Available use | Boundary |
+| --- | --- | --- |
+| [audit_coverage.py](./audit_coverage.py) | Refresh existing catalog, hashes, scene references and atlas | Fixed existing terrain inventory; must be extended to include a second batch |
+| [terrain_tools.py](./terrain_tools.py) | Health check, projected/Unity point lookup, candidate planning | `plan west/north/east` describes 64-chunk proposals, not new 256-chunk builders |
+| [verify_west_source.py](./verify_west_source.py) | Acquire and verify the known west quarter | Fixed footprint and known source products; not a general acquisition command |
+| [prepare_game_slice.py](../../Tools/Art/Blender/death_valley/prepare_game_slice.py) | Native DEM preparation reference | Existing single-source study assumptions and export conventions |
+| [prepare_four_slices.py](../../Tools/Art/Blender/death_valley/prepare_four_slices.py) | Existing four-quarter preparation reference | Specific source pair, previous southwest manifest and source-owner join |
+| [export_badwater_unity_source.py](../../Tools/Art/Blender/death_valley/export_badwater_unity_source.py) | Existing Badwater source handoff reference | Rejects other geographic bounds; requires its specific color grid |
+| [BadwaterUnitySceneBuilder.cs](../../Tools/Art/Blender/death_valley/BadwaterUnitySceneBuilder.cs) | Preserved terrain-creation reference | Outside active Editor compilation; fixed paths, origin, height range and detail tiles; not a production expansion command |
+| [BadwaterPlayableSceneBuilder.cs](../../Assets/_Project/Scripts/Editor/TopDown3D/BadwaterPlayableSceneBuilder.cs) | Existing gameplay installation and validation | Writes the production scene in build mode and expects 256 existing Terrain objects; does not create new terrain |
+| [BadwaterDevelopmentBuild.cs](../../Assets/_Project/Scripts/Editor/TopDown3D/BadwaterDevelopmentBuild.cs) | Package the current scene for review | Does not acquire, create or integrate terrain |
+
+Do not run the preserved scene builder against production as an expansion shortcut. The repeatable next-slice implementation needs a parameterized source/batch manifest, complete-footprint acquisition, a guarded exporter and active candidate builder, and batch-aware validators and coverage refresh. Review their isolated outputs before production integration.
+
+## Commands available now
+
+Run from the repository root:
+
+```powershell
+& ./.venv/Scripts/python.exe Docs/DeathValley/audit_coverage.py
+& ./.venv/Scripts/python.exe Docs/DeathValley/terrain_tools.py doctor
+& ./.venv/Scripts/python.exe Docs/DeathValley/terrain_tools.py --json plan west
+& ./.venv/Scripts/python.exe -m unittest discover -s Docs/DeathValley -p 'test_*.py' -v
+```
+
+The first command refreshes only the research inventory outputs. The second checks current files. The third prints the existing 64-chunk west proposal without selecting or importing it. The last command runs offline tooling/source regressions, not gameplay tests.
+
+The west source files are preserved in [SourceData/Terrain/DeathValley/WestCandidate2026-10-06](../../SourceData/Terrain/DeathValley/WestCandidate2026-10-06/manifest.json); availability checks prefer these hash-matched durable copies over ignored Logs. The original full regional GIS archive remains unavailable. Saved Blender sources live under [SourceArt/Blender/Studies/DeathValley](../../SourceArt/Blender/Studies/DeathValley/README.md), and original authoring tools live under `Tools/Art/Blender/death_valley/`. Dated receipts retain original paths; relocation resolution preserves their source identity.
+
+The next implementation task is to choose the new 4,096 m footprint and build the parameterized candidate pipeline above. Blender review can accompany it; a full Blender terrain rebuild is not a prerequisite.

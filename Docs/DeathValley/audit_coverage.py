@@ -40,7 +40,12 @@ def relative(path):
 
 
 def find(name, area="Docs"):
-    preferred = ROOT / area
+    if area == "Docs" and name.endswith(".blend"):
+        preferred = ROOT / "SourceArt/Blender/Studies"
+    elif area == "Docs" and (name.endswith(".json") or name.endswith(".py")):
+        preferred = ROOT / "Tools/Art/Blender/death_valley"
+    else:
+        preferred = ROOT / area
     candidates = sorted(preferred.rglob(name))
     candidates = [p for p in candidates if "archives" not in p.parts]
     if len(candidates) != 1:
@@ -255,10 +260,11 @@ def main():
             x0,y0=rx0+c*32000,ry1-(r+1)*32000
             regional.append({"id":f"overview_v2_r{r:02d}_c{c:02d}","expected_builder_object":f"Overview_r{r*160:04d}_c{c*160:04d}","bounds_m":[x0,y0,x0+32000,y0+32000],"source_spacing_m":200,"status":"configured_source_footprint_not_imported_to_unity","geometry_note":"Detail cutouts may omit or replace geometry; individual Blender object presence is not verified."})
     gis=[]
-    for area in (ROOT/"Docs",ROOT/"Assets",ROOT/"wetransfer_blender_2026-10-06_2121"):
+    for area in (ROOT/"Docs",ROOT/"Assets",ROOT/"SourceData",ROOT/"wetransfer_blender_2026-10-06_2121"):
         if area.exists(): gis.extend(relative(p) for p in area.rglob("*") if p.is_file() and p.suffix.lower() in (".tif",".tiff",".npz",".npy",".laz",".las"))
     base_cfg,_=read_config("region.json")
     catalog={"schema_version":1,"audited_utc":datetime.now(timezone.utc).isoformat(),"working_crs":"EPSG:26911","git_head":subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip(),"regions":regions,"blender_files":assets,"unity_scene":{"path":relative(scene),"guid":TERRAIN_SCENE_GUID,"sha256":digest(scene),**counts,"terrain_data_assets":len(terrain_data),"terrain_data_guid_links_verified":True},"source_audit":{"height_files":256,"color_files":256,"hash_mismatches":0,"shared_edges_checked":edges,"max_encoded_edge_difference":max_edge,"limits":"Source export and serialized reference checks only; no Editor readback, Player performance or visual acceptance."},"unity_tiles":tiles,"expansion_candidates":candidates,"gis_files_in_scanned_roots":gis,"gis_scan_roots":["Docs","Assets","wetransfer_blender_2026-10-06_2121"],"recovery":{"original_external_path":"/Users/worldbuilder/Desktop/Death Valley Terrain Data","external_data_restored":"not_confirmed","badwater_export_rebuild":"retained_height_and_color_exports_present","original_full_precision_grid":"not_found_in_scanned_roots","sources":base_cfg["source_references"]},"park_boundary":{"path":"nps_deva_boundary.json","response_sha256":park["response_sha256"],"retrieved_utc":park["retrieved_utc"]} if park else None}
+    catalog["gis_scan_roots"].insert(2,"SourceData")
     catalog["regional_source_tiles"]=regional
     if args.refresh_boundary: write_json(HERE/"nps_deva_boundary.json",park)
     write_json(HERE/"coverage_catalog.json",catalog)

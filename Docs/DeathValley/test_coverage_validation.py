@@ -40,6 +40,24 @@ class CoverageValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "artifact changed"):
             assessment_availability(self.record, self.bounds, self.root)
 
+    def test_durable_candidate_archive_works_without_ignored_logs(self):
+        self.materialize()
+        pairs=[(self.record,"grid")]
+        pairs.extend((source,name) for source in self.record["sources"] for name in ("window","metadata"))
+        folder=self.root/"SourceData/Terrain/DeathValley/WestCandidate2026-10-06";folder.mkdir(parents=True)
+        records=[]
+        for container,name in pairs:
+            old=container[name+"_path"];new=folder/Path(old).name
+            (self.root/old).replace(new)
+            records.append({"source":old,"destination":new.relative_to(self.root).as_posix(),"sha256":container[name+"_sha256"]})
+        manifest=folder/"manifest.json";manifest.write_text(json.dumps({"records":records}))
+        result=assessment_availability(self.record,self.bounds,self.root)
+        self.assertEqual(result["status"],"hash_verified")
+        self.assertTrue(all(p.startswith("SourceData/") for p in result["resolved_artifacts"]))
+        records[0]["destination"]="../outside.npz";manifest.write_text(json.dumps({"records":records}))
+        with self.assertRaisesRegex(ValueError,"escapes"):
+            assessment_availability(self.record,self.bounds,self.root)
+
     def test_different_geography_does_not_inherit_verification(self):
         bounds = self.bounds.copy()
         bounds[0] -= 256
