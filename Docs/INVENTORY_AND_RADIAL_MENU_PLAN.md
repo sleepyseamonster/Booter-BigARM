@@ -4,6 +4,8 @@ Status: design and implementation sequence for Greater Wasteland, 2026-10-06. Th
 
 The radial menu provides entry points into inventory and tool selection. The inventory remains the place to inspect, organize, transfer, and assign items. Both use the same item and command authorities so a shortcut never becomes a second inventory or a way around physical reach, capacity, or action constraints.
 
+The [UI and controller research handoff](./RADIAL_MENU_UI_CONTROLLER_RESEARCH.md) supplies the evidence, visual design, exact input transitions, controller responsibilities, and current integration audit. Its refined digital-selection and paging design supersedes the tentative controls below where they differ.
+
 ## Existing implementation and production gaps
 
 The [inventory specification](./INVENTORY_AND_ITEM_MANAGEMENT_SYSTEM.md) supplies the small field kit, finite companion cargo, carry preferences, and optional Auto-Pack model. Live production code already supplies item IDs, categories, icons, stack limits, mass, inventory snapshots, move/swap/merge, exact add/remove, maximum/exact transfer, and companion packing.
@@ -43,9 +45,9 @@ Preserve these positions in the initial default layout. The user's broader custo
 | Select wedge | Right stick | Mouse position relative to wheel center |
 | Activate | Release opener with a valid selection | Release Q with a valid selection |
 | Cancel | East while holding opener | Escape while holding Q |
-| Previous or next page | D-pad left or right | Mouse wheel; arrow keys as fallback |
+| Previous or next page | Right bumper next; remappable previous-page action when needed | Mouse wheel or PageUp/PageDown |
 | Open inventory directly | North | Tab |
-| Navigate without a mouse | D-pad up/down cycles wedges | Arrow up/down cycles wedges |
+| Navigate without a mouse | D-pad selects cardinal direction | Arrow keys select cardinal direction |
 
 Q is the proposed default because Tab already opens inventory. Check every binding in Gameplay, UI, and System before adding Q. The opener and page bindings support scheme-specific rebinding and persisted binding overrides. Display prompts from current bindings and the router's active device.
 
