@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "baseline_and_native_runtime_verified",
+  "branch": "main",
+  "snapshot_head": "c7b3b7336859f780097e75e3d460569fef3906d8",
+  "unity_version": "6000.4.0f1",
+  "blender_version": "5.2.2 LTS d13f752e3b9c",
+  "blender_executable": "D:/BooterBigArmTools/Blender522/blender-5.2.2-windows-x64/blender.exe",
+  "blender_executable_sha256": "c9f9c33e538dd3e195ccb8dcc5986721f49df795e91288d4f6e82295a028e1c1",
+  "blender_reopen_source": "SourceArt/Blender/Studies/DeathValley/BadwaterGameSlice.blend",
+  "blender_reopen_source_sha256": "76f82d589a0ff2ed693f3a9f5eebd57a62b1e5c326729e2f00ec00093a9b6ac7",
+  "blender_reopened_meshes": 256,
+  "baseline_manifest": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Baseline01/baseline.json",
+  "baseline_manifest_sha256": "a21839452f2f10fbad046091c9f12bf49f8d478bdd5c425e7bff12f6e0db8b3c",
+  "protected_asset_manifest": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Baseline01/asset_protection.json",
+  "protected_asset_manifest_sha256": "6ad81a9d82b45bb70aea3257827c0fa34526ef9a9cde1cc49078a0626d0fd065",
+  "protected_files": 2066,
+  "baseline_capture_tool_sha256": "5165e52ae3ffa1793a3d1ef396f7272096ff4a6c03b24607577801382ab003d4",
+  "quantization_probe": {
+    "offsets": [
+      0.0,
+      1.0000000116860974e-07,
+      3.8147554732859135e-06,
+      7.629510946571827e-06
+    ],
+    "max_world_errors_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "mismatched_samples": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "tests": {
+    "selected": 5,
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "xml_sha256": "7a27e732d9e48d5d72db71f295165b0ecea42001b6d31f7b068e0d3b9fbb9c4f",
+    "xml_path": "D:\\BooterBigArmValidation\\TerrainExpansion20261007-02\\baseline-tests.xml",
+    "log_sha256": "c2562116efc7ad9a9371101a914f04e4bbe36848b7476b679b156c504e46e6d5"
+  },
+  "capture_log_sha256": "61ebdadbd1a7c1b02a0295d9250692567b629550e78d3a42dca750307f712d7e",
+  "isolation": "Stable committed snapshot; 8 unrelated dirty tracked files use HEAD bytes; untracked menu work excluded; production Unity GUI untouched",
+  "limits": "No new Unity terrain, Player launch, gameplay smoke, traversal or performance acceptance"
+}
