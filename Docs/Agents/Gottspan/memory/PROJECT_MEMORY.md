@@ -29,7 +29,7 @@ This file retains durable repo-management facts. It is not a live status dashboa
 
 ### Current Routing — 2026-10-06
 
-The user's current production selection is `GreaterWasteland.unity`; the generated prototype is a disabled reference. Procedural generation implementation is deferred pending the user's redesign. Root `AGENTS.md` and the professional layout plan at `Docs/Operations/Repository/LAYOUT_PLAN_2026-10-06.md` control current routing. The selected future archive separates inactive hosts and historical Unity work after dependency gates; no physical extraction is implied by the plan. The author confirmed that Lorekeeper's external checkout is absent on Windows and its GitHub connection is deferred. Local game canon remains available.
+The user's current production selection is `GreaterWasteland.unity`; the generated prototype is a disabled reference. Procedural generation implementation is deferred pending the user's redesign. Root `AGENTS.md` and the execution plan at `Docs/Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md` control current routing. The author authorized verified organizational moves; inactive hosts now live at `Archive/ProprietaryEngine/` and `Archive/Unreal/`. Legacy Unity extraction and source-art/document grouping follow their remaining dependency gates. The author confirmed that Lorekeeper's external checkout is absent on Windows and its GitHub connection is deferred. Local game canon remains available.
 
 The dated August baseline below is historical evidence, not current scene selection or fresh Windows proof.
 

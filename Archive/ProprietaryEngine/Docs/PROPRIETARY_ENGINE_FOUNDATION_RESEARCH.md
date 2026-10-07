@@ -27,9 +27,9 @@ The current user brief controls:
 - Windows PC is the intended game platform. Work currently happens on Mac, but Windows development is an acceptable alternative.
 - Research the technology and construction sequence before implementation.
 
-The existing [world systems standard](../../Docs/WORLD_SYSTEMS_STANDARD.md), [World Creator charter](../../Docs/WORLD_CREATOR_CHARTER.md), [architecture plan](../../Docs/WORLD_CREATOR_ARCHITECTURE_PLAN.md), and [rock production plan](../../Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md) preserve useful constraints and reference work. Their Unity-specific implementation prescriptions do not dictate the new engine. The old top-down language and canyon-focused descriptions must not override this task's explicit brief.
+The existing [world systems standard](../../../Docs/WORLD_SYSTEMS_STANDARD.md), [World Creator charter](../../../Docs/WORLD_CREATOR_CHARTER.md), [architecture plan](../../../Docs/WORLD_CREATOR_ARCHITECTURE_PLAN.md), and [rock production plan](../../../Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md) preserve useful constraints and reference work. Their Unity-specific implementation prescriptions do not dictate the new engine. The old top-down language and canyon-focused descriptions must not override this task's explicit brief.
 
-The final geographic coordinate system remains deliberately undefined in the charter. An engineering coordinate representation must not silently invent the world's canonical map, axes, regional boundaries, or wrapping rules. [Lorekeeper](../../Docs/Agents/Lorekeeper/README.md) remains the route for relevant world context; the Arc & Dust repository remains reference-only.
+The final geographic coordinate system remains deliberately undefined in the charter. An engineering coordinate representation must not silently invent the world's canonical map, axes, regional boundaries, or wrapping rules. [Lorekeeper](../../../Docs/Agents/Lorekeeper/README.md) remains the route for relevant world context; the Arc & Dust repository remains reference-only.
 
 Done for this research: a recommended stack, credible alternatives, ownership boundaries, a platform policy, a staged construction plan, and explicit unresolved proof. Out of scope: installations, engine implementation, Unity asset migration, purchases, account setup, external publication, and gameplay smoke testing.
 
@@ -173,7 +173,7 @@ The required procedural concerns apply as follows:
 | Persisted runtime deltas | Keep edits and player changes separate from regenerable geometry; version recipes and saves; caches may be rebuilt |
 | Coordinate precision | Keep durable location identity separate from camera-local render coordinates; leave the final geographical model replaceable |
 
-These are proposed translations of the project's existing [world systems contracts](../../Docs/WORLD_SYSTEMS_STANDARD.md), not implemented behavior. An isolated rendering fixture can omit chunks, but must be labeled a fixture rather than become the production world's ownership model.
+These are proposed translations of the project's existing [world systems contracts](../../../Docs/WORLD_SYSTEMS_STANDARD.md), not implemented behavior. An isolated rendering fixture can omit chunks, but must be labeled a fixture rather than become the production world's ownership model.
 
 Identical seeds alone do not guarantee bit-identical floating-point meshes on ARM and x64. Specify exactness for IDs and discrete decisions, define tolerances or canonical baking where appropriate for geometry, and verify on both architectures before promising cross-platform output equivalence. Likewise, deterministic generation and deterministic physics are separate requirements; Jolt documents limits on its simulation determinism. [Jolt design considerations](https://github.com/jrouwe/JoltPhysics).
 

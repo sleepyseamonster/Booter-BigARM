@@ -10,7 +10,7 @@
 
 Both images are dated 2026-09-06 and were collected as shape/layout references. They predate the 2026-09-08 acceptance of combined variations and sand banks recorded in the source production plan. They are **not** a screenshot of that final accepted appearance, a third-person quality target, or new-engine rendering evidence.
 
-The [source rock production plan](../../Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md) provides acceptance history. The saved source formation and selected code files are indexed in the manifest rather than bulk-copied into engine runtime content. A current accepted visual capture remains missing; do not manufacture one by silently rendering or modifying the Unity scene.
+The [source rock production plan](../../../Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md) provides acceptance history. The saved source formation and selected code files are indexed in the manifest rather than bulk-copied into engine runtime content. A current accepted visual capture remains missing; do not manufacture one by silently rendering or modifying the Unity scene.
 
 ## Technical Retrieval Map
 

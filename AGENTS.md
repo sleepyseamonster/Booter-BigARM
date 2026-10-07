@@ -8,17 +8,18 @@ This file defines the operating rules for the Booter & BigARM repository and rou
 - Load [Docs/LOCAL_WORKSPACE.md](./Docs/LOCAL_WORKSPACE.md) when starting on this Windows checkout or restoring local tools and packages. It routes the existing agent packages, the latest publication checkpoint, and Windows preflight.
 - Derive local paths from the checkout root. Retained macOS paths and prior-machine validation records do not establish installed tools or fresh validation on Windows.
 - Use [Docs/REPOSITORY_ORGANIZATION.md](./Docs/REPOSITORY_ORGANIZATION.md) for file placement, transfer receipts, Blender source archives, and duplicate handling. Dated `PreviousSave` Blender files are retained versions, not the active authoring source.
-- The [professional layout audit and migration plan](./Docs/Operations/Repository/LAYOUT_PLAN_2026-10-06.md) selects an active Unity core plus segregated archives, source art/data, tools, and document ownership. Its physical migration is pending the listed dependency gates; target paths are not current paths.
+- The [professional layout audit and migration plan](./Docs/Operations/Repository/LAYOUT_PLAN_2026-10-06.md) selects an active Unity core plus segregated archives, source art/data, tools, and document ownership. The [execution plan](./Docs/Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md) records current paths and verified batches; the dated audit's target paths are proposals until a receipt seals their migration.
 - Preserve pinned package versions and the existing five agent roles. Setup does not authorize resuming the paused Badwater implementation goal or promoting retained build evidence to current-machine proof.
 
 ## Separate Work Areas
 
 - The repository-root Unity project is the sole active production area as of 2026-09-21. New implementation, research, tooling, documentation and generated-content conventions must serve the Unity TopDown3D production lane.
-- [Unreal/](./Unreal/README.md) is a preserved reference from the 2026-09-16 through 2026-09-20 experiment. Do not add production work there unless the user explicitly reactivates Unreal; load [Unreal/AGENTS.md](./Unreal/AGENTS.md) only for narrowly scoped reference maintenance or inspection inside that folder.
+- [Archive/Unreal/](./Archive/Unreal/README.md) is a preserved reference from the 2026-09-16 through 2026-09-20 experiment. Do not add production work there unless the user explicitly reactivates Unreal; load [its agreement](./Archive/Unreal/AGENTS.md) only for narrowly scoped reference maintenance or inspection inside that folder.
 - The former 2D implementation remains isolated under `Assets/_Project/Legacy2D/`. It is a separate historical reference and must not receive new production work.
-- The proprietary C++ engine remains preserved under [Engine/](./Engine/README.md). Do not extend its renderer, platform shell or runtime. Useful concepts may be deliberately reimplemented through the active Unity architecture; do not silently make `Engine/` an active second production lane.
-- Keep new Unity-hosted implementation and content in the established root `Assets/_Project/`, `Docs/`, `Packages/`, and `ProjectSettings/` boundaries. Do not continue parallel production in `Unreal/` or `Engine/`.
+- The proprietary C++ engine remains preserved under [Archive/ProprietaryEngine/](./Archive/ProprietaryEngine/README.md). Do not extend its renderer, platform shell or runtime. Useful concepts may be deliberately reimplemented through the active Unity architecture; do not make the archive an active second production lane.
+- Keep new Unity-hosted implementation and content in the established root `Assets/_Project/`, `Docs/`, `Packages/`, and `ProjectSettings/` boundaries. `Archive/ProprietaryEngine/` and `Archive/Unreal/` are preserved inactive hosts, not parallel production lanes.
 - Shared ownership, Git safety and user-authority rules still apply across the repository. Root routing links may be maintained when needed to keep the two areas discoverable.
+- The user authorized verified organizational file moves on 2026-10-06. Follow the [execution plan](./Docs/Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md) and its batch gates. Source hashes, asset GUIDs, links, code/load contracts, and current gameplay must remain accounted for; permission to move files does not authorize package changes, external publication, or gameplay redesign.
 
 ## Repo Management Authority
 

@@ -72,7 +72,7 @@ def main():
         inspect_image(data, row)
         counts[row["category"]] = counts.get(row["category"], 0)+1
         total += len(data)
-    actual = {str(p.relative_to(library)) for p in library.rglob("*") if p.suffix.lower() in (".png", ".psd")}
+    actual = {p.relative_to(library).as_posix() for p in library.rglob("*") if p.suffix.lower() in (".png", ".psd")}
     if actual != paths or counts != manifest["counts"] or total != manifest["total_bytes"]:
         raise ValueError("Collection inventory differs from manifest")
     binding_count = 0
@@ -84,7 +84,12 @@ def main():
                 binding_count += 1
     checked_sources = 0
     if args.sources:
-        source_root = ROOT.parent/"Assets/_Project"
+        repo_root = next((parent for parent in ROOT.parents
+                          if (parent/"Assets/_Project").is_dir() and
+                          (parent/"Packages/manifest.json").is_file()), None)
+        if repo_root is None:
+            raise ValueError("Unity reference checkout was not found above the preserved engine")
+        source_root = repo_root/"Assets/_Project"
         for row in manifest["source_records"]:
             name = Path(row["repo_path"]).relative_to("Assets/_Project")
             data = confined(source_root, name).read_bytes()

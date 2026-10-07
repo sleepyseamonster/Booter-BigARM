@@ -14,7 +14,7 @@ For implementation sequencing, use [Docs/FOUNDATION_PLAN.md](./Docs/FOUNDATION_P
 
 ## Sources and Ownership
 
-- The current user instruction and root [`../AGENTS.md`](../AGENTS.md) control. [Docs/DIRECTION.md](./Docs/DIRECTION.md) records the superseded proprietary-engine direction for historical reference.
+- The current user instruction and root [`../AGENTS.md`](../../AGENTS.md) control. [Docs/DIRECTION.md](./Docs/DIRECTION.md) records the superseded proprietary-engine direction for historical reference.
 - Technology choices in the research are proposals until selected and verified. Do not report research, a folder structure or a successful compile as a working engine.
 - Gottspan retains repository coordination and Gear Ball retains the Git lane under the shared root agreement. Use existing role guidance when needed, without creating competing managers or moving their folders.
 - Lorekeeper may retrieve setting context. Current Unity documents control active implementation; this preserved engine's camera, implementation and initial-area assumptions do not override them. Arc & Dust remains read-only and must never be modified.

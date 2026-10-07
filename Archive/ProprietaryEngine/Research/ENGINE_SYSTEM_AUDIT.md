@@ -20,9 +20,9 @@ The [rewritten master plan](../Docs/FOUNDATION_PLAN.md) is the response: build o
 | [Inspector adapter](../Source/Rendering/InspectorRenderer.cpp) | Fixed font atlas and current draw-data submission | Custom texture IDs rejected; no general asset thumbnails or player UI |
 | [Status and receipts](../Docs/STATUS.md) | Existing Mac geometry proof and texture-tool findings | No native Windows execution, physics, gameplay or final-art acceptance |
 | [Surface library](../Assets/SurfaceLibrary/README.md) | 38 PNG textures, five source-art images, channel/binding provenance | Preserved inputs only; shaders/material behavior require deliberate porting |
-| [World context](../References/WORLD_CONTEXT.md), [game basis](../../Docs/WORLD_BASIS.md), [companion standard](../../Docs/BIGARM_COMPANION_STANDARD.md) | Dry twilight setting; survival/crafting context; continuous world; BigARM true position and physical regroup | Old 2D/top-down/canyon priorities are superseded by Engine direction. Broader lore proposals are not accepted game canon. |
+| [World context](../References/WORLD_CONTEXT.md), [game basis](../../../Docs/WORLD_BASIS.md), [companion standard](../../../Docs/BIGARM_COMPANION_STANDARD.md) | Dry twilight setting; survival/crafting context; continuous world; BigARM true position and physical regroup | Old 2D/top-down/canyon priorities are superseded by Engine direction. Broader lore proposals are not accepted game canon. |
 
-The preserved [Unity roadmap](../../Docs/ROADMAP.md) was read for game outcomes and risk, not adopted as the native-engine implementation sequence. No Unity code or scene is required to build the engine. The terminology discrepancy around survival biology remains a content question; a generic resource-pressure system does not need it resolved.
+The preserved [Unity roadmap](../../../Docs/ROADMAP.md) was read for game outcomes and risk, not adopted as the native-engine implementation sequence. No Unity code or scene is required to build the engine. The terminology discrepancy around survival biology remains a content question; a generic resource-pressure system does not need it resolved.
 
 ## Capability coverage
 

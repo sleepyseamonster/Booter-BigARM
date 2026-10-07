@@ -7,11 +7,11 @@ The active production implementation is the repository-root Unity project. Boote
 | Area | Status | Purpose |
 |---|---|---|
 | Repository-root Unity project | **Active** | Unity 6 TopDown3D production implementation, authoring tools, procedural world systems and current planning |
-| [Unreal/](./Unreal/README.md) | Preserved reference | Prior Unreal direction, portable-core planning and evidence; no continuing production implementation |
-| [Engine/](./Engine/README.md) | Preserved reference | Prior proprietary C++ engine, evidence and research; no continuing production implementation |
+| [Archive/Unreal/](./Archive/Unreal/README.md) | Preserved reference | Prior Unreal direction, portable-core planning and evidence; no continuing production implementation |
+| [Archive/ProprietaryEngine/](./Archive/ProprietaryEngine/README.md) | Preserved reference | Prior proprietary C++ engine, evidence and research; no continuing production implementation |
 | `Assets/_Project/Legacy2D/` | Preserved legacy reference | Isolated original 2D implementation |
 
-Read [AGENTS.md](./AGENTS.md) for repository routing and the task-specific Unity documents under [Docs/](./Docs/DOCS_INDEX.md) before new work. Do not move or delete the preserved Unreal or proprietary-engine implementations.
+Read [AGENTS.md](./AGENTS.md) for repository routing and the task-specific Unity documents under [Docs/](./Docs/DOCS_INDEX.md) before new work. Follow the [reorganization execution plan](./Docs/Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md) for verified migrations. Preserve archived source and evidence; the only active production host is Unity.
 
 ## Active Unity Baseline
 

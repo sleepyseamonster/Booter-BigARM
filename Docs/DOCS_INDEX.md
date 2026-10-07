@@ -25,6 +25,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Agent Operations
 
+- [Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md](./Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md)
+  Authorized reorganization batches, completed inactive-host segregation, current path discovery, checks, and rollback contracts.
+
 - [Operations/Repository/LAYOUT_PLAN_2026-10-06.md](./Operations/Repository/LAYOUT_PLAN_2026-10-06.md)
   Second-pass organizational audit, selected professional layout, complete proposed move map, legacy extraction gates, and disconnected Lorekeeper status.
 
@@ -140,7 +143,7 @@ These describe current repo state rather than durable design truth.
 
 These are intentionally non-canonical. They preserve ideas, research, or working context that may later be refined, replaced, or discarded.
 
-- [Engine foundation research](../Engine/Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md)
+- [Engine foundation research](../Archive/ProprietaryEngine/Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md)
   Research for the user-directed proprietary engine, standard third-person view and open Greater Wasteland rock workbench; proposed language, libraries, Windows-first platform policy and foundation evidence gates. No engine implementation is claimed.
 - [WORLD_GEN_REFERENCE_NOTES.md](./WORLD_GEN_REFERENCE_NOTES.md)
   Distilled world-generation ideas from exploratory discussion.

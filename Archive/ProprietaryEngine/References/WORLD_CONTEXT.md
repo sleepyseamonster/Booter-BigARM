@@ -4,7 +4,7 @@ Read-only Lorekeeper retrieval, 2026-09-09. [Engine direction](../Docs/DIRECTION
 
 ## Local Game Reference
 
-The [preserved game world brief](../../Docs/WORLD_BASIS.md) describes a dry world, orange sky, rust/iron colors, perpetual twilight, long shadows and grounded environmental readability. These provide context for evaluating material and silhouette behavior. Its old top-down/2D language and canyon emphasis do not override the current Engine direction.
+The [preserved game world brief](../../../Docs/WORLD_BASIS.md) describes a dry world, orange sky, rust/iron colors, perpetual twilight, long shadows and grounded environmental readability. These provide context for evaluating material and silhouette behavior. Its old top-down/2D language and canyon emphasis do not override the current Engine direction.
 
 BigARM's true physical position is an existing game constraint. Preserve architectural room for persistent entities beyond visible regions, but do not implement companion behavior in the preparation milestone.
 
