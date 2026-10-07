@@ -1,14 +1,14 @@
 {
-  "name": "BooterBigArm.Editor.Tests",
+  "name": "BooterBigArm.Historical.Editor.Tests",
   "rootNamespace": "BooterBigArm.Tests",
   "references": [
-    "BooterBigArm.TopDown3D.Runtime",
-    "BooterBigArm.Editor",
+    "BooterBigArm.Runtime",
+    "BooterBigArm.Isometric.Runtime",
+    "BooterBigArm.Isometric.Editor",
     "Unity.Cinemachine",
-    "Unity.InputSystem",
-    "Unity.ugui",
     "Unity.RenderPipelines.Universal.Runtime",
-    "Unity.RenderPipelines.Core.Runtime"
+    "Unity.RenderPipelines.Core.Runtime",
+    "Unity.InputSystem"
   ],
   "includePlatforms": [
     "Editor"

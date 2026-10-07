@@ -1,8 +1,9 @@
 {
-  "name": "BooterBigArm.Editor",
+  "name": "BooterBigArm.Isometric.Editor",
   "rootNamespace": "BooterBigArm.Editor",
   "references": [
-    "BooterBigArm.TopDown3D.Runtime",
+    "BooterBigArm.Runtime",
+    "BooterBigArm.Isometric.Runtime",
     "Unity.Cinemachine",
     "Unity.InputSystem",
     "Unity.RenderPipelines.Core.Runtime",

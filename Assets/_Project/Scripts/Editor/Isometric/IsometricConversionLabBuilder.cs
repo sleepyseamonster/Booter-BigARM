@@ -32,7 +32,7 @@ namespace BooterBigArm.Editor
             try
             {
                 BuildConversionLab();
-                Debug.Log($"Built protected isometric conversion lab at {ConversionBaselineValidator.ConversionScenePath}.");
+                Debug.Log($"Built protected isometric conversion lab at {HistoricalConversionBaselineValidator.ConversionScenePath}.");
             }
             catch (Exception exception)
             {
@@ -43,15 +43,15 @@ namespace BooterBigArm.Editor
         [MenuItem("Booter & BigARM/Conversion/Open Isometric Lab")]
         public static void OpenLabFromMenu()
         {
-            if (AssetDatabase.LoadAssetAtPath<SceneAsset>(ConversionBaselineValidator.ConversionScenePath) == null)
+            if (AssetDatabase.LoadAssetAtPath<SceneAsset>(HistoricalConversionBaselineValidator.ConversionScenePath) == null)
             {
-                Debug.LogError($"The conversion lab does not exist at {ConversionBaselineValidator.ConversionScenePath}.");
+                Debug.LogError($"The conversion lab does not exist at {HistoricalConversionBaselineValidator.ConversionScenePath}.");
                 return;
             }
 
             if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
             {
-                EditorSceneManager.OpenScene(ConversionBaselineValidator.ConversionScenePath, OpenSceneMode.Single);
+                EditorSceneManager.OpenScene(HistoricalConversionBaselineValidator.ConversionScenePath, OpenSceneMode.Single);
             }
         }
 
@@ -69,14 +69,14 @@ namespace BooterBigArm.Editor
 
             if (string.Equals(
                     SceneManager.GetActiveScene().path,
-                    ConversionBaselineValidator.ConversionScenePath,
+                    HistoricalConversionBaselineValidator.ConversionScenePath,
                     StringComparison.Ordinal))
             {
-                EditorSceneManager.OpenScene(ConversionBaselineValidator.PrototypeScenePath, OpenSceneMode.Single);
+                EditorSceneManager.OpenScene(HistoricalConversionBaselineValidator.PrototypeScenePath, OpenSceneMode.Single);
             }
 
             BuildConversionLab(true);
-            EditorSceneManager.OpenScene(ConversionBaselineValidator.ConversionScenePath, OpenSceneMode.Single);
+            EditorSceneManager.OpenScene(HistoricalConversionBaselineValidator.ConversionScenePath, OpenSceneMode.Single);
             Debug.Log("Rebuilt the generated isometric conversion lab from its protected builder.");
         }
 
@@ -92,7 +92,7 @@ namespace BooterBigArm.Editor
 
         private static void BuildConversionLab(bool allowSceneOverwrite)
         {
-            var baselineErrors = ConversionBaselineValidator.CollectErrors();
+            var baselineErrors = HistoricalConversionBaselineValidator.CollectErrors();
             if (baselineErrors.Count > 0)
             {
                 throw new BuildFailedException("Refusing to build the conversion lab because the protected baseline is invalid:\n- "
@@ -100,10 +100,10 @@ namespace BooterBigArm.Editor
             }
 
             if (!allowSceneOverwrite
-                && AssetDatabase.LoadAssetAtPath<SceneAsset>(ConversionBaselineValidator.ConversionScenePath) != null)
+                && AssetDatabase.LoadAssetAtPath<SceneAsset>(HistoricalConversionBaselineValidator.ConversionScenePath) != null)
             {
                 throw new InvalidOperationException(
-                    $"{ConversionBaselineValidator.ConversionScenePath} already exists. The protected builder will not overwrite possible manual work.");
+                    $"{HistoricalConversionBaselineValidator.ConversionScenePath} already exists. The protected builder will not overwrite possible manual work.");
             }
 
             var inputActions = AssetDatabase.LoadAssetAtPath<InputActionAsset>(InputActionsPath);
@@ -124,7 +124,7 @@ namespace BooterBigArm.Editor
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            var finalErrors = ConversionBaselineValidator.CollectErrors();
+            var finalErrors = HistoricalConversionBaselineValidator.CollectErrors();
             if (finalErrors.Count > 0)
             {
                 throw new BuildFailedException("The conversion lab was created, but preservation validation failed:\n- "
@@ -135,21 +135,21 @@ namespace BooterBigArm.Editor
         private static int EnsureParallelRenderer()
         {
             var pipeline = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(
-                ConversionBaselineValidator.PipelineAssetPath);
+                HistoricalConversionBaselineValidator.PipelineAssetPath);
             var legacyRenderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>(
-                ConversionBaselineValidator.LegacyRendererPath);
+                HistoricalConversionBaselineValidator.LegacyRendererPath);
             if (pipeline == null || legacyRenderer == null)
             {
                 throw new InvalidOperationException("The existing URP asset or Renderer2D asset is missing.");
             }
 
             var conversionRenderer = AssetDatabase.LoadAssetAtPath<UniversalRendererData>(
-                ConversionBaselineValidator.ConversionRendererPath);
+                HistoricalConversionBaselineValidator.ConversionRendererPath);
             if (conversionRenderer == null)
             {
                 conversionRenderer = ScriptableObject.CreateInstance<UniversalRendererData>();
                 conversionRenderer.name = "IsometricRenderer";
-                AssetDatabase.CreateAsset(conversionRenderer, ConversionBaselineValidator.ConversionRendererPath);
+                AssetDatabase.CreateAsset(conversionRenderer, HistoricalConversionBaselineValidator.ConversionRendererPath);
             }
 
             var defaultPostProcessData = AssetDatabase.LoadAssetAtPath<PostProcessData>(DefaultPostProcessDataPath);
@@ -172,11 +172,10 @@ namespace BooterBigArm.Editor
                 throw new InvalidOperationException("Unity's serialized URP renderer-list fields were not found.");
             }
 
-            if (defaultRendererIndex.intValue != 0
-                || rendererList.arraySize == 0
+            if (rendererList.arraySize == 0
                 || rendererList.GetArrayElementAtIndex(0).objectReferenceValue != legacyRenderer)
             {
-                throw new InvalidOperationException("Renderer2D is no longer the protected default at index 0.");
+                throw new InvalidOperationException("Renderer2D is no longer the protected renderer at index 0.");
             }
 
             for (var i = 1; i < rendererList.arraySize; i++)
@@ -263,7 +262,7 @@ namespace BooterBigArm.Editor
                 pickup.name = "Pickup Proof — Scrap Metal";
                 bigArm.name = "BigARM Scale And Recall Proof";
 
-                if (!EditorSceneManager.SaveScene(scene, ConversionBaselineValidator.ConversionScenePath, false))
+                if (!EditorSceneManager.SaveScene(scene, HistoricalConversionBaselineValidator.ConversionScenePath, false))
                 {
                     throw new InvalidOperationException("Unity did not save the conversion lab scene.");
                 }

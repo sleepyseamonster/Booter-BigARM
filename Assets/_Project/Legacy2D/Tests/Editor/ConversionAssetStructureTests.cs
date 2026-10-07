@@ -16,7 +16,7 @@ namespace BooterBigArm.Tests
         [Test]
         public void ProtectedBaselineValidator_ReportsNoErrors()
         {
-            var errors = ConversionBaselineValidator.CollectErrors();
+            var errors = HistoricalConversionBaselineValidator.CollectErrors();
             Assert.That(errors, Is.Empty, string.Join("\n", errors));
         }
 
@@ -24,7 +24,7 @@ namespace BooterBigArm.Tests
         public void ConversionLab_ContainsRequiredSpikeProofsAndExplicitRenderer()
         {
             var scene = EditorSceneManager.OpenScene(
-                ConversionBaselineValidator.ConversionScenePath,
+                HistoricalConversionBaselineValidator.ConversionScenePath,
                 OpenSceneMode.Additive);
 
             try
