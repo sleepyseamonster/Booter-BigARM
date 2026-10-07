@@ -1,0 +1,36 @@
+{
+  "verified_utc": "2026-10-07T00:30:13.289169+00:00",
+  "unity_version": "6000.4.0f1",
+  "execution": "Hidden isolated project; live Unity and foreground application left alone",
+  "editmode_tests": {
+    "result": "Passed",
+    "total": "9",
+    "passed": "9",
+    "failed": "0",
+    "duration": "0.2411385"
+  },
+  "python_regressions": {
+    "passed": 20,
+    "failed": 0
+  },
+  "source_snapshot_overwrite_refusal": "passed_without_network_or_changed_bytes",
+  "current_catalog_health": {
+    "checked_records": 527,
+    "issues": 0
+  },
+  "preview_render": "three exports passed and visually inspected: regional overview, oblique chunks, top chunks",
+  "compiled_source_sha256": {
+    "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapData.cs": "34480c9ef3ca6794da065f2a8b3c6fec35ec2bcb327cb06c7d56f7e1ad15aa2b",
+    "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapWindow.cs": "ae735fc9bc51b803c21b574c00b2ecc469e87a66e4ce16eea24cd38137f8981d",
+    "Assets/_Project/Tests/Editor/DeathValleyMapTests.cs": "38420c99718013ab3d242f04cc130f8d11794730a3895c20164a495d8b2d4c78"
+  },
+  "diagnostics": {
+    "Logs/DeathValleyVisualizer/death-valley-map-render.log": "621363d71524898e7dd31e05a655a19df08916e8ce6740596dcf5964e011a401",
+    "Logs/DeathValleyVisualizer/death-valley-map-tests.log": "1dac973ac58c50c848473ac0067d66261f142c7e0bf7f1128e53ad6ebaf6272c",
+    "Logs/DeathValleyVisualizer/death-valley-map-tests.xml": "a03fe1416d473b4590e743bd264a386711d5363fdde97fcc12e7647fb088ccc4",
+    "Logs/DeathValleyVisualizer/unity-chunks-top.png": "78fef12fee9baa8495109d6591919f043025ad6e64d83bbb855adac15d45eb84",
+    "Logs/DeathValleyVisualizer/unity-chunks.png": "4e3cc52684bd26af12f6271afff229ecc90d4e157ae51eec323ab3b6f5d78035",
+    "Logs/DeathValleyVisualizer/unity-overview.png": "9165ffbe919179de442ab3c83c2a23a36378157e0b3b88c6e40ae8b495105393"
+  },
+  "limits": "Source, coordinate, picking, geometry, compilation, EditMode and preview-render proof. Docking, live pointer interaction and scene-frame button require user review. No gameplay smoke test, Player launch, terrain integration or Build Settings edits."
+}
