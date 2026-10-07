@@ -93,6 +93,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 These define current preferred approaches or sequencing.
 
+- [Menu system direction](./Design/Gameplay/MENU_SYSTEM_DIRECTION.md)
+  Accepted simple supporting-menu scope, optional immersive presentation, and low management burden.
+
 - [MICRO_DUST_HARVESTER.md](./Design/Gameplay/MICRO_DUST_HARVESTER.md)
   The player-stated canister placement, airborne dust collection, fill, pickup, presentation, and procedural persistence contract; tuning and inventory representation remain open.
 - [BIGARM_COMPANION_STANDARD.md](./Design/Gameplay/BIGARM_COMPANION_STANDARD.md)

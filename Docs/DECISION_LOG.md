@@ -16,6 +16,17 @@ This log preserves the rationale and evidence behind consequential project decis
 - **Consequences / follow-up:**
 - **Supersedes:** none / link to prior entry
 
+## 2026-10-07 — Simple supporting menu system
+
+- **Status:** accepted
+- **Decision owner:** user
+- **Decision:** Keep menus as a quiet supporting layer for radial setup, settings, exiting, and efficient existing management tasks. Menu complexity and menu management are not core gameplay goals.
+- **Why:** The user wants immersion and little attention spent on menus.
+- **Evidence:** User clarification in this chat on 2026-10-07 after the Wilds, Metro Exodus, and Fallout research.
+- **Controlling files updated:** [Menu system direction](./Design/Gameplay/MENU_SYSTEM_DIRECTION.md); scope notices and review recommendations in both UI research reports; Docs Index.
+- **Consequences / follow-up:** Review a compact supporting menu and simple radial setup flow. Physical devices and inspection cameras are optional proposals. Pause and save/exit policy remain open. No runtime behavior changed.
+- **Supersedes:** The research recommendation to prioritize an expanded family of physical menu presentations; reference observations remain valid.
+
 ## 2026-10-06 — Greater Wasteland primary scene
 
 - **Status:** accepted

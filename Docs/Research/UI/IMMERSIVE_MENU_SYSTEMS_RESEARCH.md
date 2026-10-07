@@ -2,7 +2,7 @@
 
 Research date: 2026-10-07. Status: provisional research and candidate direction. The user favors Monster Hunter Wilds menus and the immersive physical interfaces of Metro Exodus and Fallout. This preference authorizes research, not a new canonical device, camera mode, crafting system, or pause policy.
 
-Arc & Dust can combine Metro's physical task ownership, Fallout's recognizable personal interface, and Wilds' clear information hierarchy. The strongest candidate is a readable interface presented through Booter's equipment, with cargo management anchored to the Legger's actual loadframe. The player should feel that Booter is inspecting his tools and supplies while routine operations remain quick.
+The user's later [menu system direction](../../Design/Gameplay/MENU_SYSTEM_DIRECTION.md) selects a simple supporting control layer. Metro's physical task ownership, Fallout's recognizable interface, and Wilds' clear hierarchy remain inspiration. Equipment presentation is optional and must add no management burden. The physical menu candidates below remain exploratory references, not the selected implementation scope.
 
 This extends the [Wilds menu audit](./MONSTER_HUNTER_WILDS_MENU_AUDIT.md). Its shared navigation, input ownership, focus restoration, and accessibility recommendations still apply.
 
@@ -52,7 +52,7 @@ For this game, immersion should be assessed alongside task success. A player who
 | Metro Exodus | A physical tool for a particular task. | Personal kit, route ledger, cargo inspection that feels situated. | Keep navigation coherent across tools and compensate for the elevated camera. |
 | Fallout | A recognizable device containing many functions. | A consistent personal information hub with stable categories. | Avoid giving one device unexplained world knowledge or remote storage power. |
 
-Recommended direction: **one coherent menu family with several believable physical owners**. Share controls and information hierarchy across those surfaces; do not make the player learn an unrelated interface for each prop.
+Exploratory option: **one coherent menu family with several believable physical owners**. This is not the selected direction after the user's clarification. If any physical presentation is later useful, share controls and information hierarchy; do not make the player learn an unrelated interface for each prop.
 
 | Function | Candidate physical owner | Proposed presentation | Boundary |
 | --- | --- | --- | --- |
@@ -71,7 +71,7 @@ These are candidate owners, not approved items or lore. The [world basis](../../
 | --- | --- | --- |
 | Personal instrument | Booter opens one rugged device with named categories. | Strong identity and consistency; device technology and housing can dominate the design. |
 | Physical kit and ledger | Inventory is a kit, notes/map a ledger, cargo the loadframe. | Strong material ownership; switching objects and art/animation needs may become cumbersome. |
-| Physical opening with readable inspection | A brief handling cue leads to a stable enlarged tool or kit view, with a clear reading plane. | Best initial candidate for the current camera; needs a deliberate transition and must avoid looking like a disconnected desktop window. |
+| Physical opening with readable inspection | A brief handling cue leads to a stable enlarged tool or kit view, with a clear reading plane. | Possible adaptation to the current camera if a concrete need emerges; transitions must add no repeated friction. |
 
 The third option can retain uGUI. Physical framing can be art around the same screen model; literal in-world rendering or a render texture is an optional later presentation adapter. All variants should share domain commands, input contexts, preference state, focus, and validation. This keeps a later 3D presentation from becoming a gameplay rewrite.
 
@@ -95,7 +95,7 @@ Source inspection confirms existing inventory range checks and input modes. The 
 
 ## Next research and review gate
 
-Compare the three presentation options using the same existing Field Kit contents, readable cargo availability, and five-vital information. Include an elevated-camera view, enlarged inspection view, large-text state, and controller focus. Judge identity, reading space, navigation steps, information authority, and repeated-use friction before commissioning a device model or camera animation.
+First review a compact supporting menu and straightforward radial setup flow as specified by the accepted direction. The three physical presentation options are retained for reference only. A later concrete need may justify a focused visual comparison; device models and inspection camera animations are not prerequisites.
 
 For a later authorized prototype, compare representative tasks: inspect a vital; locate an item; transfer a stack to reachable cargo; recognize unreachable cargo; cancel without a command; reopen at remembered selection; change device; read enlarged text. Record completion time, wrong actions, missed warnings, and subjective immersion separately. Hands-on gameplay smoke testing remains user-owned.
 

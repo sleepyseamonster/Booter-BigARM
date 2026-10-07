@@ -2,6 +2,8 @@
 
 Research date: 2026-10-07. Status: provisional reference and proposed direction. This does not approve a menu redesign, new gameplay, or implementation.
 
+The user's later [menu system direction](../../Design/Gameplay/MENU_SYSTEM_DIRECTION.md) controls scope: a simple supporting layer for radial setup, settings, and exiting. The broader menu family below is reference material, not a build target.
+
 Monster Hunter Wilds is a useful reference for a substantial preparation interface that still belongs to a physical world. Arc & Dust should borrow its layered information, consistent selection feedback, and separation between quick actions and detailed management. The immediate engineering priority is shared screen navigation and input ownership; visual polish should grow on that foundation.
 
 ## Reference evidence
@@ -96,7 +98,7 @@ Verify narrow/aspect-ratio layouts and large text, empty lists, long item names,
 
 ## Recommended first slice and review gates
 
-First compare two static compositions for the existing Field Kit: a compact industrial panel and a more textured field-ledger panel, using the same real inventory/cargo content. Include large-text and controller-focus states in that review. This resolves the intended degree of Wilds influence before asset production.
+Following the user's clarified direction, first review a compact supporting menu and simple radial setup flow. Material styling can borrow from these references without requiring a field-ledger interface. Review the existing Field Kit only when it serves a concrete inventory task; include readable text and controller focus.
 
 After visual direction is selected, implement shared navigation around the existing Field Kit plus one settings screen and one confirmation dialog. Prove parent restoration, single cancel consumption, input suppression, focus recovery, and unavailable cargo behavior before expanding the menu family. Decide explicitly whether full menus pause the world; disabling player input alone is not a simulation pause.
 
