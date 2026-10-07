@@ -23,7 +23,7 @@ The [Editor playability audit](./Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md
 - Gottspan owns the conversion program under the user's creative and product authority.
 - The perspective foundation was accepted and cut over as the primary production path. `GreaterWasteland.unity` is the only enabled Build Settings scene; former 2D scenes remain disabled, isolated legacy reference content.
 - The prior landscape plan is [TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md). The earlier [TOP_DOWN_3D_FOUNDATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md) remains historical foundation rationale and evidence.
-- The current evidence packet is [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md).
+- The current evidence packet is [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](Archive/IsometricConversion/ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md).
 - The former isometric lab and its audit remain historical comparison evidence, not the camera direction for new work.
 - The existing 2D prototype remains a protected comparison baseline, not the production implementation.
 
@@ -64,3 +64,8 @@ The next acceptance pass belongs to the user and should answer:
 ## Update Rule
 
 Update this page when a workstream crosses a meaningful evidence boundary: absent to implemented, implemented to automatically verified, or verified to playtested. Link consequential decisions in [DECISION_LOG.md](./DECISION_LOG.md).
+
+
+## Organization checkpoint — 2026-10-06
+
+Verified organization is documented in [implementation evidence](./Operations/Repository/IMPLEMENTATION_EVIDENCE_2026-10-06.md). Production is Scenes/Production/GreaterWasteland; GameplaySetup is the terrain-free rebuild template; the generated-world scene is an imported disabled reference under Scenes/Reference/GeneratedWorld. Legacy2D/isometric work is the standalone frozen Archive/Unity/HistoricalProject. Blender sources/resources are SourceArt/Blender/Studies, art tools Tools/Art/Blender, repository tools Tools/Repository, and bounded recovered terrain inputs SourceData/Terrain. External lore remains absent/disconnected. Current owner terrain and radial changes remain separately owned; organization proof does not validate those concurrent feature batches.

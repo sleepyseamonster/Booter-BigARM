@@ -91,7 +91,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 
 - Editor version: `6000.4.0f1`
 - Pipeline: URP
-- Primary production scene and only enabled build scene: `Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity`
+- Primary production scene and only enabled build scene: `Assets/_Project/Scenes/Production/GreaterWasteland.unity`
 - Greater Wasteland is the existing playable Badwater terrain, promoted on 2026-10-06. All continuing gameplay mechanics and player controls target this scene. Do not add procedural terrain, generated props, chunk streaming, or procedural save integration until the user approves a redesigned generation approach.
 - `TopDown3DPrototype.unity` remains a disabled generated-world reference; do not copy its generator or save service into Greater Wasteland.
 - Legacy scenes and compatible renderer settings are registered only in the standalone historical project, not production.
@@ -119,8 +119,8 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Use [Docs/Operations/GIT_BATCHING_STANDARD.md](./Docs/Operations/GIT_BATCHING_STANDARD.md) as the standard for grouping commits and ignoring Unity noise.
 - Use [Docs/Operations/IMPLEMENTATION_SEQUENCE.md](./Docs/Operations/IMPLEMENTATION_SEQUENCE.md) as the first-pass order for gameplay seams.
 - Use [Docs/Operations/RESEARCH_PLAN.md](./Docs/Operations/RESEARCH_PLAN.md) as the prioritized roadmap for future research.
-- Use [Docs/ART_ANIMATION_STARTER.md](./Docs/ART_ANIMATION_STARTER.md) as the first-pass workflow for production art and sprite animation.
-- Use [Docs/URP_2D_STANDARD.md](./Docs/URP_2D_STANDARD.md) as the compact standard for the project's 2D render pipeline.
+- Use [Docs/Archive/Legacy2D/ART_ANIMATION_STARTER.md](Docs/Archive/Legacy2D/ART_ANIMATION_STARTER.md) as the first-pass workflow for production art and sprite animation.
+- Use [Docs/Archive/Legacy2D/URP_2D_STANDARD.md](Docs/Archive/Legacy2D/URP_2D_STANDARD.md) as the compact standard for the project's 2D render pipeline.
 - Use [Docs/Operations/CODEX_EDITOR_STANDARD.md](./Docs/Operations/CODEX_EDITOR_STANDARD.md) as the compact standard for Codex and editor workflow.
 - Use [Docs/Engineering/GAMEPLAY_ARCHITECTURE_BASELINES.md](./Docs/Engineering/GAMEPLAY_ARCHITECTURE_BASELINES.md) as the baseline for input, movement, procedural generation, and save/load architecture.
 - Use [Docs/Engineering/INPUT_ARCHITECTURE_STANDARD.md](./Docs/Engineering/INPUT_ARCHITECTURE_STANDARD.md) as the baseline for player input and UI navigation.

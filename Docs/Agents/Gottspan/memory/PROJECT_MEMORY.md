@@ -43,7 +43,7 @@ Verified 2026-08-13 from live repo files and Unity 6000.4.0f1 validation:
 - The protected conversion lane has a non-mutating validator at `Assets/_Project/Scripts/Editor/Validation/ConversionBaselineValidator.cs` and focused EditMode tests under `Assets/_Project/Tests/Editor/`.
 - The parallel conversion lab is `Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity`; it explicitly selects renderer index 1 and remains outside enabled Build Settings.
 - `Renderer2D.asset` remains available at index 0 for explicitly configured legacy cameras; `IsometricRenderer.asset` is the production default at index 1.
-- The perspective production scene is `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`; it uses renderer index 1 and is the enabled build entry point.
+- The perspective production scene is `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity`; it uses renderer index 1 and is the enabled build entry point.
 - Perspective runtime code is isolated in `BooterBigArm.TopDown3D.Runtime` under `Assets/_Project/Scripts/Runtime/TopDown3D/`.
 - The generated foundation includes centralized input, a 3D Rigidbody motor, constrained right-stick perspective camera orbit, deterministic budget-streamed mesh terrain, walkable safe-spawn selection, collision-aware props, compact simple-follow BigARM behavior, and a gameplay-readable layered dust-atmosphere controller.
 - `TopDown3DDustAtmosphere` is the perspective lane's fog, close-haze, and atmosphere post-processing owner. It supplies seeded regional variation plus smooth `TopDown3DDustZone` overrides; `PerpetualTwilightSun` remains the light/ambient/sky owner and supplies twilight brightness without writing competing fog state.
@@ -63,3 +63,8 @@ These are tracked constraints, not automatic permission to build tooling. Addres
 - Cite the repo path or command that verified a mutable fact and date it.
 - Replace or explicitly supersede stale statements.
 - Never store credentials, private user data, full transcripts, or speculative canon here.
+
+
+## Verified organization routing — 2026-10-06
+
+Current routing: production scene Assets/_Project/Scenes/Production/GreaterWasteland.unity; terrain-free GameplaySetup template; disabled generated reference in Scenes/Reference/GeneratedWorld; frozen standalone historical project Archive/Unity/HistoricalProject. Source art and tools moved to SourceArt/Blender/Studies, Tools/Art/Blender and Tools/Repository. Use Docs/Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md and relocation receipts for current paths; earlier memory paths are historical. Do not activate generation or reconnect lore.

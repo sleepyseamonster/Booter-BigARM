@@ -1,3 +1,5 @@
+> Historical Legacy2D reference. This document does not describe current 3D production UI or authorize procedural generation. Preserved implementation: Archive/Unity/HistoricalProject.
+
 # Prototype UI Plan
 
 This document defines the current UI decision for the prototype and the later GUI work that will replace it.

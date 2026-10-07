@@ -28,7 +28,7 @@ The recovered Blender saves have Zstandard container signatures matching the ret
 From the repository root, verify all destinations with:
 
 ```powershell
-.venv\Scripts\python.exe Docs/Agents/Gottspan/tools/verify-transfer-manifest.py Docs/Agents/Blender/archives/2026-10-06-transfer/transfer-manifest.json
+.venv\Scripts\python.exe Tools/Repository/verify-transfer-manifest.py Docs/Agents/Blender/archives/2026-10-06-transfer/transfer-manifest.json
 ```
 
 The repository-wide findings and duplicate-retention decisions are recorded in [the organization audit](../../../../Evidence/Repository/organization-audit-2026-10-06.md).

@@ -63,7 +63,7 @@ These hashes identify the exact serialized evidence inspected. They are not clai
 | `Packages/manifest.json` | `8307b58ad158052f055aa1dec4a2ad024cd9b452c06b671e5cc71b3104b69754` |
 | `Packages/packages-lock.json` | `b79b648431ca767418c54cf50a7ba433db906692749673894e9b66d679b70b2a` |
 | `Assets/_Project/Settings/World/TopDown3DWorldSettings.asset` | `ba9fee531a757abc947a62445b5aac59df3e34f7ddb3623c3fe06c27ab77dc80` |
-| `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity` | `48bbc85d8f815040cbac5028c45f0d16d4cedaf32232340810e64d609264ff54` |
+| `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity` | `48bbc85d8f815040cbac5028c45f0d16d4cedaf32232340810e64d609264ff54` |
 
 ## 4. Current landscape baseline
 

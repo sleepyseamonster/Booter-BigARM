@@ -8,7 +8,7 @@ Audited the local `main` checkout restored from `4f2fe41c8e6074f99b6e55fb92a32e4
 
 | Scene | Current Editor evidence | Readiness |
 | --- | --- | --- |
-| `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity` — generated game world | Original scene loads, generates terrain and decorations, grounds Booter, moves Booter with keyboard and gamepad input, rotates the camera, opens/closes inventory, and physically moves Legger. | Basic playability passed. Visual quality, physical-controller feel, full traversal, and performance acceptance remain unverified. |
+| `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity` — generated game world | Original scene loads, generates terrain and decorations, grounds Booter, moves Booter with keyboard and gamepad input, rotates the camera, opens/closes inventory, and physically moves Legger. | Basic playability passed. Visual quality, physical-controller feel, full traversal, and performance acceptance remain unverified. |
 | `Assets/_Project/Scenes/TopDown3D/BadwaterFourSlices.unity` — Death Valley | Original scene loads with 256 terrains and matching colliders, but Booter's ground query fails. The terrain objects have no `TopDown3DGroundSurface` components. | Scene wiring must be corrected before calling its locomotion and companion behavior ready. |
 | Death Valley diagnostic variant | Adding the missing marker to terrain objects **only in Play-mode memory** restores grounding and passes the same basic controls and companion checks. The original scene was not saved. | Confirms the missing-component diagnosis; this is not a fix to the saved scene. |
 

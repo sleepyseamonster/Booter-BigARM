@@ -80,11 +80,11 @@ These should be treated as the source of truth unless they are intentionally rev
   The fixed-camera review, scale-band, terrain-material, rock-family, asset, and performance contract for the representative landscape slice.
 - [TOP_DOWN_3D_FOUNDATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md)
   The accepted perspective top-down 3D foundation scope, architecture, and historical proof requirements; landscape work now follows the dedicated production landscape plan.
-- [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md)
+- [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](Archive/IsometricConversion/3D_CONVERSION_AUDIT_AND_CHECKLIST.md)
   The original conversion audit, ownership contract, migration matrix, work breakdown, decision gates, asset requirements, and risks. Its orthographic/isometric direction is superseded for new work by the active perspective foundation plan.
-- [3D_CONVERSION_START_READINESS.md](./3D_CONVERSION_START_READINESS.md)
+- [3D_CONVERSION_START_READINESS.md](Archive/IsometricConversion/3D_CONVERSION_START_READINESS.md)
   The live Level A and Level B inventory for closing the protected-spike blockers, accepting CP-06, preparing CP-07, and later authorizing production 3D asset work.
-- [ISOMETRIC_DIRECTION_BRIEF.md](./ISOMETRIC_DIRECTION_BRIEF.md)
+- [ISOMETRIC_DIRECTION_BRIEF.md](Archive/IsometricConversion/ISOMETRIC_DIRECTION_BRIEF.md)
   The historical working contract for the completed protected isometric conversion spike; it remains evidence rather than current production direction.
 - [GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md](./Design/DeferredGeneration/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md)
   Superseded notice for the retired runtime Grounded Geology and separate Integration Workbench proposal.
@@ -111,7 +111,7 @@ These define current preferred approaches or sequencing.
   The contextual sprint traversal contract, first spin/vault move set, safety boundaries, and extension seam.
 - [SURVIVAL_SYSTEM_STANDARD.md](./Design/Gameplay/SURVIVAL_SYSTEM_STANDARD.md)
   The four-vital player-state, depletion, persistence, procedural-world, and compact HUD contract.
-- [URP_2D_STANDARD.md](./URP_2D_STANDARD.md) — legacy 2D maintenance only.
+- [URP_2D_STANDARD.md](Archive/Legacy2D/URP_2D_STANDARD.md) — legacy 2D maintenance only.
 - [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md)
 - [CODEX_EDITOR_STANDARD.md](./Operations/CODEX_EDITOR_STANDARD.md)
 
@@ -128,11 +128,11 @@ These describe current repo state rather than durable design truth.
 - [PROJECT_STATUS.md](./PROJECT_STATUS.md)
 - [ROADMAP.md](./ROADMAP.md)
 - [RESEARCH_PLAN.md](./Operations/RESEARCH_PLAN.md)
-- [ConversionEvidence/LEGACY_BASELINE_2026-08-12.md](./ConversionEvidence/LEGACY_BASELINE_2026-08-12.md)
+- [ConversionEvidence/LEGACY_BASELINE_2026-08-12.md](Archive/IsometricConversion/ConversionEvidence/LEGACY_BASELINE_2026-08-12.md)
   The immutable CP-02 scene, renderer, hierarchy, Build Settings, Git-blob, and SHA-256 preservation anchor for the protected 2D path.
-- [ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md](./ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md)
+- [ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md](Archive/IsometricConversion/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md)
   CP-01 through CP-05 implementation evidence, screenshots, corrections, validation results, limitations, and the CP-06 decision boundary.
-- [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md)
+- [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](Archive/IsometricConversion/ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md)
   Current perspective foundation implementation, automated proof, protected-baseline evidence, deferred scope, and user-owned acceptance boundary.
 
 ## Design Evidence And Decisions
@@ -150,7 +150,7 @@ These are intentionally non-canonical. They preserve ideas, research, or working
   Research for the user-directed proprietary engine, standard third-person view and open Greater Wasteland rock workbench; proposed language, libraries, Windows-first platform policy and foundation evidence gates. No engine implementation is claimed.
 - [WORLD_GEN_REFERENCE_NOTES.md](./Design/DeferredGeneration/WORLD_GEN_REFERENCE_NOTES.md)
   Distilled world-generation ideas from exploratory discussion.
-- [UNITY_TILEMAP_PROCGEN_REFERENCE.md](./UNITY_TILEMAP_PROCGEN_REFERENCE.md)
+- [UNITY_TILEMAP_PROCGEN_REFERENCE.md](Archive/Legacy2D/UNITY_TILEMAP_PROCGEN_REFERENCE.md)
   Unity-facing implementation notes from exploratory discussion.
 - [WORLD_GEN_RESEARCH_SUMMARY.md](./Design/DeferredGeneration/WORLD_GEN_RESEARCH_SUMMARY.md)
   External research findings from Unity docs, developer practice, and similar projects.
@@ -165,3 +165,5 @@ When adding a new doc, decide which bucket it belongs in:
 - provisional reference
 
 If a provisional reference becomes stable enough to drive work repeatedly, move its useful parts into the appropriate canonical or implementation doc instead of letting both drift indefinitely.
+
+- [Verified organization implementation and current paths](./Operations/Repository/IMPLEMENTATION_EVIDENCE_2026-10-06.md).

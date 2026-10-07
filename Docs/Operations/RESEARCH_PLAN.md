@@ -38,7 +38,7 @@ Expected output:
 
 Current status:
 - The project uses URP with the 3D renderer as the production default and retains the 2D Renderer only for the isolated legacy lane.
-- `Docs/URP_2D_STANDARD.md` captures the compact rendering baseline for this repo.
+- `Docs/Archive/Legacy2D/URP_2D_STANDARD.md` captures the compact rendering baseline for this repo.
 
 ## Priority 3: Project Structure And Naming
 

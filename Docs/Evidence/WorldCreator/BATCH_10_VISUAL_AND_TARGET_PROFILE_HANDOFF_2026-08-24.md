@@ -6,7 +6,7 @@ Runtime candidate commit: `5a09dd5d2438bfa41a142ec81824cc254e3da2ce`
 
 Verification commit: `6ffd502521bc3fa1d3a99f2c9d53b06fff296cc3`
 
-Production scene: `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`
+Production scene: `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity`
 
 Production seed: `24681357`
 

@@ -3,7 +3,12 @@
 set -uo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-repo_root="$(cd "$script_dir/../../../.." && pwd)"
+repo_root="$script_dir"
+while [[ ! -f "$repo_root/Packages/manifest.json" || ! -f "$repo_root/ProjectSettings/ProjectVersion.txt" ]]; do
+  parent="$(dirname "$repo_root")"
+  [[ "$parent" != "$repo_root" ]] || { echo "Repository anchors not found"; exit 1; }
+  repo_root="$parent"
+done
 failures=0
 warnings=0
 

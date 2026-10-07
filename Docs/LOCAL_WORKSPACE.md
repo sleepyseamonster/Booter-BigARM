@@ -18,7 +18,7 @@ Read the [October 6 publication receipt](./Evidence/Publication/2026-10-06-safe-
 
 The [Badwater baseline](./Evidence/Badwater/gameplay-terrain-baseline-2026-10-06.md) records source audit and an isolated macOS Development Player build. Player profiling, traversal, and visual acceptance remain pending. The Badwater implementation goal was paused at publication; setup does not resume that work automatically. No macOS Player build or unpublished recovery artifact is assumed present here. Use the [Badwater plan](./Design/Gameplay/BADWATER_GAMEPLAY_TERRAIN_PLAN.md) for the next authorized terrain task.
 
-[PROJECT_STATUS.md](./PROJECT_STATUS.md) was reconciled September 21 and contains older foundation evidence. For a feature task, inspect live files and its newer evidence before relying on that snapshot. The active production area is the repository-root Unity TopDown3D project; preserve `Engine/`, `Unreal/`, and `Assets/_Project/Legacy2D/` as references.
+[PROJECT_STATUS.md](./PROJECT_STATUS.md) was reconciled September 21 and contains older foundation evidence. For a feature task, inspect live files and its newer evidence before relying on that snapshot. The active production area is the repository-root Unity TopDown3D project; preserve Archive/ProprietaryEngine, Archive/Unreal and Archive/Unity/HistoricalProject as inactive references.
 
 ## Existing local agent packages
 
@@ -48,7 +48,7 @@ Start each session with root instructions, this guide, the relevant role's defau
 Run the read-only preflight from PowerShell:
 
 ```powershell
-& .\Docs\Agents\Gottspan\tools\Test-LocalWorkspace.ps1
+& .\Tools\Repository\Test-LocalWorkspace.ps1
 ```
 
 For a custom Unity installation, pass `-UnityEditor 'D:\Unity\6000.4.0f1\Editor\Unity.exe'` or set `BOOTER_UNITY_EDITOR`. The preflight checks branch/origin, required paths, agent packages, direct package pins, LFS objects, and ignored local caches. It does not launch Unity or change package versions.
@@ -80,3 +80,8 @@ Import can serialize project assets. Review any tracked changes and preserve unr
 - Local logs and test XML are under ignored `Logs/`: `windows-import-validation.log`, `windows-validator-diagnostics.log`, `windows-volumetric-tests.log`, `windows-volumetric-tests.xml`, and `local-workspace-preflight.log`. They are current-machine diagnostics rather than published evidence.
 - The first failed batchmode run left an unlocked `Temp/UnityLockfile` and an idle compiler server. After confirming the editor had exited and the lock could be opened exclusively, the task removed that stale lock and stopped its own compiler server. Windows launch examples now wait on the editor process itself with `WaitForExit()` instead of waiting indefinitely for all descendant compiler servers.
 - No scene, shader, runtime gameplay source, package manifest, or Unity metadata was changed during setup. After the user identified themselves as `sleepyseamonster`, Git author identity was configured for this repository using the name and GitHub noreply address on the restored publication commit. No push was performed.
+
+
+## Organization checkpoint — 2026-10-06
+
+Verified organization is documented in [implementation evidence](./Operations/Repository/IMPLEMENTATION_EVIDENCE_2026-10-06.md). Production is Scenes/Production/GreaterWasteland; GameplaySetup is the terrain-free rebuild template; the generated-world scene is an imported disabled reference under Scenes/Reference/GeneratedWorld. Legacy2D/isometric work is the standalone frozen Archive/Unity/HistoricalProject. Blender sources/resources are SourceArt/Blender/Studies, art tools Tools/Art/Blender, repository tools Tools/Repository, and bounded recovered terrain inputs SourceData/Terrain. External lore remains absent/disconnected. Current owner terrain and radial changes remain separately owned; organization proof does not validate those concurrent feature batches.

@@ -14,7 +14,7 @@ It is intentionally small. The goal is to start making usable assets without loc
 - The world should read as dry, iron-heavy, dead, and sun-burned rather than lush or saturated.
 - Favor silhouettes, material readability, and survival-useful clarity over decorative noise.
 
-Use [WORLD_BASIS.md](./WORLD_BASIS.md) when art decisions depend on tone, color language, or world logic.
+Use [WORLD_BASIS.md](../../WORLD_BASIS.md) when art decisions depend on tone, color language, or world logic.
 
 ## What To Make First
 

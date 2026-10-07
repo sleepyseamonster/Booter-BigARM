@@ -1,7 +1,12 @@
 param([string]$UnityEditor = $env:BOOTER_UNITY_EDITOR)
 
 $ErrorActionPreference = 'Stop'
-$repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../../..'))
+$repoRoot = $PSScriptRoot
+while (-not ((Test-Path -LiteralPath (Join-Path $repoRoot 'Packages/manifest.json')) -and (Test-Path -LiteralPath (Join-Path $repoRoot 'ProjectSettings/ProjectVersion.txt')))) {
+    $parent = Split-Path -Parent $repoRoot
+    if (-not $parent -or $parent -eq $repoRoot) { throw 'Repository anchors not found' }
+    $repoRoot = $parent
+}
 $failures = 0
 function Report([bool]$Success, [string]$Message) {
     if ($Success) { Write-Output "PASS  $Message" }
@@ -18,7 +23,9 @@ try {
         'AGENTS.md', 'Docs/LOCAL_WORKSPACE.md', 'Docs/PROJECT_STATUS.md',
         'Packages/manifest.json', 'Packages/packages-lock.json',
         'ProjectSettings/ProjectVersion.txt',
-        'Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity',
+        'Assets/_Project/Scenes/Production/GreaterWasteland.unity',
+        'Assets/_Project/Scenes/TopDown3D/GameplaySetup.unity',
+        'Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity',
         'Assets/_Project/Scripts/Runtime/TopDown3D/BooterBigArm.TopDown3D.Runtime.asmdef',
         'Assets/_Project/Scripts/Editor/BooterBigArm.Editor.asmdef'
     )) { Report (Test-Path -LiteralPath $path) "Required file: $path" }
@@ -84,7 +91,7 @@ try {
     if (Test-Path -LiteralPath $venvPython) {
         & $venvPython -m pip check
         Report ($LASTEXITCODE -eq 0) 'Python environment dependency check passes'
-        & $venvPython -c 'import numpy, PIL, pyproj, shapefile, rasterio; print("Terrain dependency imports pass")'
+        & $venvPython -c 'import numpy, PIL, pyproj, shapefile, rasterio'
         Report ($LASTEXITCODE -eq 0) 'Terrain Python dependencies import successfully'
     } else { Write-Warning 'Terrain Python environment is absent; restore it using Docs/LOCAL_WORKSPACE.md.' }
 

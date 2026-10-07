@@ -1,0 +1,132 @@
+{
+  "batch": "ORG-02B/08A",
+  "baseline_commit": "33979d1cf2dbd2f31761176659fa813b331899dd",
+  "records": [
+    {
+      "source": "Docs/Agents/Gottspan/tools/README.md",
+      "destination": "Tools/Repository/README.md",
+      "source_sha256": "239aeeeb4aa1e1096dd1165b9524520c4f566841dda6124a39d7af70dc596770",
+      "destination_sha256": "847fe553232775d05c05680cc8bdd612e4534e7b8f318671c7134893fdd81be6"
+    },
+    {
+      "source": "Docs/Agents/Gottspan/tools/repo-health.sh",
+      "destination": "Tools/Repository/repo-health.sh",
+      "source_sha256": "952c1404e004123762b8cd2f07eba2d1bb2207bc08de0953b9b5b200234e3604",
+      "destination_sha256": "2feafb63c09c41c3a0b5171fe0e4f0ce1966ceab7d6b43ffa5e7638a5ba050f4"
+    },
+    {
+      "source": "Docs/Agents/Gottspan/tools/Test-LocalWorkspace.ps1",
+      "destination": "Tools/Repository/Test-LocalWorkspace.ps1",
+      "source_sha256": "4d3655cd125d8c5de0304a5631c717ebf1056505d8819c8a2a068ca64afe1e99",
+      "destination_sha256": "d292999ebb850e76816e8044ae026e7fb70c0dbfb92d5aec59f19402d2fe4246"
+    },
+    {
+      "source": "Docs/Agents/Gottspan/tools/verify-transfer-manifest.py",
+      "destination": "Tools/Repository/verify-transfer-manifest.py",
+      "source_sha256": "e490e8cf686632bcc6e0328ff8b817c9a0f646b16f608e88557c03d5096c284b",
+      "destination_sha256": "e490e8cf686632bcc6e0328ff8b817c9a0f646b16f608e88557c03d5096c284b"
+    },
+    {
+      "source": "Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md",
+      "destination": "Docs/Archive/IsometricConversion/3D_CONVERSION_AUDIT_AND_CHECKLIST.md",
+      "source_sha256": "49fb77c5098ed7e3a04560a6f7f1c7ec2f3bc23017cd8a109e6a61708904061d",
+      "destination_sha256": "e5c2e2c7d43b7cd8c7f8341e8713000def95e52da52809e9c864660280d8809e"
+    },
+    {
+      "source": "Docs/3D_CONVERSION_START_READINESS.md",
+      "destination": "Docs/Archive/IsometricConversion/3D_CONVERSION_START_READINESS.md",
+      "source_sha256": "d4b9665cc569629f6d390f6b0eb34bd43443302a792910454610f5e273011dff",
+      "destination_sha256": "02f28d68f34fcd23eba59e6563c08d9fecec09aef63a926a73479c1dabda2c4d"
+    },
+    {
+      "source": "Docs/ISOMETRIC_DIRECTION_BRIEF.md",
+      "destination": "Docs/Archive/IsometricConversion/ISOMETRIC_DIRECTION_BRIEF.md",
+      "source_sha256": "de5754e61f10c1276ca6d6e8410acda2dc4c13feb4266591e8c9bafc91a015af",
+      "destination_sha256": "4854c15c7bff5f8879507f3ebb23d85f70838222badc6255e0978fa1685be17e"
+    },
+    {
+      "source": "Docs/ART_ANIMATION_STARTER.md",
+      "destination": "Docs/Archive/Legacy2D/ART_ANIMATION_STARTER.md",
+      "source_sha256": "6d57a30d0f3b9e61366ae4d1e117a3300add8edf48642aaaab808198d57430f3",
+      "destination_sha256": "ef2b2bb4ed88d8799f7e1ea8ad90828f66c08d5d11a7c6d70c8d335c39836037"
+    },
+    {
+      "source": "Docs/URP_2D_STANDARD.md",
+      "destination": "Docs/Archive/Legacy2D/URP_2D_STANDARD.md",
+      "source_sha256": "376c6f31df51e58b053a65ab8a0fae1d7f31453022d54d26e72bc7e493d72ffe",
+      "destination_sha256": "376c6f31df51e58b053a65ab8a0fae1d7f31453022d54d26e72bc7e493d72ffe"
+    },
+    {
+      "source": "Docs/PROTOTYPE_UI_PLAN.md",
+      "destination": "Docs/Archive/Legacy2D/PROTOTYPE_UI_PLAN.md",
+      "source_sha256": "c86eb4ab25ef5148de90b7205026888e01f8cfc0f1a57ed2a9343de49417fbfb",
+      "destination_sha256": "cfcd20172227262d703656935561ee7189ce122cd42b02fa93cefd6cb14b35f5"
+    },
+    {
+      "source": "Docs/UNITY_TILEMAP_PROCGEN_REFERENCE.md",
+      "destination": "Docs/Archive/Legacy2D/UNITY_TILEMAP_PROCGEN_REFERENCE.md",
+      "source_sha256": "831c7ef83745c00327d4632d655183bd9ebf9c06ba7f402554ebd88ab0c4f5db",
+      "destination_sha256": "fe951199123c82f76067862f7f0013d78d460cb0846e0c407517ec3d9a58a4e8"
+    },
+    {
+      "source": "Docs/ConversionEvidence/IsometricLab_HarvestProof.png",
+      "destination": "Docs/Archive/IsometricConversion/ConversionEvidence/IsometricLab_HarvestProof.png",
+      "source_sha256": "537e0772f0c39c94c95c0d643dd5535e9a0994e3b384222da79bce390d87251b",
+      "destination_sha256": "537e0772f0c39c94c95c0d643dd5535e9a0994e3b384222da79bce390d87251b"
+    },
+    {
+      "source": "Docs/ConversionEvidence/IsometricLab_MildPerspective.png",
+      "destination": "Docs/Archive/IsometricConversion/ConversionEvidence/IsometricLab_MildPerspective.png",
+      "source_sha256": "b180b316f2961c9aa51d78e4e0f1e70394ffc775db170777e1465ec2b892b387",
+      "destination_sha256": "b180b316f2961c9aa51d78e4e0f1e70394ffc775db170777e1465ec2b892b387"
+    },
+    {
+      "source": "Docs/ConversionEvidence/IsometricLab_Orthographic.png",
+      "destination": "Docs/Archive/IsometricConversion/ConversionEvidence/IsometricLab_Orthographic.png",
+      "source_sha256": "d89fbb87754660c2be472d06a799d6774fcca5073af425eb607c4d12ec9a6b2a",
+      "destination_sha256": "d89fbb87754660c2be472d06a799d6774fcca5073af425eb607c4d12ec9a6b2a"
+    },
+    {
+      "source": "Docs/ConversionEvidence/IsometricLab_PickupAndMovementProof.png",
+      "destination": "Docs/Archive/IsometricConversion/ConversionEvidence/IsometricLab_PickupAndMovementProof.png",
+      "source_sha256": "b9733688258904665bbb992a29e188df026466650aed01776dd5e9938f0e7fc1",
+      "destination_sha256": "b9733688258904665bbb992a29e188df026466650aed01776dd5e9938f0e7fc1"
+    },
+    {
+      "source": "Docs/ConversionEvidence/IsometricLab_RampAndScaleProof.png",
+      "destination": "Docs/Archive/IsometricConversion/ConversionEvidence/IsometricLab_RampAndScaleProof.png",
+      "source_sha256": "21f02282f875b0b2f8b07c71fa1fe39a05c1c11e2ca7969dd7fded0b60c2cc81",
+      "destination_sha256": "21f02282f875b0b2f8b07c71fa1fe39a05c1c11e2ca7969dd7fded0b60c2cc81"
+    },
+    {
+      "source": "Docs/ConversionEvidence/LEGACY_BASELINE_2026-08-12.md",
+      "destination": "Docs/Archive/IsometricConversion/ConversionEvidence/LEGACY_BASELINE_2026-08-12.md",
+      "source_sha256": "0499badc5abe50eb1137899dc312ad5eece3bfd41168b8173311a550cd7a964c",
+      "destination_sha256": "0499badc5abe50eb1137899dc312ad5eece3bfd41168b8173311a550cd7a964c"
+    },
+    {
+      "source": "Docs/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md",
+      "destination": "Docs/Archive/IsometricConversion/ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md",
+      "source_sha256": "c34d86a4ced6464732af3c359e912836969e5af29a71d86a0c6aa1a272659f06",
+      "destination_sha256": "8268bd0b8b13597188ffd8a8b2c488ee4879b44402851c44254a163b0761e65a"
+    },
+    {
+      "source": "Docs/ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md",
+      "destination": "Docs/Archive/IsometricConversion/ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md",
+      "source_sha256": "b0db633387bf9feee456554a9008dc9cc451470c7296b73aa5b1b5f6e8d2a31a",
+      "destination_sha256": "0417d3d2862f49047156eb3548a62d977ee8a26b7365bf7019fc568ceba78318"
+    },
+    {
+      "source": "Docs/RuleTileTemplates/RuleGroundRuleTileSheet.md",
+      "destination": "Docs/Archive/IsometricConversion/RuleTileTemplates/RuleGroundRuleTileSheet.md",
+      "source_sha256": "8f35cc3ed9cb9e56bcf7af80f04da95eaa2b3bd04dee99ed79e9acff1d463e9b",
+      "destination_sha256": "8f35cc3ed9cb9e56bcf7af80f04da95eaa2b3bd04dee99ed79e9acff1d463e9b"
+    },
+    {
+      "source": "Docs/RuleTileTemplates/RuleGroundRuleTileSheet.png",
+      "destination": "Docs/Archive/IsometricConversion/RuleTileTemplates/RuleGroundRuleTileSheet.png",
+      "source_sha256": "1777be5360f8a4b5a331aa36e1b8cf9b220afa8d739479d5554ca84f8752a3f3",
+      "destination_sha256": "1777be5360f8a4b5a331aa36e1b8cf9b220afa8d739479d5554ca84f8752a3f3"
+    }
+  ]
+}

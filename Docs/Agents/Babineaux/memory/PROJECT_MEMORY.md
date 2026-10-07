@@ -31,7 +31,7 @@ Verified 2026-08-13 from root `AGENTS.md`, `ProjectSettings/ProjectVersion.txt`,
 
 - Unity editor version: `6000.4.0f1`.
 - Render pipeline: URP with the 3D renderer as the default and an isolated 2D renderer retained for legacy scenes.
-- Primary production scene: `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`.
+- Primary production scene: `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity`.
 - Runtime assembly namespace baseline: `BooterBigArm.Runtime`.
 - Runtime code belongs under `Assets/_Project/Scripts/Runtime/`.
 - Editor-only automation belongs under `Assets/_Project/Scripts/Editor/` in an editor-only assembly.
@@ -49,3 +49,8 @@ These facts can drift. Re-check live files before relying on them for implementa
 - Keep current status in shared project status surfaces rather than duplicating it here.
 - Record no decision that silently changes canon, product direction, or Gottspan's repo-wide ownership.
 - Remove or explicitly supersede stale statements instead of stacking contradictions.
+
+
+## Verified organization routing — 2026-10-06
+
+Current routing: production scene Assets/_Project/Scenes/Production/GreaterWasteland.unity; terrain-free GameplaySetup template; disabled generated reference in Scenes/Reference/GeneratedWorld; frozen standalone historical project Archive/Unity/HistoricalProject. Source art and tools moved to SourceArt/Blender/Studies, Tools/Art/Blender and Tools/Repository. Use Docs/Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md and relocation receipts for current paths; earlier memory paths are historical. Do not activate generation or reconnect lore.

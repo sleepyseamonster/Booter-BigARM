@@ -1,22 +1,22 @@
-# Badwater gameplay terrain baseline — 2026-10-06
+# Badwater gameplay terrain baseline â€” 2026-10-06
 
-This is the first implementation record for the [gameplay terrain plan](../../BADWATER_GAMEPLAY_TERRAIN_PLAN.md). It separates source and build proof from Player performance and interactive traversal.
+This is the first implementation record for the [gameplay terrain plan](../../Design/Gameplay/BADWATER_GAMEPLAY_TERRAIN_PLAN.md). It separates source and build proof from Player performance and interactive traversal.
 
 ## Fixed review configuration
 
 - Target machine: Apple M1 Max MacBook Pro, 32 GB RAM; Unity 6000.4.0f1; macOS Standalone Development Player; URP 17.4.0.
 - Scene: `Assets/_Project/Scenes/TopDown3D/BadwaterFourSlices.unity` alone, selected explicitly by `BadwaterDevelopmentBuild.BuildFromCli`. Production Build Settings and the production prototype scene remain untouched.
-- Fixed comparison view: native 1920 × 1080 window, full-content rendering, 8 km Badwater camera far clip. Capture a basin view, mountain view, ordinary 2 m tile border, and the 1 m/2 m focus perimeter. Keep the same camera poses and quality tier on repeated runs.
+- Fixed comparison view: native 1920 Ã— 1080 window, full-content rendering, 8 km Badwater camera far clip. Capture a basin view, mountain view, ordinary 2 m tile border, and the 1 m/2 m focus perimeter. Keep the same camera poses and quality tier on repeated runs.
 - **Provisional diagnostic targets, not accepted product budgets:** 60 fps with p95 frame time at or below 16.7 ms and p99 at or below 33.3 ms; no visible terrain/collision gap; record native process memory and startup time before setting a memory or load-time pass threshold. CPU, GPU, and native memory need Player measurements, not Editor estimates.
 - The existing `TopDown3DPlaytestPerformanceProfile` logs full-content frame, CPU, GPU, resolution, and managed-memory telemetry in a Development Player. It does not measure all native texture memory or replace Unity Profiler captures. Do not launch with `-topDown3DStressProfile` for this baseline.
 
 ## Source and structural evidence
 
 - The read-only [`audit_badwater_source.py`](../../Agents/Babineaux/tools/audit_badwater_source.py) pass verified the recorded SHA-256 of all 256 imported RAW elevation and PNG color tiles. Its [machine-readable report](./source-terrain-audit.json) records the bounds, resolution tiers, and slope estimates. It did not modify source data.
-- The four 1 m focus tiles are `r12_c01`, `r12_c02`, `r13_c01`, and `r13_c02`. The other 252 tiles use 2 m height spacing. Every geographic color tile is 128 × 128 px over 256 × 256 m, or 2 m per pixel.
+- The four 1 m focus tiles are `r12_c01`, `r12_c02`, `r13_c01`, and `r13_c02`. The other 252 tiles use 2 m height spacing. Every geographic color tile is 128 Ã— 128 px over 256 Ã— 256 m, or 2 m per pixel.
 - The scene serializes 256 Terrain and 256 TerrainCollider components. The existing isolated Unity validator previously found matching terrain borders, geographic texture links, and at most 0.02750 m sampled border mismatch after Unity height readback. This pass has not repeated that Editor validation.
 - All 256 TerrainLayers have a geographic diffuse image and **no normal or mask map**. That is appropriate for a geographic overview, but does not prove convincing walking-distance soil, rock, talus, or wash materials.
-- Approximate slope area above the serialized Legger 38° route threshold is 36.343% across the four quarters; 13.992% is above Booter's serialized 48° walkable-slope threshold. These are centered differences of source height samples, not Unity collision normals or connected-route findings. Large steep areas are expected and should be treated as physical obstacles rather than automatically flattened.
+- Approximate slope area above the serialized Legger 38Â° route threshold is 36.343% across the four quarters; 13.992% is above Booter's serialized 48Â° walkable-slope threshold. These are centered differences of source height samples, not Unity collision normals or connected-route findings. Large steep areas are expected and should be treated as physical obstacles rather than automatically flattened.
 
 ## Isolated build result
 

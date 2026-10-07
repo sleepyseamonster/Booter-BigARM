@@ -37,7 +37,7 @@ Deliver the production inventory seam needed by that loop: authoritative item de
 7. Current production code and assets under `Assets/_Project/`, particularly the paths in Section 7.
 8. `Docs/Operations/LEGACY_2D_BOUNDARY.md`, which makes Legacy2D reference-only for this work.
 
-`Docs/PROTOTYPE_UI_PLAN.md` is historical guidance, not current UI authority: it describes an immediate-mode prototype while the live TopDown3D scene uses screen-space uGUI.
+`Docs/Archive/Legacy2D/PROTOTYPE_UI_PLAN.md` is historical guidance, not current UI authority: it describes an immediate-mode prototype while the live TopDown3D scene uses screen-space uGUI.
 
 ### 2.3 Approved planning scope
 
@@ -362,7 +362,7 @@ Every new Unity asset/code file receives its normal Unity-generated `.meta`; no 
 - `Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DPrototypeBuilder.cs`: provision exact catalogs/assets/components/Input System references for repeatable scene construction.
 - `Assets/_Project/Scripts/Editor/Validation/TopDown3DPrototypeValidator.cs`: enforce the new scene, asset, input, and reference contracts.
 - `Assets/_Project/Settings/Input/InputSystem_Actions.inputactions`: add System/ToggleInventory only; preserve existing action IDs/bindings.
-- `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`: serialized production wiring created through the approved builder/editor path.
+- `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity`: serialized production wiring created through the approved builder/editor path.
 
 The generation files above are dirty at planning time. Before implementation edits, compare their current content and diffs, assign task-owned hunks, and stop if the active overlay has changed their ownership contract incompatibly.
 

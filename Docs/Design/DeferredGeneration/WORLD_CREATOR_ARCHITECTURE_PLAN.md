@@ -61,7 +61,7 @@ Audit baseline:
 - Inspected HEAD: `e1bf5152181a2d5ced44784fa06fa28f26130f24`
 - Unity: `6000.4.0f1`
 - Render pipeline: URP 17.4.0
-- Production scene: `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`
+- Production scene: `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity`
 - Unity GUI lock: present during audit
 - Worktree: heavily dirty, including the landscape lane, scene, tests, assets, docs, and untracked current generator files
 

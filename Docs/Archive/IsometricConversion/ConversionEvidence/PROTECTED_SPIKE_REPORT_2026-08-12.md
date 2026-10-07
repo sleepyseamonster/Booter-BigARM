@@ -46,27 +46,27 @@ The protected lab now demonstrates:
 
 ### Orthographic working default
 
-![Orthographic isometric conversion lab](./IsometricLab_Orthographic.png)
+![Orthographic isometric conversion lab](IsometricLab_Orthographic.png)
 
 ### Mild-perspective comparison
 
-![Mild-perspective isometric conversion lab](./IsometricLab_MildPerspective.png)
+![Mild-perspective isometric conversion lab](IsometricLab_MildPerspective.png)
 
 ### Harvest proof
 
 The overlay shows two ironstone after the node and its yellow world-space marker have depleted.
 
-![Harvest interaction proof](./IsometricLab_HarvestProof.png)
+![Harvest interaction proof](IsometricLab_HarvestProof.png)
 
 ### Pickup and movement proof
 
 The overlay shows one scrap after the yellow pickup has been collected.
 
-![Pickup and movement proof](./IsometricLab_PickupAndMovementProof.png)
+![Pickup and movement proof](IsometricLab_PickupAndMovementProof.png)
 
 ### Ramp, occlusion, and BigARM scale proof
 
-![Ramp traversal and scale proof](./IsometricLab_RampAndScaleProof.png)
+![Ramp traversal and scale proof](IsometricLab_RampAndScaleProof.png)
 
 ## Corrections Made During The Spike
 

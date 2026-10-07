@@ -11,7 +11,7 @@ Related docs:
 - Canonical world setting: [WORLD_BASIS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_BASIS.md)
 - Canonical world systems baseline: [WORLD_SYSTEMS_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Engineering/WORLD_SYSTEMS_STANDARD.md)
 - Exploratory design notes: [WORLD_GEN_REFERENCE_NOTES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Design/DeferredGeneration/WORLD_GEN_REFERENCE_NOTES.md)
-- Unity-facing exploratory guide: [UNITY_TILEMAP_PROCGEN_REFERENCE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/UNITY_TILEMAP_PROCGEN_REFERENCE.md)
+- Unity-facing exploratory guide: [UNITY_TILEMAP_PROCGEN_REFERENCE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Archive/Legacy2D/UNITY_TILEMAP_PROCGEN_REFERENCE.md)
 
 ## Status
 

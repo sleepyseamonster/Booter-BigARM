@@ -11,10 +11,12 @@ The repository root is the active Unity project. Use [AGENTS.md](../AGENTS.md) f
 | `Docs/Agents/Blender/archives/` | Dated transfer receipts, inert historical tools, and recovered data |
 | `Tools/` | Project-wide tooling in its existing ownership lanes |
 | `Archive/ProprietaryEngine/`, `Archive/Unreal/` | Segregated inactive hosts, with their source, tools, and historical evidence preserved |
-| `Assets/_Project/Legacy2D/` | Current legacy Unity boundary; extraction follows assembly/rendering dependency separation |
+| `Archive/Unity/HistoricalProject/` | Frozen standalone historical Unity restore project; excluded from production import |
+| `SourceData/Terrain/` | Retained bounded GIS inputs, hashes and original provenance; missing full datasets stated explicitly |
+| `Tools/Repository/`, `Tools/Art/Blender/` | Shared repository validation and source-art tools |
 | `Library/`, `Temp/`, `Logs/`, `UserSettings/`, `Builds/`, `.venv/` | Ignored local caches, outputs, diagnostics, and environments |
 
-All Blender `.blend` sources below the Blender agent folder use Git LFS. Dated `*_PreviousSave_YYYY-MM-DD.blend` files are archival saves, not replacements for the working source. They stay beside that source to preserve relative resource paths. `*.blend1` files are normally ignored; a unique recovered save is deliberately named and tracked as a `.blend` instead of silently discarding it.
+All Blender `.blend` sources below SourceArt/Blender use Git LFS. Dated `*_PreviousSave_YYYY-MM-DD.blend` files are archival saves, not replacements for the working source. They stay beside that source to preserve relative resource paths. `*.blend1` files are normally ignored; a unique recovered save is deliberately named and tracked as a `.blend` instead of silently discarding it.
 
 For incoming folders, inventory every file, compare SHA-256 hashes against the repository, verify LFS pointers against their materialized objects, and preserve distinct versions before removing any duplicate. Keep a source-to-destination receipt. Do not overwrite current tools with older transferred copies.
 
@@ -24,6 +26,6 @@ The [October 6 organization audit](./Evidence/Repository/organization-audit-2026
 
 ## Selected Professional Layout
 
-The [second-pass audit and migration plan](./Operations/Repository/LAYOUT_PLAN_2026-10-06.md) selects a single active Unity core at the repo root, an `Archive/` area for proprietary-engine/Unreal/legacy Unity work, separate `SourceArt/` and source-data manifests, topic-owned documentation, and project-wide tooling. The [execution plan](./Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md) records actual verified batches: inactive hosts are now segregated, while source-art/document grouping and Unity dependency extraction remain pending. The dated audit map is a proposal snapshot, not a substitute for relocation receipts.
+The [second-pass audit and migration plan](./Operations/Repository/LAYOUT_PLAN_2026-10-06.md) selects a single active Unity core at the repo root, an `Archive/` area for proprietary-engine/Unreal/legacy Unity work, separate `SourceArt/` and source-data manifests, topic-owned documentation, and project-wide tooling. The [execution plan](./Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md) records actual verified batches: inactive hosts, source art/tools, topical and historical documents, and the historical Unity implementation are now segregated and verified. The generated reference remains disabled and the active terrain document package retains its current owner/location. The dated audit map is a proposal snapshot, not a substitute for relocation receipts.
 
 Lorekeeper's external lore source is currently disconnected, as confirmed by the author. The agent package and local game canon remain available. External reconnection is a later task; no lore repository is mirrored here.

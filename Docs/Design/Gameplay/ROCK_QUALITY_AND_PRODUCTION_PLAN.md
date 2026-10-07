@@ -315,7 +315,7 @@ Implementation checkpoint: the existing command now bakes all nine slots. Six Sl
 
 ## Accepted composition and current stop condition
 
-On 2026-09-06 the user built and accepted a mixed pile/scatter arrangement in `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`, not the sandbox. The supplied [top view](../../Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Top_2026-09-06.png) and [side view](../../Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Side_2026-09-06.png) are retained as visual authoring references. They show a dense, raised central group, smaller satellite pairs, isolated stones, unequal spacing, and open ground between groups. This is acceptance of the rock composition; sand, slope integration, and clutter are still to be developed.
+On 2026-09-06 the user built and accepted a mixed pile/scatter arrangement in `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity`, not the sandbox. The supplied [top view](../../Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Top_2026-09-06.png) and [side view](../../Evidence/WorldCreator/RockCompositionReference/MixedPileScatter_Side_2026-09-06.png) are retained as visual authoring references. They show a dense, raised central group, smaller satellite pairs, isolated stones, unequal spacing, and open ground between groups. This is acceptance of the rock composition; sand, slope integration, and clutter are still to be developed.
 
 The user requests three distinct composition types:
 

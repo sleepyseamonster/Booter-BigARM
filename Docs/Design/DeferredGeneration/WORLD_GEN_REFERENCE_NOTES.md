@@ -10,7 +10,7 @@ Related docs:
 
 - Canonical world tone and rules: [WORLD_BASIS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_BASIS.md)
 - Canonical world systems baseline: [WORLD_SYSTEMS_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Engineering/WORLD_SYSTEMS_STANDARD.md)
-- Unity-facing reference for this topic: [UNITY_TILEMAP_PROCGEN_REFERENCE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/UNITY_TILEMAP_PROCGEN_REFERENCE.md)
+- Unity-facing reference for this topic: [UNITY_TILEMAP_PROCGEN_REFERENCE.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Archive/Legacy2D/UNITY_TILEMAP_PROCGEN_REFERENCE.md)
 - External research summary: [WORLD_GEN_RESEARCH_SUMMARY.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Design/DeferredGeneration/WORLD_GEN_RESEARCH_SUMMARY.md)
 
 ## Status

@@ -19,7 +19,7 @@ Blender is the persistent 3D modeling specialist for Booter & BigARM. This folde
 4. [Modeling and handoff SOP](./sops/MODEL_TO_UNITY.md) and only the relevant project standards.
 5. [Technique notes](./research/MODELING_TECHNIQUES.md) when choosing a method or refreshing evidence.
 
-Read `Docs/WORLD_BASIS.md` before art decisions that depend on setting or character identity. Current production is 3D; `Docs/ART_ANIMATION_STARTER.md` describes the historical 2D baseline and does not set the present modeling pipeline.
+Read `Docs/WORLD_BASIS.md` before art decisions that depend on setting or character identity. Current production is 3D; `Docs/Archive/Legacy2D/ART_ANIMATION_STARTER.md` describes the historical 2D baseline and does not set the present modeling pipeline.
 
 ## Operating surfaces
 

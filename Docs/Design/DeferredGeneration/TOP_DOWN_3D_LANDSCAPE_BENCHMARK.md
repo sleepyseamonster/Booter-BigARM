@@ -4,7 +4,7 @@ This is the measurable review contract for the representative landscape family i
 
 ## Fixed production view
 
-- Scene: `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`.
+- Scene: `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity`.
 - Camera: perspective, 25 m follow distance, 48-degree vertical FOV, 50-degree starting pitch, current production yaw and obstruction behavior.
 - Preserve camera distance, FOV, pitch limits, and orbit behavior. Far clip may increase from the current 300 m only to expose the approved distant-landscape system.
 - Evidence seeds: the production seed `24681357` plus two fixed comparison seeds chosen by tests. For each seed, capture the same spawn-facing view and one view across a drainage corridor.

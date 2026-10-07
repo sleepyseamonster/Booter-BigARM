@@ -1,6 +1,6 @@
 # Badwater gameplay terrain plan
 
-**Current direction (2026-10-06):** The user promoted this playable scene to `Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity` as the primary gameplay scene. Procedural generation is deferred pending redesign. The separate-study scope and Build Settings restrictions below are superseded; the prior streaming/material/performance sequence remains deferred. See [PROJECT_STATUS.md](../../PROJECT_STATUS.md).
+**Current direction (2026-10-06):** The user promoted this playable scene to `Assets/_Project/Scenes/Production/GreaterWasteland.unity` as the primary gameplay scene. Procedural generation is deferred pending redesign. The separate-study scope and Build Settings restrictions below are superseded; the prior streaming/material/performance sequence remains deferred. See [PROJECT_STATUS.md](../../PROJECT_STATUS.md).
 
 **Historical implementation status:** Implementation in progress, 2026-10-06. The dedicated Development Player builds from an isolated copy of the current working tree; traversal feel, close-range material quality, and Player performance are unverified. See the [baseline evidence](../../Evidence/Badwater/gameplay-terrain-baseline-2026-10-06.md).
 

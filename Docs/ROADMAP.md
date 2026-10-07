@@ -20,7 +20,7 @@ The accepted direction is a perspective, elevated top-down presentation using a 
 
 - [TOP_DOWN_3D_FOUNDATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md) is the active bounded plan for camera, movement, input, procedural terrain, and simple BigARM follow behavior.
 - The first perspective foundation is implemented in a separate scene and awaits user-owned hands-on acceptance before broader shared-system or production-content work.
-- [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md) contains current automated proof, preservation evidence, limitations, and the user acceptance boundary.
+- [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](Archive/IsometricConversion/ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md) contains current automated proof, preservation evidence, limitations, and the user acceptance boundary.
 - Preserve the existing 2D prototype and former isometric lab as references and recovery points until a perspective vertical slice and later cutover candidate are explicitly accepted.
 - Do not expand the 2D presentation path except for preservation or separately prioritized fixes that remain valuable during conversion.
 - The gameplay phases below remain desired game outcomes. Their implementation should proceed on the accepted perspective 3D foundation rather than deepening soon-to-be-replaced 2D presentation systems.
@@ -177,4 +177,4 @@ The original Phase 1–7 gameplay order remains the feature-development order in
 - The research plan is not a separate lane; it informs the order and quality bar for the phases above.
 - The early game should stay simple until the survival traversal slice is fun on its own.
 - Do not expand combat, crafting breadth, or biome count before the foundation and loop are working.
-- The current prototype HUDs are intentionally immediate-mode; see [PROTOTYPE_UI_PLAN.md](./PROTOTYPE_UI_PLAN.md) for the later Canvas-based GUI pass.
+- The current prototype HUDs are intentionally immediate-mode; see [PROTOTYPE_UI_PLAN.md](Archive/Legacy2D/PROTOTYPE_UI_PLAN.md) for the later Canvas-based GUI pass.

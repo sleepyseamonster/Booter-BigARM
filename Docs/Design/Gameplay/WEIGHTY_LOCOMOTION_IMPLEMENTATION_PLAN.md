@@ -185,7 +185,7 @@ Expected implementation boundary:
 - new Editor-only clip profiler
 - `Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DPrototypeBuilder.cs`
 - `Assets/_Project/Scripts/Editor/Validation/TopDown3DPrototypeValidator.cs`
-- `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`
+- `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity`
 - the project-owned animation profile and qualified transition assets with their `.meta` files
 - `Assets/_Project/Tests/Editor/TopDown3DPlayerLocomotionTests.cs`
 - `Assets/_Project/Tests/Editor/TopDown3DFootstepDustTests.cs`

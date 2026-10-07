@@ -670,7 +670,7 @@ Optional quick-release files are not created unless its iteration gate passes.
 - Modify `Assets/_Project/Settings/Input/InputSystem_Actions.inputactions` only after preserving existing action/map IDs and confirming the new binding has no conflict.
 - Add `Assets/_Project/Settings/Player/TopDown3DPackingSettings.asset`.
 - Add project-owned neutral cargo-container material/mesh/prefab assets under the existing Art/Materials/Prefabs structure as required by the builder.
-- Update `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity` only through the approved builder/editor path after ownership is re-audited.
+- Update `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity` only through the approved builder/editor path after ownership is re-audited.
 - Preserve all existing `.meta` files and GUIDs.
 
 ### 10.4 Tests

@@ -10,8 +10,8 @@ This document captures the current Unity project state so future changes can be 
 
 ## Current Files Of Interest
 
-- `Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity` — primary production scene and only enabled build scene; promoted from playable Badwater on 2026-10-06 with existing controls and mechanics retained. Procedural generation is deferred pending redesign.
-- `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity` — preserved generated-world reference, disabled in Build Settings.
+- `Assets/_Project/Scenes/Production/GreaterWasteland.unity` — primary production scene and only enabled build scene; promoted from playable Badwater on 2026-10-06 with existing controls and mechanics retained. Procedural generation is deferred pending redesign.
+- `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity` — preserved generated-world reference, disabled in Build Settings.
 - `Assets/_Project/Scripts/Runtime/TopDown3D/` — production runtime assembly.
 - `Assets/_Project/Legacy2D/Scenes/` — preserved 2D prototype and sample scenes, disabled in Build Settings.
 - `Assets/_Project/Legacy2D/Scripts/Runtime/` — preserved 2D runtime assembly.
@@ -52,3 +52,8 @@ This inventory proves code and asset presence, not player-facing completeness or
 - If the world canon changes, update [WORLD_BASIS.md](./WORLD_BASIS.md) first and then align any dependent docs.
 - If editor automation changes, update [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md) with the exact command-line entry points.
 - If `Assets/_Project/` changes materially, align [PROJECT_STRUCTURE.md](./Engineering/PROJECT_STRUCTURE.md) with the new layout.
+
+
+## Organization checkpoint — 2026-10-06
+
+Verified organization is documented in [implementation evidence](./Operations/Repository/IMPLEMENTATION_EVIDENCE_2026-10-06.md). Production is Scenes/Production/GreaterWasteland; GameplaySetup is the terrain-free rebuild template; the generated-world scene is an imported disabled reference under Scenes/Reference/GeneratedWorld. Legacy2D/isometric work is the standalone frozen Archive/Unity/HistoricalProject. Blender sources/resources are SourceArt/Blender/Studies, art tools Tools/Art/Blender, repository tools Tools/Repository, and bounded recovered terrain inputs SourceData/Terrain. External lore remains absent/disconnected. Current owner terrain and radial changes remain separately owned; organization proof does not validate those concurrent feature batches.

@@ -2,7 +2,7 @@
 
 ## Outcome
 
-The first perspective top-down 3D foundation is implemented in a separate generated scene at `Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity`. It is a development candidate, not a Build Settings cutover or release candidate.
+The first perspective top-down 3D foundation is implemented in a separate generated scene at `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity`. It is a development candidate, not a Build Settings cutover or release candidate.
 
 The foundation includes:
 

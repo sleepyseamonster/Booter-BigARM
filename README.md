@@ -57,7 +57,7 @@ Read [AGENTS.md](./AGENTS.md) for repository routing and the task-specific Unity
 - Read [Docs/Operations/GIT_BATCHING_STANDARD.md](./Docs/Operations/GIT_BATCHING_STANDARD.md) for how to group commits and ignore Unity noise.
 - Read [Docs/Operations/IMPLEMENTATION_SEQUENCE.md](./Docs/Operations/IMPLEMENTATION_SEQUENCE.md) for the first-pass order of gameplay seams.
 - Read [Docs/Operations/RESEARCH_PLAN.md](./Docs/Operations/RESEARCH_PLAN.md) for the prioritized research roadmap.
-- Read [Docs/URP_2D_STANDARD.md](./Docs/URP_2D_STANDARD.md) for the 2D URP rendering baseline.
+- Read [Docs/Archive/Legacy2D/URP_2D_STANDARD.md](Docs/Archive/Legacy2D/URP_2D_STANDARD.md) for the 2D URP rendering baseline.
 - Read [Docs/Operations/CODEX_EDITOR_STANDARD.md](./Docs/Operations/CODEX_EDITOR_STANDARD.md) for Codex and editor workflow.
 - Read [Docs/Engineering/GAMEPLAY_ARCHITECTURE_BASELINES.md](./Docs/Engineering/GAMEPLAY_ARCHITECTURE_BASELINES.md) for input, movement, procedural generation, and save/load baselines.
 - Read [Docs/Engineering/INPUT_ARCHITECTURE_STANDARD.md](./Docs/Engineering/INPUT_ARCHITECTURE_STANDARD.md) for the gamepad-first input baseline.

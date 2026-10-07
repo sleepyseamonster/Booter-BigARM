@@ -68,7 +68,7 @@ All active root/`Docs/` Markdown file links resolve. **32 unavailable local link
 Recheck content coverage from the checkout root:
 
 ```powershell
-.venv\Scripts\python.exe Docs/Agents/Gottspan/tools/verify-transfer-manifest.py Docs/Agents/Blender/archives/2026-10-06-transfer/transfer-manifest.json
+.venv\Scripts\python.exe Tools/Repository/verify-transfer-manifest.py Docs/Agents/Blender/archives/2026-10-06-transfer/transfer-manifest.json
 ```
 
 Add `--incoming` to include the local ignored holding copy. That optional copy is not required after cloning the repository. The default command verifies all 252 original contents through their repository destinations.

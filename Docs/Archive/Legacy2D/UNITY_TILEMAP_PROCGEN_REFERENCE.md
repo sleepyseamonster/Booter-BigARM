@@ -1,17 +1,19 @@
+> Historical Legacy2D reference. This document does not describe current 3D production UI or authorize procedural generation. Preserved implementation: Archive/Unity/HistoricalProject.
+
 # Unity Tilemap Procgen Reference
 
 This document is a provisional Unity implementation guide built from exploratory discussion.
 
 It is not a source of truth.
 
-Treat it as a technical reference that can inform later planning and implementation. Canonical constraints still live in [AGENTS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/AGENTS.md), [AGENT_AND_UNITY_PRACTICES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Operations/AGENT_AND_UNITY_PRACTICES.md), and [WORLD_SYSTEMS_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Engineering/WORLD_SYSTEMS_STANDARD.md).
+Treat it as a technical reference that can inform later planning and implementation. Canonical constraints still live in [AGENTS.md](../../../../Users/worldbuilder/Desktop/Booter%20&%20BigARM/AGENTS.md), [AGENT_AND_UNITY_PRACTICES.md](../../../../Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Operations/AGENT_AND_UNITY_PRACTICES.md), and [WORLD_SYSTEMS_STANDARD.md](../../../../Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Engineering/WORLD_SYSTEMS_STANDARD.md).
 
 Related docs:
 
-- Canonical world systems baseline: [WORLD_SYSTEMS_STANDARD.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Engineering/WORLD_SYSTEMS_STANDARD.md)
-- Canonical world tone and setting: [WORLD_BASIS.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_BASIS.md)
-- Provisional world sketch and terrain notes: [WORLD_GEN_REFERENCE_NOTES.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Design/DeferredGeneration/WORLD_GEN_REFERENCE_NOTES.md)
-- External research summary: [WORLD_GEN_RESEARCH_SUMMARY.md](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Design/DeferredGeneration/WORLD_GEN_RESEARCH_SUMMARY.md)
+- Canonical world systems baseline: [WORLD_SYSTEMS_STANDARD.md](../../../../Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Engineering/WORLD_SYSTEMS_STANDARD.md)
+- Canonical world tone and setting: [WORLD_BASIS.md](../../../../Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/WORLD_BASIS.md)
+- Provisional world sketch and terrain notes: [WORLD_GEN_REFERENCE_NOTES.md](../../../../Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Design/DeferredGeneration/WORLD_GEN_REFERENCE_NOTES.md)
+- External research summary: [WORLD_GEN_RESEARCH_SUMMARY.md](../../../../Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Design/DeferredGeneration/WORLD_GEN_RESEARCH_SUMMARY.md)
 
 ## Status
 
