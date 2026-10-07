@@ -33,9 +33,11 @@ The initial Windows scan found no `.tif`, `.tiff`, `.npz`, `.npy`, `.las` or `.l
 
 Unity 6000.4.0f1, Windows standalone build support, and the pinned GIS Python environment are present. Cached Blender 5.2.2 executables were located during the October 7 transfer audit but failed Windows side-by-side startup. Saved-schema inspection verified the nine retained Blender versions and packed resources; a native application reopen remains unavailable. GIS preparation and source validation work independently.
 
-## First expansion proposal
+## Approved expansion and prior source proof
 
-The proposed first batch is a 2.048 km square immediately west of the existing southwest quarter, bounds `[518352,4006200,520400,4008248]` in EPSG:26911. It would add 64 aligned chunks across basin-floor terrain while sharing one complete edge with the existing scene. North and east alternatives are shown in the atlas. The west proposal remains provisional pending the user's geographic preference and the existing-scene baseline.
+The user selected three full 256-chunk sections immediately west, north and northwest of the existing section, forming an 8.192 km square with 1,024 chunks total. The accepted pipeline builds and verifies terrain in Blender before exporting and importing native Unity Terrain. Use the [execution handoff](./HANDOFF_WEST_NORTH_NORTHWEST_2026-10-07.md) for exact bounds, source requirements, seams and integration gates.
+
+The earlier west-quarter candidate covers `[518352,4006200,520400,4008248]`, a 2.048 km square with only 64 chunks. Its verified inputs remain useful partial source evidence; they do not establish complete coverage for the newly selected three-section expansion. Existing candidate records/atlas labels describe that earlier proposal until implementation updates the catalog.
 
 [usgs_west_catalog.json](./usgs_west_catalog.json) records the TNM product query. Catalog intersection alone does not prove coverage. [west_raster_headers.json](./west_raster_headers.json) verifies the two candidate 1 m products' actual raster CRS, spacing and bounds. [west_source_assessment.json](./west_source_assessment.json) records bounded sample acquisition, vertical metadata, complete sample coverage, and agreement with the retained Badwater border.
 
@@ -51,7 +53,7 @@ The raw windows, metadata and candidate grid are now preserved with hashes under
 | Tiled mesh terrain | Can express custom topology and coordinate with existing production mesh representations. Requires explicit LOD, seam, collision and material integration beyond the current geographic scene. | Retain as an alternative if the Terrain baseline reveals a specific gap |
 | Hybrid Terrain plus source-linked meshes | Preserves measured ground while adding separately authored cliff/ledge geometry where needed. Carries additional asset/collider and identity budgets. | Candidate for later local refinement; no custom geometry needed for the basin-floor proposal |
 
-Prepared GIS grids are the shared source for Blender and Unity. Blender is an inspection and authoring surface, not a prerequisite conversion stage for every heightfield. Do not build the entire region as a uniformly fine or permanently loaded mesh.
+Prepared GIS grids are the shared measured source. For this expansion, the user explicitly requires Blender terrain construction, reopening and seam validation before Unity export/import. Preserve the native Unity Terrain representation and keep the three-section build bounded; full-region uniformly fine terrain is not part of this task.
 
 Before scaling, preserve dataset/version plus absolute projected bounds as source identity; existing `rNN_cNN` identifiers are local addresses, not globally unique keys. The atlas geographic keys are inventory identifiers, not a new runtime save schema. Keep immutable measured heights separate from authored terrain adjustments and persisted player/simulation deltas. Define ready collision for both actors, near/far agreement, unload/reload and precision-safe placement before implementing terrain streaming. Procedural generation and generated-content integration are deferred by the user's current direction. Their future identity and persistence contracts remain design considerations, not work authorized by this terrain batch. Do not introduce a competing world manager.
 
@@ -62,9 +64,9 @@ Before scaling, preserve dataset/version plus absolute projected bounds as sourc
 | 0. Ownership and preflight | Separate task package; current organization changes left intact; main branch retained; active Unity session identified | Revalidate before each batch and before a scoped commit |
 | 1. Coverage inventory | Atlas, eight footprints, six source files, 256 tile records, real NPS park polygon and reference/hash checks complete | Refresh paths after moves; file presence remains distinct from scene readability |
 | 2. Recoverability | Targeted tool/data assessment complete; original full GIS snapshot unlocated; small west candidate source verified | The west-quarter archive is preserved; a full new footprint still needs complete source coverage; Blender executable status must be checked when native review is needed |
-| 3. First batch and method | West candidate bounded and assessed; native Terrain baseline recommended; alternatives recorded | User preference may change the footprint; Greater Wasteland promotion is separately owned; full playable extent still needs geographic review |
+| 3. Footprint and method | Three 256-chunk sections selected: west, north and northwest; Blender-first construction followed by native Unity Terrain import | Use the execution handoff; complete new source coverage and build validation remain pending |
 | 4. Windows baseline | Canonical profiling builder extended for Windows with guarded fresh output; 8/8 focused checks passed; Greater Wasteland Development Player packaged successfully | Windows Player measurements and user traversal/visual review are required before performance decisions or expansion integration |
-| 5. One adjoining batch | Pending | Generalize hardcoded exporter bounds, prepare versioned height/color assets, validate separately, preserve GUIDs, then integrate only verified task-owned assets |
+| 5. Three adjoining sections | Pending | Generalize source/build/export and validation tools; build and verify Blender candidates; validate Unity imports and every join; preserve existing GUIDs and terrain |
 | 6. Expanded comparison | Pending | Same views/quality and Player measurements; joins, collision and actor access pass; provisional art is tracked separately |
 | 7. Repeat and refine | Pending | Repeat bounded batches; introduce loading infrastructure for measured cost or justified larger scale, not object count alone |
 | 8. Procedural world integration | Explicitly deferred | Requires a separately approved generation design; this terrain task adds no procedural systems |

@@ -1,6 +1,6 @@
 # Building another Death Valley terrain slice
 
-The recommended production route is **verified GIS elevation → prepared height grids → native Unity Terrain**. Blender is useful for inspection, authored rocks, cliffs and other custom meshes. It is optional for creating the ground heightfield. Unity supports importing real-world heightmaps directly; see [Unity heightmap documentation](https://docs.unity3d.com/6000.0/Documentation/Manual/terrain-Heightmaps.html).
+The user-selected production route is **verified GIS elevation and imagery → Blender terrain construction and seam review → exported heights/imagery → native Unity Terrain**. Blender is a required build and verification stage for this expansion. Native Unity Terrain remains the playable ground representation. The [west/north/northwest handoff](./HANDOFF_WEST_NORTH_NORTHWEST_2026-10-07.md) supplies the accepted footprint and complete execution brief.
 
 This guide documents the existing contracts and the next implementation boundary. The current tools reproduce or validate specific existing footprints; there is not yet a general command that builds and integrates an arbitrary new 256-chunk slice.
 
@@ -21,11 +21,11 @@ One new 256-chunk section consists of **16 × 16 chunks**, each **256 × 256 met
 
 Keep the shared Unity origin when adding a neighboring section. Recentring each section independently would place it over the current scene. Each Terrain transform uses its chunk's southwest corner; the developer map displays those same projected bounds.
 
-**Unselected example:** a full section directly west of the current scene would occupy `[516304,4006200,520400,4010296]`. This is a coordinate example, not an approved or source-verified footprint. The existing verified west candidate covers only `[518352,4006200,520400,4008248]`, one 64-chunk quarter. Its source proof does not establish coverage for the remaining 192 chunks.
+**Approved west section:** `[516304,4006200,520400,4010296]`. North and northwest sections are also approved; their bounds are listed in the handoff. Complete fine source coverage and seam validation remain to be established. The existing verified west candidate covers only `[518352,4006200,520400,4008248]`, one 64-chunk quarter. Its source proof does not establish coverage for the remaining 192 chunks.
 
 ## Source preparation
 
-1. Select the new footprint and confirm that it adjoins the existing terrain without overlap. Record a unique batch name, bounds, source spacing, intended detail areas and source versions.
+1. Use the approved west, north and northwest footprints in the handoff and confirm grid alignment without interior overlap. Record section-qualified batch names, bounds, source spacing, intended detail areas and source versions.
 2. Identify actual USGS DEM products covering the whole footprint. Verify raster CRS, resolution, complete finite coverage, surface type, vertical datum, metadata and hashes. Catalog intersection by itself does not prove coverage. Preserve source windows and metadata under a new versioned `SourceData/Terrain/DeathValley/` directory.
 3. Prepare one consistent measured grid, including the shared boundary samples. For a 4,096 m square, a 1 m vertex grid has 4,097 × 4,097 samples; a 2 m grid has 2,049 × 2,049 samples. Native 1 m preparation followed by strict 2 m decimation preserves common samples. Direct coarse resampling previously changed the retained border and failed verification.
 4. Split the grid into 256 tiles with shared edge vertices. At 2 m spacing each source tile is 129 × 129 samples; at 1 m it is 257 × 257. The current Unity render convention is 257 × 257. Interpolated render vertices do not create new measured detail.
@@ -43,7 +43,7 @@ The verified west quarter's retained-border difference was approximately 0.01373
 
 ## Unity creation and integration
 
-Create a candidate under its own `Assets/_Project/Art/Terrain/<batch>/` asset folder and use a separate validation scene outside enabled Build Settings. Generate TerrainData, source assets, materials and colliders with new GUIDs. Preserve the existing terrain's assets and GUIDs.
+Build and reopen the new terrain in Blender first, validating source correspondence and all existing/new joins. Export documented height and image assets from that verified build. Create a Unity candidate under its own `Assets/_Project/Art/Terrain/<batch>/` asset folder and use a separate validation scene outside enabled Build Settings. Generate TerrainData, source assets, materials and colliders with new GUIDs. Preserve the existing terrain's assets and GUIDs.
 
 Validate dimensions, geographic placement, source hashes, height readback, shared borders, neighbor links and collision before adding the candidate to `Assets/_Project/Scenes/Production/GreaterWasteland.unity`. Integration must retain the current player setup, controls and scene GUID. The existing terrain validators currently expect exactly 256 chunks; they must become batch-aware before a second section increases the scene to 512 chunks.
 
@@ -80,4 +80,4 @@ The first command refreshes only the research inventory outputs. The second chec
 
 The west source files are preserved in [SourceData/Terrain/DeathValley/WestCandidate2026-10-06](../../SourceData/Terrain/DeathValley/WestCandidate2026-10-06/manifest.json); availability checks prefer these hash-matched durable copies over ignored Logs. The [original Mac study archive](../../SourceData/Terrain/DeathValley/MacSnapshot2026-10-07/README.md) is now restored, including its native single/four-slice source grids. It still does not imply full-region 1 m coverage; validate sources for each new footprint. Saved Blender sources live under [SourceArt/Blender/Studies/DeathValley](../../SourceArt/Blender/Studies/DeathValley/README.md), and original authoring tools live under `Tools/Art/Blender/death_valley/`. Dated receipts retain original paths; relocation resolution preserves their source identity.
 
-The next implementation task is to choose the new 4,096 m footprint and build the parameterized candidate pipeline above. Blender review can accompany it; a full Blender terrain rebuild is not a prerequisite.
+The next implementation task is to execute the three-section handoff with the accepted Blender-first pipeline. Build and verify all three new sections in Blender, then create and validate Unity candidates before integrating the enlarged 1,024-chunk footprint.
