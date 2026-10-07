@@ -265,6 +265,18 @@ def main():
     base_cfg,_=read_config("region.json")
     catalog={"schema_version":1,"audited_utc":datetime.now(timezone.utc).isoformat(),"working_crs":"EPSG:26911","git_head":subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip(),"regions":regions,"blender_files":assets,"unity_scene":{"path":relative(scene),"guid":TERRAIN_SCENE_GUID,"sha256":digest(scene),**counts,"terrain_data_assets":len(terrain_data),"terrain_data_guid_links_verified":True},"source_audit":{"height_files":256,"color_files":256,"hash_mismatches":0,"shared_edges_checked":edges,"max_encoded_edge_difference":max_edge,"limits":"Source export and serialized reference checks only; no Editor readback, Player performance or visual acceptance."},"unity_tiles":tiles,"expansion_candidates":candidates,"gis_files_in_scanned_roots":gis,"gis_scan_roots":["Docs","Assets","wetransfer_blender_2026-10-06_2121"],"recovery":{"original_external_path":"/Users/worldbuilder/Desktop/Death Valley Terrain Data","external_data_restored":"not_confirmed","badwater_export_rebuild":"retained_height_and_color_exports_present","original_full_precision_grid":"not_found_in_scanned_roots","sources":base_cfg["source_references"]},"park_boundary":{"path":"nps_deva_boundary.json","response_sha256":park["response_sha256"],"retrieved_utc":park["retrieved_utc"]} if park else None}
     catalog["gis_scan_roots"].insert(2,"SourceData")
+    restored=ROOT/"SourceData/Terrain/DeathValley/MacSnapshot2026-10-07"
+    if (restored/"import_verification.json").is_file():
+        from terrain_archive import TerrainArchive, MAC_PREFIX
+        imported=json.loads((restored/"import_verification.json").read_text(encoding="utf-8"))
+        receipt_path=restored/"transfer_receipt.json"
+        if digest(receipt_path)!=imported["receipt_sha256"]:raise ValueError("Restored source receipt changed")
+        receipt=json.loads(receipt_path.read_text(encoding="utf-8"));archive=TerrainArchive(ROOT,receipt)
+        for entry in receipt["records"]:
+            if entry["status"]!="excluded_mac_virtual_environment":archive.resolve(MAC_PREFIX+entry["source_relative"])
+        catalog["recovery"].update({"external_data_restored":"original_mac_study_snapshot_hash_verified",
+            "original_full_precision_grid":"original_study_grids_restored_resolution_varies",
+            "source_archive":relative(restored),"archived_source_files_checked":receipt["data_file_count"]})
     catalog["regional_source_tiles"]=regional
     if args.refresh_boundary: write_json(HERE/"nps_deva_boundary.json",park)
     write_json(HERE/"coverage_catalog.json",catalog)

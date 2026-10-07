@@ -31,7 +31,7 @@ Keep the shared Unity origin when adding a neighboring section. Recentring each 
 4. Split the grid into 256 tiles with shared edge vertices. At 2 m spacing each source tile is 129 × 129 samples; at 1 m it is 257 × 257. The current Unity render convention is 257 × 257. Interpolated render vertices do not create new measured detail.
 5. Prepare aligned imagery separately. Preserve source images, projected bounds and hashes. Aerial imagery provides geographic context; close-range gameplay surfaces require their own material work.
 
-The developer overview uses saved Blender terrain sampled at 200 m and displays an 800 m mesh. It is a coverage and navigation reference, not a source of fine gameplay heights. Its packed imagery can guide inspection, but new detailed terrain requires adequate original or newly acquired DEM coverage.
+The developer overview uses saved Blender terrain sampled at 200 m and displays an 800 m mesh. It is a coverage and navigation reference, not a source of fine gameplay heights. The original native grids and acquisition files have since been restored in the [Mac data snapshot](../../SourceData/Terrain/DeathValley/MacSnapshot2026-10-07/README.md); use those recorded inputs where they cover the new footprint. Its packed imagery can guide inspection, but new detailed terrain requires adequate original or newly acquired DEM coverage.
 
 ## Height encoding and joins
 
@@ -78,6 +78,6 @@ Run from the repository root:
 
 The first command refreshes only the research inventory outputs. The second checks current files. The third prints the existing 64-chunk west proposal without selecting or importing it. The last command runs offline tooling/source regressions, not gameplay tests.
 
-The west source files are preserved in [SourceData/Terrain/DeathValley/WestCandidate2026-10-06](../../SourceData/Terrain/DeathValley/WestCandidate2026-10-06/manifest.json); availability checks prefer these hash-matched durable copies over ignored Logs. The original full regional GIS archive remains unavailable. Saved Blender sources live under [SourceArt/Blender/Studies/DeathValley](../../SourceArt/Blender/Studies/DeathValley/README.md), and original authoring tools live under `Tools/Art/Blender/death_valley/`. Dated receipts retain original paths; relocation resolution preserves their source identity.
+The west source files are preserved in [SourceData/Terrain/DeathValley/WestCandidate2026-10-06](../../SourceData/Terrain/DeathValley/WestCandidate2026-10-06/manifest.json); availability checks prefer these hash-matched durable copies over ignored Logs. The [original Mac study archive](../../SourceData/Terrain/DeathValley/MacSnapshot2026-10-07/README.md) is now restored, including its native single/four-slice source grids. It still does not imply full-region 1 m coverage; validate sources for each new footprint. Saved Blender sources live under [SourceArt/Blender/Studies/DeathValley](../../SourceArt/Blender/Studies/DeathValley/README.md), and original authoring tools live under `Tools/Art/Blender/death_valley/`. Dated receipts retain original paths; relocation resolution preserves their source identity.
 
 The next implementation task is to choose the new 4,096 m footprint and build the parameterized candidate pipeline above. Blender review can accompany it; a full Blender terrain rebuild is not a prerequisite.
