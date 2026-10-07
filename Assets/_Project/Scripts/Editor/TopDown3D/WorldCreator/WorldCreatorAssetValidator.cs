@@ -10,7 +10,7 @@ namespace BooterBigArm.Editor.WorldCreator
     {
         private static readonly string[] ProtectedConsumerPaths =
         {
-            "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity",
+            TopDown3DPrototypeBuilder.ScenePath,
             "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset"
         };
 

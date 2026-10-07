@@ -12,7 +12,7 @@ namespace BooterBigArm.Editor
     /// </summary>
     public static class TopDown3DCliffWallSourceCapture
     {
-        public const string ScenePath = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
+        public const string ScenePath = TopDown3DPrototypeBuilder.ScenePath;
         public const string PrefabPath =
             "Assets/_Project/Art/Environment/Rocks/Source/CliffWallSampleReference.prefab";
         private const string SourceRootName = "cliff wall";

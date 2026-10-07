@@ -14,7 +14,7 @@ namespace BooterBigArm.Editor
 {
     public static class TopDown3DPrototypeBuilder
     {
-        public const string ScenePath = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
+        public const string ScenePath = "Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity";
         public const string WorldSettingsPath = "Assets/_Project/Settings/World/TopDown3DWorldSettings.asset";
         public const string PackingSettingsPath = "Assets/_Project/Settings/Items/TopDown3DPackingSettings.asset";
         public const string MaterialFolder = "Assets/_Project/Materials/TopDown3D";

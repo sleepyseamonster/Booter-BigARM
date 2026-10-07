@@ -44,8 +44,12 @@ namespace BooterBigArm.Editor
                 throw new InvalidOperationException("No enabled scenes found in Build Settings.");
             }
 
-            // The player must never silently ship a stale or incomplete authored formation pair.
-            TopDown3DPrototypeValidator.ValidateFromCli();
+            // Validate the enabled production scene and its rebuild template independently
+            // of the retained generated-world reference.
+            ConversionBaselineValidator.ValidateFromCli();
+            ProductionGameplayTemplateBuilder.ValidateFromCli();
+            BadwaterPlayableSceneBuilder.ValidateFromCli();
+            BadwaterTerrainReadbackAudit.ValidateFromCli();
 
             var outputPath = GetArgumentValue(args, "-buildOutput");
             if (string.IsNullOrWhiteSpace(outputPath))

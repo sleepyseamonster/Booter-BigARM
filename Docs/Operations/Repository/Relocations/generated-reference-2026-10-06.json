@@ -1,0 +1,85 @@
+{
+  "batch": "ORG-07C",
+  "decision": "Imported disabled generated-world reference retained; external archival deferred because current authoring/validation consumers require it.",
+  "baseline_sha": "49138f737b7da84e06746d16889d8034860f4a00",
+  "modified_consumers": [
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DPrototypeBuilder.cs",
+    "Assets/_Project/Scripts/Editor/Validation/WorldCreatorProductionPathValidator.cs",
+    "Assets/_Project/Scripts/Editor/Validation/RepositoryPlayabilityAudit.cs",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCliffWallSourceCapture.cs",
+    "Assets/_Project/Scripts/Editor/TopDown3D/WorldCreator/WorldCreatorAssetValidator.cs",
+    "Assets/_Project/Tests/Editor/ScenePlayabilityAuditTests.cs",
+    "ProjectSettings/EditorBuildSettings.asset",
+    "Assets/_Project/Scripts/Editor/BuildAutomation.cs"
+  ],
+  "new_folder_metas": [
+    "Assets/_Project/Scenes/Reference.meta",
+    "Assets/_Project/Scenes/Reference/GeneratedWorld.meta"
+  ],
+  "production_build_gate": [
+    "ConversionBaselineValidator.ValidateFromCli",
+    "ProductionGameplayTemplateBuilder.ValidateFromCli",
+    "BadwaterPlayableSceneBuilder.ValidateFromCli",
+    "BadwaterTerrainReadbackAudit.ValidateFromCli"
+  ],
+  "consumer_hashes": [
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DPrototypeBuilder.cs",
+      "source_sha256": "c3ded0b7f9addc9cedf8694feb7c0a811307e2e5ea73722ef1f135f46201c239",
+      "destination_sha256": "58f21b5be2d8743a77bce813c6ac15d41ceea987554d7d4c272a8c9d36ae4219"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/WorldCreatorProductionPathValidator.cs",
+      "source_sha256": "6e6679e297ea30b4fe0babac2426a4129f34842addc6349d0394fab68a22c8a1",
+      "destination_sha256": "75f246c309b6c25f4a88e1f8cf33a7a07da5dd00be662dc250e8481daf703360"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/RepositoryPlayabilityAudit.cs",
+      "source_sha256": "8c4492edf8b52791ff4ed8c8da675d9e8c9b267cb519f55b4122de66fe3fdad4",
+      "destination_sha256": "704b06bef0e044bb3ba985f71ec8f6544499640401859de02308e7545dd24376"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCliffWallSourceCapture.cs",
+      "source_sha256": "c4db0d0646cbcb5f493e9e1e00f5b6aa6e24e1de9cbc169be2fe5fe9ff60e338",
+      "destination_sha256": "409edc412a5f7301a09705dff4854685e81ffa243ed1f0023f6f8bee0dea1ee5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/WorldCreator/WorldCreatorAssetValidator.cs",
+      "source_sha256": "5fa21dc609c6d2296d6ae69652951281fee67d41c9e2564b46c3ce54e572b2bf",
+      "destination_sha256": "4e7989033a3b17bb811d84d1062d689f0afbe6e8e0bda7fc3f623c33ae24de67"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/ScenePlayabilityAuditTests.cs",
+      "source_sha256": "9919c9086b67cb594218cfa5981554d3b54b110e76e9d579088f42db3a19440e",
+      "destination_sha256": "29b9df4b1b3a07f22bc49e88aae953fa90db7914be7b105f130db462e94af627"
+    },
+    {
+      "path": "ProjectSettings/EditorBuildSettings.asset",
+      "source_sha256": "c6bfeeda3e1075157709b938a3ef3871cade2c240fb35173ce21557e2f073f9d",
+      "destination_sha256": "5c19423dd7754b8e3708eec956b964282d38554b1f48e06ca2838e7c24e853d5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/BuildAutomation.cs",
+      "source_sha256": "14e954671a40be86f17fe80c95d301cc4de26d938dc07e1674f6ee0119321e45",
+      "destination_sha256": "3c40b502a489a42342d1ff9b109b59b8e66654453d1116a1177a3278db3f4abc"
+    }
+  ],
+  "records": [
+    {
+      "source": "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity",
+      "destination": "Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity",
+      "source_sha256": "1e70ec998a1b9c4bb29a1bfbd2bd367859c2eb03df89677a58d6fb4abd2e7d8b",
+      "destination_sha256": "1e70ec998a1b9c4bb29a1bfbd2bd367859c2eb03df89677a58d6fb4abd2e7d8b",
+      "guid": null
+    },
+    {
+      "source": "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity.meta",
+      "destination": "Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity.meta",
+      "source_sha256": "4388df5b0305b9a51d1f5c0f9e42f74d3a4e5956dbda5776a94c4ca1f30a1991",
+      "destination_sha256": "4388df5b0305b9a51d1f5c0f9e42f74d3a4e5956dbda5776a94c4ca1f30a1991",
+      "guid": "075ac7be6cb2242378155234e70541f8"
+    }
+  ],
+  "verification": "Isolated Unity 6000.4.0f1 import/compile and production/template/terrain/readback/reference validators passed, exit 0; all 960 directed terrain neighbors and 480 shared edges match.",
+  "renderer_guard_repair": "TopDown3DPrototypeValidator permits renderer index zero after production-only renderer switch."
+}

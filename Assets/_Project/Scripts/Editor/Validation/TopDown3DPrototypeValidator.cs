@@ -1270,7 +1270,7 @@ namespace BooterBigArm.Editor
             var index = rendererIndex.intValue;
             if (rendererList == null
                 || !rendererList.isArray
-                || index <= 0
+                || index < 0
                 || index >= rendererList.arraySize
                 || rendererList.GetArrayElementAtIndex(index).objectReferenceValue != renderer)
             {

@@ -14,7 +14,7 @@ namespace BooterBigArm.Editor.WorldCreator
     public static class WorldCreatorProductionPathValidator
     {
         public const string ProductionScenePath =
-            "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
+            TopDown3DPrototypeBuilder.ScenePath;
         public const string ProductionProfilePath =
             "Assets/_Project/Resources/WorldCreator/ProductionWorldCreatorProfile.asset";
 

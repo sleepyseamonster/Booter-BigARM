@@ -10,7 +10,7 @@ namespace BooterBigArm.Editor
     // Audit entry points never change Build Settings or save inspected scenes.
     public static class RepositoryPlayabilityAudit
     {
-        private const string World = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
+        private const string World = TopDown3DPrototypeBuilder.ScenePath;
         private const string Valley = "Assets/_Project/Scenes/Production/GreaterWasteland.unity";
 
         public static void ValidateBothFromCli()

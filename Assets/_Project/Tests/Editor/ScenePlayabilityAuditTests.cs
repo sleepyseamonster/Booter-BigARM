@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using BooterBigArm.Editor;
 using BooterBigArm.TopDown3D;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
@@ -55,7 +56,7 @@ namespace BooterBigArm.Tests
         [UnityTest]
         public IEnumerator GeneratedWorld_StartsAndAcceptsMovementCameraAndInventory()
         {
-            var routine = Exercise("Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity", true);
+            var routine = Exercise(TopDown3DPrototypeBuilder.ScenePath, true);
             while (routine.MoveNext()) yield return routine.Current;
         }
 
