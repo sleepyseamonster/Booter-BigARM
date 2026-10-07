@@ -6,6 +6,8 @@ The radial menu provides entry points into inventory and tool selection. The inv
 
 The [UI and controller research handoff](./RADIAL_MENU_UI_CONTROLLER_RESEARCH.md) supplies the evidence, visual design, exact input transitions, controller responsibilities, and current integration audit. Its refined digital-selection and paging design supersedes the tentative controls below where they differ.
 
+The [radial system design](./RADIAL_MENU_SYSTEM_DESIGN.md) selects the Compass Ring and defines the integrated UI, session contract, command adapters, customization flow and preference schema. Its chosen defaults supersede earlier tentative alternatives; research remains supporting evidence.
+
 ## Existing implementation and production gaps
 
 The [inventory specification](./INVENTORY_AND_ITEM_MANAGEMENT_SYSTEM.md) supplies the small field kit, finite companion cargo, carry preferences, and optional Auto-Pack model. Live production code already supplies item IDs, categories, icons, stack limits, mass, inventory snapshots, move/swap/merge, exact add/remove, maximum/exact transfer, and companion packing.
