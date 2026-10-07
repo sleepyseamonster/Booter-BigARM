@@ -149,6 +149,9 @@ These are intentionally non-canonical. They preserve ideas, research, or working
 - [Monster Hunter Wilds menu research and Arc and Dust audit](./Research/UI/MONSTER_HUNTER_WILDS_MENU_AUDIT.md)
   Official reference analysis, current production UI source audit, and proposed menu presentation, navigation, accessibility, and implementation sequence.
 
+- [Immersive menu systems research for Arc and Dust](./Research/UI/IMMERSIVE_MENU_SYSTEMS_RESEARCH.md)
+  Metro Exodus and Fallout physical-interface research, effectiveness evidence, and candidate presentation approaches for the elevated top-down game.
+
 - [Engine foundation research](../Archive/ProprietaryEngine/Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md)
   Research for the user-directed proprietary engine, standard third-person view and open Greater Wasteland rock workbench; proposed language, libraries, Windows-first platform policy and foundation evidence gates. No engine implementation is claimed.
 - [WORLD_GEN_REFERENCE_NOTES.md](./Design/DeferredGeneration/WORLD_GEN_REFERENCE_NOTES.md)
