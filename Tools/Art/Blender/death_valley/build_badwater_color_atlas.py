@@ -65,7 +65,8 @@ def run(check):
         if check:
             raise ValueError("Missing atlas importer")
         template = (ART / "Source/Colors/r00_c00.png.meta").read_text()
-        meta.write_text(re.sub(r"(?m)^guid: \w+$", "guid: " + uuid.uuid4().hex, template))
+        template = re.sub(r"(?m)^guid: \w+$", "guid: " + uuid.uuid4().hex, template)
+        meta.write_text("\n".join(line.rstrip() for line in template.splitlines()) + "\n", newline="\n")
     importer = meta.read_text()
     guid = re.search(r"(?m)^guid: (\w+)$", importer)[1]
     if len(guid) != 32 or any(f"    wrap{axis}: 1" not in importer for axis in "UVW") or "enableMipMap: 1" not in importer:
