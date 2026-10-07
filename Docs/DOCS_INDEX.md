@@ -143,6 +143,9 @@ These describe current repo state rather than durable design truth.
 
 ## Design Evidence And Decisions
 
+- [Menu implementation plan audit](./Evidence/UI/MENU_PLAN_AUDIT_2026-10-07.md)
+  Corrected input arbitration, return/pause ownership, inventory suspension, GUI installation/layout, settings persistence, and proof boundaries.
+
 - [DECISION_LOG.md](./DECISION_LOG.md)
   Pointers and rationale for consequential design, architecture, and workflow decisions; controlling docs still hold current truth.
 - [PLAYTEST_LOG.md](./Evidence/Playtests/PLAYTEST_LOG.md)
