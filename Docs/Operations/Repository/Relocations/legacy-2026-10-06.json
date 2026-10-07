@@ -1,0 +1,1951 @@
+{
+  "date": "2026-10-06",
+  "batch": "ORG-05/06",
+  "baseline": "2c640d0c4d383f2e980eb1a8d65021d617261136",
+  "restore_project": "Archive/Unity/HistoricalProject",
+  "restore_tests": {
+    "passed": 8,
+    "failed": 0
+  },
+  "originals_holding": "Logs/OrganizationHolding/legacy-active-originals",
+  "records": [
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Profiles/DefaultVolumeProfile.asset",
+      "destination": "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset",
+      "sha256": "4789b43834dd5efb32eec4c3b436baf0895c9f8cf2a0624121da8dd812ee984a",
+      "destination_sha256": "40f7e48a8869bb1412662feb900305a621400096399373769be25f38ffcee1fb",
+      "serialization_normalization": "Trailing whitespace only; lexical tokens and GUID unchanged. Original preserved in frozen restore."
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Profiles/DefaultVolumeProfile.asset.meta",
+      "destination": "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset.meta",
+      "sha256": "037700fc76ee8e15bf57a6608bf0229b50b9ba78a1095a943fe0add01a6bf5c5",
+      "destination_sha256": "8509b2f05a9e4a092c3a2a919451271bd84d16d6102c8a10f1d0e7db49eeb96f",
+      "serialization_normalization": "Trailing whitespace only; lexical tokens and GUID unchanged. Original preserved in frozen restore."
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art.meta",
+      "sha256": "d8650a6340dd63049aac332c84fa7ff58129ff76f54bff393acfd1deeeaa3b48",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs.meta",
+      "sha256": "3a07a83d4c7b0a7aaef7312f5438e34bbaa061d254a4b3958be21f0cac9ee3ac",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scenes.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scenes.meta",
+      "sha256": "cc90d444afaf2a7f77e66191116dfac4e723cf997f59e4d0b2eb58786fa25598",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts.meta",
+      "sha256": "924e4d8b68934f4b180ec2b5a9028a6315ccdf27c7ea14b662070f02eb13a35a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings.meta",
+      "sha256": "e82eeded689b3655b514ca46284164024c248e10998c296ff44185d0d552b618",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Tests.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Tests.meta",
+      "sha256": "c3edef72ebf8ef31d2578f7ddcf9e122d096566436d974f5527e2991d0c9438c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Dust.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Dust.meta",
+      "sha256": "5bed96ad017a89b189b1b86710de43a7c4cf080be7b491846d28e98845e29ae7",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground.meta",
+      "sha256": "9a10b1242e54fd94368180c037625987722467f17f582e4edabd3e33e87edb29",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ironstone.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ironstone.meta",
+      "sha256": "3b085d4bf1b44d0f7e151e719219a04e85c1d5b53a2529f306f9c9f2eb4210e6",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/MetalScrap.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/MetalScrap.meta",
+      "sha256": "e5d7e1ed549f3b25c360ce737731cd47e857c810720bb7d4f73af680a5cc4a6e",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Props.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Props.meta",
+      "sha256": "905d68e2a1bf069870b9a9db20ff1732c168bc3bc46c5fd6ff09d8d90a6c8e6d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/PrototypeSquare.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/PrototypeSquare.png",
+      "sha256": "8db9d7bc18c1e95c771f6d192df43d5f01022eb4f256076a3daea45e66c92124",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/PrototypeSquare.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/PrototypeSquare.png.meta",
+      "sha256": "750e1b83bdfe99e20d01ae348c995dd6c34dd0aa0a220db581640cb7ef2c5398",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Shadows.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Shadows.meta",
+      "sha256": "d15c3c40d25e949e58a14dea8ed4dde4e942af45222ec8d9c41615e8a9a45507",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/boulder_32 _1.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/boulder_32 _1.prefab",
+      "sha256": "ef48b6b48929b552f9e5dfc65d67db28e74a5d8ee56e9b23fcb7c815772b1293",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/boulder_32 _1.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/boulder_32 _1.prefab.meta",
+      "sha256": "edf29f1c082d2071b404794c5342a23d329b7ffd2f5bf9e46663ad0bf90987fe",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _1.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _1.prefab",
+      "sha256": "f167f6353db481ed641070f50f5f0ec620fef169693f8e621286c2282a559b53",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _1.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _1.prefab.meta",
+      "sha256": "eb2276d83f8c842a1b77cfce9090302dee23cd1a3ce6fc97a25702b39d4c1e7c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _2.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _2.prefab",
+      "sha256": "ed21ad336e9ad5538586242d960aa073605a367d4c0586e1e648568d5ef15d2a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _2.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _2.prefab.meta",
+      "sha256": "5d5e52a53697de63873f173e7f5b953c87f248762738d0c3976b78cbdf63c1ff",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _3.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _3.prefab",
+      "sha256": "69d8a1d51f9b5643a16facfc6eb04a999b2b63796218b75f713e2ad2d822cdc7",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _3.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _3.prefab.meta",
+      "sha256": "c3497fdb6fe8a7674680b9e67a3ce78a7f000b617d8fdd85bded6fc3160b8e0b",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _4.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _4.prefab",
+      "sha256": "064e4981bed0d595dfe4705bc73d28d37a8bc84d2c3a8d64735633a28122801f",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _4.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/prefab_boulder_32 _4.prefab.meta",
+      "sha256": "5696fd668f341727d920a42c84431f4e4563978e8fcd8845951972282afcd322",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallPropPlaceholder.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallPropPlaceholder.prefab",
+      "sha256": "a0a16bf3a1071182a72615b99f78ee2fd15495803ce8afcee33c087e419c9555",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallPropPlaceholder.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallPropPlaceholder.prefab.meta",
+      "sha256": "6707da0809bbb621d1f58ab27e673d0889d6148dd774469b359eb5f8fae28ffc",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps.meta",
+      "sha256": "5385d87257b296511ee94f0c011c345bb86bf88502a5538e77ada99ce9cfdca6",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity",
+      "sha256": "6ce3365983d40336a541e3e315274323b059993e86635f8ea939c20bd6782e50",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity.meta",
+      "sha256": "b48381aa684141a0eb80191fa15af10140ebaa4aa584919d99baa0b2dd09330c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scenes/SampleScene.unity",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scenes/SampleScene.unity",
+      "sha256": "e34ec6aeadd5ca558fa22d06f3733294f3d2d5abc5ae6ddb94b3d531cc6a5f77",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scenes/SampleScene.unity.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scenes/SampleScene.unity.meta",
+      "sha256": "204f446bc13539151c15af875550a7fa6f791662e967572a1b4b06fd0005dad1",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Editor.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor.meta",
+      "sha256": "47b5fc956a6d1db2ea26be59e30a340db090e9b3f4f7fdadda27a0a4dac9b3a4",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime.meta",
+      "sha256": "21294a6edc9bacd8816037deda7dfa51af896cad14eea0e372ec85fc3646efc5",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items.meta",
+      "sha256": "676a934fce8b4e462508174ad8c0a399a20c147ece9a5d2d2911a233065afa2a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Profiles.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Profiles.meta",
+      "sha256": "4dbbf92370fa70c9c36f56c926bc10a8e48e81b7816913a19e289ad9115331d0",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Rendering.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Rendering.meta",
+      "sha256": "1a2907092e5e192d7aca64ab27581a5103a8b07dd84ddda0ed92570aaf5cedab",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Templates.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Templates.meta",
+      "sha256": "59a50de92573f16f96f18617ce2c13b53e32d34302e53df9ff17760b7d9d7c88",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/World.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/World.meta",
+      "sha256": "96cbc722a81c065e9edaff0bdfd353e535b769e5c45f012743758c5403761ea9",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Tests/Editor.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Tests/Editor.meta",
+      "sha256": "546adf75c644e2c52f4e1f0f520f4ab4803b24d42a58dd51b8dfb03a061d0c3f",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Dust/DustCanister.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Dust/DustCanister.png",
+      "sha256": "41ad892316a74423fe9063b4ad07a6380aab5bbec2b3f57f8ec20b9c5bc0cc28",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Dust/DustCanister.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Dust/DustCanister.png.meta",
+      "sha256": "cdd2543439636b4616d23a1f8c7c39a136d2d85945055f86a44ebe038126f2fb",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Dust/DustResource.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Dust/DustResource.png",
+      "sha256": "c5048eeaefab8e848259cf17fefebe68a770c093cff04c21ae6d4d2d7a360b04",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Dust/DustResource.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Dust/DustResource.png.meta",
+      "sha256": "c4b620d6003c7e4241b23938d4cfe5387d3b029c6a6ff52d13aa5920b6f652f2",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Base.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Base.meta",
+      "sha256": "4f7d745e006c34a42d71cc2ec1238019986ae69e84c3d59e51f9e1b179e2b2d9",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Overlay.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Overlay.meta",
+      "sha256": "e3ffd165c36f569886e5d27b5a855a1d1e29dfae58f53021548ce597548789b4",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Pebbles.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Pebbles.meta",
+      "sha256": "8bc84c71ffebbfe7e00d91859bd776c14a96b0a3ee9a5db467445a5db077f8b5",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Rocks.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Rocks.meta",
+      "sha256": "63b8c12a77226fa5b6cd22f6be4632ec3842408fcc3a0aff9e09bf8ecd310487",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround.meta",
+      "sha256": "7d71623b56d2bfc3329df87c4cf8f7fef193783f1266ef4be42befc0c6996c85",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand.meta",
+      "sha256": "48a4fa6f820ddda25d4dbd3dff64f53c72d0b9efdef8be3807507e847df7c97f",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Smooth.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Smooth.meta",
+      "sha256": "9cd73c81ed2d2146bcde4af68007ad76943710397337ab7831901ca16031f0f6",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ironstone/IronstoneChunk.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ironstone/IronstoneChunk.png",
+      "sha256": "b817245341913b79b209f38bfbc6515d33938177892d33a9b5c4709f08c8d697",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ironstone/IronstoneChunk.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ironstone/IronstoneChunk.png.meta",
+      "sha256": "a3e136dd984408f25b3eff584484ce2eaa74927434c9b92092bbffe9736bd273",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ironstone/IronstoneOutcrop.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ironstone/IronstoneOutcrop.png",
+      "sha256": "a5f3474b43888d20ec6f191271aea81660fbc4be1439f6745f598a343d1c8863",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ironstone/IronstoneOutcrop.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ironstone/IronstoneOutcrop.png.meta",
+      "sha256": "e9a7e751e519c34dd3b2453768b12e1de908db27fe3a923bd5a0490d77e4da59",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/MetalScrap/MetalScrapChunk.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/MetalScrap/MetalScrapChunk.png",
+      "sha256": "aca3c4e5a3d6a9e19fc4e6a959c1734fe90e26bdfb532f37a530137bda64ea06",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/MetalScrap/MetalScrapChunk.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/MetalScrap/MetalScrapChunk.png.meta",
+      "sha256": "14156654e389d1b773581cc2657be4f3f7454aaf9675172b809e3bd583f0db86",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/MetalScrap/MetalScrapHeap.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/MetalScrap/MetalScrapHeap.png",
+      "sha256": "48c0c87039d1412dda0aa2d430857949f03e46f2cd2b7b386c9b40ff00697c16",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/MetalScrap/MetalScrapHeap.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/MetalScrap/MetalScrapHeap.png.meta",
+      "sha256": "f0c9229c37a16f14c12e9fc4bff36bc57f32c823d040a62a5bf6485e43d5b2d5",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Props/TallPropPlaceholder.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Props/TallPropPlaceholder.png",
+      "sha256": "6bca801923c50fdba95ce3e9de1fe8125876c3d5e31d43f5a3965a13f72cb4d0",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Props/TallPropPlaceholder.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Props/TallPropPlaceholder.png.meta",
+      "sha256": "2534d5cfcbc5c55da5219352e0ce4ebd8cd6ebbd85b9935804c667dd503f44c7",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Shadows/PrototypeShadow.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Shadows/PrototypeShadow.png",
+      "sha256": "3d9e54633a42bf56d1b8a9cf0b6468a5b871b4e607c09b834e9446b34c293519",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Shadows/PrototypeShadow.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Shadows/PrototypeShadow.png.meta",
+      "sha256": "1ce5f57287752fe233b5b635818d3ab4bc18af487a121976cc02c82602ea8725",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Base/.gitkeep",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Base/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Overlay/.gitkeep",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Overlay/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchA.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchA.png",
+      "sha256": "9d1d7053dc9720a5f0042425f0dc59234b3017cf116b412e5267cf15773c44c7",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchA.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchA.png.meta",
+      "sha256": "f8fa09833f3d3b5e0ecd7efae13a9f08dc05e7f031ea4593a39bb8dc7423ff9f",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchB.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchB.png",
+      "sha256": "0c9d5a4428ed45a8a1c130c268ee98bc771f9d3254560247318342d42a6c7f93",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchB.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchB.png.meta",
+      "sha256": "a11bad0023ba09d0103f70cd5620d24179a1a6971a7d5aa8f6f30b643132f8d8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchC.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchC.png",
+      "sha256": "ac854ed3bdf454d7517fd4405010024ac493e33a906199136be588431deb7fed",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchC.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchC.png.meta",
+      "sha256": "3b6f989e3c4ca4de7ccf5bce907f0d8102bf0598bc8f4a8c0453d866960ee0db",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchD.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchD.png",
+      "sha256": "20e86ed4e6a32fe23abad05a7979b6ab26720124a338ae3c8e525d914d2e3c71",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchD.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Pebbles/PebblePatchD.png.meta",
+      "sha256": "52639c1830e8174e564ceb86ce7c8fb4f03858df53b28892b82a9b7dbdf3fa19",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchA.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchA.png",
+      "sha256": "f4fa7a6f24654bca128a205bb86b8afbe88fdb52b3a494f1ff22a69423734dc7",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchA.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchA.png.meta",
+      "sha256": "a86eaedb3fdff40b2a7d362d718dff667448c1eb7aeb0fe4f3764458defdefdd",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchB.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchB.png",
+      "sha256": "19c4ad66b11d5dd78d8b72503df680fc1069d0f499518bd2621edb37f3d9b7d6",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchB.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchB.png.meta",
+      "sha256": "e86c79cc696f75b78985b30aaacb4bc4493983b1e529538b8a2b6ae27bf0edba",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchC.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchC.png",
+      "sha256": "d1cfce479bf3c5dfd6c8d3c79d6880fc0714d2d3e6601074c65f4ab5c393a67d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchC.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchC.png.meta",
+      "sha256": "72ac35672da9fe86a642fcb7c7ef1afaf2dfe108ff7bb592af53a4bfc73013eb",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchD.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchD.png",
+      "sha256": "50e8a671367a90583ce45d7944b2cbe9ecf8923b37c52ae6502f6c58c8351162",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchD.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Rocks/RockPatchD.png.meta",
+      "sha256": "a98580135b3ef07a1cceb13eaf52da94fecf5b3364273df3c388309596c01deb",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround/rocky.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround/rocky.asset",
+      "sha256": "f60ecda99bf5853ee6cbea24f500076a66f9c98ab682219bdcbca37053e190dd",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround/rocky.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround/rocky.asset.meta",
+      "sha256": "1f0ea65831c1879b00e537099c0207357298c04275925fcb788b9e3ac58a39f8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround/rocky.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround/rocky.png",
+      "sha256": "0f9439cf4b97dbd10f1b4d5ee26cfc9cfbb17a7ff9886ff6a2c99462b567bfaf",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround/rocky.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround/rocky.png.meta",
+      "sha256": "8b962752fd78cce356d4d6584a1af1e55f50892d7bbb5c69326987d1599c4829",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround/RuleGroundRuleTile.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround/RuleGroundRuleTile.asset",
+      "sha256": "5f64d2cbe1dfd639fb72479de1bfe557622968d7ba45c30c16ba9391631eb5ae",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround/RuleGroundRuleTile.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround/RuleGroundRuleTile.asset.meta",
+      "sha256": "1a3ba6461e8a37e885e0612e4858b9f1e281397060d6a9d2ec4eb5bf70e685d2",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround/rule_tile_template_16px.psd",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround/rule_tile_template_16px.psd",
+      "sha256": "72824a405bbea08ab0a0fd579490c608f527520d58ccf38c67ad11e1b581635e",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround/rule_tile_template_16px.psd.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround/rule_tile_template_16px.psd.meta",
+      "sha256": "0abc6c47dc2e4d26167827ff4784c9436c135cc41a940e68fe71e6f56e12290f",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround/Sand Patch.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround/Sand Patch.asset",
+      "sha256": "de4e0f9ac222c710f44085f55fbdddbc2e01e8bd7b7a8f8054d992118b739dff",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/RuleGround/Sand Patch.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/RuleGround/Sand Patch.asset.meta",
+      "sha256": "b72c08ab86d9660967feaa501f72839cd11f801fdcadbfc52883f7f25eed3b9a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustA.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustA.png",
+      "sha256": "f07c43eb75470244a638438d745d67ba901d983759b008fe6d98532f18ed606b",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustA.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustA.png.meta",
+      "sha256": "18ed16649818a03cf2a2b6b52d4a77615ed7efe8d4cc95819183e038d0483439",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustB.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustB.png",
+      "sha256": "0644307da5b5b929836973506c2b742da72cb71b45325fd33c67aed545798b91",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustB.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustB.png.meta",
+      "sha256": "89f42a21930e7b8faf94c2317a695d7e667bc0454640fd530bfbcf02cf17188a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustC.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustC.png",
+      "sha256": "b84221c6b9960dd82cf57d1a40822833bf829d477eae3b2c14219ccadf5d8de7",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustC.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustC.png.meta",
+      "sha256": "43aa1beca608cd7309f142ec0e85ad807267188f377b538cb0b24f8a8c9a0302",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustD.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustD.png",
+      "sha256": "093e44742b50959d5a8214cb69a412ed9e3de7fb2470d300db9b5e791c372310",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustD.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/SandRustD.png.meta",
+      "sha256": "a4ac5855d156812ec431114d380f1225798c32806f96108bc51c33e4941ea2cf",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/sand_patch_rule_tile.psd",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/sand_patch_rule_tile.psd",
+      "sha256": "4832b80a166e2fc23c26987761323f813a38b967198bffc5a015d711047e92d0",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/sand_patch_rule_tile.psd.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/sand_patch_rule_tile.psd.meta",
+      "sha256": "f6a5b36fa7e22a4a9e54797977f7a946297e55b39845bf3dd0c58ffa6fe53d65",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/tilemap_sand.psd",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/tilemap_sand.psd",
+      "sha256": "06259a2026e6e8b6b7c126b516c3584d61ea64ac7437855476d2c9b4409c90c8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/tilemap_sand.psd.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/tilemap_sand.psd.meta",
+      "sha256": "6c52a38119c50cc7625eac271bd5d608ed320cd1778dab38535ccb1549e93a17",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/tilemap_sand_overlay_128.psd",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/tilemap_sand_overlay_128.psd",
+      "sha256": "ae164e96043a4060bfe4dd296bc546b2fc65300b81ed8fbcb32355baa0c4f8d2",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Sand/tilemap_sand_overlay_128.psd.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Sand/tilemap_sand_overlay_128.psd.meta",
+      "sha256": "45364ddaf774b5c226e597f422bc0a9441e7025a693147ad0805b7062e709aad",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandA.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandA.png",
+      "sha256": "8de65eddf35678dc6bd69345e0f3ba9a91b87873af6c011b1a863c0e9507f5fc",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandA.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandA.png.meta",
+      "sha256": "b5b283cf83a9317ea7c6c6e349b3eb92836681e87d4d9b646fc0ca396e3ff568",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandB.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandB.png",
+      "sha256": "c2ce21d1c061f390d90059afa125d65de47de6d385558c7ce65cec5ef4e2042f",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandB.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandB.png.meta",
+      "sha256": "d4d3d1729992ddf141695ee3fe0f5e725e068a1a2b057deeb5790debd04c7669",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandC.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandC.png",
+      "sha256": "67f8cefd0b7bc09d5158f8a529c0368bac7ffbd5091e53c1939a03b63f842f08",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandC.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandC.png.meta",
+      "sha256": "a1ea277cd7fa8fa7535e1395a442e905eae92e80d227d63a4f16deb3fefaa859",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandD.png",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandD.png",
+      "sha256": "9b9c3a260fa73c666eb7b843208bb8f73735b1f37ee05d856dcc6f462712b676",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandD.png.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Art/Ground/Smooth/SmoothSandD.png.meta",
+      "sha256": "9812ae65315a2d6e0ec847f4bc7173749ac35afb1fdc9c426916f31ccccc508a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropSlim16x32.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropSlim16x32.prefab",
+      "sha256": "494ac955d1db4dbd0f8067fbdc23111fb7857ffca258058f4bc79c7aedefb04a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropSlim16x32.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropSlim16x32.prefab.meta",
+      "sha256": "29aba4c75af4e52a6c8d2cbbe2f4bf479fd68263b97fc59e9e9c0f40e735dae8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropSquare32x32.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropSquare32x32.prefab",
+      "sha256": "0f570583593560fb1bb99b2aa42e0f746df572b511f0bcb4e040dbee70efc0dc",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropSquare32x32.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropSquare32x32.prefab.meta",
+      "sha256": "9b7fddccb79c4a4b16467243deea2dfcaeb5872349ca927733864b7a441aaff7",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropTall64x96.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropTall64x96.prefab",
+      "sha256": "8232e8c7eb80309cc85f649ef75b781d02b0e1e5076dafe488dbee9033ed0388",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropTall64x96.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropTall64x96.prefab.meta",
+      "sha256": "b989ee0c9368145e472e2a6d026a5315c116a79e89f570d50d03a0257d22866b",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropTiny16x16.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropTiny16x16.prefab",
+      "sha256": "d9e4867ab6dafebb4ce7c096d745e332b28767ee179382d4650256a40a7ab49a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropTiny16x16.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropTiny16x16.prefab.meta",
+      "sha256": "6cf1fcaea9ae8a19743b09838675c62cb24ac74d2ade585c5fb33b1e0613ca5d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropWide64x64.prefab",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropWide64x64.prefab",
+      "sha256": "589abb0bf8b3d073d1a4ce0f7d693cb7a7ccd6e9c31ad410373389b24a896626",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropWide64x64.prefab.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Prefabs/TallProps/TallPropWide64x64.prefab.meta",
+      "sha256": "674d90bd8fc01c00b5edccd581de6d0436cf07bde20802b757600cfdb75eaf93",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Editor/BooterBigArm.Legacy2D.Editor.asmdef",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor/BooterBigArm.Legacy2D.Editor.asmdef",
+      "sha256": "f5f972ca7410c4a8671cbee3aefbdce5df238d25340cf3f9e8d24ead3ca90292",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Editor/BooterBigArm.Legacy2D.Editor.asmdef.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor/BooterBigArm.Legacy2D.Editor.asmdef.meta",
+      "sha256": "9c5df7925f6f326bc49143407f08baefa9e3030bf1d277e45bb5ec3d62069cb4",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Editor/Prototype.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor/Prototype.meta",
+      "sha256": "fc317d38e5b4670e2f615d61e5590f73c057c6e6f7c253a940888c564d5772db",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/BooterBigArm.Runtime.asmdef",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/BooterBigArm.Runtime.asmdef",
+      "sha256": "4dcc1c0dd521bc3bba5f336c470b4a998665ff5b10ea8bb24e29314501845d8b",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/BooterBigArm.Runtime.asmdef.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/BooterBigArm.Runtime.asmdef.meta",
+      "sha256": "c54e51e1cdf53af12d69ca8d2bed949e936bfd02bc7b5d24880b9129f3aca8c6",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype.meta",
+      "sha256": "e0241a465bc70de60cf596c734f4c2fb3b2d6c20e3388382bf0430cc1eb43209",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeSceneBootstrapper.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeSceneBootstrapper.cs",
+      "sha256": "3c8ec246a0f8053f5ec55e5e1ccab357748e14ddb3c27b5542587b0490f8859a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeSceneBootstrapper.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeSceneBootstrapper.cs.meta",
+      "sha256": "f949682dbc54acd29739c03f8b83cf3341d21f42683667ed4ea997387ea01110",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeWorldGeneratorEditor.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeWorldGeneratorEditor.cs",
+      "sha256": "8b10c3315bb221eb0af1c19fee057f7c22c901c1021e43c43428c2a5ade2df1d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeWorldGeneratorEditor.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeWorldGeneratorEditor.cs.meta",
+      "sha256": "83267546f6968523533ee3607908da7d5e6640ce8428fd271eb4a747f37bc6a5",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeWorldSettingsEditor.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeWorldSettingsEditor.cs",
+      "sha256": "51adb34a2f17d447ed1387ddccf48665e2cd7c553fe9d085087c73ea87795756",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeWorldSettingsEditor.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor/Prototype/PrototypeWorldSettingsEditor.cs.meta",
+      "sha256": "3b2a95a16c72534c2a5f74c0f3d325055b92354e1a8f9cdff34d6698b9bd0639",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest.meta",
+      "sha256": "f6571bde9b2687a53064219da9c62b6beea38e114a2451deb6d83dc9a5eaa443",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory.meta",
+      "sha256": "d8c555d5d0480be71bb69cab73f8887d0ccba5a2d09d0950075591ecb9e2d119",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PlayerInputAdapter.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PlayerInputAdapter.cs",
+      "sha256": "100563af14ea96004eb039ec70235a6f5b76db647d3e541966851119dd07cd26",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PlayerInputAdapter.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PlayerInputAdapter.cs.meta",
+      "sha256": "1a7c023fc1e58941e834a16b13cb8ef6a692b788a5c20845a0d0217fb167acc8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PlayerMotor2D.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PlayerMotor2D.cs",
+      "sha256": "8efb503846485430a9fe5c73b5544d036aa6e34013087566a756b0fc0c7297e6",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PlayerMotor2D.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PlayerMotor2D.cs.meta",
+      "sha256": "5afae5461950c7e55dfaa551e0681dcbc70ceea46a88a19c526af5537400e8d3",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmAiController.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmAiController.cs",
+      "sha256": "f97666c554b8fb49b2fff6acc1cb956c739a78c303a673392135270a510fbb59",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmAiController.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmAiController.cs.meta",
+      "sha256": "8ddebd867eff847ad262f6cbdad3ed1bbed75242acee2c71bd232539d4fc4f73",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmCommandAdapter.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmCommandAdapter.cs",
+      "sha256": "5121ad7a29072941ad2c75f053941024c3e72e7b5befcf20638dccce79f3618a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmCommandAdapter.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmCommandAdapter.cs.meta",
+      "sha256": "cc7090cbbdd1cfe3fbcf594c9bbff49079353675c356b09daab2838229161dac",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmSaveData.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmSaveData.cs",
+      "sha256": "8843b051d053603bf21472e0bdf440d26d93edf977ecf374d20f29bbfb2db316",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmSaveData.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmSaveData.cs.meta",
+      "sha256": "492ca47de8d32b2d78d61bcd10b3855bbdb1714ae7fba5f8284ec530ba19913e",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmThreatSignal.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmThreatSignal.cs",
+      "sha256": "f875fdc8abde3fb24b8c1e3fdf778ef148ec0ef2c6d41f5b9641d28a8e1afc9c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmThreatSignal.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeBigArmThreatSignal.cs.meta",
+      "sha256": "da34d179f746ef5f53d281430c12df76d8e3e26321497041f4350016699e6fde",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeCameraTargetController.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeCameraTargetController.cs",
+      "sha256": "a2a51069cee0029fb4729ea197aba584737d6fe30e8d76a689d166722ba38425",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeCameraTargetController.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeCameraTargetController.cs.meta",
+      "sha256": "c31afb52b2bcfe2d82181147a302c2f78648e665d00303621ba6cb6925209d67",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeDebugOverlay.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeDebugOverlay.cs",
+      "sha256": "18e8e5d0009e16a62a9ea71dacd2e531e6ac1737543e258ab85c4a3f601e02e2",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeDebugOverlay.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeDebugOverlay.cs.meta",
+      "sha256": "4e2068c0779a76fe50ea78ec10ac3c3300cd0202b729dbf3218461dec6c618d8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypePlayerSaveData.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypePlayerSaveData.cs",
+      "sha256": "06f696b135f0dc0e38f11bee15d03b91f9eab73344020809081bfc02337b0368",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypePlayerSaveData.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypePlayerSaveData.cs.meta",
+      "sha256": "826bf8c9eb6e5e6e25afa23494e58c7aace76ae19da01db30e4012d87a2bf94d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveData.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveData.cs",
+      "sha256": "9174ee14bbf4bf24a140c1b0a0f879d201bb3242afd857d648d7c48503adbc9c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveData.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveData.cs.meta",
+      "sha256": "70d285c614f16485dfb3003b2681e82e86e0047af832d1caecc3d7be86fea7de",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveLoadController.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveLoadController.cs",
+      "sha256": "b4d2a92083498ec61fe33307aff5ed93ffe5af28d0aa99e0ea2707024b2e4d7d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveLoadController.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveLoadController.cs.meta",
+      "sha256": "6555deb16ff00d740287c7a3b194cfc9482e7f268b3cf33927264ea29ee780f0",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveSchema.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveSchema.cs",
+      "sha256": "d4b813c6f1dc7bea64a5f42df823cb438ddcfb3b39a2e93775d6a53fef8b147d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveSchema.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveSchema.cs.meta",
+      "sha256": "07b3929e12c25ab329d5dc3ed0915404567d290fea09f9ba143697728921c1de",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveService.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveService.cs",
+      "sha256": "74059d8dfb6b9fc0c49d3a14bfa2d993c397a0e42dfd0a90d9103311be5f8574",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveService.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSaveService.cs.meta",
+      "sha256": "53c134567005cc534d6ab97239ab5a061934bdee0bcb49bf32dcb2b4552f2323",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSpriteDepthSorter.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSpriteDepthSorter.cs",
+      "sha256": "9b6b4f858b23d79a20e47ef545a0a81f43d06059e9f114e86ac9e8dd7ddec8b2",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSpriteDepthSorter.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSpriteDepthSorter.cs.meta",
+      "sha256": "5e3e092e156f81a76d74ea3432ab1e7ff3ec189fe82c92c006e04763b816a276",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalHud.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalHud.cs",
+      "sha256": "729c1ef4c6d13db79b992bf25863710f5b5c89470c281add02cc1fe0e4809592",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalHud.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalHud.cs.meta",
+      "sha256": "faa7a836fa26503e0de8f3489c8a6180e183cbd1015e20491d42cfdf1d80c4e0",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalSaveData.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalSaveData.cs",
+      "sha256": "65a3d04cdad14c72bb8addabbb1be7ca2e3fe27efc4a482a6adccb33616d3b77",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalSaveData.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalSaveData.cs.meta",
+      "sha256": "a9c5a56c3260682c23dda93af4025b4cfeacbbacdbd2fe5c60f8f2c7afc27fb1",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalState.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalState.cs",
+      "sha256": "eda11c575dcabfe928b069a7a032506542437f6f9235058cc03941f66ece55a6",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalState.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSurvivalState.cs.meta",
+      "sha256": "b0fc78137b4510103c5970048d686cd51c8889cd0cc64dac63a754da34de5d22",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSystemInputAdapter.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSystemInputAdapter.cs",
+      "sha256": "953ae1139cb9a47482fe1662b63d87e4db9b0d1619d6fa58eb215674c828c7b1",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSystemInputAdapter.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeSystemInputAdapter.cs.meta",
+      "sha256": "0704c4e60e4290b7730fddb8d342e8725392b4f20d7e12baa0d4cbe5f9265d81",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldGenerator.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldGenerator.cs",
+      "sha256": "5b8a50e0ede48ce038214cd927ac5682809120c991e28a600750e9afbbf09540",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldGenerator.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldGenerator.cs.meta",
+      "sha256": "ae3c6bece96ede7aeaaee709dcdecd6f72f4603a4356d7bf243b6f9dc681eff9",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldIdentity.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldIdentity.cs",
+      "sha256": "29ddc03605e3e5193e23a1afa39038574d60e4640e5c8f6a3b05d8b2bb21637e",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldIdentity.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldIdentity.cs.meta",
+      "sha256": "5b888e6aaaf82402a6d786833674fb54b2aa1ae1f25204aaf63a24eaaf28fcbf",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldPropCatalog.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldPropCatalog.cs",
+      "sha256": "652ba46f24f0c1e268b6744511fa7a7eafe96bb2ae08e76c0bf9bf0875d0a093",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldPropCatalog.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldPropCatalog.cs.meta",
+      "sha256": "ba59c0ea6438756360d1fbde76db40b7d03d0d433db668056f1e86d2d39d5e7a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldSettings.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldSettings.cs",
+      "sha256": "75d8f1ad43b7dc39d1c6310a5caac0b2cf43bfa7a0f94a63a4d7a17dd1c0dbd0",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldSettings.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PrototypeWorldSettings.cs.meta",
+      "sha256": "b3aa14e0e5bbc8f5be602f641ae5bea0aace49fe22a1c034e0d7efe6c94c6827",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/RuleGroundMasks.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/RuleGroundMasks.cs",
+      "sha256": "6cd52b08c0406a53692d1157adee52ddd234362647252dec4a7d7a0c59adaae5",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/RuleGroundMasks.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/RuleGroundMasks.cs.meta",
+      "sha256": "733b48e834d2cd2586f29043bd0b5352ddcf475609fe8cd19c20bd63c4758fef",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/IPrototypeItemReceiver.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/IPrototypeItemReceiver.cs",
+      "sha256": "2eb727b63e93cb8dc6a98b77f2566c91d8a634c748a5d47de21cc912333484d6",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/IPrototypeItemReceiver.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/IPrototypeItemReceiver.cs.meta",
+      "sha256": "23025db33265ab11c48d0adafa706ea765a54a64f155d8afa8eacb68d33bb7be",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/IPrototypeToolSource.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/IPrototypeToolSource.cs",
+      "sha256": "ad28a5f99a6ea13186142d3d825041d50fcd498f02e8a9075080e58f0b950de8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/IPrototypeToolSource.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/IPrototypeToolSource.cs.meta",
+      "sha256": "7f56549b970e58d60d0c131581f98f12bc9ac26e8d6b0fe19aa20be632cc3f30",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanister.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanister.cs",
+      "sha256": "4431733755dea6f0cc8aec297f77b828d53518d60bf39da9f0a5bbe53a2bb58d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanister.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanister.cs.meta",
+      "sha256": "2ddcdff6e6580eaa53e7a0d60d79b805812911213c3bc0f1697da858372c317e",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanisterController.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanisterController.cs",
+      "sha256": "1364ccc52c022273010f058b74f42ea21c0187f21e4ebf77e99e7f99a2c009e2",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanisterController.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanisterController.cs.meta",
+      "sha256": "4c01c7fc51c8ae92ab013adb0dd0f53ae7e06f9c62b57e4a35a5d2b6faf71674",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanisterSaveData.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanisterSaveData.cs",
+      "sha256": "4046b3833eda160355b052d6e92556085465398d51801765dc708fbb20cb2117",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanisterSaveData.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeDustCanisterSaveData.cs.meta",
+      "sha256": "312febfcf135339cbf64df5199fe7b7debde99fa50ef391c2e705f54adef57a0",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestInteractor.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestInteractor.cs",
+      "sha256": "78b290a3aee1d54314d1726a74b741bac3d7344cf093c2d452ff0c91251f2373",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestInteractor.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestInteractor.cs.meta",
+      "sha256": "51fcd3780eecafeccf1d3d73cb203556a0e5a39cc4a3a5e59e03f502b9a79747",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNode.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNode.cs",
+      "sha256": "c04e785b8739a018783fef3f963d1a0cc1d27355bc694a6cc0a4221bdfc887c3",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNode.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNode.cs.meta",
+      "sha256": "e50a2360b73b6bd8fd9ee666dbbdd1da91a07ecef8a1da5e554c9ce9617adda4",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNodeKind.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNodeKind.cs",
+      "sha256": "af28180b0902ba7ca0bfee12499b9d2c52994cd13450c68e929a0faf588ec8fc",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNodeKind.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNodeKind.cs.meta",
+      "sha256": "295437e14d0c44592a0a9cf819f67fe0d10bd1b363ee0084c9530e99838efb6f",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNodeSaveData.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNodeSaveData.cs",
+      "sha256": "1e49e3ffba4b1a67bf88ac0e43083389734dbba326d32a50b55ea6b6ce1c757d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNodeSaveData.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestNodeSaveData.cs.meta",
+      "sha256": "baf25c67cf9adacc79737058792bf5bdf491e8492c5602d5375f2629e7192899",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestPromptHud.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestPromptHud.cs",
+      "sha256": "291c4744d989c5f1bbe60175cb988bf25f9da10605ad2f4029333d293014d074",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestPromptHud.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestPromptHud.cs.meta",
+      "sha256": "5c6f02152c2f3d5b0252552b12d07177503bfcc497671a56a38ac09e69bb7a7c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestYield.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestYield.cs",
+      "sha256": "84f89d57987dbc0976e0c62de9392bceca250c2ace04bc77aca1c281194d0f84",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestYield.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestYield.cs.meta",
+      "sha256": "6277b2893d85e42e760c6e8f3792bbc478aafcd673005515a22fd051ccddd632",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestYieldEntry.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestYieldEntry.cs",
+      "sha256": "9225cea94ea53dc14a324371b73aa4c2994aa90c5c43723c8da93fbd97e4204e",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestYieldEntry.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeHarvestYieldEntry.cs.meta",
+      "sha256": "424c31e41819beb5e9c554da9fee1981b1d3c74ebbe847010793df9ffbf690d1",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeItemAmount.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeItemAmount.cs",
+      "sha256": "b0c5d63659155dd26d77647f2394cacfc579a0eb04dc9708bd61fc73d6a1b16d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeItemAmount.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeItemAmount.cs.meta",
+      "sha256": "3a0cd7a9a1d885d27748e14848916d5114dbc7eaa94a622aa6a4e52d0077fba4",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeWorldItemPickup.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeWorldItemPickup.cs",
+      "sha256": "c10623180e02e3892285c2ee4491e884841379f539c5d770aeda0422894caafd",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeWorldItemPickup.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Harvest/PrototypeWorldItemPickup.cs.meta",
+      "sha256": "502e3db27a652a7da8260ec812dcd44dc94f11c6833c9054fae374b6aca77987",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventory.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventory.cs",
+      "sha256": "84c9d509524d7c83798f3e09605797da0f88198ed2da4e967d0465be8b91a5d2",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventory.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventory.cs.meta",
+      "sha256": "9e00daa8d19acf2212d6cb1f5ec19225fb8f36a561a895a5ee3204f8c4918acb",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryHud.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryHud.cs",
+      "sha256": "f84e500572d40289e7e2eac0c0761a7f651538ee135ac741aed1201052777598",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryHud.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryHud.cs.meta",
+      "sha256": "a56fe89f578d3ecb2231e5bb5af493f9184bd6b9b18f53051effe4852db1dee6",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryItemSummary.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryItemSummary.cs",
+      "sha256": "d5ecea108ef8b89fdc5f90bb4a10f688ac40774b4e92c316224331690570d568",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryItemSummary.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryItemSummary.cs.meta",
+      "sha256": "024f0c268a47858ce36cb8e29e08d582090b73505d78e205fdccd20d1f2eafca",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventorySaveData.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventorySaveData.cs",
+      "sha256": "083f223a28c2f09f14cbb11703db87671c33f7b807159e60ccf47f40f1942398",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventorySaveData.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventorySaveData.cs.meta",
+      "sha256": "3d269e3197d0796f3ef8931e907340c9fd2fd07eab19ed356a0d271531a21bb1",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventorySlot.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventorySlot.cs",
+      "sha256": "776489bf5302274b3113ef186750dc8ba806c18e8fe9933bdf209e23dec867dc",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventorySlot.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventorySlot.cs.meta",
+      "sha256": "3e7f6b6cfb2f8e2064a28be5c44cbd85ac962488353f52550b9f5ba6d5b93909",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryUiController.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryUiController.cs",
+      "sha256": "2f3cd85b02c9754955bf4565685b2ef1e83f2380d5ef484f1dfa4e16ddbe8ed8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryUiController.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventoryUiController.cs.meta",
+      "sha256": "9398cfcb6b07f0f12534663ae7f7e848173e5e5d27be524c786c9b147bf11cde",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemCategory.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemCategory.cs",
+      "sha256": "ebcf9f270f26aa92382f47fdaf8a83a7c575b93d2059c5eb23bca999d18083a6",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemCategory.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemCategory.cs.meta",
+      "sha256": "357b48adc2bf6682a47ee39fad8ef56778f1a5cd4951cb38b685c30836db818d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemDatabase.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemDatabase.cs",
+      "sha256": "f56484670260402cdec34925059754d7a46385b6b683e62ba528be9a21262c52",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemDatabase.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemDatabase.cs.meta",
+      "sha256": "00311ce6e6e64eab0b9f94cb186da1929d0f8c463286cfd2e978d45326b9e3ef",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemDef.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemDef.cs",
+      "sha256": "c7141bc115761b3bb808f946e9765f9e782271d5ca3449826c99f38018c71946",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemDef.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeItemDef.cs.meta",
+      "sha256": "8bf1f8257308e4ba357c141054919ee4554d24a38cc2ca70079fd77474de0d3c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs.meta",
+      "sha256": "6b29c5a1bfc816eca826d2745bd5c5bd094a31776d97782258cf1cf69ccbca6b",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/PrototypeItemDatabase.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/PrototypeItemDatabase.asset",
+      "sha256": "dee7298080cbb248976c176162b20d53b2a7dbeabc64bc652d65d5fd0929bb03",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/PrototypeItemDatabase.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/PrototypeItemDatabase.asset.meta",
+      "sha256": "b41d1a0fe43a6d415e86ffc73c7159bdbe983f7fdeed0791fe05fc74f8b55ffb",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Rendering/URP.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Rendering/URP.meta",
+      "sha256": "742b2c8fa9ab82c077015bc896e0891d4bae001c64eaeee73dab3298b519febd",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Templates/Lit2DSceneTemplate.scenetemplate",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Templates/Lit2DSceneTemplate.scenetemplate",
+      "sha256": "ca928761bf976c878d54df524a3742c5f1bca53a013b4061abd2c752c8a212aa",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Templates/Lit2DSceneTemplate.scenetemplate.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Templates/Lit2DSceneTemplate.scenetemplate.meta",
+      "sha256": "d4cc0f73332c3228945aa64f9c5019f1c1950d77703728c5e9674a0367c5e4d1",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Templates/URP2DSceneTemplate.unity",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Templates/URP2DSceneTemplate.unity",
+      "sha256": "f6fb3e91aaa90417e2920b7f903066833b3b9aea72ddcb5e46b91afa729c2e90",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Templates/URP2DSceneTemplate.unity.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Templates/URP2DSceneTemplate.unity.meta",
+      "sha256": "e7391ff924b7defdf30e0b0b235f8113618481c93f567e0c699c8895a9534579",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/World/PrototypeWorldPropCatalog.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/World/PrototypeWorldPropCatalog.asset",
+      "sha256": "0d1ad47e4aa0e33956eec54bfe6c911ed1ef9d8266e3ad0946b0e256b23fc3bb",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/World/PrototypeWorldPropCatalog.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/World/PrototypeWorldPropCatalog.asset.meta",
+      "sha256": "e7784a41cc4a3b088c1672eb8d69ac3c180bebc5dfaef05409972ca5d19c85d0",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_AlgaeChunk.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_AlgaeChunk.asset",
+      "sha256": "88305d8371c49bcbeb59d9d176e99b0f9654da95b387e7c541a3da6bafea609f",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_AlgaeChunk.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_AlgaeChunk.asset.meta",
+      "sha256": "75ae9fb4c05cd16a0e1afe2dd096f780e4d5e1f9828b7508beb10427fc199d5a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_BrokenCircuit.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_BrokenCircuit.asset",
+      "sha256": "f340c4b0a75f0f94f1fc1d8f275ead3d911065c0a71dc43c91220aa74e5e6f63",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_BrokenCircuit.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_BrokenCircuit.asset.meta",
+      "sha256": "bc5252ae29ad3dd48dc42a14d83e21f4e27d55b243b6363f2272964b3b03954e",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Dust.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Dust.asset",
+      "sha256": "ca744971a48407b49e7563b3f090dd9d9d10cd81e30f191031355fae4421df63",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Dust.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Dust.asset.meta",
+      "sha256": "6e51f7f52e90970e9eb251a40a2e1d85b3c9bb6ee56843534ca6e089a2db3b30",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_DustCanister.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_DustCanister.asset",
+      "sha256": "863be429e3290c2f09c06e0b17a8453c004d3a0e0c5f6d4afde01c2456f87334",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_DustCanister.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_DustCanister.asset.meta",
+      "sha256": "c3be631c1fdf27f547066e0f1cb615852427d94fb4fbda6f3418619707b66f8c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_FiberBundle.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_FiberBundle.asset",
+      "sha256": "00acd02762b1fa4fa8ee83c722f5a20ce85be6f95c721b1ef525afb265ee7aba",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_FiberBundle.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_FiberBundle.asset.meta",
+      "sha256": "82525c4bca64268ed503681363dc63a413adf3b1c57a9d25ee07529ae6958d4a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Ironstone.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Ironstone.asset",
+      "sha256": "64aa48215e2ccd00ac720ad1fd0d12620269b0cac5a063fc54594a80800a532c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Ironstone.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Ironstone.asset.meta",
+      "sha256": "cb2ffd7a7b48025c21aac88d0ded5019457cc5cfd9990623df9251a9b84f06d4",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_OreChunk.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_OreChunk.asset",
+      "sha256": "effdab6f9727215013eb1cda0c61776119bededab48415c069be694e71d91152",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_OreChunk.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_OreChunk.asset.meta",
+      "sha256": "c7a0eb75765ccd9064a993d065c43e84d36cf06fdff400069ed7c6397a73bfc0",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_ScrapMetal.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_ScrapMetal.asset",
+      "sha256": "f9a1c43bb9a4704c7490512caa3be2c9ca0696d9c59740aa207b9e6bc34ff614",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_ScrapMetal.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_ScrapMetal.asset.meta",
+      "sha256": "132f874afa1f8995d45c23941938c5e98377d64a1bee3eb0642ac61b7db846aa",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Stone.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Stone.asset",
+      "sha256": "2f39a5017460ae45f15fa752bf4b0a2d87ea6f9096bb3af1cdbe40062ec9d0f4",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Stone.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Items/Defs/ItemDef_Stone.asset.meta",
+      "sha256": "74bfc18a6d3ffff7721b783510d4d5ba3e065792c13b7f3cdeb7770b85dd3ff8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset",
+      "sha256": "0ad61c87afceceb7d18b08c9fe35d2e36a89640d5af073be0e9cec5839bf1516",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset.meta",
+      "sha256": "9689252004910cfad653e8a8d09b8c96befb560e1fb583033630db0f5bb76420",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Tests/Editor/BooterBigArm.Historical.Editor.Tests.asmdef",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Tests/Editor/BooterBigArm.Historical.Editor.Tests.asmdef",
+      "sha256": "4450efbadd7924ff4247e3e2a71f867cd1144e00bcd360e24362ab9260d2ac33",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Tests/Editor/BooterBigArm.Historical.Editor.Tests.asmdef.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Tests/Editor/BooterBigArm.Historical.Editor.Tests.asmdef.meta",
+      "sha256": "f1a770ffae740c46cd0b58c338686951e71ccceb6da70ede5bca3b1ce84297f8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Tests/Editor/ConversionAssetStructureTests.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Tests/Editor/ConversionAssetStructureTests.cs",
+      "sha256": "0f69a79d7e65ea6f7a39acf8d84cf7ebf4d0c56a2a406126f34a8ed607ef06ee",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Tests/Editor/ConversionAssetStructureTests.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Tests/Editor/ConversionAssetStructureTests.cs.meta",
+      "sha256": "3a3b5fb3dbfb259d2950ebfa4c35e0b0f94f7f78d835de26c70a7989b71c5411",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Tests/Editor/ConversionEditModeTestRunner.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Tests/Editor/ConversionEditModeTestRunner.cs",
+      "sha256": "4b0f645e64ce7255eb79bcded3a6d81fcf63b096e65748999b2bc3a481df7362",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Tests/Editor/ConversionEditModeTestRunner.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Tests/Editor/ConversionEditModeTestRunner.cs.meta",
+      "sha256": "58b0c356d094bd48da1ec1a439f156ed3bbeed6eca603bf40a14a578bd7d5933",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Tests/Editor/IsometricMovementBasisTests.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Tests/Editor/IsometricMovementBasisTests.cs",
+      "sha256": "e902a3d60a45818b1c5a3378b2aa16296b5787c7735a3be8ec7bdbca5675d9e1",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D/Tests/Editor/IsometricMovementBasisTests.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Tests/Editor/IsometricMovementBasisTests.cs.meta",
+      "sha256": "7e8c0fe96aae987b85c3563f7c988da2cd6b4969ab61c617c673c6360efcc81a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/BooterBigArm.Isometric.Runtime.asmdef",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/BooterBigArm.Isometric.Runtime.asmdef",
+      "sha256": "43756244b2b594f379c3435971a9863eef2c8ca37ec9ac7254cfd2e8daacdd2c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/BooterBigArm.Isometric.Runtime.asmdef.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/BooterBigArm.Isometric.Runtime.asmdef.meta",
+      "sha256": "887cd4dc16fd79ee9c2234a1c57f314b1a3976eff0b344ca9609b3f372dd924b",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricBigArmFollower3D.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricBigArmFollower3D.cs",
+      "sha256": "26d2d74e16ec295df9b84831f0893acf08312f4b7f83f9c1f2289e8583b731f3",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricBigArmFollower3D.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricBigArmFollower3D.cs.meta",
+      "sha256": "10773199dd7a9618433cf2c2bcd47211b1082361070c2d346fefa4ea022f4f67",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricCameraProjectionToggle.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricCameraProjectionToggle.cs",
+      "sha256": "eec6e472b231a53b3351d1c2695776c292aba13b64ea07eaeb4f3cbb5aafdcd1",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricCameraProjectionToggle.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricCameraProjectionToggle.cs.meta",
+      "sha256": "26638300e4a103b904a976ca85885fcb2e1c0a34fda6e7e8efce6274989c293c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricHarvestInteractor3D.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricHarvestInteractor3D.cs",
+      "sha256": "d52c559f398a214181cd03c22cc783335e3a3e8d40e2863f2402eca02a279004",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricHarvestInteractor3D.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricHarvestInteractor3D.cs.meta",
+      "sha256": "feffd26f5b0a6e7416b5b126b07ced07730aa6b37148a22f6af990726b61524d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricHarvestNode3D.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricHarvestNode3D.cs",
+      "sha256": "6a52e04f842a7b3812ffbbd80b335faf851ace0f25391f829e4b95b9c8f2f471",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricHarvestNode3D.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricHarvestNode3D.cs.meta",
+      "sha256": "9316e3f12bfa91a44498c8ffca1fe7d3257f9311c6ea2e2bf8c2aa8e631cee50",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricMovementBasis.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricMovementBasis.cs",
+      "sha256": "2deb98b094a9b7e6a00d1c6204c9ba774d2982057c323069b3522535b8f065b3",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricMovementBasis.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricMovementBasis.cs.meta",
+      "sha256": "669b023d94e9bd8e7b3de5bf454ed7ba20638960b658f44d2ded671a557c8d17",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricOccluder.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricOccluder.cs",
+      "sha256": "e41a6ae2c76a4c7c1132fd950415258a4902dc39195ae7509771b52616515842",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricOccluder.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricOccluder.cs.meta",
+      "sha256": "4a94fc08c35b7b002e5100e7159d7bfc365eec6954f60478d095adc09c562e20",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricOcclusionController.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricOcclusionController.cs",
+      "sha256": "67861810136adb2e90d2a5ef32a2867d0cc0217ec6922e7949b2ea53323133dd",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricOcclusionController.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricOcclusionController.cs.meta",
+      "sha256": "6eee04c97e5d60add909b3d60fdcb9a1ea289b034eedf30466e228a7cb7daae4",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricPlayerMotor3D.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricPlayerMotor3D.cs",
+      "sha256": "3c2bff0ebcc729d2904566456736e28b9f8bf555e0429fbcb62b2b748958e4c8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricPlayerMotor3D.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricPlayerMotor3D.cs.meta",
+      "sha256": "8220487c0b1d6ac906fdc701263d06848c6939f50243c5e591d666b328315a2c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricSpikeOverlay.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricSpikeOverlay.cs",
+      "sha256": "b72084db0a3817d71f830a0603ef22d8dff0a715efcd8d5c62ba6a1b7b0a4daf",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricSpikeOverlay.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricSpikeOverlay.cs.meta",
+      "sha256": "b0161cc37851745578b76ec1fa4bed49184eeb5a615100e52d3f011332ddf35c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricWorldItemPickup3D.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricWorldItemPickup3D.cs",
+      "sha256": "c8731d5ffa63be2f81590c94372bac123480f51120d9017a297819ba355803e7",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric/IsometricWorldItemPickup3D.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric/IsometricWorldItemPickup3D.cs.meta",
+      "sha256": "4d7e016853b7d8fe01ca98707676dccb667d25486de0f13fb4a17f83455cf06c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Editor/Isometric/BooterBigArm.Isometric.Editor.asmdef",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Editor/Isometric/BooterBigArm.Isometric.Editor.asmdef",
+      "sha256": "3e70e1535627c4cd78d0857e040d49f0403b081c0bc6666284b128301b4d25e0",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Editor/Isometric/BooterBigArm.Isometric.Editor.asmdef.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Editor/Isometric/BooterBigArm.Isometric.Editor.asmdef.meta",
+      "sha256": "4fd129c2183d4b93de8706c2cf6fe161b4d95390621c17c44a875e1b4b814de5",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Editor/Isometric/HistoricalConversionBaselineValidator.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Editor/Isometric/HistoricalConversionBaselineValidator.cs",
+      "sha256": "474f09455c0a63e41353232039e7a45c25246400d89a5ce842241b312185abd8",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Editor/Isometric/HistoricalConversionBaselineValidator.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Editor/Isometric/HistoricalConversionBaselineValidator.cs.meta",
+      "sha256": "177dfa40bad0081740889848c7e93007522705708214844c58622ad473265e1a",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Editor/Isometric/IsometricConversionLabBuilder.cs",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Editor/Isometric/IsometricConversionLabBuilder.cs",
+      "sha256": "cac6dd05b3ab7a07c235176df303de79047f0636dfdff95634e847c9f94df968",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Editor/Isometric/IsometricConversionLabBuilder.cs.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Editor/Isometric/IsometricConversionLabBuilder.cs.meta",
+      "sha256": "1521a11d2c280e25231758591177dd792baec9b510e1d8129c3ab9e021fd3914",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity",
+      "sha256": "11a37ccd17d904d3779126293bbffb90eb35efd26121c69c4f8a229b2e8742db",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity.meta",
+      "sha256": "57b81142d3835ed48d357f56c8ad8e0d0baa93438e5cd0f028afb6648b70bcc9",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_BigARM.mat",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_BigARM.mat",
+      "sha256": "791d0f0a1625dfb52de7f2025b6470630f04fd08fcaeedcdfd0e78ea8b0948d3",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_BigARM.mat.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_BigARM.mat.meta",
+      "sha256": "6ab5dd9b5d3aea42d9577981a44df7d740588b15d225b0c6d1de0fc800682033",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Booter.mat",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Booter.mat",
+      "sha256": "f27c5a588c9417e54de7cab79d02750810d0f019c17f19f420adc9d60f10cff3",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Booter.mat.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Booter.mat.meta",
+      "sha256": "149fd82c92d70aa68685ed6c37df94f22588a180118575f52e8d9bf156c6a87c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Ground.mat",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Ground.mat",
+      "sha256": "f0c14ec7e0d1a2150e5294b1528ce537a7325c2e04d2d9cf97e7f8bb66e55a72",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Ground.mat.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Ground.mat.meta",
+      "sha256": "fc181dd4a835cbdf7215317ce3361090c71154b3b89cbea0a2709cd9a3d11c4c",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Occluder.mat",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Occluder.mat",
+      "sha256": "0d6e7aa6219614c5c492273092bbea108e49d36c4cf9eb19c30c5bc0d08d5381",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Occluder.mat.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Occluder.mat.meta",
+      "sha256": "08e386a51039de123106d140a7f81462614269fb586de8804d795167b4794df4",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Pickup.mat",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Pickup.mat",
+      "sha256": "722f341b958d0010c1bd48c5db267dc0d9a6abd42a8e65faf22f58290587602e",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Pickup.mat.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Pickup.mat.meta",
+      "sha256": "4c18af6a5aec40ff835869cdc6310f3bed64e5e9054785b71919965b106dddbf",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Raised.mat",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Raised.mat",
+      "sha256": "42c2a6fa90790c11eb15a47ee41faad5a5989ba3746d7f8ca6cb6d8fdc148432",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Raised.mat.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Raised.mat.meta",
+      "sha256": "02bba5f5b7f2fa59d49a2f2bc66f321f08c044bade8eba65196431c93e5f352d",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Ramp.mat",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Ramp.mat",
+      "sha256": "f2a3d59b0a4c8a13316f3a32efec20cb1f2509c7cd93708e930637bb91df9874",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Ramp.mat.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Ramp.mat.meta",
+      "sha256": "44a87fe4419f4c385262ae7bf99150a5f46bc65f33db40f6c689c394fd7369da",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Resource.mat",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Resource.mat",
+      "sha256": "4a2b102afda9c0fa5ea1d3d7d008a2013f35e6817283bc2884fde1319fbecd2f",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Resource.mat.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Resource.mat.meta",
+      "sha256": "f26cc81f1f6a4adc6cb32ce0e6d76092834a9b4ab940f819e1932b5db259dc70",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Wall.mat",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Wall.mat",
+      "sha256": "64da0b8aeff6ccb57c99d62be24d9d576e4f9147a4ad17b2727ede604479573b",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike/Greybox_Wall.mat.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike/Greybox_Wall.mat.meta",
+      "sha256": "974602deee2d56536aa52afc70cb2aca23c266274b38c15cbbd0942133244647",
+      "result": "deduplicated-against-verified-frozen-restore"
+    },
+    {
+      "source": "Assets/_Project/Legacy2D.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D.meta",
+      "sha256": "af852a18de774951df1323da920f3674c5d4f1676d3008908481f39e1a0db236"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/Isometric.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Runtime/Isometric.meta",
+      "sha256": "201de58a45dfbf81b01f8e2258b402b4884c007f44fa17d37f6922601d349473"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Editor/Isometric.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scripts/Editor/Isometric.meta",
+      "sha256": "fe0f10a8b4769caeb6e0d3a261ec7cbff5414225a1a4ea5ecd4f3213b76a08a1"
+    },
+    {
+      "source": "Assets/_Project/Scenes/Isometric.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Scenes/Isometric.meta",
+      "sha256": "bbb8f62e261a29ac1057a6811297b74526a89624bb552f90ae8f4638110e3347"
+    },
+    {
+      "source": "Assets/_Project/Materials/IsometricSpike.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Materials/IsometricSpike.meta",
+      "sha256": "72182536c9f84c8b4413fc948daf85fac8eea6462dd5c6c472dbca6c920ee61e"
+    },
+    {
+      "source": "Assets/_Project/Settings/Rendering/URP/IsometricLabVolumeProfile.asset",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Settings/Rendering/URP/IsometricLabVolumeProfile.asset",
+      "sha256": "ae4897d33e14f8d57ea28fe0cd2e03995400a23ebb44ea189af37d72a09b3474"
+    },
+    {
+      "source": "Assets/_Project/Settings/Rendering/URP/IsometricLabVolumeProfile.asset.meta",
+      "destination": "Archive/Unity/HistoricalProject/Assets/_Project/Settings/Rendering/URP/IsometricLabVolumeProfile.asset.meta",
+      "sha256": "75deb0f7e0d4e8862b5982241bcd57352e6e76474b4c99e7301162f82a9b5675"
+    }
+  ],
+  "camera_consumers": [
+    "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity",
+    "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity",
+    "Assets/_Project/Prefabs/Full control.prefab"
+  ]
+}

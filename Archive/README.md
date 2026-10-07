@@ -6,7 +6,7 @@ The repository-root Unity project is the only active production host. This area 
 | --- | --- | --- |
 | Proprietary C++ engine | Preserved, inactive | [README](./ProprietaryEngine/README.md), [agreement](./ProprietaryEngine/AGENTS.md) |
 | Unreal direction | Preserved, inactive | [README](./Unreal/README.md), [agreement](./Unreal/AGENTS.md) |
-| Legacy Unity work | Extraction pending | [current boundary](../Docs/LEGACY_2D_BOUNDARY.md) |
+| Legacy Unity work | Standalone verified restore project | [historical project](./Unity/HistoricalProject/README.md), [boundary](../Docs/Operations/LEGACY_2D_BOUNDARY.md) |
 
 The [execution plan](../Docs/Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md) tracks actual migrations and proof. The [host relocation receipt](../Docs/Operations/Repository/Relocations/hosts-2026-10-06.json) records all original file hashes and destinations. Current entry-point links and root-relative tools have been repaired; original evidence and copied research snapshots remain historical records.
 

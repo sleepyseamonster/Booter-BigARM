@@ -15,7 +15,7 @@ This file defines the operating rules for the Booter & BigARM repository and rou
 
 - The repository-root Unity project is the sole active production area as of 2026-09-21. New implementation, research, tooling, documentation and generated-content conventions must serve the Unity TopDown3D production lane.
 - [Archive/Unreal/](./Archive/Unreal/README.md) is a preserved reference from the 2026-09-16 through 2026-09-20 experiment. Do not add production work there unless the user explicitly reactivates Unreal; load [its agreement](./Archive/Unreal/AGENTS.md) only for narrowly scoped reference maintenance or inspection inside that folder.
-- The former 2D implementation remains isolated under `Assets/_Project/Legacy2D/`. It is a separate historical reference and must not receive new production work.
+- The former 2D/isometric implementation is preserved in the standalone [historical restore project](./Archive/Unity/HistoricalProject/README.md), outside active `Assets`. It must not receive production work or be restored into production without verified dependency handling.
 - The proprietary C++ engine remains preserved under [Archive/ProprietaryEngine/](./Archive/ProprietaryEngine/README.md). Do not extend its renderer, platform shell or runtime. Useful concepts may be deliberately reimplemented through the active Unity architecture; do not make the archive an active second production lane.
 - Keep new Unity-hosted implementation and content in the established root `Assets/_Project/`, `Docs/`, `Packages/`, and `ProjectSettings/` boundaries. `Archive/ProprietaryEngine/` and `Archive/Unreal/` are preserved inactive hosts, not parallel production lanes.
 - Shared ownership, Git safety and user-authority rules still apply across the repository. Root routing links may be maintained when needed to keep the two areas discoverable.
@@ -39,7 +39,7 @@ This file defines the operating rules for the Booter & BigARM repository and rou
 
 ## Active Unity Scope
 
-- The root Unity project is the active perspective, elevated top-down fully 3D implementation. The former 2D top-down prototype is preserved as isolated legacy reference content under `Assets/_Project/Legacy2D/`.
+- The root Unity project is the active perspective, elevated top-down fully 3D implementation. Former 2D/isometric work is outside its import/compile boundary in `Archive/Unity/HistoricalProject/`.
 - The project should stay Unity-compatible at all times.
 - Most production work should happen under `Assets/`.
 - Prefer small, verifiable changes over broad refactors.
@@ -70,7 +70,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - `Assets/_Project/UI/`
 - `Assets/_Project/VFX/`
 - `Assets/_Project/Tests/`
-- `Assets/_Project/Legacy2D/` — preserved legacy content only; never a destination for new production systems.
+- `Archive/Unity/HistoricalProject/` — standalone preserved Unity work, never a production content destination.
 
 ## Working Rules For New Content
 
@@ -94,10 +94,9 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Primary production scene and only enabled build scene: `Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity`
 - Greater Wasteland is the existing playable Badwater terrain, promoted on 2026-10-06. All continuing gameplay mechanics and player controls target this scene. Do not add procedural terrain, generated props, chunk streaming, or procedural save integration until the user approves a redesigned generation approach.
 - `TopDown3DPrototype.unity` remains a disabled generated-world reference; do not copy its generator or save service into Greater Wasteland.
-- Preserved legacy scenes: `Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity` and `Assets/_Project/Legacy2D/Scenes/SampleScene.unity`; both remain disabled in Build Settings.
-- Current production renderer settings: `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset` with the 3D renderer at index 1 as the default.
-- The preserved 2D renderer is `Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset` at index 0; legacy scene cameras select index 0 explicitly.
-- In `Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity`, keep `Sand Patch Grid` and `Ground Grid` disabled in the hierarchy unless explicitly requested. Do not re-enable them during scene repair or bootstrap work.
+- Legacy scenes and compatible renderer settings are registered only in the standalone historical project, not production.
+- Current production renderer settings: `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset` with its sole 3D renderer at index 0 as the default. Active cameras resolve that renderer.
+- Preserve `Sand Patch Grid` and `Ground Grid` as disabled in the archived prototype unless the user explicitly reactivates that historical work.
 
 ## Canonical World Reference
 

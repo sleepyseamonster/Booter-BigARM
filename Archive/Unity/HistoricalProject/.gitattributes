@@ -1,0 +1,4 @@
+# Frozen restoration inputs retain their exact original bytes and Unity serialization.
+Assets/** -text -diff
+Packages/** -text -diff
+ProjectSettings/** -text -diff
