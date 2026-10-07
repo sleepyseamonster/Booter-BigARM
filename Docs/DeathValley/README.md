@@ -129,7 +129,7 @@ These tools operate on authored geographic constraints and inventory identities.
 
 ## Sources and validation boundaries
 
-The [existing scene record](../Agents/Blender/studies/DeathValley/UNITY_BADWATER_SCENE.md), [expanded viewer record](../Agents/Blender/studies/DeathValley/EXPANDED_VIEWER.md), [Windows seam repair](../Evidence/Badwater/terrain-seam-repair-2026-10-06.md), [gameplay terrain plan](../BADWATER_GAMEPLAY_TERRAIN_PLAN.md), and [world systems standard](../WORLD_SYSTEMS_STANDARD.md) remain the governing references for their facts and contracts.
+The [existing scene record](../Agents/Blender/studies/DeathValley/UNITY_BADWATER_SCENE.md), [expanded viewer record](../Agents/Blender/studies/DeathValley/EXPANDED_VIEWER.md), [Windows seam repair](../Evidence/Badwater/terrain-seam-repair-2026-10-06.md), [gameplay terrain plan](../Design/Gameplay/BADWATER_GAMEPLAY_TERRAIN_PLAN.md), and [world systems standard](../Engineering/WORLD_SYSTEMS_STANDARD.md) remain the governing references for their facts and contracts.
 
 USGS provides the [TNM product API](https://www.usgs.gov/faqs/there-api-accessing-national-map-data) and [3DEP elevation products](https://www.usgs.gov/3d-elevation-program/about-3dep-products-services). Retain each product's metadata, datum, source resolution and acquisition hashes. Geographic imagery is color/reference evidence, not an accepted close-range game material; imagery provenance and shipping terms are separate from elevation rights.
 

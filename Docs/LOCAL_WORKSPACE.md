@@ -16,7 +16,7 @@ This is the Windows setup and session entry point for the checkout restored on 2
 
 Read the [October 6 publication receipt](./Evidence/Publication/2026-10-06-safe-publication.md) before interpreting older snapshot documents. It is the latest restored checkpoint and records 43/43 focused terrain tests, 8/8 focused authored-asset tests, and a passing prototype validator on the previous machine. These are retained evidence, not fresh Windows test results.
 
-The [Badwater baseline](./Evidence/Badwater/gameplay-terrain-baseline-2026-10-06.md) records source audit and an isolated macOS Development Player build. Player profiling, traversal, and visual acceptance remain pending. The Badwater implementation goal was paused at publication; setup does not resume that work automatically. No macOS Player build or unpublished recovery artifact is assumed present here. Use the [Badwater plan](./BADWATER_GAMEPLAY_TERRAIN_PLAN.md) for the next authorized terrain task.
+The [Badwater baseline](./Evidence/Badwater/gameplay-terrain-baseline-2026-10-06.md) records source audit and an isolated macOS Development Player build. Player profiling, traversal, and visual acceptance remain pending. The Badwater implementation goal was paused at publication; setup does not resume that work automatically. No macOS Player build or unpublished recovery artifact is assumed present here. Use the [Badwater plan](./Design/Gameplay/BADWATER_GAMEPLAY_TERRAIN_PLAN.md) for the next authorized terrain task.
 
 [PROJECT_STATUS.md](./PROJECT_STATUS.md) was reconciled September 21 and contains older foundation evidence. For a feature task, inspect live files and its newer evidence before relying on that snapshot. The active production area is the repository-root Unity TopDown3D project; preserve `Engine/`, `Unreal/`, and `Assets/_Project/Legacy2D/` as references.
 
@@ -68,7 +68,7 @@ if ($process.ExitCode -ne 0) { throw "Unity import failed; inspect $log" }
 git status --short --branch
 ```
 
-Import can serialize project assets. Review any tracked changes and preserve unrelated work. Import success proves neither focused test execution nor interactive acceptance. Use the canonical validator and focused checks from [UNITY_AUTOMATION.md](./UNITY_AUTOMATION.md) for a subsequent implementation task; do not run gameplay smoke tests or rebuild scenes during setup.
+Import can serialize project assets. Review any tracked changes and preserve unrelated work. Import success proves neither focused test execution nor interactive acceptance. Use the canonical validator and focused checks from [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md) for a subsequent implementation task; do not run gameplay smoke tests or rebuild scenes during setup.
 
 ## Windows setup evidence — 2026-10-06
 

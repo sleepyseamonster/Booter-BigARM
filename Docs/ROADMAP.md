@@ -18,7 +18,7 @@ This is the consolidated working roadmap for the prototype. It combines the curr
 
 The accepted direction is a perspective, elevated top-down presentation using a fully 3D runtime world and assets. Gottspan owns the conversion program under the user's creative and product authority.
 
-- [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md) is the active bounded plan for camera, movement, input, procedural terrain, and simple BigARM follow behavior.
+- [TOP_DOWN_3D_FOUNDATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md) is the active bounded plan for camera, movement, input, procedural terrain, and simple BigARM follow behavior.
 - The first perspective foundation is implemented in a separate scene and awaits user-owned hands-on acceptance before broader shared-system or production-content work.
 - [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md) contains current automated proof, preservation evidence, limitations, and the user acceptance boundary.
 - Preserve the existing 2D prototype and former isometric lab as references and recovery points until a perspective vertical slice and later cutover candidate are explicitly accepted.

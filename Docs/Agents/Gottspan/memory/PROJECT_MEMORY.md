@@ -5,7 +5,7 @@ This file retains durable repo-management facts. It is not a live status dashboa
 ## Durable Identity
 
 - Project: Booter & BigARM, a Unity 6 survival crafting game whose primary production direction is perspective, elevated top-down, and fully 3D. The former 2D implementation is isolated legacy reference content.
-- Active conversion foundation: `Docs/TOP_DOWN_3D_FOUNDATION_PLAN.md`, owned by Gottspan under the user's creative and product authority. The older isometric conversion plan and lab remain historical comparison evidence.
+- Active conversion foundation: `Docs/Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md`, owned by Gottspan under the user's creative and product authority. The older isometric conversion plan and lab remain historical comparison evidence.
 - Canonical world reference: `Docs/WORLD_BASIS.md`.
 - Canonical roadmap: `Docs/ROADMAP.md`.
 - Project-owned Unity content root: `Assets/_Project/`.
@@ -22,7 +22,7 @@ This file retains durable repo-management facts. It is not a live status dashboa
 - All sub-agents share one worktree; overlapping edits are unsafe.
 - Existing dirty files are user-owned until explicitly brought into scope.
 - Preserve the isolated 2D implementation and isometric lab as reference baselines. TopDown3D has accepted production authority, but that does not authorize deleting legacy content.
-- BigARM is a companion and synergistic part of Booter's mechanics, not a mobile base. He may act separately but always keeps a true world position and must physically traverse to regroup; no distance, recall, unloaded-terrain, or recovery path may snap him to Booter. See `Docs/BIGARM_COMPANION_STANDARD.md`.
+- BigARM is a companion and synergistic part of Booter's mechanics, not a mobile base. He may act separately but always keeps a true world position and must physically traverse to regroup; no distance, recall, unloaded-terrain, or recovery path may snap him to Booter. See `Docs/Design/Gameplay/BIGARM_COMPANION_STANDARD.md`.
 - Hands-on smoke testing is user-owned. Do not create or run smoke tests unless the user explicitly requests them.
 
 ## Verified Manager Baseline

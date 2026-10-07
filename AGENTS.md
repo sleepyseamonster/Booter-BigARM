@@ -43,7 +43,7 @@ This file defines the operating rules for the Booter & BigARM repository and rou
 - The project should stay Unity-compatible at all times.
 - Most production work should happen under `Assets/`.
 - Prefer small, verifiable changes over broad refactors.
-- Use [Docs/AGENT_AND_UNITY_PRACTICES.md](./Docs/AGENT_AND_UNITY_PRACTICES.md) as the combined working reference for Codex workflow and Unity project practices.
+- Use [Docs/Operations/AGENT_AND_UNITY_PRACTICES.md](./Docs/Operations/AGENT_AND_UNITY_PRACTICES.md) as the combined working reference for Codex workflow and Unity project practices.
 - Treat baselines as provisional guidance, not lock-in; preserve room to evolve movement, input, procgen, camera, and save/load as the game design matures.
 
 ## Non-Negotiables
@@ -107,26 +107,26 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 ## Editor Control Path
 
 - Use the installed Unity executable for batchmode and `-executeMethod` workflows.
-- Use [Docs/UNITY_AUTOMATION.md](./Docs/UNITY_AUTOMATION.md) as the source of truth for command-line control of the editor.
+- Use [Docs/Engineering/UNITY_AUTOMATION.md](./Docs/Engineering/UNITY_AUTOMATION.md) as the source of truth for command-line control of the editor.
 - Add Editor-only automation under `Assets/_Project/Scripts/Editor/` when new build, import, or validation flows are needed.
 - Use the Unity GUI for interactive scene, prefab, and inspector work.
 - Use the command line for repeatable imports, validation, builds, and tests.
 
 ## Working Practices Reference
 
-- Use [Docs/AGENT_AND_UNITY_PRACTICES.md](./Docs/AGENT_AND_UNITY_PRACTICES.md) as the combined living summary for Codex workflow and Unity project practices.
-- Use [Docs/PROJECT_STRUCTURE.md](./Docs/PROJECT_STRUCTURE.md) as the target layout for `Assets/_Project/`.
-- Use [Docs/UNITY_PROJECT_STANDARDS.md](./Docs/UNITY_PROJECT_STANDARDS.md) as the compact Unity naming and organization standard.
-- Use [Docs/GIT_BATCHING_STANDARD.md](./Docs/GIT_BATCHING_STANDARD.md) as the standard for grouping commits and ignoring Unity noise.
-- Use [Docs/IMPLEMENTATION_SEQUENCE.md](./Docs/IMPLEMENTATION_SEQUENCE.md) as the first-pass order for gameplay seams.
-- Use [Docs/RESEARCH_PLAN.md](./Docs/RESEARCH_PLAN.md) as the prioritized roadmap for future research.
+- Use [Docs/Operations/AGENT_AND_UNITY_PRACTICES.md](./Docs/Operations/AGENT_AND_UNITY_PRACTICES.md) as the combined living summary for Codex workflow and Unity project practices.
+- Use [Docs/Engineering/PROJECT_STRUCTURE.md](./Docs/Engineering/PROJECT_STRUCTURE.md) as the target layout for `Assets/_Project/`.
+- Use [Docs/Engineering/UNITY_PROJECT_STANDARDS.md](./Docs/Engineering/UNITY_PROJECT_STANDARDS.md) as the compact Unity naming and organization standard.
+- Use [Docs/Operations/GIT_BATCHING_STANDARD.md](./Docs/Operations/GIT_BATCHING_STANDARD.md) as the standard for grouping commits and ignoring Unity noise.
+- Use [Docs/Operations/IMPLEMENTATION_SEQUENCE.md](./Docs/Operations/IMPLEMENTATION_SEQUENCE.md) as the first-pass order for gameplay seams.
+- Use [Docs/Operations/RESEARCH_PLAN.md](./Docs/Operations/RESEARCH_PLAN.md) as the prioritized roadmap for future research.
 - Use [Docs/ART_ANIMATION_STARTER.md](./Docs/ART_ANIMATION_STARTER.md) as the first-pass workflow for production art and sprite animation.
 - Use [Docs/URP_2D_STANDARD.md](./Docs/URP_2D_STANDARD.md) as the compact standard for the project's 2D render pipeline.
-- Use [Docs/CODEX_EDITOR_STANDARD.md](./Docs/CODEX_EDITOR_STANDARD.md) as the compact standard for Codex and editor workflow.
-- Use [Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md](./Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md) as the baseline for input, movement, procedural generation, and save/load architecture.
-- Use [Docs/INPUT_ARCHITECTURE_STANDARD.md](./Docs/INPUT_ARCHITECTURE_STANDARD.md) as the baseline for player input and UI navigation.
-- Use [Docs/MOVEMENT_CAMERA_STANDARD.md](./Docs/MOVEMENT_CAMERA_STANDARD.md) as the baseline for top-down movement and camera behavior.
-- Use [Docs/WORLD_SYSTEMS_STANDARD.md](./Docs/WORLD_SYSTEMS_STANDARD.md) as the baseline for procedural generation, chunking, and save/load architecture.
+- Use [Docs/Operations/CODEX_EDITOR_STANDARD.md](./Docs/Operations/CODEX_EDITOR_STANDARD.md) as the compact standard for Codex and editor workflow.
+- Use [Docs/Engineering/GAMEPLAY_ARCHITECTURE_BASELINES.md](./Docs/Engineering/GAMEPLAY_ARCHITECTURE_BASELINES.md) as the baseline for input, movement, procedural generation, and save/load architecture.
+- Use [Docs/Engineering/INPUT_ARCHITECTURE_STANDARD.md](./Docs/Engineering/INPUT_ARCHITECTURE_STANDARD.md) as the baseline for player input and UI navigation.
+- Use [Docs/Engineering/MOVEMENT_CAMERA_STANDARD.md](./Docs/Engineering/MOVEMENT_CAMERA_STANDARD.md) as the baseline for top-down movement and camera behavior.
+- Use [Docs/Engineering/WORLD_SYSTEMS_STANDARD.md](./Docs/Engineering/WORLD_SYSTEMS_STANDARD.md) as the baseline for procedural generation, chunking, and save/load architecture.
 
 ## Default Workflow
 

@@ -1,6 +1,6 @@
 # 3D Conversion Start-Readiness Inventory
 
-> **Historical status:** This is the final readiness inventory for the superseded isometric direction. The active perspective direction, implementation boundary, and proof state now live in [`TOP_DOWN_3D_FOUNDATION_PLAN.md`](./TOP_DOWN_3D_FOUNDATION_PLAN.md), [`PROJECT_STATUS.md`](./PROJECT_STATUS.md), and [`ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md`](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md). Do not use unchecked isometric items below as current work authorization.
+> **Historical status:** This is the final readiness inventory for the superseded isometric direction. The active perspective direction, implementation boundary, and proof state now live in [`TOP_DOWN_3D_FOUNDATION_PLAN.md`](./Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md), [`PROJECT_STATUS.md`](./PROJECT_STATUS.md), and [`ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md`](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md). Do not use unchecked isometric items below as current work authorization.
 
 This was the readiness control sheet for beginning the superseded isometric production conversion.
 

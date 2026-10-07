@@ -65,7 +65,7 @@ Shared project surfaces remain outside Gottspan's private folder:
 
 - [`Docs/PROJECT_STATUS.md`](../../PROJECT_STATUS.md) — current implementation pulse and management gates.
 - [`Docs/DECISION_LOG.md`](../../DECISION_LOG.md) — consequential project decisions and pointers to controlling docs.
-- [`Docs/PLAYTEST_LOG.md`](../../PLAYTEST_LOG.md) — player-facing evidence and design experiments.
+- [`Docs/Evidence/Playtests/PLAYTEST_LOG.md`](../../Evidence/Playtests/PLAYTEST_LOG.md) — player-facing evidence and design experiments.
 
 ## Definition Of Done For Gottspan-Led Work
 

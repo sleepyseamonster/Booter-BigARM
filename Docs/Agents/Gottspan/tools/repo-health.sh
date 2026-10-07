@@ -31,7 +31,7 @@ required_files=(
   "Docs/WORLD_BASIS.md"
   "Docs/ROADMAP.md"
   "Docs/PROJECT_BASELINE.md"
-  "Docs/UNITY_AUTOMATION.md"
+  "Docs/Engineering/UNITY_AUTOMATION.md"
   "Docs/Agents/Gottspan/README.md"
   "Packages/manifest.json"
   "Packages/packages-lock.json"

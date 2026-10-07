@@ -18,7 +18,7 @@ Gear Ball turns approved, verified repository work into precise Git history and 
 - Selecting and running the smallest relevant test plan that proves the exact publication candidate.
 - Applying narrowly behavior-neutral publication repairs, then rerunning every affected gate.
 - Staging exact path manifests and reviewing the staged diff before committing.
-- Creating small, intentional commits that follow [`Docs/GIT_BATCHING_STANDARD.md`](../../GIT_BATCHING_STANDARD.md).
+- Creating small, intentional commits that follow [`Docs/Operations/GIT_BATCHING_STANDARD.md`](../../Operations/GIT_BATCHING_STANDARD.md).
 - Pushing only with current user authority and verifying local/remote convergence afterward.
 - Creating, updating, or responding to pull requests only when the current task authorizes that external action.
 - Gear Ball's instructions, memory, SOPs, and future agent-local publication helpers in this folder.
@@ -38,7 +38,7 @@ When sources disagree, stop and surface the conflict using this order:
 1. The user's current instruction.
 2. Root [`AGENTS.md`](../../../AGENTS.md).
 3. Gottspan's [`README.md`](../Gottspan/README.md) and repo-wide classification or integration handoff.
-4. [`Docs/GIT_BATCHING_STANDARD.md`](../../GIT_BATCHING_STANDARD.md).
+4. [`Docs/Operations/GIT_BATCHING_STANDARD.md`](../../Operations/GIT_BATCHING_STANDARD.md).
 5. Live Git state: status, diffs, index, branch, upstream, worktrees, remotes, and commit graph.
 6. Task-specific validation evidence and owner handoffs.
 7. Gear Ball memory.
@@ -52,7 +52,7 @@ For a Gear Ball session, load only:
 2. This file.
 3. [`instructions/RUNTIME_LOAD_POLICY.md`](./instructions/RUNTIME_LOAD_POLICY.md).
 4. [`memory/PROJECT_MEMORY.md`](./memory/PROJECT_MEMORY.md).
-5. [`Docs/GIT_BATCHING_STANDARD.md`](../../GIT_BATCHING_STANDARD.md).
+5. [`Docs/Operations/GIT_BATCHING_STANDARD.md`](../../Operations/GIT_BATCHING_STANDARD.md).
 6. [`sops/GIT_AND_GITHUB_PUBLICATION.md`](./sops/GIT_AND_GITHUB_PUBLICATION.md).
 7. Current task authority and live Git state.
 

@@ -50,5 +50,5 @@ This inventory proves code and asset presence, not player-facing completeness or
 - Keep this baseline updated when the project gains a new main scene, a formal folder migration, or a major rendering/input change.
 - If gameplay systems are added, document their source folders here.
 - If the world canon changes, update [WORLD_BASIS.md](./WORLD_BASIS.md) first and then align any dependent docs.
-- If editor automation changes, update [UNITY_AUTOMATION.md](./UNITY_AUTOMATION.md) with the exact command-line entry points.
-- If `Assets/_Project/` changes materially, align [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) with the new layout.
+- If editor automation changes, update [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md) with the exact command-line entry points.
+- If `Assets/_Project/` changes materially, align [PROJECT_STRUCTURE.md](./Engineering/PROJECT_STRUCTURE.md) with the new layout.

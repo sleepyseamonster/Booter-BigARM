@@ -8,7 +8,7 @@ Gear Ball should load enough context to publish safely without absorbing the ent
 - Gear Ball's `README.md`.
 - `memory/PROJECT_MEMORY.md`.
 - `sops/GIT_AND_GITHUB_PUBLICATION.md`.
-- `Docs/GIT_BATCHING_STANDARD.md`.
+- `Docs/Operations/GIT_BATCHING_STANDARD.md`.
 - The current user request and its exact authority.
 - Live branch, upstream, remotes, worktrees, status, staged and unstaged diffs, and recent relevant history.
 - Gottspan's `README.md` when publication follows repo-wide integration or the worktree is mixed.

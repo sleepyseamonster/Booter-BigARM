@@ -14,10 +14,10 @@ Babineaux should load enough context to bridge Unity and Codex safely without pu
 
 - Scene, prefab, Tilemap, animation, or Inspector work: the exact serialized assets, paired `.meta` files, referencing prefabs/scenes, and the applicable project standard.
 - Runtime gameplay: the runtime asmdef, affected scripts, serialized consumers, and focused tests.
-- Editor automation, batchmode, import, or builds: `Docs/UNITY_AUTOMATION.md`, the editor asmdef, the exact automation source, and current editor-process state.
+- Editor automation, batchmode, import, or builds: `Docs/Engineering/UNITY_AUTOMATION.md`, the editor asmdef, the exact automation source, and current editor-process state.
 - Packages, rendering, input, or project settings: live manifests/settings plus the relevant architecture standard.
 - World-facing gameplay, lore, quests, or UI copy: `Docs/WORLD_BASIS.md` and the task-specific canonical design source.
-- Git integration or repo-wide coordination: Gottspan's management SOP and `Docs/GIT_BATCHING_STANDARD.md`.
+- Git integration or repo-wide coordination: Gottspan's management SOP and `Docs/Operations/GIT_BATCHING_STANDARD.md`.
 
 ## Unity Session Rules
 

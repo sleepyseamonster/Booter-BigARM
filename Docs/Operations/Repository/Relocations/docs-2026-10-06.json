@@ -1,0 +1,426 @@
+{
+  "date": "2026-10-06",
+  "batch": "ORG-02A",
+  "baseline_commit": "c4a6a3671c1ca3ec6c0318ce9d76f499de8e65da",
+  "scope": "Active topical documentation. Historical source snapshots and the live terrain package are intentionally excluded from physical movement.",
+  "records": [
+    {
+      "source": "Docs/AGENT_AND_UNITY_PRACTICES.md",
+      "destination": "Docs/Operations/AGENT_AND_UNITY_PRACTICES.md",
+      "source_sha256": "8dd61825d20eb9017c7dbb1e0136585b47391092b3ba7124271e14c28a5f0f1f",
+      "bytes": 4051,
+      "destination_sha256": "bb20f816da44bfd65a95d6c1cd49f52b581efaec2b1ab73589f7d46ce31ba66d"
+    },
+    {
+      "source": "Docs/BADWATER_GAMEPLAY_TERRAIN_PLAN.md",
+      "destination": "Docs/Design/Gameplay/BADWATER_GAMEPLAY_TERRAIN_PLAN.md",
+      "source_sha256": "e7358d507864bb3e8c3be79f139d42aadcd6716da3157d0490c35914c9b3c7bd",
+      "bytes": 10890,
+      "destination_sha256": "99b2b9c421435698db295dfd85b194ff49e76e9c5f2ed08618bdc2fc2caada10"
+    },
+    {
+      "source": "Docs/BIGARM_CAPABILITIES.md",
+      "destination": "Docs/Design/Gameplay/BIGARM_CAPABILITIES.md",
+      "source_sha256": "ff72f8d08fdf630a4ecb96dd042b81b1dabb0aab0f4e48bbeb55634f7fc03189",
+      "bytes": 4498,
+      "destination_sha256": "ff72f8d08fdf630a4ecb96dd042b81b1dabb0aab0f4e48bbeb55634f7fc03189"
+    },
+    {
+      "source": "Docs/BIGARM_COMPANION_STANDARD.md",
+      "destination": "Docs/Design/Gameplay/BIGARM_COMPANION_STANDARD.md",
+      "source_sha256": "dad9a08d834b996d6dec8826aea7419a6c88c1ac3fecd87588ee485354054547",
+      "bytes": 4990,
+      "destination_sha256": "dad9a08d834b996d6dec8826aea7419a6c88c1ac3fecd87588ee485354054547"
+    },
+    {
+      "source": "Docs/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+      "destination": "Docs/Design/Gameplay/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+      "source_sha256": "95a7e85bafe622d297e764291e5da0304c02e902db730419ee6fd2f08f0df16c",
+      "bytes": 64781,
+      "destination_sha256": "d98aecb3931eda8f892549aacfd55f9920d0f78acd23996467b31154336e796c"
+    },
+    {
+      "source": "Docs/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_STATUS.md",
+      "destination": "Docs/Design/Gameplay/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_STATUS.md",
+      "source_sha256": "9c5f3aaf11cff7701f7a2a44263b164557e0fdb2ea0b88fb9e8d2a083cb5e5dc",
+      "bytes": 1537,
+      "destination_sha256": "9c5f3aaf11cff7701f7a2a44263b164557e0fdb2ea0b88fb9e8d2a083cb5e5dc"
+    },
+    {
+      "source": "Docs/CLIMBING_TRAVERSAL_PLAN.md",
+      "destination": "Docs/Design/Gameplay/CLIMBING_TRAVERSAL_PLAN.md",
+      "source_sha256": "28ee336dedbc0fa6a7ce6807d0a625a2c95c2d3f3f4c8d22ad86f70622664be1",
+      "bytes": 9538,
+      "destination_sha256": "28ee336dedbc0fa6a7ce6807d0a625a2c95c2d3f3f4c8d22ad86f70622664be1"
+    },
+    {
+      "source": "Docs/CODEX_EDITOR_STANDARD.md",
+      "destination": "Docs/Operations/CODEX_EDITOR_STANDARD.md",
+      "source_sha256": "70a80e49f1a884c5d28775d6aa50f4f7c2a60a001b7c0b9bcdc8a3d5f33598ba",
+      "bytes": 2413,
+      "destination_sha256": "00f9921708d25063a225c40167573fe4794e09a031c2d753f5b27a39611536c2"
+    },
+    {
+      "source": "Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md",
+      "destination": "Docs/Engineering/GAMEPLAY_ARCHITECTURE_BASELINES.md",
+      "source_sha256": "13989008d02eb35efeb1332956d853b6269ca206ca685a446faa620a1889a59f",
+      "bytes": 6671,
+      "destination_sha256": "ff8917b0ddcecf4091f487fa07b73ffacca33990bab39c2ded2c744a0a8c6543"
+    },
+    {
+      "source": "Docs/GIT_BATCHING_STANDARD.md",
+      "destination": "Docs/Operations/GIT_BATCHING_STANDARD.md",
+      "source_sha256": "b5623b95e74ac4f80b1c21a6859250841488424d30f1882cbaa44bece22261dc",
+      "bytes": 1437,
+      "destination_sha256": "b5623b95e74ac4f80b1c21a6859250841488424d30f1882cbaa44bece22261dc"
+    },
+    {
+      "source": "Docs/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md",
+      "destination": "Docs/Design/DeferredGeneration/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md",
+      "source_sha256": "dd6b5f2c286f54f6f556176e56b05f014406790d131f554d25441efffae689e7",
+      "bytes": 1013,
+      "destination_sha256": "2187c13e1192d16e9452185e6c9c2de7c98c67b4a9d4f892d919800325fd0d89"
+    },
+    {
+      "source": "Docs/GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md",
+      "destination": "Docs/Design/DeferredGeneration/GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md",
+      "source_sha256": "9a798234ed6ff2577b071c86dddcde967e176f94fe063e58a42a11e11fe37dc4",
+      "bytes": 14961,
+      "destination_sha256": "9a798234ed6ff2577b071c86dddcde967e176f94fe063e58a42a11e11fe37dc4"
+    },
+    {
+      "source": "Docs/IMPLEMENTATION_SEQUENCE.md",
+      "destination": "Docs/Operations/IMPLEMENTATION_SEQUENCE.md",
+      "source_sha256": "9e15b20e0833647565031ed79c3c3ab212a59649a542d33feb4519e5bb6e9f82",
+      "bytes": 1420,
+      "destination_sha256": "9e15b20e0833647565031ed79c3c3ab212a59649a542d33feb4519e5bb6e9f82"
+    },
+    {
+      "source": "Docs/INPUT_ARCHITECTURE_STANDARD.md",
+      "destination": "Docs/Engineering/INPUT_ARCHITECTURE_STANDARD.md",
+      "source_sha256": "4e78d38122ea2db4c185fe4e27310a0cbd11086249015145200e5d6e03b8a0a0",
+      "bytes": 5944,
+      "destination_sha256": "4e78d38122ea2db4c185fe4e27310a0cbd11086249015145200e5d6e03b8a0a0"
+    },
+    {
+      "source": "Docs/INVENTORY_AND_ITEM_MANAGEMENT_SYSTEM.md",
+      "destination": "Docs/Design/Gameplay/INVENTORY_AND_ITEM_MANAGEMENT_SYSTEM.md",
+      "source_sha256": "8f424df157ca068062430c9d5e572ed65091a3f30be8d32a1895591df7d4ea69",
+      "bytes": 17103,
+      "destination_sha256": "c10c3ea4bc02882ece3014703121dcd459f26b650915b6669cf4e27281cdae2c"
+    },
+    {
+      "source": "Docs/INVENTORY_AND_RADIAL_MENU_PLAN.md",
+      "destination": "Docs/Design/Gameplay/INVENTORY_AND_RADIAL_MENU_PLAN.md",
+      "source_sha256": "1c258444ecd6e6ff0d85d10109203becdacbbf304ac1d4e41aef1497fcad725d",
+      "bytes": 24359,
+      "destination_sha256": "65e7a7580fdd8ecd59e97e365633de232599b6b77d7d95a50af615461c99bfed"
+    },
+    {
+      "source": "Docs/IRONSTONE_FORMATION_MINERALIZATION_PLAN.md",
+      "destination": "Docs/Design/Gameplay/IRONSTONE_FORMATION_MINERALIZATION_PLAN.md",
+      "source_sha256": "c3c38ec3fc607bb6da03551c3e1afc8a13fcb8976a0baff5bf3a02aa7f1fcc4e",
+      "bytes": 21127,
+      "destination_sha256": "c3c38ec3fc607bb6da03551c3e1afc8a13fcb8976a0baff5bf3a02aa7f1fcc4e"
+    },
+    {
+      "source": "Docs/IRONSTONE_MINING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+      "destination": "Docs/Design/Gameplay/IRONSTONE_MINING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+      "source_sha256": "06665746f77b7be2d8175be0dd3b599ce4aba656c7785afcab1e73b5241508f8",
+      "bytes": 45910,
+      "destination_sha256": "9795276de8c24dc96b8ff0c78cc840770329bce31559cb29e668dfb92e5cd270"
+    },
+    {
+      "source": "Docs/IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md",
+      "destination": "Docs/Design/Gameplay/IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md",
+      "source_sha256": "808f7259f8fb7fe37696adc6402083b24ecfb51b4977a44d81470d74478d60f3",
+      "bytes": 5145,
+      "destination_sha256": "2c3b9fdaa2e791a90d8b44f6a4bf178755abaf4d1295826575d91b62c26050d2"
+    },
+    {
+      "source": "Docs/LEGACY_2D_BOUNDARY.md",
+      "destination": "Docs/Operations/LEGACY_2D_BOUNDARY.md",
+      "source_sha256": "324e946a539409d7a8447828f298f97bc10c202c98c4cd419ef25ef3e08a5e60",
+      "bytes": 2650,
+      "destination_sha256": "be1de6df017975e71ef2525d0bf1863a944f560a35f7e094b9d0ef23c495aee3"
+    },
+    {
+      "source": "Docs/MICRO_DUST_HARVESTER.md",
+      "destination": "Docs/Design/Gameplay/MICRO_DUST_HARVESTER.md",
+      "source_sha256": "c012b77f1d1a0b17b64eef1cb7d08298adcb57d7ac28d996a6b334e2e65c2cd8",
+      "bytes": 5560,
+      "destination_sha256": "c012b77f1d1a0b17b64eef1cb7d08298adcb57d7ac28d996a6b334e2e65c2cd8"
+    },
+    {
+      "source": "Docs/MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md",
+      "destination": "Docs/Design/Gameplay/MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md",
+      "source_sha256": "57ae09d5805defeb87d303884901b7a64486f039a11c8a3e6ea5e71de9684e02",
+      "bytes": 14868,
+      "destination_sha256": "3abe548b95cb5d2026966a119d206bef8c64e34b6dff0cde220c2bbbc803eead"
+    },
+    {
+      "source": "Docs/MOVEMENT_CAMERA_STANDARD.md",
+      "destination": "Docs/Engineering/MOVEMENT_CAMERA_STANDARD.md",
+      "source_sha256": "ff83cc533448a2ee9da7d6f27e844f7b51c3f03c31904ab4b208e23db4adfb6b",
+      "bytes": 12945,
+      "destination_sha256": "ff83cc533448a2ee9da7d6f27e844f7b51c3f03c31904ab4b208e23db4adfb6b"
+    },
+    {
+      "source": "Docs/PERFORMANCE_AUDIT_AND_OPTIMIZATION.md",
+      "destination": "Docs/Engineering/PERFORMANCE_AUDIT_AND_OPTIMIZATION.md",
+      "source_sha256": "c7ce89e4f7aca839ad47e744d736ef8f938b6eac15a5935f888fcf4115820c9f",
+      "bytes": 14424,
+      "destination_sha256": "c7ce89e4f7aca839ad47e744d736ef8f938b6eac15a5935f888fcf4115820c9f"
+    },
+    {
+      "source": "Docs/PLAYTEST_LOG.md",
+      "destination": "Docs/Evidence/Playtests/PLAYTEST_LOG.md",
+      "source_sha256": "eb1004e976167802e40b83cc86674166dc8789de94a35d860a70193500102ef5",
+      "bytes": 5744,
+      "destination_sha256": "eb1004e976167802e40b83cc86674166dc8789de94a35d860a70193500102ef5"
+    },
+    {
+      "source": "Docs/PROCEDURAL_ESCARPMENT_SYSTEM.md",
+      "destination": "Docs/Design/DeferredGeneration/PROCEDURAL_ESCARPMENT_SYSTEM.md",
+      "source_sha256": "e63f044424160de04089d693910975bb99df566152f0d47f276aaaf6e0991437",
+      "bytes": 4596,
+      "destination_sha256": "e63f044424160de04089d693910975bb99df566152f0d47f276aaaf6e0991437"
+    },
+    {
+      "source": "Docs/PROJECT_STRUCTURE.md",
+      "destination": "Docs/Engineering/PROJECT_STRUCTURE.md",
+      "source_sha256": "502ab2f3e2eb17c0ccf28ace984b7954dc4c5441caca938677d71efa5ae2d1d4",
+      "bytes": 3390,
+      "destination_sha256": "aaf525d81a784ff47be32c8f39f1ec5279192d32c8cb780777ce6cd5cf356efa"
+    },
+    {
+      "source": "Docs/RADIAL_MENU_SYSTEM_DESIGN.md",
+      "destination": "Docs/Design/Gameplay/RADIAL_MENU_SYSTEM_DESIGN.md",
+      "source_sha256": "b158761e0f7db157064b5e2e415691552eea14304f03b516e19bdfac047749fc",
+      "bytes": 17947,
+      "destination_sha256": "e6bbca8912f7376ea7a1d0619cf8100ff991940a3af3988b374ef028cf9a1d0b"
+    },
+    {
+      "source": "Docs/RADIAL_MENU_UI_CONTROLLER_RESEARCH.md",
+      "destination": "Docs/Research/UI/RADIAL_MENU_UI_CONTROLLER_RESEARCH.md",
+      "source_sha256": "fc3e56b0d723e437039972dec8acac6bdaa0207f03690613d52a9818a9369105",
+      "bytes": 23409,
+      "destination_sha256": "db77bae53228ee182d155cccd49b0054f528f1775d6c715bf88797c12d9c2f9b"
+    },
+    {
+      "source": "Docs/RESEARCH_PLAN.md",
+      "destination": "Docs/Operations/RESEARCH_PLAN.md",
+      "source_sha256": "148e8ef90dd4504b046cae4d1080d73a0733ab92b6deab4998bea9bc0c104309",
+      "bytes": 4899,
+      "destination_sha256": "3c241e42266627df6b12cc7bd4a819806dee2f524adb674e2627e67cec401950"
+    },
+    {
+      "source": "Docs/ROCK_FORMATION_MESH_FUSION_PLAN.md",
+      "destination": "Docs/Design/Gameplay/ROCK_FORMATION_MESH_FUSION_PLAN.md",
+      "source_sha256": "0f303326ba5e690b47974977fb0f11dcbe08fd80df407d8788ea0756c24e24f7",
+      "bytes": 17110,
+      "destination_sha256": "c46c506fe1f277eaf7b0bd64abdfe73edfee6fbe045c6f3e7351fafd7b42fc64"
+    },
+    {
+      "source": "Docs/ROCK_FORMATION_WORKBENCH.md",
+      "destination": "Docs/Design/Gameplay/ROCK_FORMATION_WORKBENCH.md",
+      "source_sha256": "0e866821d0c1b160bc7dae0e095f67280b5267f6e7c8440c7af4e9c647a0c85a",
+      "bytes": 14988,
+      "destination_sha256": "0e866821d0c1b160bc7dae0e095f67280b5267f6e7c8440c7af4e9c647a0c85a"
+    },
+    {
+      "source": "Docs/ROCK_LANDMARK_WORKBENCH.md",
+      "destination": "Docs/Design/Gameplay/ROCK_LANDMARK_WORKBENCH.md",
+      "source_sha256": "6bc840683123905adde130e86ad0f24edb410e2358a14bd99b08c4994f8137e7",
+      "bytes": 4442,
+      "destination_sha256": "6bc840683123905adde130e86ad0f24edb410e2358a14bd99b08c4994f8137e7"
+    },
+    {
+      "source": "Docs/ROCK_QUALITY_AND_PRODUCTION_PLAN.md",
+      "destination": "Docs/Design/Gameplay/ROCK_QUALITY_AND_PRODUCTION_PLAN.md",
+      "source_sha256": "477f15f96492f9dc688cd416bb564ae2da1e619381d15c2a2bea4c6f6d4439b8",
+      "bytes": 93798,
+      "destination_sha256": "efc566f0e2c3ffded0e8ad01eeaec79b896abac8761e61b889336f558fa83285"
+    },
+    {
+      "source": "Docs/ROCK_WORKBENCH_LAYERED_MATERIAL.md",
+      "destination": "Docs/Engineering/ROCK_WORKBENCH_LAYERED_MATERIAL.md",
+      "source_sha256": "c4c5e5d86209b76d639907b48f741d26f405af1241265f9491d1d575f3c43793",
+      "bytes": 6085,
+      "destination_sha256": "c4c5e5d86209b76d639907b48f741d26f405af1241265f9491d1d575f3c43793"
+    },
+    {
+      "source": "Docs/SKY_PANORAMA.md",
+      "destination": "Docs/Engineering/SKY_PANORAMA.md",
+      "source_sha256": "9214c3155bf7326d3fbaa45bc099ad6ce44c1db50cdb0c45dd5367aeb528b6a1",
+      "bytes": 1836,
+      "destination_sha256": "9214c3155bf7326d3fbaa45bc099ad6ce44c1db50cdb0c45dd5367aeb528b6a1"
+    },
+    {
+      "source": "Docs/SMART_TRAVERSAL_STANDARD.md",
+      "destination": "Docs/Design/Gameplay/SMART_TRAVERSAL_STANDARD.md",
+      "source_sha256": "4faef20367ddc6ef923f4ccc6e71e24add8f419501946bc9988c4542ee433fd5",
+      "bytes": 3497,
+      "destination_sha256": "4faef20367ddc6ef923f4ccc6e71e24add8f419501946bc9988c4542ee433fd5"
+    },
+    {
+      "source": "Docs/SURVIVAL_SYSTEM_STANDARD.md",
+      "destination": "Docs/Design/Gameplay/SURVIVAL_SYSTEM_STANDARD.md",
+      "source_sha256": "3caeeef4b76af2363869e09a59885159d0b6c89a257933f686c10e691eb51ffd",
+      "bytes": 3604,
+      "destination_sha256": "3caeeef4b76af2363869e09a59885159d0b6c89a257933f686c10e691eb51ffd"
+    },
+    {
+      "source": "Docs/TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md",
+      "destination": "Docs/Design/Gameplay/TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md",
+      "source_sha256": "4aa52faf667812e5c3ac65b71e3ba21f0cc2f5f21161462337fc5f0784fa481a",
+      "bytes": 58865,
+      "destination_sha256": "9b6a506c054806bbb1e50cd9977fd2c77204634530e43d114ce52f2fa4769376"
+    },
+    {
+      "source": "Docs/TOP_DOWN_3D_FOUNDATION_PLAN.md",
+      "destination": "Docs/Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md",
+      "source_sha256": "a2e63090c4207ee209f4eff70dd5cb60fe263f5176d0fc8f6fde28028baf8c08",
+      "bytes": 13781,
+      "destination_sha256": "a2e63090c4207ee209f4eff70dd5cb60fe263f5176d0fc8f6fde28028baf8c08"
+    },
+    {
+      "source": "Docs/TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md",
+      "destination": "Docs/Design/DeferredGeneration/TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md",
+      "source_sha256": "23d9ce50692428cb41dc795e9bbe958971315d08a7644a5cbd83eff9f8b6a5fd",
+      "bytes": 7425,
+      "destination_sha256": "23d9ce50692428cb41dc795e9bbe958971315d08a7644a5cbd83eff9f8b6a5fd"
+    },
+    {
+      "source": "Docs/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md",
+      "destination": "Docs/Design/DeferredGeneration/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md",
+      "source_sha256": "c0d97f64c8ad1da2bd698bae44a292fe16aa8478dd3db489369064479f2804b3",
+      "bytes": 20083,
+      "destination_sha256": "bf6dee4b63c70c43a02988ef155c31e06d1a601cc504625cec7933d5dbfe6379"
+    },
+    {
+      "source": "Docs/UNITY_AUTOMATION.md",
+      "destination": "Docs/Engineering/UNITY_AUTOMATION.md",
+      "source_sha256": "c2819499bf3320094230d052e55024e144a1f52ba7adf109e4bea0a27b2aeadc",
+      "bytes": 7822,
+      "destination_sha256": "54f38b3539ba010a43f194e69117f3d0a9902f1df887ba3535b9d4769296c97b"
+    },
+    {
+      "source": "Docs/UNITY_PROJECT_STANDARDS.md",
+      "destination": "Docs/Engineering/UNITY_PROJECT_STANDARDS.md",
+      "source_sha256": "47c11b99ea622439eb4b38bbaffacc6e89493f36bfd596ff9b4482d4eaac6ba7",
+      "bytes": 2485,
+      "destination_sha256": "47c11b99ea622439eb4b38bbaffacc6e89493f36bfd596ff9b4482d4eaac6ba7"
+    },
+    {
+      "source": "Docs/WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md",
+      "destination": "Docs/Design/Gameplay/WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md",
+      "source_sha256": "01c2a3dba211e07c5374eb9b74b77c81010d3fcdf9d40dcc841653a8f6b96e8c",
+      "bytes": 42529,
+      "destination_sha256": "fd413fc294ca20315b0de6a67b2a624be44ffd7b9a87d6286b1e0a9f31df23dd"
+    },
+    {
+      "source": "Docs/WORLD_CREATOR_ARCHITECTURE_PLAN.md",
+      "destination": "Docs/Design/DeferredGeneration/WORLD_CREATOR_ARCHITECTURE_PLAN.md",
+      "source_sha256": "6ef7a933ebcf676dd1b9da34c5b83f3d87370744abfce43371a451cc255b1250",
+      "bytes": 57658,
+      "destination_sha256": "c9cd8bebd5a4adf385e269abd47b6d6a3114bbcd7148a59f400fe55efec15a3b"
+    },
+    {
+      "source": "Docs/WORLD_CREATOR_CHARTER.md",
+      "destination": "Docs/Design/DeferredGeneration/WORLD_CREATOR_CHARTER.md",
+      "source_sha256": "502cf88013728abfea7edd0d80c6cfc52001294f69c538b54437aaa78a048ecc",
+      "bytes": 19634,
+      "destination_sha256": "f3b0ddcaf143bf4ffbb3ffbe8d2ae9e12321ec4b466f76cdf9ab5f1961ffbefe"
+    },
+    {
+      "source": "Docs/WORLD_GEN_REFERENCE_NOTES.md",
+      "destination": "Docs/Design/DeferredGeneration/WORLD_GEN_REFERENCE_NOTES.md",
+      "source_sha256": "c7b6cdd7fda9e54cd742e827cbb08926ee6f379083f4b35a0b5d46d8c8431c90",
+      "bytes": 8211,
+      "destination_sha256": "f0ecb1f13430583b922a56b87bed11bdd6ebd857a8e1226b7fd53802eaf9fb28"
+    },
+    {
+      "source": "Docs/WORLD_GEN_RESEARCH_SUMMARY.md",
+      "destination": "Docs/Design/DeferredGeneration/WORLD_GEN_RESEARCH_SUMMARY.md",
+      "source_sha256": "7403b94bfd7a6d0743adc3b7b8ba09e48ac64557fce99bca49cb670690ea2150",
+      "bytes": 9997,
+      "destination_sha256": "8574c16314424e20d7dbd8f15c8321482b6b67c539181878175f4da063e8e1ee"
+    },
+    {
+      "source": "Docs/WORLD_SYSTEMS_STANDARD.md",
+      "destination": "Docs/Engineering/WORLD_SYSTEMS_STANDARD.md",
+      "source_sha256": "da9de5abeebdf2ede449ad85fc52017bd35971ccda43c3fbe38f0fb79078813e",
+      "bytes": 9288,
+      "destination_sha256": "da9de5abeebdf2ede449ad85fc52017bd35971ccda43c3fbe38f0fb79078813e"
+    }
+  ],
+  "live_consumer_repairs": [
+    "AGENTS.md",
+    "Docs/3D_CONVERSION_AUDIT_AND_CHECKLIST.md",
+    "Docs/3D_CONVERSION_START_READINESS.md",
+    "Docs/Agents/Babineaux/instructions/RUNTIME_LOAD_POLICY.md",
+    "Docs/Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md",
+    "Docs/Agents/Blender/research/DEATH_VALLEY_TERRAIN_PIPELINE.md",
+    "Docs/Agents/GearBall/README.md",
+    "Docs/Agents/GearBall/instructions/RUNTIME_LOAD_POLICY.md",
+    "Docs/Agents/GearBall/memory/PROJECT_MEMORY.md",
+    "Docs/Agents/Gottspan/README.md",
+    "Docs/Agents/Gottspan/instructions/RUNTIME_LOAD_POLICY.md",
+    "Docs/Agents/Gottspan/memory/PROJECT_MEMORY.md",
+    "Docs/Agents/Gottspan/sops/REPO_AND_UNITY_MANAGEMENT.md",
+    "Docs/Agents/Gottspan/tools/repo-health.sh",
+    "Docs/DECISION_LOG.md",
+    "Docs/DOCS_INDEX.md",
+    "Docs/DeathValley/README.md",
+    "Docs/Design/DeferredGeneration/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md",
+    "Docs/Design/DeferredGeneration/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md",
+    "Docs/Design/DeferredGeneration/WORLD_CREATOR_ARCHITECTURE_PLAN.md",
+    "Docs/Design/DeferredGeneration/WORLD_CREATOR_CHARTER.md",
+    "Docs/Design/DeferredGeneration/WORLD_GEN_REFERENCE_NOTES.md",
+    "Docs/Design/DeferredGeneration/WORLD_GEN_RESEARCH_SUMMARY.md",
+    "Docs/Design/Gameplay/BADWATER_GAMEPLAY_TERRAIN_PLAN.md",
+    "Docs/Design/Gameplay/BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+    "Docs/Design/Gameplay/INVENTORY_AND_ITEM_MANAGEMENT_SYSTEM.md",
+    "Docs/Design/Gameplay/INVENTORY_AND_RADIAL_MENU_PLAN.md",
+    "Docs/Design/Gameplay/IRONSTONE_MINING_AND_INVENTORY_IMPLEMENTATION_PLAN.md",
+    "Docs/Design/Gameplay/IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md",
+    "Docs/Design/Gameplay/MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md",
+    "Docs/Design/Gameplay/RADIAL_MENU_SYSTEM_DESIGN.md",
+    "Docs/Design/Gameplay/ROCK_FORMATION_MESH_FUSION_PLAN.md",
+    "Docs/Design/Gameplay/ROCK_QUALITY_AND_PRODUCTION_PLAN.md",
+    "Docs/Design/Gameplay/TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md",
+    "Docs/Design/Gameplay/WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md",
+    "Docs/Engineering/GAMEPLAY_ARCHITECTURE_BASELINES.md",
+    "Docs/Engineering/PROJECT_STRUCTURE.md",
+    "Docs/Engineering/UNITY_AUTOMATION.md",
+    "Docs/ISOMETRIC_DIRECTION_BRIEF.md",
+    "Docs/LOCAL_WORKSPACE.md",
+    "Docs/Operations/AGENT_AND_UNITY_PRACTICES.md",
+    "Docs/Operations/CODEX_EDITOR_STANDARD.md",
+    "Docs/Operations/LEGACY_2D_BOUNDARY.md",
+    "Docs/Operations/RESEARCH_PLAN.md",
+    "Docs/Operations/Repository/Relocations/hosts-2026-10-06.json",
+    "Docs/PROJECT_BASELINE.md",
+    "Docs/PROJECT_STATUS.md",
+    "Docs/REPOSITORY_ORGANIZATION.md",
+    "Docs/ROADMAP.md",
+    "Docs/Research/UI/RADIAL_MENU_UI_CONTROLLER_RESEARCH.md",
+    "Docs/UNITY_TILEMAP_PROCGEN_REFERENCE.md",
+    "README.md"
+  ],
+  "preserved_versions": [
+    {
+      "source": "Docs/Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md",
+      "destination": "Archive/Transfers/Blender/2026-10-06-original-content/Docs/Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md.snapshot",
+      "sha256": "80b091fce719ef6d314ed186dcb19c4c0725a9e2c9a79807d3581631259f4086",
+      "reason": "Immutable incoming content preserved while live documentation links were updated."
+    },
+    {
+      "source": "Docs/Agents/Blender/research/DEATH_VALLEY_TERRAIN_PIPELINE.md",
+      "destination": "Archive/Transfers/Blender/2026-10-06-original-content/Docs/Agents/Blender/research/DEATH_VALLEY_TERRAIN_PIPELINE.md.snapshot",
+      "sha256": "80a4f78461b568808ca66bb85ec6050ea2da9fd3ca9777a0ab13ac7a187b3ebf",
+      "reason": "Immutable incoming content preserved while live documentation links were updated."
+    }
+  ]
+}

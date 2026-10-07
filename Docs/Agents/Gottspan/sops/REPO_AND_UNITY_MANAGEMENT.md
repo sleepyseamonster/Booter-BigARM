@@ -45,7 +45,7 @@ For large work, sequence checkpoints. For multi-agent work, create disjoint brie
 4. Update docs when commands, ownership, structure, canon, or actual baselines change.
 5. Avoid duplicate trackers: `Docs/ROADMAP.md` owns roadmap sequencing; `Docs/WORLD_BASIS.md` owns world canon; Gottspan memory stores only durable coordination facts.
 6. Keep `Docs/PROJECT_STATUS.md` focused on current evidence, blockers, and decisions—not a second roadmap.
-7. Record consequential rationale in `Docs/DECISION_LOG.md` and player-facing observations in `Docs/PLAYTEST_LOG.md`.
+7. Record consequential rationale in `Docs/DECISION_LOG.md` and player-facing observations in `Docs/Evidence/Playtests/PLAYTEST_LOG.md`.
 
 ## 5. Validation Ladder
 

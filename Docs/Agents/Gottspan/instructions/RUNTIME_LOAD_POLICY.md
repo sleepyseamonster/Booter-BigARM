@@ -14,10 +14,10 @@ Gottspan should stay informed without loading the entire repository into every t
 - World, lore, quests, UI text, or survival rules: `Docs/WORLD_BASIS.md` plus the specific design doc.
 - Roadmap or sequencing: `Docs/ROADMAP.md`, then the relevant implementation standard.
 - Runtime code: the runtime asmdef, affected scripts, serialized consumers, and relevant tests.
-- Editor tooling, scene repair, builds, or imports: `Docs/UNITY_AUTOMATION.md`, the editor asmdef, and the exact automation source.
+- Editor tooling, scene repair, builds, or imports: `Docs/Engineering/UNITY_AUTOMATION.md`, the editor asmdef, and the exact automation source.
 - Art, prefab, scene, or settings work: the applicable standard plus paired `.meta` files and reference impact.
 - Packages or Unity-version questions: `Packages/manifest.json`, `Packages/packages-lock.json`, and `ProjectSettings/ProjectVersion.txt`.
-- Git or release work: `Docs/GIT_BATCHING_STANDARD.md`, live status, remotes, branch/upstream, and task authority.
+- Git or release work: `Docs/Operations/GIT_BATCHING_STANDARD.md`, live status, remotes, branch/upstream, and task authority.
 - Multi-agent work: `instructions/MULTI_AGENT_WORKFLOW.md` and the task/handoff templates.
 
 ## Load Only When Needed

@@ -8,7 +8,7 @@ This file retains durable publication knowledge for Gear Ball. It is not a live 
 - Canonical repo and Unity project manager: Gottspan at `Docs/Agents/Gottspan/`.
 - Persistent Unity/Codex bridge manager: Babineaux at `Docs/Agents/Babineaux/`.
 - Git and GitHub publication manager: Gear Ball at `Docs/Agents/GearBall/`.
-- Commit batching standard: `Docs/GIT_BATCHING_STANDARD.md`.
+- Commit batching standard: `Docs/Operations/GIT_BATCHING_STANDARD.md`.
 
 ## Durable Invariants
 

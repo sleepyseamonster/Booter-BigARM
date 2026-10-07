@@ -5,6 +5,19 @@ import collections
 import hashlib
 import json
 from pathlib import Path
+import sys
+
+
+def repository_root():
+    for parent in Path(__file__).resolve().parents:
+        if (parent / "Packages/manifest.json").is_file() and (parent / "ProjectSettings/ProjectVersion.txt").is_file():
+            sys.path.insert(0, str(parent / "Tools/Repository"))
+            return parent
+    raise ValueError("Repository anchors were not found")
+
+
+from_root = repository_root()
+from repository_paths import Relocations
 
 
 def contained_path(root, relative):
@@ -30,8 +43,9 @@ def main():
     parser.add_argument("manifest", help="JSON manifest path relative to the repository root")
     parser.add_argument("--incoming", action="store_true", help="Also verify the original inventory, including an explicitly retained local holding copy")
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[4]
-    manifest = json.loads(contained_path(root, args.manifest).read_text(encoding="utf-8"))
+    root = from_root
+    relocations = Relocations.from_repository(root)
+    manifest = json.loads(relocations.path(root, args.manifest).read_text(encoding="utf-8"))
     incoming = contained_path(root, manifest.get("retained_original_folder", manifest["incoming_folder"]))
     records = manifest["records"]
     failures = []
@@ -53,16 +67,16 @@ def main():
                 raise ValueError(f"Duplicate source record: {row['source']}")
             source_names.add(row["source"])
             actions[row["action"]] += 1
-            verify(contained_path(root, row["destination"]), row["size"], row["sha256"])
+            verify(relocations.version_path(root, row["destination"], row["sha256"]), row["size"], row["sha256"])
             if args.incoming:
                 verify(contained_path(incoming, row["source"]), row["size"], row["sha256"])
             if row["action"] == "lfs-reference-archive":
-                pointer = contained_path(root, row["destination"]).read_text(encoding="utf-8")
+                pointer = relocations.path(root, row["destination"]).read_text(encoding="utf-8")
                 size = int(pointer.split("size ", 1)[1].strip())
                 oid = pointer.split("oid sha256:", 1)[1].splitlines()[0]
                 if oid != row["lfs_oid"]:
                     raise ValueError("LFS reference and manifest OIDs differ")
-                verify(contained_path(root, row["materialized_source"]), size, oid)
+                verify(relocations.path(root, row["materialized_source"]), size, oid)
         except (KeyError, OSError, ValueError) as exc:
             failures.append(str(exc))
 

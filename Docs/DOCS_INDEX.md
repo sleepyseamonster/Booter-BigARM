@@ -10,17 +10,17 @@ These should be treated as the source of truth unless they are intentionally rev
 
 - [WORLD_BASIS.md](./WORLD_BASIS.md)
   The setting, tone, and core world fantasy.
-- [WORLD_CREATOR_CHARTER.md](./WORLD_CREATOR_CHARTER.md)
+- [WORLD_CREATOR_CHARTER.md](./Design/DeferredGeneration/WORLD_CREATOR_CHARTER.md)
   The approved product promise, quality bar, lore constraints, and non-negotiable principles for the effectively infinite World Creator.
-- [WORLD_SYSTEMS_STANDARD.md](./WORLD_SYSTEMS_STANDARD.md)
+- [WORLD_SYSTEMS_STANDARD.md](./Engineering/WORLD_SYSTEMS_STANDARD.md)
   The procedural generation, chunking, and save/load baseline.
-- [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md)
+- [PROJECT_STRUCTURE.md](./Engineering/PROJECT_STRUCTURE.md)
   The target layout for `Assets/_Project/`.
-- [LEGACY_2D_BOUNDARY.md](./LEGACY_2D_BOUNDARY.md)
+- [LEGACY_2D_BOUNDARY.md](./Operations/LEGACY_2D_BOUNDARY.md)
   The production-versus-legacy asset, assembly, renderer, and Build Settings boundary after the accepted TopDown3D cutover.
-- [UNITY_PROJECT_STANDARDS.md](./UNITY_PROJECT_STANDARDS.md)
+- [UNITY_PROJECT_STANDARDS.md](./Engineering/UNITY_PROJECT_STANDARDS.md)
   Compact naming and organization standards.
-- [AGENT_AND_UNITY_PRACTICES.md](./AGENT_AND_UNITY_PRACTICES.md)
+- [AGENT_AND_UNITY_PRACTICES.md](./Operations/AGENT_AND_UNITY_PRACTICES.md)
   Working norms for Codex and Unity repo practice.
 
 ## Agent Operations
@@ -58,27 +58,27 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
-- [BADWATER_GAMEPLAY_TERRAIN_PLAN.md](./BADWATER_GAMEPLAY_TERRAIN_PLAN.md)
+- [BADWATER_GAMEPLAY_TERRAIN_PLAN.md](./Design/Gameplay/BADWATER_GAMEPLAY_TERRAIN_PLAN.md)
   Audited, profile-first gameplay plan for the four-slice geographic terrain scene and its conditional collision and asset-streaming gates.
-- [MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md](./MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md)
+- [MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md](./Design/Gameplay/MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md)
   Candidate designs and an implementation-ready TopDown3D plan for the player-placed micro dust harvester.
 - [Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md](./Agents/Blender/DEATH_VALLEY_BUILD_PLAN.md)
   The proposed data-to-Blender-to-Unity plan for a bounded Death Valley-inspired landscape slice.
-- [TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md](./TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md)
+- [TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md](./Design/Gameplay/TERRAIN_CLIFF_VALLEY_DEBRIS_PLAN.md)
   Proposed audit, method comparison, controlled visual experiment, and staged plan for cliffs, valleys, and source-linked debris.
-- [IRONSTONE_FORMATION_MINERALIZATION_PLAN.md](./IRONSTONE_FORMATION_MINERALIZATION_PLAN.md)
+- [IRONSTONE_FORMATION_MINERALIZATION_PLAN.md](./Design/Gameplay/IRONSTONE_FORMATION_MINERALIZATION_PLAN.md)
   Proposed versioned redesign from standalone Ironstone nodes to mineralized generated formations, including seam-visual experiments and save gates.
-- [ROCK_QUALITY_AND_PRODUCTION_PLAN.md](./ROCK_QUALITY_AND_PRODUCTION_PLAN.md)
+- [ROCK_QUALITY_AND_PRODUCTION_PLAN.md](./Design/Gameplay/ROCK_QUALITY_AND_PRODUCTION_PLAN.md)
   The active visual-first sequence from one user-shaped Golden Rock through the existing editor baker, catalog, and World Creator placement path.
-- [WORLD_CREATOR_ARCHITECTURE_PLAN.md](./WORLD_CREATOR_ARCHITECTURE_PLAN.md)
+- [WORLD_CREATOR_ARCHITECTURE_PLAN.md](./Design/DeferredGeneration/WORLD_CREATOR_ARCHITECTURE_PLAN.md)
   The approved hybrid causal world-compiler architecture, migration sequence, first vertical slice, and evidence gates subordinate to the World Creator Charter.
-- [WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md](./WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md)
+- [WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md](./Design/Gameplay/WEIGHTY_LOCOMOTION_IMPLEMENTATION_PLAN.md)
   The implementation-ready recovery plan for Booter's grounded locomotion animation, calibrated clip authority, authored starts/stops/pivots, validation, and hands-on proof boundary.
-- [TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md](./TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md)
+- [TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md)
   The approved production landscape objective, canonical generator architecture, implementation batches, proof boundaries, and stop conditions.
-- [TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md](./TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md)
+- [TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md](./Design/DeferredGeneration/TOP_DOWN_3D_LANDSCAPE_BENCHMARK.md)
   The fixed-camera review, scale-band, terrain-material, rock-family, asset, and performance contract for the representative landscape slice.
-- [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md)
+- [TOP_DOWN_3D_FOUNDATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md)
   The accepted perspective top-down 3D foundation scope, architecture, and historical proof requirements; landscape work now follows the dedicated production landscape plan.
 - [3D_CONVERSION_AUDIT_AND_CHECKLIST.md](./3D_CONVERSION_AUDIT_AND_CHECKLIST.md)
   The original conversion audit, ownership contract, migration matrix, work breakdown, decision gates, asset requirements, and risks. Its orthographic/isometric direction is superseded for new work by the active perspective foundation plan.
@@ -86,34 +86,34 @@ These should be treated as the source of truth unless they are intentionally rev
   The live Level A and Level B inventory for closing the protected-spike blockers, accepting CP-06, preparing CP-07, and later authorizing production 3D asset work.
 - [ISOMETRIC_DIRECTION_BRIEF.md](./ISOMETRIC_DIRECTION_BRIEF.md)
   The historical working contract for the completed protected isometric conversion spike; it remains evidence rather than current production direction.
-- [GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md](./GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md)
+- [GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md](./Design/DeferredGeneration/GROUNDED_GEOLOGY_IMPLEMENTATION_PLAN.md)
   Superseded notice for the retired runtime Grounded Geology and separate Integration Workbench proposal.
 
 ## Implementation Standards And Seams
 
 These define current preferred approaches or sequencing.
 
-- [MICRO_DUST_HARVESTER.md](./MICRO_DUST_HARVESTER.md)
+- [MICRO_DUST_HARVESTER.md](./Design/Gameplay/MICRO_DUST_HARVESTER.md)
   The player-stated canister placement, airborne dust collection, fill, pickup, presentation, and procedural persistence contract; tuning and inventory representation remain open.
-- [BIGARM_COMPANION_STANDARD.md](./BIGARM_COMPANION_STANDARD.md)
+- [BIGARM_COMPANION_STANDARD.md](./Design/Gameplay/BIGARM_COMPANION_STANDARD.md)
   The canonical product and implementation rules for BigARM's companion role, physical follow behavior, and future unloaded-world traversal seam.
-- [GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md](./GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md)
+- [GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md](./Design/DeferredGeneration/GROUND_CLUTTER_AND_NATURAL_OBJECT_SYSTEM.md)
   The deterministic TopDown3D natural-object placement, cost-layer, rendering, art, performance, and proof contract.
-- [IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md](./IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md)
+- [IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md](./Design/Gameplay/IRONSTONE_MINING_AND_INVENTORY_SYSTEM.md)
   The implemented deterministic Ironstone node, gathering transaction, inventory, UI, and snapshot boundary.
-- [IMPLEMENTATION_SEQUENCE.md](./IMPLEMENTATION_SEQUENCE.md)
-- [GAMEPLAY_ARCHITECTURE_BASELINES.md](./GAMEPLAY_ARCHITECTURE_BASELINES.md)
-- [INPUT_ARCHITECTURE_STANDARD.md](./INPUT_ARCHITECTURE_STANDARD.md)
-- [MOVEMENT_CAMERA_STANDARD.md](./MOVEMENT_CAMERA_STANDARD.md)
-- [CLIMBING_TRAVERSAL_PLAN.md](./CLIMBING_TRAVERSAL_PLAN.md)
+- [IMPLEMENTATION_SEQUENCE.md](./Operations/IMPLEMENTATION_SEQUENCE.md)
+- [GAMEPLAY_ARCHITECTURE_BASELINES.md](./Engineering/GAMEPLAY_ARCHITECTURE_BASELINES.md)
+- [INPUT_ARCHITECTURE_STANDARD.md](./Engineering/INPUT_ARCHITECTURE_STANDARD.md)
+- [MOVEMENT_CAMERA_STANDARD.md](./Engineering/MOVEMENT_CAMERA_STANDARD.md)
+- [CLIMBING_TRAVERSAL_PLAN.md](./Design/Gameplay/CLIMBING_TRAVERSAL_PLAN.md)
   The proposal for steep incline, scramble, wall, and overhang traversal and animation.
-- [SMART_TRAVERSAL_STANDARD.md](./SMART_TRAVERSAL_STANDARD.md)
+- [SMART_TRAVERSAL_STANDARD.md](./Design/Gameplay/SMART_TRAVERSAL_STANDARD.md)
   The contextual sprint traversal contract, first spin/vault move set, safety boundaries, and extension seam.
-- [SURVIVAL_SYSTEM_STANDARD.md](./SURVIVAL_SYSTEM_STANDARD.md)
+- [SURVIVAL_SYSTEM_STANDARD.md](./Design/Gameplay/SURVIVAL_SYSTEM_STANDARD.md)
   The four-vital player-state, depletion, persistence, procedural-world, and compact HUD contract.
 - [URP_2D_STANDARD.md](./URP_2D_STANDARD.md) — legacy 2D maintenance only.
-- [UNITY_AUTOMATION.md](./UNITY_AUTOMATION.md)
-- [CODEX_EDITOR_STANDARD.md](./CODEX_EDITOR_STANDARD.md)
+- [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md)
+- [CODEX_EDITOR_STANDARD.md](./Operations/CODEX_EDITOR_STANDARD.md)
 
 ## Project Snapshot Docs
 
@@ -127,7 +127,7 @@ These describe current repo state rather than durable design truth.
 - [PROJECT_BASELINE.md](./PROJECT_BASELINE.md)
 - [PROJECT_STATUS.md](./PROJECT_STATUS.md)
 - [ROADMAP.md](./ROADMAP.md)
-- [RESEARCH_PLAN.md](./RESEARCH_PLAN.md)
+- [RESEARCH_PLAN.md](./Operations/RESEARCH_PLAN.md)
 - [ConversionEvidence/LEGACY_BASELINE_2026-08-12.md](./ConversionEvidence/LEGACY_BASELINE_2026-08-12.md)
   The immutable CP-02 scene, renderer, hierarchy, Build Settings, Git-blob, and SHA-256 preservation anchor for the protected 2D path.
 - [ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md](./ConversionEvidence/PROTECTED_SPIKE_REPORT_2026-08-12.md)
@@ -139,7 +139,7 @@ These describe current repo state rather than durable design truth.
 
 - [DECISION_LOG.md](./DECISION_LOG.md)
   Pointers and rationale for consequential design, architecture, and workflow decisions; controlling docs still hold current truth.
-- [PLAYTEST_LOG.md](./PLAYTEST_LOG.md)
+- [PLAYTEST_LOG.md](./Evidence/Playtests/PLAYTEST_LOG.md)
   Repeatable playtest observations tied to a build or commit and a specific design question.
 
 ## Provisional Reference Docs
@@ -148,11 +148,11 @@ These are intentionally non-canonical. They preserve ideas, research, or working
 
 - [Engine foundation research](../Archive/ProprietaryEngine/Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md)
   Research for the user-directed proprietary engine, standard third-person view and open Greater Wasteland rock workbench; proposed language, libraries, Windows-first platform policy and foundation evidence gates. No engine implementation is claimed.
-- [WORLD_GEN_REFERENCE_NOTES.md](./WORLD_GEN_REFERENCE_NOTES.md)
+- [WORLD_GEN_REFERENCE_NOTES.md](./Design/DeferredGeneration/WORLD_GEN_REFERENCE_NOTES.md)
   Distilled world-generation ideas from exploratory discussion.
 - [UNITY_TILEMAP_PROCGEN_REFERENCE.md](./UNITY_TILEMAP_PROCGEN_REFERENCE.md)
   Unity-facing implementation notes from exploratory discussion.
-- [WORLD_GEN_RESEARCH_SUMMARY.md](./WORLD_GEN_RESEARCH_SUMMARY.md)
+- [WORLD_GEN_RESEARCH_SUMMARY.md](./Design/DeferredGeneration/WORLD_GEN_RESEARCH_SUMMARY.md)
   External research findings from Unity docs, developer practice, and similar projects.
 
 ## Working Rule

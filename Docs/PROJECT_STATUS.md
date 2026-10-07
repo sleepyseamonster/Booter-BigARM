@@ -22,7 +22,7 @@ The [Editor playability audit](./Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md
 - The user has revised the presentation direction to a perspective, elevated top-down game with a fully 3D runtime world and assets.
 - Gottspan owns the conversion program under the user's creative and product authority.
 - The perspective foundation was accepted and cut over as the primary production path. `GreaterWasteland.unity` is the only enabled Build Settings scene; former 2D scenes remain disabled, isolated legacy reference content.
-- The prior landscape plan is [TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md](./TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md). The earlier [TOP_DOWN_3D_FOUNDATION_PLAN.md](./TOP_DOWN_3D_FOUNDATION_PLAN.md) remains historical foundation rationale and evidence.
+- The prior landscape plan is [TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md). The earlier [TOP_DOWN_3D_FOUNDATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md) remains historical foundation rationale and evidence.
 - The current evidence packet is [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](./ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md).
 - The former isometric lab and its audit remain historical comparison evidence, not the camera direction for new work.
 - The existing 2D prototype remains a protected comparison baseline, not the production implementation.
@@ -46,7 +46,7 @@ The [Editor playability audit](./Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md
 - Do not install navigation or asset-format packages, source external production assets, alter Build Settings, or retire legacy content merely because the landscape plan exists.
 - Treat the current camera values, generated terrain, greybox visuals, and BigARM states as tuning-ready foundations rather than finished design.
 - Reconcile roadmap wording against implementation before selecting a new large feature; implemented code does not mean a phase's exit criteria are met.
-- Use [PLAYTEST_LOG.md](./PLAYTEST_LOG.md) for the user's hands-on observations before expanding breadth. Codex does not create or run smoke tests unless the user explicitly requests them.
+- Use [PLAYTEST_LOG.md](./Evidence/Playtests/PLAYTEST_LOG.md) for the user's hands-on observations before expanding breadth. Codex does not create or run smoke tests unless the user explicitly requests them.
 - Keep active dirty-file ownership in the current task brief or handoff, not in this durable status page.
 
 ## Next Decisions For The User

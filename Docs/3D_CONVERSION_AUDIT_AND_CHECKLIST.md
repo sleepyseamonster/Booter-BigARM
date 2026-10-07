@@ -1,6 +1,6 @@
 # 2.5D Isometric-Style Conversion Master Plan
 
-> **Historical status:** This plan governed the completed protected isometric spike. Its camera and presentation direction was superseded on 2026-08-13 by [`TOP_DOWN_3D_FOUNDATION_PLAN.md`](./TOP_DOWN_3D_FOUNDATION_PLAN.md). Preserve it as audit and comparison evidence; do not treat its unchecked items as current work authorization.
+> **Historical status:** This plan governed the completed protected isometric spike. Its camera and presentation direction was superseded on 2026-08-13 by [`TOP_DOWN_3D_FOUNDATION_PLAN.md`](./Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md). Preserve it as audit and comparison evidence; do not treat its unchecked items as current work authorization.
 
 This was the canonical audit, execution plan, and gated checklist for moving Booter & BigARM from its top-down 2D pixel-art prototype to a top-down, isometric-style 2.5D game rendered with 3D environments, characters, props, lighting, and effects. `Docs/ROADMAP.md` now holds the active program order.
 
@@ -246,15 +246,15 @@ The following current documents encode 2D, pixel-art, tilemap, or `Rigidbody2D` 
 
 - `AGENTS.md`
 - `Docs/WORLD_BASIS.md`
-- `Docs/AGENT_AND_UNITY_PRACTICES.md`
-- `Docs/GAMEPLAY_ARCHITECTURE_BASELINES.md`
-- `Docs/IMPLEMENTATION_SEQUENCE.md`
-- `Docs/MOVEMENT_CAMERA_STANDARD.md`
+- `Docs/Operations/AGENT_AND_UNITY_PRACTICES.md`
+- `Docs/Engineering/GAMEPLAY_ARCHITECTURE_BASELINES.md`
+- `Docs/Operations/IMPLEMENTATION_SEQUENCE.md`
+- `Docs/Engineering/MOVEMENT_CAMERA_STANDARD.md`
 - `Docs/URP_2D_STANDARD.md`
 - `Docs/ART_ANIMATION_STARTER.md`
 - `Docs/PROJECT_BASELINE.md`
 - `Docs/PROJECT_STATUS.md`
-- `Docs/RESEARCH_PLAN.md`
+- `Docs/Operations/RESEARCH_PLAN.md`
 - 2D/tilemap world-generation reference documents
 - Gottspan and Babineaux project-memory or runtime-routing notes that describe the current implementation
 

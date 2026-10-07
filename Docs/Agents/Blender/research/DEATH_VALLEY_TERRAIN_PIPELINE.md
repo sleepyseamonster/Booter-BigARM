@@ -8,7 +8,7 @@
 
 Use Death Valley and its surrounding ranges as a *geographic and geological base* for a convincing wasteland, then transform it to serve the game. Exact one-to-one reconstruction is not the goal. Start with one playable-scale area and a wider visual horizon. Red Rock Canyon, Valley of Fire, and the Grand Canyon are later regional references or separate provinces, not one initial Blender mesh.
 
-Blender owns the source study, reusable rocks, material prototypes, masks, and review renders. Unity's [World Creator architecture](../../../WORLD_CREATOR_ARCHITECTURE_PLAN.md) owns deterministic absolute-coordinate queries, chunk realization, near/middle/far representations, authored constraints, stable object IDs, and saved runtime changes. A finite Death Valley dataset can inform its rules and supply samples or caches; it does not replace the effectively unbounded world model.
+Blender owns the source study, reusable rocks, material prototypes, masks, and review renders. Unity's [World Creator architecture](../../../Design/DeferredGeneration/WORLD_CREATOR_ARCHITECTURE_PLAN.md) owns deterministic absolute-coordinate queries, chunk realization, near/middle/far representations, authored constraints, stable object IDs, and saved runtime changes. A finite Death Valley dataset can inform its rules and supply samples or caches; it does not replace the effectively unbounded world model.
 
 The existing [badlands study](../studies/HANDOFF_2026-10-01.md) is paused and dirty. Do not overwrite or regenerate it for this work. Its latest unimplemented feedback—fewer triangles, larger planar fracture faces, less clay-like rock—should guide a separate candidate rock kit.
 

@@ -1,6 +1,6 @@
 # Repository organization
 
-The repository root is the active Unity project. Use [AGENTS.md](../AGENTS.md) for authority and [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) for Unity asset placement.
+The repository root is the active Unity project. Use [AGENTS.md](../AGENTS.md) for authority and [PROJECT_STRUCTURE.md](./Engineering/PROJECT_STRUCTURE.md) for Unity asset placement.
 
 | Location | Responsibility |
 | --- | --- |
