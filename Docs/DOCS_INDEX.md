@@ -25,6 +25,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Agent Operations
 
+- [Operations/Repository/PLAN_REVIEW_2026-10-06.md](./Operations/Repository/PLAN_REVIEW_2026-10-06.md)
+  Findings and corrected execution gates for template dependencies, historical assemblies, renderer routing, source tooling, and reconstruction proof.
+
 - [Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md](./Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md)
   Authorized reorganization batches, completed inactive-host segregation, current path discovery, checks, and rollback contracts.
 

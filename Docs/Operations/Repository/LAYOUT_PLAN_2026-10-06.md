@@ -2,6 +2,8 @@
 
 **Status:** selected target layout from the author's 2026-10-06 organizational audit request. Physical migration is pending. This audit changes documentation and connection status, not Unity assets, host folders, packages, or runtime behavior.
 
+**Snapshot boundary:** this is the original audit design. Later authorized ORG-01 execution moved the two inactive hosts; the [execution plan](./REORGANIZATION_EXECUTION_PLAN.md) owns current paths and reviewed gate ordering. The [plan review](./PLAN_REVIEW_2026-10-06.md) adds implementation prerequisites. Do not interpret the original pending-status wording or baseline CSV as current executable instructions.
+
 The repository should read as one active Unity product, with explicit source inputs and one preservation area. Keep the Unity project at the repo root so the registered workspace, Unity Hub path, tooling, and relative build paths remain stable. Greater Wasteland remains the production scene; procedural generation implementation remains deferred.
 
 ## Findings that determine the design
@@ -82,7 +84,7 @@ Classify by actual role and dependencies, not names alone. A `Prototype` art dir
 | `Unreal/` | `Archive/Unreal/` | Preserve its instructions and docs; update current root routing |
 | `Assets/_Project/Legacy2D/` | `Archive/Unity/Legacy2D/Assets/_Project/Legacy2D/` | Separate assemblies, shared URP assets, validators, scenes, and restore dependencies first |
 | Isometric scene/runtime/editor code | `Archive/Unity/Isometric/Assets/_Project/...` | Move their whole dependency slice and associated tests; legacy runtime dependency is explicit |
-| Disabled `TopDown3DPrototype.unity` | `Archive/Unity/GeneratedWorldReference/Assets/_Project/Scenes/TopDown3D/` | Keep the scene/meta and a shared-dependency reconstruction manifest; retain shared runtime classes |
+| Disabled `TopDown3DPrototype.unity` | Conditional future archive under `Archive/Unity/GeneratedWorldReference/` | First replace or preserve its live play-setup template, validators, capture tools, tests and preflight consumers; shared runtime remains active |
 | `GreaterWasteland.unity` | `Assets/_Project/Scenes/Production/GreaterWasteland.unity` | Preserve its GUID; update Build Settings, path constants, tests, and GUID-based discovery consumers |
 | `Docs/Agents/Blender/studies/` | `SourceArt/Blender/Studies/` | Move complete resource directories together; keep dated previous saves beside their source; inspect relative/packed resource paths |
 | Blender CLI scripts/configs | `Tools/Art/Blender/` | Replace fixed ancestor-depth assumptions and old absolute paths with explicit/derived repo roots |
