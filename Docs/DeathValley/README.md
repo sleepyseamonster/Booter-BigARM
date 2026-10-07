@@ -91,6 +91,28 @@ Run the focused offline regressions without Unity or network access:
 
 For a fresh Windows baseline build, use the existing `BooterBigArm.Editor.BadwaterDevelopmentBuild.BuildFromCli` method in a separately copied project with `-buildTarget StandaloneWindows64` and `-buildOutput` pointing to a new directory's `.exe`. Keep the process hidden and never launch batchmode against the live project's open editor. Build output and diagnostic logs stay outside Assets. The current local executable is `Builds/DeathValleyBaseline-20261006/GreaterWastelandDevelopment.exe`; it is ignored and does not transfer with Git.
 
+## Everyday terrain tools
+
+[terrain_tools.py](./terrain_tools.py) provides three offline, read-only commands. It uses the last coverage catalog and requires only Python's standard library. Paths derive from this checkout; after repository moves, refresh the inventory before using its recorded paths. Exit codes are 0 for a completed lookup/plan or healthy check, 1 for health issues, and 2 for invalid inputs. Add `--json` before the command for full records suitable for another tool or a saved review artifact.
+
+```powershell
+# Check current scene, six Blender files, 512 chunk sources, configs and west inputs.
+& ./.venv/Scripts/python.exe Docs/DeathValley/terrain_tools.py doctor
+
+# Find the chunk beneath a projected point (EPSG:26911 easting/northing).
+& ./.venv/Scripts/python.exe Docs/DeathValley/terrain_tools.py locate 520700 4007100
+
+# Translate Unity X/Z using the current verified scene origin; no origin is guessed.
+& ./.venv/Scripts/python.exe Docs/DeathValley/terrain_tools.py locate -1748 -1148 --unity --origin 522448 4008248
+
+# Inspect the west proposal, including every geographic chunk key and retained join.
+& ./.venv/Scripts/python.exe Docs/DeathValley/terrain_tools.py --json plan west
+```
+
+Coordinate lookup returns all sample owners on a shared edge or corner. Study footprints remain separate from imported Unity chunks and proposed batches. The planner also accepts `north` and `east`, rejects overlap, disconnected footprints and grid misalignment, and estimates raw uint16 height payloads at `--spacing 1` or `--spacing 2`. These are inventory keys and preparation estimates; runtime memory and performance require measurements. The health check reports intentional scene edits as changed snapshot bytes until reviewed and refreshed; it does not repair or move files. File hashes do not establish Blender readability or Player acceptance.
+
+These tools operate on authored geographic constraints and inventory identities. They add no runtime world identity, object generation, streaming, unload/reload or persisted deltas; those concerns remain outside this offline tooling scope. Expansion proposals remain pending the baseline review and selection gates above.
+
 ## Sources and validation boundaries
 
 The [existing scene record](../Agents/Blender/studies/DeathValley/UNITY_BADWATER_SCENE.md), [expanded viewer record](../Agents/Blender/studies/DeathValley/EXPANDED_VIEWER.md), [Windows seam repair](../Evidence/Badwater/terrain-seam-repair-2026-10-06.md), [gameplay terrain plan](../BADWATER_GAMEPLAY_TERRAIN_PLAN.md), and [world systems standard](../WORLD_SYSTEMS_STANDARD.md) remain the governing references for their facts and contracts.
