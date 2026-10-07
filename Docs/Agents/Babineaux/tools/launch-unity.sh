@@ -6,7 +6,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 project_root="$(cd "$script_dir/../../../.." && pwd)"
 project_name="$(basename "$project_root")"
 project_version_file="$project_root/ProjectSettings/ProjectVersion.txt"
-primary_scene="$project_root/Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity"
+primary_scene="$project_root/Assets/_Project/Scenes/Production/GreaterWasteland.unity"
 mode="launch"
 
 if [[ "${1:-}" == "--status" ]]; then
