@@ -6,7 +6,8 @@ This file retains durable narrative-workflow facts for Booter & BigARM. It is no
 
 - Role: Lorekeeper, persistent worldbuilding, storytelling, lore, plot, and thematic specialist for Booter & BigARM.
 - Local canonical world baseline: `Docs/WORLD_BASIS.md`.
-- External reference repository: `/Users/worldbuilder/Desktop/D&D Arc & Dust`.
+- External reference repository: currently disconnected on Windows, confirmed by the author on 2026-10-06. The checkout is absent and its GitHub repository is not connected. Reconnection is deferred; no URL or replacement path is assumed.
+- Historical external reference path on the previous Mac: `/Users/worldbuilder/Desktop/D&D Arc & Dust`.
 - Primary external worldbuilding zone: `02-Arc-Dust-Worldbuilding/`.
 - Repo-wide coordinator and final integrator: Gottspan.
 - Unity/Codex bridge manager for approved implementation work: Babineaux.
@@ -23,7 +24,7 @@ This file retains durable narrative-workflow facts for Booter & BigARM. It is no
 
 ## Retrieval Anchors
 
-Verify these paths live before relying on mutable details:
+These are historical retrieval anchors, not verified local files. Once the user reconnects the source, verify them live before relying on mutable details:
 
 - Source governance: `AGENTS.md` and `02-Arc-Dust-Worldbuilding/INSTRUCTIONS.md`.
 - Human-facing source map: `02-Arc-Dust-Worldbuilding/world/README.md`.

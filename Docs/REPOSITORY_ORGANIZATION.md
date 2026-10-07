@@ -20,3 +20,9 @@ For incoming folders, inventory every file, compare SHA-256 hashes against the r
 Matching asset bytes alone do not establish interchangeable Unity assets: `.meta` GUIDs, import settings, references, and independent historical evidence may differ. Preserve referenced duplicates unless their full reference contract can be consolidated safely. Never bulk-deduplicate Unity, legacy, or preserved reference trees by file hash alone.
 
 The [October 6 organization audit](./Evidence/Repository/organization-audit-2026-10-06.md) and [Blender transfer receipt](./Agents/Blender/archives/2026-10-06-transfer/README.md) record the current audit and retained source versions.
+
+## Selected Professional Layout
+
+The [second-pass audit and migration plan](./Operations/Repository/LAYOUT_PLAN_2026-10-06.md) selects a single active Unity core at the repo root, an `Archive/` area for proprietary-engine/Unreal/legacy Unity work, separate `SourceArt/` and source-data manifests, topic-owned documentation, and project-wide tooling. The plan includes a per-file move map and reference gates. It describes the target state; existing paths in the table above remain current until migration is verified.
+
+Lorekeeper's external lore source is currently disconnected, as confirmed by the author. The agent package and local game canon remain available. External reconnection is a later task; no lore repository is mirrored here.

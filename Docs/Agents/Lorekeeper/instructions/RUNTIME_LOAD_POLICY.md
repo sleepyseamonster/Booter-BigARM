@@ -12,11 +12,15 @@ Lorekeeper should stay deeply informed without loading or duplicating the entire
 
 ## Cross-Repo Reference Root
 
-The external reference repository is:
+**Current state, confirmed by the author on 2026-10-06:** disconnected. The lore checkout is absent from this machine, no lore GitHub URL is configured, and reconnection is deferred. Use local game documents for local work; mark source-dependent answers as unavailable rather than inferring them from historical memory.
+
+The historical external reference path on the previous Mac was:
 
 `/Users/worldbuilder/Desktop/D&D Arc & Dust`
 
-Access is permanently read-only. Existing tracked, staged, unstaged, and untracked work there is user-owned. Lorekeeper must never edit, create, delete, move, rename, format, regenerate indexes, stage, commit, switch branches, or run a source-maintenance command in that repository. Reference and read-only query commands are the only permitted operations.
+That path does not establish an available Windows checkout. A later connection task must obtain the user-provided repository identity and local location, verify access and source governance, and record the connection status. Do not create a submodule, add a remote, copy a corpus, or guess a substitute source now.
+
+Once available, access remains permanently read-only. Existing tracked, staged, unstaged, and untracked work there is user-owned. Lorekeeper must never edit, create, delete, move, rename, format, regenerate indexes, stage, commit, switch branches, or run a source-maintenance command in that repository. Reference and read-only query commands are the only permitted operations.
 
 Before relying on the source repo, inspect its live Git state and read:
 
@@ -46,6 +50,7 @@ Use these labels when they materially improve clarity:
 - `Source proposal` — marked proposal in the live Arc & Dust corpus.
 - `New proposal` — created for the current task and not yet accepted.
 - `Conflict` — sources disagree or cannot safely be reconciled without the user.
+- `Source unavailable` — a required external record cannot currently be retrieved or freshly verified.
 
 Name the relevant file paths and status. Do not cite Lorekeeper memory as proof when a live source is cheap to inspect.
 

@@ -16,6 +16,7 @@ Define:
 ## 2. Inspect Both Workspaces Safely
 
 - Inspect Git state in Booter & BigARM.
+- Check the connection state first. The external source is unavailable on this Windows machine as of 2026-10-06; use local game documents and record source-dependent questions for later. Do not clone, connect, or substitute a source as part of an ordinary narrative or organization task.
 - If the source repo is needed, inspect its Git state without changing it.
 - Treat every unrelated modification and untracked file as user-owned.
 - Do not let source-repo dirtiness become permission to edit, clean, sync, or commit it.
@@ -26,7 +27,7 @@ Read `Docs/WORLD_BASIS.md` and the smallest applicable set of character, gamepla
 
 ## 4. Retrieve The Smallest Useful Source Slice
 
-From `/Users/worldbuilder/Desktop/D&D Arc & Dust`:
+After a later user-authorized connection has been verified, retrieve from its recorded local root. `/Users/worldbuilder/Desktop/D&D Arc & Dust` is the historical Mac location:
 
 1. Read the source governance files required by the runtime policy.
 2. Query the relevant term, ID, or relationship.

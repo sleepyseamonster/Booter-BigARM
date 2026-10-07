@@ -1,0 +1,128 @@
+{
+  "areas": [
+    {
+      "area": "Engine",
+      "files": 1276,
+      "bytes": 278446567
+    },
+    {
+      "area": "Unreal",
+      "files": 11,
+      "bytes": 12856
+    },
+    {
+      "area": "Assets/_Project/Legacy2D",
+      "files": 258,
+      "bytes": 6387690
+    },
+    {
+      "area": "Assets/_Project/Scripts/Runtime/Isometric",
+      "files": 22,
+      "bytes": 28761
+    },
+    {
+      "area": "Assets/_Project/Scenes/Isometric",
+      "files": 2,
+      "bytes": 64967
+    },
+    {
+      "area": "Docs/Agents/Blender",
+      "files": 257,
+      "bytes": 900249230
+    },
+    {
+      "area": "Docs/Agents",
+      "files": 289,
+      "bytes": 900384258
+    },
+    {
+      "area": "Docs/Evidence",
+      "files": 256,
+      "bytes": 64844254
+    },
+    {
+      "area": "Docs/ConversionEvidence",
+      "files": 8,
+      "bytes": 2576408
+    },
+    {
+      "area": "Docs/Research",
+      "files": 1,
+      "bytes": 12181
+    },
+    {
+      "area": "Docs/DeathValley",
+      "files": 23,
+      "bytes": 2090059
+    },
+    {
+      "area": "Assets/_Project/Resources",
+      "files": 44,
+      "bytes": 867810
+    }
+  ],
+  "flat_docs_count": 62,
+  "legacy_inbound_yaml_references": [
+    {
+      "consumer": "Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity",
+      "legacy_asset": "Assets/_Project/Legacy2D/Settings/Items/PrototypeItemDatabase.asset"
+    },
+    {
+      "consumer": "Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity",
+      "legacy_asset": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/PlayerInputAdapter.cs"
+    },
+    {
+      "consumer": "Assets/_Project/Scenes/Isometric/IsometricConversionLab.unity",
+      "legacy_asset": "Assets/_Project/Legacy2D/Scripts/Runtime/Prototype/Inventory/PrototypeInventory.cs"
+    },
+    {
+      "consumer": "Assets/_Project/Settings/Rendering/URP/UniversalRP.asset",
+      "legacy_asset": "Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset"
+    },
+    {
+      "consumer": "Assets/_Project/Settings/Rendering/URP/UniversalRenderPipelineGlobalSettings.asset",
+      "legacy_asset": "Assets/_Project/Legacy2D/Settings/Profiles/DefaultVolumeProfile.asset"
+    },
+    {
+      "consumer": "ProjectSettings/EditorBuildSettings.asset",
+      "legacy_asset": "Assets/_Project/Legacy2D/Scenes/PrototypeScene.unity"
+    },
+    {
+      "consumer": "ProjectSettings/EditorBuildSettings.asset",
+      "legacy_asset": "Assets/_Project/Legacy2D/Scenes/SampleScene.unity"
+    }
+  ],
+  "tracked_count": 5927,
+  "date": "2026-10-06",
+  "git_baseline_at_final_inventory": "bd712882279ee5403a6bc04e57603681fa1b60e8",
+  "map_scope": "Every tracked path in the finalized baseline. Proposals only; no physical moves. Native/binary dependencies require Unity dependency enumeration before extraction.",
+  "action_counts": {
+    "keep": 3993,
+    "archive-proposed": 1638,
+    "promote-shared-before-archive": 2,
+    "move-proposed": 286,
+    "split-dependency-first": 3,
+    "rename-proposed": 2,
+    "separate-legacy-bindings-first": 3
+  },
+  "owner_counts": {
+    "Gear Ball": 7,
+    "Babineaux": 3987,
+    "Gottspan": 1726,
+    "Blender": 207
+  },
+  "target_collision_count": 0,
+  "lore_connection": {
+    "status": "disconnected",
+    "authority": "Author statement on 2026-10-06; external checkout absent and GitHub source not connected. No lore URL provided. Current repo remote is Booter-BigARM only.",
+    "reconnection": "deferred"
+  },
+  "target_categories": [
+    "Archive",
+    "SourceArt",
+    "SourceData manifests",
+    "Tools",
+    "Docs topic ownership",
+    "active Unity root"
+  ]
+}

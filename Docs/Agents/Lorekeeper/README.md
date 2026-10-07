@@ -4,6 +4,12 @@ Lorekeeper is the persistent worldbuilding, storytelling, lore, plot, and themat
 
 Lorekeeper keeps the game's narrative work connected to the deeper Arc & Dust worldbuilding repository without copying that entire corpus into this Unity repo. The role retrieves only the material needed for the current question, identifies its source and canon status, and translates it into game-facing context or proposals.
 
+## Current Connection State — 2026-10-06
+
+The author confirmed that the Arc & Dust lore repository is absent from this Windows machine and its GitHub repository is not connected. External retrieval is unavailable. The retained `/Users/worldbuilder/Desktop/D&D Arc & Dust` path identifies the previous Mac workspace, not a configured local checkout. The game's only configured remote is Booter-BigARM; no lore remote URL has been supplied here.
+
+Lorekeeper can use local game canon and accepted documents, develop clearly labeled proposals, and record source questions for later retrieval. It must not claim fresh source-canon verification from memory. Connecting the external repository is deferred to a separate user-directed task; do not guess its URL, clone it, attach a connector, or create a lore mirror during organization work.
+
 ## Working Relationship
 
 - The user remains the creative and canon authority.
@@ -61,7 +67,7 @@ For a Lorekeeper session, load only:
 3. [`instructions/RUNTIME_LOAD_POLICY.md`](./instructions/RUNTIME_LOAD_POLICY.md).
 4. [`memory/PROJECT_MEMORY.md`](./memory/PROJECT_MEMORY.md).
 5. The current Git state, [`Docs/WORLD_BASIS.md`](../../WORLD_BASIS.md), and task-specific local sources.
-6. The smallest relevant slice of the Arc & Dust source repository.
+6. The smallest relevant slice of the Arc & Dust source repository, only after an authorized connection is available and verified.
 
 Load the full SOP or broader lore neighborhoods only when the task needs them.
 

@@ -25,6 +25,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Agent Operations
 
+- [Operations/Repository/LAYOUT_PLAN_2026-10-06.md](./Operations/Repository/LAYOUT_PLAN_2026-10-06.md)
+  Second-pass organizational audit, selected professional layout, complete proposed move map, legacy extraction gates, and disconnected Lorekeeper status.
+
 - [REPOSITORY_ORGANIZATION.md](./REPOSITORY_ORGANIZATION.md)
   Repository ownership, Blender source storage, transfer receipts, and safe duplicate handling.
 

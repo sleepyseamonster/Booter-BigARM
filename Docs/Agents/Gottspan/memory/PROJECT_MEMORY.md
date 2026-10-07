@@ -27,6 +27,12 @@ This file retains durable repo-management facts. It is not a live status dashboa
 
 ## Verified Manager Baseline
 
+### Current Routing — 2026-10-06
+
+The user's current production selection is `GreaterWasteland.unity`; the generated prototype is a disabled reference. Procedural generation implementation is deferred pending the user's redesign. Root `AGENTS.md` and the professional layout plan at `Docs/Operations/Repository/LAYOUT_PLAN_2026-10-06.md` control current routing. The selected future archive separates inactive hosts and historical Unity work after dependency gates; no physical extraction is implied by the plan. The author confirmed that Lorekeeper's external checkout is absent on Windows and its GitHub connection is deferred. Local game canon remains available.
+
+The dated August baseline below is historical evidence, not current scene selection or fresh Windows proof.
+
 Verified 2026-08-13 from live repo files and Unity 6000.4.0f1 validation:
 
 - Unity editor version is `6000.4.0f1`.
