@@ -146,6 +146,9 @@ These describe current repo state rather than durable design truth.
 
 These are intentionally non-canonical. They preserve ideas, research, or working context that may later be refined, replaced, or discarded.
 
+- [Monster Hunter Wilds menu research and Arc and Dust audit](./Research/UI/MONSTER_HUNTER_WILDS_MENU_AUDIT.md)
+  Official reference analysis, current production UI source audit, and proposed menu presentation, navigation, accessibility, and implementation sequence.
+
 - [Engine foundation research](../Archive/ProprietaryEngine/Docs/PROPRIETARY_ENGINE_FOUNDATION_RESEARCH.md)
   Research for the user-directed proprietary engine, standard third-person view and open Greater Wasteland rock workbench; proposed language, libraries, Windows-first platform policy and foundation evidence gates. No engine implementation is claimed.
 - [WORLD_GEN_REFERENCE_NOTES.md](./Design/DeferredGeneration/WORLD_GEN_REFERENCE_NOTES.md)
