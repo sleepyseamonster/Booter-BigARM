@@ -58,6 +58,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [Menu system and GUI implementation plan](./Design/Gameplay/MENU_SYSTEM_IMPLEMENTATION_PLAN.md)
+  Compact Start-button menu, radial setup and settings GUI, input/lifecycle integration, proposed pause/exit policies, implementation batches, and proof gates.
+
 - [BADWATER_GAMEPLAY_TERRAIN_PLAN.md](./Design/Gameplay/BADWATER_GAMEPLAY_TERRAIN_PLAN.md)
   Audited, profile-first gameplay plan for the four-slice geographic terrain scene and its conditional collision and asset-streaming gates.
 - [MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md](./Design/Gameplay/MICRO_DUST_HARVESTER_IMPLEMENTATION_PLAN.md)
