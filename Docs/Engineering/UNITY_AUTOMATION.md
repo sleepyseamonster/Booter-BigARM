@@ -118,6 +118,12 @@ Run the focused EditMode suite:
 - Scene build and repair entry points are mutating tools. Run them only when their output is the requested change and the affected scene/assets are owned by the task.
 - Do not create or run gameplay smoke tests unless the user explicitly requests them; hands-on acceptance is user-owned for this project.
 
+## Radial menu production validation
+
+`BooterBigArm.Editor.TopDown3DRadialProductionValidator.ValidateFromCli` validates Greater Wasteland's authored terrain/routing and installs its runtime UI in memory to inspect radial, canister and EventSystem ownership. It does not save scenes. Use `-batchmode -nographics -quit -executeMethod BooterBigArm.Editor.TopDown3DRadialProductionValidator.ValidateFromCli` with the pinned Windows editor and an unowned project or isolated candidate copy; never launch against a checkout already open in Unity.
+
+Focused non-smoke EditMode filters are `BooterBigArm.Tests.TopDown3DRadialTests`, `BooterBigArm.Tests.TopDown3DInventoryUiTests`, and `BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests`. The [integration receipt](../Evidence/UI/RADIAL_MENU_IMPLEMENTATION_2026-10-06.md) records controls, scope and proof boundaries.
+
 ## Notes
 
 - Keep build output outside `Assets/`.

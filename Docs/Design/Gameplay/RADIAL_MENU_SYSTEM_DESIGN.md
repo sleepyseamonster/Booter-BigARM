@@ -4,6 +4,8 @@ Design specification for Greater Wasteland, 2026-10-06. This specification turns
 
 The [polish audit](./RADIAL_MENU_POLISH_AUDIT.md) refines the ring's selection treatment, compact labels, single feedback location, focus continuity and protection of customization drafts. Those refinements supersede earlier preview presentation where they differ, while retaining this system's command and world contracts.
 
+The [first runtime integration receipt](../../Evidence/UI/RADIAL_MENU_IMPLEMENTATION_2026-10-06.md) records the implemented subset, corrected constant-width annular geometry, production controls and validation. Expansion features below remain design targets where the receipt identifies them as deferred.
+
 ## Player experience
 
 Hold left bumper, aim the right stick toward a menu entry, and release the bumper to execute it. Keyboard and mouse use hold Q, pointer selection, and Q release. Returning to the center clears selection. East/Escape cancels. Opening immediately shows the available directions; it does not wait for a timed Hold interaction.

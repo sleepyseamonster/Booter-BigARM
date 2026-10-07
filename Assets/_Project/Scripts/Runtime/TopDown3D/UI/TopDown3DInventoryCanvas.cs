@@ -34,6 +34,12 @@ namespace BooterBigArm.TopDown3D
         public RectTransform SafeAreaRoot => safeAreaRoot;
         public string ControlHints => controls != null ? controls.text : string.Empty;
 
+        public void ConfigureRadialCustomization(Action customize)
+        {
+            var button = EnsureButton("Customize Radial", panel, "RADIAL SETUP", customize);
+            Place(button.GetComponent<RectTransform>(), new Vector2(700f, cargoSlotViews.Count > 0 ? -634f : -470f), new Vector2(190f, 42f));
+        }
+
         public void Initialize(
             int capacity,
             Action<int> slotActivated,
@@ -65,8 +71,21 @@ namespace BooterBigArm.TopDown3D
                 cargoSlotViews[i].gameObject.SetActive(i < cargoCapacity);
                 if (i < cargoCapacity) cargoSlotViews[i].Initialize(i, cargoActivated, cargoSelected);
             }
-            cargoSummary = EnsureText("Legger Load Summary", panel); cargoSummary.fontSize = 16; cargoSummary.alignment = TextAnchor.UpperLeft; Place(cargoSummary.rectTransform, new Vector2(472f, -392f), new Vector2(416f, 58f));
-            autoPackButton = EnsureButton("Auto-Pack", panel, "AUTO-PACK", autoPack); Place(autoPackButton.GetComponent<RectTransform>(), new Vector2(472f, -470f), new Vector2(190f, 42f));
+            panel.sizeDelta = new Vector2(920f, 740f);
+            var details = panel.Find("Item Details") as RectTransform;
+            Place(details, new Vector2(472f, -430f), new Vector2(416f, 190f));
+            detailName.fontSize = 22;
+            Place(detailName.rectTransform, new Vector2(16f, -12f), new Vector2(384f, 36f));
+            Place(detailDescription.rectTransform, new Vector2(16f, -54f), new Vector2(384f, 120f));
+            detailDescription.verticalOverflow = VerticalWrapMode.Truncate;
+            cargoSummary = EnsureText("Legger Load Summary", panel); cargoSummary.fontSize = 16; cargoSummary.alignment = TextAnchor.UpperLeft; Place(cargoSummary.rectTransform, new Vector2(472f, -382f), new Vector2(416f, 40f));
+            autoPackButton = EnsureButton("Auto-Pack", panel, "AUTO-PACK", autoPack); Place(autoPackButton.GetComponent<RectTransform>(), new Vector2(472f, -634f), new Vector2(190f, 42f));
+        }
+
+        public void SetCargoAccess(bool accessible)
+        {
+            foreach (var slot in cargoSlotViews) slot.GetComponent<Button>().interactable = accessible;
+            if (autoPackButton != null) autoPackButton.interactable = accessible;
         }
 
         public void SetCargoSummary(string text) { if (cargoSummary != null) cargoSummary.text = text ?? string.Empty; }

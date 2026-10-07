@@ -69,6 +69,9 @@ namespace BooterBigArm.TopDown3D
         private float stuckTimer;
         private float currentSpeed;
         private bool callRequested;
+        private bool callOverActive;
+        private bool callOverArrived;
+        private Vector3 callOverArrivalTarget;
         private bool automaticCatchUp;
         private bool startupGroundingComplete;
         private int routeIndex;
@@ -100,6 +103,14 @@ namespace BooterBigArm.TopDown3D
             callRequested = true;
         }
 
+        public void RequestCallOver()
+        {
+            callOverActive = true;
+            callOverArrived = false;
+            callRequested = true;
+            InvalidateRoute();
+        }
+
         public static float CalculateDesiredSpeed(
             float distanceToDestination,
             float stopRadius,
@@ -124,6 +135,8 @@ namespace BooterBigArm.TopDown3D
         private void Awake()
         {
             body = GetComponent<Rigidbody>();
+            if (cargo == null) cargo = GetComponent<TopDown3DBigArmCargo>();
+            if (companionState == null) companionState = GetComponent<TopDown3DBigArmState>();
             bodyCollider = GetComponent<BoxCollider>();
             body.isKinematic = true;
             body.interpolation = RigidbodyInterpolation.Interpolate;
@@ -165,6 +178,12 @@ namespace BooterBigArm.TopDown3D
             var distanceToDesired = PlanarDistance(body.position, desired);
             if (distanceToDesired <= idleRadius)
             {
+                if (callOverActive && cargo != null && cargo.IsInAccessRange(followTarget.position))
+                {
+                    callRequested = false;
+                    callOverArrived = true;
+                    callOverArrivalTarget = followTarget.position;
+                }
                 currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, deceleration * Time.fixedDeltaTime);
                 State = FollowState.Idle;
                 InvalidateRoute();
@@ -299,7 +318,7 @@ namespace BooterBigArm.TopDown3D
             if (distanceToBooter <= catchUpReleaseDistance)
             {
                 automaticCatchUp = false;
-                callRequested = false;
+                if (!callOverActive) callRequested = false;
             }
         }
 
@@ -373,6 +392,19 @@ namespace BooterBigArm.TopDown3D
 
         private Vector3 GetDesiredFollowPosition()
         {
+            if (callOverArrived && PlanarDistance(followTarget.position, callOverArrivalTarget) > 2f)
+            { callOverActive = false; callOverArrived = false; }
+            if (callOverActive)
+            {
+                // Stay within reach while Booter inspects cargo; leave no overlapping bodies.
+                var offset = Vector3.ProjectOnPlane(body.position - followTarget.position, Vector3.up);
+                var access = cargo != null ? cargo.AccessRange : 3.2f;
+                // Reserve reach for the idle band and vertical separation on legal slopes.
+                var stoppingDistance = Mathf.Clamp(access * 0.4f, 1.1f, 1.35f);
+                var approach = followTarget.position + (offset.sqrMagnitude > 0.01f
+                    ? offset.normalized : -followTarget.forward) * stoppingDistance;
+                return TryProjectToGround(approach, out var projected) ? projected : approach;
+            }
             var desired = GetTrailPositionBehindTarget(followDistance);
             return TryProjectToGround(desired, out var grounded) ? grounded : desired;
         }

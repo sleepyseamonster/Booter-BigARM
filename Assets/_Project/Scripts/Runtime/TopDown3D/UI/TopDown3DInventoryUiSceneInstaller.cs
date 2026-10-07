@@ -46,6 +46,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             existing.Configure(input, inventory, action, canvas, eventSystem);
+            TopDown3DRadialSceneInstaller.TryInstall(scene, input, inventory, action, existing, canvas);
             return existing;
         }
 

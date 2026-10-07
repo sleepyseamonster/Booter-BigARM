@@ -96,6 +96,9 @@ namespace BooterBigArm.Tests
         public void InventoryUi_IsSeparateNavigableAndMovesStacksThroughStateCommands()
         {
             var previousScene = SceneManager.GetActiveScene();
+            // The isolated batch runner supplies an Untitled scene; additive editor scenes require a saved base.
+            if (Application.isBatchMode && string.IsNullOrEmpty(previousScene.path))
+                previousScene = EditorSceneManager.OpenScene("Assets/_Project/Scenes/TopDown3D/GameplaySetup.unity", OpenSceneMode.Single);
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
             SceneManager.SetActiveScene(scene);
             var actions = AssetDatabase.LoadAssetAtPath<InputActionAsset>(InputPath);

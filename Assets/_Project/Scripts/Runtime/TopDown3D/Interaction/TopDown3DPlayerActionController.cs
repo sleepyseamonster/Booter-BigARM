@@ -37,6 +37,25 @@ namespace BooterBigArm.TopDown3D
         public event Action<bool> GatheringChanged;
         public event Action PlacementChanged;
         public event Action<TopDown3DBigArmCargo> CargoAccessRequested;
+        public void ReportFeedback(string message) => FeedbackRequested?.Invoke(message);
+
+        public bool CanSelectCanister => harvesterState != null && harvesterState.Settings != null
+            && inventory != null && !IsGathering && HasCanister();
+
+        private bool HasCanister()
+        {
+            foreach (var slot in inventory.State.Slots)
+                if (slot.ItemId == TopDown3DHarvesterSettings.CanisterItemId && slot.Quantity > 0) return true;
+            return false;
+        }
+
+        public bool SelectCanister()
+        {
+            if (!CanSelectCanister || input == null || input.Mode != TopDown3DInputMode.Gameplay) return false;
+            // Selection begins a preview only. Repeated radial selection must not confirm placement.
+            if (placementPreview == null) HandleDeployCanisterRequested();
+            return placementPreview != null;
+        }
 
         public void Configure(
             TopDown3DInputRouter inputRouter,
@@ -182,7 +201,7 @@ namespace BooterBigArm.TopDown3D
         private void HandleDeployCanisterRequested()
         {
             if (input == null || input.Mode != TopDown3DInputMode.Gameplay
-                || inventory == null || harvesterState == null || proceduralWorld == null
+                || inventory == null || harvesterState == null || (proceduralWorld == null && !harvesterState.IsAuthored)
                 || IsGathering) return;
             if (placementPreview == null)
             {
@@ -305,7 +324,8 @@ namespace BooterBigArm.TopDown3D
         private bool TryFindPlacement(out Vector3 position)
         {
             position = default;
-            if (motor == null || proceduralWorld == null || harvesterState?.Settings == null)
+            if (motor == null || harvesterState?.Settings == null
+                || (proceduralWorld == null && !harvesterState.IsAuthored))
                 return false;
             var facing = Vector3.ProjectOnPlane(motor.FacingDirection, Vector3.up).normalized;
             if (facing.sqrMagnitude < 0.01f) return false;
@@ -316,7 +336,7 @@ namespace BooterBigArm.TopDown3D
             {
                 if (hit.collider.GetComponent<TopDown3DGroundSurface>() == null
                     || Vector3.Angle(hit.normal, Vector3.up) > harvesterState.Settings.MaximumSlopeDegrees
-                    || !proceduralWorld.TryGetLoadedChunkAt(hit.point, out _)) continue;
+                    || (proceduralWorld != null && !proceduralWorld.TryGetLoadedChunkAt(hit.point, out _))) continue;
                 var overlaps = Physics.OverlapSphere(hit.point + Vector3.up * 0.25f,
                     0.43f, ~0, QueryTriggerInteraction.Collide);
                 var clear = true;

@@ -89,6 +89,7 @@ namespace BooterBigArm.TopDown3D
 
         [SerializeField] private int version = CurrentVersion;
         [SerializeField] private int worldSeed;
+        [SerializeField] private string authoredWorldId;
         [SerializeField] private double simulationSeconds;
         [SerializeField] private long nextSequence;
         [SerializeField] private List<TopDown3DPlacedHarvesterRecord> records =
@@ -96,13 +97,14 @@ namespace BooterBigArm.TopDown3D
 
         public int Version => version;
         public int WorldSeed => worldSeed;
+        public string AuthoredWorldId => authoredWorldId;
         public double SimulationSeconds => simulationSeconds;
         public long NextSequence => nextSequence;
         public IReadOnlyList<TopDown3DPlacedHarvesterRecord> Records => records;
 
         internal static TopDown3DPlacedHarvesterSnapshot Create(
             int seed, double seconds, long sequence,
-            IEnumerable<TopDown3DPlacedHarvesterRecord> source)
+            IEnumerable<TopDown3DPlacedHarvesterRecord> source, string authoredId = null)
         {
             var ordered = new List<TopDown3DPlacedHarvesterRecord>();
             foreach (var record in source) ordered.Add(record.Clone());
@@ -110,6 +112,7 @@ namespace BooterBigArm.TopDown3D
             return new TopDown3DPlacedHarvesterSnapshot
             {
                 worldSeed = seed,
+                authoredWorldId = authoredId,
                 simulationSeconds = seconds,
                 nextSequence = sequence,
                 records = ordered
@@ -125,6 +128,7 @@ namespace BooterBigArm.TopDown3D
 
         [SerializeField] private TopDown3DProceduralWorld world;
         [SerializeField] private TopDown3DHarvesterSettings settings;
+        private string authoredWorldId;
 
         private readonly Dictionary<string, TopDown3DPlacedHarvesterRecord> records =
             new Dictionary<string, TopDown3DPlacedHarvesterRecord>(StringComparer.Ordinal);
@@ -137,6 +141,15 @@ namespace BooterBigArm.TopDown3D
 
         public TopDown3DHarvesterSettings Settings => settings;
         public int DeployedCount => records.Count;
+        public bool IsAuthored => world == null && !string.IsNullOrEmpty(authoredWorldId);
+
+        public void ConfigureAuthored(string worldId, TopDown3DHarvesterSettings authoredSettings)
+        {
+            if (string.IsNullOrWhiteSpace(worldId)) throw new ArgumentException("An authored world ID is required.");
+            world = null;
+            authoredWorldId = worldId;
+            settings = authoredSettings;
+        }
 
         public void Configure(TopDown3DProceduralWorld proceduralWorld,
             TopDown3DHarvesterSettings authoredSettings)
@@ -153,7 +166,7 @@ namespace BooterBigArm.TopDown3D
 
         private void Update()
         {
-            if (settings == null || world == null) return;
+            if (settings == null || (world == null && !IsAuthored)) return;
             simulationSeconds += Mathf.Max(0f, Time.deltaTime);
             viewRefreshElapsed += Time.deltaTime;
             if (viewRefreshElapsed < 0.2f) return;
@@ -165,6 +178,7 @@ namespace BooterBigArm.TopDown3D
             out string stableId)
         {
             stableId = null;
+            if (IsAuthored) return TryPlaceAuthored(localPosition, inventory, out stableId);
             if (settings == null || world == null || inventory == null
                 || records.Count >= settings.MaximumDeployed
                 || nextSequence == long.MaxValue
@@ -229,17 +243,18 @@ namespace BooterBigArm.TopDown3D
 
         public TopDown3DPlacedHarvesterSnapshot CaptureSnapshot()
         {
-            if (settings == null || world == null) throw new InvalidOperationException("Harvester state is not configured.");
+            if (settings == null || (world == null && !IsAuthored)) throw new InvalidOperationException("Harvester state is not configured.");
             foreach (var record in records.Values) record.Advance(simulationSeconds, settings);
-            return TopDown3DPlacedHarvesterSnapshot.Create(world.WorldSeed,
-                simulationSeconds, nextSequence, records.Values);
+            return TopDown3DPlacedHarvesterSnapshot.Create(IsAuthored ? 0 : world.WorldSeed,
+                simulationSeconds, nextSequence, records.Values, IsAuthored ? authoredWorldId : null);
         }
 
         public bool CanApplySnapshot(TopDown3DPlacedHarvesterSnapshot snapshot)
         {
-            if (settings == null || world == null || snapshot == null
+            if (settings == null || (world == null && !IsAuthored) || snapshot == null
                 || snapshot.Version != TopDown3DPlacedHarvesterSnapshot.CurrentVersion
-                || snapshot.WorldSeed != world.WorldSeed
+                || (IsAuthored ? snapshot.WorldSeed != 0 || snapshot.AuthoredWorldId != authoredWorldId
+                    : snapshot.WorldSeed != world.WorldSeed || !string.IsNullOrEmpty(snapshot.AuthoredWorldId))
                 || double.IsNaN(snapshot.SimulationSeconds)
                 || double.IsInfinity(snapshot.SimulationSeconds)
                 || snapshot.SimulationSeconds < 0d || snapshot.NextSequence < 0
@@ -253,7 +268,8 @@ namespace BooterBigArm.TopDown3D
                     || record.PlacementSequence >= snapshot.NextSequence
                     || !ids.Add(record.StableId) || !sequences.Add(record.PlacementSequence))
                     return false;
-                if (world.ProductionRuntime != null)
+                if (IsAuthored && record.StableId != AuthoredPlacementId(record.PlacementSequence)) return false;
+                if (world != null && world.ProductionRuntime != null)
                 {
                     try
                     {
@@ -288,6 +304,23 @@ namespace BooterBigArm.TopDown3D
 
         private void RefreshViews()
         {
+            if (IsAuthored)
+            {
+                if (!Application.isPlaying) return; // EditMode state tests and validation must not build runtime effects.
+                foreach (var pair in records)
+                {
+                    if (!views.TryGetValue(pair.Key, out var view) || view == null)
+                    {
+                        var p = pair.Value.Position;
+                        view = TopDown3DHarvesterView.Create(pair.Key, this, transform,
+                            new Vector3((float)p.HorizontalA, (float)p.Vertical, (float)p.HorizontalB));
+                        views[pair.Key] = view;
+                    }
+                    pair.Value.Advance(simulationSeconds, settings);
+                    view.Refresh(pair.Value.Dust, settings.Capacity);
+                }
+                return;
+            }
             if (world == null || settings == null) return;
             staleViews.Clear();
             foreach (var pair in views)
@@ -323,6 +356,30 @@ namespace BooterBigArm.TopDown3D
                 view.gameObject.SetActive(false);
                 Destroy(view.gameObject);
             }
+        }
+
+        private string AuthoredPlacementId(long sequence) => Hash128.Compute(
+            authoredWorldId + ":micro-dust-canister:" + sequence.ToString(System.Globalization.CultureInfo.InvariantCulture)).ToString();
+
+        private bool TryPlaceAuthored(Vector3 position, TopDown3DInventoryState inventory, out string id)
+        {
+            id = null;
+            if (settings == null || inventory == null || records.Count >= settings.MaximumDeployed
+                || nextSequence == long.MaxValue || !float.IsFinite(position.x)
+                || !float.IsFinite(position.y) || !float.IsFinite(position.z)) return false;
+            var sequence = nextSequence;
+            var stable = AuthoredPlacementId(sequence);
+            var record = TopDown3DPlacedHarvesterRecord.Create(stable, sequence,
+                new AbsoluteWorldPosition(position.x, position.y, position.z), 0, 0d, simulationSeconds);
+            var result = inventory.TryRemove(TopDown3DHarvesterSettings.CanisterItemId, 1, () =>
+            {
+                if (records.ContainsKey(stable) || records.Count >= settings.MaximumDeployed) return false;
+                records.Add(stable, record); nextSequence++; return true;
+            });
+            if (!result.Succeeded) return false;
+            id = stable;
+            RefreshViews();
+            return true;
         }
 
         private void ClearViews()

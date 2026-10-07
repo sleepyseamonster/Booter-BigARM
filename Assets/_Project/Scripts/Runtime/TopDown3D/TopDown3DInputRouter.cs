@@ -8,7 +8,8 @@ namespace BooterBigArm.TopDown3D
     {
         Disabled,
         Gameplay,
-        Inventory
+        Inventory,
+        Radial
     }
 
     public enum TopDown3DPromptDevice
@@ -38,6 +39,7 @@ namespace BooterBigArm.TopDown3D
         private InputActionMap gameplayMap;
         private InputActionMap systemMap;
         private InputActionMap uiMap;
+        private InputActionMap radialMap;
         private InputAction moveAction;
         private InputAction lookAction;
         private InputAction cameraLookAheadAction;
@@ -49,10 +51,13 @@ namespace BooterBigArm.TopDown3D
         private InputAction toggleInventoryAction;
         private InputAction uiCancelAction;
         private bool actionsBound;
+        private bool awaitLookNeutral;
+        private int ignoreMouseLookUntilFrame = -1;
 
         public Vector2 MoveValue { get; private set; }
         public Vector2 CameraLookValue { get; private set; }
-        public Vector2 MouseLookDelta => Mode == TopDown3DInputMode.Gameplay && Application.isFocused && Mouse.current != null
+        public Vector2 MouseLookDelta => Mode == TopDown3DInputMode.Gameplay && Application.isFocused
+            && Time.frameCount > ignoreMouseLookUntilFrame && Mouse.current != null
             ? Mouse.current.delta.ReadValue()
             : Vector2.zero;
         public bool CameraLookAheadHeld { get; private set; }
@@ -130,6 +135,7 @@ namespace BooterBigArm.TopDown3D
             gameplayMap.actionTriggered += HandleActionTriggered;
             systemMap.actionTriggered += HandleActionTriggered;
             uiMap.actionTriggered += HandleActionTriggered;
+            if (radialMap != null) radialMap.actionTriggered += HandleActionTriggered;
             InputSystem.onDeviceChange += HandleDeviceChange;
             actionsBound = true;
             SetPromptDevice(FindAvailableGamepad() != null
@@ -205,12 +211,14 @@ namespace BooterBigArm.TopDown3D
             }
 
             InputSystem.onDeviceChange -= HandleDeviceChange;
+            if (radialMap != null) radialMap.actionTriggered -= HandleActionTriggered;
 
             SetMode(TopDown3DInputMode.Disabled);
             actionsBound = false;
             gameplayMap = null;
             systemMap = null;
             uiMap = null;
+            radialMap = null;
             moveAction = null;
             lookAction = null;
             cameraLookAheadAction = null;
@@ -238,6 +246,7 @@ namespace BooterBigArm.TopDown3D
             gameplayMap = inputActions.FindActionMap(gameplayMapName, false);
             systemMap = inputActions.FindActionMap(systemMapName, false);
             uiMap = inputActions.FindActionMap(uiMapName, false);
+            radialMap = inputActions.FindActionMap("Radial", false);
             moveAction = gameplayMap?.FindAction(moveActionName, false);
             lookAction = gameplayMap?.FindAction(lookActionName, false);
             cameraLookAheadAction = gameplayMap?.FindAction(cameraLookAheadActionName, false);
@@ -294,6 +303,13 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
+            if (awaitLookNeutral)
+            {
+                if (context.ReadValue<Vector2>().sqrMagnitude < 0.0484f) awaitLookNeutral = false;
+                CameraLookValue = Vector2.zero;
+                return;
+            }
+
             CameraLookValue = context.canceled
                 ? Vector2.zero
                 : Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
@@ -329,7 +345,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleToggleInventory(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed)
+            if (context.phase == InputActionPhase.Performed && Mode != TopDown3DInputMode.Radial)
             {
                 InventoryToggleRequested?.Invoke();
             }
@@ -352,6 +368,8 @@ namespace BooterBigArm.TopDown3D
         {
             SetMode(TopDown3DInputMode.Inventory);
         }
+
+        public void EnterRadialMode() => SetMode(TopDown3DInputMode.Radial);
 
         public string GetBindingDisplayName(string actionPath, string fallback)
         {
@@ -376,9 +394,20 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
+            // System remains enabled across modal transitions so a held opener is not canceled.
+            var previousMode = Mode;
+            Mode = mode;
+            if (mode == TopDown3DInputMode.Gameplay && previousMode != TopDown3DInputMode.Gameplay)
+            {
+                ignoreMouseLookUntilFrame = Time.frameCount + 1;
+                awaitLookNeutral = previousMode == TopDown3DInputMode.Radial
+                    && Gamepad.current != null && Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.0484f;
+            }
             gameplayMap?.Disable();
             uiMap?.Disable();
-            systemMap?.Disable();
+            radialMap?.Disable();
+            if (mode == TopDown3DInputMode.Disabled) systemMap?.Disable();
+            else systemMap?.Enable();
             ClearGameplayIntent();
             switch (mode)
             {
@@ -389,6 +418,9 @@ namespace BooterBigArm.TopDown3D
                 case TopDown3DInputMode.Inventory:
                     uiMap?.Enable();
                     systemMap?.Enable();
+                    break;
+                case TopDown3DInputMode.Radial:
+                    radialMap?.Enable();
                     break;
             }
 
@@ -432,6 +464,9 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleActionTriggered(InputAction.CallbackContext context)
         {
+            // Enabling a pointer action samples its cached position; that is not a device switch.
+            if (context.action.actionMap == radialMap && context.action.name == "Point"
+                && context.control?.device is Mouse mouse && mouse.delta.ReadValue().sqrMagnitude < 0.1f) return;
             if (context.phase == InputActionPhase.Started
                 || context.phase == InputActionPhase.Performed)
             {
