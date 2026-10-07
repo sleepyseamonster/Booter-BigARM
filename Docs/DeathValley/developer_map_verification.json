@@ -1,24 +1,24 @@
 {
-  "verified_utc": "2026-10-07T01:33:44.117340+00:00",
+  "verified_utc": "2026-10-07T01:52:56.652803+00:00",
   "unity_version": "6000.4.0f1",
   "execution": "Hidden isolated project; no live Unity or foreground activation",
   "editmode_tests": {
     "result": "Passed",
-    "total": "14",
-    "passed": "14",
+    "total": "16",
+    "passed": "16",
     "failed": "0",
-    "duration": "0.8245876"
+    "duration": "0.8152532"
   },
   "python_regressions": {
     "passed": 24,
     "failed": 0,
-    "includes": "Second read-only extraction from original Blender source reproduced all grid and image hashes",
-    "proof_status": "Retained source-recovery proof; Python and source data unchanged in this UI batch"
+    "includes": "Saved Blender source recovery resolves the dated source path through verified repository relocation records; evidence bytes remain unchanged"
   },
   "source_snapshot_overwrite_refusal": "passed_without_changed_bytes",
   "original_blender_preserved": {
     "path": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExploreExpanded.blend",
-    "sha256": "15f320cf2d3fa5b44161004d6db8a4ad4caefda39b32ec2f55c0e9025dc27697"
+    "sha256": "15f320cf2d3fa5b44161004d6db8a4ad4caefda39b32ec2f55c0e9025dc27697",
+    "current_path": "SourceArt/Blender/Studies/DeathValley/DeathValleyExploreExpanded.blend"
   },
   "recovered_source": {
     "proof": "Docs/DeathValley/visualizer_data/blender_recovered/recovery_proof.json",
@@ -28,21 +28,22 @@
     "terrain_meshes": 76,
     "packed_images": 4
   },
-  "preview_render": "North-up regional and playable-area plan views inspected; only blue built-chunk grid is drawn",
+  "preview_render": "Oblique regional, oblique playable-area and overhead playable-area previews inspected; only blue built-chunk grid is drawn",
   "png_color_encoding": "Linear preview output converted to display color for exported PNGs",
   "compiled_source_sha256": {
     "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapData.cs": "1dd1335c41501cbe2d358696c440684ac403e9ba28b4fa5535432d102bd18863",
-    "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapWindow.cs": "e9b4e18c7749ba857974a885ab137ab217db2035b03489ed395320296400260e",
+    "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapWindow.cs": "921ba6c1ab5935f706a9ac89308533b130106c0ea93f392807e029e92a814e59",
     "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapPreview.shader": "bf38ee3c35ee24be108c990dc555ca3fbd0c410445c08fa9ff4a730bb5c9da3b",
-    "Assets/_Project/Tests/Editor/DeathValleyMapTests.cs": "915fc1a49974bb10b8b59ca073f52eb49247006862d581466dfca001a2f184a9"
+    "Assets/_Project/Tests/Editor/DeathValleyMapTests.cs": "b6e089aa1112948069faf62759aa6124575845438c1f1e50b3712f59cde2e81e"
   },
   "diagnostics": {
-    "Logs/DeathValleyVisualizer/death-valley-map-render.log": "d9cb4489e18eec84b3a66852f2458fcf26f8d72ef750700b0503f57c93619dfb",
-    "Logs/DeathValleyVisualizer/death-valley-map-tests.log": "a610eff6782d2122659740c5c0b87da5351f9115db548cb89c7f74696a7e0f7c",
-    "Logs/DeathValleyVisualizer/death-valley-map-tests.xml": "254864d9bf32a6fc1f2bbb0ba163e8d940cb0aee1391944d89a73c0e68488c04",
-    "Logs/DeathValleyVisualizer/plan-unity-chunks.png": "2008fd97ce27368d9504459630d890d167ac62b1e215417492796cc2cf7fbfc6",
-    "Logs/DeathValleyVisualizer/plan-unity-overview.png": "b352dd12c4f0be7ea4b246242922139e56ca8ff893134a7654c8cc81e3a3c446"
+    "Logs/DeathValleyVisualizer/death-valley-map-render.log": "a48c967ad35d590d8a817c11af36a9a34a5f09701343f728711f0b90174ef6a2",
+    "Logs/DeathValleyVisualizer/death-valley-map-tests.log": "16972a69b184a4d055421d04262a13077dfd1df8e31b0facd552ad6a6421cd55",
+    "Logs/DeathValleyVisualizer/death-valley-map-tests.xml": "4ff4e24ec1c7977b610d8f6f801fe1c7b856f35d37d045a6db8e5899981def64",
+    "Logs/DeathValleyVisualizer/orbit-unity-chunks-top.png": "2008fd97ce27368d9504459630d890d167ac62b1e215417492796cc2cf7fbfc6",
+    "Logs/DeathValleyVisualizer/orbit-unity-chunks.png": "51e99fcab7fea1a19cafcb558118f43200b05da0deb6f4ba9b09ef5a05b1b08c",
+    "Logs/DeathValleyVisualizer/orbit-unity-overview.png": "47a09dd073f78e578b3838a0b9989107692f161ebeec80e0633793e9cb1187b8"
   },
-  "limits": "Isolated compilation, 14 focused EditMode tests and plan-view preview renders. Live pointer interaction is user-owned review. Source imagery, geographic records, gameplay terrain and Build Settings were not changed by this UI batch.",
-  "ui": "Full-width aerial map, Entire Map and Playable Area buttons, drag panning, cursor-anchored scroll zoom; no sidebar, source controls, study or candidate overlays"
+  "limits": "Isolated compilation, 16 focused EditMode tests, 24 offline source/tool regressions, and inspected 3D preview renders. Live pointer interaction is user-owned review. Imagery, geographic records, gameplay terrain and Build Settings remain unchanged.",
+  "ui": "Full-width 3D aerial map, Entire Map and Playable Area buttons; left/middle drag pan, right drag orbit, cursor-anchored scroll zoom; no information sidebar or other overlays"
 }

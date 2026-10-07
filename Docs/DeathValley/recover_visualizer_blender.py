@@ -6,6 +6,7 @@ image sizes before publishing the developer-map descriptor. No Unity terrain edi
 import argparse
 import hashlib
 import io
+import importlib.util
 import json
 from datetime import datetime,timezone
 from pathlib import Path
@@ -16,6 +17,14 @@ from saved_blend_reader import SavedBlend
 
 HERE=Path(__file__).resolve().parent
 ROOT=next(p for p in HERE.parents if (p/'ProjectSettings/ProjectVersion.txt').exists())
+
+
+def resolve_saved_source(recorded_path,expected_hash=None):
+    module_path=ROOT/'Tools/Repository/repository_paths.py'
+    spec=importlib.util.spec_from_file_location('death_valley_repository_paths',module_path)
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    relocations=module.Relocations.from_repository(ROOT)
+    return relocations.version_path(ROOT,recorded_path,expected_hash) if expected_hash else relocations.path(ROOT,recorded_path)
 
 
 def recover(source,catalog):
@@ -85,7 +94,7 @@ def recover(source,catalog):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--blend',type=Path,default=ROOT/'Docs/Agents/Blender/studies/DeathValley/DeathValleyExploreExpanded.blend')
+    parser.add_argument('--blend',type=Path,default=resolve_saved_source('Docs/Agents/Blender/studies/DeathValley/DeathValleyExploreExpanded.blend'))
     args=parser.parse_args()
     folder=HERE/'visualizer_data';output=folder/'blender_recovered';descriptor=folder/'developer_map.json';backup=folder/'usgs_overview_snapshot.json'
     if output.exists() or backup.exists():raise ValueError('Recovered source directory or prior snapshot receipt exists; preserve it before a new version')

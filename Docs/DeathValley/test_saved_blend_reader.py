@@ -8,7 +8,7 @@ from pathlib import Path
 
 from PIL import Image
 from saved_blend_reader import SavedBlend,decompress
-from recover_visualizer_blender import recover
+from recover_visualizer_blender import recover,resolve_saved_source
 
 HERE=Path(__file__).resolve().parent
 
@@ -17,7 +17,7 @@ class SavedBlendTests(unittest.TestCase):
     def test_recovery_reproduces_grid_and_exact_images_from_the_saved_source(self):
         folder=HERE/'visualizer_data/blender_recovered';root=next(p for p in HERE.parents if (p/'ProjectSettings/ProjectVersion.txt').exists())
         proof=json.loads((folder/'recovery_proof.json').read_text(encoding='utf-8'))
-        source=(root/proof['source_blend']).read_bytes()
+        source=resolve_saved_source(proof['source_blend'],proof['source_blend_sha256']).read_bytes()
         self.assertEqual(hashlib.sha256(source).hexdigest(),proof['source_blend_sha256'])
         grid,textures,new_proof=recover(source,json.loads((HERE/'coverage_catalog.json').read_text(encoding='utf-8')))
         self.assertEqual(hashlib.sha256(grid.tobytes()).hexdigest(),proof['grid_sha256'])

@@ -93,9 +93,9 @@ For a fresh Windows baseline build, use the existing `BooterBigArm.Editor.Badwat
 
 ## Unity developer map
 
-Open **Booter & BigARM → Death Valley → Developer Map** in Unity. The window is a full-width, north-up aerial map. Drag with any mouse button to pan; scroll to zoom around the cursor. **Entire Map** frames the regional landscape; **Playable Area** frames Greater Wasteland. The blue grid marks its 256 built terrain chunks. Everything outside that grid shows surrounding landscape awaiting terrain expansion. No inventory sidebar, study boundaries, proposed regions, source controls or segment-selection UI is shown.
+Open **Booter & BigARM → Death Valley → Developer Map** in Unity. The window is a full-width, simplified 3D aerial map. Left or middle drag pans; right drag orbits; scroll zooms around the cursor. **Entire Map** frames the regional landscape; **Playable Area** frames Greater Wasteland. The blue grid marks its 256 built terrain chunks. Everything outside that grid shows surrounding landscape awaiting terrain expansion. No inventory sidebar, study boundaries, proposed regions, source controls or segment-selection UI is shown.
 
-The map always displays the recovered Blender aerial imagery and uses a fixed top-down orthographic camera with no height exaggeration. The [active source descriptor](./visualizer_data/developer_map.json) keeps the saved terrain heights and all four packed image layers. The window creates only temporary preview objects and does not change gameplay terrain or Build Settings. Reopen the window after refreshing source data or the coverage catalog.
+The map always displays the recovered Blender aerial imagery and starts in an oblique, orbitable orthographic view with no height exaggeration. The [active source descriptor](./visualizer_data/developer_map.json) keeps the saved terrain heights and all four packed image layers. The window creates only temporary preview objects and does not change gameplay terrain or Build Settings. Reopen the window after refreshing source data or the coverage catalog.
 
 The [recovery script](./recover_visualizer_blender.py) reads the compressed Blender file without executing or modifying it. Its bounded [binary reader](./saved_blend_reader.py) resolves Blender's saved DNA schema, ID-scoped data pointers, mesh positions, saved bounds/origin and packed image links. The [recovery proof](./visualizer_data/blender_recovered/recovery_proof.json) records the source hash, 76 terrain meshes, 1,077,281 complete height samples, layer ownership and exact image hashes. Recovery refuses existing output or backup receipts. The earlier dynamic-service grid and its [original descriptor](./visualizer_data/usgs_overview_snapshot.json) remain preserved separately.
 
@@ -103,7 +103,7 @@ Refresh the inventory with `audit_coverage.py` after file moves or accepted terr
 
 The tool uses existing projected inventory identities and authored bounds. Runtime generation, stable generated objects, streaming/unload/reload and persisted deltas are not applicable to this editor-only preview; it does not implement those systems. Greater Wasteland assets and enabled Build Settings remain unchanged.
 
-[Verification receipt](./developer_map_verification.json) records focused Unity tests and rendered plan-view previews. The navigation tests verify metre-scaled panning, cursor-anchored zoom and framing in portrait and landscape layouts. Source recovery proof is retained from the prior validated batch. Live pointer interaction remains user-owned review.
+[Verification receipt](./developer_map_verification.json) records focused Unity tests and rendered plan-view previews. The navigation tests verify camera-relative panning, cursor-anchored zoom, and complete framing at top-down and oblique angles. Panning and zooming keep the orbit target on its horizontal reference plane. Source recovery proof is retained from the prior validated batch. Live pointer interaction remains user-owned review.
 
 ## Everyday terrain tools
 
@@ -129,7 +129,7 @@ These tools operate on authored geographic constraints and inventory identities.
 
 ## Sources and validation boundaries
 
-The [existing scene record](../Agents/Blender/studies/DeathValley/UNITY_BADWATER_SCENE.md), [expanded viewer record](../Agents/Blender/studies/DeathValley/EXPANDED_VIEWER.md), [Windows seam repair](../Evidence/Badwater/terrain-seam-repair-2026-10-06.md), [gameplay terrain plan](../Design/Gameplay/BADWATER_GAMEPLAY_TERRAIN_PLAN.md), and [world systems standard](../Engineering/WORLD_SYSTEMS_STANDARD.md) remain the governing references for their facts and contracts.
+The [existing scene record](../../SourceArt/Blender/Studies/DeathValley/UNITY_BADWATER_SCENE.md), [expanded viewer record](../../SourceArt/Blender/Studies/DeathValley/EXPANDED_VIEWER.md), [Windows seam repair](../Evidence/Badwater/terrain-seam-repair-2026-10-06.md), [gameplay terrain plan](../Design/Gameplay/BADWATER_GAMEPLAY_TERRAIN_PLAN.md), and [world systems standard](../Engineering/WORLD_SYSTEMS_STANDARD.md) remain the governing references for their facts and contracts.
 
 USGS provides the [TNM product API](https://www.usgs.gov/faqs/there-api-accessing-national-map-data) and [3DEP elevation products](https://www.usgs.gov/3d-elevation-program/about-3dep-products-services). Retain each product's metadata, datum, source resolution and acquisition hashes. Geographic imagery is color/reference evidence, not an accepted close-range game material; imagery provenance and shipping terms are separate from elevation rights.
 

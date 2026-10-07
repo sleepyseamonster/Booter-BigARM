@@ -131,7 +131,7 @@ namespace BooterBigArm.Tests
         }
         [Test] public void PlanPanningUsesMetresPerPixelWithoutChangingAltitude()
         {
-            Vector3 moved=DeathValleyMapWindow.PanTarget(new Vector3(5,7,9),new Vector2(100,-50),10,1000);
+            Vector3 moved=DeathValleyMapWindow.PanTarget(new Vector3(5,7,9),new Vector2(100,-50),10,1000,Quaternion.Euler(90,0,0));
             Assert.That(moved.x,Is.EqualTo(3).Within(.0001f));
             Assert.That(moved.z,Is.EqualTo(8).Within(.0001f));
             Assert.That(moved.y,Is.EqualTo(7));
@@ -140,7 +140,7 @@ namespace BooterBigArm.Tests
         {
             Vector3 centre=new Vector3(12,3,18);Vector2 cursor=new Vector2(200,-100);
             Vector3 before=centre+new Vector3(cursor.x,0,-cursor.y)*.02f;
-            Vector3 moved=DeathValleyMapWindow.ZoomTarget(centre,cursor,10,5,1000);
+            Vector3 moved=DeathValleyMapWindow.ZoomTarget(centre,cursor,10,5,1000,Quaternion.Euler(90,0,0));
             Vector3 after=moved+new Vector3(cursor.x,0,-cursor.y)*.01f;
             Assert.That(Vector3.Distance(before,after),Is.LessThan(.0001f));
         }
@@ -148,9 +148,38 @@ namespace BooterBigArm.Tests
         {
             foreach(float aspect in new[]{.4f,1f,2f})
             {
-                double[] b=data.Manifest.bounds_m;float size=DeathValleyMapWindow.PlanViewSize(b,aspect);
+                double[] b=data.Manifest.bounds_m;float size=DeathValleyMapWindow.MapViewSize(b,aspect,Quaternion.Euler(90,0,0),4000);
                 Assert.That(size*2,Is.GreaterThan((b[3]-b[1])/1000));
                 Assert.That(size*2*aspect,Is.GreaterThan((b[2]-b[0])/1000));
+            }
+        }
+        [Test] public void ObliquePanningAndZoomFollowTheRotatedCameraPlane()
+        {
+            Quaternion rotation=Quaternion.Euler(55,-25,0);Vector3 target=new Vector3(10,2,20);
+            Vector2 cursor=new Vector2(150,-70);
+            Vector3 moved=DeathValleyMapWindow.PanTarget(target,new Vector2(100,0),10,1000,rotation);
+            Assert.That(Vector3.Distance(moved-target,-(rotation*Vector3.right)*2),Is.LessThan(.0001f));
+            Ray ray=new Ray(target+rotation*new Vector3(cursor.x*.02f,-cursor.y*.02f,-1000),rotation*Vector3.forward);
+            Assert.That(new Plane(Vector3.up,target).Raycast(ray,out float distance),Is.True);
+            Vector3 anchored=ray.GetPoint(distance);
+            Vector3 zoomed=DeathValleyMapWindow.ZoomTarget(target,cursor,10,5,1000,rotation);
+            Vector3 projected=Quaternion.Inverse(rotation)*(anchored-zoomed);
+            Assert.That(projected.x,Is.EqualTo(cursor.x*.01f).Within(.001f));
+            Assert.That(projected.y,Is.EqualTo(-cursor.y*.01f).Within(.001f));
+            Assert.That(zoomed.y,Is.EqualTo(target.y));
+            Assert.That(DeathValleyMapWindow.PanTarget(target,new Vector2(0,100),10,1000,rotation).y,Is.EqualTo(target.y));
+        }
+        [Test] public void ObliqueFramingContainsTheTerrainBoundingBox()
+        {
+            Quaternion rotation=Quaternion.Euler(55,45,0);
+            double[] b=data.Manifest.bounds_m;
+            float size=DeathValleyMapWindow.MapViewSize(b,.4f,rotation,4000);
+            Vector3 half=new Vector3((float)(b[2]-b[0]),4000,(float)(b[3]-b[1]))/2000;
+            foreach(int x in new[]{-1,1})foreach(int y in new[]{-1,1})foreach(int z in new[]{-1,1})
+            {
+                Vector3 projected=Quaternion.Inverse(rotation)*Vector3.Scale(half,new Vector3(x,y,z));
+                Assert.That(Mathf.Abs(projected.x),Is.LessThan(size*.4f));
+                Assert.That(Mathf.Abs(projected.y),Is.LessThan(size));
             }
         }
         [Test] public void ChangedEncodingSceneIdentityOrOriginCannotInheritCoordinateProof()

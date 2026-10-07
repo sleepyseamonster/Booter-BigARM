@@ -19,9 +19,11 @@ namespace BooterBigArm.Editor
         private Mesh relief, chunkLines;
         private string error;
         [SerializeField] private float viewSize=145;
+        [SerializeField] private float pitch=55, yaw=-25;
         [SerializeField] private Vector3 target;
         private double[] pendingFit;
         private bool dragging;
+        private int dragButton;
         private const float ReliefScale=1;
 
         [MenuItem("Booter & BigARM/Death Valley/Developer Map")]
@@ -120,17 +122,26 @@ namespace BooterBigArm.Editor
             pendingFit=bounds;
             Repaint();
         }
-        public static float PlanViewSize(double[] bounds,float aspect)
+        public static float MapViewSize(double[] bounds,float aspect,Quaternion rotation,float heightSpan)
         {
-            return Mathf.Max(.1f,(float)Math.Max(bounds[3]-bounds[1],(bounds[2]-bounds[0])/Mathf.Max(.1f,aspect))/1000*.53f);
+            Vector3 half=new Vector3((float)(bounds[2]-bounds[0]),heightSpan,(float)(bounds[3]-bounds[1]))/2000;
+            Vector3 right=rotation*Vector3.right,up=rotation*Vector3.up;
+            float width=Mathf.Abs(right.x)*half.x+Mathf.Abs(right.y)*half.y+Mathf.Abs(right.z)*half.z;
+            float height=Mathf.Abs(up.x)*half.x+Mathf.Abs(up.y)*half.y+Mathf.Abs(up.z)*half.z;
+            return Mathf.Max(.1f,Mathf.Max(height,width/Mathf.Max(.1f,aspect))*1.06f);
         }
-        public static Vector3 PanTarget(Vector3 current,Vector2 drag,float size,float viewportHeight)
+        public static Vector3 PanTarget(Vector3 current,Vector2 drag,float size,float viewportHeight,Quaternion rotation)
         {
-            return current+new Vector3(-drag.x,0,drag.y)*(size*2/Mathf.Max(1,viewportHeight));
+            return current+GroundScreenOffset(new Vector2(-drag.x,drag.y),rotation)*(size*2/Mathf.Max(1,viewportHeight));
         }
-        public static Vector3 ZoomTarget(Vector3 current,Vector2 cursorFromCentre,float oldSize,float newSize,float viewportHeight)
+        public static Vector3 ZoomTarget(Vector3 current,Vector2 cursorFromCentre,float oldSize,float newSize,float viewportHeight,Quaternion rotation)
         {
-            return current+new Vector3(cursorFromCentre.x,0,-cursorFromCentre.y)*((oldSize-newSize)*2/Mathf.Max(1,viewportHeight));
+            return current+GroundScreenOffset(new Vector2(cursorFromCentre.x,-cursorFromCentre.y),rotation)*((oldSize-newSize)*2/Mathf.Max(1,viewportHeight));
+        }
+        private static Vector3 GroundScreenOffset(Vector2 screen,Quaternion rotation)
+        {
+            Vector3 up=rotation*Vector3.up;up.y=0;
+            return rotation*Vector3.right*screen.x+up*(screen.y/Mathf.Max(.001f,up.sqrMagnitude));
         }
         private void OnGUI()
         {
@@ -160,12 +171,12 @@ namespace BooterBigArm.Editor
             {
                 double east=(pendingFit[0]+pendingFit[2])/2,north=(pendingFit[1]+pendingFit[3])/2;
                 target=data.Project(east,north,data.SurfaceHeight(east,north),ReliefScale);
-                viewSize=PlanViewSize(pendingFit,aspect);pendingFit=null;
+                viewSize=MapViewSize(pendingFit,aspect,Quaternion.Euler(pitch,yaw,0),data.Heights.Max()-data.Heights.Min());pendingFit=null;
             }
             var camera=preview.camera;camera.orthographic=true;camera.orthographicSize=viewSize;
             camera.aspect=aspect;camera.nearClipPlane=.01f;camera.farClipPlane=3000;
             camera.allowHDR=false;camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.075f,.09f,.11f);
-            camera.transform.rotation=Quaternion.Euler(90,0,0);
+            camera.transform.rotation=Quaternion.Euler(pitch,yaw,0);
             camera.transform.position=target-camera.transform.forward*Mathf.Max(50,viewSize*4);
         }
         private Texture Render(Rect rect)
@@ -187,11 +198,15 @@ namespace BooterBigArm.Editor
             int control=GUIUtility.GetControlID(FocusType.Passive);
             if(e.type==EventType.MouseDown && rect.Contains(e.mousePosition) && e.button<=2)
             {
-                dragging=true;GUIUtility.hotControl=control;e.Use();
+                dragging=true;dragButton=e.button;GUIUtility.hotControl=control;e.Use();
             }
             if(e.type==EventType.MouseDrag && dragging && GUIUtility.hotControl==control)
             {
-                target=PanTarget(target,e.delta,viewSize,rect.height);
+                if(dragButton==1)
+                {
+                    yaw+=e.delta.x*.4f;pitch=Mathf.Clamp(pitch+e.delta.y*.4f,10,90);
+                }
+                else target=PanTarget(target,e.delta,viewSize,rect.height,Quaternion.Euler(pitch,yaw,0));
                 e.Use();Repaint();
             }
             if(e.type==EventType.MouseUp && dragging)
@@ -201,7 +216,7 @@ namespace BooterBigArm.Editor
             if(e.type==EventType.ScrollWheel && rect.Contains(e.mousePosition))
             {
                 float newSize=Mathf.Clamp(viewSize*Mathf.Exp(e.delta.y*.08f),.1f,500);
-                target=ZoomTarget(target,e.mousePosition-rect.center,viewSize,newSize,rect.height);
+                target=ZoomTarget(target,e.mousePosition-rect.center,viewSize,newSize,rect.height,Quaternion.Euler(pitch,yaw,0));
                 viewSize=newSize;e.Use();Repaint();
             }
         }
@@ -219,6 +234,8 @@ namespace BooterBigArm.Editor
                 window.ExportPreview(Path.Combine(output,"unity-overview.png"));
                 window.Fit(window.data.Catalog.regions.Single(r=>r.id=="badwater").bounds_m);
                 window.ExportPreview(Path.Combine(output,"unity-chunks.png"));
+                window.pitch=90;window.yaw=0;
+                window.Fit(window.data.Catalog.regions.Single(r=>r.id=="badwater").bounds_m);
                 window.ExportPreview(Path.Combine(output,"unity-chunks-top.png"));
                 Debug.Log("Death Valley developer map preview export passed.");
             }
