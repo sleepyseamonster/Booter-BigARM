@@ -10,9 +10,9 @@ namespace BooterBigArm.Editor
     /// <summary>Validates production routing without depending on imported historical implementations.</summary>
     public static class ConversionBaselineValidator
     {
-        public const string ProductionScenePath = "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity";
+        public const string ProductionScenePath = "Assets/_Project/Scenes/Production/GreaterWasteland.unity";
         public const string PipelineAssetPath = "Assets/_Project/Settings/Rendering/URP/UniversalRP.asset";
-        public const string ConversionRendererPath = "Assets/_Project/Settings/Rendering/URP/IsometricRenderer.asset";
+        public const string ConversionRendererPath = "Assets/_Project/Settings/Rendering/URP/Renderer3D.asset";
 
         [MenuItem("Booter & BigARM/Validation/Validate Conversion Baseline")]
         public static void ValidateFromMenu()

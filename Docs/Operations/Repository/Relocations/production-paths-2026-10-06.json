@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-06",
+  "batch": "ORG-07A/B",
+  "baseline": "96e583250aeba6e26551e1870b08d2371086de9e",
+  "records": [
+    {
+      "source": "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity",
+      "destination": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+      "sha256": "fb6b7b90f6a0b77c581b5521c9c07dfe25b2a40eb020e194fb10d2c57a5771fc"
+    },
+    {
+      "source": "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity.meta",
+      "destination": "Assets/_Project/Scenes/Production/GreaterWasteland.unity.meta",
+      "sha256": "d086a1b9f9bfc8ce410682c3a3ed68749bd7f1083336e2954d803aa16d8f963a"
+    },
+    {
+      "source": "Assets/_Project/Settings/Rendering/URP/IsometricRenderer.asset",
+      "destination": "Assets/_Project/Settings/Rendering/URP/Renderer3D.asset",
+      "sha256": "5631a1877831185cbf061a94996d7207b8018c60b1947dbdc734b8e552c17c17"
+    },
+    {
+      "source": "Assets/_Project/Settings/Rendering/URP/IsometricRenderer.asset.meta",
+      "destination": "Assets/_Project/Settings/Rendering/URP/Renderer3D.asset.meta",
+      "sha256": "7c8310eb2d25ed6804159695f739a827fd8c3ef7bdcfbd8a3842a88549f78011"
+    }
+  ],
+  "path_consumers": [
+    "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterDevelopmentBuild.cs",
+    "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterPlayableSceneBuilder.cs",
+    "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterTerrainSeamRepair.cs",
+    "Assets/_Project/Scripts/Editor/TopDown3D/ProductionGameplayTemplateBuilder.cs",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DGameHudSceneInstaller.cs",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DRockContactOcclusionBuilder.cs",
+    "Assets/_Project/Scripts/Editor/Validation/BadwaterTerrainReadbackAudit.cs",
+    "Assets/_Project/Scripts/Editor/Validation/ConversionBaselineValidator.cs",
+    "Assets/_Project/Scripts/Editor/Validation/RepositoryPlayabilityAudit.cs",
+    "Assets/_Project/Tests/Editor/ScenePlayabilityAuditTests.cs",
+    "Assets/_Project/Tests/Editor/TopDown3DRockWorkbenchTests.cs",
+    "ProjectSettings/EditorBuildSettings.asset"
+  ],
+  "scope": "Scene and active renderer path relocation only; serialized scene contents and all GUIDs unchanged."
+}

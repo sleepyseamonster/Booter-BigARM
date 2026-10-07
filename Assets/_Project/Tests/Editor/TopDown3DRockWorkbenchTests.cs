@@ -15,7 +15,7 @@ namespace BooterBigArm.Tests
         private const string WorkbenchMaterialPath =
             "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat";
         private const string ProductionRendererPath =
-            "Assets/_Project/Settings/Rendering/URP/IsometricRenderer.asset";
+            "Assets/_Project/Settings/Rendering/URP/Renderer3D.asset";
         private const string LayeredTextureRoot =
             "Assets/_Project/Art/Environment/Rocks/Workbench/Layered/";
         private const string SideAlbedoPath = LayeredTextureRoot + "RockWorkbenchSide_Albedo.png";

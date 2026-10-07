@@ -9,7 +9,7 @@ namespace BooterBigArm.Editor
     [InitializeOnLoad]
     public static class TopDown3DGameHudSceneInstaller
     {
-        public const string ScenePath = "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity";
+        public const string ScenePath = "Assets/_Project/Scenes/Production/GreaterWasteland.unity";
 
         static TopDown3DGameHudSceneInstaller()
         {

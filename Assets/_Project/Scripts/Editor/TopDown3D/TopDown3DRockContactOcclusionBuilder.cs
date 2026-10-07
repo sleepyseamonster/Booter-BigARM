@@ -9,7 +9,7 @@ namespace BooterBigArm.Editor
     internal static class TopDown3DRockContactOcclusionBuilder
     {
         private const string RendererPath =
-            "Assets/_Project/Settings/Rendering/URP/IsometricRenderer.asset";
+            "Assets/_Project/Settings/Rendering/URP/Renderer3D.asset";
 
         [MenuItem("Tools/Booter & BigARM/Rendering/Configure Rock Contact Occlusion")]
         public static void ConfigureRockContactOcclusion()

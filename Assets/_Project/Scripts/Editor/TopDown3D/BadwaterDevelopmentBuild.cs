@@ -9,7 +9,7 @@ namespace BooterBigArm.Editor
     /// <summary>Builds only the bounded Badwater study for Player profiling.</summary>
     public static class BadwaterDevelopmentBuild
     {
-        private const string ScenePath = "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity";
+        private const string ScenePath = "Assets/_Project/Scenes/Production/GreaterWasteland.unity";
         private const string OutputArgument = "-buildOutput";
 
         public static void BuildFromCli()

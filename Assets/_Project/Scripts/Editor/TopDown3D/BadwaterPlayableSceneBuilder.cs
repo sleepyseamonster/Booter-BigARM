@@ -16,8 +16,8 @@ namespace BooterBigArm.Editor
     /// </summary>
     public static class BadwaterPlayableSceneBuilder
     {
-        private const string TerrainScenePath = "Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity";
-        private const string PrototypeScenePath = "Assets/_Project/Scenes/TopDown3D/TopDown3DPrototype.unity";
+        private const string TerrainScenePath = "Assets/_Project/Scenes/Production/GreaterWasteland.unity";
+        private const string GameplayTemplatePath = ProductionGameplayTemplateBuilder.TemplateScenePath;
         private const float SpawnX = 520600f - 522448f;
         private const float SpawnZ = 4006750f - 4008248f;
 
@@ -36,8 +36,8 @@ namespace BooterBigArm.Editor
 
         public static void BuildFromCli()
         {
-            if (!File.Exists(TerrainScenePath) || !File.Exists(PrototypeScenePath))
-                throw new FileNotFoundException("Badwater or production scene is missing.");
+            if (!File.Exists(TerrainScenePath) || !File.Exists(GameplayTemplatePath))
+                throw new FileNotFoundException("Badwater terrain or production gameplay template is missing.");
             Scene destination = EditorSceneManager.OpenScene(TerrainScenePath, OpenSceneMode.Single);
             if (FindRoot(destination, "Booter Perspective 3D Controller") != null)
                 throw new InvalidOperationException("Badwater scene is already playable; refusing duplicate transfer.");
@@ -55,7 +55,8 @@ namespace BooterBigArm.Editor
                 if (root.GetComponentsInChildren<Terrain>(true).Length == 256 && root.GetComponent<BadwaterTerrainConnectivity>() == null)
                     root.AddComponent<BadwaterTerrainConnectivity>();
 
-            Scene source = EditorSceneManager.OpenScene(PrototypeScenePath, OpenSceneMode.Additive);
+            Scene source = EditorSceneManager.OpenScene(GameplayTemplatePath, OpenSceneMode.Additive);
+            ProductionGameplayTemplateBuilder.ValidateScene(source);
             var moved = new Dictionary<string, GameObject>(StringComparer.Ordinal);
             foreach (string name in PlayRoots)
             {
@@ -92,7 +93,9 @@ namespace BooterBigArm.Editor
             rig.Configure(player.transform, input);
             follower.Configure(player.transform, rig.transform, input);
             player.GetComponent<TopDown3DPlayerActionController>()?.ConfigureHarvester(null, null);
-            cameraObject.AddComponent<BadwaterCameraRange>().Configure(8000f);
+            var cameraRange = cameraObject.GetComponent<BadwaterCameraRange>();
+            if (cameraRange == null) cameraRange = cameraObject.AddComponent<BadwaterCameraRange>();
+            cameraRange.Configure(8000f);
 
             // The imported scene had a temporary review sun. Its production
             // twilight light, fog and post-processing now own the presentation.

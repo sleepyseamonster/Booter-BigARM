@@ -62,14 +62,14 @@ namespace BooterBigArm.Tests
         [UnityTest]
         public IEnumerator DeathValley_StartsAndAcceptsMovementCameraAndInventory()
         {
-            var routine = Exercise("Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity", false);
+            var routine = Exercise("Assets/_Project/Scenes/Production/GreaterWasteland.unity", false);
             while (routine.MoveNext()) yield return routine.Current;
         }
 
         [UnityTest]
         public IEnumerator DeathValley_RuntimeOnlyGroundMarker_ConfirmsWiringDiagnosis()
         {
-            var routine = Exercise("Assets/_Project/Scenes/TopDown3D/GreaterWasteland.unity", false, true);
+            var routine = Exercise("Assets/_Project/Scenes/Production/GreaterWasteland.unity", false, true);
             while (routine.MoveNext()) yield return routine.Current;
         }
 
