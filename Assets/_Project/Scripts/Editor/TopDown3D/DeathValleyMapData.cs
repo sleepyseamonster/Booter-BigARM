@@ -28,12 +28,22 @@ namespace BooterBigArm.Editor
 
     [Serializable] public sealed class DeathValleyMapScene { public string guid; }
 
+    [Serializable] public sealed class DeathValleyMapImage
+    {
+        public string id, file, sha256;
+        public double[] bounds_m;
+        public int width, height;
+        public float spacing_m, blend_band_m;
+    }
+
     [Serializable] public sealed class DeathValleyMapManifest
     {
         public int schema_version, width, height;
         public double[] bounds_m, unity_origin_m;
         public float spacing_m;
         public string working_crs, grid_file, grid_sha256, scene_guid, retrieved_utc, encoding;
+        public string height_source;
+        public DeathValleyMapImage[] textures;
     }
 
     /// <summary>Projected metres are authoritative; preview kilometres are temporary display coordinates.</summary>
@@ -43,6 +53,8 @@ namespace BooterBigArm.Editor
         public readonly DeathValleyMapManifest Manifest;
         public readonly float[] Heights;
         public readonly string Root;
+        public readonly byte[][] ImageryBytes;
+        public bool HasImagery => ImageryBytes != null;
         public const int Stride = 4;
 
         public DeathValleyMapData(string root)
@@ -86,17 +98,45 @@ namespace BooterBigArm.Editor
                 Manifest.unity_origin_m[0] != (built.bounds_m[0]+built.bounds_m[2])/2 ||
                 Manifest.unity_origin_m[1] != (built.bounds_m[1]+built.bounds_m[3])/2)
                 throw new InvalidDataException("Unity origin disagrees with retained terrain bounds.");
-            if (Path.GetFileName(Manifest.grid_file) != Manifest.grid_file) throw new InvalidDataException("Grid must be beside its manifest.");
-            byte[] bytes = File.ReadAllBytes(Path.Combine(Path.GetDirectoryName(manifestPath), Manifest.grid_file));
-            using (var hash = SHA256.Create())
-                if (BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant() != Manifest.grid_sha256)
-                    throw new InvalidDataException("Overview grid hash changed.");
+            string folder=Path.GetDirectoryName(manifestPath);
+            byte[] bytes=ReadVerifiedFile(folder,Manifest.grid_file,Manifest.grid_sha256);
             if (bytes.Length != Manifest.width*Manifest.height*4 || !BitConverter.IsLittleEndian)
                 throw new InvalidDataException("Unexpected float grid encoding or byte count.");
             Heights = new float[Manifest.width*Manifest.height];
             Buffer.BlockCopy(bytes, 0, Heights, 0, bytes.Length);
             if (Heights.Any(h => float.IsNaN(h) || float.IsInfinity(h) || h < -1000 || h > 10000))
                 throw new InvalidDataException("Overview has missing or implausible samples.");
+            if (Manifest.textures != null)
+            {
+                string[] expected={"expanded_region","corridor","pilot","canyon"};
+                if (Manifest.textures.Length!=4) throw new InvalidDataException("Incomplete Blender imagery stack.");
+                ImageryBytes=new byte[4][];
+                for(int i=0;i<4;i++)
+                {
+                    var image=Manifest.textures[i];ValidateBounds(image.bounds_m);
+                    var region=Catalog.regions.Single(r=>r.id==expected[i]);
+                    if(image.id!=expected[i] || !image.bounds_m.SequenceEqual(region.bounds_m) || image.width<1 || image.height<1 ||
+                        image.width>8192 || image.height>8192 || image.spacing_m<=0 ||
+                        Math.Abs(image.width*image.spacing_m-(image.bounds_m[2]-image.bounds_m[0]))>.01 ||
+                        Math.Abs(image.height*image.spacing_m-(image.bounds_m[3]-image.bounds_m[1]))>.01 ||
+                        image.blend_band_m!=(i==0?0:i==1?1000:300))
+                        throw new InvalidDataException("Blender image identity, bounds, grid or blending differs from its study.");
+                    ImageryBytes[i]=ReadVerifiedFile(folder,image.file,image.sha256);
+                }
+            }
+        }
+
+        public static byte[] ReadVerifiedFile(string folder,string name,string expectedHash)
+        {
+            if(string.IsNullOrEmpty(name) || Path.IsPathRooted(name))throw new InvalidDataException("Expected a relative map source path.");
+            string path=Path.GetFullPath(Path.Combine(folder,name));
+            string allowed=Path.GetFullPath(folder).TrimEnd(Path.DirectorySeparatorChar)+Path.DirectorySeparatorChar;
+            if(!path.StartsWith(allowed,StringComparison.OrdinalIgnoreCase))throw new InvalidDataException("Map source escapes its descriptor directory.");
+            byte[] bytes=File.ReadAllBytes(path);
+            using(var hash=SHA256.Create())
+                if(BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-","").ToLowerInvariant()!=expectedHash)
+                    throw new InvalidDataException("Map source hash changed: "+name);
+            return bytes;
         }
 
         public IEnumerable<DeathValleyMapRecord> AllRecords => Catalog.regions.Concat(Catalog.unity_tiles).Concat(Catalog.regional_source_tiles).Concat(Catalog.expansion_candidates);
@@ -146,7 +186,7 @@ namespace BooterBigArm.Editor
             }).ToArray();
         }
 
-        public Mesh BuildRelief(float exaggeration)
+        public Mesh BuildRelief(float exaggeration,bool aerial=false)
         {
             int cols=(Manifest.width-1)/Stride+1, rows=(Manifest.height-1)/Stride+1;
             var vertices=new Vector3[cols*rows]; var colors=new Color[vertices.Length];
@@ -156,7 +196,7 @@ namespace BooterBigArm.Editor
                 int i=r*cols+c;
                 float height=Heights[r*Stride*Manifest.width+c*Stride];
                 vertices[i]=Project(Manifest.bounds_m[0]+c*Stride*Manifest.spacing_m,Manifest.bounds_m[3]-r*Stride*Manifest.spacing_m,height,exaggeration);
-                colors[i]=Color.Lerp(new Color(.32f,.40f,.36f),new Color(.86f,.77f,.58f),Mathf.InverseLerp(-85,3000,height));
+                colors[i]=aerial ? Color.white : Color.Lerp(new Color(.32f,.40f,.36f),new Color(.86f,.77f,.58f),Mathf.InverseLerp(-85,3000,height));
             }
             int n=0;
             for (int r=0;r<rows-1;r++) for (int c=0;c<cols-1;c++)
@@ -166,8 +206,10 @@ namespace BooterBigArm.Editor
             mesh.vertices=vertices;mesh.triangles=triangles;mesh.RecalculateNormals();
             Vector3 light=new Vector3(-.6f,1,.4f).normalized;
             Vector3[] normals=mesh.normals;
-            for(int i=0;i<colors.Length;i++) colors[i]*=.48f+.52f*Mathf.Max(0,Vector3.Dot(normals[i],light));
-            mesh.colors=colors;mesh.RecalculateBounds();return mesh;
+            for(int i=0;i<colors.Length;i++) colors[i]*=(aerial?.72f:.48f)+(aerial?.28f:.52f)*Mathf.Max(0,Vector3.Dot(normals[i],light));
+            var uv=new Vector2[vertices.Length];
+            for(int r=0;r<rows;r++)for(int c=0;c<cols;c++)uv[r*cols+c]=new Vector2(c/(float)(cols-1),1-r/(float)(rows-1));
+            mesh.uv=uv;mesh.colors=colors;mesh.RecalculateBounds();return mesh;
         }
 
         public static bool IntersectTriangle(Ray ray, Vector3 a, Vector3 b, Vector3 c, out float distance)

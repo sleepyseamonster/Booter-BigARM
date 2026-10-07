@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "working_crs": "EPSG:26911",
+  "bounds_m": [
+    399400,
+    3920200,
+    591400,
+    4144200
+  ],
+  "spacing_m": 200,
+  "width": 961,
+  "height": 1121,
+  "grid_file": "overview.f32",
+  "grid_sha256": "f58e61ece415bfe691f2945ca6d08f921d2fabe43dc228c25ac274e9af21c746",
+  "encoding": "little-endian float32, north-to-south rows, west-to-east columns",
+  "min_height_m": -85.03494262695312,
+  "max_height_m": 3648.343505859375,
+  "unity_origin_m": [
+    522448.0,
+    4008248.0
+  ],
+  "scene_guid": "4de5dd018ee194314a00fd369e2d3eeb",
+  "retrieved_utc": "2026-10-07T00:20:36.030747+00:00",
+  "source_service": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+  "request_url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage?bbox=399300.0%2C3920100.0%2C591500.0%2C4144300.0&bboxSR=26911&imageSR=26911&size=961%2C1121&format=tiff&pixelType=F32&f=json&interpolation=%2BRSP_BilinearInterpolation&renderingRule=%7B%22rasterFunction%22%3A+%22None%22%7D",
+  "service_response": {
+    "href": "https://elevation.nationalmap.gov/arcgis/rest/directories/elevation_output/3DEPElevation_ImageServer/_ags_0468172c_c913_4ce4_977c_9c8870540a10.tif",
+    "width": 961,
+    "height": 1121,
+    "extent": {
+      "xmin": 399300,
+      "ymin": 3920100,
+      "xmax": 591500,
+      "ymax": 4144300,
+      "spatialReference": {
+        "wkid": 26911,
+        "latestWkid": 26911
+      }
+    },
+    "scale": 0
+  },
+  "service_response_sha256": "b8da5c716f05684e7818f865d7c3e1684069e408192cf3dba534df441eef164c",
+  "raster_sha256": "d4a04cec4ff18a747ebdfec43faafaf96a28b4b825ff71e3ca426d77182f93e5",
+  "limits": "New coarse visualization snapshot at Blender overview bounds. Not the original Blender grid, detailed game terrain, survey accuracy or gameplay collision. Dynamic service mixes source resolutions; vertical datum requires source-specific review."
+}

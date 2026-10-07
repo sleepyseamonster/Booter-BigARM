@@ -14,6 +14,8 @@ namespace BooterBigArm.Editor
         private DeathValleyMapData data;
         private PreviewRenderUtility preview;
         private Material material;
+        private Material reliefMaterial;
+        private Texture2D[] aerialTextures;
         private Mesh relief, overviewLines, chunkLines, studyLines, candidateLines, selectedLines;
         private Vector3[] pickVertices;
         private int[] pickIndices;
@@ -23,6 +25,7 @@ namespace BooterBigArm.Editor
         [SerializeField] private float exaggeration=3, pitch=55, yaw=-25, viewSize=145;
         [SerializeField] private Vector3 target;
         [SerializeField] private bool showOverview=true, showChunks=true, showStudies=false, showCandidates=true;
+        [SerializeField] private bool showImagery=true;
         private Vector2 scroll;
         private DeathValleyMapRecord[] pointMatches=Array.Empty<DeathValleyMapRecord>();
         private double[] pickedPoint;
@@ -41,8 +44,10 @@ namespace BooterBigArm.Editor
         private void Release()
         {
             preview?.Cleanup();preview=null;
-            foreach(var item in new UnityEngine.Object[]{material,relief,overviewLines,chunkLines,studyLines,candidateLines,selectedLines})
+            foreach(var item in new UnityEngine.Object[]{material,reliefMaterial,relief,overviewLines,chunkLines,studyLines,candidateLines,selectedLines})
                 if(item!=null) DestroyImmediate(item);
+            if(aerialTextures!=null)foreach(var texture in aerialTextures)if(texture!=null)DestroyImmediate(texture);
+            aerialTextures=null;reliefMaterial=null;
             material=null;relief=overviewLines=chunkLines=studyLines=candidateLines=selectedLines=null;
         }
         private void Reload()
@@ -57,6 +62,33 @@ namespace BooterBigArm.Editor
                 material=new Material(shader){hideFlags=HideFlags.HideAndDontSave};
                 material.SetInt("_SrcBlend",(int)BlendMode.One);material.SetInt("_DstBlend",(int)BlendMode.Zero);
                 material.SetInt("_Cull",(int)CullMode.Off);material.SetInt("_ZWrite",1);material.SetInt("_ZTest",(int)CompareFunction.LessEqual);
+                Shader aerialShader=Shader.Find("Hidden/BooterBigArm/DeathValleyMapPreview");
+                if(aerialShader==null)throw new InvalidOperationException("Developer aerial preview shader is unavailable.");
+                reliefMaterial=new Material(aerialShader){hideFlags=HideFlags.HideAndDontSave};
+                if(data.HasImagery)
+                {
+                    aerialTextures=new Texture2D[4];
+                    string[] slots={"_MainTex","_CorridorTex","_PilotTex","_PatchTex"};
+                    string[] boundsSlots={null,"_CorridorBounds","_PilotBounds","_PatchBounds"};
+                    double[] full=data.Manifest.bounds_m;double width=full[2]-full[0],height=full[3]-full[1];
+                    reliefMaterial.SetVector("_MapSize",new Vector4((float)width,(float)height,0,0));
+                    for(int i=0;i<4;i++)
+                    {
+                        var record=data.Manifest.textures[i];
+                        var texture=new Texture2D(2,2,TextureFormat.RGB24,false){name=record.id,hideFlags=HideFlags.HideAndDontSave,
+                            wrapMode=TextureWrapMode.Clamp,filterMode=FilterMode.Bilinear};
+                        aerialTextures[i]=texture;
+                        if(!ImageConversion.LoadImage(texture,data.ImageryBytes[i],true)||texture.width!=record.width||texture.height!=record.height)
+                            throw new InvalidDataException("Packed Blender image dimensions or decoding changed.");
+                        reliefMaterial.SetTexture(slots[i],texture);
+                        if(i>0)
+                        {
+                            double[] b=record.bounds_m;
+                            reliefMaterial.SetVector(boundsSlots[i],new Vector4((float)((b[0]-full[0])/width),(float)((b[1]-full[1])/height),
+                                (float)((b[2]-full[0])/width),(float)((b[3]-full[1])/height)));
+                        }
+                    }
+                }
                 Rebuild();
             }
             catch(Exception exception){error=exception.Message;Release();data=null;}
@@ -66,7 +98,9 @@ namespace BooterBigArm.Editor
         {
             foreach(var mesh in new[]{relief,overviewLines,chunkLines,studyLines,candidateLines,selectedLines})
                 if(mesh!=null) DestroyImmediate(mesh);
-            relief=data.BuildRelief(exaggeration);pickVertices=relief.vertices;pickIndices=relief.triangles;
+            bool aerial=showImagery&&data.HasImagery;
+            reliefMaterial.SetFloat("_UseImagery",aerial?1:0);
+            relief=data.BuildRelief(exaggeration,aerial);pickVertices=relief.vertices;pickIndices=relief.triangles;
             overviewLines=Lines(data.Catalog.regional_source_tiles,_=>new Color(.48f,.57f,.58f));
             chunkLines=Lines(data.Catalog.unity_tiles,r=>r.source_spacing_m==1 ? new Color(1,.82f,.17f) : new Color(.1f,.88f,.98f));
             studyLines=Lines(data.Catalog.regions.Where(r=>r.id!="expanded_region" && r.id!="original_region"),_=>new Color(.52f,.9f,.42f));
@@ -144,6 +178,11 @@ namespace BooterBigArm.Editor
         {
             scroll=EditorGUILayout.BeginScrollView(scroll);
             GUILayout.Label("Coverage layers",EditorStyles.boldLabel);
+            using(new EditorGUI.DisabledScope(!data.HasImagery))
+            {
+                EditorGUI.BeginChangeCheck();showImagery=EditorGUILayout.ToggleLeft("Aerial imagery from saved Blender project",showImagery);
+                if(EditorGUI.EndChangeCheck())Rebuild();
+            }
             showOverview=EditorGUILayout.ToggleLeft("Grey: 32 km overview footprints",showOverview);
             showChunks=EditorGUILayout.ToggleLeft("Cyan: built 256 m chunks; yellow: 1 m sources",showChunks);
             showCandidates=EditorGUILayout.ToggleLeft("Orange: proposed adjoining batches",showCandidates);
@@ -194,8 +233,10 @@ namespace BooterBigArm.Editor
                 foreach(var record in pointMatches)
                     if(GUILayout.Button(record.Label,EditorStyles.miniButton))Select(record);
             }
-            EditorGUILayout.Space();EditorGUILayout.HelpBox("New coarse USGS relief snapshot at the Blender overview bounds. It shows context, not detailed game terrain or collision. Reload after inventory refresh or file moves.",MessageType.None);
-            GUILayout.Label("Source acquired: "+data.Manifest.retrieved_utc,EditorStyles.wordWrappedMiniLabel);
+            EditorGUILayout.Space();EditorGUILayout.HelpBox(data.HasImagery
+                ? "Saved Blender terrain sampled at 200 m, with its original packed Landsat and NAIP imagery. Display geometry is simplified; gameplay terrain and collision are separate."
+                : "Coarse USGS relief snapshot at the Blender overview bounds. Reload after inventory refresh or file moves.",MessageType.None);
+            GUILayout.Label("Source recovered/acquired: "+data.Manifest.retrieved_utc,EditorStyles.wordWrappedMiniLabel);
             GUILayout.Label("Coverage audited: "+data.Catalog.audited_utc,EditorStyles.wordWrappedMiniLabel);
             EditorGUILayout.EndScrollView();
         }
@@ -229,7 +270,7 @@ namespace BooterBigArm.Editor
             Texture result=null;
             try
             {
-                preview.DrawMesh(relief,Matrix4x4.identity,material,0);
+                preview.DrawMesh(relief,Matrix4x4.identity,reliefMaterial,0);
                 if(showOverview)preview.DrawMesh(overviewLines,Matrix4x4.identity,material,0);
                 if(showStudies)preview.DrawMesh(studyLines,Matrix4x4.identity,material,0);
                 if(showCandidates)preview.DrawMesh(candidateLines,Matrix4x4.identity,material,0);
@@ -315,7 +356,20 @@ namespace BooterBigArm.Editor
             Texture texture=Render(rect);
             RenderTexture old=RenderTexture.active;
             var copy=new Texture2D(1200,850,TextureFormat.RGB24,false);
-            try{RenderTexture.active=(RenderTexture)texture;copy.ReadPixels(rect,0,0);copy.Apply();File.WriteAllBytes(path,copy.EncodeToPNG());}
+            try
+            {
+                var rendered=(RenderTexture)texture;RenderTexture.active=rendered;
+                copy.ReadPixels(rect,0,0);copy.Apply();
+                // The preview's linear render target needs display encoding for PNG.
+                // The Editor GUI handles this conversion when drawing the live preview.
+                if(QualitySettings.activeColorSpace==ColorSpace.Linear && !rendered.sRGB)
+                {
+                    Color[] pixels=copy.GetPixels();
+                    for(int i=0;i<pixels.Length;i++)pixels[i]=pixels[i].gamma;
+                    copy.SetPixels(pixels);copy.Apply();
+                }
+                File.WriteAllBytes(path,copy.EncodeToPNG());
+            }
             finally{RenderTexture.active=old;DestroyImmediate(copy);}
         }
     }

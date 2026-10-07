@@ -87,8 +87,45 @@ namespace BooterBigArm.Tests
                 File.Copy(Path.Combine(original,"coverage_catalog.json"),Path.Combine(folder,"coverage_catalog.json"));
                 string snapshot=Directory.GetFiles(original,"developer_map.json",SearchOption.AllDirectories).Single();
                 File.Copy(snapshot,Path.Combine(folder,"developer_map.json"));
-                File.WriteAllBytes(Path.Combine(folder,"overview.f32"),new byte[]{1,2,3,4});
+                string grid=Path.Combine(folder,data.Manifest.grid_file);Directory.CreateDirectory(Path.GetDirectoryName(grid));
+                File.WriteAllBytes(grid,new byte[]{1,2,3,4});
                 Assert.Throws<InvalidDataException>(()=>new DeathValleyMapData(temporary));
+            }
+            finally{Directory.Delete(temporary,true);}
+        }
+        [Test] public void PackedAerialImagesDecodeOnTheirOriginalGeographicGrids()
+        {
+            Assert.That(data.HasImagery,Is.True);Assert.That(data.Manifest.height_source,Is.EqualTo("saved_blender_meshes"));
+            Assert.That(data.Manifest.textures.Select(t=>t.spacing_m),Is.EqualTo(new[]{200f,20f,10f,2f}));
+            for(int i=0;i<4;i++)
+            {
+                var texture=new Texture2D(2,2);
+                try
+                {
+                    Assert.That(ImageConversion.LoadImage(texture,data.ImageryBytes[i]),Is.True);
+                    Assert.That(texture.width,Is.EqualTo(data.Manifest.textures[i].width));
+                    Assert.That(texture.height,Is.EqualTo(data.Manifest.textures[i].height));
+                }
+                finally{UnityEngine.Object.DestroyImmediate(texture);}
+            }
+            Mesh mesh=data.BuildRelief(3,true);
+            try
+            {
+                Assert.That(mesh.uv[0],Is.EqualTo(new Vector2(0,1))); // Northwest = upper left image.
+                Assert.That(mesh.uv.Last(),Is.EqualTo(new Vector2(1,0)));
+                Assert.That(mesh.colors.All(c=>Mathf.Abs(c.r-c.g)<1e-6f && Mathf.Abs(c.g-c.b)<1e-6f),Is.True);
+            }
+            finally{UnityEngine.Object.DestroyImmediate(mesh);}
+        }
+        [Test] public void ImageSourcesRejectEscapingPathsAndChangedBytes()
+        {
+            string temporary=Path.Combine(Path.GetTempPath(),"DeathValleyMapTests-"+Guid.NewGuid().ToString("N"));Directory.CreateDirectory(temporary);
+            try
+            {
+                File.WriteAllBytes(Path.Combine(temporary,"image.png"),new byte[]{1,2,3});
+                Assert.Throws<InvalidDataException>(()=>DeathValleyMapData.ReadVerifiedFile(temporary,"../image.png","ignored"));
+                Assert.Throws<InvalidDataException>(()=>DeathValleyMapData.ReadVerifiedFile(temporary,"image.png",new string('0',64)));
+                Assert.Throws<InvalidDataException>(()=>DeathValleyMapData.ReadVerifiedFile(temporary,Path.Combine(temporary,"image.png"),"ignored"));
             }
             finally{Directory.Delete(temporary,true);}
         }

@@ -1,34 +1,37 @@
 {
-  "schema_version": 1,
-  "working_crs": "EPSG:26911",
-  "bounds_m": [
+  "saved_bounds_m": [
     399400,
     3920200,
     591400,
     4144200
   ],
-  "spacing_m": 200,
-  "width": 961,
-  "height": 1121,
-  "grid_file": "blender_recovered/blender_overview.f32",
-  "grid_sha256": "ce228069bbd6d33437bfc9d34413eea527e17530c2a192f9b7994502247dd61e",
-  "encoding": "little-endian float32, north-to-south rows, west-to-east columns",
-  "min_height_m": -85.04519653320312,
-  "max_height_m": 3648.343505859375,
-  "unity_origin_m": [
-    522448.0,
-    4008248.0
+  "saved_origin_m": [
+    495400.0,
+    4032200.0
   ],
-  "scene_guid": "4de5dd018ee194314a00fd369e2d3eeb",
-  "retrieved_utc": "2026-10-07T00:58:06.439373+00:00",
-  "source_service": "Recovered saved Blender geometry and packed Landsat / NAIP imagery",
-  "limits": "200 m lattice sampled from saved overview and nested detail meshes, finest available layer wins. Simplified display still uses an 800 m mesh; no full precision GIS archive or gameplay collision claim.",
-  "height_source": "saved_blender_meshes",
+  "mesh_counts": {
+    "expanded_region": 41,
+    "corridor": 30,
+    "pilot": 4,
+    "canyon": 1
+  },
+  "sample_tier_counts": {
+    "1": 1028840,
+    "2": 46760,
+    "3": 1560,
+    "4": 121
+  },
+  "sample_count": 1077281,
+  "uncovered_samples": 0,
+  "source_blend": "Docs/Agents/Blender/studies/DeathValley/DeathValleyExploreExpanded.blend",
   "source_blend_sha256": "15f320cf2d3fa5b44161004d6db8a4ad4caefda39b32ec2f55c0e9025dc27697",
+  "recovered_utc": "2026-10-07T00:58:06.439373+00:00",
+  "method": "Saved SDNA mesh attributes and exact packed image bytes; no Blender execution or source modification",
+  "grid_sha256": "ce228069bbd6d33437bfc9d34413eea527e17530c2a192f9b7994502247dd61e",
   "textures": [
     {
       "id": "expanded_region",
-      "file": "blender_recovered/expanded_region.png",
+      "file": "expanded_region.png",
       "sha256": "a4140d29b0b150543d0e834f181b0803975c0fce98c29d9d844fff70385e93ea",
       "bounds_m": [
         399400,
@@ -44,7 +47,7 @@
     },
     {
       "id": "corridor",
-      "file": "blender_recovered/corridor.png",
+      "file": "corridor.png",
       "sha256": "f83ce2331b32b6cb80e9f8aa021c5dfda6e1cb89d41e2fb60e1539b38daea9f0",
       "bounds_m": [
         495400,
@@ -60,7 +63,7 @@
     },
     {
       "id": "pilot",
-      "file": "blender_recovered/pilot.png",
+      "file": "pilot.png",
       "sha256": "46128feca24bd4970e99dfdf1c667edb0776796a595620a42d98b908d3131eda",
       "bounds_m": [
         515400,
@@ -76,7 +79,7 @@
     },
     {
       "id": "canyon",
-      "file": "blender_recovered/canyon.png",
+      "file": "canyon.png",
       "sha256": "26d3cc7d54e8d1713b12bec36de94619413ff12f7411dba5a5c2f177cd0c358d",
       "bounds_m": [
         520400,
@@ -90,5 +93,6 @@
       "blend_band_m": 300,
       "original_packed_path": "//canyon_patch_10m/prepared/canyon_patch/matched_color.png"
     }
-  ]
+  ],
+  "limits": "200 m lattice sampled from saved overview and nested detail meshes, finest available layer wins. Simplified display still uses an 800 m mesh; no full precision GIS archive or gameplay collision claim."
 }
