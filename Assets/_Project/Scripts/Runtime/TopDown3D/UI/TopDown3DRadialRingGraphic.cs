@@ -4,6 +4,7 @@ using UnityEngine.UI;
 namespace BooterBigArm.TopDown3D
 {
     // Annular strips only: no center-fan triangles and no tapered angular cutouts.
+    [RequireComponent(typeof(CanvasRenderer))]
     public sealed class TopDown3DRadialRingGraphic : MaskableGraphic
     {
         public int Sectors = 4;
@@ -11,6 +12,10 @@ namespace BooterBigArm.TopDown3D
         public float Gap = 6f;
         public float InnerRadius = 68f;
         public Color Accent = new Color32(232, 184, 109, 255);
+
+        public TopDown3DRadialRingGraphic() { useLegacyMeshGeneration = false; }
+
+        public override Texture mainTexture => Texture2D.whiteTexture;
 
         protected override void OnPopulateMesh(VertexHelper vh)
         {

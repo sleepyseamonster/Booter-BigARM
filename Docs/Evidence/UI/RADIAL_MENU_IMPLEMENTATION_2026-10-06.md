@@ -4,7 +4,7 @@ Implemented 2026-10-06 in the TopDown3D runtime for `Assets/_Project/Scenes/Prod
 
 ## Controls and behavior
 
-- Hold left bumper or Q to open. Select with right stick, mouse, D-pad or arrow keys, then release the opener. East/Escape cancels before release can commit. Returning to the center clears selection.
+- Hold left bumper or Q to open. Gamepad: aim the right stick and release it to neutral while still holding the bumper to activate. Releasing the bumper first cancels. Keyboard: select with mouse or arrow keys and release Q to activate. D-pad selection also supports explicit confirmation. East/Escape cancels before activation. Mouse center return clears selection.
 - North opens Booter's inventory. South calls the Legger over through his physical pathfinding and urgent movement. West selects the carried dust canister and begins a ground preview; G or D-pad down confirms placement separately. C/gamepad East cancels the preview.
 - Calling and arrival do not open cargo. Target the reachable Legger and press the existing gamepad West/keyboard E Interact control. Cargo receives focus and rechecks physical access for operations.
 - The Legger uses a close approach target rather than his normal trailing point. The menu supplies approaching, blocked-route and ready feedback. Existing terrain/collision, acceleration, braking and cargo rules still govern movement; there is no teleportation recovery. Once Booter moves away after arrival, normal following resumes.
@@ -12,7 +12,7 @@ Implemented 2026-10-06 in the TopDown3D runtime for `Assets/_Project/Scenes/Prod
 
 ## Segment geometry and input safety
 
-The ring is built from explicit annular strips. Each side is offset by half the six-reference-unit seam gap; inner and outer arc endpoints use the corresponding radius-dependent trim. Adjacent sides therefore remain parallel with a constant perpendicular gap. No center fan or conical-gradient cutout defines the sectors. The selected perimeter uses the same edge geometry. A separate solid center backing supplies text contrast.
+The ring is built from explicit annular strips. Each side is offset by half the six-reference-unit seam gap; inner and outer arc endpoints use the corresponding radius-dependent trim. Adjacent sides therefore remain parallel with a constant perpendicular gap. No center fan or conical-gradient cutout defines the sectors. The selected perimeter uses the same edge geometry. The center remains open without a redundant selection prompt.
 
 The conversation preview now uses equivalent SVG annular paths. Its browser checks still pass after replacing the old gradient/clipped wedge treatment.
 
@@ -45,3 +45,11 @@ The final focused EditMode run passed **22 tests, zero failures**, covering `Top
 Final logs and XML are in ignored `Logs/radial-acceptance-tests.log`, `Logs/radial-editmode.xml`, and `Logs/radial-final-production-validation.log`. Cold-import package/API migration diagnostics cleared in warm validation. The UI test's batch harness now opens the saved gameplay template before creating an additive test scene; input tests use isolated, restored settings to route manual events in EditMode. Assertions were retained and expanded.
 
 Automated proof establishes compilation, geometry, state transactions, input/UI contracts and scene wiring. Actual rendered appearance in Unity, physical controller comfort, long detours and subjective sprint/arrival feel remain user acceptance boundaries.
+
+## In-game feedback correction — 2026-10-06
+
+User feedback reported text without ring graphics and requested right-stick release activation. The custom graphic now requires its CanvasRenderer before Canvas registration, uses the modern VertexHelper rebuild path, and explicitly supplies a white texture for solid vertex colors. The ring keeps its constant-width annular seams. The center prompt/backing and neutral-state instruction panel are removed; selected-command detail and binding hints remain.
+
+The default gamepad gesture arms a newly selected sector and activates it when the stick returns below the neutral threshold while the opening bumper is still held. Bumper release first cancels. Cancel has priority over simultaneous stick release; a stick displaced before opening must first return to neutral without activation. Consumption requires bumper-up before another opening. Explicit-confirm accessibility modes remain available.
+
+Correction validation: 12 focused radial EditMode contracts passed on the isolated Windows candidate, including actual CanvasRenderer mesh/material submission and hide/reopen, absent redundant prompts, cancel precedence, pre-displaced-stick gating, bumper-only cancellation, and exactly-once inventory opening with the bumper still pressed. The production radial validator also passed (`Logs/radial-stick-release-production.log`). Background batchmode proves Canvas submission rather than final on-screen appearance; hands-on rendered acceptance remains with the user. Logs: `Logs/radial-stick-release-tests.log` and `.xml`.

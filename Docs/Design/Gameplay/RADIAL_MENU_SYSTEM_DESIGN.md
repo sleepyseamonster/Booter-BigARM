@@ -8,7 +8,7 @@ The [first runtime integration receipt](../../Evidence/UI/RADIAL_MENU_IMPLEMENTA
 
 ## Player experience
 
-Hold left bumper, aim the right stick toward a menu entry, and release the bumper to execute it. Keyboard and mouse use hold Q, pointer selection, and Q release. Returning to the center clears selection. East/Escape cancels. Opening immediately shows the available directions; it does not wait for a timed Hold interaction.
+Hold left bumper, aim the right stick toward a menu entry, and release the right stick to neutral to execute it while the bumper remains held. Releasing the bumper first cancels. Keyboard and mouse use hold Q, pointer selection, and Q release. Mouse center return clears selection; right-stick center return activates an armed selection. East/Escape cancels. Opening immediately shows the available directions; it does not wait for a timed Hold interaction.
 
 The initial page is named Field and has four permanent angular positions. Players may edit their assignments, but item availability never rearranges the menu.
 
@@ -41,7 +41,7 @@ Four equal sectors have axes at 0, 90, 180 and 270 degrees clockwise from north.
 
 These are original game UI tokens, not copied Wilds assets. Use the project's canister/inventory icons and an original Legger silhouette in production. The preview uses generic symbols. Render an item quantity only on item actions; commands do not have invented count badges.
 
-The page name appears above the ring. Entry icon and short label sit in each sector. The center shows `Choose`, `Release`, or `Confirm`, plus a small selection direction cue. A fixed detail area below the ring shows the selected entry's full name and its consequence or unavailable reason. This moves longer text out of the small center hole and avoids wrapping or resizing the wheel when labels change.
+The page name appears above the ring. Entry icon and short label sit in each sector. The center stays empty; redundant selection/action prompts are removed. A fixed detail area below the ring shows the selected entry's full name and its consequence or unavailable reason. This moves longer text out of the small center hole and avoids wrapping or resizing the wheel when labels change.
 
 Footer hints show the actual opener, selection, confirm/cancel and page bindings. Page navigation appears only if there is more than one page. The world remains visible around the local ring; optional dim is limited to 15 percent. No full-screen blur or decorative moving dust is needed. Opening/closing uses a proposed 100 ms opacity transition; selection is responsive from the first frame. Reduced-motion mode changes immediately.
 
@@ -49,8 +49,8 @@ Footer hints show the actual opener, selection, confirm/cancel and page bindings
 
 | State | Presentation | Command behavior |
 | --- | --- | --- |
-| Neutral | All entries readable; center Choose | Release closes without execution. |
-| Available selection | Selected arc, icon emphasis, center Release/Confirm, detail consequence | Revalidate and execute once. |
+| Neutral | All entries readable; empty center | Bumper release closes without execution. |
+| Available selection | Selected arc, icon emphasis, detail consequence | Revalidate and execute once. |
 | Unavailable selection | Selected arc remains visible; unavailable marker and reason | Close on commit with failure feedback; no mutation. |
 | Empty selection | Empty label; detail No action assigned | Close without execution. |
 | Canceled hold | Hide radial; suppress new opening until opener returns up | Subsequent release does nothing. |
@@ -87,7 +87,7 @@ Stick selection begins above 0.30 processed magnitude and clears below 0.22. Thi
 
 Open with no selection. A stick already displaced by camera input must return to neutral before it becomes a selector. A keyboard-opened pointer is centered once; that synthetic motion cannot claim selection ownership. Digital direction selects and stays selected until a deliberate new source or cancel replaces it. Page changes clear selection and require a fresh selection gesture.
 
-Collect input intents for one input update and resolve cancel/lifecycle invalidation first, explicit confirmation second, opener release last. A genuine release must come from the opening device while focus and session remain valid. Disabling a map is lifecycle cancellation, never release activation. Explicit confirmation marks the session consumed before mode changes. After any consumption or cancellation, require opener-up before a new session.
+Collect input intents for one input update and resolve cancel/lifecycle invalidation first, explicit confirmation second, armed right-stick neutral return third, opener release last. Gamepad opener release cancels; keyboard opener release commits. A genuine release must come from the opening device while focus and session remain valid. Disabling a map is lifecycle cancellation, never release activation. Explicit confirmation marks the session consumed before mode changes. After any consumption or cancellation, require opener-up before a new session.
 
 On commit, freeze the assignment, mark consumed, hide view, restore Gameplay, revalidate the command and dispatch once. A mode change, focus loss, device removal, scene change or component disable cancels. A command rejection returns clear feedback; it is never queued to fire later. Simultaneous cancel plus release cancels regardless of callback order.
 

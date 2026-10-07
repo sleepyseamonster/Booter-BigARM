@@ -45,6 +45,30 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void CanvasRebuild_SubmitsOpaqueRingMesh_WithoutSelectionPrompt()
+        {
+            var root = Own(new GameObject("Canvas ring contract", typeof(RectTransform)));
+            var view = root.AddComponent<TopDown3DRadialCanvas>(); view.Build();
+            Assert.That(view.Wheel.GetComponent<CanvasRenderer>(), Is.Not.Null,
+                "The renderer must exist when the graphic registers with the Canvas.");
+            view.Refresh(new TopDown3DRadialPage(), -1, "", "Hold LB", 1f);
+            view.SetVisible(true); Canvas.ForceUpdateCanvases();
+            var ring = view.Wheel.GetComponent<TopDown3DRadialRingGraphic>();
+            Assert.That(ring.GetComponent<CanvasRenderer>(), Is.Not.Null);
+            ring.Rebuild(CanvasUpdate.PreRender);
+            var mesh = ring.canvasRenderer.GetMesh();
+            Assert.That(mesh.vertexCount, Is.GreaterThan(0), "Check the actual renderer, not only OnPopulateMesh.");
+            Assert.That(ring.canvasRenderer.materialCount, Is.EqualTo(1));
+            Assert.That(ring.mainTexture, Is.EqualTo(Texture2D.whiteTexture));
+            foreach (var c in mesh.colors32) Assert.That(c.a, Is.EqualTo(255));
+            Assert.That(view.Wheel.Find("Center"), Is.Null);
+            Assert.That(root.transform.Find("Safe Area/Field Menu/Detail").gameObject.activeSelf, Is.False);
+            view.SetVisible(false); view.SetVisible(true); Canvas.ForceUpdateCanvases();
+            ring.Rebuild(CanvasUpdate.PreRender); mesh = ring.canvasRenderer.GetMesh();
+            Assert.That(mesh.vertexCount, Is.GreaterThan(0), "Reopening must retain the ring.");
+        }
+
+        [Test]
         public void DirectionalSelection_ClearsCenterAndResistsBoundaryJitter()
         {
             Assert.That(TopDown3DRadialGeometry.Select(Vector2.up, 4), Is.EqualTo(0));
@@ -140,7 +164,7 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void MenuSession_CancelAndReleaseTogetherNeverCommit_ValidReleaseOpensInventoryOnce()
+        public void MenuSession_CancelWins_StickReleaseWithHeldBumperOpensInventoryOnce()
         {
             var priorSettings = InputSystem.settings;
             var settings = Own(Object.Instantiate(priorSettings));
@@ -170,12 +194,22 @@ namespace BooterBigArm.Tests
                 Step(new GamepadState().WithButton(GamepadButton.LeftShoulder));
                 Step(new GamepadState { rightStick = Vector2.up }.WithButton(GamepadButton.LeftShoulder));
                 Assert.That(menu.SelectedSector, Is.EqualTo(0));
-                Step(new GamepadState { rightStick = Vector2.up }.WithButton(GamepadButton.East));
+                Step(new GamepadState().WithButton(GamepadButton.East).WithButton(GamepadButton.LeftShoulder));
                 Assert.That(menu.IsOpen, Is.False); Assert.That(inventoryUi.IsOpen, Is.False);
                 Step(new GamepadState());
                 Step(new GamepadState().WithButton(GamepadButton.LeftShoulder));
                 Step(new GamepadState { rightStick = Vector2.up }.WithButton(GamepadButton.LeftShoulder));
                 Step(new GamepadState { rightStick = Vector2.up });
+                Assert.That(menu.IsOpen, Is.False); Assert.That(inventoryUi.IsOpen, Is.False,
+                    "Bumper release alone must not activate a gamepad selection.");
+                Step(new GamepadState());
+                Step(new GamepadState { rightStick = Vector2.up }.WithButton(GamepadButton.LeftShoulder));
+                Step(new GamepadState().WithButton(GamepadButton.LeftShoulder));
+                Assert.That(menu.IsOpen, Is.True); Assert.That(inventoryUi.IsOpen, Is.False,
+                    "A stick displaced before opening must return to neutral without activation.");
+                Step(new GamepadState { rightStick = Vector2.up }.WithButton(GamepadButton.LeftShoulder));
+                Step(new GamepadState().WithButton(GamepadButton.LeftShoulder));
+                Assert.That(pad.leftShoulder.isPressed, Is.True);
                 Assert.That(inventoryUi.IsOpen, Is.True); Assert.That(menu.IsOpen, Is.False);
                 tick.Invoke(menu, null); Assert.That(inventoryUi.IsOpen, Is.True);
             }

@@ -19,7 +19,7 @@ namespace BooterBigArm.TopDown3D
         private InputAction nextEntry, previousEntry;
         private ButtonControl openingButton;
         private bool open, editing, neutralStick, waitRelease;
-        private bool firstPointerSample;
+        private bool firstPointerSample, stickSelectionArmed;
         private bool neutralDigital;
         private bool watchCallOver, reportedBlocked;
         private float callWatchAfter;
@@ -65,7 +65,7 @@ namespace BooterBigArm.TopDown3D
             if (open && preferences.toggleOpen) { Close(false); return; }
             if (router.Mode != TopDown3DInputMode.Gameplay || open) return;
             openingButton = context.control as ButtonControl;
-            selected = -1; open = true;
+            selected = -1; open = true; stickSelectionArmed = false;
             neutralStick = context.control.device is Gamepad pad && pad.rightStick.ReadValue().sqrMagnitude > 0.09f;
             neutralDigital = !DigitalIsNeutral(context.control.device);
             lastStick = Vector2.zero;
@@ -96,18 +96,29 @@ namespace BooterBigArm.TopDown3D
             if (next.WasPressedThisFrame() || previous.WasPressedThisFrame())
             {
                 page = (page + (previous.WasPressedThisFrame() ? preferences.pages.Length - 1 : 1)) % preferences.pages.Length;
-                selected = -1; neutralStick = true; Refresh();
+                selected = -1; neutralStick = true; stickSelectionArmed = false; Refresh();
             }
             var direction = digital.ReadValue<Vector2>();
             if (neutralDigital && DigitalIsNeutral(openingButton?.device)) neutralDigital = false;
             if (!neutralDigital && digital.WasPerformedThisFrame() && direction.sqrMagnitude > 0.1f)
-                selected = TopDown3DRadialGeometry.Select(direction, preferences.pages[page].slots.Length);
+            { stickSelectionArmed = false; selected = TopDown3DRadialGeometry.Select(direction, preferences.pages[page].slots.Length); }
             var analog = stick.ReadValue<Vector2>();
             var openingPad = openingButton?.device as Gamepad ?? Gamepad.current;
             if (neutralStick && (openingPad == null || openingPad.rightStick.ReadValue().sqrMagnitude < 0.0484f)) neutralStick = false;
-            if (!neutralStick && (analog - lastStick).sqrMagnitude > 0.0025f)
+            if (!neutralStick && stickSelectionArmed && analog.sqrMagnitude < 0.0484f)
+            {
+                stickSelectionArmed = false;
+                if (!preferences.toggleOpen && !preferences.explicitConfirm
+                    && openingButton != null && openingButton.isPressed)
+                { Close(true); return; }
+            }
+            if (!neutralStick && analog.sqrMagnitude >= (selected < 0 ? 0.09f : 0.0484f)
+                && (analog - lastStick).sqrMagnitude > 0.0025f)
+            {
                 selected = TopDown3DRadialGeometry.Select(analog, preferences.pages[page].slots.Length, selected,
                     selected < 0 ? 0.30f : 0.22f);
+                stickSelectionArmed = selected >= 0;
+            }
             lastStick = analog;
             var pos = pointer.ReadValue<Vector2>();
             if (firstPointerSample) { lastPointer = pos; firstPointerSample = false; }
@@ -115,11 +126,13 @@ namespace BooterBigArm.TopDown3D
                 && (pos - lastPointer).sqrMagnitude > 9f)
             {
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(view.Wheel, pos, null, out var local);
+                stickSelectionArmed = false;
                 selected = TopDown3DRadialGeometry.Select(local, preferences.pages[page].slots.Length, selected, 44f);
                 lastPointer = pos;
             }
             if (nextEntry?.WasPressedThisFrame() == true || previousEntry?.WasPressedThisFrame() == true)
             {
+                stickSelectionArmed = false;
                 var count = preferences.pages[page].slots.Length;
                 selected = selected < 0 ? (previousEntry?.WasPressedThisFrame() == true ? count - 1 : 0)
                     : (selected + (previousEntry?.WasPressedThisFrame() == true ? count - 1 : 1)) % count;
@@ -127,15 +140,15 @@ namespace BooterBigArm.TopDown3D
             Refresh();
             if (confirm.WasPressedThisFrame()) { Close(true); return; }
             if (!preferences.toggleOpen && openingButton != null && !openingButton.isPressed)
-                Close(!preferences.explicitConfirm);
+                Close(!preferences.explicitConfirm && !(openingButton.device is Gamepad));
         }
 
         private void Refresh()
         {
             var p = preferences.pages[page];
-            var description = selected < 0 ? "Choose an action" : Reason(p.slots[selected]);
+            var description = selected < 0 ? "" : Reason(p.slots[selected]);
             var hint = (preferences.toggleOpen ? "Open " : "Hold ") + router.GetBindingDisplayName("System/OpenRadial", "Q") + "  ·  "
-                + (preferences.toggleOpen || preferences.explicitConfirm ? "Confirm " + router.GetBindingDisplayName("Radial/Confirm", "Enter") : "Release to enter")
+                + (preferences.toggleOpen || preferences.explicitConfirm ? "Confirm " + router.GetBindingDisplayName("Radial/Confirm", "Enter") : router.PromptDevice == TopDown3DPromptDevice.Gamepad ? "Release right stick" : "Release Q to enter")
                 + "  ·  Cancel " + router.GetBindingDisplayName("Radial/Cancel", "Escape");
             if (preferences.pages.Length > 1) hint += "  ·  Page " + router.GetBindingDisplayName("Radial/NextPage", "PageDown");
             if (p.slots.Length == 8) hint += "  ·  Entry " + router.GetBindingDisplayName("Radial/NextEntry", "]");

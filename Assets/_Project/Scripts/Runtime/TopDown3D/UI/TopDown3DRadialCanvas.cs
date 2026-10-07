@@ -11,10 +11,10 @@ namespace BooterBigArm.TopDown3D
     {
         private Canvas canvas;
         private RectTransform safe;
-        private GameObject wheelPanel, editorPanel;
+        private GameObject wheelPanel, editorPanel, detailBacking;
         private RectTransform wheel;
         private TopDown3DRadialRingGraphic ring;
-        private Text pageTitle, center, detail, hints;
+        private Text pageTitle, detail, hints;
         private readonly Text[] labels = new Text[8];
         public RectTransform Wheel => wheel;
         public bool IsVisible => canvas != null && canvas.enabled;
@@ -33,13 +33,11 @@ namespace BooterBigArm.TopDown3D
             wheelPanel = Rect("Field Menu", safe, Vector2.zero, new Vector2(650, 680)).gameObject;
             wheel = Rect("Compass Ring", wheelPanel.transform, new Vector2(0, 25), new Vector2(420, 420));
             ring = wheel.gameObject.AddComponent<TopDown3DRadialRingGraphic>(); ring.color = new Color32(48, 52, 49, 255); ring.raycastTarget = false;
-            var centerBacking = Rect("Center Backing", wheel, Vector2.zero, new Vector2(136, 136)).gameObject.AddComponent<TopDown3DRadialRingGraphic>();
-            centerBacking.Sectors = 1; centerBacking.InnerRadius = 0; centerBacking.Gap = 0; centerBacking.color = Back; centerBacking.raycastTarget = false;
-            center = Label("Center", wheel, Vector2.zero, new Vector2(130, 80), "Choose", 22);
             Rect("Page Backing", wheelPanel.transform, new Vector2(0, 285), new Vector2(460, 36)).gameObject.AddComponent<Image>().color = Back;
             pageTitle = Label("Page", wheelPanel.transform, new Vector2(0, 285), new Vector2(460, 36), "FIELD", 20);
-            Rect("Detail Backing", wheelPanel.transform, new Vector2(0, -240), new Vector2(620, 65)).gameObject.AddComponent<Image>().color = Back;
-            detail = Label("Detail", wheelPanel.transform, new Vector2(0, -240), new Vector2(620, 65), "Choose an action", 23);
+            detailBacking = Rect("Detail Backing", wheelPanel.transform, new Vector2(0, -240), new Vector2(620, 65)).gameObject;
+            detailBacking.AddComponent<Image>().color = Back;
+            detail = Label("Detail", wheelPanel.transform, new Vector2(0, -240), new Vector2(620, 65), "", 23);
             Rect("Hint Backing", wheelPanel.transform, new Vector2(0, -315), new Vector2(640, 55)).gameObject.AddComponent<Image>().color = Back;
             hints = Label("Hints", wheelPanel.transform, new Vector2(0, -315), new Vector2(640, 55), "", 18);
             for (var i = 0; i < labels.Length; i++) labels[i] = Label("Entry " + i, wheel, Vector2.zero, new Vector2(105, 62), "", 20);
@@ -53,7 +51,8 @@ namespace BooterBigArm.TopDown3D
             if (ring.Sectors != page.slots.Length || ring.Selected != selected)
             { ring.Sectors = page.slots.Length; ring.Selected = selected; ring.SetVerticesDirty(); }
             pageTitle.text = page.name.ToUpperInvariant();
-            center.text = selected < 0 ? "Choose" : page.slots[selected] == TopDown3DRadialCommand.Empty ? "Empty" : explicitConfirm ? "Confirm" : "Release";
+            detailBacking.SetActive(selected >= 0);
+            detail.gameObject.SetActive(selected >= 0);
             detail.text = description; hints.text = bindings;
             for (var i = 0; i < labels.Length; i++)
             {
@@ -119,7 +118,7 @@ namespace BooterBigArm.TopDown3D
             var values = (TopDown3DRadialCommand[])Enum.GetValues(typeof(TopDown3DRadialCommand));
             for (var i = 0; i < values.Length; i++) { var command = values[i]; Button(command == TopDown3DRadialCommand.Empty ? "Clear slot" : Name(command), editorPanel.transform, new Vector2(220, 90 - i * 53), () => assign(command)); }
             Button(p.slots.Length == 4 ? "8 sectors" : "4 sectors", editorPanel.transform, new Vector2(-225, -205), resize);
-            Button(draft.toggleOpen ? "Toggle + Confirm" : draft.explicitConfirm ? "Hold + Confirm" : "Hold + Release", editorPanel.transform, new Vector2(220, -205), settings);
+            Button(draft.toggleOpen ? "Toggle + Confirm" : draft.explicitConfirm ? "Hold + Confirm" : "Hold + Stick Release", editorPanel.transform, new Vector2(220, -205), settings);
             Button("Scale " + draft.scale.ToString("0.00"), editorPanel.transform, new Vector2(0, -205), scale);
             Label("Message", editorPanel.transform, new Vector2(0, -258), new Vector2(850, 48), message, 18);
             Button("Cancel / Back", editorPanel.transform, new Vector2(-125, -310), cancel);
