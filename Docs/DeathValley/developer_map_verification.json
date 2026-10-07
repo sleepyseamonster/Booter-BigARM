@@ -1,18 +1,19 @@
 {
-  "verified_utc": "2026-10-07T01:05:57.813378+00:00",
+  "verified_utc": "2026-10-07T01:33:44.117340+00:00",
   "unity_version": "6000.4.0f1",
   "execution": "Hidden isolated project; no live Unity or foreground activation",
   "editmode_tests": {
     "result": "Passed",
-    "total": "11",
-    "passed": "11",
+    "total": "14",
+    "passed": "14",
     "failed": "0",
-    "duration": "0.6097579"
+    "duration": "0.8245876"
   },
   "python_regressions": {
     "passed": 24,
     "failed": 0,
-    "includes": "Second read-only extraction from original Blender source reproduced all grid and image hashes"
+    "includes": "Second read-only extraction from original Blender source reproduced all grid and image hashes",
+    "proof_status": "Retained source-recovery proof; Python and source data unchanged in this UI batch"
   },
   "source_snapshot_overwrite_refusal": "passed_without_changed_bytes",
   "original_blender_preserved": {
@@ -27,21 +28,21 @@
     "terrain_meshes": 76,
     "packed_images": 4
   },
-  "preview_render": "Regional aerial overview, oblique aerial chunks, and north-up aerial chunks rendered successfully and visually inspected",
+  "preview_render": "North-up regional and playable-area plan views inspected; only blue built-chunk grid is drawn",
   "png_color_encoding": "Linear preview output converted to display color for exported PNGs",
   "compiled_source_sha256": {
     "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapData.cs": "1dd1335c41501cbe2d358696c440684ac403e9ba28b4fa5535432d102bd18863",
-    "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapWindow.cs": "17c7758e7429e2c6fc0d43a77057742325b40aa23076b1e6da312d17d946038c",
+    "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapWindow.cs": "e9b4e18c7749ba857974a885ab137ab217db2035b03489ed395320296400260e",
     "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapPreview.shader": "bf38ee3c35ee24be108c990dc555ca3fbd0c410445c08fa9ff4a730bb5c9da3b",
-    "Assets/_Project/Tests/Editor/DeathValleyMapTests.cs": "2fb37b49e469b2055afcef2f8e00422d3714c4360b7598694056723fcaed7d53"
+    "Assets/_Project/Tests/Editor/DeathValleyMapTests.cs": "915fc1a49974bb10b8b59ca073f52eb49247006862d581466dfca001a2f184a9"
   },
   "diagnostics": {
-    "Logs/DeathValleyVisualizer/death-valley-map-render.log": "e16347a5982eba6e837d588b45761218fd6d3439dd298462adb16e5b561ab199",
-    "Logs/DeathValleyVisualizer/death-valley-map-tests.log": "0546525370759dcd816601e61529c88fcc519844bae6f3fa9c0e4b4cecda1612",
-    "Logs/DeathValleyVisualizer/death-valley-map-tests.xml": "9c9945e7ff23b3da2d47ae1cab97732bc118542d76269fb9021816c86cb6b966",
-    "Logs/DeathValleyVisualizer/unity-chunks-top.png": "7f6ff78761562344068185e55a84b1a6773ca682e4b14dff36f149e787e3b7d7",
-    "Logs/DeathValleyVisualizer/unity-chunks.png": "604080b8deca801b323a04129a108cfd91286f3f44a80d3a8ffa4ac9a5698626",
-    "Logs/DeathValleyVisualizer/unity-overview.png": "8a80ca33fb1ba70a5aeea091a665946c58726a673e0a20172310a3b5dcd35d88"
+    "Logs/DeathValleyVisualizer/death-valley-map-render.log": "d9cb4489e18eec84b3a66852f2458fcf26f8d72ef750700b0503f57c93619dfb",
+    "Logs/DeathValleyVisualizer/death-valley-map-tests.log": "a610eff6782d2122659740c5c0b87da5351f9115db548cb89c7f74696a7e0f7c",
+    "Logs/DeathValleyVisualizer/death-valley-map-tests.xml": "254864d9bf32a6fc1f2bbb0ba163e8d940cb0aee1391944d89a73c0e68488c04",
+    "Logs/DeathValleyVisualizer/plan-unity-chunks.png": "2008fd97ce27368d9504459630d890d167ac62b1e215417492796cc2cf7fbfc6",
+    "Logs/DeathValleyVisualizer/plan-unity-overview.png": "b352dd12c4f0be7ea4b246242922139e56ca8ff893134a7654c8cc81e3a3c446"
   },
-  "limits": "Source extraction, hashes, coordinates, UVs, texture decoding, geometry, compilation, EditMode and preview rendering. No Blender application reopen, complete raw GIS archive recovery, gameplay terrain changes, Player launch or hands-on UI test."
+  "limits": "Isolated compilation, 14 focused EditMode tests and plan-view preview renders. Live pointer interaction is user-owned review. Source imagery, geographic records, gameplay terrain and Build Settings were not changed by this UI batch.",
+  "ui": "Full-width aerial map, Entire Map and Playable Area buttons, drag panning, cursor-anchored scroll zoom; no sidebar, source controls, study or candidate overlays"
 }

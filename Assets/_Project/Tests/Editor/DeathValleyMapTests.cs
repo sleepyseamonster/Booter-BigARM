@@ -129,6 +129,30 @@ namespace BooterBigArm.Tests
             }
             finally{Directory.Delete(temporary,true);}
         }
+        [Test] public void PlanPanningUsesMetresPerPixelWithoutChangingAltitude()
+        {
+            Vector3 moved=DeathValleyMapWindow.PanTarget(new Vector3(5,7,9),new Vector2(100,-50),10,1000);
+            Assert.That(moved.x,Is.EqualTo(3).Within(.0001f));
+            Assert.That(moved.z,Is.EqualTo(8).Within(.0001f));
+            Assert.That(moved.y,Is.EqualTo(7));
+        }
+        [Test] public void PlanZoomKeepsThePointUnderTheCursorFixed()
+        {
+            Vector3 centre=new Vector3(12,3,18);Vector2 cursor=new Vector2(200,-100);
+            Vector3 before=centre+new Vector3(cursor.x,0,-cursor.y)*.02f;
+            Vector3 moved=DeathValleyMapWindow.ZoomTarget(centre,cursor,10,5,1000);
+            Vector3 after=moved+new Vector3(cursor.x,0,-cursor.y)*.01f;
+            Assert.That(Vector3.Distance(before,after),Is.LessThan(.0001f));
+        }
+        [Test] public void EntireMapFitsBothPortraitAndLandscapeViewports()
+        {
+            foreach(float aspect in new[]{.4f,1f,2f})
+            {
+                double[] b=data.Manifest.bounds_m;float size=DeathValleyMapWindow.PlanViewSize(b,aspect);
+                Assert.That(size*2,Is.GreaterThan((b[3]-b[1])/1000));
+                Assert.That(size*2*aspect,Is.GreaterThan((b[2]-b[0])/1000));
+            }
+        }
         [Test] public void ChangedEncodingSceneIdentityOrOriginCannotInheritCoordinateProof()
         {
             string temporary=Path.Combine(Path.GetTempPath(),"DeathValleyMapTests-"+Guid.NewGuid().ToString("N"));
