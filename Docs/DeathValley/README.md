@@ -4,7 +4,7 @@ Death Valley is the user's current geographic expansion focus. In the coordinate
 
 ## Inspect the coverage
 
-Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline, regional and detail footprints, the four Badwater quarters, and all 256 clickable Unity terrain chunks. The map is a north-up projected coverage diagram, not a terrain render. Brown dashed footprints are proposed expansion batches and are not built or selected.
+Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline, regional and detail footprints, the four Badwater quarters, and all 256 clickable Unity terrain chunks. Selecting a footprint shows its size, coordinates, resolution and current source availability; the complete source record is available on demand. The map is a north-up projected coverage diagram, not a terrain render. Brown dashed footprints are proposed expansion batches and are not built or selected.
 
 - [coverage_catalog.json](./coverage_catalog.json) records footprints, file hashes, source identities, geographic chunk keys, scene references and verification limits.
 - [unity_tiles.csv](./unity_tiles.csv) supplies the tile inventory in a flat table.
@@ -23,7 +23,7 @@ This task owns this new package, the narrow cross-platform change to `BadwaterDe
 
 Gottspan coordinates coverage, integration and closeout. Blender owns terrain source inspection and custom geometry; Babineaux owns Unity import, scene wiring and validation. Gear Ball owns the scoped local commit. The user owns geographic and creative decisions, interactive traversal and visual acceptance. No additional agent was started for this package.
 
-Before every later batch, refresh status, paths, Unity process ownership and task boundaries. Resolve ambiguous canonical files instead of choosing an arbitrary duplicate. The inventory locates the terrain scene through preserved GUID `4de5dd018ee194314a00fd369e2d3eeb`, including during its rename to Greater Wasteland. Scene rename, Build Settings and related reference changes belong to the coordinated promotion task. Do not batchmode the project already open in Unity; use a separate project copy and hidden background processes. Preserve the user's foreground application.
+Initial organization and scene-promotion coordination is complete. The user ended further agent coordination for the subsequent audit; current work proceeds independently while preserving unrelated changes. Before every later batch, refresh status, paths, Unity process ownership and task boundaries. Resolve ambiguous canonical files instead of choosing an arbitrary duplicate. The inventory locates the terrain scene through preserved GUID `4de5dd018ee194314a00fd369e2d3eeb`, including after its rename to Greater Wasteland. Do not batchmode the project already open in Unity; use a separate project copy and hidden background processes. Preserve the user's foreground application.
 
 ## Recovery findings
 
@@ -41,7 +41,7 @@ The proposed first batch is a 2.048 km square immediately west of the existing s
 
 The candidate preparation has 1,050,625 finite samples at 2 m spacing, derived by preparing native 1 m heights and strict decimation. Direct 2 m reprojection filtered the surface and was rejected. The final shared-edge maximum difference from retained encoded heights is 0.013733 m, within the 0.027467 m encoding-step tolerance. Source overlap differs by up to 0.033844 m; a recorded source-owner split at easting 520000 m makes composition reproducible. No claim of byte-identical recovery or independent survey accuracy follows.
 
-The raw windows, metadata and candidate grid are local diagnostic acquisition artifacts under ignored `Logs/DeathValleyInventory/west-source-proof/`, not durable production source storage. Their paths and hashes are recorded, but those paths will not exist in a fresh clone. Choose external source storage and preserve the windows there before terrain integration. No candidate terrain or texture has been imported into Unity.
+The raw windows, metadata and candidate grid are local diagnostic acquisition artifacts under ignored `Logs/DeathValleyInventory/west-source-proof/`, not durable production source storage. Their paths and hashes are recorded, but those paths will not exist in a fresh clone. Each audit checks all five artifact hashes; missing local files are reported separately from the historical verification, and changed files reject the audit. The assessment must describe the same bounds, CRS, sample coverage and passing border tolerance before it can inform the catalog. Choose external source storage and preserve the windows there before terrain integration. No candidate terrain or texture has been imported into Unity.
 
 ## Terrain approach
 
@@ -79,9 +79,15 @@ From the checkout root with the pinned Python environment:
 & ./.venv/Scripts/python.exe Docs/DeathValley/audit_coverage.py
 ```
 
-This refreshes only the generated catalog, CSV, HTML and SVGs in this package. To acquire a new official boundary snapshot, add `--refresh-boundary`; service output can change, so preserve the prior record before replacing it. The tool refuses ambiguous canonical matches and invalid or changed tile sources.
+This refreshes only the generated catalog, CSV, HTML and SVGs in this package. To acquire a new official boundary snapshot, add `--refresh-boundary`; service output can change, so preserve the prior record before replacing it. Both cached and newly acquired park geometry are validated. A refreshed boundary is published only after the terrain/source checks pass. The tool refuses ambiguous canonical matches, incompatible source provenance or focus tiers, and invalid or changed tile sources.
 
-The optional [verify_west_source.py](./verify_west_source.py) reads bounded remote elevation windows and writes only this package's assessment plus its local ignored diagnostic directory. It refuses to replace a completed proof. It is not a terrain importer or a game-world generator. Before repeating an acquisition, deliberately choose a new evidence/output location rather than overwriting accepted source history.
+The optional [verify_west_source.py](./verify_west_source.py) reads bounded remote elevation windows and writes only this package's assessment plus its local ignored diagnostic directory. It verifies source identity independently of catalog ordering, and refuses to reuse any existing output directory, including an incomplete acquisition. It is not a terrain importer or a game-world generator. Before repeating an acquisition, pass `--output Logs/DeathValleyInventory/<new-directory>` rather than overwriting accepted source history. Completed proof files from earlier runs remain preserved.
+
+Run the focused offline regressions without Unity or network access:
+
+```powershell
+& ./.venv/Scripts/python.exe -m unittest discover -s Docs/DeathValley -p 'test_*.py' -v
+```
 
 For a fresh Windows baseline build, use the existing `BooterBigArm.Editor.BadwaterDevelopmentBuild.BuildFromCli` method in a separately copied project with `-buildTarget StandaloneWindows64` and `-buildOutput` pointing to a new directory's `.exe`. Keep the process hidden and never launch batchmode against the live project's open editor. Build output and diagnostic logs stay outside Assets. The current local executable is `Builds/DeathValleyBaseline-20261006/GreaterWastelandDevelopment.exe`; it is ignored and does not transfer with Git.
 

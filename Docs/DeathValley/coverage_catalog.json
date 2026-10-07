@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "audited_utc": "2026-10-06T23:57:40.797306+00:00",
+  "audited_utc": "2026-10-07T00:06:59.169829+00:00",
   "working_crs": "EPSG:26911",
-  "git_head": "4da335caab32f6bfe64b3d3bd45aabe35df834d1",
+  "git_head": "bd712882279ee5403a6bc04e57603681fa1b60e8",
   "regions": [
     {
       "id": "original_region",
@@ -102,7 +102,7 @@
     },
     {
       "id": "badwater",
-      "label": "Unity Badwater four slices",
+      "label": "Greater Wasteland terrain \u2014 Badwater four slices",
       "bounds_m": [
         520400,
         4006200,
@@ -5328,7 +5328,13 @@
       ],
       "status": "source_verified_locally_not_selected_not_imported",
       "size_km": 2.048,
-      "source_assessment": "Docs/DeathValley/west_source_assessment.json"
+      "source_assessment": "Docs/DeathValley/west_source_assessment.json",
+      "local_source_availability": {
+        "status": "hash_verified",
+        "missing_artifacts": [],
+        "checked_artifact_count": 5,
+        "limits": "Historical acquisition proof is separate from local file availability and Unity import."
+      }
     },
     {
       "id": "candidate_north",

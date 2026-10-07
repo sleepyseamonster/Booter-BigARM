@@ -3,6 +3,7 @@
 Writes a float grid and source-window proof under ignored Logs only. Does not
 select the expansion, import terrain, change measured heights or edit Unity.
 """
+import argparse
 import hashlib
 import json
 import urllib.request
@@ -16,6 +17,8 @@ from rasterio.transform import from_origin
 from rasterio.warp import reproject
 from rasterio.windows import from_bounds, transform as window_transform
 
+from coverage_validation import fresh_output, source_records
+
 HERE=Path(__file__).resolve().parent
 ROOT=next(p for p in HERE.parents if (p/'ProjectSettings/ProjectVersion.txt').exists())
 OUT=ROOT/'Logs/DeathValleyInventory/west-source-proof'
@@ -27,19 +30,19 @@ def sha(path):
 
 
 def main():
-    OUT.mkdir(parents=True,exist_ok=True)
-    if (OUT/'proof.json').exists():
-        raise FileExistsError('Proof already exists. Preserve it; choose a new output for a new acquisition.')
-    records=json.loads((HERE/'west_raster_headers.json').read_text())['sources']
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',type=Path,default=OUT,help='New subdirectory of Logs/DeathValleyInventory; existing directories are refused.')
+    args=parser.parse_args()
+    records=source_records(json.loads((HERE/'west_raster_headers.json').read_text(encoding='utf-8'))['sources'])
+    out=fresh_output(ROOT,args.output)
     xmin,ymin,xmax,ymax=BOUNDS
     spacing=2
     # Reproject at native 1 m spacing, then decimate. Reprojecting directly to
     # 2 m asks GDAL to filter a larger footprint and changes shared samples.
     target=from_origin(xmin-0.5,ymax+0.5,1,1)
     native_side=xmax-xmin+1
-    side=(xmax-xmin)//spacing+1
     prepared=[];snapshots=[]
-    for record in records:
+    for ident,record in records:
         with rasterio.Env(GDAL_DISABLE_READDIR_ON_OPEN='EMPTY_DIR',CPL_VSIL_CURL_ALLOWED_EXTENSIONS='.tif',GDAL_HTTP_TIMEOUT='40'):
             with rasterio.open(record['url']) as src:
                 if src.crs.to_epsg()!=26911 or src.res!=(1.,1.):
@@ -49,15 +52,14 @@ def main():
                 pixels=src.read(1,window=window)
                 transform=window_transform(window,src.transform)
                 nodata=src.nodata
-        ident='x51y401' if 'x51y401' in record['title'] else 'x52y401'
-        path=OUT/(ident+'_window.tif')
+        path=out/(ident+'_window.tif')
         with rasterio.open(path,'w',driver='GTiff',width=pixels.shape[1],height=pixels.shape[0],count=1,dtype='float32',crs='EPSG:26911',transform=transform,nodata=nodata,compress='deflate') as dst:
             dst.write(pixels.astype('float32'),1)
         metadata_url='https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/CA_FEMAR9Southeast_D24/USGS_1M_11_'+ident+'_CA_FEMAR9Southeast_D24.xml'
         request=urllib.request.Request(metadata_url,headers={'User-Agent':'BooterBigARM-DeathValleyInventory/1.0'})
         with urllib.request.urlopen(request,timeout=40) as response:
             metadata=response.read()
-        metadata_path=OUT/(ident+'_metadata.xml');metadata_path.write_bytes(metadata)
+        metadata_path=out/(ident+'_metadata.xml');metadata_path.write_bytes(metadata)
         decoded=metadata.decode('utf-8')
         if 'NAVD88' not in decoded or 'bare-earth' not in decoded:
             raise ValueError('Vertical datum or surface type not established')
@@ -89,10 +91,10 @@ def main():
     # The retained height exports encode a 1800 m range in 16 bits.
     if maximum>1800/65535:
         raise ValueError(f'New source differs from retained border beyond one encoding step: {maximum} m')
-    grid_path=OUT/'west_candidate_2m.npz'
+    grid_path=out/'west_candidate_2m.npz'
     np.savez_compressed(grid_path,elevation=chosen)
     proof={'acquired_utc':datetime.now(timezone.utc).isoformat(),'status':'source_candidate_verified_not_imported_not_selected','bounds_m':BOUNDS,'working_crs':'EPSG:26911','source_spacing_m':1,'prepared_spacing_m':spacing,'shape':list(chosen.shape),'sample_count':int(chosen.size),'nodata_count':int((~np.isfinite(chosen)).sum()),'min_height_m':float(chosen.min()),'max_height_m':float(chosen.max()),'source_overlap_max_difference_m':float(abs(west[overlap]-east[overlap]).max()),'retained_boundary_max_difference_m':maximum,'boundary_tolerance_m':1800/65535,'grid_path':grid_path.relative_to(ROOT).as_posix(),'grid_sha256':sha(grid_path),'sources':snapshots,'limits':'No Unity import, material, collision, route, runtime or independent survey proof. New source is not assumed byte-identical to the original external snapshot.'}
-    (OUT/'proof.json').write_text(json.dumps(proof,indent=2)+'\n',encoding='utf-8',newline='\n')
+    (out/'proof.json').write_text(json.dumps(proof,indent=2)+'\n',encoding='utf-8',newline='\n')
     (HERE/'west_source_assessment.json').write_text(json.dumps(proof,indent=2)+'\n',encoding='utf-8',newline='\n')
     print(json.dumps(proof))
 

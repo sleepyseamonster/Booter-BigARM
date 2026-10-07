@@ -43,3 +43,7 @@ After syncing the promotion task's final HUD installer, `BooterBigArm.Editor.Con
 The [Windows baseline configuration](./windows_baseline_configuration.json) records the machine and proposed comparison setup. A successful build establishes packaging, not performance. User-owned traversal and visual review, actual Player quality/resolution, cold and repeat startup, frame-time distributions, CPU/GPU cost and native memory are still required before choosing performance changes or integrating the proposed expansion.
 
 Procedural generation remains deferred under the user's Greater Wasteland direction. Original full-region GIS data recovery and Blender scene readability remain separate gaps. No raw source proof is considered archived merely because it exists under ignored Logs.
+
+## Subsequent tool audit
+
+The [October 6 tool audit](./AUDIT_2026-10-06.md) added eleven passing offline regressions, stronger cached-boundary/provenance checks, independent source ordering, and fresh-directory preservation for acquisitions. The atlas now verifies the current availability and hashes of all five local candidate artifacts instead of inferring availability from the saved assessment. Seven browser checks passed for the readable selection summary, keyboard use, absent-file messaging, full-record disclosure and mobile layout. Existing-source CLI rejection preserved all recorded artifacts. These checks concern the inventory tools; they do not add new Unity runtime or Player performance proof.
