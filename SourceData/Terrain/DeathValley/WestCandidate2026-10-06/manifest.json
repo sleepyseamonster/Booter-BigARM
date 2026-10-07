@@ -1,0 +1,42 @@
+{
+  "status": "bounded verified candidate; not selected or imported",
+  "original_full_region_data": "Unavailable on this machine; these windows do not reconstruct the full former dataset.",
+  "records": [
+    {
+      "source": "Logs/DeathValleyInventory/west-source-proof/proof.json",
+      "destination": "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/proof.json",
+      "sha256": "a57eb1234bd8b13d8bc4b9258c4e121d0932b341b95a84a3608e62dda2d7c03d",
+      "bytes": 2615
+    },
+    {
+      "source": "Logs/DeathValleyInventory/west-source-proof/west_candidate_2m.npz",
+      "destination": "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/west_candidate_2m.npz",
+      "sha256": "c3a18acd4211a6d41296d197991603b0a657fff8f05c5d7e8e49760a66785fdd",
+      "bytes": 2547384
+    },
+    {
+      "source": "Logs/DeathValleyInventory/west-source-proof/x51y401_metadata.xml",
+      "destination": "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/x51y401_metadata.xml",
+      "sha256": "35db9828ec46a2b3ffab47cf5685fe4928f7917953d14b4bb1e0cce19a3d7bd5",
+      "bytes": 14435
+    },
+    {
+      "source": "Logs/DeathValleyInventory/west-source-proof/x51y401_window.tif",
+      "destination": "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/x51y401_window.tif",
+      "sha256": "a2d350d5fcd830167ee96b9161f75b377bef1d96901dec5807adcb7010f4729b",
+      "bytes": 7163905
+    },
+    {
+      "source": "Logs/DeathValleyInventory/west-source-proof/x52y401_metadata.xml",
+      "destination": "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/x52y401_metadata.xml",
+      "sha256": "42a02742549775a75cef32589e565ece755dbc3ac11691ea142b1a18c36939b1",
+      "bytes": 14436
+    },
+    {
+      "source": "Logs/DeathValleyInventory/west-source-proof/x52y401_window.tif",
+      "destination": "SourceData/Terrain/DeathValley/WestCandidate2026-10-06/x52y401_window.tif",
+      "sha256": "ce8afe465d7b4ddf1c97e9ff531066aba77d43f52c23c52ce539eace69fbc627",
+      "bytes": 2403471
+    }
+  ]
+}
