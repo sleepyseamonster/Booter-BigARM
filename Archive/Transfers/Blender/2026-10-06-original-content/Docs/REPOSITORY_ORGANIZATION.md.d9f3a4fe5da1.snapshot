@@ -7,7 +7,7 @@ The repository root is the active Unity project. Use [AGENTS.md](../AGENTS.md) f
 | `Assets/_Project/` | Imported game assets, production code, scenes, settings, and tests; preserve each asset's `.meta` and GUID |
 | `Packages/`, `ProjectSettings/` | Pinned Unity dependencies and project configuration |
 | `Docs/` | Canonical plans, standards, research, evidence, and agent packages |
-| `SourceArt/Blender/Studies/` | Provisional editable Blender studies and their source resources |
+| `Docs/Agents/Blender/studies/` | Provisional editable Blender studies and their source resources |
 | `Docs/Agents/Blender/archives/` | Dated transfer receipts, inert historical tools, and recovered data |
 | `Tools/` | Project-wide tooling in its existing ownership lanes |
 | `Archive/ProprietaryEngine/`, `Archive/Unreal/` | Segregated inactive hosts, with their source, tools, and historical evidence preserved |

@@ -86,7 +86,7 @@ Classify by actual role and dependencies, not names alone. A `Prototype` art dir
 | Isometric scene/runtime/editor code | `Archive/Unity/Isometric/Assets/_Project/...` | Move their whole dependency slice and associated tests; legacy runtime dependency is explicit |
 | Disabled `TopDown3DPrototype.unity` | Conditional future archive under `Archive/Unity/GeneratedWorldReference/` | First replace or preserve its live play-setup template, validators, capture tools, tests and preflight consumers; shared runtime remains active |
 | `GreaterWasteland.unity` | `Assets/_Project/Scenes/Production/GreaterWasteland.unity` | Preserve its GUID; update Build Settings, path constants, tests, and GUID-based discovery consumers |
-| `SourceArt/Blender/Studies/` | `SourceArt/Blender/Studies/` | Move complete resource directories together; keep dated previous saves beside their source; inspect relative/packed resource paths |
+| `Docs/Agents/Blender/studies/` | `SourceArt/Blender/Studies/` | Move complete resource directories together; keep dated previous saves beside their source; inspect relative/packed resource paths |
 | Blender CLI scripts/configs | `Tools/Art/Blender/` | Replace fixed ancestor-depth assumptions and old absolute paths with explicit/derived repo roots |
 | Blender terrain build/expansion plans and terrain-pipeline research | `Docs/Research/Terrain/DeathValley/` | Keep research with its project topic; agent techniques/instructions remain in the role package |
 | `Docs/DeathValley/` | `Docs/Research/Terrain/DeathValley/` | Coordinate with its owner; preserve data/atlas receipts and update current discovery/link paths |

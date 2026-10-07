@@ -1,0 +1,69 @@
+# Broken World badlands environment study
+
+This is a **provisional Blender scene**, built for visual review before Unity integration. It has one bounded, mostly flat badland, shallow dry washes, modest rough rises, clustered rock formations, scattered stones, and sand/gravel/rock ground layers. It uses the repository's existing ground and rock albedo textures. No terrain, placement, material, or save authority in the Unity project changes.
+
+## Files
+
+- `build_badlands_study.py` creates and renders the scene deterministically in Blender 5.2.2 LTS.
+- `BrokenWorldBadlandsStudy.blend` is the editable result with source textures packed.
+- `BrokenWorldBadlandsStudy.png` is the first camera review image.
+- `build_badlands_rock_detail_study.py` builds a temporary rock-detail source in the system temporary directory.
+- `apply_rock_detail_to_open_study.py` applies that source to the currently open study without replacing the scene or its edited lights and camera.
+- `BrokenWorldBadlandsRockDetailStudy.png` and `BrokenWorldBadlandsRockDetailCloseup.png` show the rock-detail pass and a formation close-up.
+- `apply_badlands_realism_to_open_study.py` applies a ground, placement, and composition pass to the same open `.blend` without resetting the user's edited sun.
+- `BrokenWorldBadlandsRealismStudy.png` is a review render from the saved working file after that pass.
+- `expand_badlands_authoring_area.py` extends the terrain in the currently open working file while copying every existing center vertex and its ground mask color.
+- `BrokenWorldBadlandsExpandedOverview.png` is the full-area review render from the saved working file.
+- `references/BadlandsPaletteAndDebrisReference.png` is the user-provided visual reference for color, rough rock, and debris buildup. Its tall buttes and deep canyons are not the current shape target.
+- `references/BadlandsWideHorizonPanorama.png` is the user's second reference and exact source for the panoramic World environment.
+- `apply_reference_debris_to_open_study.py` adds the reference-inspired rubble pass once to the already open working file.
+- `apply_wide_horizon_panorama_to_open_study.py` maps the second reference into the World of the already open working file and adds a wide terrain review camera.
+- `BrokenWorldBadlandsReferenceDebrisClose.png` is a close render from that saved working file.
+- `refine_badlands_rock_realism.py` adds reversible bevel, denser surface geometry, and two erosion scales to the existing rocks in the open working file.
+- `BrokenWorldBadlandsRefinedRocksClose.png` is the close review render from the saved file after that refinement.
+- `textures/sources/Badlands*Generated.png` are the three generated red dirt, sparse shale, and dense shale source images.
+- `make_seamless_ground_tiles.py` bakes those sources into the three `textures/Badlands*Tile.png` images with matching opposite edges.
+- `apply_distinct_tileable_ground_to_open_study.py` applies the new three-surface material to the currently open working file.
+- `BrokenWorldBadlandsDistinctGroundClose.png` and `BrokenWorldBadlandsDistinctGroundTopdown.png` review that saved material from close and overhead views.
+- `BrokenWorldBadlandsWideHorizon.png` is the wide review render from the saved file.
+- `replace_periodic_terrain_ridges.py` removes the sine-based terrain ripples from the same open working file and replaces them with low, irregular plateau relief.
+- `BrokenWorldBadlandsIrregularTerrainReview.png` reviews the saved correction from a low oblique angle.
+
+Run from the repository root with the Steam Blender executable on this macOS host:
+
+```sh
+"$HOME/Library/Application Support/Steam/steamapps/common/Blender/Blender.app/Contents/MacOS/Blender" --background --python-exit-code 1 --python SourceArt/Blender/Studies/build_badlands_study.py
+
+# Rebuild the temporary rock-detail source and review images:
+"$HOME/Library/Application Support/Steam/steamapps/common/Blender/Blender.app/Contents/MacOS/Blender" --background --python-exit-code 1 --python SourceArt/Blender/Studies/build_badlands_rock_detail_study.py
+```
+
+The source script rebuilds its output files and is not an in-place editor for user changes made inside the `.blend`. Save manual revisions under a new name or update the source script deliberately.
+
+The user-facing working file remains `BrokenWorldBadlandsStudy.blend`. The rock-detail pass was applied to that same open file, preserving its edited sun and view. It adds denser rock meshes, broken silhouettes, shaped tops, smoother side normals, box-projected albedo, fine bump detail, and a soft fill light. The separate review render also tries slightly deeper rock grounding; the in-place update preserves the user's rock transforms. These meshes have not been optimized or imported for Unity.
+
+The next in-place pass expanded the terrain from 90 m to 180 m, smoothed its surface, reduced the ground material's orange saturation, mixed in broad gravel variation, settled 145 existing rocks, varied five buttress positions and heights, and added 100 small talus fragments near formations. It added an interior review camera while retaining the original elevated camera. The live scene was saved in the same `.blend`. The render still shows a finite study boundary at its upper corners, and the ground remains a provisional material study rather than a finished texture set.
+
+The current working scene is now 360 m × 360 m, four times the previous area. The authored 180 m × 180 m center retains its 0.75 m mesh spacing and all 58,081 original vertex positions; the new 90 m wide band on every side uses 2.5 m spacing and low, broad relief. All 245 pre-existing rocks and talus pieces retain their transforms. The original cameras remain, and `Expanded authoring overview camera` is available for reviewing the whole canvas. The expanded ground is deliberately sparse for future visual authoring. The saved mesh has 97,969 vertices and 194,688 terrain triangles, compared with 58,081 vertices and 115,200 terrain triangles before expansion. Its finite edge is visible in the full-area render; this is still a bounded Blender study, not a Unity world or streamed terrain.
+
+The reference pass was applied and saved in that same open `.blend`. It adds a roughly 2.3 m high layered shelf and 1,920 dark, rust, and dusty-shale fragments clustered around five existing formations and the new shelf. The denser fans gather at the rock bases and thin across the mostly flat ground. The new meshes, close review camera, and local warm bounce light are in `Reference study - rubble aprons`, which can be hidden for comparison. The terrain, earlier rocks, cameras, and lights remain in place. `Rubble and rock close review camera` shows this pass; switch to `Expanded authoring overview camera` for the whole area. The new rock shapes are a provisional style study and still read more faceted than the photo reference.
+
+The wide-horizon image is now the main reference for **most** terrain: open, low-relief rust ground; shallow ridges and washes; sparse larger rocks with local patches of smaller debris; a distant hazy horizon; and a warm clouded sky. The first image remains the closer reference for fractured rock and talus buildup. The high buttes visible in both references are distant backdrop cues only at this stage, not a request for tall local formations or deep canyons.
+
+The ground texture pass was applied to the **same open `BrokenWorldBadlandsStudy.blend`**. `apply_layered_ground_to_open_study.py` copies the previous terrain material to `StudyGround_LayeredBadlandsReferences`. It layers three generated study textures from `textures/`: `BadlandsCompactedRustSoil.png` for the widespread soil, `BadlandsEmbeddedShaleGravel.png` for irregular exposed-rock islands, and `BadlandsDarkScree.png` for the finer rubble at formation feet. A terrain point attribute gives the six low formations broad dusty/pebbly aprons, while procedural noise breaks their edges. The existing swept-sand image adds thin dust variation and the existing rocky height image adds subtle bump. Color images are packed into the `.blend`; mirrored image extension avoids sharp repeat seams, although repetition can still be visible. `Layered ground texture review camera` is active for close inspection. These generated images are visual-study color sources, not a calibrated seamless PBR set or a Unity-ready terrain material.
+
+The first mirrored pass produced recognizable square and reflected patterns in the user's overhead view. `soften_ground_texture_repeats.py` corrects the **same working file** with `StudyGround_SoftStochasticBadlands`: it warps ground coordinates gently and overlaps two differently rotated, offset, and scaled samples of each ground image under a continuous noise blend. The former `StudyGround_LayeredBadlandsReferences` material is retained in the file for comparison. `BrokenWorldBadlandsSoftOverlapTopdown.png` reviews the area around the low shelf from above, and `BrokenWorldBadlandsSoftOverlapClose.png` reviews it from the existing close camera. The visible square repetition is reduced; the overlap also softens some fine detail, and the original generated images are still not mathematically seamless tiles.
+
+The current ground material, `StudyGround_DistinctTileableShaleAndDirt`, replaces the runtime overlap approach in the **same open `.blend`**. Three generated albedo sources represent compacted red dirt, sparse shale, and dense stony shale. `make_seamless_ground_tiles.py` repairs each source offline; a readback of its 1254 × 1254 RGBA pixels confirmed identical opposite edge values in both directions. The material samples each tile once with ordinary repeat mapping at roughly 5 m per tile. A broad noise field assigns separate dirt and shale regions, and the existing formation apron attribute increases shale around rock bases. Two short mask ramps create a sparse-chip transition before dense shale, leaving fully distinct dirt and stony areas. The previous soft-stochastic material remains in the file for comparison. The close and overhead renders show stronger shale detail and no obvious square seam, though repetition across the 360 m study still needs visual acceptance from other viewpoints. These are albedo study textures with procedural bump, not a calibrated Unity PBR set.
+
+The rock refinement pass is saved in that **same open file**. It affects the low shelf, 20 formation pieces, 125 scattered stones, 100 talus pieces, and six combined scree apron meshes. Non-destructive modifiers chip and bevel the exposed edges, subdivide the underlying faces, and add broad and fine erosion at different scales. Smooth normals remove the obvious polygon shading while retaining the layered material boundaries. Existing rock transforms, materials, debris buildup, terrain, and cameras are preserved. The close render shows a less faceted shelf and stones; the shelf still has a deliberately authored layered profile and needs further sculpted fracture detail and physically calibrated PBR textures before it can meet the photo reference at extreme close range. These modifiers increase viewport and render geometry and should be baked and optimized before Unity import.
+
+The exact second PNG is packed into the same `.blend` as an equirectangular World environment. `Wide horizon terrain review camera` is active; the earlier cameras remain available. This is a 1774 × 887 **8-bit PNG**, so it is a low-dynamic-range panoramic environment, not a true HDR radiance image. The existing sun and area lights still supply stronger lighting. The rendered review shows a visible join where the finite study terrain meets the image's baked landscape; the image also cannot supply missing views or HDR highlight values. These are limitations to resolve before treating it as a seamless game sky or lighting source.
+
+The terrain correction is saved in that **same open working file**. The original height formulas contained several sine products that created parallel, evenly spaced ripples. `replace_periodic_terrain_ridges.py` subtracts only those known ripple terms and adds domain-warped noise with short transitions between low plateaus. It preserves the broad wash, 360 m mesh, ground masks, tileable shale/dirt material, cameras, and lights. All 245 formation/stone/talus objects, the low shelf, and the six combined scree meshes follow the local height change, keeping the rock clusters grounded. The script has an in-file completion marker so it does not apply the change twice. The low-angle review render no longer shows the regular bands. This remains a provisional mostly flat terrain study; the plateau profile and rock contact still need visual acceptance in the user's preferred viewpoints.
+
+## Review gate
+
+Assess terrain shape, paths, rock silhouette, texture scale, repetition, and value/color separation from the elevated game-like camera. This render is a composition study, not a measured Unity match. Approved components should be split into reusable meshes and texture assets and checked through Babineaux's Unity import path. Production World Creator remains the sole terrain and placement authority.
+
+Procedural integration: the study uses a fixed seed only for reproducibility. It has no runtime world identity, chunk unload/reload behavior, stable generated-object IDs, placement constraints, or persisted deltas. Those remain owned by existing Unity systems and must be addressed during any approved asset integration.

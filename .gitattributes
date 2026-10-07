@@ -1,2 +1,4 @@
 # Editable Blender sources, including dated recovered saves, use Git LFS.
 Docs/Agents/Blender/**/*.blend filter=lfs diff=lfs merge=lfs -text
+SourceArt/Blender/**/*.blend filter=lfs diff=lfs merge=lfs -text
+Archive/Transfers/Blender/**/*.blend filter=lfs diff=lfs merge=lfs -text

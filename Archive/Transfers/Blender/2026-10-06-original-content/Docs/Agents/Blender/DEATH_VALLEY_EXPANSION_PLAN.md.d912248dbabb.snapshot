@@ -1,6 +1,6 @@
 # Death Valley full-tile expansion and Badwater detail plan
 
-**Status:** Implemented geographic Blender study, 2026-10-05. The new [expanded viewer](../../../SourceArt/Blender/Studies/DeathValley/EXPANDED_VIEWER.md) and source pipeline are built and rendered. The existing `DeathValleyExplore.blend` is preserved; user inspection of the candidate corridor and interactive navigation remains open.
+**Status:** Implemented geographic Blender study, 2026-10-05. The new [expanded viewer](./studies/DeathValley/EXPANDED_VIEWER.md) and source pipeline are built and rendered. The existing `DeathValleyExplore.blend` is preserved; user inspection of the candidate corridor and interactive navigation remains open.
 
 ## Outcome and boundaries
 
@@ -12,7 +12,7 @@ This phase contains terrain, imagery reference, geographic labels, and viewport 
 
 ## Source of truth and grid math
 
-The current [region configuration](../../../Tools/Art/Blender/death_valley/region.json), external source manifest in `/Users/worldbuilder/Desktop/Death Valley Terrain Data/manifest.json`, [exploration builder](../../../Tools/Art/Blender/death_valley/build_explore_scene.py), and the installed Blender 5.2.2 LTS scene are the implementation baseline. The current EPSG:26911 rectangle is `[399400, 3928800, 575600, 4144200]` metres at 200 m sample spacing. The builder cuts at 160 cells per tile, or 32 km. Its 881 × 1077 cells yield 6 × 7 objects, with the final east and south tiles clipped.
+The current [region configuration](./tools/death_valley/region.json), external source manifest in `/Users/worldbuilder/Desktop/Death Valley Terrain Data/manifest.json`, [exploration builder](./tools/death_valley/build_explore_scene.py), and the installed Blender 5.2.2 LTS scene are the implementation baseline. The current EPSG:26911 rectangle is `[399400, 3928800, 575600, 4144200]` metres at 200 m sample spacing. The builder cuts at 160 cells per tile, or 32 km. Its 881 × 1077 cells yield 6 × 7 objects, with the final east and south tiles clipped.
 
 | Grid | EPSG:26911 bounds, metres | Cells / vertices | Terrain triangles |
 | --- | --- | --- | --- |
