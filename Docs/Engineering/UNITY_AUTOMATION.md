@@ -1,6 +1,31 @@
 # Unity Automation
 
-This project currently has no MCP bridge exposed in the workspace. The practical control path is the local Unity editor executable plus editor-side automation scripts.
+The Windows checkout uses the Unity CLI and its pinned `com.unity.pipeline` package for a local connection to the Editor. Existing editor-side validators and direct executable batchmode workflows remain available. No separate MCP server is required for Codex to invoke the CLI through PowerShell.
+
+## Windows CLI connection
+
+The CLI is available as `unity` on PATH, with a fallback at `%LOCALAPPDATA%\Unity\bin\unity.exe`. The project pins Pipeline `0.8.0-exp.1`; setup uses CLI `1.0.0-beta.12`. Do not upgrade either automatically. See the [official Pipeline setup](https://docs.unity.com/en-us/unity-cli/unity-pipeline/unity-pipeline-package).
+
+Always derive the target path from this checkout and pass it explicitly. Other Editor instances can belong to isolated validation copies and must not be selected accidentally:
+
+```powershell
+$cli = Join-Path $env:LOCALAPPDATA 'Unity\bin\unity.exe'
+$project = (Get-Location).Path
+& $cli editors running --json
+& $cli status --project-path $project --json
+& $cli command --project-path $project --query eval --detail full --json
+& $cli command eval 'return UnityEngine.Application.dataPath;' --project-path $project --json
+& $cli command console_status --project-path $project --json
+& $cli command run_tests --mode editor --filter TopDown3DVolumetricDustTests --filter_type testName --project-path $project --json
+```
+
+Pipeline connects automatically after package import and domain reload while the Editor is running. `status` verifies availability; command discovery provides the schema for the installed package. Discover a command before invoking it. `eval` executes C# with full Editor authority: use read-only expressions for inspection and review mutating operations against the task scope. Do not save scenes, enter Play Mode, or run broad repair/build commands merely to verify the connection.
+
+Reuse an existing target-project Editor. When no Editor owns the target project, the background batchmode launch in [LOCAL_WORKSPACE.md](../LOCAL_WORKSPACE.md) can be used without `-quit` to maintain a CLI session; keep `-batchmode -nographics`, `-WindowStyle Hidden`, and an ignored log. Check process ownership and the lock first. Such a session holds the project lock until closed; do not launch a second Editor against it. Close only a task-owned session, after checking for unsaved work, before a normal interactive launch. Never use `unity open` as an unverified background-safe launcher or follow a CLI suggestion to focus Unity.
+
+CLI control is local to this machine and requires a running Editor. It does not resolve licensing failures or establish visual/gameplay acceptance. Existing `-executeMethod` methods remain the canonical validators; live invocation must inspect their implementation for side effects before use.
+
+Connection, compilation, and focused test proof from the initial setup are recorded in the [2026-10-08 receipt](../Evidence/Unity/CLI_CONNECTION_2026-10-08.md). Select focused tests relevant to each subsequent task; the example above is the setup check, not a required suite for every change.
 
 ## Platform Routing
 

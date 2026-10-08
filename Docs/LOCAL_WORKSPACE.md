@@ -53,6 +53,12 @@ Start each session with root instructions, this guide, the relevant role's defau
 
 ## Windows preflight and Unity restoration
 
+### Unity CLI bridge — 2026-10-08
+
+Unity CLI `1.0.0-beta.12` is installed at `%LOCALAPPDATA%\Unity\bin\unity.exe` and on PATH. The production project now pins `com.unity.pipeline` `0.8.0-exp.1`; Unity resolved its dependencies without changing existing package versions. A background Unity `6000.4.0f1` session in the D: checkout successfully exposed the CLI server on loopback, answered read-only project queries, reported zero console errors, and ran 11/11 focused EditMode tests. This also establishes a licensed Editor import on D: after the migration; the earlier empty-license concern is historical. See the [setup receipt](./Evidence/Unity/CLI_CONNECTION_2026-10-08.md) and [CLI workflow](./Engineering/UNITY_AUTOMATION.md#windows-cli-connection).
+
+Check `unity editors running --json` and explicitly target this checkout before every connected operation. The separate terrain-validation copy is not the production connection. Pipeline starts automatically with the Editor; no Codex MCP registration is necessary for shell-based access. A background persistent session holds the project lock, so reuse it or close that task-owned session safely before opening a normal Editor. Do not focus Unity to establish the connection.
+
 Run the read-only preflight from PowerShell:
 
 ```powershell
