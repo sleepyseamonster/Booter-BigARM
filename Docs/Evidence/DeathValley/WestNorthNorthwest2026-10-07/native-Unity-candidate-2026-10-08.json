@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "scope": "isolated native Unity candidate and additive production rehearsal; live production remains 256",
+  "candidate_build_exit": 0,
+  "candidate_fresh_reopen_validation": {
+    "schema_version": 1,
+    "terrains": 1024,
+    "retained": 256,
+    "new_terrains": 768,
+    "edges": 1984,
+    "outer_edges": 128,
+    "collider_samples": 25600,
+    "scene": "Assets/_Project/Scenes/Reference/TerrainExpansionCandidate.unity",
+    "scene_sha256": "9ced0ec029f043c0aa5b41881e3a378011cec0fa2ffae57b8abb76de3e65c3d3",
+    "manifest_sha256": "5c367328acdc8f7b974a35a6ce5dab368f1beff9e69cce9a64c6cc89ad8cd65a",
+    "status": "validated_full_grid_and_collider_samples",
+    "max_new_readback_error_m": 0.027492642402648926,
+    "max_collider_error_m": 3.0517578125e-05
+  },
+  "candidate_focused_EditMode_tests": {
+    "passed": 29,
+    "failed": 0,
+    "xml": "D:/BooterBigArmValidation/expansion-focused-tests02-20261008.xml"
+  },
+  "isolated_additive_integration_exit": 0,
+  "isolated_production_fresh_validation": {
+    "schema_version": 1,
+    "terrains": 1024,
+    "retained": 256,
+    "new_terrains": 768,
+    "edges": 1984,
+    "outer_edges": 128,
+    "collider_samples": 25600,
+    "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+    "scene_sha256": "d09a5602a2782c88c245d842a7e79451a89d4ab03865f31675b2fc011938d46a",
+    "manifest_sha256": "5c367328acdc8f7b974a35a6ce5dab368f1beff9e69cce9a64c6cc89ad8cd65a",
+    "status": "validated_full_grid_and_collider_samples",
+    "max_new_readback_error_m": 0.027492642402648926,
+    "max_collider_error_m": 3.0517578125e-05
+  },
+  "expanded_coverage_offline_tests_passed": 6,
+  "isolated_catalog_tiles": 1024,
+  "catalog_proof_limits": "Isolated catalog lacks full source archive inventory; final catalog must be regenerated in canonical repository",
+  "new_assets": {
+    "TerrainData": 768,
+    "TerrainLayer": 768,
+    "section_prefabs": 3
+  },
+  "live_protected_file_comparison": {
+    "retained_terrain_changes": 0,
+    "separately_owned_differences": [
+      "Packages/manifest.json",
+      "Packages/packages-lock.json"
+    ]
+  },
+  "pending": [
+    "integrated focused test completion",
+    "Development packaging",
+    "fresh live ownership/source snapshot reconciliation",
+    "verified asset/meta and code transfer",
+    "live additive scene integration through connected Editor",
+    "fresh exact final snapshot validation and map review",
+    "task-owned source and asset commits"
+  ],
+  "validation_root": "D:\\BooterBigArmValidation\\TerrainExpansion20261007-02",
+  "logs": [
+    "D:/BooterBigArmValidation/expansion-candidate-build-20261008.log",
+    "D:/BooterBigArmValidation/expansion-candidate-readback-20261008.log",
+    "D:/BooterBigArmValidation/expansion-isolated-integration-20261008.log",
+    "D:/BooterBigArmValidation/expansion-isolated-production-readback-20261008.log"
+  ]
+}
