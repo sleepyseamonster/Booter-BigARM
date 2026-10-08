@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "complete_Blender_authoring_and_native_Unity_integration",
+  "production_scene_sha256": "717e2714a04092d64fc6440587e17daee615468e83d88e882e1de3506dfb2ddd",
+  "manifest_sha256": "95ab40e90d184573cca17d166fe75ad612a7ab3a6447c926d6f167a1afd783d9",
+  "terrain_count": 1536,
+  "new_terrains": 512,
+  "restored_retained_terrains": 1024,
+  "seams_exact": 2992,
+  "collider_samples": 38400,
+  "unity_tests": {
+    "passed": 50,
+    "failed": 0,
+    "skipped": 0
+  },
+  "offline_tests": {
+    "passed": 47,
+    "failed": 0
+  },
+  "live_editor": {
+    "pid": 21012,
+    "project": "D:/Arc & Dust/Project",
+    "scene_loaded": true,
+    "scene_dirty": false,
+    "allocated_bytes_before_validation": 1992651416,
+    "reserved_bytes_before_validation": 2837676032
+  },
+  "sculpt_restore_receipt": "sculpt_restore_receipt.json",
+  "scene_preservation_receipt": "scene_preservation_receipt.json",
+  "proof_boundary": "Native source, seam, collider, map, compile and focused EditMode proof; no Play/actor smoke test or Player FPS claim",
+  "user_owned_dirty_preserved": [
+    "Assets/_Project/Materials/TopDown3D/Greybox_BigARM.mat",
+    "ProjectSettings/QualitySettings.asset"
+  ],
+  "push_performed": false
+}

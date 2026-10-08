@@ -60,11 +60,12 @@ namespace BooterBigArm.Tests
 
         [Test] public void SavedCandidate_ReloadRestoresFullGridWithoutManualNeighborRepair()
         {
-            var scene = EditorSceneManager.OpenScene(global::BooterBigArm.Editor.BadwaterTerrainExpansionSource.CandidateScene);
+            bool westPair = File.Exists(global::BooterBigArm.Editor.BadwaterWestPairSource.ProjectFile(global::BooterBigArm.Editor.BadwaterWestPairSource.ManifestPath));
+            var scene = EditorSceneManager.OpenScene(westPair ? global::BooterBigArm.Editor.BadwaterWestPairSource.CandidateScene : global::BooterBigArm.Editor.BadwaterTerrainExpansionSource.CandidateScene);
             var report = global::BooterBigArm.Editor.BadwaterTerrainExpansionValidator.ValidateScene(scene, true);
-            Assert.That(report.edges, Is.EqualTo(1984));
-            Assert.That(report.outer_edges, Is.EqualTo(128));
-            Assert.That(report.collider_samples, Is.EqualTo(25600));
+            Assert.That(report.edges, Is.EqualTo(westPair ? 2992 : 1984));
+            Assert.That(report.outer_edges, Is.EqualTo(westPair ? 160 : 128));
+            Assert.That(report.collider_samples, Is.EqualTo(westPair ? 38400 : 25600));
         }
     }
 }

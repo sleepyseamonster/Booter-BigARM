@@ -15,9 +15,11 @@ namespace BooterBigArm.Tests
         [Test] public void PortableGridMatchesRecordedBoundsAndInventory()
         {
             Assert.That(data.Manifest.width,Is.EqualTo(961));Assert.That(data.Manifest.height,Is.EqualTo(1121));
-            Assert.That(data.Catalog.unity_tiles.Length==256 || data.Catalog.unity_tiles.Length==1024,Is.True);
+            Assert.That(data.Catalog.unity_tiles.Length==256 || data.Catalog.unity_tiles.Length==1024 || data.Catalog.unity_tiles.Length==1536,Is.True);
             Assert.That(data.Catalog.regional_source_tiles.Length,Is.EqualTo(42));
-            Assert.That(data.PlayableBounds,Is.EqualTo(data.Catalog.unity_tiles.Length==1024
+            Assert.That(data.PlayableBounds,Is.EqualTo(data.Catalog.unity_tiles.Length==1536
+                ? new double[]{512208,4006200,524496,4014392}
+                : data.Catalog.unity_tiles.Length==1024
                 ? new double[]{516304,4006200,524496,4014392}
                 : new double[]{520400,4006200,524496,4010296}));
             Assert.That(data.Heights.Min(),Is.InRange(-86f,-84f));Assert.That(data.Heights.Max(),Is.InRange(3600f,3700f));
@@ -38,7 +40,7 @@ namespace BooterBigArm.Tests
             Assert.That(focus.Label,Is.EqualTo("r12_c01"));
             Assert.That(data.Catalog.unity_tiles.Count(t=>t.Contains(520656,4010040)),Is.EqualTo(4));
             Assert.That(data.Catalog.unity_tiles.Count(t=>t.Contains(519000,4007100)),
-                Is.EqualTo(data.Catalog.unity_tiles.Length==1024 ? 1 : 0));
+                Is.EqualTo(data.Catalog.unity_tiles.Length>=1024 ? 1 : 0));
             Assert.That(data.Catalog.expansion_candidates.Single(t=>t.Contains(519000,4007100)).Key,Is.EqualTo("candidate_west"));
         }
         [Test] public void MeshHasSimplifiedGeometryAndPickingReturnsClosestSurface()

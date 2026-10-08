@@ -11,13 +11,15 @@ def main():
     p.add_argument('--mode',choices=['build','verify','render'],required=True);p.add_argument('--section',required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--log',type=Path,required=True)
     p.add_argument('--blend',type=Path);p.add_argument('--stride',type=int,default=2);p.add_argument('--view',default='oblique')
+    p.add_argument('--script',type=Path,default=Path(__file__).with_name('build_expansion_scene.py'))
     a=p.parse_args();output=a.output.resolve();log=a.log.resolve()
     if output.exists() or log.exists():raise ValueError('Use fresh output and log paths')
     cmd=[str(a.blender.resolve()),'--background','--factory-startup','--disable-autoexec','--python-exit-code','1']
     if a.mode!='build':
         if not a.blend or not a.blend.is_file():raise ValueError('Verification/render requires a saved source')
         cmd.append(str(a.blend.resolve()))
-    cmd+=['--python',str(Path(__file__).with_name('build_expansion_scene.py')),'--','--manifest',str(a.manifest.resolve()),
+    if not a.script.is_file():raise ValueError('Missing native authoring script')
+    cmd+=['--python',str(a.script.resolve()),'--','--manifest',str(a.manifest.resolve()),
           '--mode',a.mode,'--section',a.section,'--output',str(output),'--stride',str(a.stride),'--view',a.view]
     log.parent.mkdir(parents=True,exist_ok=True);start=time.monotonic()
     with log.open('x',encoding='utf-8') as handle:

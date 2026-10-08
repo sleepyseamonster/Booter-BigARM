@@ -144,7 +144,7 @@ namespace BooterBigArm.Editor
 
         public static double[] GetPlayableBounds(DeathValleyMapRecord[] tiles)
         {
-            if (tiles == null || (tiles.Length != 256 && tiles.Length != 1024)) throw new InvalidDataException("Incomplete playable tile grid.");
+            if (tiles == null || (tiles.Length != 256 && tiles.Length != 1024 && tiles.Length != 1536)) throw new InvalidDataException("Incomplete playable tile grid.");
             var unique = new HashSet<string>();
             foreach (var tile in tiles)
             {
@@ -155,7 +155,7 @@ namespace BooterBigArm.Editor
                     throw new InvalidDataException("Overlapping or misaligned playable tiles.");
             }
             var bounds = new[] { tiles.Min(t=>t.bounds_m[0]), tiles.Min(t=>t.bounds_m[1]), tiles.Max(t=>t.bounds_m[2]), tiles.Max(t=>t.bounds_m[3]) };
-            double[] expected=tiles.Length==256 ? new double[] {520400,4006200,524496,4010296} : new double[] {516304,4006200,524496,4014392};
+            double[] expected=tiles.Length==256 ? new double[] {520400,4006200,524496,4010296} : tiles.Length==1024 ? new double[] {516304,4006200,524496,4014392} : new double[] {512208,4006200,524496,4014392};
             if (!bounds.SequenceEqual(expected)) throw new InvalidDataException("Playable footprint disagrees with accepted sections.");
             return bounds;
         }

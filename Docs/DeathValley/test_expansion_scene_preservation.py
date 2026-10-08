@@ -30,5 +30,16 @@ class ScenePreservationTests(unittest.TestCase):
         with self.assertRaises(ValueError):preserve(self.before,self.after.replace('  - {fileID: 1002}\n',''),'1')
         with self.assertRaises(ValueError):preserve(self.before,self.after+'--- !u!4 &1000\nTransform:\n','1')
 
+    def test_two_more_sections_preserve_existing_camera_and_all_original_documents(self):
+        changed=self.before.replace('8000','1300').replace('  m_Father:',
+            '  - {fileID: 1000}\n  - {fileID: 1001}\n  m_Father:')
+        after=changed+''.join(f'--- !u!4 &{i}\nTransform:\n  m_Father: {{fileID: 1}}\n' for i in range(1000,3564))
+        result=preserve(self.before,after,'1',section_count=2,terrain_count=512)
+        _,old=split_documents(self.before);_,actual=split_documents(result)
+        self.assertEqual(actual['3'],old['3'])
+        self.assertEqual(len(actual),2566)
+        with self.assertRaises(ValueError):preserve(self.before,after,'1')
+        with self.assertRaises(ValueError):preserve(self.before,after,'1',section_count=2,terrain_count=511)
+
 
 if __name__=='__main__':unittest.main()

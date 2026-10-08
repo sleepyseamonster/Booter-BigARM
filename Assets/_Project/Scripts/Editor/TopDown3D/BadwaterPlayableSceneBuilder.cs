@@ -116,7 +116,7 @@ namespace BooterBigArm.Editor
         public static void ValidateFromCli()
         {
             Scene scene = EditorSceneManager.OpenScene(TerrainScenePath, OpenSceneMode.Single);
-            int expectedTerrainCount = BadwaterTerrainExpansionSource.HasExpansion(scene) ? 1024 : 256;
+            int expectedTerrainCount = BadwaterWestPairSource.HasExpansion(scene) ? 1536 : BadwaterTerrainExpansionSource.HasExpansion(scene) ? 1024 : 256;
             if (CountTerrain(scene) != expectedTerrainCount) throw new InvalidDataException("Terrain count changed.");
             BadwaterTerrainSeamRepair.Validate(scene);
             if (UnityEngine.Object.FindObjectsByType<TopDown3DProceduralWorld>(FindObjectsSortMode.None).Length != 0)

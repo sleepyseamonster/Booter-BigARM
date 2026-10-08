@@ -166,7 +166,7 @@ def main():
             fx=(xx%stride)/stride;fy=(yy%stride)/stride
             render=((control[r0,c0]*(1-fx)+control[r0,c1]*fx)*(1-fy)+(control[r1,c0]*(1-fx)+control[r1,c1]*fx)*fy).astype('float32')
             for (nr,x),height in border.items():render[nr,x]=height
-            if a.section!='combined' and t['section']!='existing':
+            if a.section!='combined' and not obj.get('retained_reference',t['section']=='existing'):
                 if float(abs(render-expected).max())>.00025:raise ValueError('Blender reconstruction differs from prepared render samples')
             exports[t['id'].replace('/','__')]=render
             normals=min(normals,min(p.normal.z for p in obj.data.polygons))

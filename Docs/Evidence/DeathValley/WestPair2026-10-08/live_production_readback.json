@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "terrains": 1536,
+  "retained": 1024,
+  "new_terrains": 512,
+  "edges": 2992,
+  "outer_edges": 160,
+  "collider_samples": 38400,
+  "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+  "scene_sha256": "717e2714a04092d64fc6440587e17daee615468e83d88e882e1de3506dfb2ddd",
+  "manifest_sha256": "95ab40e90d184573cca17d166fe75ad612a7ab3a6447c926d6f167a1afd783d9",
+  "status": "validated_full_grid_and_collider_samples",
+  "max_new_readback_error_m": 0.027467496693134308,
+  "max_collider_error_m": 3.0517578125e-05
+}
