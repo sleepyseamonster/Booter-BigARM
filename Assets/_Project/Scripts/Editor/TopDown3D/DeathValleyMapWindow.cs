@@ -150,7 +150,7 @@ namespace BooterBigArm.Editor
                 using(new EditorGUI.DisabledScope(data==null))
                 {
                     if(GUILayout.Button("Entire Map",EditorStyles.toolbarButton))Fit(data.Manifest.bounds_m);
-                    if(GUILayout.Button("Playable Area",EditorStyles.toolbarButton))Fit(data.Catalog.regions.Single(r=>r.id=="badwater").bounds_m);
+                    if(GUILayout.Button("Playable Area",EditorStyles.toolbarButton))Fit(data.PlayableBounds);
                 }
                 GUILayout.FlexibleSpace();
             }
@@ -232,10 +232,10 @@ namespace BooterBigArm.Editor
                 string output=Path.Combine(root,"Logs/DeathValleyVisualizer");Directory.CreateDirectory(output);
                 window.Fit(window.data.Manifest.bounds_m);
                 window.ExportPreview(Path.Combine(output,"unity-overview.png"));
-                window.Fit(window.data.Catalog.regions.Single(r=>r.id=="badwater").bounds_m);
+                window.Fit(window.data.PlayableBounds);
                 window.ExportPreview(Path.Combine(output,"unity-chunks.png"));
                 window.pitch=90;window.yaw=0;
-                window.Fit(window.data.Catalog.regions.Single(r=>r.id=="badwater").bounds_m);
+                window.Fit(window.data.PlayableBounds);
                 window.ExportPreview(Path.Combine(output,"unity-chunks-top.png"));
                 Debug.Log("Death Valley developer map preview export passed.");
             }

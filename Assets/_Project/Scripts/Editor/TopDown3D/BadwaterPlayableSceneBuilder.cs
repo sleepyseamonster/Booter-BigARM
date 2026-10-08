@@ -116,7 +116,8 @@ namespace BooterBigArm.Editor
         public static void ValidateFromCli()
         {
             Scene scene = EditorSceneManager.OpenScene(TerrainScenePath, OpenSceneMode.Single);
-            if (CountTerrain(scene) != 256) throw new InvalidDataException("Terrain count changed.");
+            int expectedTerrainCount = BadwaterTerrainExpansionSource.HasExpansion(scene) ? 1024 : 256;
+            if (CountTerrain(scene) != expectedTerrainCount) throw new InvalidDataException("Terrain count changed.");
             BadwaterTerrainSeamRepair.Validate(scene);
             if (UnityEngine.Object.FindObjectsByType<TopDown3DProceduralWorld>(FindObjectsSortMode.None).Length != 0)
                 throw new InvalidDataException("Procedural terrain generator would cover the measured terrain.");
@@ -147,7 +148,7 @@ namespace BooterBigArm.Editor
                 throw new InvalidDataException("Legger is not grounded at the measured spawn.");
             foreach (var behaviour in UnityEngine.Object.FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
                 if (behaviour == null) throw new InvalidDataException("A scene component has a missing script.");
-            Debug.Log("Playable Badwater scene validated: 256 terrains, Booter, Legger, input, camera, UI, twilight and dust.");
+            Debug.Log($"Playable Badwater scene validated: {expectedTerrainCount} terrains, Booter, Legger, input, camera, UI, twilight and dust.");
         }
 
         private static int CountTerrain(Scene scene)

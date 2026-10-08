@@ -10,7 +10,7 @@ namespace BooterBigArm.Editor
     {
         public const int RenderResolution = 257;
 
-        public static float[,] DecodeSource(byte[] raw, int samples, int row, int column)
+        public static float[,] DecodeSource(byte[] raw, int samples, int row, int column, bool retainedFocusCompatibility = true)
         {
             if (raw.Length != samples * samples * 2)
                 throw new ArgumentException("Unexpected RAW byte count.", nameof(raw));
@@ -22,7 +22,7 @@ namespace BooterBigArm.Editor
                 heights[samples - 1 - north, x] = (raw[offset] | raw[offset + 1] << 8) / 65535f;
             }
             // Retain the original 1m focus perimeter's interpolation to the 2m DEM.
-            if (samples == 257)
+            if (samples == 257 && retainedFocusCompatibility)
             {
                 for (int i = 1; i < 256; i += 2)
                 {

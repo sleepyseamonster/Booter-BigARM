@@ -13,8 +13,8 @@ namespace BooterBigArm.Editor
         public string id, label, legacy_id, geographic_key, quarter, height_source;
         public double[] bounds_m;
         public float spacing_m, source_spacing_m;
-        public string Key => string.IsNullOrEmpty(legacy_id) ? id : legacy_id;
-        public string Label => string.IsNullOrEmpty(label) ? Key : label;
+        public string Key => !string.IsNullOrEmpty(geographic_key) ? geographic_key : string.IsNullOrEmpty(legacy_id) ? id : legacy_id;
+        public string Label => !string.IsNullOrEmpty(label) ? label : !string.IsNullOrEmpty(legacy_id) ? legacy_id : Key;
         public bool Contains(double east, double north) => east >= bounds_m[0] && east <= bounds_m[2] && north >= bounds_m[1] && north <= bounds_m[3];
     }
 
@@ -93,10 +93,11 @@ namespace BooterBigArm.Editor
                 if (r.bounds_m[0] < Manifest.bounds_m[0] || r.bounds_m[1] < Manifest.bounds_m[1] || r.bounds_m[2] > Manifest.bounds_m[2] || r.bounds_m[3] > Manifest.bounds_m[3])
                     throw new InvalidDataException("Coverage footprint outside relief grid.");
             }
+            GetPlayableBounds(Catalog.unity_tiles);
             var built = Catalog.regions.Single(r => r.id == "badwater");
             if (Manifest.unity_origin_m == null || Manifest.unity_origin_m.Length != 2 ||
-                Manifest.unity_origin_m[0] != (built.bounds_m[0]+built.bounds_m[2])/2 ||
-                Manifest.unity_origin_m[1] != (built.bounds_m[1]+built.bounds_m[3])/2)
+                Manifest.unity_origin_m[0] != 522448 || Manifest.unity_origin_m[1] != 4008248 ||
+                !built.bounds_m.SequenceEqual(new double[] { 520400, 4006200, 524496, 4010296 }))
                 throw new InvalidDataException("Unity origin disagrees with retained terrain bounds.");
             string folder=Path.GetDirectoryName(manifestPath);
             byte[] bytes=ReadVerifiedFile(folder,Manifest.grid_file,Manifest.grid_sha256);
@@ -137,6 +138,26 @@ namespace BooterBigArm.Editor
                 if(BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-","").ToLowerInvariant()!=expectedHash)
                     throw new InvalidDataException("Map source hash changed: "+name);
             return bytes;
+        }
+
+        public double[] PlayableBounds => GetPlayableBounds(Catalog.unity_tiles);
+
+        public static double[] GetPlayableBounds(DeathValleyMapRecord[] tiles)
+        {
+            if (tiles == null || (tiles.Length != 256 && tiles.Length != 1024)) throw new InvalidDataException("Incomplete playable tile grid.");
+            var unique = new HashSet<string>();
+            foreach (var tile in tiles)
+            {
+                ValidateBounds(tile.bounds_m);
+                if (tile.bounds_m[2]-tile.bounds_m[0] != 256 || tile.bounds_m[3]-tile.bounds_m[1] != 256 ||
+                    (tile.bounds_m[0]-520400)%256 != 0 || (tile.bounds_m[1]-4006200)%256 != 0 ||
+                    !unique.Add(tile.bounds_m[0].ToString("R",System.Globalization.CultureInfo.InvariantCulture)+"/"+tile.bounds_m[1].ToString("R",System.Globalization.CultureInfo.InvariantCulture)))
+                    throw new InvalidDataException("Overlapping or misaligned playable tiles.");
+            }
+            var bounds = new[] { tiles.Min(t=>t.bounds_m[0]), tiles.Min(t=>t.bounds_m[1]), tiles.Max(t=>t.bounds_m[2]), tiles.Max(t=>t.bounds_m[3]) };
+            double[] expected=tiles.Length==256 ? new double[] {520400,4006200,524496,4010296} : new double[] {516304,4006200,524496,4014392};
+            if (!bounds.SequenceEqual(expected)) throw new InvalidDataException("Playable footprint disagrees with accepted sections.");
+            return bounds;
         }
 
         public IEnumerable<DeathValleyMapRecord> AllRecords => Catalog.regions.Concat(Catalog.unity_tiles).Concat(Catalog.regional_source_tiles).Concat(Catalog.expansion_candidates);

@@ -22,6 +22,7 @@ namespace BooterBigArm.Editor
             var scene = SceneManager.GetActiveScene();
             if (EditorApplication.isPlayingOrWillChangePlaymode || scene.path != ScenePath || scene.isDirty)
                 throw new InvalidOperationException("Open the saved, unmodified Badwater scene outside Play mode before repair.");
+            if (BadwaterTerrainExpansionSource.HasExpansion(scene)) throw new InvalidOperationException("Legacy seam repair cannot write the expanded terrain; use a fresh candidate batch.");
             var grid = GetGrid(scene);
             var heightmaps = new Dictionary<Vector2Int, float[,]>();
             for (int row = 0; row < 16; row++)
@@ -85,6 +86,7 @@ namespace BooterBigArm.Editor
             foreach (GameObject root in scene.GetRootGameObjects())
             foreach (Terrain tile in root.GetComponentsInChildren<Terrain>(true))
             {
+                if (!AssetDatabase.GetAssetPath(tile.terrainData).StartsWith(SourceRoot + "/TerrainData/", StringComparison.Ordinal)) continue;
                 string name = tile.name;
                 string id = name.Substring(name.LastIndexOf("r", StringComparison.Ordinal));
                 int row = int.Parse(id.Substring(1, 2), CultureInfo.InvariantCulture);
@@ -100,6 +102,11 @@ namespace BooterBigArm.Editor
 
         public static void Validate(Scene scene)
         {
+            if (BadwaterTerrainExpansionSource.HasExpansion(scene))
+            {
+                BadwaterTerrainExpansionValidator.ValidateScene(scene);
+                return;
+            }
             var grid = GetGrid(scene);
             if (grid[0, 0].transform.parent.GetComponent<BadwaterTerrainConnectivity>() == null)
                 throw new InvalidDataException("Missing Badwater terrain connection lifecycle component.");

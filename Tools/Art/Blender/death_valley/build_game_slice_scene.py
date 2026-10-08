@@ -220,6 +220,12 @@ def coarse_tile_with_native_edge(name: str, regular_tile: np.ndarray, native: np
 
 
 def main() -> None:
+    if "--section" in sys.argv:
+        # The retained single-section CLI keeps its original material/scan contract.
+        from build_expansion_scene import main as build_section
+        sys.argv.extend(["--mode", "build"])
+        build_section()
+        return
     args = arguments()
     manifest = json.loads(args.manifest.read_text())
     config = json.loads(args.config.read_text())

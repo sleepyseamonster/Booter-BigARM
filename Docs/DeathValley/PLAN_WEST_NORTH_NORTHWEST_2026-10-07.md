@@ -1,5 +1,7 @@
 # West north and northwest terrain expansion plan
 
+Execution checkpoint 2026-10-08: the [implementation receipt](./EXPANSION_IMPLEMENTATION_2026-10-08.md) records built Blender sources, preserved 256-chunk baseline, validated 1,024-chunk production integration, expanded map coverage, focused tests and Windows Development packaging. The dated planning audit below remains the pre-implementation record. Appearance, traversal and representative performance remain user acceptance.
+
 Build 768 new chunks through the accepted GIS → Blender → exported heights and imagery → native Unity Terrain pipeline. Preserve the existing 256 chunks and integrate a verified 1,024-chunk Greater Wasteland. This October 7 reassessment plans execution; it does not build terrain or accept gameplay appearance.
 
 The controlling [handoff](./HANDOFF_WEST_NORTH_NORTHWEST_2026-10-07.md) settles the footprint and pipeline. The immediate work is baseline capture, native Blender recovery and complete source coverage. Those gates precede terrain construction.

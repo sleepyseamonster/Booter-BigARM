@@ -35,6 +35,18 @@ def digest(path):
     return h.hexdigest()
 
 
+def source_revision():
+    if (ROOT/".git").exists():
+        return subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip()
+    receipt=ROOT/"snapshot_receipt.json"
+    if not receipt.is_file():
+        raise ValueError("An isolated coverage audit requires its source snapshot receipt")
+    head=json.loads(receipt.read_text(encoding="utf-8"))["head"]
+    if not re.fullmatch(r"[0-9a-f]{40}",head):
+        raise ValueError("Invalid source snapshot revision")
+    return head
+
+
 def relative(path):
     return path.relative_to(ROOT).as_posix()
 
@@ -234,7 +246,7 @@ def main():
     scene=terrain_scene()
     text=scene.read_text(encoding="utf-8")
     counts={"terrains":len(re.findall(r"^--- !u!218 ",text,re.M)),"colliders":len(re.findall(r"^--- !u!154 ",text,re.M))}
-    if counts!={"terrains":256,"colliders":256}: raise ValueError(f"Scene count mismatch: {counts}")
+    if counts not in ({"terrains":256,"colliders":256},{"terrains":1024,"colliders":1024}): raise ValueError(f"Scene count mismatch: {counts}")
     terrain_data=list((source.parent/"TerrainData").glob("*.asset"))
     if len(terrain_data)!=256: raise ValueError("TerrainData count mismatch")
     for asset in terrain_data:
@@ -251,6 +263,12 @@ def main():
         availability=assessment_availability(json.loads(assessment.read_text(encoding="utf-8")),candidates[0]["bounds_m"],ROOT)
         status="source_verified_locally_not_selected_not_imported" if availability["status"]=="hash_verified" else "source_verification_recorded_local_files_unavailable"
         candidates[0].update({"status":status,"source_assessment":relative(assessment),"local_source_availability":availability})
+    if counts["terrains"]==1024:
+        from expansion_coverage import append_verified_expansion
+        tiles,new_data,expansion_audit=append_verified_expansion(ROOT,scene,text,tiles)
+        terrain_data.extend(new_data)
+    else:
+        expansion_audit=None
     assets=[asset_record(find(name)) for name in ("DeathValleyExplore.blend","DeathValleyExploreExpanded.blend","DeathValleyRegionalStudy.blend","DeathValleyMosaicDetail.blend","DeathValleyTerrainMaster.blend","BadwaterGameSlice.blend")]
     regional=[]
     rx0,ry0,rx1,ry1=regions[1]["bounds_m"]
@@ -263,8 +281,12 @@ def main():
     for area in (ROOT/"Docs",ROOT/"Assets",ROOT/"SourceData",ROOT/"wetransfer_blender_2026-10-06_2121"):
         if area.exists(): gis.extend(relative(p) for p in area.rglob("*") if p.is_file() and p.suffix.lower() in (".tif",".tiff",".npz",".npy",".laz",".las"))
     base_cfg,_=read_config("region.json")
-    catalog={"schema_version":1,"audited_utc":datetime.now(timezone.utc).isoformat(),"working_crs":"EPSG:26911","git_head":subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip(),"regions":regions,"blender_files":assets,"unity_scene":{"path":relative(scene),"guid":TERRAIN_SCENE_GUID,"sha256":digest(scene),**counts,"terrain_data_assets":len(terrain_data),"terrain_data_guid_links_verified":True},"source_audit":{"height_files":256,"color_files":256,"hash_mismatches":0,"shared_edges_checked":edges,"max_encoded_edge_difference":max_edge,"limits":"Source export and serialized reference checks only; no Editor readback, Player performance or visual acceptance."},"unity_tiles":tiles,"expansion_candidates":candidates,"gis_files_in_scanned_roots":gis,"gis_scan_roots":["Docs","Assets","wetransfer_blender_2026-10-06_2121"],"recovery":{"original_external_path":"/Users/worldbuilder/Desktop/Death Valley Terrain Data","external_data_restored":"not_confirmed","badwater_export_rebuild":"retained_height_and_color_exports_present","original_full_precision_grid":"not_found_in_scanned_roots","sources":base_cfg["source_references"]},"park_boundary":{"path":"nps_deva_boundary.json","response_sha256":park["response_sha256"],"retrieved_utc":park["retrieved_utc"]} if park else None}
+    catalog={"schema_version":1,"audited_utc":datetime.now(timezone.utc).isoformat(),"working_crs":"EPSG:26911","git_head":source_revision(),"regions":regions,"blender_files":assets,"unity_scene":{"path":relative(scene),"guid":TERRAIN_SCENE_GUID,"sha256":digest(scene),**counts,"terrain_data_assets":len(terrain_data),"terrain_data_guid_links_verified":True},"source_audit":{"height_files":256,"color_files":256,"hash_mismatches":0,"shared_edges_checked":edges,"max_encoded_edge_difference":max_edge,"limits":"Source export and serialized reference checks only; no Editor readback, Player performance or visual acceptance."},"unity_tiles":tiles,"expansion_candidates":candidates,"gis_files_in_scanned_roots":gis,"gis_scan_roots":["Docs","Assets","wetransfer_blender_2026-10-06_2121"],"recovery":{"original_external_path":"/Users/worldbuilder/Desktop/Death Valley Terrain Data","external_data_restored":"not_confirmed","badwater_export_rebuild":"retained_height_and_color_exports_present","original_full_precision_grid":"not_found_in_scanned_roots","sources":base_cfg["source_references"]},"park_boundary":{"path":"nps_deva_boundary.json","response_sha256":park["response_sha256"],"retrieved_utc":park["retrieved_utc"]} if park else None}
     catalog["gis_scan_roots"].insert(2,"SourceData")
+    catalog["source_audit"]["retained_shared_edges_checked"]=edges
+    if expansion_audit:
+        catalog["source_audit"].update(expansion_audit)
+    catalog["playable_bounds_m"]=[min(t["bounds_m"][0] for t in tiles),min(t["bounds_m"][1] for t in tiles),max(t["bounds_m"][2] for t in tiles),max(t["bounds_m"][3] for t in tiles)]
     restored=ROOT/"SourceData/Terrain/DeathValley/MacSnapshot2026-10-07"
     if (restored/"import_verification.json").is_file():
         from terrain_archive import TerrainArchive, MAC_PREFIX

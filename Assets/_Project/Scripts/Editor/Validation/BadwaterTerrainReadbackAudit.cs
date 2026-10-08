@@ -16,6 +16,11 @@ namespace BooterBigArm.Editor
     public static void ValidateFromCli()
     {
         Scene scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
+        if (BadwaterTerrainExpansionSource.HasExpansion(scene))
+        {
+            BadwaterTerrainExpansionValidator.ValidateScene(scene);
+            return;
+        }
         Terrain[] terrains = UnityEngine.Object.FindObjectsByType<Terrain>(FindObjectsSortMode.None);
         if (terrains.Length != 256)
             throw new InvalidDataException("Scene terrain count: " + terrains.Length);

@@ -19,6 +19,12 @@ def arguments() -> argparse.Namespace:
 
 
 def main() -> None:
+    if "--section" in sys.argv:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from build_expansion_scene import main as verify_section
+        sys.argv.extend(["--mode", "verify"])
+        verify_section()
+        return
     args = arguments()
     record = json.loads(args.manifest.read_text())
     bounds = record["bounds_m"]

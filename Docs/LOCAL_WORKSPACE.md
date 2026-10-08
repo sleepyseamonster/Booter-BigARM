@@ -20,6 +20,8 @@ The baseline Blender source, three expansion sources and combined review reopene
 
 Keep the C: copy intact until Unity licensing/import validation is restored and rollback retention is deliberately closed out. Migration does not repair the empty Unity licence file or claim fresh Editor import/gameplay proof. Historical receipts retain their original C:/Mac paths and hashes.
 
+Subsequent 2026-10-08 validation resolved the named-user Unity entitlement and passed fresh Editor imports, focused tests and Development packaging. The empty legacy ULF file is not the current licence authority. The [expansion implementation receipt](./DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md) records current production proof; the C: rollback copy remains retained.
+
 ## Resume context
 
 Read the [October 6 publication receipt](./Evidence/Publication/2026-10-06-safe-publication.md) before interpreting older snapshot documents. It is the latest restored checkpoint and records 43/43 focused terrain tests, 8/8 focused authored-asset tests, and a passing prototype validator on the previous machine. These are retained evidence, not fresh Windows test results.
