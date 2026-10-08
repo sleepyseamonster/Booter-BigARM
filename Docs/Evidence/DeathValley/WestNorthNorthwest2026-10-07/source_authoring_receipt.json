@@ -1,0 +1,343 @@
+{
+  "schema_version": 1,
+  "accepted_preparation": "Prepared03",
+  "accepted_pilot": "Pilot04.blend",
+  "accepted_sections": [
+    "west01.blend",
+    "north01.blend",
+    "northwest01.blend"
+  ],
+  "combined_review": "CombinedReview01.blend",
+  "native_build_script": {
+    "recorded_hash": "268442b17e08243c14c366b3938e872cbdab622bb0e34c6e2d42af25354eae97",
+    "archive": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/build_expansion_scene_at_authoring.py",
+    "current_hash": "98c43e318d3e248f5b11657cc490dd540523ce5856038388a5123dc1bfc1f663",
+    "change": "Later render-only bounding-box framing; native source payloads unchanged"
+  },
+  "native_arrays": {
+    "per_section_native_shape": [
+      4097,
+      4097
+    ],
+    "per_section_regular_shape": [
+      2049,
+      2049
+    ],
+    "hashes_and_finite_samples_verified": true
+  },
+  "retained_local_candidates_excluded_from_acceptance": [
+    "Prepared01",
+    "Prepared02",
+    "Pilot01.blend",
+    "Pilot02.blend",
+    "Pilot03.blend"
+  ],
+  "limits": "Source and native Blender proof; runtime traversal and performance remain user-owned",
+  "files": [
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_expansion.py",
+      "sha256": "10b3f1a8a448fdadca3e5c83f50f086d2ca7c9cde3edf89fd216afd9d437b4a4",
+      "bytes": 9252
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_expansion.py",
+      "sha256": "1e7c87fc8f0b6e67cbe7c8005901d2381dabe3ec8c050c0690c34133d8e31e48",
+      "bytes": 8852
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_expansion_color.py",
+      "sha256": "dd3d4d02e168d53a6fbba6514897144d04f13b953a6c742c0cd28ea3b3126ff7",
+      "bytes": 5055
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_expansion_scene.py",
+      "sha256": "98c43e318d3e248f5b11657cc490dd540523ce5856038388a5123dc1bfc1f663",
+      "bytes": 13411
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/run_expansion_blender.py",
+      "sha256": "f0b87931aa19d3db4c88130a6c93f375d10464eee37aa5dcb6015c0cb1b18232",
+      "bytes": 1964
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_expansion_unity.py",
+      "sha256": "9207aa24a5ce5f021983ee7bb0c7454aebfc2e4323b4c177f35509d7d8caf319",
+      "bytes": 7002
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_badwater_unity_source.py",
+      "sha256": "5a70f4d3824e09634cfebed9ea4e5a23a506ff45948540c146da5e20383a155c",
+      "bytes": 3399
+    },
+    {
+      "path": "Docs/DeathValley/test_expansion_preparation.py",
+      "sha256": "2edf268b94fe8ec9e90dd80672378470a59caa1d5b7f5413c7c376a6d0f346f0",
+      "bytes": 2177
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/catalog.json",
+      "sha256": "af68d0746673bdd46831a5418325590c915bc5a62ff7a4ec045d816a30277125",
+      "bytes": 15905
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/manifest.json",
+      "sha256": "1689b2977efa3fd6094b4ce86a7780cedabbba2335718cf0515cba3dde713863",
+      "bytes": 6583
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/northwest_terrain.npz",
+      "sha256": "b53899f4eb66aa4b2114221ba0363d940bdfad29c5e07f78416297dc266fa9b6",
+      "bytes": 51722306
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/north_terrain.npz",
+      "sha256": "0b1c63da918c0f1488a16a4804c2e9723a1ca183902c1d63ba719cb211f922d2",
+      "bytes": 73934145
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/west_terrain.npz",
+      "sha256": "f70ac0d34beb94ca66bcee33023b03ffe533c3e28bb8df3558e100b642aeb23c",
+      "bytes": 47008618
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/x51y401_metadata.xml",
+      "sha256": "35db9828ec46a2b3ffab47cf5685fe4928f7917953d14b4bb1e0cce19a3d7bd5",
+      "bytes": 14435
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/x51y401_window.tif",
+      "sha256": "634a6a5dcf55c679760d9cb055a3555da2e03ee6fe1ce1168dbc7abfb662b100",
+      "bytes": 28324675
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/x51y402_metadata.xml",
+      "sha256": "19fcd8d886ff58a3a20ba018eef651f7b08a873c77b8d46cd2dcdbec4c9a7eff",
+      "bytes": 14435
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/x51y402_window.tif",
+      "sha256": "a30a5b3e96e1aa1295f267f64182f982fa2d9a88bbe4ebc63432892dbf3c3cdf",
+      "bytes": 36281710
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/x52y401_metadata.xml",
+      "sha256": "42a02742549775a75cef32589e565ece755dbc3ac11691ea142b1a18c36939b1",
+      "bytes": 14436
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/x52y401_window.tif",
+      "sha256": "f26a8f1fac5e87002a5ec85ecbc57c53e2ba6dfed39048c3c4356d4eec8a2924",
+      "bytes": 60079586
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/x52y402_metadata.xml",
+      "sha256": "aec9d40b4521595fcfc9d922b118de2b2f1d6186ea1c3860d0ed468f9af7b3d7",
+      "bytes": 14435
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/DEM/x52y402_window.tif",
+      "sha256": "ad0cb0484e3fea4f10aca7b844f30ee0604b34abd569fcbfdc87da652f74885f",
+      "bytes": 69727049
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/Imagery/imagery_catalog.json",
+      "sha256": "ab1b7e8beb151f6019882e809db991148207665f0bffe3acf6ae6d1bd2cae0ed",
+      "bytes": 2009187
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/Imagery/manifest.json",
+      "sha256": "36783ea40b7040a8a9c6c97545d2675d2e5f1e601b32dbfc05decfbde2c5eefe",
+      "bytes": 3029
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/Imagery/northwest_naip_2m.service.json",
+      "sha256": "4dbab9fd9e82c640ff2009e946a216257d11f58c5fc3e25eb583f1ca4463070a",
+      "bytes": 635
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/Imagery/northwest_naip_2m.tif",
+      "sha256": "3f7c2913b2f68f09c08ec558a37f1ab856248293594d89c3e90aca50a041aa33",
+      "bytes": 16780902
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/Imagery/north_naip_2m.service.json",
+      "sha256": "0c6fc692cbf592dfc8df064fd7505bdecd68a89c4235a57b9c7c9d8e7fdd46fb",
+      "bytes": 635
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/Imagery/north_naip_2m.tif",
+      "sha256": "dc29c2da847eb320f30465aa7fb7631248368678290360bfc81726d3c75fae47",
+      "bytes": 16780902
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/Imagery/service.json",
+      "sha256": "b366ed805aa7d4fadee33def15c3e952a763134c4c9c2d07f4ad1bfabd033172",
+      "bytes": 8580
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/Imagery/west_naip_2m.service.json",
+      "sha256": "5c3b2c82d3e2d338f56e9b3ae020886bc55388725445478502669f886bc517aa",
+      "bytes": 635
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Acquisition01/Imagery/west_naip_2m.tif",
+      "sha256": "9849c0dfa967b9b554d2fd6392c546d14ea6dc017ffc8585968df86e536aacd7",
+      "bytes": 16780902
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/build_expansion_scene_at_authoring.py",
+      "sha256": "268442b17e08243c14c366b3938e872cbdab622bb0e34c6e2d42af25354eae97",
+      "bytes": 12787
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/color_matching.json",
+      "sha256": "4954a5a1b83bb7c3d73d01bd214053b565a412f2cf819203c79036e43e036079",
+      "bytes": 1237
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/combined_blender_proof.json",
+      "sha256": "8c8ed405eae01104b42fde1d52637102e4410de8b7cd3bc9f6a6f0e67318c6fe",
+      "bytes": 846
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/combined_blender_proof.npz",
+      "sha256": "e9cbccd31591851d3d1f3f0a579f6beb69c82ef23335673d62c06a63e80d3781",
+      "bytes": 179625941
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/manifest.json",
+      "sha256": "d4d260fc83a161529dff7965e03b581b14dede0a255cab11e4746fa5b744294b",
+      "bytes": 476060
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/native_build_commands.json",
+      "sha256": "a874ac3bb1d5a225c5888fc3da137021fe9ef91fc0273c28a63e742aef0ec194",
+      "bytes": 1523
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/northwest_blender_proof.json",
+      "sha256": "f868bb1666f3668216615dff08955ec5ed0951449e9b4a5ff353a116968a3af1",
+      "bytes": 841
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/northwest_blender_proof.npz",
+      "sha256": "d56376dbbc820aa8b51874cee975fea4935e5a6adbf91d78db8ad67286645c36",
+      "bytes": 39342290
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/northwest_geographic_color.png",
+      "sha256": "0c801a449de64ff4e2a17984daf8620228bc3c70216bfeb6d3c69d0da8ec49a9",
+      "bytes": 4978425
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/northwest_mesh_grids.npz",
+      "sha256": "2076c10881a77a1b21e2a3de2c2be5885dfa20997fc565838d3b73fb1f6b2c27",
+      "bytes": 39375628
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/north_blender_proof.json",
+      "sha256": "950f3b283ffe2bfb300cc9e2dd8e12052d67f67d255395a10c37975663565a29",
+      "bytes": 829
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/north_blender_proof.npz",
+      "sha256": "654c8e44d3b5085b70211e108be32583570eefedb15f1314357aa1b26be9456f",
+      "bytes": 54497308
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/north_geographic_color.png",
+      "sha256": "07facc33ad6fb6fa807a79fc920f30650f0bc739acc74b821d22c1952b10a988",
+      "bytes": 6972980
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/north_mesh_grids.npz",
+      "sha256": "025097783a2460c92b456269c3e980b6135c04cace12708f314a2050e02f96b6",
+      "bytes": 54493305
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/pilot_blender_proof.json",
+      "sha256": "c8cd5eca676bf4266993e6ca75a9ae53262b8d52142a344f5ae0211df5e35f8b",
+      "bytes": 827
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/pilot_blender_proof.npz",
+      "sha256": "2c13fc431330a4b35be0e2a3d42ad5e065077c67ec9567dbb080ff12d9b13969",
+      "bytes": 529791
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/west_blender_proof.json",
+      "sha256": "8e27c450d88965df284db08f5901f54c24ac4e62c2a915b1f2b64c45239409c3",
+      "bytes": 823
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/west_blender_proof.npz",
+      "sha256": "49705d62c581189f1400e1e5dd7aea5264fe0d2deb454a1246d2d2799706eb78",
+      "bytes": 36921920
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/west_geographic_color.png",
+      "sha256": "ccfc7ceda0c1df713d038821832aa192aac1f4ac33ebfa712b0fce8348bd0186",
+      "bytes": 4419101
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/west_mesh_grids.npz",
+      "sha256": "8a5f1269ca7b5cda309ae44dc4e862b0cb7f1d9823ac5bf56757333e50a6b7c3",
+      "bytes": 36962024
+    },
+    {
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/west01.blend",
+      "sha256": "c96554c97185a118ee80ee449fe47e89a77a901d952dd79427a4d7297185104a",
+      "bytes": 133802164
+    },
+    {
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/north01.blend",
+      "sha256": "1b56cfbb55f9240668e00e114bc4a9b9fef5ba053cdcc72965925333d2c9f3a0",
+      "bytes": 137459328
+    },
+    {
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/northwest01.blend",
+      "sha256": "95ddfdbb12983624a2dffb2bd08a8c3faf0d4b86fc000280216a447fdb23d4d7",
+      "bytes": 134295181
+    },
+    {
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/CombinedReview01.blend",
+      "sha256": "5726ef23afad6e865459cb2a9d79061fb61c0c72203b47969258c2af42008d9b",
+      "bytes": 79704514
+    },
+    {
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/Pilot04.blend",
+      "sha256": "adac992fa8f7ae93f4e2ada42f3ba2f4d3c496a5553e82855182dadd0dcd52a9",
+      "bytes": 25428482
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestNorthNorthwest2026-10-07/combined_oblique_framed.png",
+      "sha256": "c2d90dc59663d9da3b11d1eb5d0f86fb8cd150edc9fc0f804ec842a2f85e9122",
+      "bytes": 2037921
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestNorthNorthwest2026-10-07/overhead.png",
+      "sha256": "9f68cbe28eeb25d9f310f85207457aebe317d6d9f4e1da29887851385a02c4c9",
+      "bytes": 2271655
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestNorthNorthwest2026-10-07/west_seam.png",
+      "sha256": "89a9f752c01191aafc75e9b4a2710efb51388ddbebcff119488f6816eb18948d",
+      "bytes": 2362573
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestNorthNorthwest2026-10-07/north_seam.png",
+      "sha256": "d0a4c7e7d763cffb66a5ca04a12077168f0074c7d352efb6fb6ec780873cbd70",
+      "bytes": 2870098
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestNorthNorthwest2026-10-07/northwest_west.png",
+      "sha256": "ca352d9748112d4ae66670a1d8a74c31fdbff755379c6a2d885c4e3f037d48df",
+      "bytes": 2196913
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestNorthNorthwest2026-10-07/northwest_north.png",
+      "sha256": "0f46a816a6f00b5d48cc66fd668f44982cd6462e6d306c5af8d1e87f4ce3b8ce",
+      "bytes": 2686289
+    }
+  ]
+}

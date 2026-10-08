@@ -27,11 +27,17 @@ def sha256(path: Path) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--manifest", type=Path, required=True)
-    parser.add_argument("--color", type=Path, required=True)
+    parser.add_argument("--color", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
 
     manifest = json.loads(args.manifest.read_text())
+    if "sections" in manifest:
+        from export_expansion_unity import export
+        export(args.manifest, args.output)
+        return
+    if args.color is None:
+        parser.error("--color is required for the retained single-section export")
     if manifest["working_crs"] != "EPSG:26911" or manifest["bounds_m"] != [520400, 4006200, 524496, 4010296]:
         raise ValueError("Unexpected geographic source")
     image = Image.open(args.color).convert("RGB")
