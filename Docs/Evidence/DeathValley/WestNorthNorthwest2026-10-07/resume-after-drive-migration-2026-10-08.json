@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-08T15:59:38.038855+00:00",
+  "canonical_root": "D:\\Arc & Dust\\Project",
+  "Blender_proof_resources_verified_in_current_checkout": [
+    "west",
+    "north",
+    "northwest",
+    "combined"
+  ],
+  "fresh_export": "D:/BooterBigArmValidation/ExpansionExport02MigrationVerified",
+  "export_files_byte_identical_to_ExpansionExport01": 2561,
+  "new_export_shared_edge_error": 0,
+  "path_regression_tests_passed": 4,
+  "preparation_tests_passed": 4,
+  "licensing": "Fresh Unity log confirms resolved entitlements, updated licence and initialized licensing; legacy zero-byte ULF is not authoritative",
+  "first_fresh_Unity_import_exit": 1,
+  "first_import_failure": "Expansion tests resolved Editor namespace to BooterBigArm.Tests.Editor; fixed with global-qualified production namespace in isolated copy",
+  "native_candidate_build": {
+    "status": "running at receipt time; not validated or integrated",
+    "exec_session_id": 67265,
+    "log": "D:/BooterBigArmValidation/expansion-candidate-build-20261008.log",
+    "project": "D:/BooterBigArmValidation/TerrainExpansion20261007-02"
+  },
+  "Unity_Hub_registration": "supported projects add/remove CLI readback proves D-only registration, same cloud/local IDs, version 6000.4.0f1; C rollback files preserved",
+  "Hub_readback": "D:/Arc & Dust/Transfers/RepositoryMigration20261008/unityhub-projects-service-verified.json",
+  "limits": "Full Unity readback, focused tests, integrated production, refreshed map coverage and Development build remain pending"
+}
