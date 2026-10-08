@@ -34,7 +34,7 @@ class TerrainToolsTests(unittest.TestCase):
 
     def test_former_proposal_location_tracks_built_coverage_and_retains_study_geography(self):
         result = locate(self.catalog,519000,4007000)
-        if len(self.catalog['unity_tiles']) == 1024:
+        if any(t.get('section') == 'west' for t in self.catalog['unity_tiles']):
             self.assertEqual([t['geographic_key'] for t in result['unity_chunks']],
                              ['epsg26911/e518864/n4006968/size256'])
             self.assertEqual(result['unity_chunks'][0]['section'],'west')
@@ -65,7 +65,7 @@ class TerrainToolsTests(unittest.TestCase):
             with self.assertRaises(ValueError): plan(catalog,"candidate_west")
         with self.assertRaises(ValueError): plan(self.baseline_catalog,"unknown")
         with self.assertRaises(ValueError): plan(self.baseline_catalog,"candidate_west",3)
-        if len(self.catalog['unity_tiles']) == 1024:
+        if any(t.get('section') == 'west' for t in self.catalog['unity_tiles']):
             with self.assertRaises(ValueError): plan(self.catalog,'candidate_west')
 
     def test_doctor_reports_missing_changed_and_unsafe_records(self):

@@ -4,6 +4,8 @@ The user-selected production route is **verified GIS elevation and imagery → B
 
 This guide documents the existing contracts and the next implementation boundary. The current tools reproduce or validate specific existing footprints; there is not yet a general command that builds and integrates an arbitrary new 256-chunk slice.
 
+The original-stage boundaries below are historical. Current production contains 2,048 chunks after the [next west/northwest pair](./NEXT_WEST_PAIR_IMPLEMENTATION_2026-10-08.md). Its acquisition, preparation, native Blender adapter and guarded exporter are `acquire_next_west_pair.py`, `prepare_next_west_pair.py`, `build_next_west_pair_scene.py` and `export_next_west_pair_unity.py` under `Tools/Art/Blender/death_valley/`. Unity uses the `BadwaterNextWestPair` source, isolated builder, baseline audit and validator. These retain strict eight-section identities and do not authorize arbitrary footprints or source reuse without fresh coverage and join proof. All accepted task artifacts and temporary build files are on D:.
+
 ## Size and coordinates
 
 One new 256-chunk section consists of **16 × 16 chunks**, each **256 × 256 metres**, covering **4,096 × 4,096 metres**. A 64-chunk quarter is 2,048 × 2,048 metres. These are different batch sizes.

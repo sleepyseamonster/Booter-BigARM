@@ -15,9 +15,11 @@ namespace BooterBigArm.Tests
         [Test] public void PortableGridMatchesRecordedBoundsAndInventory()
         {
             Assert.That(data.Manifest.width,Is.EqualTo(961));Assert.That(data.Manifest.height,Is.EqualTo(1121));
-            Assert.That(data.Catalog.unity_tiles.Length==256 || data.Catalog.unity_tiles.Length==1024 || data.Catalog.unity_tiles.Length==1536,Is.True);
+            Assert.That(data.Catalog.unity_tiles.Length==256 || data.Catalog.unity_tiles.Length==1024 || data.Catalog.unity_tiles.Length==1536 || data.Catalog.unity_tiles.Length==2048,Is.True);
             Assert.That(data.Catalog.regional_source_tiles.Length,Is.EqualTo(42));
-            Assert.That(data.PlayableBounds,Is.EqualTo(data.Catalog.unity_tiles.Length==1536
+            Assert.That(data.PlayableBounds,Is.EqualTo(data.Catalog.unity_tiles.Length==2048
+                ? new double[]{508112,4006200,524496,4014392}
+                : data.Catalog.unity_tiles.Length==1536
                 ? new double[]{512208,4006200,524496,4014392}
                 : data.Catalog.unity_tiles.Length==1024
                 ? new double[]{516304,4006200,524496,4014392}

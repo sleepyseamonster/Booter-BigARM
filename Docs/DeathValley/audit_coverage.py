@@ -115,6 +115,8 @@ def asset_record(path):
 def make_atlas(catalog, park):
     regions = catalog["regions"]
     frame = regions[1]["bounds_m"]
+    def tile_label(tile):
+        return tile.get("section", "badwater") + "/" + tile["legacy_id"]
     def panel(view, width, height, layers, tiles=False):
         xmin, ymin, xmax, ymax = view
         margin = 24
@@ -140,7 +142,7 @@ def make_atlas(catalog, park):
                 parts.append(f'<rect x="{x:.3f}" y="{y:.3f}" width="{(x1-x0)*scale:.3f}" height="{(y1-y0)*scale:.3f}" fill="none" stroke="#77765e" stroke-opacity=".45" stroke-width=".7" pointer-events="none"/>')
         if tiles:
             for tile in catalog["unity_tiles"]:
-                parts.append(rect(tile["bounds_m"],"#c26b19" if tile["source_spacing_m"]==1 else "#266aa0",tile["legacy_id"],tile["legacy_id"]))
+                parts.append(rect(tile["bounds_m"],"#c26b19" if tile["source_spacing_m"]==1 else "#266aa0",tile_label(tile),tile["geographic_key"]))
             x0,y0,x1,y1=catalog["regions"][6]["bounds_m"]
             cx,cy=xy((x0+x1)/2,(y0+y1)/2)
             left,top=xy(x0,y1);right,bottom=xy(x1,y0)
@@ -159,7 +161,11 @@ def make_atlas(catalog, park):
         parts.append(f'<path d="M24 {height-12} h{bar_m*scale:.2f}" stroke="#333" stroke-width="2"/><text x="24" y="{height-19}" font-size="11">{bar_m//1000} km · EPSG:26911</text></svg>')
         return "".join(parts)
     overview=panel(frame,650,740,regions)
-    detail=panel([517840,4005688,527056,4012856],900,720,regions[3:7],True)
+    detail_bounds=[min(t["bounds_m"][0] for t in catalog["unity_tiles"])-512,
+                   min(t["bounds_m"][1] for t in catalog["unity_tiles"])-512,
+                   max(t["bounds_m"][2] for t in catalog["unity_tiles"])+512,
+                   max(t["bounds_m"][3] for t in catalog["unity_tiles"])+512]
+    detail=panel(detail_bounds,900,720,regions[3:7],True)
     (HERE/"coverage_overview.svg").write_text(overview,encoding="utf-8",newline="\n")
     (HERE/"coverage_badwater.svg").write_text(detail,encoding="utf-8",newline="\n")
     cards=[]
@@ -168,16 +174,17 @@ def make_atlas(catalog, park):
         h=(region["bounds_m"][3]-region["bounds_m"][1])/1000
         cards.append(f'<li><button data-id="{region["id"]}">{html.escape(region["label"])}</button> · {w:g} × {h:g} km · {region["spacing_m"]} m</li>')
     lookup={r["id"]:r for r in regions}
-    lookup.update({t["legacy_id"]:t for t in catalog["unity_tiles"]})
+    lookup.update({t["geographic_key"]:t | {"label":tile_label(t)} for t in catalog["unity_tiles"]})
     lookup.update({c["id"]:c for c in catalog["expansion_candidates"]})
     encoded=json.dumps(lookup).replace("<","\\u003c")
     page='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Death Valley coverage atlas</title>
 <style>body{font:16px/1.5 system-ui,sans-serif;background:#f5f2ea;color:#242722;margin:0;padding:24px;max-width:1250px;margin:auto}h1{font-size:28px}h2{font-size:20px}button{font:inherit;background:transparent;color:#20537a;border:0;text-decoration:underline;cursor:pointer;text-align:left}svg{width:100%;height:auto;border:1px solid #ccc}svg rect[data-id]{cursor:pointer}svg rect[data-id]:focus{stroke:#111;stroke-width:3}main{display:grid;grid-template-columns:1fr 1.35fr;gap:24px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#fff;padding:16px;border:1px solid #ccc;max-height:380px;overflow:auto;font-size:13px}dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px}dd{margin:0;overflow-wrap:anywhere}dt{font-weight:600}summary{cursor:pointer;color:#20537a}@media(max-width:800px){main{grid-template-columns:1fr}body{padding:12px}dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:12px}}</style>
 <h1>Death Valley coverage atlas</h1><p>North up. Measured geographic footprints, not a terrain render. Park polygon: official NPS snapshot. Click an area or a Badwater tile for its record.</p>
 <main><section><h2>Regional coverage</h2>OVERVIEW<ul>CARDS</ul></section><section><h2>Greater Wasteland terrain chunks</h2>DETAIL<p>Blue: retained Unity terrain. Orange: four 1 m source chunks. Brown dashed outlines: possible next batches, not built. Colored study outlines are Blender footprints.</p><div id="selection" aria-live="polite"><h3 id="selection-title">Select a footprint or tile.</h3><dl id="selection-facts"></dl></div><details><summary>Full source record</summary><pre id="record"></pre></details></section></main>
-<p>Source spacing describes retained measurements. Unity renders all 256 chunks on 257 × 257 grids; interpolated vertices do not add surveyed detail. Blender presence is file-level evidence, not a fresh scene-readability check.</p>
+<p>Source spacing describes retained measurements. Unity renders all CHUNK_COUNT chunks on 257 × 257 grids; interpolated vertices do not add surveyed detail. Blender presence is file-level evidence, not a fresh scene-readability check.</p>
 <script>const records=DATA;function select(id){const r=records[id];if(!r)return;document.getElementById('record').textContent=JSON.stringify(r,null,2);const quarter={NW:'Northwest',NE:'Northeast',SW:'Southwest',SE:'Southeast'};document.getElementById('selection-title').textContent=r.label||(r.legacy_id+' · '+quarter[r.quarter]+' quarter');const b=r.bounds_m;const facts=[['Coverage',(b[2]-b[0])+' × '+(b[3]-b[1])+' metres'],['Projected bounds','E '+b[0]+'–'+b[2]+'; N '+b[1]+'–'+b[3]]];const spacing=r.source_spacing_m||r.spacing_m;if(spacing)facts.push(['Source spacing',spacing+' m']);if(r.render_samples)facts.push(['Unity render grid',r.render_samples+' × '+r.render_samples]);facts.push(['State',r.legacy_id?'Retained Unity source exports; hashes verified':r.id.startsWith('candidate_')?'Proposed expansion; not selected or imported':'Study footprint; Blender geometry has not been reopened']);if(r.local_source_availability){const a=r.local_source_availability;facts.push(['Local rebuild inputs',a.status==='hash_verified'?'All '+a.checked_artifact_count+' artifacts match recorded hashes':a.missing_artifacts.length+' local artifacts unavailable; historical verification retained'])}const list=document.getElementById('selection-facts');list.replaceChildren();facts.forEach(([label,value])=>{const dt=document.createElement('dt');dt.textContent=label;const dd=document.createElement('dd');dd.textContent=value;list.append(dt,dd)})}document.querySelectorAll('[data-id]').forEach(e=>{e.addEventListener('click',()=>select(e.dataset.id));e.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select(e.dataset.id)}})});</script></html>'''
     page=page.replace("OVERVIEW",overview).replace("DETAIL",detail).replace("CARDS","".join(cards)).replace("DATA",encoded)
+    page=page.replace("CHUNK_COUNT",str(len(catalog["unity_tiles"])))
     (HERE/"coverage_atlas.html").write_text(page,encoding="utf-8",newline="\n")
 
 
@@ -246,7 +253,7 @@ def main():
     scene=terrain_scene()
     text=scene.read_text(encoding="utf-8")
     counts={"terrains":len(re.findall(r"^--- !u!218 ",text,re.M)),"colliders":len(re.findall(r"^--- !u!154 ",text,re.M))}
-    if counts not in ({"terrains":256,"colliders":256},{"terrains":1024,"colliders":1024},{"terrains":1536,"colliders":1536}): raise ValueError(f"Scene count mismatch: {counts}")
+    if counts not in ({"terrains":256,"colliders":256},{"terrains":1024,"colliders":1024},{"terrains":1536,"colliders":1536},{"terrains":2048,"colliders":2048}): raise ValueError(f"Scene count mismatch: {counts}")
     terrain_data=list((source.parent/"TerrainData").glob("*.asset"))
     if len(terrain_data)!=256: raise ValueError("TerrainData count mismatch")
     for asset in terrain_data:
@@ -263,7 +270,11 @@ def main():
         availability=assessment_availability(json.loads(assessment.read_text(encoding="utf-8")),candidates[0]["bounds_m"],ROOT)
         status="source_verified_locally_not_selected_not_imported" if availability["status"]=="hash_verified" else "source_verification_recorded_local_files_unavailable"
         candidates[0].update({"status":status,"source_assessment":relative(assessment),"local_source_availability":availability})
-    if counts["terrains"]==1536:
+    if counts["terrains"]==2048:
+        from next_west_pair_coverage import append_verified_next_west_pair
+        tiles,new_data,expansion_audit=append_verified_next_west_pair(ROOT,scene,text,tiles)
+        terrain_data.extend(new_data)
+    elif counts["terrains"]==1536:
         from west_pair_coverage import append_verified_west_pair
         tiles,new_data,expansion_audit=append_verified_west_pair(ROOT,scene,text,tiles)
         terrain_data.extend(new_data)
