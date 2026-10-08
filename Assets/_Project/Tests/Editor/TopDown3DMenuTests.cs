@@ -21,6 +21,7 @@ namespace BooterBigArm.Tests
         private Gamepad pad;
         private Keyboard keyboard;
         private TopDown3DMenuController menu;
+        private BadwaterCameraRange range;
         private TopDown3DInputRouter router;
         private TopDown3DInventoryUiController inventory;
         private TopDown3DRadialMenuController radial;
@@ -75,7 +76,9 @@ namespace BooterBigArm.Tests
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_Project/Prefabs/UI/Resources/SystemMenu.prefab");
             Assert.That(prefab, Is.Not.Null, "Author the canonical menu prefab before running these tests.");
             menuRoot = Object.Instantiate(prefab); menu = menuRoot.AddComponent<TopDown3DMenuController>();
-            menu.Configure(router, inventory, radial, menuRoot.GetComponent<TopDown3DMenuView>(), module, directory);
+            range = player.AddComponent<BadwaterCameraRange>();
+            range.SetPreset("High");
+            menu.Configure(router, inventory, radial, menuRoot.GetComponent<TopDown3DMenuView>(), module, directory, range);
             menuRoot.SetActive(true); player.SetActive(true);
         }
 
@@ -189,6 +192,65 @@ namespace BooterBigArm.Tests
             Assert.That(menu.IsOpen, Is.False); Assert.That(router.Mode, Is.EqualTo(TopDown3DInputMode.Disabled));
             Assert.That(actions.FindActionMap("UI").enabled, Is.False); Assert.That(actions.FindActionMap("System").enabled, Is.False);
             Assert.That(inventory.IsSuspended, Is.False); Assert.That(inventory.IsOpen, Is.False);
+        }
+
+        [Test]
+        public void ViewDistance_InitializesAcceptedStateAndAppliesOnlyAfterSaving()
+        {
+            Assert.That(range.Preset, Is.EqualTo("Maximum"));
+            menu.Open(); Command("Settings"); Command("ViewDistance");
+            Assert.That(range.Preset, Is.EqualTo("Maximum"), "Draft changes must not change the camera.");
+            menu.Back(); Command("DialogAccept");
+            Assert.That(range.Preset, Is.EqualTo("Maximum"));
+            Command("Settings"); Command("ViewDistance"); Command("SettingsApply");
+            Assert.That(range.Preset, Is.EqualTo("Low"));
+            Assert.That(player.GetComponent<Camera>().farClipPlane, Is.EqualTo(500f));
+            Assert.That(new TopDown3DMenuSettingsService(directory).Accepted.viewDistancePreset, Is.EqualTo("Low"));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(bool large)
+        {
+            menu.Open(); Command("Settings");
+            if (large) Command("TextSize");
+            Canvas.ForceUpdateCanvases();
+            var row = menuRoot.transform.Find("Safe Area/Settings/ViewDistance");
+            Assert.That(row, Is.Not.Null, "The authored prefab must expose the graphics setting.");
+            var label = row.GetComponentInChildren<UnityEngine.UI.Text>();
+            Assert.That(label.preferredHeight, Is.LessThanOrEqualTo(label.rectTransform.rect.height));
+            var button = row.GetComponent<UnityEngine.UI.Button>();
+            Assert.That(button.navigation.selectOnUp.name, Is.EqualTo("Motion"));
+            Assert.That(button.navigation.selectOnDown.name, Is.EqualTo("SettingsApply"));
+        }
+
+        [Test]
+        public void ViewDistance_FailedApplyKeepsCameraAndRetainsDraft()
+        {
+            Directory.CreateDirectory(directory);
+            var blocker = Path.Combine(directory, "blocked-directory"); File.WriteAllText(blocker, "x");
+            typeof(TopDown3DMenuController).GetField("settings", BindingFlags.NonPublic | BindingFlags.Instance)
+                .SetValue(menu, new TopDown3DMenuSettingsService(blocker));
+            menu.Open(); Command("Settings"); Command("ViewDistance"); Command("SettingsApply");
+            Assert.That(range.Preset, Is.EqualTo("Maximum"));
+            Assert.That(menu.CurrentPanel, Is.EqualTo("Settings"));
+            var draft = (TopDown3DMenuSettings)typeof(TopDown3DMenuController)
+                .GetField("settingsDraft", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(menu);
+            Assert.That(draft.viewDistancePreset, Is.EqualTo("Low"));
+        }
+
+        [TestCase(null)]
+        [TestCase("Unknown")]
+        public void Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum(string preset)
+        {
+            Directory.CreateDirectory(directory); var path = Path.Combine(directory, "menu-settings-v1.json");
+            var extra = preset == null ? "" : ",\"viewDistancePreset\":\"" + preset + "\"";
+            File.WriteAllText(path, "{\"version\":1,\"largeText\":true,\"reducedMotion\":true" + extra + "}");
+            var saved = new TopDown3DMenuSettingsService(directory);
+            Assert.That(saved.Accepted.viewDistancePreset, Is.EqualTo("Maximum"));
+            Assert.That(saved.Accepted.largeText, Is.True); Assert.That(saved.Accepted.reducedMotion, Is.True);
+            Assert.That(saved.TrySave(saved.Accepted, out _), Is.True);
+            Assert.That(new TopDown3DMenuSettingsService(directory).Accepted.viewDistancePreset, Is.EqualTo("Maximum"));
         }
 
         [Test]

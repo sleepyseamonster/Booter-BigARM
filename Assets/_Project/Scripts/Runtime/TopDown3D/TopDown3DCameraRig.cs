@@ -34,6 +34,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private LayerMask obstructionMask = ~0;
         private readonly RaycastHit[] obstructionHits = new RaycastHit[ObstructionHitCapacity];
         private Camera outputCamera;
+        private BadwaterCameraRange authoredCameraRange;
         private Vector3 smoothedTarget;
         private Vector3 targetVelocity;
         private Vector3 lookAheadOffset;
@@ -65,6 +66,7 @@ namespace BooterBigArm.TopDown3D
         private void Awake()
         {
             outputCamera = GetComponent<Camera>();
+            authoredCameraRange = GetComponent<BadwaterCameraRange>();
             EnsurePostProcessing();
             ResolveInput();
             ApplyLens();
@@ -261,7 +263,12 @@ namespace BooterBigArm.TopDown3D
             outputCamera.orthographic = false;
             outputCamera.fieldOfView = fieldOfView;
             outputCamera.nearClipPlane = 0.1f;
-            outputCamera.farClipPlane = 1300f;
+            // Authored terrain has one range owner. The generated reference retains its original lens.
+            if (authoredCameraRange == null) authoredCameraRange = GetComponent<BadwaterCameraRange>();
+            if (authoredCameraRange != null && authoredCameraRange.isActiveAndEnabled)
+                authoredCameraRange.Apply();
+            else if (authoredCameraRange == null)
+                outputCamera.farClipPlane = 1300f;
             if (!initialized && target != null)
             {
                 SnapToTarget();

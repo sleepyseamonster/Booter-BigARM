@@ -15,6 +15,7 @@ namespace BooterBigArm.TopDown3D
         private InputSystemUIInputModule module;
         private InputActionReference cancelReference, submitReference, clickReference;
         private TopDown3DMenuSettingsService settings;
+        private BadwaterCameraRange cameraRange;
         private TopDown3DMenuSettings settingsDraft;
         private TopDown3DRadialPreferences radialDraft;
         private bool returnInventory, directSetup, more, waitingRelease, configured;
@@ -28,10 +29,12 @@ namespace BooterBigArm.TopDown3D
 
         public void Configure(TopDown3DInputRouter router, TopDown3DInventoryUiController kit,
             TopDown3DRadialMenuController wheel, TopDown3DMenuView menuView,
-            InputSystemUIInputModule uiModule, string preferenceDirectory = null)
+            InputSystemUIInputModule uiModule, string preferenceDirectory = null, BadwaterCameraRange range = null)
         {
             input = router; inventory = kit; radial = wheel; view = menuView; module = uiModule;
             settings = new TopDown3DMenuSettingsService(preferenceDirectory ?? Application.persistentDataPath);
+            cameraRange = range;
+            cameraRange?.SetPreset(settings.Accepted.viewDistancePreset);
             view.Initialize(kit.EventSystem); view.ApplySettings(settings.Accepted);
             view.Command += OnCommand; view.Rename += Rename;
             input.MenuToggleRequested += Toggle; input.UiCancelRequested += Back;
@@ -152,9 +155,15 @@ namespace BooterBigArm.TopDown3D
             if (command == "SettingsBack" || command == "SetupBack") { Back(); return; }
             if (command == "TextSize") settingsDraft.largeText = !settingsDraft.largeText;
             else if (command == "Motion") settingsDraft.reducedMotion = !settingsDraft.reducedMotion;
+            else if (command == "ViewDistance")
+            {
+                settingsDraft.viewDistancePreset = settingsDraft.viewDistancePreset switch
+                { "Low" => "Medium", "Medium" => "High", "High" => "Maximum", _ => "Low" };
+            }
             else if (command == "SettingsApply")
             {
                 if (!settings.TrySave(settingsDraft, out var error)) { view.SetText("SettingsNotice", error); return; }
+                cameraRange?.SetPreset(settings.Accepted.viewDistancePreset);
                 view.ApplySettings(settings.Accepted); ReturnFromChild(); return;
             }
             else if (command == "SetupApply")
@@ -217,6 +226,8 @@ namespace BooterBigArm.TopDown3D
             {
                 view.SetText("TextSize", "Menu text: " + (settingsDraft.largeText ? "Large" : "Normal"));
                 view.SetText("Motion", "Menu motion: " + (settingsDraft.reducedMotion ? "Reduced" : "Normal"));
+                view.SetText("ViewDistance", "Maximum view distance\n" + settingsDraft.viewDistancePreset + " - "
+                    + BadwaterCameraRange.GetDistance(settingsDraft.viewDistancePreset).ToString("N0") + " m");
                 view.SetText("SettingsNotice", settings.Notice ?? "Changes are saved with Apply.");
                 view.SetButton("SettingsApply", settings.CanSave); view.ApplySettings(settingsDraft);
             }

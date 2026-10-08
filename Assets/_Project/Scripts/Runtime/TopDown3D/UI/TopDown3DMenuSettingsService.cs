@@ -10,6 +10,7 @@ namespace BooterBigArm.TopDown3D
         public int version = 1;
         public bool largeText;
         public bool reducedMotion;
+        public string viewDistancePreset = "Maximum";
         public TopDown3DMenuSettings Clone() => JsonUtility.FromJson<TopDown3DMenuSettings>(JsonUtility.ToJson(this));
     }
 
@@ -30,6 +31,7 @@ namespace BooterBigArm.TopDown3D
                 if (saved != null && saved.version > 1)
                 { CanSave = false; Notice = "These settings are from a newer version. The file will be preserved."; return; }
                 if (saved == null || saved.version != 1) throw new ArgumentException("Invalid settings version");
+                saved.viewDistancePreset = BadwaterCameraRange.NormalizePreset(saved.viewDistancePreset);
                 Accepted = saved;
             }
             catch (Exception e) when (e is IOException || e is UnauthorizedAccessException || e is ArgumentException)
@@ -43,11 +45,13 @@ namespace BooterBigArm.TopDown3D
             { error = Notice ?? "Settings are invalid."; return false; }
             try
             {
+                var normalized = draft.Clone();
+                normalized.viewDistancePreset = BadwaterCameraRange.NormalizePreset(normalized.viewDistancePreset);
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                File.WriteAllText(path + ".tmp", JsonUtility.ToJson(draft, true));
+                File.WriteAllText(path + ".tmp", JsonUtility.ToJson(normalized, true));
                 if (File.Exists(path)) File.Replace(path + ".tmp", path, null);
                 else File.Move(path + ".tmp", path);
-                Accepted = draft.Clone(); Notice = null;
+                Accepted = normalized; Notice = null;
                 return true;
             }
             catch (Exception e) when (e is IOException || e is UnauthorizedAccessException)

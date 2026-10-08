@@ -62,10 +62,11 @@ namespace BooterBigArm.Editor
 
         private static void PanelSettings(Transform parent)
         {
-            var panel = Panel("Settings", parent, new Vector2(620, 430));
+            var panel = Panel("Settings", parent, new Vector2(620, 540));
             Vertical(panel, 14, new RectOffset(32, 32, 28, 28));
             Label("SettingsTitle", panel, "SETTINGS", 28, 46);
             Button("TextSize", panel, "Menu text: Normal"); Button("Motion", panel, "Menu motion: Normal");
+            Height(Button("ViewDistance", panel, "Maximum view distance\nMaximum - 8,000 m"), 90);
             Label("SettingsNotice", panel, "Changes are saved with Apply.", 19, 72);
             Footer(panel, "SettingsApply", "SettingsBack");
         }

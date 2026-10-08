@@ -135,7 +135,8 @@ namespace BooterBigArm.Editor
             var camera = cameraObject.GetComponent<Camera>();
             var range = cameraObject.GetComponent<BadwaterCameraRange>();
             if (input?.InputActions == null || motor == null || follower == null || rig == null || camera == null
-                || range == null || range.FarClipPlane < 7000f
+                || range == null || !Mathf.Approximately(range.FarClipPlane, BadwaterCameraRange.MaximumDistance)
+                || range.EffectiveDistance < 500f || range.EffectiveDistance > BadwaterCameraRange.MaximumDistance
                 || cameraObject.GetComponent<AudioListener>() == null)
                 throw new InvalidDataException("Missing configured input, locomotion, long range camera or audio.");
             if (FindRoot(scene, "Review Sun") != null || FindRoot(scene, "Directional Key Light").GetComponent<PerpetualTwilightSun>() == null

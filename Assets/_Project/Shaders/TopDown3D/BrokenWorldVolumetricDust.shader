@@ -25,6 +25,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Volumetric Dust"
         TEXTURE2D(_DustDensityMap);
         SAMPLER(sampler_DustDensityMap);
         TEXTURE2D_X(_DustScatteringTexture);
+        TEXTURE2D_X(_DistanceSkyTexture);
+        float4 _DistanceHaze;
+        float _DustEnabled;
 
         float4 _DustDensityMapParams;
         half4 _DustTint;
@@ -85,6 +88,17 @@ Shader "BooterBigArm/TopDown3D/Broken World Volumetric Dust"
             return rawDepth <= 0.00001;
         #else
             return rawDepth >= 0.99999;
+        #endif
+        }
+
+        bool IsDistanceSkyDepth(float rawDepth)
+        {
+            // The raymarch's generous sky epsilon is safe for a 60 m march, but would
+            // skip the distance fade on geometry in the last metres before the far plane.
+        #if UNITY_REVERSED_Z
+            return rawDepth <= 0.0;
+        #else
+            return rawDepth >= 1.0;
         #endif
         }
 
@@ -191,6 +205,18 @@ Shader "BooterBigArm/TopDown3D/Broken World Volumetric Dust"
                 sampler_LinearClamp,
                 uv,
                 0);
+
+            // Eye depth matches the planar far clip, including at the edges of a perspective view.
+            // Sky is already the desired endpoint; never flatten it to a fog color.
+            float rawDepth = SampleSceneDepth(uv);
+            if (_DistanceHaze.z > 0.5 && !IsDistanceSkyDepth(rawDepth))
+            {
+                float fade = smoothstep(_DistanceHaze.x, _DistanceHaze.y,
+                    LinearEyeDepth(rawDepth, _ZBufferParams));
+                half3 sky = SAMPLE_TEXTURE2D_X_LOD(_DistanceSkyTexture, sampler_LinearClamp, uv, 0).rgb;
+                sceneColor.rgb = lerp(sceneColor.rgb, sky, fade);
+            }
+            if (_DustEnabled < 0.5) return sceneColor;
 
             float2 lowResolutionPosition =
                 (uv * _DustScatteringTexelSize.zw) - 0.5;

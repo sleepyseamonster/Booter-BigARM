@@ -50,6 +50,13 @@ Shader "BooterBigArm/TopDown3D/Martian Panorama Sky"
             {
                 Varyings output;
                 output.position = UnityObjectToClipPos(input.vertex);
+                // A skybox is infinitely distant. Its native cube must never paint over
+                // opaque terrain when the player shortens the camera's far clip.
+                #if UNITY_REVERSED_Z
+                    output.position.z = 0.0;
+                #else
+                    output.position.z = output.position.w;
+                #endif
                 output.direction = input.vertex.xyz;
                 return output;
             }

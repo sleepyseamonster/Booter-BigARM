@@ -57,16 +57,23 @@ namespace BooterBigArm.TopDown3D
             if (material == null
                 || camera == null
                 || cameraData.cameraType != CameraType.Game
-                || cameraData.renderType != CameraRenderType.Base
-                || TopDown3DDustAtmosphere.Active == null
-                || !TopDown3DDustAtmosphere.Active.TryGetVolumetricRenderState(camera, out var state))
+                || cameraData.renderType != CameraRenderType.Base)
             {
                 return;
             }
 
+            var state = default(TopDown3DDustAtmosphere.VolumetricRenderState);
+            bool dustEnabled = TopDown3DDustAtmosphere.Active != null
+                && TopDown3DDustAtmosphere.Active.TryGetVolumetricRenderState(camera, out state);
+            var range = camera.GetComponent<BadwaterCameraRange>();
+            float hazeDistance = range != null && range.DistanceHazeEnabled ? range.EffectiveDistance : 0f;
+            if (!dustEnabled && hazeDistance <= 0f) return;
+
             pass.Setup(
                 material,
                 state,
+                dustEnabled,
+                hazeDistance,
                 Mathf.Clamp(downsample, 1, 4),
                 Mathf.Clamp(raymarchSteps, 4, 32),
                 Mathf.Clamp(shadowSamples, 1, 16),
@@ -94,6 +101,9 @@ namespace BooterBigArm.TopDown3D
                 Shader.PropertyToID("_DustMaximumForwardPhase");
             private static readonly int DustMarchId = Shader.PropertyToID("_DustMarch");
             private static readonly int DustScatteringTextureId = Shader.PropertyToID("_DustScatteringTexture");
+            private static readonly int DistanceSkyTextureId = Shader.PropertyToID("_DistanceSkyTexture");
+            private static readonly int DistanceHazeId = Shader.PropertyToID("_DistanceHaze");
+            private static readonly int DustEnabledId = Shader.PropertyToID("_DustEnabled");
             private static readonly int DustScatteringTexelSizeId = Shader.PropertyToID("_DustScatteringTexelSize");
 
             private Material material;
@@ -102,6 +112,8 @@ namespace BooterBigArm.TopDown3D
             private int raymarchSteps;
             private int shadowSamples;
             private float depthEdgeSharpness;
+            private bool dustEnabled;
+            private float hazeDistance;
 
             public VolumetricDustPass()
             {
@@ -113,6 +125,8 @@ namespace BooterBigArm.TopDown3D
             public void Setup(
                 Material passMaterial,
                 TopDown3DDustAtmosphere.VolumetricRenderState renderState,
+                bool renderDust,
+                float distance,
                 int renderDownsample,
                 int steps,
                 int sampledShadows,
@@ -120,6 +134,8 @@ namespace BooterBigArm.TopDown3D
             {
                 material = passMaterial;
                 state = renderState;
+                dustEnabled = renderDust;
+                hazeDistance = distance;
                 downsample = renderDownsample;
                 raymarchSteps = steps;
                 shadowSamples = sampledShadows;
@@ -131,7 +147,6 @@ namespace BooterBigArm.TopDown3D
                 var resourceData = frameData.Get<UniversalResourceData>();
                 var cameraData = frameData.Get<UniversalCameraData>();
                 if (material == null
-                    || state.DensityMap == null
                     || resourceData.isActiveTargetBackBuffer
                     || !resourceData.cameraDepthTexture.IsValid()
                     || !resourceData.activeColorTexture.IsValid())
@@ -152,12 +167,18 @@ namespace BooterBigArm.TopDown3D
                     wrapMode = TextureWrapMode.Clamp,
                     msaaSamples = MSAASamples.None,
                 };
-                var scatteringTexture = renderGraph.CreateTexture(scatteringDescriptor);
-
                 ApplyMaterialState(scatteringWidth, scatteringHeight);
-                RecordScatterPass(renderGraph, resourceData.cameraDepthTexture, scatteringTexture);
+                TextureHandle scatteringTexture = default;
+                if (dustEnabled)
+                {
+                    scatteringTexture = renderGraph.CreateTexture(scatteringDescriptor);
+                    RecordScatterPass(renderGraph, resourceData.cameraDepthTexture, scatteringTexture);
+                }
 
                 var sourceColor = resourceData.activeColorTexture;
+                TextureHandle skyTexture = default;
+                if (hazeDistance > 0f)
+                    skyTexture = RecordDistanceSky(renderGraph, cameraData, sourceColor);
                 var destinationDescriptor = sourceColor.GetDescriptor(renderGraph);
                 destinationDescriptor.name = "_TopDown3DVolumetricDustCameraColor";
                 destinationDescriptor.clearBuffer = false;
@@ -167,6 +188,7 @@ namespace BooterBigArm.TopDown3D
                     sourceColor,
                     resourceData.cameraDepthTexture,
                     scatteringTexture,
+                    skyTexture,
                     destinationColor);
                 resourceData.cameraColor = destinationColor;
             }
@@ -174,6 +196,9 @@ namespace BooterBigArm.TopDown3D
             private void ApplyMaterialState(int scatteringWidth, int scatteringHeight)
             {
                 var shadowStride = Mathf.Max(1, Mathf.CeilToInt(raymarchSteps / (float)shadowSamples));
+                material.SetFloat(DustEnabledId, dustEnabled ? 1f : 0f);
+                material.SetVector(DistanceHazeId, new Vector4(
+                    hazeDistance * BadwaterCameraRange.FadeStartFraction, hazeDistance, hazeDistance > 0f ? 1f : 0f, 0f));
                 material.SetTexture(DensityMapId, state.DensityMap);
                 material.SetVector(DensityMapParamsId, state.DensityMapParams);
                 material.SetColor(DustTintId, state.Tint);
@@ -195,6 +220,31 @@ namespace BooterBigArm.TopDown3D
                         1f / scatteringHeight,
                         scatteringWidth,
                         scatteringHeight));
+            }
+
+            // Render the actual directional sky rather than approximating a panorama with a flat fog tint.
+            // This only exists for reduced-distance presets and shares the camera's skybox/exposure.
+            private TextureHandle RecordDistanceSky(RenderGraph graph, UniversalCameraData cameraData, TextureHandle source)
+            {
+                var descriptor = source.GetDescriptor(graph);
+                descriptor.name = "_TopDown3DDistanceSky";
+                descriptor.clearBuffer = true;
+                descriptor.clearColor = cameraData.camera.backgroundColor.linear;
+                descriptor.msaaSamples = MSAASamples.None;
+                var texture = graph.CreateTexture(descriptor);
+                using var builder = graph.AddRasterRenderPass<SkyPassData>("TopDown3D Distance Haze Sky", out var data);
+                data.drawSky = cameraData.camera.clearFlags == CameraClearFlags.Skybox;
+                if (data.drawSky)
+                {
+                    data.sky = graph.CreateSkyboxRendererList(cameraData.camera);
+                    builder.UseRendererList(data.sky);
+                }
+                builder.SetRenderAttachment(texture, 0, AccessFlags.Write);
+                builder.SetRenderFunc(static (SkyPassData data, RasterGraphContext context) =>
+                {
+                    if (data.drawSky) context.cmd.DrawRendererList(data.sky);
+                });
+                return texture;
             }
 
             private void RecordScatterPass(
@@ -226,6 +276,7 @@ namespace BooterBigArm.TopDown3D
                 TextureHandle sourceColor,
                 TextureHandle depthTexture,
                 TextureHandle scatteringTexture,
+                TextureHandle skyTexture,
                 TextureHandle destinationColor)
             {
                 using var builder = renderGraph.AddRasterRenderPass<CompositePassData>(
@@ -236,14 +287,19 @@ namespace BooterBigArm.TopDown3D
                 passData.sourceColor = sourceColor;
                 passData.depthTexture = depthTexture;
                 passData.scatteringTexture = scatteringTexture;
+                passData.skyTexture = skyTexture;
+                passData.dustEnabled = dustEnabled;
+                passData.hazeEnabled = hazeDistance > 0f;
                 builder.UseTexture(sourceColor, AccessFlags.Read);
                 builder.UseTexture(depthTexture, AccessFlags.Read);
-                builder.UseTexture(scatteringTexture, AccessFlags.Read);
+                if (dustEnabled) builder.UseTexture(scatteringTexture, AccessFlags.Read);
+                if (hazeDistance > 0f) builder.UseTexture(skyTexture, AccessFlags.Read);
                 builder.SetRenderAttachment(destinationColor, 0, AccessFlags.Write);
                 builder.AllowGlobalStateModification(true);
                 builder.SetRenderFunc(static (CompositePassData data, RasterGraphContext context) =>
                 {
-                    context.cmd.SetGlobalTexture(DustScatteringTextureId, data.scatteringTexture);
+                    if (data.dustEnabled) context.cmd.SetGlobalTexture(DustScatteringTextureId, data.scatteringTexture);
+                    if (data.hazeEnabled) context.cmd.SetGlobalTexture(DistanceSkyTextureId, data.skyTexture);
                     Blitter.BlitTexture(
                         context.cmd,
                         data.sourceColor,
@@ -259,12 +315,21 @@ namespace BooterBigArm.TopDown3D
                 public TextureHandle depthTexture;
             }
 
+            private sealed class SkyPassData
+            {
+                public RendererListHandle sky;
+                public bool drawSky;
+            }
+
             private sealed class CompositePassData
             {
                 public Material material;
                 public TextureHandle sourceColor;
                 public TextureHandle depthTexture;
                 public TextureHandle scatteringTexture;
+                public TextureHandle skyTexture;
+                public bool dustEnabled;
+                public bool hazeEnabled;
             }
         }
     }
