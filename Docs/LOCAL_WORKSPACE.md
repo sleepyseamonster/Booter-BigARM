@@ -8,9 +8,17 @@ This is the Windows setup and session entry point for the checkout restored on 2
 - Working branch: `main`, tracking `origin/main`. The user's repository link selected this branch; keep work here unless the user changes that instruction.
 - Initial restored revision: `4f2fe41c8e6074f99b6e55fb92a32e41f6fe9a54` (`Record verified safe publication sequence`).
 - This checkout initially has shallow history. Fetch older `main` history only when a task needs it; do not infer missing history means missing implementation.
-- Checkout location on this machine: `C:\Users\kbkno\OneDrive\Desktop\arc & dust Unity`. Derive paths from the repo root in reusable tools.
+- Current canonical checkout: `D:\Arc & Dust\Project` on drive D: (`Big`), migrated and verified on 2026-10-08. The former C: checkout is retained for rollback, not continuing production edits. Derive paths from the checkout root in reusable tools.
 - This folder is registered with Unity Hub through its CLI `projects add`, with the pinned editor version. Hub lives at `D:\Unity\Unity Hub`; no editor was found in the initial installed-editor registry or drive search. The authorized setup installs the editor under `%LOCALAPPDATA%\Unity\Editors` so no administrator-only install directory is needed.
 - The previous macOS checkout, backups, editor caches, unsaved state, and excluded local files are not transferred by Git. Old absolute paths in retained evidence identify that earlier machine.
+
+## Verified drive migration — 2026-10-08
+
+The [migration receipt](./Evidence/Repository/migration-to-D-2026-10-08.json) records the complete transfer: 107,560 original files matched by SHA-256, plus 49 additional temporary LFS cache files preserved during verification. Git history/index, ignored directories, uncommitted work, Unity metadata, Blender sources and terrain inputs were copied. Git and LFS integrity checks, GIS imports and Python dependency checks passed on D:. The branch remains `main` tracking `origin/main`.
+
+The baseline Blender source, three expansion sources and combined review reopened from D: with expected mesh counts and packed resources. Unity Hub registration and the Codex project primary folder point to D:. Existing tools and isolated validation work remain under `D:\BooterBigArmTools` and `D:\BooterBigArmValidation`; do not silently overwrite or abandon them. Full manifests and the registry backup are under `D:\Arc & Dust\Transfers\RepositoryMigration20261008`.
+
+Keep the C: copy intact until Unity licensing/import validation is restored and rollback retention is deliberately closed out. Migration does not repair the empty Unity licence file or claim fresh Editor import/gameplay proof. Historical receipts retain their original C:/Mac paths and hashes.
 
 ## Resume context
 
