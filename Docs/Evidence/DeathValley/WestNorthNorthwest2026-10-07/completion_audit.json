@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "objective": "Blender-first west north northwest Greater Wasteland expansion",
+  "implementation_requirements": [
+    {
+      "requirement": "Blender-first 3 sections and combined review",
+      "status": "proved",
+      "evidence": "Prepared03 native reopen proofs and source_authoring_receipt.json; hash-verified saved meshes and exports"
+    },
+    {
+      "requirement": "Retained 256 terrain chunks and gameplay serialization",
+      "status": "proved",
+      "evidence": "final_unity_readback.json; full retained arrays, GUID/payload checks; 1821 identical original scene documents and one parent child-list addition"
+    },
+    {
+      "requirement": "Bounds, origin, geographic identity and source coverage",
+      "status": "proved",
+      "evidence": "Acquisition01 manifests, finite native/regular arrays, Prepared03 manifest and 1024 unique manifest keys"
+    },
+    {
+      "requirement": "Source, Blender and native Unity seams",
+      "status": "proved",
+      "evidence": "Source measured joins zero, reopened Blender edges zero, 1984 native pairs exact, 128 external edges null and 25600 collider samples"
+    },
+    {
+      "requirement": "Production/native collider integration",
+      "status": "proved",
+      "evidence": "Fresh saved production readback and 41 focused EditMode tests; 6034 unique active metadata GUIDs"
+    },
+    {
+      "requirement": "Developer-map coverage and controls",
+      "status": "proved",
+      "evidence": "Canonical 1024-record catalog, map/framing tests, inspected top/oblique renders with retained aerial background"
+    },
+    {
+      "requirement": "Scoped local commits and no push",
+      "status": "proved",
+      "evidence": "ce9b2e1c source batch and 67affb3f production batch; exact path manifests verified, separate BigARM material preserved, no push"
+    },
+    {
+      "requirement": "Windows Development packaging and source correspondence",
+      "status": "proved",
+      "evidence": "development_build_receipt.json hashes 331 output files and 8251 task core files; isolated packaging serialization separately accounted"
+    },
+    {
+      "requirement": "User appearance, traversal and performance handoff",
+      "status": "supplied, user execution pending",
+      "evidence": "EXPANSION_IMPLEMENTATION_2026-10-08.md provides four interfaces, central junction, outer-edge and normal-profile checks; Player unlaunched"
+    }
+  ],
+  "limits": "User appearance, traversal and performance acceptance remains outstanding; no Player launch or smoke test. Earlier rejected candidates remain local and are accounted for by source_authoring_receipt.json.",
+  "status": "implementation_goal_complete",
+  "production_commit": "67affb3f",
+  "source_commit": "ce9b2e1c"
+}

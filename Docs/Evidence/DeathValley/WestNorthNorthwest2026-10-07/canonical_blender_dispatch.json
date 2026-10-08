@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "build_entry": "Tools/Art/Blender/death_valley/build_game_slice_scene.py --section pilot",
+  "verify_entry": "Tools/Art/Blender/death_valley/verify_game_slice_scene.py --section pilot",
+  "status": "native_saved_reopened_dispatch_verified",
+  "proof": {
+    "schema_version": 1,
+    "section": "pilot",
+    "chunks": 4,
+    "blender_version": "5.2.2 LTS",
+    "manifest_sha256": "d4d260fc83a161529dff7965e03b581b14dede0a255cab11e4746fa5b744294b",
+    "blend_file": "D:\\BooterBigArmValidation\\CanonicalBlenderDispatch20261008\\Pilot.blend",
+    "blend_sha256": "52854eabfbd6f65171ba7808cfa87f9f5c3c6b7c5b20c95c67c62cb34074d039",
+    "export_file": "proof.npz",
+    "export_sha256": "2c13fc431330a4b35be0e2a3d42ad5e065077c67ec9567dbb080ff12d9b13969",
+    "max_mesh_sample_error_m": 0.0,
+    "max_mesh_edge_difference_m": 0.0,
+    "minimum_normal_z": 0.8558384776115417,
+    "interior_spacing_m": 2,
+    "perimeter_spacing_m": 1,
+    "status": "native_reopened_mesh_verified",
+    "seconds": 0.6322518999950262
+  },
+  "log_directory": "D:\\BooterBigArmValidation\\CanonicalBlenderDispatch20261008"
+}
