@@ -10,6 +10,7 @@ import re
 from pathlib import Path
 
 from coverage_validation import assessment_availability, sha256
+from blender_retirement import load_retired_blender_records
 
 HERE = Path(__file__).resolve().parent
 
@@ -119,10 +120,18 @@ def doctor(catalog, root, assessment=None):
                            "availability":availability["status"], "missing_artifacts":availability["missing_artifacts"]})
         except (ValueError, OSError, StopIteration) as error:
             checks.append({"name":"West rebuild inputs","status":"error","detail":str(error)})
+    retired=catalog.get("retired_blender_files",[])
+    if retired:
+        try:
+            canonical=load_retired_blender_records(root)
+            if {r["path"]:r for r in retired}!={r["path"]:r for r in canonical} or len(retired)!=len(canonical):
+                raise ValueError("Catalog retirement differs from sealed cleanup receipt")
+        except (ValueError,OSError,KeyError) as error:
+            checks.append({"name":"Blender retirement provenance","status":"error","detail":str(error)})
     issues = [c for c in checks if c["status"] not in ("ok","present_unhashed")]
     return {"status":"attention_required" if issues else "ok", "snapshot_utc":catalog["audited_utc"],
-            "checked_records":len(checks), "issues":issues,
-            "limits":"Current bytes versus retained hashes. Scene edits may be intentional; refresh the audit after review. Blender readability, Editor validation and Player acceptance remain separate."}
+            "checked_records":len(checks), "issues":issues,"retired_blender_source_count":len(retired),
+            "limits":"Current materialized bytes versus retained hashes; retired Blender identities use historical cleanup evidence, not verified deleted bytes. Scene edits may be intentional; refresh the audit after review. Blender readability, Editor validation and Player acceptance remain separate."}
 
 
 def main():

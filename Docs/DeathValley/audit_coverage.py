@@ -20,6 +20,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from coverage_validation import assessment_availability, validate_boundary, validate_terrain_contract
+from blender_retirement import load_retired_blender_records, find_retired_blend, retired_record
 
 HERE = Path(__file__).resolve().parent
 ROOT = next(p for p in HERE.parents if (p / "ProjectSettings/ProjectVersion.txt").exists())
@@ -60,6 +61,8 @@ def find(name, area="Docs"):
         preferred = ROOT / area
     candidates = sorted(preferred.rglob(name))
     candidates = [p for p in candidates if "archives" not in p.parts]
+    if not candidates and name.endswith(".blend") and area == "Docs":
+        return find_retired_blend(ROOT,name)
     if len(candidates) != 1:
         raise ValueError(f"Expected one canonical {name} under {area}; found {len(candidates)}. Resolve moves before refresh.")
     return candidates[0]
@@ -105,6 +108,8 @@ def boundary(refresh):
 
 
 def asset_record(path):
+    if not path.is_file():
+        return retired_record(ROOT,path)
     with path.open("rb") as stream:
         signature = stream.read(80)
     return {"path": relative(path), "bytes": path.stat().st_size, "sha256": digest(path),
@@ -197,6 +202,7 @@ def main():
     parser.add_argument("--refresh-boundary",action="store_true")
     args=parser.parse_args()
     park=boundary(args.refresh_boundary)
+    retired_blends=load_retired_blender_records(ROOT)
     definitions=[
         ("original_region","Original regional overview","region.json","overview",200,"DeathValleyExplore.blend","#8b7c51"),
         ("expanded_region","Expanded regional overview","region_full_tiles.json","overview",200,"DeathValleyExploreExpanded.blend","#6a6e41"),
@@ -210,6 +216,12 @@ def main():
         cfg,path=read_config(name)
         section=cfg[key] if key else cfg
         regions.append({"id":ident,"label":label,"bounds_m":section["bounds_m"],"spacing_m":spacing,"config":path,"blend":relative(find(blend)),"color":color,"footprint_evidence":"versioned_configuration","geometry_evidence":"retained_build_record_not_reopened"})
+    retired_by_path={r["path"]:r for r in retired_blends}
+    for region in regions:
+        if region["blend"] in retired_by_path:
+            region["blend_status"]="intentionally_retired"
+            region["blend_historical_sha256"]=retired_by_path[region["blend"]]["historical_sha256"]
+            region["geometry_evidence"]="retired_native_source_historical_proof_retained"
     regions.append({"id":"mosaic_focus","label":"Mosaic 1 m technique patch","bounds_m":[486650,4046900,487150,4047400],"spacing_m":1,"config":relative(find("prepare_detail.py")),"blend":relative(find("DeathValleyTerrainMaster.blend")),"color":"#8661a2","footprint_evidence":"recorded_build_and_script_default","geometry_evidence":"retained_build_record_not_reopened"})
     source=find("tiles.csv","Assets").parent
     provenance=json.loads((source/"provenance.json").read_text(encoding="utf-8"))
@@ -306,6 +318,7 @@ def main():
     else:
         expansion_audit=None
     assets=[asset_record(find(name)) for name in ("DeathValleyExplore.blend","DeathValleyExploreExpanded.blend","DeathValleyRegionalStudy.blend","DeathValleyMosaicDetail.blend","DeathValleyTerrainMaster.blend","BadwaterGameSlice.blend")]
+    assets=[a for a in assets if a["storage"]!="intentionally_retired"]
     regional=[]
     rx0,ry0,rx1,ry1=regions[1]["bounds_m"]
     if rx1-rx0!=192000 or ry1-ry0!=224000: raise ValueError("Expanded source-tile footprint changed; update the grid contract.")
@@ -317,7 +330,7 @@ def main():
     for area in (ROOT/"Docs",ROOT/"Assets",ROOT/"SourceData",ROOT/"wetransfer_blender_2026-10-06_2121"):
         if area.exists(): gis.extend(relative(p) for p in area.rglob("*") if p.is_file() and p.suffix.lower() in (".tif",".tiff",".npz",".npy",".laz",".las"))
     base_cfg,_=read_config("region.json")
-    catalog={"schema_version":1,"audited_utc":datetime.now(timezone.utc).isoformat(),"working_crs":"EPSG:26911","git_head":source_revision(),"regions":regions,"blender_files":assets,"unity_scene":{"path":relative(scene),"guid":TERRAIN_SCENE_GUID,"sha256":digest(scene),**counts,"terrain_data_assets":len(terrain_data),"terrain_data_guid_links_verified":True},"source_audit":{"height_files":256,"color_files":256,"hash_mismatches":0,"shared_edges_checked":edges,"max_encoded_edge_difference":max_edge,"limits":"Source export and serialized reference checks only; no Editor readback, Player performance or visual acceptance."},"unity_tiles":tiles,"expansion_candidates":candidates,"gis_files_in_scanned_roots":gis,"gis_scan_roots":["Docs","Assets","wetransfer_blender_2026-10-06_2121"],"recovery":{"original_external_path":"/Users/worldbuilder/Desktop/Death Valley Terrain Data","external_data_restored":"not_confirmed","badwater_export_rebuild":"retained_height_and_color_exports_present","original_full_precision_grid":"not_found_in_scanned_roots","sources":base_cfg["source_references"]},"park_boundary":{"path":"nps_deva_boundary.json","response_sha256":park["response_sha256"],"retrieved_utc":park["retrieved_utc"]} if park else None}
+    catalog={"schema_version":1,"audited_utc":datetime.now(timezone.utc).isoformat(),"working_crs":"EPSG:26911","git_head":source_revision(),"regions":regions,"blender_files":assets,"retired_blender_files":retired_blends,"unity_scene":{"path":relative(scene),"guid":TERRAIN_SCENE_GUID,"sha256":digest(scene),**counts,"terrain_data_assets":len(terrain_data),"terrain_data_guid_links_verified":True},"source_audit":{"height_files":256,"color_files":256,"hash_mismatches":0,"shared_edges_checked":edges,"max_encoded_edge_difference":max_edge,"limits":"Source export and serialized reference checks only; no Editor readback, Player performance or visual acceptance."},"unity_tiles":tiles,"expansion_candidates":candidates,"gis_files_in_scanned_roots":gis,"gis_scan_roots":["Docs","Assets","wetransfer_blender_2026-10-06_2121"],"recovery":{"original_external_path":"/Users/worldbuilder/Desktop/Death Valley Terrain Data","external_data_restored":"not_confirmed","badwater_export_rebuild":"retained_height_and_color_exports_present","original_full_precision_grid":"not_found_in_scanned_roots","sources":base_cfg["source_references"]},"park_boundary":{"path":"nps_deva_boundary.json","response_sha256":park["response_sha256"],"retrieved_utc":park["retrieved_utc"]} if park else None}
     catalog["gis_scan_roots"].insert(2,"SourceData")
     catalog["source_audit"]["retained_shared_edges_checked"]=edges
     if expansion_audit:

@@ -1,0 +1,1197 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\BadwaterGameSlice.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/BadwaterGameSlice.blend",
+      "sha256": "76f82d589a0ff2ed693f3a9f5eebd57a62b1e5c326729e2f00ec00093a9b6ac7",
+      "size_bytes": 144116547,
+      "batch": "BadwaterFourSlices",
+      "native_proofs": [],
+      "classification": "completed_256_tile_baseline_or_exact_duplicate",
+      "completion_receipt": "Docs/DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md",
+      "baseline_native_proof": "Docs/Evidence/DeathValley/WestNorthNorthwest2026-10-07/baseline_runtime_receipt.json",
+      "baseline_reopened_meshes": 256,
+      "runtime_provenance": "Assets/_Project/Art/Terrain/BadwaterFourSlices/Source/provenance.json",
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\FarWestPair2026-10-08\\combined01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/FarWestPair2026-10-08/combined01.blend",
+      "sha256": "86f8ea9f6e9ac81f8206944177b33ec359a2d59c2d6591ca5ba8a9620fba8ded",
+      "size_bytes": 176634819,
+      "batch": "FarWestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/FarWestPair2026-10-08/Prepared01/combined_blender_proof.json",
+          "manifest_sha256": "6a4f91d658129a89bda35e73eecf2deaf6ac96deef0b932432a175df7369d79b",
+          "section": "combined",
+          "chunks": 2560,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "81edabec6a8b7d6fe5f28a7819cc86dd49bf8c28d5776caa96713daded609d65"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/FAR_WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/FarWestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "8557e66f72230c29ebbe7db14028ad027928a0b5cfb3ba0376d18893b31fa488",
+      "runtime_tile_count": 2560,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\FarWestPair2026-10-08\\northwest_far01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/FarWestPair2026-10-08/northwest_far01.blend",
+      "sha256": "f26ee55fc4e000813853d9724bd9cb795482ddca3f3b40bde49763fa550cb0eb",
+      "size_bytes": 135801008,
+      "batch": "FarWestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/FarWestPair2026-10-08/Prepared01/northwest_far_blender_proof.json",
+          "manifest_sha256": "6a4f91d658129a89bda35e73eecf2deaf6ac96deef0b932432a175df7369d79b",
+          "section": "northwest_far",
+          "chunks": 256,
+          "export_file": "northwest_far_blender_proof.npz",
+          "export_sha256": "dace300e234fdb9c7fe2e05c0c077a99b45b996b10a0d52fd34c61a641559dfb"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/FAR_WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/FarWestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "8557e66f72230c29ebbe7db14028ad027928a0b5cfb3ba0376d18893b31fa488",
+      "runtime_tile_count": 2560,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\FarWestPair2026-10-08\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/FarWestPair2026-10-08/Pilot01.blend",
+      "sha256": "745303670c5d50aaec7fe576e9670b2f0d8b1d8a8112230f82473a790bc615ec",
+      "size_bytes": 24774841,
+      "batch": "FarWestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/FarWestPair2026-10-08/Prepared01/pilot_blender_proof.json",
+          "manifest_sha256": "6a4f91d658129a89bda35e73eecf2deaf6ac96deef0b932432a175df7369d79b",
+          "section": "pilot",
+          "chunks": 4,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "31666eef673b03df99e35bd0a44ef43c186336f200b401f596ebbc4328ec3f7e"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/FAR_WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/FarWestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "8557e66f72230c29ebbe7db14028ad027928a0b5cfb3ba0376d18893b31fa488",
+      "runtime_tile_count": 2560,
+      "native_hash_in_current_export": false,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\FarWestPair2026-10-08\\west_far01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/FarWestPair2026-10-08/west_far01.blend",
+      "sha256": "c6579fa234b9b60de322c270177b3b105a5e55deff07222fba97286f3ff8b8a6",
+      "size_bytes": 135137275,
+      "batch": "FarWestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/FarWestPair2026-10-08/Prepared01/west_far_blender_proof.json",
+          "manifest_sha256": "6a4f91d658129a89bda35e73eecf2deaf6ac96deef0b932432a175df7369d79b",
+          "section": "west_far",
+          "chunks": 256,
+          "export_file": "west_far_blender_proof.npz",
+          "export_sha256": "74a3598807f3eab18fd10bde665102fe15f6c2ee853a48c550077bdfde7c007d"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/FAR_WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/FarWestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "8557e66f72230c29ebbe7db14028ad027928a0b5cfb3ba0376d18893b31fa488",
+      "runtime_tile_count": 2560,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NextWestPair2026-10-08\\combined01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NextWestPair2026-10-08/combined01.blend",
+      "sha256": "38b1955ffc58a0599abfff37200b30ebbe3644fa0b83b023db980398ee1f9741",
+      "size_bytes": 140823209,
+      "batch": "NextWestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NextWestPair2026-10-08/Prepared01/combined_blender_proof.json",
+          "manifest_sha256": "73659e4a8b3dd6e40c55b4ae3e2b688efd15eb00bbbad076555d6aee05f036e8",
+          "section": "combined",
+          "chunks": 2048,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "cadb1985cb19eca590c68ba5b2dee6cc4db5544e1242b4859edd8076481fdcb1"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NEXT_WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NextWestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "c04881f28b0f7126f0fa706c20cbaa46fb12af3d3477bba5b01515206879325f",
+      "runtime_tile_count": 2048,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NextWestPair2026-10-08\\northwest_next01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NextWestPair2026-10-08/northwest_next01.blend",
+      "sha256": "f16ebcedb68ac447f41707af1cc26d2ba12ff622304734ff6fcc12a89fcfa927",
+      "size_bytes": 136233844,
+      "batch": "NextWestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NextWestPair2026-10-08/Prepared01/northwest_next_blender_proof.json",
+          "manifest_sha256": "73659e4a8b3dd6e40c55b4ae3e2b688efd15eb00bbbad076555d6aee05f036e8",
+          "section": "northwest_next",
+          "chunks": 256,
+          "export_file": "northwest_next_blender_proof.npz",
+          "export_sha256": "e42e02126cb2de0b9b62f6a2e8849f0f1972240fcf0859eae32e73f0c10db5b2"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NEXT_WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NextWestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "c04881f28b0f7126f0fa706c20cbaa46fb12af3d3477bba5b01515206879325f",
+      "runtime_tile_count": 2048,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NextWestPair2026-10-08\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NextWestPair2026-10-08/Pilot01.blend",
+      "sha256": "68962e5194c086a7801ed1ebee8455ff0b15e2044c72b863efd54a47ff3a7a40",
+      "size_bytes": 22566447,
+      "batch": "NextWestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NextWestPair2026-10-08/Prepared01/pilot_blender_proof.json",
+          "manifest_sha256": "73659e4a8b3dd6e40c55b4ae3e2b688efd15eb00bbbad076555d6aee05f036e8",
+          "section": "pilot",
+          "chunks": 4,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "875ed88042212e3b6e4811edc71290a946254bbde369bc46870e69b36c809c82"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NEXT_WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NextWestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "c04881f28b0f7126f0fa706c20cbaa46fb12af3d3477bba5b01515206879325f",
+      "runtime_tile_count": 2048,
+      "native_hash_in_current_export": false,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NextWestPair2026-10-08\\west_next01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NextWestPair2026-10-08/west_next01.blend",
+      "sha256": "8e86ea9608f0c77e2a0c763566b0114871bb0a1e99e170f1cfc0c7407efc95f5",
+      "size_bytes": 136554661,
+      "batch": "NextWestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NextWestPair2026-10-08/Prepared01/west_next_blender_proof.json",
+          "manifest_sha256": "73659e4a8b3dd6e40c55b4ae3e2b688efd15eb00bbbad076555d6aee05f036e8",
+          "section": "west_next",
+          "chunks": 256,
+          "export_file": "west_next_blender_proof.npz",
+          "export_sha256": "bc4a9ce830b5ac139279f7752e4bc4f3ce8c0c62d0cb7e668f8a82f3405ddc32"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NEXT_WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NextWestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "c04881f28b0f7126f0fa706c20cbaa46fb12af3d3477bba5b01515206879325f",
+      "runtime_tile_count": 2048,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRidge2026-10-09\\combined01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRidge2026-10-09/combined01.blend",
+      "sha256": "8ba1b5523ee63befd06aa8e77eb174d436a277520890a94a2ed2a5daf53a4335",
+      "size_bytes": 236018817,
+      "batch": "NorthRidge2026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Prepared01/combined_blender_proof.json",
+          "manifest_sha256": "3ec8bb14380fbf9f40097b3c520128e54a0ba2d152e7f240f101db90d9606b44",
+          "section": "combined",
+          "chunks": 3328,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "6a4637d8f137d0be0da78e96e5d1a1daf3d079275f45fb67dd42205bb425b19b"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_RIDGE_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRidge2026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "acd72d66e6df180ab142ea9d7635295d47c11908339688e445c2b3fea1a4efba",
+      "runtime_tile_count": 3328,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRidge2026-10-09\\north_ridge01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRidge2026-10-09/north_ridge01.blend",
+      "sha256": "732c32f3e0762788a3fb363cff0e88d9c28c535b4ea701842eb43566878377ac",
+      "size_bytes": 136409948,
+      "batch": "NorthRidge2026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Prepared01/north_ridge_blender_proof.json",
+          "manifest_sha256": "3ec8bb14380fbf9f40097b3c520128e54a0ba2d152e7f240f101db90d9606b44",
+          "section": "north_ridge",
+          "chunks": 256,
+          "export_file": "north_ridge_blender_proof.npz",
+          "export_sha256": "691232320d23ae88128fc82473e8b1fd29abdddc5ae9ae63e8cea2955725b23c"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_RIDGE_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRidge2026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "acd72d66e6df180ab142ea9d7635295d47c11908339688e445c2b3fea1a4efba",
+      "runtime_tile_count": 3328,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRidge2026-10-09\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRidge2026-10-09/Pilot01.blend",
+      "sha256": "b72d81f335e5ce89cc210eedf816336a26ca0f9419561b4762f55d53c5a4552f",
+      "size_bytes": 14768853,
+      "batch": "NorthRidge2026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Prepared01/pilot_blender_proof.json",
+          "manifest_sha256": "3ec8bb14380fbf9f40097b3c520128e54a0ba2d152e7f240f101db90d9606b44",
+          "section": "pilot",
+          "chunks": 4,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "f306ff8d0329f186f877642918bf09b963e56a6389a92286b0abbfbbd15e2db3"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_RIDGE_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRidge2026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "acd72d66e6df180ab142ea9d7635295d47c11908339688e445c2b3fea1a4efba",
+      "runtime_tile_count": 3328,
+      "native_hash_in_current_export": false,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5040162026-10-09\\combined01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5040162026-10-09/combined01.blend",
+      "sha256": "f2290347ce5162239a59e96df8e9d6976bbe828f086a29c635cfa97e20382988",
+      "size_bytes": 255263100,
+      "batch": "NorthRowE5040162026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5040162026-10-09/Prepared01/combined_blender_proof.json",
+          "manifest_sha256": "1990c72be7d49c4d3f19f0c0b44dc182730b74d190baf3eb52a7bfc4ac18be5d",
+          "section": "combined",
+          "chunks": 3584,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "61a1b442eac84619261a9588015f354ae366d1f781caaf9e06e9dc2df620af0d"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E504016_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5040162026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "19ad78cb9076b1676c84140b513e8558713f915a01531af28584ce02e4ffe170",
+      "runtime_tile_count": 3584,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5040162026-10-09\\north_row_e50401601.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5040162026-10-09/north_row_e50401601.blend",
+      "sha256": "09f5e9996090e3b7dbea8dd8f270f1eecdb029ef3c6a5f99dbc441ec38a3f3e8",
+      "size_bytes": 136250988,
+      "batch": "NorthRowE5040162026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5040162026-10-09/Prepared01/north_row_e504016_blender_proof.json",
+          "manifest_sha256": "1990c72be7d49c4d3f19f0c0b44dc182730b74d190baf3eb52a7bfc4ac18be5d",
+          "section": "north_row_e504016",
+          "chunks": 256,
+          "export_file": "north_row_e504016_blender_proof.npz",
+          "export_sha256": "a4ecfe833a5f7b827c002031c63dfb66408bc6de34498c2c3f0db2e19f65f1be"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E504016_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5040162026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "19ad78cb9076b1676c84140b513e8558713f915a01531af28584ce02e4ffe170",
+      "runtime_tile_count": 3584,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5040162026-10-09\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5040162026-10-09/Pilot01.blend",
+      "sha256": "411834023f060e043db30876c2f7d0f2425c56c0cbf24e116f030b84a230f0bc",
+      "size_bytes": 27697342,
+      "batch": "NorthRowE5040162026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5040162026-10-09/Prepared01/pilot_blender_proof.json",
+          "manifest_sha256": "1990c72be7d49c4d3f19f0c0b44dc182730b74d190baf3eb52a7bfc4ac18be5d",
+          "section": "pilot",
+          "chunks": 8,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "285fd13477459eef9e5a5a68e8283529a7e093dd753cdfa244b995484d9ff8cb"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E504016_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5040162026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "19ad78cb9076b1676c84140b513e8558713f915a01531af28584ce02e4ffe170",
+      "runtime_tile_count": 3584,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5081122026-10-09\\combined01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5081122026-10-09/combined01.blend",
+      "sha256": "639e7945a601bc75f5d5dbe260590dfba36523bbd2d656dcbf59240daef8f852",
+      "size_bytes": 273688842,
+      "batch": "NorthRowE5081122026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5081122026-10-09/Prepared01/combined_blender_proof.json",
+          "manifest_sha256": "9f4e6e158310f33db39c56b5426ff2709babda96a36a7c0763452f4ce75105a2",
+          "section": "combined",
+          "chunks": 3840,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "c29fe0f7422fb4433edc75b2dcb76769a3079b901eb98bb15798f7830891ee20"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E508112_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5081122026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "aee56bf8d1d633e92af96a4601a8741606e25cd19ea29132fb1c1a38a487fa5a",
+      "runtime_tile_count": 3840,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5081122026-10-09\\north_row_e50811201.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5081122026-10-09/north_row_e50811201.blend",
+      "sha256": "b577b30d3fea83b0dd9a2f01386e16be380ba437ae45102cd2f37a2fd5332b21",
+      "size_bytes": 135575239,
+      "batch": "NorthRowE5081122026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5081122026-10-09/Prepared01/north_row_e508112_blender_proof.json",
+          "manifest_sha256": "9f4e6e158310f33db39c56b5426ff2709babda96a36a7c0763452f4ce75105a2",
+          "section": "north_row_e508112",
+          "chunks": 256,
+          "export_file": "north_row_e508112_blender_proof.npz",
+          "export_sha256": "7504644b50473858f1b010a85239502a5d48704f59c4157b4b7897e5c5870e29"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E508112_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5081122026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "aee56bf8d1d633e92af96a4601a8741606e25cd19ea29132fb1c1a38a487fa5a",
+      "runtime_tile_count": 3840,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5081122026-10-09\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5081122026-10-09/Pilot01.blend",
+      "sha256": "42ec40b93940ac0fdb6a146e8c8b8da43ab745a583804a5d709c4a05eab9c3ef",
+      "size_bytes": 26008301,
+      "batch": "NorthRowE5081122026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5081122026-10-09/Prepared01/pilot_blender_proof.json",
+          "manifest_sha256": "9f4e6e158310f33db39c56b5426ff2709babda96a36a7c0763452f4ce75105a2",
+          "section": "pilot",
+          "chunks": 8,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "a56f418141282720bc26932e287afb9885fb9a5ea8daafcf63821f09fb8e23e3"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E508112_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5081122026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "aee56bf8d1d633e92af96a4601a8741606e25cd19ea29132fb1c1a38a487fa5a",
+      "runtime_tile_count": 3840,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5122082026-10-09\\combined01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5122082026-10-09/combined01.blend",
+      "sha256": "150f76e335dbbc7976e313310c005bdd2588abb4ef314267e93aacd084549a5f",
+      "size_bytes": 289870681,
+      "batch": "NorthRowE5122082026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5122082026-10-09/Prepared01/combined_blender_proof.json",
+          "manifest_sha256": "0501eac8fa078b4429dd064df8f90e291b03c0db0c67088d6e61ab305d841726",
+          "section": "combined",
+          "chunks": 4096,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "8df0661ebec0044603686b6516da2c1edb993d39324b317fb32ca7bf789c78b6"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E512208_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5122082026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "3be2668b52afbb20869253176bde53b8cef4d41d2187c90ac31683454d187d12",
+      "runtime_tile_count": 4096,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5122082026-10-09\\north_row_e51220801.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5122082026-10-09/north_row_e51220801.blend",
+      "sha256": "a10c5f4f63ab0e4a837857f0b4ce55ab74ed13155a669ffd682074bb6b5d2955",
+      "size_bytes": 134642201,
+      "batch": "NorthRowE5122082026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5122082026-10-09/Prepared01/north_row_e512208_blender_proof.json",
+          "manifest_sha256": "0501eac8fa078b4429dd064df8f90e291b03c0db0c67088d6e61ab305d841726",
+          "section": "north_row_e512208",
+          "chunks": 256,
+          "export_file": "north_row_e512208_blender_proof.npz",
+          "export_sha256": "1b7e28363ce2da30d7cc8c09d5bba71a627fde69632d1c1dc30cf8bed5101f0c"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E512208_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5122082026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "3be2668b52afbb20869253176bde53b8cef4d41d2187c90ac31683454d187d12",
+      "runtime_tile_count": 4096,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5122082026-10-09\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5122082026-10-09/Pilot01.blend",
+      "sha256": "0c402e1fd650e8a252c1924ede33299477dd631d121e30883268c2a7bc8e0f3a",
+      "size_bytes": 24255262,
+      "batch": "NorthRowE5122082026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5122082026-10-09/Prepared01/pilot_blender_proof.json",
+          "manifest_sha256": "0501eac8fa078b4429dd064df8f90e291b03c0db0c67088d6e61ab305d841726",
+          "section": "pilot",
+          "chunks": 8,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "c395919c2b6aff0f2e6f031e30e372ccfe55ad5fbb9b65136bc0ef3c06ef18f7"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E512208_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5122082026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "3be2668b52afbb20869253176bde53b8cef4d41d2187c90ac31683454d187d12",
+      "runtime_tile_count": 4096,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5163042026-10-09\\combined01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5163042026-10-09/combined01.blend",
+      "sha256": "aa01d03d1ddfbb4bcdc7b884279bb46068c68cbe4c3f266b083e7f7bdf86fbe5",
+      "size_bytes": 306474104,
+      "batch": "NorthRowE5163042026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5163042026-10-09/Prepared01/combined_blender_proof.json",
+          "manifest_sha256": "a69e0ca4fa7d50b5f54ad54c51cbe64afa882024a7a67ccdd41e6d2ba5c0757f",
+          "section": "combined",
+          "chunks": 4352,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "873dd8e147abef01e97fe50bc9c1ea424852ef090d125a17c8b86954978234e2"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E516304_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5163042026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "520e36850ecad75e9da5c16600f12ec793f9580fe5768525b8030030d7300712",
+      "runtime_tile_count": 4352,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5163042026-10-09\\north_row_e51630401.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5163042026-10-09/north_row_e51630401.blend",
+      "sha256": "5373f5cb7525e5309446032b3cee97d5ca742ab53254c9b8b4b7486e31297648",
+      "size_bytes": 136935366,
+      "batch": "NorthRowE5163042026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5163042026-10-09/Prepared01/north_row_e516304_blender_proof.json",
+          "manifest_sha256": "a69e0ca4fa7d50b5f54ad54c51cbe64afa882024a7a67ccdd41e6d2ba5c0757f",
+          "section": "north_row_e516304",
+          "chunks": 256,
+          "export_file": "north_row_e516304_blender_proof.npz",
+          "export_sha256": "2eb8b7113035445032857cc7c3ea5b1e608d3d2cd461a90634fb1b86f39cd17e"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E516304_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5163042026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "520e36850ecad75e9da5c16600f12ec793f9580fe5768525b8030030d7300712",
+      "runtime_tile_count": 4352,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5163042026-10-09\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5163042026-10-09/Pilot01.blend",
+      "sha256": "acf1b4c9beba3285e9884b1f0e3fef11550f41ef66df55c381de290997dc740f",
+      "size_bytes": 23764235,
+      "batch": "NorthRowE5163042026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5163042026-10-09/Prepared01/pilot_blender_proof.json",
+          "manifest_sha256": "a69e0ca4fa7d50b5f54ad54c51cbe64afa882024a7a67ccdd41e6d2ba5c0757f",
+          "section": "pilot",
+          "chunks": 8,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "2e4beb162844441408bf799dd0082ad2f184517f07b79bfdbaf8faf4ad4936d6"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E516304_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5163042026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "520e36850ecad75e9da5c16600f12ec793f9580fe5768525b8030030d7300712",
+      "runtime_tile_count": 4352,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestNorthNorthwest2026-10-07\\CombinedReview01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/CombinedReview01.blend",
+      "sha256": "5726ef23afad6e865459cb2a9d79061fb61c0c72203b47969258c2af42008d9b",
+      "size_bytes": 79704514,
+      "batch": "WestNorthNorthwest2026-10-07",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/combined_blender_proof.json",
+          "manifest_sha256": "d4d260fc83a161529dff7965e03b581b14dede0a255cab11e4746fa5b744294b",
+          "section": "combined",
+          "chunks": 1024,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "e9cbccd31591851d3d1f3f0a579f6beb69c82ef23335673d62c06a63e80d3781"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "94ba0d96df367a88157849c25ae884da3e79774dec825f48b88970db306e7c2c",
+      "runtime_tile_count": 1024,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestNorthNorthwest2026-10-07\\north01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/north01.blend",
+      "sha256": "1b56cfbb55f9240668e00e114bc4a9b9fef5ba053cdcc72965925333d2c9f3a0",
+      "size_bytes": 137459328,
+      "batch": "WestNorthNorthwest2026-10-07",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/north_blender_proof.json",
+          "manifest_sha256": "d4d260fc83a161529dff7965e03b581b14dede0a255cab11e4746fa5b744294b",
+          "section": "north",
+          "chunks": 256,
+          "export_file": "north_blender_proof.npz",
+          "export_sha256": "654c8e44d3b5085b70211e108be32583570eefedb15f1314357aa1b26be9456f"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "94ba0d96df367a88157849c25ae884da3e79774dec825f48b88970db306e7c2c",
+      "runtime_tile_count": 1024,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestNorthNorthwest2026-10-07\\northwest01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/northwest01.blend",
+      "sha256": "95ddfdbb12983624a2dffb2bd08a8c3faf0d4b86fc000280216a447fdb23d4d7",
+      "size_bytes": 134295181,
+      "batch": "WestNorthNorthwest2026-10-07",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/northwest_blender_proof.json",
+          "manifest_sha256": "d4d260fc83a161529dff7965e03b581b14dede0a255cab11e4746fa5b744294b",
+          "section": "northwest",
+          "chunks": 256,
+          "export_file": "northwest_blender_proof.npz",
+          "export_sha256": "d56376dbbc820aa8b51874cee975fea4935e5a6adbf91d78db8ad67286645c36"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "94ba0d96df367a88157849c25ae884da3e79774dec825f48b88970db306e7c2c",
+      "runtime_tile_count": 1024,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestNorthNorthwest2026-10-07\\Pilot04.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/Pilot04.blend",
+      "sha256": "adac992fa8f7ae93f4e2ada42f3ba2f4d3c496a5553e82855182dadd0dcd52a9",
+      "size_bytes": 25428482,
+      "batch": "WestNorthNorthwest2026-10-07",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/pilot_blender_proof.json",
+          "manifest_sha256": "d4d260fc83a161529dff7965e03b581b14dede0a255cab11e4746fa5b744294b",
+          "section": "pilot",
+          "chunks": 4,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "2c13fc431330a4b35be0e2a3d42ad5e065077c67ec9567dbb080ff12d9b13969"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "94ba0d96df367a88157849c25ae884da3e79774dec825f48b88970db306e7c2c",
+      "runtime_tile_count": 1024,
+      "native_hash_in_current_export": false,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestNorthNorthwest2026-10-07\\west01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/west01.blend",
+      "sha256": "c96554c97185a118ee80ee449fe47e89a77a901d952dd79427a4d7297185104a",
+      "size_bytes": 133802164,
+      "batch": "WestNorthNorthwest2026-10-07",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/west_blender_proof.json",
+          "manifest_sha256": "d4d260fc83a161529dff7965e03b581b14dede0a255cab11e4746fa5b744294b",
+          "section": "west",
+          "chunks": 256,
+          "export_file": "west_blender_proof.npz",
+          "export_sha256": "49705d62c581189f1400e1e5dd7aea5264fe0d2deb454a1246d2d2799706eb78"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "94ba0d96df367a88157849c25ae884da3e79774dec825f48b88970db306e7c2c",
+      "runtime_tile_count": 1024,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestPair2026-10-08\\combined02.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestPair2026-10-08/combined02.blend",
+      "sha256": "dc5152067a624ddc520e8b5f634d71a1139b393db7136338680870e1f9f46c26",
+      "size_bytes": 108625234,
+      "batch": "WestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared02/combined_blender_proof.json",
+          "manifest_sha256": "7a40d3ed06adbf9973fcd16be9540b796bd4ec2d345a924829e7735c1f4f00cd",
+          "section": "combined",
+          "chunks": 1536,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "df0d2d1f51c16ff1bcc80bf628ce26932e0d59a8f784a586919c90f405297c9b"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "95ab40e90d184573cca17d166fe75ad612a7ab3a6447c926d6f167a1afd783d9",
+      "runtime_tile_count": 1536,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestPair2026-10-08\\northwest_outer02.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestPair2026-10-08/northwest_outer02.blend",
+      "sha256": "37d9e19223d88e83d06b321d4c2dccc5c5246823956ce4281c6008e5668a0e5a",
+      "size_bytes": 134071960,
+      "batch": "WestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared02/northwest_outer_blender_proof.json",
+          "manifest_sha256": "7a40d3ed06adbf9973fcd16be9540b796bd4ec2d345a924829e7735c1f4f00cd",
+          "section": "northwest_outer",
+          "chunks": 256,
+          "export_file": "northwest_outer_blender_proof.npz",
+          "export_sha256": "fa4376d838b3d7480ad17d4f13c96df33f1b3dda29c288ea0b64fac8420184b6"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "95ab40e90d184573cca17d166fe75ad612a7ab3a6447c926d6f167a1afd783d9",
+      "runtime_tile_count": 1536,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestPair2026-10-08\\west_outer02.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestPair2026-10-08/west_outer02.blend",
+      "sha256": "854c6c4ffcab9570f93b4cf5b53e97c5bcbf8b9c4e8d9eea905fd8ee75404b90",
+      "size_bytes": 134172643,
+      "batch": "WestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared02/west_outer_blender_proof.json",
+          "manifest_sha256": "7a40d3ed06adbf9973fcd16be9540b796bd4ec2d345a924829e7735c1f4f00cd",
+          "section": "west_outer",
+          "chunks": 256,
+          "export_file": "west_outer_blender_proof.npz",
+          "export_sha256": "dcc1cc019c2dac2b5a2f9af7a9f21b86c8ce1cbe3c1dd4d9645cd402a707f354"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "95ab40e90d184573cca17d166fe75ad612a7ab3a6447c926d6f167a1afd783d9",
+      "runtime_tile_count": 1536,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestRidgePair2026-10-08\\combined01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestRidgePair2026-10-08/combined01.blend",
+      "sha256": "e8c8d75633e08a8ba2e6914a48eb5c31d18b714cfc3e91dd3651fac616bf6de3",
+      "size_bytes": 216317889,
+      "batch": "WestRidgePair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestRidgePair2026-10-08/Prepared01/combined_blender_proof.json",
+          "manifest_sha256": "e9ec0b2e5b30c462fc653e0c53b1a02defcc471ce238da187ba7ee6fc6acd684",
+          "section": "combined",
+          "chunks": 3072,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "18559d2f307746a9d50c1cb44b25f1aa5aa74a07e062eff3a3425593cbd03595"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_RIDGE_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestRidgePair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "cfffeae2b99c83b7a9e7fb063724b944de1c78a7a16ee7a72c7f92038a8376f9",
+      "runtime_tile_count": 3072,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestRidgePair2026-10-08\\northwest_ridge01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestRidgePair2026-10-08/northwest_ridge01.blend",
+      "sha256": "634b6247008cea3d51af28ca28e9408957aa4be25c089f22d87833e587bb4d59",
+      "size_bytes": 136136051,
+      "batch": "WestRidgePair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestRidgePair2026-10-08/Prepared01/northwest_ridge_blender_proof.json",
+          "manifest_sha256": "e9ec0b2e5b30c462fc653e0c53b1a02defcc471ce238da187ba7ee6fc6acd684",
+          "section": "northwest_ridge",
+          "chunks": 256,
+          "export_file": "northwest_ridge_blender_proof.npz",
+          "export_sha256": "b4cb094cc213c35311689d25c70065cea6ba072e4439920079fe03fa72298027"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_RIDGE_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestRidgePair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "cfffeae2b99c83b7a9e7fb063724b944de1c78a7a16ee7a72c7f92038a8376f9",
+      "runtime_tile_count": 3072,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestRidgePair2026-10-08\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestRidgePair2026-10-08/Pilot01.blend",
+      "sha256": "b89ccafbfdbe301dfd38c101df5b1224fdb52e8fca20116cb1433e69427c7667",
+      "size_bytes": 26137623,
+      "batch": "WestRidgePair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestRidgePair2026-10-08/Prepared01/pilot_blender_proof.json",
+          "manifest_sha256": "e9ec0b2e5b30c462fc653e0c53b1a02defcc471ce238da187ba7ee6fc6acd684",
+          "section": "pilot",
+          "chunks": 4,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "0301e2b3b54e62cb7c07e30a14eacf8b3df086bd720d0eb266cd4d9c92ad9537"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_RIDGE_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestRidgePair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "cfffeae2b99c83b7a9e7fb063724b944de1c78a7a16ee7a72c7f92038a8376f9",
+      "runtime_tile_count": 3072,
+      "native_hash_in_current_export": false,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestRidgePair2026-10-08\\west_ridge01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestRidgePair2026-10-08/west_ridge01.blend",
+      "sha256": "bef04be2db3c28bf91ccb67791ee48494746338670c571bf139c480f03140d12",
+      "size_bytes": 135846947,
+      "batch": "WestRidgePair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestRidgePair2026-10-08/Prepared01/west_ridge_blender_proof.json",
+          "manifest_sha256": "e9ec0b2e5b30c462fc653e0c53b1a02defcc471ce238da187ba7ee6fc6acd684",
+          "section": "west_ridge",
+          "chunks": 256,
+          "export_file": "west_ridge_blender_proof.npz",
+          "export_sha256": "9ee40227bc8adab76c41162545eeaac3d28c6068d46cda5262d3a73cced8a83b"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_RIDGE_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestRidgePair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "cfffeae2b99c83b7a9e7fb063724b944de1c78a7a16ee7a72c7f92038a8376f9",
+      "runtime_tile_count": 3072,
+      "native_hash_in_current_export": true,
+      "classification": "completed_batch_native_verified_source",
+      "matches_current_prepared_manifest": true,
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5204002026-10-09\\combined01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5204002026-10-09/combined01.blend",
+      "sha256": "33c2222dcdb70d7f3dfa9dbd4e3d5330d9d39532f9796c6d20126a943a17c301",
+      "size_bytes": 326989658,
+      "batch": "NorthRowE5204002026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5204002026-10-09/Prepared01/combined_blender_proof.json",
+          "manifest_sha256": "bde63e042bc989667df5689be250220c46b9e96097a48e5b4b515b5503f00bc6",
+          "section": "combined",
+          "chunks": 4608,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "de2ae37b9b148cf8d38cd9f4b81c1da7c58dec4b4f0b7a7507794edd40619328"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E520400_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": false,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5204002026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": false,
+      "classification": "conditional_final_batch_requires_successful_Unity_integration_receipt",
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5204002026-10-09\\north_row_e52040001.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5204002026-10-09/north_row_e52040001.blend",
+      "sha256": "7976bdaae0b56b6726d482647b537ed7268bf024e47195aab0733bf4ccd49c12",
+      "size_bytes": 137926543,
+      "batch": "NorthRowE5204002026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5204002026-10-09/Prepared01/north_row_e520400_blender_proof.json",
+          "manifest_sha256": "bde63e042bc989667df5689be250220c46b9e96097a48e5b4b515b5503f00bc6",
+          "section": "north_row_e520400",
+          "chunks": 256,
+          "export_file": "north_row_e520400_blender_proof.npz",
+          "export_sha256": "30e6214895c8dc96a6495ae218cc234af41b7a93186d508b50f86774e54738f8"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E520400_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": false,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5204002026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": false,
+      "classification": "conditional_final_batch_requires_successful_Unity_integration_receipt",
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRowE5204002026-10-09\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/NorthRowE5204002026-10-09/Pilot01.blend",
+      "sha256": "7a96473a1a74bb80daa24c9586755f14bb4598dbbe4414f7371ee86e5560e669",
+      "size_bytes": 28921264,
+      "batch": "NorthRowE5204002026-10-09",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/NorthRowE5204002026-10-09/Prepared01/pilot_blender_proof.json",
+          "manifest_sha256": "bde63e042bc989667df5689be250220c46b9e96097a48e5b4b515b5503f00bc6",
+          "section": "pilot",
+          "chunks": 8,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "98df8c3eb83499a030e2d75819b8b71fd8615d92c8f16da5dc28a4223d528f04"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/NORTH_ROW_E520400_IMPLEMENTATION_2026-10-09.md",
+      "completion_receipt_exists": false,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/NorthRowE5204002026-10-09/Source/manifest.json",
+      "runtime_manifest_exists": false,
+      "classification": "conditional_final_batch_requires_successful_Unity_integration_receipt",
+      "tracked_before_cleanup": true
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestNorthNorthwest2026-10-07\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/Pilot01.blend",
+      "sha256": "d63b5f7bacb2bc7c39213c558d7f14a5009ceef387ac8f9dfe2926e9ab7f1c8d",
+      "size_bytes": 22724545,
+      "batch": "WestNorthNorthwest2026-10-07",
+      "native_proofs": [],
+      "classification": "superseded_unaccepted_pilot_or_source",
+      "reason": "No matching verified native terrain proof for completed Unity owner; do not infer integration from filename or presence",
+      "tracked_before_cleanup": false,
+      "completion_receipt": "Docs/DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md"
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestNorthNorthwest2026-10-07\\Pilot02.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/Pilot02.blend",
+      "sha256": "0d78d0bc01930ffb9f3485c1827dd9086e060d39bfecf857214a4c84afd02bfe",
+      "size_bytes": 22724625,
+      "batch": "WestNorthNorthwest2026-10-07",
+      "native_proofs": [],
+      "classification": "superseded_unaccepted_pilot_or_source",
+      "reason": "No matching verified native terrain proof for completed Unity owner; do not infer integration from filename or presence",
+      "tracked_before_cleanup": false,
+      "completion_receipt": "Docs/DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md"
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestNorthNorthwest2026-10-07\\Pilot03.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestNorthNorthwest2026-10-07/Pilot03.blend",
+      "sha256": "3904fe36e36db7f7f0726aae899bd233a09d813555d900747e5b476c61c18aa4",
+      "size_bytes": 22721561,
+      "batch": "WestNorthNorthwest2026-10-07",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02/pilot_blender_proof.json",
+          "manifest_sha256": "154386d5b282fafcde37b69cad7d72a6b89414d92238b2f921d1b14600c59eeb",
+          "section": "pilot",
+          "chunks": 4,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "2c13fc431330a4b35be0e2a3d42ad5e065077c67ec9567dbb080ff12d9b13969"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "94ba0d96df367a88157849c25ae884da3e79774dec825f48b88970db306e7c2c",
+      "runtime_tile_count": 1024,
+      "native_hash_in_current_export": false,
+      "classification": "superseded_native_verified_but_not_accepted_current_Unity_export",
+      "matches_current_prepared_manifest": false,
+      "reason": "Native proof is real but bound to a superseded prepared manifest; current completion receipt does not establish acceptance of these exact bytes",
+      "tracked_before_cleanup": false
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestPair2026-10-08\\combined01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestPair2026-10-08/combined01.blend",
+      "sha256": "7f72d1dacb2bde039cc3446d86d6f131cdf7db9161b1db5a9bcbf2be7175a2e8",
+      "size_bytes": 108632356,
+      "batch": "WestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/combined_blender_proof.json",
+          "manifest_sha256": "1afc9f2fd1e90c9207649e6143f8ec25397d261ab5a83b2dca4f587c6d06ec37",
+          "section": "combined",
+          "chunks": 1536,
+          "export_file": "combined_blender_proof.npz",
+          "export_sha256": "deac6dbaa283550ec3b6c61930f433c7465ffd0169915425b16127fbe794a043"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "95ab40e90d184573cca17d166fe75ad612a7ab3a6447c926d6f167a1afd783d9",
+      "runtime_tile_count": 1536,
+      "native_hash_in_current_export": false,
+      "classification": "superseded_native_verified_but_not_accepted_current_Unity_export",
+      "matches_current_prepared_manifest": false,
+      "reason": "Native proof is real but bound to a superseded prepared manifest; current completion receipt does not establish acceptance of these exact bytes",
+      "tracked_before_cleanup": false
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestPair2026-10-08\\northwest_outer01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestPair2026-10-08/northwest_outer01.blend",
+      "sha256": "7cab6c4acfbd3a4db3f7a422a4afdd5e80b517084ba516534d4f410f50441426",
+      "size_bytes": 134072046,
+      "batch": "WestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/northwest_outer_blender_proof.json",
+          "manifest_sha256": "1afc9f2fd1e90c9207649e6143f8ec25397d261ab5a83b2dca4f587c6d06ec37",
+          "section": "northwest_outer",
+          "chunks": 256,
+          "export_file": "northwest_outer_blender_proof.npz",
+          "export_sha256": "fa4376d838b3d7480ad17d4f13c96df33f1b3dda29c288ea0b64fac8420184b6"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "95ab40e90d184573cca17d166fe75ad612a7ab3a6447c926d6f167a1afd783d9",
+      "runtime_tile_count": 1536,
+      "native_hash_in_current_export": false,
+      "classification": "superseded_native_verified_but_not_accepted_current_Unity_export",
+      "matches_current_prepared_manifest": false,
+      "reason": "Native proof is real but bound to a superseded prepared manifest; current completion receipt does not establish acceptance of these exact bytes",
+      "tracked_before_cleanup": false
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestPair2026-10-08\\Pilot01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestPair2026-10-08/Pilot01.blend",
+      "sha256": "a22dfff786721b975ffc78ad5c6465171fb11e2866279f6a7fcf549c49d9604a",
+      "size_bytes": 20388013,
+      "batch": "WestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/pilot_blender_proof.json",
+          "manifest_sha256": "1afc9f2fd1e90c9207649e6143f8ec25397d261ab5a83b2dca4f587c6d06ec37",
+          "section": "pilot",
+          "chunks": 4,
+          "export_file": "pilot_blender_proof.npz",
+          "export_sha256": "44c5f38814bf929c5d1569a7ee802d18aa34f3f5cc70233c32d83355e9a0b37f"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "95ab40e90d184573cca17d166fe75ad612a7ab3a6447c926d6f167a1afd783d9",
+      "runtime_tile_count": 1536,
+      "native_hash_in_current_export": false,
+      "classification": "superseded_native_verified_but_not_accepted_current_Unity_export",
+      "matches_current_prepared_manifest": false,
+      "reason": "Native proof is real but bound to a superseded prepared manifest; current completion receipt does not establish acceptance of these exact bytes",
+      "tracked_before_cleanup": false
+    },
+    {
+      "absolute_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\WestPair2026-10-08\\west_outer01.blend",
+      "path": "SourceArt/Blender/Studies/DeathValley/WestPair2026-10-08/west_outer01.blend",
+      "sha256": "eb5f42dafd10b443c85315dfb893b0d12f80d5f53a9b9290ab78be2cff1e63f3",
+      "size_bytes": 134172773,
+      "batch": "WestPair2026-10-08",
+      "native_proofs": [
+        {
+          "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/west_outer_blender_proof.json",
+          "manifest_sha256": "1afc9f2fd1e90c9207649e6143f8ec25397d261ab5a83b2dca4f587c6d06ec37",
+          "section": "west_outer",
+          "chunks": 256,
+          "export_file": "west_outer_blender_proof.npz",
+          "export_sha256": "dcc1cc019c2dac2b5a2f9af7a9f21b86c8ce1cbe3c1dd4d9645cd402a707f354"
+        }
+      ],
+      "completion_receipt": "Docs/DeathValley/WEST_PAIR_IMPLEMENTATION_2026-10-08.md",
+      "completion_receipt_exists": true,
+      "runtime_manifest": "Assets/_Project/Art/Terrain/WestPair2026-10-08/Source/manifest.json",
+      "runtime_manifest_exists": true,
+      "runtime_manifest_sha256": "95ab40e90d184573cca17d166fe75ad612a7ab3a6447c926d6f167a1afd783d9",
+      "runtime_tile_count": 1536,
+      "native_hash_in_current_export": false,
+      "classification": "superseded_native_verified_but_not_accepted_current_Unity_export",
+      "matches_current_prepared_manifest": false,
+      "reason": "Native proof is real but bound to a superseded prepared manifest; current completion receipt does not establish acceptance of these exact bytes",
+      "tracked_before_cleanup": false
+    }
+  ]
+}
