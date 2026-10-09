@@ -108,7 +108,7 @@ namespace BooterBigArm.Editor
                 return;
             }
             var grid = GetGrid(scene);
-            if (grid[0, 0].transform.parent.GetComponent<BadwaterTerrainConnectivity>() == null)
+            if (grid[0, 0].GetComponentInParent<BadwaterTerrainConnectivity>() == null)
                 throw new InvalidDataException("Missing Badwater terrain connection lifecycle component.");
             var heights = new float[256][,];
             for (int row = 0; row < 16; row++)

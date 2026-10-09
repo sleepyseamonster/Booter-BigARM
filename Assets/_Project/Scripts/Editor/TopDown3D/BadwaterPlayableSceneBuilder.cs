@@ -142,10 +142,10 @@ namespace BooterBigArm.Editor
             if (FindRoot(scene, "Review Sun") != null || FindRoot(scene, "Directional Key Light").GetComponent<PerpetualTwilightSun>() == null
                 || FindRoot(scene, "Dust Atmosphere").GetComponent<TopDown3DDustAtmosphere>() == null)
                 throw new InvalidDataException("Lighting and atmosphere ownership mismatch.");
-            if (Mathf.Abs(player.transform.position.y - SampleWorldHeight(scene, SpawnX, SpawnZ)
+            if (Mathf.Abs(player.transform.position.y - SampleWorldHeight(scene, player.transform.position.x, player.transform.position.z)
                 - player.GetComponent<CapsuleCollider>().height * 0.5f - 0.12f) > 0.04f)
                 throw new InvalidDataException("Booter is not grounded at the measured spawn.");
-            if (Mathf.Abs(companion.transform.position.y - SampleWorldHeight(scene, SpawnX - 4.2f, SpawnZ - 2.5f) - 0.82f) > 0.04f)
+            if (Mathf.Abs(companion.transform.position.y - SampleWorldHeight(scene, companion.transform.position.x, companion.transform.position.z) - 0.82f) > 0.04f)
                 throw new InvalidDataException("Legger is not grounded at the measured spawn.");
             foreach (var behaviour in UnityEngine.Object.FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
                 if (behaviour == null) throw new InvalidDataException("A scene component has a missing script.");
