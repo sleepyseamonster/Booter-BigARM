@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "audit_local_date": "2026-10-09",
+  "status": "plan_corrected_after_local_contract_and_anchor_audit",
+  "production_scene_sha256": "177bd3c7f4445f3523e5c3f1c20e2401bfd56d2bbb97fd5565110dc702ee03a8",
+  "coverage_catalog_sha256": "896c3658021b2e0a65ada444462c4f2f41758b8448753f6e0ca1bc81b449bf27",
+  "baseline_height_archive_sha256": "d42cb74158683d814c36aa7d3f54181e36c3321e013915ea8f8339f1f26bc587",
+  "current_chunks": 3328,
+  "remaining_sections": 5,
+  "final_chunks": 4608,
+  "final_bounds_m": [
+    499920,
+    4006200,
+    524496,
+    4018488
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "bounds_m": [
+        504016,
+        4014392,
+        508112,
+        4018488
+      ],
+      "south_anchor": "northwest_far",
+      "south_anchor_chunk_count": 16,
+      "total_chunks": 3584,
+      "exact_joins_expected": 7024,
+      "exterior_neighbor_slots": 288,
+      "collider_samples_expected": 89600,
+      "retained_south_corner_normalized": 0.22862112522125244,
+      "adjacent_retained_height_corner_exact": true,
+      "west_corner_rgb": [
+        135,
+        119,
+        102
+      ],
+      "west_corner_basis": "current_north_ridge_southeast_pixel",
+      "south_corner_rgb": [
+        135,
+        119,
+        102
+      ],
+      "south_minus_west_rgb": [
+        0,
+        0,
+        0
+      ],
+      "rgb_corner_equal": true,
+      "south_color_source": "SourceData/Terrain/DeathValley/FarWestPair2026-10-08/Prepared01/northwest_far_geographic_color.png",
+      "south_color_sha256": "8eeeb1fbe2d93eb0c2e749a6c7d331e8b5837c2aee575ef76194ea6a9798161a"
+    },
+    {
+      "step": 2,
+      "bounds_m": [
+        508112,
+        4014392,
+        512208,
+        4018488
+      ],
+      "south_anchor": "northwest_next",
+      "south_anchor_chunk_count": 16,
+      "total_chunks": 3840,
+      "exact_joins_expected": 7536,
+      "exterior_neighbor_slots": 288,
+      "collider_samples_expected": 96000,
+      "retained_south_corner_normalized": 0.05710187554359436,
+      "adjacent_retained_height_corner_exact": true,
+      "west_corner_rgb": [
+        129,
+        114,
+        104
+      ],
+      "west_corner_basis": "required_previous_new_section_southeast_pixel_inherits_its_south_anchor",
+      "south_corner_rgb": [
+        129,
+        114,
+        104
+      ],
+      "south_minus_west_rgb": [
+        0,
+        0,
+        0
+      ],
+      "rgb_corner_equal": true,
+      "south_color_source": "SourceData/Terrain/DeathValley/NextWestPair2026-10-08/Prepared01/northwest_next_geographic_color.png",
+      "south_color_sha256": "b11ee1a78bbf375d881a46d7b94a810310e0a80fb72bcb4c515061eb60751096"
+    },
+    {
+      "step": 3,
+      "bounds_m": [
+        512208,
+        4014392,
+        516304,
+        4018488
+      ],
+      "south_anchor": "northwest_outer",
+      "south_anchor_chunk_count": 16,
+      "total_chunks": 4096,
+      "exact_joins_expected": 8048,
+      "exterior_neighbor_slots": 288,
+      "collider_samples_expected": 102400,
+      "retained_south_corner_normalized": 0.00869804061949253,
+      "adjacent_retained_height_corner_exact": true,
+      "west_corner_rgb": [
+        198,
+        191,
+        183
+      ],
+      "west_corner_basis": "required_previous_new_section_southeast_pixel_inherits_its_south_anchor",
+      "south_corner_rgb": [
+        198,
+        191,
+        183
+      ],
+      "south_minus_west_rgb": [
+        0,
+        0,
+        0
+      ],
+      "rgb_corner_equal": true,
+      "south_color_source": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/northwest_outer_geographic_color.png",
+      "south_color_sha256": "fb8d16cc06358681f172e484b0a327e14352dc87f4d57eb430b52289d6830f20"
+    },
+    {
+      "step": 4,
+      "bounds_m": [
+        516304,
+        4014392,
+        520400,
+        4018488
+      ],
+      "south_anchor": "northwest",
+      "south_anchor_chunk_count": 16,
+      "total_chunks": 4352,
+      "exact_joins_expected": 8560,
+      "exterior_neighbor_slots": 288,
+      "collider_samples_expected": 108800,
+      "retained_south_corner_normalized": 0.00875907950103283,
+      "adjacent_retained_height_corner_exact": true,
+      "west_corner_rgb": [
+        158,
+        154,
+        148
+      ],
+      "west_corner_basis": "required_previous_new_section_southeast_pixel_inherits_its_south_anchor",
+      "south_corner_rgb": [
+        139,
+        135,
+        120
+      ],
+      "south_minus_west_rgb": [
+        -19,
+        -19,
+        -28
+      ],
+      "rgb_corner_equal": false,
+      "south_color_source": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/northwest_geographic_color.png",
+      "south_color_sha256": "f8cf397273ab09d4b3829942b6553a134ad7db85e1d0754e593e19c8482fd35e"
+    },
+    {
+      "step": 5,
+      "bounds_m": [
+        520400,
+        4014392,
+        524496,
+        4018488
+      ],
+      "south_anchor": "north",
+      "south_anchor_chunk_count": 16,
+      "total_chunks": 4608,
+      "exact_joins_expected": 9072,
+      "exterior_neighbor_slots": 288,
+      "collider_samples_expected": 115200,
+      "retained_south_corner_normalized": 0.07300250232219696,
+      "adjacent_retained_height_corner_exact": true,
+      "west_corner_rgb": [
+        114,
+        102,
+        88
+      ],
+      "west_corner_basis": "required_previous_new_section_southeast_pixel_inherits_its_south_anchor",
+      "south_corner_rgb": [
+        130,
+        118,
+        104
+      ],
+      "south_minus_west_rgb": [
+        16,
+        16,
+        16
+      ],
+      "rgb_corner_equal": false,
+      "south_color_source": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/north_geographic_color.png",
+      "south_color_sha256": "2739001ed8e284b5db2137761ecb1b523d594638f2ea480898bacd636ee82c28"
+    }
+  ],
+  "precision_gates_m": {
+    "new_side_preparation_adjustment": 0.04205766600584596,
+    "native_height_readback": 0.027717496795458707,
+    "direct_collider": 0.00476837158203125
+  },
+  "corrections": [
+    "Explicit single-pixel south-priority RGB corner exception for incompatible retained anchors; height seams remain exact",
+    "Require ordered-row tooling before use of currently hardcoded north_ridge adapters",
+    "Record numeric precision gates, full predecessor protection and peak D: capacity checks"
+  ],
+  "limits": "Local saved-scene, catalog, native height and existing color contract audit. No new acquisition, Blender build, Unity interaction, gameplay test or fresh Player performance proof."
+}
