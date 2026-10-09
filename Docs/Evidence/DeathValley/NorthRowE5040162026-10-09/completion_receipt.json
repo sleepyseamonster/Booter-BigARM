@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "step": 1,
+  "status": "verified_Blender_authoring_and_saved_native_Unity_integration",
+  "batch": "NorthRowE5040162026-10-09",
+  "section": "north_row_e504016",
+  "bounds_m": [
+    504016,
+    4014392,
+    508112,
+    4018488
+  ],
+  "total_terrains": 3584,
+  "new_terrains": 256,
+  "retained_terrains": 3328,
+  "exact_joins": 7024,
+  "exterior_neighbor_slots": 288,
+  "collider_samples": 89600,
+  "production_scene_sha256": "ea0db98d71478b40a0083e16065de42f463629dfc448dd87765b561a63924924",
+  "manifest_sha256": "19ad78cb9076b1676c84140b513e8558713f915a01531af28584ce02e4ffe170",
+  "max_height_readback_error_m": 0.027492642402648926,
+  "max_collider_error_m": 3.0517578125e-05,
+  "candidate_tests": {
+    "passed": 29,
+    "failed": 0
+  },
+  "final_unity_tests": {
+    "passed": 57,
+    "failed": 0,
+    "skipped": 0
+  },
+  "offline_preflight": {
+    "coverage_and_source_tests": 71,
+    "row_contract_tests": 7,
+    "failed": 0
+  },
+  "native_metadata": {
+    "global_asset_guids": 32573,
+    "new_owner_guids": 4626,
+    "all_pairs_present": true
+  },
+  "color_corner": {
+    "policy": "south_row_priority_single_southwest_pixel",
+    "west_exception_pixels": 0,
+    "southwest_difference_rgb": [
+      0,
+      0,
+      0
+    ],
+    "audited_max_rgb": [
+      0,
+      0,
+      0
+    ],
+    "south_edge_error": 0,
+    "west_edge_error_excluding_corner": 0
+  },
+  "max_new_side_height_adjustment_m": 0.0274658203125,
+  "blender": {
+    "version": "5.2.2 LTS",
+    "pilot_meshes": 8,
+    "section_meshes": 256,
+    "combined_meshes": 3584,
+    "reopened_all_sources": true,
+    "inspected_views": 5
+  },
+  "live_editor": {
+    "pid": 13084,
+    "reload_pending": true,
+    "activation_authorized": false
+  },
+  "all_project_artifacts_on_D": true,
+  "subprocess_temp": "D:/BooterBigArmTools/Temp",
+  "proof_boundary": "Transferred scene and asset bytes match isolated full native readback and sampled collision. Open Editor reload/readback remains pending. No gameplay smoke test or Player performance claim.",
+  "push_performed": false,
+  "terrain_doctor": {
+    "checked": 7183,
+    "issues": 0
+  },
+  "post_refresh_offline_tests": {
+    "terrain_tools": 9,
+    "atlas": 2,
+    "failed": 0
+  },
+  "source": {
+    "min_height_m": -12.139375686645508,
+    "max_height_m": 431.0357360839844,
+    "nodata_count": 0,
+    "fits_encoding": true,
+    "catalog_sha256": "0b6fb14a8768f6b03cbf4bc81b256abc057a394a04a5110b9e9c388dab78a395"
+  },
+  "validation_repair": {
+    "initial_passed": 61,
+    "initial_failed": 1,
+    "reason": "Canonical two-full-audit test exceeded default 180000 ms",
+    "new_timeout_ms": 900000,
+    "assertions_unchanged": true,
+    "final_scope": "saved-scene/source and map checks; lifecycle test omitted from later repetitions"
+  },
+  "visual_review": {
+    "blender_views": 5,
+    "unity_map_views": 2,
+    "accepted_current_footprint": true
+  }
+}

@@ -14,7 +14,8 @@ namespace BooterBigArm.Tests
 {
     public sealed class BadwaterTerrainSeamTests
     {
-        [Test]
+        // Two complete source/scene audits scale with the authored terrain count.
+        [Test, Timeout(900000)]
         public void CanonicalValidators_AcceptSavedSceneAndAllSourceDerivedVertices()
         {
             BadwaterPlayableSceneBuilder.ValidateFromCli();

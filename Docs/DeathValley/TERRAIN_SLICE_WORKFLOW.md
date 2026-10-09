@@ -12,6 +12,10 @@ The [western ridge pair](./WEST_RIDGE_PAIR_IMPLEMENTATION_2026-10-08.md), comple
 
 The [single northern ridge cap](./NORTH_RIDGE_IMPLEMENTATION_2026-10-09.md) adds `north_ridge` at `[499920,4014392,504016,4018488]`. Its saved production integration passes 3,328 chunks, preserving all 3,072 prior terrains. The `north_ridge` Python adapters and `BadwaterNorthRidge` Unity contracts enforce the exact union of the retained 96 Ã— 32 rectangle and the new 16 Ã— 16 northern cap. The AABB `[499920,4006200,524496,4018488]` is a framing boundary; 1,280 upper-east cells are unbuilt. Saved production readback and the refreshed atlas pass; the open Editor awaits its external-change Reload dialog.
 
+## Current eastward northern-row execution
+
+Step 1 of [the audited plan](./NORTH_ROW_EASTWARD_PLAN_2026-10-09.md) is complete for the saved production scene, with 3,584 chunks and 7,024 exact joins. [The latest receipt](./NORTH_ROW_E504016_IMPLEMENTATION_2026-10-09.md) records native Blender reopening, the two-border export, isolated and transferred production proof, focused tests and preservation. The `north_row` adapters and `BadwaterNorthRow` classes accept only the five ordered footprints. Their data-driven occupancy retains unbuilt upper-east cells until the final step. Live Editor reload remains pending.
+
 ## Size and coordinates
 
 One new 256-chunk section consists of **16 Ã— 16 chunks**, each **256 Ã— 256 metres**, covering **4,096 Ã— 4,096 metres**. A 64-chunk quarter is 2,048 Ã— 2,048 metres. These are different batch sizes.

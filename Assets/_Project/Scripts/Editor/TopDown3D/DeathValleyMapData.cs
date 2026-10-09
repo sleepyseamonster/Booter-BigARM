@@ -144,16 +144,17 @@ namespace BooterBigArm.Editor
 
         public static double[] GetPlayableBounds(DeathValleyMapRecord[] tiles)
         {
-            if (tiles == null || (tiles.Length != 256 && tiles.Length != 1024 && tiles.Length != 1536 && tiles.Length != 2048 && tiles.Length != 2560 && tiles.Length != 3072 && tiles.Length != 3328)) throw new InvalidDataException("Incomplete playable tile grid.");
+            if (tiles == null || (tiles.Length != 256 && tiles.Length != 1024 && tiles.Length != 1536 && tiles.Length != 2048 && tiles.Length != 2560 && tiles.Length != 3072 && tiles.Length != 3328 && tiles.Length != 3584 && tiles.Length != 3840 && tiles.Length != 4096 && tiles.Length != 4352 && tiles.Length != 4608)) throw new InvalidDataException("Incomplete playable tile grid.");
+            int rowStep=tiles.Length==3584 ? 1 : tiles.Length==3840 ? 2 : tiles.Length==4096 ? 3 : tiles.Length==4352 ? 4 : tiles.Length==4608 ? 5 : 0;
             var unique = new HashSet<string>();
             foreach (var tile in tiles)
             {
                 ValidateBounds(tile.bounds_m);
-                if (tiles.Length == 3328)
+                if (tiles.Length == 3328 || rowStep>0)
                 {
                     double col = (tile.bounds_m[0]-499920)/256, row = (tile.bounds_m[1]-4006200)/256;
                     bool baseline = col >= 0 && col < 96 && row >= 0 && row < 32;
-                    bool northCap = col >= 0 && col < 16 && row >= 32 && row < 48;
+                    bool northCap = col >= 0 && col < 16*(rowStep+1) && row >= 32 && row < 48;
                     if (!baseline && !northCap) throw new InvalidDataException("Tile outside the exact baseline plus northern cap union.");
                 }
                 if (tile.bounds_m[2]-tile.bounds_m[0] != 256 || tile.bounds_m[3]-tile.bounds_m[1] != 256 ||

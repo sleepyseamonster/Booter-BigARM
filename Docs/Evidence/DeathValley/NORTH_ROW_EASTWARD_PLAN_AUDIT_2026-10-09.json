@@ -120,7 +120,7 @@
         0
       ],
       "rgb_corner_equal": true,
-      "south_color_source": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/northwest_outer_geographic_color.png",
+      "south_color_source": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared02/northwest_outer_geographic_color.png",
       "south_color_sha256": "fb8d16cc06358681f172e484b0a327e14352dc87f4d57eb430b52289d6830f20"
     },
     {
@@ -146,18 +146,18 @@
       ],
       "west_corner_basis": "required_previous_new_section_southeast_pixel_inherits_its_south_anchor",
       "south_corner_rgb": [
-        139,
-        135,
-        120
+        158,
+        154,
+        148
       ],
       "south_minus_west_rgb": [
-        -19,
-        -19,
-        -28
+        0,
+        0,
+        0
       ],
-      "rgb_corner_equal": false,
-      "south_color_source": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/northwest_geographic_color.png",
-      "south_color_sha256": "f8cf397273ab09d4b3829942b6553a134ad7db85e1d0754e593e19c8482fd35e"
+      "rgb_corner_equal": true,
+      "south_color_source": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/northwest_geographic_color.png",
+      "south_color_sha256": "0c801a449de64ff4e2a17984daf8620228bc3c70216bfeb6d3c69d0da8ec49a9"
     },
     {
       "step": 5,
@@ -176,15 +176,15 @@
       "retained_south_corner_normalized": 0.07300250232219696,
       "adjacent_retained_height_corner_exact": true,
       "west_corner_rgb": [
-        114,
-        102,
-        88
+        97,
+        82,
+        76
       ],
       "west_corner_basis": "required_previous_new_section_southeast_pixel_inherits_its_south_anchor",
       "south_corner_rgb": [
-        130,
-        118,
-        104
+        113,
+        98,
+        92
       ],
       "south_minus_west_rgb": [
         16,
@@ -192,8 +192,8 @@
         16
       ],
       "rgb_corner_equal": false,
-      "south_color_source": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/north_geographic_color.png",
-      "south_color_sha256": "2739001ed8e284b5db2137761ecb1b523d594638f2ea480898bacd636ee82c28"
+      "south_color_source": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/north_geographic_color.png",
+      "south_color_sha256": "07facc33ad6fb6fa807a79fc920f30650f0bc739acc74b821d22c1952b10a988"
     }
   ],
   "precision_gates_m": {
@@ -202,7 +202,7 @@
     "direct_collider": 0.00476837158203125
   },
   "corrections": [
-    "Explicit single-pixel south-priority RGB corner exception for incompatible retained anchors; height seams remain exact",
+    "Explicit single-pixel south-priority RGB corner exception for incompatible retained anchors at step 5, corrected to accepted runtime color versions; height seams remain exact",
     "Require ordered-row tooling before use of currently hardcoded north_ridge adapters",
     "Record numeric precision gates, full predecessor protection and peak D: capacity checks"
   ],
