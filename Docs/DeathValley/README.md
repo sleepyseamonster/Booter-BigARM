@@ -4,15 +4,15 @@ Death Valley is the user's current geographic expansion focus. In the coordinate
 
 ## Current terrain coverage - October 9, 2026
 
-Eastward northern-row section 1 is built in Blender and integrated into saved Greater Wasteland. Current production has 14 sections and 3,584 occupied chunks: the retained 96 by 32 rectangle plus a 32 by 16 northern cap. The AABB is `[499920,4006200,524496,4018488]`; 1,024 upper-east cells remain unbuilt. The fixed origin is unchanged. See [the latest implementation receipt](./NORTH_ROW_E504016_IMPLEMENTATION_2026-10-09.md) and [the ordered eastward plan](./NORTH_ROW_EASTWARD_PLAN_2026-10-09.md). The saved scene and transferred asset bytes pass native readback, collision and exact seam checks. Live Editor reload remains pending at its external-change dialog.
+Eastward northern-row section 2 is built in Blender and integrated into saved Greater Wasteland. Current production has 15 sections and 3,840 occupied chunks: the retained 96 by 32 rectangle plus a 48 by 16 northern cap. The AABB is `[499920,4006200,524496,4018488]`; 768 upper-east cells remain unbuilt. The fixed origin is unchanged. See [the latest implementation receipt](./NORTH_ROW_E508112_IMPLEMENTATION_2026-10-09.md) and [the ordered eastward plan](./NORTH_ROW_EASTWARD_PLAN_2026-10-09.md). The saved scene and transferred asset bytes pass native readback, collision and exact seam checks. Live Editor reload remains pending at its external-change dialog.
 
-The refreshed atlas contains all 3,584 occupied chunks using unique geographic keys and actual footprint framing. Planned sections beyond step 1 are not represented as built terrain.
+The refreshed atlas contains all 3,840 occupied chunks using unique geographic keys and actual footprint framing. Planned sections beyond step 2 are not represented as built terrain.
 
 The original 256-chunk descriptions and pending-stage tables below retain the initial study's scope and historical sequencing. The current coverage catalog and newer implementation receipts control current production facts.
 
 ## Inspect the coverage
 
-Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline, regional/detail footprints and all 3,584 clickable Unity terrain chunks. Selection shows bounds, resolution, source availability and provenance. The blue grid identifies built terrain; unbuilt upper-east cells remain outside it. This north-up coverage diagram is distinct from a terrain render.
+Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline, regional/detail footprints and all 3,840 clickable Unity terrain chunks. Selection shows bounds, resolution, source availability and provenance. The blue grid identifies built terrain; unbuilt upper-east cells remain outside it. This north-up coverage diagram is distinct from a terrain render.
 
 - [coverage_catalog.json](./coverage_catalog.json) records footprints, file hashes, source identities, geographic chunk keys, scene references and verification limits.
 - [unity_tiles.csv](./unity_tiles.csv) supplies the tile inventory in a flat table.

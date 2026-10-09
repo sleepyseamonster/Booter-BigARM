@@ -1,0 +1,35 @@
+{
+  "step": 2,
+  "source_products": [
+    "x50y402",
+    "x51y402"
+  ],
+  "native_shape": [
+    4097,
+    4097
+  ],
+  "coarse_shape": [
+    2049,
+    2049
+  ],
+  "strict_decimation": true,
+  "min_height_m": -84.357421875,
+  "max_height_m": 24.945270538330078,
+  "nodata": 0,
+  "crs": "EPSG:26911",
+  "vertical_datum": "NAVD88 metres",
+  "ownership_boundaries": [
+    {
+      "easting": 510000,
+      "same_coordinate_max_difference_m": 7.62939453125e-06,
+      "wide_overlap_max_difference_m": 0.0947265625
+    }
+  ],
+  "imagery_shape": [
+    2048,
+    2048
+  ],
+  "imagery_spacing_m": 2,
+  "provenance_hashes_verified": true,
+  "status": "source_audit_passed"
+}

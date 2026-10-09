@@ -14,7 +14,7 @@ The [single northern ridge cap](./NORTH_RIDGE_IMPLEMENTATION_2026-10-09.md) adds
 
 ## Current eastward northern-row execution
 
-Step 1 of [the audited plan](./NORTH_ROW_EASTWARD_PLAN_2026-10-09.md) is complete for the saved production scene, with 3,584 chunks and 7,024 exact joins. [The latest receipt](./NORTH_ROW_E504016_IMPLEMENTATION_2026-10-09.md) records native Blender reopening, the two-border export, isolated and transferred production proof, focused tests and preservation. The `north_row` adapters and `BadwaterNorthRow` classes accept only the five ordered footprints. Their data-driven occupancy retains unbuilt upper-east cells until the final step. Live Editor reload remains pending.
+Step 2 of [the audited plan](./NORTH_ROW_EASTWARD_PLAN_2026-10-09.md) is complete for the saved production scene, with 3,840 chunks and 7,536 exact joins. [The latest receipt](./NORTH_ROW_E508112_IMPLEMENTATION_2026-10-09.md) records native Blender reopening, the two-border export, isolated and transferred production proof, focused tests and preservation. The `north_row` adapters and `BadwaterNorthRow` classes accept only the five ordered footprints. Their data-driven occupancy retains unbuilt upper-east cells until the final step. Live Editor reload remains pending.
 
 ## Size and coordinates
 
