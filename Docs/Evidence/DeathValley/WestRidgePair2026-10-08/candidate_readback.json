@@ -1,0 +1,15 @@
+{
+    "schema_version": 1,
+    "terrains": 3072,
+    "retained": 2560,
+    "new_terrains": 512,
+    "edges": 6016,
+    "outer_edges": 256,
+    "collider_samples": 76800,
+    "scene": "Assets/_Project/Scenes/Reference/TerrainWestRidgePairCandidate.unity",
+    "scene_sha256": "37fc2ee9426806fb215a875e6fb350a3180b48f75c30361643476d79726df45f",
+    "manifest_sha256": "cfffeae2b99c83b7a9e7fb063724b944de1c78a7a16ee7a72c7f92038a8376f9",
+    "status": "validated_full_grid_and_collider_samples",
+    "max_new_readback_error_m": 0.0274658203125,
+    "max_collider_error_m": 0.000030517578125
+}

@@ -8,6 +8,8 @@ The original-stage boundaries below are historical. Current production contains 
 
 The subsequent [further western pair](./FAR_WEST_PAIR_IMPLEMENTATION_2026-10-08.md) extends current production to 2,560 chunks. Its four `far_west_pair` Python adapters and `BadwaterFarWestPair` Unity classes preserve strict ten-section bounds and the complete 2,048-terrain baseline. The preceding paragraph describes the retained eight-section batch, not current total coverage.
 
+The [western ridge pair](./WEST_RIDGE_PAIR_IMPLEMENTATION_2026-10-08.md), completed October 9, extends current production to 3,072 chunks. Its `west_ridge_pair` Python adapters and `BadwaterWestRidgePair` Unity classes preserve the complete 2,560-terrain baseline and strict twelve-section bounds. Earlier batch paragraphs above are retained implementation history.
+
 ## Size and coordinates
 
 One new 256-chunk section consists of **16 × 16 chunks**, each **256 × 256 metres**, covering **4,096 × 4,096 metres**. A 64-chunk quarter is 2,048 × 2,048 metres. These are different batch sizes.
