@@ -144,18 +144,25 @@ namespace BooterBigArm.Editor
 
         public static double[] GetPlayableBounds(DeathValleyMapRecord[] tiles)
         {
-            if (tiles == null || (tiles.Length != 256 && tiles.Length != 1024 && tiles.Length != 1536 && tiles.Length != 2048 && tiles.Length != 2560 && tiles.Length != 3072)) throw new InvalidDataException("Incomplete playable tile grid.");
+            if (tiles == null || (tiles.Length != 256 && tiles.Length != 1024 && tiles.Length != 1536 && tiles.Length != 2048 && tiles.Length != 2560 && tiles.Length != 3072 && tiles.Length != 3328)) throw new InvalidDataException("Incomplete playable tile grid.");
             var unique = new HashSet<string>();
             foreach (var tile in tiles)
             {
                 ValidateBounds(tile.bounds_m);
+                if (tiles.Length == 3328)
+                {
+                    double col = (tile.bounds_m[0]-499920)/256, row = (tile.bounds_m[1]-4006200)/256;
+                    bool baseline = col >= 0 && col < 96 && row >= 0 && row < 32;
+                    bool northCap = col >= 0 && col < 16 && row >= 32 && row < 48;
+                    if (!baseline && !northCap) throw new InvalidDataException("Tile outside the exact baseline plus northern cap union.");
+                }
                 if (tile.bounds_m[2]-tile.bounds_m[0] != 256 || tile.bounds_m[3]-tile.bounds_m[1] != 256 ||
                     (tile.bounds_m[0]-520400)%256 != 0 || (tile.bounds_m[1]-4006200)%256 != 0 ||
                     !unique.Add(tile.bounds_m[0].ToString("R",System.Globalization.CultureInfo.InvariantCulture)+"/"+tile.bounds_m[1].ToString("R",System.Globalization.CultureInfo.InvariantCulture)))
                     throw new InvalidDataException("Overlapping or misaligned playable tiles.");
             }
             var bounds = new[] { tiles.Min(t=>t.bounds_m[0]), tiles.Min(t=>t.bounds_m[1]), tiles.Max(t=>t.bounds_m[2]), tiles.Max(t=>t.bounds_m[3]) };
-            double[] expected=tiles.Length==256 ? new double[] {520400,4006200,524496,4010296} : tiles.Length==1024 ? new double[] {516304,4006200,524496,4014392} : tiles.Length==1536 ? new double[] {512208,4006200,524496,4014392} : tiles.Length==2048 ? new double[] {508112,4006200,524496,4014392} : tiles.Length==2560 ? new double[] {504016,4006200,524496,4014392} : new double[] {499920,4006200,524496,4014392};
+            double[] expected=tiles.Length==256 ? new double[] {520400,4006200,524496,4010296} : tiles.Length==1024 ? new double[] {516304,4006200,524496,4014392} : tiles.Length==1536 ? new double[] {512208,4006200,524496,4014392} : tiles.Length==2048 ? new double[] {508112,4006200,524496,4014392} : tiles.Length==2560 ? new double[] {504016,4006200,524496,4014392} : tiles.Length==3072 ? new double[] {499920,4006200,524496,4014392} : new double[] {499920,4006200,524496,4018488};
             if (!bounds.SequenceEqual(expected)) throw new InvalidDataException("Playable footprint disagrees with accepted sections.");
             return bounds;
         }

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "verified_Blender_authoring_and_saved_native_Unity_integration",
+  "completed_local_date": "2026-10-09",
+  "production_scene_sha256": "177bd3c7f4445f3523e5c3f1c20e2401bfd56d2bbb97fd5565110dc702ee03a8",
+  "manifest_sha256": "acd72d66e6df180ab142ea9d7635295d47c11908339688e445c2b3fea1a4efba",
+  "terrain_count": 3328,
+  "new_terrains": 256,
+  "retained_terrains": 3072,
+  "seams_exact": 6512,
+  "collider_samples": 83200,
+  "footprint": "retained_96x32_rectangle_plus_western_16x16_north_cap",
+  "unbuilt_upper_east_cells": 1280,
+  "unity_tests": {
+    "passed": 118,
+    "failed": 0,
+    "skipped": 0
+  },
+  "offline_tests": {
+    "passed": 65,
+    "failed": 0
+  },
+  "post_refresh_offline_tests": {
+    "terrain_tools": 9,
+    "atlas": 2,
+    "failed": 0
+  },
+  "terrain_doctor": {
+    "checked": 6671,
+    "issues": 0
+  },
+  "native_metadata": {
+    "global_asset_guids": 27941,
+    "new_owner_guids": 4369,
+    "all_pairs_present": true
+  },
+  "live_editor": {
+    "pid": 13084,
+    "project": "D:\\Arc & Dust\\Project",
+    "last_pretransfer_scene_dirty": false,
+    "last_pretransfer_playing": false,
+    "reload_pending": true,
+    "blocker": "External scene change Reload dialog; foreground activation requires user instruction"
+  },
+  "all_task_artifacts_on_D": true,
+  "temporary_build_path": "D:/BooterBigArmTools/Temp",
+  "scene_preservation_receipt": "scene_preservation_receipt.json",
+  "proof_boundary": "Saved production scene and asset bytes match isolated full native readback and collider proof. Live Editor reload/readback awaits user Reload; no gameplay smoke test or Player FPS claim.",
+  "user_owned_dirty_preserved": [
+    "Assets/_Project/Materials/TopDown3D/Greybox_BigARM.mat",
+    "ProjectSettings/QualitySettings.asset"
+  ],
+  "push_performed": false,
+  "visual_review": {
+    "blender_views": 5,
+    "unity_map_views": 2,
+    "unity_map_render": "isolated_integrated_scene_and_refreshed_inventory",
+    "exact_northern_cap": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "schema_version": 1,
+    "terrains": 3328,
+    "retained": 3072,
+    "new_terrains": 256,
+    "edges": 6512,
+    "outer_edges": 288,
+    "collider_samples": 83200,
+    "scene": "Assets/_Project/Scenes/Reference/TerrainNorthRidgeCandidate.unity",
+    "scene_sha256": "3a8d76cec5b3f4d0ddd3e1b3824b2b3f63229a50e878143fe9d7e1fbffab192e",
+    "manifest_sha256": "acd72d66e6df180ab142ea9d7635295d47c11908339688e445c2b3fea1a4efba",
+    "status": "validated_full_grid_and_collider_samples",
+    "max_new_readback_error_m": 0.027492642402648927,
+    "max_collider_error_m": 0.000030517578125
+}

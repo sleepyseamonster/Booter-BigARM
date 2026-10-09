@@ -112,6 +112,12 @@ def asset_record(path):
             "readability": "not_reopened_by_this_audit"}
 
 
+def unity_bounds(tiles):
+    """The occupied tile union's AABB is a view frame, not filled coverage."""
+    return [min(t["bounds_m"][0] for t in tiles), min(t["bounds_m"][1] for t in tiles),
+            max(t["bounds_m"][2] for t in tiles), max(t["bounds_m"][3] for t in tiles)]
+
+
 def make_atlas(catalog, park):
     regions = catalog["regions"]
     frame = regions[1]["bounds_m"]
@@ -161,10 +167,8 @@ def make_atlas(catalog, park):
         parts.append(f'<path d="M24 {height-12} h{bar_m*scale:.2f}" stroke="#333" stroke-width="2"/><text x="24" y="{height-19}" font-size="11">{bar_m//1000} km · EPSG:26911</text></svg>')
         return "".join(parts)
     overview=panel(frame,650,740,regions)
-    detail_bounds=[min(t["bounds_m"][0] for t in catalog["unity_tiles"])-512,
-                   min(t["bounds_m"][1] for t in catalog["unity_tiles"])-512,
-                   max(t["bounds_m"][2] for t in catalog["unity_tiles"])+512,
-                   max(t["bounds_m"][3] for t in catalog["unity_tiles"])+512]
+    x0,y0,x1,y1=unity_bounds(catalog["unity_tiles"])
+    detail_bounds=[x0-512,y0-512,x1+512,y1+512]
     detail=panel(detail_bounds,900,720,regions[3:7],True)
     (HERE/"coverage_overview.svg").write_text(overview,encoding="utf-8",newline="\n")
     (HERE/"coverage_badwater.svg").write_text(detail,encoding="utf-8",newline="\n")
@@ -253,7 +257,7 @@ def main():
     scene=terrain_scene()
     text=scene.read_text(encoding="utf-8")
     counts={"terrains":len(re.findall(r"^--- !u!218 ",text,re.M)),"colliders":len(re.findall(r"^--- !u!154 ",text,re.M))}
-    if counts not in ({"terrains":256,"colliders":256},{"terrains":1024,"colliders":1024},{"terrains":1536,"colliders":1536},{"terrains":2048,"colliders":2048},{"terrains":2560,"colliders":2560},{"terrains":3072,"colliders":3072}): raise ValueError(f"Scene count mismatch: {counts}")
+    if counts not in ({"terrains":256,"colliders":256},{"terrains":1024,"colliders":1024},{"terrains":1536,"colliders":1536},{"terrains":2048,"colliders":2048},{"terrains":2560,"colliders":2560},{"terrains":3072,"colliders":3072},{"terrains":3328,"colliders":3328}): raise ValueError(f"Scene count mismatch: {counts}")
     terrain_data=list((source.parent/"TerrainData").glob("*.asset"))
     if len(terrain_data)!=256: raise ValueError("TerrainData count mismatch")
     for asset in terrain_data:
@@ -270,7 +274,11 @@ def main():
         availability=assessment_availability(json.loads(assessment.read_text(encoding="utf-8")),candidates[0]["bounds_m"],ROOT)
         status="source_verified_locally_not_selected_not_imported" if availability["status"]=="hash_verified" else "source_verification_recorded_local_files_unavailable"
         candidates[0].update({"status":status,"source_assessment":relative(assessment),"local_source_availability":availability})
-    if counts["terrains"]==3072:
+    if counts["terrains"]==3328:
+        from north_ridge_coverage import append_verified_north_ridge
+        tiles,new_data,expansion_audit=append_verified_north_ridge(ROOT,scene,text,tiles)
+        terrain_data.extend(new_data)
+    elif counts["terrains"]==3072:
         from west_ridge_pair_coverage import append_verified_west_ridge_pair
         tiles,new_data,expansion_audit=append_verified_west_ridge_pair(ROOT,scene,text,tiles)
         terrain_data.extend(new_data)
@@ -309,7 +317,7 @@ def main():
     catalog["source_audit"]["retained_shared_edges_checked"]=edges
     if expansion_audit:
         catalog["source_audit"].update(expansion_audit)
-    catalog["playable_bounds_m"]=[min(t["bounds_m"][0] for t in tiles),min(t["bounds_m"][1] for t in tiles),max(t["bounds_m"][2] for t in tiles),max(t["bounds_m"][3] for t in tiles)]
+    catalog["playable_bounds_m"]=unity_bounds(tiles)
     restored=ROOT/"SourceData/Terrain/DeathValley/MacSnapshot2026-10-07"
     if (restored/"import_verification.json").is_file():
         from terrain_archive import TerrainArchive, MAC_PREFIX

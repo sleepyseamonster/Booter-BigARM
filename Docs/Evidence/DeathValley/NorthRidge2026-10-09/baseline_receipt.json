@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "retained_terrains": 3072,
+  "retained_seams": 6016,
+  "protected_files": 45215,
+  "production_scene_sha256": "f00590ad64632d0a5a7203f0a60690a3146fa332e246a44e9dd4836317157dce",
+  "paths_on_D": true,
+  "source_boundary_audit": {
+    "owner_split_easting": 500000,
+    "wide_overlap_max_difference_m": 1.699951171875,
+    "same_coordinate_owner_boundary_max_difference_m": 0.0001220703125,
+    "limits": "Measured source consistency and explicit ownership; visual/Player acceptance is separate"
+  }
+}

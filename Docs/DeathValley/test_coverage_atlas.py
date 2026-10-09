@@ -65,7 +65,18 @@ class CoverageAtlasTests(unittest.TestCase):
                 tile.update(bounds_m=[e, n, e + 256, n + 256],
                             geographic_key=f"epsg26911/e{e}/n{n}/size256")
                 ridge_expanded.append(tile)
-        for label, tiles in (("baseline", baseline), ("expanded", expanded), ("far_expanded", far_expanded), ("ridge_expanded", ridge_expanded)):
+        north_capped = list(ridge_expanded)
+        for row in range(16):
+            for col in range(16):
+                e, n = 499920 + 256 * col, 4014392 + 256 * row
+                tile = copy.deepcopy(template)
+                tile.update(bounds_m=[e, n, e + 256, n + 256], section="north_ridge",
+                            geographic_key=f"epsg26911/e{e}/n{n}/size256")
+                north_capped.append(tile)
+        self.assertEqual(len(north_capped), 3328)
+        self.assertEqual(audit_coverage.unity_bounds(north_capped), [499920, 4006200, 524496, 4018488])
+        self.assertFalse(any(t["bounds_m"][0] >= 504016 and t["bounds_m"][1] >= 4014392 for t in north_capped))
+        for label, tiles in (("baseline", baseline), ("expanded", expanded), ("far_expanded", far_expanded), ("ridge_expanded", ridge_expanded), ("north_capped", north_capped)):
             with self.subTest(coverage=label):
                 catalog["unity_tiles"] = tiles
                 with tempfile.TemporaryDirectory(dir="D:/BooterBigArmValidation/Temp") as directory:
