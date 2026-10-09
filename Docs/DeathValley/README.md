@@ -6,6 +6,8 @@ Death Valley is the user's current geographic expansion focus. In the coordinate
 
 The single northern ridge cap adds 256 Blender-authored native terrains to the retained 3,072. Greater Wasteland now has thirteen sections and 3,328 occupied chunks: the retained 96 × 32 rectangle plus a 16 × 16 cap at `[499920,4014392,504016,4018488]`. The combined bounding box is 24.576 × 12.288 km; 1,280 upper-east cells remain unbuilt. The fixed origin remains unchanged. See [the northern-cap implementation receipt](./NORTH_RIDGE_IMPLEMENTATION_2026-10-09.md) and [the preceding ridge-pair receipt](./WEST_RIDGE_PAIR_IMPLEMENTATION_2026-10-08.md). The byte-verified saved production scene passes native readback; the refreshed atlas records this exact occupied union. Atlas selection uses geographic keys and frames actual occupied bounds.
 
+The [eastward northern-row plan](./NORTH_ROW_EASTWARD_PLAN_2026-10-09.md) schedules the five remaining sections one at a time, ending directly north of the easternmost built section. Its final target is 4,608 chunks; these planned additions are not yet built.
+
 The original 256-chunk descriptions and pending-stage tables below retain the initial study's scope and historical sequencing. The current coverage catalog and newer implementation receipts control current production facts.
 
 ## Inspect the coverage
