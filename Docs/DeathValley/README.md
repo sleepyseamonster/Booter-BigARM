@@ -4,15 +4,15 @@ Death Valley is the user's current geographic expansion focus. In the coordinate
 
 ## Current terrain coverage - October 9, 2026
 
-Eastward northern-row section 3 is built in Blender and integrated into saved Greater Wasteland. Current production has 16 sections and 4,096 occupied chunks: the retained 96 by 32 rectangle plus a 64 by 16 northern cap. The AABB is `[499920,4006200,524496,4018488]`; 512 upper-east cells remain unbuilt. The fixed origin is unchanged. See [the latest implementation receipt](./NORTH_ROW_E512208_IMPLEMENTATION_2026-10-09.md) and [the ordered eastward plan](./NORTH_ROW_EASTWARD_PLAN_2026-10-09.md). The saved scene and transferred asset bytes pass native readback, collision and exact seam checks. The live Editor has reloaded the accepted scene and is clean outside Play Mode.
+Eastward northern-row section 4 is built in Blender and integrated into saved Greater Wasteland. Current production has 17 sections and 4,352 occupied chunks: the retained 96 by 32 rectangle plus a 80 by 16 northern cap. The AABB is `[499920,4006200,524496,4018488]`; 256 upper-east cells remain unbuilt. The fixed origin is unchanged. See [the latest implementation receipt](./NORTH_ROW_E516304_IMPLEMENTATION_2026-10-09.md) and [the ordered eastward plan](./NORTH_ROW_EASTWARD_PLAN_2026-10-09.md). The saved scene and transferred asset bytes pass native readback, collision and exact seam checks. The live Editor has reloaded the accepted scene and is clean outside Play Mode.
 
-The refreshed atlas contains all 4,096 occupied chunks using unique geographic keys and actual footprint framing. Planned sections beyond step 3 are not represented as built terrain.
+The refreshed atlas contains all 4,352 occupied chunks using unique geographic keys and actual footprint framing. Planned sections beyond step 4 are not represented as built terrain.
 
 The original 256-chunk descriptions and pending-stage tables below retain the initial study's scope and historical sequencing. The current coverage catalog and newer implementation receipts control current production facts.
 
 ## Inspect the coverage
 
-Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline, regional/detail footprints and all 4,096 clickable Unity terrain chunks. Selection shows bounds, resolution, source availability and provenance. The blue grid identifies built terrain; unbuilt upper-east cells remain outside it. This north-up coverage diagram is distinct from a terrain render.
+Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline, regional/detail footprints and all 4,352 clickable Unity terrain chunks. Selection shows bounds, resolution, source availability and provenance. The blue grid identifies built terrain; unbuilt upper-east cells remain outside it. This north-up coverage diagram is distinct from a terrain render.
 
 - [coverage_catalog.json](./coverage_catalog.json) records footprints, file hashes, source identities, geographic chunk keys, scene references and verification limits.
 - [unity_tiles.csv](./unity_tiles.csv) supplies the tile inventory in a flat table.
@@ -129,13 +129,13 @@ The tool uses existing projected inventory identities and authored bounds. Runti
 # Translate Unity X/Z using the current verified scene origin; no origin is guessed.
 & ./.venv/Scripts/python.exe Docs/DeathValley/terrain_tools.py locate -1748 -1148 --unity --origin 522448 4008248
 
-# Inspect the west proposal, including every geographic chunk key and retained join.
-& ./.venv/Scripts/python.exe Docs/DeathValley/terrain_tools.py --json plan west
+# Inspect the unbuilt east proposal without selecting or importing it.
+& ./.venv/Scripts/python.exe Docs/DeathValley/terrain_tools.py --json plan east
 ```
 
 Coordinate lookup returns all sample owners on a shared edge or corner. Study footprints remain separate from imported Unity chunks and proposed batches. The planner also accepts `north` and `east`, rejects overlap, disconnected footprints and grid misalignment, and estimates raw uint16 height payloads at `--spacing 1` or `--spacing 2`. These are inventory keys and preparation estimates; runtime memory and performance require measurements. The health check reports intentional scene edits as changed snapshot bytes until reviewed and refreshed; it does not repair or move files. File hashes do not establish Blender readability or Player acceptance.
 
-These tools operate on authored geographic constraints and inventory identities. They add no runtime world identity, object generation, streaming, unload/reload or persisted deltas; those concerns remain outside this offline tooling scope. Expansion proposals remain pending the baseline review and selection gates above.
+These tools operate on authored geographic constraints and inventory identities. They add no runtime world identity, object generation, streaming, unload/reload or persisted deltas; those concerns remain outside this offline tooling scope. The earlier baseline review and proposal selection gates above are historical. Further geographic additions require their own approved footprint and source proof.
 
 ## Sources and validation boundaries
 
@@ -145,4 +145,4 @@ USGS provides the [TNM product API](https://www.usgs.gov/faqs/there-api-accessin
 
 Source hashes, raster samples, browser checks, Unity compilation, focused tests, Player packaging and user review establish different claims. See [VERIFICATION.md](./VERIFICATION.md) for current proof. No gameplay smoke test is part of this task.
 
-The next implementation gate is the [baseline review checklist](./REVIEW_CHECKLIST.md), followed by the selected adjoining terrain batch. The Windows executable is ready for user-owned review; adding source-verified terrain remains pending that gate.
+Northern-row closeout is current through step 4; see the latest receipt above. Player traversal and performance remain user-owned review. Further geographic additions require a new approved footprint.

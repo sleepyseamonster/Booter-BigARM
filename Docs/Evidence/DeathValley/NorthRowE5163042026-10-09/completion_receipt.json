@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "step": 4,
+  "status": "verified_Blender_authoring_and_saved_native_Unity_integration",
+  "batch": "NorthRowE5163042026-10-09",
+  "section": "north_row_e516304",
+  "bounds_m": [
+    516304,
+    4014392,
+    520400,
+    4018488
+  ],
+  "total_terrains": 4352,
+  "new_terrains": 256,
+  "retained_terrains": 4096,
+  "exact_joins": 8560,
+  "exterior_neighbor_slots": 288,
+  "collider_samples": 108800,
+  "production_scene_sha256": "c2c7af98a5d24e3ed1bfd790f4dd62bf237f53d63cf6da978b84634fe02a070f",
+  "manifest_sha256": "520e36850ecad75e9da5c16600f12ec793f9580fe5768525b8030030d7300712",
+  "max_height_readback_error_m": 0.027492642402648926,
+  "max_collider_error_m": 3.0517578125e-05,
+  "candidate_tests": {
+    "passed": 29,
+    "failed": 0
+  },
+  "final_unity_tests": {
+    "passed": 57,
+    "failed": 0,
+    "skipped": 0
+  },
+  "offline_preflight": {
+    "coverage_and_source_tests": 71,
+    "row_contract_tests": 7,
+    "failed": 0
+  },
+  "native_metadata": {
+    "global_asset_guids": 47990,
+    "new_owner_guids": 5394,
+    "all_pairs_present": true
+  },
+  "color_corner": {
+    "policy": "south_row_priority_single_southwest_pixel",
+    "west_exception_pixels": 0,
+    "southwest_difference_rgb": [
+      0,
+      0,
+      0
+    ],
+    "audited_max_rgb": [
+      0,
+      0,
+      0
+    ],
+    "south_edge_error": 0,
+    "west_edge_error_excluding_corner": 0
+  },
+  "max_new_side_height_adjustment_m": 0.0342559814453125,
+  "blender": {
+    "version": "5.2.2 LTS",
+    "pilot_meshes": 8,
+    "section_meshes": 256,
+    "combined_meshes": 4352,
+    "reopened_all_sources": true,
+    "inspected_views": 5
+  },
+  "live_editor": {
+    "pid": 13084,
+    "reload_pending": false,
+    "activation_authorized": true,
+    "loaded_terrains": 4352,
+    "scene_clean": true,
+    "playing": false
+  },
+  "all_project_artifacts_on_D": true,
+  "subprocess_temp": "D:/BooterBigArmTools/Temp",
+  "proof_boundary": "Transferred scene and asset bytes match isolated full native readback and sampled collision. Open Editor reload and clean loaded-terrain count verified; full native proof is from the isolated saved-scene audit. No gameplay smoke test or Player performance claim.",
+  "push_performed": false,
+  "terrain_doctor": {
+    "checked": 8719,
+    "issues": 0
+  },
+  "post_refresh_offline_tests": {
+    "terrain_tools": 9,
+    "atlas": 2,
+    "failed": 0
+  },
+  "source": {
+    "min_height_m": -84.51042938232422,
+    "max_height_m": 469.4548645019531,
+    "nodata_count": 0,
+    "fits_encoding": true,
+    "catalog_sha256": "da846666fcfeb59dc1064e3c54d289bc3bee7b17465b93bbc5cbb0e106c388ca"
+  },
+  "unity_map_views_inspected": 2
+}
