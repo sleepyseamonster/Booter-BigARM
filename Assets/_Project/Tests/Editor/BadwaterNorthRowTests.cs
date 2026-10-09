@@ -103,7 +103,7 @@ namespace BooterBigArm.Tests
             Assert.That(joins,Is.EqualTo(32));
         }
 
-        [Test] public void SavedCandidatePreservesEveryRetainedAssetAndSparseNeighborContract()
+        [Test, Timeout(1800000)] public void SavedCandidatePreservesEveryRetainedAssetAndSparseNeighborContract()
         {
             var c=Available(); var scene=EditorSceneManager.OpenScene(c.CandidateScene);
             var report=BadwaterNorthRowValidator.ValidateScene(scene,true);

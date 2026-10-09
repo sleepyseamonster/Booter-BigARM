@@ -1,0 +1,15 @@
+# Eastward northern row: section 5
+
+Section `north_row_e520400` at EPSG:26911 bounds `[520400, 4014392, 524496, 4018488]` is built in Blender and integrated into the saved Greater Wasteland scene on D:. It adds 256 chunks to 4,352 retained chunks, giving 4,608 chunks. The fixed origin, all retained heights/asset GUIDs, authored gameplay objects, scene GUID and build routing are preserved. Terrain remains fixed and always loaded; generation, streaming and procedural save integration are not introduced.
+
+Official USGS 1 m DEM windows and metadata, complete native vertex grids, strict 2 m decimation and aligned 2 m NAIP imagery are retained in `SourceData/Terrain/DeathValley/NorthRowE5204002026-10-09/Acquisition01/`. Preparation preserves both south and west geometry anchors. Accepted color sources are checked against runtime crops; the exact corner policy and measured adjustment are recorded in the completion receipt.
+
+Blender 5.2.2 LTS built, saved and reopened the eight-mesh junction pilot, 256-mesh section and 4,608-mesh combined review. All five junction/overhead/oblique views were inspected. Mesh/source and seam errors are zero; metre units, fixed origin, transforms, upward normals and packed imagery pass. Source files live in `SourceArt/Blender/Studies/DeathValley/NorthRowE5204002026-10-09/`; gameplay uses guarded height/color exports and native TerrainData.
+
+Candidate and saved production readback pass 9,072 exact joins, 288 exterior null-neighbor slots, one connectivity owner and 115,200 direct collider samples. Maximum height readback error is 0.027492642 m and collider error is 0.000061035 m. Candidate tests passed 29/29; final focused Unity tests passed 57/57 against the integrated scene and refreshed map. Native metadata pairing and GUID uniqueness pass. Full offline preflight passed 71 coverage/source tests and seven row-contract tests.
+
+The scene-preservation receipt proves the terrain parent's one appended child, 1,282 new documents and byte-identical unaffected prior documents. New assets and the preserved scene were transferred byte-for-byte from `D:/BooterBigArmValidation/TerrainNorthRowE52040020261009-01`. Scene SHA-256 is `52ffe7c65416f2e9d027c61481f0d841cc767382be28c18f8ca95f9e6751ca1b`; export manifest SHA-256 is `f23132a0fd1724fa0f806252960af3b0630c77af8e73104a015b7808601a20eb`. [Batch evidence](../Evidence/DeathValley/NorthRowE5204002026-10-09/) records exact counts, hashes, test XML and inspected images.
+
+The open Editor has an external-change Reload dialog pending. Foreground Reload was authorized, but Windows automation could not activate the dialog. Saved production bytes match the passing isolated native source/collision audit. No gameplay smoke test, Player FPS benchmark, package change or push was performed. Separately owned material/QualitySettings changes remain outside this section.
+
+The initial final suite passed 56 cases and timed out in the full candidate audit at the default 180,000 ms limit. That test now allows 1,800,000 ms with unchanged assertions; the complete final rerun passed 57/57. The initial XML is retained in batch evidence.

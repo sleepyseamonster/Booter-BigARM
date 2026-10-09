@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="29" result="Passed" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 18:01:25Z" end-time="2026-10-09 18:04:45Z" duration="199.219186">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="633" result="Passed" start-time="2026-10-09 18:01:25Z" end-time="2026-10-09 18:04:45Z" duration="199.219186" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1752" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/TerrainNorthRowE52040020261009-01/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="633" result="Passed" start-time="2026-10-09 18:01:25Z" end-time="2026-10-09 18:04:45Z" duration="199.211073" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27324" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1753" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="633" result="Passed" start-time="2026-10-09 18:01:25Z" end-time="2026-10-09 18:04:45Z" duration="199.209800" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1754" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="633" result="Passed" start-time="2026-10-09 18:01:25Z" end-time="2026-10-09 18:04:45Z" duration="199.208673" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1076" name="BadwaterNorthRowTests" fullname="BooterBigArm.Tests.BadwaterNorthRowTests" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-10-09 18:01:25Z" end-time="2026-10-09 18:04:45Z" duration="199.198988" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1098" name="AabbCannotHideHoleOrPrematureEastwardFill" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.AabbCannotHideHoleOrPrematureEastwardFill" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 18:01:25Z" end-time="2026-10-09 18:01:26Z" duration="0.033558" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1094" name="AabbCannotHideHoleOrPrematureEastwardFill(1)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.AabbCannotHideHoleOrPrematureEastwardFill(1)" methodname="AabbCannotHideHoleOrPrematureEastwardFill" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="424356046" result="Passed" start-time="2026-10-09 18:01:25Z" end-time="2026-10-09 18:01:25Z" duration="0.017948" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1095" name="AabbCannotHideHoleOrPrematureEastwardFill(2)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.AabbCannotHideHoleOrPrematureEastwardFill(2)" methodname="AabbCannotHideHoleOrPrematureEastwardFill" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="431124086" result="Passed" start-time="2026-10-09 18:01:25Z" end-time="2026-10-09 18:01:25Z" duration="0.002853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1096" name="AabbCannotHideHoleOrPrematureEastwardFill(3)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.AabbCannotHideHoleOrPrematureEastwardFill(3)" methodname="AabbCannotHideHoleOrPrematureEastwardFill" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1625746245" result="Passed" start-time="2026-10-09 18:01:25Z" end-time="2026-10-09 18:01:26Z" duration="0.002836" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1097" name="AabbCannotHideHoleOrPrematureEastwardFill(4)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.AabbCannotHideHoleOrPrematureEastwardFill(4)" methodname="AabbCannotHideHoleOrPrematureEastwardFill" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1064743002" result="Passed" start-time="2026-10-09 18:01:26Z" end-time="2026-10-09 18:01:26Z" duration="0.002817" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1087" name="BatchCannotSelectALaterStepOrDifferentDate" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.BatchCannotSelectALaterStepOrDifferentDate" methodname="BatchCannotSelectALaterStepOrDifferentDate" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1082938028" result="Passed" start-time="2026-10-09 18:01:26Z" end-time="2026-10-09 18:01:26Z" duration="0.000650" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1107" name="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-09 18:01:26Z" end-time="2026-10-09 18:01:30Z" duration="4.050253" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1099" name="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;step&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;step&quot;)" methodname="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="289714065" result="Passed" start-time="2026-10-09 18:01:26Z" end-time="2026-10-09 18:01:26Z" duration="0.427805" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1100" name="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;section&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;section&quot;)" methodname="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="349257556" result="Passed" start-time="2026-10-09 18:01:26Z" end-time="2026-10-09 18:01:26Z" duration="0.417826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1101" name="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;retained_omission&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;retained_omission&quot;)" methodname="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="349780681" result="Passed" start-time="2026-10-09 18:01:26Z" end-time="2026-10-09 18:01:27Z" duration="0.686798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1102" name="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;duplicate&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;duplicate&quot;)" methodname="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1820399765" result="Passed" start-time="2026-10-09 18:01:27Z" end-time="2026-10-09 18:01:28Z" duration="0.492850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1103" name="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;bounds&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;bounds&quot;)" methodname="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="373328935" result="Passed" start-time="2026-10-09 18:01:28Z" end-time="2026-10-09 18:01:28Z" duration="0.430638" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1104" name="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;owner&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;owner&quot;)" methodname="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1696467523" result="Passed" start-time="2026-10-09 18:01:28Z" end-time="2026-10-09 18:01:28Z" duration="0.443389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1105" name="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;metadata&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;metadata&quot;)" methodname="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="912078577" result="Passed" start-time="2026-10-09 18:01:28Z" end-time="2026-10-09 18:01:29Z" duration="0.761385" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1106" name="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;predecessor&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData(&quot;predecessor&quot;)" methodname="DeserializedReceiptRejectsWrongOrderingOwnershipOrIncompleteData" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1847738025" result="Passed" start-time="2026-10-09 18:01:29Z" end-time="2026-10-09 18:01:30Z" duration="0.387477" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1093" name="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.EachMapAcceptsExactlyTheAccumulatedNorthernFootprint" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-09 18:01:30Z" end-time="2026-10-09 18:01:30Z" duration="0.048271" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1088" name="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint(1)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.EachMapAcceptsExactlyTheAccumulatedNorthernFootprint(1)" methodname="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1334328177" result="Passed" start-time="2026-10-09 18:01:30Z" end-time="2026-10-09 18:01:30Z" duration="0.012911" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1089" name="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint(2)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.EachMapAcceptsExactlyTheAccumulatedNorthernFootprint(2)" methodname="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1029033515" result="Passed" start-time="2026-10-09 18:01:30Z" end-time="2026-10-09 18:01:30Z" duration="0.007795" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1090" name="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint(3)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.EachMapAcceptsExactlyTheAccumulatedNorthernFootprint(3)" methodname="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1901745205" result="Passed" start-time="2026-10-09 18:01:30Z" end-time="2026-10-09 18:01:30Z" duration="0.008296" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1091" name="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint(4)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.EachMapAcceptsExactlyTheAccumulatedNorthernFootprint(4)" methodname="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="123984490" result="Passed" start-time="2026-10-09 18:01:30Z" end-time="2026-10-09 18:01:30Z" duration="0.008857" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1092" name="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint(5)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.EachMapAcceptsExactlyTheAccumulatedNorthernFootprint(5)" methodname="EachMapAcceptsExactlyTheAccumulatedNorthernFootprint" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="415232936" result="Passed" start-time="2026-10-09 18:01:30Z" end-time="2026-10-09 18:01:30Z" duration="0.009116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1109" name="ExportedNormalizedSouthAndWestBordersMatchRetainedNativeReadbackExactly" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.ExportedNormalizedSouthAndWestBordersMatchRetainedNativeReadbackExactly" methodname="ExportedNormalizedSouthAndWestBordersMatchRetainedNativeReadbackExactly" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="347454120" result="Passed" start-time="2026-10-09 18:01:30Z" end-time="2026-10-09 18:01:47Z" duration="16.949767" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1082" name="OnlySealedGeographicStepsHaveTheApprovedCounts" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.OnlySealedGeographicStepsHaveTheApprovedCounts" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-09 18:01:47Z" end-time="2026-10-09 18:01:47Z" duration="0.002045" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1077" name="OnlySealedGeographicStepsHaveTheApprovedCounts(1,504016,3584,7024,89600)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.OnlySealedGeographicStepsHaveTheApprovedCounts(1,504016,3584,7024,89600)" methodname="OnlySealedGeographicStepsHaveTheApprovedCounts" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="912449296" result="Passed" start-time="2026-10-09 18:01:47Z" end-time="2026-10-09 18:01:47Z" duration="0.000647" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1078" name="OnlySealedGeographicStepsHaveTheApprovedCounts(2,508112,3840,7536,96000)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.OnlySealedGeographicStepsHaveTheApprovedCounts(2,508112,3840,7536,96000)" methodname="OnlySealedGeographicStepsHaveTheApprovedCounts" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="621022869" result="Passed" start-time="2026-10-09 18:01:47Z" end-time="2026-10-09 18:01:47Z" duration="0.000099" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1079" name="OnlySealedGeographicStepsHaveTheApprovedCounts(3,512208,4096,8048,102400)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.OnlySealedGeographicStepsHaveTheApprovedCounts(3,512208,4096,8048,102400)" methodname="OnlySealedGeographicStepsHaveTheApprovedCounts" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1734499601" result="Passed" start-time="2026-10-09 18:01:47Z" end-time="2026-10-09 18:01:47Z" duration="0.000066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1080" name="OnlySealedGeographicStepsHaveTheApprovedCounts(4,516304,4352,8560,108800)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.OnlySealedGeographicStepsHaveTheApprovedCounts(4,516304,4352,8560,108800)" methodname="OnlySealedGeographicStepsHaveTheApprovedCounts" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="505434077" result="Passed" start-time="2026-10-09 18:01:47Z" end-time="2026-10-09 18:01:47Z" duration="0.000066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1081" name="OnlySealedGeographicStepsHaveTheApprovedCounts(5,520400,4608,9072,115200)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.OnlySealedGeographicStepsHaveTheApprovedCounts(5,520400,4608,9072,115200)" methodname="OnlySealedGeographicStepsHaveTheApprovedCounts" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1566220482" result="Passed" start-time="2026-10-09 18:01:47Z" end-time="2026-10-09 18:01:47Z" duration="0.000064" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1108" name="ProtectionReceiptCannotOmitThePrecedingAcceptedSection" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.ProtectionReceiptCannotOmitThePrecedingAcceptedSection" methodname="ProtectionReceiptCannotOmitThePrecedingAcceptedSection" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="2113436075" result="Passed" start-time="2026-10-09 18:01:47Z" end-time="2026-10-09 18:01:47Z" duration="0.699509" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1110" name="SavedCandidatePreservesEveryRetainedAssetAndSparseNeighborContract" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.SavedCandidatePreservesEveryRetainedAssetAndSparseNeighborContract" methodname="SavedCandidatePreservesEveryRetainedAssetAndSparseNeighborContract" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="441196078" result="Passed" start-time="2026-10-09 18:01:47Z" end-time="2026-10-09 18:04:44Z" duration="176.996113" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[EXPANSION_VALIDATED: {"schema_version":1,"terrains":4608,"retained":4352,"new_terrains":256,"edges":9072,"outer_edges":288,"collider_samples":115200,"scene":"Assets/_Project/Scenes/Reference/TerrainNorthRowE520400Candidate.unity","scene_sha256":"04c2e7ab9419163646835e81b81d0f27c318533a771c50d64df99f59ad664694","manifest_sha256":"f23132a0fd1724fa0f806252960af3b0630c77af8e73104a015b7808601a20eb","status":"validated_full_grid_and_collider_samples","max_new_readback_error_m":0.027492642402648927,"max_collider_error_m":0.00006103515625}
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1086" name="UnplannedStepsAreRejected" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.UnplannedStepsAreRejected" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-09 18:04:44Z" end-time="2026-10-09 18:04:45Z" duration="0.410027" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1083" name="UnplannedStepsAreRejected(0)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.UnplannedStepsAreRejected(0)" methodname="UnplannedStepsAreRejected" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="808477689" result="Passed" start-time="2026-10-09 18:04:45Z" end-time="2026-10-09 18:04:45Z" duration="0.000664" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1084" name="UnplannedStepsAreRejected(6)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.UnplannedStepsAreRejected(6)" methodname="UnplannedStepsAreRejected" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="1334533166" result="Passed" start-time="2026-10-09 18:04:45Z" end-time="2026-10-09 18:04:45Z" duration="0.000201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1085" name="UnplannedStepsAreRejected(-1)" fullname="BooterBigArm.Tests.BadwaterNorthRowTests.UnplannedStepsAreRejected(-1)" methodname="UnplannedStepsAreRejected" classname="BooterBigArm.Tests.BadwaterNorthRowTests" runstate="Runnable" seed="656687946" result="Passed" start-time="2026-10-09 18:04:45Z" end-time="2026-10-09 18:04:45Z" duration="0.000158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

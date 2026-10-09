@@ -4,15 +4,15 @@ Death Valley is the user's current geographic expansion focus. In the coordinate
 
 ## Current terrain coverage - October 9, 2026
 
-Eastward northern-row section 4 is built in Blender and integrated into saved Greater Wasteland. Current production has 17 sections and 4,352 occupied chunks: the retained 96 by 32 rectangle plus a 80 by 16 northern cap. The AABB is `[499920,4006200,524496,4018488]`; 256 upper-east cells remain unbuilt. The fixed origin is unchanged. See [the latest implementation receipt](./NORTH_ROW_E516304_IMPLEMENTATION_2026-10-09.md) and [the ordered eastward plan](./NORTH_ROW_EASTWARD_PLAN_2026-10-09.md). The saved scene and transferred asset bytes pass native readback, collision and exact seam checks. The live Editor has reloaded the accepted scene and is clean outside Play Mode.
+Eastward northern-row section 5 is built in Blender and integrated into saved Greater Wasteland. Current production has 18 sections and 4,608 occupied chunks: the fully occupied 96 by 48 grid across 24.576 by 12.288 km. The AABB is `[499920,4006200,524496,4018488]` and is fully occupied, with no upper-east holes. The fixed origin is unchanged. See [the latest implementation receipt](./NORTH_ROW_E520400_IMPLEMENTATION_2026-10-09.md) and [the ordered eastward plan](./NORTH_ROW_EASTWARD_PLAN_2026-10-09.md). The saved scene and transferred asset bytes pass native readback, collision and exact seam checks. Live Editor Reload is pending; saved production bytes match the passing isolated native proof.
 
-The refreshed atlas contains all 4,352 occupied chunks using unique geographic keys and actual footprint framing. Planned sections beyond step 4 are not represented as built terrain.
+The refreshed atlas contains all 4,608 occupied chunks using unique geographic keys and actual footprint framing. All five approved northern-row sections are complete. The build stops at easting 524496 and northing 4018488.
 
 The original 256-chunk descriptions and pending-stage tables below retain the initial study's scope and historical sequencing. The current coverage catalog and newer implementation receipts control current production facts.
 
 ## Inspect the coverage
 
-Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline, regional/detail footprints and all 4,352 clickable Unity terrain chunks. Selection shows bounds, resolution, source availability and provenance. The blue grid identifies built terrain; unbuilt upper-east cells remain outside it. This north-up coverage diagram is distinct from a terrain render.
+Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline, regional/detail footprints and all 4,608 clickable Unity terrain chunks. Selection shows bounds, resolution, source availability and provenance. The blue grid covers the complete 96 by 48 built footprint. This north-up coverage diagram is distinct from a terrain render.
 
 - [coverage_catalog.json](./coverage_catalog.json) records footprints, file hashes, source identities, geographic chunk keys, scene references and verification limits.
 - [unity_tiles.csv](./unity_tiles.csv) supplies the tile inventory in a flat table.
@@ -21,9 +21,9 @@ Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline,
 - [nps_deva_boundary.json](./nps_deva_boundary.json) retains the official NPS polygon response, request, date and response hash.
 - [local_preflight.json](./local_preflight.json) records targeted Windows tool and external-data location checks.
 
-Each large Badwater quarter is 2.048 × 2.048 km with 64 chunks. The total is 4.096 × 4.096 km with 256 chunks of 256 × 256 m. Rows run north to south and columns west to east. The four 1 m source chunks are `r12_c01`, `r12_c02`, `r13_c01`, and `r13_c02`; the other 252 retain 2 m source detail. All Unity rendering grids are 257 × 257 after the Windows seam repair. Interpolation does not add surveyed relief.
+Each large Badwater quarter is 2.048 Ã— 2.048 km with 64 chunks. The total is 4.096 Ã— 4.096 km with 256 chunks of 256 Ã— 256 m. Rows run north to south and columns west to east. The four 1 m source chunks are `r12_c01`, `r12_c02`, `r13_c01`, and `r13_c02`; the other 252 retain 2 m source detail. All Unity rendering grids are 257 Ã— 257 after the Windows seam repair. Interpolation does not add surveyed relief.
 
-The expanded regional rectangle is 192 × 224 km and contains surrounding terrain beyond the park. Its 42 coarse source-tile footprints must not be mistaken for 42 detailed Unity regions. Blender footprints come from versioned configurations and retained build records. Materialized file presence and hashes do not establish fresh Blender scene readability.
+The expanded regional rectangle is 192 Ã— 224 km and contains surrounding terrain beyond the park. Its 42 coarse source-tile footprints must not be mistaken for 42 detailed Unity regions. Blender footprints come from versioned configurations and retained build records. Materialized file presence and hashes do not establish fresh Blender scene readability.
 
 ## Ownership during repository organization
 
@@ -103,7 +103,7 @@ For a fresh Windows baseline build, use the existing `BooterBigArm.Editor.Badwat
 
 ## Unity developer map
 
-Open **Booter & BigARM → Death Valley → Developer Map** in Unity. The window is a full-width, simplified 3D aerial map. Left or middle drag pans; right drag orbits; scroll zooms around the cursor. **Entire Map** frames the regional landscape; **Playable Area** frames Greater Wasteland. The blue grid marks its 256 built terrain chunks. Everything outside that grid shows surrounding landscape awaiting terrain expansion. No inventory sidebar, study boundaries, proposed regions, source controls or segment-selection UI is shown.
+Open **Booter & BigARM â†’ Death Valley â†’ Developer Map** in Unity. The window is a full-width, simplified 3D aerial map. Left or middle drag pans; right drag orbits; scroll zooms around the cursor. **Entire Map** frames the regional landscape; **Playable Area** frames Greater Wasteland. The blue grid marks its 256 built terrain chunks. Everything outside that grid shows surrounding landscape awaiting terrain expansion. No inventory sidebar, study boundaries, proposed regions, source controls or segment-selection UI is shown.
 
 The map always displays the recovered Blender aerial imagery and starts in an oblique, orbitable orthographic view with no height exaggeration. The [active source descriptor](./visualizer_data/developer_map.json) keeps the saved terrain heights and all four packed image layers. The window creates only temporary preview objects and does not change gameplay terrain or Build Settings. Reopen the window after refreshing source data or the coverage catalog.
 

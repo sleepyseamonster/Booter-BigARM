@@ -4,7 +4,7 @@
 
 The user requested a plan to continue east from `north_ridge`, building and integrating each section before starting the next, ending directly north of the easternmost completed terrain. This plan covers five remaining sections, not another northern row or an extension beyond the eastern boundary.
 
-The current saved Greater Wasteland scene contains 3,328 chunks: the existing 96 by 32 rectangle plus the westernmost 16 by 16 northern cap. Current scene SHA-256 is `177bd3c7f4445f3523e5c3f1c20e2401bfd56d2bbb97fd5565110dc702ee03a8`. The [northern-cap receipt](./NORTH_RIDGE_IMPLEMENTATION_2026-10-09.md), current coverage catalog and saved scene agree. The live Editor's external-change Reload dialog was pending at the previous closeout; saved-scene validation does not establish that the open Editor has reloaded it.
+At the audited starting point, the saved Greater Wasteland scene contained 3,328 chunks: the existing 96 by 32 rectangle plus the westernmost 16 by 16 northern cap. Starting scene SHA-256 was `177bd3c7f4445f3523e5c3f1c20e2401bfd56d2bbb97fd5565110dc702ee03a8`. The [northern-cap receipt](./NORTH_RIDGE_IMPLEMENTATION_2026-10-09.md), the starting coverage catalog and saved scene agreed. The live Editor reload was pending at that historical closeout. It was resolved during section three; the final Editor state is recorded below.
 
 All bounds below are metres in EPSG:26911. Each section is 4,096 by 4,096 m, containing 16 by 16 chunks of 256 m. Every addition shares its south edge at northing 4014392 with existing terrain and its west edge with the immediately preceding northern section. The eastward order is mandatory.
 
@@ -53,7 +53,7 @@ The current `north_ridge` tools are hardcoded for its original footprint, 3,072 
 
 Export north-first little-endian float32 normalized 257-square rendering grids and 129-square uint16 2 m source grids through the existing format contract. The Unity reader must preserve its north-to-south row reversal. Pin both normalized borders directly to retained native normalized samples after conversion from metre-space Blender proofs; this prevents round-trip drift and must not touch retained payloads. Existing native height readback tolerance is `1800/65532 + 0.00025` m (approximately 0.027717497 m); direct collider tolerance is `8*float32_epsilon*5000` m (approximately 0.004768372 m). Keep these gates unchanged and report measured errors separately from allowed tolerances.
 
-Operational readiness remains distinct from plan correctness: fresh full DEM/NAIP coverage, measured height ranges, successful five-step tooling validation, D: capacity and live Editor reload are execution gates. No new source coverage or Editor readiness is claimed by this audit.
+Operational readiness remains distinct from plan correctness: fresh full DEM/NAIP coverage, measured height ranges, successful five-step tooling validation, D: capacity and live Editor reload are execution gates. The audit itself did not establish source coverage or Editor readiness; the completed execution receipts below now record those gates.
 
 ## D: placement and execution boundaries
 
@@ -69,4 +69,16 @@ Derive paths from `D:/Arc & Dust/Project`. For each section use a unique executi
 
 Use fresh isolated copies under `D:/BooterBigArmValidation/`, transfer receipts under `D:/Arc & Dust/Transfers/`, and subprocess temporary files under `D:/BooterBigArmTools/Temp`. Preserve source versions and metadata; do not clean the C: rollback checkout. Keep diagnostic outputs in ignored `Logs/` and avoid duplicate authoring sources in active Unity Assets.
 
-This document plans the work; planned additions are not yet built. Implementation proceeds one accepted section at a time under the user's requested scope. Pause an individual step on missing source coverage, incompatible height anchors or color anchors outside the explicit corner policy, precision failure or unsafe live scene state; retain completed sections and resolve the specific issue. Do not integrate later sections around a failed predecessor. Player traversal and FPS remain user-owned review; structural checks do not establish performance of the larger always-loaded world.
+All five planned additions are now built and accepted in order. The execution used one verified section at a time under the user's requested scope. Pause an individual step on missing source coverage, incompatible height anchors or color anchors outside the explicit corner policy, precision failure or unsafe live scene state; retain completed sections and resolve the specific issue. Do not integrate later sections around a failed predecessor. Player traversal and FPS remain user-owned review; structural checks do not establish performance of the larger always-loaded world.
+
+## Completed execution â€” October 9, 2026
+
+All five sections were built in Blender, saved and reopened, exported through the guarded terrain pipeline, and integrated and validated in Unity. Each candidate passed 29 tests and each integrated section passed 57 focused tests. The final footprint is fully occupied: 96 Ã— 48 chunks, eighteen sections, 4,608 terrains, 9,072 exact joins, 288 exterior neighbor slots and 115,200 direct collider samples. All source and authoring artifacts are on D:.
+
+- Section 1: [implementation receipt](./NORTH_ROW_E504016_IMPLEMENTATION_2026-10-09.md).
+- Section 2: [implementation receipt](./NORTH_ROW_E508112_IMPLEMENTATION_2026-10-09.md).
+- Section 3: [implementation receipt](./NORTH_ROW_E512208_IMPLEMENTATION_2026-10-09.md).
+- Section 4: [implementation receipt](./NORTH_ROW_E516304_IMPLEMENTATION_2026-10-09.md).
+- Section 5: [implementation receipt](./NORTH_ROW_E520400_IMPLEMENTATION_2026-10-09.md).
+
+Final production scene SHA-256: `52ffe7c65416f2e9d027c61481f0d841cc767382be28c18f8ca95f9e6751ca1b`. The open Editor still requires Reload after the final transfer; authorized automation could not activate its modal dialog. Full native source and collision proof is from the isolated saved-scene readback whose transferred bytes match production. Execution stops at easting 524496 and northing 4018488, directly north of the existing easternmost completed section.

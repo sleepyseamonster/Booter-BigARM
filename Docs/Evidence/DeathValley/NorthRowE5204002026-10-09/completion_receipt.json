@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "step": 5,
+  "status": "verified_Blender_authoring_and_saved_native_Unity_integration",
+  "batch": "NorthRowE5204002026-10-09",
+  "section": "north_row_e520400",
+  "bounds_m": [
+    520400,
+    4014392,
+    524496,
+    4018488
+  ],
+  "total_terrains": 4608,
+  "new_terrains": 256,
+  "retained_terrains": 4352,
+  "exact_joins": 9072,
+  "exterior_neighbor_slots": 288,
+  "collider_samples": 115200,
+  "production_scene_sha256": "52ffe7c65416f2e9d027c61481f0d841cc767382be28c18f8ca95f9e6751ca1b",
+  "manifest_sha256": "f23132a0fd1724fa0f806252960af3b0630c77af8e73104a015b7808601a20eb",
+  "max_height_readback_error_m": 0.027492642402648926,
+  "max_collider_error_m": 6.103515625e-05,
+  "candidate_tests": {
+    "passed": 29,
+    "failed": 0
+  },
+  "final_unity_tests": {
+    "passed": 57,
+    "failed": 0,
+    "skipped": 0
+  },
+  "offline_preflight": {
+    "coverage_and_source_tests": 71,
+    "row_contract_tests": 7,
+    "failed": 0
+  },
+  "native_metadata": {
+    "global_asset_guids": 53641,
+    "new_owner_guids": 5650,
+    "all_pairs_present": true
+  },
+  "color_corner": {
+    "policy": "south_row_priority_single_southwest_pixel",
+    "west_exception_pixels": 1,
+    "southwest_difference_rgb": [
+      16,
+      16,
+      16
+    ],
+    "audited_max_rgb": [
+      16,
+      16,
+      16
+    ],
+    "south_edge_error": 0,
+    "west_edge_error_excluding_corner": 0
+  },
+  "max_new_side_height_adjustment_m": 0.027496337890625,
+  "blender": {
+    "version": "5.2.2 LTS",
+    "pilot_meshes": 8,
+    "section_meshes": 256,
+    "combined_meshes": 4608,
+    "reopened_all_sources": true,
+    "inspected_views": 5
+  },
+  "live_editor": {
+    "pid": 13084,
+    "reload_pending": true,
+    "activation_authorized": true,
+    "last_verified_loaded_terrains": 4352,
+    "automation_result": "Windows automation failed to activate Reload modal"
+  },
+  "all_project_artifacts_on_D": true,
+  "subprocess_temp": "D:/BooterBigArmTools/Temp",
+  "proof_boundary": "Saved production bytes match isolated full native readback and collision proof. Live Editor external-change Reload remains pending. No gameplay smoke test or Player performance claim.",
+  "push_performed": false,
+  "terrain_doctor": {
+    "checked": 9231,
+    "issues": 0
+  },
+  "post_refresh_offline_tests": {
+    "terrain_tools": 9,
+    "atlas": 2,
+    "failed": 0
+  },
+  "source": {
+    "min_height_m": 31.395116806030273,
+    "max_height_m": 1674.4686279296875,
+    "nodata_count": 0,
+    "fits_encoding": true,
+    "catalog_sha256": "956f16404178e5a1870e668b75d8599fad69de893a5f2cc38f149ce3429b3644"
+  },
+  "unity_map_views_inspected": 2,
+  "validation_repair": {
+    "initial_passed": 56,
+    "initial_failed": 1,
+    "reason": "Full candidate audit exceeded default 180000 ms",
+    "candidate_timeout_ms": 1800000,
+    "assertions_unchanged": true,
+    "final_passed": 57,
+    "final_failed": 0
+  }
+}
