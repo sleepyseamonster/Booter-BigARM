@@ -22,7 +22,7 @@ Source:
 
 Source:
 - [Introducing Codex](https://openai.com/index/introducing-codex/)
-- [`AGENTS.md`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/AGENTS.md)
+- [`AGENTS.md`](../../AGENTS.md)
 
 ### 3. Separate editor code from runtime code
 
@@ -33,7 +33,7 @@ Source:
 Source:
 - [Assembly Definitions](https://docs.unity3d.com/es/2021.1/Manual/ScriptCompilationAssemblyDefinitionFiles.html)
 - [Assembly definition and packages](https://docs.unity3d.com/ru/2020.2/Manual/cus-asmdef.html)
-- [`Assets/_Project/Scripts/Editor/BooterBigArm.Editor.asmdef`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Assets/_Project/Scripts/Editor/BooterBigArm.Editor.asmdef)
+- [`Assets/_Project/Scripts/Editor/BooterBigArm.Editor.asmdef`](../../Assets/_Project/Scripts/Editor/BooterBigArm.Editor.asmdef)
 
 ### 4. Protect Unity assets and serialization
 
@@ -47,14 +47,14 @@ Source:
 
 ### 5. Keep production 3D and legacy 2D render paths explicit
 
-- Keep URP with the 3D renderer at index 1 as the production default.
-- Keep the isolated legacy 2D renderer at index 0 so legacy scene cameras can select it explicitly.
-- Do not place new production systems in `Assets/_Project/Legacy2D/`.
+- Keep UniversalRP with its sole production 3D renderer at index 0 as the default.
+- Preserve legacy 2D/isometric renderer settings in the standalone `Archive/Unity/HistoricalProject/`, outside production import.
+- Do not place new production systems in the historical project.
 
 Source:
 - [Set up the 2D Renderer asset in URP](https://docs.unity3d.com/kr/6000.0/Manual/urp/Setup.html)
-- [`Assets/_Project/Settings/Rendering/URP/UniversalRP.asset`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Assets/_Project/Settings/Rendering/URP/UniversalRP.asset)
-- [`Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset)
+- [`Assets/_Project/Settings/Rendering/URP/UniversalRP.asset`](../../Assets/_Project/Settings/Rendering/URP/UniversalRP.asset)
+- [`Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset`](../../Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset)
 
 ### 6. Use command line for repeatable automation
 
@@ -65,7 +65,7 @@ Source:
 Source:
 - [Build a player from the command line](https://docs.unity3d.com/ja/current/Manual/build-command-line.html)
 - [Command line arguments](https://docs.unity3d.com/es/2017.4/Manual/CommandLineArguments.html)
-- [`Docs/Engineering/UNITY_AUTOMATION.md`](/Users/worldbuilder/Desktop/Booter%20&%20BigARM/Docs/Engineering/UNITY_AUTOMATION.md)
+- [`Docs/Engineering/UNITY_AUTOMATION.md`](../Engineering/UNITY_AUTOMATION.md)
 
 ## Repo-Ready Recommendations
 

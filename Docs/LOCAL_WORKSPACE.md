@@ -22,6 +22,10 @@ Keep the C: copy intact until Unity licensing/import validation is restored and 
 
 Subsequent 2026-10-08 validation resolved the named-user Unity entitlement and passed fresh Editor imports, focused tests and Development packaging. The empty legacy ULF file is not the current licence authority. The [expansion implementation receipt](./DeathValley/EXPANSION_IMPLEMENTATION_2026-10-08.md) records current production proof; the C: rollback copy remains retained.
 
+## Current saved-scene checkpoint — 2026-10-09
+
+For terrain/hierarchy continuation, start with the [Greater Wasteland reconciliation](Evidence/Badwater/GREATER_WASTELAND_RECONCILIATION_2026-10-09.md) and its exact baseline. The scene contains 4,608 sealed native tiles, 18 sections and 288 sectors. The three manual sculpt edits were restored by explicit author direction; older hierarchy-tooling notes about blocked hash validation are historical. Current saved-scene and terrain/collision gates pass. Earlier publication receipts below retain their original machine and scope.
+
 ## Resume context
 
 Read the [October 6 publication receipt](./Evidence/Publication/2026-10-06-safe-publication.md) before interpreting older snapshot documents. It is the latest restored checkpoint and records 43/43 focused terrain tests, 8/8 focused authored-asset tests, and a passing prototype validator on the previous machine. These are retained evidence, not fresh Windows test results.

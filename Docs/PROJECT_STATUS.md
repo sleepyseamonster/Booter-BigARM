@@ -2,7 +2,11 @@
 
 This is the shared implementation pulse for Booter & BigARM. It records what live repo evidence establishes, what still needs Unity or playtest proof, and which decisions are waiting for the user. It does not replace the strategic order in [ROADMAP.md](./ROADMAP.md).
 
-Last reconciled: 2026-09-21 by Gottspan for production-host routing and Unity rock-work resumption. Existing workstream proof rows retain their earlier evidence boundaries.
+Last reconciled: 2026-10-09 by Gottspan for Greater Wasteland terrain, hierarchy, worktree classification and publication. Earlier workstream proof rows retain their dated evidence boundaries.
+
+## Current saved production baseline — 2026-10-09
+
+The [reconciliation receipt](Evidence/Badwater/GREATER_WASTELAND_RECONCILIATION_2026-10-09.md) establishes the current 4,608-tile authored terrain, 18 sections and 288 editor sectors. Three manual sculpt edits were restored to sealed source terrain at the author's direction. Full terrain and saved-scene validators, 9 authoring tests, 16 Start-menu tests and 12 radial tests passed. Booter is visible and first in the saved hierarchy. Procedural generation remains deferred. Player traversal, physical-controller feel, performance and complete visual acceptance remain user-owned.
 
 ## Greater Wasteland production scene — 2026-10-06
 
@@ -18,16 +22,18 @@ The [Editor playability audit](./Evidence/EDITOR_PLAYABILITY_AUDIT_2026-10-06.md
 
 ## Active Program
 
-- The repository-root Unity project is again the sole active production implementation. `Unreal/`, `Engine/`, and `Assets/_Project/Legacy2D/` are preserved references and receive no new production work without a new explicit user decision.
+- The repository-root Unity project is again the sole active production implementation. `Archive/Unreal/`, `Archive/ProprietaryEngine/`, and `Archive/Unity/HistoricalProject/` are preserved references and receive no new production work without a new explicit user decision.
 - The user has revised the presentation direction to a perspective, elevated top-down game with a fully 3D runtime world and assets.
 - Gottspan owns the conversion program under the user's creative and product authority.
-- The perspective foundation was accepted and cut over as the primary production path. `GreaterWasteland.unity` is the only enabled Build Settings scene; former 2D scenes remain disabled, isolated legacy reference content.
+- The perspective foundation was accepted and cut over as the primary production path. `GreaterWasteland.unity` is the only enabled Build Settings scene; former 2D scenes remain outside production import in the standalone historical project.
 - The prior landscape plan is [TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_LANDSCAPE_IMPLEMENTATION_PLAN.md). The earlier [TOP_DOWN_3D_FOUNDATION_PLAN.md](./Design/DeferredGeneration/TOP_DOWN_3D_FOUNDATION_PLAN.md) remains historical foundation rationale and evidence.
 - The current evidence packet is [ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md](Archive/IsometricConversion/ConversionEvidence/TOP_DOWN_3D_FOUNDATION_REPORT_2026-08-13.md).
 - The former isometric lab and its audit remain historical comparison evidence, not the camera direction for new work.
 - The existing 2D prototype remains a protected comparison baseline, not the production implementation.
 
 ## Current Foundation
+
+The rows below include preserved foundation and generated-reference inventory; the current authored production baseline above controls active scene and terrain scope.
 
 | Workstream | Repo evidence | Proof state |
 | --- | --- | --- |

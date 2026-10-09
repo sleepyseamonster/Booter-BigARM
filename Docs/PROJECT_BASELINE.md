@@ -2,6 +2,10 @@
 
 This document captures the current Unity project state so future changes can be made against a stable reference.
 
+## Verified authored baseline — 2026-10-09
+
+Greater Wasteland contains 4,608 native terrain tiles over a 24,576 × 12,288 m fixed footprint, grouped into 18 geographic sections and 288 editor sectors. The [reconciliation receipt](Evidence/Badwater/GREATER_WASTELAND_RECONCILIATION_2026-10-09.md) and [exact baseline](Evidence/Badwater/GREATER_WASTELAND_BASELINE_2026-10-09.json) supersede earlier tile-count and validation snapshots. Source hashes, seams, collision, saved scene wiring and focused authoring/menu tests pass. Gameplay, Player performance and complete visual acceptance remain user-owned.
+
 ## Engine And Packages
 
 - Unity Editor: `6000.4.0f1`
@@ -13,14 +17,14 @@ This document captures the current Unity project state so future changes can be 
 - `Assets/_Project/Scenes/Production/GreaterWasteland.unity` — primary production scene and only enabled build scene; promoted from playable Badwater on 2026-10-06 with existing controls and mechanics retained. Procedural generation is deferred pending redesign.
 - `Assets/_Project/Scenes/Reference/GeneratedWorld/TopDown3DPrototype.unity` — preserved generated-world reference, disabled in Build Settings.
 - `Assets/_Project/Scripts/Runtime/TopDown3D/` — production runtime assembly.
-- `Assets/_Project/Legacy2D/Scenes/` — preserved 2D prototype and sample scenes, disabled in Build Settings.
-- `Assets/_Project/Legacy2D/Scripts/Runtime/` — preserved 2D runtime assembly.
-- `Assets/_Project/Legacy2D/Scripts/Editor/` — preserved 2D editor tooling in an isolated editor assembly.
+- `Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scenes/` — preserved scenes outside production import and Build Settings.
+- `Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Runtime/` — preserved 2D runtime assembly.
+- `Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Scripts/Editor/` — preserved 2D editor tooling in an isolated editor assembly.
 - `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset`
-- `Assets/_Project/Settings/Rendering/URP/IsometricRenderer.asset` — default production 3D renderer at index 1.
-- `Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset` — preserved 2D renderer at index 0.
+- `Assets/_Project/Settings/Rendering/URP/IsometricRenderer.asset` — sole production 3D renderer at index 0 in UniversalRP.
+- `Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Rendering/URP/Renderer2D.asset` — historical renderer, outside the production renderer list.
 - `Assets/_Project/Settings/Input/InputSystem_Actions.inputactions`
-- `Assets/_Project/Legacy2D/Settings/Profiles/DefaultVolumeProfile.asset`
+- `Archive/Unity/HistoricalProject/Assets/_Project/Legacy2D/Settings/Profiles/DefaultVolumeProfile.asset`
 - `Assets/_Project/Settings/Rendering/URP/UniversalRenderPipelineGlobalSettings.asset`
 
 ## Implemented Prototype Systems
@@ -41,7 +45,7 @@ This inventory proves code and asset presence, not player-facing completeness or
 
 - `Assets/_Project/Scenes/`
 - `Assets/_Project/Scripts/Runtime/TopDown3D/`
-- `Assets/_Project/Legacy2D/`
+- `Archive/Unity/HistoricalProject/`
 - `Assets/_Project/Settings/Input/`
 - `Assets/_Project/Settings/Rendering/URP/`
 

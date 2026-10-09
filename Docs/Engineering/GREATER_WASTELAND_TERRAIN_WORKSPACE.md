@@ -1,19 +1,19 @@
 # Greater Wasteland terrain workspace
 
-The authored production landscape is organized as the existing common terrain owner, 18 named geographic sections, 16 sectors per section, and 16 native Terrain tiles per sector. Sectors cover 1,024 Ã— 1,024 metres; tiles remain 256 Ã— 256 metres. `badwater_core` groups the original 256 tiles. The other geographic section names remain unchanged.
+The authored production landscape is organized as the existing common terrain owner, 18 named geographic sections, 16 sectors per section, and 16 native Terrain tiles per sector. Sectors cover 1,024 × 1,024 metres; tiles remain 256 × 256 metres. `badwater_core` groups the original 256 tiles. The other geographic section names remain unchanged.
 
-Use **Booter & BigARM â†’ Greater Wasteland Terrain â†’ Terrain Workspace**. The tool works only with Greater Wasteland active in Edit Mode:
+Use **Booter & BigARM → Greater Wasteland Terrain → Terrain Workspace**. The tool works only with Greater Wasteland active in Edit Mode:
 
-- **Follow Booter â€” centre plus 8 neighbours** shows the player's current 1,024 m sector and the eight neighbouring cells, including diagonals. It checks the player Transform every 0.2 seconds and shifts the 3Ã—3 grid when Booter crosses a sector boundary, including ordinary Edit Mode Move-tool drags. This is the default local-view mode.
+- **Follow Booter — centre plus 8 neighbours** shows the player's current 1,024 m sector and the eight neighbouring cells, including diagonals. It checks the player Transform every 0.2 seconds and shifts the 3×3 grid when Booter crosses a sector boundary, including ordinary Edit Mode Move-tool drags. This is the default local-view mode.
 - **Work around selection** uses the selected terrain tile or group's bounds centre, or an ordinary object's position.
-- **Work around Scene view** uses the last Scene view pivot as the 3Ã—3 grid's centre cell. **Follow Scene view** updates that centre as the pivot crosses sector boundaries. Player follow and Scene view follow are mutually exclusive.
+- **Work around Scene view** uses the last Scene view pivot as the 3×3 grid's centre cell. **Follow Scene view** updates that centre as the pivot crosses sector boundaries. Player follow and Scene view follow are mutually exclusive.
 - **Show all terrain** stops automatic control and clears terrain visibility, including hidden terrain ancestors.
 - **Stop and restore previous visibility** returns managed sectors and tiles to the visibility state captured before local view.
 - The same commands are available directly in the menu. Hierarchy eye icons support manual per-section, per-sector, and per-tile visibility while automatic control is off.
 
 Local view remains active when its window closes. Its mode, focus and follow setting survive script reloads in the current Editor session. Visibility is restored before script reload, Play Mode, scene closure or Editor quit; local view resumes in Edit Mode. A new Editor session defaults to following Booter with the ghost overview enabled. Show All or Stop disables automatic control for that session until local view is re-enabled.
 
-The 3Ã—3 neighbourhood uses world X/Z sector coordinates, so it crosses the older geographic section parents correctly. At the landscape's edge, only neighbours that actually exist are shown; absent cells remain empty and are not generated. Detailed terrain never exceeds nine sectors (144 native tiles). When Booter is outside the footprint, the overview marker says so and any existing neighbouring cells remain visible. These are editor visibility cells, with no loading/unloading or world-identity changes.
+The 3×3 neighbourhood uses world X/Z sector coordinates, so it crosses the older geographic section parents correctly. At the landscape's edge, only neighbours that actually exist are shown; absent cells remain empty and are not generated. Detailed terrain never exceeds nine sectors (144 native tiles). When Booter is outside the footprint, the overview marker says so and any existing neighbouring cells remain visible. These are editor visibility cells, with no loading/unloading or world-identity changes.
 
 October 9 player-follow change: the pinned Unity Roslyn compiler compiled both the current Editor and Editor.Tests source candidates successfully using the current Bee response-file references, with output redirected to ignored `Logs/ThreeByThree/`. The live connection subsequently recovered. Four focused grid/overview NUnit test methods were invoked directly through eval and passed without the TestRunner scene-management flow. Live readback checked all 288 sector visibility states against the exact neighbourhood rule, with player follow and the overview enabled. Six detailed sectors exist around the current edge-of-landscape player position. Booter's existing MeshRenderer was re-enabled at the user's request with Undo; no character was moved or scene saved. Visual acceptance remains user-owned, and the retained-terrain source drift described below still prevents a full canonical validation/commit gate.
 
@@ -35,7 +35,7 @@ World identity remains the existing authored geographic tile identity. Sector pa
 
 Booter already exists in Greater Wasteland as the root **Booter Perspective 3D Controller**, with its mesh, capsule, Rigidbody and player components. Its identity and name remain stable for existing authoring tools and serialized references. The player root is at the top of the hierarchy and has a coloured label icon. No duplicate player or runtime spawn marker is added.
 
-Use **Booter & BigARM â†’ Player Placement â†’ Select Booter** or select the first hierarchy object. Its player motor Inspector now has a **BOOTER â€” PLAYER CHARACTER** header and placement buttons:
+Use **Booter & BigARM → Player Placement → Select Booter** or select the first hierarchy object. Its player motor Inspector now has a **BOOTER — PLAYER CHARACTER** header and placement buttons:
 
 - **Find Booter in Scene view** selects the player, enables the Move tool and frames it in an existing Scene view.
 - Move it with the standard Transform/Move tool, then **Snap Booter to ground** to align the capsule's bottom 0.12 m above the terrain collider. Capsule centre and scale are accounted for.
@@ -61,7 +61,7 @@ Earlier paragraphs describing unresolved terrain drift remain historical evidenc
 ## October 9, 2026 verification
 
 - 4,608 terrain tiles grouped into 288 sectors under 18 sections.
-- Initial radius-based implementation around Booter: 9 sectors visible, 279 hidden (144 visible tiles, 4,464 hidden). The later player-follow change replaces radius selection with an exact 3Ã—3 neighbourhood; edge cells can have fewer existing neighbours.
+- Initial radius-based implementation around Booter: 9 sectors visible, 279 hidden (144 visible tiles, 4,464 hidden). The later player-follow change replaces radius selection with an exact 3×3 neighbourhood; edge cells can have fewer existing neighbours.
 - Before/after live fingerprints match for all terrain component IDs, names, world positions/rotations/scales, active/enabled states, TerrainData paths and serialized Terrain/TerrainCollider payloads.
 - Scene serialization audit retains every original component block, changing only Transform parent/child links and adding 289 GameObjects with their Transforms (18 sections include the added core grouping).
 - Focused workspace tests cover exactly nine cells including diagonals, boundary-crossing recentering at negative coordinates, organization idempotency, cross-sector neighbour links, terrain/collider preservation and named section ownership.
