@@ -33,3 +33,8 @@ Lorekeeper's external lore source is currently disconnected, as confirmed by the
 ## Completed terrain Blender source retirement â€” October 9, 2026
 
 The completed Unity terrain `.blend` sources for this scope were removed after verified integration at the user's explicit request. Earlier instructions to open those retired native terrain files are historical. GIS data, prepared grids and imagery, Blender JSON/NPZ proofs, and native Unity terrain assets remain. Unintegrated studies and recovered reference saves remain preserved. See the [cleanup receipt](DeathValley/BLENDER_TERRAIN_CLEANUP_2026-10-09.md) and [exact deleted-file inventory](Evidence/DeathValley/BLENDER_TERRAIN_CLEANUP_2026-10-09.json). Fresh native reverification requires a new versioned rebuild and reopen proof; existing exporters keep their strict source-hash gates.
+
+
+## Local-only source publication - October 9, 2026
+
+Blender authoring files and terrain source archives remain at their existing local paths but are excluded from GitHub and Git LFS publication. Native Unity assets required by Greater Wasteland remain publishable. See [the controlling policy](Operations/LOCAL_ONLY_SOURCE_POLICY.md). Earlier source-transfer/publication receipts retain their historical scope.

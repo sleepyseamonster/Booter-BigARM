@@ -152,3 +152,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Delegates do not switch branches, move worktrees, stage, commit, push, or change project-wide settings unless their task brief explicitly grants that authority.
 - Delegates return evidence and a handoff; Gottspan remains responsible for integration, final validation, repo status, and closeout.
 - Close sub-agents when their work is no longer needed.
+
+## Local-Only Blender And Terrain Sources - 2026-10-09
+
+The author requires Blender `.blend` files and backups, plus terrain source archives under `SourceData/Terrain/`, to remain local. Do not publish them to GitHub or add Git LFS rules for them. Preserve local copies; untracking does not authorize deletion or LFS pruning. Keep native Unity assets and metadata required by Greater Wasteland under `Assets/_Project/` publishable. Follow [the source-publication policy](Docs/Operations/LOCAL_ONLY_SOURCE_POLICY.md), including its unpublished-history gate. Earlier source publication and LFS instructions are superseded for these excluded paths; historical receipts remain evidence of their original scope.

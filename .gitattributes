@@ -1,21 +1,2 @@
-# Editable Blender sources, including dated recovered saves, use Git LFS.
-Docs/Agents/Blender/**/*.blend filter=lfs diff=lfs merge=lfs -text
-SourceArt/Blender/**/*.blend filter=lfs diff=lfs merge=lfs -text
-Archive/Transfers/Blender/**/*.blend filter=lfs diff=lfs merge=lfs -text
-
-# Acquisition metadata and payload hashes require exact bytes on every platform.
-SourceData/** -text
-SourceData/**/*.tif filter=lfs diff=lfs merge=lfs -text
-SourceData/**/*.npz filter=lfs diff=lfs merge=lfs -text
-SourceData/**/*.png filter=lfs diff=lfs merge=lfs -text
-SourceData/**/*.jpg filter=lfs diff=lfs merge=lfs -text
-SourceData/**/*.zip filter=lfs diff=lfs merge=lfs -text
-SourceData/**/*.shp filter=lfs diff=lfs merge=lfs -text
-SourceData/**/*.shx filter=lfs diff=lfs merge=lfs -text
-SourceData/**/*.dbf filter=lfs diff=lfs merge=lfs -text
-SourceData/**/*.raw filter=lfs diff=lfs merge=lfs -text
-SourceData/**/*.fbx filter=lfs diff=lfs merge=lfs -text
-SourceData/**/proof.json -text -diff
-
-# Immutable historical Unity captures retain original serialized bytes and hashes.
-SourceData/**/production_before.unity -text -diff
+# Blender and terrain source archives are local-only; see .gitignore and
+# Docs/Operations/LOCAL_ONLY_SOURCE_POLICY.md. Do not add LFS rules for them.

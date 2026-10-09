@@ -53,3 +53,10 @@ __pycache__/
 /SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline02/e*_n*.bytes
 /SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline03/e*_n*.bytes
 /SourceData/Terrain/DeathValley/WestRidgePair2026-10-08/Baseline01/e*_n*.bytes
+
+# Blender authoring sources and backups stay local; publish optimized Unity assets.
+*.blend
+*.blend[0-9]*
+
+# Terrain acquisition, preparation and source archives are local-only.
+/SourceData/Terrain/
