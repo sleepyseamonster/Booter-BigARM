@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "production_integration_waiting_for_user_terrain_choice",
+  "new_slices_blender_verified": true,
+  "isolated_new_candidate_verified": true,
+  "live_production_scene_changed_by_this_task": false,
+  "focused_tests": {
+    "total": 50,
+    "passed": 46,
+    "failed": 4
+  },
+  "failed_checks": [
+    {
+      "name": "BooterBigArm.Tests.BadwaterTerrainExpansionTests.SavedCandidate_ReloadRestoresFullGridWithoutManualNeighborRepair",
+      "message": "System.IO.InvalidDataException : Expansion edge/readback/physics precision gate failed: {\"schema_version\":1,\"terrains\":1024,\"retained\":256,\"new_terrains\":768,\"edges\":1984,\"outer_edges\":128,\"collider_samples\":25600,\"scene\":\"Assets/_Project/Scenes/Reference/TerrainExpansionCandidate.unity\",\"scene_sha256\":\"9ced0ec029f043c0aa5b41881e3a378011cec0fa2ffae57b8abb76de3e65c3d3\",\"manifest_sha256\":\"94ba0d96df367a88157849c25ae884da3e79774dec825f48b88970db306e7c2c\",\"status\":\"\",\"max_new_readback_error_m\":18.04611587524414,\"max_collider_error_m\":0.000030517578125}"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterTerrainSeamTests.CanonicalValidators_AcceptSavedSceneAndAllSourceDerivedVertices",
+      "message": "System.IO.InvalidDataException : Expansion edge/readback/physics precision gate failed: {\"schema_version\":1,\"terrains\":1024,\"retained\":256,\"new_terrains\":768,\"edges\":1984,\"outer_edges\":128,\"collider_samples\":0,\"scene\":\"Assets/_Project/Scenes/Production/GreaterWasteland.unity\",\"scene_sha256\":\"b43c6e05c49b6e2c78bcbdcfe7ed535a003ed22d36266c67e239adfb2a955548\",\"manifest_sha256\":\"94ba0d96df367a88157849c25ae884da3e79774dec825f48b88970db306e7c2c\",\"status\":\"\",\"max_new_readback_error_m\":18.04611587524414,\"max_collider_error_m\":0.0}"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterTerrainSeamTests.ReloadedScene_RestoresAllNeighborsAndExactBorders",
+      "message": "System.IO.InvalidDataException : Expansion edge/readback/physics precision gate failed: {\"schema_version\":1,\"terrains\":1024,\"retained\":256,\"new_terrains\":768,\"edges\":1984,\"outer_edges\":128,\"collider_samples\":0,\"scene\":\"Assets/_Project/Scenes/Production/GreaterWasteland.unity\",\"scene_sha256\":\"b43c6e05c49b6e2c78bcbdcfe7ed535a003ed22d36266c67e239adfb2a955548\",\"manifest_sha256\":\"94ba0d96df367a88157849c25ae884da3e79774dec825f48b88970db306e7c2c\",\"status\":\"\",\"max_new_readback_error_m\":18.04611587524414,\"max_collider_error_m\":0.0}"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterWestPairTests.IdenticalHeightSerializationVariantsKeepBothCleanCloneAndLocalEditValid",
+      "message": "  Expected: 0.335500211f\n  But was:  0.335469693f\n"
+    }
+  ],
+  "finding": "Initial live height capture included a sculpt edit before its TerrainData bytes were saved. Fresh saved capture matched those live heights, but committed bytes and older source exports differ by up to 18.04611587524414 metres. Do not accept the before/current bytes as height-equivalent.",
+  "required_user_choice": [
+    "Keep the current sculpt edit and include it in the terrain handoff/commit",
+    "Restore the previously verified chunk"
+  ],
+  "corrective_action": "Removed alternative hash acceptance; strict native payload and full height readback remain required. No production integration performed."
+}

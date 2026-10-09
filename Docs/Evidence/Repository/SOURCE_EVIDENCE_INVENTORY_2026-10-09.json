@@ -1,0 +1,463 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-09",
+  "status": "format_and_payload_inventory_verified",
+  "files": [
+    {
+      "path": "Docs/Evidence/DeathValley/WestNorthNorthwest2026-10-07/combined_oblique.png",
+      "bytes": 2325252,
+      "sha256": "c302d763f3e35f1cde9c1f999d74d675e00442dfaac3ef5c7207af58495e99ea",
+      "dimensions": [
+        1400,
+        1100
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestNorthNorthwest2026-10-07/pilot_junction.png",
+      "bytes": 1730468,
+      "sha256": "02dfa61b15dff41b20cffa236c195573b0ca49a4c415d4c596c707d58a8382e4",
+      "dimensions": [
+        1400,
+        1100
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestNorthNorthwest2026-10-07/pilot_junction_matched.png",
+      "bytes": 1670788,
+      "sha256": "0c9e1edfd58f56a19ee78352e74106a2f5de9aefe1761d51ad212f0971fbef55",
+      "dimensions": [
+        1400,
+        1100
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestPair2026-10-08/combined_oblique.png",
+      "bytes": 1977071,
+      "sha256": "6f8a40afb38c7d5f76f3a3f8e3f879c7fd851ca1faebb03ee02875b625811a14",
+      "dimensions": [
+        1400,
+        1100
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestPair2026-10-08/northwest_outer_oblique.png",
+      "bytes": 1695052,
+      "sha256": "f0dffa6d96fed9994d3bb0a133b5e599d1470357338aa8931cf73573780122a5",
+      "dimensions": [
+        1400,
+        1100
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestPair2026-10-08/retained_terrain_drift_audit.json",
+      "bytes": 3390,
+      "sha256": "ac1b6d77cec06d9161fde72cbea988f7558f6fd69f44bac62032fd4e70defe19",
+      "format": "parsed_json"
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/WestPair2026-10-08/west_outer_oblique.png",
+      "bytes": 1820182,
+      "sha256": "131f4e74729360deb9b92bfad344a74ad087ea874982ab1901ba549b8108d2a5",
+      "dimensions": [
+        1400,
+        1100
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Acquisition01/DEM/catalog.json",
+      "bytes": 8335,
+      "sha256": "e56195bddf23b949a15d535da764a450bf5032519e5f5130d43d489f86ed857c",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Acquisition01/DEM/manifest.json",
+      "bytes": 3715,
+      "sha256": "c705b891540675c81a81e72276d28af5ac1cb07469dfc2bbab2b858a7cc666c1",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Acquisition01/DEM/north_ridge_terrain.npz",
+      "bytes": 72485130,
+      "sha256": "43608021d57948919abdb3bc4454e43a2015bc2390d18f1799e19cb230a0e8bb",
+      "arrays": 2,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Acquisition01/DEM/x49y402_metadata.xml",
+      "bytes": 14435,
+      "sha256": "5cbf1da08f54d6d56aa73a66e6842e739d9db81d6a661515b4ac5ff956bb4dc7",
+      "format": "parsed_xml"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Acquisition01/DEM/x49y402_window.tif",
+      "bytes": 1102290,
+      "sha256": "637f187b6b0416be2cc9199af812a477c3960289909cbc628997f7959a95ec7a",
+      "dimensions": [
+        89,
+        4104
+      ],
+      "crs": "EPSG:26911",
+      "format": "readable_geotiff"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Acquisition01/DEM/x50y402_metadata.xml",
+      "bytes": 14435,
+      "sha256": "6d681dae9bfe66630c71ec635675f331c228cf284416e6f70df5e94fa189e0a8",
+      "format": "parsed_xml"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Acquisition01/DEM/x50y402_window.tif",
+      "bytes": 56860859,
+      "sha256": "25c24de35b16bae0e8f228a44f45d23c3370798dd6ea8f70417828ff3e8da6af",
+      "dimensions": [
+        4025,
+        4104
+      ],
+      "crs": "EPSG:26911",
+      "format": "readable_geotiff"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/manifest.json",
+      "bytes": 475826,
+      "sha256": "7a12616880d6234175bb576c6a2c3c2e6fccae08c53bb81074e24383b6a4513a",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/north_geographic_color.png",
+      "bytes": 6022648,
+      "sha256": "2739001ed8e284b5db2137761ecb1b523d594638f2ea480898bacd636ee82c28",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/north_mesh_grids.npz",
+      "bytes": 54493322,
+      "sha256": "5d911a1c6858531f4a808c5ca68e142b054a311c5042974a0bb70f0d2091a7f8",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/northwest_geographic_color.png",
+      "bytes": 4118064,
+      "sha256": "f8cf397273ab09d4b3829942b6553a134ad7db85e1d0754e593e19c8482fd35e",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/northwest_mesh_grids.npz",
+      "bytes": 39375628,
+      "sha256": "948d5f803079fab866ad55c532a1a4dd3d2a08db86ae2af0f75de9be7d821afe",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/west_geographic_color.png",
+      "bytes": 3523091,
+      "sha256": "98a1cd685003bea2a268731e06161cb968a3e61e948db16e0616bbc3456d09d6",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01/west_mesh_grids.npz",
+      "bytes": 36961951,
+      "sha256": "9692fbc7265ad7c3c04b1a83ad39e2dec1e56eeb1c7fd0d064f5b9e369b8a874",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02/manifest.json",
+      "bytes": 475910,
+      "sha256": "154386d5b282fafcde37b69cad7d72a6b89414d92238b2f921d1b14600c59eeb",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02/north_geographic_color.png",
+      "bytes": 6022648,
+      "sha256": "2739001ed8e284b5db2137761ecb1b523d594638f2ea480898bacd636ee82c28",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02/north_mesh_grids.npz",
+      "bytes": 54493305,
+      "sha256": "025097783a2460c92b456269c3e980b6135c04cace12708f314a2050e02f96b6",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02/northwest_geographic_color.png",
+      "bytes": 4118064,
+      "sha256": "f8cf397273ab09d4b3829942b6553a134ad7db85e1d0754e593e19c8482fd35e",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02/northwest_mesh_grids.npz",
+      "bytes": 39375628,
+      "sha256": "2076c10881a77a1b21e2a3de2c2be5885dfa20997fc565838d3b73fb1f6b2c27",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02/pilot_blender_proof.json",
+      "bytes": 827,
+      "sha256": "b8421d830cd5623d80fb996120658292c15cab6d0619b1cd6014109608a9eb87",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02/pilot_blender_proof.npz",
+      "bytes": 529791,
+      "sha256": "2c13fc431330a4b35be0e2a3d42ad5e065077c67ec9567dbb080ff12d9b13969",
+      "arrays": 4,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02/west_geographic_color.png",
+      "bytes": 3523091,
+      "sha256": "98a1cd685003bea2a268731e06161cb968a3e61e948db16e0616bbc3456d09d6",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02/west_mesh_grids.npz",
+      "bytes": 36962024,
+      "sha256": "8a5f1269ca7b5cda309ae44dc4e862b0cb7f1d9823ac5bf56757333e50a6b7c3",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline01/baseline.json",
+      "bytes": 2851835,
+      "sha256": "a6c3dd36023b51ab8503b20c0ef294c3699448eb7601bf5e151996c23f8df418",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline01/production_before.unity",
+      "bytes": 3774227,
+      "sha256": "b43c6e05c49b6e2c78bcbdcfe7ed535a003ed22d36266c67e239adfb2a955548",
+      "format": "historical_text_snapshot"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline01/render_heights.npz",
+      "bytes": 53218254,
+      "sha256": "2605f729cf60e48d52210d6922c2a4e083c1a2df0c71d3044c4844f380797bca",
+      "arrays": 1024,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline01/tiles.csv",
+      "bytes": 155392,
+      "sha256": "95121e2993b4313f2b65cc68e6d2e2acfd536a96fa76587dfc6fa49a2cb1cc8a",
+      "format": "historical_text_snapshot"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline02/baseline.json",
+      "bytes": 2851835,
+      "sha256": "162d02971568f83a38df79f08035dc9c6dff9bb6f8f41cc96890f3e4ba6265bb",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline02/production_before.unity",
+      "bytes": 3774227,
+      "sha256": "b43c6e05c49b6e2c78bcbdcfe7ed535a003ed22d36266c67e239adfb2a955548",
+      "format": "historical_text_snapshot"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline02/render_heights.npz",
+      "bytes": 53218254,
+      "sha256": "f9ae19e5f3beb1c7231332e79680f532b7bb541443c2515f05ffb965d5e0f1a1",
+      "arrays": 1024,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline02/tiles.csv",
+      "bytes": 155392,
+      "sha256": "82feefd3528891935623f2e966835e373e9354f575c7a11bdbe948004ba39222",
+      "format": "historical_text_snapshot"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/combined_blender_proof.json",
+      "bytes": 799,
+      "sha256": "41983832ac3715c6f89f1f561bca1e9825ba663e8b27f11d05e82ad71dddcfce",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/combined_blender_proof.npz",
+      "bytes": 181252007,
+      "sha256": "deac6dbaa283550ec3b6c61930f433c7465ffd0169915425b16127fbe794a043",
+      "arrays": 1536,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/manifest.json",
+      "bytes": 1036335,
+      "sha256": "1afc9f2fd1e90c9207649e6143f8ec25397d261ab5a83b2dca4f587c6d06ec37",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/northwest_outer_blender_proof.json",
+      "bytes": 819,
+      "sha256": "a055a767ceece316a5a0fa0886ec53ec712a9cdd46f5ba6c969da8040c50bc19",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/northwest_outer_blender_proof.npz",
+      "bytes": 36218386,
+      "sha256": "fa4376d838b3d7480ad17d4f13c96df33f1b3dda29c288ea0b64fac8420184b6",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/northwest_outer_geographic_color.png",
+      "bytes": 4490721,
+      "sha256": "fb8d16cc06358681f172e484b0a327e14352dc87f4d57eb430b52289d6830f20",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/northwest_outer_mesh_grids.npz",
+      "bytes": 36249387,
+      "sha256": "7f431f4c5319f24ec132f948865d391306ea6052facdcaaa54c88d874ce06561",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/pilot_blender_proof.json",
+      "bytes": 787,
+      "sha256": "de75a51d4c643908f05bee78884c0298fba9a5f50a63412192b92cb91e1d4c02",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/pilot_blender_proof.npz",
+      "bytes": 283735,
+      "sha256": "44c5f38814bf929c5d1569a7ee802d18aa34f3f5cc70233c32d83355e9a0b37f",
+      "arrays": 4,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/retained_existing_color.png",
+      "bytes": 7092314,
+      "sha256": "858a85f109ad446159d06c1ca60a7a99e19deda85c8dd5e54639e9859a3bfcc2",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/retained_existing_mesh_grids.npz",
+      "bytes": 28102091,
+      "sha256": "b5ad7a12953ebe504b0468b21ec148b09fc989a87fbeeae588a44c31a38cb765",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/retained_north_color.png",
+      "bytes": 6972980,
+      "sha256": "07facc33ad6fb6fa807a79fc920f30650f0bc739acc74b821d22c1952b10a988",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/retained_north_mesh_grids.npz",
+      "bytes": 26616356,
+      "sha256": "922d88d92b9b02e9b71407fbb90ff51f9cbeeb6f735c66231b5895e2302758e4",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/retained_northwest_color.png",
+      "bytes": 4978425,
+      "sha256": "0c801a449de64ff4e2a17984daf8620228bc3c70216bfeb6d3c69d0da8ec49a9",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/retained_northwest_mesh_grids.npz",
+      "bytes": 2826286,
+      "sha256": "a588d86737e23eb3a83887c05437d9ea6f09964c6e9ffd54442e7b7dd56b60b7",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/retained_west_color.png",
+      "bytes": 4419101,
+      "sha256": "ccfc7ceda0c1df713d038821832aa192aac1f4ac33ebfa712b0fce8348bd0186",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/retained_west_mesh_grids.npz",
+      "bytes": 1616815,
+      "sha256": "7370b2127751a223566b80aafe5d3064bc8655a75488c962d0678414f3136376",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/west_outer_blender_proof.json",
+      "bytes": 803,
+      "sha256": "5dc6ac1cfd6645a8f732a02ae1b80c92d3bc42d84b78008d71e58373383aff59",
+      "format": "parsed_json"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/west_outer_blender_proof.npz",
+      "bytes": 37906277,
+      "sha256": "dcc1cc019c2dac2b5a2f9af7a9f21b86c8ce1cbe3c1dd4d9645cd402a707f354",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/west_outer_geographic_color.png",
+      "bytes": 4598373,
+      "sha256": "730e16a3e079fb97c0c51c44192aba08df458579020a0d8a92dcedcb2e2a9fd3",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "format": "verified_png"
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01/west_outer_mesh_grids.npz",
+      "bytes": 37938357,
+      "sha256": "216794d2ef25cc5c80f1eaa2acecc78b89c709e824ade19639e6469043269a3a",
+      "arrays": 256,
+      "format": "verified_npz_crc"
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-09",
+  "status": "verified_duplicate_captures_retained_locally",
+  "raw_files": 31488,
+  "raw_bytes": 8319003648,
+  "groups": [
+    {
+      "folder": "SourceData/Terrain/DeathValley/FarWestPair2026-10-08/Baseline01",
+      "count": 2048,
+      "MB": 541.07,
+      "duplicate_raw": 2048,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/NextWestPair2026-10-08/Baseline01",
+      "count": 1536,
+      "MB": 405.81,
+      "duplicate_raw": 1536,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Acquisition01",
+      "count": 7,
+      "MB": 130.49,
+      "files": [
+        "catalog.json",
+        "manifest.json",
+        "north_ridge_terrain.npz",
+        "x49y402_metadata.xml",
+        "x49y402_window.tif",
+        "x50y402_metadata.xml",
+        "x50y402_window.tif"
+      ]
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/NorthRidge2026-10-09/Baseline01",
+      "count": 3072,
+      "MB": 811.61,
+      "duplicate_raw": 3072,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/NorthRowE5040162026-10-09/Baseline01",
+      "count": 3328,
+      "MB": 879.24,
+      "duplicate_raw": 3328,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/NorthRowE5081122026-10-09/Baseline01",
+      "count": 3584,
+      "MB": 946.88,
+      "duplicate_raw": 3584,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/NorthRowE5122082026-10-09/Baseline01",
+      "count": 3840,
+      "MB": 1014.51,
+      "duplicate_raw": 3840,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/NorthRowE5163042026-10-09/Baseline01",
+      "count": 4096,
+      "MB": 1082.15,
+      "duplicate_raw": 4096,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/NorthRowE5204002026-10-09/Baseline01",
+      "count": 4352,
+      "MB": 1149.78,
+      "duplicate_raw": 4352,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared01",
+      "count": 7,
+      "MB": 144.97,
+      "files": [
+        "manifest.json",
+        "north_geographic_color.png",
+        "north_mesh_grids.npz",
+        "northwest_geographic_color.png",
+        "northwest_mesh_grids.npz",
+        "west_geographic_color.png",
+        "west_mesh_grids.npz"
+      ]
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared02",
+      "count": 9,
+      "MB": 145.5,
+      "files": [
+        "manifest.json",
+        "north_geographic_color.png",
+        "north_mesh_grids.npz",
+        "northwest_geographic_color.png",
+        "northwest_mesh_grids.npz",
+        "pilot_blender_proof.json",
+        "pilot_blender_proof.npz",
+        "west_geographic_color.png",
+        "west_mesh_grids.npz"
+      ]
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline01",
+      "count": 1028,
+      "MB": 330.54,
+      "duplicate_raw": 1024,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline02",
+      "count": 1028,
+      "MB": 330.54,
+      "duplicate_raw": 1024,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Baseline03",
+      "count": 1024,
+      "MB": 270.54,
+      "duplicate_raw": 1024,
+      "mismatches": []
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/WestPair2026-10-08/Prepared01",
+      "count": 21,
+      "MB": 422.6,
+      "files": [
+        "combined_blender_proof.json",
+        "combined_blender_proof.npz",
+        "manifest.json",
+        "northwest_outer_blender_proof.json",
+        "northwest_outer_blender_proof.npz",
+        "northwest_outer_geographic_color.png",
+        "northwest_outer_mesh_grids.npz",
+        "pilot_blender_proof.json",
+        "pilot_blender_proof.npz",
+        "retained_existing_color.png",
+        "retained_existing_mesh_grids.npz",
+        "retained_north_color.png",
+        "retained_north_mesh_grids.npz",
+        "retained_northwest_color.png",
+        "retained_northwest_mesh_grids.npz",
+        "retained_west_color.png",
+        "retained_west_mesh_grids.npz",
+        "west_outer_blender_proof.json",
+        "west_outer_blender_proof.npz",
+        "west_outer_geographic_color.png",
+        "west_outer_mesh_grids.npz"
+      ]
+    },
+    {
+      "folder": "SourceData/Terrain/DeathValley/WestRidgePair2026-10-08/Baseline01",
+      "count": 2560,
+      "MB": 676.34,
+      "duplicate_raw": 2560,
+      "mismatches": []
+    }
+  ],
+  "policy": "Only duplicate per-tile capture bytes are ignored; existing files are retained. Compressed arrays are the publication representation. Earlier failed preparations and baseline attempts are retained as historical source evidence, not current production authority."
+}
