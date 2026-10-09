@@ -1,0 +1,15 @@
+{
+    "schema_version": 1,
+    "terrains": 2560,
+    "retained": 2048,
+    "new_terrains": 512,
+    "edges": 5008,
+    "outer_edges": 224,
+    "collider_samples": 64000,
+    "scene": "Assets/_Project/Scenes/Reference/TerrainFarWestPairCandidate.unity",
+    "scene_sha256": "f07b0f64d1a333d0f55a7fe52d45dac02581f7092927e00df876f0cf8ea14b75",
+    "manifest_sha256": "8557e66f72230c29ebbe7db14028ad027928a0b5cfb3ba0376d18893b31fa488",
+    "status": "validated_full_grid_and_collider_samples",
+    "max_new_readback_error_m": 0.027492642402648927,
+    "max_collider_error_m": 0.000030517578125
+}

@@ -34,6 +34,7 @@ namespace BooterBigArm.Editor
 
         public static Report ValidateScene(Scene scene, bool physics = false)
         {
+            if (BadwaterFarWestPairSource.HasExpansion(scene)) return BadwaterFarWestPairValidator.ValidateScene(scene, physics);
             if (BadwaterNextWestPairSource.HasExpansion(scene)) return BadwaterNextWestPairValidator.ValidateScene(scene, physics);
             if (BadwaterWestPairSource.HasExpansion(scene)) return BadwaterWestPairValidator.ValidateScene(scene, physics);
             var manifest = BadwaterTerrainExpansionSource.ReadManifest(true);

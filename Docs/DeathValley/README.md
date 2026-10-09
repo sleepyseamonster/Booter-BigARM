@@ -4,13 +4,13 @@ Death Valley is the user's current geographic expansion focus. In the coordinate
 
 ## Current production coverage — October 8, 2026
 
-The next western and northwestern pair adds 512 Blender-authored native terrains to the retained 1,536. Greater Wasteland now has eight sections, a 64 × 32 grid and 2,048 chunks across 16.384 × 8.192 km. The fixed origin remains unchanged. See [the next-pair implementation receipt](./NEXT_WEST_PAIR_IMPLEMENTATION_2026-10-08.md), [its plan](./NEXT_WEST_PAIR_PLAN_2026-10-08.md), and [the preceding pair's receipt](./WEST_PAIR_IMPLEMENTATION_2026-10-08.md). Both the atlas and Unity developer map show the complete built footprint; atlas selection uses geographic keys so repeated local tile names cannot select another section.
+The further western and northwestern pair adds 512 Blender-authored native terrains to the retained 2,048. Greater Wasteland now has ten sections, an 80 × 32 grid and 2,560 chunks across 20.480 × 8.192 km. The fixed origin remains unchanged. See [the further-pair implementation receipt](./FAR_WEST_PAIR_IMPLEMENTATION_2026-10-08.md), [its plan](./FAR_WEST_PAIR_PLAN_2026-10-08.md), and [the preceding pair's receipt](./NEXT_WEST_PAIR_IMPLEMENTATION_2026-10-08.md). Both the atlas and Unity developer map show the complete built footprint; atlas selection uses geographic keys so repeated local tile names cannot select another section.
 
 The original 256-chunk descriptions and pending-stage tables below retain the initial study's scope and historical sequencing. The current coverage catalog and newer implementation receipts control current production facts.
 
 ## Inspect the coverage
 
-Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline, regional and detail footprints, the four original Badwater quarters, and all 2,048 clickable Unity terrain chunks. Selecting a footprint shows its size, coordinates, resolution and current source availability; the complete source record is available on demand. The map is a north-up projected coverage diagram, not a terrain render. Brown dashed footprints are retained planning references; the blue grid and current catalog identify built terrain.
+Open [coverage_atlas.html](./coverage_atlas.html) for the official park outline, regional and detail footprints, the four original Badwater quarters, and all 2,560 clickable Unity terrain chunks. Selecting a footprint shows its size, coordinates, resolution and current source availability; the complete source record is available on demand. The map is a north-up projected coverage diagram, not a terrain render. Brown dashed footprints are retained planning references; the blue grid and current catalog identify built terrain.
 
 - [coverage_catalog.json](./coverage_catalog.json) records footprints, file hashes, source identities, geographic chunk keys, scene references and verification limits.
 - [unity_tiles.csv](./unity_tiles.csv) supplies the tile inventory in a flat table.
