@@ -7,7 +7,7 @@ The saved Sculpting workspace shows an 18 m by 12 m flat ground reference and th
 | Position | Object | Dimensions |
 | --- | --- | --- |
 | Left, blue | Unity unit reference | 1 m on every edge |
-| Middle, ochre | Booter-height reference | 2.48 m on every edge |
+| Middle, tan | Booter-height reference | 2.48 m on every edge |
 | Right, neutral stone | `Rock_Sculpt_01` | 2 m on every edge |
 
 The player reference uses Greater Wasteland's saved Booter capsule height, 2.48 m at unit root scale. A read-only Unity query measured the visible body mesh at 1.77029 m times its 1.4 visual scale, approximately 2.478405 m. The reference is a cube matching that height, not a humanoid proportion model.

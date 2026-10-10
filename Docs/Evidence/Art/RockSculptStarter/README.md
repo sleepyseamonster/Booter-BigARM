@@ -9,3 +9,5 @@ Blender 5.2.2 LTS created and reopened the local `SourceArt/Blender/Studies/Rock
 - [Read-only reopen](reopen-2026-10-09.json): dimensions/pivot/unit scale preserved, symmetry off, no non-manifold edges or loose vertices, protected references. Disposable render settings did not overwrite the source.
 
 The GUI process opened the saved project with `--no-window-focus`; its title matched this source and the process was responding. No window focus/foreground call, keystroke automation, Unity import, export, gameplay smoke test or Player profiling was performed. The image is a separate scene render, not a screenshot of the interactive Blender UI. No artistic rock shape or tablet response is accepted by these checks.
+
+Later October 9, the author requested a tan Booter reference cube. [The material update](tan-update-2026-10-09.json) records the lighter tan viewport and shader colour. The pre-change local source was preserved, geometry was not modified, and the saved project was reopened without taking foreground focus. The image above retains the initial ochre material as historical creation evidence.

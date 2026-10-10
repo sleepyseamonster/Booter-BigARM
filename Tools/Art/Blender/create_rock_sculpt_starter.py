@@ -80,7 +80,7 @@ def main():
         scene.collection.children.link(collection)
     gray = material("Rock Sculpt Neutral", (0.44, 0.40, 0.35))
     unit = cube("Reference - 1 Unity Unit - 1m Cube", 1.0, -6, references, material("Unit Reference Blue", (0.23, 0.40, 0.58)))
-    player = cube("Reference - Booter Height - 2.48m Cube", PLAYER_HEIGHT, -2.5, references, material("Player Reference Ochre", (0.58, 0.43, 0.22)))
+    player = cube("Reference - Booter Height - 2.48m Cube", PLAYER_HEIGHT, -2.5, references, material("Player Reference Tan", (0.76, 0.64, 0.47)))
     rock = cube("Rock_Sculpt_01", SCULPT_EDGE, 5, sculpture, gray)
     bpy.ops.object.mode_set(mode="EDIT")
     bpy.ops.mesh.select_all(action="SELECT")
