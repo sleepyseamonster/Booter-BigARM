@@ -1,0 +1,32 @@
+{
+  "status": "live_root_transfer_guard_passed",
+  "step": 4,
+  "scene_sha256": "2e7e30186f7d3f9eead09329a7f49b394dee4ccee15f58a7aa00cae1e2ce4019",
+  "scenes": [
+    {
+      "name": "FixedTerrainDressingStudy",
+      "path": "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity",
+      "isLoaded": true,
+      "isDirty": true,
+      "isActive": true,
+      "rootCount": 11
+    }
+  ],
+  "editor_state": {
+    "playing": false,
+    "compiling": false
+  },
+  "compiler_truth": {
+    "sampledUtc": "2026-10-10T23:04:22.8183245Z",
+    "ageMs": 179,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 52,
+    "consoleLogs": 4,
+    "seeded": true
+  },
+  "known_console_entries": [],
+  "dirty_task_terrain_assets": [],
+  "unrelated_scene_policy": "Preserve unsaved unrelated scenes; do not save, switch or mutate them"
+}
