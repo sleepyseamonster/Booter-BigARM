@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 23:59:45Z" end-time="2026-10-09 23:59:46Z" duration="0.9863958">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="646" result="Passed" start-time="2026-10-09 23:59:45Z" end-time="2026-10-09 23:59:46Z" duration="0.986396" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1769" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/FixedTerrainDressing20261009/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="646" result="Passed" start-time="2026-10-09 23:59:45Z" end-time="2026-10-09 23:59:46Z" duration="0.973380" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="26464" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1770" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="646" result="Passed" start-time="2026-10-09 23:59:45Z" end-time="2026-10-09 23:59:46Z" duration="0.969445" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1771" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="646" result="Passed" start-time="2026-10-09 23:59:45Z" end-time="2026-10-09 23:59:46Z" duration="0.965662" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1181" name="FixedTerrainDressingTests" fullname="BooterBigArm.Tests.FixedTerrainDressingTests" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 23:59:45Z" end-time="2026-10-09 23:59:46Z" duration="0.946398" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1184" name="ContactFieldIsOrderIndependentBoundedAndWindDirected" fullname="BooterBigArm.Tests.FixedTerrainDressingTests.ContactFieldIsOrderIndependentBoundedAndWindDirected" methodname="ContactFieldIsOrderIndependentBoundedAndWindDirected" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" seed="613883796" result="Passed" start-time="2026-10-09 23:59:45Z" end-time="2026-10-09 23:59:45Z" duration="0.031607" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1183" name="HolesAndColliderDataMismatchFailClosed" fullname="BooterBigArm.Tests.FixedTerrainDressingTests.HolesAndColliderDataMismatchFailClosed" methodname="HolesAndColliderDataMismatchFailClosed" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" seed="957923575" result="Passed" start-time="2026-10-09 23:59:45Z" end-time="2026-10-09 23:59:45Z" duration="0.018479" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1182" name="NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles" fullname="BooterBigArm.Tests.FixedTerrainDressingTests.NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles" methodname="NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" seed="1517307631" result="Passed" start-time="2026-10-09 23:59:45Z" end-time="2026-10-09 23:59:46Z" duration="0.011450" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1185" name="SavedStudyUsesMatchedInputsAndActualReliefCollision" fullname="BooterBigArm.Tests.FixedTerrainDressingTests.SavedStudyUsesMatchedInputsAndActualReliefCollision" methodname="SavedStudyUsesMatchedInputsAndActualReliefCollision" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" seed="1560308567" result="Passed" start-time="2026-10-09 23:59:46Z" end-time="2026-10-09 23:59:46Z" duration="0.867677" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

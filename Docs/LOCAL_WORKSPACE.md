@@ -24,6 +24,8 @@ Subsequent 2026-10-08 validation resolved the named-user Unity entitlement and p
 
 ## Current saved-scene checkpoint — 2026-10-09
 
+For rock/ground population work, follow the [fixed-terrain dressing plan](Design/Gameplay/FIXED_TERRAIN_DRESSING_PLAN.md). The user approved procedural dressing and POIs on persistent native terrain; terrain generation remains inactive. The first study is a separate reference scene, not production population. Its live Editor render attempt stalled; run subsequent captures only in an isolated background batchmode project.
+
 For terrain/hierarchy continuation, start with the [Greater Wasteland reconciliation](Evidence/Badwater/GREATER_WASTELAND_RECONCILIATION_2026-10-09.md) and its exact baseline. The scene contains 4,608 sealed native tiles, 18 sections and 288 sectors. The three manual sculpt edits were restored by explicit author direction; older hierarchy-tooling notes about blocked hash validation are historical. Current saved-scene and terrain/collision gates pass. Earlier publication receipts below retain their original machine and scope.
 
 ## Resume context

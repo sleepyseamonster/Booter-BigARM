@@ -1,0 +1,23 @@
+{
+    "scene": "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity",
+    "sourceScene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+    "sourceSceneSha256": "09a8bf19b4ebf679a9baeb8a33bc26c9751e04e9d1d840c8ea3252720ee92bb8",
+    "terrainRevision": "09a8bf19b4ebf679a9baeb8a33bc26c9751e04e9d1d840c8ea3252720ee92bb8",
+    "sourceCenter": {
+        "x": -1848.0,
+        "y": -47.0560417175293,
+        "z": -1498.0
+    },
+    "seed": 20261009,
+    "sampledVertices": 9409,
+    "panels": 6,
+    "rockInstances": 327,
+    "maximumReliefMeters": 0.07999999821186066,
+    "sampledTerrainPaths": [
+        "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c00.asset"
+    ],
+    "sampledTerrainSha256": [
+        "82421aa53b3223dcd2112ad368db0069e01bd0ab036aab6a4cb6c822eb54a31b"
+    ],
+    "limitation": "Editor comparison only; no Player performance, saved-world integration, exact mesh contact, parallax or texture-synthesis proof."
+}

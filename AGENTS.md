@@ -74,9 +74,9 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 
 ## Working Rules For New Content
 
-- Preserve future procedural compatibility when designing gameplay seams, but Greater Wasteland currently uses its fixed authored terrain. The user deferred procedural generation on 2026-10-06; do not implement or activate it without a new approval.
+- Greater Wasteland uses fixed authored terrain. On 2026-10-09 the user approved procedural rock/formation, ground-dressing and point-of-interest work on that persistent terrain, beginning with the bounded study in [the fixed-terrain dressing plan](Docs/Design/Gameplay/FIXED_TERRAIN_DRESSING_PLAN.md). This supersedes the blanket generation deferral for that scope; it does not reactivate terrain generation.
 - Before implementation, state how the system interacts with deterministic world identity, chunk streaming and unload/reload, stable generated-object identity, authored constraints, and persisted runtime deltas. Mark a concern not applicable only when the reason is explicit.
-- Greater Wasteland currently uses its fixed, always-loaded terrain by explicit user direction. Keep new gameplay separable from that loading assumption where practical, but do not implement generation or streaming until its redesign is approved.
+- Greater Wasteland uses fixed, always-loaded terrain by explicit user direction. Dressing cells may organize placement and rendering independently; do not implement terrain generation or terrain streaming. Saved-world integration follows its own versioned implementation slice.
 - Procedural-generation-first does not mean randomizing every feature. Hand-authored rules, landmarks, encounters, and narrative content should constrain, anchor, and improve the generated world.
 - Put gameplay scripts in a dedicated scripts folder, ideally with asmdefs once the codebase grows.
 - Keep scenes minimal and purpose-built.
@@ -92,7 +92,7 @@ Use a clean project-owned structure for new work. Existing assets can remain whe
 - Editor version: `6000.4.0f1`
 - Pipeline: URP
 - Primary production scene and only enabled build scene: `Assets/_Project/Scenes/Production/GreaterWasteland.unity`
-- Greater Wasteland is the existing playable Badwater terrain, promoted on 2026-10-06. All continuing gameplay mechanics and player controls target this scene. Do not add procedural terrain, generated props, chunk streaming, or procedural save integration until the user approves a redesigned generation approach.
+- Greater Wasteland is the existing playable Badwater terrain, promoted on 2026-10-06. All continuing gameplay mechanics and player controls target this scene. The 2026-10-09 approved dressing direction places procedural content on unchanged native terrain; the first comparison scene is isolated under Scenes/Reference. Do not install the old generated-terrain or generated-world save services into production.
 - `TopDown3DPrototype.unity` remains a disabled generated-world reference; do not copy its generator or save service into Greater Wasteland.
 - Legacy scenes and compatible renderer settings are registered only in the standalone historical project, not production.
 - Current production renderer settings: `Assets/_Project/Settings/Rendering/URP/UniversalRP.asset` with its sole 3D renderer at index 0 as the default. Active cameras resolve that renderer.

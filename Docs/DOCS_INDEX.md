@@ -10,8 +10,10 @@ These should be treated as the source of truth unless they are intentionally rev
 
 - [WORLD_BASIS.md](./WORLD_BASIS.md)
   The setting, tone, and core world fantasy.
+- [FIXED_TERRAIN_DRESSING_PLAN.md](./Design/Gameplay/FIXED_TERRAIN_DRESSING_PLAN.md)
+  Current Greater Wasteland direction: persistent native terrain with procedural rocks, ground dressing and POIs; bounded contact/relief study and later integration gates.
 - [WORLD_CREATOR_CHARTER.md](./Design/DeferredGeneration/WORLD_CREATOR_CHARTER.md)
-  The approved product promise, quality bar, lore constraints, and non-negotiable principles for the effectively infinite World Creator.
+  Preserved infinite World Creator promise, quality bar and lore constraints. Its terrain-generation scope is deferred; current Greater Wasteland work follows the fixed-terrain dressing plan.
 - [WORLD_SYSTEMS_STANDARD.md](./Engineering/WORLD_SYSTEMS_STANDARD.md)
   The procedural generation, chunking, and save/load baseline.
 - [PROJECT_STRUCTURE.md](./Engineering/PROJECT_STRUCTURE.md)

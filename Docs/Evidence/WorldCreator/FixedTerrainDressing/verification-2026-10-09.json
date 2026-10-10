@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-09",
+  "editor": "6000.4.0f1",
+  "validationProject": "D:\\BooterBigArmValidation\\FixedTerrainDressing20261009",
+  "excludedFromValidationCopy": "Native terrain asset tree (focused fixtures and saved study only)",
+  "tests": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4
+  },
+  "validatedSources": [
+    {
+      "sha256": "852961065576a269f54433d044f9bb8c27b7df626df887dffe18758d3d8fc9c1",
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs"
+    },
+    {
+      "sha256": "91c8fb9a064b926c4d3c31890144c7494019a5f180176187f1e11a099144a175",
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRockContactField.cs"
+    },
+    {
+      "sha256": "afcf9ab43f95eedfd759c86aef7b4efbf69d6779ba9b89779f72e2ceb9992e37",
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/FixedTerrainDressingStudyBuilder.cs"
+    },
+    {
+      "sha256": "98e93e33703b96f599d0f0579a6a8e05b9eae667d3de5e3439142f1313608c32",
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainDressingTests.cs"
+    },
+    {
+      "sha256": "86532e1612909149efa63b79f047298eaf6eb4992b87bb1c5cce221c4d002e2c",
+      "path": "Assets/_Project/Shaders/TopDown3D/FixedTerrainDressingStudy.shader"
+    }
+  ],
+  "render": {
+    "offscreenFrames": 7,
+    "resolution": [
+      1280,
+      720
+    ],
+    "inheritedRenderer": "Existing URP Renderer3D including image effects; no renderer/settings changes",
+    "shaderErrors": 0,
+    "graphicsAPI": "Direct3D 11",
+    "batchExit": 0
+  },
+  "protection": {
+    "duplicateProjectGuids": 0,
+    "productionSceneHash": "09a8bf19b4ebf679a9baeb8a33bc26c9751e04e9d1d840c8ea3252720ee92bb8",
+    "sampledTerrainHash": "82421aa53b3223dcd2112ad368db0069e01bd0ab036aab6a4cb6c822eb54a31b"
+  },
+  "limits": [
+    "No gameplay smoke test",
+    "No Player performance proof",
+    "No production dressing or saved-world installation",
+    "Contact footprints are elliptical bounds approximations",
+    "New serialized task assets had only trailing whitespace normalized after validation",
+    "Live Editor offscreen capture stalled; no restart/focus performed"
+  ]
+}

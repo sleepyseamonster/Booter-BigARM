@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StudyGround_0_2
+  m_Shader: {fileID: 4800000, guid: fe98105e0d207724ab9a2d66b337054a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties:
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SandMap:
+        m_Texture: {fileID: 2800000, guid: a3a177ed53934ba4b9087ea2adea50a5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _StoneMap:
+        m_Texture: {fileID: 2800000, guid: 8fc4a67fc546840e49a0ae8ec31852a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _StoneNormal:
+        m_Texture: {fileID: 2800000, guid: 2c1ecfe16e8824742a208ec882e43938, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _StoneSurface:
+        m_Texture: {fileID: 2800000, guid: 445451f53f62a4c7dac4b94247dfe1ef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Contact: 1
+    - _MetersPerTile: 2
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
