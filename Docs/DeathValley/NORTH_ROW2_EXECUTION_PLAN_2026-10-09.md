@@ -1,0 +1,62 @@
+# Second northern row execution plan — October 9, 2026
+
+Authority: the author directed this chat to pursue the correct sequence as its goal after reviewing the [readiness report](NEXT_NORTHERN_ROW_READINESS_2026-10-09.md). The approved footprint is six complete 4,096 m sections, west to east, in `[499920,4018488,524496,4022584]` (EPSG:26911). No external publication or source cleanup is authorized.
+
+## Baseline and identity
+
+The [fresh baseline receipt](../Evidence/DeathValley/NEXT_NORTHERN_ROW_BASELINE_2026-10-09.json) seals 4,608 tiles in twelve terrain asset owners, 9,072 exact joins and 115,200 collision samples. Its local-only full readback and 105,245-file protection inventory remain intact. The saved scene hash is `09a8bf19b4ebf679a9baeb8a33bc26c9751e04e9d1d840c8ea3252720ee92bb8`.
+
+Geographic keys remain stable through CRS, integer lower-left easting/northing, tile size and source version. Retained terrain, GUIDs, hierarchy sectors, actors, camera, UI and runtime behavior are protected. This is a fixed-terrain extension; terrain generation, chunk streaming/unload/reload and persisted runtime-delta formats are outside the job. New terrain is always loaded under the existing connectivity owner. Dressing placement is a separate lane.
+
+## Sequence and gates
+
+1. Acquire bounded measured DEM windows and metadata across the entire row into the fresh local-only `NorthRow2Survey2026-10-09/Acquisition01/DEM/` owner. Verify all eight x49–x52/y402–y403 products, both-axis ownership, all finite 1 m vertex samples, source overlaps and strict 2 m decimation. Record the exact range of each section, including unsupported ranges. Stop for the author's decision if any section exceeds −100 to 1,700 m; no clamping or global encoding change.
+2. Acquire and audit aligned 2 m NAIP images for the six sections, retaining query/export identities. Reject missing or masked pixels. A catalog intersection is insufficient.
+3. Seal a measured storage budget before authoring. Use one new isolated validation project, preserving immutable per-section evidence before advancing it. Existing validation folders and C: rollback remain untouched. Recheck free space before each meaningful output.
+4. Implement the new `north_row2` preparation/native authoring/export/Unity contract independently from sealed older-row constants. Step 1 has a south anchor only. Later steps require the preceding section's west edge as well. Freshly audit runtime crop/corner colors; retain the unchanged height adjustment, native readback and collision tolerances.
+5. For each section, verify its immediately preceding accepted saved scene, full native readback, protected owners and exact occupied-cell set. Prepare the new geometry against those actual anchors. Build/reopen a bounded pilot, then the complete 256-mesh section and combined review of all occupied cells. Inspect the five required views before exporting.
+6. Guard export with current native source, reopen proof and manifest hashes. Import into a disabled candidate and validate all retained data, GUIDs, exact reciprocal joins, occupied cells, collider samples and single connectivity owner. Save/reopen the candidate, integrate in isolation and independently validate the saved production scene.
+7. Guard transfer against the production scene hash and live unsaved state. Refresh coverage/catalog/map only after native production proof. Document and commit the verified section on `main`; start the next section's baseline only after closeout. Stop at 6,144 terrains, 12,128 exact joins, 320 exterior slots and 153,600 collision samples.
+
+## Storage design to verify
+
+The old export duplicates every retained normalized grid under each new section owner. Repeating that design would consume most available space. The new adapter may reference already sealed immutable native snapshot resources by exact owned path/hash and copy only newly needed snapshots; it must still verify every retained sample exactly and protect all prior owners. Historical hash guards and manifests remain unchanged. This is a new bounded source schema, not permission to bypass missing files or substitute old hashes.
+
+Measure this design before accepting a capacity pass. Budget the isolated project/cache, source windows and imagery, prepared and reopened geometry proofs, compressed native Blender sources/reviews, new Unity assets, local Git growth and working margin. Any sharing must preserve clear ownership and safe import behavior; writable hardlinks to production Unity assets are prohibited because isolated import could change production bytes. Preserve local-only source files and record their hashes in small committed receipts.
+
+## Source gate and bounded capacity plan
+
+The [source audit](../Evidence/DeathValley/NORTH_ROW2_SOURCE_AUDIT_2026-10-09.json) passed all six footprints: 100,691,969 unique finite 1 m samples, exact shared measured edges, strict 2 m decimation and six aligned 2,048-square NAIP images. Overall range is −84.5762100 to 1,532.0693359 m, within the unchanged encoding. Ten actual product-domain ownership lines differ by at most 0.0001220703125 m. Buffer overlaps differ by up to 6.0419921875 m; these are recorded separately, and the half-open owner rule excludes inappropriate neighboring buffers. No averaging or clamping was applied.
+
+All 4,352 predecessor retained native source grids reproduced the fresh readback exactly. Only the most recent 256 terrains require a new shared native snapshot owner (67,634,176 bytes). The full eighteen-section retained model was generated once and all accepted runtime RGB crops were verified. Live crops are **128 × 128 pixels at 2 m spacing**, covering 256 × 256 m; the handoff's “256 × 256 runtime crops” wording confused physical footprint with pixel dimensions.
+
+The new combined reopen proof stores its exact 4 m controls and every 1 m border sample rather than a redundant reconstructed 257-square array for every review mesh. It still checks every saved mesh vertex, exact borders, geographic identity, transforms, metre units, upward normals and packed images. Section export retains full 257-square geometry. This distinct second-row proof representation does not alter historical proofs or assertions.
+
+The conservative future incremental storage allowance is:
+
+| Allocation | GiB |
+| --- | ---: |
+| One isolated project, initial Assets and cache | 16.25 |
+| Isolated cache growth | 2.00 |
+| New runtime owners in production and isolation | 3.25 |
+| Local Git growth | 2.00 |
+| New section inputs and full section proofs | 1.50 |
+| Compact combined proofs | 1.00 |
+| Compressed native Blender pilot/section/review sources | 4.00 |
+| Baseline descriptors and saved predecessor scenes | 0.50 |
+| Logs and renders | 0.50 |
+| Transient task space | 1.00 |
+| Initial shared native snapshot resources | 0.20 |
+| Total remaining allowance | **31.20** |
+
+After acquisition and the shared model, D: had approximately 35.22 GiB free. This allowance leaves roughly 4 GiB, above the minimum 3 GiB working margin. The capacity pass is conditional on these bounds: measure actual output/copy sizes and remaining allowance before each section and expensive output. Stop before consuming the margin or exceeding an allocation. Do not delete old validation projects or source files. A fresh complete isolated project preserves normal asset/metadata import behavior; no writable production hardlinks or implicit missing-file fallbacks are used.
+
+## Current execution state
+
+Source acquisition, reopened source audit, native reference-reuse audit and the shared retained model passed. Thirteen offline contract/catalog/color/reference negative tests passed. Section 1 preparation passed with 0.0274963379 m maximum new-side adjustment against the unchanged 0.0420576669 m budget, zero new edge error and zero retained RGB edge error. Its west anchor and corner exception are correctly absent.
+
+The [first-section authoring checkpoint](../Evidence/DeathValley/NORTH_ROW2_STEP01_AUTHORING_2026-10-09.json) seals the four-mesh one-border pilot, 256-mesh section and 4,864-mesh combined review. All three native sources were saved and reopened with zero source-vertex and shared-border error, positive normals and packed imagery. All five required views were inspected: pilot junction, section overhead/oblique and combined overhead/oblique. The combined footprint has the expected unbuilt upper-east area. The three compressed native sources total 497,484,331 bytes; source files remain local-only and are not authorized for retirement.
+
+The next gate is guarded source export and a distinct second-row Unity source/builder/validator, followed by native candidate and preserved saved-production validation in one new isolated project. The proposed export reuses sealed old native references and records fresh snapshots for new native tiles; it must not copy the old exporters' full retained-grid duplication or weaken historical hashes. Keep the compact combined proof's 4 m controls/full 1 m border encoding explicit in export verification. Preserve the existing section/sector hierarchy; a new section with sixteen sectors should add 1,314 scene documents (1,280 tile documents, 32 sector documents and two section documents), rather than the handoff's older flat-section expectation of 1,282. Verify the actual document count and preserve every old document except the common parent's appended child.
+
+No new TerrainData or production integration has begun. Native GUI work remains background-only; no gameplay smoke tests are part of the job. Production still matches the verified starting scene hash.
