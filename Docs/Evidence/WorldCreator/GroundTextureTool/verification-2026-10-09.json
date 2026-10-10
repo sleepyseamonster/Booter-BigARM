@@ -1,0 +1,44 @@
+{
+  "editor": "6000.4.0f1",
+  "limits": [
+    "No gameplay smoke tests",
+    "No Player performance claim",
+    "Artist brush/overlap acceptance pending"
+  ],
+  "sources": [
+    {
+      "sha256": "fb928dffb578d8348f55dc1839a9d7b3a6bce193430873d760059a0473b4bd8f",
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GroundTextureSticker.cs"
+    },
+    {
+      "sha256": "19f85da74830bb051f61834f1bcce19cbeeccfcabdb736d17cbc3de21120e9de",
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/GroundTextureAuthoring.cs"
+    },
+    {
+      "sha256": "c5594cc14366ef3160baef22c54c225e67f415aec51e9d4ca57aa6da2eacae11",
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/GroundTextureTool.cs"
+    },
+    {
+      "sha256": "9e86e8f5d9b7f9c3f1073dae11507d980e1cb57b2b782ebb43886ca393e0b06b",
+      "path": "Assets/_Project/Scripts/Editor/Validation/GroundTextureToolVerification.cs"
+    },
+    {
+      "sha256": "a7422b6db35ec2b8b67f1af9a9cd8e6f2081301f0bf7ebf6c01b9a6d2aac6934",
+      "path": "Assets/_Project/Tests/Editor/GroundTextureAuthoringTests.cs"
+    },
+    {
+      "sha256": "4a3893d5e23e82390c1d5fa96917c6c53e33ec6009b83fd293379f2fa971d546",
+      "path": "Assets/_Project/Shaders/TopDown3D/GroundTextureSticker.shader"
+    }
+  ],
+  "shader": "Three isolated Direct3D11 variants, successful render and clean live shader compiler messages",
+  "currentScene": "FixedTerrainDressingStudy remained open and clean",
+  "date": "2026-10-09",
+  "nativeProductionPainting": "None performed",
+  "tests": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6
+  },
+  "validationProject": "D:\\BooterBigArmValidation\\FixedTerrainDressing20261009"
+}

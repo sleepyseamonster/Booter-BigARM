@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.1770091">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="652" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.177009" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1776" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/FixedTerrainDressing20261009/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="652" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.166667" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12104" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1777" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="652" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.164404" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1778" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="652" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.162381" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1198" name="GroundTextureAuthoringTests" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.146321" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1200" name="BrushUndoRestoresLayerAssignmentsAndWeightsForACompleteStroke" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.BrushUndoRestoresLayerAssignmentsAndWeightsForACompleteStroke" methodname="BrushUndoRestoresLayerAssignmentsAndWeightsForACompleteStroke" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="1161118118" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.044715" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1203" name="DuplicatingAStickerRetainsTheOriginalIdAndAssignsANewCopyId" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.DuplicatingAStickerRetainsTheOriginalIdAndAssignsANewCopyId" methodname="DuplicatingAStickerRetainsTheOriginalIdAndAssignsANewCopyId" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="772595125" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.034694" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1201" name="EmptyHoleOrOutsideBrushDoesNotAddALayer" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.EmptyHoleOrOutsideBrushDoesNotAddALayer" methodname="EmptyHoleOrOutsideBrushDoesNotAddALayer" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="1694717157" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.003991" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1199" name="NativeBrushPreservesHeightsAndNormalizedWeightsAcrossTileBoundary" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.NativeBrushPreservesHeightsAndNormalizedWeightsAcrossTileBoundary" methodname="NativeBrushPreservesHeightsAndNormalizedWeightsAcrossTileBoundary" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="849497806" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.018895" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1204" name="SavedDemoRetainsStickerGeometryPaintedLayersAndBuildExclusion" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.SavedDemoRetainsStickerGeometryPaintedLayersAndBuildExclusion" methodname="SavedDemoRetainsStickerGeometryPaintedLayersAndBuildExclusion" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="1806514137" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.011537" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1202" name="StickerGeometryPersistsAndNeverAddsCollisionOrChangesTerrain" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.StickerGeometryPersistsAndNeverAddsCollisionOrChangesTerrain" methodname="StickerGeometryPersistsAndNeverAddsCollisionOrChangesTerrain" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="43653342" result="Passed" start-time="2026-10-10 00:36:38Z" end-time="2026-10-10 00:36:38Z" duration="0.014917" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

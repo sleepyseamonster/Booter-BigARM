@@ -12,6 +12,8 @@ These should be treated as the source of truth unless they are intentionally rev
   The setting, tone, and core world fantasy.
 - [FIXED_TERRAIN_DRESSING_PLAN.md](./Design/Gameplay/FIXED_TERRAIN_DRESSING_PLAN.md)
   Current Greater Wasteland direction: persistent native terrain with procedural rocks, ground dressing and POIs; bounded contact/relief study and later integration gates.
+- [GROUND_TEXTURE_AUTHORING.md](./Engineering/GROUND_TEXTURE_AUTHORING.md)
+  Manual ground texture stickers and native terrain painting, with Undo, authoring persistence and terrain-preservation boundaries.
 - [WORLD_CREATOR_CHARTER.md](./Design/DeferredGeneration/WORLD_CREATOR_CHARTER.md)
   Preserved infinite World Creator promise, quality bar and lore constraints. Its terrain-generation scope is deferred; current Greater Wasteland work follows the fixed-terrain dressing plan.
 - [WORLD_SYSTEMS_STANDARD.md](./Engineering/WORLD_SYSTEMS_STANDARD.md)
