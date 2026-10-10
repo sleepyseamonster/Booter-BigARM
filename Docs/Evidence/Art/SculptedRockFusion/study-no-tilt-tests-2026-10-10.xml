@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Passed" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 23:46:13Z" end-time="2026-10-10 23:46:14Z" duration="0.3088956">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="664" result="Passed" start-time="2026-10-10 23:46:13Z" end-time="2026-10-10 23:46:14Z" duration="0.308896" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1791" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/FixedTerrainDressing20261009/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="664" result="Passed" start-time="2026-10-10 23:46:13Z" end-time="2026-10-10 23:46:14Z" duration="0.293861" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="32180" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1792" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="664" result="Passed" start-time="2026-10-10 23:46:13Z" end-time="2026-10-10 23:46:14Z" duration="0.290871" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1793" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="664" result="Passed" start-time="2026-10-10 23:46:13Z" end-time="2026-10-10 23:46:14Z" duration="0.286615" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1205" name="NineAreaRockStudyTests" fullname="BooterBigArm.Tests.NineAreaRockStudyTests" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-10 23:46:13Z" end-time="2026-10-10 23:46:14Z" duration="0.240644" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1206" name="NineFlatAreasHaveTheSameBaseAndExactlyOneEditableRockEach" fullname="BooterBigArm.Tests.NineAreaRockStudyTests.NineFlatAreasHaveTheSameBaseAndExactlyOneEditableRockEach" methodname="NineFlatAreasHaveTheSameBaseAndExactlyOneEditableRockEach" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" seed="401318949" result="Passed" start-time="2026-10-10 23:46:13Z" end-time="2026-10-10 23:46:14Z" duration="0.212266" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1207" name="SharedStudyLayerSamplesOnlyAPadSizedRegionAtNativeScale" fullname="BooterBigArm.Tests.NineAreaRockStudyTests.SharedStudyLayerSamplesOnlyAPadSizedRegionAtNativeScale" methodname="SharedStudyLayerSamplesOnlyAPadSizedRegionAtNativeScale" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" seed="149213797" result="Passed" start-time="2026-10-10 23:46:14Z" end-time="2026-10-10 23:46:14Z" duration="0.001756" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1208" name="StudySunAndEnvironmentMatchTheSavedWorldLightingReference" fullname="BooterBigArm.Tests.NineAreaRockStudyTests.StudySunAndEnvironmentMatchTheSavedWorldLightingReference" methodname="StudySunAndEnvironmentMatchTheSavedWorldLightingReference" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" seed="1411527414" result="Passed" start-time="2026-10-10 23:46:14Z" end-time="2026-10-10 23:46:14Z" duration="0.012328" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1219" name="SceneRenderingOverrideTests" fullname="BooterBigArm.Tests.SceneRenderingOverrideTests" classname="BooterBigArm.Tests.SceneRenderingOverrideTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-10 23:46:14Z" end-time="2026-10-10 23:46:14Z" duration="0.011456" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1220" name="SavedStudyCameraOwnsTheEnabledOverride" fullname="BooterBigArm.Tests.SceneRenderingOverrideTests.SavedStudyCameraOwnsTheEnabledOverride" methodname="SavedStudyCameraOwnsTheEnabledOverride" classname="BooterBigArm.Tests.SceneRenderingOverrideTests" runstate="Runnable" seed="899869376" result="Passed" start-time="2026-10-10 23:46:14Z" end-time="2026-10-10 23:46:14Z" duration="0.007557" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1221" name="TiltShiftSuppressionAppliesOnlyToItsSceneAndCanBeDisabled" fullname="BooterBigArm.Tests.SceneRenderingOverrideTests.TiltShiftSuppressionAppliesOnlyToItsSceneAndCanBeDisabled" methodname="TiltShiftSuppressionAppliesOnlyToItsSceneAndCanBeDisabled" classname="BooterBigArm.Tests.SceneRenderingOverrideTests" runstate="Runnable" seed="1818151218" result="Passed" start-time="2026-10-10 23:46:14Z" end-time="2026-10-10 23:46:14Z" duration="0.001846" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1629" name="TopDown3DTiltShiftTests" fullname="BooterBigArm.Tests.TopDown3DTiltShiftTests" classname="BooterBigArm.Tests.TopDown3DTiltShiftTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-10 23:46:14Z" end-time="2026-10-10 23:46:14Z" duration="0.004764" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1630" name="BlurWeight_KeepsThePlayBandSharpAndBlursTheFrameEdges" fullname="BooterBigArm.Tests.TopDown3DTiltShiftTests.BlurWeight_KeepsThePlayBandSharpAndBlursTheFrameEdges" methodname="BlurWeight_KeepsThePlayBandSharpAndBlursTheFrameEdges" classname="BooterBigArm.Tests.TopDown3DTiltShiftTests" runstate="Runnable" seed="1489905097" result="Passed" start-time="2026-10-10 23:46:14Z" end-time="2026-10-10 23:46:14Z" duration="0.000586" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1631" name="BlurWeight_WiderFeatherCreatesASofterGradient" fullname="BooterBigArm.Tests.TopDown3DTiltShiftTests.BlurWeight_WiderFeatherCreatesASofterGradient" methodname="BlurWeight_WiderFeatherCreatesASofterGradient" classname="BooterBigArm.Tests.TopDown3DTiltShiftTests" runstate="Runnable" seed="1092147000" result="Passed" start-time="2026-10-10 23:46:14Z" end-time="2026-10-10 23:46:14Z" duration="0.000222" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1632" name="PerspectiveRenderer_HasOneAdjustableSceneViewTiltShiftFeature" fullname="BooterBigArm.Tests.TopDown3DTiltShiftTests.PerspectiveRenderer_HasOneAdjustableSceneViewTiltShiftFeature" methodname="PerspectiveRenderer_HasOneAdjustableSceneViewTiltShiftFeature" classname="BooterBigArm.Tests.TopDown3DTiltShiftTests" runstate="Runnable" seed="557464280" result="Passed" start-time="2026-10-10 23:46:14Z" end-time="2026-10-10 23:46:14Z" duration="0.002744" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

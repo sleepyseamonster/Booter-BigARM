@@ -72,6 +72,12 @@ namespace BooterBigArm.TopDown3D
         {
             var cameraData = renderingData.cameraData;
             var cameraType = cameraData.cameraType;
+            var scene = cameraData.camera.scene;
+#if UNITY_EDITOR
+            // Editor Scene cameras are utility objects; their rendered authoring scene is active.
+            if (cameraType == CameraType.SceneView) scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+#endif
+            if (TopDown3DSceneRenderingOverride.TiltShiftDisabledIn(scene)) return;
             if (material == null
                 || cameraData.renderType != CameraRenderType.Base
                 || (cameraType != CameraType.Game && cameraType != CameraType.SceneView)

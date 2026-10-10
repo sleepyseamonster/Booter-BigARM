@@ -16,6 +16,8 @@ Current scene: `Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity
 
 ## Panels
 
+The study overview camera carries a scene rendering override that suppresses tilt shift in this scene's Game and active Scene views. Greater Wasteland and the shared renderer retain their existing settings. This is independent of the study's matched sun and environment lighting.
+
 **Booter & BigARM > Geology Studies > Open Nine-Area Authoring Panels** reopens this setup when the study is active:
 
 - **Ground Textures**: manual sticker placement and native texture brush. It starts on Paint terrain with painting stopped.
