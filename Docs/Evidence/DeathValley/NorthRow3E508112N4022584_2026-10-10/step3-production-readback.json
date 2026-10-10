@@ -1,0 +1,18 @@
+{
+    "schema_version": 2,
+    "row_step": 3,
+    "terrains": 6912,
+    "retained": 6656,
+    "new_terrains": 256,
+    "edges": 13648,
+    "outer_edges": 352,
+    "collider_samples": 172800,
+    "sectors": 432,
+    "family": "north_row3",
+    "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+    "scene_sha256": "2e7e30186f7d3f9eead09329a7f49b394dee4ccee15f58a7aa00cae1e2ce4019",
+    "manifest_sha256": "5a2a38b0ee650b09c47d0c06609ab6534c181886c13bb0293067e4f75fe8bbb8",
+    "status": "validated_full_grid_and_collider_samples",
+    "max_new_readback_error_m": 0.027467496693134309,
+    "max_collider_error_m": 0.00006103515625
+}
