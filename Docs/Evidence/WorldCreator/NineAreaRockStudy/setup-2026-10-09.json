@@ -1,0 +1,35 @@
+{
+  "spacingMeters": 20,
+  "areaMeters": 16,
+  "readyLiveMeshes": 9,
+  "date": "2026-10-09",
+  "comparisonSha256": "a857ac181aa14d623f8d94d9870dfcc36b2b842407565c0d641000ea576591e6",
+  "tests": {
+    "passed": 12,
+    "failed": 0,
+    "total": 12
+  },
+  "workbenches": 9,
+  "limits": [
+    "No gameplay smoke test",
+    "No Player performance proof",
+    "No production terrain changes"
+  ],
+  "sceneSha256": "fd3e3b3c0a3be227e2f7c647f268bcb67a7fd537225d3f5a4357816d8ae1fda4",
+  "sourceMaterial": "Assets/_Project/Art/Terrain/BadwaterFourSlices/BadwaterTerrainURP.mat",
+  "editor": "6000.4.0f1",
+  "comparison": "Assets/_Project/Scenes/Reference/FixedTerrainDressingComparison.unity",
+  "sourceLayer": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r11_c08.terrainlayer",
+  "nativeAreas": 9,
+  "scene": "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity",
+  "live": {
+    "panels": [
+      "Ground Textures",
+      "Rock Workbench",
+      "Inspector"
+    ],
+    "activeNativeTool": "UnityEditor.TerrainTools.PaintTextureTool",
+    "sceneDirty": false,
+    "foregroundFocusRequested": false
+  }
+}

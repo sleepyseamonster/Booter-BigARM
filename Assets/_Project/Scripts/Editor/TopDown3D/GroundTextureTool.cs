@@ -34,6 +34,9 @@ namespace BooterBigArm.Editor
         [MenuItem("Booter & BigARM/Ground Textures/Texture Sticker and Paint Tool")]
         public static void Open() => GetWindow<GroundTextureTool>("Ground Textures");
 
+        public void PrepareForTerrainPaint()
+        { EndStroke(); armed = false; mode = 1; InvalidateSurfaces(); Repaint(); }
+
         public static void InstallDefaults()
         {
             var shader = Shader.Find("BooterBigArm/Ground Texture Sticker")
@@ -116,7 +119,11 @@ namespace BooterBigArm.Editor
                 strength = EditorGUILayout.Slider("Brush strength", strength, .01f, 1);
                 softness = EditorGUILayout.Slider("Soft edge", softness, .01f, 1);
                 EditorGUILayout.HelpBox("Drag on native Unity terrain to paint. Each stroke has Undo. Heights and holes are preserved; texture weights and layer assignments change in TerrainData assets. Save Project to keep those asset edits. Escape stops painting.", MessageType.Info);
-                EditorGUILayout.HelpBox("Greater Wasteland currently paints at roughly 2 m per texture-weight pixel. Use stickers for finer marks. Layer tiling is edited on the TerrainLayer asset and affects every tile using that layer.", MessageType.None);
+                var selectedTerrain = Selection.activeGameObject != null ? Selection.activeGameObject.GetComponent<Terrain>() : null;
+                string resolution = selectedTerrain != null && selectedTerrain.terrainData != null
+                    ? $"Selected terrain paints at {selectedTerrain.terrainData.size.x / selectedTerrain.terrainData.alphamapWidth:0.###} m per texture-weight pixel. "
+                    : "Greater Wasteland currently paints at roughly 2 m per texture-weight pixel. ";
+                EditorGUILayout.HelpBox(resolution + "Use stickers for finer marks. Layer tiling affects every tile using that layer.", MessageType.None);
                 using (new EditorGUI.DisabledScope(paintedAssets.Count == 0))
                     if (GUILayout.Button("Save painted terrain assets"))
                     { foreach (var asset in paintedAssets) if (asset != null) AssetDatabase.SaveAssetIfDirty(asset); status = "Painted TerrainData assets saved."; }

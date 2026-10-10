@@ -2,6 +2,8 @@
 
 Status: first bounded comparison delivered; appearance and Player performance remain unaccepted.
 
+Later October 9: this original six-panel scene is preserved at `Assets/_Project/Scenes/Reference/FixedTerrainDressingComparison.unity`. The original study filename now hosts the author's [nine-area manual workspace](../../../Engineering/NINE_AREA_ROCK_STUDY.md). Receipts/images below retain their initial delivery scope.
+
 The [controlling plan](../../../Design/Gameplay/FIXED_TERRAIN_DRESSING_PLAN.md) records the approved persistent-terrain direction and experimental sequence. [Source receipt](baseline-2026-10-09.json) identifies the 24 m native-collision patch, seed, formation counts and protected hashes. [Verification](verification-2026-10-09.json) records exact candidate-source hashes, isolated test/render scope and limitations. [Focused results](focused-tests-2026-10-09.xml) report four passing EditMode tests.
 
 ## Comparison

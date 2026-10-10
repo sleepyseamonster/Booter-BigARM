@@ -12,13 +12,15 @@ The user's first hardware target is the current machine: RTX 3060 Ti, i7-9700K, 
 
 ## First slice
 
+The current manual authoring workspace is the [nine-area rock study](../../Engineering/NINE_AREA_ROCK_STUDY.md), requested later on October 9. The initial six-panel comparison below is retained at `Scenes/Reference/FixedTerrainDressingComparison.unity`; its dated receipts describe its original delivery path.
+
 - `FixedTerrainSurfaceIndex` indexes the native grid once. Main-thread queries use TerrainCollider height/hole authority and native smooth normals. Negative coordinates, inclusive seams, outer-edge raycasting, duplicate ownership and unsupported transforms have explicit behavior. The caller rebuilds the index after ownership/transform changes and synchronizes physics before querying. No TerrainData is written.
 - `FixedTerrainRockContactField` evaluates one bounded field from placed rock footprints and wind. Sand coverage, gravel and shallow relief share those inputs. Elliptical transformed-bounds footprints are an approximation, not exact mesh contact or simulated wind/erosion.
 - `FixedTerrainDressingStudyBuilder` samples a 24 m patch around the saved Booter position, with 97 by 97 collision samples. It clones neither native terrain nor the generated-world runtime.
 - The two approved formation stages are centered and uniformly fitted into the study footprint. Ground fitting samples transformed mesh vertices against the cached patch, with shallow burial. Thirty-six seeded slab/shard fragments accompany each family. Fragment positions are an intentionally simple comparison arrangement, not the accepted talus-placement grammar.
 - Each family appears in three matched panels: geometry baseline on sand; shared sand/gravel contact; the same contact with up to 8 cm shallow relief. Each row shares rock transforms, source patch, texture coordinates and field seed. Relief uses real mesh vertices, recalculated normals and a collider referencing the same mesh.
 - Existing artist-derived rock support maps are reused for comparison, not accepted as measured geometric height. The study uses LOD0 rock renderers only and establishes no production density/LOD budget. Rock-face sand staining and exact inter-rock contact are not implemented in this slice.
-- The separate saved scene is `Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity`. It is absent from enabled Build Settings. Production terrain, player, lighting, renderer settings and packages remain unchanged.
+- The separate saved comparison is now `Assets/_Project/Scenes/Reference/FixedTerrainDressingComparison.unity`. It is absent from enabled Build Settings. Production terrain, player, lighting, renderer settings and packages remain unchanged.
 
 Study geometry and materials live in `Assets/_Project/Art/Environment/Rocks/Studies/FixedTerrainDressing/`. The builder refuses to overwrite an existing study. Further iterations require versioned output destinations; hand edits must not be discarded by a rebuild.
 

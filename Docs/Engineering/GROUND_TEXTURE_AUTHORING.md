@@ -8,7 +8,7 @@ Unity menu: **Booter & BigARM > Ground Textures > Texture Sticker and Paint Tool
 
 Choose **Place stickers** or **Paint terrain**. Starter presets are Sand, Gravel, Rocky ground, and Sand and dirt; an imported project texture can also be assigned directly. The tool does not start placing/painting until **Start** is pressed. **Escape** or **Stop** ends the operation. Alt and right/middle mouse preserve Scene-view navigation; modifier clicks do not paint.
 
-The separate `Assets/_Project/Scenes/Reference/TextureAuthoringDemo.unity` demonstrates both modes on synthetic native terrain. It is not an enabled build scene. The previously opened rock study also accepts stickers on its sampled-ground meshes; native painting requires a native Terrain, so it is unavailable on those study mesh patches.
+The separate `Assets/_Project/Scenes/Reference/TextureAuthoringDemo.unity` demonstrates both modes on synthetic native terrain. It is not an enabled build scene. The [current nine-area rock study](NINE_AREA_ROCK_STUDY.md) supports both stickers and native painting. The earlier `FixedTerrainDressingComparison.unity` accepts stickers on its sampled-ground meshes; native painting requires a native Terrain, so it is unavailable on those older comparison mesh patches.
 
 ## Movable texture stickers
 

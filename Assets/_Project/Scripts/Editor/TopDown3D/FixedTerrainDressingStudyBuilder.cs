@@ -16,7 +16,7 @@ namespace BooterBigArm.Editor
     /// No production generator, runtime installer, terrain mutation or save service is installed.</summary>
     public static class FixedTerrainDressingStudyBuilder
     {
-        public const string ScenePath = "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity";
+        public const string ScenePath = "Assets/_Project/Scenes/Reference/FixedTerrainDressingComparison.unity";
         public const string AssetFolder = "Assets/_Project/Art/Environment/Rocks/Studies/FixedTerrainDressing";
         private const string Production = "Assets/_Project/Scenes/Production/GreaterWasteland.unity";
         private const int Grid = 97;

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 03:02:49Z" end-time="2026-10-10 03:02:50Z" duration="0.8099178">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="654" result="Passed" start-time="2026-10-10 03:02:49Z" end-time="2026-10-10 03:02:50Z" duration="0.809918" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1779" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/FixedTerrainDressing20261009/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="654" result="Passed" start-time="2026-10-10 03:02:49Z" end-time="2026-10-10 03:02:50Z" duration="0.798328" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="25144" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1780" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="654" result="Passed" start-time="2026-10-10 03:02:49Z" end-time="2026-10-10 03:02:50Z" duration="0.795597" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1781" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="654" result="Passed" start-time="2026-10-10 03:02:49Z" end-time="2026-10-10 03:02:50Z" duration="0.792415" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1181" name="FixedTerrainDressingTests" fullname="BooterBigArm.Tests.FixedTerrainDressingTests" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-10 03:02:49Z" end-time="2026-10-10 03:02:50Z" duration="0.626136" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1184" name="ContactFieldIsOrderIndependentBoundedAndWindDirected" fullname="BooterBigArm.Tests.FixedTerrainDressingTests.ContactFieldIsOrderIndependentBoundedAndWindDirected" methodname="ContactFieldIsOrderIndependentBoundedAndWindDirected" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" seed="354534885" result="Passed" start-time="2026-10-10 03:02:49Z" end-time="2026-10-10 03:02:49Z" duration="0.032128" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1183" name="HolesAndColliderDataMismatchFailClosed" fullname="BooterBigArm.Tests.FixedTerrainDressingTests.HolesAndColliderDataMismatchFailClosed" methodname="HolesAndColliderDataMismatchFailClosed" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" seed="1968306007" result="Passed" start-time="2026-10-10 03:02:49Z" end-time="2026-10-10 03:02:49Z" duration="0.025147" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1182" name="NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles" fullname="BooterBigArm.Tests.FixedTerrainDressingTests.NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles" methodname="NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" seed="1696559802" result="Passed" start-time="2026-10-10 03:02:49Z" end-time="2026-10-10 03:02:49Z" duration="0.012603" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1185" name="SavedStudyUsesMatchedInputsAndActualReliefCollision" fullname="BooterBigArm.Tests.FixedTerrainDressingTests.SavedStudyUsesMatchedInputsAndActualReliefCollision" methodname="SavedStudyUsesMatchedInputsAndActualReliefCollision" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" seed="300268257" result="Passed" start-time="2026-10-10 03:02:49Z" end-time="2026-10-10 03:02:50Z" duration="0.537854" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1198" name="GroundTextureAuthoringTests" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-10 03:02:50Z" end-time="2026-10-10 03:02:50Z" duration="0.061428" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1200" name="BrushUndoRestoresLayerAssignmentsAndWeightsForACompleteStroke" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.BrushUndoRestoresLayerAssignmentsAndWeightsForACompleteStroke" methodname="BrushUndoRestoresLayerAssignmentsAndWeightsForACompleteStroke" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="1072482597" result="Passed" start-time="2026-10-10 03:02:50Z" end-time="2026-10-10 03:02:50Z" duration="0.012945" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1203" name="DuplicatingAStickerRetainsTheOriginalIdAndAssignsANewCopyId" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.DuplicatingAStickerRetainsTheOriginalIdAndAssignsANewCopyId" methodname="DuplicatingAStickerRetainsTheOriginalIdAndAssignsANewCopyId" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="668672926" result="Passed" start-time="2026-10-10 03:02:50Z" end-time="2026-10-10 03:02:50Z" duration="0.007174" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1201" name="EmptyHoleOrOutsideBrushDoesNotAddALayer" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.EmptyHoleOrOutsideBrushDoesNotAddALayer" methodname="EmptyHoleOrOutsideBrushDoesNotAddALayer" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="742969635" result="Passed" start-time="2026-10-10 03:02:50Z" end-time="2026-10-10 03:02:50Z" duration="0.002149" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1199" name="NativeBrushPreservesHeightsAndNormalizedWeightsAcrossTileBoundary" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.NativeBrushPreservesHeightsAndNormalizedWeightsAcrossTileBoundary" methodname="NativeBrushPreservesHeightsAndNormalizedWeightsAcrossTileBoundary" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="1412294658" result="Passed" start-time="2026-10-10 03:02:50Z" end-time="2026-10-10 03:02:50Z" duration="0.010753" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1204" name="SavedDemoRetainsStickerGeometryPaintedLayersAndBuildExclusion" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.SavedDemoRetainsStickerGeometryPaintedLayersAndBuildExclusion" methodname="SavedDemoRetainsStickerGeometryPaintedLayersAndBuildExclusion" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="1130369460" result="Passed" start-time="2026-10-10 03:02:50Z" end-time="2026-10-10 03:02:50Z" duration="0.009634" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1202" name="StickerGeometryPersistsAndNeverAddsCollisionOrChangesTerrain" fullname="BooterBigArm.Tests.GroundTextureAuthoringTests.StickerGeometryPersistsAndNeverAddsCollisionOrChangesTerrain" methodname="StickerGeometryPersistsAndNeverAddsCollisionOrChangesTerrain" classname="BooterBigArm.Tests.GroundTextureAuthoringTests" runstate="Runnable" seed="263359299" result="Passed" start-time="2026-10-10 03:02:50Z" end-time="2026-10-10 03:02:50Z" duration="0.014126" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1205" name="NineAreaRockStudyTests" fullname="BooterBigArm.Tests.NineAreaRockStudyTests" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-10 03:02:50Z" end-time="2026-10-10 03:02:50Z" duration="0.061673" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1206" name="NineFlatAreasHaveTheSameBaseAndExactlyOneEditableRockEach" fullname="BooterBigArm.Tests.NineAreaRockStudyTests.NineFlatAreasHaveTheSameBaseAndExactlyOneEditableRockEach" methodname="NineFlatAreasHaveTheSameBaseAndExactlyOneEditableRockEach" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" seed="1145173717" result="Passed" start-time="2026-10-10 03:02:50Z" end-time="2026-10-10 03:02:50Z" duration="0.056211" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1207" name="SharedStudyLayerRetainsTheChosenSourceTextureAndRelativeUVRegion" fullname="BooterBigArm.Tests.NineAreaRockStudyTests.SharedStudyLayerRetainsTheChosenSourceTextureAndRelativeUVRegion" methodname="SharedStudyLayerRetainsTheChosenSourceTextureAndRelativeUVRegion" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" seed="177249104" result="Passed" start-time="2026-10-10 03:02:50Z" end-time="2026-10-10 03:02:50Z" duration="0.001456" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

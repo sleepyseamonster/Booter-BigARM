@@ -14,6 +14,8 @@ These should be treated as the source of truth unless they are intentionally rev
   Current Greater Wasteland direction: persistent native terrain with procedural rocks, ground dressing and POIs; bounded contact/relief study and later integration gates.
 - [GROUND_TEXTURE_AUTHORING.md](./Engineering/GROUND_TEXTURE_AUTHORING.md)
   Manual ground texture stickers and native terrain painting, with Undo, authoring persistence and terrain-preservation boundaries.
+- [NINE_AREA_ROCK_STUDY.md](./Engineering/NINE_AREA_ROCK_STUDY.md)
+  Current nine-flat-terrain rock workbench scene, shared Greater Wasteland base texture and painting panel setup.
 - [WORLD_CREATOR_CHARTER.md](./Design/DeferredGeneration/WORLD_CREATOR_CHARTER.md)
   Preserved infinite World Creator promise, quality bar and lore constraints. Its terrain-generation scope is deferred; current Greater Wasteland work follows the fixed-terrain dressing plan.
 - [WORLD_SYSTEMS_STANDARD.md](./Engineering/WORLD_SYSTEMS_STANDARD.md)
