@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 23:36:04Z" end-time="2026-10-10 23:36:13Z" duration="8.4761487">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="662" result="Passed" start-time="2026-10-10 23:36:04Z" end-time="2026-10-10 23:36:13Z" duration="8.476149" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1788" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/FixedTerrainDressing20261009/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="662" result="Passed" start-time="2026-10-10 23:36:04Z" end-time="2026-10-10 23:36:13Z" duration="8.466986" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="29640" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1789" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="662" result="Passed" start-time="2026-10-10 23:36:04Z" end-time="2026-10-10 23:36:13Z" duration="8.464538" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1790" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="662" result="Passed" start-time="2026-10-10 23:36:04Z" end-time="2026-10-10 23:36:13Z" duration="8.462332" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1219" name="SculptedRockFusionTests" fullname="BooterBigArm.Tests.SculptedRockFusionTests" classname="BooterBigArm.Tests.SculptedRockFusionTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-10 23:36:04Z" end-time="2026-10-10 23:36:13Z" duration="8.451886" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1222" name="ActualBasaltPrefabsFuseIntoOneClosedTexturedSurface" fullname="BooterBigArm.Tests.SculptedRockFusionTests.ActualBasaltPrefabsFuseIntoOneClosedTexturedSurface" methodname="ActualBasaltPrefabsFuseIntoOneClosedTexturedSurface" classname="BooterBigArm.Tests.SculptedRockFusionTests" runstate="Runnable" seed="153658136" result="Passed" start-time="2026-10-10 23:36:04Z" end-time="2026-10-10 23:36:05Z" duration="1.082933" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1223" name="DifferentBasaltTextureSetsRemainSeparateSlotsOnOneMesh" fullname="BooterBigArm.Tests.SculptedRockFusionTests.DifferentBasaltTextureSetsRemainSeparateSlotsOnOneMesh" methodname="DifferentBasaltTextureSetsRemainSeparateSlotsOnOneMesh" classname="BooterBigArm.Tests.SculptedRockFusionTests" runstate="Runnable" seed="144162361" result="Passed" start-time="2026-10-10 23:36:05Z" end-time="2026-10-10 23:36:07Z" duration="1.338579" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1221" name="DisjointRocksAreRejectedInsteadOfPretendingTheyAreOneSolid" fullname="BooterBigArm.Tests.SculptedRockFusionTests.DisjointRocksAreRejectedInsteadOfPretendingTheyAreOneSolid" methodname="DisjointRocksAreRejectedInsteadOfPretendingTheyAreOneSolid" classname="BooterBigArm.Tests.SculptedRockFusionTests" runstate="Runnable" seed="915103896" result="Passed" start-time="2026-10-10 23:36:07Z" end-time="2026-10-10 23:36:07Z" duration="0.765191" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1224" name="LiveFusionRebuildsAfterMovementAndRestoresSeparatedEditableSources" fullname="BooterBigArm.Tests.SculptedRockFusionTests.LiveFusionRebuildsAfterMovementAndRestoresSeparatedEditableSources" methodname="LiveFusionRebuildsAfterMovementAndRestoresSeparatedEditableSources" classname="BooterBigArm.Tests.SculptedRockFusionTests" runstate="Runnable" seed="1561053439" result="Passed" start-time="2026-10-10 23:36:07Z" end-time="2026-10-10 23:36:10Z" duration="2.857421" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1225" name="OpenMeshesAreRejectedWithoutChangingTheOriginals" fullname="BooterBigArm.Tests.SculptedRockFusionTests.OpenMeshesAreRejectedWithoutChangingTheOriginals" methodname="OpenMeshesAreRejectedWithoutChangingTheOriginals" classname="BooterBigArm.Tests.SculptedRockFusionTests" runstate="Runnable" seed="628517754" result="Passed" start-time="2026-10-10 23:36:10Z" end-time="2026-10-10 23:36:11Z" duration="0.718706" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1220" name="OverlappingCubesRemoveBuriedFacesAndKeepJoinEdges" fullname="BooterBigArm.Tests.SculptedRockFusionTests.OverlappingCubesRemoveBuriedFacesAndKeepJoinEdges" methodname="OverlappingCubesRemoveBuriedFacesAndKeepJoinEdges" classname="BooterBigArm.Tests.SculptedRockFusionTests" runstate="Runnable" seed="1997718715" result="Passed" start-time="2026-10-10 23:36:11Z" end-time="2026-10-10 23:36:12Z" duration="0.703885" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1226" name="WindowBakeCreatesLinkedPrefabAndUndoRestoresSources" fullname="BooterBigArm.Tests.SculptedRockFusionTests.WindowBakeCreatesLinkedPrefabAndUndoRestoresSources" methodname="WindowBakeCreatesLinkedPrefabAndUndoRestoresSources" classname="BooterBigArm.Tests.SculptedRockFusionTests" runstate="Runnable" seed="1213391349" result="Passed" start-time="2026-10-10 23:36:12Z" end-time="2026-10-10 23:36:13Z" duration="0.971249" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

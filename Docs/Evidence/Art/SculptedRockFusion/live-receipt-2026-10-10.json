@@ -1,0 +1,35 @@
+{
+  "sha256": {
+    "Assets/_Project/Tests/Editor/SculptedRockFusionTests.cs": "213308642AA593E0BAB22A7349B2EDC6534B733FC75E1EBB324606E2C2BE4184",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/SculptedRockFusionParticipant.cs": "3756244C312A207B74D0A7411C93F0C9BB7A0F03E27E3987A6FE2E7667412612",
+    "Assets/_Project/Scripts/Editor/TopDown3D/SculptedRockFusionRegistration.cs": "A0004242C5EE2F7A31B01B4C9E4F019722D0208AC616BC4852EB5BAB7854CB14",
+    "Tools/Art/Blender/fuse_rock_meshes.py": "13B29F46CB27C7CBA94931D24945645A0709B02705076F40B2D807BC754685D9",
+    "Assets/_Project/Scripts/Editor/TopDown3D/SculptedRockFusionTool.cs": "8604270C2B8BF0A227A35B37F3B1A062DC7E8AE3AAA852B32B91DD49FF8CE2AF",
+    "Assets/_Project/Scripts/Editor/TopDown3D/SculptedRockLiveFusion.cs": "40DFA025078EEECEFB2713E1612A5E8A9C22A8A346F0F6734676AF0C3806C125"
+  },
+  "materialOwnerAuditMismatches": 0,
+  "registeredPrefabs": [
+    "SculptedBasalt01",
+    "SculptedBasalt02"
+  ],
+  "scope": "Edit Mode live exterior plus separate final bake; original source shapes retained; runtime CSG not installed",
+  "protocol": 2,
+  "geometryRenderReviewed": true,
+  "date": "2026-10-10",
+  "unrelatedLocalBakeCache": "Existing Fused cache files remain local and unstaged",
+  "sourceRendererEnabledPreserved": true,
+  "uvTriangleCentreAuditMismatches": 0,
+  "blender": "5.2.2 LTS",
+  "unity": "6000.4.0f1",
+  "liveExteriorPreviews": 1,
+  "sceneSavedByTask": false,
+  "remainingArtLimit": "Mixed atlas textures can show dark face patches; a dedicated atlas rebake/texture-quality pass remains separate.",
+  "liveScene": "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity",
+  "sourceCollidersPreserved": true,
+  "linkedEditableSceneSources": 4,
+  "mixedMaterialRenderReviewed": true,
+  "testsFailed": 0,
+  "previewSerialized": false,
+  "sourceTransformsPreserved": true,
+  "testsPassed": 7
+}

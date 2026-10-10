@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6248424757451343695}
   - component: {fileID: 894392672014234341}
+  - component: {fileID: 678661784623083929}
   m_Layer: 0
   m_Name: SculptedBasalt02
   m_TagString: Untagged
@@ -64,6 +65,20 @@ LODGroup:
     - renderer: {fileID: 5278032692665988280}
   m_Enabled: 1
   m_GlobalIlluminationLOD: 0
+--- !u!114 &678661784623083929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518614812120482945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6209eff4b58d40142830d68f3faacb87, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.SculptedRockFusionParticipant
+  liveFusion: 1
+  fusionSet: 0
 --- !u!1 &5965934929823262462
 GameObject:
   m_ObjectHideFlags: 0

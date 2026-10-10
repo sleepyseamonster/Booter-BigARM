@@ -41,11 +41,18 @@ def import_mesh(data,index):
     mesh.update()
     uv=mesh.uv_layers.new(name="UVMap")
     normal=mesh.attributes.new("fusion_normal", "FLOAT_VECTOR", "CORNER")
+    mesh.attributes.new("fusion_tangent", "FLOAT_VECTOR", "CORNER")
+    mesh.attributes.new("fusion_sign", "FLOAT", "CORNER")
     provenance=mesh.attributes.new("fusion_source", "INT", "FACE")
+    materials=mesh.attributes.new("fusion_material", "INT", "FACE")
     for face in mesh.polygons: provenance.data[face.index].value=index
+    for face in mesh.polygons: materials.data[face.index].value=data["materialIndices"][face.index]
+    uv=mesh.uv_layers.active; normal=mesh.attributes["fusion_normal"]
     for loop in mesh.loops:
         uv.data[loop.index].uv=vector(data["uv"][loop.vertex_index],2)
         normal.data[loop.index].vector=vector(data["normals"][loop.vertex_index])
+        mesh.attributes["fusion_tangent"].data[loop.index].vector=vector(data["tangents"][loop.vertex_index])
+        mesh.attributes["fusion_sign"].data[loop.index].value=data["tangents"][loop.vertex_index]["w"]
     bm=bmesh.new(); bm.from_mesh(mesh)
     bmesh.ops.remove_doubles(bm,verts=list(bm.verts),dist=1e-6)
     bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces))
@@ -74,7 +81,7 @@ def strictly_inside(tree, point):
 
 
 def fuse(payload):
-    if payload["version"]!=1 or not 2<=len(payload["sources"])<=16: raise ValueError("Expected 2–16 source rocks")
+    if payload["version"]!=2 or not 2<=len(payload["sources"])<=16: raise ValueError("Expected 2–16 source rocks")
     sources=[]; reports=[]
     for i,data in enumerate(payload["sources"]):
         obj,report=import_mesh(data,i); sources.append(obj); reports.append(report)
@@ -107,21 +114,27 @@ def fuse(payload):
             if strictly_inside(tree,center):
                 interior+=1; break
     if interior: raise ValueError("Union retained buried faces: "+str(interior))
-    positions=[]; normals=[]; uvs=[]; triangles=[]
+    positions=[]; normals=[]; tangents=[]; uvs=[]; triangles=[]; material_indices=[]
     attrs=result.data.attributes["fusion_normal"].data
     for triangle in result.data.loop_triangles:
+        material_indices.append(result.data.attributes["fusion_material"].data[triangle.polygon_index].value)
         for loop_index in triangle.loops:
             loop=result.data.loops[loop_index]
             point=result.data.vertices[loop.vertex_index].co
             normal=attrs[loop_index].vector.normalized()
+            tangent=result.data.attributes["fusion_tangent"].data[loop_index].vector
+            tangent=(tangent-normal*normal.dot(tangent)).normalized()
+            sign=result.data.attributes["fusion_sign"].data[loop_index].value
             uv=result.data.uv_layers.active.data[loop_index].uv
             if normal.length<.9 or not all(math.isfinite(x) for x in (*point,*normal,*uv)):
                 raise ValueError("Invalid interpolated corner data")
-            positions.extend(point); normals.extend(normal); uvs.extend(uv); triangles.append(len(triangles))
+            if tangent.length<.9 or abs(sign)<.5: raise ValueError("Invalid interpolated tangent")
+            positions.extend(point); normals.extend(normal); tangents.extend((*tangent,1 if sign>0 else -1)); uvs.extend(uv); triangles.append(len(triangles))
     report.update(seam_edges=seams,interior_faces=interior,triangles=len(triangles)//3,
                   input_triangles=sum(len(d["triangles"])//3 for d in payload["sources"]),
                   input_volume=sum(r["volume"] for r in reports))
-    return dict(version=1,blender=bpy.app.version_string,vertices=positions,normals=normals,uv=uvs,triangles=triangles,report=report)
+    return dict(version=2,blender=bpy.app.version_string,vertices=positions,normals=normals,tangents=tangents,uv=uvs,triangles=triangles,
+                materialIndices=material_indices,materialCount=len(payload["materialIds"]),report=report)
 
 
 if __name__=="__main__":
