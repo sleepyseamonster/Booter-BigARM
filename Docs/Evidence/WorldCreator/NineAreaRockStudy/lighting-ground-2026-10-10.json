@@ -1,0 +1,46 @@
+{
+  "editor": "6000.4.0f1",
+  "ground": {
+    "tileSizeMeters": [
+      4096,
+      4096
+    ],
+    "sourceTileMeters": 256,
+    "tileOffsetMeters": [
+      2168,
+      1144
+    ],
+    "padMeters": 16,
+    "additionalTextureDetail": false
+  },
+  "SHA256": {
+    "Assets/_Project/Scenes/Reference/GreaterWastelandLightingReference_20261010.unity": "18056D73DA78B305D056A52BC3656301F1AEB3D8ABAB0A739FE4885B5DB983AE",
+    "Assets/_Project/Art/Environment/Ground/Studies/NineAreaRockStudy/StudyBase.terrainlayer": "6D867B042171330AC3389FEAA6758F4D388FF2978D1B4A46752F87157CBCA7A5",
+    "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity": "FD5878CCDC2D9F8B225E4B2E5024B970C3C1B9AE70F70BB02A529D8041FB3FF0",
+    "Assets/_Project/Scripts/Editor/TopDown3D/NineAreaRockStudy.cs": "F98D14FD98C1343DBA380581875EF835BC26BD69E2BE7D161A2F10DD574C53C6",
+    "Assets/_Project/Scripts/Editor/TopDown3D/NineAreaLightingAndGround.cs": "8C21D8C5924EA9D7997342B9A57C384B3B19A5349AB84E6BFDED02EE0B57D920",
+    "Assets/_Project/Tests/Editor/NineAreaRockStudyTests.cs": "DAE52B6FA837DC05F7EB027F43CCB73A0530C14173600754E87E5CE0D0D85BD5"
+  },
+  "proofBoundary": "EditMode structural/import checks and saved-source lighting alignment. No gameplay smoke test, baked-lightmap transfer, live appearance acceptance, production asset edits or foreground activation.",
+  "tests": {
+    "start": "2026-10-10 19:12:44Z",
+    "total": 3,
+    "failed": 0,
+    "passed": 3
+  },
+  "validationProject": "D:\\BooterBigArmValidation\\FixedTerrainDressing20261009",
+  "date": "2026-10-10",
+  "liveReadback": {
+    "sceneDirtyAfterDomainReload": true,
+    "sun": "Greater Wasteland Sun",
+    "compiling": false,
+    "activeStudy": true,
+    "terrains": 9,
+    "intensity": 1.1011368
+  },
+  "lightingReference": {
+    "sourceSHA256": "1114A8944D78825C7E43F7D2982013950C917035DBEAAA839E55574EBBD12125",
+    "exactExtractedBlocks": 7,
+    "source": "Assets/_Project/Scenes/Production/GreaterWasteland.unity"
+  }
+}

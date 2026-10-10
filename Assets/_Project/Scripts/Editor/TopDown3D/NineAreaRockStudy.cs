@@ -29,8 +29,9 @@ namespace BooterBigArm.Editor
             if (layer == null || material == null || rockMaterial == null) throw new InvalidOperationException("Missing retained native texture or rock workbench material.");
             EnsureFolder(Folder);
             var baseLayer = UnityEngine.Object.Instantiate(layer); baseLayer.name = "GreaterWasteland_r11_c08_StudyBase";
-            // Rescale both UV size and offset equally: each flat 16 m space shows the same source 256 m tile region.
-            baseLayer.tileSize = layer.tileSize * (AreaSize / 256f); baseLayer.tileOffset = layer.tileOffset * (AreaSize / 256f);
+            // A real-scale pad-sized sample, not the whole 256 m tile shrunk onto the pad.
+            baseLayer.tileSize = layer.tileSize;
+            baseLayer.tileOffset = layer.tileOffset + Vector2.one * ((256f - AreaSize) / 2f);
             AssetDatabase.CreateAsset(baseLayer, Folder + "/StudyBase.terrainlayer");
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             for (int i = 0; i < 9; i++)
@@ -59,6 +60,7 @@ namespace BooterBigArm.Editor
             var camera = cameraObject.GetComponent<Camera>(); camera.fieldOfView = 48; camera.farClipPlane = 200;
             camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = new Color(.12f,.08f,.06f);
             if (!EditorSceneManager.SaveScene(scene, ScenePath)) throw new IOException("Study could not be saved.");
+            NineAreaLightingAndGround.Apply();
         }
 
         public static void OpenAuthoringPanels()

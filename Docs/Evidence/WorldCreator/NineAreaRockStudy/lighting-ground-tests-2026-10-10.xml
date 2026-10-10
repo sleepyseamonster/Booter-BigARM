@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 19:12:44Z" end-time="2026-10-10 19:12:44Z" duration="0.1742">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="655" result="Passed" start-time="2026-10-10 19:12:44Z" end-time="2026-10-10 19:12:44Z" duration="0.174200" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1780" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/FixedTerrainDressing20261009/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="655" result="Passed" start-time="2026-10-10 19:12:44Z" end-time="2026-10-10 19:12:44Z" duration="0.164273" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27448" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1781" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="655" result="Passed" start-time="2026-10-10 19:12:44Z" end-time="2026-10-10 19:12:44Z" duration="0.159693" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1782" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="655" result="Passed" start-time="2026-10-10 19:12:44Z" end-time="2026-10-10 19:12:44Z" duration="0.155627" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1205" name="NineAreaRockStudyTests" fullname="BooterBigArm.Tests.NineAreaRockStudyTests" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-10 19:12:44Z" end-time="2026-10-10 19:12:44Z" duration="0.135201" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1206" name="NineFlatAreasHaveTheSameBaseAndExactlyOneEditableRockEach" fullname="BooterBigArm.Tests.NineAreaRockStudyTests.NineFlatAreasHaveTheSameBaseAndExactlyOneEditableRockEach" methodname="NineFlatAreasHaveTheSameBaseAndExactlyOneEditableRockEach" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" seed="19940144" result="Passed" start-time="2026-10-10 19:12:44Z" end-time="2026-10-10 19:12:44Z" duration="0.105008" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1207" name="SharedStudyLayerSamplesOnlyAPadSizedRegionAtNativeScale" fullname="BooterBigArm.Tests.NineAreaRockStudyTests.SharedStudyLayerSamplesOnlyAPadSizedRegionAtNativeScale" methodname="SharedStudyLayerSamplesOnlyAPadSizedRegionAtNativeScale" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" seed="672497840" result="Passed" start-time="2026-10-10 19:12:44Z" end-time="2026-10-10 19:12:44Z" duration="0.003196" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1208" name="StudySunAndEnvironmentMatchTheSavedWorldLightingReference" fullname="BooterBigArm.Tests.NineAreaRockStudyTests.StudySunAndEnvironmentMatchTheSavedWorldLightingReference" methodname="StudySunAndEnvironmentMatchTheSavedWorldLightingReference" classname="BooterBigArm.Tests.NineAreaRockStudyTests" runstate="Runnable" seed="1843020282" result="Passed" start-time="2026-10-10 19:12:44Z" end-time="2026-10-10 19:12:44Z" duration="0.012863" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

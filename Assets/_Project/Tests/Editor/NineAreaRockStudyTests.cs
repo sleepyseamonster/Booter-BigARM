@@ -40,13 +40,46 @@ namespace BooterBigArm.Tests
             finally { EditorSceneManager.ClosePreviewScene(scene); }
         }
         [Test]
-        public void SharedStudyLayerRetainsTheChosenSourceTextureAndRelativeUVRegion()
+        public void SharedStudyLayerSamplesOnlyAPadSizedRegionAtNativeScale()
         {
             var source = AssetDatabase.LoadAssetAtPath<TerrainLayer>(NineAreaRockStudy.SourceLayer);
             var study = AssetDatabase.LoadAssetAtPath<TerrainLayer>(NineAreaRockStudy.Folder + "/StudyBase.terrainlayer");
             Assert.That(study, Is.Not.SameAs(source)); Assert.That(study.diffuseTexture, Is.SameAs(source.diffuseTexture));
-            Assert.That(study.tileSize, Is.EqualTo(source.tileSize * (NineAreaRockStudy.AreaSize / 256f)));
-            Assert.That(study.tileOffset, Is.EqualTo(source.tileOffset * (NineAreaRockStudy.AreaSize / 256f)));
+            Assert.That(study.tileSize, Is.EqualTo(source.tileSize));
+            Assert.That(study.tileOffset, Is.EqualTo(source.tileOffset + Vector2.one * ((256f - NineAreaRockStudy.AreaSize) / 2f)));
+        }
+        [Test]
+        public void StudySunAndEnvironmentMatchTheSavedWorldLightingReference()
+        {
+            var reference = EditorSceneManager.OpenPreviewScene(NineAreaLightingAndGround.LightingReference);
+            var study = EditorSceneManager.OpenPreviewScene(NineAreaRockStudy.ScenePath);
+            try
+            {
+                var sourceSun = reference.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<PerpetualTwilightSun>()).Single();
+                var targetSun = study.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<PerpetualTwilightSun>()).Single();
+                Assert.That(targetSun.Cycle01, Is.EqualTo(sourceSun.Cycle01));
+                Assert.That(targetSun.CycleDurationSeconds, Is.EqualTo(sourceSun.CycleDurationSeconds));
+                Assert.That(targetSun.CycleEnabled, Is.EqualTo(sourceSun.CycleEnabled));
+                var source = sourceSun.GetComponent<Light>(); var target = targetSun.GetComponent<Light>();
+                Assert.That(target.intensity, Is.EqualTo(source.intensity).Within(.00001));
+                Assert.That(target.color, Is.EqualTo(source.color));
+                Assert.That(target.shadowStrength, Is.EqualTo(source.shadowStrength));
+                Assert.That(target.shadowBias, Is.EqualTo(source.shadowBias));
+                Assert.That(target.shadowNormalBias, Is.EqualTo(source.shadowNormalBias));
+                Assert.That(Quaternion.Angle(target.transform.rotation, source.transform.rotation), Is.LessThan(.001f));
+                // Verify serialized scene environment values; loaded preview callbacks do not establish persisted settings.
+                string renderBlock(string path) => System.Text.RegularExpressions.Regex.Match(System.IO.File.ReadAllText(path),
+                    @"(?ms)^--- !u!104.*?(?=^--- !u!|\z)").Value;
+                var a = renderBlock(NineAreaLightingAndGround.LightingReference);
+                var b = renderBlock(NineAreaRockStudy.ScenePath);
+                foreach (string key in new[] { "m_AmbientSkyColor", "m_AmbientEquatorColor", "m_AmbientGroundColor", "m_AmbientMode",
+                    "m_SkyboxMaterial", "m_ReflectionIntensity", "m_FogColor", "m_FogDensity", "m_Fog" })
+                {
+                    string value(string text) => System.Text.RegularExpressions.Regex.Match(text, @"(?m)^  " + key + @":.*$").Value.Trim();
+                    Assert.That(value(b), Is.EqualTo(value(a)), key);
+                }
+            }
+            finally { EditorSceneManager.ClosePreviewScene(study); EditorSceneManager.ClosePreviewScene(reference); }
         }
     }
 }
