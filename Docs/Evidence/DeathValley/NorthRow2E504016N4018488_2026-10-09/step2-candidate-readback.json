@@ -1,0 +1,18 @@
+{
+    "schema_version": 2,
+    "row_step": 2,
+    "terrains": 5120,
+    "retained": 4864,
+    "new_terrains": 256,
+    "edges": 10080,
+    "outer_edges": 320,
+    "collider_samples": 128000,
+    "sectors": 320,
+    "family": "north_row2",
+    "scene": "Assets/_Project/Scenes/Reference/NorthRow2E504016N4018488_2026-10-09Candidate.unity",
+    "scene_sha256": "c77e50c913b07e54d6ed483e50e47f86db23924f22f6eec33859f69da4e1c58c",
+    "manifest_sha256": "4f781e48c7972e940cc7c76bbcfdba0e4918d136bf127ea5937783c4490ebf84",
+    "status": "validated_full_grid_and_collider_samples",
+    "max_new_readback_error_m": 0.027492642402648927,
+    "max_collider_error_m": 0.00006103515625
+}
