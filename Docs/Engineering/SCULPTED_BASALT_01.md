@@ -1,6 +1,6 @@
 # Sculpted basalt 01 — October 10, 2026
 
-The author's saved `Rock_Sculpt_01` is the source. Preserve its silhouette and rounded cuts, minimize runtime geometry, and use the existing dark volcanic basalt texture set. This is a reusable asset handoff; no production or study scene placement is part of this task.
+The author's saved `Rock_Sculpt_01` is the source. Preserve its silhouette and rounded cuts, minimize runtime geometry, and use the existing dark volcanic basalt texture set. The October 10 follow-up places one linked prefab at the centre of Area 05 in `FixedTerrainDressingStudy.unity`; its existing generator moves 5 m aside. Production placement remains separate.
 
 ## Sources and delivery
 

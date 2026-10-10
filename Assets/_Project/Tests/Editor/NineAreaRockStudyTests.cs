@@ -22,7 +22,17 @@ namespace BooterBigArm.Tests
                 TerrainLayer shared = null;
                 for (int i = 0; i < areas.Length; i++)
                 {
-                    Assert.That(areas[i].transform.childCount, Is.EqualTo(2));
+                    Assert.That(areas[i].transform.childCount, Is.EqualTo(i == 4 ? 3 : 2));
+                    if (i == 4)
+                    {
+                        var basalt = areas[i].transform.Find("SculptedBasalt01");
+                        Assert.That(basalt, Is.Not.Null);
+                        Assert.That(basalt.localPosition, Is.EqualTo(Vector3.zero));
+                        Assert.That(basalt.localScale, Is.EqualTo(Vector3.one));
+                        Assert.That(PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(basalt.gameObject), Is.EqualTo(SculptedBasaltAssetPipeline.PrefabPath));
+                        Assert.That(basalt.GetComponent<LODGroup>().GetLODs().Length, Is.EqualTo(3));
+                        Assert.That(basalt.GetComponentInChildren<MeshCollider>().convex, Is.True);
+                    }
                     Assert.That(areas[i].GetComponentsInChildren<GroundTextureSticker>().Length, Is.Zero);
                     var terrain = areas[i].GetComponentsInChildren<Terrain>(); var rocks = areas[i].GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>();
                     Assert.That(terrain.Length, Is.EqualTo(1)); Assert.That(rocks.Length, Is.EqualTo(1));
