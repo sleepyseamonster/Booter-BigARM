@@ -1,6 +1,6 @@
 """Preserve a saved artist rock; measure reduction candidates, bake and export a separate game asset.
 
-Blender --background artist.blend --python this.py -- inspect|build ROOT
+Blender --background artist.blend --python this.py -- inspect|build ROOT [ASSET SOURCE_OBJECT]
 Source .blend files remain local. Never saves over the input file.
 """
 import json
@@ -14,11 +14,18 @@ import bpy
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 
-ROOT = Path(sys.argv[-1]).resolve()
-MODE = sys.argv[-2]
+arguments = sys.argv[sys.argv.index("--") + 1:]
+MODE, root_argument = arguments[:2]
+if MODE not in {"inspect", "build", "verify", "repair-collision"}:
+    raise ValueError("Expected inspect, build, verify or repair-collision mode")
+ROOT = Path(root_argument).resolve()
+ASSET = arguments[2] if len(arguments) > 2 else "SculptedBasalt01"
+SOURCE_OBJECT = arguments[3] if len(arguments) > 3 else None
+if not ASSET.isalnum():
+    raise ValueError("Asset name must be alphanumeric")
 LOCAL = ROOT / "SourceArt/Blender/Studies/RockSculpting"
-PROOF = ROOT / "Logs/RockSculpt"
-EXPORT = ROOT / "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01"
+PROOF = ROOT / "Logs" / ("RockSculpt" if ASSET == "SculptedBasalt01" else ASSET)
+EXPORT = ROOT / "Assets/_Project/Art/Environment/Rocks" / ASSET
 TEXTURES = ROOT / "SourceArt/Blender/Studies/textures"
 PROOF.mkdir(parents=True, exist_ok=True)
 
@@ -103,10 +110,12 @@ def render(obj, label, direction=(8,-11,7)):
         if other.type in {"MESH","FONT"}: other.hide_render=other != obj
     obj.hide_render=False
     camera=scene.camera
-    center=obj.location+Vector((0,0,2.35))
-    camera.location=center+Vector(direction)
+    corners = [obj.matrix_world @ Vector(corner) for corner in obj.bound_box]
+    center = sum(corners, Vector()) / 8
+    extent = max(obj.dimensions)
+    camera.location=center+Vector(direction).normalized()*extent*3
     look(camera,center)
-    camera.data.ortho_scale=7.4
+    camera.data.ortho_scale=extent*1.6
     scene.render.engine="BLENDER_EEVEE"
     scene.render.resolution_x=900
     scene.render.resolution_y=900
@@ -119,20 +128,23 @@ def render(obj, label, direction=(8,-11,7)):
     bpy.ops.render.render(write_still=True)
 
 
-source=bpy.data.objects.get("Rock_Sculpt_01") or bpy.data.objects.get("Artist sculpt - preserved high detail")
+source = bpy.data.objects.get(SOURCE_OBJECT) if SOURCE_OBJECT else (
+    bpy.data.objects.get("Rock_Sculpt_01") or bpy.data.objects.get("Artist sculpt - preserved high detail"))
 if source is None: raise RuntimeError("Expected saved artist Rock_Sculpt_01")
+if any(abs(x - 1) > 1e-6 for x in source.scale) or any(abs(x) > 1e-6 for x in source.rotation_euler):
+    raise RuntimeError("Apply rotation/scale to an independent source copy before preparing this asset")
 active(source)
 if MODE == "verify":
     import numpy as np
-    low=bpy.data.objects["SculptedBasalt01_LOD0"]
-    meshes=[bpy.data.objects["SculptedBasalt01_LOD"+str(i)] for i in range(3)]+[bpy.data.objects["SculptedBasalt01_Collision"]]
+    low=bpy.data.objects[f"{ASSET}_LOD0"]
+    meshes=[bpy.data.objects[f"{ASSET}_LOD"+str(i)] for i in range(3)]+[bpy.data.objects[f"{ASSET}_Collision"]]
     for obj in meshes:
         checked=stats(obj)
         assert checked["nonmanifold"] == 0 and checked["loose"] == 0 and checked["degenerate"] == 0 and checked["volume"] > 0
     for obj in meshes[:3]:
         uv=obj.data.uv_layers.active
         assert uv and all(math.isfinite(x) and 0 <= x <= 1 for loop in uv.data for x in loop.uv)
-    image=bpy.data.images.get("SculptedBasalt01_Normal")
+    image=bpy.data.images.get(f"{ASSET}_Normal")
     pixels=np.array(image.pixels[:],dtype=np.float32).reshape(-1,4)
     assert np.isfinite(pixels).all()
     normal_report=dict(finite=True,blue_above_half_fraction=float(np.mean(pixels[:,2]>.5)))
@@ -146,19 +158,19 @@ if MODE == "verify":
     for label,direction in (("basalt-back",(-8,11,7)),("basalt-top",(0,-.1,15)),("basalt-underside",(6,-9,-8))):
         render(low,label,direction)
 elif MODE == "repair-collision":
-    hull=bpy.data.objects["SculptedBasalt01_Collision"]
+    hull=bpy.data.objects[f"{ASSET}_Collision"]
     make_hull(hull)
     if stats(hull)["triangles"] > 240:
         simpler=reduce(hull,240/stats(hull)["triangles"],"Replacement collision")
-        bpy.data.objects.remove(hull,do_unlink=True); hull=simpler; hull.name="SculptedBasalt01_Collision"
+        bpy.data.objects.remove(hull,do_unlink=True); hull=simpler; hull.name=f"{ASSET}_Collision"
         make_hull(hull)
     assert stats(hull)["nonmanifold"] == 0 and stats(hull)["triangles"] <= 255
-    meshes=[bpy.data.objects["SculptedBasalt01_LOD"+str(i)] for i in range(3)]+[hull]
+    meshes=[bpy.data.objects[f"{ASSET}_LOD"+str(i)] for i in range(3)]+[hull]
     for obj in meshes: active(obj); obj.location=(0,0,0)
     bpy.ops.object.select_all(action="DESELECT")
     for obj in meshes: obj.select_set(True)
     bpy.context.view_layer.objects.active=meshes[0]
-    bpy.ops.export_scene.fbx(filepath=str(EXPORT/"SculptedBasalt01.fbx"),use_selection=True,object_types={"MESH"},global_scale=1,
+    bpy.ops.export_scene.fbx(filepath=str(EXPORT/f"{ASSET}.fbx"),use_selection=True,object_types={"MESH"},global_scale=1,
         apply_unit_scale=True,apply_scale_options="FBX_SCALE_UNITS",axis_forward="-Z",axis_up="Y",use_mesh_modifiers=True,
         mesh_smooth_type="FACE",use_tspace=True,add_leaf_bones=False,bake_anim=False,path_mode="STRIP")
     for obj in meshes: obj.location=(5,0,0)
@@ -182,12 +194,12 @@ elif MODE == "inspect":
     (PROOF/"reduction-candidates.json").write_text(json.dumps(report,indent=2))
     render(source,"artist-source")
 else:
-    output=LOCAL/"RockSculpt_Basalt_GameReady_2026-10-10.blend"
+    output=LOCAL/("RockSculpt_Basalt_GameReady_2026-10-10.blend" if ASSET == "SculptedBasalt01" else f"{ASSET}_GameReady.blend")
     if output.exists() or EXPORT.exists(): raise FileExistsError("Preserve existing delivery before rebuilding")
     report=json.loads((PROOF/"reduction-candidates.json").read_text())
     acceptable=[r for r in report["candidates"] if r["p95_m"] <= .01 and r["max_sampled_m"] <= .03 and r["nonmanifold"] == 0]
     chosen=min(acceptable,key=lambda r:r["triangles"])
-    low=reduce(source,chosen["ratio"],"SculptedBasalt01_LOD0")
+    low=reduce(source,chosen["ratio"],f"{ASSET}_LOD0")
     # Shared local coordinates and bottom-centre pivot. Preserve the original artist file separately.
     coords=[v.co for v in source.data.vertices]
     pivot=Vector(((min(v.x for v in coords)+max(v.x for v in coords))/2,
@@ -237,27 +249,27 @@ else:
     maps={}
     for channel in ("BaseColor","Roughness","Occlusion"):
         active(low)
-        image=bpy.data.images.new("SculptedBasalt01_"+channel,width=1024,height=1024,alpha=False)
+        image=bpy.data.images.new(f"{ASSET}_"+channel,width=1024,height=1024,alpha=False)
         image.colorspace_settings.name="sRGB" if channel=="BaseColor" else "Non-Color"
         target.image=image; nodes.active=target
         links.new(channels[channel].outputs["Color"],emission.inputs["Color"])
         links.new(emission.outputs["Emission"],out.inputs["Surface"])
         bpy.ops.object.bake(type="EMIT",use_selected_to_active=False)
-        image.filepath_raw=str(EXPORT/("SculptedBasalt01_"+channel+".png")); image.file_format="PNG"; image.save()
+        image.filepath_raw=str(EXPORT/(f"{ASSET}_"+channel+".png")); image.file_format="PNG"; image.save()
         maps[channel]=image
     links.new(shader.outputs["BSDF"],out.inputs["Surface"])
-    normal=bpy.data.images.new("SculptedBasalt01_Normal",width=1024,height=1024,alpha=False)
+    normal=bpy.data.images.new(f"{ASSET}_Normal",width=1024,height=1024,alpha=False)
     normal.colorspace_settings.name="Non-Color"; target.image=normal; nodes.active=target
     active(low); source.select_set(True); source.hide_render=False
     bpy.ops.object.bake(type="NORMAL",use_selected_to_active=True,normal_space="TANGENT",cage_extrusion=.06,max_ray_distance=.12)
-    normal.filepath_raw=str(EXPORT/"SculptedBasalt01_Normal.png"); normal.file_format="PNG"; normal.save(); maps["Normal"]=normal
+    normal.filepath_raw=str(EXPORT/f"{ASSET}_Normal.png"); normal.file_format="PNG"; normal.save(); maps["Normal"]=normal
     import numpy as np
     rough=np.empty(1024*1024*4,dtype=np.float32); maps["Roughness"].pixels.foreach_get(rough)
     packed=np.zeros_like(rough).reshape(-1,4); packed[:,3]=1-rough.reshape(-1,4)[:,0]
-    surface=bpy.data.images.new("SculptedBasalt01_MetallicSmoothness",width=1024,height=1024,alpha=True)
+    surface=bpy.data.images.new(f"{ASSET}_MetallicSmoothness",width=1024,height=1024,alpha=True)
     surface.colorspace_settings.name="Non-Color"; surface.pixels.foreach_set(packed.ravel())
-    surface.filepath_raw=str(EXPORT/"SculptedBasalt01_MetallicSmoothness.png"); surface.file_format="PNG"; surface.save()
-    game=bpy.data.materials.new("SculptedBasalt01 - dark volcanic"); game.use_nodes=True
+    surface.filepath_raw=str(EXPORT/f"{ASSET}_MetallicSmoothness.png"); surface.file_format="PNG"; surface.save()
+    game=bpy.data.materials.new(f"{ASSET} - dark volcanic"); game.use_nodes=True
     gn,gl=game.node_tree.nodes,game.node_tree.links
     bsdf=gn.get("Principled BSDF"); bsdf.inputs["Metallic"].default_value=0
     for channel,socket in (("BaseColor","Base Color"),("Roughness","Roughness")):
@@ -265,13 +277,13 @@ else:
     normtex=gn.new("ShaderNodeTexImage"); normtex.image=normal
     norm=gn.new("ShaderNodeNormalMap"); gl.new(normtex.outputs["Color"],norm.inputs["Color"]); gl.new(norm.outputs["Normal"],bsdf.inputs["Normal"])
     low.data.materials.clear(); low.data.materials.append(game)
-    lod1=reduce(low,.5,"SculptedBasalt01_LOD1")
-    lod2=reduce(low,.25,"SculptedBasalt01_LOD2")
-    hull=low.copy(); hull.data=low.data.copy(); scene.collection.objects.link(hull); hull.name="SculptedBasalt01_Collision"
+    lod1=reduce(low,.5,f"{ASSET}_LOD1")
+    lod2=reduce(low,.25,f"{ASSET}_LOD2")
+    hull=low.copy(); hull.data=low.data.copy(); scene.collection.objects.link(hull); hull.name=f"{ASSET}_Collision"
     make_hull(hull)
     if stats(hull)["triangles"] > 240:
-        simpler=reduce(hull,240/stats(hull)["triangles"],"SculptedBasalt01_Collision")
-        bpy.data.objects.remove(hull,do_unlink=True); hull=simpler; hull.name="SculptedBasalt01_Collision"
+        simpler=reduce(hull,240/stats(hull)["triangles"],f"{ASSET}_Collision")
+        bpy.data.objects.remove(hull,do_unlink=True); hull=simpler; hull.name=f"{ASSET}_Collision"
         make_hull(hull)
     assert stats(hull)["nonmanifold"] == 0 and stats(hull)["triangles"] <= 255
     meshes=(low,lod1,lod2,hull)
@@ -280,11 +292,12 @@ else:
     bpy.ops.object.select_all(action="DESELECT")
     for obj in meshes: obj.select_set(True)
     bpy.context.view_layer.objects.active=low
-    bpy.ops.export_scene.fbx(filepath=str(EXPORT/"SculptedBasalt01.fbx"),use_selection=True,object_types={"MESH"},
+    bpy.ops.export_scene.fbx(filepath=str(EXPORT/f"{ASSET}.fbx"),use_selection=True,object_types={"MESH"},
         global_scale=1,apply_unit_scale=True,apply_scale_options="FBX_SCALE_UNITS",axis_forward="-Z",axis_up="Y",
         use_mesh_modifiers=True,mesh_smooth_type="FACE",use_tspace=True,add_leaf_bones=False,bake_anim=False,path_mode="STRIP")
     for obj in meshes: obj.location=(5,0,0)
-    source.name="Artist sculpt - preserved high detail"
+    source.name=("Artist sculpt - preserved high detail" if ASSET == "SculptedBasalt01"
+                 else f"Artist sculpt {ASSET} - preserved high detail")
     source.hide_render=True; source.hide_set(True); source.hide_select=True
     for obj in (lod1,lod2,hull): obj.hide_render=True; obj.hide_set(True)
     active(low)
@@ -296,13 +309,13 @@ else:
         for area in screen.areas:
             if area.type=="VIEW_3D":
                 area.spaces.active.shading.type="MATERIAL"
-                area.spaces.active.region_3d.view_location=Vector((5,0,2.4))
-                area.spaces.active.region_3d.view_distance=9
+                area.spaces.active.region_3d.view_location=low.location + Vector((0,0,low.dimensions.z/2))
+                area.spaces.active.region_3d.view_distance=max(low.dimensions)*2.3
     if bpy.context.window: bpy.context.window.workspace=bpy.data.workspaces.get("Layout",bpy.context.window.workspace)
     for image in maps.values(): image.pack()
     bpy.ops.wm.save_as_mainfile(filepath=str(output),check_existing=False)
     report.update(chosen=chosen,pivot_shift=list(pivot),game_meshes={o.name:stats(o) for o in meshes},
-        output_blend=str(output),export=str(EXPORT/"SculptedBasalt01.fbx"),texture_resolution=1024,
+        output_blend=str(output),export=str(EXPORT/f"{ASSET}.fbx"),texture_resolution=1024,
         maps="UV-baked original basalt base/roughness/AO; high-to-low tangent normals including restrained height bump; metallic zero, alpha smoothness",
         high_source_preserved=True)
     (PROOF/"delivery.json").write_text(json.dumps(report,indent=2))

@@ -9,17 +9,45 @@ namespace BooterBigArm.Editor
     /// <summary>Bounded import/handoff for the author's saved sculpt; never places content in a scene.</summary>
     public static class SculptedBasaltAssetPipeline
     {
-        public const string Folder = "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01";
-        public const string MaterialPath = "Assets/_Project/Materials/TopDown3D/Rocks/SculptedBasalt01.mat";
-        public const string PrefabPath = "Assets/_Project/Prefabs/TopDown3D/Environment/SculptedBasalt01.prefab";
+        private static string assetName = "SculptedBasalt01";
+        private static int[] expectedTriangles = { 982, 490, 244 };
+        private static Vector3 expectedDimensions = new Vector3(3.163379f, 4.959615f, 3.2489f);
+        public static string Folder => "Assets/_Project/Art/Environment/Rocks/" + assetName;
+        public static string MaterialPath => "Assets/_Project/Materials/TopDown3D/Rocks/" + assetName + ".mat";
+        public static string PrefabPath => "Assets/_Project/Prefabs/TopDown3D/Environment/" + assetName + ".prefab";
+        private static string ProofFolder => assetName == "SculptedBasalt01" ? "Logs/RockSculpt" : "Logs/" + assetName;
+
+        /// <summary>Prepare another measured sculpt without overwriting the first rock's handoff.</summary>
+        public static void BuildAsset(string name, int[] triangles, Vector3 dimensions)
+            => WithAsset(name, triangles, dimensions, Build);
+
+        public static void ValidateAsset(string name, int[] triangles, Vector3 dimensions)
+            => WithAsset(name, triangles, dimensions, Validate);
+
+        private static void WithAsset(string name, int[] triangles, Vector3 dimensions, Action operation)
+        {
+            if (string.IsNullOrEmpty(name) || name.Any(c => !char.IsLetterOrDigit(c))
+                || triangles == null || triangles.Length != 3 || triangles.Any(n => n <= 0)
+                || triangles[0] <= triangles[1] || triangles[1] <= triangles[2]
+                || !float.IsFinite(dimensions.x) || !float.IsFinite(dimensions.y) || !float.IsFinite(dimensions.z)
+                || dimensions.x <= 0 || dimensions.y <= 0 || dimensions.z <= 0)
+                throw new ArgumentException("Expected an alphanumeric asset name, descending LOD counts and finite metre dimensions.");
+            var previousName = assetName; var previousTriangles = expectedTriangles; var previousDimensions = expectedDimensions;
+            try
+            {
+                assetName = name; expectedTriangles = (int[])triangles.Clone(); expectedDimensions = dimensions;
+                operation();
+            }
+            finally { assetName = previousName; expectedTriangles = previousTriangles; expectedDimensions = previousDimensions; }
+        }
 
         public static void Build()
         {
             if (AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath) != null || AssetDatabase.LoadAssetAtPath<Material>(MaterialPath) != null
                 || Directory.GetFiles(Folder, "*.asset").Length > 0)
                 throw new InvalidOperationException("Preserve existing handoff before rebuilding.");
-            AssetDatabase.ImportAsset(Folder + "/SculptedBasalt01.fbx", ImportAssetOptions.ForceSynchronousImport);
-            var importer = (ModelImporter)AssetImporter.GetAtPath(Folder + "/SculptedBasalt01.fbx");
+            AssetDatabase.ImportAsset(Folder + "/" + assetName + ".fbx", ImportAssetOptions.ForceSynchronousImport);
+            var importer = (ModelImporter)AssetImporter.GetAtPath(Folder + "/" + assetName + ".fbx");
             importer.globalScale = 1; importer.useFileScale = true; importer.bakeAxisConversion = true;
             importer.importAnimation = false; importer.animationType = ModelImporterAnimationType.None;
             importer.importCameras = false; importer.importLights = false;
@@ -29,7 +57,7 @@ namespace BooterBigArm.Editor
             importer.addCollider = false; importer.SaveAndReimport();
             Texture2D texture(string suffix, bool srgb, bool normal = false)
             {
-                var path = Folder + "/SculptedBasalt01_" + suffix + ".png";
+                var path = Folder + "/" + assetName + "_" + suffix + ".png";
                 AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
                 var ti = (TextureImporter)AssetImporter.GetAtPath(path);
                 ti.textureType = normal ? TextureImporterType.NormalMap : TextureImporterType.Default;
@@ -41,7 +69,7 @@ namespace BooterBigArm.Editor
             }
             EnsureFolder(Path.GetDirectoryName(MaterialPath).Replace('\\', '/'));
             EnsureFolder(Path.GetDirectoryName(PrefabPath).Replace('\\', '/'));
-            var material = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "SculptedBasalt01", enableInstancing = true };
+            var material = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = assetName, enableInstancing = true };
             material.SetTexture("_BaseMap", texture("BaseColor", true)); material.SetColor("_BaseColor", Color.white);
             material.SetTexture("_BumpMap", texture("Normal", false, true)); material.SetFloat("_BumpScale", 1);
             material.SetTexture("_MetallicGlossMap", texture("MetallicSmoothness", false));
@@ -51,15 +79,15 @@ namespace BooterBigArm.Editor
             texture("Roughness", false);
             material.EnableKeyword("_NORMALMAP"); material.EnableKeyword("_METALLICSPECGLOSSMAP"); material.EnableKeyword("_OCCLUSIONMAP");
             AssetDatabase.CreateAsset(material, MaterialPath);
-            var model = AssetDatabase.LoadAssetAtPath<GameObject>(Folder + "/SculptedBasalt01.fbx");
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(Folder + "/" + assetName + ".fbx");
             var sourceMeshes = model.GetComponentsInChildren<MeshFilter>(true);
-            var root = new GameObject("SculptedBasalt01");
+            var root = new GameObject(assetName);
             try
             {
                 var lods = new LOD[3]; float[] thresholds = { .35f, .15f, .015f };
                 for (int i = 0; i < 3; i++)
                 {
-                    var source = sourceMeshes.Single(m => m.name == "SculptedBasalt01_LOD" + i);
+                    var source = sourceMeshes.Single(m => m.name == assetName + "_LOD" + i);
                     var child = new GameObject("LOD" + i, typeof(MeshFilter), typeof(MeshRenderer)); child.transform.SetParent(root.transform, false);
                     child.GetComponent<MeshFilter>().sharedMesh = BakeTransform(source);
                     var renderer = child.GetComponent<MeshRenderer>(); renderer.sharedMaterial = material;
@@ -67,7 +95,7 @@ namespace BooterBigArm.Editor
                 }
                 var collision = new GameObject("Collision", typeof(MeshCollider)); collision.transform.SetParent(root.transform, false);
                 var collider = collision.GetComponent<MeshCollider>();
-                collider.sharedMesh = BakeTransform(sourceMeshes.Single(m => m.name == "SculptedBasalt01_Collision")); collider.convex = true;
+                collider.sharedMesh = BakeTransform(sourceMeshes.Single(m => m.name == assetName + "_Collision")); collider.convex = true;
                 var group = root.AddComponent<LODGroup>(); group.SetLODs(lods); group.RecalculateBounds();
                 group.fadeMode = LODFadeMode.None;
                 PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
@@ -84,7 +112,7 @@ namespace BooterBigArm.Editor
             var group = prefab.GetComponent<LODGroup>(); var lods = group.GetLODs();
             if (lods.Length != 3) throw new InvalidOperationException("Expected three rock LODs.");
             var counts = new int[3]; Bounds bounds = default;
-            int[] expected = { 982, 490, 244 };
+            var expected = expectedTriangles;
             for (int i = 0; i < 3; i++)
             {
                 var renderer = lods[i].renderers.Single(); var mesh = renderer.GetComponent<MeshFilter>().sharedMesh;
@@ -95,7 +123,8 @@ namespace BooterBigArm.Editor
                     throw new InvalidOperationException("Unexpected mesh transform/material.");
                 if (i == 0) bounds = mesh.bounds;
             }
-            if (Mathf.Abs(bounds.size.x - 3.163379f) > .05f || Mathf.Abs(bounds.size.y - 4.959615f) > .05f || Mathf.Abs(bounds.size.z - 3.2489f) > .05f || Mathf.Abs(bounds.min.y) > .03f)
+            if (Mathf.Abs(bounds.size.x - expectedDimensions.x) > .05f || Mathf.Abs(bounds.size.y - expectedDimensions.y) > .05f
+                || Mathf.Abs(bounds.size.z - expectedDimensions.z) > .05f || Mathf.Abs(bounds.min.y) > .03f)
                 throw new InvalidOperationException("Unity metre scale, axes or ground pivot mismatch: " + bounds);
             var collider = prefab.GetComponentInChildren<MeshCollider>();
             if (!collider.convex || collider.sharedMesh.GetIndexCount(0) / 3 > 255 || collider.GetComponent<Renderer>() != null)
@@ -106,14 +135,14 @@ namespace BooterBigArm.Editor
                 throw new InvalidOperationException("Basalt material contract mismatch.");
             foreach (var suffix in new[] { "BaseColor", "Normal", "MetallicSmoothness", "Occlusion" })
             {
-                var ti = (TextureImporter)AssetImporter.GetAtPath(Folder + "/SculptedBasalt01_" + suffix + ".png");
+                var ti = (TextureImporter)AssetImporter.GetAtPath(Folder + "/" + assetName + "_" + suffix + ".png");
                 if (ti.sRGBTexture != (suffix == "BaseColor") || ti.maxTextureSize != 1024 || !ti.mipmapEnabled
                     || (suffix == "Normal" && ti.textureType != TextureImporterType.NormalMap))
                     throw new InvalidOperationException("Texture import mismatch: " + suffix);
             }
             var report = JsonUtility.ToJson(new Report { unity = Application.unityVersion, lodTriangles = counts,
                 boundsSize = bounds.size, boundsMin = bounds.min, collisionTriangles = (int)collider.sharedMesh.GetIndexCount(0) / 3 }, true);
-            Directory.CreateDirectory("Logs/RockSculpt"); File.WriteAllText("Logs/RockSculpt/unity-import.json", report);
+            Directory.CreateDirectory(ProofFolder); File.WriteAllText(ProofFolder + "/unity-import.json", report);
             Debug.Log("Sculpted basalt import validation passed: " + report);
         }
         public static void Capture()
