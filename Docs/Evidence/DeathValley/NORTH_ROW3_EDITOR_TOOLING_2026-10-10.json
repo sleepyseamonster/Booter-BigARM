@@ -1,0 +1,153 @@
+{
+  "status": "third_row_editor_code_compiled_and_all_added_tests_executed",
+  "code_files": {
+    "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRow3Source.cs": "83d13ac0f19617fe1ae4f9dac4cf41db8ba0f493f00215d4022f1ef617eaabd6",
+    "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRow3Builder.cs": "65d8196e4567f2d4d5437fb8c45122ae57beaaf8f2db8a48746ae5439f8d0524",
+    "Assets/_Project/Scripts/Editor/Validation/BadwaterNorthRow3Validator.cs": "b498519c06c9d581239fd9d895a77074641a3ef68c4d837727834acb31f28c40",
+    "Assets/_Project/Tests/Editor/BadwaterNorthRow3Tests.cs": "340468390dd3fed130567d21df5f62ac8409069f1b6fff603b2a67140eb3b6dd",
+    "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapData.cs": "3b9aa281e2950a65ef359cfc5465a60458e3ea4110d3eb13139ef9d9aa4410e2",
+    "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterPlayableSceneBuilder.cs": "1cffe7249ffd6ed57708cd665ad3f986ed2450801358f636b515c188c69cb168",
+    "Assets/_Project/Scripts/Editor/Validation/BadwaterTerrainExpansionValidator.cs": "271cbca727e3053afd90b453002c96299e5341715e8d2511bb96d6ff0b1da9f3"
+  },
+  "test_xml_sha256": "dd11d5a9a8297aaf2393b31900511e4623f5cbc2b1c9674631e09114153c027f",
+  "test_cases": [
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.ChangedNativeHash_IsRejectedBeforeDecode",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.DeveloperMap_RejectsMissingDuplicateShiftedAndPrematureCells",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.ExactFootprint_RejectsBrokenNativeManifest(\"hole\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.ExactFootprint_RejectsBrokenNativeManifest(\"duplicate\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.ExactFootprint_RejectsBrokenNativeManifest(\"shift\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.ExactFootprint_RejectsBrokenNativeManifest(\"premature\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.ExactFootprint_RejectsBrokenNativeManifest(\"missing-owner\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.ExactFootprint_RejectsBrokenNativeManifest(\"wrong-south\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.InvalidOrderedScope_IsRejected(0)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.InvalidOrderedScope_IsRejected(7)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.MissingOrInvalidExecutionDate_IsRejected",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.NativeReferences_RejectEscapeWrongGridAndMissingOwner",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(\"predecessor\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(\"west-anchor\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(\"corner\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(\"encoding\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(\"source-proof\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.SixOrderedUnions_HaveExactTopologyAndSparseIntermediateFootprints",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.BoundsRejectNonfiniteReversedOrEmptyGeography",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.ChangedEncodingSceneIdentityOrOriginCannotInheritCoordinateProof",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.CoverageLinesFollowEveryTriangleBetweenEndpoints",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.EntireMapFitsBothPortraitAndLandscapeViewports",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.FocusChunkAndSharedCornerUseAbsoluteGeography",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.HashChangeRefusesReliefWithoutTouchingProductionAssets",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.ImageSourcesRejectEscapingPathsAndChangedBytes",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.MeshHasSimplifiedGeometryAndPickingReturnsClosestSurface",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.ObliqueFramingContainsTheTerrainBoundingBox",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.ObliquePanningAndZoomFollowTheRotatedCameraPlane",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.PackedAerialImagesDecodeOnTheirOriginalGeographicGrids",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.PlanPanningUsesMetresPerPixelWithoutChangingAltitude",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.PlanZoomKeepsThePointUnderTheCursorFixed",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.PortableGridMatchesRecordedBoundsAndInventory",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.ProjectedCoordinatesRoundTripAndUnityOriginRemainDistinct",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.DeathValleyMapTests.RayMissesAndBackfacesAreHandledWithoutFalseHits",
+      "result": "Passed"
+    }
+  ],
+  "candidate_native_report_sha256": "4145baea0383b2ed752b8a03805e3b449e65de8ef9ade7f263f14073617435c6",
+  "proof_limit": "Editor/tooling and isolated native candidate proof; saved production acceptance remains pending"
+}
