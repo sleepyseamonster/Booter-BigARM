@@ -1,0 +1,80 @@
+{
+  "file": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\RockSculpting\\RockSculptStarter_2026-10-09.blend",
+  "blender": "5.2.2 LTS",
+  "workspace": "Layout",
+  "active_object": "Rock_Sculpt_01",
+  "mode": "SCULPT",
+  "brush": "Clay Strips",
+  "units": "METRIC",
+  "metres_per_blender_unit": 1.0,
+  "cubes": [
+    {
+      "name": "Reference - 1 Unity Unit - 1m Cube",
+      "dimensions": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "location": [
+        -6.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Reference - Booter Height - 2.48m Cube",
+      "dimensions": [
+        2.4800000190734863,
+        2.4800000190734863,
+        2.4800000190734863
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "location": [
+        -2.5,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Rock_Sculpt_01",
+      "dimensions": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "location": [
+        5.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "sculpt_vertices": 24578,
+  "sculpt_faces": 24576,
+  "voxel_metres": 0.03999999910593033,
+  "symmetry": [
+    false,
+    false,
+    false
+  ],
+  "ground_dimensions": [
+    18.0,
+    12.0,
+    0.0
+  ],
+  "export_performed": false
+}
