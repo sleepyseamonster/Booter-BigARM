@@ -1,0 +1,20 @@
+{
+  "inputLimitTriangles": 100000,
+  "render": "isolated D3D11 Unity render inspected",
+  "testsFailed": 0,
+  "date": "2026-10-10",
+  "testsPassed": 5,
+  "algorithm": 1,
+  "testProject": "D:\\BooterBigArmValidation\\FixedTerrainDressing20261009",
+  "scope": "Editor authoring only, no scene formation created in the live project, no source sculpt overwrite or runtime world/save changes",
+  "unity": "6000.4.0f1",
+  "livePanel": "Fuse Sculpted Rocks",
+  "controllerRoundtrip": "linked prefab creation, original source deactivation and Undo restoration passed in isolated Editor",
+  "SHA256": {
+    "Assets/_Project/Tests/Editor/SculptedRockFusionTests.cs": "E61FF4034D296B94736549B931B477EE98FD42468CBD5EDFA15A9F8B708C69B1",
+    "Tools/Art/Blender/fuse_rock_meshes.py": "7317ABD379611A3CD982D1FB9C20DB53F5D86AB4D3E94F22C1B6F5A961B27E4E",
+    "Assets/_Project/Scripts/Editor/TopDown3D/SculptedRockFusionTool.cs": "4F9A023A9F70D5C6C49284092904CF12DA26F2033D23CF86708BDCEDC63804A4",
+    "Docs/Evidence/Art/SculptedRockFusion/union-review.png": "540F26CAE960ECBD4B302128F23DCA83BBDFA77F50DB2ED8C40EEFA3F4F3921F"
+  },
+  "blender": "5.2.2 LTS"
+}

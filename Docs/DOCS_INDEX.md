@@ -18,6 +18,8 @@ These should be treated as the source of truth unless they are intentionally rev
   Current nine-flat-terrain rock workbench scene, shared Greater Wasteland base texture and painting panel setup.
 - [SCULPTED_BASALT_01.md](./Engineering/SCULPTED_BASALT_01.md)
   Artist-sculpted rock reduction, volcanic texture bake, local Blender source and Unity prefab handoff.
+- [SCULPTED_ROCK_FUSION.md](./Engineering/SCULPTED_ROCK_FUSION.md)
+  Fuse overlapping sculpted rock copies into one outer mesh with sharp joins and preserved sources.
 - [WORLD_CREATOR_CHARTER.md](./Design/DeferredGeneration/WORLD_CREATOR_CHARTER.md)
   Preserved infinite World Creator promise, quality bar and lore constraints. Its terrain-generation scope is deferred; current Greater Wasteland work follows the fixed-terrain dressing plan.
 - [WORLD_SYSTEMS_STANDARD.md](./Engineering/WORLD_SYSTEMS_STANDARD.md)
