@@ -16,6 +16,8 @@ These should be treated as the source of truth unless they are intentionally rev
   Manual ground texture stickers and native terrain painting, with Undo, authoring persistence and terrain-preservation boundaries.
 - [NINE_AREA_ROCK_STUDY.md](./Engineering/NINE_AREA_ROCK_STUDY.md)
   Current nine-flat-terrain rock workbench scene, shared Greater Wasteland base texture and painting panel setup.
+- [SCULPTED_BASALT_01.md](./Engineering/SCULPTED_BASALT_01.md)
+  Artist-sculpted rock reduction, volcanic texture bake, local Blender source and Unity prefab handoff.
 - [WORLD_CREATOR_CHARTER.md](./Design/DeferredGeneration/WORLD_CREATOR_CHARTER.md)
   Preserved infinite World Creator promise, quality bar and lore constraints. Its terrain-generation scope is deferred; current Greater Wasteland work follows the fixed-terrain dressing plan.
 - [WORLD_SYSTEMS_STANDARD.md](./Engineering/WORLD_SYSTEMS_STANDARD.md)

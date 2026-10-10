@@ -1,0 +1,45 @@
+{
+  "meshes": {
+    "SculptedBasalt01_LOD0": {
+      "vertices": 493,
+      "faces": 982,
+      "triangles": 982,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.901825302466637
+    },
+    "SculptedBasalt01_LOD1": {
+      "vertices": 247,
+      "faces": 490,
+      "triangles": 490,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.837089709784745
+    },
+    "SculptedBasalt01_LOD2": {
+      "vertices": 124,
+      "faces": 244,
+      "triangles": 244,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.676047131784344
+    },
+    "SculptedBasalt01_Collision": {
+      "vertices": 105,
+      "faces": 206,
+      "triangles": 206,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 25.441634889582875
+    }
+  },
+  "normal_bake": {
+    "finite": true,
+    "blue_above_half_fraction": 1.0,
+    "triangle_centres_checked": 982
+  }
+}

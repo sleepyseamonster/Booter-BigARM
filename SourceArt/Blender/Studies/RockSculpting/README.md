@@ -40,3 +40,9 @@ The author owns sculpting/style acceptance. This setup does not resume paused la
 Creator: `Tools/Art/Blender/create_rock_sculpt_starter.py`; first-session preparation: `rock_sculpt_session.py`; read-only verification/render: `verify_rock_sculpt_starter.py`. The creator refuses to overwrite an existing source. Do not rerun it against the working sculpture.
 
 References: [Blender brush introduction](https://docs.blender.org/manual/en/5.2/sculpt_paint/brush/introduction.html), [Blender remeshing](https://docs.blender.org/manual/en/latest/sculpt_paint/sculpting/tool_settings/remesh.html). Tablet-driver pressure and hands-on sculpting feel remain author-owned checks.
+
+## Saved artist rock delivery — October 10, 2026
+
+The author's saved sculpt is preserved in the starter and the local `RockSculpt_ArtistSaved_2026-10-10.blend` copy. Open `RockSculpt_Basalt_GameReady_2026-10-10.blend` for the separate optimized, dark volcanic version. LOD0 has 982 triangles; the original high-detail sculpture is hidden and retained. References remain side by side. The delivery opens in Object Mode / Material Preview, since sculpting the reduced mesh would invalidate its bake. Continue sculpting in the original saved artist source.
+
+[The handoff](../../../../Docs/Engineering/SCULPTED_BASALT_01.md) records the tested reduction error, texture maps, LODs, collision and Unity prefab. Blender sources/backups remain local; only optimized native exports, tooling and evidence enter Git.

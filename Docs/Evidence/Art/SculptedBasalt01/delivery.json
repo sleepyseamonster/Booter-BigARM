@@ -1,0 +1,171 @@
+{
+  "blender": "5.2.2 LTS",
+  "source": {
+    "vertices": 24578,
+    "faces": 24576,
+    "triangles": 49152,
+    "nonmanifold": 0,
+    "loose": 0,
+    "degenerate": 0,
+    "volume": 23.95862158950529
+  },
+  "dimensions": [
+    3.163378953933716,
+    3.2489004135131836,
+    4.9596147537231445
+  ],
+  "candidates": [
+    {
+      "ratio": 0.005,
+      "vertices": 124,
+      "faces": 244,
+      "triangles": 244,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.72554960438892,
+      "p95_m": 0.024929450824856758,
+      "max_sampled_m": 0.07977598160505295,
+      "samples": 18269
+    },
+    {
+      "ratio": 0.01,
+      "vertices": 247,
+      "faces": 490,
+      "triangles": 490,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.84117100247084,
+      "p95_m": 0.013512512668967247,
+      "max_sampled_m": 0.037218332290649414,
+      "samples": 18392
+    },
+    {
+      "ratio": 0.02,
+      "vertices": 493,
+      "faces": 982,
+      "triangles": 982,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.901825342576753,
+      "p95_m": 0.007015754468739033,
+      "max_sampled_m": 0.027122454717755318,
+      "samples": 18638
+    },
+    {
+      "ratio": 0.04,
+      "vertices": 985,
+      "faces": 1966,
+      "triangles": 1966,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.93579744820591,
+      "p95_m": 0.0038026070687919855,
+      "max_sampled_m": 0.013164055533707142,
+      "samples": 19130
+    },
+    {
+      "ratio": 0.08,
+      "vertices": 1968,
+      "faces": 3932,
+      "triangles": 3932,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.947830455648308,
+      "p95_m": 0.002096067415550351,
+      "max_sampled_m": 0.009617412462830544,
+      "samples": 20113
+    },
+    {
+      "ratio": 0.12,
+      "vertices": 2951,
+      "faces": 5898,
+      "triangles": 5898,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.952271133048015,
+      "p95_m": 0.0014786676038056612,
+      "max_sampled_m": 0.007373350206762552,
+      "samples": 21096
+    },
+    {
+      "ratio": 0.2,
+      "vertices": 4917,
+      "faces": 9830,
+      "triangles": 9830,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.955916509675426,
+      "p95_m": 0.0009154542349278927,
+      "max_sampled_m": 0.004744471050798893,
+      "samples": 23062
+    }
+  ],
+  "chosen": {
+    "ratio": 0.02,
+    "vertices": 493,
+    "faces": 982,
+    "triangles": 982,
+    "nonmanifold": 0,
+    "loose": 0,
+    "degenerate": 0,
+    "volume": 23.901825342576753,
+    "p95_m": 0.007015754468739033,
+    "max_sampled_m": 0.027122454717755318,
+    "samples": 18638
+  },
+  "pivot_shift": [
+    0.0012476444244384766,
+    -0.12293976545333862,
+    -0.6989156007766724
+  ],
+  "game_meshes": {
+    "SculptedBasalt01_LOD0": {
+      "vertices": 493,
+      "faces": 982,
+      "triangles": 982,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.901825302466637
+    },
+    "SculptedBasalt01_LOD1": {
+      "vertices": 247,
+      "faces": 490,
+      "triangles": 490,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.837089709784745
+    },
+    "SculptedBasalt01_LOD2": {
+      "vertices": 124,
+      "faces": 244,
+      "triangles": 244,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 23.676047131784344
+    },
+    "SculptedBasalt01_Collision": {
+      "vertices": 105,
+      "faces": 206,
+      "triangles": 206,
+      "nonmanifold": 0,
+      "loose": 0,
+      "degenerate": 0,
+      "volume": 25.441634889582875
+    }
+  },
+  "output_blend": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\RockSculpting\\RockSculpt_Basalt_GameReady_2026-10-10.blend",
+  "export": "D:\\Arc & Dust\\Project\\Assets\\_Project\\Art\\Environment\\Rocks\\SculptedBasalt01\\SculptedBasalt01.fbx",
+  "texture_resolution": 1024,
+  "maps": "UV-baked original basalt base/roughness/AO; high-to-low tangent normals including restrained height bump; metallic zero, alpha smoothness",
+  "high_source_preserved": true
+}
