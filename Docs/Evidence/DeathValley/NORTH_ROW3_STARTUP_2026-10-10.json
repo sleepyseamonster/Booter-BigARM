@@ -1,0 +1,75 @@
+{
+  "status": "startup_sources_baseline_preparation_pilot_and_pure_native_contracts_passed",
+  "family": "north_row3",
+  "step": 1,
+  "baseline_manifest_sha256": "f2d95847b19aee9b6a276593ce1bcd741509607f9047ad90a4172a749463ad90",
+  "protected_inventory_sha256": "6c755da5c150864940b1057c2fcf792425a8f84790e4465acd2e4cc6127d09b5",
+  "protected_files": 124305,
+  "preparation": {
+    "retained_chunks": 6144,
+    "new_chunks": 256,
+    "max_retained_adjustment_m": 0.0274658203125,
+    "quantization_budget_m": 0.042057666927576065,
+    "new_edge_error_m": 0,
+    "retained_rgb_edge_error": 0,
+    "color_corner": {
+      "west_anchor_present": false,
+      "southwest_difference_rgb": null,
+      "west_exception_pixels": 0,
+      "priority": "south row; west column everywhere except sole southwest raster-cell center",
+      "feather_pixels": 128,
+      "feather_m": 256
+    }
+  },
+  "color_calibration": {
+    "reference_path": "SourceData/Terrain/DeathValley/MacSnapshot2026-10-07/expanded_v2/corridor_40m/prepared/corridor/naip_landsat_composite.png",
+    "reference_sha256": "f83ce2331b32b6cb80e9f8aa021c5dfda6e1cb89d41e2fb60e1539b38daea9f0",
+    "metadata_sha256": "e1c64e2f958dc4bbb236a054b0fb5963f976edb1fea3115269b27a18e6aeb100",
+    "original_bounds_m": [
+      495400.0,
+      3984200.0,
+      543400.0,
+      4024200.0
+    ],
+    "palette_bounds_m": [
+      495400.0,
+      3984200.0,
+      543400.0,
+      4026680.0
+    ],
+    "north_padding_rows": 124,
+    "policy": "Hold northernmost retained low-frequency palette row beyond its coverage; detailed NAIP and measured terrain remain independently sourced"
+  },
+  "pilot_proof_sha256": "1c86aa90020dfb8aa157e9880b57c169a79df1dd0a738961ad88855545fd5963",
+  "pilot_view_inspected": true,
+  "pilot_view_sha256": "d2b8dc2bae21a287834c3be3462da91b973578fe32ddbbd04cb0e5d5b8eb4dd1",
+  "native_editmode_test_cases": [
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.DeveloperMap_RejectsMissingDuplicateShiftedAndPrematureCells",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.InvalidOrderedScope_IsRejected(0)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.InvalidOrderedScope_IsRejected(7)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.MissingOrInvalidExecutionDate_IsRejected",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.NativeReferences_RejectEscapeWrongGridAndMissingOwner",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.BadwaterNorthRow3Tests.SixOrderedUnions_HaveExactTopologyAndSparseIntermediateFootprints",
+      "result": "Passed"
+    }
+  ],
+  "native_editmode_xml_sha256": "5bb35cb25a03fca88fcccd23bbcc7bd1f4e82b13b89fae2cbd7667693a0d6c70",
+  "isolated_project": "D:/BooterBigArmValidation/TerrainNorthRow3_20261010_01",
+  "proof_limit": "Four-mesh pilot and six pure native contract cases only; section/combined authoring, new native terrain and production acceptance remain pending"
+}

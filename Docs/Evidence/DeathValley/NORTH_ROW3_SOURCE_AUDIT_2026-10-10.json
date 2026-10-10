@@ -1,0 +1,417 @@
+{
+  "schema_version": 1,
+  "family": "north_row3",
+  "status": "reopened_measured_sources_verified",
+  "dem_manifest_sha256": "b34fdf078a9fe1123bd692ef499348c0afec48bbcd7f2d4fceb60b015acf72e6",
+  "imagery_manifest_sha256": "0aada9d01cfda37bae6674a4f5cbff746ab4a0edb4e10125662b4df254d53355",
+  "bounds_m": [
+    499920,
+    4022584,
+    524496,
+    4026680
+  ],
+  "unique_native_samples": 100691969,
+  "sources": [
+    {
+      "id": "x49y403",
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x49y403_CA_FEMAR9Southeast_D24.tif",
+      "source_bounds_m": [
+        489993.9996735661,
+        4019993.9999768953,
+        500005.9996735661,
+        4030005.9999768953
+      ],
+      "resolution_m": 1,
+      "window_file": "x49y403_window.tif",
+      "window_sha256": "5d87a6b47d7752fa1244b9ed76671bd5bc66a7da2b4d9cf00f8018ef75436ab5",
+      "window_shape": [
+        4104,
+        89
+      ],
+      "window_transform": [
+        1.0,
+        0.0,
+        499915.9996735661,
+        0.0,
+        -1.0,
+        4026683.9999768953
+      ],
+      "metadata_url": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/CA_FEMAR9Southeast_D24/USGS_1M_11_x49y403_CA_FEMAR9Southeast_D24.xml",
+      "metadata_file": "x49y403_metadata.xml",
+      "metadata_sha256": "f677326cdc183af7b1397296cb82e44877a644085abf08d22b704aa74d6d35fc",
+      "vertical_datum": "NAVD88 metres",
+      "surface": "bare-earth",
+      "owned_samples": 327760,
+      "owned_min_m": 566.0243530273438,
+      "owned_max_m": 1080.46533203125
+    },
+    {
+      "id": "x50y403",
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x50y403_CA_FEMAR9Southeast_D24.tif",
+      "source_bounds_m": [
+        499993.99973073317,
+        4019993.9999762736,
+        510005.99973073317,
+        4030005.9999762736
+      ],
+      "resolution_m": 1,
+      "window_file": "x50y403_window.tif",
+      "window_sha256": "4bf240f507f7322af4a975123dc7b1fc2331863d9426510a16cdce2558ffbea2",
+      "window_shape": [
+        4104,
+        10010
+      ],
+      "window_transform": [
+        1.0,
+        0.0,
+        499994.99973073317,
+        0.0,
+        -1.0,
+        4026683.9999762736
+      ],
+      "metadata_url": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/CA_FEMAR9Southeast_D24/USGS_1M_11_x50y403_CA_FEMAR9Southeast_D24.xml",
+      "metadata_file": "x50y403_metadata.xml",
+      "metadata_sha256": "1a56c2a4dc783ececf8aa3fed5a585eadab95c2542361fb87c21c5ffebc6f58f",
+      "vertical_datum": "NAVD88 metres",
+      "surface": "bare-earth",
+      "owned_samples": 40970000,
+      "owned_min_m": -83.60183715820312,
+      "owned_max_m": 1058.0123291015625
+    },
+    {
+      "id": "x51y403",
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x51y403_CA_FEMAR9Southeast_D24.tif",
+      "source_bounds_m": [
+        509993.99969814625,
+        4019993.9999762736,
+        520005.99969814625,
+        4030005.9999762736
+      ],
+      "resolution_m": 1,
+      "window_file": "x51y403_window.tif",
+      "window_sha256": "74c2e26d349814407a78866a702b7abfb0c534428e20df368f6b2ffd1aa35144",
+      "window_shape": [
+        4104,
+        10010
+      ],
+      "window_transform": [
+        1.0,
+        0.0,
+        509994.99969814625,
+        0.0,
+        -1.0,
+        4026683.9999762736
+      ],
+      "metadata_url": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/CA_FEMAR9Southeast_D24/USGS_1M_11_x51y403_CA_FEMAR9Southeast_D24.xml",
+      "metadata_file": "x51y403_metadata.xml",
+      "metadata_sha256": "c1b9c98ea0a3306afc88e1ad9172920c4168efcef82de05a07f343d8195745d8",
+      "vertical_datum": "NAVD88 metres",
+      "surface": "bare-earth",
+      "owned_samples": 40970000,
+      "owned_min_m": -83.60609436035156,
+      "owned_max_m": 916.291259765625
+    },
+    {
+      "id": "x52y403",
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x52y403_CA_FEMAR9Southeast_D24.tif",
+      "source_bounds_m": [
+        519993.999690949,
+        4019994.0000504074,
+        530005.999690949,
+        4030006.0000504074
+      ],
+      "resolution_m": 1,
+      "window_file": "x52y403_window.tif",
+      "window_sha256": "52d52b32891dcf3847b6d17caafb23681157d766cbf657daac8aa318bd0ba047",
+      "window_shape": [
+        4104,
+        4505
+      ],
+      "window_transform": [
+        1.0,
+        0.0,
+        519994.999690949,
+        0.0,
+        -1.0,
+        4026684.0000504074
+      ],
+      "metadata_url": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/CA_FEMAR9Southeast_D24/USGS_1M_11_x52y403_CA_FEMAR9Southeast_D24.xml",
+      "metadata_file": "x52y403_metadata.xml",
+      "metadata_sha256": "fdc0fc1fb995d594104dc37b461c32a552ef78a046dbb6c512dbc1dbd57a4cf0",
+      "vertical_datum": "NAVD88 metres",
+      "surface": "bare-earth",
+      "owned_samples": 18424209,
+      "owned_min_m": 408.8857421875,
+      "owned_max_m": 1158.3819580078125
+    }
+  ],
+  "sections": [
+    {
+      "step": 1,
+      "id": "north_row3_e499920_n4022584",
+      "bounds_m": [
+        499920,
+        4022584,
+        504016,
+        4026680
+      ],
+      "terrain_file": "north_row3_e499920_n4022584_terrain.npz",
+      "terrain_sha256": "8e2d4100b3551e5772c698974abcf09cbcf5b02d126b008279b0a8e3644caaec",
+      "native_shape": [
+        4097,
+        4097
+      ],
+      "control_shape": [
+        2049,
+        2049
+      ],
+      "min_height_m": 28.640975952148438,
+      "max_height_m": 1080.46533203125,
+      "fits_retained_height_range": true,
+      "imagery_sha256": "8b0461dfe8d7097c6569686371d82bf1c0465f7f309d14ceacfe53cab3fbf62f",
+      "finite_native_samples": 16785409,
+      "strict_decimation_verified": true,
+      "aligned_imagery_verified": true
+    },
+    {
+      "step": 2,
+      "id": "north_row3_e504016_n4022584",
+      "bounds_m": [
+        504016,
+        4022584,
+        508112,
+        4026680
+      ],
+      "terrain_file": "north_row3_e504016_n4022584_terrain.npz",
+      "terrain_sha256": "8cf29b2390fd6a759c19e4b9d41cd8bdbcc62c6d689726b3857131611acf1f19",
+      "native_shape": [
+        4097,
+        4097
+      ],
+      "control_shape": [
+        2049,
+        2049
+      ],
+      "min_height_m": -83.45144653320312,
+      "max_height_m": 386.7910461425781,
+      "fits_retained_height_range": true,
+      "imagery_sha256": "a3dd16f0ab2374555fb7df30654d80c66422754af53497b93ca7c4b58171f62b",
+      "finite_native_samples": 16785409,
+      "strict_decimation_verified": true,
+      "aligned_imagery_verified": true
+    },
+    {
+      "step": 3,
+      "id": "north_row3_e508112_n4022584",
+      "bounds_m": [
+        508112,
+        4022584,
+        512208,
+        4026680
+      ],
+      "terrain_file": "north_row3_e508112_n4022584_terrain.npz",
+      "terrain_sha256": "00d1873343258233c833ed3fe6e367269a21a85a27beeab20c5823912b34ba18",
+      "native_shape": [
+        4097,
+        4097
+      ],
+      "control_shape": [
+        2049,
+        2049
+      ],
+      "min_height_m": -83.60609436035156,
+      "max_height_m": -69.09391021728516,
+      "fits_retained_height_range": true,
+      "imagery_sha256": "0ae74321a9a86809b7e378e38b064da2fb4b37dc5a5c6ba4e612ba3f3bcce35e",
+      "finite_native_samples": 16785409,
+      "strict_decimation_verified": true,
+      "aligned_imagery_verified": true
+    },
+    {
+      "step": 4,
+      "id": "north_row3_e512208_n4022584",
+      "bounds_m": [
+        512208,
+        4022584,
+        516304,
+        4026680
+      ],
+      "terrain_file": "north_row3_e512208_n4022584_terrain.npz",
+      "terrain_sha256": "df5b514fc352eb36e65cc280156d0c7f5328270c19cdc7d671dfbddeae48a429",
+      "native_shape": [
+        4097,
+        4097
+      ],
+      "control_shape": [
+        2049,
+        2049
+      ],
+      "min_height_m": -83.029296875,
+      "max_height_m": 279.5867614746094,
+      "fits_retained_height_range": true,
+      "imagery_sha256": "4db3ca0fe129e0f3b6e06cf9b734851998acd352a4c6162279aa8583f6fcb014",
+      "finite_native_samples": 16785409,
+      "strict_decimation_verified": true,
+      "aligned_imagery_verified": true
+    },
+    {
+      "step": 5,
+      "id": "north_row3_e516304_n4022584",
+      "bounds_m": [
+        516304,
+        4022584,
+        520400,
+        4026680
+      ],
+      "terrain_file": "north_row3_e516304_n4022584_terrain.npz",
+      "terrain_sha256": "e9dd6eaaf09f7c5dae2b5e5a64498fac0d78d911df5c00c2a3bd1a4456b88e5f",
+      "native_shape": [
+        4097,
+        4097
+      ],
+      "control_shape": [
+        2049,
+        2049
+      ],
+      "min_height_m": 92.47648620605469,
+      "max_height_m": 975.5009155273438,
+      "fits_retained_height_range": true,
+      "imagery_sha256": "a5efb52f3be014aa036cb850f65cfcee794a91fdbbd0ef6d17c713b6ec3e4297",
+      "finite_native_samples": 16785409,
+      "strict_decimation_verified": true,
+      "aligned_imagery_verified": true
+    },
+    {
+      "step": 6,
+      "id": "north_row3_e520400_n4022584",
+      "bounds_m": [
+        520400,
+        4022584,
+        524496,
+        4026680
+      ],
+      "terrain_file": "north_row3_e520400_n4022584_terrain.npz",
+      "terrain_sha256": "008b64e680297a7a5fbfab500193afb3b8a01c8b16ca08f7e7731f28cbe1bced",
+      "native_shape": [
+        4097,
+        4097
+      ],
+      "control_shape": [
+        2049,
+        2049
+      ],
+      "min_height_m": 408.8857421875,
+      "max_height_m": 1158.3819580078125,
+      "fits_retained_height_range": true,
+      "imagery_sha256": "a09126601a395e3625fbca860385f752b26741671df8339be2d97e25d594602c",
+      "finite_native_samples": 16785409,
+      "strict_decimation_verified": true,
+      "aligned_imagery_verified": true
+    }
+  ],
+  "ownership_lines": [
+    {
+      "axis": "easting",
+      "coordinate_m": 500000,
+      "extent_m": [
+        4022584,
+        4026680
+      ],
+      "owners": [
+        "x49y403",
+        "x50y403"
+      ],
+      "selected_owner": "x50y403",
+      "samples": 4097,
+      "max_difference_m": 0.0001220703125,
+      "p99_difference_m": 6.103515625e-05
+    },
+    {
+      "axis": "easting",
+      "coordinate_m": 510000,
+      "extent_m": [
+        4022584,
+        4026680
+      ],
+      "owners": [
+        "x50y403",
+        "x51y403"
+      ],
+      "selected_owner": "x51y403",
+      "samples": 4097,
+      "max_difference_m": 7.62939453125e-06,
+      "p99_difference_m": 7.62939453125e-06
+    },
+    {
+      "axis": "easting",
+      "coordinate_m": 520000,
+      "extent_m": [
+        4022584,
+        4026680
+      ],
+      "owners": [
+        "x51y403",
+        "x52y403"
+      ],
+      "selected_owner": "x52y403",
+      "samples": 4097,
+      "max_difference_m": 0.0001220703125,
+      "p99_difference_m": 6.103515625e-05
+    }
+  ],
+  "buffer_overlaps": [
+    {
+      "owners": [
+        "x49y403",
+        "x50y403"
+      ],
+      "bounds_m": [
+        499995,
+        4022584,
+        500004,
+        4026680
+      ],
+      "finite_samples": 40970,
+      "target_samples": 40970,
+      "max_difference_m": 3.14105224609375,
+      "p99_difference_m": 0.6647210693359362
+    },
+    {
+      "owners": [
+        "x50y403",
+        "x51y403"
+      ],
+      "bounds_m": [
+        509995,
+        4022584,
+        510004,
+        4026680
+      ],
+      "finite_samples": 40970,
+      "target_samples": 40970,
+      "max_difference_m": 0.04610443115234375,
+      "p99_difference_m": 0.00857780456542967
+    },
+    {
+      "owners": [
+        "x51y403",
+        "x52y403"
+      ],
+      "bounds_m": [
+        519995,
+        4022584,
+        520004,
+        4026680
+      ],
+      "finite_samples": 40970,
+      "target_samples": 40970,
+      "max_difference_m": 1.944091796875,
+      "p99_difference_m": 0.4187683105468736
+    }
+  ],
+  "min_height_m": -83.60609436035156,
+  "max_height_m": 1158.3819580078125,
+  "source_policy": "Each point takes its half-open product-domain owner; overlap/buffer disagreements are measured, not averaged or smoothed. Exact native Unity joins are a later independent gate.",
+  "proof_limit": "Source audit only, not authored mesh, native TerrainData or Player acceptance",
+  "local_manifest_path": "SourceData/Terrain/DeathValley/NorthRow3Survey2026-10-10/SourceAudit01/manifest.json"
+}

@@ -1,0 +1,21 @@
+{
+  "status": "startup_capacity_gate_passed",
+  "free_d_bytes": 94212673536,
+  "physical_initial_copy_bytes": {
+    "Assets": 12819965904,
+    "Packages": 19180,
+    "ProjectSettings": 60416
+  },
+  "remaining_allowances_bytes": {
+    "isolated_project_and_cache": 27917287424,
+    "new_blender_sources": 5368709120,
+    "new_source_grids_and_proofs": 4294967296,
+    "new_runtime_owners_in_both_projects": 4294967296,
+    "git_growth": 3221225472,
+    "baselines_and_logs": 2147483648,
+    "transient_workspace": 2147483648
+  },
+  "projected_remaining_d_bytes": 44820549632,
+  "minimum_working_margin_bytes": 3221225472,
+  "policy": "Measure actual sizes before each expensive output; no previous validation or source deletion"
+}

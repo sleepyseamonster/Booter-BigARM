@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "family": "north_row3",
+  "status": "saved_predecessor_and_geographic_contract_verified",
+  "baseline_commit": "3917fbfb3bc23765d6892cc3ebd00a1f76407a73",
+  "scene_sha256": "b1a92c37a80bb73fa8d7322d380c00c6ab28d62360b2aa40bcc5b2f4398f4073",
+  "manifest_sha256": "1cef40986435cd82f84bc2d9689eec4e84eda77e48a29891fdc3ed87cff1eb18",
+  "native_proof_sha256": "6d58b0b6dc87d1963fc838384216795d2ec0c607aa8589e6ea05dac85992dcbf",
+  "baseline_bounds_m": [
+    499920,
+    4006200,
+    524496,
+    4022584
+  ],
+  "row_bounds_m": [
+    499920,
+    4022584,
+    524496,
+    4026680
+  ],
+  "contracts": [
+    {
+      "step": 0,
+      "terrains": 6144,
+      "edges": 12128,
+      "exterior_slots": 320
+    },
+    {
+      "step": 1,
+      "terrains": 6400,
+      "edges": 12624,
+      "exterior_slots": 352
+    },
+    {
+      "step": 2,
+      "terrains": 6656,
+      "edges": 13136,
+      "exterior_slots": 352
+    },
+    {
+      "step": 3,
+      "terrains": 6912,
+      "edges": 13648,
+      "exterior_slots": 352
+    },
+    {
+      "step": 4,
+      "terrains": 7168,
+      "edges": 14160,
+      "exterior_slots": 352
+    },
+    {
+      "step": 5,
+      "terrains": 7424,
+      "edges": 14672,
+      "exterior_slots": 352
+    },
+    {
+      "step": 6,
+      "terrains": 7680,
+      "edges": 15184,
+      "exterior_slots": 352
+    }
+  ],
+  "source_products": [
+    "x49y403",
+    "x50y403",
+    "x51y403",
+    "x52y403"
+  ],
+  "proof_limit": "Existing saved native predecessor proof and exact geographic contract; new third-row authoring and Unity proof remain pending",
+  "retained_asset_meta_native_reference_files_verified": 18432,
+  "retained_geographic_cells_verified": 6144,
+  "live_editor": {
+    "version": "6000.4.0f1",
+    "port": 7800,
+    "pid": 13084,
+    "active_scene": "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity",
+    "active_scene_dirty": false,
+    "production_loaded": false,
+    "proof": "Unity CLI status and list_open_scenes read-only calls"
+  },
+  "contract_tests_passed": 5
+}
