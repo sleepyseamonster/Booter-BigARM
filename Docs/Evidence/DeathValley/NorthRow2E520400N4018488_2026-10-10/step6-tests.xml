@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="34" result="Passed" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 12:40:03Z" end-time="2026-10-10 12:40:23Z" duration="19.6287478">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="670" result="Passed" start-time="2026-10-10 12:40:03Z" end-time="2026-10-10 12:40:23Z" duration="19.628748" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1798" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/TerrainNorthRow2_20261009_01/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="670" result="Passed" start-time="2026-10-10 12:40:03Z" end-time="2026-10-10 12:40:23Z" duration="19.621654" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="25756" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1799" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="670" result="Passed" start-time="2026-10-10 12:40:03Z" end-time="2026-10-10 12:40:23Z" duration="19.620842" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1800" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="670" result="Passed" start-time="2026-10-10 12:40:03Z" end-time="2026-10-10 12:40:23Z" duration="19.620180" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1076" name="BadwaterNorthRow2Tests" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-10-10 12:40:03Z" end-time="2026-10-10 12:40:22Z" duration="18.773173" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1083" name="ChangedNativeHash_IsRejectedBeforeDecode" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.ChangedNativeHash_IsRejectedBeforeDecode" methodname="ChangedNativeHash_IsRejectedBeforeDecode" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1597442461" result="Passed" start-time="2026-10-10 12:40:03Z" end-time="2026-10-10 12:40:04Z" duration="1.058371" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1084" name="DeveloperMap_RejectsMissingDuplicateShiftedAndPrematureCells" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.DeveloperMap_RejectsMissingDuplicateShiftedAndPrematureCells" methodname="DeveloperMap_RejectsMissingDuplicateShiftedAndPrematureCells" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1705537031" result="Passed" start-time="2026-10-10 12:40:04Z" end-time="2026-10-10 12:40:04Z" duration="0.017831" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1091" name="ExactFootprint_RejectsBrokenNativeManifest" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.ExactFootprint_RejectsBrokenNativeManifest" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-10 12:40:04Z" end-time="2026-10-10 12:40:15Z" duration="10.917716" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1085" name="ExactFootprint_RejectsBrokenNativeManifest(&quot;hole&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.ExactFootprint_RejectsBrokenNativeManifest(&quot;hole&quot;)" methodname="ExactFootprint_RejectsBrokenNativeManifest" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="529185784" result="Passed" start-time="2026-10-10 12:40:04Z" end-time="2026-10-10 12:40:06Z" duration="1.295089" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1086" name="ExactFootprint_RejectsBrokenNativeManifest(&quot;duplicate&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.ExactFootprint_RejectsBrokenNativeManifest(&quot;duplicate&quot;)" methodname="ExactFootprint_RejectsBrokenNativeManifest" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="917448000" result="Passed" start-time="2026-10-10 12:40:06Z" end-time="2026-10-10 12:40:07Z" duration="1.885303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1087" name="ExactFootprint_RejectsBrokenNativeManifest(&quot;shift&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.ExactFootprint_RejectsBrokenNativeManifest(&quot;shift&quot;)" methodname="ExactFootprint_RejectsBrokenNativeManifest" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1589682559" result="Passed" start-time="2026-10-10 12:40:07Z" end-time="2026-10-10 12:40:10Z" duration="2.071120" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1088" name="ExactFootprint_RejectsBrokenNativeManifest(&quot;premature&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.ExactFootprint_RejectsBrokenNativeManifest(&quot;premature&quot;)" methodname="ExactFootprint_RejectsBrokenNativeManifest" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1875693664" result="Passed" start-time="2026-10-10 12:40:10Z" end-time="2026-10-10 12:40:11Z" duration="1.939673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1089" name="ExactFootprint_RejectsBrokenNativeManifest(&quot;missing-owner&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.ExactFootprint_RejectsBrokenNativeManifest(&quot;missing-owner&quot;)" methodname="ExactFootprint_RejectsBrokenNativeManifest" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1476134178" result="Passed" start-time="2026-10-10 12:40:11Z" end-time="2026-10-10 12:40:13Z" duration="1.837851" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1090" name="ExactFootprint_RejectsBrokenNativeManifest(&quot;wrong-south&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.ExactFootprint_RejectsBrokenNativeManifest(&quot;wrong-south&quot;)" methodname="ExactFootprint_RejectsBrokenNativeManifest" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1344696592" result="Passed" start-time="2026-10-10 12:40:13Z" end-time="2026-10-10 12:40:15Z" duration="1.885657" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1080" name="InvalidOrderedScope_IsRejected" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.InvalidOrderedScope_IsRejected" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-10 12:40:15Z" end-time="2026-10-10 12:40:15Z" duration="0.001044" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1078" name="InvalidOrderedScope_IsRejected(0)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.InvalidOrderedScope_IsRejected(0)" methodname="InvalidOrderedScope_IsRejected" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="660068296" result="Passed" start-time="2026-10-10 12:40:15Z" end-time="2026-10-10 12:40:15Z" duration="0.000328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1079" name="InvalidOrderedScope_IsRejected(7)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.InvalidOrderedScope_IsRejected(7)" methodname="InvalidOrderedScope_IsRejected" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="170465669" result="Passed" start-time="2026-10-10 12:40:15Z" end-time="2026-10-10 12:40:15Z" duration="0.000077" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1081" name="MissingOrInvalidExecutionDate_IsRejected" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.MissingOrInvalidExecutionDate_IsRejected" methodname="MissingOrInvalidExecutionDate_IsRejected" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="869514666" result="Passed" start-time="2026-10-10 12:40:15Z" end-time="2026-10-10 12:40:15Z" duration="0.000329" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1082" name="NativeReferences_RejectEscapeWrongGridAndMissingOwner" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.NativeReferences_RejectEscapeWrongGridAndMissingOwner" methodname="NativeReferences_RejectEscapeWrongGridAndMissingOwner" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1737334513" result="Passed" start-time="2026-10-10 12:40:15Z" end-time="2026-10-10 12:40:15Z" duration="0.001137" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1097" name="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-10 12:40:15Z" end-time="2026-10-10 12:40:22Z" duration="6.753598" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1092" name="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(&quot;predecessor&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(&quot;predecessor&quot;)" methodname="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1361867370" result="Passed" start-time="2026-10-10 12:40:15Z" end-time="2026-10-10 12:40:16Z" duration="1.256639" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1093" name="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(&quot;west-anchor&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(&quot;west-anchor&quot;)" methodname="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="209109223" result="Passed" start-time="2026-10-10 12:40:16Z" end-time="2026-10-10 12:40:18Z" duration="1.636104" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1094" name="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(&quot;corner&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(&quot;corner&quot;)" methodname="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1743735968" result="Passed" start-time="2026-10-10 12:40:18Z" end-time="2026-10-10 12:40:20Z" duration="1.637572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1095" name="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(&quot;encoding&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(&quot;encoding&quot;)" methodname="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1849628863" result="Passed" start-time="2026-10-10 12:40:20Z" end-time="2026-10-10 12:40:21Z" duration="0.981549" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1096" name="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(&quot;source-proof&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor(&quot;source-proof&quot;)" methodname="OrderedSourceContract_RejectsChangedLineageAndFirstStepWestAnchor" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1536822666" result="Passed" start-time="2026-10-10 12:40:21Z" end-time="2026-10-10 12:40:22Z" duration="1.240765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1077" name="SixOrderedUnions_HaveExactTopologyAndSparseIntermediateFootprints" fullname="BooterBigArm.Tests.BadwaterNorthRow2Tests.SixOrderedUnions_HaveExactTopologyAndSparseIntermediateFootprints" methodname="SixOrderedUnions_HaveExactTopologyAndSparseIntermediateFootprints" classname="BooterBigArm.Tests.BadwaterNorthRow2Tests" runstate="Runnable" seed="1482484916" result="Passed" start-time="2026-10-10 12:40:22Z" end-time="2026-10-10 12:40:22Z" duration="0.011254" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1186" name="DeathValleyMapTests" fullname="BooterBigArm.Tests.DeathValleyMapTests" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-10 12:40:22Z" end-time="2026-10-10 12:40:23Z" duration="0.833501" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1193" name="BoundsRejectNonfiniteReversedOrEmptyGeography" fullname="BooterBigArm.Tests.DeathValleyMapTests.BoundsRejectNonfiniteReversedOrEmptyGeography" methodname="BoundsRejectNonfiniteReversedOrEmptyGeography" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="33107840" result="Passed" start-time="2026-10-10 12:40:22Z" end-time="2026-10-10 12:40:22Z" duration="0.000501" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1202" name="ChangedEncodingSceneIdentityOrOriginCannotInheritCoordinateProof" fullname="BooterBigArm.Tests.DeathValleyMapTests.ChangedEncodingSceneIdentityOrOriginCannotInheritCoordinateProof" methodname="ChangedEncodingSceneIdentityOrOriginCannotInheritCoordinateProof" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="1989091783" result="Passed" start-time="2026-10-10 12:40:22Z" end-time="2026-10-10 12:40:22Z" duration="0.173377" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1192" name="CoverageLinesFollowEveryTriangleBetweenEndpoints" fullname="BooterBigArm.Tests.DeathValleyMapTests.CoverageLinesFollowEveryTriangleBetweenEndpoints" methodname="CoverageLinesFollowEveryTriangleBetweenEndpoints" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="949208602" result="Passed" start-time="2026-10-10 12:40:22Z" end-time="2026-10-10 12:40:22Z" duration="0.006304" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1199" name="EntireMapFitsBothPortraitAndLandscapeViewports" fullname="BooterBigArm.Tests.DeathValleyMapTests.EntireMapFitsBothPortraitAndLandscapeViewports" methodname="EntireMapFitsBothPortraitAndLandscapeViewports" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="2117243383" result="Passed" start-time="2026-10-10 12:40:22Z" end-time="2026-10-10 12:40:22Z" duration="0.001258" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1189" name="FocusChunkAndSharedCornerUseAbsoluteGeography" fullname="BooterBigArm.Tests.DeathValleyMapTests.FocusChunkAndSharedCornerUseAbsoluteGeography" methodname="FocusChunkAndSharedCornerUseAbsoluteGeography" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="1486649311" result="Passed" start-time="2026-10-10 12:40:22Z" end-time="2026-10-10 12:40:22Z" duration="0.001234" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1194" name="HashChangeRefusesReliefWithoutTouchingProductionAssets" fullname="BooterBigArm.Tests.DeathValleyMapTests.HashChangeRefusesReliefWithoutTouchingProductionAssets" methodname="HashChangeRefusesReliefWithoutTouchingProductionAssets" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="1856133804" result="Passed" start-time="2026-10-10 12:40:22Z" end-time="2026-10-10 12:40:23Z" duration="0.067094" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1196" name="ImageSourcesRejectEscapingPathsAndChangedBytes" fullname="BooterBigArm.Tests.DeathValleyMapTests.ImageSourcesRejectEscapingPathsAndChangedBytes" methodname="ImageSourcesRejectEscapingPathsAndChangedBytes" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="1509720925" result="Passed" start-time="2026-10-10 12:40:23Z" end-time="2026-10-10 12:40:23Z" duration="0.001435" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1190" name="MeshHasSimplifiedGeometryAndPickingReturnsClosestSurface" fullname="BooterBigArm.Tests.DeathValleyMapTests.MeshHasSimplifiedGeometryAndPickingReturnsClosestSurface" methodname="MeshHasSimplifiedGeometryAndPickingReturnsClosestSurface" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="457438143" result="Passed" start-time="2026-10-10 12:40:23Z" end-time="2026-10-10 12:40:23Z" duration="0.028104" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1201" name="ObliqueFramingContainsTheTerrainBoundingBox" fullname="BooterBigArm.Tests.DeathValleyMapTests.ObliqueFramingContainsTheTerrainBoundingBox" methodname="ObliqueFramingContainsTheTerrainBoundingBox" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="1550917716" result="Passed" start-time="2026-10-10 12:40:23Z" end-time="2026-10-10 12:40:23Z" duration="0.000832" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1200" name="ObliquePanningAndZoomFollowTheRotatedCameraPlane" fullname="BooterBigArm.Tests.DeathValleyMapTests.ObliquePanningAndZoomFollowTheRotatedCameraPlane" methodname="ObliquePanningAndZoomFollowTheRotatedCameraPlane" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="1371017088" result="Passed" start-time="2026-10-10 12:40:23Z" end-time="2026-10-10 12:40:23Z" duration="0.001653" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1195" name="PackedAerialImagesDecodeOnTheirOriginalGeographicGrids" fullname="BooterBigArm.Tests.DeathValleyMapTests.PackedAerialImagesDecodeOnTheirOriginalGeographicGrids" methodname="PackedAerialImagesDecodeOnTheirOriginalGeographicGrids" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="693132823" result="Passed" start-time="2026-10-10 12:40:23Z" end-time="2026-10-10 12:40:23Z" duration="0.198882" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1197" name="PlanPanningUsesMetresPerPixelWithoutChangingAltitude" fullname="BooterBigArm.Tests.DeathValleyMapTests.PlanPanningUsesMetresPerPixelWithoutChangingAltitude" methodname="PlanPanningUsesMetresPerPixelWithoutChangingAltitude" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="2026634381" result="Passed" start-time="2026-10-10 12:40:23Z" end-time="2026-10-10 12:40:23Z" duration="0.000426" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1198" name="PlanZoomKeepsThePointUnderTheCursorFixed" fullname="BooterBigArm.Tests.DeathValleyMapTests.PlanZoomKeepsThePointUnderTheCursorFixed" methodname="PlanZoomKeepsThePointUnderTheCursorFixed" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="916623758" result="Passed" start-time="2026-10-10 12:40:23Z" end-time="2026-10-10 12:40:23Z" duration="0.000368" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1187" name="PortableGridMatchesRecordedBoundsAndInventory" fullname="BooterBigArm.Tests.DeathValleyMapTests.PortableGridMatchesRecordedBoundsAndInventory" methodname="PortableGridMatchesRecordedBoundsAndInventory" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="210908681" result="Passed" start-time="2026-10-10 12:40:23Z" end-time="2026-10-10 12:40:23Z" duration="0.031789" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1188" name="ProjectedCoordinatesRoundTripAndUnityOriginRemainDistinct" fullname="BooterBigArm.Tests.DeathValleyMapTests.ProjectedCoordinatesRoundTripAndUnityOriginRemainDistinct" methodname="ProjectedCoordinatesRoundTripAndUnityOriginRemainDistinct" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="1832934479" result="Passed" start-time="2026-10-10 12:40:23Z" end-time="2026-10-10 12:40:23Z" duration="0.000483" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1191" name="RayMissesAndBackfacesAreHandledWithoutFalseHits" fullname="BooterBigArm.Tests.DeathValleyMapTests.RayMissesAndBackfacesAreHandledWithoutFalseHits" methodname="RayMissesAndBackfacesAreHandledWithoutFalseHits" classname="BooterBigArm.Tests.DeathValleyMapTests" runstate="Runnable" seed="1579037315" result="Passed" start-time="2026-10-10 12:40:23Z" end-time="2026-10-10 12:40:23Z" duration="0.000888" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

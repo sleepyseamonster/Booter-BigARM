@@ -1,0 +1,8 @@
+{
+  "status": "ok",
+  "snapshot_utc": "2026-10-10T13:43:46.405376+00:00",
+  "checked_records": 12302,
+  "issues": [],
+  "retired_blender_source_count": 46,
+  "limits": "Current materialized bytes versus retained hashes; retired Blender identities use historical cleanup evidence, not verified deleted bytes. Scene edits may be intentional; refresh the audit after review. Blender readability, Editor validation and Player acceptance remain separate."
+}

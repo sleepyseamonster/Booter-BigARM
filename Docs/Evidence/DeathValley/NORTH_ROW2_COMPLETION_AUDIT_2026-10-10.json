@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "family": "north_row2",
+  "status": "full_six_section_completion_audit_passed",
+  "scene_sha256": "b1a92c37a80bb73fa8d7322d380c00c6ab28d62360b2aa40bcc5b2f4398f4073",
+  "bounds_m": [
+    499920,
+    4006200,
+    524496,
+    4022584
+  ],
+  "sections": [
+    {
+      "step": 1,
+      "batch": "NorthRow2E499920N4018488_2026-10-09",
+      "bounds_m": [
+        499920,
+        4018488,
+        504016,
+        4022584
+      ],
+      "scene_sha256": "7a1d03f222aaf006b11ed0f746538ab2a28520eecc8dce2453f88e416b81876f",
+      "manifest_sha256": "628c9746e25a5f1b432a4d8715c702e9c2f83a14dd8a4c4356d2672d95decc49",
+      "retained": 4608,
+      "total": 4864,
+      "edges": 9568,
+      "closeout_sha256": "ae9403721222a103f227ba056eb4c4f6cc417e3e105c78e0cb3152dc8fe52fbb"
+    },
+    {
+      "step": 2,
+      "batch": "NorthRow2E504016N4018488_2026-10-09",
+      "bounds_m": [
+        504016,
+        4018488,
+        508112,
+        4022584
+      ],
+      "scene_sha256": "5ee56391131f39293bf5db6bc95699b82bf2d154bcd2c17f09d3d74aef83eeae",
+      "manifest_sha256": "4f781e48c7972e940cc7c76bbcfdba0e4918d136bf127ea5937783c4490ebf84",
+      "retained": 4864,
+      "total": 5120,
+      "edges": 10080,
+      "closeout_sha256": "3a7cbb56ef4b4549029d318abad5810635fd2431e88ddb404473d110ea5172dc"
+    },
+    {
+      "step": 3,
+      "batch": "NorthRow2E508112N4018488_2026-10-09",
+      "bounds_m": [
+        508112,
+        4018488,
+        512208,
+        4022584
+      ],
+      "scene_sha256": "4cd937b07a088653dd543a12611da500cec370cdbff6027bb81cfe8b4536f9d7",
+      "manifest_sha256": "7901dd99ca0cb0c0ed78797ac18adcfe763a8d1714c529a5c77e652ebcc2e9c1",
+      "retained": 5120,
+      "total": 5376,
+      "edges": 10592,
+      "closeout_sha256": "a1884a144e35ab299731886e1e1f0aa9b116ee25f5d3bb30ef078ff8cfc3f1b8"
+    },
+    {
+      "step": 4,
+      "batch": "NorthRow2E512208N4018488_2026-10-10",
+      "bounds_m": [
+        512208,
+        4018488,
+        516304,
+        4022584
+      ],
+      "scene_sha256": "b8c7353ff97b800b5218cc4d24dfa8e6982ee42159a671aa08fbd587af38c577",
+      "manifest_sha256": "786409ce7b91823ccfe9337f4ec7ab1ccf0ce477c137912f863b97c15bf1e30d",
+      "retained": 5376,
+      "total": 5632,
+      "edges": 11104,
+      "closeout_sha256": "ed7a328d85bce4357eb83a2aa23436ce60e3ae9a8d4a8aca8fe97dfe7ca186c6"
+    },
+    {
+      "step": 5,
+      "batch": "NorthRow2E516304N4018488_2026-10-10",
+      "bounds_m": [
+        516304,
+        4018488,
+        520400,
+        4022584
+      ],
+      "scene_sha256": "e6d74f433b1fc7205841fdbfdbb9f081fe9ca30ed34ef5c5669688ea526f6a2f",
+      "manifest_sha256": "52abced7f1554c2106d2719836cb77824fcc4fe8f368692c561c6edae74e5f67",
+      "retained": 5632,
+      "total": 5888,
+      "edges": 11616,
+      "closeout_sha256": "6dfbaf66c319802e90d83f846fb559af81d1392948c6142926da972db84d520b"
+    },
+    {
+      "step": 6,
+      "batch": "NorthRow2E520400N4018488_2026-10-10",
+      "bounds_m": [
+        520400,
+        4018488,
+        524496,
+        4022584
+      ],
+      "scene_sha256": "b1a92c37a80bb73fa8d7322d380c00c6ab28d62360b2aa40bcc5b2f4398f4073",
+      "manifest_sha256": "1cef40986435cd82f84bc2d9689eec4e84eda77e48a29891fdc3ed87cff1eb18",
+      "retained": 5888,
+      "total": 6144,
+      "edges": 12128,
+      "closeout_sha256": "a8c6e592c4aacef3cbd10a1c5d3632f91ac0f30d793a96c7e3c3edaf4a9a4c14"
+    }
+  ],
+  "terrains": 6144,
+  "exact_joins": 12128,
+  "collider_samples": 153600,
+  "sectors": 384,
+  "retained_original_scene_documents": 24193,
+  "original_parent_appended_children": 6,
+  "new_scene_documents": 7884,
+  "native_blender_sources_retained": 18,
+  "native_blender_bytes": 3325746349,
+  "retired_sources_still_absent": 46,
+  "source_audit_sha256": "c35b7b8cd646103a0d51ef99737d54bb5a5a850b078f86712828f2508203bcb0",
+  "measured_height_range_m": [
+    -84.57621002197266,
+    1532.0693359375
+  ],
+  "doctor_sha256": "28d6297997a997b27dea1b92096a5100974b9cf693e7958603cea2d311558f95",
+  "doctor_checked_records": 12302,
+  "limits": "Saved native full-grid/collider, structural, source and visual proof; hands-on traversal and Player performance remain user-owned."
+}
