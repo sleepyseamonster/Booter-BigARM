@@ -1,0 +1,29 @@
+{
+  "status": "root_import_completed_with_classified_nonterrain_console_entries",
+  "compiler_truth": {
+    "sampledUtc": "2026-10-10T17:58:30.5165362Z",
+    "ageMs": 78,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 3,
+    "consoleWarnings": 30,
+    "consoleLogs": 0,
+    "seeded": true
+  },
+  "current_console_entries": [
+    {
+      "type": "Error",
+      "message": "Asset Packages/com.unity.render-pipelines.universal/Tests/Editor/Tools/Converters/ReadonlyMaterialConverter/ReadonlyMaterialConverterTests.MaterialReferenceBuilder.cs has no meta file, but it's in an immutable folder. The asset will be ignored."
+    },
+    {
+      "type": "Error",
+      "message": "Asset Packages/com.unity.render-pipelines.universal/Tests/Editor/Tools/Converters/ReadonlyMaterialConverter/ReadonlyMaterialConverterTests.MaterialReferenceChanger.cs has no meta file, but it's in an immutable folder. The asset will be ignored."
+    },
+    {
+      "type": "Error",
+      "message": "Failed to handle /api/exec request: Main thread operation timed out after 5000ms"
+    }
+  ],
+  "metadata_assets_verified": 1554,
+  "policy": "No console clearing, package edits or native tolerance changes; unknown/compile errors still block transfer"
+}

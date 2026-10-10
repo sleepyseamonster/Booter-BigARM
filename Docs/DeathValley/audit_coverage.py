@@ -269,7 +269,7 @@ def main():
     scene=terrain_scene()
     text=scene.read_text(encoding="utf-8")
     counts={"terrains":len(re.findall(r"^--- !u!218 ",text,re.M)),"colliders":len(re.findall(r"^--- !u!154 ",text,re.M))}
-    allowed_counts=(256,1024,1536,2048,2560,3072,3328,3584,3840,4096,4352,4608,4864,5120,5376,5632,5888,6144)
+    allowed_counts=(256,1024,1536,2048,2560,3072,3328,3584,3840,4096,4352,4608,4864,5120,5376,5632,5888,6144,6400,6656,6912,7168,7424,7680)
     if counts["terrains"] not in allowed_counts or counts["colliders"]!=counts["terrains"]: raise ValueError(f"Scene count mismatch: {counts}")
     terrain_data=list((source.parent/"TerrainData").glob("*.asset"))
     if len(terrain_data)!=256: raise ValueError("TerrainData count mismatch")
@@ -287,7 +287,11 @@ def main():
         availability=assessment_availability(json.loads(assessment.read_text(encoding="utf-8")),candidates[0]["bounds_m"],ROOT)
         status="source_verified_locally_not_selected_not_imported" if availability["status"]=="hash_verified" else "source_verification_recorded_local_files_unavailable"
         candidates[0].update({"status":status,"source_assessment":relative(assessment),"local_source_availability":availability})
-    if counts["terrains"] in (4864,5120,5376,5632,5888,6144):
+    if counts["terrains"] in (6400,6656,6912,7168,7424,7680):
+        from north_row3_coverage import append_verified_north_row3
+        tiles,new_data,expansion_audit=append_verified_north_row3(ROOT,scene,text,tiles,counts["terrains"])
+        terrain_data.extend(new_data)
+    elif counts["terrains"] in (4864,5120,5376,5632,5888,6144):
         from north_row2_coverage import append_verified_north_row2
         tiles,new_data,expansion_audit=append_verified_north_row2(ROOT,scene,text,tiles,counts["terrains"])
         terrain_data.extend(new_data)
