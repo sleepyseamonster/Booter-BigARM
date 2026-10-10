@@ -15,9 +15,11 @@ namespace BooterBigArm.Tests
         [Test] public void PortableGridMatchesRecordedBoundsAndInventory()
         {
             Assert.That(data.Manifest.width,Is.EqualTo(961));Assert.That(data.Manifest.height,Is.EqualTo(1121));
-            Assert.That(data.Catalog.unity_tiles.Length==256 || data.Catalog.unity_tiles.Length==1024 || data.Catalog.unity_tiles.Length==1536 || data.Catalog.unity_tiles.Length==2048 || data.Catalog.unity_tiles.Length==2560 || data.Catalog.unity_tiles.Length==3072 || data.Catalog.unity_tiles.Length==3328 || data.Catalog.unity_tiles.Length==3584 || data.Catalog.unity_tiles.Length==3840 || data.Catalog.unity_tiles.Length==4096 || data.Catalog.unity_tiles.Length==4352 || data.Catalog.unity_tiles.Length==4608,Is.True);
+            Assert.That(new[]{256,1024,1536,2048,2560,3072,3328,3584,3840,4096,4352,4608,4864,5120,5376,5632,5888,6144}.Contains(data.Catalog.unity_tiles.Length),Is.True);
             Assert.That(data.Catalog.regional_source_tiles.Length,Is.EqualTo(42));
-            Assert.That(data.PlayableBounds,Is.EqualTo(data.Catalog.unity_tiles.Length>=3328
+            Assert.That(data.PlayableBounds,Is.EqualTo(data.Catalog.unity_tiles.Length>=4864
+                ? new double[]{499920,4006200,524496,4022584}
+                : data.Catalog.unity_tiles.Length>=3328
                 ? new double[]{499920,4006200,524496,4018488}
                 : data.Catalog.unity_tiles.Length==3072
                 ? new double[]{499920,4006200,524496,4014392}

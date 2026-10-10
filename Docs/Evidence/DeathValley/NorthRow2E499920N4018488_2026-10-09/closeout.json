@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "family": "north_row2",
+  "step": 1,
+  "status": "native_integration_coverage_metadata_and_map_closeout_passed",
+  "production_scene_sha256": "7a1d03f222aaf006b11ed0f746538ab2a28520eecc8dce2453f88e416b81876f",
+  "manifest_sha256": "628c9746e25a5f1b432a4d8715c702e9c2f83a14dd8a4c4356d2672d95decc49",
+  "coverage_catalog_sha256": "4e0d610783ffee927017ae0d0e882dd3c64dd11e7cb18dfab602e9b3230ce72c",
+  "height_files": 4864,
+  "color_files": 4864,
+  "exact_joins": 9568,
+  "metadata_audit_sha256": "6eb782525e1fedb702b0f31761a6a478cfe8e1c6fd2ec8a23da621bd6655c457",
+  "canonical_playable_validator": {
+    "exit_code": 0,
+    "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow2_20261009_01\\Logs\\step1-playable-validator.log",
+    "sha256": "5dd2ceca968f994ac1954539197244e95095e3b7ed2af70012ceec02876f062f"
+  },
+  "current_catalog_tests": {
+    "passed": 34,
+    "failed": 0,
+    "xml_sha256": "2993831a521df13b275dcf411c47db7ef7f860f66df00a0bbbb20b3def3cb0c8"
+  },
+  "prior_focused_tests": {
+    "passed": 38,
+    "failed": 0,
+    "xml_sha256": "29778d2067912eac79d9312f8935c15aa0160594cfa0b24c5506ef45f05fd071"
+  },
+  "corrected_test_invocation": "Initial current-catalog rerun omitted required row CLI arguments; rerun with explicit step/date passed.",
+  "developer_map_views": [
+    {
+      "path": "Docs/Evidence/DeathValley/NorthRow2E499920N4018488_2026-10-09/unity-overview.png",
+      "sha256": "4ae7e28544ed263c54034352354e30d88ea66e5cf79499498fadf8929fe17bb6",
+      "inspected": true
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/NorthRow2E499920N4018488_2026-10-09/unity-chunks.png",
+      "sha256": "2f5de1cbb2aba3d14fd8e8d7bb55fba0d409ac5cc03b29cbbf8304d71142a113",
+      "inspected": true
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/NorthRow2E499920N4018488_2026-10-09/unity-chunks-top.png",
+      "sha256": "e94c46ac83e7110345f318a3ec3895641e3b676610e0f56dfb7faf0bbdffaf0d",
+      "inspected": true
+    }
+  ],
+  "limits": "Saved native and developer-map proof; no foreground activation or hands-on gameplay smoke test."
+}

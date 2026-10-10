@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "family": "north_row2",
+  "step": 1,
+  "status": "verified_native_saved_scene_transfer",
+  "retained_terrains": 4608,
+  "new_terrains": 256,
+  "total_terrains": 4864,
+  "unchanged_original_documents": 24193,
+  "changed_original_documents": [
+    "1259644692"
+  ],
+  "new_scene_documents": 1314,
+  "new_sectors": 16,
+  "predecessor_scene_sha256": "09a8bf19b4ebf679a9baeb8a33bc26c9751e04e9d1d840c8ea3252720ee92bb8",
+  "production_scene_sha256": "7a1d03f222aaf006b11ed0f746538ab2a28520eecc8dce2453f88e416b81876f",
+  "manifest_sha256": "628c9746e25a5f1b432a4d8715c702e9c2f83a14dd8a4c4356d2672d95decc49",
+  "scene_guid_preserved": true,
+  "live_state_limit": "Root Editor has separate reference study active; saved production proof does not claim loaded production scene."
+}

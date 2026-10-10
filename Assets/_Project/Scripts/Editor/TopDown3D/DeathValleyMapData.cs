@@ -144,6 +144,20 @@ namespace BooterBigArm.Editor
 
         public static double[] GetPlayableBounds(DeathValleyMapRecord[] tiles)
         {
+            if(tiles!=null && tiles.Length>=4864 && tiles.Length<=6144 && (tiles.Length-4608)%256==0)
+            {
+                int step=(tiles.Length-4608)/256;
+                var cells=BadwaterNorthRow2Source.Occupied(step);
+                foreach(var tile in tiles)
+                {
+                    ValidateBounds(tile.bounds_m);
+                    double e=tile.bounds_m[0],n=tile.bounds_m[1];
+                    if(e!=Math.Truncate(e) || n!=Math.Truncate(n) || tile.bounds_m[2]!=e+256 || tile.bounds_m[3]!=n+256 || tile.geographic_key!=$"epsg26911/e{(int)e}/n{(int)n}/size256" || !cells.Remove(new Vector2Int((int)e,(int)n)))
+                        throw new InvalidDataException("Missing, duplicate, shifted or premature second-row map cell.");
+                }
+                if(cells.Count!=0)throw new InvalidDataException("Incomplete second-row map coverage.");
+                return new double[]{499920,4006200,524496,4022584};
+            }
             if (tiles == null || (tiles.Length != 256 && tiles.Length != 1024 && tiles.Length != 1536 && tiles.Length != 2048 && tiles.Length != 2560 && tiles.Length != 3072 && tiles.Length != 3328 && tiles.Length != 3584 && tiles.Length != 3840 && tiles.Length != 4096 && tiles.Length != 4352 && tiles.Length != 4608)) throw new InvalidDataException("Incomplete playable tile grid.");
             int rowStep=tiles.Length==3584 ? 1 : tiles.Length==3840 ? 2 : tiles.Length==4096 ? 3 : tiles.Length==4352 ? 4 : tiles.Length==4608 ? 5 : 0;
             var unique = new HashSet<string>();
