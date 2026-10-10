@@ -9,3 +9,6 @@ Pilot/section interiors use 2 m controls; combined review uses 4 m controls; all
 Local measured inputs are under `SourceData/Terrain/DeathValley/NorthRow3Survey2026-10-10`; preparation/proofs are under `SourceData/Terrain/DeathValley/NorthRow3E504016N4022584_2026-10-10/Prepared01`. The broad palette holds its covered northern edge beyond N4024200; actual DEM and detailed NAIP remain measured.
 
 See the [execution plan](../../../../../Docs/DeathValley/NORTH_ROW3_EXECUTION_PLAN_2026-10-10.md) and [authoring checkpoint](../../../../../Docs/Evidence/DeathValley/NORTH_ROW3_STEP02_AUTHORING_2026-10-10.json). This source checkpoint establishes Blender proof; native Unity and gameplay acceptance have separate gates.
+
+
+The [native closeout](../../../../../Docs/Evidence/DeathValley/NorthRow3E504016N4022584_2026-10-10/closeout.json) accepts this section in the6656-tile saved production scene with full native/collider, coverage, metadata and34focused-test proof. Gameplay/performance acceptance remains user-owned.
