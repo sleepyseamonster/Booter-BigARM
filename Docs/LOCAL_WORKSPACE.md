@@ -4,6 +4,8 @@ This is the Windows setup and session entry point for the checkout restored on 2
 
 ## Latest terrain continuation checkpoint — 2026-10-11
 
+Before extending terrain again, read the [fourth-row readiness audit](DeathValley/NORTH_ROW4_READINESS_AUDIT_2026-10-11.md). Current checkpoint bytes and all native snapshot joins passed fresh checks; a new row needs separate tooling, a capacity decision and fresh live transfer guards. The author's latest instruction is audit-first; no fourth-row terrain was acquired or integrated by this audit.
+
 The third northern row is complete: Greater Wasteland contains 7680 native terrains in 30 sections and 480 sectors, with a full 96 × 80 footprint. Start terrain resumption with the [detailed process and continuation handoff](DeathValley/THIRD_NORTHERN_ROW_CONTINUATION_HANDOFF_2026-10-11.md) and [completed execution plan](DeathValley/NORTH_ROW3_EXECUTION_PLAN_2026-10-10.md). The October 9 4608-tile checkpoint below is historical. The completed terrain goal has no active jobs; a further row requires new task authority. Recheck live files, ownership, capacity and bridge state before continuing.
 
 ## Repository and branch

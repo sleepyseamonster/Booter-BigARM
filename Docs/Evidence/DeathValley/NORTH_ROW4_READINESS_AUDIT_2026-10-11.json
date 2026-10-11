@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "audit_date_local": "2026-10-11",
+  "timezone": "America/Phoenix",
+  "status": "checkpoint_intact_next_row_requires_capacity_tooling_and_live_transfer_gates",
+  "audited_head": "00d9f407743b9ca3308957d19375c9644f6e7251",
+  "branch": "main",
+  "upstream": "origin/main",
+  "doctor": {
+    "status": "ok",
+    "snapshot_utc": "2026-10-11T06:11:54.599558+00:00",
+    "checked_records": 15374,
+    "issues": [],
+    "retired_blender_source_count": 46,
+    "limits": "Current materialized bytes versus retained hashes; retired Blender identities use historical cleanup evidence, not verified deleted bytes. Scene edits may be intentional; refresh the audit after review. Blender readability, Editor validation and Player acceptance remain separate."
+  },
+  "current_native_verification": {
+    "status": "current_native_bytes_and_snapshot_edges_verified",
+    "native_assets": 7680,
+    "exact_snapshot_joins": 15184,
+    "isolation_component_bytes": {
+      "Assets": 14519550919,
+      "Packages": 19180,
+      "ProjectSettings": 60416,
+      "Library": 8782281468
+    },
+    "isolation_scene_matches_root": true,
+    "free_d_bytes": 24765095936,
+    "free_c_bytes": 38014275584,
+    "limits": "Current hashes and snapshot edges, not a new Unity reopen/collider run."
+  },
+  "completion_recheck": {
+    "status": "full_six_section_completion_audit_passed",
+    "sections": [
+      {
+        "step": 1,
+        "batch": "NorthRow3E499920N4022584_2026-10-10",
+        "bounds_m": [
+          499920,
+          4022584,
+          504016,
+          4026680
+        ],
+        "scene_sha256": "1114a8944d78825c7e43f7d2982013950c917035dbeaaa839e55574ebbd12125",
+        "manifest_sha256": "1b3db772f6a767897c539f517c6a970809d4f519af09797315ba63725c0a39d9",
+        "retained": 6144,
+        "total": 6400,
+        "edges": 12624,
+        "closeout_sha256": "faae0c5246a827ae8b5c0dcaca03388d1c562fb295400e805f2f7f31349ec939"
+      },
+      {
+        "step": 2,
+        "batch": "NorthRow3E504016N4022584_2026-10-10",
+        "bounds_m": [
+          504016,
+          4022584,
+          508112,
+          4026680
+        ],
+        "scene_sha256": "080994b036202e9eb2cdf6e84f7060bc4ffe059ad07c697e163590dcdf03695e",
+        "manifest_sha256": "146b93c3226cee33c8e83bc9be585a74f7c2c84fb1581db9f667f5bfca1a17be",
+        "retained": 6400,
+        "total": 6656,
+        "edges": 13136,
+        "closeout_sha256": "49d010b6161a339740411af25c1681f6c418e64123fc69b0e96c857b0448074f"
+      },
+      {
+        "step": 3,
+        "batch": "NorthRow3E508112N4022584_2026-10-10",
+        "bounds_m": [
+          508112,
+          4022584,
+          512208,
+          4026680
+        ],
+        "scene_sha256": "2e7e30186f7d3f9eead09329a7f49b394dee4ccee15f58a7aa00cae1e2ce4019",
+        "manifest_sha256": "5a2a38b0ee650b09c47d0c06609ab6534c181886c13bb0293067e4f75fe8bbb8",
+        "retained": 6656,
+        "total": 6912,
+        "edges": 13648,
+        "closeout_sha256": "21ef103ded93b595495635daa9bcb77984f3c045be3c93dacce98c062170cc35"
+      },
+      {
+        "step": 4,
+        "batch": "NorthRow3E512208N4022584_2026-10-10",
+        "bounds_m": [
+          512208,
+          4022584,
+          516304,
+          4026680
+        ],
+        "scene_sha256": "1d71ddb953a7b32cb28b43391da183ed8552db091020261f7b4d817ffe7f2ea9",
+        "manifest_sha256": "7c69e14b1a92ce38ce3c5ad36e74da0eeca5277765f4f045c012791d7903e929",
+        "retained": 6912,
+        "total": 7168,
+        "edges": 14160,
+        "closeout_sha256": "d7dc2148d31a99f6fd4f571b64e93a5695d07abec8709e2b7421bf368c2699ba"
+      },
+      {
+        "step": 5,
+        "batch": "NorthRow3E516304N4022584_2026-10-10",
+        "bounds_m": [
+          516304,
+          4022584,
+          520400,
+          4026680
+        ],
+        "scene_sha256": "d8a89a0e39426e5085c143dd723ac1a1635b52f00ddd6a08d6473a9aaf833b9c",
+        "manifest_sha256": "b511aaf69231f1fc30e70f751ce1c95a6eb6e12adf5e73a7b9634fee9109e048",
+        "retained": 7168,
+        "total": 7424,
+        "edges": 14672,
+        "closeout_sha256": "afb065197fb794c41cab28f34225069a1ccc233dbbcfe6bb7efdf93cbcca2010"
+      },
+      {
+        "step": 6,
+        "batch": "NorthRow3E520400N4022584_2026-10-10",
+        "bounds_m": [
+          520400,
+          4022584,
+          524496,
+          4026680
+        ],
+        "scene_sha256": "19c3633ffd884f11b72cd9f6daae13526315ad252f93da49b5191d99ab87c566",
+        "manifest_sha256": "9b0c383e636a3a461fa9d607db5f2f84b64da4485edfa2241197145023c06304",
+        "retained": 7424,
+        "total": 7680,
+        "edges": 15184,
+        "closeout_sha256": "eb2d47366ad018784b2683e7bef49d5f330b86034910cedcb526bfc6a049a3ba"
+      }
+    ],
+    "retained_blender_sources": 18,
+    "scene_sha256": "19c3633ffd884f11b72cd9f6daae13526315ad252f93da49b5191d99ab87c566",
+    "native_report_is_retained_not_rerun": true
+  },
+  "local_proof_hashes": {
+    "checkpoint.json": "3d57cba517eb2a96b19356265aa2b63209261adeb2ac62bdee96dcc15ca2c853",
+    "doctor.json": "1aeee203805dc681afef09761e15c5ad6976746d11968eb353461bf1ae4e9d96",
+    "native_capacity.json": "2f3f87a27040617ae14dcf9ce7263fc8671599170c28e20af6225e230f7f8a10",
+    "source_discovery.json": "d9dd7c810e629716d4c952f1c2e809ec9be0f60b71cbf6be3051cf6a22a1389c",
+    "usgs_catalog.json": "c7fbda9a83a3c0b7ac5d3d532e0a94bf0b28783bff34e0833a808b18f5e54ca4"
+  },
+  "source_discovery": {
+    "bounds_m": [
+      499920,
+      4026680,
+      524496,
+      4030776
+    ],
+    "catalog_request": "https://tnmaccess.nationalmap.gov/api/v1/products?bbox=-117.00089241096936%2C36.384940579770344%2C-116.72674516513595%2C36.42217963328417&datasets=Digital+Elevation+Model+%28DEM%29+1+meter&outputFormat=JSON&max=100",
+    "required_domains": [
+      "x49y403",
+      "x49y404",
+      "x50y403",
+      "x50y404",
+      "x51y403",
+      "x51y404",
+      "x52y403",
+      "x52y404"
+    ],
+    "missing": [],
+    "ambiguous": [],
+    "products": [
+      {
+        "domain": "x49y403",
+        "title": "USGS 1 Meter 11 x49y403 CA_FEMAR9Southeast_D24",
+        "download_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x49y403_CA_FEMAR9Southeast_D24.tif",
+        "metadata_url": "https://www.sciencebase.gov/catalog/item/6a2b6bcd1ba49b01a0cf2431",
+        "catalog_full_product_bytes": 327763755
+      },
+      {
+        "domain": "x49y404",
+        "title": "USGS 1 Meter 11 x49y404 CA_FEMAR9Southeast_D24",
+        "download_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x49y404_CA_FEMAR9Southeast_D24.tif",
+        "metadata_url": "https://www.sciencebase.gov/catalog/item/6a2b6bcd1ba49b01a0cf242f",
+        "catalog_full_product_bytes": 341308333
+      },
+      {
+        "domain": "x50y403",
+        "title": "USGS 1 Meter 11 x50y403 CA_FEMAR9Southeast_D24",
+        "download_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x50y403_CA_FEMAR9Southeast_D24.tif",
+        "metadata_url": "https://www.sciencebase.gov/catalog/item/6a2b6bc71ba49b01a0cf23f3",
+        "catalog_full_product_bytes": 365587759
+      },
+      {
+        "domain": "x50y404",
+        "title": "USGS 1 Meter 11 x50y404 CA_FEMAR9Southeast_D24",
+        "download_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x50y404_CA_FEMAR9Southeast_D24.tif",
+        "metadata_url": "https://www.sciencebase.gov/catalog/item/6a2b6bc61ba49b01a0cf23f1",
+        "catalog_full_product_bytes": 349527954
+      },
+      {
+        "domain": "x51y403",
+        "title": "USGS 1 Meter 11 x51y403 CA_FEMAR9Southeast_D24",
+        "download_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x51y403_CA_FEMAR9Southeast_D24.tif",
+        "metadata_url": "https://www.sciencebase.gov/catalog/item/6a2b6bc01ba49b01a0cf23b3",
+        "catalog_full_product_bytes": 365126912
+      },
+      {
+        "domain": "x51y404",
+        "title": "USGS 1 Meter 11 x51y404 CA_FEMAR9Southeast_D24",
+        "download_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x51y404_CA_FEMAR9Southeast_D24.tif",
+        "metadata_url": "https://www.sciencebase.gov/catalog/item/6a2b6bc01ba49b01a0cf23b1",
+        "catalog_full_product_bytes": 374355953
+      },
+      {
+        "domain": "x52y403",
+        "title": "USGS 1 Meter 11 x52y403 CA_FEMAR9Southeast_D24",
+        "download_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x52y403_CA_FEMAR9Southeast_D24.tif",
+        "metadata_url": "https://www.sciencebase.gov/catalog/item/6a2b6bb91ba49b01a0cf2375",
+        "catalog_full_product_bytes": 330366200
+      },
+      {
+        "domain": "x52y404",
+        "title": "USGS 1 Meter 11 x52y404 CA_FEMAR9Southeast_D24",
+        "download_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_FEMAR9Southeast_D24/TIFF/USGS_1M_11_x52y404_CA_FEMAR9Southeast_D24.tif",
+        "metadata_url": "https://www.sciencebase.gov/catalog/item/6a2b6bb91ba49b01a0cf2373",
+        "catalog_full_product_bytes": 337044731
+      }
+    ],
+    "limits": "Discovery only; raster spacing, datum, nodata, elevation range and measured overlap remain unverified for the new strip."
+  },
+  "bridge": {
+    "target": "D:/Arc & Dust/Project",
+    "command": "unity status --json --project-path <checkout>",
+    "result": "STATUS_NO_INSTANCES",
+    "observed_root_editor_pid": 13084,
+    "live_scene_and_dirty_asset_guards": "unavailable; not inferred from old evidence"
+  },
+  "accepted_model_bank_exists": false,
+  "protected_unrelated_paths": [
+    "Assets/_Project/Materials/TopDown3D/Greybox_BigARM.mat",
+    "Assets/_Project/Art/Environment/Rocks/Fused.meta",
+    "Assets/_Project/Art/Environment/Rocks/Fused/"
+  ],
+  "commands": [
+    ".venv/Scripts/python.exe Logs/NorthRow4Readiness20261011/audit_checkpoint.py",
+    ".venv/Scripts/python.exe Logs/NorthRow4Readiness20261011/native_and_capacity.py",
+    ".venv/Scripts/python.exe Logs/NorthRow4Readiness20261011/source_metadata.py",
+    ".venv/Scripts/python.exe -m pip check"
+  ],
+  "new_terrain_acquisition": false,
+  "unity_or_blender_launched": false,
+  "foreground_activation": false,
+  "source_cleanup": false,
+  "external_publication": false,
+  "limits": "Fresh current-byte/hash/snapshot adjacency audit and product discovery. Reopened Blender, native collider, EditMode and inspected-view evidence remains the prior accepted proof; no fresh gameplay or Player performance claim."
+}
