@@ -1,5 +1,7 @@
 # Third northern row — completed October 10, 2026
 
+For exact process, local tools, workspace ownership and new-agent resumption, read the [October 11 continuation handoff](THIRD_NORTHERN_ROW_CONTINUATION_HANDOFF_2026-10-11.md).
+
 All six authorized northern sections are authored, integrated, validated and committed on `main`. The new strip is EPSG:26911 `[499920,4022584,524496,4026680]`. Greater Wasteland now contains **7680 terrains, 30 sections and 480 sectors**, occupying the complete **96 × 80** grid over `[499920,4006200,524496,4026680]`.
 
 Saved production scene SHA256: `19c3633ffd884f11b72cd9f6daae13526315ad252f93da49b5191d99ab87c566`. The scene GUID remains `4de5dd018ee194314a00fd369e2d3eeb`; Greater Wasteland remains the sole enabled build scene.
