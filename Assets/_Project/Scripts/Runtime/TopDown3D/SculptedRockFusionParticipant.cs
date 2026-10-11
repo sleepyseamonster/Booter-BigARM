@@ -8,7 +8,7 @@ namespace BooterBigArm.TopDown3D
     public sealed class SculptedRockFusionParticipant : MonoBehaviour
     {
         [SerializeField, Tooltip("Preview an exterior union with overlapping sculpted rocks in Edit Mode. Sources retain editable transforms.")]
-        private bool liveFusion = true;
+        private bool liveFusion;
         [SerializeField, Tooltip("Only rocks in the same scene with the same set number fuse together.")]
         private int fusionSet;
         public bool LiveFusion => liveFusion && enabled;

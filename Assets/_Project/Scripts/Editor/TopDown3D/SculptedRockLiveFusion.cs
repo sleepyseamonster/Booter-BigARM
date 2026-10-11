@@ -146,6 +146,8 @@ namespace BooterBigArm.Editor
         public static GameObject[] SourcesFor(GameObject root) => groups.Values.FirstOrDefault(g => g.roots.Contains(root))?.roots ?? new[] { root };
         public static string StatusFor(GameObject root)
         {
+            if (root.GetComponent<SculptedRockFusionParticipant>()?.LiveFusion != true)
+                return "Manual fusion: select overlapping rock roots and click Fuse Selected Rocks in the fusion panel.";
             var group = groups.Values.FirstOrDefault(g => g.roots.Contains(root));
             return group == null ? "Ready: overlap another marked rock under the same parent to fuse."
                 : group.error ?? (group.preview != null ? "Live fused exterior; every source transform remains editable."

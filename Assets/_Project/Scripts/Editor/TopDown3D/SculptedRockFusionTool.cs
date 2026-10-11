@@ -28,7 +28,7 @@ namespace BooterBigArm.Editor
         { minSize = new Vector2(420, 230); executable = EditorPrefs.GetString(BlenderPreference, Environment.GetEnvironmentVariable("BOOTER_BLENDER_EDITOR") ?? ""); }
         private void OnGUI()
         {
-            EditorGUILayout.HelpBox("Marked sculpted rocks fuse automatically after moving in Edit Mode. Originals stay editable. This button creates a saved, final fused asset from the selected roots. LOD0 only; URP Lit texture sets are retained as material slots.", MessageType.Info);
+            EditorGUILayout.HelpBox("Arrange overlapping rocks, select their roots, then click Fuse Selected Rocks. This creates a saved outer mesh; originals are preserved for Undo. Automatic live fusion is off by default. LOD0 only; URP Lit texture sets are retained as material slots.", MessageType.Info);
             EditorGUI.BeginChangeCheck(); executable = EditorGUILayout.TextField("Blender executable", executable ?? "");
             if (EditorGUI.EndChangeCheck()) EditorPrefs.SetString(BlenderPreference, executable);
             if (GUILayout.Button("Browse Blender executable"))

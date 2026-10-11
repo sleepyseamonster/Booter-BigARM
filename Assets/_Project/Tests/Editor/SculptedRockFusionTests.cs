@@ -99,6 +99,9 @@ namespace BooterBigArm.Tests
             try
             {
                 Material(a,b); a.AddComponent<SculptedRockFusionParticipant>(); b.AddComponent<SculptedRockFusionParticipant>();
+                Assert.That(a.GetComponent<SculptedRockFusionParticipant>().LiveFusion,Is.False,"Manual fusion is the authoring default.");
+                foreach(var root in new[]{a,b})
+                { var settings=new SerializedObject(root.GetComponent<SculptedRockFusionParticipant>());settings.FindProperty("liveFusion").boolValue=true;settings.ApplyModifiedPropertiesWithoutUndo(); }
                 b.transform.position=new Vector3(.5f,.2f,.1f); SculptedRockLiveFusion.Suspended=false;
                 double deadline=EditorApplication.timeSinceStartup+20;
                 while(SculptedRockLiveFusion.PreviewCount==0 && EditorApplication.timeSinceStartup<deadline) { SculptedRockLiveFusion.Tick(); yield return null; }
