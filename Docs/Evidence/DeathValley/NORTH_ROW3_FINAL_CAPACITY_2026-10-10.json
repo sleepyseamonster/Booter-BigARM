@@ -1,0 +1,56 @@
+{
+  "status": "completed_row_with_safe_working_margin",
+  "free_d_bytes": 24765276160,
+  "minimum_working_margin_bytes": 3221225472,
+  "sections": [
+    {
+      "step": 1,
+      "local_authoring_bytes": 609966689,
+      "local_data_bytes": 382826808,
+      "runtime_owner_bytes": 250654787,
+      "baseline_bytes": 51453959
+    },
+    {
+      "step": 2,
+      "local_authoring_bytes": 642621628,
+      "local_data_bytes": 370678184,
+      "runtime_owner_bytes": 251314104,
+      "baseline_bytes": 53297139
+    },
+    {
+      "step": 3,
+      "local_authoring_bytes": 656285643,
+      "local_data_bytes": 343212344,
+      "runtime_owner_bytes": 252034182,
+      "baseline_bytes": 55140298
+    },
+    {
+      "step": 4,
+      "local_authoring_bytes": 672021519,
+      "local_data_bytes": 385302529,
+      "runtime_owner_bytes": 253198721,
+      "baseline_bytes": 56983512
+    },
+    {
+      "step": 5,
+      "local_authoring_bytes": 696746527,
+      "local_data_bytes": 406822969,
+      "runtime_owner_bytes": 256215052,
+      "baseline_bytes": 58826145
+    },
+    {
+      "step": 6,
+      "local_authoring_bytes": 716584740,
+      "local_data_bytes": 379109689,
+      "runtime_owner_bytes": 256664471,
+      "baseline_bytes": 60668774
+    }
+  ],
+  "blender_source_allocation_bytes": 5368709120,
+  "baseline_allocation_bytes": 536870912,
+  "isolated_validation_projects_created": 1,
+  "validation_project": "D:/BooterBigArmValidation/TerrainNorthRow3_20261010_01",
+  "isolated_project_and_cache_bytes": 23361742315,
+  "existing_validation_projects_and_C_rollback_preserved": true,
+  "source_cleanup_performed": false
+}
