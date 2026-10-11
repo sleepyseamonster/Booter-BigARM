@@ -40,7 +40,7 @@ For each step: committed predecessor capture; prepare measured inputs against ac
 
 Before transfer: freshly prove root production unloaded, no task-owned dirty persistent terrain assets, no Play Mode/compilation, acceptable fresh console truth, unchanged predecessor/source hashes, and loaded-scene fingerprint preservation. Transfer only new owner/meta, disabled candidate/meta and validated production bytes. Native-import proof metadata, verify root/isolation GUID agreement, audit owned metadata/global GUID uniqueness, refresh catalog, inspect three hidden map captures, run current-catalog tests, seal preservation/closeout evidence, stage exact task-owned paths and commit. Only then capture the next predecessor.
 
-Final closeout audits all six acceptances, exact full occupancy, current scene/catalog/source proofs, original assets/documents, local-only source retention/exclusions, package pins and remaining capacity. No gameplay smoke testing or Player performance acceptance is performed.
+After all six acceptance commits, run the [completion auditor](../../Tools/Art/Blender/death_valley/audit_north_row4_completion.py) with a freshly generated `terrain_tools.py --json doctor` receipt via `--doctor` and a fresh `--output`. It checks all six commit and proof lineages, exact full occupancy and native joins, current scene/catalog/source proofs, every original protected file except the intended scene append, local-only source retention/exclusions, package pins and remaining capacity. Its partial-row rejection check passed at 8192 terrains; positive full-row proof remains pending until all six sections are accepted. No gameplay smoke testing or Player performance acceptance is performed.
 
 ## Progress
 
