@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "family": "north_row3",
+  "step": 5,
+  "status": "native_integration_coverage_metadata_and_map_closeout_passed",
+  "production_scene_sha256": "d8a89a0e39426e5085c143dd723ac1a1635b52f00ddd6a08d6473a9aaf833b9c",
+  "manifest_sha256": "b511aaf69231f1fc30e70f751ce1c95a6eb6e12adf5e73a7b9634fee9109e048",
+  "coverage_catalog_sha256": "57b395ddfdaf64c6f5250d5d0534301390b4d38fa6f484a315001862333f1a98",
+  "height_files": 7424,
+  "color_files": 7424,
+  "exact_joins": 14672,
+  "metadata_audit_sha256": "34f2a624e020f5e18efef11a847d8e22169a55d0b52a044ba41b943e9b6b551c",
+  "canonical_playable_validator": {
+    "exit_code": 0,
+    "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow3_20261010_01\\Logs\\step5-playable.log",
+    "sha256": "7c30f2ebf68b29f5935bc86ab4a5cebb20352efa762d89fa8addb34f0477acb5"
+  },
+  "current_catalog_tests": {
+    "passed": 34,
+    "failed": 0,
+    "xml_sha256": "28e7aab83b35e718c05b09989c8802a0b757131a437dfa897bf1ea3c10a73252"
+  },
+  "developer_map_views": [
+    {
+      "path": "Docs/Evidence/DeathValley/NorthRow3E516304N4022584_2026-10-10/unity-overview.png",
+      "sha256": "69432c4e08eb7cfc9bde0a7bd64b747f0dbc0fd415bc99a0b210ba74e1884630",
+      "inspected": true
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/NorthRow3E516304N4022584_2026-10-10/unity-chunks.png",
+      "sha256": "221b53c4824abf2f95c44e3a89ada0a1bacc407e327c6f1b8c1ebfe1989f27af",
+      "inspected": true
+    },
+    {
+      "path": "Docs/Evidence/DeathValley/NorthRow3E516304N4022584_2026-10-10/unity-chunks-top.png",
+      "sha256": "cbe5bd3fa5e08f8084175192a45fe5a5c72dd4bed78f760b75535ff84a433421",
+      "inspected": true
+    }
+  ],
+  "limits": "Saved native and developer-map proof; no foreground activation or hands-on gameplay smoke test."
+}
