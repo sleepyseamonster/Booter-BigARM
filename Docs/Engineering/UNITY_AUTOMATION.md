@@ -155,7 +155,15 @@ Run the focused EditMode suite:
 
 Focused non-smoke EditMode filters are `BooterBigArm.Tests.TopDown3DRadialTests`, `BooterBigArm.Tests.TopDown3DInventoryUiTests`, and `BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests`. The [integration receipt](../Evidence/UI/RADIAL_MENU_IMPLEMENTATION_2026-10-06.md) records controls, scope and proof boundaries.
 
-## Notes
+## Camp prototype validation
+
+`BooterBigArm.Editor.TopDown3DCampProductionValidator.ValidateAllFromCli` runs the existing production radial/menu validators and the camp wiring check without saving scenes. Run it with the pinned Editor in an unowned isolated candidate, never against a checkout already open in Unity. The terrain-seam audit in the existing validators can take several minutes.
+
+Focused fixtures are `TopDown3DCampTests`, `TopDown3DCampInputTests`, `TopDown3DCampIntegrationTests`, and `TopDown3DSleepTests`. The integration fixture opens disposable/reference scenes, so it must run in an isolated candidate. Regress affected survival, radial, menu, inventory UI, harvester, locomotion, and traversal fixtures when their shared owners change.
+
+`BooterBigArm.Editor.TopDown3DCampCapture.CaptureAssetsFromCli` renders art views in an isolated candidate. `TopDown3DCampPerformanceCapture.RunFromCli` performs a bounded virtual-input performance replay there, using 10-second warmup and 30-second measurement windows at 1x and 4x. It never focuses a real window and must not be run in the user's open checkout. Do not issue diagnostic eval commands during measurement; they can stall the Editor and contaminate results. This is automated simulation/performance evidence, not hands-on gameplay smoke testing. See [the implementation receipt](../Evidence/Gameplay/CAMP_SLEEP_IMPLEMENTATION_2026-10-10.md).
+
+## General notes
 
 - Keep build output outside `Assets/`.
 - Keep Unity source assets and metadata under version control.

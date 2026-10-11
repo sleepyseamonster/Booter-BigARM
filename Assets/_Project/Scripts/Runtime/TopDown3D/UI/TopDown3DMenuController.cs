@@ -26,6 +26,7 @@ namespace BooterBigArm.TopDown3D
         public string CurrentPanel => panel;
         public Action ExitRequested;
         public bool IsConfigured => configured;
+        public bool LargeText => settings != null && settings.Accepted.largeText;
 
         public void Configure(TopDown3DInputRouter router, TopDown3DInventoryUiController kit,
             TopDown3DRadialMenuController wheel, TopDown3DMenuView menuView,
@@ -58,6 +59,7 @@ namespace BooterBigArm.TopDown3D
         public void Open()
         {
             if (IsOpen || input.Mode == TopDown3DInputMode.Disabled) return;
+            inventory.GetComponent<TopDown3DCampController>()?.InterruptForSystemMenu();
             returnInventory = inventory.IsOpen;
             if (returnInventory) inventory.SuspendForMenu();
             radial.CancelForSystemMenu();

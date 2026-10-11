@@ -170,12 +170,14 @@ namespace BooterBigArm.TopDown3D
                 TopDown3DRadialCommand.DustCanister => "No carried canister, or placement is unavailable",
                 TopDown3DRadialCommand.CallLegger => "Legger unavailable",
                 TopDown3DRadialCommand.AutoPack => "Legger must be within reach",
+                TopDown3DRadialCommand.Camp => "No carried camp kit, or another action is active",
                 _ => "No action assigned" };
             return command switch {
                 TopDown3DRadialCommand.PlayerInventory => "Player Inventory — open field kit",
                 TopDown3DRadialCommand.CallLegger => "Call Legger Over — sprint to Booter",
                 TopDown3DRadialCommand.DustCanister => "Dust Canister — choose a placement point",
                 TopDown3DRadialCommand.AutoPack => "Auto-Pack Legger cargo",
+                TopDown3DRadialCommand.Camp => "Camp — set up your shade or use a nearby camp",
                 _ => "No action assigned" };
         }
 
@@ -184,6 +186,7 @@ namespace BooterBigArm.TopDown3D
             TopDown3DRadialCommand.CallLegger => legger != null && legger.isActiveAndEnabled,
             TopDown3DRadialCommand.DustCanister => action != null && action.CanSelectCanister,
             TopDown3DRadialCommand.AutoPack => cargo != null && cargo.IsInAccessRange(inventory.transform.position),
+            TopDown3DRadialCommand.Camp => inventory.GetComponent<TopDown3DCampController>()?.CanCallUp == true,
             _ => false };
 
         private void Close(bool commit)
@@ -203,6 +206,7 @@ namespace BooterBigArm.TopDown3D
                     callWatchAfter = Time.time + 0.25f; action?.ReportFeedback("Legger approaching"); break;
                 case TopDown3DRadialCommand.DustCanister: action.SelectCanister(); break;
                 case TopDown3DRadialCommand.AutoPack: cargo.TryAutoPack(); break;
+                case TopDown3DRadialCommand.Camp: inventory.GetComponent<TopDown3DCampController>().CallUp(); break;
             }
         }
 

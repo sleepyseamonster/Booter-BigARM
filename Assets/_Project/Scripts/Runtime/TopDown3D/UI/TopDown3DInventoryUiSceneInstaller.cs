@@ -34,6 +34,7 @@ namespace BooterBigArm.TopDown3D
             if (existing != null && existing.IsConfigured)
             {
                 TopDown3DMenuSceneInstaller.TryInstall(scene, input, existing, eventSystem, preferenceDirectory);
+                TopDown3DCampSceneInstaller.TryInstall(scene, input, inventory, eventSystem);
                 return existing;
             }
             TopDown3DInventoryCanvas canvas;
@@ -53,6 +54,7 @@ namespace BooterBigArm.TopDown3D
             existing.Configure(input, inventory, action, canvas, eventSystem);
             TopDown3DRadialSceneInstaller.TryInstall(scene, input, inventory, action, existing, canvas, preferenceDirectory);
             TopDown3DMenuSceneInstaller.TryInstall(scene, input, existing, eventSystem, preferenceDirectory);
+            TopDown3DCampSceneInstaller.TryInstall(scene, input, inventory, eventSystem);
             return existing;
         }
 

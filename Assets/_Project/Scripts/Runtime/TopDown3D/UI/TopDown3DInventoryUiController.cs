@@ -191,7 +191,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleAutoPack()
         {
-            if (suspended || input.Mode == TopDown3DInputMode.SystemMenu) return;
+            if (suspended || input.Mode == TopDown3DInputMode.SystemMenu || input.IsCampMode) return;
             if (cargo == null || !cargo.IsInAccessRange(inventory.transform.position)) return;
             if (cargo.TryAutoPack()) canvas.SetCargoSummary("Auto-packed: stable");
             Refresh();

@@ -10,7 +10,10 @@ namespace BooterBigArm.TopDown3D
         Gameplay,
         Inventory,
         Radial,
-        SystemMenu
+        SystemMenu,
+        CampPlacement,
+        CampActions,
+        CampBusy
     }
 
     public enum TopDown3DPromptDevice
@@ -41,6 +44,7 @@ namespace BooterBigArm.TopDown3D
         private InputActionMap systemMap;
         private InputActionMap uiMap;
         private InputActionMap radialMap;
+        private InputActionMap campMap;
         private InputAction moveAction;
         private InputAction lookAction;
         private InputAction cameraLookAheadAction;
@@ -56,11 +60,12 @@ namespace BooterBigArm.TopDown3D
         private bool menuRequested, menuBackRequested, awaitMoveNeutral;
         private bool actionsBound;
         private bool awaitLookNeutral;
+        private bool awaitCampMoveNeutral, awaitCampLookNeutral;
         private int ignoreMouseLookUntilFrame = -1;
 
         public Vector2 MoveValue { get; private set; }
         public Vector2 CameraLookValue { get; private set; }
-        public Vector2 MouseLookDelta => Mode == TopDown3DInputMode.Gameplay && Application.isFocused
+        public Vector2 MouseLookDelta => (Mode == TopDown3DInputMode.Gameplay || Mode == TopDown3DInputMode.CampPlacement) && Application.isFocused
             && Time.frameCount > ignoreMouseLookUntilFrame && Mouse.current != null
             ? Mouse.current.delta.ReadValue()
             : Vector2.zero;
@@ -70,6 +75,23 @@ namespace BooterBigArm.TopDown3D
         public InputActionAsset InputActions => inputActions;
         public TopDown3DInputMode Mode { get; private set; }
         public TopDown3DPromptDevice PromptDevice { get; private set; }
+        public bool IsCampMode => Mode == TopDown3DInputMode.CampPlacement || Mode == TopDown3DInputMode.CampActions || Mode == TopDown3DInputMode.CampBusy;
+        public Vector2 CampMove => awaitCampMoveNeutral ? Vector2.zero : campMap?.FindAction("Move")?.ReadValue<Vector2>() ?? Vector2.zero;
+        public bool CampConfirm => campMap?.FindAction("Confirm")?.WasPressedThisFrame() == true;
+        public bool CampCancel => campMap?.FindAction("Cancel")?.WasPressedThisFrame() == true;
+        public bool CampSun => campMap?.FindAction("FaceSun")?.WasPressedThisFrame() == true;
+        public int CampRotate => campMap?.FindAction("RotateRight")?.WasPressedThisFrame() == true ? 1
+            : campMap?.FindAction("RotateLeft")?.WasPressedThisFrame() == true ? -1 : 0;
+        public bool HasCampActions => campMap != null;
+        public bool CampConfirmHeld => campMap?.FindAction("Confirm")?.IsPressed() == true
+            || inputActions?.FindAction("UI/Submit")?.IsPressed() == true
+            || inputActions?.FindAction("Gameplay/Interact")?.IsPressed() == true;
+        public void EnterCampMode(TopDown3DInputMode mode)
+        {
+            if (mode != TopDown3DInputMode.CampPlacement && mode != TopDown3DInputMode.CampActions && mode != TopDown3DInputMode.CampBusy)
+                throw new ArgumentException("Not a camp input mode.");
+            SetMode(mode);
+        }
 
         public event Action RecallRequested;
         public event Action InteractRequested;
@@ -144,6 +166,7 @@ namespace BooterBigArm.TopDown3D
             systemMap.actionTriggered += HandleActionTriggered;
             uiMap.actionTriggered += HandleActionTriggered;
             if (radialMap != null) radialMap.actionTriggered += HandleActionTriggered;
+            if (campMap != null) campMap.actionTriggered += HandleActionTriggered;
             InputSystem.onDeviceChange += HandleDeviceChange;
             actionsBound = true;
             SetPromptDevice(FindAvailableGamepad() != null
@@ -224,6 +247,7 @@ namespace BooterBigArm.TopDown3D
 
             InputSystem.onDeviceChange -= HandleDeviceChange;
             if (radialMap != null) radialMap.actionTriggered -= HandleActionTriggered;
+            if (campMap != null) campMap.actionTriggered -= HandleActionTriggered;
 
             SetMode(TopDown3DInputMode.Disabled);
             actionsBound = false;
@@ -231,6 +255,7 @@ namespace BooterBigArm.TopDown3D
             systemMap = null;
             uiMap = null;
             radialMap = null;
+            campMap = null;
             moveAction = null;
             lookAction = null;
             cameraLookAheadAction = null;
@@ -260,6 +285,7 @@ namespace BooterBigArm.TopDown3D
             systemMap = inputActions.FindActionMap(systemMapName, false);
             uiMap = inputActions.FindActionMap(uiMapName, false);
             radialMap = inputActions.FindActionMap("Radial", false);
+            campMap = inputActions.FindActionMap("Camp", false);
             moveAction = gameplayMap?.FindAction(moveActionName, false);
             lookAction = gameplayMap?.FindAction(lookActionName, false);
             cameraLookAheadAction = gameplayMap?.FindAction(cameraLookAheadActionName, false);
@@ -366,7 +392,7 @@ namespace BooterBigArm.TopDown3D
         private void HandleToggleInventory(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed && Mode != TopDown3DInputMode.Radial
-                && Mode != TopDown3DInputMode.SystemMenu)
+                && Mode != TopDown3DInputMode.SystemMenu && !IsCampMode)
             {
                 InventoryToggleRequested?.Invoke();
             }
@@ -391,13 +417,23 @@ namespace BooterBigArm.TopDown3D
             var escape = context.control.device is Keyboard;
             // Escape already belongs to inventory/radial Back in these captured contexts.
             if (escape && (inputUpdateMode == TopDown3DInputMode.Inventory
-                || inputUpdateMode == TopDown3DInputMode.Radial)) return;
+                || inputUpdateMode == TopDown3DInputMode.Radial
+                || inputUpdateMode == TopDown3DInputMode.CampPlacement || inputUpdateMode == TopDown3DInputMode.CampActions
+                || inputUpdateMode == TopDown3DInputMode.CampBusy)) return;
             if (escape && inputUpdateMode == TopDown3DInputMode.SystemMenu) menuBackRequested = true;
             else menuRequested = true;
         }
 
         private void AfterInputUpdate()
         {
+            if (Mode == TopDown3DInputMode.CampPlacement)
+            {
+                var move = campMap?.FindAction("Move")?.ReadValue<Vector2>() ?? Vector2.zero;
+                var look = campMap?.FindAction("Look")?.ReadValue<Vector2>() ?? Vector2.zero;
+                if (awaitCampMoveNeutral && move.sqrMagnitude < .0484f) awaitCampMoveNeutral = false;
+                if (awaitCampLookNeutral && look.sqrMagnitude < .0484f) awaitCampLookNeutral = false;
+                CameraLookValue = awaitCampLookNeutral ? Vector2.zero : look;
+            }
             var toggle = menuRequested; var back = menuBackRequested;
             menuRequested = menuBackRequested = false;
             if (toggle) MenuToggleRequested?.Invoke();
@@ -443,18 +479,28 @@ namespace BooterBigArm.TopDown3D
 
             // System remains enabled across modal transitions so a held opener is not canceled.
             var previousMode = Mode;
+            if (mode == TopDown3DInputMode.CampPlacement)
+            {
+                awaitCampMoveNeutral = Gamepad.current != null && Gamepad.current.leftStick.ReadValue().sqrMagnitude > .0484f
+                    || Keyboard.current != null && (Keyboard.current.wKey.isPressed || Keyboard.current.aKey.isPressed || Keyboard.current.sKey.isPressed || Keyboard.current.dKey.isPressed);
+                awaitCampLookNeutral = Gamepad.current != null && Gamepad.current.rightStick.ReadValue().sqrMagnitude > .0484f;
+                ignoreMouseLookUntilFrame = Time.frameCount + 1;
+            }
             Mode = mode;
             if (mode == TopDown3DInputMode.Gameplay && previousMode != TopDown3DInputMode.Gameplay)
             {
                 ignoreMouseLookUntilFrame = Time.frameCount + 1;
-                awaitMoveNeutral = previousMode == TopDown3DInputMode.SystemMenu
+                awaitMoveNeutral = (previousMode == TopDown3DInputMode.SystemMenu || previousMode == TopDown3DInputMode.CampActions
+                    || previousMode == TopDown3DInputMode.CampBusy || previousMode == TopDown3DInputMode.CampPlacement)
                     && Gamepad.current != null && Gamepad.current.leftStick.ReadValue().sqrMagnitude > 0.0484f;
-                awaitLookNeutral = (previousMode == TopDown3DInputMode.Radial || previousMode == TopDown3DInputMode.SystemMenu)
+                awaitLookNeutral = (previousMode == TopDown3DInputMode.Radial || previousMode == TopDown3DInputMode.SystemMenu
+                    || previousMode == TopDown3DInputMode.CampActions || previousMode == TopDown3DInputMode.CampBusy || previousMode == TopDown3DInputMode.CampPlacement)
                     && Gamepad.current != null && Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.0484f;
             }
             gameplayMap?.Disable();
             uiMap?.Disable();
             radialMap?.Disable();
+            campMap?.Disable();
             if (mode == TopDown3DInputMode.Disabled) systemMap?.Disable();
             else systemMap?.Enable();
             ClearGameplayIntent();
@@ -472,10 +518,17 @@ namespace BooterBigArm.TopDown3D
                 case TopDown3DInputMode.Radial:
                     radialMap?.Enable();
                     break;
+                case TopDown3DInputMode.CampPlacement:
+                case TopDown3DInputMode.CampBusy:
+                    campMap?.Enable();
+                    break;
+                case TopDown3DInputMode.CampActions:
+                    uiMap?.Enable(); campMap?.Enable();
+                    break;
             }
 
             Mode = mode;
-            if (mode == TopDown3DInputMode.Gameplay)
+            if (mode == TopDown3DInputMode.Gameplay || mode == TopDown3DInputMode.CampPlacement)
             {
                 CaptureCursor();
             }
@@ -488,7 +541,7 @@ namespace BooterBigArm.TopDown3D
             {
                 // UI teardown can restore module references, which re-enable individual actions.
                 // Disabled remains the final input authority after those listeners finish.
-                gameplayMap?.Disable(); uiMap?.Disable(); radialMap?.Disable(); systemMap?.Disable();
+                gameplayMap?.Disable(); uiMap?.Disable(); radialMap?.Disable(); campMap?.Disable(); systemMap?.Disable();
             }
         }
 

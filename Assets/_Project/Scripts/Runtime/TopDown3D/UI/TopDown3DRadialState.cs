@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
 {
-    public enum TopDown3DRadialCommand { Empty, PlayerInventory, CallLegger, DustCanister, AutoPack }
+    public enum TopDown3DRadialCommand { Empty, PlayerInventory, CallLegger, DustCanister, AutoPack, Camp }
 
     [Serializable]
     public sealed class TopDown3DRadialPage
@@ -11,7 +11,7 @@ namespace BooterBigArm.TopDown3D
         public string id = Guid.NewGuid().ToString("N");
         public string name = "Field";
         public TopDown3DRadialCommand[] slots = {
-            TopDown3DRadialCommand.PlayerInventory, TopDown3DRadialCommand.Empty,
+            TopDown3DRadialCommand.PlayerInventory, TopDown3DRadialCommand.Camp,
             TopDown3DRadialCommand.CallLegger, TopDown3DRadialCommand.DustCanister };
     }
 

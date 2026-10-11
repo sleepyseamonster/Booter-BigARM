@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace BooterBigArm.TopDown3D
 {
@@ -128,6 +129,47 @@ namespace BooterBigArm.TopDown3D
         private Vector3 lastPublishedFacing = Vector3.forward;
         private bool hasPublishedFacing;
         private object actionConstraintOwner;
+        private bool campApproaching;
+        private Vector3 campApproachTarget;
+        private float campApproachRemaining;
+        public event Action<bool> CampApproachFinished;
+
+        public bool CanBeginCampAction => IsGrounded && !IsActionConstrained && climbMode == TopDown3DClimbMode.None
+            && ActiveTraversal == TopDown3DTraversalMove.None;
+
+        public bool TryBeginCampApproach(object owner, Vector3 target, float timeout)
+        {
+            if (!CanBeginCampAction || Vector3.Distance(Position, target) > 3f || timeout <= 0) return false;
+            if (!TryBeginActionConstraint(owner)) return false;
+            campApproachTarget = target; campApproachRemaining = timeout; campApproaching = true;
+            return true;
+        }
+
+        private void AdvanceCampApproach()
+        {
+            var delta = Vector3.ProjectOnPlane(campApproachTarget - Position, Vector3.up);
+            campApproachRemaining -= Time.fixedDeltaTime;
+            if (delta.magnitude < .12f) { FinishCampApproach(true); return; }
+            var step = Mathf.Min(delta.magnitude, 1.8f * Time.fixedDeltaTime);
+            var direction = delta.normalized;
+            var grounded = TryGetGroundNormal(out var normal) && Vector3.Angle(normal, Vector3.up) <= maxWalkableSlope;
+            var supported = Physics.Raycast(Position + direction * (step + .15f) + Vector3.up * .3f,
+                Vector3.down, out var support, capsule.height * .5f + .7f, groundMask, QueryTriggerInteraction.Ignore)
+                && Vector3.Angle(support.normal, Vector3.up) <= maxWalkableSlope;
+            if (!grounded || !supported || campApproachRemaining <= 0
+                || body.SweepTest(direction, out _, step + .04f, QueryTriggerInteraction.Ignore))
+            { FinishCampApproach(false); return; }
+            FacePlanarDirection(direction);
+            body.linearVelocity = direction * (step / Time.fixedDeltaTime) + Vector3.up * body.linearVelocity.y;
+            PublishPresentationSnapshot(direction * 1.8f, direction * 1.8f, false);
+        }
+
+        private void FinishCampApproach(bool success)
+        {
+            campApproaching = false;
+            if (body != null) body.linearVelocity = Vector3.up * body.linearVelocity.y;
+            CampApproachFinished?.Invoke(success);
+        }
         private TopDown3DProceduralWorld terrainWorld;
 
         public Vector3 Position => body != null ? body.position : transform.position;
@@ -207,6 +249,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             actionConstraintOwner = null;
+            campApproaching = false;
             SprintActive = false;
             PlanarAcceleration = Vector3.zero;
         }
@@ -246,6 +289,7 @@ namespace BooterBigArm.TopDown3D
             traversalCooldownRemaining = Mathf.Max(0f, traversalCooldownRemaining - Time.fixedDeltaTime);
             if (IsActionConstrained)
             {
+                if (campApproaching) { AdvanceCampApproach(); return; }
                 PlanarAcceleration = Vector3.zero;
                 SprintActive = false;
                 if (body != null)

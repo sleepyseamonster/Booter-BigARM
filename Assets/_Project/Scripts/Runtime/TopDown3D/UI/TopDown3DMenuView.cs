@@ -104,7 +104,7 @@ namespace BooterBigArm.TopDown3D
                 rect.sizeDelta = new Vector2(100, 94);
                 var shortName = page.slots[i] switch { TopDown3DRadialCommand.PlayerInventory => "Kit",
                     TopDown3DRadialCommand.CallLegger => "Call", TopDown3DRadialCommand.DustCanister => "Dust",
-                    TopDown3DRadialCommand.AutoPack => "Pack", _ => "—" };
+                    TopDown3DRadialCommand.AutoPack => "Pack", TopDown3DRadialCommand.Camp => "Camp", _ => "—" };
                 var label = button.GetComponentInChildren<Text>();
                 label.text = directions[i] + "\n" + shortName; label.fontSize = large ? 28 : 22;
                 button.GetComponent<Image>().color = i == selected ? new Color32(95, 75, 46, 255) : new Color32(48, 52, 49, 255);

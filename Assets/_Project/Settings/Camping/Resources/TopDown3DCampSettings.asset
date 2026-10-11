@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e58dfa5f374a2d4caa9cef139efe14d, type: 3}
+  m_Name: TopDown3DCampSettings
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCampSettings
+  deployedPrefab: {fileID: 743351143395909271, guid: 5799bdd9f9ddd1d4d9a413d7207ccb88, type: 3}
+  packedPrefab: {fileID: 8372292615790927666, guid: 08cadf4f0ed9ae643baf006ceabf1385, type: 3}
+  wornCloakPrefab: {fileID: 395121776765493095, guid: c7327ef57b107f948a397b81b141022d, type: 3}
+  blanketPrefab: {fileID: 3073687255088141738, guid: 80d709a29c321a44c9a79dcf1fb353c8, type: 3}
+  sleepClip: {fileID: 7400000, guid: d18b76da727ff4d4abe5c394a82364b8, type: 2}
+  restClip: {fileID: 7400000, guid: e4e7bc0ef55c7384d8182772a7d049be, type: 2}
+  setupClip: {fileID: 7400000, guid: 5e6c1c68e2dc469409c26d023487c851, type: 2}
+  wakeClip: {fileID: 7400000, guid: c7f8fbe8a09ed604fbdc58f7dca51297, type: 2}
+  previewMaterial: {fileID: 2100000, guid: ce781b21172c4ac479be6916dd914e0a, type: 2}
+  sleepSpeed: 4
+  sleepTarget: 0.8
+  restTarget: 0.4
+  resourceFloor: 0.1
+  sleepRecovery: 0.4
+  sleepFood: 0.015
+  sleepWater: 0.028
+  sleepOxygen: 0.01
+  restRecovery: 0.3
+  restFood: 0.02
+  restWater: 0.032
+  restOxygen: 0.008
+  restDuration: 20
+  setupDuration: 2
+  poseDuration: 0.8
+  wakeDuration: 0.45
+  placementReach: 3
+  interactionRange: 2.4
+  approachTimeout: 4
+  maximumSlope: 14
+  sleepOffset: {x: 0, y: 0, z: 1.2}
+  footprint: {x: 2.4, y: 0.15, z: 2.6}

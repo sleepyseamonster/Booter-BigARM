@@ -2,7 +2,7 @@
 
 Planning checkpoint dated October 10, 2026. Build a small, physical camp loop for Greater Wasteland: Booter deploys a vertical shade through the radial menu, rests or sleeps beneath his cloak, regains Reserve while spending supplies, and wakes into the same continuously simulated world. The recommended first release of the prototype is session-only and uses the existing player, input, inventory, animation, survival, and twilight authorities.
 
-This plan turns the [brainstorming proposal](./CAMP_CLOAK_AND_SLEEP_BRAINSTORM.md) into dependency-ordered work. It does not implement the feature or approve every proposed tuning value. The current request authorizes planning; execution begins after an implementation instruction. A deployed-camp save integration is a separate milestone.
+This plan turns the [brainstorming proposal](./CAMP_CLOAK_AND_SLEEP_BRAINSTORM.md) into dependency-ordered work. Execution was subsequently authorized and the first milestone implemented; see [the implementation receipt](../../Evidence/Gameplay/CAMP_SLEEP_IMPLEMENTATION_2026-10-10.md) for current behavior, automated proof, and remaining user acceptance. A deployed-camp save integration is a separate milestone. The sections below retain the audited execution contract.
 
 ## Objective and observable success
 

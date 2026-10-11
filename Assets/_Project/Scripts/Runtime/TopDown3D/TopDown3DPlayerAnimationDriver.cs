@@ -67,7 +67,79 @@ namespace BooterBigArm.TopDown3D
         private const int VaultIndex = 14;
         private const int GatherIndex = 15;
         private const int ClimbPlaceholderIndex = 16;
-        private const int ClipCount = 17;
+        private const int ClipCount = 21;
+        private int campIndex = -1;
+        private float campDuration = 1;
+        private bool campLying;
+        private GameObject wornCloak, sleepingBlanket, packedCamp;
+        private readonly System.Collections.Generic.List<Mesh> cloakMeshes = new();
+        private bool cloakBound;
+        public bool HasCampAnimationSet { get; private set; }
+        public Animator HumanoidAnimator => humanoidAnimator;
+
+        public bool ConfigureCamp(TopDown3DCampSettings settings)
+        {
+            if (HasCampAnimationSet) return true;
+            if (!settings || !settings.HasAssets || !playableGraph.IsValid() || visualInstance == null) return false;
+            foreach (var filter in settings.wornCloakPrefab.GetComponentsInChildren<MeshFilter>())
+                if (filter.sharedMesh == null || !filter.sharedMesh.isReadable) return false;
+            var clips = new[] { settings.sleepClip, settings.restClip, settings.setupClip, settings.wakeClip };
+            for (var i = 0; i < clips.Length; i++)
+            {
+                var playable = AnimationClipPlayable.Create(playableGraph, clips[i]);
+                playable.SetApplyFootIK(false); playable.SetApplyPlayableIK(false);
+                playableGraph.Connect(playable, 0, mixer, 17 + i); clipPlayables[17 + i] = playable;
+            }
+            wornCloak = Instantiate(settings.wornCloakPrefab, visualInstance.transform, false);
+            sleepingBlanket = Instantiate(settings.blanketPrefab, transform, false);
+            sleepingBlanket.transform.localPosition = new Vector3(0, visualLocalPosition.y + .2f, 0);
+            sleepingBlanket.transform.localRotation = Quaternion.Euler(0, 90, 0);
+            sleepingBlanket.transform.localScale = Vector3.one * visualScale;
+            sleepingBlanket.SetActive(false);
+            packedCamp = Instantiate(settings.packedPrefab, transform, false);
+            packedCamp.transform.localPosition = new Vector3(.55f, -.65f, -.05f);
+            packedCamp.transform.localScale = Vector3.one * .65f;
+            HasCampAnimationSet = true; return true;
+        }
+
+        public void SetCampPresentation(int clip, float duration, bool lying, bool kitCarried)
+        {
+            if (!HasCampAnimationSet) return;
+            campIndex = clip < 0 ? -1 : 17 + Mathf.Clamp(clip, 0, 3);
+            campDuration = Mathf.Max(.05f, duration); campLying = lying;
+            wornCloak.SetActive(!lying); sleepingBlanket.SetActive(lying); packedCamp.SetActive(kitCarried && !lying);
+        }
+
+        private void LateUpdate()
+        {
+            if (!HasCampAnimationSet || cloakBound || humanoidAnimator == null) return;
+            var chest = humanoidAnimator.GetBoneTransform(HumanBodyBones.Chest);
+            var hips = humanoidAnimator.GetBoneTransform(HumanBodyBones.Hips);
+            if (chest == null || hips == null) return;
+            // Bind after the first evaluated Humanoid pose; imported rest axes differ from gameplay axes.
+            foreach (var renderer in wornCloak.GetComponentsInChildren<MeshRenderer>(true))
+            {
+                var original = renderer.GetComponent<MeshFilter>().sharedMesh;
+                var mesh = Instantiate(original); mesh.name = "Runtime cloak skin";
+                var vertices = mesh.vertices;
+                var weights = new BoneWeight[vertices.Length];
+                for (var i = 0; i < vertices.Length; i++)
+                {
+                    vertices[i] = wornCloak.transform.InverseTransformPoint(renderer.transform.TransformPoint(vertices[i]));
+                    var top = Mathf.InverseLerp(.6f, 1.42f, vertices[i].y);
+                    weights[i] = new BoneWeight { boneIndex0 = 0, weight0 = top, boneIndex1 = 1, weight1 = 1 - top };
+                }
+                mesh.vertices = vertices; mesh.boneWeights = weights;
+                mesh.bindposes = new[] { chest.worldToLocalMatrix * wornCloak.transform.localToWorldMatrix, hips.worldToLocalMatrix * wornCloak.transform.localToWorldMatrix };
+                mesh.RecalculateNormals(); mesh.RecalculateBounds(); cloakMeshes.Add(mesh);
+                var skinObject = new GameObject("Cloak cloth skin"); skinObject.transform.SetParent(wornCloak.transform, false);
+                var skin = skinObject.AddComponent<SkinnedMeshRenderer>(); skin.sharedMesh = mesh;
+                skin.bones = new[] { chest, hips }; skin.rootBone = hips; skin.sharedMaterials = renderer.sharedMaterials;
+                skin.shadowCastingMode = renderer.shadowCastingMode; skin.updateWhenOffscreen = true;
+                renderer.enabled = false;
+            }
+            cloakBound = true;
+        }
         private const float LocomotionStopSpeed = 0.08f;
         private const int FootGroundHitCapacity = 4;
 
@@ -355,8 +427,11 @@ namespace BooterBigArm.TopDown3D
                     : 0f;
                 visualInstance.transform.localRotation = Quaternion.Slerp(
                     visualInstance.transform.localRotation,
-                    Quaternion.Euler(visualLocalEulerAngles + Vector3.right * lean),
+                    Quaternion.Euler(visualLocalEulerAngles + (campLying ? Vector3.forward * -90 : Vector3.right * lean)),
                     1f - Mathf.Exp(-10f * Time.deltaTime));
+                var campOffset = campLying ? new Vector3(-1.05f, .35f, 0) : Vector3.zero;
+                visualInstance.transform.localPosition = Vector3.Lerp(visualInstance.transform.localPosition,
+                    visualLocalPosition + campOffset, 1f - Mathf.Exp(-12f * Time.deltaTime));
             }
 
             var planarSpeed = snapshot.CurrentPlanarVelocity.magnitude;
@@ -392,6 +467,7 @@ namespace BooterBigArm.TopDown3D
 
         private int ResolveActionIndex(TopDown3DLocomotionSnapshot snapshot, float planarSpeed)
         {
+            if (campIndex >= 17) { ResetTransitionState(TopDown3DLocomotionState.ConstrainedAction); return campIndex; }
             if (IsGathering)
             {
                 ResetTransitionState(TopDown3DLocomotionState.ConstrainedAction);
@@ -629,6 +705,14 @@ namespace BooterBigArm.TopDown3D
             int actionIndex,
             TopDown3DLocomotionSnapshot snapshot)
         {
+            if (actionIndex >= 17)
+            {
+                var clip = clipPlayables[actionIndex];
+                if (actionIndex == 17 || actionIndex == 18)
+                { clip.SetSpeed(1); clip.SetTime(Mathf.Repeat((float)clip.GetTime(), Mathf.Max(.01f, clip.GetAnimationClip().length))); }
+                else clip.SetSpeed(clip.GetAnimationClip().length / campDuration);
+                return;
+            }
             if (actionIndex >= StartLeftIndex && actionIndex <= HardTurnRightIndex)
             {
                 clipPlayables[actionIndex].SetSpeed(1d);
@@ -907,6 +991,9 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDestroy()
         {
+            foreach (var mesh in cloakMeshes)
+                if (mesh != null) { if (Application.isPlaying) Destroy(mesh); else DestroyImmediate(mesh); }
+            cloakMeshes.Clear();
             if (playableGraph.IsValid())
             {
                 playableGraph.Destroy();

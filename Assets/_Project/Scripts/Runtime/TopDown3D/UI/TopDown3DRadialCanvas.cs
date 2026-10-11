@@ -77,6 +77,7 @@ namespace BooterBigArm.TopDown3D
             TopDown3DRadialCommand.CallLegger => "Call Legger",
             TopDown3DRadialCommand.DustCanister => "Dust Canister",
             TopDown3DRadialCommand.AutoPack => "Auto-Pack",
+            TopDown3DRadialCommand.Camp => "Camp",
             _ => "—" };
 
         private static RectTransform Rect(string name, Transform parent, Vector2 position, Vector2 size)

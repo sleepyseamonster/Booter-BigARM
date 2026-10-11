@@ -98,6 +98,8 @@ namespace BooterBigArm.TopDown3D
             }
 
             var target = interaction.CurrentTarget;
+            if (target is TopDown3DCampView camp)
+                return camp.Interact() ? TopDown3DGatherActionResult.Completed : TopDown3DGatherActionResult.Rejected;
             if (target is TopDown3DHarvesterView harvester)
                 return TryBeginHarvesterPickup(harvester);
             if (target is TopDown3DBigArmCargoAccess)

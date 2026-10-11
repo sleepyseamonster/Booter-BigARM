@@ -1,0 +1,56 @@
+using BooterBigArm.TopDown3D;
+using NUnit.Framework;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+
+namespace BooterBigArm.Tests
+{
+    public sealed class TopDown3DCampInputTests
+    {
+        [TestCase(TopDown3DInputMode.CampPlacement)]
+        [TestCase(TopDown3DInputMode.CampActions)]
+        [TestCase(TopDown3DInputMode.CampBusy)]
+        public void CampModesKeepSystemAvailableAndBlockGameplayInventoryAndEscapeMenu(TopDown3DInputMode mode)
+        {
+            var actions = Object.Instantiate(AssetDatabase.LoadAssetAtPath<InputActionAsset>("Assets/_Project/Settings/Input/InputSystem_Actions.inputactions"));
+            var root = new GameObject("Camp input fixture"); root.SetActive(false);
+            var router = root.AddComponent<TopDown3DInputRouter>(); router.Configure(actions); root.SetActive(true); router.Initialize();
+            var previous = InputSystem.settings; var test = Object.Instantiate(previous);
+            test.SetInternalFeatureFlag("RUN_PLAYER_UPDATES_IN_EDIT_MODE", true);
+            test.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus; test.updateMode = InputSettings.UpdateMode.ProcessEventsManually;
+            InputSystem.settings = test;
+            var pad = InputSystem.AddDevice<Gamepad>(); var keyboard = InputSystem.AddDevice<Keyboard>();
+            try
+            {
+                router.EnterCampMode(mode);
+                Assert.That(actions.FindActionMap("Gameplay").enabled, Is.False);
+                Assert.That(actions.FindActionMap("Camp").enabled, Is.True);
+                Assert.That(actions.FindActionMap("System").enabled, Is.True);
+                var inventory = 0; var menu = 0; router.InventoryToggleRequested += () => inventory++; router.MenuToggleRequested += () => menu++;
+                InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(GamepadButton.North)); InputSystem.Update();
+                Assert.That(inventory, Is.Zero);
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Escape)); InputSystem.Update();
+                Assert.That(menu, Is.Zero); Assert.That(router.CampCancel, Is.True);
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update();
+                InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(GamepadButton.Start)); InputSystem.Update();
+                Assert.That(menu, Is.EqualTo(1));
+                router.EnterGameplayMode(); Assert.That(actions.FindActionMap("Camp").enabled, Is.False);
+            }
+            finally
+            {
+                Object.DestroyImmediate(root); Object.DestroyImmediate(actions);
+                InputSystem.RemoveDevice(pad); InputSystem.RemoveDevice(keyboard); InputSystem.settings = previous; Object.DestroyImmediate(test);
+            }
+        }
+        [Test] public void AppendOnlyCampCommandPreservesOldPreferenceMeanings()
+        {
+            Assert.That((int)TopDown3DRadialCommand.AutoPack, Is.EqualTo(4)); Assert.That((int)TopDown3DRadialCommand.Camp, Is.EqualTo(5));
+            var previous = new TopDown3DRadialPreferences(); previous.pages[0].slots[1] = TopDown3DRadialCommand.Empty;
+            var restored = JsonUtility.FromJson<TopDown3DRadialPreferences>(JsonUtility.ToJson(previous));
+            Assert.That(restored.IsValid(), Is.True); Assert.That(restored.pages[0].slots[1], Is.EqualTo(TopDown3DRadialCommand.Empty));
+            Assert.That(new TopDown3DRadialPreferences().pages[0].slots[1], Is.EqualTo(TopDown3DRadialCommand.Camp));
+        }
+    }
+}
