@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "family": "north_row3",
+  "step": 6,
+  "status": "verified_native_saved_scene_transfer",
+  "retained_terrains": 7424,
+  "new_terrains": 256,
+  "total_terrains": 7680,
+  "unchanged_original_documents": 38647,
+  "changed_original_documents": [
+    "1259644692"
+  ],
+  "new_scene_documents": 1314,
+  "new_sectors": 16,
+  "predecessor_scene_sha256": "d8a89a0e39426e5085c143dd723ac1a1635b52f00ddd6a08d6473a9aaf833b9c",
+  "production_scene_sha256": "19c3633ffd884f11b72cd9f6daae13526315ad252f93da49b5191d99ab87c566",
+  "manifest_sha256": "9b0c383e636a3a461fa9d607db5f2f84b64da4485edfa2241197145023c06304",
+  "scene_guid_preserved": true,
+  "canonical_validator_log_sha256": "e8653dd46d54298f81c8dc1a2053a7282e0d07d61a0ab96edf12547ebc1e5177",
+  "live_state_limit": "Saved native proof; transfer guarded separately against unloaded production and live user scene.",
+  "transferred_predecessor_scene_sha256": "d78d84cf162415183d8161260be594d66c59de32bb6b9c42a2038a53fad0e716",
+  "committed_shared_change_sha256": "2a8a73f7aef9ea35fdac67a925f0203f36e6cfd475bcaa5e352a439c9dfa4373"
+}

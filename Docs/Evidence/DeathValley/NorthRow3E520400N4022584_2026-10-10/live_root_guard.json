@@ -1,0 +1,83 @@
+{
+  "status": "live_root_transfer_guard_passed",
+  "step": 6,
+  "scene_sha256": "d78d84cf162415183d8161260be594d66c59de32bb6b9c42a2038a53fad0e716",
+  "committed_reconciliation": {
+    "status": "exact_committed_shared_scene_overlay_verified",
+    "step": 6,
+    "original_captured_predecessor_sha256": "d8a89a0e39426e5085c143dd723ac1a1635b52f00ddd6a08d6473a9aaf833b9c",
+    "current_root_predecessor_sha256": "d78d84cf162415183d8161260be594d66c59de32bb6b9c42a2038a53fad0e716",
+    "camp_changed_document": "690964290",
+    "camp_change": "Add one tool.popup_camp to startingItems; preserve all other current predecessor documents",
+    "proposed_scene_sha256": "19c3633ffd884f11b72cd9f6daae13526315ad252f93da49b5191d99ab87c566",
+    "terrain_addition_documents": 1314,
+    "terrain_total": 7680,
+    "user_readiness_confirmed": false,
+    "root_scene_modified": false,
+    "isolated_proof_scene_modified": false,
+    "readiness_resolution": "Shared scene and dependencies committed; both earlier choices preserve this change without staging camp work",
+    "shared_change_commit": "46c0bae74474a2179a8292b7157eadf5c4237286",
+    "human_reply_received": false,
+    "camp_item_dependencies": [
+      {
+        "path": "Assets/_Project/Settings/Items/TopDown3DItemCatalog.asset",
+        "sha256": "193be51a41bb47c556917d0e4ec6e8e0a9e9a59267f88e8b968be0ee72fea712"
+      },
+      {
+        "path": "Assets/_Project/Settings/Items/TopDown3DItemCatalog.asset.meta",
+        "sha256": "dc394f39600621f77fdf2fcb3fa4eeaa16b292ee6ba8072a8ff22fb120b1789f"
+      },
+      {
+        "path": "Assets/_Project/Settings/Items/Item_PopupCamp.asset",
+        "sha256": "9e960992a579813142d2f2c0c7b294e2da79196892d024e8fd1aed00b698bce6"
+      },
+      {
+        "path": "Assets/_Project/Settings/Items/Item_PopupCamp.asset.meta",
+        "sha256": "6bf7cb8b22bdca2d5d0c9deeaa960925c4c4fd7423d75fdfcc5e7b61261a3baa"
+      },
+      {
+        "path": "Assets/_Project/UI/Icons.meta",
+        "sha256": "d7b142c6baf0f8b431acc771e0c727909753a01670e85647035b3ed7181152c3"
+      },
+      {
+        "path": "Assets/_Project/UI/Icons/Camp.meta",
+        "sha256": "b1b3a54f2d877d5fc1083496087039c1fc82c2ea997c8aed2ba3b7cb85c6158c"
+      },
+      {
+        "path": "Assets/_Project/UI/Icons/Camp/PopupCamp.png",
+        "sha256": "1207d58eb4d07b76563d35d7229d3570380581e94e3fb23f7f132b11ebfd1d1d"
+      },
+      {
+        "path": "Assets/_Project/UI/Icons/Camp/PopupCamp.png.meta",
+        "sha256": "6e6a143193d472d8e3e5c905051a6decd9151c83dd4cafde7145802e9db5ac0d"
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "name": "FixedTerrainDressingStudy",
+      "path": "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity",
+      "isLoaded": true,
+      "isDirty": false,
+      "isActive": true,
+      "rootCount": 12
+    }
+  ],
+  "editor_state": {
+    "playing": false,
+    "compiling": false
+  },
+  "compiler_truth": {
+    "sampledUtc": "2026-10-11T05:52:08.3156025Z",
+    "ageMs": 49,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 78,
+    "consoleLogs": 4,
+    "seeded": true
+  },
+  "known_console_entries": [],
+  "dirty_task_terrain_assets": [],
+  "unrelated_scene_policy": "Preserve unsaved unrelated scenes; do not save, switch or mutate them"
+}
