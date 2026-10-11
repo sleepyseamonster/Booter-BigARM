@@ -4,11 +4,14 @@ from pathlib import Path
 from north_row4_contract import ROOT,contract,sha256
 
 def root_processes():
-    path=str(ROOT).replace("'","''")
-    query=f"@((Get-CimInstance Win32_Process | Where-Object {{$_.Name -eq 'Unity.exe' -and $_.CommandLine -like '*{path}*'}}) | Select-Object ProcessId,CommandLine) | ConvertTo-Json -Compress"
+    query="@((Get-CimInstance Win32_Process | Where-Object {$_.Name -eq 'Unity.exe'}) | Select-Object ProcessId,CommandLine) | ConvertTo-Json -Compress"
     raw=subprocess.check_output(['powershell.exe','-NoProfile','-Command',query],text=True,creationflags=subprocess.CREATE_NO_WINDOW).strip()
     if not raw:return []
-    result=json.loads(raw);return result if isinstance(result,list) else [result]
+    result=json.loads(raw);processes=result if isinstance(result,list) else [result]
+    if any(not process.get('CommandLine') for process in processes):
+        raise ValueError('Unity project ownership is unreadable; offline transfer is unavailable')
+    path=ROOT.as_posix().lower()
+    return [process for process in processes if path in process['CommandLine'].replace('\\','/').lower()]
 
 def command(name,*args):
     cli=Path(os.environ['LOCALAPPDATA'])/'Unity/bin/unity.exe'

@@ -7,8 +7,8 @@ def run(stage,step,date,isolation,version,graphics=False,test_filter=None):
     c=contract(step,date);isolation=isolation.resolve()
     if isolation==ROOT or not (isolation/'ProjectSettings/ProjectVersion.txt').is_file() or (isolation/'.git').exists():
         raise ValueError('A distinct physical validation project is required')
-    target=str(isolation).replace("'","''")
-    query=f"@(Get-CimInstance Win32_Process | Where-Object {{$_.Name -eq 'Unity.exe' -and $_.CommandLine -like '*{target}*'}}).Count"
+    target=isolation.as_posix().replace("'","''")
+    query=f"@(Get-CimInstance Win32_Process | Where-Object {{$_.Name -eq 'Unity.exe' -and $_.CommandLine.Replace([char]92,[char]47) -like '*{target}*'}}).Count"
     if int(subprocess.check_output(['powershell.exe','-NoProfile','-Command',query],text=True).strip()):
         raise ValueError('Target Editor already running; wait for its terminal result')
     suffix='' if version=='01' else version
