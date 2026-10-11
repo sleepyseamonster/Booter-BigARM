@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "family": "north_row4",
+  "status": "native_Windows_streamed_SHA256_verified",
+  "tests_passed": 7,
+  "tests_failed": 0,
+  "source_manifest_bytes": 46166218,
+  "legacy_ms": 523,
+  "windows_provider_ms": 102,
+  "exact_digest_agreement": true,
+  "fresh_byte_stream_on_every_call": true,
+  "timestamp_hash_cache": false,
+  "unchanged_older_row_implementations": true,
+  "portable_fallback": "Existing SHA256 provider on non-Windows Editors",
+  "official_API_reference": "https://learn.microsoft.com/en-us/windows/win32/seccng/creating-a-hash-with-cng",
+  "local_log": "C:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_01\\Logs\\step1-contract-tests02.log",
+  "local_log_sha256": "c2e386a1164d89b69e2ba24f76342d396225df00a1360b195551156b1d196f4f",
+  "test_xml_sha256": "e2294a9124b5af96c72143f283e40ea5c2fc12b55591c4f8c86464fc227bcd0a",
+  "limits": "Hash equivalence and measured editor hashing time, not Player performance or terrain acceptance."
+}

@@ -69,7 +69,7 @@ namespace BooterBigArm.Editor
             return null;
         }
         public static string ProjectFile(string path) => BadwaterTerrainExpansionSource.ProjectFile(path);
-        public static string Hash(string path) => BadwaterTerrainExpansionSource.Hash(ProjectFile(path));
+        public static string Hash(string path) => BadwaterNorthRow4FileHash.Compute(ProjectFile(path));
         public static List<Terrain> Terrains(Scene scene) => BadwaterTerrainExpansionSource.Terrains(scene);
         public static bool HasExpansion(Scene scene) => Terrains(scene).Any(t => AssetDatabase.GetAssetPath(t.terrainData).StartsWith("Assets/_Project/Art/Terrain/NorthRow4E", StringComparison.Ordinal));
         public static Config ConfigForScene(Scene scene)
@@ -177,7 +177,7 @@ namespace BooterBigArm.Editor
         private static void VerifySource(Config c, string relative, string expected, int? length)
         {
             string file = SourceFile(c, relative);
-            if (BadwaterTerrainExpansionSource.Hash(file) != expected || (length.HasValue && new FileInfo(file).Length != length.Value)) throw new InvalidDataException("New source changed: " + relative);
+            if (BadwaterNorthRow4FileHash.Compute(file) != expected || (length.HasValue && new FileInfo(file).Length != length.Value)) throw new InvalidDataException("New source changed: " + relative);
         }
         public static void ValidateReference(Manifest m, NativeReference r)
         {

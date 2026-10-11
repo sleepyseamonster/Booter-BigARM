@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 19:54:07Z" end-time="2026-10-11 19:54:08Z" duration="0.7440547">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="774" result="Passed" start-time="2026-10-11 19:54:07Z" end-time="2026-10-11 19:54:08Z" duration="0.744055" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1924" name="BooterBigArm.Editor.Tests.dll" fullname="C:/BooterBigArmValidation/TerrainNorthRow4_20261011_01/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="774" result="Passed" start-time="2026-10-11 19:54:07Z" end-time="2026-10-11 19:54:08Z" duration="0.735946" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="11472" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1925" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="774" result="Passed" start-time="2026-10-11 19:54:07Z" end-time="2026-10-11 19:54:08Z" duration="0.734788" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1926" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="774" result="Passed" start-time="2026-10-11 19:54:07Z" end-time="2026-10-11 19:54:08Z" duration="0.733828" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1120" name="BadwaterNorthRow4HashTests" fullname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" classname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-11 19:54:07Z" end-time="2026-10-11 19:54:08Z" duration="0.722529" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1129" name="AcceptedSourceManifestMatchesLegacyProviderWithMeasuredTiming" fullname="BooterBigArm.Tests.BadwaterNorthRow4HashTests.AcceptedSourceManifestMatchesLegacyProviderWithMeasuredTiming" methodname="AcceptedSourceManifestMatchesLegacyProviderWithMeasuredTiming" classname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" runstate="Runnable" seed="1595765531" result="Passed" start-time="2026-10-11 19:54:07Z" end-time="2026-10-11 19:54:08Z" duration="0.646072" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ROW4_SHA256_BENCHMARK: 46166218 bytes, legacy=523ms, row4=102ms; exact digest agreement.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1123" name="KnownSha256VectorsMatch" fullname="BooterBigArm.Tests.BadwaterNorthRow4HashTests.KnownSha256VectorsMatch" classname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 19:54:08Z" end-time="2026-10-11 19:54:08Z" duration="0.004020" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1121" name="KnownSha256VectorsMatch(&quot;&quot;,&quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow4HashTests.KnownSha256VectorsMatch(&quot;&quot;,&quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;)" methodname="KnownSha256VectorsMatch" classname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" runstate="Runnable" seed="667517341" result="Passed" start-time="2026-10-11 19:54:08Z" end-time="2026-10-11 19:54:08Z" duration="0.001398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1122" name="KnownSha256VectorsMatch(&quot;abc&quot;,&quot;ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad&quot;)" fullname="BooterBigArm.Tests.BadwaterNorthRow4HashTests.KnownSha256VectorsMatch(&quot;abc&quot;,&quot;ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad&quot;)" methodname="KnownSha256VectorsMatch" classname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" runstate="Runnable" seed="1314449909" result="Passed" start-time="2026-10-11 19:54:08Z" end-time="2026-10-11 19:54:08Z" duration="0.000524" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1128" name="StreamBoundariesMatchIndependentManagedShaAndDetectMutation" fullname="BooterBigArm.Tests.BadwaterNorthRow4HashTests.StreamBoundariesMatchIndependentManagedShaAndDetectMutation" classname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 19:54:08Z" end-time="2026-10-11 19:54:08Z" duration="0.060828" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1124" name="StreamBoundariesMatchIndependentManagedShaAndDetectMutation(1)" fullname="BooterBigArm.Tests.BadwaterNorthRow4HashTests.StreamBoundariesMatchIndependentManagedShaAndDetectMutation(1)" methodname="StreamBoundariesMatchIndependentManagedShaAndDetectMutation" classname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" runstate="Runnable" seed="882478944" result="Passed" start-time="2026-10-11 19:54:08Z" end-time="2026-10-11 19:54:08Z" duration="0.003088" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1125" name="StreamBoundariesMatchIndependentManagedShaAndDetectMutation(65537)" fullname="BooterBigArm.Tests.BadwaterNorthRow4HashTests.StreamBoundariesMatchIndependentManagedShaAndDetectMutation(65537)" methodname="StreamBoundariesMatchIndependentManagedShaAndDetectMutation" classname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" runstate="Runnable" seed="904509898" result="Passed" start-time="2026-10-11 19:54:08Z" end-time="2026-10-11 19:54:08Z" duration="0.013511" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1126" name="StreamBoundariesMatchIndependentManagedShaAndDetectMutation(131072)" fullname="BooterBigArm.Tests.BadwaterNorthRow4HashTests.StreamBoundariesMatchIndependentManagedShaAndDetectMutation(131072)" methodname="StreamBoundariesMatchIndependentManagedShaAndDetectMutation" classname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" runstate="Runnable" seed="2107403554" result="Passed" start-time="2026-10-11 19:54:08Z" end-time="2026-10-11 19:54:08Z" duration="0.015165" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1127" name="StreamBoundariesMatchIndependentManagedShaAndDetectMutation(524291)" fullname="BooterBigArm.Tests.BadwaterNorthRow4HashTests.StreamBoundariesMatchIndependentManagedShaAndDetectMutation(524291)" methodname="StreamBoundariesMatchIndependentManagedShaAndDetectMutation" classname="BooterBigArm.Tests.BadwaterNorthRow4HashTests" runstate="Runnable" seed="815588416" result="Passed" start-time="2026-10-11 19:54:08Z" end-time="2026-10-11 19:54:08Z" duration="0.028111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

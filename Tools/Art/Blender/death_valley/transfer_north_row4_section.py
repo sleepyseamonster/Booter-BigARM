@@ -5,7 +5,7 @@ from north_row4_contract import ROOT,contract,sha256
 from north_row4_transfer_guard import command,live_guard,offline_lock,root_processes,saved_guard
 from preserve_expansion_scene import split_documents
 
-def transfer(step,date,isolation):
+def transfer(step,date,isolation,test_proof_version='01',candidate_proof_version='01'):
     c=contract(step,date);isolation=isolation.resolve()
     if isolation==ROOT or (isolation/'.git').exists():raise ValueError('Physical isolation required')
     bm=saved_guard(step,date);scene=bm['scene']
@@ -18,8 +18,18 @@ def transfer(step,date,isolation):
     if sha256(isolation/(scene+'.meta'))!=sha256(ROOT/(scene+'.meta')):raise ValueError('Production scene GUID changed')
     proof=isolation/c['asset']/'Source/unity_production_validation.json'
     if json.loads(proof.read_text(encoding='utf-8'))!=report or not Path(str(proof)+'.meta').is_file():raise ValueError('Native-imported production proof and metadata required')
-    xml=isolation/'Logs'/f'step{step}-tests.xml';tests=ET.parse(xml).getroot()
+    test_suffix='' if test_proof_version=='01' else test_proof_version
+    candidate_suffix='' if candidate_proof_version=='01' else candidate_proof_version
+    xml=isolation/'Logs'/f'step{step}-tests{test_suffix}.xml';tests=ET.parse(xml).getroot()
     if tests.attrib['result']!='Passed' or int(tests.attrib['failed']) or int(tests.attrib['passed'])<34:raise ValueError('Focused row/map test proof failed')
+    candidate_report_path=isolation/'Logs'/f'step{step}-candidate-readback{candidate_suffix}.json'
+    candidate_report=json.loads(candidate_report_path.read_text(encoding='utf-8'))
+    if any(candidate_report.get(k)!=v for k,v in expected.items()) or candidate_report['manifest_sha256']!=report['manifest_sha256']:
+        raise ValueError('Selected independent candidate proof differs from production contract')
+    if candidate_report['scene']!=c['asset'].replace('Art/Terrain/','Scenes/Reference/')+'Candidate.unity':
+        raise ValueError('Candidate proof scene owner differs')
+    if sha256(isolation/candidate_report['scene'])!=candidate_report['scene_sha256']:
+        raise ValueError('Candidate saved bytes changed after selected readback')
     playable=isolation/'Logs'/f'step{step}-playable.log'
     if f'Playable Badwater scene validated: {c["total"]} terrains, Booter, Legger, input, camera, UI, twilight and dust.' not in playable.read_text(encoding='utf-8'):
         raise ValueError('Canonical saved-production setup proof missing')
@@ -61,14 +71,16 @@ def transfer(step,date,isolation):
             if after!=fingerprint:raise ValueError('Loaded scene fingerprint changed during transfer')
             preservation={'mode':'live','before':fingerprint,'after':after,'identical':True}
     ev.mkdir(parents=True)
-    for name in [f'step{step}-candidate-readback.json',f'step{step}-production-readback.json',f'step{step}-tests.xml']:
-        shutil.copy2(isolation/'Logs'/name,ev/name)
+    shutil.copy2(isolation/'Logs'/f'step{step}-candidate-readback{candidate_suffix}.json',ev/f'step{step}-candidate-readback.json')
+    shutil.copy2(isolation/'Logs'/f'step{step}-production-readback.json',ev/f'step{step}-production-readback.json')
+    shutil.copy2(xml,ev/f'step{step}-tests.xml')
     (ev/'root_transfer_guard.json').write_bytes((json.dumps(guard,indent=2)+'\n').encode('utf-8'))
     (ev/'unrelated_editor_state_preservation.json').write_bytes((json.dumps(preservation,indent=2)+'\n').encode('utf-8'))
-    receipt={'schema_version':1,'family':'north_row4','step':step,'status':'verified_native_saved_scene_transfer','retained_terrains':c['retained_count'],'new_terrains':256,'total_terrains':c['total'],'changed_original_documents':['1259644692'],'unchanged_original_documents':len(old)-1,'new_scene_documents':1314,'new_sectors':16,'predecessor_scene_sha256':bm['scene_sha256'],'production_scene_sha256':report['scene_sha256'],'manifest_sha256':report['manifest_sha256'],'scene_guid_preserved':True,'native_proof_metadata_sha256':sha256(Path(str(proof)+'.meta')),'canonical_validator_log_sha256':sha256(playable),'root_editor_mode':preservation['mode'],'root_import_limit':'Native proof imported in isolation, paired metadata copied byte-exact; no fresh root GUI import claim when offline.'}
+    receipt={'schema_version':1,'family':'north_row4','step':step,'status':'verified_native_saved_scene_transfer','retained_terrains':c['retained_count'],'new_terrains':256,'total_terrains':c['total'],'changed_original_documents':['1259644692'],'unchanged_original_documents':len(old)-1,'new_scene_documents':1314,'new_sectors':16,'predecessor_scene_sha256':bm['scene_sha256'],'production_scene_sha256':report['scene_sha256'],'manifest_sha256':report['manifest_sha256'],'scene_guid_preserved':True,'native_proof_metadata_sha256':sha256(Path(str(proof)+'.meta')),'canonical_validator_log_sha256':sha256(playable),'test_proof_version':test_proof_version,'candidate_proof_version':candidate_proof_version,'root_editor_mode':preservation['mode'],'root_import_limit':'Native proof imported in isolation, paired metadata copied byte-exact; no fresh root GUI import claim when offline.'}
     (ev/'scene_preservation_receipt.json').write_bytes((json.dumps(receipt,indent=2)+'\n').encode('utf-8'))
     print(json.dumps(receipt,indent=2))
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--step',type=int,required=True);p.add_argument('--date',required=True);p.add_argument('--isolation',type=Path,required=True)
-    a=p.parse_args();transfer(a.step,a.date,a.isolation)
+    p.add_argument('--test-proof-version',default='01');p.add_argument('--candidate-proof-version',default='01')
+    a=p.parse_args();transfer(a.step,a.date,a.isolation,a.test_proof_version,a.candidate_proof_version)
