@@ -14,7 +14,19 @@ Current scene: `Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity
 - Each workbench starts from existing Golden Rock controls, with a distinct saved seed. It retains the normal Generate New Rock, Regenerate This Rock, source-volume editing and surface-language workflow. Editor preview meshes/colliders reconstruct from these controls on load.
 - One overview camera and one Greater Wasteland sun sit outside the nine areas. The sun includes the original twilight controller, cycle, direction, colour, intensity and shadow settings. Saved ambient, skybox, reflection and fog settings match the production scene; the overview camera uses that skybox. No players, dust/atmosphere owners, formations, decorative fragments or prepainted texture stickers are added.
 
-## Panels
+## Minimal cube rock authoring
+
+The October 10 [minimal cube implementation](../Evidence/Art/SmoothCubeRock/README.md) adds one `SmoothRockCube` prefab instance to the live Area 05 at `(-3, 0.5, 0)`, preserving the existing workbench and artist basalt poses. The previously dirty scene was not saved over the author's work. The reusable prefab is `Assets/_Project/Prefabs/TopDown3D/Environment/SmoothRockCube.prefab`; normal scene Save persists the live insertion, and an unsaved insertion has Unity's ordinary unsaved-scene lifetime.
+
+Duplicate the cube and use normal Move, Rotate and Scale tools. Touching groups automatically rebuild into one textured exterior after movement settles. Separate them to restore independent cubes. Select an individual source in the Hierarchy, or click the fused exterior to choose a contributing cube; the selected source has a wire outline and normal Transform handles. Fully contained and coincident sources remain accessible in the Hierarchy. No workbench, authoring root, panel, button, slider, source ID or exposed quality setting is added.
+
+The Editor computes a bounded spherical closing of the exact box union, then uses the existing mesh extractor. This preserves duplicate neutrality and input-order independence and rounds reentrant junctions. Face, edge and corner contacts are supported by the focused fixtures, including rotations and grid offsets. The existing rock material uses a fixed world coordinate frame, so group membership does not reset the textures. These are authored study inputs, not world-generation or save-game identities.
+
+This first slice is Edit Mode only, visible in Scene and Game views without entering Play Mode. Saving stores the cube recipe; transient exterior meshes reconstruct on Editor reload and are omitted from scene files and builds. Entering Play Mode restores the source cubes, and returning to Edit Mode rebuilds the preview. There are no gameplay colliders, runtime remesher, LOD/export tools or production terrain changes. Invalid/sheared/mirrored transforms or an oversized group retain visible sources and report a concise Console warning. Internal limits are 32 sources, one million output-grid samples and 1.6 million extended samples at fixed 0.04 m spacing; sampling is not silently coarsened.
+
+The [delivery evidence](../Evidence/Art/SmoothCubeRock/README.md) distinguishes 27 passing current-machine checks, isolated material captures and live placement from author-owned visual acceptance and arbitrary-stack/player-performance proof.
+
+## Existing panels
 
 The study overview camera carries a scene rendering override that suppresses tilt shift in this scene's Game and active Scene views. Greater Wasteland and the shared renderer retain their existing settings. This is independent of the study's matched sun and environment lighting.
 

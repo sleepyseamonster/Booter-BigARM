@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="27" result="Passed" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 01:56:36Z" end-time="2026-10-11 01:56:59Z" duration="23.4726936">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="721" result="Passed" start-time="2026-10-11 01:56:36Z" end-time="2026-10-11 01:56:59Z" duration="23.472694" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1859" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/SmoothCubeRock20261010Candidate/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="721" result="Passed" start-time="2026-10-11 01:56:36Z" end-time="2026-10-11 01:56:59Z" duration="23.383998" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28880" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1860" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="721" result="Passed" start-time="2026-10-11 01:56:36Z" end-time="2026-10-11 01:56:59Z" duration="23.380906" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1861" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="721" result="Passed" start-time="2026-10-11 01:56:36Z" end-time="2026-10-11 01:56:59Z" duration="23.378202" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1274" name="SmoothRockCubeTests" fullname="BooterBigArm.Tests.SmoothRockCubeTests" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-11 01:56:36Z" end-time="2026-10-11 01:56:59Z" duration="23.020869" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1291" name="AutomaticDuplicationSeparationUndoAndDisableRestoreSources" fullname="BooterBigArm.Tests.SmoothRockCubeTests.AutomaticDuplicationSeparationUndoAndDisableRestoreSources" methodname="AutomaticDuplicationSeparationUndoAndDisableRestoreSources" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="845311607" result="Passed" start-time="2026-10-11 01:56:24Z" end-time="2026-10-11 01:56:27Z" duration="3.717692" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <output><![CDATA[worker 754.4 ms; main-thread apply 1.3 ms
+]]></output>
+            </test-case>
+            <test-case id="1290" name="CancellationAndOversizeDoNotReturnAnExterior" fullname="BooterBigArm.Tests.SmoothRockCubeTests.CancellationAndOversizeDoNotReturnAnExterior" methodname="CancellationAndOversizeDoNotReturnAnExterior" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1750710885" result="Passed" start-time="2026-10-11 01:56:27Z" end-time="2026-10-11 01:56:27Z" duration="0.004919" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1284" name="DuplicatesAndInputOrderDoNotChangeTheField" fullname="BooterBigArm.Tests.SmoothRockCubeTests.DuplicatesAndInputOrderDoNotChangeTheField" methodname="DuplicatesAndInputOrderDoNotChangeTheField" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="927234151" result="Passed" start-time="2026-10-11 01:56:27Z" end-time="2026-10-11 01:56:31Z" duration="3.614800" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1297" name="EmptyScenePlayTransitionRestoresSourcesAndEditModeRebuilds" fullname="BooterBigArm.Tests.SmoothRockCubeTests.EmptyScenePlayTransitionRestoresSourcesAndEditModeRebuilds" methodname="EmptyScenePlayTransitionRestoresSourcesAndEditModeRebuilds" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1902646484" result="Passed" start-time="2026-10-11 01:56:31Z" end-time="2026-10-11 01:56:37Z" duration="5.992357" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1283" name="FaceEdgeAndCornerContactsProduceOneClosedExterior" fullname="BooterBigArm.Tests.SmoothRockCubeTests.FaceEdgeAndCornerContactsProduceOneClosedExterior" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-11 01:56:37Z" end-time="2026-10-11 01:56:46Z" duration="8.909373" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1276" name="FaceEdgeAndCornerContactsProduceOneClosedExterior(1,0,0,0.0f)" fullname="BooterBigArm.Tests.SmoothRockCubeTests.FaceEdgeAndCornerContactsProduceOneClosedExterior(1,0,0,0.0f)" methodname="FaceEdgeAndCornerContactsProduceOneClosedExterior" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1587534072" result="Passed" start-time="2026-10-11 01:56:37Z" end-time="2026-10-11 01:56:38Z" duration="0.686285" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[contact 1,0,0 phase 0: 24602 vertices, 49200 triangles, volume 1.9978890387782382
+]]></output>
+              </test-case>
+              <test-case id="1277" name="FaceEdgeAndCornerContactsProduceOneClosedExterior(1,1,0,0.0f)" fullname="BooterBigArm.Tests.SmoothRockCubeTests.FaceEdgeAndCornerContactsProduceOneClosedExterior(1,1,0,0.0f)" methodname="FaceEdgeAndCornerContactsProduceOneClosedExterior" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1541849034" result="Passed" start-time="2026-10-11 01:56:38Z" end-time="2026-10-11 01:56:39Z" duration="1.154853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[contact 1,1,0 phase 0: 28854 vertices, 57704 triangles, volume 2.0283579347180476
+]]></output>
+              </test-case>
+              <test-case id="1278" name="FaceEdgeAndCornerContactsProduceOneClosedExterior(1,1,1,0.0f)" fullname="BooterBigArm.Tests.SmoothRockCubeTests.FaceEdgeAndCornerContactsProduceOneClosedExterior(1,1,1,0.0f)" methodname="FaceEdgeAndCornerContactsProduceOneClosedExterior" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1474946131" result="Passed" start-time="2026-10-11 01:56:39Z" end-time="2026-10-11 01:56:41Z" duration="1.764916" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[contact 1,1,1 phase 0: 29474 vertices, 58944 triangles, volume 2.0062362991351397
+]]></output>
+              </test-case>
+              <test-case id="1279" name="FaceEdgeAndCornerContactsProduceOneClosedExterior(1,0,0,0.013f)" fullname="BooterBigArm.Tests.SmoothRockCubeTests.FaceEdgeAndCornerContactsProduceOneClosedExterior(1,0,0,0.013f)" methodname="FaceEdgeAndCornerContactsProduceOneClosedExterior" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1372400572" result="Passed" start-time="2026-10-11 01:56:41Z" end-time="2026-10-11 01:56:41Z" duration="0.666266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[contact 1,0,0 phase 0.013: 24602 vertices, 49200 triangles, volume 1.9954677904715699
+]]></output>
+              </test-case>
+              <test-case id="1280" name="FaceEdgeAndCornerContactsProduceOneClosedExterior(1,1,0,0.013f)" fullname="BooterBigArm.Tests.SmoothRockCubeTests.FaceEdgeAndCornerContactsProduceOneClosedExterior(1,1,0,0.013f)" methodname="FaceEdgeAndCornerContactsProduceOneClosedExterior" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="85921361" result="Passed" start-time="2026-10-11 01:56:41Z" end-time="2026-10-11 01:56:42Z" duration="1.101035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[contact 1,1,0 phase 0.013: 28858 vertices, 57712 triangles, volume 2.025902114378328
+]]></output>
+              </test-case>
+              <test-case id="1281" name="FaceEdgeAndCornerContactsProduceOneClosedExterior(1,1,1,0.013f)" fullname="BooterBigArm.Tests.SmoothRockCubeTests.FaceEdgeAndCornerContactsProduceOneClosedExterior(1,1,1,0.013f)" methodname="FaceEdgeAndCornerContactsProduceOneClosedExterior" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1380096013" result="Passed" start-time="2026-10-11 01:56:42Z" end-time="2026-10-11 01:56:44Z" duration="1.784273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[contact 1,1,1 phase 0.013: 29492 vertices, 58980 triangles, volume 2.0024536430444928
+]]></output>
+              </test-case>
+              <test-case id="1282" name="FaceEdgeAndCornerContactsProduceOneClosedExterior(1,1,1,0.027f)" fullname="BooterBigArm.Tests.SmoothRockCubeTests.FaceEdgeAndCornerContactsProduceOneClosedExterior(1,1,1,0.027f)" methodname="FaceEdgeAndCornerContactsProduceOneClosedExterior" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1909271865" result="Passed" start-time="2026-10-11 01:56:44Z" end-time="2026-10-11 01:56:46Z" duration="1.748735" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[contact 1,1,1 phase 0.027: 29478 vertices, 58952 triangles, volume 2.0028146244374572
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1294" name="MarkerHasNoSettingsAndPickingUsesOrientedBoxes" fullname="BooterBigArm.Tests.SmoothRockCubeTests.MarkerHasNoSettingsAndPickingUsesOrientedBoxes" methodname="MarkerHasNoSettingsAndPickingUsesOrientedBoxes" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1222143388" result="Passed" start-time="2026-10-11 01:56:46Z" end-time="2026-10-11 01:56:46Z" duration="0.001625" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1293" name="MovingDuringWorkerRejectsTheOldResult" fullname="BooterBigArm.Tests.SmoothRockCubeTests.MovingDuringWorkerRejectsTheOldResult" methodname="MovingDuringWorkerRejectsTheOldResult" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1579381581" result="Passed" start-time="2026-10-11 01:56:46Z" end-time="2026-10-11 01:56:46Z" duration="0.208175" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1275" name="PlainBoxAndRotatedContactAreGeometric" fullname="BooterBigArm.Tests.SmoothRockCubeTests.PlainBoxAndRotatedContactAreGeometric" methodname="PlainBoxAndRotatedContactAreGeometric" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1044168903" result="Passed" start-time="2026-10-11 01:56:46Z" end-time="2026-10-11 01:56:46Z" duration="0.001272" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1289" name="RotatedScaledContactsAndFieldBoundarySidesRemainValid" fullname="BooterBigArm.Tests.SmoothRockCubeTests.RotatedScaledContactsAndFieldBoundarySidesRemainValid" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 01:56:46Z" end-time="2026-10-11 01:56:54Z" duration="7.710239" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1286" name="RotatedScaledContactsAndFieldBoundarySidesRemainValid(1,0,0)" fullname="BooterBigArm.Tests.SmoothRockCubeTests.RotatedScaledContactsAndFieldBoundarySidesRemainValid(1,0,0)" methodname="RotatedScaledContactsAndFieldBoundarySidesRemainValid" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1416132985" result="Passed" start-time="2026-10-11 01:56:46Z" end-time="2026-10-11 01:56:48Z" duration="2.020600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1287" name="RotatedScaledContactsAndFieldBoundarySidesRemainValid(1,1,0)" fullname="BooterBigArm.Tests.SmoothRockCubeTests.RotatedScaledContactsAndFieldBoundarySidesRemainValid(1,1,0)" methodname="RotatedScaledContactsAndFieldBoundarySidesRemainValid" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1610881504" result="Passed" start-time="2026-10-11 01:56:48Z" end-time="2026-10-11 01:56:51Z" duration="2.588323" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1288" name="RotatedScaledContactsAndFieldBoundarySidesRemainValid(1,1,1)" fullname="BooterBigArm.Tests.SmoothRockCubeTests.RotatedScaledContactsAndFieldBoundarySidesRemainValid(1,1,1)" methodname="RotatedScaledContactsAndFieldBoundarySidesRemainValid" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="965100315" result="Passed" start-time="2026-10-11 01:56:51Z" end-time="2026-10-11 01:56:54Z" duration="3.100584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1296" name="SampledExtractionRejectsInvalidInputs" fullname="BooterBigArm.Tests.SmoothRockCubeTests.SampledExtractionRejectsInvalidInputs" methodname="SampledExtractionRejectsInvalidInputs" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1676315551" result="Passed" start-time="2026-10-11 01:56:54Z" end-time="2026-10-11 01:56:54Z" duration="0.000445" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1292" name="SaveReloadAndSceneIsolationPreserveOnlyTheRecipe" fullname="BooterBigArm.Tests.SmoothRockCubeTests.SaveReloadAndSceneIsolationPreserveOnlyTheRecipe" methodname="SaveReloadAndSceneIsolationPreserveOnlyTheRecipe" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="775371437" result="Passed" start-time="2026-10-11 01:56:54Z" end-time="2026-10-11 01:56:56Z" duration="2.276148" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1295" name="StarterPrefabIsOnePlainTexturedCubeWithoutCollidersOrHiddenFlags" fullname="BooterBigArm.Tests.SmoothRockCubeTests.StarterPrefabIsOnePlainTexturedCubeWithoutCollidersOrHiddenFlags" methodname="StarterPrefabIsOnePlainTexturedCubeWithoutCollidersOrHiddenFlags" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1527111586" result="Passed" start-time="2026-10-11 01:56:56Z" end-time="2026-10-11 01:56:56Z" duration="0.003391" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1285" name="ThreeMeterChainAndUOpeningStayResolvedAtFixedSpacing" fullname="BooterBigArm.Tests.SmoothRockCubeTests.ThreeMeterChainAndUOpeningStayResolvedAtFixedSpacing" methodname="ThreeMeterChainAndUOpeningStayResolvedAtFixedSpacing" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1478700167" result="Passed" start-time="2026-10-11 01:56:56Z" end-time="2026-10-11 01:56:59Z" duration="2.709406" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[3m chain (90, 40, 40): 69000 triangles, total 977.0 ms
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1573" name="TopDown3DRockWorkbenchTests" fullname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests" classname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests" runstate="Runnable" testcasecount="84" result="Passed" start-time="2026-10-11 01:56:59Z" end-time="2026-10-11 01:56:59Z" duration="0.307529" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1656" name="FaceTouchingBoxesSmoothIntoOneSurface" fullname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests.FaceTouchingBoxesSmoothIntoOneSurface" methodname="FaceTouchingBoxesSmoothIntoOneSurface" classname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests" runstate="Runnable" seed="838924160" result="Passed" start-time="2026-10-11 01:56:59Z" end-time="2026-10-11 01:56:59Z" duration="0.031365" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1652" name="OverlappingBoxesBuildOneClosedConnectedSurface" fullname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests.OverlappingBoxesBuildOneClosedConnectedSurface" methodname="OverlappingBoxesBuildOneClosedConnectedSurface" classname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests" runstate="Runnable" seed="2049860927" result="Passed" start-time="2026-10-11 01:56:59Z" end-time="2026-10-11 01:56:59Z" duration="0.016679" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1655" name="RotatedTouchingBoxesSmoothIntoOneSurface" fullname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests.RotatedTouchingBoxesSmoothIntoOneSurface" methodname="RotatedTouchingBoxesSmoothIntoOneSurface" classname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests" runstate="Runnable" seed="1888448803" result="Passed" start-time="2026-10-11 01:56:59Z" end-time="2026-10-11 01:56:59Z" duration="0.027086" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1654" name="SeparatedBoxesReportTwoClosedSurfaceComponents" fullname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests.SeparatedBoxesReportTwoClosedSurfaceComponents" methodname="SeparatedBoxesReportTwoClosedSurfaceComponents" classname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests" runstate="Runnable" seed="179050590" result="Passed" start-time="2026-10-11 01:56:59Z" end-time="2026-10-11 01:56:59Z" duration="0.015247" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1621" name="SmoothFormationPreviewCombinesSeparateWorkbenchesIntoOneSurface" fullname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests.SmoothFormationPreviewCombinesSeparateWorkbenchesIntoOneSurface" methodname="SmoothFormationPreviewCombinesSeparateWorkbenchesIntoOneSurface" classname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests" runstate="Runnable" seed="194774614" result="Passed" start-time="2026-10-11 01:56:59Z" end-time="2026-10-11 01:56:59Z" duration="0.049835" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1653" name="SurfaceRelaxationReducesVoxelScaleRoughnessWithoutLiftingTheRock" fullname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests.SurfaceRelaxationReducesVoxelScaleRoughnessWithoutLiftingTheRock" methodname="SurfaceRelaxationReducesVoxelScaleRoughnessWithoutLiftingTheRock" classname="BooterBigArm.Tests.TopDown3DRockWorkbenchTests" runstate="Runnable" seed="1639563844" result="Passed" start-time="2026-10-11 01:56:59Z" end-time="2026-10-11 01:56:59Z" duration="0.142951" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

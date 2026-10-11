@@ -16,6 +16,8 @@ These should be treated as the source of truth unless they are intentionally rev
   Manual ground texture stickers and native terrain painting, with Undo, authoring persistence and terrain-preservation boundaries.
 - [NINE_AREA_ROCK_STUDY.md](./Engineering/NINE_AREA_ROCK_STUDY.md)
   Current nine-flat-terrain rock workbench scene, shared Greater Wasteland base texture and painting panel setup.
+- [Minimal cube rock delivery](./Evidence/Art/SmoothCubeRock/README.md)
+  Automatic Edit Mode fusion of duplicated textured cubes, no added authoring controls, current-machine proof and live versus saved placement boundaries.
 - [SCULPTED_BASALT_01.md](./Engineering/SCULPTED_BASALT_01.md)
   Artist-sculpted rock reduction, volcanic texture bake, local Blender source and Unity prefab handoff.
 - [SCULPTED_ROCK_FUSION.md](./Engineering/SCULPTED_ROCK_FUSION.md)
@@ -172,8 +174,8 @@ These are intentionally non-canonical. They preserve ideas, research, or working
   Repository audit and primary-source research for duplicating and moving rock-textured cubes that blend automatically, with no workbench or exposed complexity controls.
 
 - [Minimal cube rock implementation plan](./Design/Gameplay/MINIMAL_CUBE_ROCK_IMPLEMENTATION_PLAN.md) and [verification plan](./Design/Gameplay/MINIMAL_CUBE_ROCK_VERIFICATION_PLAN.md)
-  Planned minimal Edit Mode cube interaction, bounded source changes, ownership gates and focused proof. No implementation is claimed.
-  The [plan audit](./Design/Gameplay/MINIMAL_CUBE_ROCK_PLAN_AUDIT.md) records corrected sampling, order-independence, responsiveness and clone/save gates; full integration follows the bounded geometry proof.
+  Gated minimal Edit Mode cube interaction, bounded source changes and verification contract; actual implementation and proof are recorded in the delivery above.
+  The [plan audit](./Design/Gameplay/MINIMAL_CUBE_ROCK_PLAN_AUDIT.md) preserves the pre-implementation sampling, order-independence, responsiveness and clone/save findings.
 
 - [Monster Hunter Wilds menu research and Arc and Dust audit](./Research/UI/MONSTER_HUNTER_WILDS_MENU_AUDIT.md)
   Official reference analysis, current production UI source audit, and proposed menu presentation, navigation, accessibility, and implementation sequence.

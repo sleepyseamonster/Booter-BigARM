@@ -1,0 +1,164 @@
+{
+  "date": "2026-10-10",
+  "base_commit": "84ac1c9626aa8a247aa64e5ef8523487af6977f5",
+  "candidate": "D:\\BooterBigArmValidation\\SmoothCubeRock20261010Candidate",
+  "editor": "6000.4.0f1",
+  "geometry": "Sampled spherical closing of the exact oriented-box union; analytic dilation, lattice-ball erosion, original union retained",
+  "spacing_m": 0.04,
+  "join_radius_m": 0.2,
+  "max_sources": 32,
+  "max_output_samples": 1000000,
+  "max_extended_samples": 1600000,
+  "tests": {
+    "passed": 27,
+    "failed": 0,
+    "cube_cases": 21,
+    "workbench_regressions": 6,
+    "xml": "final-tests.xml"
+  },
+  "live": {
+    "scene": "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity",
+    "dirty": true,
+    "center": [
+      {
+        "name": "Flat terrain",
+        "position": "(-8, 0, -8)",
+        "rotation": "(0, 0, 0, 1)",
+        "scale": "(1, 1, 1)"
+      },
+      {
+        "name": "Rock Workbench",
+        "position": "(5, 0, 0)",
+        "rotation": "(0, 0, 0, 1)",
+        "scale": "(1, 1, 1)"
+      },
+      {
+        "name": "SculptedBasalt01",
+        "position": "(-0.00047165, -0.41, 0.0027815)",
+        "rotation": "(0, 0, 0, 1)",
+        "scale": "(0.58458, 0.58458, 0.58458)"
+      },
+      {
+        "name": "SculptedBasalt01 (1)",
+        "position": "(1.1372, -0.62808, 0.0026319)",
+        "rotation": "(0, 0.318511724, 0, 0.947918952)",
+        "scale": "(0.6724424, 0.6724424, 0.6724424)"
+      },
+      {
+        "name": "SmoothRockCube",
+        "position": "(-3, 0.5, 0)",
+        "rotation": "(0, 0, 0, 1)",
+        "scale": "(1, 1, 1)"
+      }
+    ],
+    "cubeCount": 1,
+    "settings": 0,
+    "material": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+    "visible": true,
+    "textureMeters": 2.4,
+    "missing": 0
+  },
+  "existing_artist_transforms_preserved": true,
+  "saved_study_unchanged": true,
+  "placement_saved": false,
+  "edit_mode_only": true,
+  "colliders_added": 0,
+  "foreground_activation": false,
+  "packages_changed": false,
+  "gameplay_smoke_tests": false,
+  "player_build": false,
+  "visual_acceptance": "pending author",
+  "protected_files": [
+    {
+      "path": "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity",
+      "sha256": "7f0d2831a7f38db87b3ba3043443abc818e5ec3d4e9489f1d16fc75f57649170"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat",
+      "sha256": "acf031c58a2b9e08fc88f749ad6372524fc57fa2cb025b0fcbd3ec375bbc4eb4"
+    },
+    {
+      "path": "Packages/manifest.json",
+      "sha256": "a9b4f332893effbb67f87b48508240992d76968b8b78f870f8f05f12a436f409"
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "sha256": "d2adab2cb95c215760c616ac81950f6eab23ae18aeed23d69b9c58fe63c8f473"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Ground/Studies/NineAreaRockStudy/Area_01.asset",
+      "sha256": "cf87ef26e27e6e20fd0cf9c5687ae1a3129ff5d1e5d2494f17a3c052bb2ad2e8"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Ground/Studies/NineAreaRockStudy/Area_02.asset",
+      "sha256": "38079ed0772128e6c94f8b65e00eda0c72ea91e75989fcd2d23786f78125b880"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Ground/Studies/NineAreaRockStudy/Area_03.asset",
+      "sha256": "a5c1b40e1afc3b70456ad7d4ef2e2104c45d8d4a355386e0927e459c4ecca7d5"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Ground/Studies/NineAreaRockStudy/Area_04.asset",
+      "sha256": "8912ded198bcda4e987b843088b49f8c6967cc40f034428c42b7de93b341d073"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Ground/Studies/NineAreaRockStudy/Area_05.asset",
+      "sha256": "b8ee3ada3d410c19ebffdc655f2d1c86c3fa9a69095982ab5fa354667e827aba"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Ground/Studies/NineAreaRockStudy/Area_06.asset",
+      "sha256": "c1a01b38b73bd97307dc27eb1a1ea612e875ecf3ab50897854c2237f4b95ad29"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Ground/Studies/NineAreaRockStudy/Area_07.asset",
+      "sha256": "6e7642487527904cc0e5e2d8597068863963a7e82923c36f1b734abe0bed5427"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Ground/Studies/NineAreaRockStudy/Area_08.asset",
+      "sha256": "5271abf7b6d79bb3adb3be927af9d08702c89fbe3c173cf5c3378738582c31b7"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Ground/Studies/NineAreaRockStudy/Area_09.asset",
+      "sha256": "3684377bb922ae02d7f4934105f03e053193b06f8aad4e0ec70e73d9a3e0fd8a"
+    }
+  ],
+  "task_sources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/SmoothRockCube.cs",
+      "sha256": "e9164de71d50547fa7e2b18bc208b3053342aae39c532d270d98154fccacefab",
+      "tested_candidate_equal": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/SmoothRockCubeGeometry.cs",
+      "sha256": "3ae3af3178968698be06b5e34150efb29e0f369db93ecbb7be947bf6079b1648",
+      "tested_candidate_equal": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/SmoothRockCubePreview.cs",
+      "sha256": "ae90078b819debd5e58d9912d9fc6aa0d5263b77a0ce758bf1b1f463ce88828e",
+      "tested_candidate_equal": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DRockWorkbenchMesher.cs",
+      "sha256": "f8b88960fc30af6041156787f45fe8b8a15693417099088431fae184f7fc5d89",
+      "tested_candidate_equal": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/SmoothRockCubeTests.cs",
+      "sha256": "6a7ecc8e24ce5cad220e80db3c876173514a72098f0c8991e18b40355a32cb2a",
+      "tested_candidate_equal": true
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/SmoothRockCube.prefab",
+      "sha256": "c3a773dfce754f3f496f10f506f6ed92973e1eb1c94cfc850ece968fd1f10e6e"
+    }
+  ],
+  "partial_snapshot": "D:/BooterBigArmValidation/SmoothCubeRock20261010 retained after cleanup rejection; not used for proof",
+  "proof_limits": [
+    "Bounded fixtures, not arbitrary high-density performance",
+    "Neutral inspection lighting, not live Editor captures",
+    "No general triangle-intersection benchmark",
+    "Other terrain/atlas work excluded"
+  ],
+  "candidate_base_commit": "09775dc965173d644fcc66a06f0b2d94cddca8f3"
+}

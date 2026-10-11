@@ -1,6 +1,6 @@
 # Minimal cube rock implementation plan
 
-Date: October 10, 2026. Owner: Gottspan; Unity integration: Babineaux. Status: audited plan, not implemented. See the [audit](MINIMAL_CUBE_ROCK_PLAN_AUDIT.md). This request authorizes planning only.
+Date: October 10, 2026. Owner: Gottspan; Unity integration: Babineaux. Status: the author subsequently authorized implementation; the bounded Edit Mode slice is delivered with [current evidence](../../Evidence/Art/SmoothCubeRock/README.md). The [audit](MINIMAL_CUBE_ROCK_PLAN_AUDIT.md) remains the pre-implementation review. Sections below retain the original gated plan; the delivery receipt controls actual constants, behavior and proof.
 
 ## Intended result
 
@@ -107,4 +107,4 @@ Authored constraints are Area 05's current terrain and existing object arrangeme
 
 Implementation is complete for this slice when one cube is available in Area 05, normal duplication and movement give the verified automatic Edit Mode blend, sources remain recoverable, and the scoped proof passes. Report separately whether placement is saved, whether appearance is author-accepted and whether any evidence is pending.
 
-Batch 0 and the bounded Batch 1 geometry experiment are sufficiently scoped for an implementation request. Full scene integration is conditional on choosing a blend/sampling policy that passes Batch 1 and proving clone/save visibility restoration in Batch 2. Routine names and internal values are engineering choices, not user settings. The proposed Edit Mode boundary must remain explicit. Stop after this minimal interaction; no runtime fusion, collider system, terrain population, LOD/export tools or additional controls follow automatically.
+The implementation resolved Batch 1 with sampled spherical closing of the exact box union rather than an ordered smooth minimum, using fixed 0.04 m spacing and a 0.2 m join radius. Geometry, ordering, rotated contact, clone/save restoration and Edit/Play cleanup passed the scoped checks before live placement. The live cube is inserted with Undo without saving over artist work; the prefab is persistent. Routine names and internal values remain engineering details, not user settings. The Edit Mode boundary remains explicit. Stop after this minimal interaction; no runtime fusion, collider system, terrain population, LOD/export tools or additional controls follow automatically.

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Rendering;
 using BooterBigArm.TopDown3D;
@@ -494,6 +495,38 @@ namespace BooterBigArm.Editor
                 }
             }
 
+            return TryExtractSurface(bounds, cells, fieldValues, voxelSize, surfaceRelaxation,
+                seamGroups, seamWidth, default, out result, out error);
+        }
+
+        /// <summary>Extract an already sampled, bounded field without changing its resolution.</summary>
+        internal static bool TryBuildSampledField(
+            Bounds bounds, Vector3Int cells, float[] fieldValues, float spacing,
+            CancellationToken cancellation, out TopDown3DRockWorkbenchBuildResult result, out string error)
+        {
+            result = null; error = null;
+            long count = (long)(cells.x + 1) * (cells.y + 1) * (cells.z + 1);
+            if (cells.x < 2 || cells.y < 2 || cells.z < 2 || count > 1000000 || count <= 0
+                || fieldValues == null || fieldValues.Length != count || spacing <= 0f || float.IsNaN(spacing) || float.IsInfinity(spacing)
+                || bounds.size.x <= 0f || bounds.size.y <= 0f || bounds.size.z <= 0f
+                || float.IsNaN(bounds.center.sqrMagnitude + bounds.size.sqrMagnitude)
+                || float.IsInfinity(bounds.center.sqrMagnitude + bounds.size.sqrMagnitude))
+            { error = "Invalid bounded sampled field."; return false; }
+            for (int i = 0; i < fieldValues.Length; i++)
+                if (float.IsNaN(fieldValues[i]) || float.IsInfinity(fieldValues[i]))
+                { error = "Sampled field contains a non-finite distance."; return false; }
+            return TryExtractSurface(bounds, cells, fieldValues, spacing, 0f,
+                null, 0f, cancellation, out result, out error);
+        }
+
+        private static bool TryExtractSurface(
+            Bounds bounds, Vector3Int cells, float[] fieldValues, float voxelSize, float surfaceRelaxation,
+            IReadOnlyList<TopDown3DRockWorkbenchFieldGroup> seamGroups, float seamWidth,
+            CancellationToken cancellation, out TopDown3DRockWorkbenchBuildResult result, out string error)
+        {
+            result = null; error = null;
+            var points = cells + Vector3Int.one;
+            var step = new Vector3(bounds.size.x / cells.x, bounds.size.y / cells.y, bounds.size.z / cells.z);
             var vertices = new List<Vector3>();
             var triangles = new List<int>();
             var vertexByEdge = new Dictionary<GridEdge, int>();
@@ -503,6 +536,7 @@ namespace BooterBigArm.Editor
 
             for (var z = 0; z < cells.z; z++)
             {
+                cancellation.ThrowIfCancellationRequested();
                 for (var y = 0; y < cells.y; y++)
                 {
                     for (var x = 0; x < cells.x; x++)
@@ -546,6 +580,7 @@ namespace BooterBigArm.Editor
                 return false;
             }
 
+            cancellation.ThrowIfCancellationRequested();
             var meshData = TopDown3DRockMeshTopology.Normalize(vertices, triangles);
             if (surfaceRelaxation > 0.0001f)
             {
