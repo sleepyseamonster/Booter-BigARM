@@ -131,6 +131,8 @@ These define current preferred approaches or sequencing.
   The five-vital player-state, depletion, persistence, procedural-world, and compact HUD contract.
 - [CAMP_CLOAK_AND_SLEEP_BRAINSTORM.md](./Design/Gameplay/CAMP_CLOAK_AND_SLEEP_BRAINSTORM.md)
   The provisional vertical camp shade, cloak mesh brief, Reserve recovery, and accelerated live-world sleep proposal.
+- [CAMP_CLOAK_AND_SLEEP_IMPLEMENTATION_PLAN.md](./Design/Gameplay/CAMP_CLOAK_AND_SLEEP_IMPLEMENTATION_PLAN.md)
+  The dependency-ordered mesh, camp placement, controller, recovery, and live sleep prototype plan, with validation gates and a separate persistence milestone.
 - [URP_2D_STANDARD.md](Archive/Legacy2D/URP_2D_STANDARD.md) — legacy 2D maintenance only.
 - [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md)
 - [CODEX_EDITOR_STANDARD.md](./Operations/CODEX_EDITOR_STANDARD.md)
