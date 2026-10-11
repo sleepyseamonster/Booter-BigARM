@@ -33,7 +33,7 @@ def export(step, date, manifest, output, checkpoint):
         raise ValueError("Current saved predecessor changed")
     validate_geographic_records(step - 1, [dict(t, bounds_m=[int(t["position"][0]) + 522448, int(t["position"][2]) + 4008248, int(t["position"][0]) + 522704, int(t["position"][2]) + 4008504]) for t in bm["tiles"]])
     evidence = json.loads(checkpoint.read_text(encoding="utf-8"))
-    if evidence["status"] != "native_Blender_authoring_reopen_and_five_view_gate_passed" or evidence["step"] != step or evidence["prepared_manifest_sha256"] != sha256(manifest) or len(evidence["visual_views"]) != 5:
+    if evidence.get("family") != "north_row4" or evidence.get("batch") != c["batch"] or evidence.get("section") != c["section"] or evidence.get("bounds_m") != c["bounds"] or evidence["status"] != "native_Blender_authoring_reopen_and_five_view_gate_passed" or evidence["step"] != step or evidence["prepared_manifest_sha256"] != sha256(manifest) or len(evidence["visual_views"]) != 5:
         raise ValueError("Five inspected source views must precede export")
     for view in evidence["visual_views"]:
         if not view["inspected"] or sha256(ROOT / view["path"]) != view["sha256"]:
@@ -47,13 +47,15 @@ def export(step, date, manifest, output, checkpoint):
     inventory = json.loads(inventory_file.read_text(encoding="utf-8"))
     # Scene bytes have a separate predecessor/preservation contract. Metadata stays protected.
     inventory.pop(bm["scene"], None)
-    for path, expected in inventory.items():
+    for index, (path, expected) in enumerate(inventory.items()):
         if sha256(ROOT / path) != expected:
             raise ValueError("Retained protected file changed: " + path)
+        if (index + 1) % 10000 == 0:
+            print('Protected export inputs verified', index + 1, flush=True)
     old, cells, constraints = [], {}, {}
     owners = sorted({t["data_path"].split("/TerrainData/")[0] for t in bm["tiles"]})
     output.mkdir(parents=True)
-    for t in bm["tiles"]:
+    for index, t in enumerate(bm["tiles"]):
         ref = dict(t["native_reference"])
         if "local_snapshot_file" in ref:
             raise ValueError("Fourth-row baselines must reuse imported immutable native references")
@@ -70,6 +72,8 @@ def export(step, date, manifest, output, checkpoint):
                     raise ValueError("Normalized retained corner disagrees")
                 constraints[xy] = h[z, -1]
         old.append({k: t[k] for k in ("geographic_key", "data_path", "data_guid", "data_sha256", "meta_sha256", "position", "size")} | {"bounds_m": [e, n, e + 256, n + 256], "native_reference": ref})
+        if (index + 1) % 512 == 0:
+            print('Retained normalized export references verified', index + 1, flush=True)
     s = m["sections"][0]
     color = ROOT / s["color_path"]
     if sha256(color) != s["color_sha256"]:
