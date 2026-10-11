@@ -2,7 +2,7 @@
 
 Brainstorming pass dated October 10, 2026. Booter carries a compact vertical shade, deploys it through the radial menu, and sleeps on its shaded side using his cloak as a blanket. Sleep restores physical Reserve while consuming nourishment, hydration, and oxygen. The world continues visibly at accelerated speed, including threats and the existing twilight sun.
 
-The user has established this direction. Dimensions, rates, controls, visual details, and component names below are provisional prototype choices. This pass specifies the meshes and systems; it does not create meshes or change runtime behavior. It serves the fixed, always-loaded Greater Wasteland production lane.
+The user has established this direction. Dimensions, rates, controls, visual details, and component names below are provisional prototype choices. This pass specifies the meshes and systems; it does not create meshes or change runtime behavior. It serves the fixed, always-loaded Greater Wasteland production lane. A second brainstorming pass on October 10 refines sleep around short, satisfying breaks with occasional placement decisions and manageable costs. Balance remains a hypothesis until player testing.
 
 ## Existing foundations
 
@@ -55,21 +55,53 @@ One deployed camp per starter kit is enough. If the kit is already deployed, the
 
 ## Rest and sleep tuning
 
+The first pass's 75-second nap and roughly four-minute full recovery would spend too much real time watching a repeated survival action. Replace that candidate with a default sleep action lasting roughly 25 to 50 real seconds when Reserve is meaningfully depleted. Setup and packing should each take about two seconds at normal speed, with a short reclining and standing transition. These are feel targets, not reasons to skip simulation or hide hazards.
+
 Use simulation seconds consistently until the project defines a shared calendar. Do not label these intervals as world hours yet. The following are deliberately provisional net rates for 100-point meters.
 
 | Mode | Reserve change per simulation second | Nourishment loss | Hydration loss | Oxygen loss | World speed |
 | --- | --- | --- | --- | --- | --- |
 | Ordinary activity today | -0.01, with existing exertion cost | 0.025 | 0.04 | 0 today | 1x |
-| Deliberate camp rest proposal | +0.035 | 0.020 | 0.032 | 0.008 | 1x |
-| Camp sleep proposal | +0.100 | 0.015 | 0.028 | 0.010 | 4x |
+| Deliberate camp rest proposal | +0.300, up to 40 Reserve | 0.020 | 0.032 | 0.008 | 1x |
+| Camp sleep proposal | +0.400 | 0.015 | 0.028 | 0.010 | 4x |
 
 These are game balance hypotheses, not physiological claims. Sleep lowers food and water use relative to active travel, while breathing still spends oxygen. Reserve recovery replaces its ordinary depletion while resting or sleeping; adding recovery on top of depletion would produce different net rates. Oxygen loss is initially limited to explicit camp rest/sleep modes; general breathing, equipment supply, and environmental oxygen remain their own future design slice.
 
-At these sleep rates, 300 simulation seconds gives +30 Reserve, -4.5 nourishment, -8.4 hydration, and -3 oxygen, taking 75 real seconds at 4x. Recovering from empty to full takes about 1,000 simulation seconds or 250 real seconds, costing 15 nourishment, 28 hydration, and 10 oxygen. This creates a visible planning cost without assuming a real-world day length.
+Sleeping from 20 to the default target of 80 Reserve takes 150 simulation seconds or 37.5 real seconds at 4x. It spends 2.25 nourishment, 4.2 hydration, and 1.5 oxygen. From empty to 80 takes 50 real seconds; an optional empty-to-full recovery takes 62.5 seconds and spends 3.75 nourishment, 7 hydration, and 2.5 oxygen. These modest costs are a starting point: sleep should support an expedition rather than require another supply run after every camp.
 
-Deliberate camp rest would introduce partial recovery beyond the current sleep-only Reserve standard. Keep that change explicitly scoped to a camp interaction; standing still and waiting continue to drain Reserve. If rest and sleep prove redundant, rest can instead be a slower awake sleep-equivalent action without a second meter.
+Deliberate camp rest would introduce partial recovery beyond the current sleep-only Reserve standard. Keep that change explicitly scoped to a camp interaction; standing still and waiting continue to drain Reserve. Rest is an awake emergency breather: a 20-second action adds at most 6 Reserve, capped at 40, spending 0.4 nourishment, 0.64 hydration, and 0.16 oxygen. At or above that ceiling, explain that sleep is needed rather than allowing a costly action with no recovery. The ceiling makes sleep the useful option for sustained recovery while rest can help a vulnerable player continue to a better location. Remove Rest from the first implementation if it adds menu clutter without a distinct use.
 
-Offer a short nap, sleep until a chosen Reserve target, and manual wake. Begin with one target such as 80 percent rather than a duration submenu. Preview approximate supply costs. Reaching the target, cancellation, a critical resource threshold, or danger ends acceleration. Do not refill all survival meters, heal automatically, or skip the resource cost on interruption.
+Use one primary action, **Sleep until ready**, with an 80-percent Reserve target and manual wake. An optional **Sleep fully** choice can live behind a secondary input if testing shows a reason for it. Avoid hour selectors and separate nap durations in the first prototype. Show estimated real duration, expected Reserve, and rounded supply costs together before confirmation. At or above 80, explain that Booter is already ready and expose full recovery only if useful. Reaching the target, cancellation, a critical resource threshold, or danger ends acceleration. Do not refill all survival meters, heal automatically, or skip the resource cost on interruption.
+
+## What makes sleeping enjoyable
+
+The enjoyable decision happens before lying down: notice a useful lee side of a rock, position the screen against the low sun, and make a temporary little refuge. Good preparation should produce a visibly calmer resting place and a slightly quicker recovery. The reward is being ready for the next stretch of travel, with the camp giving Booter a physical presence in the landscape.
+
+Keep placement forgiving. Auto-orient the screen, choose a nearby supported footprint, and allow one adjustment rather than asking the player to align several separate objects. Show **Good shade** or **Exposed** beside the preview; validity and comfort are separate. An acceptable exposed location still allows useful sleep. A brief warning about visible threats or insufficient supplies belongs at confirmation, without a second confirmation chain.
+
+For a later comfort experiment, good shade can raise Reserve recovery by about 15 percent while keeping resource drain tied to elapsed simulation time. It changes the 20-to-80 example from 37.5 to about 32.6 real seconds. There is no shelter checklist, perfect-score requirement, or harsher baseline imposed to make the bonus necessary. Use one comfort result rather than separate warmth, softness, wind, blanket, and shade meters. The starter cloak supplies the expected blanket; it is not another recurring maintenance task.
+
+Avoid shadow micromanagement. Evaluate meaningful shade with stable sampling and a tolerance interval; a briefly shifting shadow should not flicker the UI or repeatedly wake Booter. Comfort can ease toward its new recovery rate, preserving accrued progress. Shade never proves the absence of enemies, electrical danger, or other hazards.
+
+During sleep, keep the body and cloak visible, pull the camera back slightly if needed, and let shadows, the Legger, wind, and dust show that the world is moving. A compact indication such as **Sleeping 4x · Reserve 54 → 80 · Wake** is enough. Audio should preserve threat cues rather than speeding every sound into noise or muffling danger. No dream screen, repeated button press, timing minigame, or compulsory inventory organization is needed.
+
+Make wake-up satisfying and usable: acceleration ends, Booter sits up, gathers the cloak, and stands. Grant control as soon as the standing collision space is valid. Ordinary wake can be calm; a danger wake must be brief enough to respond and must not trap the player in a decorative animation. Packing is one local action that returns the same kit; it needs no consumable fuel or repair chore in this prototype.
+
+## Balance without a repeated chore
+
+Sleep is a player-chosen expedition break, not a scheduled bedtime. Start with the current ordinary and exertion depletion rates. A provisional pacing goal is a meaningful camp opportunity every 40 to 90 minutes of mixed active play, with longer trips between sleeps during lighter activity. Tune against actual depletion and route length; do not increase fatigue simply to make the new feature appear more often. The existing rates consume 36 Reserve per simulation hour ordinarily and 90 during continuous exertion, so activity mix matters.
+
+An 80-percent target should be enough to set off confidently. Repeated short sleeps offer no special bonus, free supplies, or buff that encourages topping up after every encounter. Recovery and costs accrue continuously, and setup/standing time is still world time. Stop recovery at its cap, retain partial recovery after interruption, and never charge a fixed full-night fee for a brief attempt. Full recovery earns only its additional Reserve in this prototype; it does not create a second rested-buff timer to maintain.
+
+Reserve depletion should first communicate planning pressure through Booter's presentation and the meter. Preserve the current ability to move and climb when empty. Any later tiredness penalty must leave a dependable route to camp and avoid surprise collapse, involuntary sleep, or disabling the controls needed to escape. Sleep remains valuable because it replenishes a visible reserve, without making a depleted player unable to recover.
+
+Before sleep, predict how far the available supplies can safely carry the action. If the chosen target would cross a critical threshold, offer a shorter achievable sleep with the resulting Reserve shown; reject only when there is no safe recovery interval. A low-supply player should be able to make a useful partial recovery without being stranded by an all-or-nothing target. Recheck live values during sleep and preserve the existing automatic wake safeguards.
+
+Risk should follow the actual location and simulation. Camping in an exposed patrol route is dangerous; scouting a quiet spot should usually pay off. Do not spawn an ambush merely because Sleep was selected, guarantee an interruption per camp, or reset recovery when attacked. If enemies frequently approach every valid spot, fix encounter pacing or placement guidance rather than granting sleep immunity. An interrupted player can choose to flee and leave the reusable camp behind.
+
+The first player comparison should answer whether placing and packing feels like a small ritual, whether 25 to 50 seconds stays pleasant on repeated use, whether supply losses are noticeable without forcing immediate resupply, and whether danger allows a fair wake-and-react opportunity. Review camps per active hour, total time spent in camp actions, early manual wakes, reasons for interruption, and repeated attempts needed to reach the target. These are evaluation criteria, not current proof or authorization for automated gameplay smoke testing.
+
+If sleep feels slow, increase recovery at the supported acceleration before pushing physics to extreme speeds. If it feels compulsory too often, adjust ordinary or exertion depletion after inspecting activity patterns. If it feels free, tune supply rates modestly before adding fees, consumable bedding, or penalties. If players chase 100 percent after every encounter, keep 80 as the prominent target and avoid full-meter bonuses. Change one balance lever at a time so the cause of improvement is clear.
 
 ## Accelerated simulation and interruption
 
@@ -85,7 +117,7 @@ On danger, release acceleration immediately before standing up and before furthe
 
 Every exit path must release the request: normal wake, cancellation, target reached, death, destruction, scene change, and failed setup. Compose with any later pause owner rather than unconditionally forcing `Time.timeScale = 1`. Resume from an interrupted session at ordinary speed; acceleration is transient state, never a saved preference. Background application suspension does not imply offline sleep progress.
 
-The existing twilight sun should follow the same elapsed simulation time. A 300-second nap would traverse a quarter of its default 1,200-second cycle, so the first visual check must compare sleep duration with the production scene's actual cycle. Tune nap length or recovery before making a separate sun clock; literal figure-eight astronomy is outside this prototype.
+The existing twilight sun should follow the same elapsed simulation time. The revised 20-to-80 sleep advances 150 simulation seconds, one eighth of its default 1,200-second cycle. The first visual check must compare this interval with the production scene's actual cycle. Tune recovery before making a separate sun clock; literal figure-eight astronomy is outside this prototype.
 
 ## World and persistence contract
 
@@ -113,4 +145,4 @@ Relevant automated checks for implementation are placement rejection and confirm
 
 The first visual candidate is a bowed metal-framed screen with small returns and a dusty warm-grey cloak. The strongest comparisons are a folding rigid frame versus a tensioned fabric panel, and a long split cloak versus a shorter shoulder wrap. Keep these as candidates until the author sees them on Booter at gameplay scale.
 
-After the basic loop, the useful design questions are whether shifting shade changes rest quality, whether storms interrupt sleep, whether sleeping without the cloak is possible, and whether Reserve alone communicates tiredness adequately. These can be explored without adding camp upgrades, automatic guarding, cloth simulation, or a full survival redesign to the first prototype.
+After the basic loop, the useful design questions are whether the small shade bonus makes placement satisfying, whether storms interrupt sleep, whether sleeping without the cloak is possible, whether awake Rest earns its extra action, and whether Reserve alone communicates tiredness adequately. These can be explored without adding camp upgrades, automatic guarding, cloth simulation, or a full survival redesign to the first prototype.
