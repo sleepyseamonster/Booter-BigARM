@@ -2,7 +2,7 @@
 
 Brainstorming pass dated October 10, 2026. Booter carries a compact vertical shade, deploys it through the radial menu, and sleeps on its shaded side using his cloak as a blanket. Sleep restores physical Reserve while consuming nourishment, hydration, and oxygen. The world continues visibly at accelerated speed, including threats and the existing twilight sun.
 
-The user has established this direction. Dimensions, rates, controls, visual details, and component names below are provisional prototype choices. This pass specifies the meshes and systems; it does not create meshes or change runtime behavior. It serves the fixed, always-loaded Greater Wasteland production lane. A second brainstorming pass on October 10 refines sleep around short, satisfying breaks with occasional placement decisions and manageable costs. Balance remains a hypothesis until player testing.
+The user has established this direction. Dimensions, rates, controls, visual details, and component names below are provisional prototype choices. This pass specifies the meshes and systems; it does not create meshes or change runtime behavior. It serves the fixed, always-loaded Greater Wasteland production lane. Three brainstorming passes on October 10 cover manageable recovery costs, physical camp construction, controller interactions, and optional features. Balance remains a hypothesis until player testing.
 
 ## Existing foundations
 
@@ -33,6 +33,29 @@ Use one fabric material and one hardware material where possible. Give cloth eno
 
 Blender sources belong in a new local study under `SourceArt/Blender/Studies/CampAndCloak/`. Follow the [local-only source policy](../../Operations/LOCAL_ONLY_SOURCE_POLICY.md): preserve `.blend` sources and backups locally. Proposed Unity exports belong under `Assets/_Project/Art/Environment/Camp/` and `Assets/_Project/Art/Characters/Booter/Cloak/`; prefabs belong in their established project-owned prefab folders. Native sources and Unity exports have separate identities and lifecycle requirements.
 
+## Physical construction and object layout
+
+The strongest first candidate is a folding three-panel screen: one broad central panel and two short inward-folding wings. Two telescoping uprights support a hinged top spreader, with broad weighted feet for rock and compacted ground. Fabric is already attached to the frame, so deployment reads as unfold, extend, and brace. Avoid loose guy ropes across the sleeping or escape space and stakes that assume every terrain surface is soft. These are silhouette and animation choices rather than an engineering simulation.
+
+The packed form is a slim bundle of folded panels with two visible straps and a useful grab loop. Booter can pull it from a carried attachment and set it down with a compact gesture. Compare a hip-mounted bundle with a narrow back attachment, checking the cloak and current carried gear before selecting one. The shade fabric and the cloak must be visibly separate possessions: the screen stays standing when Booter covers himself.
+
+Author the frame, wings, and cloth as named parts with hinge pivots. A short unfold animation can then reuse the actual deployed geometry; a separate simplified packed mesh remains an option if the fold silhouette is poor. Reserve fine stitching and tiny buckles for texture detail. Broad fabric creases, reinforced edges, and readable hinges matter more at gameplay scale. The cloth should cast a useful shadow with restrained movement, while the feet and frame stay grounded.
+
+| Camp object or anchor | Purpose and constraint |
+| --- | --- |
+| Camp root and ground anchor | Stable placement transform and instance identity; ground pivot at the centre of the footprint |
+| Screen visual assembly | Hinged frame, fabric, and wings; presentation follows camp state without owning inventory |
+| Support probes | Check both feet and the sleeping footprint against terrain; reject unsupported edges rather than floating the whole camp |
+| Interaction anchor | Reachable point on the sleeping side; focus the complete camp as one interaction target |
+| Approach and sleep anchors | Guide a short physical approach and the reclining pose; validate the body capsule and route before starting |
+| Stand and escape volumes | Reserve legal standing and departure space; recheck if another body approaches |
+| Packed visual attachment | Show the carried kit only while carried; optional hand attachment during setup and packing |
+| Cloth material controls | Separate wind motion from frame motion; use low-cost visual movement without dynamic fabric collision |
+
+On uneven ground, allow limited foot extension or small vertical adjustment within the support rules, with the screen remaining upright. Do not tilt Booter's sleeping pose onto a steep slope merely to make placement succeed. Simple posts and frame colliders should communicate the physical screen; the sleeping space remains accessible. A decorative cloak is not a new blocking collider. Whether the screen blocks projectiles depends on a future material/combat rule and must not be inferred from its rendered surface.
+
+Use a reclining side pose with the cloak draped over the torso and legs, leaving Booter's head and a recognizable shoulder visible. Keep a fold where he gathers the blanket on waking, so the pose change feels like the same garment. Add sitting, lying down, breathing, getting up, unfolding, and packing as short pose studies. Fit them to the existing character rig; do not introduce a second character model or replacement locomotion controller to complete the camp.
+
 ## Cloak behavior
 
 Treat the cloak as one carried possession with worn and blanket presentations. Sleeping switches its presentation onto Booter's resting body; waking restores the worn cloak. The switch must never duplicate an item or leave both meshes visible. The first prototype can provide a starter cloak without introducing a full equipment or crafting economy.
@@ -52,6 +75,58 @@ The cloak provides the blanket visual and a possible comfort modifier. It does n
 7. Waking restores normal world speed before the standing animation. The camp stays deployed until packed; fleeing does not teleport it back into inventory.
 
 One deployed camp per starter kit is enough. If the kit is already deployed, the radial should report that fact and allow a local camp interaction when in reach. It must not pack, move, or retrieve a distant camp remotely. The Legger continues his current physical behavior; autonomous guarding is a later explicit mechanic.
+
+## Calling up the camp
+
+Treat **Camp** as the stable radial assignment, with a contextual detail such as **Set up carried camp**, **Camp nearby**, or **Camp already deployed**. Calling it up means showing the placement tool for a carried kit; the world object is created only after confirmation and setup. Booter physically produces the bundle. A distant deployed camp cannot be summoned to his position.
+
+Offer Camp as an assignable command and a candidate for the initially empty east sector on a fresh profile. Never overwrite a player's customized assignment or replace a populated sector on existing profiles. The icon can be an original silhouette of a vertical screen with a reclining figure behind it, rather than a conventional peaked tent.
+
+If the kit is in the Legger's cargo, deployment needs a real transfer while he is within the existing access range; a radial shortcut cannot bypass that constraint. The simplest starter prototype puts the kit on Booter. If a camp is already nearby, the radial may highlight its interaction point and offer the same local action panel after a reach check. Otherwise it reports the existing camp's direction without opening remote controls. An optional temporary **Find camp** marker helps return to an abandoned kit and never reveals nearby enemies or moves the kit.
+
+## Proposed controller and keyboard flow
+
+The inspected [input asset](../../../Assets/_Project/Settings/Input/InputSystem_Actions.inputactions), [input router](../../../Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.cs), and [radial design](./RADIAL_MENU_SYSTEM_DESIGN.md) control existing conventions. LB/Q opens the radial; right-stick neutral return while LB remains held activates the default gamepad selection. Releasing LB first cancels. Keyboard/mouse selects with the pointer and commits on Q release. Explicit-confirm and toggle-open preferences remain supported. The radial's east sector and the physical East button have different meanings.
+
+The table proposes contextual camp bindings; these actions are not implemented. Face-button labels are positions, with Xbox examples in parentheses. Production prompts must resolve the actual device and binding overrides through the router.
+
+| Context and intent | Gamepad candidate | Keyboard and mouse candidate |
+| --- | --- | --- |
+| Open radial | Existing LB hold, or configured toggle | Existing Q hold, or configured toggle |
+| Select Camp | Existing right stick or D-pad; follow current activation preference | Existing pointer or arrow selection; follow current activation preference |
+| Move placement footprint | Left stick, camera-relative, within a short reachable radius | WASD, camera-relative; optional pointer-to-ground placement |
+| Rotate screen | D-pad left/right in readable 15-degree steps | Z/C in matching steps |
+| Return to sun-facing orientation | D-pad up | R |
+| Inspect placement surroundings | Right stick for bounded camera orbit | Mouse camera motion in captured-cursor placement mode |
+| Confirm placement | South (A) | Enter |
+| Cancel preview | East (B) | Escape |
+| Open nearby camp actions | Existing Interact, West (X) | Existing Interact, E |
+| Choose local camp action | D-pad or left stick, then South (A) | Arrow keys or pointer, then Enter or click |
+| Close camp actions | East (B) | Escape |
+| Wake from rest or sleep | East (B), immediate tap | Escape, immediate tap |
+| Open system menu | Existing Start; end acceleration first | Existing Escape arbitration; wake or cancel takes priority in camp states |
+
+Keep Booter stationary during precise placement while the left stick moves only the preview. This avoids aiming the camp and walking into a ledge with the same input. Orbit uses a dedicated camp camera intent, since the existing router gates ordinary camera look to Gameplay. The preview starts close to Booter, constrained by actual ground reach and a clear approach. Do not require free cursor precision on gamepad. A ground footprint, shade arrow, and clear support/space message are enough.
+
+For keyboard/mouse, captured-cursor placement with WASD and mouse orbit is the simplest consistent first candidate. Pointer-to-ground mode is optional and releases the cursor, disabling mouse orbit while it is active. Never make one mouse movement steer both the camera and the placement point. Confirm and cancel are distinct from Attack and canister pickup even when the same physical control is reused in another mode.
+
+Interacting opens a compact panel with **Sleep until ready** focused, followed by optional **Rest** and **Pack up**. Show projected Reserve, duration, and resource costs on the selected action. The Interact press only opens the panel; a fresh Submit press begins sleep. Pack up is an explicitly selected action, not an accidental long-press variant of Sleep. No second confirmation is needed for packing the reusable kit, provided reach, ownership, and return capacity pass. A full inventory must leave the kit deployed or return it to its reserved carried slot, never delete it.
+
+Booter physically approaches the sleep anchor under the existing movement authority, then reclines. Keep this short and local; a blocked path leaves him standing with feedback and no recovery or acceleration. Revalidate the anchor after approach and before sleep. Do not warp him through the screen or snap him from a distant point. Packing similarly requires a reachable local interaction point.
+
+## Input ownership and recovery
+
+Propose explicit camp states: **Placement**, **Setting up**, **Camp actions**, **Approaching**, **Resting**, **Reclining**, **Sleeping**, **Waking**, and **Packing**. One coordinator owns their transitions. Placement reads a camp action map, Camp actions uses the existing UI navigation owner, and sleep reads wake and limited camera intents. System input remains available through the router, with contextual arbitration. These are additions to the current modes, not claims that the router already supports them.
+
+Consume the opening or confirming gesture once and require button release before it can start another state action. In particular, radial South confirmation cannot also place a camp, Interact cannot also start sleep, and sleep confirmation cannot instantly wake Booter. Clear movement, sprint, attack, tool, and camera intent when changing modes; require neutral sticks before restoring movement or orbit so a held menu input cannot launch him into motion. Do not carry a buffered attack into waking.
+
+Cancel wins over confirm in the same input update. Escape first cancels preview or camp actions, or wakes from sleep; it does not simultaneously open the system menu. Start releases sleep acceleration and opens the normal system menu after handing off input ownership. Menu closure never automatically resumes accelerated sleep. During setup and packing, cancellation before the commit point restores the original kit state; after commit, finish the presentation or recover to the valid committed state without duplicating an item.
+
+Device removal or application focus loss ends acceleration and abandons any unconfirmed preview. Preserve a deployed camp, accrued recovery, and committed kit state; do not automatically resume sleep when a device reconnects. Preserve the normal application's background simulation policy rather than adding a new global pause. A state canceled by focus loss cannot become a deployment when focus returns. Clear rumble on interruption, disconnect, and scene change.
+
+Offer tap-to-open plus explicit confirmation, digital placement, adjustable rotation steps, readable text scaling, reduced camera motion, and optional vibration. A subtle deployment pulse and a distinct wake pulse can reinforce events without continuous rumble. Prompts follow the last meaningful input device and rebinding, and validity uses text and shape as well as colour. A small analogue drift must not reposition the camp, change selection, or wake Booter. Wake requires a deliberate button action; free camera observation during sleep should not cancel it.
+
+The minimum input verification covers every supported radial activation style, fresh-press gating, cancel/confirm conflicts, canister/attack isolation, camera and cursor ownership, blocked approach, neutral return on wake, rebinding, device change, focus loss, system-menu priority, and kit recovery at setup/pack commit boundaries. These are focused future checks, not permission to run hands-on gameplay smoke tests.
 
 ## Rest and sleep tuning
 
@@ -146,3 +221,19 @@ Relevant automated checks for implementation are placement rejection and confirm
 The first visual candidate is a bowed metal-framed screen with small returns and a dusty warm-grey cloak. The strongest comparisons are a folding rigid frame versus a tensioned fabric panel, and a long split cloak versus a shorter shoulder wrap. Keep these as candidates until the author sees them on Booter at gameplay scale.
 
 After the basic loop, the useful design questions are whether the small shade bonus makes placement satisfying, whether storms interrupt sleep, whether sleeping without the cloak is possible, whether awake Rest earns its extra action, and whether Reserve alone communicates tiredness adequately. These can be explored without adding camp upgrades, automatic guarding, cloth simulation, or a full survival redesign to the first prototype.
+
+## Additional features worth comparing
+
+| Candidate | Why it might improve camping | Prototype boundary |
+| --- | --- | --- |
+| Wake reason | A short **Ready**, **You woke early**, **Water getting low**, or **Danger nearby** message explains the outcome | Use real wake events; avoid vague failure notices or invented threat knowledge |
+| Sleep summary | Briefly show actual Reserve gained and supplies spent, then fade without confirmation | No mandatory results screen; report partial recovery truthfully |
+| Shade direction arrow | Makes the low sun and vertical screen understandable during placement | Preview only, with a good default; no compass calibration task |
+| Footprint and exit preview | Shows where Booter will lie and stand, avoiding surprising placement failures | Simple outlines; no separate furniture positioning |
+| Local return marker | Makes leaving a camp during danger a recoverable choice | Temporary player-owned marker; no remote packing or teleportation |
+| Observe while sleeping | A restrained camera orbit lets the player watch the accelerated world | Preserves wake input and body visibility; no remote scouting camera |
+| Nearby companion framing | Seeing the physically present Legger move around gives camp life | No automatic recall, guarding promise, cargo access, or forced companion teleport |
+| Reuse a familiar spot | A deployed camp is ready for another sleep without repeating setup | Local approach and current hazard/support checks still apply |
+| Gentle storm warning | A real approaching hazard cue can make manual wake an interesting decision | Only after weather provides reliable signals; no manufactured interruption schedule |
+
+Prioritize wake reason, a fading summary, and the footprint/exit preview alongside the basic loop. Compare a temporary return marker and camera observation next. Weather interruptions, companion guarding, camps in establishments, emergency cloak-only bivouacs, and abandoned-camp damage remain separate design slices. None should require camp upgrades or a wider crafting economy to make the starter camp enjoyable.
