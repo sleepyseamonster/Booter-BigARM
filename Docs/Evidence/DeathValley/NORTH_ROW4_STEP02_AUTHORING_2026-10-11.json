@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "family": "north_row4",
+  "step": 2,
+  "batch": "NorthRow4E504016N4026680_2026-10-11",
+  "section": "north_row4_e504016_n4026680",
+  "bounds_m": [
+    504016,
+    4026680,
+    508112,
+    4030776
+  ],
+  "status": "native_Blender_authoring_reopen_and_five_view_gate_passed",
+  "prepared_manifest_path": "SourceData/Terrain/DeathValley/NorthRow4E504016N4026680_2026-10-11/Prepared01/manifest.json",
+  "prepared_manifest_sha256": "49fcd143babf3258dd5eba1a8fdd88f67f3035897affe65391115e2e4d17f3de",
+  "preparation": {
+    "retained_chunks": 7936,
+    "new_chunks": 256,
+    "max_retained_adjustment_m": 0.0274658203125,
+    "quantization_budget_m": 0.042057666927576065,
+    "new_edge_error_m": 0,
+    "retained_rgb_edge_error": 0,
+    "color_corner": {
+      "west_anchor_present": true,
+      "southwest_difference_rgb": [
+        0,
+        0,
+        0
+      ],
+      "west_exception_pixels": 0,
+      "priority": "south row; west column everywhere except sole southwest raster-cell center",
+      "feather_pixels": 128,
+      "feather_m": 256
+    }
+  },
+  "blender_proofs": [
+    {
+      "schema_version": 1,
+      "section": "pilot",
+      "chunks": 8,
+      "blender_version": "5.2.2 LTS",
+      "manifest_sha256": "49fcd143babf3258dd5eba1a8fdd88f67f3035897affe65391115e2e4d17f3de",
+      "blend_file": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRow4E504016N4026680_2026-10-11\\Pilot01.blend",
+      "blend_sha256": "4556c1836b46ec83a38dea733831c45edfb0fda94aa85d5c661e02c102a2723a",
+      "export_file": "pilot_blender_proof.npz",
+      "export_sha256": "a93bd24a912df6ef7c5dd4121a31432e54ca9e1ec527b70ed019b2ad06627bf9",
+      "max_mesh_sample_error_m": 0.0,
+      "max_mesh_edge_difference_m": 0.0,
+      "minimum_normal_z": 0.7999154925346375,
+      "interior_spacing_m": 2,
+      "perimeter_spacing_m": 1,
+      "status": "native_reopened_mesh_verified",
+      "seconds": 1.233089999994263,
+      "proof_path": "SourceData/Terrain/DeathValley/NorthRow4E504016N4026680_2026-10-11/Prepared01/pilot_blender_proof.json",
+      "proof_sha256": "c3ccfaeb0ef592964e49ea251e039e2e3689c7cf2a0fcba56ebce282cd27f891"
+    },
+    {
+      "schema_version": 1,
+      "section": "north_row4_e504016_n4026680",
+      "chunks": 256,
+      "blender_version": "5.2.2 LTS",
+      "manifest_sha256": "49fcd143babf3258dd5eba1a8fdd88f67f3035897affe65391115e2e4d17f3de",
+      "blend_file": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRow4E504016N4026680_2026-10-11\\north_row4_e504016_n4026680_01.blend",
+      "blend_sha256": "9fcea61a1dc9abebe83a70cfe97d761cef1e12bdc07478e5f94bac8c4deb9fc5",
+      "export_file": "north_row4_e504016_n4026680_blender_proof.npz",
+      "export_sha256": "ce008d2d4f73aac7eef6b8c698428186cae7b9eafec39204cedf890e8b983da7",
+      "max_mesh_sample_error_m": 0.0,
+      "max_mesh_edge_difference_m": 0.0,
+      "minimum_normal_z": 0.49666115641593933,
+      "interior_spacing_m": 2,
+      "perimeter_spacing_m": 1,
+      "status": "native_reopened_mesh_verified",
+      "seconds": 24.648058200022206,
+      "proof_path": "SourceData/Terrain/DeathValley/NorthRow4E504016N4026680_2026-10-11/Prepared01/north_row4_e504016_n4026680_blender_proof.json",
+      "proof_sha256": "32a4563a65e0be0dc5de2f5e44fb9e8b4170081c17e450e57cf70c98357d9fed"
+    },
+    {
+      "schema_version": 2,
+      "family": "north_row4",
+      "section": "combined",
+      "chunks": 8192,
+      "blender_version": "5.2.2 LTS",
+      "manifest_sha256": "49fcd143babf3258dd5eba1a8fdd88f67f3035897affe65391115e2e4d17f3de",
+      "blend_file": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\DeathValley\\NorthRow4E504016N4026680_2026-10-11\\combined01.blend",
+      "blend_sha256": "aea8e80552695bb9ec4d89bb2bb327a36af159e4090e8bfc267b9702b9a89345",
+      "export_file": "combined_blender_proof.npz",
+      "export_sha256": "8a3a8927a3597327520545a67280c4f8d511e1ff147a4a8c0bb8f1a0c3caea50",
+      "export_encoding": "4m controls plus all 1m border vertices; no dense 257-square review duplication",
+      "max_mesh_sample_error_m": 0.0,
+      "max_mesh_edge_difference_m": 0.0,
+      "minimum_normal_z": 0.04950866103172302,
+      "interior_spacing_m": 4,
+      "perimeter_spacing_m": 1,
+      "status": "native_reopened_mesh_verified",
+      "seconds": 179.95031129999552,
+      "proof_path": "SourceData/Terrain/DeathValley/NorthRow4E504016N4026680_2026-10-11/Prepared01/combined_blender_proof.json",
+      "proof_sha256": "028ce209ae5427649dff9d44b39999f92880663f0a9c69b1f406abac30229274"
+    }
+  ],
+  "visual_views": [
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRow4E504016N4026680_2026-10-11/Prepared01/pilot_junction.png",
+      "sha256": "fa71f49be251255c192eaad0e2ebaf810392d9e6fe77d5c12b721a39dd361b05",
+      "inspected": true
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRow4E504016N4026680_2026-10-11/Prepared01/section_overhead.png",
+      "sha256": "9e0f9356ff393f14409b10702f59d084647faeedb7774ec70c1cd6cf506b16e8",
+      "inspected": true
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRow4E504016N4026680_2026-10-11/Prepared01/section_oblique.png",
+      "sha256": "604f34adb7cbb4ce3e09f08c00e5e837abf9aa0ce00b22cc9e92afff3b9583c9",
+      "inspected": true
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRow4E504016N4026680_2026-10-11/Prepared01/combined_overhead.png",
+      "sha256": "b2d02e59e0f0a303747a61c06885103ff70135de8bd2a77d50f8a51e258ab3f6",
+      "inspected": true
+    },
+    {
+      "path": "SourceData/Terrain/DeathValley/NorthRow4E504016N4026680_2026-10-11/Prepared01/combined_oblique.png",
+      "sha256": "041c3b06b8c76efaa7dcd732c51d8b32474f3727523cc26a36dce557eec5a76f",
+      "inspected": true
+    }
+  ],
+  "source_files_local_only": true,
+  "total_native_source_bytes": 750544821,
+  "baseline": {
+    "accepted_steps": 1,
+    "retained_terrains": 7936,
+    "scene_sha256": "26de31220b5ce350da4ba4a617d2dbba4fe55615d7dcacaa14a36ca9b781766e",
+    "manifest_sha256": "0c643a12e1d3fdd7da9194d344641a4a195b7640aec9ea1333a08436be727d9d",
+    "protected_inventory_sha256": "01f54ba6dcc31f272e495614739fca52a435945d00ebda5e3510dfb1bd18f36b",
+    "full_native_proof_sha256": "0ae095e7bdbc5ca4a159515a0f3dc996327b0157255b6f57042c4571edc73051"
+  },
+  "visual_assessment": "Pilot joins continuous; section ridges and drainage intact; combined sparse upper-east footprint preserved. Imagery remains geographic reference, not final close-range material.",
+  "limits": "Blender native saved/reopened and five-view proof only; Unity integration and collision validation pending."
+}
