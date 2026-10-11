@@ -1,0 +1,39 @@
+# Fourth northern row — execution plan
+
+Authority: the author's October 11 instruction to complete the next row north. The [readiness audit](NORTH_ROW4_READINESS_AUDIT_2026-10-11.md) verifies the committed 7680-tile predecessor. Work remains on `main`; commits are local. Preserve concurrent rock/material work, loaded unsaved scenes and foreground application.
+
+## Fixed contract
+
+Six ordered 4096 m sections west to east occupy EPSG:26911 `[499920,4026680,524496,4030776]`. Eastings are 499920, 504016, 508112, 512208, 516304, 520400. Each adds 256 native 256 m tiles and sixteen sectors. Final footprint is 96 × 96 with 9216 terrains, 36 sections, 576 sectors, 18240 joins and 384 exterior neighbor slots. Twenty-five direct collider samples per tile yield 230400 at final acceptance. Step counts are recorded in the readiness audit and independently calculated by row-four contract tests.
+
+World origin `[522448,4008248]`, existing geographic keys, scene GUID and −100 m minimum / 1800 m range remain fixed. South anchors are accepted row-three sections. Later west anchors are the immediately preceding accepted row-four section. Native quantization is authoritative. Preserve the 0.0420576669 m preparation adjustment budget and existing exact border/RGB and corner policy.
+
+This extends fixed authored terrain, always loaded. It implements no procedural generation, terrain streaming, unload/reload, procedural-object identity, save format or persisted delta behavior. Measured DEM/imagery, accepted anchors and retained authored assets constrain every step.
+
+## Capacity and isolation
+
+Keep sources/authoring/production under the existing D: checkout. Use a fresh physical validation project at `C:/BooterBigArmValidation/TerrainNorthRow4_20261011_01` on C:, not a Git worktree. Copy committed tracked Assets, Packages and ProjectSettings, with warm Library from the preserved row-three validation project. Explicitly synchronize task code only; dirty user assets are copied from committed bytes, not absorbed into this task.
+
+Preflight allocation requires C: free space greater than measured tracked assets plus warm Library plus 5 GiB growth and 3 GiB reserve. D: requires 12 GiB new source/runtime/Git allocation plus 3 GiB reserve. The [capacity receipt](../Evidence/DeathValley/NORTH_ROW4_CAPACITY_2026-10-11.json) records actual copy and remaining space. Recheck both drives at every section. Preserve all existing source, validation and rollback owners. Stop before reserve violation; do not delete them or overwrite sealed outputs.
+
+## Source and tooling
+
+Use a distinct `north_row4` contract and versioned owners. Survey owner is `NorthRow4Survey2026-10-11`; DEM owner is `Acquisition01/DEM`, imagery owner `ImageryAcquisition02`, audit owner `SourceAudit01`. The eight half-open source domains are `x49..x52 × y403..y404`. Measure both easting and N4030000 ownership lines. Audit finite 1 m vertices, strict 2 m decimation, NAVD88 bare-earth metadata, hashes, NoData, overlap and existing elevation limits before authoring.
+
+Keep raw inputs and every Blender binary local-only. Native Unity assets remain publishable. Reuse immutable retained model/native references and the existing shared snapshot owner. Derive the final row-three AcceptedModel01 bank from its actual accepted snapshots. Preserve sealed row-three implementations.
+
+`run_north_row4_pipeline.py` supplies explicit isolation, date, step and proof-version arguments, hidden background launches, fresh-output refusal, running-editor exclusion and terminal exit propagation. Native creation and integration also independently reject Git checkouts. Current bridge discovery remains unavailable; investigate through read-only discovery while isolated work proceeds. Root transfer requires fresh guards, never a historical receipt or inferred loaded-scene state.
+
+Subsequent fresh process inspection found no root Unity Editor. A tested offline guard opens the existing project lock exclusively without modifying or deleting it, then rechecks process absence. If root remains offline at transfer, hold that lock throughout replacement and recheck ownership immediately before the saved scene write. If an Editor returns, use the fresh live guard instead. No agent shut down or restarted the root Editor.
+
+## Section gates
+
+For each step: committed predecessor capture; prepare measured inputs against accepted anchors; pilot save/reopen/proof plus inspected junction; 256-mesh section save/reopen plus inspected overhead/oblique; combined accepted footprint save/reopen/proof plus inspected overhead/oblique; seal five-view authoring checkpoint and source README; export bound to immutable proofs; build isolated native candidate; independently verify full grids, exact joins, reciprocal neighbors and sampled collision; run focused row-four/map EditMode tests; integrate in isolation and restore every original scene document except one terrain-parent child append; independently reopen and validate saved production; run canonical serialized setup validation.
+
+Before transfer: freshly prove root production unloaded, no task-owned dirty persistent terrain assets, no Play Mode/compilation, acceptable fresh console truth, unchanged predecessor/source hashes, and loaded-scene fingerprint preservation. Transfer only new owner/meta, disabled candidate/meta and validated production bytes. Native-import proof metadata, verify root/isolation GUID agreement, audit owned metadata/global GUID uniqueness, refresh catalog, inspect three hidden map captures, run current-catalog tests, seal preservation/closeout evidence, stage exact task-owned paths and commit. Only then capture the next predecessor.
+
+Final closeout audits all six acceptances, exact full occupancy, current scene/catalog/source proofs, original assets/documents, local-only source retention/exclusions, package pins and remaining capacity. No gameplay smoke testing or Player performance acceptance is performed.
+
+## Progress
+
+The full measured DEM/imagery acquisition and [source audit](../Evidence/DeathValley/NORTH_ROW4_SOURCE_AUDIT_2026-10-11.json) passed: eight products, 100691969 unique 1 m vertices, six aligned imagery sections, ten ownership lines, elevations −83.5983581543 to 842.0741577148 m. The shorter C: validation owner recovered 27 cache files omitted by Windows path-length limits; old projects remain untouched. Fresh Editor import/compilation and 22 contract/map EditMode cases passed, alongside 14 focused Python cases; see [tooling evidence](../Evidence/DeathValley/NORTH_ROW4_TOOLING_2026-10-11.json). Committed-predecessor capture is running. No section is accepted yet. This section will be updated at acceptance checkpoints.

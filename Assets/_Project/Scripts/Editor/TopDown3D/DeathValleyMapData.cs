@@ -144,6 +144,20 @@ namespace BooterBigArm.Editor
 
         public static double[] GetPlayableBounds(DeathValleyMapRecord[] tiles)
         {
+            if(tiles!=null && tiles.Length>=7936 && tiles.Length<=9216 && (tiles.Length-7680)%256==0)
+            {
+                int step=(tiles.Length-7680)/256;
+                var cells=BadwaterNorthRow4Source.Occupied(step);
+                foreach(var tile in tiles)
+                {
+                    ValidateBounds(tile.bounds_m);
+                    double e=tile.bounds_m[0],n=tile.bounds_m[1];
+                    if(e!=Math.Truncate(e) || n!=Math.Truncate(n) || tile.bounds_m[2]!=e+256 || tile.bounds_m[3]!=n+256 || tile.geographic_key!=$"epsg26911/e{(int)e}/n{(int)n}/size256" || !cells.Remove(new Vector2Int((int)e,(int)n)))
+                        throw new InvalidDataException("Missing, duplicate, shifted or premature fourth-row map cell.");
+                }
+                if(cells.Count!=0)throw new InvalidDataException("Incomplete fourth-row map coverage.");
+                return new double[]{499920,4006200,524496,4030776};
+            }
             if(tiles!=null && tiles.Length>=6400 && tiles.Length<=7680 && (tiles.Length-6144)%256==0)
             {
                 int step=(tiles.Length-6144)/256;

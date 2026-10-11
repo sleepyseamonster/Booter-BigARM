@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "family": "north_row4",
+  "status": "isolated_import_compile_and_contract_tests_passed",
+  "isolation": "C:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_01",
+  "import_log_sha256": "59a25a4ed1f528c6aece78147c851e724d61ffb96a9c2774f84a6cfd0948ae81",
+  "test_xml_sha256": "e2c23138d445fbf89ae844dc5f03b187b49c198750d4da9b830688468ff44c37",
+  "test_result": {
+    "id": "2",
+    "testcasecount": "22",
+    "result": "Passed",
+    "total": "22",
+    "passed": "22",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-11 18:53:11Z",
+    "end-time": "2026-10-11 18:53:12Z",
+    "duration": "1.1625121"
+  },
+  "python_tests_passed": 14,
+  "source_audit": "Docs/Evidence/DeathValley/NORTH_ROW4_SOURCE_AUDIT_2026-10-11.json",
+  "limits": "New tooling compilation, pure topology/ownership/map contracts; native candidate and collider validation pending."
+}
