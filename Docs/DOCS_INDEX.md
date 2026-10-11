@@ -173,6 +173,7 @@ These are intentionally non-canonical. They preserve ideas, research, or working
 
 - [Minimal cube rock implementation plan](./Design/Gameplay/MINIMAL_CUBE_ROCK_IMPLEMENTATION_PLAN.md) and [verification plan](./Design/Gameplay/MINIMAL_CUBE_ROCK_VERIFICATION_PLAN.md)
   Planned minimal Edit Mode cube interaction, bounded source changes, ownership gates and focused proof. No implementation is claimed.
+  The [plan audit](./Design/Gameplay/MINIMAL_CUBE_ROCK_PLAN_AUDIT.md) records corrected sampling, order-independence, responsiveness and clone/save gates; full integration follows the bounded geometry proof.
 
 - [Monster Hunter Wilds menu research and Arc and Dust audit](./Research/UI/MONSTER_HUNTER_WILDS_MENU_AUDIT.md)
   Official reference analysis, current production UI source audit, and proposed menu presentation, navigation, accessibility, and implementation sequence.
