@@ -15,7 +15,7 @@ These should be treated as the source of truth unless they are intentionally rev
 - [GROUND_TEXTURE_AUTHORING.md](./Engineering/GROUND_TEXTURE_AUTHORING.md)
   Manual ground texture stickers and native terrain painting, with Undo, authoring persistence and terrain-preservation boundaries.
 - [NINE_AREA_ROCK_STUDY.md](./Engineering/NINE_AREA_ROCK_STUDY.md)
-  Current nine-flat-terrain rock workbench scene, shared Greater Wasteland base texture and painting panel setup.
+  Current single-terrain rock study, minimal volcanic cube authoring, retained comparison tools and historical nine-area setup.
 - [Minimal cube rock delivery](./Evidence/Art/SmoothCubeRock/README.md)
   Automatic Edit Mode fusion of duplicated textured cubes, no added authoring controls, current-machine proof and live versus saved placement boundaries.
 - [SCULPTED_BASALT_01.md](./Engineering/SCULPTED_BASALT_01.md)

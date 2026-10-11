@@ -1,10 +1,16 @@
 # Nine-area rock study â€” October 9, 2026
 
-The author requested nine flat work areas in the existing study scene, one rock generator/workbench per area, one common Greater Wasteland base texture and the authoring panels ready for texture/terrain painting.
+On October 10, 2026, the author saved a simplified study with one terrain area. This saved layout supersedes the original nine-area layout. Continue cube authoring here without restoring the grid or adding authoring controls.
 
-Current scene: `Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity`. Its original scene GUID is preserved. The earlier six-panel contact/relief comparison remains separately at `Assets/_Project/Scenes/Reference/FixedTerrainDressingComparison.unity`, using its original mesh/material assets. Dated initial evidence retains the original filename as historical scope; it does not describe the current nine-area contents.
+The remaining native terrain is the 16 by 16 m pad under Area 05, using `Area_05.asset`. The saved scene contains three volcanic rock cubes, two sculpted basalt instances, the existing comparison workbench, the overview camera and the sun. Area 01–04 and 06–09 remain empty containers. Their old terrain assets are retained; they are not instantiated in the current scene. Source cube poses and other artist edits are authoritative. Saving persists the cube recipe; the generated exterior remains transient.
 
-## Work areas
+World identity, streaming, generated gameplay identity and runtime deltas are outside this authored Editor study. Production terrain and save systems are unchanged.
+
+Current-machine verification on October 10 passed 3/3 focused EditMode checks in an isolated Unity 6000.4.0f1 copy: single-terrain saved content and volcanic cube references, retained native-scale texture sampling, and retained lighting/environment identity. Missing scripts, transient-preview serialization and build exclusion are checked. The saved scene was copied byte-for-byte; its SHA-256 is `5F88390731F827356A417CDF0F20724A07A0C4BC93B458DE5C8A39A4618AE383`. No visual or gameplay acceptance is implied.
+
+Current scene: `Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity`. Its original scene GUID is preserved. The earlier six-panel contact/relief comparison remains separately at `Assets/_Project/Scenes/Reference/FixedTerrainDressingComparison.unity`, using its original mesh/material assets. Dated initial evidence retains the original filename as historical scope; it does not describe the current single-terrain contents.
+
+## Original work areas — historical setup
 
 - 3 by 3 grid; each native terrain is 16 by 16 m, with 4 m gaps between areas.
 - Each area contains `Flat terrain` and one standalone `Rock Workbench`. Its editable source volumes are generator internals, not additional rock formations or clutter. On October 10, the author added [SculptedBasalt01](SCULPTED_BASALT_01.md) at the centre of Area 05, at authored metre scale and ground pivot. Its existing workbench moves 5 m to the side so both remain visible.
@@ -16,7 +22,7 @@ Current scene: `Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity
 
 ## Minimal cube rock authoring
 
-The October 10 [minimal cube implementation](../Evidence/Art/SmoothCubeRock/README.md) adds one `SmoothRockCube` prefab instance to the live Area 05 at `(-3, 0.5, 0)`, preserving the existing workbench and artist basalt poses. The previously dirty scene was not saved over the author's work. The reusable prefab is `Assets/_Project/Prefabs/TopDown3D/Environment/SmoothRockCube.prefab`; normal scene Save persists the live insertion, and an unsaved insertion has Unity's ordinary unsaved-scene lifetime.
+The initial October 10 [minimal cube implementation](../Evidence/Art/SmoothCubeRock/README.md) adds one `SmoothRockCube` prefab instance to the live Area 05 at `(-3, 0.5, 0)`, preserving the existing workbench and artist basalt poses. That delivery left the previously dirty scene unsaved; the author has since saved the current three-cube layout. The reusable prefab is `Assets/_Project/Prefabs/TopDown3D/Environment/SmoothRockCube.prefab`; normal scene Save persists the live insertion, and an unsaved insertion has Unity's ordinary unsaved-scene lifetime.
 
 Duplicate the cube and use normal Move, Rotate and Scale tools. Touching groups automatically rebuild into one textured exterior after movement settles. Separate them to restore independent cubes. Select an individual source in the Hierarchy, or click the fused exterior to choose a contributing cube; the selected source has a wire outline and normal Transform handles. Fully contained and coincident sources remain accessible in the Hierarchy. No workbench, authoring root, panel, button, slider, source ID or exposed quality setting is added.
 
@@ -26,7 +32,7 @@ This first slice is Edit Mode only, visible in Scene and Game views without ente
 
 The [delivery evidence](../Evidence/Art/SmoothCubeRock/README.md) distinguishes 27 passing current-machine checks, isolated material captures and live placement from author-owned visual acceptance and arbitrary-stack/player-performance proof.
 
-## Existing panels
+## Retained authoring panels
 
 The study overview camera carries a scene rendering override that suppresses tilt shift in this scene's Game and active Scene views. Greater Wasteland and the shared renderer retain their existing settings. This is independent of the study's matched sun and environment lighting.
 
@@ -34,8 +40,8 @@ The study overview camera carries a scene rendering override that suppresses til
 
 - **Ground Textures**: manual sticker placement and native texture brush. It starts on Paint terrain with painting stopped.
 - **Rock Workbench**: choose Area 01â€“09 and edit that area's generator through its existing Inspector controls. Select/frame that area's terrain with the provided buttons.
-- **Inspector**: starts with Area 01's native terrain selected and Unity's Paint Texture tool active. Other Unity terrain sculpt/paint tools remain accessible through its terrain-tool controls.
-- **Scene view**: frames the complete grid at an elevated angle. Authoring windows are positioned over the Project-panel region to keep Scene view and the terrain Inspector visible. No window focus/foreground call is made.
+- **Inspector**: starts with the remaining native terrain selected and Unity's Paint Texture tool active. Other Unity terrain sculpt/paint tools remain accessible through its terrain-tool controls.
+- **Scene view**: frames the selected terrain at an elevated angle. Authoring windows are positioned over the Project-panel region to keep Scene view and the terrain Inspector visible. No window focus/foreground call is made.
 
 The panel setup unlocks and refreshes the shared Inspector tracker so it follows terrain/sticker selection. Its Paint Texture selection uses the inspected method in the pinned Unity 6000.4 TerrainInspector, guarded by type/method availability. This is UI state only, not a renderer/package/project setting or a painting operation. Stop the custom brush before using Unity's native terrain brush, so only one tool owns Scene-view painting input.
 
@@ -56,6 +62,6 @@ Painting/sculpting here changes study-owned TerrainData; stickers persist in the
 
 The builder runs in an isolated background batchmode project and refuses to overwrite existing work-area assets. Do not rebuild over artist edits. The builder creates the initial nine-area setup; the subsequent artist-rock placement is scene-owned content, not an additional generator default. `NineAreaLightingAndGround.Apply()` aligns a clean, active study without changing terrain heights, painted weights or rock controls. Its small, dated lighting reference was extracted from Greater Wasteland's saved scene, so alignment does not load thousands of production terrain tiles. This is a snapshot: deliberate later world-lighting changes need a new reference. It does not copy baked lightmaps or runtime post-processing/dust owners.
 
-The October 10 focused checks pass 3/3 and establish nine flat areas, exactly one editable generator each, common material/layer identity, the small patch at native texture scale, matching sun and serialized environment settings, missing-script safety and build exclusion. Evidence is in `Docs/Evidence/WorldCreator/NineAreaRockStudy/lighting-ground-2026-10-10.json` and its test XML. The earlier comparison and texture tool tests remain relevant regressions. The live Editor readback verifies the active study, nine terrains and the copied sun. Later in-memory dirty state after domain reload was preserved rather than saved over possible author edits.
+The initial October 10 focused checks passed 3/3 and established nine flat areas, exactly one editable generator each, common material/layer identity, the small patch at native texture scale, matching sun and serialized environment settings, missing-script safety and build exclusion. Evidence is in `Docs/Evidence/WorldCreator/NineAreaRockStudy/lighting-ground-2026-10-10.json` and its test XML. The earlier comparison and texture tool tests remain relevant regressions. The live Editor readback verifies the active study, nine terrains and the copied sun. Later in-memory dirty state after domain reload was preserved rather than saved over possible author edits.
 
 No gameplay smoke test, foreground activation, production painting, generation/streaming activation, package change or Player-performance claim is part of this setup.

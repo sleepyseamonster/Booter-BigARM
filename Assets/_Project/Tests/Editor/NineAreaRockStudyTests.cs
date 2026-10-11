@@ -11,40 +11,33 @@ namespace BooterBigArm.Tests
     public sealed class NineAreaRockStudyTests
     {
         [Test]
-        public void NineFlatAreasHaveTheSameBaseAndExactlyOneEditableRockEach()
+        public void SavedStudyHasOneTerrainAndEditableVolcanicCubes()
         {
             var scene = EditorSceneManager.OpenPreviewScene(NineAreaRockStudy.ScenePath);
             try
             {
-                var roots = scene.GetRootGameObjects(); var areas = roots.Where(r => r.name.StartsWith("Area ")).OrderBy(r => r.name).ToArray();
-                Assert.That(areas.Length, Is.EqualTo(9)); Assert.That(roots.Length, Is.EqualTo(11));
-                var material = AssetDatabase.LoadAssetAtPath<Material>(NineAreaRockStudy.SourceMaterial);
-                TerrainLayer shared = null;
-                for (int i = 0; i < areas.Length; i++)
+                var roots = scene.GetRootGameObjects();
+                var terrains = roots.SelectMany(r => r.GetComponentsInChildren<Terrain>(true)).ToArray();
+                Assert.That(terrains.Length, Is.EqualTo(1));
+                Assert.That(terrains[0].terrainData, Is.Not.Null);
+                Assert.That(terrains[0].materialTemplate,
+                    Is.SameAs(AssetDatabase.LoadAssetAtPath<Material>(NineAreaRockStudy.SourceMaterial)));
+                Assert.That(terrains[0].terrainData.terrainLayers,
+                    Is.EqualTo(new[] { AssetDatabase.LoadAssetAtPath<TerrainLayer>(NineAreaRockStudy.Folder + "/StudyBase.terrainlayer") }));
+                var cubes = roots.SelectMany(r => r.GetComponentsInChildren<SmoothRockCube>(true)).ToArray();
+                Assert.That(cubes.Length, Is.GreaterThan(0));
+                var volcanic = AssetDatabase.LoadAssetAtPath<Material>(SmoothRockCubePreview.MaterialPath);
+                Assert.That(volcanic, Is.Not.Null);
+                foreach (var cube in cubes)
                 {
-                    Assert.That(areas[i].transform.childCount, Is.EqualTo(i == 4 ? 3 : 2));
-                    if (i == 4)
-                    {
-                        var basalt = areas[i].transform.Find("SculptedBasalt01");
-                        Assert.That(basalt, Is.Not.Null);
-                        Assert.That(basalt.localPosition, Is.EqualTo(Vector3.zero));
-                        Assert.That(basalt.localScale, Is.EqualTo(Vector3.one));
-                        Assert.That(PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(basalt.gameObject), Is.EqualTo(SculptedBasaltAssetPipeline.PrefabPath));
-                        Assert.That(basalt.GetComponent<LODGroup>().GetLODs().Length, Is.EqualTo(3));
-                        Assert.That(basalt.GetComponentInChildren<MeshCollider>().convex, Is.True);
-                    }
-                    Assert.That(areas[i].GetComponentsInChildren<GroundTextureSticker>().Length, Is.Zero);
-                    var terrain = areas[i].GetComponentsInChildren<Terrain>(); var rocks = areas[i].GetComponentsInChildren<TopDown3DRockWorkbenchAuthoring>();
-                    Assert.That(terrain.Length, Is.EqualTo(1)); Assert.That(rocks.Length, Is.EqualTo(1));
-                    Assert.That(terrain[0].materialTemplate, Is.SameAs(material)); Assert.That(terrain[0].terrainData.terrainLayers.Length, Is.EqualTo(1));
-                    shared ??= terrain[0].terrainData.terrainLayers[0]; Assert.That(terrain[0].terrainData.terrainLayers[0], Is.SameAs(shared));
-                    var heights = terrain[0].terrainData.GetHeights(0, 0, 65, 65);
-                    foreach (float h in heights) Assert.That(h, Is.Zero);
-                    Assert.That(rocks[0].IsFormationMember, Is.False); Assert.That(rocks[0].GetComponentsInChildren<TopDown3DRockVolumeNode>().Length, Is.GreaterThan(0));
-                    Assert.That(rocks[0].RockMaterial, Is.Not.Null);
-                    foreach (var transform in areas[i].GetComponentsInChildren<Transform>())
-                        Assert.That(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(transform.gameObject), Is.Zero);
+                    Assert.That(cube.GetComponent<MeshFilter>().sharedMesh, Is.Not.Null);
+                    Assert.That(cube.GetComponent<MeshRenderer>().sharedMaterial, Is.SameAs(volcanic));
                 }
+                // Author-owned poses, paint, heights and comparison rocks may continue to evolve.
+                foreach (var transform in roots.SelectMany(r => r.GetComponentsInChildren<Transform>(true)))
+                    Assert.That(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(transform.gameObject), Is.Zero);
+                Assert.That(roots.Any(r => r.name == "Smooth cube rock exterior"), Is.False,
+                    "The generated preview must not be serialized into the study.");
                 Assert.That(EditorBuildSettings.scenes.Any(s => s.enabled && s.path == scene.path), Is.False);
             }
             finally { EditorSceneManager.ClosePreviewScene(scene); }

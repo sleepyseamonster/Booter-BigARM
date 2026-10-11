@@ -67,9 +67,10 @@ namespace BooterBigArm.Editor
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("Use Edit Mode for this study.");
             var scene = SceneManager.GetActiveScene();
-            if (scene.path != ScenePath) throw new InvalidOperationException("Open the nine-area study first.");
-            var first = scene.GetRootGameObjects().FirstOrDefault(r => r.name == "Area 01");
-            if (first == null) throw new InvalidOperationException("The nine-area study is not installed.");
+            if (scene.path != ScenePath) throw new InvalidOperationException("Open the rock study first.");
+            var terrain = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Terrain>())
+                .FirstOrDefault();
+            if (terrain == null) throw new InvalidOperationException("The study has no active terrain.");
             // focus=false: expose editor panels without focusing an Editor window or raising Unity.
             var textures = EditorWindow.GetWindow<GroundTextureTool>(false, "Ground Textures", false);
             textures.PrepareForTerrainPaint();
@@ -83,16 +84,15 @@ namespace BooterBigArm.Editor
             }
             var inspector = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.InspectorWindow");
             if (inspector != null) EditorWindow.GetWindow(inspector, false, "Inspector", false);
-            Selection.activeGameObject = first.GetComponentInChildren<Terrain>().gameObject;
+            Selection.activeGameObject = terrain.gameObject;
             var view = SceneView.lastActiveSceneView;
             if (view != null)
             {
                 view.in2DMode = false; view.rotation = Quaternion.Euler(55, 0, 0);
-                view.Frame(new Bounds(Vector3.zero, new Vector3(58, 6, 58)), true);
+                view.Frame(new Bounds(terrain.transform.position + terrain.terrainData.size / 2, terrain.terrainData.size), true);
             }
             EditorApplication.delayCall += () =>
             {
-                var terrain = first != null ? first.GetComponentInChildren<Terrain>() : null;
                 if (terrain == null) return;
                 ActiveEditorTracker.sharedTracker.isLocked = false;
                 ActiveEditorTracker.sharedTracker.ForceRebuild();
@@ -128,8 +128,8 @@ namespace BooterBigArm.Editor
         {
             var scene = SceneManager.GetActiveScene();
             if (scene.path != NineAreaRockStudy.ScenePath)
-            { EditorGUILayout.HelpBox("Open the nine-area study to edit its rock workbenches.", MessageType.Info); return; }
-            var stations = scene.GetRootGameObjects().Where(r => r.name.StartsWith("Area ", StringComparison.Ordinal)).OrderBy(r => r.name).ToArray();
+            { EditorGUILayout.HelpBox("Open the rock study to edit its existing workbenches.", MessageType.Info); return; }
+            var stations = scene.GetRootGameObjects().Where(r => r.name.StartsWith("Area ", StringComparison.Ordinal) && r.GetComponentInChildren<Terrain>() != null).OrderBy(r => r.name).ToArray();
             if (stations.Length == 0) return;
             area = Mathf.Clamp(EditorGUILayout.Popup("Work area", area, stations.Select(s => s.name).ToArray()), 0, stations.Length - 1);
             var workbench = stations[area].GetComponentInChildren<TopDown3DRockWorkbenchAuthoring>();
