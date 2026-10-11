@@ -27,6 +27,17 @@ The study overview camera carries a scene rendering override that suppresses til
 
 The panel setup unlocks and refreshes the shared Inspector tracker so it follows terrain/sticker selection. Its Paint Texture selection uses the inspected method in the pinned Unity 6000.4 TerrainInspector, guarded by type/method availability. This is UI state only, not a renderer/package/project setting or a painting operation. Stop the custom brush before using Unity's native terrain brush, so only one tool owns Scene-view painting input.
 
+**Booter & BigARM > Geology Studies > Terrain Sculpting Controls** opens a dedicated
+**Terrain Controls** tab with Raise / Lower, Smooth and Set Height buttons and the
+native terrain brush settings. It keeps its terrain target when scene selection
+changes, avoiding the blank generic Inspector tab. It defaults to the selected
+terrain, or Area 05 when opened fresh in this study. Clicking a sculpt button
+selects that terrain, stops the custom texture brush and activates the native
+height tool. The panel scrolls within small floating windows. Opening or binding
+it does not apply paint, change heights, save assets, or modify world identity,
+streaming, generated-object identity, placement constraints or persisted deltas;
+those concerns are outside this editor-only UI setup.
+
 ## Ownership and proof
 
 Painting/sculpting here changes study-owned TerrainData; stickers persist in the study scene. These are bounded authored experiments, independent of world seed, terrain streaming and gameplay saved deltas. Rock seeds identify reproducible editor source geometry, not globally unique generated gameplay entities. Future production reuse needs deliberate asset handoff and stable feature ownership.
