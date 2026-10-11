@@ -5,7 +5,7 @@ from north_row4_contract import ROOT,contract,sha256
 from north_row4_transfer_guard import command,live_guard,offline_lock,root_processes,saved_guard
 from preserve_expansion_scene import split_documents
 
-def transfer(step,date,isolation,test_proof_version='01',candidate_proof_version='01'):
+def transfer(step,date,isolation,test_proof_version='01',candidate_proof_version='01',playable_proof_version='01'):
     c=contract(step,date);isolation=isolation.resolve()
     if isolation==ROOT or (isolation/'.git').exists():raise ValueError('Physical isolation required')
     bm=saved_guard(step,date);scene=bm['scene']
@@ -30,7 +30,8 @@ def transfer(step,date,isolation,test_proof_version='01',candidate_proof_version
         raise ValueError('Candidate proof scene owner differs')
     if sha256(isolation/candidate_report['scene'])!=candidate_report['scene_sha256']:
         raise ValueError('Candidate saved bytes changed after selected readback')
-    playable=isolation/'Logs'/f'step{step}-playable.log'
+    playable_suffix='' if playable_proof_version=='01' else playable_proof_version
+    playable=isolation/'Logs'/f'step{step}-playable{playable_suffix}.log'
     if f'Playable Badwater scene validated: {c["total"]} terrains, Booter, Legger, input, camera, UI, twilight and dust.' not in playable.read_text(encoding='utf-8'):
         raise ValueError('Canonical saved-production setup proof missing')
     _,old=split_documents((ROOT/scene).read_bytes().decode('utf-8'));_,new=split_documents((isolation/scene).read_bytes().decode('utf-8'))
@@ -77,10 +78,12 @@ def transfer(step,date,isolation,test_proof_version='01',candidate_proof_version
     (ev/'root_transfer_guard.json').write_bytes((json.dumps(guard,indent=2)+'\n').encode('utf-8'))
     (ev/'unrelated_editor_state_preservation.json').write_bytes((json.dumps(preservation,indent=2)+'\n').encode('utf-8'))
     receipt={'schema_version':1,'family':'north_row4','step':step,'status':'verified_native_saved_scene_transfer','retained_terrains':c['retained_count'],'new_terrains':256,'total_terrains':c['total'],'changed_original_documents':['1259644692'],'unchanged_original_documents':len(old)-1,'new_scene_documents':1314,'new_sectors':16,'predecessor_scene_sha256':bm['scene_sha256'],'production_scene_sha256':report['scene_sha256'],'manifest_sha256':report['manifest_sha256'],'scene_guid_preserved':True,'native_proof_metadata_sha256':sha256(Path(str(proof)+'.meta')),'canonical_validator_log_sha256':sha256(playable),'test_proof_version':test_proof_version,'candidate_proof_version':candidate_proof_version,'root_editor_mode':preservation['mode'],'root_import_limit':'Native proof imported in isolation, paired metadata copied byte-exact; no fresh root GUI import claim when offline.'}
+    receipt['playable_proof_version']=playable_proof_version
     (ev/'scene_preservation_receipt.json').write_bytes((json.dumps(receipt,indent=2)+'\n').encode('utf-8'))
     print(json.dumps(receipt,indent=2))
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--step',type=int,required=True);p.add_argument('--date',required=True);p.add_argument('--isolation',type=Path,required=True)
     p.add_argument('--test-proof-version',default='01');p.add_argument('--candidate-proof-version',default='01')
-    a=p.parse_args();transfer(a.step,a.date,a.isolation,a.test_proof_version,a.candidate_proof_version)
+    p.add_argument('--playable-proof-version',default='01')
+    a=p.parse_args();transfer(a.step,a.date,a.isolation,a.test_proof_version,a.candidate_proof_version,a.playable_proof_version)

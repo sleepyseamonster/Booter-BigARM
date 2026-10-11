@@ -34,6 +34,11 @@ namespace BooterBigArm.Editor
 
         public static Report ValidateScene(Scene scene, bool physics = false)
         {
+            if (BadwaterNorthRow4Source.HasExpansion(scene))
+            {
+                var r=BadwaterNorthRow4Validator.ValidateScene(scene,BadwaterNorthRow4Source.ConfigForScene(scene),physics);
+                return new Report { terrains=r.terrains,retained=r.retained,new_terrains=r.new_terrains,edges=r.edges,outer_edges=r.outer_edges,collider_samples=r.collider_samples,scene=r.scene,scene_sha256=r.scene_sha256,manifest_sha256=r.manifest_sha256,status=r.status,max_new_readback_error_m=r.max_new_readback_error_m,max_collider_error_m=r.max_collider_error_m };
+            }
             if (BadwaterNorthRow3Source.HasExpansion(scene))
             {
                 var r=BadwaterNorthRow3Validator.ValidateScene(scene,BadwaterNorthRow3Source.ConfigForScene(scene),physics);
