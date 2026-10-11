@@ -168,6 +168,9 @@ These describe current repo state rather than durable design truth.
 
 These are intentionally non-canonical. They preserve ideas, research, or working context that may later be refined, replaced, or discarded.
 
+- [Minimal cube rock fusion research](./Research/Art/SMOOTH_CUBE_ROCK_FUSION_RESEARCH.md)
+  Repository audit and primary-source research for duplicating and moving rock-textured cubes that blend automatically, with no workbench or exposed complexity controls.
+
 - [Monster Hunter Wilds menu research and Arc and Dust audit](./Research/UI/MONSTER_HUNTER_WILDS_MENU_AUDIT.md)
   Official reference analysis, current production UI source audit, and proposed menu presentation, navigation, accessibility, and implementation sequence.
 
