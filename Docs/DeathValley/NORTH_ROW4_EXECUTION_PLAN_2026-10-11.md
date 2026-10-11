@@ -2,6 +2,14 @@
 
 Authority: the author's October 11 instruction to complete the next row north. The [readiness audit](NORTH_ROW4_READINESS_AUDIT_2026-10-11.md) verifies the committed 7680-tile predecessor. Work remains on `main`; commits are local. Preserve concurrent rock/material work, loaded unsaved scenes and foreground application.
 
+Current acceptance: **one of six sections complete**, 7936 native terrains, 31 sections and 496 sectors. The new northwest section preserves the expected incomplete upper-row footprint. Current scene SHA256: `26de31220b5ce350da4ba4a617d2dbba4fe55615d7dcacaa14a36ca9b781766e`.
+
+| Step | West easting | Accepted terrains | Exact joins | Closeout |
+| --- | ---: | ---: | ---: | --- |
+| 1 | 499920 | 7936 | 15680 | [Verified acceptance](../Evidence/DeathValley/NorthRow4E499920N4026680_2026-10-11/closeout.json) |
+
+Steps two through six remain to be authored and accepted in order. Step one passed native candidate and saved-production readback, 198400 direct collider samples, canonical serialized setup, owned metadata/global GUID uniqueness, full source coverage, three inspected developer-map captures and 34 current-catalog EditMode cases. Transfer held an exclusive offline root lock; root Editor/recovery state and unrelated work were preserved.
+
 ## Fixed contract
 
 Six ordered 4096 m sections west to east occupy EPSG:26911 `[499920,4026680,524496,4030776]`. Eastings are 499920, 504016, 508112, 512208, 516304, 520400. Each adds 256 native 256 m tiles and sixteen sectors. Final footprint is 96 × 96 with 9216 terrains, 36 sections, 576 sectors, 18240 joins and 384 exterior neighbor slots. Twenty-five direct collider samples per tile yield 230400 at final acceptance. Step counts are recorded in the readiness audit and independently calculated by row-four contract tests.
