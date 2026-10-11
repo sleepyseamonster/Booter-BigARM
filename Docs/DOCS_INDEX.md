@@ -128,7 +128,9 @@ These define current preferred approaches or sequencing.
 - [SMART_TRAVERSAL_STANDARD.md](./Design/Gameplay/SMART_TRAVERSAL_STANDARD.md)
   The contextual sprint traversal contract, first spin/vault move set, safety boundaries, and extension seam.
 - [SURVIVAL_SYSTEM_STANDARD.md](./Design/Gameplay/SURVIVAL_SYSTEM_STANDARD.md)
-  The four-vital player-state, depletion, persistence, procedural-world, and compact HUD contract.
+  The five-vital player-state, depletion, persistence, procedural-world, and compact HUD contract.
+- [CAMP_CLOAK_AND_SLEEP_BRAINSTORM.md](./Design/Gameplay/CAMP_CLOAK_AND_SLEEP_BRAINSTORM.md)
+  The provisional vertical camp shade, cloak mesh brief, Reserve recovery, and accelerated live-world sleep proposal.
 - [URP_2D_STANDARD.md](Archive/Legacy2D/URP_2D_STANDARD.md) — legacy 2D maintenance only.
 - [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md)
 - [CODEX_EDITOR_STANDARD.md](./Operations/CODEX_EDITOR_STANDARD.md)
