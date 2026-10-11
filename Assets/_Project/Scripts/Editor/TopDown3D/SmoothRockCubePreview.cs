@@ -17,7 +17,8 @@ namespace BooterBigArm.Editor
     [InitializeOnLoad]
     public static class SmoothRockCubePreview
     {
-        internal const string MaterialPath="Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat";
+        internal const string MaterialPath="Assets/_Project/Materials/TopDown3D/Rocks/SmoothCube_Volcanic.mat";
+        private const string VolcanicFolder="Assets/_Project/Art/Environment/Rocks/SmoothCubeVolcanic";
         public const string PrefabPath="Assets/_Project/Prefabs/TopDown3D/Environment/SmoothRockCube.prefab";
         private sealed class Node
         { internal SmoothRockCube Source; internal MeshRenderer Renderer; internal SmoothRockBox Box; }
@@ -243,23 +244,63 @@ namespace BooterBigArm.Editor
             properties.SetVector("_RockOriginWS",Vector4.zero);
             properties.SetVector("_RockSize",Vector3.one);
             properties.SetFloat("_RockSeed01",.5f);
-            properties.SetFloat("_RockMetersPerTile",2.4f);
-            properties.SetFloat("_SurfacePatchStrength",.346f);
-            properties.SetFloat("_CrackAmount",.36f);
-            properties.SetFloat("_SideGritAmount",.22f);
-            properties.SetFloat("_UndersideShaleAmount",.2f);
+            properties.SetFloat("_RockMetersPerTile",1.25f);
+            properties.SetFloat("_SurfacePatchStrength",0f);
+            properties.SetFloat("_CrackAmount",0f);
+            properties.SetFloat("_SideGritAmount",0f);
+            properties.SetFloat("_UndersideShaleAmount",0f);
             properties.SetFloat("_SideShalePatchAmount",0f);
             properties.SetFloat("_TopShalePatchAmount",0f);
-            properties.SetFloat("_WornSmoothnessBoost",.099f);
+            properties.SetFloat("_WornSmoothnessBoost",0f);
             properties.SetFloat("_GeologicalSeamAmount",0f);
             properties.SetFloat("_FormationFractureAmount",0f);
-            properties.SetColor("_BaseColor",new Color(.375f,.37f,.355f,1f));
+            properties.SetColor("_BaseColor",Color.white);
             properties.SetColor("_CrackColor",new Color(.018f,.015f,.013f,1f));
             properties.SetColor("_MineralColor",new Color(.58f,.51f,.41f,1f));
             properties.SetColor("_DustColor",new Color(.32f,.3f,.28f,1f));
-            properties.SetFloat("_SmoothnessMin",.015f);
-            properties.SetFloat("_SmoothnessMax",.14f);
+            properties.SetFloat("_SmoothnessMin",0f);
+            properties.SetFloat("_SmoothnessMax",1f);
             renderer.SetPropertyBlock(properties);
+        }
+
+        /// <summary>Delivery automation only; imports the existing volcanic maps, never alters their source.</summary>
+        public static void ConfigureVolcanicMaterial()
+        {
+            foreach(var kind in new[]{"Albedo","Normal","Surface"})
+            {
+                var path=VolcanicFolder+"/VolcanicBlackBasalt_"+kind+".png";
+                AssetDatabase.ImportAsset(path,ImportAssetOptions.ForceUpdate);
+                var importer=(TextureImporter)AssetImporter.GetAtPath(path);
+                importer.textureShape=TextureImporterShape.Texture2D;
+                importer.textureType=kind=="Normal"?TextureImporterType.NormalMap:TextureImporterType.Default;
+                importer.sRGBTexture=kind=="Albedo";
+                importer.wrapMode=TextureWrapMode.Repeat; importer.filterMode=FilterMode.Trilinear;
+                importer.mipmapEnabled=true; importer.anisoLevel=4; importer.maxTextureSize=1024;
+                importer.textureCompression=TextureImporterCompression.CompressedHQ;
+                importer.SaveAndReimport();
+            }
+            var template=AssetDatabase.LoadAssetAtPath<Material>("Assets/_Project/Materials/TopDown3D/RockWorkbench_NeutralPBR.mat");
+            var material=AssetDatabase.LoadAssetAtPath<Material>(MaterialPath);
+            if(material==null) { material=new Material(template); AssetDatabase.CreateAsset(material,MaterialPath); }
+            material.name="SmoothCube_Volcanic";
+            var albedo=AssetDatabase.LoadAssetAtPath<Texture2D>(VolcanicFolder+"/VolcanicBlackBasalt_Albedo.png");
+            var normal=AssetDatabase.LoadAssetAtPath<Texture2D>(VolcanicFolder+"/VolcanicBlackBasalt_Normal.png");
+            var surface=AssetDatabase.LoadAssetAtPath<Texture2D>(VolcanicFolder+"/VolcanicBlackBasalt_Surface.png");
+            if(albedo==null || normal==null || surface==null)
+                throw new InvalidOperationException("Volcanic maps must import as 2D textures before assigning the cube material.");
+            foreach(var name in new[]{"_BaseMap","_TopBaseMap","_BottomBaseMap","_GritBaseMap"}) material.SetTexture(name,albedo);
+            foreach(var name in new[]{"_NormalMap","_TopNormalMap","_BottomNormalMap","_GritNormalMap"}) material.SetTexture(name,normal);
+            foreach(var name in new[]{"_SurfaceMap","_TopSurfaceMap","_BottomSurfaceMap","_GritSurfaceMap"}) material.SetTexture(name,surface);
+            material.SetTexture("_CrackMap",Texture2D.blackTexture);
+            material.SetColor("_BaseColor",Color.white);
+            foreach(var name in new[]{"_CrackAmount","_SurfacePatchStrength","_SideGritAmount","_UndersideShaleAmount","_SideShalePatchAmount","_TopShalePatchAmount","_DustAmount","_MacroStrength","_HeightColorStrength","_WornSmoothnessBoost","_MineralShine","_SmoothnessMin"}) material.SetFloat(name,0f);
+            material.SetFloat("_RockMetersPerTile",1.25f); material.SetFloat("_SmoothnessMax",1f);
+            material.SetFloat("_OcclusionStrength",.6f);
+            foreach(var name in new[]{"_NormalStrength","_BottomNormalStrength","_GritNormalStrength"}) material.SetFloat(name,.65f);
+            EditorUtility.SetDirty(material); AssetDatabase.SaveAssetIfDirty(material);
+            var root=PrefabUtility.LoadPrefabContents(PrefabPath);
+            try { root.GetComponent<MeshRenderer>().sharedMaterial=material; PrefabUtility.SaveAsPrefabAsset(root,PrefabPath); }
+            finally { PrefabUtility.UnloadPrefabContents(root); }
         }
 
         internal static GameObject CreateCube(Vector3 position)

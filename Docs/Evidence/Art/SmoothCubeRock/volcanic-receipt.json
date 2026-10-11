@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-10",
+  "tests_passed": 5,
+  "tests_failed": 0,
+  "source_maps_unchanged": true,
+  "albedo_normal_byte_identical": true,
+  "packed_channels": "R=AO G=roughness B=height",
+  "world_repeat_m": 1.25,
+  "live": {
+    "cubes": [
+      {
+        "name": "Rock cube",
+        "material": "Assets/_Project/Materials/TopDown3D/Rocks/SmoothCube_Volcanic.mat",
+        "albedo": "Assets/_Project/Art/Environment/Rocks/SmoothCubeVolcanic/VolcanicBlackBasalt_Albedo.png",
+        "meters": 1.25,
+        "tint": "RGBA(1.000, 1.000, 1.000, 1.000)",
+        "position": "(-3, 0.5, 0)"
+      },
+      {
+        "name": "Rock cube (1)",
+        "material": "Assets/_Project/Materials/TopDown3D/Rocks/SmoothCube_Volcanic.mat",
+        "albedo": "Assets/_Project/Art/Environment/Rocks/SmoothCubeVolcanic/VolcanicBlackBasalt_Albedo.png",
+        "meters": 1.25,
+        "tint": "RGBA(1.000, 1.000, 1.000, 1.000)",
+        "position": "(-3.43, 1.041, 0.735)"
+      }
+    ],
+    "sceneDirty": true
+  },
+  "scene_saved": false,
+  "no_new_controls": true,
+  "geometry_unchanged": true,
+  "files": [
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SmoothCubeVolcanic/VolcanicBlackBasalt_Albedo.png",
+      "sha256": "cd4780de2deae26b05f5617579b89eea793359a66d9aff498529cc04648e078d"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SmoothCubeVolcanic/VolcanicBlackBasalt_Normal.png",
+      "sha256": "0d6fb1f38695562ee184c2cb3b564a42e7fc24753c6390937a8213f07dc1b5b1"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SmoothCubeVolcanic/VolcanicBlackBasalt_Surface.png",
+      "sha256": "323546272ab7376e25ee1fac17d91fe652c5e3933b28a5166f4339e3dcdd0370"
+    }
+  ]
+}

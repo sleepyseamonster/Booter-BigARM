@@ -2,6 +2,8 @@
 
 October 10, 2026. The center study has one plain rock-textured cube whose copies automatically fuse when touching in Edit Mode. Sources remain editable with normal Transform tools. No workbench, new panel, buttons, sliders, settings fields or source-order IDs were added.
 
+Later on October 10, the author specified the volcanic texture. The [volcanic correction](VOLCANIC_TEXTURE_2026-10-10.md) supersedes this initial delivery's generic material calibration and preview appearance. Its focused proof and live readback are recorded separately below that link; original geometry receipts remain historical evidence.
+
 ## Delivered behavior
 
 The persistent starter prefab is [SmoothRockCube](../../../../Assets/_Project/Prefabs/TopDown3D/Environment/SmoothRockCube.prefab). Its live instance is under Area 05 at `(-3, 0.5, 0)`. The study was already dirty; insertion uses Undo and leaves the author's normal scene Save responsible for persistence. The saved study file retains SHA-256 `7F0D2831A7F38DB87B3BA3043443ABC818E5EC3D4E9489F1D16FC75F57649170`. Both basalt instances and the existing workbench retain their baseline positions, rotations and scales. The cube adds no collider or Rigidbody. Live readback found one cube, zero settings fields, the existing material, visible source rendering and zero missing scripts.

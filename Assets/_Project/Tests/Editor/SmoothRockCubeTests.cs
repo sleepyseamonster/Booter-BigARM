@@ -261,6 +261,32 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void VolcanicMapsRepeatWithCorrectColorAndNormalImportAndNoGenericLayers()
+        {
+            var material=AssetDatabase.LoadAssetAtPath<Material>(SmoothRockCubePreview.MaterialPath);
+            Assert.That(material,Is.Not.Null);
+            foreach(var slot in new[]{"_BaseMap","_TopBaseMap","_BottomBaseMap"})
+                Assert.That(AssetDatabase.GetAssetPath(material.GetTexture(slot)),Does.EndWith("SmoothCubeVolcanic/VolcanicBlackBasalt_Albedo.png"));
+            var albedo=(TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(material.GetTexture("_BaseMap")));
+            var normal=(TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(material.GetTexture("_NormalMap")));
+            var surface=(TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(material.GetTexture("_SurfaceMap")));
+            Assert.That(albedo.sRGBTexture,Is.True); Assert.That(albedo.wrapMode,Is.EqualTo(TextureWrapMode.Repeat));
+            Assert.That(albedo.textureShape,Is.EqualTo(TextureImporterShape.Texture2D));
+            Assert.That(normal.textureType,Is.EqualTo(TextureImporterType.NormalMap)); Assert.That(normal.sRGBTexture,Is.False);
+            Assert.That(surface.sRGBTexture,Is.False); Assert.That(surface.wrapMode,Is.EqualTo(TextureWrapMode.Repeat));
+            var cube=SmoothRockCubePreview.CreateCube(Vector3.zero);
+            try
+            {
+                var properties=new MaterialPropertyBlock(); cube.GetComponent<MeshRenderer>().GetPropertyBlock(properties);
+                Assert.That(properties.GetColor("_BaseColor"),Is.EqualTo(Color.white));
+                Assert.That(properties.GetFloat("_RockMetersPerTile"),Is.EqualTo(1.25f));
+                Assert.That(properties.GetFloat("_CrackAmount"),Is.Zero);
+                Assert.That(properties.GetFloat("_SideGritAmount"),Is.Zero);
+            }
+            finally { Object.DestroyImmediate(cube); }
+        }
+
+        [Test]
         public void SampledExtractionRejectsInvalidInputs()
         {
             var values=new float[27];

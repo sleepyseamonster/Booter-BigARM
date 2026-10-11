@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 03:02:10Z" end-time="2026-10-11 03:02:17Z" duration="7.1079351">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="722" result="Passed" start-time="2026-10-11 03:02:10Z" end-time="2026-10-11 03:02:17Z" duration="7.107935" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1860" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/SmoothCubeRock20261010Candidate/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="722" result="Passed" start-time="2026-10-11 03:02:10Z" end-time="2026-10-11 03:02:17Z" duration="7.087672" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31396" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1861" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="722" result="Passed" start-time="2026-10-11 03:02:10Z" end-time="2026-10-11 03:02:17Z" duration="7.074577" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1862" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="722" result="Passed" start-time="2026-10-11 03:02:10Z" end-time="2026-10-11 03:02:17Z" duration="7.064181" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1274" name="SmoothRockCubeTests" fullname="BooterBigArm.Tests.SmoothRockCubeTests" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-10-11 03:02:11Z" end-time="2026-10-11 03:02:17Z" duration="6.763333" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1291" name="AutomaticDuplicationSeparationUndoAndDisableRestoreSources" fullname="BooterBigArm.Tests.SmoothRockCubeTests.AutomaticDuplicationSeparationUndoAndDisableRestoreSources" methodname="AutomaticDuplicationSeparationUndoAndDisableRestoreSources" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1263079716" result="Passed" start-time="2026-10-11 03:02:11Z" end-time="2026-10-11 03:02:15Z" duration="3.911847" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[worker 707.1 ms; main-thread apply 1.2 ms
+]]></output>
+            </test-case>
+            <test-case id="1293" name="MovingDuringWorkerRejectsTheOldResult" fullname="BooterBigArm.Tests.SmoothRockCubeTests.MovingDuringWorkerRejectsTheOldResult" methodname="MovingDuringWorkerRejectsTheOldResult" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1690696161" result="Passed" start-time="2026-10-11 03:02:15Z" end-time="2026-10-11 03:02:15Z" duration="0.204249" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1292" name="SaveReloadAndSceneIsolationPreserveOnlyTheRecipe" fullname="BooterBigArm.Tests.SmoothRockCubeTests.SaveReloadAndSceneIsolationPreserveOnlyTheRecipe" methodname="SaveReloadAndSceneIsolationPreserveOnlyTheRecipe" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="755661602" result="Passed" start-time="2026-10-11 03:02:15Z" end-time="2026-10-11 03:02:17Z" duration="2.610193" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1295" name="StarterPrefabIsOnePlainTexturedCubeWithoutCollidersOrHiddenFlags" fullname="BooterBigArm.Tests.SmoothRockCubeTests.StarterPrefabIsOnePlainTexturedCubeWithoutCollidersOrHiddenFlags" methodname="StarterPrefabIsOnePlainTexturedCubeWithoutCollidersOrHiddenFlags" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="1563130199" result="Passed" start-time="2026-10-11 03:02:17Z" end-time="2026-10-11 03:02:17Z" duration="0.005235" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1296" name="VolcanicMapsRepeatWithCorrectColorAndNormalImportAndNoGenericLayers" fullname="BooterBigArm.Tests.SmoothRockCubeTests.VolcanicMapsRepeatWithCorrectColorAndNormalImportAndNoGenericLayers" methodname="VolcanicMapsRepeatWithCorrectColorAndNormalImportAndNoGenericLayers" classname="BooterBigArm.Tests.SmoothRockCubeTests" runstate="Runnable" seed="2141241445" result="Passed" start-time="2026-10-11 03:02:17Z" end-time="2026-10-11 03:02:17Z" duration="0.008976" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

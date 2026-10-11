@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SmoothCube_Volcanic
+  m_Shader: {fileID: 4800000, guid: 851a88aa442c43a7b9269b6a0a8c8922, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties:
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 2a9512e507ff4a0997e9e23eac010b1f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomBaseMap:
+        m_Texture: {fileID: 2800000, guid: 2a9512e507ff4a0997e9e23eac010b1f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomNormalMap:
+        m_Texture: {fileID: 2800000, guid: f12b7a72f59c45b58257b3db7b815e3f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BottomSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 35640f285a784262a9fd9f0e3c6558bc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritBaseMap:
+        m_Texture: {fileID: 2800000, guid: 2a9512e507ff4a0997e9e23eac010b1f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritNormalMap:
+        m_Texture: {fileID: 2800000, guid: f12b7a72f59c45b58257b3db7b815e3f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GritSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 35640f285a784262a9fd9f0e3c6558bc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: f12b7a72f59c45b58257b3db7b815e3f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 35640f285a784262a9fd9f0e3c6558bc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopBaseMap:
+        m_Texture: {fileID: 2800000, guid: 2a9512e507ff4a0997e9e23eac010b1f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormalMap:
+        m_Texture: {fileID: 2800000, guid: f12b7a72f59c45b58257b3db7b815e3f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopSurfaceMap:
+        m_Texture: {fileID: 2800000, guid: 35640f285a784262a9fd9f0e3c6558bc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BottomBlendEnd: 0.5
+    - _BottomBlendStart: 0.08
+    - _BottomMetersPerTile: 0.9
+    - _BottomNormalStrength: 0.65
+    - _CrackAmount: 0
+    - _CrackMetersPerTile: 3.2
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DustAmount: 0
+    - _DustSharpness: 5
+    - _FormationFractureAmount: 0
+    - _FormationFractureSpacing: 6
+    - _GeologicalSeamAmount: 0
+    - _GritMetersPerTile: 0.7
+    - _GritNormalStrength: 0.65
+    - _HeightColorStrength: 0
+    - _MacroScale: 7.5
+    - _MacroStrength: 0
+    - _MineralShine: 0
+    - _NormalStrength: 0.65
+    - _OcclusionStrength: 0.6
+    - _RockMetersPerTile: 1.25
+    - _RockSeed01: 0
+    - _SideGritAmount: 0
+    - _SideShalePatchAmount: 0
+    - _SmoothnessMax: 1
+    - _SmoothnessMin: 0
+    - _Surface: 0
+    - _SurfacePatchStrength: 0
+    - _TopBlendEnd: 0.72
+    - _TopBlendStart: 0.42
+    - _TopShalePatchAmount: 0
+    - _TriplanarSharpness: 4
+    - _UndersideShaleAmount: 0
+    - _WornSmoothnessBoost: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CrackColor: {r: 0.11999995, g: 0.08499997, b: 0.059999965, a: 1}
+    - _DustColor: {r: 0.32, g: 0.3, b: 0.28, a: 1}
+    - _MineralColor: {r: 0.47999996, g: 0.41999996, b: 0.33999997, a: 1}
+    - _RockOriginWS: {r: 0, g: 0, b: 0, a: 0}
+    - _RockSize: {r: 4, g: 3, b: 3.5, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
