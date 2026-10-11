@@ -153,7 +153,7 @@ namespace BooterBigArm.Editor
             {
                 var clock=Stopwatch.StartNew();
                 var field=SmoothRockCubeGeometry.BuildField(boxes,token);
-                if(!TopDown3DRockWorkbenchMesher.TryBuildSampledField(field.Bounds,field.Cells,field.Values,field.Spacing,token,out var result,out var error))
+                if(!TopDown3DRockWorkbenchMesher.TryBuildSampledField(field.Bounds,field.Cells,field.Values,field.Spacing,token,out var result,out var error,SmoothRockCubeGeometry.MaximumFineSamples))
                     throw new InvalidOperationException(error);
                 if(result.ConnectedComponents!=1) throw new InvalidOperationException("The cube junction is unresolved; sources remain visible.");
                 return new Completed {Field=field,Result=result,Milliseconds=clock.Elapsed.TotalMilliseconds};

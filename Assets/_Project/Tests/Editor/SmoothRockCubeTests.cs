@@ -81,13 +81,44 @@ namespace BooterBigArm.Tests
             var stopwatch=Stopwatch.StartNew();
             var field=SmoothRockCubeGeometry.BuildField(chain);
             var mesh=Extract(field);
-            Assert.That(field.Spacing,Is.EqualTo(.04f));
+            Assert.That(field.Spacing,Is.EqualTo(.02f));
             Assert.That(mesh.ConnectedComponents,Is.EqualTo(1));
             Assert.That(mesh.Topology.SignedVolume,Is.InRange(2.85,3.2));
             TestContext.WriteLine($"3m chain {field.Cells}: {mesh.Topology.TriangleCount} triangles, total {stopwatch.Elapsed.TotalMilliseconds:F1} ms");
             var u=SmoothRockCubeGeometry.BuildField(new[]{Box(new Vector3(-1,0,0)),Box(Vector3.zero),Box(Vector3.right),Box(new Vector3(-1,1,0)),Box(new Vector3(1,1,0))});
             Assert.That(u.Sample(new Vector3(0,1,0)),Is.GreaterThan(.15f));
             Assert.That(Extract(u).ConnectedComponents,Is.EqualTo(1));
+        }
+
+        [Test]
+        public void AuthorsOffsetCubeJoinHasSmoothContourInsteadOfTerraces()
+        {
+            var boxes=new[]{Box(new Vector3(-3,.5f,0)),Box(new Vector3(-3.43f,1.041f,.735f))};
+            var raw=SmoothRockCubeGeometry.BuildField(boxes,default,false);
+            var smooth=SmoothRockCubeGeometry.BuildField(boxes);
+            float Roughness(SmoothRockField field)
+            {
+                float previousHeight=0,previousSlope=0,variation=0;
+                for(int i=0;i<=75;i++)
+                {
+                    float z=-.05f+i*.003f;
+                    float low=.8f,high=1.4f;
+                    for(int j=0;j<20;j++)
+                    {
+                        float mid=(low+high)*.5f;
+                        if(field.Sample(new Vector3(-3.2f,mid,z))<=0) low=mid; else high=mid;
+                    }
+                    float height=(low+high)*.5f;
+                    float slope=(height-previousHeight)/.003f;
+                    if(i>1) variation+=Mathf.Abs(slope-previousSlope);
+                    previousHeight=height; previousSlope=slope;
+                }
+                return variation;
+            }
+            float before=Roughness(raw),after=Roughness(smooth);
+            TestContext.WriteLine($"Authored join slope variation: raw={before:R}, smooth={after:R}");
+            Assert.That(after,Is.LessThan(before*.75f),"The actual authored offset needs a smooth contour, not simply a closed mesh.");
+            Assert.That(Extract(smooth).ConnectedComponents,Is.EqualTo(1));
         }
 
         [TestCase(1,0,0)]
@@ -318,11 +349,13 @@ namespace BooterBigArm.Tests
         }
 
         // Isolated background capture entry point only; never invoke in the artist's live Editor.
-        public static void CaptureReview()
+        public static void CaptureReview() => CaptureReview(false);
+        public static void CaptureJointReview() => CaptureReview(true);
+        private static void CaptureReview(bool closeJoint)
         {
             SmoothRockCubePreview.Clear(); SmoothRockCubePreview.Suspended=true;
             EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
-            var directory="Logs/SmoothCubeRockReview";
+            var directory=closeJoint?"Logs/SmoothCubeJointReview":"Logs/SmoothCubeRockReview";
             System.IO.Directory.CreateDirectory(directory);
             RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;
             RenderSettings.ambientSkyColor=new Color(.36f,.38f,.42f);
@@ -331,10 +364,12 @@ namespace BooterBigArm.Tests
             var sun=new GameObject("Review sun",typeof(Light));
             sun.GetComponent<Light>().type=LightType.Directional; sun.GetComponent<Light>().intensity=1.4f;
             sun.transform.rotation=Quaternion.Euler(45,-35,0);
-            var boxes=new[]{Box(new Vector3(-.5f,0,0)),Box(new Vector3(.5f,0,0)),Box(new Vector3(.5f,1,0))};
+            var boxes=closeJoint?new[]{Box(new Vector3(-3,.5f,0)),Box(new Vector3(-3.43f,1.041f,.735f))}
+                :new[]{Box(new Vector3(-.5f,0,0)),Box(new Vector3(.5f,0,0)),Box(new Vector3(.5f,1,0))};
             var sources=boxes.Select(b=>SmoothRockCubePreview.CreateCube(b.Center)).ToArray();
             var field=SmoothRockCubeGeometry.BuildField(boxes);
             var result=Extract(field); var mesh=result.CreateMesh("Cube rock review exterior");
+            var beforeMesh=closeJoint?Extract(SmoothRockCubeGeometry.BuildField(boxes,default,false)).CreateMesh("Unfiltered joint review"):null;
             var exterior=new GameObject("Review exterior",typeof(MeshFilter),typeof(MeshRenderer));
             exterior.transform.position=field.Origin;
             exterior.GetComponent<MeshFilter>().sharedMesh=mesh;
@@ -342,7 +377,9 @@ namespace BooterBigArm.Tests
             SmoothRockCubePreview.ApplyMaterial(exterior.GetComponent<MeshRenderer>());
             var cameraObject=new GameObject("Review camera",typeof(Camera)); var camera=cameraObject.GetComponent<Camera>();
             cameraObject.transform.position=new Vector3(4,3,-6); cameraObject.transform.LookAt(new Vector3(0,.5f,0));
-            camera.orthographic=true; camera.orthographicSize=2f; camera.clearFlags=CameraClearFlags.SolidColor;
+            if(closeJoint)
+            { cameraObject.transform.position=new Vector3(-1.5f,1.8f,-2.4f); cameraObject.transform.LookAt(new Vector3(-3.2f,1.05f,.2f)); }
+            camera.orthographic=true; camera.orthographicSize=closeJoint?.45f:2f; camera.clearFlags=CameraClearFlags.SolidColor;
             camera.backgroundColor=new Color(.14f,.14f,.15f);
             var target=new RenderTexture(1000,1000,24,RenderTextureFormat.ARGB32,RenderTextureReadWrite.sRGB);
             var image=new Texture2D(1000,1000,TextureFormat.RGB24,false);
@@ -351,11 +388,12 @@ namespace BooterBigArm.Tests
             {
                 foreach(bool fused in new[]{false,true})
                 {
-                    exterior.SetActive(fused);
-                    foreach(var source in sources) source.GetComponent<MeshRenderer>().forceRenderingOff=fused;
+                    exterior.SetActive(fused || closeJoint);
+                    exterior.GetComponent<MeshFilter>().sharedMesh=fused || !closeJoint?mesh:beforeMesh;
+                    foreach(var source in sources) source.GetComponent<MeshRenderer>().forceRenderingOff=fused || closeJoint;
                     camera.targetTexture=target; camera.Render(); RenderTexture.active=target;
                     image.ReadPixels(new Rect(0,0,1000,1000),0,0); image.Apply();
-                    System.IO.File.WriteAllBytes(directory+(fused?"/fused.png":"/sources.png"),image.EncodeToPNG());
+                    System.IO.File.WriteAllBytes(directory+(closeJoint?(fused?"/after.png":"/before.png"):(fused?"/fused.png":"/sources.png")),image.EncodeToPNG());
                 }
             }
             finally
@@ -363,6 +401,7 @@ namespace BooterBigArm.Tests
                 camera.targetTexture=null; RenderTexture.active=oldTarget; target.Release();
                 Object.DestroyImmediate(image); Object.DestroyImmediate(target); Object.DestroyImmediate(cameraObject);
                 Object.DestroyImmediate(sun); Object.DestroyImmediate(exterior); Object.DestroyImmediate(mesh);
+                if(beforeMesh!=null) Object.DestroyImmediate(beforeMesh);
                 foreach(var source in sources) Object.DestroyImmediate(source);
                 SmoothRockCubePreview.Suspended=false;
             }
@@ -382,7 +421,7 @@ namespace BooterBigArm.Tests
 
         private static TopDown3DRockWorkbenchBuildResult Extract(SmoothRockField field)
         {
-            Assert.That(TopDown3DRockWorkbenchMesher.TryBuildSampledField(field.Bounds,field.Cells,field.Values,field.Spacing,default,out var result,out var error),Is.True,error);
+            Assert.That(TopDown3DRockWorkbenchMesher.TryBuildSampledField(field.Bounds,field.Cells,field.Values,field.Spacing,default,out var result,out var error,SmoothRockCubeGeometry.MaximumFineSamples),Is.True,error);
             return result;
         }
     }

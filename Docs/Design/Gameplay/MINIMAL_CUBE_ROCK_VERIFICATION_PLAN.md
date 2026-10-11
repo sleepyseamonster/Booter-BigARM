@@ -1,6 +1,6 @@
 # Minimal cube rock verification plan
 
-Date: October 10, 2026. Status: scoped checks executed; [delivery evidence](../../Evidence/Art/SmoothCubeRock/README.md) records 27 passing current-machine cases, isolated renders and live insertion. Applies only to the [minimal implementation plan](MINIMAL_CUBE_ROCK_IMPLEMENTATION_PLAN.md). Matrix entries describe the proof contract, not unrestricted claims beyond the tested fixtures.
+Date: October 10, 2026. Status: scoped checks executed; [delivery evidence](../../Evidence/Art/SmoothCubeRock/README.md) links the original proof and subsequent texture/smooth-join corrections. The latest join run passes 29 cases. Applies only to the [minimal implementation plan](MINIMAL_CUBE_ROCK_IMPLEMENTATION_PLAN.md). Matrix entries describe the proof contract, not unrestricted claims beyond the tested fixtures.
 
 The proof must establish that duplicating and moving cubes yields a smooth exterior through ordinary Unity editing, without extra authoring controls. Geometry checks and user appearance acceptance are separate.
 
@@ -8,7 +8,7 @@ The proof must establish that duplicating and moving cubes yields a smooth exter
 
 Use Unity `6000.4.0f1` and the existing Editor test assembly. Build an isolated candidate project from the exact task source and pinned packages before running focused tests. Do not reuse another terrain task's validation copy or run batchmode against the live project's lock. Capture images only in an isolated background project, sequentially with tests. Preserve the foreground application.
 
-Implemented test filter: `BooterBigArm.Tests.SmoothRockCubeTests`, with 21 cases. Verify command discovery and the compiled fixture before invoking it through the repository's [Unity automation workflow](../../Engineering/UNITY_AUTOMATION.md). The final run also executed the six affected old workbench checks named below. The two-image capture uses `BooterBigArm.Tests.SmoothRockCubeTests.CaptureReview` only in the isolated background project. No gameplay smoke tests, broad repair commands or Player builds are part of this Edit Mode slice.
+Implemented test filter: `BooterBigArm.Tests.SmoothRockCubeTests`, now with 23 cases including volcanic imports and the author's offset join contour. Verify command discovery and the compiled fixture before invoking it through the repository's [Unity automation workflow](../../Engineering/UNITY_AUTOMATION.md). The final join run also executes the six affected old workbench checks named below. Captures use `BooterBigArm.Tests.SmoothRockCubeTests.CaptureReview` or `CaptureJointReview` only in the isolated background project. No gameplay smoke tests, broad repair commands or Player builds are part of this Edit Mode slice.
 
 ## Proof matrix
 

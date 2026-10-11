@@ -116,6 +116,7 @@ namespace BooterBigArm.Editor
         internal const float Spacing = .04f;
         internal const float JoinRadius = .2f;
         internal const int RadiusCells = 5;
+        internal const int MaximumFineSamples = 4000000;
         private const int MaximumSamples = 1000000;
 
         internal static float UnionDistance(IReadOnlyList<SmoothRockBox> boxes, Vector3 point)
@@ -130,7 +131,7 @@ namespace BooterBigArm.Editor
         /// lattice ball. Min/max make this permutation-independent and duplicate-neutral.
         /// Unlike ordered smooth minima, no primitive multiplicity enters the geometry.
         /// </summary>
-        internal static SmoothRockField BuildField(IReadOnlyList<SmoothRockBox> boxes, CancellationToken cancellation=default)
+        internal static SmoothRockField BuildField(IReadOnlyList<SmoothRockBox> boxes, CancellationToken cancellation=default, bool smoothSurface=true)
         {
             if(boxes==null || boxes.Count==0 || boxes.Count>32) throw new InvalidOperationException("Rock cube group must contain 1–32 sources.");
             var bounds=boxes[0].Bounds;
@@ -182,7 +183,70 @@ namespace BooterBigArm.Editor
                     values[(z*points.y+y)*points.x+x]=value;
                 }
             }
-            return new SmoothRockField(origin,new Bounds(low+(Vector3)cells*Spacing*.5f,(Vector3)cells*Spacing),cells,Spacing,values);
+            var fieldBounds=new Bounds(low+(Vector3)cells*Spacing*.5f,(Vector3)cells*Spacing);
+            if(!smoothSurface) return new SmoothRockField(origin,fieldBounds,cells,Spacing,values);
+            return SmoothAndRefine(origin,fieldBounds,cells,values,cancellation);
         }
+
+        private static SmoothRockField SmoothAndRefine(Vector3 origin,Bounds bounds,Vector3Int cells,float[] values,CancellationToken cancellation)
+        {
+            var points=cells+Vector3Int.one;
+            var fineCells=cells*2; var finePoints=fineCells+Vector3Int.one;
+            long fineCount=(long)finePoints.x*finePoints.y*finePoints.z;
+            if(fineCount>MaximumFineSamples) throw new InvalidOperationException("Rock cube arrangement exceeds the bounded smooth surface grid.");
+            // A small Gaussian removes the lattice-ball's terraces. Planar fields remain planar.
+            const int radius=3;
+            var kernel=new float[radius*2+1]; float sum=0;
+            for(int i=-radius;i<=radius;i++) { float w=Mathf.Exp(-i*i/2f); kernel[i+radius]=w; sum+=w; }
+            for(int i=0;i<kernel.Length;i++) kernel[i]/=sum;
+            var scratch=new float[values.Length];
+            for(int axis=0;axis<3;axis++)
+            {
+                for(int z=0;z<points.z;z++)
+                {
+                    cancellation.ThrowIfCancellationRequested();
+                    for(int y=0;y<points.y;y++) for(int x=0;x<points.x;x++)
+                    {
+                        float v=0;
+                        for(int k=-radius;k<=radius;k++)
+                        {
+                            int xx=axis==0?Mathf.Clamp(x+k,0,cells.x):x;
+                            int yy=axis==1?Mathf.Clamp(y+k,0,cells.y):y;
+                            int zz=axis==2?Mathf.Clamp(z+k,0,cells.z):z;
+                            v+=values[(zz*points.y+yy)*points.x+xx]*kernel[k+radius];
+                        }
+                        scratch[(z*points.y+y)*points.x+x]=v;
+                    }
+                }
+                var swap=values; values=scratch; scratch=swap;
+            }
+            // Cubic reconstruction preserves curved transitions between coarse samples.
+            // More triangles sample that continuous field; no extra user setting is required.
+            var fine=new float[(int)fineCount];
+            float V(int x,int y,int z) => values[(Mathf.Clamp(z,0,cells.z)*points.y+Mathf.Clamp(y,0,cells.y))*points.x+Mathf.Clamp(x,0,cells.x)];
+            for(int z=0;z<finePoints.z;z++)
+            {
+                cancellation.ThrowIfCancellationRequested();
+                int iz=z/2; float tz=(z&1)*.5f;
+                for(int y=0;y<finePoints.y;y++) for(int x=0;x<finePoints.x;x++)
+                {
+                    int ix=x/2,iy=y/2; float tx=(x&1)*.5f,ty=(y&1)*.5f;
+                    var planes=new Vector4();
+                    for(int zz=0;zz<4;zz++)
+                    {
+                        var rows=new Vector4();
+                        for(int yy=0;yy<4;yy++) rows[yy]=Cubic(V(ix-1,iy+yy-1,iz+zz-1),V(ix,iy+yy-1,iz+zz-1),V(ix+1,iy+yy-1,iz+zz-1),V(ix+2,iy+yy-1,iz+zz-1),tx);
+                        planes[zz]=Cubic(rows.x,rows.y,rows.z,rows.w,ty);
+                    }
+                    float value=Cubic(planes.x,planes.y,planes.z,planes.w,tz);
+                    if(Mathf.Abs(value)<Spacing*.00001f) value=Spacing*.00001f;
+                    fine[(z*finePoints.y+y)*finePoints.x+x]=value;
+                }
+            }
+            return new SmoothRockField(origin,bounds,fineCells,Spacing*.5f,fine);
+        }
+
+        private static float Cubic(float a,float b,float c,float d,float t)
+            => b+.5f*t*(c-a+t*(2f*a-5f*b+4f*c-d+t*(3f*(b-c)+d-a)));
     }
 }

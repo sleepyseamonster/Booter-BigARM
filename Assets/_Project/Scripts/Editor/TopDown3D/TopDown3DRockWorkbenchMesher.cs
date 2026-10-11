@@ -502,11 +502,12 @@ namespace BooterBigArm.Editor
         /// <summary>Extract an already sampled, bounded field without changing its resolution.</summary>
         internal static bool TryBuildSampledField(
             Bounds bounds, Vector3Int cells, float[] fieldValues, float spacing,
-            CancellationToken cancellation, out TopDown3DRockWorkbenchBuildResult result, out string error)
+            CancellationToken cancellation, out TopDown3DRockWorkbenchBuildResult result, out string error,
+            int maximumSamples = 1000000)
         {
             result = null; error = null;
             long count = (long)(cells.x + 1) * (cells.y + 1) * (cells.z + 1);
-            if (cells.x < 2 || cells.y < 2 || cells.z < 2 || count > 1000000 || count <= 0
+            if (cells.x < 2 || cells.y < 2 || cells.z < 2 || count > Math.Min(4000000,maximumSamples) || count <= 0
                 || fieldValues == null || fieldValues.Length != count || spacing <= 0f || float.IsNaN(spacing) || float.IsInfinity(spacing)
                 || bounds.size.x <= 0f || bounds.size.y <= 0f || bounds.size.z <= 0f
                 || float.IsNaN(bounds.center.sqrMagnitude + bounds.size.sqrMagnitude)

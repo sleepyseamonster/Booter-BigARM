@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-10",
+  "cause": "Discrete closing stencil produced terrace bands missed by topology-only and wide captures",
+  "correction": "Gaussian field filtering (sigma 0.04 m), cubic reconstruction, 0.02 m extraction; no source subdivisions or new UI",
+  "coarse_spacing_m": 0.04,
+  "extraction_spacing_m": 0.02,
+  "maximum_refined_samples": 4000000,
+  "tests_passed": 29,
+  "tests_failed": 0,
+  "raw_slope_variation": 19.3254452,
+  "smooth_slope_variation": 1.655658,
+  "live": {
+    "scene": "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity",
+    "dirty": true,
+    "cubes": [
+      {
+        "name": "Rock cube",
+        "position": [
+          -3,
+          0.5,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "material": "Assets/_Project/Materials/TopDown3D/Rocks/SmoothCube_Volcanic.mat"
+      },
+      {
+        "name": "Rock cube (1)",
+        "position": [
+          -3.43,
+          1.041,
+          0.735
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "material": "Assets/_Project/Materials/TopDown3D/Rocks/SmoothCube_Volcanic.mat"
+      }
+    ]
+  },
+  "poses_and_material_preserved": true,
+  "scene_saved": false,
+  "live_preview_vertices": 104916,
+  "live_preview_triangles": 209828,
+  "source_files": [
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/SmoothRockCubeGeometry.cs",
+      "sha256": "8e691c3baf7a1934ee6f6cba0f72676874f60c0cdffddd877978ff46d1e51a77",
+      "tested_candidate_equal": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/SmoothRockCubePreview.cs",
+      "sha256": "cb880af8812ea3dae51d79152e06b2e8c48c2c53269d0c9f16a58f0601c78160",
+      "tested_candidate_equal": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DRockWorkbenchMesher.cs",
+      "sha256": "0a3791211899a86cbca00f0fddd3ccf0c7d1fb5c50820337298804c9af59313d",
+      "tested_candidate_equal": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/SmoothRockCubeTests.cs",
+      "sha256": "313ef8e528a836456fc67627e50506844837fbf0223fe1ab0539cb3dedb98dba",
+      "tested_candidate_equal": true
+    }
+  ],
+  "visual_acceptance": "pending author",
+  "capture": "Exact author poses, matched close-up camera/material/neutral lighting, isolated background Editor only"
+}
