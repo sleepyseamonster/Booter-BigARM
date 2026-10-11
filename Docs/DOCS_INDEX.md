@@ -171,6 +171,9 @@ These are intentionally non-canonical. They preserve ideas, research, or working
 - [Minimal cube rock fusion research](./Research/Art/SMOOTH_CUBE_ROCK_FUSION_RESEARCH.md)
   Repository audit and primary-source research for duplicating and moving rock-textured cubes that blend automatically, with no workbench or exposed complexity controls.
 
+- [Minimal cube rock implementation plan](./Design/Gameplay/MINIMAL_CUBE_ROCK_IMPLEMENTATION_PLAN.md) and [verification plan](./Design/Gameplay/MINIMAL_CUBE_ROCK_VERIFICATION_PLAN.md)
+  Planned minimal Edit Mode cube interaction, bounded source changes, ownership gates and focused proof. No implementation is claimed.
+
 - [Monster Hunter Wilds menu research and Arc and Dust audit](./Research/UI/MONSTER_HUNTER_WILDS_MENU_AUDIT.md)
   Official reference analysis, current production UI source audit, and proposed menu presentation, navigation, accessibility, and implementation sequence.
 
