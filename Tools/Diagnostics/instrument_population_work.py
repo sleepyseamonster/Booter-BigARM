@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 import subprocess
 
@@ -13,7 +14,10 @@ def scope(unit, statement):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--candidate', type=Path, required=True)
+    parser.add_argument('--label', default='WorkUnits')
     args = parser.parse_args()
+    if not re.fullmatch(r'[A-Za-z][A-Za-z0-9]{0,31}', args.label):
+        raise ValueError('Use a bounded alphanumeric build label.')
     root = Path(__file__).resolve().parents[2]
     candidate = args.candidate.resolve()
     if not str(candidate).startswith('D:\\BooterBigArmValidation\\PerformancePlayer') or (candidate / '.git').exists():
@@ -32,7 +36,7 @@ def main():
             ('selected.Build = planner.Begin(selected.Cell);', scope('PlannerBegin', 'selected.Build = planner.Begin(selected.Cell);')),
             ('count += selected.Build.Advance(1, remaining);', scope('PlannerStep', 'count += selected.Build.Advance(1, remaining);')),
             ('if (!selected.Build.TryCommitBaseline(state))', 'bool committed; ' + scope('BaselineCommit', 'committed = selected.Build.TryCommitBaseline(state);') + ' if (!committed)'),
-            ('if (presentation.Queue(selected.Cell, selected.Build, selected.Collision, selected.Visual))', 'bool queued; ' + scope('Queue', 'queued = presentation.Queue(selected.Cell, selected.Build, selected.Collision, selected.Visual);') + ' if (queued)')],
+            ('if (presentation.QueueAfterBaselineCommit(selected.Cell, selected.Build, selected.Collision, selected.Visual, state))', 'bool queued; ' + scope('Queue', 'queued = presentation.QueueAfterBaselineCommit(selected.Cell, selected.Build, selected.Collision, selected.Visual, state);') + ' if (queued)')],
         runtime + 'FixedTerrainPopulationPresentation.cs': [
             ('Retire(retiring.Dequeue());', scope('Retire', 'Retire(retiring.Dequeue());')),
             ('var instance = Acquire();', 'Instance instance; ' + scope('Acquire', 'instance = Acquire();')),
@@ -53,11 +57,13 @@ def main():
         target = candidate / (runtime + 'PopulationSectorPlayerAudit.cs' if relative.startswith('Tools/') else relative)
         output.append((target, source, relative))
     output.append((candidate / (runtime + 'PopulationWorkTimings.cs'), (root / 'Tools/Diagnostics/PopulationWorkTimings.cs').read_text(), 'Tools/Diagnostics/PopulationWorkTimings.cs'))
+    for name in ('FixedTerrainPopulationState.cs', 'FixedTerrainPopulationPlanner.cs'):
+        output.append((candidate / (runtime + name), (root / (runtime + name)).read_text(), runtime + name))
     output.append((candidate / 'Assets/_Project/Scripts/Editor/IsolatedPopulationAuditBuild.cs',
-                   (root / 'Tools/Diagnostics/IsolatedPopulationAuditBuild.cs').read_text().replace('BuildsPopulationLocal/', 'BuildsPopulationWorkUnits/'),
+                   (root / 'Tools/Diagnostics/IsolatedPopulationAuditBuild.cs').read_text().replace('BuildsPopulationLocal/', 'BuildsPopulation' + args.label + '/'),
                    'Tools/Diagnostics/IsolatedPopulationAuditBuild.cs'))
-    receipt = candidate / 'Logs/population-work-units-overlay.json'
-    if receipt.exists() or (candidate / 'BuildsPopulationWorkUnits').exists():
+    receipt = candidate / ('Logs/population-work-units-overlay.json' if args.label == 'WorkUnits' else 'Logs/population-' + args.label + '-overlay.json')
+    if receipt.exists() or (candidate / ('BuildsPopulation' + args.label)).exists():
         raise ValueError('Fresh overlay receipt/output required.')
     records = []
     for target, source, original in output:

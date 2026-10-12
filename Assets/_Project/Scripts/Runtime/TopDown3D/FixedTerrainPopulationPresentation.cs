@@ -81,6 +81,16 @@ namespace BooterBigArm.TopDown3D
         }
 
         public bool Queue(Vector2Int cell, FixedTerrainPopulationPlanner.CellBuild build, bool collisionRelevant, bool visualRelevant = true)
+            => QueueCore(cell, build, collisionRelevant, visualRelevant, false);
+
+        // Scheduler calls this immediately after a successful commit, before any publication.
+        // A different state owner must still register its own receipt through the public path.
+        internal bool QueueAfterBaselineCommit(Vector2Int cell, FixedTerrainPopulationPlanner.CellBuild build,
+            bool collisionRelevant, bool visualRelevant, FixedTerrainPopulationState committedState)
+            => QueueCore(cell, build, collisionRelevant, visualRelevant, ReferenceEquals(state, committedState));
+
+        private bool QueueCore(Vector2Int cell, FixedTerrainPopulationPlanner.CellBuild build,
+            bool collisionRelevant, bool visualRelevant, bool baselineCommitted)
         {
             if (disposed || build == null || build.Cell != cell || build.RecipeId != recipeId || !build.Complete || build.Cancelled
                 || requests.ContainsKey(cell) || requests.Count >= pendingCapacity) return false;
@@ -90,7 +100,7 @@ namespace BooterBigArm.TopDown3D
             // Reserve every pending acquisition. Replacements need room for both versions until the successor is ready.
             // A caller can retry after releasing lower-priority cells; rejection never removes current coverage.
             if (needed > AvailablePreparationSlots) return false;
-            if (!build.TryCommitBaseline(state)) return false;
+            if (!baselineCommitted && !build.TryCommitBaseline(state)) return false;
             requests.Add(cell, new Request { Cell = cell, Plan = build.Placements.ToArray(), CollisionRelevant = collisionRelevant, VisualRelevant = visualRelevant });
             return true;
         }

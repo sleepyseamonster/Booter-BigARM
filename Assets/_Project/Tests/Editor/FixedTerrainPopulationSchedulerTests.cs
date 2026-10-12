@@ -10,6 +10,38 @@ namespace BooterBigArm.Tests
 {
     public sealed class FixedTerrainPopulationSchedulerTests
     {
+        [TestCase(false)]
+        [TestCase(true)]
+        public void SchedulerReusesOnlyItsOwnCommittedReceiptAndPublicQueueStillRegisters(bool separatePresenterState)
+        {
+            var scene = EditorSceneManager.NewPreviewScene(); FixedTerrainPopulationPresentation presenter = null; FixedTerrainPopulationScheduler scheduler = null;
+            try
+            {
+                int terrainReads = 0, constraintReads = 0;
+                var state = new FixedTerrainPopulationState(GreaterWastelandInventorySnapshot.WorldIdentity, 17, 1, "fixture.catalog.v1",
+                    new[] { new FixedTerrainPopulationRecipeVersion { recipeId = "fixture.clutter", version = 1, candidateCount = 64 } },
+                    cell => { terrainReads++; return "terrain.cell.v1"; },
+                    cell => { constraintReads++; return "constraints.cell.v1"; });
+                var presenterState = separatePresenterState ? FixedTerrainPopulationStateTests.Create() : state;
+                var template = GameObject.CreatePrimitive(PrimitiveType.Cube); SceneManager.MoveGameObjectToScene(template, scene); template.SetActive(false);
+                var parent = new GameObject("Single receipt fixture"); SceneManager.MoveGameObjectToScene(parent, scene);
+                presenter = new FixedTerrainPopulationPresentation(template, parent.transform, presenterState, "fixture.clutter", 256, 128);
+                var planner = Planner(); scheduler = new FixedTerrainPopulationScheduler(planner, presenter, state, new[] { Vector2Int.zero });
+                scheduler.SetDemand(new[] { new FixedTerrainPopulationDemand(Vector2Int.zero, true, true) }, 0);
+                Finish(scheduler, presenter, 0);
+                Assert.That(terrainReads, Is.EqualTo(1)); Assert.That(constraintReads, Is.EqualTo(1));
+                Assert.That(presenterState.CellCount, Is.EqualTo(1), "A separate presenter owner needs its own receipt.");
+                var direct = planner.Begin(Vector2Int.right);
+                for (int i = 0; !direct.Complete && i < 10000; i++) direct.Advance(97, 100);
+                Assert.That(direct.Complete, Is.True);
+                Assert.That(presenter.Queue(Vector2Int.right, direct, true), Is.True);
+                Assert.That(presenterState.CellCount, Is.EqualTo(2));
+                Assert.That(terrainReads, Is.EqualTo(separatePresenterState ? 1 : 2));
+                Assert.That(constraintReads, Is.EqualTo(separatePresenterState ? 1 : 2));
+            }
+            finally { scheduler?.Dispose(); presenter?.Dispose(); EditorSceneManager.ClosePreviewScene(scene); }
+        }
+
         [Test]
         public void CollisionDemandPrecedesVisualWorkAndCancellationCannotAdoptStaleCell()
         {

@@ -158,7 +158,7 @@ namespace BooterBigArm.TopDown3D
                     count += selected.Build.Advance(1, remaining); continue;
                 }
                 if (!selected.Build.TryCommitBaseline(state)) { selected.Faulted = true; selected.Build.Cancel(); selected.Build = null; count++; continue; }
-                if (presentation.Queue(selected.Cell, selected.Build, selected.Collision, selected.Visual))
+                if (presentation.QueueAfterBaselineCommit(selected.Cell, selected.Build, selected.Collision, selected.Visual, state))
                 { selected.Build.Cancel(); selected.Build = null; CompletedBuilds++; }
                 else { selected.RetryAfter = now + .2; CapacityDeferrals++; }
                 count++;
