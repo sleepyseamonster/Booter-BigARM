@@ -171,6 +171,7 @@ namespace BooterBigArm.TopDown3D
             InputSystem.onDeviceChange += HandleDeviceChange;
             actionsBound = true;
             BindAlgaeActions();
+            BindInventoryActions();
             SetPromptDevice(FindAvailableGamepad() != null
                 ? TopDown3DPromptDevice.Gamepad
                 : TopDown3DPromptDevice.KeyboardMouse);
@@ -180,6 +181,7 @@ namespace BooterBigArm.TopDown3D
         private void UnbindActions()
         {
             UnbindAlgaeActions();
+            UnbindInventoryActions();
             if (menuAction != null) menuAction.performed -= HandleMenu;
             InputSystem.onBeforeUpdate -= BeforeInputUpdate;
             InputSystem.onAfterUpdate -= AfterInputUpdate;
@@ -495,10 +497,10 @@ namespace BooterBigArm.TopDown3D
             if (mode == TopDown3DInputMode.Gameplay && previousMode != TopDown3DInputMode.Gameplay)
             {
                 ignoreMouseLookUntilFrame = Time.frameCount + 1;
-                awaitMoveNeutral = (previousMode == TopDown3DInputMode.SystemMenu || previousMode == TopDown3DInputMode.CampActions
+                awaitMoveNeutral = (previousMode == TopDown3DInputMode.Inventory || previousMode == TopDown3DInputMode.SystemMenu || previousMode == TopDown3DInputMode.CampActions
                     || previousMode == TopDown3DInputMode.CampBusy || previousMode == TopDown3DInputMode.CampPlacement)
                     && Gamepad.current != null && Gamepad.current.leftStick.ReadValue().sqrMagnitude > 0.0484f;
-                awaitLookNeutral = (previousMode == TopDown3DInputMode.Radial || previousMode == TopDown3DInputMode.SystemMenu
+                awaitLookNeutral = (previousMode == TopDown3DInputMode.Inventory || previousMode == TopDown3DInputMode.Radial || previousMode == TopDown3DInputMode.SystemMenu
                     || previousMode == TopDown3DInputMode.CampActions || previousMode == TopDown3DInputMode.CampBusy || previousMode == TopDown3DInputMode.CampPlacement)
                     && Gamepad.current != null && Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.0484f;
             }

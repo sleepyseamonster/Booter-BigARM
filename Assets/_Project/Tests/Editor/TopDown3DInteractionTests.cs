@@ -24,7 +24,7 @@ namespace BooterBigArm.Tests
             texture = new Texture2D(2, 2);
             icon = Sprite.Create(texture, new Rect(0f, 0f, 2f, 2f), Vector2.one * 0.5f);
             item = ScriptableObject.CreateInstance<TopDown3DItemDefinition>();
-            item.Configure("resource.ironstone_ore", "Ironstone Ore", "Test", "Resource", icon, 1, 0f);
+            item.Configure("resource.ironstone_ore", "Ironstone Ore", "Test", "Test", icon, 1, 0f);
             catalog = ScriptableObject.CreateInstance<TopDown3DItemCatalog>();
             catalog.Configure(new[] { item });
         }

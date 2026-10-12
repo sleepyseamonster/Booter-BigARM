@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 namespace BooterBigArm.TopDown3D
 {
     [DisallowMultipleComponent]
-    public sealed class TopDown3DInventoryUiController : MonoBehaviour
+    public sealed partial class TopDown3DInventoryUiController : MonoBehaviour
     {
         [SerializeField] private TopDown3DInputRouter input;
         [SerializeField] private TopDown3DPlayerInventory inventory;
@@ -53,6 +53,7 @@ namespace BooterBigArm.TopDown3D
             Refresh();
             RefreshControlHints();
             configured = true;
+            BindCommands();
         }
 
         public void SuspendForMenu()
@@ -84,6 +85,7 @@ namespace BooterBigArm.TopDown3D
             if (!suspended) return;
             suspended = false; canvas.SetSuspended(false); canvas.SetVisible(false);
             selectedSource = -1; selectedCargoSource = false;
+            ClearCacheContext();
         }
 
         public void Open(bool focusCargo = false)
@@ -96,7 +98,8 @@ namespace BooterBigArm.TopDown3D
             actionController?.CancelGather();
             selectedSource = -1;
             selectedCargoSource = false;
-            inspectingCargo = focusCargo;
+            inspectingCargo = focusCargo || rememberedCargoFocus;
+            if (focusCargo) RequestCargoApproach();
             canvas.SetVisible(true);
             input.EnterInventoryMode();
             RefreshControlHints();
@@ -115,27 +118,30 @@ namespace BooterBigArm.TopDown3D
             }
 
             RememberSelection();
+            rememberedCargoFocus = inspectingCargo;
             selectedSource = -1;
             selectedCargoSource = false;
             canvas.SetVisible(false);
             input?.EnterGameplayMode();
             Refresh();
+            ClearCacheContext();
         }
 
         internal void ActivateSlot(int slotIndex)
         {
-            if (!IsOpen || suspended || input.Mode == TopDown3DInputMode.SystemMenu || slotIndex < 0 || slotIndex >= inventory.State.Capacity)
+            if (!IsOpen || suspended || input.Mode != TopDown3DInputMode.Inventory || slotIndex < 0 || slotIndex >= LeftState.Capacity)
             {
                 return;
             }
 
-            var slot = inventory.State.Slots[slotIndex];
+            var slot = LeftState.Slots[slotIndex];
             if (selectedSource < 0)
             {
                 if (!slot.IsEmpty)
                 {
                     selectedSource = slotIndex;
                     selectedCargoSource = false;
+                    RememberPending();
                 }
 
                 SelectSlot(slotIndex);
@@ -150,11 +156,12 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            if (selectedCargoSource && cargo != null && !cargo.IsInAccessRange(inventory.transform.position)) return;
-            if (selectedCargoSource && cargo != null)
-                TopDown3DInventoryTransferService.Transfer(cargo.State, inventory.State, cargo.State.Slots[selectedSource].ItemId, cargo.State.Slots[selectedSource].Quantity);
-            else
-                inventory.State.TryMoveOrSwap(selectedSource, slotIndex);
+            if (selectedCargoSource) { ShowNotice("Use Quick Transfer for automatic placement between inventories."); return; }
+            if (!CanMutateLeft()) { ShowNotice("Resource cache is out of reach."); return; }
+            mutating = true;
+            var result = LeftState.TryMoveOrSwap(selectedSource, slotIndex);
+            mutating = false;
+            if (!result.Succeeded) { ShowNotice(result.Message); return; }
             selectedSource = -1;
             selectedCargoSource = false;
             lastSelectedSlot = slotIndex;
@@ -163,18 +170,23 @@ namespace BooterBigArm.TopDown3D
 
         internal void ActivateCargoSlot(int slotIndex)
         {
-            if (!IsOpen || suspended || input.Mode == TopDown3DInputMode.SystemMenu || cargo == null || slotIndex < 0 || slotIndex >= cargo.State.Capacity) return;
-            if (!cargo.IsInAccessRange(inventory.transform.position)) return;
+            if (!IsOpen || suspended || input.Mode != TopDown3DInputMode.Inventory || cargo == null || slotIndex < 0 || slotIndex >= cargo.State.Capacity) return;
             if (selectedSource >= 0 && !selectedCargoSource)
             {
-                var source = inventory.State.Slots[selectedSource];
-                if (!source.IsEmpty) TopDown3DInventoryTransferService.Transfer(inventory.State, cargo.State, source.ItemId, source.Quantity);
-                selectedSource = -1; selectedCargoSource = false; Refresh(); return;
+                ShowNotice("Use Quick Transfer for automatic placement between inventories."); return;
             }
             var slot = cargo.State.Slots[slotIndex];
-            if (selectedSource < 0 && !slot.IsEmpty) { selectedSource = slotIndex; selectedCargoSource = true; }
+            if (selectedSource < 0 && !slot.IsEmpty && CargoAccessible) { selectedSource = slotIndex; selectedCargoSource = true; RememberPending(); }
             else if (selectedSource == slotIndex && selectedCargoSource) { selectedSource = -1; selectedCargoSource = false; }
-            else if (selectedSource >= 0 && selectedCargoSource) { cargo.State.TryMoveOrSwap(selectedSource, slotIndex); selectedSource = -1; selectedCargoSource = false; }
+            else if (selectedSource >= 0 && selectedCargoSource)
+            {
+                if (!CargoAccessible) { ShowNotice("Legger cargo is out of reach."); return; }
+                mutating = true;
+                var result = cargo.State.TryMoveOrSwap(selectedSource, slotIndex);
+                mutating = false;
+                if (!result.Succeeded) { ShowNotice(result.Message); return; }
+                selectedSource = -1; selectedCargoSource = false;
+            }
             Refresh();
         }
 
@@ -185,21 +197,22 @@ namespace BooterBigArm.TopDown3D
             var slot = cargo.State.Slots[slotIndex];
             var definition = !slot.IsEmpty && cargo.ItemCatalog.TryGetDefinition(slot.ItemId, out var found) ? found : null;
             canvas.SetDetails(definition != null ? definition.DisplayName : "Empty mount",
-                definition != null ? definition.Description : "Choose a cargo stack.",
-                cargo.IsInAccessRange(inventory.transform.position) ? "LEGGER CARGO" : "LEGGER OUT OF REACH");
+                definition != null ? $"{definition.Description}\n{slot.Quantity} units · {slot.Quantity * definition.Mass:0.0} mass" : "Choose a cargo stack.",
+                CargoAccessible ? "LEGGER CARGO" : "LEGGER CARGO — READ ONLY");
         }
 
         private void HandleAutoPack()
         {
             if (suspended || input.Mode == TopDown3DInputMode.SystemMenu || input.IsCampMode) return;
-            if (cargo == null || !cargo.IsInAccessRange(inventory.transform.position)) return;
-            if (cargo.TryAutoPack()) canvas.SetCargoSummary("Auto-packed: stable");
+            if (cargo == null || !CargoAccessible) { ShowNotice("Legger cargo is out of reach."); return; }
+            selectedSource = -1; selectedCargoSource = false;
+            if (cargo.TryAutoPack()) ShowNotice("Cargo organized; quantities unchanged.");
             Refresh();
         }
 
         internal void SelectSlot(int slotIndex)
         {
-            if (slotIndex < 0 || slotIndex >= inventory.State.Capacity)
+            if (slotIndex < 0 || slotIndex >= LeftState.Capacity)
             {
                 return;
             }
@@ -229,7 +242,8 @@ namespace BooterBigArm.TopDown3D
         {
             if (IsOpen && !suspended && input.Mode != TopDown3DInputMode.SystemMenu)
             {
-                Close();
+                if (selectedSource >= 0) { selectedSource = -1; selectedCargoSource = false; Refresh(); }
+                else Close();
             }
         }
 
@@ -240,15 +254,16 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            var state = inventory.State;
+            ValidatePending();
+            var state = LeftState;
             for (var i = 0; i < state.Capacity && i < canvas.SlotViews.Count; i++)
             {
                 var slot = state.Slots[i];
                 var definition = !slot.IsEmpty
-                    && inventory.ItemCatalog.TryGetDefinition(slot.ItemId, out var found)
+                    && state.ItemCatalog.TryGetDefinition(slot.ItemId, out var found)
                     ? found
                     : null;
-                canvas.SlotViews[i].Refresh(slot, definition, i == selectedSource);
+                canvas.SlotViews[i].Refresh(slot, definition, !selectedCargoSource && i == selectedSource);
             }
             if (cargo != null)
             {
@@ -259,9 +274,9 @@ namespace BooterBigArm.TopDown3D
                     canvas.CargoSlotViews[i].Refresh(slot, definition, selectedCargoSource && i == selectedSource);
                 }
                 var profile = cargo.LoadProfile;
-                canvas.SetCargoSummary(cargo.IsInAccessRange(inventory.transform.position)
-                    ? $"{profile.Band}  {profile.TotalMass:0.0} / {profile.RecommendedMass:0.0} mass   balance {profile.Balance:P0}"
-                    : "LEGGER OUT OF REACH — call him over to access cargo");
+                canvas.SetCargoSummary($"LOAD {profile.TotalMass:0.0} / {cargo.State.Policy.MaximumMass:0.0}  "
+                    + $"{cargo.State.OccupiedSlotCount}/{cargo.State.Capacity} SLOTS  {profile.Band}"
+                    + (CargoAccessible ? "" : "\nREAD ONLY — Legger out of reach"));
             }
 
             if (inspectingCargo && cargo != null) SelectCargoSlot(inspectedCargoSlot);
@@ -271,7 +286,7 @@ namespace BooterBigArm.TopDown3D
         private void RefreshCargoAccess()
         {
             if (cargo == null || inventory == null || canvas == null) return;
-            lastCargoAccess = cargo.IsInAccessRange(inventory.transform.position);
+            lastCargoAccess = CargoAccessible;
             canvas.SetCargoAccess(lastCargoAccess);
             if (!lastCargoAccess && selectedCargoSource) { selectedCargoSource = false; selectedSource = -1; }
         }
@@ -279,7 +294,7 @@ namespace BooterBigArm.TopDown3D
         private void Update()
         {
             if (!IsOpen || cargo == null || inventory == null) return;
-            if (lastCargoAccess != cargo.IsInAccessRange(inventory.transform.position)) { RefreshCargoAccess(); Refresh(); }
+            if (lastCargoAccess != CargoAccessible) { RefreshCargoAccess(); Refresh(); }
         }
 
         private void RefreshControlHints()
@@ -293,18 +308,20 @@ namespace BooterBigArm.TopDown3D
             var toggle = input.GetBindingDisplayName("System/ToggleInventory", "Tab");
             var cancel = input.GetBindingDisplayName("UI/Cancel", "Cancel");
             canvas.SetControlHints(
-                $"[{select}]: move / merge / swap     [{toggle}] or [{cancel}]: close");
+                $"[{select}]: select / move  [{input.GetBindingDisplayName("UI/QuickTransfer", "R")}]: quick transfer  "
+                + $"[{input.GetBindingDisplayName("UI/PreviousInventory", "Q")}] / [{input.GetBindingDisplayName("UI/NextInventory", "E")}]: switch inventory\n"
+                + $"[{cancel}]: cancel / back     [{toggle}]: close");
         }
 
         private void RefreshDetails(int slotIndex)
         {
-            var state = inventory.State;
+            var state = LeftState;
             var slot = state.Slots[Mathf.Clamp(slotIndex, 0, state.Capacity - 1)];
-            if (!slot.IsEmpty && inventory.ItemCatalog.TryGetDefinition(slot.ItemId, out var definition))
+            if (!slot.IsEmpty && state.ItemCatalog.TryGetDefinition(slot.ItemId, out var definition))
             {
                 canvas.SetDetails(
                     definition.DisplayName,
-                    definition.Description,
+                    $"{definition.Description}\n{slot.Quantity} units · {slot.Quantity * definition.Mass:0.0} mass",
                     $"{state.OccupiedSlotCount} / {state.Capacity} SLOTS");
             }
             else
@@ -323,7 +340,12 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            lastSelectedSlot = Mathf.Clamp(lastSelectedSlot, 0, canvas.SlotViews.Count - 1);
+            if (inspectingCargo && cargo != null && canvas.CargoSlotViews.Count > 0)
+            {
+                eventSystem.SetSelectedGameObject(canvas.CargoSlotViews[Mathf.Clamp(inspectedCargoSlot, 0, cargo.State.Capacity - 1)].gameObject);
+                return;
+            }
+            lastSelectedSlot = Mathf.Clamp(lastSelectedSlot, 0, LeftState.Capacity - 1);
             eventSystem.SetSelectedGameObject(canvas.SlotViews[lastSelectedSlot].gameObject);
         }
 
@@ -333,7 +355,8 @@ namespace BooterBigArm.TopDown3D
             var slot = selected != null ? selected.GetComponent<TopDown3DInventorySlotView>() : null;
             if (slot != null)
             {
-                lastSelectedSlot = slot.SlotIndex;
+                if (System.Linq.Enumerable.Contains(canvas.CargoSlotViews, slot)) { inspectingCargo = true; inspectedCargoSlot = slot.SlotIndex; }
+                else { inspectingCargo = false; lastSelectedSlot = slot.SlotIndex; }
             }
         }
 
@@ -350,6 +373,7 @@ namespace BooterBigArm.TopDown3D
             inventory.State.Changed += Refresh;
             if (cargo != null) cargo.State.Changed += Refresh;
             if (actionController != null) actionController.CargoAccessRequested += HandleCargoAccessRequested;
+            if (actionController != null) actionController.CacheAccessRequested += OpenCache;
             subscribed = true;
         }
 
@@ -373,6 +397,7 @@ namespace BooterBigArm.TopDown3D
             }
             if (cargo != null) cargo.State.Changed -= Refresh;
             if (actionController != null) actionController.CargoAccessRequested -= HandleCargoAccessRequested;
+            if (actionController != null) actionController.CacheAccessRequested -= OpenCache;
 
             subscribed = false;
         }
@@ -392,11 +417,14 @@ namespace BooterBigArm.TopDown3D
         private void OnEnable()
         {
             Subscribe();
+            if (configured) BindCommands();
         }
 
         private void OnDisable()
         {
+            UnbindCommands();
             Unsubscribe();
+            ClearCacheContext(false);
             if (suspended) { suspended = false; canvas?.SetVisible(false); return; }
             if (IsOpen)
             {

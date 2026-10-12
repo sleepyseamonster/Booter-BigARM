@@ -183,7 +183,7 @@ namespace BooterBigArm.Tests
         {
             var definition = ScriptableObject.CreateInstance<TopDown3DItemDefinition>();
             ownedObjects.Add(definition);
-            definition.Configure(itemId, itemId, "Test item", "Resource", icon, maxStack, 0f);
+            definition.Configure(itemId, itemId, "Test item", "Test", icon, maxStack, 0f);
             return definition;
         }
 

@@ -2,7 +2,7 @@ using System;
 
 namespace BooterBigArm.TopDown3D
 {
-    public enum TopDown3DInventoryOwner { Booter, BigArm }
+    public enum TopDown3DInventoryOwner { Booter, BigArm, ResourceCache }
 
     public readonly struct TopDown3DInventoryPolicy
     {
@@ -20,8 +20,9 @@ namespace BooterBigArm.TopDown3D
         public bool Allows(TopDown3DItemDefinition definition)
         {
             if (definition == null) return false;
+            if (Owner == TopDown3DInventoryOwner.ResourceCache) return definition.IsResource;
             return Owner == TopDown3DInventoryOwner.Booter
-                ? definition.CarryPreference != TopDown3DCarryPreference.BigArmOnly
+                ? !definition.IsResource && definition.CarryPreference != TopDown3DCarryPreference.BigArmOnly
                 : definition.CarryPreference != TopDown3DCarryPreference.BooterOnly;
         }
     }

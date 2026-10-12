@@ -14,7 +14,7 @@ namespace BooterBigArm.TopDown3D
         public bool Succeeded => Code == TopDown3DInventoryResultCode.Success && Quantity > 0;
     }
 
-    public static class TopDown3DInventoryTransferService
+    public static partial class TopDown3DInventoryTransferService
     {
         public static TopDown3DTransferResult Transfer(
             TopDown3DInventoryState source,
@@ -34,16 +34,18 @@ namespace BooterBigArm.TopDown3D
             if (quantity <= 0)
                 return new TopDown3DTransferResult(TopDown3DInventoryResultCode.InsufficientSpace, 0, "No portion of this stack fits the destination.");
 
-            var remove = source.TryRemove(itemId, quantity);
+            var a = new TopDown3DInventoryTransaction.Mutation(source);
+            var b = new TopDown3DInventoryTransaction.Mutation(destination);
+            var remove = a.Draft.TryRemove(itemId, quantity);
             if (!remove.Succeeded)
                 return new TopDown3DTransferResult(remove.Code, 0, remove.Message);
-            var add = destination.TryAdd(new TopDown3DItemAmount(itemId, quantity));
+            var add = b.Draft.TryAdd(new TopDown3DItemAmount(itemId, quantity));
             if (!add.Succeeded)
             {
-                source.TryAdd(new TopDown3DItemAmount(itemId, quantity));
                 return new TopDown3DTransferResult(add.Code, 0, add.Message);
             }
-            return new TopDown3DTransferResult(TopDown3DInventoryResultCode.Success, quantity);
+            var commit = TopDown3DInventoryTransaction.Commit(new[] { a, b });
+            return new TopDown3DTransferResult(commit.Code, commit.Succeeded ? quantity : 0, commit.Message);
         }
 
         private static int FindMaximum(TopDown3DInventoryState source, TopDown3DInventoryState destination, string itemId, int requested)

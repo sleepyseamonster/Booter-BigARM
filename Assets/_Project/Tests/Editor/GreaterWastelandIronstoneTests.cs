@@ -189,12 +189,14 @@ namespace BooterBigArm.Tests
             Assert.That(gather.TryBegin(node, Vector3.zero), Is.EqualTo(TopDown3DGatherActionResult.Started));
             if (leaveRange) accessible = false;
             if (fillCargo) Assert.That(cargo.TryAdd(new TopDown3DItemAmount(definition.YieldedItem.ItemId, 99)).Succeeded, Is.True);
-            Assert.That(gather.Advance(2f, Vector3.zero), Is.EqualTo(TopDown3DGatherActionResult.Completed));
+            Assert.That(gather.Advance(2f, Vector3.zero), Is.EqualTo(leaveRange
+                ? TopDown3DGatherActionResult.DestinationUnavailable
+                : fillCargo ? TopDown3DGatherActionResult.InventoryFull : TopDown3DGatherActionResult.Completed));
             Assert.That(gather.LastCompletionWasBigArm, Is.EqualTo(expectedCargo));
-            Assert.That(booter.Slots.Sum(slot => slot.Quantity), Is.EqualTo(expectedCargo ? 0 : 1));
+            Assert.That(booter.Slots.Sum(slot => slot.Quantity), Is.Zero, "Resources never fall back to Booter.");
             Assert.That(cargo.Slots.Sum(slot => slot.Quantity), Is.EqualTo(fillCargo ? 99 : expectedCargo ? 1 : 0));
             Assert.That(gather.Advance(2f, Vector3.zero), Is.EqualTo(TopDown3DGatherActionResult.Rejected));
-            Assert.That(node.IsDepleted, Is.True);
+            Assert.That(node.IsDepleted, Is.EqualTo(expectedCargo));
         }
 
         [Test]
@@ -205,7 +207,7 @@ namespace BooterBigArm.Tests
             var cargo = new TopDown3DInventoryState(catalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, 1));
             var gather = new TopDown3DGatherActionState(new TopDown3DItemDestinationService(booter, cargo, () => true));
             Assert.That(gather.TryBegin(node, Vector3.zero), Is.EqualTo(TopDown3DGatherActionResult.Started));
-            booter.TryAdd(new TopDown3DItemAmount(definition.YieldedItem.ItemId, 99));
+            Assert.That(booter.TryAdd(new TopDown3DItemAmount(definition.YieldedItem.ItemId, 99)).Succeeded, Is.False);
             cargo.TryAdd(new TopDown3DItemAmount(definition.YieldedItem.ItemId, 99));
             Assert.That(gather.Advance(2f, Vector3.zero), Is.EqualTo(TopDown3DGatherActionResult.InventoryFull));
             Assert.That(node.IsDepleted, Is.False);
@@ -230,7 +232,8 @@ namespace BooterBigArm.Tests
             interaction.RefreshTarget();
             Assert.That(interaction.CurrentTarget, Is.SameAs(node));
             var inventory = new TopDown3DInventoryState(catalog, 1);
-            var gather = new TopDown3DGatherActionState(new TopDown3DItemDestinationService(inventory, null, () => false), interaction.CanReachTarget);
+            var rewardCargo = new TopDown3DInventoryState(catalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, 1));
+            var gather = new TopDown3DGatherActionState(new TopDown3DItemDestinationService(inventory, rewardCargo, () => true), interaction.CanReachTarget);
             Assert.That(gather.TryBegin(node, Vector3.zero), Is.EqualTo(TopDown3DGatherActionResult.Started));
             var blocker = Own(GameObject.CreatePrimitive(PrimitiveType.Cube));
             blocker.transform.position = new Vector3(0f, 0.8f, 0.75f);

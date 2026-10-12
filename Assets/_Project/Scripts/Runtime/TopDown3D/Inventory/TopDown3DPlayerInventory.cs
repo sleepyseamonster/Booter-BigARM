@@ -21,7 +21,7 @@ namespace BooterBigArm.TopDown3D
     }
 
     [DisallowMultipleComponent]
-    public sealed class TopDown3DPlayerInventory : MonoBehaviour
+    public sealed class TopDown3DPlayerInventory : MonoBehaviour, ISerializationCallbackReceiver
     {
         public const int DefaultCapacity = 8;
 
@@ -30,7 +30,8 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DStartingInventoryItem[] startingItems =
             Array.Empty<TopDown3DStartingInventoryItem>();
 
-        private TopDown3DInventoryState state;
+        [NonSerialized] private TopDown3DInventoryState state;
+        [SerializeField, HideInInspector] private TopDown3DInventorySnapshot reloadSnapshot;
 
         public TopDown3DItemCatalog ItemCatalog => itemCatalog;
         public int Capacity => capacity;
@@ -57,6 +58,7 @@ namespace BooterBigArm.TopDown3D
                     startingItems[i] = new TopDown3DStartingInventoryItem(
                         initialItems[i].ItemId, initialItems[i].Quantity);
             }
+            reloadSnapshot = null;
             state = CreateInitialState();
         }
 
@@ -77,7 +79,7 @@ namespace BooterBigArm.TopDown3D
 
         private TopDown3DInventoryState EnsureState()
         {
-            if (state != null)
+            if (state != null && state.IsInitialized)
             {
                 return state;
             }
@@ -88,8 +90,20 @@ namespace BooterBigArm.TopDown3D
             }
 
             state = CreateInitialState();
+            if (reloadSnapshot != null && reloadSnapshot.Version > 0 && !state.ApplySnapshot(reloadSnapshot).Succeeded)
+            {
+                state.RetainForRecovery();
+                Debug.LogWarning("Retained backpack snapshot was incompatible and was preserved for recovery.", this);
+            }
             return state;
         }
+
+        public void OnBeforeSerialize()
+        {
+            if (Application.isPlaying && state != null && state.IsInitialized && !state.IsCommitting)
+                reloadSnapshot = state.CaptureSnapshot();
+        }
+        public void OnAfterDeserialize() => state = null;
 
         private TopDown3DInventoryState CreateInitialState()
         {

@@ -25,6 +25,8 @@ namespace BooterBigArm.TopDown3D
         private Text controls;
         private Text cargoSummary;
         private Button autoPackButton;
+        private Button radialSetupButton;
+        private Button unloadButton;
         private Rect lastSafeArea;
         private Vector2Int lastScreenSize;
 
@@ -38,7 +40,9 @@ namespace BooterBigArm.TopDown3D
         public void ConfigureRadialCustomization(Action customize)
         {
             var button = EnsureButton("Customize Radial", panel, "RADIAL SETUP", customize);
+            radialSetupButton = button;
             Place(button.GetComponent<RectTransform>(), new Vector2(700f, cargoSlotViews.Count > 0 ? -634f : -470f), new Vector2(190f, 42f));
+            RebuildNavigation();
         }
 
         public void Initialize(
@@ -59,7 +63,7 @@ namespace BooterBigArm.TopDown3D
             grid.anchoredPosition = new Vector2(472f, -94f); grid.sizeDelta = new Vector2(416f, 280f);
             var layout = grid.GetComponent<GridLayoutGroup>() ?? grid.gameObject.AddComponent<GridLayoutGroup>();
             layout.cellSize = new Vector2(86f, 70f); layout.spacing = new Vector2(6f, 6f); layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount; layout.constraintCount = 4;
-            var title = EnsureText("Legger Title", panel); title.text = "LEGGER LOADFRAME"; title.fontSize = 19; title.fontStyle = FontStyle.Bold; Place(title.rectTransform, new Vector2(472f, -66f), new Vector2(416f, 28f));
+            var title = EnsureText("Legger Title", panel); title.text = "LEGGER CARGO"; title.fontSize = 19; title.fontStyle = FontStyle.Bold; Place(title.rectTransform, new Vector2(472f, -66f), new Vector2(416f, 28f));
             while (cargoSlotViews.Count < cargoCapacity)
             {
                 var index = cargoSlotViews.Count;
@@ -81,12 +85,58 @@ namespace BooterBigArm.TopDown3D
             detailDescription.verticalOverflow = VerticalWrapMode.Truncate;
             cargoSummary = EnsureText("Legger Load Summary", panel); cargoSummary.fontSize = 16; cargoSummary.alignment = TextAnchor.UpperLeft; Place(cargoSummary.rectTransform, new Vector2(472f, -382f), new Vector2(416f, 40f));
             autoPackButton = EnsureButton("Auto-Pack", panel, "AUTO-PACK", autoPack); Place(autoPackButton.GetComponent<RectTransform>(), new Vector2(472f, -634f), new Vector2(190f, 42f));
+            RebuildNavigation();
         }
 
         public void SetCargoAccess(bool accessible)
         {
-            foreach (var slot in cargoSlotViews) slot.GetComponent<Button>().interactable = accessible;
-            if (autoPackButton != null) autoPackButton.interactable = accessible;
+            // A distant manifest is inspectable; only mutation commands are disabled.
+            if (autoPackButton != null && autoPackButton.interactable != accessible)
+            { autoPackButton.interactable = accessible; RebuildNavigation(); }
+        }
+
+        public void SetLeftTitle(string text) => panel.Find("Title").GetComponent<Text>().text = text;
+        public void ConfigureCache(bool visible, Action unload)
+        {
+            unloadButton = EnsureButton("Unload Cargo", panel, "UNLOAD RESOURCES", unload);
+            Place(unloadButton.GetComponent<RectTransform>(), new Vector2(32f, -634f), new Vector2(240f, 42f));
+            unloadButton.gameObject.SetActive(visible);
+            RebuildNavigation();
+        }
+
+        private void RebuildNavigation()
+        {
+            void Grid(List<TopDown3DInventorySlotView> views, Button bottom)
+            {
+                var active = views.FindAll(view => view.gameObject.activeSelf);
+                for (var i = 0; i < active.Count; i++)
+                {
+                    var nav = new Navigation { mode = Navigation.Mode.Explicit };
+                    nav.selectOnLeft = i % 4 > 0 ? active[i - 1].Button : active[i].Button;
+                    nav.selectOnRight = i % 4 < 3 && i + 1 < active.Count ? active[i + 1].Button : active[i].Button;
+                    nav.selectOnUp = i >= 4 ? active[i - 4].Button : active[i].Button;
+                    nav.selectOnDown = i + 4 < active.Count ? active[i + 4].Button : bottom;
+                    active[i].Button.navigation = nav;
+                }
+            }
+            bool Enabled(Button button) => button != null && button.gameObject.activeSelf && button.interactable;
+            var leftBottom = Enabled(unloadButton) ? unloadButton : Enabled(radialSetupButton) ? radialSetupButton
+                : Enabled(autoPackButton) ? autoPackButton : slotViews[0].Button;
+            Grid(slotViews, leftBottom);
+            Grid(cargoSlotViews, Enabled(autoPackButton) ? autoPackButton : leftBottom);
+            var buttons = new List<Button>();
+            if (Enabled(unloadButton)) buttons.Add(unloadButton);
+            if (Enabled(autoPackButton)) buttons.Add(autoPackButton);
+            if (Enabled(radialSetupButton)) buttons.Add(radialSetupButton);
+            for (var i = 0; i < buttons.Count; i++)
+            {
+                var nav = new Navigation { mode = Navigation.Mode.Explicit };
+                nav.selectOnLeft = buttons[Mathf.Max(0, i - 1)];
+                nav.selectOnRight = buttons[Mathf.Min(buttons.Count - 1, i + 1)];
+                nav.selectOnUp = cargoSlotViews.Count > 0 ? cargoSlotViews[0].Button : slotViews[0].Button;
+                nav.selectOnDown = buttons[i];
+                buttons[i].navigation = nav;
+            }
         }
 
         public void SetCargoSummary(string text) { if (cargoSummary != null) cargoSummary.text = text ?? string.Empty; }
@@ -189,7 +239,7 @@ namespace BooterBigArm.TopDown3D
             panelImage.color = new Color32(12, 15, 18, 252);
 
             var title = EnsureText("Title", panel);
-            title.text = "INVENTORY";
+            title.text = "BOOTER KIT";
             title.fontSize = 30;
             title.fontStyle = FontStyle.Bold;
             title.alignment = TextAnchor.MiddleLeft;
@@ -216,7 +266,7 @@ namespace BooterBigArm.TopDown3D
             {
                 layout = grid.gameObject.AddComponent<GridLayoutGroup>();
             }
-            layout.cellSize = new Vector2(92f, 92f);
+            layout.cellSize = new Vector2(92f, capacity > 16 ? 70f : 92f);
             layout.spacing = new Vector2(12f, 12f);
             layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
             layout.constraintCount = 4;

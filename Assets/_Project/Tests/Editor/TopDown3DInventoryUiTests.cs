@@ -105,7 +105,7 @@ namespace BooterBigArm.Tests
             var texture = new Texture2D(2, 2);
             var icon = Sprite.Create(texture, new Rect(0f, 0f, 2f, 2f), Vector2.one * 0.5f);
             var item = ScriptableObject.CreateInstance<TopDown3DItemDefinition>();
-            item.Configure("resource.ironstone_ore", "Ironstone Ore", "Dense ore.", "Resource", icon, 99, 0f);
+            item.Configure("resource.ironstone_ore", "Ironstone Ore", "Dense ore.", "Test", icon, 99, 0f);
             var catalog = ScriptableObject.CreateInstance<TopDown3DItemCatalog>();
             catalog.Configure(new[] { item });
             var player = new GameObject("Inventory UI Player");

@@ -63,7 +63,7 @@ namespace BooterBigArm.TopDown3D.Editor
                 icon,
                 99,
                 1.25f,
-                TopDown3DCarryPreference.BigArmPreferred,
+                TopDown3DCarryPreference.BigArmOnly,
                 TopDown3DPackingPreference.Normal);
             EditorUtility.SetDirty(item);
             var itemCatalog = LoadOrCreate<TopDown3DItemCatalog>(ItemCatalogPath);

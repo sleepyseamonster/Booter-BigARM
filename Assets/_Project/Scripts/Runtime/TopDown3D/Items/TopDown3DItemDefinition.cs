@@ -29,6 +29,7 @@ namespace BooterBigArm.TopDown3D
         public float Mass => mass;
         public TopDown3DCarryPreference CarryPreference => carryPreference;
         public TopDown3DPackingPreference PackingPreference => packingPreference;
+        public bool IsResource => string.Equals(category, "Resource", System.StringComparison.Ordinal);
 
         public bool TryValidate(out string error)
         {
@@ -62,6 +63,11 @@ namespace BooterBigArm.TopDown3D
                 return false;
             }
 
+            if (IsResource && carryPreference != TopDown3DCarryPreference.BigArmOnly)
+            {
+                error = $"Resource '{itemId}' must be authored for Legger cargo only.";
+                return false;
+            }
             error = null;
             return true;
         }
@@ -84,7 +90,7 @@ namespace BooterBigArm.TopDown3D
             icon = authoredIcon;
             maxStack = authoredMaxStack;
             mass = authoredMass;
-            carryPreference = authoredCarryPreference;
+            carryPreference = IsResource ? TopDown3DCarryPreference.BigArmOnly : authoredCarryPreference;
             packingPreference = authoredPackingPreference;
         }
     }

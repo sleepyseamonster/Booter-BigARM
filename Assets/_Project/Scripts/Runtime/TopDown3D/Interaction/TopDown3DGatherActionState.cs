@@ -11,7 +11,9 @@ namespace BooterBigArm.TopDown3D
         Completed,
         Cancelled,
         InventoryFull,
-        CommitFailed
+        CommitFailed,
+        AwaitingCargo,
+        DestinationUnavailable
     }
 
     public sealed class TopDown3DGatherActionState
@@ -40,6 +42,7 @@ namespace BooterBigArm.TopDown3D
         public bool IsActive => target != null;
         public ITopDown3DInteractable Target => target;
         public bool LastCompletionWasBigArm { get; private set; }
+        public string FailureMessage { get; private set; }
 
         public TopDown3DGatherActionResult TryBegin(
             ITopDown3DInteractable candidate,
@@ -50,10 +53,14 @@ namespace BooterBigArm.TopDown3D
                 return TopDown3DGatherActionResult.Rejected;
             }
 
-            destinationInventory = destinations != null ? destinations.Choose(candidate.Reward.ItemId, candidate.Reward.Quantity).Inventory : inventory;
+            var destination = destinations != null ? destinations.Choose(candidate.Reward.ItemId, candidate.Reward.Quantity)
+                : new TopDown3DItemDestination(inventory, false);
+            destinationInventory = destination.Inventory;
+            FailureMessage = destination.Message;
             if (destinationInventory == null || !destinationInventory.CanAdd(candidate.Reward))
             {
-                return TopDown3DGatherActionResult.InventoryFull;
+                return destination.Code == TopDown3DInventoryResultCode.DestinationUnavailable
+                    ? TopDown3DGatherActionResult.DestinationUnavailable : TopDown3DGatherActionResult.InventoryFull;
             }
 
             target = candidate;
@@ -87,10 +94,12 @@ namespace BooterBigArm.TopDown3D
                 ? destinations.Choose(target.Reward.ItemId, target.Reward.Quantity)
                 : new TopDown3DItemDestination(inventory, false);
             destinationInventory = destination.Inventory;
+            FailureMessage = destination.Message;
             if (destinationInventory == null || !destinationInventory.CanAdd(target.Reward))
             {
                 Reset();
-                return TopDown3DGatherActionResult.InventoryFull;
+                return destination.Code == TopDown3DInventoryResultCode.DestinationUnavailable
+                    ? TopDown3DGatherActionResult.DestinationUnavailable : TopDown3DGatherActionResult.InventoryFull;
             }
 
             if (committed)

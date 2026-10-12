@@ -13,7 +13,11 @@ namespace BooterBigArm.TopDown3D
         InvalidSlot,
         IncompatibleSlots,
         InvalidSnapshot,
-        CommitConditionRejected
+        CommitConditionRejected,
+        CarrierRestricted,
+        TooHeavy,
+        DestinationUnavailable,
+        MutationBusy
     }
 
     public readonly struct TopDown3DInventoryResult
@@ -30,7 +34,7 @@ namespace BooterBigArm.TopDown3D
     }
 
     [Serializable]
-    public sealed class TopDown3DInventoryState
+    public sealed partial class TopDown3DInventoryState
     {
         public const int CurrentSnapshotVersion = 1;
 
@@ -116,20 +120,21 @@ namespace BooterBigArm.TopDown3D
             IReadOnlyList<TopDown3DItemAmount> amounts,
             Func<bool> commitCondition)
         {
+            if (transactionLocked) return Failure(TopDown3DInventoryResultCode.MutationBusy, "Inventory is committing another operation.");
             if (!SimulateAdd(amounts, out var nextSlots, out var failure))
             {
                 return failure;
             }
 
-            if (commitCondition != null && !commitCondition())
+            if (!TryLock(Revision)) return Failure(TopDown3DInventoryResultCode.MutationBusy, "Inventory changed during preparation.");
+            try
             {
-                return Failure(
-                    TopDown3DInventoryResultCode.CommitConditionRejected,
-                    "The inventory transaction's commit condition was rejected.");
+                if (commitCondition != null && !commitCondition())
+                    return Failure(TopDown3DInventoryResultCode.CommitConditionRejected, "The inventory transaction's commit condition was rejected.");
+                Commit(nextSlots);
+                return Success();
             }
-
-            Commit(nextSlots);
-            return Success();
+            finally { Unlock(); }
         }
 
         public TopDown3DInventoryResult TryRemove(string itemId, int quantity)
@@ -142,6 +147,7 @@ namespace BooterBigArm.TopDown3D
             int quantity,
             Func<bool> commitCondition)
         {
+            if (transactionLocked) return Failure(TopDown3DInventoryResultCode.MutationBusy, "Inventory is committing another operation.");
             if (string.IsNullOrWhiteSpace(itemId) || quantity <= 0)
             {
                 return Failure(TopDown3DInventoryResultCode.InvalidRequest, "Remove requires an item ID and positive quantity.");
@@ -181,19 +187,20 @@ namespace BooterBigArm.TopDown3D
                 remaining -= removed;
             }
 
-            if (commitCondition != null && !commitCondition())
+            if (!TryLock(Revision)) return Failure(TopDown3DInventoryResultCode.MutationBusy, "Inventory changed during preparation.");
+            try
             {
-                return Failure(
-                    TopDown3DInventoryResultCode.CommitConditionRejected,
-                    "The inventory transaction's commit condition was rejected.");
+                if (commitCondition != null && !commitCondition())
+                    return Failure(TopDown3DInventoryResultCode.CommitConditionRejected, "The inventory transaction's commit condition was rejected.");
+                Commit(nextSlots);
+                return Success();
             }
-
-            Commit(nextSlots);
-            return Success();
+            finally { Unlock(); }
         }
 
         public TopDown3DInventoryResult TryMoveOrSwap(int sourceIndex, int destinationIndex)
         {
+            if (transactionLocked) return Failure(TopDown3DInventoryResultCode.MutationBusy, "Inventory is committing another operation.");
             if (!AreValidDistinctSlots(sourceIndex, destinationIndex))
             {
                 return Failure(TopDown3DInventoryResultCode.InvalidSlot, "Move requires two distinct valid slots.");
@@ -216,12 +223,14 @@ namespace BooterBigArm.TopDown3D
             var sourceQuantity = source.Quantity;
             source.Set(destination.ItemId, destination.Quantity);
             destination.Set(sourceId, sourceQuantity);
-            Changed?.Invoke();
+            Revision++;
+            PublishDraft();
             return Success();
         }
 
         public TopDown3DInventoryResult TryMerge(int sourceIndex, int destinationIndex)
         {
+            if (transactionLocked) return Failure(TopDown3DInventoryResultCode.MutationBusy, "Inventory is committing another operation.");
             if (!AreValidDistinctSlots(sourceIndex, destinationIndex))
             {
                 return Failure(TopDown3DInventoryResultCode.InvalidSlot, "Merge requires two distinct valid slots.");
@@ -245,7 +254,8 @@ namespace BooterBigArm.TopDown3D
             var moved = Math.Min(room, source.Quantity);
             destination.Set(destination.ItemId, destination.Quantity + moved);
             source.Set(source.ItemId, source.Quantity - moved);
-            Changed?.Invoke();
+            Revision++;
+            PublishDraft();
             return Success();
         }
 
@@ -256,6 +266,7 @@ namespace BooterBigArm.TopDown3D
 
         public TopDown3DInventoryResult ApplySnapshot(TopDown3DInventorySnapshot snapshot)
         {
+            if (transactionLocked) return Failure(TopDown3DInventoryResultCode.MutationBusy, "Inventory is committing another operation.");
             if (snapshot == null
                 || snapshot.Version != CurrentSnapshotVersion
                 || snapshot.Capacity != slots.Count
@@ -333,7 +344,7 @@ namespace BooterBigArm.TopDown3D
 
                 if (!policy.Allows(definition))
                 {
-                    failure = Failure(TopDown3DInventoryResultCode.InvalidRequest, $"{policy.Owner} cannot carry '{amount.ItemId}'.");
+                    failure = Failure(TopDown3DInventoryResultCode.CarrierRestricted, $"{policy.Owner} cannot carry '{amount.ItemId}'.");
                     return false;
                 }
 
@@ -374,7 +385,7 @@ namespace BooterBigArm.TopDown3D
 
             if (policy.MaximumMass > 0f && CalculateMass(simulated) > policy.MaximumMass + 0.0001f)
             {
-                failure = Failure(TopDown3DInventoryResultCode.InsufficientSpace, "The load exceeds this inventory's mass limit.");
+                failure = Failure(TopDown3DInventoryResultCode.TooHeavy, "The load exceeds this inventory's mass limit.");
                 return false;
             }
 
@@ -417,7 +428,8 @@ namespace BooterBigArm.TopDown3D
                 slots[i].Set(nextSlots[i].ItemId, nextSlots[i].Quantity);
             }
 
-            Changed?.Invoke();
+            Revision++;
+            PublishDraft();
         }
 
         private bool AreValidDistinctSlots(int sourceIndex, int destinationIndex)

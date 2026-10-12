@@ -213,22 +213,27 @@ namespace BooterBigArm.TopDown3D
 
         public bool TryPickup(string stableId, TopDown3DInventoryState inventory,
             out int collectedDust)
+            => TryPickup(stableId, inventory, inventory, out collectedDust);
+
+        public string LastPickupFailure { get; private set; }
+
+        public bool TryPickup(string stableId, TopDown3DInventoryState inventory,
+            TopDown3DInventoryState resourceInventory, out int collectedDust, Func<bool> cargoAccess = null)
         {
+            LastPickupFailure = null;
             collectedDust = 0;
             if (settings == null || inventory == null
                 || !records.TryGetValue(stableId ?? string.Empty, out var record)) return false;
             record.Advance(simulationSeconds, settings);
-            var reward = record.Dust > 0
-                ? new[]
-                {
-                    new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1),
-                    new TopDown3DItemAmount(TopDown3DHarvesterSettings.DustItemId, record.Dust)
-                }
-                : new[] { new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1) };
-            var result = inventory.TryAdd(reward,
-                () => records.TryGetValue(stableId, out var current)
+            var tools = new[] { new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1) };
+            var resources = record.Dust > 0
+                ? new[] { new TopDown3DItemAmount(TopDown3DHarvesterSettings.DustItemId, record.Dust) }
+                : null;
+            var result = TopDown3DInventoryTransaction.AddRewards(inventory, tools, resourceInventory, resources,
+                () => (record.Dust == 0 || cargoAccess == null || cargoAccess())
+                    && records.TryGetValue(stableId, out var current)
                     && ReferenceEquals(current, record) && records.Remove(stableId));
-            if (!result.Succeeded) return false;
+            if (!result.Succeeded) { LastPickupFailure = result.Message; return false; }
             collectedDust = record.Dust;
             RemoveView(stableId);
             return true;

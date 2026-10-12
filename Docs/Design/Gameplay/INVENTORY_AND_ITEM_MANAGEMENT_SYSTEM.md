@@ -2,7 +2,7 @@
 
 Status: product and implementation specification for the TopDown3D production lane.
 
-This document defines how Booter and BigARM carry, store, harvest, and manage items. It is intentionally built around **fun expedition decisions**, not difficult menu work. The detailed execution order remains in [BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_PLAN.md](./BIGARM_PACKING_AND_INVENTORY_IMPLEMENTATION_PLAN.md).
+This document defines how Booter and BigARM carry, store, harvest, and manage items. It is intentionally built around **fun expedition decisions**, not difficult menu work. The October 11 [inventory audit](BOOTER_LEGGER_INVENTORY_AUDIT_2026-10-11.md), [exclusive mining audit](LEGGER_IRONSTONE_CARGO_AUDIT_2026-10-11.md), and [implementation receipt](../../Evidence/Gameplay/INVENTORY_LOOP_IMPLEMENTATION_2026-10-11.md) supersede the historical packing plan's permissive resource overflow and generated-world integration claims.
 
 ## Design Promise
 
@@ -34,7 +34,7 @@ BigARM always retains a true simulated world position. Cargo access, transfer, a
 
 ### Booter: Field Kit
 
-Booter has a deliberately small personal inventory: **8 slots** in the first slice. It is for essentials, quick-use supplies, and short-term overflow—not for replacing BigARM as the main hauler.
+Booter's backpack carries personal items and tools. **Resources are never allowed in it.** Greater Wasteland currently retains its authored **16 slots** to preserve compatibility; the code default and isolated hauling study use eight. Shrinking production storage requires a deliberate capacity migration. Personal algae remains equipped survival state, separate from raw resources and backpack slots.
 
 Booter inventory is always locally available. It supports stack merge, move, swap, and exact transactional add/remove operations. A full kit does not delete, drop, or silently reroute an item.
 

@@ -4,13 +4,14 @@ using UnityEngine;
 namespace BooterBigArm.TopDown3D
 {
     [DisallowMultipleComponent]
-    public sealed class TopDown3DBigArmCargo : MonoBehaviour
+    public sealed class TopDown3DBigArmCargo : MonoBehaviour, ISerializationCallbackReceiver
     {
         public const int DefaultCapacity = 12;
         [SerializeField] private TopDown3DItemCatalog itemCatalog;
         [SerializeField] private TopDown3DPackingSettings packingSettings;
         [SerializeField, Min(0.1f)] private float accessRange = 3.2f;
-        private TopDown3DInventoryState state;
+        [NonSerialized] private TopDown3DInventoryState state;
+        [SerializeField, HideInInspector] private TopDown3DInventorySnapshot reloadSnapshot;
         private TopDown3DBigArmLoadProfile loadProfile;
 
         public TopDown3DItemCatalog ItemCatalog => itemCatalog;
@@ -32,7 +33,7 @@ namespace BooterBigArm.TopDown3D
             {
                 throw new ArgumentException(error ?? "Packing settings are required.", nameof(settings));
             }
-            itemCatalog = catalog; packingSettings = settings;
+            itemCatalog = catalog; packingSettings = settings; reloadSnapshot = null;
             SetState(new TopDown3DInventoryState(catalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, settings.HardMass)));
             Recalculate();
         }
@@ -61,9 +62,14 @@ namespace BooterBigArm.TopDown3D
 
         private TopDown3DInventoryState EnsureState()
         {
-            if (state != null) return state;
+            if (state != null && state.IsInitialized) return state;
             if (itemCatalog == null || packingSettings == null) throw new InvalidOperationException("BigARM cargo requires an item catalog and packing settings.");
             SetState(new TopDown3DInventoryState(itemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, packingSettings.HardMass)));
+            if (reloadSnapshot != null && reloadSnapshot.Version > 0 && !state.ApplySnapshot(reloadSnapshot).Succeeded)
+            {
+                state.RetainForRecovery();
+                Debug.LogWarning("Retained cargo snapshot was incompatible and was preserved for recovery.", this);
+            }
             Recalculate();
             return state;
         }
@@ -85,6 +91,13 @@ namespace BooterBigArm.TopDown3D
         {
             if (state != null) state.Changed -= HandleInventoryChanged;
         }
+
+        public void OnBeforeSerialize()
+        {
+            if (Application.isPlaying && state != null && state.IsInitialized && !state.IsCommitting)
+                reloadSnapshot = state.CaptureSnapshot();
+        }
+        public void OnAfterDeserialize() => state = null;
 
         private void Recalculate()
         {
