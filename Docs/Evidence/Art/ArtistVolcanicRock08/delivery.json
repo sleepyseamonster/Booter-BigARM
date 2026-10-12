@@ -1,0 +1,526 @@
+{
+  "asset": "ArtistVolcanicRock08",
+  "date": "2026-10-12",
+  "original_sculpt_backup_local_only": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\RockSculpting\\Rock08_BeforeProcessing_20261012_092059.blend",
+  "source_workspace_local_only": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\RockSculpting\\ArtistVolcanicRock01_GameReady.blend",
+  "union_source_local_only": "SourceArt/Blender/Studies/RockSculpting/ArtistVolcanicRock08_Union.blend",
+  "dense_capped_source_local_only": "SourceArt/Blender/Studies/RockSculpting/ArtistVolcanicRock08_TrimmedDense.blend",
+  "trimmed_source_local_only": "SourceArt/Blender/Studies/RockSculpting/ArtistVolcanicRock08_Trimmed.blend",
+  "game_blend_local_only": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\RockSculpting\\ArtistVolcanicRock08_GameReady.blend",
+  "original_two_shell_sculpt_preserved": true,
+  "union": {
+    "method": "Fine 0.004 m voxel union of the two authored sphere shells; exact Boolean produced nonmanifold edges and was rejected",
+    "voxel_m": 0.004,
+    "original_vertices": 24112,
+    "original_triangles": 48216,
+    "original_components": 2,
+    "union_components": 50,
+    "component_vertices": [
+      2563812,
+      8,
+      8,
+      8,
+      8,
+      12,
+      12,
+      12,
+      8,
+      8,
+      12,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      20,
+      8,
+      8,
+      8,
+      8,
+      8,
+      20,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      12,
+      12,
+      8,
+      12,
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "union_vertices": 2564256,
+    "union_faces": 2564160,
+    "nonmanifold_edges": 0
+  },
+  "ground_cut": {
+    "ground_world_z": 0.0,
+    "cut_local_z": 0.12464099377393723,
+    "original_world_bottom": -1.1240225359797478,
+    "retained_world_top": 0.4993981197476387,
+    "below_ground_vertices_removed": 1617910,
+    "union_voxel_m": 0.004,
+    "prepared_faces_before_cut": 2564160,
+    "retained_side_faces": 951334,
+    "cut_contour_vertices": [
+      7654,
+      242,
+      300,
+      51,
+      389,
+      12,
+      117,
+      17
+    ],
+    "visible_vertices_before": 946337,
+    "visible_vertices_preserved": 946337,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "nonmanifold_vertices": 0,
+    "zero_area_faces": 0,
+    "faces": 965194,
+    "vertices": 957658,
+    "volume": 0.9047100383327348,
+    "intersections": 0
+  },
+  "micro_fragments_removed": {
+    "removed": [
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0007500499486923218
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00037883222103118896
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00036597251892089844
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0004611015319824219
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00026547908782958984
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00028824806213378906
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00029587745666503906
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0003050565719604492
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00015854835510253906
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00031626224517822266
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0004963874816894531
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0008204281330108643
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0011304020881652832
+      },
+      {
+        "vertices": 12,
+        "max_extent_m": 0.004523098468780518
+      },
+      {
+        "vertices": 12,
+        "max_extent_m": 0.004793405532836914
+      },
+      {
+        "vertices": 12,
+        "max_extent_m": 0.005063742399215698
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0005912631750106812
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0007097125053405762
+      },
+      {
+        "vertices": 12,
+        "max_extent_m": 0.005271196365356445
+      }
+    ],
+    "source_components": [
+      {
+        "vertices": 957490,
+        "max_extent_m": 3.2813130915164948
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0007500499486923218
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00037883222103118896
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00036597251892089844
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0004611015319824219
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00026547908782958984
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00028824806213378906
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00029587745666503906
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0003050565719604492
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00015854835510253906
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.00031626224517822266
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0004963874816894531
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0008204281330108643
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0011304020881652832
+      },
+      {
+        "vertices": 12,
+        "max_extent_m": 0.004523098468780518
+      },
+      {
+        "vertices": 12,
+        "max_extent_m": 0.004793405532836914
+      },
+      {
+        "vertices": 12,
+        "max_extent_m": 0.005063742399215698
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0005912631750106812
+      },
+      {
+        "vertices": 8,
+        "max_extent_m": 0.0007097125053405762
+      },
+      {
+        "vertices": 12,
+        "max_extent_m": 0.005271196365356445
+      }
+    ],
+    "remaining_components": 1
+  },
+  "high_source_simplification": {
+    "original_dense_triangles": 1915004,
+    "prepared_triangles": 191500,
+    "samples": 25798,
+    "p95_m": 0.00014783778169658035,
+    "max_sampled_m": 0.0008325992967002094
+  },
+  "source_method": "Two overlapping authored sphere shells in the original object were fused with 4 mm voxel union after exact Boolean failed manifold checks. Cut at actual horizontal reference Z=0, constrained parity cap preserves openings. Only disconnected fragments under 2 cm and fewer than 100 vertices removed; remaining mesh has one connected component. Dense union/cap is retained locally. Measured preparatory simplification changes sampled surface by at most 0.000833 m before final game reduction.",
+  "normal_bake_method": "Self-baked tangent-space volcanic height detail on the final mesh, avoiding rays crossing the thin rock layers. Sculpt shape remains in measured geometry.",
+  "shading": "Flat geometric face normals stabilize tangent baking on thin folds. Volcanic height bump strength 0.2, distance 0.005 m.",
+  "reduction": {
+    "ratio": 0.04,
+    "vertices": 3818,
+    "faces": 7660,
+    "triangles": 7660,
+    "nonmanifold": 0,
+    "loose": 0,
+    "degenerate": 0,
+    "volume": 0.9005278505514526,
+    "p95_m": 0.0019055871525779366,
+    "max_sampled_m": 0.02644912712275982,
+    "samples": 22201
+  },
+  "original_triangles": 48216,
+  "prepared_source": {
+    "vertices": 95738,
+    "faces": 191500,
+    "triangles": 191500,
+    "nonmanifold": 0,
+    "loose": 0,
+    "degenerate": 0,
+    "volume": 0.9046931433211332
+  },
+  "lod_triangles": [
+    7660,
+    4978,
+    4748
+  ],
+  "lod_note": "Aggressive reductions produced crossings in thin folds. LOD1 and LOD2 retain conservative counts verified free of triangle crossings.",
+  "collision_triangles": 240,
+  "collision_note": "Single convex collision approximation; it spans concave gaps.",
+  "game_dimensions_blender_xyz": [
+    3.085880756378174,
+    3.281611204147339,
+    0.4994664788246155
+  ],
+  "texture_resolution": 1024,
+  "texture_source": "SourceArt/Blender/Studies/textures/VolcanicBlackBasalt_README.md",
+  "blender_reopen": {
+    "meshes": {
+      "ArtistVolcanicRock08_LOD0": {
+        "vertices": 3818,
+        "faces": 7660,
+        "triangles": 7660,
+        "nonmanifold": 0,
+        "loose": 0,
+        "degenerate": 0,
+        "volume": 0.9005278308561221
+      },
+      "ArtistVolcanicRock08_LOD1": {
+        "vertices": 2477,
+        "faces": 4978,
+        "triangles": 4978,
+        "nonmanifold": 0,
+        "loose": 0,
+        "degenerate": 0,
+        "volume": 0.8995604547505148
+      },
+      "ArtistVolcanicRock08_LOD2": {
+        "vertices": 2362,
+        "faces": 4748,
+        "triangles": 4748,
+        "nonmanifold": 0,
+        "loose": 0,
+        "degenerate": 0,
+        "volume": 0.8993460118899574
+      },
+      "ArtistVolcanicRock08_Collision": {
+        "vertices": 122,
+        "faces": 240,
+        "triangles": 240,
+        "nonmanifold": 0,
+        "loose": 0,
+        "degenerate": 0,
+        "volume": 2.262120735619152
+      }
+    },
+    "normal_bake": {
+      "finite": true,
+      "blue_above_half_fraction": 1.0,
+      "triangle_centres_checked": 7660
+    }
+  },
+  "all_lods_and_collision_no_intersections": true,
+  "all_lods_and_collision_no_below_ground_vertices": true,
+  "unity_import": {
+    "unity": "6000.4.0f1",
+    "lodTriangles": [
+      7660,
+      4978,
+      4748
+    ],
+    "boundsSize": {
+      "x": 3.0815415382385254,
+      "y": 0.500399649143219,
+      "z": 3.280904531478882
+    },
+    "boundsMin": {
+      "x": -1.5438897609710693,
+      "y": -1.7881393432617188e-07,
+      "z": -1.6405141353607178
+    },
+    "collisionTriangles": 240
+  },
+  "guid_reference_audit": {
+    "b3e8e6017fef5e74ebdb64340ed8ddb3": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08",
+    "4c14222ab58dbf841a8f02152a2db3a9": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08.fbx",
+    "360ac8205c1e3b640bc54f99cae6a046": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_BaseColor.png",
+    "20e187346b89b154a8f2c1da5e2445fe": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Collision.asset",
+    "4f1cea73177abf24ba2d728d8b137b72": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_LOD0.asset",
+    "32f1353429240bc4e86a204a8e07ba6e": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_LOD1.asset",
+    "66ffdd83334c2bd489c10ab8e638c844": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_LOD2.asset",
+    "8036de9184b7a8842ad73abfaea8246b": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_MetallicSmoothness.png",
+    "6d63af15492e32544a807ade04603daf": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Normal.png",
+    "1d804d313a0de234e8c956db37e517d1": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Occlusion.png",
+    "992af276b7b411045a8b0cec4571667f": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Roughness.png",
+    "95c63ec92b9361f49bc3d4bf2be9c125": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock08.mat",
+    "346d150d215f41b41bd90b1452b78d61": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock08.prefab",
+    "933532a4fcc9baf4fa0491de14d08ed7": "Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader",
+    "d0353a89b1f911e48b9e16bdc9f2e058": "Packages/com.unity.render-pipelines.universal/Editor/AssetVersion.cs"
+  },
+  "workspace_handoff": {
+    "workspace": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\RockSculpting\\ArtistVolcanicRock01_GameReady.blend",
+    "active": "ArtistVolcanicRock08_LOD0",
+    "low_location": [
+      12.734903335571289,
+      1.6091121435165405,
+      0.0
+    ],
+    "existing_rocks_and_ground_preserved": true,
+    "seated_on_reference_plane": true,
+    "original_sculpt_preserved": "Rock 08 original sculpt - before ground cut",
+    "connected_components": {
+      "ArtistVolcanicRock08_LOD0": 1,
+      "ArtistVolcanicRock08_LOD1": 1,
+      "ArtistVolcanicRock08_LOD2": 1
+    },
+    "saved_reopen_verified": true
+  },
+  "world_contract": {
+    "deterministic_identity": "Reusable asset only; no seed or world placement changes.",
+    "streaming_unload_reload": "No terrain or streaming changes; reusable LOD and collision data.",
+    "generated_object_identity": "No generated IDs or world objects created; Unity references verified.",
+    "authored_constraints": "Fused rock, original silhouette and openings retained through measured reduction; actual ground cut and bottom-centre export pivot.",
+    "persisted_deltas": "No gameplay or save-state changes."
+  },
+  "validation_limits": "Geometry, UV, normal bake, multiple views and saved workspace checks; current Unity import, prefab and GUID validation. No production scene placement, profiling or gameplay smoke tests.",
+  "files": [
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08.meta",
+      "sha256": "27e2cc397c5c5422b95895c8dce73684041ed69ddaf23e3b26b75888b2ca362d"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08.fbx",
+      "sha256": "cc38021de85a89cced502e7ed5c07c87ce23fe203831a9003b4fdf487d010511"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08.fbx.meta",
+      "sha256": "c9475a0546b2da6d27fccc27674101f164b4ac1aa6986c0dd667393bdb520adf"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_BaseColor.png",
+      "sha256": "54e056b2375d99a121f01a999a002c343c426b22a45a60ae8e73ef8096d33012"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_BaseColor.png.meta",
+      "sha256": "a6fde2ba23686515940c168dcd0a6824fe8b7030e30f255550d82e58d3fd2241"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Collision.asset",
+      "sha256": "5332a7248760a9508c1459553a283bedbce4b60041ff3410f09eaf0debeec3b8"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Collision.asset.meta",
+      "sha256": "a1b44c6bf1abf89eb12aba9409c313077b0addc9f5831a9d65408a1957bcc34d"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_LOD0.asset",
+      "sha256": "e69a5c4b4916afb6304a979f2538f280311501f82d6c2e331d1f31fa66afc47c"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_LOD0.asset.meta",
+      "sha256": "85b1617e9cfe3985309a48c48581b204822ef424d45e5bc1381493f70db45ea5"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_LOD1.asset",
+      "sha256": "2350ca21e188c595ee564d3af4954d5fbebb5d3b74a97258af55b997aface7e2"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_LOD1.asset.meta",
+      "sha256": "a0db2fac149c38a4f6220b8ef3d92f89bc61ee481eaff4f0212f4172581bf783"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_LOD2.asset",
+      "sha256": "291863b8b5b0c4ad1d65bfe5d5ba04ae85185f57afd0fee738fbcde9fe7ae8b7"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_LOD2.asset.meta",
+      "sha256": "04b782de920fb7930136239761d79ffd45f6252796498be057fc70b2597c7402"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_MetallicSmoothness.png",
+      "sha256": "58e319c3ee41bf33b4632d28ea0bc6c7c6bc594d6c0952bccb00abab06230978"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_MetallicSmoothness.png.meta",
+      "sha256": "81b7692eb9fc0b57faae0da1ea502ac50c063bdd93294467593d12066eaef0a6"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Normal.png",
+      "sha256": "428afe99544bbf084e80fa19c16450786ca9e29b8d1f56a94b6b93f7cd14be78"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Normal.png.meta",
+      "sha256": "79b3f8f4dfd4207a3c5e6287f628248ea387441ec4e9b30231fcfac8a0bb6c7d"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Occlusion.png",
+      "sha256": "a587cb383d40dd42719c875bf88d58d07efff3646264f131547c862b985711cc"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Occlusion.png.meta",
+      "sha256": "d9581fabf3aac8d7d3788a450540a6d615cab12728fa3baa18e6d7c2d43f2bd6"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Roughness.png",
+      "sha256": "0b7e62c06fdf191c6a16247f7f2bff294df893a2bc97c32b0e3738c06e0ccc45"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock08/ArtistVolcanicRock08_Roughness.png.meta",
+      "sha256": "9eb55240112254619b6ae04ed89f6d5ab3342a0a91ccf88a150deea32591c1b3"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock08.mat",
+      "sha256": "625f6ba03d84e782fc3ef72dcaf9c7d26bb04bc837356e41f2c15288ff5f9c73"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock08.mat.meta",
+      "sha256": "3939fb0f94f8a034ca500e4a6e779738cddcfed630aee984f4a377f758d454b2"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock08.prefab",
+      "sha256": "6f96b1a0bc93dcfd3b2a7e15441e5ff3f384085d9560c656798718eeada05d47"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock08.prefab.meta",
+      "sha256": "c77034c6a0dc36d7f95bae9b56132548b3a39ae4f2248ba49930d46c2c7daa39"
+    }
+  ]
+}
