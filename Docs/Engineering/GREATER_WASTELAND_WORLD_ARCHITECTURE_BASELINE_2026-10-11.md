@@ -1,8 +1,8 @@
 # Greater Wasteland World Architecture Baseline
 
-Date: October 11, 2026. Audience: the author and implementation owners. Coordination: Gottspan; Unity integration: Babineaux; verified local commits: Gear Ball.
+Initial report: October 11, 2026. Reconciled baseline: October 12, 2026. Audience: the author and implementation owners. Coordination: Gottspan; Unity integration: Babineaux; verified local commits: Gear Ball.
 
-Implementation update October 12: [the population-state checkpoint](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md#population-state-checkpoint-october-12) adds explicit reconstruction metadata, accepted-cell receipts, sparse removals and opt-in payload version 2 through the existing save owner, with 46 focused cases passing. The October 11 tables below retain their dated measurement and implementation scope. Dense population, production binding/migration and Player acceptance remain pending.
+The [population-state checkpoint](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md#population-state-checkpoint-october-12) adds explicit reconstruction metadata, accepted-cell receipts, sparse removals and opt-in payload version 2 through the existing save owner, with 46 focused cases passing. The measurement table retains its October 11 scope; implementation status below includes that verified checkpoint. Dense population, production binding/migration and Player acceptance remain pending.
 
 Greater Wasteland should use fixed resident terrain, deterministic procedural population, actor-aware collision, bounded visual presentation and local versioned saves. World identity and saved changes must survive changes in rendering, processing partitions and population visibility. The strongest measured performance opportunity is reducing the number of Terrain components participating in rendering. Storage architecture matters for saving, reconstruction and future population scale, but does not address that terrain bottleneck by itself.
 
@@ -15,6 +15,8 @@ The authored native terrain stays loaded. Terrain generation and terrain streami
 Protect accepted terrain heights, holes, seams, collision, landmarks, routes, spawn space, camps and existing saved identities. BigARM retains a real world position and physically traverses even when offscreen. Rendering visibility cannot determine whether terrain, obstacles or gameplay state exist. Existing authored population needs compatible recipes or explicit migration before conversion; it must not silently move, duplicate or reroll.
 
 The active host is the root Unity TopDown3D project. Archived 2D, Unreal and proprietary-engine implementations provide reference concepts and historical evidence. Their generators, save services, package selections and performance results do not become production dependencies.
+
+The [World Systems Standard](WORLD_SYSTEMS_STANDARD.md) still contains generated-prototype terrain streaming and infinite-world assumptions. For Greater Wasteland, root authority and the [fixed-terrain dressing plan](../Design/Gameplay/FIXED_TERRAIN_DRESSING_PLAN.md) supersede those assumptions. Apply its deterministic identity, data boundaries and persistence principles to population; terrain unload/reload is not applicable because native terrain remains resident.
 
 ## Current scale and evidence scope
 
@@ -55,6 +57,8 @@ Separate stationary headless simulation averaged about 1.02 ms per update. It do
 
 The first three local implementation commits are `39a5330b8`, `9f7a7d068` and `ee0b2f690`. [Final verification](../Evidence/Performance/performance-implementation-receipt-2026-10-11.json) binds 28 source/metadata hashes to **29 passing focused EditMode cases**, with none skipped. The small isolated project excluded native terrain and production scenes.
 
+Commit `d6326e9c5` subsequently adds population state and save compatibility. Its [candidate-bound receipt](../Evidence/Performance/population-state-receipt-2026-10-12.json) and [test results](../Evidence/Performance/population-state-editmode-2026-10-12.xml) record **46 passing focused cases**, none skipped. That count is the later suite total, not 46 additional tests. In-progress planner/presentation files in the worktree are outside this verified checkpoint and are not accepted production architecture proof.
+
 | System | Current implementation | Remaining gate |
 | --- | --- | --- |
 | Terrain queries | `FixedTerrainSurfaceIndex` accepts rendering-disabled terrain when valid native collision remains active; holes and mismatched/disabled collision reject queries | Production traversal and remote queries |
@@ -63,9 +67,11 @@ The first three local implementation commits are `39a5330b8`, `9f7a7d068` and `e
 | BigARM routing | Failed/blocked routes respect retry timing; one direction query cannot rebuild twice; reached-path replanning remains immediate | Moving and obstructed companion profiling and feel |
 | Automatic saves | Immutable encoded snapshots, one background filesystem worker, one latest pending checkpoint, captured-revision acknowledgements, backups and failure handling | Representative payload growth, latency and shutdown scenarios |
 | Explicit saves | `Save()` retains synchronous durable completion semantics | Target Player verification |
-| Population identity | Stateless world/seed/version/recipe/cell/ordinal keys and independent streams; independent Python reference vector | Population state, constraints, spacing and save compatibility integration |
+| Population identity | Stateless world/seed/version/recipe/cell/ordinal keys and independent streams; independent Python reference vector | Production seed, content recipes, constraints and neighbour placement |
+| Population state | Frozen accepted-cell addresses/digests, explicit reconstruction metadata and sparse stable-ID removals; releasing caches retains receipts and mutations | Native compatibility revision providers, depletion/placed-object schemas and generated definitions |
+| Population checkpoint | Opt-in payload version 2 through the existing save owner; unbound version-1 saves remain supported; incompatible restore rejected before adoption | Production binding and explicit migration; payload growth and partitioned consistency |
 
-Snapshot capture and JSON encoding still run on the main thread. The 8 × 8 candidate-position helper is a bounded study lattice, not accepted production density or formation grammar. Identity ordinals can extend beyond that lattice. No production seed, generator, population save migration or dense sector has been installed.
+Snapshot capture and JSON encoding still run on the main thread. The 8 × 8 candidate-position helper is a bounded study lattice, not accepted production density or formation grammar. Identity ordinals can extend beyond that lattice. Logical population state and opt-in persistence exist, but no production seed/state binding, generator, population save migration or dense sector has been installed.
 
 Runtime teardown bodies were exercised explicitly in EditMode where normal MonoBehaviour callbacks do not run automatically. Automatic Player lifecycle behavior, FPS and appearance remain separate acceptance gates. Dynamic population lights must register shadow contribution; offscreen callers that bypass URP camera callbacks must prepare camera coverage before culling.
 
@@ -103,6 +109,20 @@ A released mesh, instance buffer or presenter does not erase an object or undo d
 
 Keep one authority for each responsibility. The existing generated-world services remain inactive. Extend the active save owner and gameplay state providers through explicit compatibility steps; do not add a competing generator or second inventory/world save authority.
 
+### Module boundaries for implementation
+
+| Module | Owns | Contract with other modules |
+| --- | --- | --- |
+| Native surface index | Authored ground queries and valid native collision | Rendering flags cannot change ground truth; reject holes and unavailable collision |
+| World metadata and recipe catalog | Seed, reconstruction versions, asset definitions and authored reservations | Explicit compatibility; preserve accepted cells across expansion |
+| Population planner | Candidate identities, accepted placements and cross-cell constraints | Same immutable inputs produce the same records regardless of demand or work order |
+| Population state | Accepted receipts and mutable removals, depletion and placements | Gameplay remains addressable without live renderers; current removal support must grow through versioned schemas |
+| Demand scheduler | Camera/shadow coverage, actor relevance, priorities and bounded queues | Demand changes preparation order and residency, never generated identity |
+| Presentation backends | Shared meshes/materials, LOD, pooled objects or instance buffers | Consume logical state; preserve outgoing coverage until replacements are ready |
+| Existing checkpoint owner | Consistent capture, revision acknowledgements and recoverable local writes | Restore compatible world and actor state together; reject stale/incompatible adoption |
+
+These are responsibility boundaries within the active runtime assembly, not a requirement for seven new services or assemblies. The next slice should connect the existing foundations with the smallest explicit contracts and a bounded reference sector.
+
 ## Chunk ownership and version contracts
 
 | Division | Intended responsibility | Status |
@@ -139,7 +159,7 @@ Keep terrain, meshes, textures and audio in native Unity assets. Keep mutable sa
 
 Store seeds, reconstruction versions and sparse changes. An unchanged procedural rock can be regenerated. A removed rock needs a stable-ID removal record; a depleted resource needs remaining-use state; a placed object needs its identity and relevant pose/state. Persistent processes such as harvesters retain logical progress independently of presentation lifetime.
 
-The current inventory format is version 1 with integrity checks, a 1 MiB encoded-file limit and backup recovery. It cannot become an unbounded container for whole-world population. Protect existing saves during a versioned population integration. Current resource restoration validates definitions from scene nodes; generated resources require a logical definition resolver that remains available when their presentations are absent.
+The existing save envelope and path remain version 1, with integrity checks, a 1 MiB encoded-file limit and backup recovery. Unbound inventory payloads remain version 1; explicitly bound population uses payload version 2. Bound worlds reject legacy saves lacking reconstruction metadata rather than inventing a seed. This opt-in format cannot become an unbounded container for whole-world population. Accepted-cell receipts contain candidate addresses as well as sparse removals, so payload growth must account for unchanged accepted content too. Current resource restoration validates definitions from scene nodes; generated resources require a logical definition resolver that remains available when their presentations are absent.
 
 Capture related inventory, actor and world mutations at one consistent boundary. Completion acknowledges exactly the captured revisions. When storage is partitioned, publish one checkpoint generation referencing its complete member set, or use an equivalent database transaction. Loading must not combine new inventory with old resource depletion. Preserve previous valid checkpoints, reject stale writers, validate versions and test interrupted writes before replacing the current save format.
 
@@ -168,9 +188,9 @@ Physics broad-phase changes, dust-map caching, UI batching, cargo refreshes and 
 ## Implementation sequence and acceptance gates
 
 1. **Refresh the performance baseline.** Freeze the accepted scene/content, record native and active counts, establish memory headroom and run one bounded full-content rendering process at a time. Compare all-terrain rendering with the runtime window using matched settings. Separate startup, steady frames, camera/sector transitions and saves. Stop for sustained resource growth or loss of responsiveness.
-2. **Complete world metadata and state contracts.** Define seed selection, reconstruction versions, accepted-cell retention during expansion, logical definitions, constraints, mutation ownership and migration. Prove reconstruction after presentation release before generating dense content.
+2. **Complete production metadata and state integration.** Build on the verified identity, accepted-cell receipts and removal state. Define production seed selection, native compatibility revisions, logical definitions, authored constraints, depletion/placement ownership and migration. Prove reconstruction after presentation release before generating dense content.
 3. **Build one constrained sector.** Compare 64/128 m work cells, actor collision preparation, conventional LOD/pooling and neighbour rules on accepted art. Test boundary handoffs, offscreen BigARM and changed objects. Review at the production camera and along approach routes.
-4. **Integrate consistent local checkpoints.** Extend the existing save owner with versioned compatibility, coherent actor/world capture and bounded writes. Benchmark a database only against that complete contract, not against an intentionally weak file implementation.
+4. **Scale consistent local checkpoints.** Build on opt-in version-2 joint capture. Establish representative payload limits and partitioned checkpoint consistency before exceeding the current bounded format. Benchmark a database against the complete file contract.
 5. **Expand progressively.** Raise population density and area only after frame, memory, reconstruction and author acceptance gates pass. Select optional rendering experiments from the remaining bottleneck.
 
 Record median/P95/P99 frame time, transition/save spikes, CPU/GPU timing availability, memory peaks, active render/collision counts, allocations, uploads and queue depth. CPU and GPU work can overlap; evaluate the actual critical frame path rather than adding their durations as if serial. A 60 FPS frame has approximately 16.7 ms available; the subsystem budgets remain provisional until Player measurements establish headroom.
@@ -179,6 +199,8 @@ Determinism checks vary cell order, worker completion order, visibility, LOD and
 
 ## Completion criteria
 
+The principal unresolved risks are low-angle shadow coverage expanding the render set, resident native-data memory remaining high, actor collision arriving too late, stale jobs adopting incompatible content, and checkpoints exceeding their size budget. Each needs a bounded test or measurement before area/density growth. A time-sliced scheduler also needs backpressure and replacement headroom: a full pool must defer work safely while retaining current coverage rather than grow without limit or leave an unfinishable replacement queued.
+
 The architecture is ready to scale when matched Player captures show repeatable improvement and acceptable frame-time variation; native terrain and collision remain correct; generated identities and saved changes survive representation recreation; preparation queues and memory stay bounded; checkpoint failure/recovery tests pass; and the author accepts traversal, camera views, lighting and population composition.
 
-Until then, the remaining implementation goal stays active. This baseline does not authorize terrain generation/streaming, silent save conversion, package changes, broad renderer migration or external publication. The next concrete work is the bounded rendering comparison and the canonical population metadata/state slice.
+Until then, the remaining implementation goal stays active. This baseline does not authorize terrain generation/streaming, silent save conversion, package changes, broad renderer migration or external publication. The next concrete work is to verify the bounded planner/presentation integration, connect explicit demand and compatibility providers in a reference sector, and obtain the matched Player rendering comparison under a safe resource budget.
