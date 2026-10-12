@@ -16,7 +16,7 @@ The repository root is the active Unity project. Use [AGENTS.md](../AGENTS.md) f
 | `Tools/Repository/`, `Tools/Art/Blender/` | Shared repository validation and source-art tools |
 | `Library/`, `Temp/`, `Logs/`, `UserSettings/`, `Builds/`, `.venv/` | Ignored local caches, outputs, diagnostics, and environments |
 
-All Blender `.blend` sources below SourceArt/Blender use Git LFS. Dated `*_PreviousSave_YYYY-MM-DD.blend` files are archival saves, not replacements for the working source. They stay beside that source to preserve relative resource paths. `*.blend1` files are normally ignored; a unique recovered save is deliberately named and tracked as a `.blend` instead of silently discarding it.
+Blender `.blend` sources and numbered backups remain local and must not be published through Git or Git LFS; see the [local-only source policy](Operations/LOCAL_ONLY_SOURCE_POLICY.md). Dated `*_PreviousSave_YYYY-MM-DD.blend` files are archival saves, not replacements for the working source. Preserve their relative resource paths and distinct recovered versions locally. Earlier LFS transfer receipts describe historical handling, not current publication authority.
 
 For incoming folders, inventory every file, compare SHA-256 hashes against the repository, verify LFS pointers against their materialized objects, and preserve distinct versions before removing any duplicate. Keep a source-to-destination receipt. Do not overwrite current tools with older transferred copies.
 

@@ -39,6 +39,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Agent Operations
 
+- [Large file storage audit and recommendation](./Operations/Repository/LARGE_FILE_STORAGE_RESEARCH_2026-10-12.md)
+  Measured Git, terrain evidence and local source sizes; LFS and archive alternatives, current pricing, and proposed restoration and migration gates.
+
 - [Operations/Repository/PLAN_REVIEW_2026-10-06.md](./Operations/Repository/PLAN_REVIEW_2026-10-06.md)
   Findings and corrected execution gates for template dependencies, historical assemblies, renderer routing, source tooling, and reconstruction proof.
 
