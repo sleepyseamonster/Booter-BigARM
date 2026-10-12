@@ -25,7 +25,8 @@ The [World Systems Standard](WORLD_SYSTEMS_STANDARD.md) still contains generated
 | Unity | 6000.4.0f1 |
 | Render pipeline | URP 17.4.0, current Forward renderer |
 | Production scene | `Assets/_Project/Scenes/Production/GreaterWasteland.unity` |
-| Latest accepted terrain checkpoint | 8,704 native tiles, 34 sections, 544 sectors |
+| Performance capture checkpoint | 8,704 native tiles, 34 sections, 544 sectors |
+| Current saved scene inspected October 12 | 8,960 serialized terrains/colliders; matching owner reconciliation, not a fresh full-world timing |
 | Native tile dimensions | 256 m square; inspected heightmaps are 257 × 257 samples |
 | Coarse organizational sector | 1,024 m square, normally 16 native tiles |
 | Primary hardware | i7-9700K, RTX 3060 Ti, approximately 64 GB system RAM |
@@ -229,4 +230,8 @@ The principal unresolved risks are low-angle shadow coverage expanding the rende
 
 The architecture is ready to scale when matched Player captures show repeatable improvement and acceptable frame-time variation; native terrain and collision remain correct; generated identities and saved changes survive representation recreation; preparation queues and memory stay bounded; checkpoint failure/recovery tests pass; and the author accepts traversal, camera views, lighting and population composition.
 
-Until then, the remaining implementation goal stays active. This baseline does not authorize terrain generation/streaming, silent save conversion, package changes, broad renderer migration or external publication. The next concrete work is to measure camera/sector transition costs and compare presentation partitions/startup readiness in the authored reference sector before connecting real gameplay actors and production saves. Interactive appearance/traversal acceptance remains author-owned.
+The author requested closing this lane on October 12. Follow the [closeout audit and finite plan](GREATER_WASTELAND_PERFORMANCE_CLOSEOUT_PLAN_2026-10-12.md), which supersedes further routine tuning. Camera transitions, real reference actor bindings and detailed startup measurements are now implemented; normal gameplay/visual acceptance is still unproven. Production population/save rollout and optional spatial/rendering experiments remain explicitly undelivered follow-on items whose disposition needs author agreement. This baseline does not authorize terrain generation/streaming, silent save conversion, package changes, broad renderer migration or external publication.
+
+## Closeout reconciliation — October 12
+
+The latest [103-case microstep receipt](../Evidence/Performance/population-microsteps-implementation-2026-10-12.json) binds current planner work limits and reference capture. [Spatial demand](../Evidence/Performance/population-spatial-demand-receipt-2026-10-12.json) reduces normal resident population 390 → 182 while retaining camera-independent collision. Allocation evidence now uses positive-control Unity event counts; the earlier CLR zero-byte claim was withdrawn. Full-world timings remain scoped to 8,704 tiles, while current saved inventory is 8,960 and matches the terrain owner's scene hash. The closeout plan separates proof already obtained, outstanding author acceptance and future rollout; no more automatic optimization is selected.
