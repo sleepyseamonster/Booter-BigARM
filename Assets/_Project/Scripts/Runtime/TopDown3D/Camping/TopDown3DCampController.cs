@@ -213,14 +213,14 @@ namespace BooterBigArm.TopDown3D
             var sleep = TopDown3DSleepRules.Quote(vitals, settings, TopDown3DSurvivalActivity.Sleep);
             var rest = TopDown3DSleepRules.Quote(vitals, settings, TopDown3DSurvivalActivity.Rest);
             var canPack = inventory.State.CanAdd(new TopDown3DItemAmount(TopDown3DCampSettings.ItemId, 1));
-            var notice = !canPack ? "Pack up unavailable: inventory full" : !sleep.IsUseful
-                ? vitals.Reserve >= settings.sleepTarget * vitals.Settings.MaximumReserve ? "Already ready" : "Supplies too low to sleep safely"
+            var notice = !canPack ? "Pack up unavailable: inventory full" : !sleep.CanStart
+                ? "Supplies too low to sleep safely"
                 : $"Rest: up to +{rest.Gain:0.#} Reserve";
             if (armed) { module.submit = priorSubmit; module.leftClick = priorClick; }
-            canvas.Show($"CAMP · Reserve {vitals.Reserve:0}\nSleep: +{sleep.Gain:0.#} Reserve · ~{sleep.Seconds / settings.sleepSpeed:0}s · "
-                + $"Food {sleep.Food:0.#} / Water {sleep.Water:0.#} / Oxygen {sleep.Oxygen:0.#}\n"
+            canvas.Show($"CAMP · Reserve {vitals.Reserve:0}\nSleep: up to +{sleep.Gain:0.#} Reserve · wake when ready · "
+                + $"Per world second: Food -{settings.sleepFood:0.###} / Water -{settings.sleepWater:0.###} / Oxygen -{settings.sleepOxygen:0.###}\n"
                 + $"{notice} · [{input.GetBindingDisplayName("Camp/Cancel", "Back")}] Back", true, armed);
-            canvas.SetAvailability(sleep.IsUseful, rest.IsUseful, canPack);
+            canvas.SetAvailability(sleep.CanStart, rest.CanStart, canPack);
             canvas.Focus(eventSystem);
         }
 
@@ -228,7 +228,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (!armed || committing || Phase != TopDown3DCampPhase.Actions || Camp == null) return;
             var quote = TopDown3DSleepRules.Quote(vitals, settings, sleep ? TopDown3DSurvivalActivity.Sleep : TopDown3DSurvivalActivity.Rest);
-            if (!quote.IsUseful) return;
+            if (!quote.CanStart) return;
             pendingSleep = sleep; RestoreUi(); motor.EndActionConstraint(this);
             var point = Camp.transform.TransformPoint(settings.sleepOffset);
             if (!TopDown3DCampPlacement.TryGround(point, out var grounded, out _)) { EndAction(); return; }
@@ -254,7 +254,7 @@ namespace BooterBigArm.TopDown3D
             if (Camp == null || !TopDown3DCampPlacement.Validate(Record.position, Record.rotation, settings, transform, Camp.transform, out _, out _))
             { Wake("Camp space changed"); return; }
             var mode = pendingSleep ? TopDown3DSurvivalActivity.Sleep : TopDown3DSurvivalActivity.Rest;
-            if (!TopDown3DSleepRules.Quote(vitals, settings, mode).IsUseful) { Wake("Supplies getting low"); return; }
+            if (!TopDown3DSleepRules.Quote(vitals, settings, mode).CanStart) { Wake("Supplies getting low"); return; }
             if (pendingSleep && !speed.TryAcquire(this, settings.sleepSpeed)) { Wake("World speed is unavailable"); return; }
             sleepStart = vitals.CaptureSnapshot();
             Enter(pendingSleep ? TopDown3DCampPhase.Sleeping : TopDown3DCampPhase.Resting, TopDown3DInputMode.CampBusy);

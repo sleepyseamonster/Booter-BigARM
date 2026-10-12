@@ -115,16 +115,16 @@ namespace BooterBigArm.TopDown3D
             exactHunger = Math.Max(0, exactHunger - quote.Food);
             exactThirst = Math.Max(0, exactThirst - quote.Water);
             exactOxygen = Math.Max(0, exactOxygen - quote.Oxygen);
-            exactReserve = Math.Min(settings.MaximumReserve, exactReserve + quote.Gain);
+            var target = (mode == TopDown3DSurvivalActivity.Sleep ? campSettings.sleepTarget : campSettings.restTarget) * settings.MaximumReserve;
+            if (exactReserve < target) exactReserve = Math.Min(target, exactReserve + quote.Gain);
             hunger = (float)exactHunger; thirst = (float)exactThirst; oxygen = (float)exactOxygen; reserve = (float)exactReserve;
             activityRemaining -= used;
             if (used > 0) Changed?.Invoke();
             var more = TopDown3DSleepRules.Quote(this, campSettings, mode, (float)activityRemaining);
-            if (used < elapsedSeconds - .0001f || !more.IsUseful)
+            if (used < elapsedSeconds - .0001f || !more.CanStart)
             {
-                var target = (mode == TopDown3DSurvivalActivity.Sleep ? campSettings.sleepTarget : campSettings.restTarget) * settings.MaximumReserve;
                 activity = TopDown3DSurvivalActivity.Ordinary;
-                ActivityCompleted?.Invoke(reserve >= target - .001f ? "Ready" : activityRemaining <= .001f ? "Rest complete" : "Supplies getting low");
+                ActivityCompleted?.Invoke(activityRemaining <= .001f ? "Rest complete" : "Supplies getting low");
                 Advance(Mathf.Max(0, elapsedSeconds - used));
             }
         }

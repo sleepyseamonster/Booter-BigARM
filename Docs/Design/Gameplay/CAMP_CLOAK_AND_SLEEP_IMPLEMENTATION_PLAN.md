@@ -6,6 +6,8 @@ This plan turns the [brainstorming proposal](./CAMP_CLOAK_AND_SLEEP_BRAINSTORM.m
 
 ## Objective and observable success
 
+October 11 user direction supersedes the original Reserve eligibility and automatic ready-wake behavior below: Rest and Sleep can start at any Reserve level, subject to existing supply and camp checks. Sleep continues until manual wake or interruption; Rest retains its 20-second duration. The 40/80-percent thresholds cap recovery only. See the current [survival standard](./SURVIVAL_SYSTEM_STANDARD.md) and [implementation receipt](../../Evidence/Gameplay/CAMP_SLEEP_IMPLEMENTATION_2026-10-10.md).
+
 The player can carry one reusable camp kit, call up a placement preview, orient and confirm the screen on supported terrain, approach it physically, and choose Rest, Sleep until ready, or Pack up. Booter remains visible while asleep under the cloak. Sleep accelerates the world, restores only Reserve, and drains food, water, and oxygen once per elapsed simulation interval. Manual wake, low supplies, damage, or lifecycle interruption promptly releases acceleration and preserves earned recovery.
 
 The controller flow must work without a mouse, preserve the existing radial preferences, and prevent a single press from both opening and committing the next action. Packing returns the same kit locally. The camp stays behind if Booter flees. Current movement, climbing, gathering, canister placement, inventory, companion behavior, native terrain, and ordinary survival depletion continue to work.

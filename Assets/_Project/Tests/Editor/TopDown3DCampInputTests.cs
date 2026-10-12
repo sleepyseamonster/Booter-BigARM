@@ -38,7 +38,7 @@ namespace BooterBigArm.Tests
                 canvas.SetAvailability(false, false, false); canvas.Focus(system);
                 Assert.That(system.currentSelectedGameObject, Is.Null);
                 canvas.SetAvailability(true, true, true); canvas.Focus(system);
-                Assert.That(system.currentSelectedGameObject.name, Is.EqualTo("Sleep until ready"));
+                Assert.That(system.currentSelectedGameObject.name, Is.EqualTo("Sleep"));
             }
             finally { Object.DestroyImmediate(root); Object.DestroyImmediate(events); }
         }

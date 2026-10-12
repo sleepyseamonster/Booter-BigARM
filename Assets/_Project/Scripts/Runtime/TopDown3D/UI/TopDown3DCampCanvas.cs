@@ -37,7 +37,7 @@ namespace BooterBigArm.TopDown3D
             detail = textRect.gameObject.AddComponent<Text>(); detail.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             detail.fontSize = 23; detail.alignment = TextAnchor.MiddleCenter; detail.color = new Color(.95f, .9f, .8f);
             choices = Rect("Choices", panel.transform, new Vector2(0, -70), new Vector2(690, 60)).gameObject;
-            sleep = Button("Sleep until ready", -235, doSleep);
+            sleep = Button("Sleep", -235, doSleep);
             rest = Button("Rest", 0, doRest); pack = Button("Pack up", 235, doPack);
             panel.SetActive(false);
         }

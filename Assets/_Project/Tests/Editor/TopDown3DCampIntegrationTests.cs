@@ -77,6 +77,30 @@ namespace BooterBigArm.Tests
             vitals.SetValue(TopDown3DSurvivalVital.Health, 0);
             Assert.That(camp.CanCallUp, Is.False); Assert.That(camp.Record, Is.Null); Assert.That(camp.KitCarried, Is.True);
         }
+        [TestCase(true)]
+        [TestCase(false)]
+        public void FullReserveCanStartAndRemainInCampActivity(bool sleep)
+        {
+            var baseline = Time.timeScale;
+            try
+            {
+                Time.timeScale = 1; Deploy(); vitals.SetValue(TopDown3DSurvivalVital.Reserve, vitals.Settings.MaximumReserve);
+                Assert.That(camp.CallUp(), Is.True); Input(new GamepadState()); Tick(); Invoke("BeginRecovery", sleep);
+                Assert.That(camp.Phase, Is.EqualTo(TopDown3DCampPhase.Approaching));
+                MotorMessage("FixedUpdate"); Elapse(1);
+                Assert.That(camp.Phase, Is.EqualTo(sleep ? TopDown3DCampPhase.Sleeping : TopDown3DCampPhase.Resting));
+                vitals.ReconcileRuntimeClock(Time.timeAsDouble, 0, false);
+                Assert.That(vitals.Activity, Is.EqualTo(sleep ? TopDown3DSurvivalActivity.Sleep : TopDown3DSurvivalActivity.Rest));
+                var reserveAtStart = vitals.Reserve;
+                Assert.That(reserveAtStart, Is.GreaterThan(camp.Settings.sleepTarget * vitals.Settings.MaximumReserve));
+                vitals.AdvanceActivity(10);
+                Assert.That(camp.Phase, Is.EqualTo(sleep ? TopDown3DCampPhase.Sleeping : TopDown3DCampPhase.Resting));
+                Assert.That(vitals.Reserve, Is.EqualTo(reserveAtStart));
+                camp.NotifyDanger("Manual test wake");
+                Assert.That(Time.timeScale, Is.EqualTo(1));
+            }
+            finally { Time.timeScale = baseline; }
+        }
         [Test] public void HealthLossWakesAndReleasesSpeedWithoutDeletingCamp()
         {
             var baseline = Time.timeScale;

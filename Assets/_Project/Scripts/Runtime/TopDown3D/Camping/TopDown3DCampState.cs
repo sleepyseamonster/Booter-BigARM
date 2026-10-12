@@ -20,8 +20,12 @@ namespace BooterBigArm.TopDown3D
     {
         public readonly float Seconds, Gain, Food, Water, Oxygen;
         public bool IsUseful => Seconds > .01f && Gain > .001f;
-        public TopDown3DSleepQuote(float seconds, float rate, float food, float water, float oxygen)
-        { Seconds = seconds; Gain = seconds * rate; Food = seconds * food; Water = seconds * water; Oxygen = seconds * oxygen; }
+        public bool CanStart => Seconds > .01f;
+        public TopDown3DSleepQuote(float seconds, float rate, float food, float water, float oxygen, float maximumGain = float.PositiveInfinity)
+        {
+            Seconds = seconds; Gain = Mathf.Min(seconds * rate, maximumGain);
+            Food = food > 0 ? seconds * food : 0; Water = water > 0 ? seconds * water : 0; Oxygen = oxygen > 0 ? seconds * oxygen : 0;
+        }
     }
 
     public static class TopDown3DSleepRules
@@ -38,7 +42,7 @@ namespace BooterBigArm.TopDown3D
             if (!(recovery > 0) || !float.IsFinite(recovery) || food < 0 || water < 0 || oxygen < 0
                 || !float.IsFinite(food + water + oxygen) || float.IsNaN(duration) || duration < 0) return default;
             var target = (sleep ? settings.sleepTarget : settings.restTarget) * vitals.Settings.MaximumReserve;
-            var time = Mathf.Min(duration, Mathf.Max(0, target - vitals.Reserve) / recovery);
+            var time = duration;
             if (!sleep) time = Mathf.Min(time, settings.restDuration);
             // Both transition poses use ordinary depletion. Reserve supply for them before sleep starts.
             var transition = settings.poseDuration + settings.wakeDuration;
@@ -48,7 +52,7 @@ namespace BooterBigArm.TopDown3D
                 settings.resourceFloor, vitals.Settings.ThirstDepletionPerSecond * transition, water));
             time = Mathf.Min(time, ResourceSeconds(vitals.Oxygen, vitals.Settings.MaximumOxygen,
                 settings.resourceFloor, 0, oxygen));
-            return new TopDown3DSleepQuote(time, recovery, food, water, oxygen);
+            return new TopDown3DSleepQuote(time, recovery, food, water, oxygen, Mathf.Max(0, target - vitals.Reserve));
         }
 
         private static float ResourceSeconds(float value, float maximum, float floor, float transitionCost, float rate)
