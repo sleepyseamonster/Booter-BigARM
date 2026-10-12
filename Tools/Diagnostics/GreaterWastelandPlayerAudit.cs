@@ -15,6 +15,8 @@ using UnityEngine.SceneManagement;
 public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
 {
     [Serializable] public sealed class Marker { public string name, unit; public double meanRaw; }
+    [Serializable] public struct TransitionFrame
+    { public double elapsed, updateMs, requestMs; public Vector3 camera; public int terrainRenderers; }
     [Serializable] public sealed class Report
     {
         public string mode, error, scene, gpu, graphicsApi, unity, persistentPath;
@@ -29,6 +31,8 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
         public float renderScale, shadowDistance, cameraFar;
         public Vector3 cameraStart, cameraEnd;
         public Marker[] markers;
+        public bool cameraSweep;
+        public TransitionFrame[] transitionFrames;
     }
     private readonly List<double> times = new();
     private readonly List<ProfilerRecorder> recorders = new();
@@ -46,6 +50,11 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
     private bool manualRender;
     private GreaterWastelandTerrainRendering terrainRendering;
     private bool discardBoundaryFrame;
+    private readonly List<TransitionFrame> transitionFrames = new(10000);
+    private TransitionFrame lastSubmission;
+    private FixedTerrainSurfaceIndex sweepSurface;
+    private Vector3 sweepOrigin;
+    private float sweepClearance;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void Install()
@@ -73,6 +82,8 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
                 width = 1920, height = 1080, quality = QualitySettings.GetQualityLevel(), persistentPath = Application.persistentDataPath,
                 allTerrainRendering = Array.IndexOf(Environment.GetCommandLineArgs(), GreaterWastelandTerrainRendering.AllTerrainArgument) >= 0 };
             manualRender = Array.IndexOf(Environment.GetCommandLineArgs(), "-auditManualRender") >= 0;
+            report.cameraSweep = Array.IndexOf(Environment.GetCommandLineArgs(), "-auditCameraSweep") >= 0;
+            if (report.cameraSweep && !manualRender) throw new InvalidOperationException("Camera sweep requires explicit manual URP diagnostics.");
             if (manualRender) report.mode = "standalone_player_manual_urp_offscreen_diagnostic";
             // Prevent checkpoint restore/autosaves from changing comparison poses or touching any user's save.
             foreach (var root in SceneManager.GetActiveScene().GetRootGameObjects())
@@ -80,6 +91,7 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
             report.savesDisabled = true;
             terrain = SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Terrain>(true)).ToArray();
             report.residentTerrains = terrain.Length;
+            if (report.cameraSweep) sweepSurface = new FixedTerrainSurfaceIndex(terrain, "audit.frozen.native");
             view = Camera.main;
             terrainRendering = FindAnyObjectByType<GreaterWastelandTerrainRendering>();
             var pipeline = (QualitySettings.renderPipeline ?? GraphicsSettings.defaultRenderPipeline) as UniversalRenderPipelineAsset;
@@ -110,15 +122,21 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
     private void Update()
     {
         if (finished) return;
+        var completedSubmission = lastSubmission;
         if (manualRender)
         {
             try
             {
+                if (report.cameraSweep && samplingStart > 0 && !discardBoundaryFrame) MoveSweepCamera();
+                double requestStart = Time.realtimeSinceStartupAsDouble;
                 if (terrainRendering == null) terrainRendering = FindAnyObjectByType<GreaterWastelandTerrainRendering>();
                 terrainRendering?.PrepareCamera(view);
                 RenderPipeline.SubmitRenderRequest(view, new UniversalRenderPipeline.SingleCameraRequest { destination = target });
                 // SingleCameraRequest may bypass normal camera callbacks. Successful submission records diagnostic requests, not automatic rendered frames.
                 lastRenderedFrame = Time.frameCount - 1; renderEvents++;
+                lastSubmission = new TransitionFrame { elapsed = samplingStart > 0 ? requestStart - samplingStart : 0,
+                    camera = view.transform.position, terrainRenderers = terrainRendering?.EnabledTerrainCount ?? terrain.Length,
+                    requestMs = (Time.realtimeSinceStartupAsDouble - requestStart) * 1000 };
             }
             catch (Exception e) { Finish("Manual URP request failed: " + e); return; }
         }
@@ -139,6 +157,7 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
         }
         if (lastRenderedFrame != Time.frameCount - 1) { Finish("A sampled Player frame lacked the real camera render callback."); return; }
         times.Add(Time.unscaledDeltaTime * 1000d);
+        if (report.cameraSweep) { completedSubmission.updateMs = times[times.Count - 1]; transitionFrames.Add(completedSubmission); }
         for (int i = 0; i < recorders.Count; i++) sums[i] += recorders[i].LastValue;
         FrameTimingManager.CaptureFrameTimings();
         if (FrameTimingManager.GetLatestTimings(1, timing) > 0)
@@ -147,6 +166,23 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
             if (timing[0].gpuFrameTime > 0) { report.meanGpuMs += timing[0].gpuFrameTime; report.validGpuTimings++; }
         }
         if (now - samplingStart >= 30) { report.sampleSeconds = now - samplingStart; Finish(null); }
+    }
+    private void MoveSweepCamera()
+    {
+        if (transitionFrames.Count == 0)
+        {
+            sweepOrigin = report.cameraStart;
+            if (!sweepSurface.TrySample(new Vector2(sweepOrigin.x, sweepOrigin.z), out var ground)) throw new InvalidOperationException("Sweep origin lacks native collision.");
+            sweepClearance = sweepOrigin.y - ground.Position.y;
+            if (sweepClearance <= 0) throw new InvalidOperationException("Sweep camera must begin above native ground.");
+            var rig = view.GetComponent<TopDown3DCameraRig>(); if (rig != null) rig.enabled = false;
+        }
+        float leg = Mathf.Clamp01((float)((Time.realtimeSinceStartupAsDouble - samplingStart) / 30)) * 4;
+        Vector2 offset = leg < 1 ? new Vector2(leg * 1024, 0) : leg < 2 ? new Vector2(1024, (leg - 1) * 1024)
+            : leg < 3 ? new Vector2((3 - leg) * 1024, 1024) : new Vector2(0, (4 - leg) * 1024);
+        var position = new Vector2(sweepOrigin.x + offset.x, sweepOrigin.z + offset.y);
+        if (!sweepSurface.TrySample(position, out var sample)) throw new InvalidOperationException("Sweep route leaves valid native collision.");
+        view.transform.position = new Vector3(position.x, sample.Position.y + sweepClearance, position.y);
     }
     private void Finish(string error)
     {
@@ -157,6 +193,7 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
         report.renderedFrames = manualRender ? 0 : renderEvents; report.manualRequests = manualRender ? renderEvents : 0;
         report.samples = times.Count;
         report.frameTimesMs = times.ToArray();
+        if (report.cameraSweep) report.transitionFrames = transitionFrames.ToArray();
         if (times.Count > 0)
         {
             times.Sort(); report.meanMs = times.Average(); report.medianMs = Percentile(.5); report.p95Ms = Percentile(.95);

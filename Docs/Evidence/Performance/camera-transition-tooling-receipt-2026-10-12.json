@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-12",
+  "scope": "Camera-sweep diagnostic tooling: isolated Editor compilation and deterministic summary fixtures only; Player build/capture pending",
+  "candidate": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01",
+  "sources": [
+    {
+      "path": "Tools/Diagnostics/GreaterWastelandPlayerAudit.cs",
+      "sha256": "f1b67388a373bc2f8b98701892bb19255344d6b160765d2304fb8a721561131e"
+    },
+    {
+      "path": "Tools/Diagnostics/summarize_camera_transitions.py",
+      "sha256": "dcda0982e707556c78bcb2aeefabf8f805df45c44b21c0394d2cde13c8f5fa06"
+    }
+  ],
+  "candidate_source_equal": true,
+  "isolated_editor_runtime_assembly_sha256": "e0fde361d791bfbd9ed27012386bf4d9d35cd54996f1a0c3753632bf79bf0b1e",
+  "compiled_members": [
+    "MoveSweepCamera",
+    "TransitionFrame",
+    "cameraSweep"
+  ],
+  "summary_fixture_checks": [
+    "Known nearest-rank statistics and four sector crossings",
+    "Incomplete capture rejected",
+    "Missing sweep mode rejected",
+    "Lost terrain collision rejected",
+    "Trace/sample mismatch rejected",
+    "Full route span and closure verified",
+    "Incomplete route duration rejected"
+  ],
+  "build_process": {
+    "pid": 37808,
+    "receipt": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Logs\\player-audit-build-transitions-process.json",
+    "status": "Live as revalidated before receipt; not successful build proof"
+  },
+  "remaining": [
+    "Complete guarded Player build",
+    "Run sweep and stationary control sequentially",
+    "Verify actual path, frame statistics, render-count bounds, pixel evidence and terrain collision",
+    "Author visual/traversal and interactive FPS acceptance"
+  ]
+}
