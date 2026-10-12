@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "exact_accepted_snapshots_canonically_reverified",
+  "isolation": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02",
+  "restored_isolation_scene_sha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+  "root_scene_unchanged": true,
+  "original_public_closeouts_unchanged": true,
+  "sections": [
+    {
+      "step": 1,
+      "closeout_sha256": "85ac9b8d85410ec1493c9dc11a20415ca7009f4c07b84ecae2cba0e7a3137f65",
+      "original_missing_log": "C:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_01\\Logs\\step1-playable02.log",
+      "original_log_sha256": "dffb263561982248710be86beeb2b73ff8adceadb1f543c38443989639dbb8f7",
+      "production_scene_sha256": "26de31220b5ce350da4ba4a617d2dbba4fe55615d7dcacaa14a36ca9b781766e",
+      "manifest_sha256": "ff40f00ced56bf417ddd3d7e33f0d8aa18ed48412d07cda7d5574ec5c73e173f",
+      "exact_snapshot_path": "SourceData/Terrain/DeathValley/NorthRow4E504016N4026680_2026-10-11/Baseline01/production_before.unity",
+      "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Logs\\step1-playablerecovery01.log",
+      "sha256": "dbf2ca857fb10f9df5dd72040d8229f303b2b8fed1e4ca89567891885b362a5b",
+      "exit_code": 0
+    },
+    {
+      "step": 2,
+      "closeout_sha256": "3c4d9ce549ab66f3400b4a28e6beac765449e3accd08886acb468b302b279802",
+      "original_missing_log": "C:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_01\\Logs\\step2-playable.log",
+      "original_log_sha256": "6e127d43818994d8668c1b625bacf81b40fda7e73f5b5bfcdd873d2e66c38c41",
+      "production_scene_sha256": "bd1e6687c586b6eb9b2aa191263b45fb33df04898e47fa26eb0abadb36b6e850",
+      "manifest_sha256": "b6b31ec9f247962b624206a6f40b1643a9ba65567a75121b06ac2ec61184243f",
+      "exact_snapshot_path": "SourceData/Terrain/DeathValley/NorthRow4E508112N4026680_2026-10-11/Baseline01/production_before.unity",
+      "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Logs\\step2-playablerecovery01.log",
+      "sha256": "b1903dddcb8e74a97643bb38e67b8aaa2ccf4ba341594d0c653a9c1e4206904a",
+      "exit_code": 0
+    },
+    {
+      "step": 3,
+      "closeout_sha256": "432e58dfb5aa262cf124be2b510ca0f58b2acc4c0307d1be3373f2b5178d6770",
+      "original_missing_log": "C:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_01\\Logs\\step3-playable.log",
+      "original_log_sha256": "253975284f19970e9e602e4640dfd6cd7fabd956a962bc3622fbf8eda0de6c8e",
+      "production_scene_sha256": "442e8ea6b53c2a8581427540556c632d9889462ed0794755bb96fd79deb57126",
+      "manifest_sha256": "1d1f96f2e2891df2af7e8b5b0e6a96a99787edf9a6aa8740cf53beb527cd9142",
+      "exact_snapshot_path": "SourceData/Terrain/DeathValley/NorthRow4E512208N4026680_2026-10-11/Baseline01/production_before.unity",
+      "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Logs\\step3-playablerecovery01.log",
+      "sha256": "aa81e9777662258c7553260bbfa9931f1b386720497c29d3dd055c1c9dd9b8b8",
+      "exit_code": 0
+    }
+  ],
+  "limits": "Fresh canonical verification replaces unavailable local logs; original log contents are not reconstructed."
+}

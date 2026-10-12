@@ -2,7 +2,7 @@
 import json,re,subprocess,sys,xml.etree.ElementTree as ET
 from pathlib import Path
 import argparse
-parser=argparse.ArgumentParser(description=__doc__);parser.add_argument("--doctor",type=Path,required=True);parser.add_argument("--output",type=Path,required=True);args=parser.parse_args()
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument("--doctor",type=Path,required=True);parser.add_argument("--output",type=Path,required=True);parser.add_argument("--canonical-log-recovery",type=Path);args=parser.parse_args()
 if args.output.exists():raise ValueError("Fresh completion audit output required")
 root=Path(__file__).resolve().parents[4];sys.path.insert(0,str(root/'Tools/Art/Blender/death_valley'));sys.path.insert(0,str(root/'Docs/DeathValley'))
 from north_row4_contract import contract,sha256,occupied_cells
@@ -20,6 +20,12 @@ assert cat['source_audit']['shared_edges_checked']==18240 and cat['source_audit'
 sections=[];sources=0;source_bytes=0;previous='19c3633ffd884f11b72cd9f6daae13526315ad252f93da49b5191d99ab87c566'
 from north_row4_coverage import newest
 commits=[]
+recovery = json.loads(args.canonical_log_recovery.read_text(encoding='utf-8')) if args.canonical_log_recovery else None
+if recovery:
+ assert recovery['schema_version']==1 and recovery['status']=='exact_accepted_snapshots_canonically_reverified'
+ assert recovery['root_scene_unchanged'] and recovery['original_public_closeouts_unchanged']
+ assert len(recovery['sections'])==3 and {r['step'] for r in recovery['sections']}=={1,2,3}
+recovered_logs=[]
 for step in range(1,7):
  native,m=newest(root,7680+256*step);date=m['execution_date'];c=contract(step,date)
  ev=root/'Docs/Evidence/DeathValley'/c['batch'];close=json.loads((ev/'closeout.json').read_text(encoding='utf-8'))
@@ -61,7 +67,21 @@ for step in range(1,7):
  assert report['scene_sha256']==close['production_scene_sha256'] and report['manifest_sha256']==close['manifest_sha256']
  assert report['terrains']==c['total'] and report['edges']==c['edges'] and report['collider_samples']==c['collider_samples'] and report['outer_edges']==384
  meta=json.loads((ev/'metadata_audit.json').read_text(encoding='utf-8'));assert meta['status']=='owned_metadata_and_global_GUID_uniqueness_verified'
- assert close['canonical_playable_validator']['exit_code']==0 and sha256(Path(close['canonical_playable_validator']['local_log']))==close['canonical_playable_validator']['sha256']
+ canonical=close['canonical_playable_validator'];assert canonical['exit_code']==0
+ original_log=Path(canonical['local_log'])
+ if original_log.exists():
+  assert sha256(original_log)==canonical['sha256']
+ else:
+  assert recovery is not None,'Missing original canonical log requires explicit fresh recovery evidence'
+  matches=[r for r in recovery['sections'] if r['step']==step];assert len(matches)==1
+  recovered=matches[0]
+  assert recovered['closeout_sha256']==sha256(ev/'closeout.json') and recovered['exit_code']==0
+  assert recovered['original_missing_log']==canonical['local_log'] and recovered['original_log_sha256']==canonical['sha256']
+  assert recovered['production_scene_sha256']==close['production_scene_sha256'] and recovered['manifest_sha256']==close['manifest_sha256']
+  assert sha256(root/recovered['exact_snapshot_path'])==close['production_scene_sha256']
+  fresh_log=Path(recovered['local_log']);assert sha256(fresh_log)==recovered['sha256']
+  assert f'Playable Badwater scene validated: {c["total"]} terrains, Booter, Legger, input, camera, UI, twilight and dust.' in fresh_log.read_text(encoding='utf-8')
+  recovered_logs.append(step)
  assert close['current_catalog_tests']['failed']==0 and close['current_catalog_tests']['passed']==34
  catalog_xml=[p for p in ev.glob(f'step{step}-current-catalog-tests*.xml') if sha256(p)==close['current_catalog_tests']['xml_sha256']]
  assert len(catalog_xml)==1
@@ -151,6 +171,9 @@ out['unchanged_package_editor_pins']=pins
 out['acceptance_commits']=commits
 out['original_protected_files_verified']=len(inventory)-1
 out['changed_original_scene_documents']=changed_original
+if recovery:
+ out['canonical_log_recovery_sha256']=sha256(args.canonical_log_recovery)
+ out['missing_original_logs_freshly_reverified_steps']=recovered_logs
 import shutil
 capacity={drive:shutil.disk_usage(drive).free for drive in ('C:/','D:/')}
 assert all(free>3*1024**3 for free in capacity.values()),'Final 3 GiB reserve violated'
