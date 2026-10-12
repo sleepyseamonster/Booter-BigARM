@@ -6,8 +6,8 @@ namespace BooterBigArm.TopDown3D
     {
         private TopDown3DCampController controller;
         private TopDown3DCampSettings settings;
-        public TopDown3DCampRecord Record { get; private set; }
-        public bool CanPack { get; private set; } = true;
+        [field: SerializeField] public TopDown3DCampRecord Record { get; private set; }
+        [field: SerializeField] public bool CanPack { get; private set; } = true;
         public Object UnityObject => this;
         public string StableId => Record?.id ?? string.Empty;
         public string Prompt => CanPack ? "Camp · rest, sleep, or pack up" : "Starting Camp · rest or sleep";

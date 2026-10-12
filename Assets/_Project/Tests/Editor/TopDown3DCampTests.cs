@@ -4,6 +4,8 @@ using BooterBigArm.TopDown3D;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TestTools;
+using System.Text.RegularExpressions;
 
 namespace BooterBigArm.Tests
 {
@@ -18,7 +20,11 @@ namespace BooterBigArm.Tests
             Assert.That(state.TryRemove(TopDown3DCampSettings.ItemId, 1, () => false).Succeeded, Is.False);
             Assert.That(state.Slots.Sum(slot => slot.Quantity), Is.EqualTo(1));
             state.Changed += () => { Assert.That(worldOwnsKit, Is.True); throw new InvalidOperationException("Observer failed after commit"); };
-            Assert.Throws<InvalidOperationException>(() => state.TryRemove(TopDown3DCampSettings.ItemId, 1, () => { worldOwnsKit = true; return true; }));
+            var laterObserverRan = false;
+            state.Changed += () => { laterObserverRan = true; Assert.That(state.TryAdd(new TopDown3DItemAmount(TopDown3DCampSettings.ItemId, 1)).Code, Is.EqualTo(TopDown3DInventoryResultCode.MutationBusy)); };
+            LogAssert.Expect(LogType.Exception, new Regex("InvalidOperationException: Observer failed after commit"));
+            Assert.That(state.TryRemove(TopDown3DCampSettings.ItemId, 1, () => { worldOwnsKit = true; return true; }).Succeeded, Is.True);
+            Assert.That(laterObserverRan, Is.True);
             Assert.That(worldOwnsKit, Is.True); Assert.That(state.Slots.Sum(slot => slot.Quantity), Is.EqualTo(0));
         }
         [Test] public void FullInventoryRejectsCampReturnBeforeOwnershipCallback()

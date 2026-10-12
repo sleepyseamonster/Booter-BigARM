@@ -9,11 +9,11 @@ using UnityEngine.InputSystem.UI;
 namespace BooterBigArm.TopDown3D
 {
     [DefaultExecutionOrder(200)]
-    public sealed class TopDown3DCampController : MonoBehaviour
+    public sealed partial class TopDown3DCampController : MonoBehaviour, ISerializationCallbackReceiver
     {
-        public TopDown3DCampPhase Phase { get; private set; }
-        public TopDown3DCampRecord Record { get; private set; }
-        public TopDown3DCampView Camp { get; private set; }
+        [field: SerializeField] public TopDown3DCampPhase Phase { get; private set; }
+        [field: SerializeField] public TopDown3DCampRecord Record { get; private set; }
+        [field: SerializeField] public TopDown3DCampView Camp { get; private set; }
         private TopDown3DCampView recoveryTarget;
         public TopDown3DCampView RecoveryTarget => recoveryTarget;
         public bool IsConfigured => settings != null;

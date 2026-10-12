@@ -121,14 +121,16 @@ namespace BooterBigArm.TopDown3D
     }
 
     [DisallowMultipleComponent]
-    public sealed class TopDown3DPlacedHarvesterState : MonoBehaviour
+    public sealed class TopDown3DPlacedHarvesterState : MonoBehaviour, ISerializationCallbackReceiver
     {
         private static readonly WorldSeedNamespace PlacementNamespace =
             new WorldSeedNamespace(WorldVersionDomain.Site, "player-micro-dust-harvester");
 
         [SerializeField] private TopDown3DProceduralWorld world;
         [SerializeField] private TopDown3DHarvesterSettings settings;
-        private string authoredWorldId;
+        [SerializeField] private string authoredWorldId;
+        [SerializeField, HideInInspector] private TopDown3DPlacedHarvesterSnapshot reloadSnapshot;
+        private bool needsReload;
 
         private readonly Dictionary<string, TopDown3DPlacedHarvesterRecord> records =
             new Dictionary<string, TopDown3DPlacedHarvesterRecord>(StringComparer.Ordinal);
@@ -142,6 +144,26 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DHarvesterSettings Settings => settings;
         public int DeployedCount => records.Count;
         public bool IsAuthored => world == null && !string.IsNullOrEmpty(authoredWorldId);
+
+        public void OnBeforeSerialize()
+        {
+            if (Application.isPlaying && IsAuthored)
+                reloadSnapshot = TopDown3DPlacedHarvesterSnapshot.Create(0, simulationSeconds, nextSequence, records.Values, authoredWorldId);
+        }
+        public void OnAfterDeserialize() => needsReload = true;
+        private void OnEnable() { if (needsReload) RestoreRetainedState(); }
+        internal bool RestoreRetainedState()
+        {
+            needsReload = false;
+            if (reloadSnapshot == null || string.IsNullOrEmpty(reloadSnapshot.AuthoredWorldId)) return true;
+            if (!CanApplySnapshot(reloadSnapshot)) return false;
+            foreach (var oldView in GetComponentsInChildren<TopDown3DHarvesterView>(true))
+            {
+                oldView.gameObject.SetActive(false);
+                if (Application.isPlaying) Destroy(oldView.gameObject); else DestroyImmediate(oldView.gameObject);
+            }
+            views.Clear(); return ApplySnapshot(reloadSnapshot);
+        }
 
         public void ConfigureAuthored(string worldId, TopDown3DHarvesterSettings authoredSettings)
         {

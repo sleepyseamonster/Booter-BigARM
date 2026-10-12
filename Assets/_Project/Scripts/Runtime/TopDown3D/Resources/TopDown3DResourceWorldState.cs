@@ -53,11 +53,12 @@ namespace BooterBigArm.TopDown3D
     }
 
     [DisallowMultipleComponent]
-    public sealed class TopDown3DResourceWorldState : MonoBehaviour
+    public sealed class TopDown3DResourceWorldState : MonoBehaviour, ISerializationCallbackReceiver
     {
         public const int CurrentSnapshotVersion = 1;
 
         [SerializeField, Min(1)] private int resourceGenerationVersion = 1;
+        [SerializeField, HideInInspector] private TopDown3DResourceWorldSnapshot reloadSnapshot;
         private readonly Dictionary<string, int> deltas = new Dictionary<string, int>(StringComparer.Ordinal);
         private readonly Dictionary<string, TopDown3DIronstoneNode> nodes =
             new Dictionary<string, TopDown3DIronstoneNode>(StringComparer.Ordinal);
@@ -65,6 +66,14 @@ namespace BooterBigArm.TopDown3D
         public int ResourceGenerationVersion => resourceGenerationVersion;
         public event Action<string, int> Changed;
         public event Action Restored;
+
+        public void OnBeforeSerialize()
+        { if (Application.isPlaying) reloadSnapshot = CaptureSnapshot(); }
+        public void OnAfterDeserialize()
+        {
+            if (reloadSnapshot == null || reloadSnapshot.Version == 0 || !TryBuildSnapshotState(reloadSnapshot, out var retained)) return;
+            deltas.Clear(); foreach (var pair in retained) deltas.Add(pair.Key, pair.Value);
+        }
 
         internal bool TryRegisterNode(string stableId, TopDown3DIronstoneNode node)
         {

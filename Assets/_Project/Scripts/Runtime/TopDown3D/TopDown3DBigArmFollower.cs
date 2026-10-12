@@ -6,7 +6,7 @@ namespace BooterBigArm.TopDown3D
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
-    public sealed class TopDown3DBigArmFollower : MonoBehaviour
+    public sealed partial class TopDown3DBigArmFollower : MonoBehaviour
     {
         public enum FollowState
         {

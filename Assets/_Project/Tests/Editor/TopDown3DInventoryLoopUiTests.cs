@@ -77,6 +77,16 @@ namespace BooterBigArm.Tests
             Assert.That(canvas.CargoSlotViews[0].Button.navigation.mode, Is.EqualTo(Navigation.Mode.Explicit));
         }
 
+        [Test] public void ExistingAuthoredGridsReconnectWithoutCreatingDuplicateSlots()
+        {
+            var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            ((System.Collections.Generic.List<TopDown3DInventorySlotView>)typeof(TopDown3DInventoryCanvas).GetField("slotViews", flags).GetValue(canvas)).Clear();
+            ((System.Collections.Generic.List<TopDown3DInventorySlotView>)typeof(TopDown3DInventoryCanvas).GetField("cargoSlotViews", flags).GetValue(canvas)).Clear();
+            ui.Configure(router, kit, null, canvas, ui.EventSystem);
+            Assert.That(canvas.SlotViews.Count, Is.EqualTo(8)); Assert.That(canvas.CargoSlotViews.Count, Is.EqualTo(12));
+            Assert.That(uiObject.GetComponentsInChildren<TopDown3DInventorySlotView>(true).Length, Is.EqualTo(20));
+        }
+
         [Test]
         public void GamepadBackCancelsSelectedStackBeforeClosing()
         {
@@ -90,6 +100,21 @@ namespace BooterBigArm.Tests
                 InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.Update();
                 InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(GamepadButton.East)); InputSystem.Update();
                 Assert.That(ui.IsOpen, Is.False);
+            }
+            finally { InputSystem.RemoveDevice(pad); }
+        }
+
+        [Test] public void GameplayBackHasOneContextActionAndNoCompetingCancelBinding()
+        {
+            var pad = InputSystem.AddDevice<Gamepad>();
+            try
+            {
+                var pickups = 0; var cancels = 0;
+                router.PickupCanisterRequested += () => pickups++;
+                router.ItemActionCancelRequested += () => cancels++;
+                InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.Update();
+                InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(GamepadButton.East)); InputSystem.Update();
+                Assert.That(pickups, Is.EqualTo(1)); Assert.That(cancels, Is.Zero);
             }
             finally { InputSystem.RemoveDevice(pad); }
         }

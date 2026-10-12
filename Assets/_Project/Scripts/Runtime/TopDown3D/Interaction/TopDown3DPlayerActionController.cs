@@ -321,6 +321,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandlePickupCanisterRequested()
         {
+            if (IsGathering) { CancelGather(); return; }
             if (placementPreview != null)
             {
                 CancelPlacementPreview();

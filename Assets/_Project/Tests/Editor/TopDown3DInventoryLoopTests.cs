@@ -22,6 +22,14 @@ namespace BooterBigArm.Tests
         private TopDown3DInventoryState Cache(int slots = 24) => new(catalog,
             new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.ResourceCache, slots));
 
+        [Test] public void HarvestHelperRechecksAccessAtCommitWithoutFallback()
+        {
+            var kit = Kit(); var cargo = Cargo(); var checks = 0;
+            var destinations = new TopDown3DItemDestinationService(kit, cargo, () => ++checks == 1);
+            Assert.That(destinations.AddHarvest(Ore, 1).Succeeded, Is.False);
+            Assert.That(kit.OccupiedSlotCount, Is.Zero); Assert.That(cargo.OccupiedSlotCount, Is.Zero);
+        }
+
         [TestCase(Ore)]
         [TestCase(Dust)]
         public void StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache(string id)

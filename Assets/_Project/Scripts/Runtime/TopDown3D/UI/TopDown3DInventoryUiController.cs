@@ -424,7 +424,7 @@ namespace BooterBigArm.TopDown3D
         {
             UnbindCommands();
             Unsubscribe();
-            ClearCacheContext(false);
+            ClearCacheContext();
             if (suspended) { suspended = false; canvas?.SetVisible(false); return; }
             if (IsOpen)
             {

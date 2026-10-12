@@ -49,7 +49,8 @@ namespace BooterBigArm.TopDown3D
             var destination = Choose(itemId, quantity);
             if (destination.Inventory == null)
                 return new TopDown3DTransferResult(destination.Code, 0, destination.Message);
-            var result = destination.Inventory.TryAdd(new TopDown3DItemAmount(itemId, quantity));
+            var result = destination.Inventory.TryAdd(new[] { new TopDown3DItemAmount(itemId, quantity) },
+                () => !destination.IsBigArm || bigArmAccessible());
             return new TopDown3DTransferResult(result.Code, result.Succeeded ? quantity : 0, result.Message);
         }
     }

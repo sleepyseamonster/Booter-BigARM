@@ -47,11 +47,17 @@ namespace BooterBigArm.TopDown3D
             // A committed reward cannot be reported as failed because a presentation observer threw.
             var observers = Changed;
             if (observers == null) return;
-            foreach (Action observer in observers.GetInvocationList())
+            var alreadyLocked = transactionLocked;
+            transactionLocked = true;
+            try
             {
-                try { observer(); }
-                catch (Exception exception) { UnityEngine.Debug.LogException(exception); }
+                foreach (Action observer in observers.GetInvocationList())
+                {
+                    try { observer(); }
+                    catch (Exception exception) { UnityEngine.Debug.LogException(exception); }
+                }
             }
+            finally { transactionLocked = alreadyLocked; }
         }
         internal void RetainForRecovery() => transactionLocked = true;
         internal TopDown3DInventoryResult RemoveFromSlot(int index, int quantity)

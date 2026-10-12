@@ -179,6 +179,14 @@ Focused fixtures are `GreaterWastelandIronstoneTests`, `TopDown3DInteractionTest
 
 `TopDown3DWaypointCampAuthoring.AuthorFromCli` writes the waypoint definition and system-menu prefab; it never writes a scene and must not be described as validation. `TopDown3DWaypointCampPreview.CaptureFromCli` produces static layout/art PNGs only in a guarded isolated candidate, without Play Mode or gameplay simulation. Neither command focuses an app window.
 
+## Minimal inventory loop and authored checkpoint
+
+`GreaterWastelandInventoryAuthoring.BuildCache()` samples the loaded clean production terrain and authors only the finite resource-cache prefab. It uses a temporary authoring scene and leaves Greater Wasteland untouched. `ValidateCache()` inspects the existing asset. Neither opens Play Mode or focuses a window.
+
+`InventoryHaulingStudyAuthoring.BuildFromCli` is a one-time isolated batch authoring command. It creates `Scenes/Reference/InventoryHaulingStudy.unity`, an independent packing asset and small authored ground asset; it refuses to replace an existing study. `Validate(scene)` checks the twelve deposits, low study capacity and absence of generated/save services. The study remains outside enabled build scenes.
+
+Focused inventory proof is `TopDown3DInventoryLoopTests`, `TopDown3DInventoryLoopUiTests`, `GreaterWastelandInventoryPersistenceTests` and `InventoryHaulingStudyTests`, with directly affected existing inventory, Ironstone, dust, input and camp fixtures. These are EditMode state/structure checks, not gameplay smoke tests. Run against a fresh or task-owned isolated candidate; keep file-write tests away from the real persistent-data profile. See [the implementation receipt](../Evidence/Gameplay/INVENTORY_LOOP_IMPLEMENTATION_2026-10-11.md) for results and user-owned feel acceptance.
+
 ## General notes
 
 - Keep build output outside `Assets/`.
