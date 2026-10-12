@@ -13,7 +13,7 @@ SOUTH_IDS = tuple(f"north_row3_e{e}_n4022584" for e in range(499920, 524496, 409
 def sha256(path):
     h = hashlib.sha256()
     with Path(path).open("rb") as stream:
-        for chunk in iter(lambda: stream.read(4 * 1024 * 1024), b""):
+        for chunk in iter(lambda: stream.read(256 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
 
