@@ -13,6 +13,7 @@ namespace BooterBigArm.TopDown3D
         public bool IsCargoHoldActive => Mode == TopDown3DInputMode.Gameplay
             && openCargoAction?.phase == InputActionPhase.Started;
         public float CargoHoldProgress => IsCargoHoldActive ? openCargoAction.GetTimeoutCompletionPercentage() : 0f;
+        public void RefreshControlPrompts() => PromptDeviceChanged?.Invoke(PromptDevice);
         public event Action CargoOpenRequested;
         public event Action ItemActionCancelRequested;
         private void BindInventoryActions()

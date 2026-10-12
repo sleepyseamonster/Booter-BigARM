@@ -12,6 +12,41 @@ namespace BooterBigArm.Editor
 {
     public static class TopDown3DMenuProductionValidator
     {
+        public static void ValidateAndCaptureControlsFromCli()
+        {
+            ValidateControlsPrefabFromCli();
+            UnityEditor.SceneManagement.EditorSceneManager.NewScene(UnityEditor.SceneManagement.NewSceneSetup.EmptyScene,
+                UnityEditor.SceneManagement.NewSceneMode.Single);
+            var output = Path.Combine(Directory.GetCurrentDirectory(), "Logs", "ControlsCaptures"); Directory.CreateDirectory(output);
+            var oldQuality = QualitySettings.renderPipeline; var oldDefault = GraphicsSettings.defaultRenderPipeline;
+            var renderer = UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<UniversalRendererData>("Assets/_Project/Settings/Rendering/URP/Renderer3D.asset"));
+            renderer.rendererFeatures.Clear();
+            var pipeline = UniversalRenderPipelineAsset.Create(renderer);
+            try
+            {
+                QualitySettings.renderPipeline = pipeline; GraphicsSettings.defaultRenderPipeline = pipeline;
+                foreach (var size in new[] { new Vector2Int(1920,1080), new Vector2Int(1280,720), new Vector2Int(1024,768) })
+                foreach (var large in new[] { false, true }) Capture(output, size, "Controls", large);
+            }
+            finally { QualitySettings.renderPipeline = oldQuality; GraphicsSettings.defaultRenderPipeline = oldDefault;
+                UnityEngine.Object.DestroyImmediate(pipeline); UnityEngine.Object.DestroyImmediate(renderer); }
+        }
+        public static void ValidateControlsPrefabFromCli()
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(TopDown3DMenuPrefabAuthoring.PrefabPath);
+            if (prefab == null || prefab.GetComponent<TopDown3DMenuView>() == null
+                || prefab.GetComponentsInChildren<EventSystem>(true).Length != 0 || prefab.GetComponent<Canvas>().sortingOrder != 300)
+                throw new InvalidOperationException("Controls must reuse the authored menu and scene EventSystem.");
+            var safe = prefab.transform.Find("Safe Area");
+            foreach (var path in new[] { "Settings/Controls", "Controls/ControlDevice", "Controls/ControlActionRow/ControlPrevious",
+                "Controls/ControlActionRow/ControlNext", "Controls/ControlBinding", "Controls/ControlHold", "Controls/ControlReset",
+                "Controls/Footer/ControlsApply", "Controls/Footer/ControlsBack", "Root/Camps" })
+                if (safe.Find(path)?.GetComponent<Button>() == null) throw new InvalidOperationException("Missing menu control: " + path);
+            var actions = AssetDatabase.LoadAssetAtPath<UnityEngine.InputSystem.InputActionAsset>("Assets/_Project/Settings/Input/InputSystem_Actions.inputactions");
+            if (!TopDown3DControlPreferencesService.TryValidate(new TopDown3DControlPreferences(), actions, out var error))
+                throw new InvalidOperationException("Shipped control defaults are invalid: " + error);
+            Debug.Log("CONTROLS PREFAB VALIDATION PASSED: authored settings, navigation/escape ownership, camp entry and valid shipped defaults.");
+        }
         public static void ValidateAndCaptureFromCli() { ValidateFromCli(); CaptureFromCli(); }
         public static void UpdateOwnedPrefabAndCaptureFromCli() { TopDown3DMenuPrefabAuthoring.UpdateOwnedFromCli(); ValidateAndCaptureFromCli(); }
         public static void ValidateFromCli()
@@ -72,7 +107,14 @@ namespace BooterBigArm.Editor
             root.GetComponent<CanvasScaler>().enabled = false; canvas.scaleFactor = Mathf.Min(size.x / 1920f, size.y / 1080f);
             var view = root.GetComponent<TopDown3DMenuView>(); view.Initialize(eventRoot.GetComponent<EventSystem>());
             view.ApplySettings(new TopDown3DMenuSettings { largeText = large, reducedMotion = true });
-            view.Show(panel, panel == "Root" ? "Resume" : panel == "Setup" ? "Slot0" : panel == "Dialog" ? "DialogCancel" : "TextSize");
+            view.Show(panel, panel == "Root" ? "Resume" : panel == "Setup" ? "Slot0" : panel == "Dialog" ? "DialogCancel" : panel == "Controls" ? "ControlDevice" : "TextSize");
+            if (panel == "Controls")
+            {
+                view.SetText("ControlActionName", "Pick up canister / cancel (5 / 10)");
+                view.SetText("ControlBinding", "Change: Right Trigger");
+                view.SetText("ControlHold", "Cargo hold: 0.35 seconds");
+                view.SetText("ControlNotice", "Choose an action and change its button. Apply saves; Back protects unapplied edits.");
+            }
             if (panel == "Setup")
             {
                 var page = new TopDown3DRadialPage { name = "A full eight direction page", slots = new TopDown3DRadialCommand[8] };

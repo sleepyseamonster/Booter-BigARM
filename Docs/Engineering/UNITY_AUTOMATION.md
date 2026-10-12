@@ -189,6 +189,14 @@ Focused inventory proof is `TopDown3DInventoryLoopTests`, `TopDown3DInventoryLoo
 
 ## General notes
 
+### Controls settings validation
+
+`TopDown3DMenuPrefabAuthoring.AddControlsOwnedFromCli` is a mutating, bounded upgrade of the task-owned `SystemMenu.prefab`. It preserves its GUID and existing file IDs, adds the Controls panel/settings entry and keeps the existing camp link. Never use the full prefab rewrite to replace unrelated authored additions.
+
+`TopDown3DMenuProductionValidator.ValidateControlsPrefabFromCli` validates that prefab's Controls hierarchy, existing camp entry, single EventSystem ownership and shipped input defaults without opening production. `ValidateAndCaptureControlsFromCli` also creates a disposable scene and six normal/large text captures at 1920×1080, 1280×720 and 1024×768 in the candidate's `Logs/ControlsCaptures`. Run captures only in an isolated background batchmode candidate with graphics available; its temporary renderer/pipeline instances are restored and never saved as assets.
+
+Focused fixtures are `TopDown3DControlPreferencesTests`, `TopDown3DMenuTests` and `TopDown3DInventoryLoopUiTests`, with affected existing input, interaction, radial, camp, locomotion, traversal and resource fixtures. File-write tests use their own temporary directories. The [controls receipt](../Evidence/Gameplay/CONTROLS_SETTINGS_IMPLEMENTATION_2026-10-12.md) records current proof and remaining user-owned acceptance.
+
 - Keep build output outside `Assets/`.
 - Keep Unity source assets and metadata under version control.
 - If the build pipeline grows, add more static entry points rather than embedding shell logic in ad hoc scripts.

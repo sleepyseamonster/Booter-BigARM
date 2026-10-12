@@ -221,7 +221,8 @@ namespace BooterBigArm.Tests
             Assert.That(label.preferredHeight, Is.LessThanOrEqualTo(label.rectTransform.rect.height));
             var button = row.GetComponent<UnityEngine.UI.Button>();
             Assert.That(button.navigation.selectOnUp.name, Is.EqualTo("Motion"));
-            Assert.That(button.navigation.selectOnDown.name, Is.EqualTo("SettingsApply"));
+            Assert.That(button.navigation.selectOnDown.name, Is.EqualTo("Controls"));
+            Assert.That(row.parent.Find("Controls").GetComponent<UnityEngine.UI.Button>().navigation.selectOnDown.name, Is.EqualTo("SettingsApply"));
         }
 
         [Test]
@@ -264,6 +265,123 @@ namespace BooterBigArm.Tests
             var failure = new TopDown3DMenuSettingsService(blocker);
             Assert.That(failure.TrySave(new TopDown3DMenuSettings { largeText = true }, out _), Is.False);
             Assert.That(failure.Accepted.largeText, Is.False);
+        }
+
+        [Test]
+        public void ControlsHoldApplyPersistsAndBackProtectsUnappliedDraft()
+        {
+            menu.Open(); Command("Settings"); Command("Controls"); Command("ControlHold");
+            Assert.That(menu.CurrentPanel, Is.EqualTo("Controls"));
+            Assert.That(actions.FindAction("Gameplay/OpenCargo").GetParameterValue("hold:duration").Value.ToSingle(), Is.EqualTo(.35f));
+            menu.Back(); Assert.That(menu.CurrentPanel, Is.EqualTo("Dialog")); Command("DialogAccept");
+            Assert.That(menu.CurrentPanel, Is.EqualTo("Settings"));
+            Assert.That(File.Exists(Path.Combine(directory, "controls-v1.json")), Is.False);
+            Command("Controls"); Command("ControlHold"); Command("ControlsApply");
+            Assert.That(menu.CurrentPanel, Is.EqualTo("Settings"));
+            Assert.That(new TopDown3DControlPreferencesService(directory).Accepted.cargoHoldSeconds, Is.EqualTo(.5f));
+            Assert.That(actions.FindAction("Gameplay/Interact").GetParameterValue("tap:duration").Value.ToSingle(), Is.EqualTo(.5f));
+            Assert.That(actions.FindAction("Gameplay/OpenCargo").GetParameterValue("hold:duration").Value.ToSingle(), Is.EqualTo(.5f));
+        }
+
+        [Test]
+        public void ControlsListenFiltersDeviceAndDefersRuntimeMutationUntilApply()
+        {
+            menu.Open(); Command("Settings"); Command("Controls"); Command("ControlBinding");
+            Assert.That(menu.IsRebindingControls, Is.True);
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.K)); InputSystem.Update(); Tick(menu);
+            Assert.That(menu.IsRebindingControls, Is.True, "The gamepad capture cannot use a keyboard key.");
+            Step(new GamepadState { rightTrigger = 1f });
+            Assert.That(menu.IsRebindingControls, Is.False);
+            Assert.That(actions.FindAction("Gameplay/Interact").bindings[0].effectivePath, Is.EqualTo("<Gamepad>/buttonWest"));
+            Assert.That(File.Exists(Path.Combine(directory, "controls-v1.json")), Is.False);
+            Step(new GamepadState()); Command("ControlsApply");
+            Assert.That(actions.FindAction("Gameplay/Interact").bindings[0].effectivePath, Is.EqualTo("<Gamepad>/rightTrigger"));
+            Assert.That(actions.FindAction("Gameplay/OpenCargo").bindings[0].effectivePath, Is.EqualTo("<Gamepad>/rightTrigger"));
+            Assert.That(actions.FindAction("Gameplay/Interact").bindings[1].effectivePath, Is.EqualTo("<Keyboard>/e"));
+        }
+
+        [Test]
+        public void ControlsListenRejectsConflictAndBackCancelsWithoutLeavingPanel()
+        {
+            menu.Open(); Command("Settings"); Command("Controls"); Command("ControlBinding");
+            Step(new GamepadState().WithButton(GamepadButton.North));
+            Assert.That(menu.IsRebindingControls, Is.False);
+            Assert.That(menu.CurrentPanel, Is.EqualTo("Controls"));
+            Assert.That(menuRoot.transform.Find("Safe Area/Controls/ControlNotice").GetComponent<UnityEngine.UI.Text>().text, Does.Contain("already used"));
+            Step(new GamepadState()); Command("ControlBinding");
+            Step(new GamepadState().WithButton(GamepadButton.East));
+            Assert.That(menu.IsRebindingControls, Is.False);
+            Assert.That(menu.CurrentPanel, Is.EqualTo("Controls"));
+            Assert.That(actions.FindAction("Gameplay/Interact").bindings[0].effectivePath, Is.EqualTo("<Gamepad>/buttonWest"));
+        }
+
+        [Test]
+        public void ControlsDeviceDisconnectCancelsListeningAndPreservesTheDraft()
+        {
+            menu.Open(); Command("Settings"); Command("Controls"); Command("ControlHold"); Command("ControlBinding");
+            Assert.That(menu.IsRebindingControls, Is.True);
+            var disconnected = InputSystem.AddDevice<Gamepad>(); InputSystem.RemoveDevice(disconnected);
+            Assert.That(menu.IsRebindingControls, Is.False);
+            Assert.That(menu.CurrentPanel, Is.EqualTo("Controls"));
+            var draft = (TopDown3DControlPreferences)typeof(TopDown3DMenuController).GetField("controlsDraft", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(menu);
+            Assert.That(draft.cargoHoldSeconds, Is.EqualTo(.5f));
+            Assert.That(draft.bindings, Is.Empty);
+        }
+
+        [Test]
+        public void InventoryOpenerCannotRebindToAUiTransferButton()
+        {
+            var action = actions.FindAction("System/ToggleInventory", true);
+            var draft = new TopDown3DControlPreferences();
+            draft.bindings.Add(new TopDown3DControlBindingOverride { actionPath = "System/ToggleInventory",
+                bindingId = action.bindings[0].id.ToString(), path = "<Keyboard>/r" });
+            Assert.That(TopDown3DControlPreferencesService.TryValidate(draft, actions, out var error), Is.False);
+            Assert.That(error, Does.Contain("navigation or transfer"));
+        }
+
+        [Test]
+        public void ControlsFailedSaveKeepsDraftAndRuntimeBindingsUnchanged()
+        {
+            Directory.CreateDirectory(directory);
+            var blocker = Path.Combine(directory, "control-blocker"); File.WriteAllText(blocker, "x");
+            typeof(TopDown3DMenuController).GetField("controls", BindingFlags.NonPublic | BindingFlags.Instance)
+                .SetValue(menu, new TopDown3DControlPreferencesService(blocker));
+            menu.Open(); Command("Settings"); Command("Controls"); Command("ControlHold"); Command("ControlsApply");
+            Assert.That(menu.CurrentPanel, Is.EqualTo("Controls"));
+            Assert.That(actions.FindAction("Gameplay/OpenCargo").GetParameterValue("hold:duration").Value.ToSingle(), Is.EqualTo(.35f));
+            var draft = (TopDown3DControlPreferences)typeof(TopDown3DMenuController).GetField("controlsDraft", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(menu);
+            Assert.That(draft.cargoHoldSeconds, Is.EqualTo(.5f));
+        }
+
+        [Test]
+        public void ControlsResetRequiresConfirmationAndApplyBeforeReplacingSavedPreferences()
+        {
+            menu.Open(); Command("Settings"); Command("Controls"); Command("ControlHold"); Command("ControlsApply");
+            Command("Controls"); Command("ControlReset");
+            Assert.That(menu.CurrentPanel, Is.EqualTo("Dialog")); menu.Back();
+            Assert.That(new TopDown3DControlPreferencesService(directory).Accepted.cargoHoldSeconds, Is.EqualTo(.5f));
+            Command("ControlReset"); Command("DialogAccept");
+            Assert.That(menu.CurrentPanel, Is.EqualTo("Controls"));
+            Assert.That(actions.FindAction("Gameplay/OpenCargo").GetParameterValue("hold:duration").Value.ToSingle(), Is.EqualTo(.5f));
+            Command("ControlsApply");
+            Assert.That(new TopDown3DControlPreferencesService(directory).Accepted.cargoHoldSeconds, Is.EqualTo(.35f));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(bool large)
+        {
+            menu.Open(); Command("Settings"); if (large) Command("TextSize"); Command("Controls");
+            Canvas.ForceUpdateCanvases();
+            Assert.That(menuRoot.GetComponentsInChildren<EventSystem>(true), Is.Empty);
+            Assert.That(menuRoot.transform.Find("Safe Area/Root/Camps"), Is.Not.Null);
+            foreach (var name in new[] { "ControlBinding", "ControlHold" })
+            {
+                var row = menuRoot.transform.Find("Safe Area/Controls/" + name);
+                var label = row.GetComponentInChildren<UnityEngine.UI.Text>();
+                Assert.That(label.preferredHeight, Is.LessThanOrEqualTo(label.rectTransform.rect.height), name);
+                Assert.That(row.GetComponent<UnityEngine.UI.Button>().navigation.mode, Is.EqualTo(UnityEngine.UI.Navigation.Mode.Explicit));
+            }
         }
     }
 }

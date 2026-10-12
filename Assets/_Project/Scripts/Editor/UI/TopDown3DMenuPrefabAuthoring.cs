@@ -20,6 +20,26 @@ namespace BooterBigArm.Editor
         public static void UpdateOwnedFromCli()
         { WritePrefab(true); }
 
+        // Bounded upgrade: preserve existing root, camp links, file IDs and prefab GUID.
+        public static void AddControlsOwnedFromCli()
+        {
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                var safe = root.transform.Find("Safe Area");
+                if (safe.Find("Controls") == null) PanelControls(safe);
+                var settings = safe.Find("Settings") as RectTransform;
+                if (settings.Find("Controls") == null)
+                {
+                    var button = Button("Controls", settings, "Controls");
+                    button.transform.SetSiblingIndex(4);
+                }
+                settings.sizeDelta = new Vector2(620, 650);
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+            }
+            finally { PrefabUtility.UnloadPrefabContents(root); }
+        }
+
         private static void WritePrefab(bool overwrite)
         {
             if (!overwrite && File.Exists(PrefabPath)) throw new InvalidOperationException("Menu prefab exists; refusing to overwrite.");
@@ -34,7 +54,7 @@ namespace BooterBigArm.Editor
                 scaler.referenceResolution = new Vector2(1920, 1080); scaler.matchWidthOrHeight = 0.5f;
                 var safe = Rect("Safe Area", root.transform); Stretch(safe);
                 var dim = Rect("Dim", safe); Stretch(dim); dim.gameObject.AddComponent<Image>().color = new Color32(3, 4, 5, 170);
-                PanelRoot(safe); PanelSettings(safe); PanelSetup(safe); PanelDialog(safe);
+                PanelRoot(safe); PanelSettings(safe); PanelSetup(safe); PanelDialog(safe); PanelControls(safe);
                 var hints = Label("Hints", safe, "", 18); hints.rectTransform.anchorMin = hints.rectTransform.anchorMax = new Vector2(0.5f, 0);
                 hints.rectTransform.anchoredPosition = new Vector2(0, 32); hints.rectTransform.sizeDelta = new Vector2(900, 44);
                 PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
@@ -62,11 +82,12 @@ namespace BooterBigArm.Editor
 
         private static void PanelSettings(Transform parent)
         {
-            var panel = Panel("Settings", parent, new Vector2(620, 540));
+            var panel = Panel("Settings", parent, new Vector2(620, 650));
             Vertical(panel, 14, new RectOffset(32, 32, 28, 28));
             Label("SettingsTitle", panel, "SETTINGS", 28, 46);
             Button("TextSize", panel, "Menu text: Normal"); Button("Motion", panel, "Menu motion: Normal");
             Height(Button("ViewDistance", panel, "Maximum view distance\nMaximum - 8,000 m"), 90);
+            Button("Controls", panel, "Controls");
             Label("SettingsNotice", panel, "Changes are saved with Apply.", 19, 72);
             Footer(panel, "SettingsApply", "SettingsBack");
         }
@@ -79,6 +100,22 @@ namespace BooterBigArm.Editor
             Label("DialogMessage", panel, "", 22, 112);
             var footer = Rect("DialogFooter", panel); Horizontal(footer, 16); Height(footer, 58);
             Button("DialogCancel", footer, "Keep Playing"); Button("DialogAccept", footer, "Confirm");
+        }
+
+        private static void PanelControls(Transform parent)
+        {
+            var panel = Panel("Controls", parent, new Vector2(800, 850));
+            Vertical(panel, 12, new RectOffset(32, 32, 24, 24));
+            Label("ControlsTitle", panel, "CONTROLS", 28, 48);
+            Button("ControlDevice", panel, "Device: Gamepad");
+            var actions = Rect("ControlActionRow", panel); Horizontal(actions, 12); Height(actions, 72);
+            Button("ControlPrevious", actions, "Previous action"); Button("ControlNext", actions, "Next action");
+            Label("ControlActionName", panel, "Interact / cargo", 24, 48);
+            Height(Button("ControlBinding", panel, "Change binding"), 74);
+            Height(Button("ControlHold", panel, "Cargo hold: 0.35 seconds"), 74);
+            Button("ControlReset", panel, "Reset controls");
+            Label("ControlNotice", panel, "Apply saves controls. Back discards unapplied edits.", 20, 112);
+            Footer(panel, "ControlsApply", "ControlsBack");
         }
 
         private static void PanelSetup(Transform parent)

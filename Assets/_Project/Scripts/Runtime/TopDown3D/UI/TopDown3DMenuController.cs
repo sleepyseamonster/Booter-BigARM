@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.UI;
 
 namespace BooterBigArm.TopDown3D
 {
-    public sealed class TopDown3DMenuController : MonoBehaviour
+    public sealed partial class TopDown3DMenuController : MonoBehaviour
     {
         private TopDown3DInputRouter input;
         private TopDown3DInventoryUiController inventory;
@@ -35,6 +35,7 @@ namespace BooterBigArm.TopDown3D
         {
             input = router; inventory = kit; radial = wheel; view = menuView; module = uiModule;
             settings = new TopDown3DMenuSettingsService(preferenceDirectory ?? Application.persistentDataPath);
+            ConfigureControls(preferenceDirectory ?? Application.persistentDataPath);
             cameraRange = range;
             cameraRange?.SetPreset(settings.Accepted.viewDistancePreset);
             view.Initialize(kit.EventSystem); view.ApplySettings(settings.Accepted);
@@ -49,6 +50,7 @@ namespace BooterBigArm.TopDown3D
 
         public void Toggle()
         {
+            if (IsRebindingControls) { CancelControlRebind(); return; }
             if (this == null || !configured || input == null || view == null || module == null) return;
             if (!IsOpen) { Open(); return; }
             if (panel == "Dialog") return;
@@ -92,6 +94,7 @@ namespace BooterBigArm.TopDown3D
 
         public void Back()
         {
+            if (IsRebindingControls) { CancelControlRebind(); return; }
             if (!IsOpen) return;
             if (view.IsEditingText) { view.EndTextEdit(); return; }
             if (panel == "Dialog")
@@ -105,10 +108,11 @@ namespace BooterBigArm.TopDown3D
         private void ReturnFromChild()
         {
             if (directSetup) Close();
+            else if (panel == "Controls") Show("Settings", "Controls");
             else Show("Root", panel == "Settings" ? "Settings" : "RadialSetup");
         }
 
-        private bool Dirty => panel == "Setup" ? JsonUtility.ToJson(radialDraft) != JsonUtility.ToJson(radial.Preferences)
+        private bool Dirty => panel == "Controls" ? ControlsDirty : panel == "Setup" ? JsonUtility.ToJson(radialDraft) != JsonUtility.ToJson(radial.Preferences)
             : panel == "Settings" && JsonUtility.ToJson(settingsDraft) != JsonUtility.ToJson(settings.Accepted);
 
         private void LeaveChild(Action destination)
@@ -128,6 +132,7 @@ namespace BooterBigArm.TopDown3D
 
         public void Close()
         {
+            DisposeControlRebind();
             if (!IsOpen) return;
             if (radial != null) radial.EndSetup();
             if (view != null) view.ApplySettings(settings.Accepted);
@@ -148,6 +153,7 @@ namespace BooterBigArm.TopDown3D
         private void OnCommand(string command)
         {
             if (waitingRelease || !IsOpen) return;
+            if (HandleControlCommand(command)) return;
             if (command == "DialogCancel") { Back(); return; }
             if (command == "DialogAccept") { var action = confirmed; confirmed = null; Show(dialogParent, dialogFocus); action?.Invoke(); return; }
             if (command == "Resume") { Close(); return; }
@@ -231,6 +237,7 @@ namespace BooterBigArm.TopDown3D
 
         private void Refresh()
         {
+            if (panel == "Controls") RefreshControls();
             if (panel == "Settings")
             {
                 view.SetText("TextSize", "Menu text: " + (settingsDraft.largeText ? "Large" : "Normal"));
@@ -282,6 +289,7 @@ namespace BooterBigArm.TopDown3D
         private void OnDisable() { if (configured) Close(); }
         private void OnDestroy()
         {
+            InputSystem.onDeviceChange -= ControlDeviceChanged;
             if (!configured) return;
             if (input != null) { input.MenuToggleRequested -= Toggle; input.UiCancelRequested -= Back; input.PromptDeviceChanged -= PromptChanged; input.ModeChanged -= InputModeChanged; }
             if (view != null) { view.Command -= OnCommand; view.Rename -= Rename; }

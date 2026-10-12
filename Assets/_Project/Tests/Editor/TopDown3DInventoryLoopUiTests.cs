@@ -290,6 +290,29 @@ namespace BooterBigArm.Tests
             finally { Object.DestroyImmediate(hudObject); Object.DestroyImmediate(controller); }
         }
 
+        [Test]
+        public void CustomizedHoldTimingKeepsTapAndHoldExclusiveAtTheSavedThreshold()
+        {
+            var pad = InputSystem.AddDevice<Gamepad>();
+            try
+            {
+                TopDown3DControlPreferencesService.Apply(actions, new TopDown3DControlPreferences { cargoHoldSeconds = .65f });
+                var taps = 0; var holds = 0;
+                router.InteractRequested += () => taps++; router.CargoOpenRequested += () => holds++;
+                InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(GamepadButton.West)); InputSystem.Update();
+                System.Threading.Thread.Sleep(400); InputSystem.Update();
+                Assert.That(holds, Is.Zero, "The shipped .35-second threshold must be replaced.");
+                InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.Update();
+                Assert.That(taps, Is.EqualTo(1));
+                InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(GamepadButton.West)); InputSystem.Update();
+                System.Threading.Thread.Sleep(700); InputSystem.Update();
+                Assert.That(holds, Is.EqualTo(1)); Assert.That(taps, Is.EqualTo(1));
+                InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.Update();
+                Assert.That(taps, Is.EqualTo(1), "The completed hold cannot also tap.");
+            }
+            finally { InputSystem.RemoveDevice(pad); }
+        }
+
         [Test] public void ExistingAuthoredGridsReconnectWithoutCreatingDuplicateSlots()
         {
             var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;

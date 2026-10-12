@@ -33,6 +33,8 @@ Unity's `PlayerInput` docs note that it can pair devices automatically, choose c
 
 ## Rebinding
 
+Current implementation: **Settings → Controls** supports device-specific rebinding of shipped active button actions and shared tap/cargo hold timing from 0.20 to 0.80 seconds. The default remains 0.35 seconds. Apply persists stable binding-ID overrides in `controls-v1.json`, independently of world saves. Tap interaction and cargo hold remain paired. Draft edits never mutate runtime controls before a successful save; Back protects drafts and Reset requires confirmation then Apply. Invalid, newer or incompatible preference files are preserved with writes blocked. Reserved navigation/back/confirmation controls, coactive action conflicts and inventory-opener/UI-transfer conflicts are rejected. Analog axes, menu navigation and dormant actions remain fixed. See the [implementation receipt](../Evidence/Gameplay/CONTROLS_SETTINGS_IMPLEMENTATION_2026-10-12.md).
+
 - Support interactive rebinding for player-facing options.
 - Save overrides to JSON and reload them at startup.
 - Restrict rebinding by control scheme so gamepad bindings do not get mixed with keyboard/mouse bindings.

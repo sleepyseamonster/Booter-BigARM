@@ -34,7 +34,7 @@ namespace BooterBigArm.TopDown3D
             group = GetComponent<CanvasGroup>();
             safe = transform.Find("Safe Area") as RectTransform;
             columns = safe.Find("Setup/SetupViewport/SetupContent/SetupColumns").GetComponent<GridLayoutGroup>();
-            foreach (var panel in new[] { "Root", "Settings", "Setup", "Dialog" })
+            foreach (var panel in new[] { "Root", "Settings", "Setup", "Dialog", "Controls" })
                 panels[panel] = safe.Find(panel).gameObject;
             foreach (var button in GetComponentsInChildren<Button>(true))
             {
