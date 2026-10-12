@@ -41,6 +41,27 @@ def saved_guard(step,date):
     subprocess.run(['git','diff','--quiet','HEAD','--',bm['scene']],cwd=ROOT,check=True)
     return bm
 
+def classify_transport_errors(truth,entries):
+    if truth['compilationFailed'] or truth['compiling']:raise ValueError('Fresh compilation failure or active compilation blocks transfer')
+    errors=entries['errors']
+    if len(errors)!=truth['consoleErrors']:raise ValueError('Current console severity count is inconsistent')
+    for error in errors:
+        message=error['message']
+        if error['mode']!=8405248 or message.split('\n',1)[0]!='Failed to handle /api/exec request: Main thread operation timed out after 5000ms' or 'Unity.Pipeline.BasePipelineServer/<HandleExecRequest>' not in message:
+            raise ValueError('Unclassified current console error blocks transfer')
+    return errors
+
+def compiler_guard():
+    truth=command('console_status')['groundTruth']
+    if truth['compilationFailed'] or truth['compiling']:raise ValueError('Fresh compilation failure or active compilation blocks transfer')
+    if truth['consoleErrors']:
+        result=command('eval_file',str(ROOT/'Tools/Art/Blender/death_valley/editor_queries/current_console_errors.cs'),'60000')
+        if not result['success']:raise ValueError('Current console inspection failed')
+        current=command('console_status')['groundTruth']
+        classified=classify_transport_errors(current,result['result'])
+        return dict(current,classified_transport_errors=classified,console_cleared=False)
+    return truth
+
 def live_guard(step,date):
     bm=saved_guard(step,date)
     scenes=command('list_open_scenes')['scenes']
@@ -50,8 +71,7 @@ def live_guard(step,date):
     if dirty:raise ValueError('Unsaved persistent terrain assets block transfer')
     state=command('eval','return new { playing = UnityEditor.EditorApplication.isPlaying, compiling = UnityEditor.EditorApplication.isCompiling };')['result']
     if state['playing'] or state['compiling']:raise ValueError('Play Mode or compiling blocks transfer')
-    truth=command('console_status')['groundTruth']
-    if truth['compilationFailed'] or truth['compiling'] or truth['consoleErrors']:raise ValueError('Fresh compiler/console errors block transfer')
+    truth=compiler_guard()
     fingerprint=command('eval_file',str(queries/'current_scene_fingerprint.cs'),'60000')['result']
     return {'status':'fresh_live_transfer_guard_passed','scene_sha256':bm['scene_sha256'],'scenes':scenes,'editor_state':state,'compiler_truth':truth,'fingerprint':fingerprint}
 
