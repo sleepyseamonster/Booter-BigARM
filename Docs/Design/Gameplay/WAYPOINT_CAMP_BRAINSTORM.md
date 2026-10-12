@@ -1,6 +1,6 @@
 # Greater Wasteland waypoint camp proposal
 
-October 11, 2026. Design exploration and repository audit for the author. Establish one starting camp at Booter's present starting area, then use it to develop camp interaction, map discovery, and return travel. The user selected the single starting camp and discovered camps as future destinations. The rules and features below remain proposals; this document does not authorize runtime implementation or change world canon.
+October 11, 2026. Design exploration and repository audit for the author. Establish one starting camp at Booter's present starting area, then use it to develop camp interaction, map discovery, and return travel. The user selected the single starting camp and discovered camps as future destinations, and subsequently confirmed camps as crafting and item-management hubs whose services will be iterated later. Travel rules and service details below remain proposals; this document does not authorize runtime implementation or change world canon.
 
 The recommended system is a network of sparse expedition camps with portable equipment and fixed geographic anchors. Each camp gives an expedition a place to return to, prepare, and depart from. Start with one readable camp and a useful return loop before expanding the network.
 
@@ -10,7 +10,9 @@ Separate two scales of camping. Booter's existing portable shade is a temporary 
 
 “Mobile” can describe the equipment: folded shade, strapped salvage boxes, removable frames, and tools that could eventually be carried forward. The waypoint remains fixed while established. Actual relocation is a later feature with physical packing, transport, and setup; moving a camp would invalidate its old travel destination. The first camp stays in place throughout iteration.
 
-Camp should support the existing expedition rhythm: prepare, leave together or coordinate separate tasks, salvage, return, unload locally, and recover. A camp offers familiarity and preparation rather than automatic safety. Shelter, security, storage, and crafting should be distinct capabilities with their own eventual rules.
+Camp should support the existing expedition rhythm: prepare, leave together or coordinate separate tasks, salvage, return, unload locally, craft, and recover. Crafting and item management are now confirmed hub purposes; recipes, workstations, storage capacity, transfers, and service interfaces remain later iterations. A camp offers familiarity and preparation rather than automatic safety. Shelter, security, storage, and crafting should be distinct capabilities with their own eventual rules.
+
+The [waypoint and fast-travel research](../../Research/Gameplay/WAYPOINT_FAST_TRAVEL_RESEARCH.md) compares six reference systems. Monster Hunter Wilds provides the closest camp-hub analogy; the research retains accelerated physical return as a bounded hypothesis and leaves the long-distance travel model open.
 
 ## First camp at the starting area
 
@@ -57,7 +59,7 @@ The [Legger standard](./BIGARM_COMPANION_STANDARD.md) requires him to keep a rea
 | Accelerated physical return | Reuses live simulation principles, preserves both actors and supply costs | Requires a validated route and controlled movement; even acceleration may feel slow over great distances |
 | Compressed journey with a fade or travel montage | Can make distant journeys brief while retaining elapsed time | Requires authoritative route progress, hazards, resource accounting, and companion simulation; currently lacks those foundations |
 
-Recommend **accelerated physical return** for the first exploration slice. Booter follows a validated route back to the known camp under movement authority, with the live world accelerated through the existing speed owner. The Legger physically follows when participating. The player can cancel and take control at the actual position reached. This is a proposed fast-travel experience, not an existing capability.
+Recommend **accelerated physical return** as a hypothesis for the first bounded exploration slice. Booter follows a validated route back to the known camp under movement authority, with the live world accelerated through the existing speed owner. The Legger physically follows when participating. The player can cancel and take control at the actual position reached. This is a proposed travel study, not an existing capability or a selected final long-distance fast-travel model. The reference research highlights the need to measure how much waiting it actually removes.
 
 Prefer traveling together initially. If the Legger is separated or cannot use the route, offer **Regroup first** through his existing physical approach command. Do not automatically issue a teleport or grant cargo access. Solo return can remain a later explicit choice that clearly leaves him behind; the first slice need not solve autonomous travel for a distant companion.
 
@@ -113,7 +115,7 @@ For an explicitly session-only prototype, show that discovery and runtime camp c
 2. **Known destination:** one site in a registry and a compact Camps view. Starting Camp begins known; verify discovery logic with isolated data rather than adding camps across production.
 3. **Bounded return:** one short validated corridor, physical movement, shared acceleration, supply projection, cancellation, and interruption. No whole-terrain routing claim.
 4. **Persistence:** integrate site knowledge and camp deltas with a versioned authored-world save owner when that slice is approved.
-5. **Useful camp services:** evaluate physical stash transfer, a salvage work surface, supply preparation, and a placed dust collector one at a time. Preserve inventory quantities and actual access.
+5. **Confirmed hub services:** develop crafting and item management in later bounded slices. Evaluate local stash transfer, work surfaces and recipes, supply preparation, and optional placed devices individually. Preserve inventory quantities and actual access; shared storage between distant camps is not implied.
 6. **Second site and longer journeys:** add a deliberately chosen expedition destination only after the first return loop is useful. Assess macro routing or compressed travel before increasing network scale.
 
 Candidate upgrades should strengthen expedition planning: better shade, local storage capacity, a repair surface, a recognizable marker, and explicit protection from a defined hazard. Defer base-building grids, settlement simulation, relocation, destruction, respawn binding, automatic healing, passive production, and arbitrary camp spam. Fast travel and death recovery are separate decisions.
@@ -124,4 +126,4 @@ Focused implementation checks should cover stable site identity, discovered-only
 
 The main player questions are whether Starting Camp feels worth returning to, whether its silhouette reads at gameplay distance, whether return travel removes repetitive navigation while preserving preparation, and whether coordinating with the Legger remains understandable. Test the short departure-and-return loop before tuning distant journeys.
 
-The recommended next implementation brief is **one established starting site plus a known destination view**, followed by bounded accelerated return. Approval of this brainstorm should select the travel model and first camp services; it should not be treated as blanket authority for world-scale navigation, persistent saves, or new terrain content.
+The recommended next implementation brief is **one established starting site plus a known destination view**, followed by a bounded travel comparison. The author has selected the crafting and item-management hub role. Travel model and specific service rules remain open; the brainstorm and research do not establish blanket authority for world-scale navigation, persistent saves, or new terrain content.

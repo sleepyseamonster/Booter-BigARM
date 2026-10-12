@@ -181,6 +181,9 @@ These describe current repo state rather than durable design truth.
 
 These are intentionally non-canonical. They preserve ideas, research, or working context that may later be refined, replaced, or discarded.
 
+- [Waypoint fast travel and camp hub research](./Research/Gameplay/WAYPOINT_FAST_TRAVEL_RESEARCH.md)
+  Six game comparisons covering camp services, discovery, travel friction, cargo, and implications for the single Greater Wasteland starting camp.
+
 - [Minimal cube rock fusion research](./Research/Art/SMOOTH_CUBE_ROCK_FUSION_RESEARCH.md)
   Repository audit and primary-source research for duplicating and moving rock-textured cubes that blend automatically, with no workbench or exposed complexity controls.
 
