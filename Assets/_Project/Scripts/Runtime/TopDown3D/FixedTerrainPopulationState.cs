@@ -80,9 +80,13 @@ namespace BooterBigArm.TopDown3D
 
         public string StableId(Vector2Int cell, string recipeId, int ordinal)
         {
+            ValidateCandidateAddress(recipeId, ordinal);
+            return identities[recipeId].CandidateId(cell, ordinal);
+        }
+        private void ValidateCandidateAddress(string recipeId, int ordinal)
+        {
             if (recipeId == null || !recipes.TryGetValue(recipeId, out var recipe) || ordinal < 0 || ordinal >= recipe.candidateCount)
                 throw new ArgumentException("Unknown population recipe/candidate address.");
-            return identities[recipeId].CandidateId(cell, ordinal);
         }
 
         // Called with regenerated accepted candidates, before adopting any renderer/collider.
@@ -127,7 +131,13 @@ namespace BooterBigArm.TopDown3D
             if (!removalsByCell.TryGetValue(cell, out var cellRemovals)) removalsByCell.Add(cell, cellRemovals = new HashSet<string>(StringComparer.Ordinal));
             cellRemovals.Add(id); Revision++; CandidateRemoved?.Invoke(cell, recipeId, ordinal); return true;
         }
-        public bool IsRemoved(Vector2Int cell, string recipeId, int ordinal) => removed.ContainsKey(StableId(cell, recipeId, ordinal));
+        public bool IsRemoved(Vector2Int cell, string recipeId, int ordinal)
+        {
+            // Sparse deltas usually leave a cell untouched. Validate even on that fast path,
+            // but avoid SHA/string allocation unless this cell actually has removals.
+            ValidateCandidateAddress(recipeId, ordinal);
+            return removalsByCell.TryGetValue(cell, out var keys) && keys.Contains(identities[recipeId].CandidateId(cell, ordinal));
+        }
 
         public FixedTerrainPopulationSnapshot CaptureSnapshot()
         {

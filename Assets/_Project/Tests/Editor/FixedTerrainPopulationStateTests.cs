@@ -9,6 +9,28 @@ namespace BooterBigArm.Tests
     public sealed class FixedTerrainPopulationStateTests
     {
         [Test]
+        public void UntouchedCellRemovalQueriesAllocateNothingAndPreserveValidationAndRestore()
+        {
+            var state = Create(); var clean = Vector2Int.zero; var dirty = new Vector2Int(-1, 0);
+            state.RegisterBaseline(dirty, Candidates(dirty)); var empty = state.CaptureSnapshot();
+            Assert.That(state.TryRemove(dirty, "fixture.clutter", 2), Is.True);
+            Assert.That(state.IsRemoved(dirty, "fixture.clutter", 2), Is.True);
+            Assert.That(state.IsRemoved(dirty, "fixture.clutter", 3), Is.False);
+            Assert.Throws<ArgumentException>(() => state.IsRemoved(clean, null, 0));
+            Assert.Throws<ArgumentException>(() => state.IsRemoved(clean, "unknown", 0));
+            Assert.Throws<ArgumentException>(() => state.IsRemoved(clean, "fixture.clutter", -1));
+            Assert.Throws<ArgumentException>(() => state.IsRemoved(clean, "fixture.clutter", 64));
+            for (int i = 0; i < 10; i++) state.IsRemoved(clean, "fixture.clutter", i);
+            long before = GC.GetAllocatedBytesForCurrentThread(); bool found = false;
+            for (int i = 0; i < 1000; i++) found |= state.IsRemoved(clean, "fixture.clutter", i % 64);
+            long allocated = GC.GetAllocatedBytesForCurrentThread() - before;
+            Assert.That(found, Is.False); Assert.That(allocated, Is.Zero);
+            Assert.That(state.ApplySnapshot(empty), Is.True);
+            Assert.That(state.IsRemoved(dirty, "fixture.clutter", 2), Is.False);
+            Assert.Throws<ArgumentException>(() => state.IsRemoved(dirty, "unknown", 0));
+        }
+
+        [Test]
         public void RemovalSurvivesCacheReleaseRecreationSerializationAndTerrainExpansion()
         {
             var cell = new Vector2Int(-1, 0); var state = Create(); var candidates = Candidates(cell);

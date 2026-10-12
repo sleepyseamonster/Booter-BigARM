@@ -1,0 +1,41 @@
+{
+  "scope": "Diagnostic-only work timing; clocks add observer overhead; not production FPS",
+  "files": [
+    {
+      "source": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs",
+      "source_sha256": "14149899cbbcc8592fb4b185fa9d214de2188ee5b5ecb0cf5e86ef8cbd71d156",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\FixedTerrainPopulationSectorStudy.cs",
+      "overlay_sha256": "fce2f91831d3ba68cf0395f14bff8925ee89a23b26fb8ccb78b79327bcd176d9"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationScheduler.cs",
+      "source_sha256": "a5c8b73e675d00eebb760644f25a1d95f343ac127f19eb11fc111548199c0885",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\FixedTerrainPopulationScheduler.cs",
+      "overlay_sha256": "d37ee72d5474b174822c921a8a10394661ecfdaa717fe3f55e32b8da66f89f14"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs",
+      "source_sha256": "1878b432d95a8bee76efa92f7b4b845edda17f2a5413114effe9c55ee4c67335",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\FixedTerrainPopulationPresentation.cs",
+      "overlay_sha256": "fb467f8595096696b4106852203b16c0edfb28f4cbd76f1c3aec5266cf4611c4"
+    },
+    {
+      "source": "Tools/Diagnostics/PopulationSectorPlayerAudit.cs",
+      "source_sha256": "34f74b8f68e546298aa1bf254344b90077299b29593e2a9770b40e1ed41c3729",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\PopulationSectorPlayerAudit.cs",
+      "overlay_sha256": "edfd76fb030333f8ab6d31e9f4ede297e1dcdf67a5eabeb4ba23514c3d1eddcb"
+    },
+    {
+      "source": "Tools/Diagnostics/PopulationWorkTimings.cs",
+      "source_sha256": "b4f16430362e8c36f2a2ef6ed5f20210dc98c58b29259c3e0c867d2ba7d11226",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\PopulationWorkTimings.cs",
+      "overlay_sha256": "b4f16430362e8c36f2a2ef6ed5f20210dc98c58b29259c3e0c867d2ba7d11226"
+    },
+    {
+      "source": "Tools/Diagnostics/IsolatedPopulationAuditBuild.cs",
+      "source_sha256": "1fa3bcff622ceedbc64deb985734f695d574b13a431fcd8803c05059823028f7",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Editor\\IsolatedPopulationAuditBuild.cs",
+      "overlay_sha256": "0d9d54cfadc44508e0095086f4920251d0e707e09dc89b059d361c06859b0082"
+    }
+  ]
+}
