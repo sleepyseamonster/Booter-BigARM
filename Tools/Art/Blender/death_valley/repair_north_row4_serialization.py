@@ -32,7 +32,7 @@ if __name__=='__main__':
     current=scene.read_bytes().decode('utf-8')
     result=repair(before,current)
     backup=c['data']/'NativeLogs01/integrated_before_preservation01.unity'
-    receipt=ROOT/'Docs/Evidence/DeathValley'/c['batch']/'incidental_serialization_repair.json'
+    receipt=ROOT/'Docs/Evidence/DeathValley'/f'NORTH_ROW4_STEP{a.step:02}_SCENE_PRESERVATION_{a.date}.json'
     if backup.exists() or receipt.exists():raise ValueError('Fresh repair backup and receipt required')
     backup.write_bytes(current.encode('utf-8'));scene.write_bytes(result.encode('utf-8'))
     receipt.parent.mkdir(parents=True,exist_ok=True)
