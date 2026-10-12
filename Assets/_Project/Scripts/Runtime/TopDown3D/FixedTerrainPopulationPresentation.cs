@@ -45,6 +45,7 @@ namespace BooterBigArm.TopDown3D
         private int instances;
         private bool disposed;
         public int InstanceCount => instances;
+        public ulong CollisionRevision { get; private set; }
         public int PendingCells => requests.Count;
         public int ActiveCount { get { int count = 0; foreach (var pair in active) count += pair.Value.Count; return count; } }
         public int AvailablePreparationSlots
@@ -124,7 +125,7 @@ namespace BooterBigArm.TopDown3D
         {
             int index = items.FindIndex(v => v.Ordinal == ordinal);
             if (index < 0) return;
-            var item = items[index]; items.RemoveAt(index); item.Object.SetActive(false); retiring.Enqueue(item);
+            var item = items[index]; items.RemoveAt(index); item.Object.SetActive(false); retiring.Enqueue(item); CollisionRevision++;
         }
         private void ResetPresentation()
         {
@@ -132,6 +133,7 @@ namespace BooterBigArm.TopDown3D
         }
         public void Release(Vector2Int cell)
         {
+            if (requests.ContainsKey(cell) || active.ContainsKey(cell)) CollisionRevision++;
             if (requests.TryGetValue(cell, out var request))
             {
                 foreach (var item in request.Prepared) { item.Object.SetActive(false); retiring.Enqueue(item); }
@@ -189,7 +191,7 @@ namespace BooterBigArm.TopDown3D
                         var item = request.Prepared[request.Activation];
                         if (state.IsRemoved(request.Cell, recipeId, item.Ordinal))
                         { request.Prepared.RemoveAt(request.Activation); item.Object.SetActive(false); retiring.Enqueue(item); count++; continue; }
-                        Collision(item, request.CollisionRelevant); Visual(item, request.VisualRelevant); item.Object.SetActive(true); request.Activation++;
+                        Collision(item, request.CollisionRelevant); Visual(item, request.VisualRelevant); item.Object.SetActive(true); request.Activation++; CollisionRevision++;
                         var old = previous?.Find(v => v.StableId == item.StableId);
                         if (old != null) { previous.Remove(old); old.Object.SetActive(false); retiring.Enqueue(old); }
                         count++; continue;
@@ -233,8 +235,15 @@ namespace BooterBigArm.TopDown3D
                 if (node == null || !node.gameObject.activeSelf) return false;
             return true;
         }
-        private static void Collision(Instance item, bool enabled)
-        { for (int i = 0; i < item.Colliders.Length; i++) item.Colliders[i].enabled = enabled && item.CollisionEnabled[i]; }
+        private void Collision(Instance item, bool enabled)
+        {
+            for (int i = 0; i < item.Colliders.Length; i++)
+            {
+                bool wanted = enabled && item.CollisionEnabled[i];
+                if (item.Colliders[i].enabled == wanted) continue;
+                item.Colliders[i].enabled = wanted; CollisionRevision++;
+            }
+        }
         private static void Visual(Instance item, bool enabled)
         {
             for (int i = 0; i < item.Lods.Length; i++) item.Lods[i].enabled = enabled && item.LodEnabled[i];

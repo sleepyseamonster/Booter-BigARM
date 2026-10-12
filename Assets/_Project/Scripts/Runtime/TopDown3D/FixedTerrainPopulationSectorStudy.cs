@@ -14,6 +14,8 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Camera view;
         [SerializeField] private Light sun;
         [SerializeField] private Transform[] actorDemandMarkers;
+        [SerializeField] private TopDown3DPlayerMotor studyBooter;
+        [SerializeField] private TopDown3DBigArmFollower studyBigArm;
         [SerializeField] private GameObject prefab;
         [SerializeField] private int seed;
         [SerializeField] private string catalogRevision;
@@ -28,6 +30,12 @@ namespace BooterBigArm.TopDown3D
         private Transform populationRoot;
         private Bounds landscape;
         private double nextDemand;
+        private TopDown3DPlayerMotor boundBooter;
+        private TopDown3DBigArmFollower boundBigArm;
+        private Func<Bounds, bool> actorPreparation;
+        private readonly List<Bounds> actorRequests = new(64);
+        private ulong synchronizedCollisionRevision;
+        public int PhysicsSynchronizations { get; private set; }
         public FixedTerrainPopulationState State => state;
         public int ActiveCount => presentation?.ActiveCount ?? 0;
         public int PendingBuilds => scheduler?.PendingBuilds ?? 0;
@@ -40,6 +48,38 @@ namespace BooterBigArm.TopDown3D
         public bool IsActorCoverageReady(Transform actor) => scheduler != null && actor != null && actor.gameObject.activeInHierarchy
             && Array.IndexOf(actorDemandMarkers, actor) >= 0
             && scheduler.IsCollisionCoverageReady(new Bounds(actor.position, new Vector3(256, 0, 256)));
+
+        public void BindActors(TopDown3DPlayerMotor booter, TopDown3DBigArmFollower bigArm)
+        {
+            if (scheduler != null || boundBooter != null || boundBigArm != null || booter == null || bigArm == null
+                || booter.gameObject.scene != gameObject.scene || bigArm.gameObject.scene != gameObject.scene
+                || gameObject.scene.path == GreaterWastelandTerrainRendering.ScenePath
+                || booter.PopulationPreparation != null || bigArm.PopulationPreparation != null)
+                throw new InvalidOperationException("Bind unowned real actors in this reference scene before initialization; production binding is deferred.");
+            var spawn = new Vector2(booter.transform.position.x, booter.transform.position.z);
+            var companionSpawn = new Vector2(bigArm.transform.position.x, bigArm.transform.position.z);
+            if (Vector2.Distance(spawn, reservedStart) > 16 || Vector2.Distance(companionSpawn, reservedStart) > 16)
+                throw new InvalidOperationException("Reference actors must begin inside the protected 32 m spawn reservation.");
+            boundBooter = booter; boundBigArm = bigArm; actorPreparation = PrepareActorRegion;
+            studyBooter = booter; studyBigArm = bigArm;
+            booter.PopulationPreparation = actorPreparation; bigArm.PopulationPreparation = actorPreparation;
+        }
+        private bool PrepareActorRegion(Bounds region)
+        {
+            // This recipe's maximum scaled footprint is 4 m. The actor supplies body, motion and route extent.
+            region.Expand(new Vector3(8, 0, 8));
+            if (!actorRequests.Contains(region))
+            {
+                if (actorRequests.Count >= 64) return false;
+                actorRequests.Add(region);
+            }
+            if (scheduler == null || !scheduler.IsCollisionCoverageReady(region)) return false;
+            if (presentation.CollisionRevision != synchronizedCollisionRevision)
+            {
+                Physics.SyncTransforms(); synchronizedCollisionRevision = presentation.CollisionRevision; PhysicsSynchronizations++;
+            }
+            return true;
+        }
 
         public void Configure(Terrain[] tiles, string[] tileRevisions, Camera camera, Light light, Transform[] actors,
             GameObject template, int studySeed, string catalog, Vector2 start, Vector2 end, string constraints)
@@ -55,6 +95,7 @@ namespace BooterBigArm.TopDown3D
             if (terrain == null || terrain.Length != 16 || terrainRevisions == null || terrainRevisions.Length != terrain.Length
                 || view == null || prefab == null || string.IsNullOrWhiteSpace(catalogRevision) || string.IsNullOrWhiteSpace(constraintRevision)
                 || actorDemandMarkers == null || actorDemandMarkers.Length > 8) throw new InvalidOperationException("Use an explicit 16-tile reference sector and versioned study inputs.");
+            if (boundBooter == null && boundBigArm == null && (studyBooter != null || studyBigArm != null)) BindActors(studyBooter, studyBigArm);
             revisions.Clear();
             for (int i = 0; i < terrain.Length; i++)
             {
@@ -80,7 +121,7 @@ namespace BooterBigArm.TopDown3D
             {
                 presentation = new FixedTerrainPopulationPresentation(prefab, populationRoot, state, RecipeId, 1024, 128, 16);
                 scheduler = new FixedTerrainPopulationScheduler(planner, presentation, state, revisions.Keys, 2);
-                Physics.SyncTransforms(); UpdateDemand(Time.realtimeSinceStartupAsDouble);
+                Physics.SyncTransforms(); synchronizedCollisionRevision = presentation.CollisionRevision; UpdateDemand(Time.realtimeSinceStartupAsDouble);
             }
             catch { Shutdown(); throw; }
         }
@@ -115,10 +156,16 @@ namespace BooterBigArm.TopDown3D
                     var actorBounds = new Bounds(actor.position, new Vector3(256, 0, 256));
                     if (FixedTerrainRenderWindow.IntersectsXZ(actorBounds, bounds)) collision = true;
                 }
+                if (boundBooter != null && boundBooter.gameObject.activeInHierarchy
+                    && FixedTerrainRenderWindow.IntersectsXZ(PaddedActorBounds(boundBooter.PopulationPreparationBounds()), bounds)) collision = true;
+                if (boundBigArm != null && boundBigArm.gameObject.activeInHierarchy
+                    && FixedTerrainRenderWindow.IntersectsXZ(PaddedActorBounds(boundBigArm.PopulationPreparationBounds()), bounds)) collision = true;
+                foreach (var request in actorRequests) if (FixedTerrainRenderWindow.IntersectsXZ(request, bounds)) collision = true;
                 if (visual || collision) demands.Add(new FixedTerrainPopulationDemand(cell, visual, collision, priority));
             }
-            scheduler.SetDemand(demands, time); nextDemand = time + .2;
+            scheduler.SetDemand(demands, time); actorRequests.Clear(); nextDemand = time + .2;
         }
+        private static Bounds PaddedActorBounds(Bounds region) { region.Expand(new Vector3(8, 0, 8)); return region; }
         private Bounds CameraBounds()
         {
             var bounds = new Bounds(view.transform.position, Vector3.zero);
@@ -134,6 +181,11 @@ namespace BooterBigArm.TopDown3D
             catch (ArgumentException) { return false; }
         }
         private void OnDisable() => Shutdown();
+        private void OnDestroy()
+        {
+            if (boundBooter != null && boundBooter.PopulationPreparation == actorPreparation) boundBooter.PopulationPreparation = null;
+            if (boundBigArm != null && boundBigArm.PopulationPreparation == actorPreparation) boundBigArm.PopulationPreparation = null;
+        }
         public void Shutdown()
         {
             scheduler?.Dispose(); presentation?.Dispose(); scheduler = null; presentation = null;
@@ -142,6 +194,7 @@ namespace BooterBigArm.TopDown3D
                 if (Application.isPlaying) Destroy(populationRoot.gameObject); else DestroyImmediate(populationRoot.gameObject);
             }
             populationRoot = null;
+            actorRequests.Clear();
         }
     }
 }

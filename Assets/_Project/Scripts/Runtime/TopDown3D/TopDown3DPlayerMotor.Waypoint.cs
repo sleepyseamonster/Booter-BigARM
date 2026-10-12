@@ -14,6 +14,13 @@ namespace BooterBigArm.TopDown3D
         public bool CanWalkWaypointSegment(Vector3 from, Vector3 to)
         {
             if (capsule == null || !float.IsFinite(from.x + from.y + from.z + to.x + to.y + to.z)) return false;
+            if (PopulationPreparation != null)
+            {
+                var region = new Bounds(from, Vector3.zero); region.Encapsulate(to);
+                float margin = capsule.radius * Mathf.Max(Mathf.Abs(transform.lossyScale.x), Mathf.Abs(transform.lossyScale.z));
+                region.Expand(new Vector3(margin * 2, 0, margin * 2));
+                if (!PopulationPreparation(region)) return false; // Do not validate a route against absent population obstacles.
+            }
             var steps = Mathf.CeilToInt(Vector3.Distance(from, to) / .5f);
             if (steps > 200) return false;
             var previous = from;

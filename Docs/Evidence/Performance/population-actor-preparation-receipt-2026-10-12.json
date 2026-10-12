@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-12",
+  "scope": "Opt-in actor population preparation and reference binding; no production binding, authored actor scene or Player traversal claim",
+  "candidate": "D:\\BooterBigArmValidation\\PerformanceImplementation20261011-01",
+  "sources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "a8696ff97448f0a2c8e77ea1861491a643ecada96eb87a2fdb6217dbd1c8b353"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs.meta",
+      "sha256": "f2e6db0b44b4e20f075c9891724ff6041341fbda0c60281071a0dc2767a9faf5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.Waypoint.cs",
+      "sha256": "8d3eb194945d31026ae81a49857647db3919259682848ceb832892f0fd9fcb01"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.Waypoint.cs.meta",
+      "sha256": "4a4e0d54f20305a4030512ccf5fbaad65ccc6f63913628849a4d289239ccce5e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs",
+      "sha256": "0747c8067a094eb26f00d3a9ad79f420fc563fe2136e0da421c195abad3b729e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs.meta",
+      "sha256": "b554628c3ca8bdf09eb79e35c0273facd6a33af0612c3a41c3ca4aa7586decb9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs",
+      "sha256": "1878b432d95a8bee76efa92f7b4b845edda17f2a5413114effe9c55ee4c67335"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs.meta",
+      "sha256": "d54d77bdbaac15ff023744e24b4be31275236bcaeefbbb55733b390825628c2e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs",
+      "sha256": "2818c48c87ef03efd5066d514c55da1d90e3b94a787bab2dfc958f5c96ed0819"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs.meta",
+      "sha256": "33ac5119de622ca4a6294e126ad9dc95d5ebaa6041b78ad771d3ca9869b2d8dc"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DRouteRetryTests.cs",
+      "sha256": "ead416044ecddd7916ffa6126910202886271658c8292cef1fb04fcb5243dd0e"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DRouteRetryTests.cs.meta",
+      "sha256": "871ed50c713f348834a0436ef54b1ed18c0bdfb709e90c418f714023860cf3fe"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSectorStudyTests.cs",
+      "sha256": "15fa0b085d4ab6e4b01249d6e62ea3c11ea9fae153280377f801808696e77494"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSectorStudyTests.cs.meta",
+      "sha256": "ad5b6dc0fdce533b7eb49310eb6ec684105d921e9cfc859e3e614dbdbbd2ab98"
+    }
+  ],
+  "tests": {
+    "path": "Docs/Evidence/Performance/population-actor-preparation-editmode-2026-10-12.xml",
+    "sha256": "cdf37827bd2c5750a8874115689f639fb6b93b83863f963a7fa71c97d4799555",
+    "original_candidate_sha256": "fa37c25902e43e816d8fe06334d33ee58d67f87b041ffbdf6e605469cea0fb0d",
+    "passed": 86,
+    "failed": 0,
+    "skipped": 0
+  },
+  "reference_scene_unchanged_sha256": "b7965dcbb261f180fdbf77524fa1d9d3e88c4bbb01bb71a819c57eac93efb23e",
+  "proof": [
+    "Unbound motor behavior preserved; unready fixed modes freeze timers/position and ready traversal resumes",
+    "Independent BigARM grounding/route barriers do not build routes or relocate while unavailable",
+    "Serialized actor startup binding, offscreen demand, changed-collision-only synchronization",
+    "Logical removals, snapshot restore, shutdown/recreation and out-of-area rejection",
+    "Existing native render/query, population identity/state/presentation and checkpoint suites remain passing"
+  ],
+  "limitations": [
+    "Actor fixtures execute in EditMode, without Play Mode or physics simulation; no gameplay smoke test",
+    "Saved comparison scene still has markers; authored real-actor scene and Player timing are next",
+    "Two-second motion lookahead, four-metre recipe halo and bounded 64-request batch are study policy",
+    "Production seed/save/demand deployment and author visual/traversal acceptance remain open"
+  ]
+}

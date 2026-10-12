@@ -89,6 +89,51 @@ namespace BooterBigArm.Tests
             }
             finally { study.Shutdown(); EditorSceneManager.CloseScene(scene, true); }
         }
+        [Test]
+        public void RealActorBindingsWaitForOffscreenPopulationAndSynchronizeOnlyChangedCollision()
+        {
+            var scene = EditorSceneManager.OpenScene(FixedTerrainPopulationSectorBuilder.ScenePath, OpenSceneMode.Additive);
+            var study = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<FixedTerrainPopulationSectorStudy>(true)).Single();
+            var tiles = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Terrain>()).ToArray();
+            try
+            {
+                var booterObject = new GameObject("Real motor binding fixture"); UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(booterObject, scene);
+                var booter = booterObject.AddComponent<TopDown3DPlayerMotor>();
+                var bigArmObject = new GameObject("Real follower binding fixture"); UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(bigArmObject, scene);
+                var bigArm = bigArmObject.AddComponent<TopDown3DBigArmFollower>();
+                booterObject.transform.position = new Vector3(-1536, 0, -1536); bigArmObject.transform.position = new Vector3(-1531, 0, -1536);
+                var bindings = new SerializedObject(study);
+                bindings.FindProperty("studyBooter").objectReferenceValue = booter;
+                bindings.FindProperty("studyBigArm").objectReferenceValue = bigArm;
+                bindings.ApplyModifiedPropertiesWithoutUndo(); study.Initialize();
+                Assert.That(booter.PopulationPreparation, Is.Not.Null); Assert.That(bigArm.PopulationPreparation, Is.Not.Null);
+                var camera = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Camera>()).Single(); camera.enabled = false;
+                Assert.That(booter.PopulationPreparation(booter.PopulationPreparationBounds()), Is.False);
+                double time = Time.realtimeSinceStartupAsDouble + 1; Finish(study, time);
+                Assert.That(booter.PopulationPreparation(booter.PopulationPreparationBounds()), Is.True);
+                int syncs = study.PhysicsSynchronizations;
+                Assert.That(syncs, Is.GreaterThan(0)); Assert.That(bigArm.PopulationPreparation(bigArm.PopulationPreparationBounds()), Is.True);
+                Assert.That(study.PhysicsSynchronizations, Is.EqualTo(syncs), "Unchanged published collision does not force another global synchronization.");
+                Assert.That(study.GetComponentsInChildren<MeshRenderer>().All(r => !r.enabled), Is.True);
+                var receipt = study.State.CaptureSnapshot().cells.First(c => c.acceptedCandidates.Count > 0);
+                var address = receipt.acceptedCandidates[0]; var cell = new Vector2Int(address.x, address.z);
+                Assert.That(study.State.TryRemove(cell, address.recipeId, address.ordinal), Is.True);
+                Assert.That(booter.PopulationPreparation(booter.PopulationPreparationBounds()), Is.True);
+                Assert.That(study.PhysicsSynchronizations, Is.GreaterThan(syncs));
+                var saved = study.CapturePopulationJson(); Assert.That(study.RestorePopulationJson(saved), Is.True);
+                Assert.That(booter.PopulationPreparation(booter.PopulationPreparationBounds()), Is.False); Finish(study, time);
+                Assert.That(booter.PopulationPreparation(booter.PopulationPreparationBounds()), Is.True);
+                var position = bigArmObject.transform.position; bigArmObject.transform.position += Vector3.right * 4096;
+                Assert.That(bigArm.PopulationPreparation(bigArm.PopulationPreparationBounds()), Is.False);
+                bigArmObject.transform.position = position;
+                study.Shutdown(); Assert.That(booter.PopulationPreparation(booter.PopulationPreparationBounds()), Is.False);
+                study.Initialize(); Finish(study, Time.realtimeSinceStartupAsDouble + 1);
+                Assert.That(booter.PopulationPreparation(booter.PopulationPreparationBounds()), Is.True);
+                Assert.That(tiles.All(t => t.enabled && t.GetComponent<TerrainCollider>().enabled), Is.True);
+            }
+            finally { study.Shutdown(); EditorSceneManager.CloseScene(scene, true); }
+        }
+
         private static void Finish(FixedTerrainPopulationSectorStudy study, double time)
         {
             for (int i = 0; i < 10000; i++)

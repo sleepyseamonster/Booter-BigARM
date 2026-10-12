@@ -16,7 +16,8 @@ namespace BooterBigArm.TopDown3D
             Recover,
             CatchUp,
             WaitingForTerrain,
-            WaitingForRoute
+            WaitingForRoute,
+            WaitingForPopulation
         }
 
         private const int GroundHitCapacity = 12;
@@ -78,6 +79,15 @@ namespace BooterBigArm.TopDown3D
         private float routeReplanAt;
         private Vector3 routeGoal;
         internal int RouteBuildAttempts { get; private set; }
+        public System.Func<Bounds, bool> PopulationPreparation { get; set; }
+        public Bounds PopulationPreparationBounds()
+        {
+            var shape = bodyCollider != null ? bodyCollider : GetComponent<BoxCollider>();
+            var size = shape != null ? Vector3.Scale(shape.size, transform.lossyScale) : Vector3.one;
+            float radius = new Vector2(size.x, size.z).magnitude * .5f;
+            float margin = radius + Mathf.Max(Mathf.Max(catchUpSpeed, moveSpeed) * 2, RouteGridCenter * routeCellSize + avoidanceProbeDistance);
+            return new Bounds(body != null ? body.position : transform.position, new Vector3(margin * 2, 0, margin * 2));
+        }
 
         public FollowState State { get; private set; } = FollowState.Idle;
         public float CurrentSpeed => currentSpeed;
@@ -162,6 +172,12 @@ namespace BooterBigArm.TopDown3D
             if (followTarget == null || body == null)
             {
                 return;
+            }
+
+            if (PopulationPreparation != null && !PopulationPreparation(PopulationPreparationBounds()))
+            {
+                RecordTargetTrail(); currentSpeed = 0; State = FollowState.WaitingForPopulation;
+                ResetStuckTracking(); return;
             }
 
             if (!startupGroundingComplete)
@@ -438,6 +454,7 @@ namespace BooterBigArm.TopDown3D
         internal bool TryGetRouteDirection(Vector3 desired, out Vector3 direction)
         {
             direction = Vector3.zero;
+            if (PopulationPreparation != null && !PopulationPreparation(PopulationPreparationBounds())) return false;
             bool built = false;
             bool missing = route.Count == 0 || routeIndex >= route.Count;
             // A failed/consumed route waits for its deadline even if the target keeps moving.

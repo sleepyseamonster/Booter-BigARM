@@ -47,6 +47,64 @@ namespace BooterBigArm.Tests
             finally { EditorSceneManager.ClosePreviewScene(scene); }
         }
 
+        [Test]
+        public void PopulationBarrierFreezesTraversalWaypointCampAndClimbWithoutRelocatingBooter()
+        {
+            var scene = EditorSceneManager.NewPreviewScene();
+            try
+            {
+                var owner = new GameObject("Preparation motor fixture"); SceneManager.MoveGameObjectToScene(owner, scene);
+                var motor = owner.AddComponent<TopDown3DPlayerMotor>(); var body = owner.GetComponent<Rigidbody>();
+                Set(motor, "body", body); Set(motor, "capsule", owner.GetComponent<CapsuleCollider>());
+                body.useGravity = false; body.linearVelocity = new Vector3(3, 2, 4); var position = body.position;
+                Fixed(motor); Assert.That(body.linearVelocity, Is.EqualTo(new Vector3(3, 2, 4)), "Unbound production behavior is retained.");
+                Bounds asked = default; motor.PopulationPreparation = bounds => { asked = bounds; return false; };
+                Fixed(motor); Assert.That(motor.WaitingForPopulation, Is.True); Assert.That(body.linearVelocity, Is.EqualTo(Vector3.up * 2));
+                Assert.That(body.position, Is.EqualTo(position));
+                motor.GetType().GetProperty("ActiveTraversal").SetValue(motor, TopDown3DTraversalMove.Vault);
+                Set(motor, "traversalStart", position); Set(motor, "traversalEnd", Vector3.right * 40);
+                Set(motor, "traversalStartRotation", Quaternion.identity); Set(motor, "traversalEndRotation", Quaternion.identity);
+                Set(motor, "activeTraversalElapsed", .25f); Set(motor, "activeTraversalDuration", 1f);
+                Fixed(motor); Assert.That((float)Get(motor, "activeTraversalElapsed"), Is.EqualTo(.25f));
+                Assert.That(body.linearVelocity, Is.EqualTo(Vector3.zero)); Assert.That(asked.Contains(Vector3.right * 40), Is.True);
+                motor.PopulationPreparation = _ => true; Fixed(motor);
+                Assert.That((float)Get(motor, "activeTraversalElapsed"), Is.GreaterThan(.25f), "Ready traversal resumes rather than consuming waiting time.");
+                motor.GetType().GetProperty("ActiveTraversal").SetValue(motor, TopDown3DTraversalMove.None);
+                motor.PopulationPreparation = _ => false;
+                Set(motor, "actionConstraintOwner", new object()); Set(motor, "waypointTravelActive", true);
+                Set(motor, "waypointPath", new[] { Vector3.right * 60 }); Set(motor, "waypointIndex", 0);
+                Fixed(motor); Assert.That((int)Get(motor, "waypointIndex"), Is.Zero);
+                Set(motor, "waypointTravelActive", false); Set(motor, "campApproaching", true); Set(motor, "campApproachRemaining", 3f);
+                Fixed(motor); Assert.That((float)Get(motor, "campApproachRemaining"), Is.EqualTo(3));
+                Set(motor, "climbMode", TopDown3DClimbMode.Wall); body.linearVelocity = Vector3.up * 3;
+                Fixed(motor); Assert.That(body.linearVelocity, Is.EqualTo(Vector3.zero));
+                Assert.That(motor.CanWalkWaypointSegment(Vector3.zero, Vector3.right * 60), Is.False);
+            }
+            finally { EditorSceneManager.ClosePreviewScene(scene); }
+        }
+
+        [Test]
+        public void OffscreenBigArmPreparationPrecedesGroundingAndRouteProbesWithoutTeleport()
+        {
+            var scene = EditorSceneManager.NewPreviewScene();
+            try
+            {
+                var follower = Create(scene); var body = follower.GetComponent<Rigidbody>(); body.isKinematic = true;
+                var target = new GameObject("Independent target"); SceneManager.MoveGameObjectToScene(target, scene); target.transform.position = Vector3.right * 10;
+                follower.Configure(target.transform, null, null); var position = body.position;
+                Bounds region = default; follower.PopulationPreparation = bounds => { region = bounds; return false; };
+                Fixed(follower); Assert.That(follower.State, Is.EqualTo(TopDown3DBigArmFollower.FollowState.WaitingForPopulation));
+                Assert.That(follower.TryGetRouteDirection(target.transform.position, out _), Is.False);
+                Assert.That(follower.RouteBuildAttempts, Is.Zero); Assert.That(body.position, Is.EqualTo(position));
+                Assert.That(region.size.x, Is.GreaterThanOrEqualTo(15), "Local route probes are included without a camera.");
+                follower.PopulationPreparation = _ => true; follower.TryGetRouteDirection(target.transform.position, out _);
+                Assert.That(follower.RouteBuildAttempts, Is.EqualTo(1));
+            }
+            finally { EditorSceneManager.ClosePreviewScene(scene); }
+        }
+
+        private static void Fixed(object owner) => owner.GetType().GetMethod("FixedUpdate", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(owner, null);
+        private static object Get(object owner, string name) => owner.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(owner);
         private static TopDown3DBigArmFollower Create(Scene scene)
         {
             var owner = new GameObject("Route retry fixture"); SceneManager.MoveGameObjectToScene(owner, scene);

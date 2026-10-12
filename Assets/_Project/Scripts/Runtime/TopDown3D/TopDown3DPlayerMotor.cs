@@ -130,6 +130,27 @@ namespace BooterBigArm.TopDown3D
         private bool hasPublishedFacing;
         private object actionConstraintOwner;
         private bool campApproaching;
+        // Runtime-only opt-in binding. Production has no population preparation owner until explicit integration.
+        public Func<Bounds, bool> PopulationPreparation { get; set; }
+        public bool WaitingForPopulation { get; private set; }
+
+        public Bounds PopulationPreparationBounds()
+        {
+            var shape = capsule != null ? capsule : GetComponent<CapsuleCollider>();
+            float radius = shape != null ? shape.radius * Mathf.Max(Mathf.Abs(transform.lossyScale.x), Mathf.Abs(transform.lossyScale.z)) : 1;
+            var velocity = body != null ? body.linearVelocity : Vector3.zero;
+            float speed = Mathf.Max(walkSpeed, sprintSpeed, new Vector2(velocity.x, velocity.z).magnitude);
+            var bounds = new Bounds(Position, Vector3.zero);
+            if (ActiveTraversal != TopDown3DTraversalMove.None)
+            {
+                bounds.Encapsulate(traversalStart); bounds.Encapsulate(traversalEnd);
+                if (ActiveTraversal != TopDown3DTraversalMove.Vault) bounds.Encapsulate(traversalControl);
+            }
+            if (campApproaching) bounds.Encapsulate(campApproachTarget);
+            if (waypointTravelActive && waypointPath != null) foreach (var point in waypointPath) bounds.Encapsulate(point);
+            bounds.Expand(new Vector3((radius + speed * 2) * 2, 0, (radius + speed * 2) * 2));
+            return bounds;
+        }
         private Vector3 campApproachTarget;
         private float campApproachRemaining;
         public event Action<bool> CampApproachFinished;
@@ -288,6 +309,18 @@ namespace BooterBigArm.TopDown3D
 
         private void FixedUpdate()
         {
+            WaitingForPopulation = PopulationPreparation != null && !PopulationPreparation(PopulationPreparationBounds());
+            if (WaitingForPopulation)
+            {
+                PlanarAcceleration = Vector3.zero; SprintActive = false;
+                if (body != null)
+                {
+                    float vertical = ActiveTraversal != TopDown3DTraversalMove.None || climbMode != TopDown3DClimbMode.None ? 0 : body.linearVelocity.y;
+                    body.linearVelocity = new Vector3(0, vertical, 0); body.angularVelocity = Vector3.zero;
+                }
+                PublishPresentationSnapshot(Vector3.zero, Vector3.zero, false);
+                return; // Includes traversal, climb, waypoint and camp timers; resume instead of consuming an unready move.
+            }
             traversalCooldownRemaining = Mathf.Max(0f, traversalCooldownRemaining - Time.fixedDeltaTime);
             if (IsActionConstrained)
             {
