@@ -20,11 +20,11 @@
     },
     {
       "path": "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationActors20261012.unity",
-      "sha256": "c648d08405224591feb7ebfb6b516a33dd49d55d0bb23bb1dc511afa81659fa3"
+      "sha256": "e00ae60c3afa378b53a009cfd9720a257a302346188e2f086caa6d9456a753e6"
     },
     {
       "path": "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationActors20261012.unity.meta",
-      "sha256": "c6fd3da47f70fd005949ae71bc41ac4ab6b8d56a83a7060836346d5030411fff"
+      "sha256": "834cab9e78ab39314f3359cfdf1ee5136cf7cdc02dc05467683a66646ce47d3d"
     }
   ],
   "build_artifacts": [
@@ -42,8 +42,8 @@
   "scene_guid": "2547674256f68ad4aa815743a6551397",
   "tests": {
     "path": "Docs/Evidence/Performance/population-actor-scene-editmode-2026-10-12.xml",
-    "sha256": "0006c432ac549629a3e12ef2b1e7e5422c4eaadcc3386501688fe2503f856c10",
-    "original_candidate_sha256": "93b87c11125d2f5b4cd9d9402dee756b816c6dd9d092f15184600408e60a04e2",
+    "sha256": "202905ac575c5310d53784ff0ec1b63137da1b306ee79fd6809a7f0a0b44c9a0",
+    "original_candidate_sha256": "a7c42467d75e42385129ee63b288548a2ccf8a39dd086c4c6914cacd8b72a267",
     "passed": 87,
     "failed": 0,
     "skipped": 0
@@ -317,12 +317,12 @@
     {
       "path": "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationActors20261012.unity",
       "candidate_sha256": "c648d08405224591feb7ebfb6b516a33dd49d55d0bb23bb1dc511afa81659fa3",
-      "root_sha256": "c648d08405224591feb7ebfb6b516a33dd49d55d0bb23bb1dc511afa81659fa3"
+      "root_sha256": "e00ae60c3afa378b53a009cfd9720a257a302346188e2f086caa6d9456a753e6"
     },
     {
       "path": "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationActors20261012.unity.meta",
       "candidate_sha256": "c6fd3da47f70fd005949ae71bc41ac4ab6b8d56a83a7060836346d5030411fff",
-      "root_sha256": "c6fd3da47f70fd005949ae71bc41ac4ab6b8d56a83a7060836346d5030411fff"
+      "root_sha256": "834cab9e78ab39314f3359cfdf1ee5136cf7cdc02dc05467683a66646ce47d3d"
     },
     {
       "path": "Assets/_Project/Settings/Survival/Resources/TopDown3DSurvivalSettings.asset",
@@ -1161,5 +1161,10 @@
     "Identity-preserving work partition comparison",
     "Author appearance/traversal acceptance",
     "Production demand, seed/save binding and rollout"
-  ]
+  ],
+  "scene_format_normalization": {
+    "raw_build_scene_sha256": "c648d08405224591feb7ebfb6b516a33dd49d55d0bb23bb1dc511afa81659fa3",
+    "normalized_scene_sha256": "e00ae60c3afa378b53a009cfd9720a257a302346188e2f086caa6d9456a753e6",
+    "scope": "Trailing whitespace only; identical lines after rstrip, unchanged scene GUID; original raw build stays in isolated candidate and build receipt"
+  }
 }
