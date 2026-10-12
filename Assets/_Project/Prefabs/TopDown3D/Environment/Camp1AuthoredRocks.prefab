@@ -1,0 +1,520 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5590009462966372988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6815588323132701538}
+  - component: {fileID: 8593897471518957961}
+  m_Layer: 0
+  m_Name: Camp1AuthoredRocks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6815588323132701538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590009462966372988}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6887134650923953762}
+  - {fileID: 8569183514783380794}
+  - {fileID: 1748375244084940702}
+  - {fileID: 1234651044647465828}
+  - {fileID: 8879415516007990250}
+  - {fileID: 5156323653337807627}
+  - {fileID: 9121097043084371461}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8593897471518957961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590009462966372988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885810ad44147e641927a68d029ea89e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCampRockArrangement
+  worldId: greater-wasteland.authored.v1
+  siteId: camp.starting
+  layoutVersion: 1
+  campAnchor: {x: -1842, y: -48.08643, z: -1498}
+  members:
+  - placementId: greater-wasteland:camp1:rock:v1:01
+    assetId: ArtistVolcanicRock01
+    instance: {fileID: 6887134650923953762}
+    groundAnchor: {x: -1856, y: -49.569675, z: -1508}
+  - placementId: greater-wasteland:camp1:rock:v1:02
+    assetId: ArtistFlatVolcanicRock02
+    instance: {fileID: 8569183514783380794}
+    groundAnchor: {x: -1834, y: -48.52591, z: -1513}
+  - placementId: greater-wasteland:camp1:rock:v1:03
+    assetId: ArtistVolcanicRock03
+    instance: {fileID: 1748375244084940702}
+    groundAnchor: {x: -1822, y: -47.042667, z: -1502}
+  - placementId: greater-wasteland:camp1:rock:v1:04
+    assetId: ArtistVolcanicRock04
+    instance: {fileID: 1234651044647465828}
+    groundAnchor: {x: -1854, y: -46.987732, z: -1479}
+  - placementId: greater-wasteland:camp1:rock:v1:05
+    assetId: ArtistVolcanicRock05
+    instance: {fileID: 8879415516007990250}
+    groundAnchor: {x: -1865, y: -49.569675, z: -1500}
+  - placementId: greater-wasteland:camp1:rock:v1:06
+    assetId: ArtistVolcanicRock06
+    instance: {fileID: 5156323653337807627}
+    groundAnchor: {x: -1818, y: -45.9989, z: -1491}
+  - placementId: greater-wasteland:camp1:rock:v1:07
+    assetId: ArtistVolcanicRock07
+    instance: {fileID: 9121097043084371461}
+    groundAnchor: {x: -1848, y: -49.899284, z: -1521}
+--- !u!1001 &2446032108255415953
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6815588323132701538}
+    m_Modifications:
+    - target: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1854
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -46.979805
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1479
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9904569
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.009201857
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.13039613
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.04367437
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449552120588623106, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+      propertyPath: m_Name
+      value: "Camp Rock 04 \xB7 ArtistVolcanicRock04"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+--- !u!4 &1234651044647465828 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3517401104931716597, guid: fa57a16645930d34995d30a910cc1423, type: 3}
+  m_PrefabInstance: {fileID: 2446032108255415953}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5461189927746708387
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6815588323132701538}
+    m_Modifications:
+    - target: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1818
+      objectReference: {fileID: 0}
+    - target: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -46.014084
+      objectReference: {fileID: 0}
+    - target: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1491
+      objectReference: {fileID: 0}
+    - target: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.25856116
+      objectReference: {fileID: 0}
+    - target: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.04257386
+      objectReference: {fileID: 0}
+    - target: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.96496326
+      objectReference: {fileID: 0}
+    - target: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.013400299
+      objectReference: {fileID: 0}
+    - target: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900299004547391741, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+      propertyPath: m_Name
+      value: "Camp Rock 06 \xB7 ArtistVolcanicRock06"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+--- !u!4 &5156323653337807627 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 884106609291974824, guid: 7f56a133e525bcb40b7c83b33779db73, type: 3}
+  m_PrefabInstance: {fileID: 5461189927746708387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5462685301942834879
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6815588323132701538}
+    m_Modifications:
+    - target: {fileID: 3481136761462188794, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_Name
+      value: "Camp Rock 02 \xB7 ArtistFlatVolcanicRock02"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1834
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -48.518723
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1513
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.55824596
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.05598353
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8276337
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.015803147
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+--- !u!4 &8569183514783380794 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4405787449776087941, guid: 3bf2fed74d0dc8c48a34841cdcbadf4d, type: 3}
+  m_PrefabInstance: {fileID: 5462685301942834879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5706734974229407871
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6815588323132701538}
+    m_Modifications:
+    - target: {fileID: 2672951890201770696, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_Name
+      value: "Camp Rock 07 \xB7 ArtistVolcanicRock07"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1848
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -49.97886
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1521
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.53664535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0010254516
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.84236443
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.04932532
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+--- !u!4 &9121097043084371461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3577758431350951546, guid: 02125989ced083a4b8794db8ee1b27fc, type: 3}
+  m_PrefabInstance: {fileID: 5706734974229407871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6175600380606865817
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6815588323132701538}
+    m_Modifications:
+    - target: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1822
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -47.028057
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1502
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.93774325
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.039630473
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.34131062
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.050735697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6958580735194692511, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+      propertyPath: m_Name
+      value: "Camp Rock 03 \xB7 ArtistVolcanicRock03"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+--- !u!4 &1748375244084940702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5618057840071798279, guid: 5fc05ceefe783e2439786bfa468655cf, type: 3}
+  m_PrefabInstance: {fileID: 6175600380606865817}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6745717974790861506
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6815588323132701538}
+    m_Modifications:
+    - target: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1865
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -49.61339
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.80839974
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.030462991
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5873368
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.024443539
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258959038409522899, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+      propertyPath: m_Name
+      value: "Camp Rock 05 \xB7 ArtistVolcanicRock05"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+--- !u!4 &8879415516007990250 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2785370387567866152, guid: 7a4d52928dd2d0c46b759fbadcacd352, type: 3}
+  m_PrefabInstance: {fileID: 6745717974790861506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8492059666516014995
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6815588323132701538}
+    m_Modifications:
+    - target: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1856
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -49.6287
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1508
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.97527754
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.045663685
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.21621382
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00039381735
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246610026816103177, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+      propertyPath: m_Name
+      value: "Camp Rock 01 \xB7 ArtistVolcanicRock01"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+--- !u!4 &6887134650923953762 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3048337987403307505, guid: 740a9b85004ec1140b1f83e3417704e8, type: 3}
+  m_PrefabInstance: {fileID: 8492059666516014995}
+  m_PrefabAsset: {fileID: 0}

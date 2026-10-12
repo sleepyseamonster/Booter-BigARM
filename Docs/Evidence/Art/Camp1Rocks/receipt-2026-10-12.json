@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "date": "2026-10-12",
+  "world_id": "greater-wasteland.authored.v1",
+  "site_id": "camp.starting",
+  "layout_version": 1,
+  "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+  "prefab": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp1AuthoredRocks.prefab",
+  "procedural_generation": false,
+  "decorative_only": true,
+  "placements": [
+    {
+      "id": "greater-wasteland:camp1:rock:v1:01",
+      "asset": "ArtistVolcanicRock01",
+      "position": {
+        "x": -1856.0,
+        "y": -49.628700256347656,
+        "z": -1508.0
+      },
+      "ground": {
+        "x": -1856.0,
+        "y": -49.56967544555664,
+        "z": -1508.0
+      },
+      "rotation": {
+        "x": -0.045663684606552124,
+        "y": 0.21621382236480713,
+        "z": 0.0003938173467759043,
+        "w": 0.9752775430679321
+      }
+    },
+    {
+      "id": "greater-wasteland:camp1:rock:v1:02",
+      "asset": "ArtistFlatVolcanicRock02",
+      "position": {
+        "x": -1834.0,
+        "y": -48.51872253417969,
+        "z": -1513.0
+      },
+      "ground": {
+        "x": -1834.0,
+        "y": -48.525909423828125,
+        "z": -1513.0
+      },
+      "rotation": {
+        "x": -0.0559835284948349,
+        "y": 0.8276336789131165,
+        "z": -0.015803147107362747,
+        "w": 0.5582459568977356
+      }
+    },
+    {
+      "id": "greater-wasteland:camp1:rock:v1:03",
+      "asset": "ArtistVolcanicRock03",
+      "position": {
+        "x": -1822.0,
+        "y": -47.02805709838867,
+        "z": -1502.0
+      },
+      "ground": {
+        "x": -1822.0,
+        "y": -47.042667388916016,
+        "z": -1502.0
+      },
+      "rotation": {
+        "x": -0.0396304726600647,
+        "y": -0.34131062030792236,
+        "z": 0.05073569715023041,
+        "w": 0.9377432465553284
+      }
+    },
+    {
+      "id": "greater-wasteland:camp1:rock:v1:04",
+      "asset": "ArtistVolcanicRock04",
+      "position": {
+        "x": -1854.0,
+        "y": -46.97980499267578,
+        "z": -1479.0
+      },
+      "ground": {
+        "x": -1854.0,
+        "y": -46.98773193359375,
+        "z": -1479.0
+      },
+      "rotation": {
+        "x": 0.009201857261359692,
+        "y": -0.13039612770080566,
+        "z": 0.043674368411302567,
+        "w": 0.9904568791389465
+      }
+    },
+    {
+      "id": "greater-wasteland:camp1:rock:v1:05",
+      "asset": "ArtistVolcanicRock05",
+      "position": {
+        "x": -1865.0,
+        "y": -49.6133918762207,
+        "z": -1500.0
+      },
+      "ground": {
+        "x": -1865.0,
+        "y": -49.56967544555664,
+        "z": -1500.0
+      },
+      "rotation": {
+        "x": -0.030462991446256638,
+        "y": 0.5873367786407471,
+        "z": 0.02444353885948658,
+        "w": 0.8083997368812561
+      }
+    },
+    {
+      "id": "greater-wasteland:camp1:rock:v1:06",
+      "asset": "ArtistVolcanicRock06",
+      "position": {
+        "x": -1818.0,
+        "y": -46.01408386230469,
+        "z": -1491.0
+      },
+      "ground": {
+        "x": -1818.0,
+        "y": -45.9989013671875,
+        "z": -1491.0
+      },
+      "rotation": {
+        "x": -0.04257386177778244,
+        "y": 0.9649632573127747,
+        "z": -0.013400298543274403,
+        "w": 0.2585611641407013
+      }
+    },
+    {
+      "id": "greater-wasteland:camp1:rock:v1:07",
+      "asset": "ArtistVolcanicRock07",
+      "position": {
+        "x": -1848.0,
+        "y": -49.978858947753906,
+        "z": -1521.0
+      },
+      "ground": {
+        "x": -1848.0,
+        "y": -49.89928436279297,
+        "z": -1521.0
+      },
+      "rotation": {
+        "x": -0.0010254515800625086,
+        "y": 0.8423644304275513,
+        "z": -0.04932532086968422,
+        "w": -0.5366453528404236
+      }
+    }
+  ],
+  "scene_integrity": {
+    "before_sha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+    "after_sha256": "566df56f5d804a054654eb7371460891ceff824e02e8cfc3670a5982deb379e8",
+    "preserved_documents": 45217,
+    "new_documents": 1
+  },
+  "editmode_tests": {
+    "total": 3,
+    "passed": 3
+  },
+  "production_reopen_validated": true
+}
