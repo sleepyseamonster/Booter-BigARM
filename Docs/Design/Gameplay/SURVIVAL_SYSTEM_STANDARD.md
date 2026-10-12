@@ -12,7 +12,7 @@ Booter has five capacity-style survival values. A full meter means the current n
 - **Oxygen** represents breathable reserve and begins full.
 - **Reserve** represents long-term physical readiness. It drains slowly during activity and a little faster while Sprint is held during running, climbing, or traversal moves. It is not a short stamina bar.
 
-Hunger, thirst, and Reserve deplete automatically. Empty Reserve does not force a fall or disable movement. Standing still or waiting never restores Reserve. The camp prototype adds explicit awake Rest and Sleep actions. By user direction on October 11, 2026, either action can start at any Reserve level, including full Reserve, subject to the existing camp and supply checks. Rest lasts up to 20 simulation seconds and recovers Reserve only below 40 percent. Sleep accelerates the continuously simulated world, recovers Reserve only below 80 percent, and continues until manual wake, low supplies, or interruption. Reaching a recovery cap does not wake Booter or reduce an already higher Reserve value. Both actions keep spending nourishment, hydration, and oxygen at their authored rates, including while Reserve recovery is capped. The ordinary depletion tuning still gives roughly 167 minutes from full to empty and roughly 67 minutes of continuous exertion. These values are provisional. Empty hunger or thirst does not yet damage health. General health loss/recovery, eating, drinking, low-oxygen exposure, and ordinary oxygen depletion/recovery remain later slices; explicit health reduction now interrupts camp recovery.
+Hunger, thirst, and Reserve deplete automatically. Empty Reserve does not force a fall or disable movement. Standing still or waiting never restores Reserve. The camp prototype adds explicit awake Rest and Sleep actions. By user direction on October 11, 2026, either action can start at any Reserve level, including full Reserve, subject to the existing camp and supply checks. Rest lasts up to 20 simulation seconds and recovers Reserve only below 40 percent. Sleep accelerates the continuously simulated world, recovers Reserve only below 80 percent, and continues until manual wake, low supplies, or interruption. Reaching a recovery cap does not wake Booter or reduce an already higher Reserve value. Both actions keep spending nourishment, hydration, and oxygen at their authored rates, including while Reserve recovery is capped. The ordinary depletion tuning still gives roughly 167 minutes from full to empty and roughly 67 minutes of continuous exertion. These values are provisional. Empty hunger or thirst does not yet damage health. The algae canister now restores health, hunger and thirst through explicit doses. General combat/environment damage, refill sources, low-oxygen exposure and ordinary oxygen depletion/recovery remain later slices; explicit health reduction now interrupts camp recovery.
 
 ## Tuning And Runtime State
 
@@ -21,7 +21,17 @@ Hunger, thirst, and Reserve deplete automatically. Empty Reserve does not force 
 - `TopDown3DSurvivalVitals` owns mutable player state and deterministic elapsed-time advancement.
 - The default hunger, thirst, and Reserve rates are provisional tuning values, not locked design decisions. No automatic idle recovery is active. Camp rates and assets live in `Assets/_Project/Settings/Camping/Resources/TopDown3DCampSettings.asset`; the existing vitals owner selects the activity mode.
 - Runtime advancement reconciles timestamped activity transitions once per simulation interval. Internal double accumulators preserve fractional depletion at high frame rates; the public values and versioned snapshots remain floats. Snapshot restore resets transient recovery and its runtime clock.
-- External gameplay systems may set a vital explicitly, but this slice does not introduce item-consumption or environmental-exposure owners.
+- External gameplay systems may set a vital explicitly. The algae control adds a dedicated consumption owner for a finite player canister; ordinary inventory consumption and environmental exposure remain separate slices.
+
+## Algae Canister
+
+Booter's lower-left control now spends one shared algae reserve. D-pad left drinks to restore thirst, right eats to restore hunger, and up treats to restore health. Default keyboard bindings are F5, F6 and F7. Each fresh press restores up to 20 thirst or hunger points for 5 algae, or up to 10 health for 10 algae. Useful partial restoration spends proportionately; full meters and empty/dead/blocked states spend nothing. Held controls do not repeat, diagonals reject, and a shared 0.35-second unscaled cooldown guards repeated use. These values remain authored trial tuning.
+
+`TopDown3DAlgaeCanisterSettings` owns capacity, starter contents, gains, costs and cooldown. `TopDown3DAlgaeCanisterState` owns precise remaining contents and a version-1 snapshot seam. `TopDown3DAlgaeConsumptionController` uses the motor's assigned input router, synchronizes the survival clock, and commits reserve/vital changes before notifications. Hunger and thirst retain their double accumulators; health costs use representable restoration. Menus, camp, gathering, dust previews, climbing, traversal and motor-owned constraints block use. Ordinary movement remains available.
+
+The canister starts with 100 / 100 once per player session. Rebuilding the HUD, reopening menus, disabling/re-enabling presentation and repeated installation do not refill it. This is a starter survival attachment with no inventory stack, cartridge transfer, refill station or backpack capacity effect. Consumption leaves oxygen and Reserve unchanged and cannot revive a dead player. Snapshot support does not establish production restart persistence; that future owner must restore canister and vitals together without enabling generated-world services.
+
+See [the implementation plan](ALGAE_CANISTER_IMPLEMENTATION_PLAN.md) and [current-machine proof](../../Evidence/UI/AlgaeCanister/IMPLEMENTATION_2026-10-11.md).
 
 ## Procedural World Contract
 
@@ -38,6 +48,6 @@ See the [camp implementation plan](./CAMP_CLOAK_AND_SLEEP_IMPLEMENTATION_PLAN.md
 
 ## HUD Contract
 
-The five meters use a compact, vertically stacked safe-area-aware panel. It occupies the upper-left corner and remains separate from the lower-left action D-pad indicator.
+The five meters use a compact, vertically stacked safe-area-aware panel in the upper-left corner. The lower-left D-pad now shows Drink, Eat and Treat icons beside a shared algae fill gauge, binding-aware labels, textual availability reasons and committed gain/cost feedback. D-pad down retains the distinct dust-canister deployment action. Both use the existing shared HUD canvas and safe-area layout; dose presentation supports reduced motion through the accepted menu setting.
 
 The HUD installs at runtime when the perspective player is present, avoiding scene or prefab coupling during this additive foundation pass.

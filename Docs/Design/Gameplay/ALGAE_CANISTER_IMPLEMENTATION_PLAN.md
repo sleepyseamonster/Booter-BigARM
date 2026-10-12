@@ -1,6 +1,8 @@
 # Algae canister control implementation plan
 
-October 11, 2026. Planning only; no gameplay or UI implementation is included in this task. The author specified a lower-left control that spends a shared algae reserve to restore thirst on D-pad left, hunger on right and health on up. The [brainstorm](ALGAE_CANISTER_BRAINSTORM.md) proposes the appearance, trial dose sizes and edge-case behaviour. Implementation authorization and final tuning remain separate from this planning task.
+October 11, 2026. The author specified a lower-left control that spends a shared algae reserve to restore thirst on D-pad left, hunger on right and health on up, then authorized implementation as a goal. The initial session-scoped milestone is implemented and verified in the [implementation receipt](../../Evidence/UI/AlgaeCanister/IMPLEMENTATION_2026-10-11.md). The [brainstorm](ALGAE_CANISTER_BRAINSTORM.md) records the trial dose sizes and design alternatives. Refill economy and production restart persistence remain future slices.
+
+The audit's four gaps are resolved: input requests are collected until modal priority is resolved; the consumption controller runs after survival advancement and synchronizes the existing clock; cardinal rejection uses the originating D-pad while other rebound buttons remain valid; dust-placement previews explicitly block consumption. Production installation uses the motor's assigned scene input router, which is on a separate object in Greater Wasteland.
 
 ## Existing framework and live audit
 

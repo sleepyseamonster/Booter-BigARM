@@ -38,6 +38,18 @@ namespace BooterBigArm.TopDown3D
         private Vector2Int lastScreenSize;
         private float lastCanvasScale;
         private bool subscribed;
+        private int restoringMeter = -1;
+        private float restorationShown;
+        private float restorationFrom, restorationStarted;
+        public void PresentRestoration(TopDown3DAlgaeUse use, float gain, bool reducedMotion)
+        {
+            if (reducedMotion || vitals == null) return;
+            restoringMeter = use == TopDown3DAlgaeUse.Drink ? 2 : use == TopDown3DAlgaeUse.Eat ? 1 : 0;
+            restorationShown = Mathf.Max(0, vitals.GetNormalizedValue((TopDown3DSurvivalVital)restoringMeter)
+                - gain / vitals.GetMaximum((TopDown3DSurvivalVital)restoringMeter));
+            restorationFrom = restorationShown; restorationStarted = Time.unscaledTime;
+            RefreshMeters();
+        }
 
         public TopDown3DSurvivalVitals Vitals => vitals;
         public TopDown3DGameHudCanvas GameHud => gameHud;
@@ -126,6 +138,14 @@ namespace BooterBigArm.TopDown3D
         private void Update()
         {
             RefreshSafeArea(force: false);
+            if (restoringMeter >= 0)
+            {
+                var target = vitals.GetNormalizedValue((TopDown3DSurvivalVital)restoringMeter);
+                var progress = Mathf.Clamp01((Time.unscaledTime - restorationStarted) / .25f);
+                restorationShown = Mathf.Lerp(restorationFrom, target, progress);
+                if (progress >= 1) restoringMeter = -1;
+                RefreshMeters();
+            }
         }
 
         private void Initialize()
@@ -335,6 +355,7 @@ namespace BooterBigArm.TopDown3D
                 }
 
                 var normalized = vitals.GetNormalizedValue((TopDown3DSurvivalVital)i);
+                if (i == restoringMeter) normalized = restorationShown;
                 fillRects[i].anchorMax = new Vector2(normalized, 1f);
             }
         }
@@ -347,6 +368,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             vitals.Changed += RefreshMeters;
+            vitals.ResetPerformed += CancelRestoration;
             subscribed = true;
         }
 
@@ -359,8 +381,10 @@ namespace BooterBigArm.TopDown3D
             }
 
             vitals.Changed -= RefreshMeters;
+            vitals.ResetPerformed -= CancelRestoration;
             subscribed = false;
         }
+        private void CancelRestoration() { restoringMeter = -1; RefreshMeters(); }
 
         private static void Stretch(RectTransform rectTransform, Vector2 offsetMin, Vector2 offsetMax)
         {

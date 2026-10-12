@@ -71,7 +71,7 @@ These should be treated as the source of truth unless they are intentionally rev
 ## Program Plans
 
 - [Algae canister control brainstorm](./Design/Gameplay/ALGAE_CANISTER_BRAINSTORM.md) and [implementation plan](./Design/Gameplay/ALGAE_CANISTER_IMPLEMENTATION_PLAN.md)
-  Proposed lower-left shared algae reserve control for D-pad thirst, hunger and health restoration, with audited HUD reuse, dose accounting, input conflict handling and session/persistence gates.
+  Implemented session-scoped lower-left shared algae reserve control for D-pad thirst, hunger and health restoration, with audited HUD reuse, dose accounting, input conflict handling and future persistence gates.
 
 - [Menu system and GUI implementation plan](./Design/Gameplay/MENU_SYSTEM_IMPLEMENTATION_PLAN.md)
   Compact Start-button menu, radial setup and settings GUI, input/lifecycle integration, proposed pause/exit policies, implementation batches, and proof gates.

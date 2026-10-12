@@ -27,6 +27,7 @@ namespace BooterBigArm.TopDown3D
         public Action ExitRequested;
         public bool IsConfigured => configured;
         public bool LargeText => settings != null && settings.Accepted.largeText;
+        public bool ReducedMotion => settings != null && settings.Accepted.reducedMotion;
 
         public void Configure(TopDown3DInputRouter router, TopDown3DInventoryUiController kit,
             TopDown3DRadialMenuController wheel, TopDown3DMenuView menuView,

@@ -184,6 +184,7 @@ namespace BooterBigArm.TopDown3D
         public float ActiveTraversalDuration => activeTraversalDuration;
         public float ActiveTraversalSide => activeTraversalSide;
         public bool IsActionConstrained => actionConstraintOwner != null;
+        public TopDown3DInputRouter InputRouter => input;
         public float MaxWalkableSlope => maxWalkableSlope;
         public LayerMask GroundMask => groundMask;
         public TopDown3DClimbMode ClimbMode => climbMode;

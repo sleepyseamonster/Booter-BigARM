@@ -15,7 +15,10 @@ namespace BooterBigArm.TopDown3D
     public enum TopDown3DDpadIcon
     {
         DirectionArrow,
-        Vial
+        Vial,
+        Droplet,
+        Ration,
+        HealthCross
     }
 
     [DisallowMultipleComponent]
@@ -51,6 +54,9 @@ namespace BooterBigArm.TopDown3D
 
         public TopDown3DDpadIcon GetIcon(TopDown3DDpadDirection direction)
         {
+            if (dpadGraphic != null && dpadGraphic.SurvivalIcons && direction != TopDown3DDpadDirection.Down)
+                return direction == TopDown3DDpadDirection.Left ? TopDown3DDpadIcon.Droplet
+                    : direction == TopDown3DDpadDirection.Right ? TopDown3DDpadIcon.Ration : TopDown3DDpadIcon.HealthCross;
             return direction == TopDown3DDpadDirection.Down
                 ? TopDown3DDpadIcon.Vial
                 : TopDown3DDpadIcon.DirectionArrow;
@@ -177,6 +183,8 @@ namespace BooterBigArm.TopDown3D
             rectTransform.offsetMin = Vector2.zero;
             rectTransform.offsetMax = Vector2.zero;
             dpadGraphic.raycastTarget = false;
+            if (dpadGraphic.GetComponent<CanvasRenderer>() == null)
+                dpadGraphic.gameObject.AddComponent<CanvasRenderer>();
 
             var obsoleteSafeArea = transform.Find("Safe Area");
             if (obsoleteSafeArea != null && obsoleteSafeArea.childCount == 0)
@@ -265,6 +273,8 @@ namespace BooterBigArm.TopDown3D
         private static readonly Color32 CellHighlightColor = new(255, 238, 197, 24);
         private static readonly Color32 IconColor = new(231, 221, 199, 240);
         private static readonly Color32 VialLiquidColor = new(91, 190, 177, 255);
+        public bool SurvivalIcons { get; private set; }
+        public void SetSurvivalIcons(bool enabled) { SurvivalIcons = enabled; SetVerticesDirty(); }
 
         [SerializeField] private bool upPressed;
         [SerializeField] private bool leftPressed;
@@ -327,9 +337,26 @@ namespace BooterBigArm.TopDown3D
             AddCircle(vertexHelper, center, cellSize * 0.18f, 16, BorderColor);
             AddCircle(vertexHelper, center, cellSize * 0.125f, 16, CellColor);
 
-            DrawDirectionArrow(vertexHelper, center + (Vector2.up * step), cellSize, Vector2.up);
-            DrawDirectionArrow(vertexHelper, center + (Vector2.left * step), cellSize, Vector2.left);
-            DrawDirectionArrow(vertexHelper, center + (Vector2.right * step), cellSize, Vector2.right);
+            if (SurvivalIcons)
+            {
+                var up = center + Vector2.up * step;
+                var red = new Color32(220, 89, 72, 255);
+                AddQuad(vertexHelper, new Rect(up.x-cellSize*.07f, up.y-cellSize*.24f, cellSize*.14f,cellSize*.48f),red);
+                AddQuad(vertexHelper, new Rect(up.x-cellSize*.24f, up.y-cellSize*.07f, cellSize*.48f,cellSize*.14f),red);
+                var left = center + Vector2.left * step;
+                var blue = new Color32(81,190,197,255);
+                AddCircle(vertexHelper,left+Vector2.down*cellSize*.08f,cellSize*.14f,16,blue);
+                AddTriangle(vertexHelper,left+Vector2.up*cellSize*.25f,left+new Vector2(-.13f,-.05f)*cellSize,left+new Vector2(.13f,-.05f)*cellSize,blue);
+                var right = center + Vector2.right * step;
+                AddChamferedRect(vertexHelper,new Rect(right.x-cellSize*.23f,right.y-cellSize*.16f,cellSize*.46f,cellSize*.32f),cellSize*.06f,new Color32(216,168,76,255));
+                for(var i=-1;i<=1;i++) AddQuad(vertexHelper,new Rect(right.x+cellSize*i*.12f-cellSize*.015f,right.y-cellSize*.1f,cellSize*.03f,cellSize*.2f),CellColor);
+            }
+            else
+            {
+                DrawDirectionArrow(vertexHelper, center + (Vector2.up * step), cellSize, Vector2.up);
+                DrawDirectionArrow(vertexHelper, center + (Vector2.left * step), cellSize, Vector2.left);
+                DrawDirectionArrow(vertexHelper, center + (Vector2.right * step), cellSize, Vector2.right);
+            }
             DrawVial(vertexHelper, center + (Vector2.down * step), cellSize);
         }
 

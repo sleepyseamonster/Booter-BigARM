@@ -274,6 +274,20 @@ namespace BooterBigArm.TopDown3D
             Changed?.Invoke();
         }
 
+        internal double GetPreciseValue(TopDown3DSurvivalVital vital)
+        {
+            EnsurePrecision();
+            return vital == TopDown3DSurvivalVital.Thirst ? exactThirst
+                : vital == TopDown3DSurvivalVital.Hunger ? exactHunger : GetValue(vital);
+        }
+        internal void ApplyPreciseRestoration(TopDown3DSurvivalVital vital, double value)
+        {
+            if (vital == TopDown3DSurvivalVital.Thirst) { exactThirst = value; thirst = (float)value; }
+            else if (vital == TopDown3DSurvivalVital.Hunger) { exactHunger = value; hunger = (float)value; }
+            else if (vital == TopDown3DSurvivalVital.Health) health = (float)value;
+        }
+        internal void PublishRestoration() => Changed?.Invoke();
+
         public TopDown3DSurvivalSnapshot CaptureSnapshot()
         {
             return TopDown3DSurvivalSnapshot.Create(health, hunger, thirst, oxygen, reserve);
@@ -316,6 +330,11 @@ namespace BooterBigArm.TopDown3D
         }
 
         private void Update()
+        {
+            SynchronizeRuntimeClock();
+        }
+
+        internal void SynchronizeRuntimeClock()
         {
             var elapsed = Time.deltaTime;
             var exerting = motor != null && IsReserveExertion(

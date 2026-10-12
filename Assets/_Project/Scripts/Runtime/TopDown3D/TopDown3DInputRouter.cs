@@ -23,7 +23,7 @@ namespace BooterBigArm.TopDown3D
     }
 
     [DisallowMultipleComponent]
-    public sealed class TopDown3DInputRouter : MonoBehaviour
+    public sealed partial class TopDown3DInputRouter : MonoBehaviour
     {
         [SerializeField] private InputActionAsset inputActions;
         [SerializeField] private string gameplayMapName = "Gameplay";
@@ -132,6 +132,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnApplicationFocus(bool focused)
         {
+            if (!focused) DisarmAlgae();
             if (focused && Mode == TopDown3DInputMode.Gameplay)
             {
                 CaptureCursor();
@@ -169,6 +170,7 @@ namespace BooterBigArm.TopDown3D
             if (campMap != null) campMap.actionTriggered += HandleActionTriggered;
             InputSystem.onDeviceChange += HandleDeviceChange;
             actionsBound = true;
+            BindAlgaeActions();
             SetPromptDevice(FindAvailableGamepad() != null
                 ? TopDown3DPromptDevice.Gamepad
                 : TopDown3DPromptDevice.KeyboardMouse);
@@ -177,6 +179,7 @@ namespace BooterBigArm.TopDown3D
 
         private void UnbindActions()
         {
+            UnbindAlgaeActions();
             if (menuAction != null) menuAction.performed -= HandleMenu;
             InputSystem.onBeforeUpdate -= BeforeInputUpdate;
             InputSystem.onAfterUpdate -= AfterInputUpdate;
@@ -438,6 +441,7 @@ namespace BooterBigArm.TopDown3D
             menuRequested = menuBackRequested = false;
             if (toggle) MenuToggleRequested?.Invoke();
             else if (back) UiCancelRequested?.Invoke();
+            ResolveAlgaeInput(toggle || back);
         }
 
         public void EnterSystemMenuMode() => SetMode(TopDown3DInputMode.SystemMenu);
@@ -479,6 +483,7 @@ namespace BooterBigArm.TopDown3D
 
             // System remains enabled across modal transitions so a held opener is not canceled.
             var previousMode = Mode;
+            DisarmAlgae();
             if (mode == TopDown3DInputMode.CampPlacement)
             {
                 awaitCampMoveNeutral = Gamepad.current != null && Gamepad.current.leftStick.ReadValue().sqrMagnitude > .0484f
@@ -603,6 +608,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleDeviceChange(InputDevice device, InputDeviceChange change)
         {
+            DisarmAlgae();
             if (!(device is Gamepad))
             {
                 return;
