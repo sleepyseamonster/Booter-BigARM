@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "family": "north_row4",
+  "status": "full_six_section_completion_audit_passed",
+  "scene_sha256": "bc0b465de9a1b75b82a20d99c25fa4f10f00377a18f9564f9e8b0516a4c8f93e",
+  "bounds_m": [
+    499920,
+    4006200,
+    524496,
+    4030776
+  ],
+  "sections": [
+    {
+      "step": 1,
+      "batch": "NorthRow4E499920N4026680_2026-10-11",
+      "bounds_m": [
+        499920,
+        4026680,
+        504016,
+        4030776
+      ],
+      "scene_sha256": "26de31220b5ce350da4ba4a617d2dbba4fe55615d7dcacaa14a36ca9b781766e",
+      "manifest_sha256": "ff40f00ced56bf417ddd3d7e33f0d8aa18ed48412d07cda7d5574ec5c73e173f",
+      "retained": 7680,
+      "total": 7936,
+      "edges": 15680,
+      "closeout_sha256": "85ac9b8d85410ec1493c9dc11a20415ca7009f4c07b84ecae2cba0e7a3137f65"
+    },
+    {
+      "step": 2,
+      "batch": "NorthRow4E504016N4026680_2026-10-11",
+      "bounds_m": [
+        504016,
+        4026680,
+        508112,
+        4030776
+      ],
+      "scene_sha256": "bd1e6687c586b6eb9b2aa191263b45fb33df04898e47fa26eb0abadb36b6e850",
+      "manifest_sha256": "b6b31ec9f247962b624206a6f40b1643a9ba65567a75121b06ac2ec61184243f",
+      "retained": 7936,
+      "total": 8192,
+      "edges": 16192,
+      "closeout_sha256": "3c4d9ce549ab66f3400b4a28e6beac765449e3accd08886acb468b302b279802"
+    },
+    {
+      "step": 3,
+      "batch": "NorthRow4E508112N4026680_2026-10-11",
+      "bounds_m": [
+        508112,
+        4026680,
+        512208,
+        4030776
+      ],
+      "scene_sha256": "442e8ea6b53c2a8581427540556c632d9889462ed0794755bb96fd79deb57126",
+      "manifest_sha256": "1d1f96f2e2891df2af7e8b5b0e6a96a99787edf9a6aa8740cf53beb527cd9142",
+      "retained": 8192,
+      "total": 8448,
+      "edges": 16704,
+      "closeout_sha256": "432e58dfb5aa262cf124be2b510ca0f58b2acc4c0307d1be3373f2b5178d6770"
+    },
+    {
+      "step": 4,
+      "batch": "NorthRow4E512208N4026680_2026-10-11",
+      "bounds_m": [
+        512208,
+        4026680,
+        516304,
+        4030776
+      ],
+      "scene_sha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+      "manifest_sha256": "a07f997e7bf4be78d36a948c80d0ae2fed1eb8382abcd1c257b64d6bd3cc64f9",
+      "retained": 8448,
+      "total": 8704,
+      "edges": 17216,
+      "closeout_sha256": "4cdd35d379f69e1ee3a9dd73114dc309d97f7bc561854ec8f93548432453d6b0"
+    },
+    {
+      "step": 5,
+      "batch": "NorthRow4E516304N4026680_2026-10-11",
+      "bounds_m": [
+        516304,
+        4026680,
+        520400,
+        4030776
+      ],
+      "scene_sha256": "2747f07f81eed430cc66e339bf6e287a903b8a2bd41ff5af549d13447bf4fc89",
+      "manifest_sha256": "5550faec7eb6bab62e5fc5984694b6774850af4cbc81f78abb9dcd4502e5daea",
+      "retained": 8704,
+      "total": 8960,
+      "edges": 17728,
+      "closeout_sha256": "f3d71eb909b4e061c9374a619ba07d7bd815e541b9e4af36583de29cf4562cb9"
+    },
+    {
+      "step": 6,
+      "batch": "NorthRow4E520400N4026680_2026-10-11",
+      "bounds_m": [
+        520400,
+        4026680,
+        524496,
+        4030776
+      ],
+      "scene_sha256": "bc0b465de9a1b75b82a20d99c25fa4f10f00377a18f9564f9e8b0516a4c8f93e",
+      "manifest_sha256": "9568e30edb234cb4737187c42bb53a335e6729d545a99a3134cab249cc0365ff",
+      "retained": 8960,
+      "total": 9216,
+      "edges": 18240,
+      "closeout_sha256": "aaca8d1fafc27af7442ce09a492fa0a2559fad6d6e20fd74c3ee5c2e87d36206"
+    }
+  ],
+  "terrains": 9216,
+  "exact_joins": 18240,
+  "collider_samples": 230400,
+  "sectors": 576,
+  "retained_original_scene_documents": 39960,
+  "original_parent_appended_children": 6,
+  "new_scene_documents": 7885,
+  "native_blender_sources_retained": 18,
+  "native_blender_bytes": 4648246595,
+  "retired_sources_still_absent": 46,
+  "source_audit_sha256": "e0ca3c1230f456f702d78e904a3eb04cd083a2ba6f6b385dd86e2bdf86ea1ce5",
+  "measured_height_range_m": [
+    -83.59835815429688,
+    842.0741577148438
+  ],
+  "doctor_sha256": "8b52d45c17e34d39b1feade70b19fa7df4c0dd7319e8e3868c84f9ea5d38eda5",
+  "doctor_checked_records": 18446,
+  "limits": "Saved native full-grid/collider, structural, source and visual proof; hands-on traversal and Player performance remain user-owned.",
+  "unchanged_package_editor_pins": {
+    "Packages/manifest.json": "a9b4f332893effbb67f87b48508240992d76968b8b78f870f8f05f12a436f409",
+    "Packages/packages-lock.json": "d2adab2cb95c215760c616ac81950f6eab23ae18aeed23d69b9c58fe63c8f473",
+    "ProjectSettings/ProjectVersion.txt": "8468d7add4c1613c42224053cb9c889688ccf141875f44065a40e6d133bc3ea7"
+  },
+  "acceptance_commits": [
+    "df7e11320e8174198af26291d4a40579cade9f74",
+    "1d28fa42e7838d10e771a63daea595ae25076345",
+    "83b4d26dd273ffe4f6123c3014aa59fd6bd8f755",
+    "5bbf32a8903277e499b0087acb1968580cc0355d",
+    "fc5a70261f5631fae71b2b168de0fd4cc0256114",
+    "4e28cfb9e495860a7d8721f62c65d9ff5d6c4c79"
+  ],
+  "original_protected_files_verified": 142850,
+  "changed_original_scene_documents": [
+    "1259644692",
+    "9223372036854775807"
+  ],
+  "committed_camp_reconciliation_sha256": "5e2beb86c3907d62f9bf19e95f8b4fac092307348f7779e31b8553f32b413855",
+  "preserved_concurrent_scene_commit": "a0b69a25a3f9dc96a40983983545a7e883ac83cd",
+  "canonical_log_recovery_sha256": "4320631c659e4069575c00acbbe7ce71861fcc06d413073e32d331ebeaa3ef74",
+  "missing_original_logs_freshly_reverified_steps": [
+    1,
+    2,
+    3
+  ],
+  "remaining_free_bytes": {
+    "C:/": 48221683712,
+    "D:/": 47819825152
+  }
+}

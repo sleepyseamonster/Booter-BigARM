@@ -2,7 +2,7 @@
 
 Authority: the author's October 11 instruction to complete the next row north. The [readiness audit](NORTH_ROW4_READINESS_AUDIT_2026-10-11.md) verifies the committed 7680-tile predecessor. Work remains on `main`; commits are local. Preserve concurrent rock/material work, loaded unsaved scenes and foreground application.
 
-Current acceptance: **six of six sections complete**, 9216 native terrains, 36 sections and 576 sectors. The footprint is a full 96 × 96 rectangle with 18240 exact joins. Current scene SHA256: `bc0b465de9a1b75b82a20d99c25fa4f10f00377a18f9564f9e8b0516a4c8f93e`. Independent full-row completion audit remains pending.
+Current acceptance: **six of six sections complete and independently audited**, 9216 native terrains, 36 sections and 576 sectors. The footprint is a full 96 × 96 rectangle with 18240 exact joins and 230400 collider samples. Current scene SHA256: `bc0b465de9a1b75b82a20d99c25fa4f10f00377a18f9564f9e8b0516a4c8f93e`. The [completion checkpoint](NORTH_ROW4_COMPLETION_2026-10-12.md) records the passed full-row audit.
 
 | Step | West easting | Accepted terrains | Exact joins | Closeout |
 | --- | ---: | ---: | ---: | --- |
@@ -13,7 +13,7 @@ Current acceptance: **six of six sections complete**, 9216 native terrains, 36 s
 | 5 | 516304 | 8960 | 17728 | [Verified acceptance](../Evidence/DeathValley/NorthRow4E516304N4026680_2026-10-11/closeout.json) |
 | 6 | 520400 | 9216 | 18240 | [Verified acceptance](../Evidence/DeathValley/NorthRow4E520400N4026680_2026-10-11/closeout.json) |
 
-All six sections are authored and accepted. Each passed native candidate and saved-production readback, direct collider samples, canonical serialized setup, owned metadata/global GUID uniqueness, full source coverage, three inspected developer-map captures and 34 current-catalog EditMode cases. Root Editor/recovery state and unrelated work were preserved. The completion auditor must still verify the entire six-section lineage and current root state.
+All six sections are authored and accepted. Each passed native candidate and saved-production readback, direct collider samples, canonical serialized setup, owned metadata/global GUID uniqueness, full source coverage, three inspected developer-map captures and 34 current-catalog EditMode cases. Root Editor/recovery state and unrelated work were preserved. The completion auditor verified the entire six-section lineage and current root state on October 12.
 
 ## Fixed contract
 
@@ -82,3 +82,6 @@ Step five is accepted at 8960 terrains, 17728 exact joins, 224000 collider sampl
 
 
 Step six passed all section gates at 9216 terrains, 18240 exact joins, 230400 collider samples, 576 sectors and 384 exterior slots. All five native Blender views and three final developer-map captures were inspected; the full rectangle has no northeast notch. Native candidate and saved-production readback, both 34-case test gates, canonical setup, metadata and coverage passed. The known incidental D-Pad renderer was removed only in isolation before the unchanged strict preservation gate passed; its [receipt](../Evidence/DeathValley/NORTH_ROW4_STEP06_SCENE_PRESERVATION_2026-10-11.json) retains the exact original backup. Fresh root guards and the authorized background switch preserved unsaved-work safety; the timed-out bridge call was verified by actual clean empty-scene state before transfer. The [final closeout](../Evidence/DeathValley/NorthRow4E520400N4026680_2026-10-11/closeout.json) seals section acceptance. All six acceptance commits, fresh doctor verification and the independent full-row completion audit must pass before goal closeout.
+
+
+Full-row closeout passed on October 12: [completion audit](../Evidence/DeathValley/NORTH_ROW4_COMPLETION_AUDIT_2026-10-12.json), [fresh doctor](../Evidence/DeathValley/NORTH_ROW4_FINAL_DOCTOR_2026-10-12.json), and [completed checkpoint](NORTH_ROW4_COMPLETION_2026-10-12.md). The audit verified all six acceptance commits, 9216 current native records, 18240 exact joins, all 142850 original protected files, 18 retained local Blender sources, exact scene preservation including the separately committed addition, unchanged package/editor pins and remaining reserve. Doctor checked 18446 records with zero issues. The Windows Git-object path separator repair changed no assertions. Earlier progress paragraphs are historical; no authorized terrain work remains after this closeout.

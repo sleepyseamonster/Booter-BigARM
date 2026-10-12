@@ -113,10 +113,10 @@ for step in range(1,7):
  assert candidate['status']=='validated_full_grid_and_collider_samples' and candidate['family']=='north_row4' and candidate['row_step']==step
  assert candidate['collider_samples']==c['collider_samples'] and candidate['outer_edges']==384
  assert candidate['terrains']==c['total'] and candidate['edges']==c['edges'] and candidate['manifest_sha256']==sha256(native) and sha256(root/candidate['scene'])==candidate['scene_sha256']
- acceptance=subprocess.check_output(['git','log','--diff-filter=A','--format=%H','--',str((ev/'closeout.json').relative_to(root))],cwd=root,text=True).splitlines()
+ acceptance=subprocess.check_output(['git','log','--diff-filter=A','--format=%H','--',(ev/'closeout.json').relative_to(root).as_posix()],cwd=root,text=True).splitlines()
  assert len(acceptance)==1, 'Exactly one committed acceptance required'
  commit=acceptance[0];commits.append(commit)
- assert subprocess.check_output(['git','show',commit+':'+str((ev/'closeout.json').relative_to(root))],cwd=root)==(ev/'closeout.json').read_bytes()
+ assert subprocess.check_output(['git','show',commit+':'+(ev/'closeout.json').relative_to(root).as_posix()],cwd=root)==(ev/'closeout.json').read_bytes()
  print('Accepted section lineage verified',step,flush=True)
  for view in close['developer_map_views']:assert view['inspected'] and sha256(root/view['path'])==view['sha256']
  previous=report['scene_sha256'];sections.append(dict(step=step,batch=c['batch'],bounds_m=c['bounds'],scene_sha256=previous,manifest_sha256=sha256(native),retained=c['retained_count'],total=c['total'],edges=c['edges'],closeout_sha256=sha256(ev/'closeout.json')))
