@@ -2,13 +2,16 @@
 
 Authority: the author's October 11 instruction to complete the next row north. The [readiness audit](NORTH_ROW4_READINESS_AUDIT_2026-10-11.md) verifies the committed 7680-tile predecessor. Work remains on `main`; commits are local. Preserve concurrent rock/material work, loaded unsaved scenes and foreground application.
 
-Current acceptance: **one of six sections complete**, 7936 native terrains, 31 sections and 496 sectors. The new northwest section preserves the expected incomplete upper-row footprint. Current scene SHA256: `26de31220b5ce350da4ba4a617d2dbba4fe55615d7dcacaa14a36ca9b781766e`.
+Current acceptance: **four of six sections complete**, 8704 native terrains, 34 sections and 544 sectors. The northern row retains the expected two-section eastern notch. Current scene SHA256: `72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63`.
 
 | Step | West easting | Accepted terrains | Exact joins | Closeout |
 | --- | ---: | ---: | ---: | --- |
 | 1 | 499920 | 7936 | 15680 | [Verified acceptance](../Evidence/DeathValley/NorthRow4E499920N4026680_2026-10-11/closeout.json) |
+| 2 | 504016 | 8192 | 16192 | [Verified acceptance](../Evidence/DeathValley/NorthRow4E504016N4026680_2026-10-11/closeout.json) |
+| 3 | 508112 | 8448 | 16704 | [Verified acceptance](../Evidence/DeathValley/NorthRow4E508112N4026680_2026-10-11/closeout.json) |
+| 4 | 512208 | 8704 | 17216 | [Verified acceptance](../Evidence/DeathValley/NorthRow4E512208N4026680_2026-10-11/closeout.json) |
 
-Steps two through six remain to be authored and accepted in order. Step one passed native candidate and saved-production readback, 198400 direct collider samples, canonical serialized setup, owned metadata/global GUID uniqueness, full source coverage, three inspected developer-map captures and 34 current-catalog EditMode cases. Transfer held an exclusive offline root lock; root Editor/recovery state and unrelated work were preserved.
+Steps five and six remain to be authored and accepted in order. Each accepted section passed native candidate and saved-production readback, direct collider samples, canonical serialized setup, owned metadata/global GUID uniqueness, full source coverage, three inspected developer-map captures and 34 current-catalog EditMode cases. Root Editor/recovery state and unrelated work were preserved.
 
 ## Fixed contract
 
@@ -63,3 +66,5 @@ Step three authoring is committed as `27adaf18c`, with all five native Blender v
 
 
 On resumption, the prior C: validation project was absent after cleanup. Root native assets, measured sources, Blender authoring and the three public acceptance proofs remained present. A [fresh physical D: validation copy](../Evidence/DeathValley/NORTH_ROW4_VALIDATION_RECOVERY_2026-10-11.json) now owns continuing validation at `D:/BooterBigArmValidation/TerrainNorthRow4_20261011_02`. Its frozen committed snapshot excludes concurrent dirty work, imports successfully, and has the exact accepted 8448-terrain scene hash. The warm cache was copied from retained row-three validation without modifying that owner. Root and isolation now share D:; the capacity helper checks their combined growth plus reserve. Public proofs stay sealed. Missing old local-only logs require fresh verification evidence at final audit, rather than a claim that deleted files remain available.
+
+Step four passed at 8704 terrains, 17216 exact joins, 217600 collider samples and 544 sectors. All five Blender authoring views and three developer-map captures were inspected. Candidate and preserved saved-production readback, canonical setup, metadata, coverage and both 34-case test gates passed. The first isolated test run lacked map Docs; the failed proof remains retained and the complete Docs inputs passed fresh test version 02. Isolated integration auto-added one CanvasRenderer to an existing D-Pad indicator; the [bounded preservation receipt](../Evidence/DeathValley/NORTH_ROW4_STEP04_SCENE_PRESERVATION_2026-10-11.json) records its removal from the isolated scene before the unchanged strict document-preservation gate passed. Root transfer preserved the clean empty loaded-scene fingerprint. The [step-four closeout](../Evidence/DeathValley/NorthRow4E512208N4026680_2026-10-11/closeout.json) seals acceptance. Two sections remain; fresh capacity and predecessor capture precede step five.

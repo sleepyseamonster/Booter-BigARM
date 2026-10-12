@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "family": "north_row4",
+  "step": 4,
+  "status": "verified_native_saved_scene_transfer",
+  "retained_terrains": 8448,
+  "new_terrains": 256,
+  "total_terrains": 8704,
+  "changed_original_documents": [
+    "1259644692"
+  ],
+  "unchanged_original_documents": 43903,
+  "new_scene_documents": 1314,
+  "new_sectors": 16,
+  "predecessor_scene_sha256": "442e8ea6b53c2a8581427540556c632d9889462ed0794755bb96fd79deb57126",
+  "production_scene_sha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+  "manifest_sha256": "a07f997e7bf4be78d36a948c80d0ae2fed1eb8382abcd1c257b64d6bd3cc64f9",
+  "scene_guid_preserved": true,
+  "native_proof_metadata_sha256": "9aedd312a764adccd8dd60363960bed045c8f788e320907c65aa4c75571631f6",
+  "canonical_validator_log_sha256": "5369083e965a426037f593d13d6210cf89a0e8db6627b89758403bfb73fdd659",
+  "test_proof_version": "02",
+  "candidate_proof_version": "01",
+  "root_editor_mode": "live",
+  "root_import_limit": "Native proof imported in isolation, paired metadata copied byte-exact; no fresh root GUI import claim when offline.",
+  "playable_proof_version": "01",
+  "production_proof_version": "01"
+}

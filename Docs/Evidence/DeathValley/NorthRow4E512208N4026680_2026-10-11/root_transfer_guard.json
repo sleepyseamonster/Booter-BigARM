@@ -1,0 +1,36 @@
+{
+  "status": "fresh_live_transfer_guard_passed",
+  "scene_sha256": "442e8ea6b53c2a8581427540556c632d9889462ed0794755bb96fd79deb57126",
+  "scenes": [
+    {
+      "name": "",
+      "path": "",
+      "isLoaded": true,
+      "isDirty": false,
+      "isActive": true,
+      "rootCount": 0
+    }
+  ],
+  "editor_state": {
+    "playing": false,
+    "compiling": false
+  },
+  "compiler_truth": {
+    "sampledUtc": "2026-10-12T05:04:48.8602967Z",
+    "ageMs": 139,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 78,
+    "consoleLogs": 0,
+    "seeded": true
+  },
+  "fingerprint": [
+    {
+      "path": "",
+      "dirty": false,
+      "roots": 0,
+      "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
