@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-12",
+  "scope": "Bounded population collision activation readiness; no production movement integration or Player timing claim",
+  "candidate": "D:\\BooterBigArmValidation\\PerformanceImplementation20261011-01",
+  "sources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationScheduler.cs",
+      "sha256": "a5c8b73e675d00eebb760644f25a1d95f343ac127f19eb11fc111548199c0885"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationScheduler.cs.meta",
+      "sha256": "2ddb42e80fdb7053c2e5f567a252e781b9dfbcc01557dc828a8b5fbc85aca238"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs",
+      "sha256": "33452f9d8c203cddefb09b4f92ec9fe0ea4fe7be0da3814cb07a4529d314eaf7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs.meta",
+      "sha256": "d54d77bdbaac15ff023744e24b4be31275236bcaeefbbb55733b390825628c2e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs",
+      "sha256": "1beb37cf0c07832eb3f38e6d209818f86921d515d0cf18de4d87597855d14fca"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs.meta",
+      "sha256": "33ac5119de622ca4a6294e126ad9dc95d5ebaa6041b78ad771d3ca9869b2d8dc"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSchedulerTests.cs",
+      "sha256": "d592ff32de66d8bcc411a40e91b8de0f3e88b563d44d604a289617081bc52b71"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSchedulerTests.cs.meta",
+      "sha256": "ac2a2c15509199555e066c4f8fb1fd22cba29877fb4d7f3bf9a940a3736a2561"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSectorStudyTests.cs",
+      "sha256": "974aa0a8e42d4b0ebf6027e6166c3a427da96818eb57a42a1b4e4849b273cff8"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSectorStudyTests.cs.meta",
+      "sha256": "ad5b6dc0fdce533b7eb49310eb6ec684105d921e9cfc859e3e614dbdbbd2ab98"
+    }
+  ],
+  "saved_scenes_unchanged": [
+    {
+      "path": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+      "sha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63"
+    },
+    {
+      "path": "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationSector20261012.unity",
+      "sha256": "b7965dcbb261f180fdbf77524fa1d9d3e88c4bbb01bb71a819c57eac93efb23e"
+    }
+  ],
+  "tests": {
+    "path": "Docs/Evidence/Performance/population-readiness-editmode-2026-10-12.xml",
+    "sha256": "19627ba454eef35d6fa53cdb9234db6d82ba040ce9ea2688fa5a017dafbdcee3",
+    "original_candidate_sha256": "569bf141c19d6b852de53fe9f404b188503ece34555f78533301ae4263c951a7",
+    "passed": 36,
+    "failed": 0,
+    "skipped": 0,
+    "xml_format": "LF-normalized; candidate original retained"
+  },
+  "proof": [
+    "Source equality with executed isolated EditMode candidate",
+    "Full/partial publication, visibility-independent collision, disabled obstacle/parent and originally inactive child",
+    "Empty cells, negative-coordinate seams, bounded unknown/invalid regions, faulted cells and disposal",
+    "Restore invalidation, retained unrequested coverage, native reference sector edge rejection and interior marker recreation"
+  ],
+  "remaining": [
+    "Real actor/route movement gate and native ground/obstacle validation",
+    "Physics synchronization and velocity/route lookahead/footprint halo policy",
+    "Presentation work partitions, transition/Player performance and author acceptance"
+  ]
+}

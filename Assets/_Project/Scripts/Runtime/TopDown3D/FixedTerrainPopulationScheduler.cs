@@ -44,6 +44,39 @@ namespace BooterBigArm.TopDown3D
         public int FaultedCells { get { int count = 0; foreach (var e in entries.Values) if (e.Faulted) count++; return count; } }
         public int UnreadyCells { get { int count = 0; foreach (var e in entries.Values) if (e.Wanted && !e.Faulted && (!presentation.IsActive(e.Cell) || presentation.IsPending(e.Cell))) count++; return count; } }
 
+        /// <summary>All candidate presentations are published for current collision demand, including empty accepted cells.
+        /// This is an activation barrier; the locomotion owner still owns physics synchronization and route/obstacle queries.</summary>
+        public bool IsCollisionReady(Vector2Int cell)
+        {
+            ThrowIfDisposed();
+            return entries.TryGetValue(cell, out var entry) && entry.Wanted && entry.Collision && !entry.Faulted
+                && presentation.IsCollisionPublished(cell);
+        }
+
+        /// <summary>Every owner cell touched by a horizontal preparation region must be collision-ready.
+        /// The caller includes actor lookahead and the population footprint halo in this region; visibility is irrelevant.</summary>
+        public bool IsCollisionCoverageReady(Bounds region)
+        {
+            ThrowIfDisposed();
+            var size = region.size; var min = region.min; var max = region.max;
+            if (!float.IsFinite(size.x) || !float.IsFinite(size.z) || size.x < 0 || size.z < 0
+                || !float.IsFinite(min.x) || !float.IsFinite(min.z) || !float.IsFinite(max.x) || !float.IsFinite(max.z)) return false;
+            double x0 = Math.Floor((double)min.x / FixedTerrainPopulationIdentity.CellSize);
+            double z0 = Math.Floor((double)min.z / FixedTerrainPopulationIdentity.CellSize);
+            double x1 = Math.Floor((double)max.x / FixedTerrainPopulationIdentity.CellSize);
+            double z1 = Math.Floor((double)max.z / FixedTerrainPopulationIdentity.CellSize);
+            // Regions are closed: an exact lower seam also touches the preceding owner cell.
+            if ((double)min.x / FixedTerrainPopulationIdentity.CellSize == x0) x0--;
+            if ((double)min.z / FixedTerrainPopulationIdentity.CellSize == z0) z0--;
+            double width = x1 - x0 + 1, height = z1 - z0 + 1;
+            if (x0 < int.MinValue || z0 < int.MinValue || x1 > int.MaxValue || z1 > int.MaxValue
+                || width < 1 || height < 1 || width * height > entries.Count) return false;
+            // At most the explicitly bounded area is inspected, even for malicious/accidental huge coordinates.
+            for (int z = 0; z < (int)height; z++) for (int x = 0; x < (int)width; x++)
+                if (!IsCollisionReady(new Vector2Int((int)(x0 + x), (int)(z0 + z)))) return false;
+            return true;
+        }
+
         public FixedTerrainPopulationScheduler(FixedTerrainPopulationPlanner planner, FixedTerrainPopulationPresentation presentation,
             FixedTerrainPopulationState state, IEnumerable<Vector2Int> allowedCells, double retentionSeconds = 2)
         {

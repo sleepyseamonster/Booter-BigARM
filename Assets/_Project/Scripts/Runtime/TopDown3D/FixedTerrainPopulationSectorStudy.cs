@@ -20,7 +20,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Vector2 reservedStart, reservedEnd;
         [SerializeField] private string constraintRevision;
         private readonly List<FixedTerrainPopulationDemand> demands = new();
-        private readonly Vector3[] corners = new Vector3[4];
+        private readonly Vector3[] corners = new Vector3[8];
         private readonly Dictionary<Vector2Int, string> revisions = new();
         private FixedTerrainPopulationState state;
         private FixedTerrainPopulationScheduler scheduler;
@@ -34,6 +34,12 @@ namespace BooterBigArm.TopDown3D
         public int PendingPresentations => presentation?.PendingCells ?? 0;
         public int FaultedCells => scheduler?.FaultedCells ?? 0;
         public int UnreadyCells => scheduler?.UnreadyCells ?? 0;
+
+        /// <summary>Readiness of the same conservative region used for actor demand, independent of the study camera.
+        /// This component never moves an actor or supplies physics/route validation.</summary>
+        public bool IsActorCoverageReady(Transform actor) => scheduler != null && actor != null && actor.gameObject.activeInHierarchy
+            && Array.IndexOf(actorDemandMarkers, actor) >= 0
+            && scheduler.IsCollisionCoverageReady(new Bounds(actor.position, new Vector3(256, 0, 256)));
 
         public void Configure(Terrain[] tiles, string[] tileRevisions, Camera camera, Light light, Transform[] actors,
             GameObject template, int studySeed, string catalog, Vector2 start, Vector2 end, string constraints)
@@ -116,10 +122,8 @@ namespace BooterBigArm.TopDown3D
         private Bounds CameraBounds()
         {
             var bounds = new Bounds(view.transform.position, Vector3.zero);
-            view.CalculateFrustumCorners(new Rect(0, 0, 1, 1), view.nearClipPlane, Camera.MonoOrStereoscopicEye.Mono, corners);
-            foreach (var corner in corners) bounds.Encapsulate(view.transform.TransformPoint(corner));
-            view.CalculateFrustumCorners(new Rect(0, 0, 1, 1), view.farClipPlane, Camera.MonoOrStereoscopicEye.Mono, corners);
-            foreach (var corner in corners) bounds.Encapsulate(view.transform.TransformPoint(corner));
+            FixedTerrainCameraCoverage.FillFrustum(view, view.farClipPlane, Camera.MonoOrStereoscopicEye.Mono, corners);
+            foreach (var corner in corners) bounds.Encapsulate(corner);
             bounds.Expand(new Vector3(128, 0, 128)); return bounds;
         }
         public string CapturePopulationJson() => state == null ? null : JsonUtility.ToJson(state.CaptureSnapshot());

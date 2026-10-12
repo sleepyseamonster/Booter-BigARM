@@ -51,7 +51,16 @@ namespace BooterBigArm.Tests
             try
             {
                 study.Initialize(); double time = Time.realtimeSinceStartupAsDouble + 1;
+                var markers = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Transform>())
+                    .Where(t => t.name.Contains("demand marker (no gameplay actor)")).ToArray();
+                Assert.That(markers.Length, Is.EqualTo(2));
+                Assert.That(markers.All(study.IsActorCoverageReady), Is.False, "Startup demand must await full collision publication.");
                 Finish(study, time); Assert.That(study.ActiveCount, Is.GreaterThan(0)); Assert.That(study.FaultedCells, Is.Zero);
+                var edgeMarker = markers.Single(t => t.name.StartsWith("BigARM"));
+                Assert.That(study.IsActorCoverageReady(edgeMarker), Is.False, "Saved edge marker requires coverage beyond this isolated sector.");
+                edgeMarker.position += new Vector3(-64, 0, -64); // EditMode demand fixture only; no gameplay actor movement.
+                Finish(study, time);
+                Assert.That(markers.All(study.IsActorCoverageReady), Is.True);
                 var receipt = study.State.CaptureSnapshot().cells.First(c => c.acceptedCandidates.Count > 0);
                 var candidate = receipt.acceptedCandidates[0]; var cell = new Vector2Int(candidate.x, candidate.z);
                 string id = study.State.StableId(cell, candidate.recipeId, candidate.ordinal);
@@ -59,12 +68,19 @@ namespace BooterBigArm.Tests
                 Assert.That(study.GetComponentsInChildren<Collider>().Any(c => c.gameObject.name == id), Is.False);
                 var saved = study.CapturePopulationJson(); int before = study.ActiveCount;
                 Assert.That(study.RestorePopulationJson(saved), Is.True); Assert.That(study.ActiveCount, Is.Zero);
+                Assert.That(markers.All(study.IsActorCoverageReady), Is.False);
                 Finish(study, time); Assert.That(study.ActiveCount, Is.EqualTo(before));
                 Assert.That(study.GetComponentsInChildren<Collider>().Any(c => c.gameObject.name == id), Is.False);
                 var camera = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Camera>()).Single(); camera.enabled = false;
                 Finish(study, time + 3);
                 Assert.That(study.GetComponentsInChildren<MeshRenderer>().All(r => !r.enabled), Is.True);
                 Assert.That(study.GetComponentsInChildren<Collider>().Any(c => c.enabled), Is.True, "Actor demand survives absent camera coverage.");
+                Assert.That(markers.All(study.IsActorCoverageReady), Is.True);
+                var position = markers[1].position; markers[1].position += Vector3.right * 4096;
+                study.UpdateDemand(time + 3);
+                Assert.That(study.IsActorCoverageReady(markers[1]), Is.False, "Leaving the explicit area cannot report complete coverage.");
+                markers[1].position = position; Finish(study, time + 3);
+                Assert.That(markers.All(study.IsActorCoverageReady), Is.True);
                 study.Shutdown(); Assert.That(study.CapturePopulationJson(), Is.EqualTo(saved));
                 study.Initialize(); Finish(study, Time.realtimeSinceStartupAsDouble + 1);
                 Assert.That(study.State.IsRemoved(cell, candidate.recipeId, candidate.ordinal), Is.True);

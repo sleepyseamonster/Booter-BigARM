@@ -167,6 +167,8 @@ Separate candidate planning, terrain/constraint evaluation, geometry preparation
 
 Prioritize necessary collision and interaction before actors arrive, including BigARM outside the camera. Route queries need obstacle information beyond the visible set. Keep valid outgoing presentations until replacements are integrated, and use retention margins to prevent boundary churn. Pool reusable buffers/presenters and cap pending requests, completed results, cached records, instance buffers and physics proxies by memory.
 
+The [collision activation barrier](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md#population-collision-activation-barrier--october-12) now provides explicit cell/region readiness. It requires full current collision publication, rejects unknown/faulted cells and pending work, and treats exact boundary seams conservatively. The reference study proves that offscreen demand remains independent of visibility and that its edge marker cannot claim unavailable neighbour coverage. Thirty-six relevant focused cases pass. This is a prerequisite for actor entry, not a completed movement gate: callers still supply footprint/lookahead margins, physics synchronization, ground/route validation and locomotion enforcement.
+
 Start with shared accepted meshes/materials and conventional LODs. Keep batches spatially bounded so they can be culled. Dense cosmetic clutter should not require a MonoBehaviour, collider and Update callback for every instance. Geometry is valuable for silhouettes and interaction; distant detail can use simpler representations derived from the same logical state.
 
 ## Local persistence design

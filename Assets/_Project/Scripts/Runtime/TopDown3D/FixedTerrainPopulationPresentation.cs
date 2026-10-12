@@ -14,6 +14,7 @@ namespace BooterBigArm.TopDown3D
             public GameObject Object;
             public Collider[] Colliders;
             public bool[] CollisionEnabled;
+            public bool[] CollisionRequired;
             public string StableId;
             public int Ordinal;
             public Renderer[] Renderers;
@@ -95,6 +96,19 @@ namespace BooterBigArm.TopDown3D
 
         public bool IsActive(Vector2Int cell) => active.ContainsKey(cell);
         public bool IsPending(Vector2Int cell) => requests.ContainsKey(cell);
+        public bool IsCollisionPublished(Vector2Int cell)
+        {
+            if (disposed || parent == null || !parent.gameObject.activeInHierarchy || requests.ContainsKey(cell)
+                || !active.TryGetValue(cell, out var current)) return false;
+            foreach (var item in current)
+            {
+                if (item.Object == null || !item.Object.activeInHierarchy) return false;
+                for (int i = 0; i < item.Colliders.Length; i++)
+                    if (item.CollisionRequired[i] && (item.Colliders[i] == null || !item.Colliders[i].enabled
+                        || !item.Colliders[i].gameObject.activeInHierarchy)) return false;
+            }
+            return true;
+        }
         private void RemoveCandidate(Vector2Int cell, string removedRecipe, int ordinal)
         {
             if (removedRecipe != recipeId || disposed) return;
@@ -204,12 +218,20 @@ namespace BooterBigArm.TopDown3D
             foreach (var participant in owner.GetComponentsInChildren<SculptedRockFusionParticipant>(true)) participant.enabled = false;
             var colliders = owner.GetComponentsInChildren<Collider>(true);
             var original = new bool[colliders.Length]; for (int i = 0; i < colliders.Length; i++) original[i] = colliders[i].enabled;
+            var required = new bool[colliders.Length];
+            for (int i = 0; i < colliders.Length; i++) required[i] = original[i] && ActiveBelowRoot(colliders[i].transform, owner.transform);
             var renderers = owner.GetComponentsInChildren<Renderer>(true);
             var rendering = new bool[renderers.Length]; for (int i = 0; i < renderers.Length; i++) rendering[i] = renderers[i].enabled;
             var lods = owner.GetComponentsInChildren<LODGroup>(true);
             var lodEnabled = new bool[lods.Length]; for (int i = 0; i < lods.Length; i++) lodEnabled[i] = lods[i].enabled;
-            instances++; return new Instance { Object = owner, Colliders = colliders, CollisionEnabled = original,
+            instances++; return new Instance { Object = owner, Colliders = colliders, CollisionEnabled = original, CollisionRequired = required,
                 Renderers = renderers, RenderingEnabled = rendering, Lods = lods, LodEnabled = lodEnabled };
+        }
+        private static bool ActiveBelowRoot(Transform child, Transform root)
+        {
+            for (var node = child; node != root; node = node.parent)
+                if (node == null || !node.gameObject.activeSelf) return false;
+            return true;
         }
         private static void Collision(Instance item, bool enabled)
         { for (int i = 0; i < item.Colliders.Length; i++) item.Colliders[i].enabled = enabled && item.CollisionEnabled[i]; }
