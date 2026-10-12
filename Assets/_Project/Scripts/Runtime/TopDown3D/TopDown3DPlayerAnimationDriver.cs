@@ -120,19 +120,21 @@ namespace BooterBigArm.TopDown3D
             foreach (var renderer in wornCloak.GetComponentsInChildren<MeshRenderer>(true))
             {
                 var original = renderer.GetComponent<MeshFilter>().sharedMesh;
+                // Framed equipment remains rigid; the cloak itself still blends chest and hips.
+                var rigidPack = original.name.StartsWith("Backpack_", StringComparison.Ordinal);
                 var mesh = Instantiate(original); mesh.name = "Runtime cloak skin";
                 var vertices = mesh.vertices;
                 var weights = new BoneWeight[vertices.Length];
                 for (var i = 0; i < vertices.Length; i++)
                 {
                     vertices[i] = wornCloak.transform.InverseTransformPoint(renderer.transform.TransformPoint(vertices[i]));
-                    var top = Mathf.InverseLerp(.6f, 1.42f, vertices[i].y);
+                    var top = rigidPack ? 1f : Mathf.InverseLerp(.6f, 1.42f, vertices[i].y);
                     weights[i] = new BoneWeight { boneIndex0 = 0, weight0 = top, boneIndex1 = 1, weight1 = 1 - top };
                 }
                 mesh.vertices = vertices; mesh.boneWeights = weights;
                 mesh.bindposes = new[] { chest.worldToLocalMatrix * wornCloak.transform.localToWorldMatrix, hips.worldToLocalMatrix * wornCloak.transform.localToWorldMatrix };
                 mesh.RecalculateNormals(); mesh.RecalculateBounds(); cloakMeshes.Add(mesh);
-                var skinObject = new GameObject("Cloak cloth skin"); skinObject.transform.SetParent(wornCloak.transform, false);
+                var skinObject = new GameObject(rigidPack ? "Rigid backpack skin" : "Cloak cloth skin"); skinObject.transform.SetParent(wornCloak.transform, false);
                 var skin = skinObject.AddComponent<SkinnedMeshRenderer>(); skin.sharedMesh = mesh;
                 skin.bones = new[] { chest, hips }; skin.rootBone = hips; skin.sharedMaterials = renderer.sharedMaterials;
                 skin.shadowCastingMode = renderer.shadowCastingMode; skin.updateWhenOffscreen = true;

@@ -74,6 +74,13 @@ namespace BooterBigArm.Editor
                     renderer.sharedMaterials = renderer.sharedMaterials.Select(value => value != null && value.name.Contains("Iron") ? iron : cloth).ToArray();
                     renderer.shadowCastingMode = ShadowCastingMode.TwoSided;
                 }
+                if (name == "WornCloak")
+                {
+                    var backpack = AssetDatabase.LoadAssetAtPath<GameObject>(
+                        "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/FramedBackpack.prefab");
+                    if (backpack == null) throw new InvalidOperationException("Booter's framed backpack prefab is missing.");
+                    PrefabUtility.InstantiatePrefab(backpack, instance.transform);
+                }
                 if (deployed)
                 {
                     instance.AddComponent<TopDown3DCampView>();
