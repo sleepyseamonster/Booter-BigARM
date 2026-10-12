@@ -10,10 +10,12 @@ The initial plane is 10 by 10 metres. One Blender metre equals one Unity unit. T
 
 ## Creation and verification
 
-[Unity snapshot script](../../../../../Tools/Art/Blender/export_booter_standing.cs) runs through the installed Unity Pipeline `eval_file` command against this checkout. It uses a disposable preview scene, samples the idle clip, exports the mesh snapshot into ignored `Logs/BooterGroundSetup/booter_standing.json`, and destroys its temporary objects and animation graph. It does not open or save production scenes. It refuses to overwrite an existing snapshot.
+[Unity snapshot script](../../../../Tools/Art/Blender/export_booter_standing.cs) runs through the installed Unity Pipeline `eval_file` command against this checkout. It uses a disposable preview scene, samples the idle clip, exports the mesh snapshot into ignored `Logs/BooterGroundSetup/booter_standing.json`, and destroys its temporary objects and animation graph. It does not open or save production scenes. It refuses to overwrite an existing snapshot.
 
-[Blender creator](../../../../../Tools/Art/Blender/create_booter_ground_project.py) runs with Blender `--background --factory-startup --python SCRIPT -- CHECKOUT_ROOT`. It refuses to overwrite the existing authoring file. Preserve the existing file and snapshot before deliberately creating a new version.
+[Blender creator](../../../../Tools/Art/Blender/create_booter_ground_project.py) runs with Blender `--background --factory-startup --python SCRIPT -- CHECKOUT_ROOT`. It refuses to overwrite the existing authoring file. Preserve the existing file and snapshot before deliberately creating a new version.
 
 Fresh Windows proof used Blender 5.2.2 LTS and Unity 6000.4.0f1. The saved file reopened with auto-execution disabled. A read-only verification resized the plane to 25 by 7 metres, confirmed that the character transform stayed unchanged and its lowest point remained at zero, then exited without saving. The saved plane remains 10 by 10 metres. The preview render was visually reviewed; the body has 8,484 vertices and 15,016 triangles. The advisory inventory from `Tools/Art/Blender/inspect_blend.py`, creation report, Unity snapshot and preview PNG are in ignored `Logs/BooterGroundSetup/`.
 
 This authoring-only setup does not participate in deterministic world identity, terrain streaming, generated-object identity, world placement constraints or persisted gameplay deltas. Unity assets, metadata and gameplay are untouched. The `.blend` and retained previous save remain local-only under the repository source-publication policy; only the small tools and this note belong in Git.
+
+The author's rock sculpt was saved on October 12, 2026. Its separately optimized limestone version, export and texture set are documented in [LimestoneRock01](LimestoneRock01/README.md). The saved artist source remains intact.

@@ -1,0 +1,132 @@
+{
+  "blender": "5.2.2 LTS",
+  "source_and_workbench_textures_unchanged": true,
+  "meshes": {
+    "LimestoneRock01_LOD0": {
+      "triangles": 712,
+      "dimensions": [
+        2.002058744430542,
+        1.9748988151550293,
+        1.324190616607666
+      ],
+      "vertices": 358
+    },
+    "LimestoneRock01_LOD1": {
+      "triangles": 356,
+      "dimensions": [
+        2.0059242248535156,
+        1.9661840200424194,
+        1.3250705003738403
+      ],
+      "vertices": 180
+    },
+    "LimestoneRock01_LOD2": {
+      "triangles": 178,
+      "dimensions": [
+        1.997793197631836,
+        1.960211157798767,
+        1.308674693107605
+      ],
+      "vertices": 91
+    },
+    "LimestoneRock01_Collision": {
+      "triangles": 220,
+      "dimensions": [
+        2.0001938343048096,
+        1.9763407707214355,
+        1.3253248929977417
+      ],
+      "vertices": 112
+    }
+  },
+  "maps": {
+    "BaseColor": {
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "samples_checked": 2848,
+      "finite": true,
+      "packed": true
+    },
+    "Roughness": {
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "samples_checked": 2848,
+      "finite": true,
+      "packed": true
+    },
+    "Occlusion": {
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "samples_checked": 2848,
+      "finite": true,
+      "packed": true
+    },
+    "Height": {
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "samples_checked": 2848,
+      "finite": true,
+      "packed": true
+    },
+    "Normal": {
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "samples_checked": 2848,
+      "finite": true,
+      "packed": true
+    },
+    "MetallicSmoothness": {
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "samples_checked": 2848,
+      "finite": true,
+      "packed": true
+    }
+  },
+  "fbx_roundtrip": {
+    "LimestoneRock01_Collision": {
+      "triangles": 220,
+      "dimensions": [
+        2.0001938343048096,
+        1.9763407707214355,
+        1.3253248929977417
+      ]
+    },
+    "LimestoneRock01_LOD0": {
+      "triangles": 712,
+      "dimensions": [
+        2.002058744430542,
+        1.9748988151550293,
+        1.324190616607666
+      ]
+    },
+    "LimestoneRock01_LOD1": {
+      "triangles": 356,
+      "dimensions": [
+        2.0059242248535156,
+        1.9661840200424194,
+        1.3250705003738403
+      ]
+    },
+    "LimestoneRock01_LOD2": {
+      "triangles": 178,
+      "dimensions": [
+        1.997793197631836,
+        1.960211157798767,
+        1.308674693107605
+      ]
+    }
+  }
+}
