@@ -1,0 +1,182 @@
+# Greater Wasteland World Architecture Baseline
+
+Date: October 11, 2026. Audience: the author and implementation owners. Coordination: Gottspan; Unity integration: Babineaux; verified local commits: Gear Ball.
+
+Greater Wasteland should use fixed resident terrain, deterministic procedural population, actor-aware collision, bounded visual presentation and local versioned saves. World identity and saved changes must survive changes in rendering, processing partitions and population visibility. The strongest measured performance opportunity is reducing the number of Terrain components participating in rendering. Storage architecture matters for saving, reconstruction and future population scale, but does not address that terrain bottleneck by itself.
+
+This baseline consolidates the performance audit, chunk experiments, earlier game research and first implementation results. It guides the remaining architecture batches in the [implementation record](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md). User direction and root [AGENTS.md](../../AGENTS.md) govern scope; proposed sizes, budgets and optional backends remain subject to the proof gates below.
+
+## World requirements
+
+The authored native terrain stays loaded. Terrain generation and terrain streaming are outside the production design. Landscape population will be procedural, including rocks, formations, ground dressing and points of interest. Reviewed assets, placement rules and authored constraints supply that population's vocabulary.
+
+Protect accepted terrain heights, holes, seams, collision, landmarks, routes, spawn space, camps and existing saved identities. BigARM retains a real world position and physically traverses even when offscreen. Rendering visibility cannot determine whether terrain, obstacles or gameplay state exist. Existing authored population needs compatible recipes or explicit migration before conversion; it must not silently move, duplicate or reroll.
+
+The active host is the root Unity TopDown3D project. Archived 2D, Unreal and proprietary-engine implementations provide reference concepts and historical evidence. Their generators, save services, package selections and performance results do not become production dependencies.
+
+## Current scale and evidence scope
+
+| Item | Baseline |
+| --- | --- |
+| Unity | 6000.4.0f1 |
+| Render pipeline | URP 17.4.0, current Forward renderer |
+| Production scene | `Assets/_Project/Scenes/Production/GreaterWasteland.unity` |
+| Latest accepted terrain checkpoint | 8,704 native tiles, 34 sections, 544 sectors |
+| Native tile dimensions | 256 m square; inspected heightmaps are 257 × 257 samples |
+| Coarse organizational sector | 1,024 m square, normally 16 native tiles |
+| Primary hardware | i7-9700K, RTX 3060 Ti, approximately 64 GB system RAM |
+| Earlier measured snapshot | 8,448 Terrain components and 8,448 TerrainColliders |
+| Proposed initial performance target | Stable 60 FPS at 1080p on this PC, pending Player evidence |
+
+The accepted fourth-row checkpoint is recorded in [local workspace routing](../LOCAL_WORKSPACE.md) and its [closeout receipt](../Evidence/DeathValley/NorthRow4E512208N4026680_2026-10-11/closeout.json). Expansion continues separately. Refresh the saved scene, native-data inventory and ownership before profiling or authoring another area. Measurements from the earlier footprint are a diagnostic baseline, not measurements of the expanded scene.
+
+## Measured performance findings
+
+The [October 11 audit](../Evidence/Performance/GREATER_WASTELAND_AUDIT_2026-10-11.md) rendered the actual camera through an offscreen URP request at 1158 × 495. Each condition used five seconds of settling and fifteen seconds of sampling after initial renderer warmup. Actors were stationary. The local-terrain comparisons retained 52 render components within a conservative horizontal radius; terrain data, GameObjects and colliders remained loaded.
+
+| Diagnostic condition | Enabled Terrain components | Mean update | P95 update |
+| --- | ---: | ---: | ---: |
+| Normal rendering | 8,448 | 215.02 ms | 232.16 ms |
+| Distant heightmap drawing disabled | 8,448 | 83.30 ms | 95.17 ms |
+| Distant Terrain render components disabled | 52 | 9.73 ms | 12.13 ms |
+| Normal rendering repeated | 8,448 | 215.18 ms | 230.95 ms |
+| Half render scale | 8,448 | 216.30 ms | 223.84 ms |
+| Shadows disabled | 8,448 | 197.45 ms | 292.90 ms |
+
+Limiting render components reduced diagnostic update cost by approximately 95.5%, or 22 times. Repeated normal measurements agreed within 0.1%. `TerrainManager.CullAllTerrains` averaged 141.83 ms normally, 52.14 ms with distant drawing disabled, and 0.46 ms with distant components disabled. These are inclusive CPU markers; nested measurements cannot be added as separate costs.
+
+This establishes a strong priority for rendering residency. It does not promise an equivalent Player FPS increase. GPU timings and triangle counters were unavailable, and the diagnostic path includes capture overhead. Lower resolution did not materially help this CPU-dominated baseline; that result does not predict GPU cost after terrain CPU work is reduced.
+
+Separate stationary headless simulation averaged about 1.02 ms per update. It does not rank moving-character, blocked-navigation or overlay-UI costs. A synthetic 64 KiB durable file-write pattern averaged 8.19 ms, with 9.02 ms P95; it excluded capture, serialization, hashing and actual save size. Full-scene Editor opening reached roughly 15–16 GB resident process memory. Rendering control preserves a substantial native-data/collision memory floor and does not establish a fix for the reported crashes.
+
+## Implemented changes and remaining proof
+
+The first three local implementation commits are `39a5330b8`, `9f7a7d068` and `ee0b2f690`. [Final verification](../Evidence/Performance/performance-implementation-receipt-2026-10-11.json) binds 28 source/metadata hashes to **29 passing focused EditMode cases**, with none skipped. The small isolated project excluded native terrain and production scenes.
+
+| System | Current implementation | Remaining gate |
+| --- | --- | --- |
+| Terrain queries | `FixedTerrainSurfaceIndex` accepts rendering-disabled terrain when valid native collision remains active; holes and mismatched/disabled collision reject queries | Production traversal and remote queries |
+| Terrain rendering | Sector index, gameplay/reflection camera coverage, conservative shadow coverage, immediate arrivals, retained boundary margin, bounded departures and restoration of original flags | Player CPU/GPU/memory, startup, motion, seams and visual acceptance |
+| Editor interaction | Play Mode Scene views preview the runtime terrain set; their far clips cannot re-enable the whole landscape | Author workflow acceptance; Edit Mode flags restore |
+| BigARM routing | Failed/blocked routes respect retry timing; one direction query cannot rebuild twice; reached-path replanning remains immediate | Moving and obstructed companion profiling and feel |
+| Automatic saves | Immutable encoded snapshots, one background filesystem worker, one latest pending checkpoint, captured-revision acknowledgements, backups and failure handling | Representative payload growth, latency and shutdown scenarios |
+| Explicit saves | `Save()` retains synchronous durable completion semantics | Target Player verification |
+| Population identity | Stateless world/seed/version/recipe/cell/ordinal keys and independent streams; independent Python reference vector | Population state, constraints, spacing and save compatibility integration |
+
+Snapshot capture and JSON encoding still run on the main thread. The 8 × 8 candidate-position helper is a bounded study lattice, not accepted production density or formation grammar. Identity ordinals can extend beyond that lattice. No production seed, generator, population save migration or dense sector has been installed.
+
+Runtime teardown bodies were exercised explicitly in EditMode where normal MonoBehaviour callbacks do not run automatically. Automatic Player lifecycle behavior, FPS and appearance remain separate acceptance gates. Dynamic population lights must register shadow contribution; offscreen callers that bypass URP camera callbacks must prepare camera coverage before culling.
+
+## Research lessons to retain
+
+The [Crimson Desert notes](../Research/CRIMSON_DESERT_GAMESCOM_DEV_2026_TECHNICAL_NOTES.md) support authored samples converted into placement rules, purpose-driven density, predictable preparation, cancellation and keeping outgoing representations until replacements are ready. They distinguish official principles from reported technical details. Their world size, sector dimensions, vegetation counts and distance bands do not determine this game's constants.
+
+The [World Creator architecture](../Design/DeferredGeneration/WORLD_CREATOR_ARCHITECTURE_PLAN.md) separates canonical plans from temporary Unity objects and divides planning, compilation and integration. Its reusable lessons include bounded work, pooled buffers, memory-limited caches, separate identity/version domains and saved mutations feeding distant proxies. Its generated-terrain and infinite-world scope is superseded for Greater Wasteland.
+
+The [earlier world-generation research](../Design/DeferredGeneration/WORLD_GEN_RESEARCH_SUMMARY.md) discusses authored anchors, readable sparse environments and data/presentation separation, including references to Caves of Qud and RimWorld. Its Tilemap-specific advice belongs to the former 2D host. Intentional empty space remains part of composition; increasing object counts is not a quality metric.
+
+The [preserved engine checkpoint](../../Archive/ProprietaryEngine/Docs/WORLD_SAVE_CHECKPOINT.md) and [application integration](../../Archive/ProprietaryEngine/Docs/WORLD_SAVE_APPLICATION_RESULT.md) provide a useful local-file precedent: immutable checkpoint generations, member validation, a manifest published last, previous-generation recovery, writer ownership and stale-generation rejection. Historical tests exercised interrupted writes, corrupt-member recovery and removed rocks surviving reconstruction/restart. They establish prior native/Mac behavior, not fresh Unity/Windows or actual power-loss proof. Retain their contracts rather than their fixed limits or engine dependencies.
+
+## Recommended authority model
+
+The architecture has three distinct kinds of state. Static definitions and authored terrain describe the world. Deterministic population records describe its procedural baseline. Mutable runtime state records what players and simulation have changed. Renderers, colliders and visual caches realize that state according to current demand.
+
+```mermaid
+flowchart TD
+    T[Resident authored terrain and native collision] --> Q[Terrain query authority]
+    W[World identity and versioned recipes] --> P[Deterministic population planning]
+    A[Authored constraints and reservations] --> P
+    Q --> P
+    P --> S[Logical population state]
+    D[Persisted mutations] --> S
+    S --> V[Visual presentation and LOD]
+    S --> C[Actor relevant interaction and collision]
+    S --> K[Consistent local checkpoint]
+    K --> D
+    M[Camera and shadow demand] --> V
+    B[Booter BigARM and other actors] --> C
+```
+
+A released mesh, instance buffer or presenter does not erase an object or undo depletion. A gameplay query must resolve logical definitions and state without requiring every object to have a live GameObject. Native terrain collision remains resident independently of the population collision policy.
+
+Keep one authority for each responsibility. The existing generated-world services remain inactive. Extend the active save owner and gameplay state providers through explicit compatibility steps; do not add a competing generator or second inventory/world save authority.
+
+## Chunk ownership and version contracts
+
+| Division | Intended responsibility | Status |
+| --- | --- | --- |
+| 256 m identity cell | Permanent candidate ownership and saved addresses | Initial baseline aligned with native terrain; identity foundation implemented |
+| 64 or 128 m presentation/work cell | Smaller preparation, uploads and activation batches | Compare in the bounded sector; changing it must preserve IDs |
+| 1,024 m sector | Coarse lookup, composition and multi-cell feature organization | Existing organization and renderer index |
+
+These divisions need not share lifetimes. Physical terrain grouping can change in a later validated representation study without changing logical population ownership.
+
+Generated IDs derive from explicit world identity, seed, generation domain/version, recipe/version, owner cell and candidate ordinal. Assign ordinals before density, mask or spacing rejection. Never derive persistent IDs from accepted-list position, visitation order, camera visibility, worker completion order or Unity instance IDs.
+
+World metadata must describe reconstruction versions, terrain compatibility and content catalogs. Material/LOD/work-partition changes must not reroll placement. Placement-affecting changes require explicit retention or migration. Preserve supported recipes or enough reconstruction information to restore older worlds.
+
+Terrain expansion must not reseed existing cells through a whole-scene hash. Freeze reconstruction inputs for accepted cells. Define whether new neighbours can affect border-thinning acceptance: existing saved features must retain their accepted set or undergo an explicit migration. A stable ID alone does not prevent a feature disappearing because a new mask or neighbour rule rejects it.
+
+Cross-cell spacing requires neighbour context and a canonical conflict rule. Large formations and POIs need one owner and footprints/reservations across every affected cell. Validate negative coordinates, corners, terrain holes, unsupported positions and protected routes before creating presentation or collision.
+
+The [synthetic CPU study](../Evidence/Performance/chunk-population-reference-2026-10-11.json) accepted 974 of 1,024 candidates across a 1,024 m square with sixteen identity cells. Three evaluation orders and fresh 64/128/256 m work partitions produced identical records. A 12 m spacing requirement yielded minima of 12.06 m overall and 12.28 m across cell borders; a protected-site mask and serialized sparse depletion also passed. All six checks passed. These Python results demonstrate one bounded ownership/halo rule; they do not prove native terrain grounding, production density, Unity timing or CPU/GPU parity.
+
+## Scheduling and presentation lifecycle
+
+Requests carry immutable identity, recipe/constraint versions and current demand. Camera position, actor position, velocity and anticipated entry affect priority only. Cancellation and stale-result checks prevent obsolete work from being adopted; neither can change generated contents.
+
+Separate candidate planning, terrain/constraint evaluation, geometry preparation, uploads, collider preparation and main-thread activation. Pure work can run in background workers; Unity calls require their supported execution context. A 1–2 ms proposed frame budget is useful only when individual work units are also bounded. One large mesh upload or collider cook can exceed it before a scheduler checks the clock.
+
+Prioritize necessary collision and interaction before actors arrive, including BigARM outside the camera. Route queries need obstacle information beyond the visible set. Keep valid outgoing presentations until replacements are integrated, and use retention margins to prevent boundary churn. Pool reusable buffers/presenters and cap pending requests, completed results, cached records, instance buffers and physics proxies by memory.
+
+Start with shared accepted meshes/materials and conventional LODs. Keep batches spatially bounded so they can be culled. Dense cosmetic clutter should not require a MonoBehaviour, collider and Update callback for every instance. Geometry is valuable for silhouettes and interaction; distant detail can use simpler representations derived from the same logical state.
+
+## Local persistence design
+
+Keep terrain, meshes, textures and audio in native Unity assets. Keep mutable saves outside project content under the application save location. Use memory for active gameplay state; disk access belongs in bounded preparation and checkpoint work.
+
+Store seeds, reconstruction versions and sparse changes. An unchanged procedural rock can be regenerated. A removed rock needs a stable-ID removal record; a depleted resource needs remaining-use state; a placed object needs its identity and relevant pose/state. Persistent processes such as harvesters retain logical progress independently of presentation lifetime.
+
+The current inventory format is version 1 with integrity checks, a 1 MiB encoded-file limit and backup recovery. It cannot become an unbounded container for whole-world population. Protect existing saves during a versioned population integration. Current resource restoration validates definitions from scene nodes; generated resources require a logical definition resolver that remains available when their presentations are absent.
+
+Capture related inventory, actor and world mutations at one consistent boundary. Completion acknowledges exactly the captured revisions. When storage is partitioned, publish one checkpoint generation referencing its complete member set, or use an equivalent database transaction. Loading must not combine new inventory with old resource depletion. Preserve previous valid checkpoints, reject stale writers, validate versions and test interrupted writes before replacing the current save format.
+
+| Backend | Strength | Cost and decision gate |
+| --- | --- | --- |
+| Versioned local files | Existing project direction and historical checkpoint precedent; easy inspection | Multi-part consistency, indexing and recovery are application responsibilities |
+| Embedded SQLite | Local indexed lookups and transactions across related records | Unity/platform integration, schema migration, backup and checkpoint policy need validation |
+| Remote database | Relevant if later online shared-state requirements demand it | No present requirement; would add network/service dependence |
+
+Continue with local storage and complete the state/checkpoint contracts first. Compare files with SQLite using representative changed-cell counts, record sizes, lookup patterns, checkpoint latency and recovery behavior before choosing a long-term backend. SQLite can be embedded locally without a separate server; its transaction and journal behavior still require an appropriate backup policy. [SQLite intended uses](https://www.sqlite.org/whentouse.html), [SQLite application files](https://www.sqlite.org/appfileformat.html), [SQLite write-ahead logging](https://www.sqlite.org/wal.html).
+
+## Conditional optimization studies
+
+| Study | Entry condition | Preservation requirement |
+| --- | --- | --- |
+| 512 or 1,024 m native tile grouping | Terrain overhead remains material after rendering control | Heights, holes, seams, collision, materials, GUID accounting and logical ownership |
+| GPU indirect clutter | Dense shared-mesh population becomes a measured submission/rendering bottleneck | Accepted placements and gameplay state remain authoritative; local draw bounds and buffer caps |
+| GPU Resident Drawer or GPU occlusion | Compatible props and a justified renderer-path study | Current Forward renderer needs compatibility work; native Terrain is not its MeshRenderer route |
+| Render-only terrain proxies | Simpler native controls miss measured goals | Native terrain/collision remain resident; prove silhouettes, materials, holes and ground agreement |
+| Fixed-data clipmaps | Grouping/proxies fail and the expected gain justifies a larger renderer investment | Sample authored data; do not synthesize replacement terrain |
+
+At one-metre spacing, grouping the measured 8,448 tiles into 528 larger 1,024 m tiles would reduce component count sixteenfold but raw height-sample count by only about 0.6%. That is not a sixteenfold memory saving or measured speedup. The [experiment plan](../Research/Engineering/GREATER_WASTELAND_CHUNK_EXPERIMENTS_2026-10-11.md) records the tradeoffs.
+
+Physics broad-phase changes, dust-map caching, UI batching, cargo refreshes and texture residency remain narrower studies driven by subsequent profiling. Whole-world occlusion baking, blanket Read/Write removal, graphics-quality cuts and an engine/DOTS rewrite are not the first response to this evidence.
+
+## Implementation sequence and acceptance gates
+
+1. **Refresh the performance baseline.** Freeze the accepted scene/content, record native and active counts, establish memory headroom and run one bounded full-content rendering process at a time. Compare all-terrain rendering with the runtime window using matched settings. Separate startup, steady frames, camera/sector transitions and saves. Stop for sustained resource growth or loss of responsiveness.
+2. **Complete world metadata and state contracts.** Define seed selection, reconstruction versions, accepted-cell retention during expansion, logical definitions, constraints, mutation ownership and migration. Prove reconstruction after presentation release before generating dense content.
+3. **Build one constrained sector.** Compare 64/128 m work cells, actor collision preparation, conventional LOD/pooling and neighbour rules on accepted art. Test boundary handoffs, offscreen BigARM and changed objects. Review at the production camera and along approach routes.
+4. **Integrate consistent local checkpoints.** Extend the existing save owner with versioned compatibility, coherent actor/world capture and bounded writes. Benchmark a database only against that complete contract, not against an intentionally weak file implementation.
+5. **Expand progressively.** Raise population density and area only after frame, memory, reconstruction and author acceptance gates pass. Select optional rendering experiments from the remaining bottleneck.
+
+Record median/P95/P99 frame time, transition/save spikes, CPU/GPU timing availability, memory peaks, active render/collision counts, allocations, uploads and queue depth. CPU and GPU work can overlap; evaluate the actual critical frame path rather than adding their durations as if serial. A 60 FPS frame has approximately 16.7 ms available; the subsystem budgets remain provisional until Player measurements establish headroom.
+
+Determinism checks vary cell order, worker completion order, visibility, LOD and work partitions. Persistence checks cover recreate/restart, removed/depleted/placed objects, incompatible versions, stale writers, corrupt members and interrupted publication. Terrain checks cover unchanged data, valid collision with rendering off, seams, holes, borders, shadows and restoration. Hands-on gameplay and appearance acceptance remain author-owned; compilation, EditMode checks and a successful build cannot substitute for them.
+
+## Completion criteria
+
+The architecture is ready to scale when matched Player captures show repeatable improvement and acceptable frame-time variation; native terrain and collision remain correct; generated identities and saved changes survive representation recreation; preparation queues and memory stay bounded; checkpoint failure/recovery tests pass; and the author accepts traversal, camera views, lighting and population composition.
+
+Until then, the remaining implementation goal stays active. This baseline does not authorize terrain generation/streaming, silent save conversion, package changes, broad renderer migration or external publication. The next concrete work is the bounded rendering comparison and the canonical population metadata/state slice.

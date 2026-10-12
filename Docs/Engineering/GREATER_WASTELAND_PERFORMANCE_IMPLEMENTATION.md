@@ -2,6 +2,8 @@
 
 Owner: Gottspan; runtime implementation and background Unity verification: Babineaux; scoped verified commits: Gear Ball. Authorized by the author's request to implement the audited plan on October 11, 2026. This document records that conversation plan and its audit as one resumable execution contract.
 
+The [world architecture baseline](GREATER_WASTELAND_WORLD_ARCHITECTURE_BASELINE_2026-10-11.md) consolidates the findings, current proof, storage choices and population contracts that guide the remaining batches. This implementation record retains the execution checkpoints.
+
 ## Preserved behavior and scope
 
 All fixed native TerrainData, TerrainColliders and terrain GameObjects remain resident. Do not generate/stream terrain, modify elevations, disable physical traversal, teleport BigARM, reroll accepted objects, change graphics quality, or install the generated-world reference services. Existing dirty assets and concurrent terrain expansion remain outside this task. Packages, renderer migration, external publication and hands-on smoke testing are not authorized by this implementation.

@@ -12,6 +12,8 @@ These should be treated as the source of truth unless they are intentionally rev
   The setting, tone, and core world fantasy.
 - [FIXED_TERRAIN_DRESSING_PLAN.md](./Design/Gameplay/FIXED_TERRAIN_DRESSING_PLAN.md)
   Current Greater Wasteland direction: persistent native terrain with procedural rocks, ground dressing and POIs; bounded contact/relief study and later integration gates.
+- [Greater Wasteland world architecture baseline](./Engineering/GREATER_WASTELAND_WORLD_ARCHITECTURE_BASELINE_2026-10-11.md)
+  Fixed resident terrain and procedural population baseline: performance evidence, chunk identity, logical state, local checkpoints, prior research and implementation gates. Proposed budgets and backend choices remain conditional.
 - [GROUND_TEXTURE_AUTHORING.md](./Engineering/GROUND_TEXTURE_AUTHORING.md)
   Manual ground texture stickers and native terrain painting, with Undo, authoring persistence and terrain-preservation boundaries.
 - [NINE_AREA_ROCK_STUDY.md](./Engineering/NINE_AREA_ROCK_STUDY.md)
