@@ -38,6 +38,9 @@ namespace BooterBigArm.Tests
                 Assert.That(first.TrySample(new Vector2(32, -16), out _), Is.True);
                 Assert.That(first.TrySample(new Vector2(32.01f, -16), out _), Is.False);
                 Assert.That(first.TrySample(new Vector2(float.NaN, 0), out _), Is.False);
+                b.enabled = false;
+                Assert.That(first.TrySample(new Vector2(16, -16), out _), Is.True,
+                    "Rendering visibility must not remove resident collision from placement queries.");
                 b.GetComponent<TerrainCollider>().enabled = false;
                 Assert.That(first.TrySample(new Vector2(16, -16), out _), Is.False);
                 Assert.Throws<ArgumentException>(() => new FixedTerrainSurfaceIndex(new[] { a, a }, "fixture", 32));

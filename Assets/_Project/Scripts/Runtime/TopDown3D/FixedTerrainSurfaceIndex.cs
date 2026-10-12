@@ -65,7 +65,7 @@ namespace BooterBigArm.TopDown3D
         {
             sample = default;
             if (!tiles.TryGetValue(cell, out var terrain) || terrain == null
-                || !terrain.enabled || !terrain.gameObject.activeInHierarchy || terrain.terrainData == null) return false;
+                || !terrain.gameObject.activeInHierarchy || terrain.terrainData == null) return false;
             var collider = terrain.GetComponent<TerrainCollider>();
             if (collider == null || !collider.enabled || collider.terrainData != terrain.terrainData) return false;
             var origin = terrain.transform.position;
