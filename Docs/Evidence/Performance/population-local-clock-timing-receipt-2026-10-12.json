@@ -1,0 +1,178 @@
+{
+  "date": "2026-10-12",
+  "scope": "One non-development manual URP population reference capture; no injected input",
+  "build_receipt": "Docs/Evidence/Performance/population-local-clock-build-2026-10-12.json",
+  "build_receipt_sha256": "c9a7cbdc9d842b60e03073c59a131275a62a1d82e0c05804c8a787753a32bfaf",
+  "artifacts": [
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-local-timing-20261012.json",
+      "sha256": "381dcaf1ee7e8496660f190f56786d518620a8bd4f576025936f99ceb7a8ba14",
+      "candidate_original_sha256": "381dcaf1ee7e8496660f190f56786d518620a8bd4f576025936f99ceb7a8ba14"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-local-timing-summary-20261012.json",
+      "sha256": "8f59090396c791fe3f8869fdc624939e20b7534c4c81cc4658fad450e2278f48",
+      "candidate_original_sha256": "8f59090396c791fe3f8869fdc624939e20b7534c4c81cc4658fad450e2278f48"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-local-timing-20261012.png",
+      "sha256": "deb324aceae33083966b11b464cec8d5d2f203fd51ceb1f183fe8178367a786a",
+      "candidate_original_sha256": "deb324aceae33083966b11b464cec8d5d2f203fd51ceb1f183fe8178367a786a"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-local-timing-process-watch.json",
+      "sha256": "bd444dd581bf139967416fc1657f7961395f50864f9bb04561315d12929e5cb7",
+      "candidate_original_sha256": "943189e9e25157c42dc3e4df2be1b1c142c93d6f7af62d203adcc0a408359c44"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-local-network-observation.json",
+      "sha256": "bc4a29cd641cc4517815cff67aa5bf98f3595f3d36dcaa577b21c1dcdd277ef7",
+      "candidate_original_sha256": "8d8e53559fc6b975b5ae1b24fa3dafc052188a52c7a6e46ce6bcec9ea884439b"
+    }
+  ],
+  "summary": {
+    "scope": "One manual offscreen reference run; actor motion, no injected input; not interactive FPS or traversal acceptance",
+    "initial_ready_seconds": 2.02778,
+    "startup_maximum_population_ms": 9.208100000000385,
+    "phases": [
+      {
+        "phase": 0,
+        "update": {
+          "samples": 7768,
+          "mean_ms": 1.2875494342502332,
+          "median_ms": 1.2131023686379194,
+          "p95_ms": 1.6815972048789263,
+          "p99_ms": 2.0808957051485777,
+          "maximum_ms": 4.565504379570484
+        },
+        "population_work": {
+          "samples": 7768,
+          "mean_ms": 0.0026844361483003565,
+          "median_ms": 0.0022999999984563146,
+          "p95_ms": 0.0034000000006528808,
+          "p99_ms": 0.005200000000371574,
+          "maximum_ms": 0.050800000000350565
+        },
+        "manual_render": {
+          "samples": 7768,
+          "mean_ms": 0.89548290422245,
+          "median_ms": 0.850100000000964,
+          "p95_ms": 1.1264999999980319,
+          "p99_ms": 1.2985000000007574,
+          "maximum_ms": 2.224099999999396
+        },
+        "active_minimum": 390,
+        "active_maximum": 390,
+        "pending_maximum": 0,
+        "nominal_1ms_overruns": 0,
+        "actor_wait_samples": 0
+      },
+      {
+        "phase": 1,
+        "update": {
+          "samples": 7645,
+          "mean_ms": 1.3080738922958721,
+          "median_ms": 1.2605016818270087,
+          "p95_ms": 1.7246953211724758,
+          "p99_ms": 2.057901117950678,
+          "maximum_ms": 4.966198932379484
+        },
+        "population_work": {
+          "samples": 7645,
+          "mean_ms": 0.0031242249836513003,
+          "median_ms": 0.002500000000793534,
+          "p95_ms": 0.0037000000006059963,
+          "p99_ms": 0.006500000001352646,
+          "maximum_ms": 1.0057000000003313
+        },
+        "manual_render": {
+          "samples": 7645,
+          "mean_ms": 0.8982706213211131,
+          "median_ms": 0.8765000000003909,
+          "p95_ms": 1.1353000000013935,
+          "p99_ms": 1.3033000000000072,
+          "maximum_ms": 2.0725999999982037
+        },
+        "active_minimum": 81,
+        "active_maximum": 390,
+        "pending_maximum": 0,
+        "nominal_1ms_overruns": 1,
+        "actor_wait_samples": 0
+      },
+      {
+        "phase": 2,
+        "update": {
+          "samples": 7691,
+          "mean_ms": 1.3002222074966376,
+          "median_ms": 1.2098001316189766,
+          "p95_ms": 1.8224986270070076,
+          "p99_ms": 2.3539045359939337,
+          "maximum_ms": 4.909701179713011
+        },
+        "population_work": {
+          "samples": 7691,
+          "mean_ms": 0.01674727603693245,
+          "median_ms": 0.002300000005561742,
+          "p95_ms": 0.1333999999992841,
+          "p99_ms": 0.24829999999909091,
+          "maximum_ms": 2.5542000000022824
+        },
+        "manual_render": {
+          "samples": 7691,
+          "mean_ms": 0.8700583539201424,
+          "median_ms": 0.8157000000039716,
+          "p95_ms": 1.1658000000025481,
+          "p99_ms": 1.4070000000003802,
+          "maximum_ms": 3.4128999999936127
+        },
+        "active_minimum": 81,
+        "active_maximum": 390,
+        "pending_maximum": 2,
+        "nominal_1ms_overruns": 18,
+        "actor_wait_samples": 0
+      }
+    ],
+    "actor_horizontal_displacement_m": {
+      "booter": 41.162332902982435,
+      "bigArm": 8.980172876276898
+    },
+    "maximum_synchronization_count": 19,
+    "limitations": [
+      "Nominal time budget can be exceeded by indivisible work units and demand updates",
+      "Physics synchronization runs in actor callbacks outside measured population work",
+      "Warmup excludes initial readiness from steady update statistics",
+      "Endpoint pixels do not establish population appearance along the whole run"
+    ],
+    "source_sha256": "381dcaf1ee7e8496660f190f56786d518620a8bd4f576025936f99ceb7a8ba14"
+  },
+  "process": {
+    "pid": 37180,
+    "exit_code": 0,
+    "stopped_for_budget": null,
+    "observed_seconds": 42.75,
+    "peak_private_bytes": 728125440,
+    "peak_working_bytes": 408616960,
+    "minimum_free_bytes": 32942034944,
+    "limits": {
+      "minimum_free_GiB": 12,
+      "maximum_owned_process_GiB": 24,
+      "deadline_seconds": 180
+    }
+  },
+  "network_observation": {
+    "pid": 37180,
+    "observedUtc": "2026-10-12T16:04:22.8147747Z",
+    "tcpListeners": 0,
+    "udpEndpoints": 0
+  },
+  "log_sha256": "72a58c3b5a9a3d735cd37f1f10ddd3cd956a62e0caa0905d0f85ede6dff10631",
+  "observations": [
+    "Sampled network endpoints absent while recorded Player PID was live; this is not continuous network or Windows dialog observation",
+    "All 16 native terrain colliders enabled at completion",
+    "Same 390 to 81 to 390 population demand pattern; no sampled actor waits after warmup",
+    "Actors moved without injected input; endpoint image checked but not author visual/traversal acceptance",
+    "Different build configuration and run conditions prevent claiming production speedup from lower update means"
+  ],
+  "next_action": "Measure planning, acquisition, publication and physics synchronization separately, then reduce the expensive unit; no more identical timing repeats needed.",
+  "completion": "Production population/save integration and author gameplay acceptance remain open"
+}
