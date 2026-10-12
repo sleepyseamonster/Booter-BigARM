@@ -77,6 +77,7 @@ namespace BooterBigArm.TopDown3D
         private int routeIndex;
         private float routeReplanAt;
         private Vector3 routeGoal;
+        internal int RouteBuildAttempts { get; private set; }
 
         public FollowState State { get; private set; } = FollowState.Idle;
         public float CurrentSpeed => currentSpeed;
@@ -224,7 +225,7 @@ namespace BooterBigArm.TopDown3D
                 || !IsStepTraversable(body.position, groundedCandidate)
                 || IsOccupied(groundedCandidate))
             {
-                InvalidateRoute();
+                InvalidateRoute(false);
                 State = FollowState.WaitingForRoute;
                 currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, deceleration * Time.fixedDeltaTime);
                 return;
@@ -434,12 +435,16 @@ namespace BooterBigArm.TopDown3D
             return targetTrail[0];
         }
 
-        private bool TryGetRouteDirection(Vector3 desired, out Vector3 direction)
+        internal bool TryGetRouteDirection(Vector3 desired, out Vector3 direction)
         {
             direction = Vector3.zero;
-            if (route.Count == 0 || routeIndex >= route.Count || Time.time >= routeReplanAt
-                || PlanarDistance(routeGoal, desired) > routeCellSize * 2f)
+            bool built = false;
+            bool missing = route.Count == 0 || routeIndex >= route.Count;
+            // A failed/consumed route waits for its deadline even if the target keeps moving.
+            if (route.Count == 0 && Time.time < routeReplanAt) return false;
+            if (missing || Time.time >= routeReplanAt || PlanarDistance(routeGoal, desired) > routeCellSize * 2f)
             {
+                built = true;
                 if (!BuildRoute(desired))
                     return false;
             }
@@ -448,8 +453,13 @@ namespace BooterBigArm.TopDown3D
                 routeIndex++;
             if (routeIndex >= route.Count)
             {
+                route.Clear(); routeIndex = 0;
+                if (built) return false;
                 if (!BuildRoute(desired))
                     return false;
+                while (routeIndex < route.Count && PlanarDistance(body.position, route[routeIndex]) < 0.3f)
+                    routeIndex++;
+                if (routeIndex >= route.Count) { route.Clear(); routeIndex = 0; return false; }
             }
 
             direction = Vector3.ProjectOnPlane(route[routeIndex] - body.position, Vector3.up).normalized;
@@ -458,6 +468,7 @@ namespace BooterBigArm.TopDown3D
 
         private bool BuildRoute(Vector3 desired)
         {
+            RouteBuildAttempts++;
             route.Clear();
             routeIndex = 0;
             routeGoal = desired;
@@ -518,11 +529,11 @@ namespace BooterBigArm.TopDown3D
             return rise <= maximumStepUp && rise >= -maximumStepDown;
         }
 
-        private void InvalidateRoute()
+        private void InvalidateRoute(bool immediate = true)
         {
             route.Clear();
             routeIndex = 0;
-            routeReplanAt = 0f;
+            routeReplanAt = immediate ? 0f : Mathf.Max(routeReplanAt, Time.time + routeReplanSeconds);
         }
 
         private bool TryProjectToGround(Vector3 position, out Vector3 grounded)

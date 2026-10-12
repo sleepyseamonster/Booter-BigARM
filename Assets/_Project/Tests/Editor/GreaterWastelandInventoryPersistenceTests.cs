@@ -116,6 +116,39 @@ namespace BooterBigArm.Tests
             Assert.That(File.ReadAllText(path + ".pending"), Is.EqualTo("retained recovery data"));
             // Preserve these small exact file-write artifacts for diagnosis; no real save path is touched.
         }
+        [Test] public void AutomaticCheckpointAcknowledgesCapturedRevisionAfterLiveStateChanges()
+        {
+            using var started = new System.Threading.ManualResetEventSlim();
+            using var release = new System.Threading.ManualResetEventSlim();
+            string detached = null;
+            var writer = new GreaterWastelandCheckpointWriter("unused", (path, text) =>
+            {
+                detached = text; started.Set();
+                if (!release.Wait(2000)) throw new TimeoutException("Fixture checkpoint was not released.");
+            });
+            Set(service, "writer", writer);
+            var capturedRevision = cargo.State.Revision;
+            try
+            {
+                typeof(GreaterWastelandInventorySaveService).GetMethod("QueueCheckpoint", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(service, null);
+                Assert.That(started.Wait(2000), Is.True);
+                Assert.That(service.WriteStatus, Is.EqualTo(GreaterWastelandInventorySaveService.CheckpointWriteStatus.Queued));
+                Assert.That(cargo.State.TryAdd(new TopDown3DItemAmount("resource.ironstone_ore", 1)).Succeeded, Is.True);
+                release.Set();
+                var observe = typeof(GreaterWastelandInventorySaveService).GetMethod("ObserveWriter", BindingFlags.Instance | BindingFlags.NonPublic);
+                Assert.That(System.Threading.SpinWait.SpinUntil(() =>
+                {
+                    observe.Invoke(service, null);
+                    return service.WriteStatus == GreaterWastelandInventorySaveService.CheckpointWriteStatus.Completed;
+                }, 2000), Is.True);
+                Assert.That(service.CompletedCargoRevision, Is.EqualTo(capturedRevision));
+                Assert.That(service.CompletedCargoRevision, Is.LessThan(cargo.State.Revision));
+                Assert.That(GreaterWastelandInventoryFile.TryDecode(detached, out var captured), Is.True);
+                Assert.That(captured.cargo.Slots[0].Quantity, Is.EqualTo(2));
+                Assert.That(cargo.State.Slots[0].Quantity, Is.EqualTo(3));
+            }
+            finally { release.Set(); writer.Drain(out _, out _); }
+        }
         [Test] public void InventoryOwnersReconstructTheirOwnRetainedSnapshots()
         {
             Set(kit, "reloadSnapshot", kit.CaptureSnapshot()); Set(cargo, "reloadSnapshot", cargo.State.CaptureSnapshot());

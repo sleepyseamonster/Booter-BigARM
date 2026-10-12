@@ -70,7 +70,12 @@ namespace BooterBigArm.TopDown3D
         }
         public static void Write(string path, GreaterWastelandInventorySnapshot snapshot)
         {
-            var text = Encode(snapshot);
+            WriteEncoded(path, Encode(snapshot));
+        }
+        // Immutable encoding is captured on the main thread. This method uses only filesystem/BCL APIs.
+        internal static void WriteEncoded(string path, string text)
+        {
+            if (string.IsNullOrEmpty(text)) throw new ArgumentException("A captured checkpoint is required.", nameof(text));
             if (Encoding.UTF8.GetByteCount(text) > MaximumBytes) throw new InvalidDataException("Checkpoint exceeds its size limit.");
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             var temporary = path + ".pending";

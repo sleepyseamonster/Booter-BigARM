@@ -23,6 +23,13 @@ namespace BooterBigArm.TopDown3D
         private bool ready, recoveryRequired, applying;
         private float nextSave;
         private long kitRevision, cargoRevision, cacheRevision;
+        private long submittedKitRevision, submittedCargoRevision, submittedCacheRevision;
+        private GreaterWastelandCheckpointWriter writer;
+        public enum CheckpointWriteStatus { Idle, Queued, Completed, Failed }
+        public CheckpointWriteStatus WriteStatus { get; private set; }
+        public long CompletedKitRevision => kitRevision;
+        public long CompletedCargoRevision => cargoRevision;
+        public long CompletedCacheRevision => cacheRevision;
         public bool RecoveryRequired => recoveryRequired;
         public string SavePath => Path.Combine(Application.persistentDataPath, "GreaterWasteland", "inventory-v1.json");
 
@@ -51,7 +58,8 @@ namespace BooterBigArm.TopDown3D
                 catch (Exception exception) when (exception is IOException || exception is UnauthorizedAccessException || exception is ArgumentException)
                 { RequireRecovery("Saved inventory could not be read. It is preserved; automatic saving is disabled."); }
             }
-            RememberRevisions(); nextSave = Time.unscaledTime + 30f;
+            RememberRevisions(); RememberSubmittedRevisions(); nextSave = Time.unscaledTime + 30f;
+            writer = new GreaterWastelandCheckpointWriter(SavePath);
         }
 
         private bool SafeCheckpoint => ready && !applying && !recoveryRequired
@@ -76,27 +84,69 @@ namespace BooterBigArm.TopDown3D
         }
         private void LateUpdate()
         {
+            ObserveWriter();
             if (!SafeCheckpoint) return;
-            if (Time.unscaledTime >= nextSave || kitRevision != kit.State.Revision
-                || cargoRevision != cargo.State.Revision || cacheRevision != cache.State.Revision) Save();
+            if (Time.unscaledTime >= nextSave || submittedKitRevision != kit.State.Revision
+                || submittedCargoRevision != cargo.State.Revision || submittedCacheRevision != cache.State.Revision) QueueCheckpoint();
+        }
+        private void QueueCheckpoint()
+        {
+            var snapshot = Capture();
+            if (!Supported(snapshot.booterPosition) || !Supported(snapshot.leggerPosition)) return;
+            // Encoding detaches every reference from mutable live state before handing work to another thread.
+            var request = new GreaterWastelandCheckpointWriter.Checkpoint(GreaterWastelandInventoryFile.Encode(snapshot),
+                kit.State.Revision, cargo.State.Revision, cache.State.Revision);
+            if (writer == null || !writer.Queue(request)) return;
+            RememberSubmittedRevisions(); nextSave = Time.unscaledTime + 30f;
+            WriteStatus = CheckpointWriteStatus.Queued;
+        }
+        private void ObserveWriter()
+        {
+            if (writer == null || !writer.Poll(out var completed, out var error)) return;
+            if (error != null) { RequireRecovery("Inventory checkpoint could not be written. Previous files are preserved; automatic saving is disabled."); return; }
+            kitRevision = completed.KitRevision; cargoRevision = completed.CargoRevision; cacheRevision = completed.CacheRevision;
+            WriteStatus = writer.Busy ? CheckpointWriteStatus.Queued : CheckpointWriteStatus.Completed;
+        }
+        private bool DrainWriter()
+        {
+            if (writer == null) return true;
+            if (writer.Failed && recoveryRequired) return false;
+            if (!writer.Drain(out var completed, out var error))
+            {
+                RequireRecovery("Inventory checkpoint could not be completed. Previous files are preserved; automatic saving is disabled.");
+                return false;
+            }
+            if (completed != null)
+            {
+                kitRevision = completed.KitRevision; cargoRevision = completed.CargoRevision; cacheRevision = completed.CacheRevision;
+                WriteStatus = CheckpointWriteStatus.Completed;
+            }
+            return true;
         }
         public bool Save()
         {
             if (!SafeCheckpoint) return false;
+            if (!DrainWriter()) return false;
             try
             {
                 var snapshot = Capture();
                 if (!Supported(snapshot.booterPosition) || !Supported(snapshot.leggerPosition)) return false;
                 GreaterWastelandInventoryFile.Write(SavePath, snapshot);
-                RememberRevisions(); nextSave = Time.unscaledTime + 30f; return true;
+                RememberRevisions(); RememberSubmittedRevisions(); nextSave = Time.unscaledTime + 30f;
+                WriteStatus = CheckpointWriteStatus.Completed; return true;
             }
             catch (Exception exception) when (exception is IOException || exception is UnauthorizedAccessException)
             { RequireRecovery("Inventory checkpoint could not be written. Previous files are preserved; automatic saving is disabled."); return false; }
         }
         private void RememberRevisions()
         { kitRevision = kit.State.Revision; cargoRevision = cargo.State.Revision; cacheRevision = cache.State.Revision; }
+        private void RememberSubmittedRevisions()
+        { submittedKitRevision = kit.State.Revision; submittedCargoRevision = cargo.State.Revision; submittedCacheRevision = cache.State.Revision; }
         private void RequireRecovery(string message)
-        { recoveryRequired = true; Debug.LogWarning(message, this); kit?.GetComponent<TopDown3DPlayerActionController>()?.ReportFeedback(message); }
+        {
+            recoveryRequired = true; WriteStatus = CheckpointWriteStatus.Failed; Debug.LogWarning(message, this);
+            if (kit != null) kit.GetComponent<TopDown3DPlayerActionController>()?.ReportFeedback(message);
+        }
 
         internal bool Restore(GreaterWastelandInventorySnapshot snapshot)
         {
@@ -171,6 +221,7 @@ namespace BooterBigArm.TopDown3D
             => value != null && settings != null && value.version == 1 && double.IsFinite(value.remaining)
                 && value.capacity == settings.capacity && value.remaining >= 0 && value.remaining <= value.capacity;
         private void OnApplicationQuit() { if (SafeCheckpoint) Save(); }
+        private void OnDisable() => DrainWriter();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void InstallLoaded()
