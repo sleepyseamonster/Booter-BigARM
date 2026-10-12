@@ -47,6 +47,9 @@ namespace BooterBigArm.TopDown3D
         public string WorldId => header.worldId;
         public int CellCount => cells.Count;
         public int RemovedCount => removed.Count;
+        public bool MatchesRecipe(FixedTerrainPopulationIdentity identity, int candidateCount) => identity != null
+            && identity.WorldId == header.worldId && identity.Seed == header.seed && identity.GenerationVersion == header.generationVersion
+            && recipes.TryGetValue(identity.RecipeId, out var recipe) && recipe.version == identity.RecipeVersion && recipe.candidateCount == candidateCount;
 
         public FixedTerrainPopulationState(string worldId, int seed, int generationVersion, string catalogRevision,
             IEnumerable<FixedTerrainPopulationRecipeVersion> recipeVersions,

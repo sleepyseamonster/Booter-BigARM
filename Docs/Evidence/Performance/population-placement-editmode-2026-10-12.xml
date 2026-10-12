@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="54" result="Passed" total="54" passed="54" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:31Z" duration="2.1931682">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="923" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:31Z" duration="2.193168" total="54" passed="54" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2102" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/PerformanceImplementation20261011-01/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="923" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:31Z" duration="2.181858" total="54" passed="54" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12940" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2103" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="923" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:31Z" duration="2.178019" total="54" passed="54" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2104" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="923" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:31Z" duration="2.174093" total="54" passed="54" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="2106" name="Editor" fullname="BooterBigArm.Tests.Editor" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.038540" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="2099" name="TopDown3DLocalGridPathfinderTests" fullname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests" classname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.036993" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2101" name="RejectsUnloadedBarrierAndUnreachableSteepStep" fullname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests.RejectsUnloadedBarrierAndUnreachableSteepStep" methodname="RejectsUnloadedBarrierAndUnreachableSteepStep" classname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests" runstate="Runnable" seed="611944527" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.014644" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2100" name="RoutesAroundBlockedGroundWithoutCuttingCorner" fullname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests.RoutesAroundBlockedGroundWithoutCuttingCorner" methodname="RoutesAroundBlockedGroundWithoutCuttingCorner" classname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests" runstate="Runnable" seed="674045343" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.006466" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1257" name="FixedTerrainDressingTests" fullname="BooterBigArm.Tests.FixedTerrainDressingTests" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.030547" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1259" name="HolesAndColliderDataMismatchFailClosed" fullname="BooterBigArm.Tests.FixedTerrainDressingTests.HolesAndColliderDataMismatchFailClosed" methodname="HolesAndColliderDataMismatchFailClosed" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" seed="1276190816" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.016255" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1258" name="NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles" fullname="BooterBigArm.Tests.FixedTerrainDressingTests.NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles" methodname="NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles" classname="BooterBigArm.Tests.FixedTerrainDressingTests" runstate="Runnable" seed="91315524" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.011609" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1262" name="FixedTerrainPopulationIdentityTests" fullname="BooterBigArm.Tests.FixedTerrainPopulationIdentityTests" classname="BooterBigArm.Tests.FixedTerrainPopulationIdentityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.049863" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1263" name="CandidateIdentityAndPositionsSurviveReverseOrderAndContextReconstruction" fullname="BooterBigArm.Tests.FixedTerrainPopulationIdentityTests.CandidateIdentityAndPositionsSurviveReverseOrderAndContextReconstruction" methodname="CandidateIdentityAndPositionsSurviveReverseOrderAndContextReconstruction" classname="BooterBigArm.Tests.FixedTerrainPopulationIdentityTests" runstate="Runnable" seed="1211808607" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.042041" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1264" name="NegativeBordersIndependentStreamsAndRecipeVersionsAreExplicit" fullname="BooterBigArm.Tests.FixedTerrainPopulationIdentityTests.NegativeBordersIndependentStreamsAndRecipeVersionsAreExplicit" methodname="NegativeBordersIndependentStreamsAndRecipeVersionsAreExplicit" classname="BooterBigArm.Tests.FixedTerrainPopulationIdentityTests" runstate="Runnable" seed="1513054893" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.004253" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1265" name="VersionOneEncodingMatchesIndependentReferenceVector" fullname="BooterBigArm.Tests.FixedTerrainPopulationIdentityTests.VersionOneEncodingMatchesIndependentReferenceVector" methodname="VersionOneEncodingMatchesIndependentReferenceVector" classname="BooterBigArm.Tests.FixedTerrainPopulationIdentityTests" runstate="Runnable" seed="809100713" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:29Z" duration="0.000728" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1266" name="FixedTerrainPopulationPlannerTests" fullname="BooterBigArm.Tests.FixedTerrainPopulationPlannerTests" classname="BooterBigArm.Tests.FixedTerrainPopulationPlannerTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:31Z" duration="1.293863" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1269" name="BoundedNativeSectorGroundsOnResidentCollisionWithRenderingDisabled" fullname="BooterBigArm.Tests.FixedTerrainPopulationPlannerTests.BoundedNativeSectorGroundsOnResidentCollisionWithRenderingDisabled" methodname="BoundedNativeSectorGroundsOnResidentCollisionWithRenderingDisabled" classname="BooterBigArm.Tests.FixedTerrainPopulationPlannerTests" runstate="Runnable" seed="1178849038" result="Passed" start-time="2026-10-12 08:00:29Z" end-time="2026-10-12 08:00:30Z" duration="0.100157" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1268" name="FootprintHolesSlopeReliefCancellationAndIdentityMismatchFailClosed" fullname="BooterBigArm.Tests.FixedTerrainPopulationPlannerTests.FootprintHolesSlopeReliefCancellationAndIdentityMismatchFailClosed" methodname="FootprintHolesSlopeReliefCancellationAndIdentityMismatchFailClosed" classname="BooterBigArm.Tests.FixedTerrainPopulationPlannerTests" runstate="Runnable" seed="1208788255" result="Passed" start-time="2026-10-12 08:00:30Z" end-time="2026-10-12 08:00:30Z" duration="0.023807" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1267" name="OrderWorkBudgetsProtectedRoutesAndCrossCellSpacingAgree" fullname="BooterBigArm.Tests.FixedTerrainPopulationPlannerTests.OrderWorkBudgetsProtectedRoutesAndCrossCellSpacingAgree" methodname="OrderWorkBudgetsProtectedRoutesAndCrossCellSpacingAgree" classname="BooterBigArm.Tests.FixedTerrainPopulationPlannerTests" runstate="Runnable" seed="1254688408" result="Passed" start-time="2026-10-12 08:00:30Z" end-time="2026-10-12 08:00:31Z" duration="1.166256" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1270" name="FixedTerrainPopulationPresentationTests" fullname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests" classname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.129495" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1274" name="BoundedPoolRestoresCellWithoutRegrowingRemovalAndCollisionIsIndependent" fullname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests.BoundedPoolRestoresCellWithoutRegrowingRemovalAndCollisionIsIndependent" methodname="BoundedPoolRestoresCellWithoutRegrowingRemovalAndCollisionIsIndependent" classname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests" runstate="Runnable" seed="49086745" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.023314" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1271" name="CapacityAdmissionReservesPendingWorkAndKeepsCurrentCoverage" fullname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests.CapacityAdmissionReservesPendingWorkAndKeepsCurrentCoverage" methodname="CapacityAdmissionReservesPendingWorkAndKeepsCurrentCoverage" classname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests" runstate="Runnable" seed="912674016" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.013782" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1273" name="NativeSectorIntegratesAcceptedBasaltLodsStateAndRecreationWithoutTerrainChanges" fullname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests.NativeSectorIntegratesAcceptedBasaltLodsStateAndRecreationWithoutTerrainChanges" methodname="NativeSectorIntegratesAcceptedBasaltLodsStateAndRecreationWithoutTerrainChanges" classname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests" runstate="Runnable" seed="782894702" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.064086" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1272" name="RelevanceChangesReachPartiallyPublishedSuccessorsAndPendingQueueIsBounded" fullname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests.RelevanceChangesReachPartiallyPublishedSuccessorsAndPendingQueueIsBounded" methodname="RelevanceChangesReachPartiallyPublishedSuccessorsAndPendingQueueIsBounded" classname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests" runstate="Runnable" seed="692655005" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.008345" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1275" name="ReplacementRetainsOldCoverageAndRejectsWrongOwnership" fullname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests.ReplacementRetainsOldCoverageAndRejectsWrongOwnership" methodname="ReplacementRetainsOldCoverageAndRejectsWrongOwnership" classname="BooterBigArm.Tests.FixedTerrainPopulationPresentationTests" runstate="Runnable" seed="1484695504" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.015083" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1276" name="FixedTerrainPopulationStateTests" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.021850" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1291" name="FreshRestoreRejectsUnacceptedRemovalAndForgedAcceptanceDigest" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.FreshRestoreRejectsUnacceptedRemovalAndForgedAcceptanceDigest" methodname="FreshRestoreRejectsUnacceptedRemovalAndForgedAcceptanceDigest" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="2116069496" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.002779" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1289" name="InvalidMetadataOrDeltaRejectsAtomically" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.011253" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1278" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;world&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;world&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="355061564" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.001092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1279" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;seed&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;seed&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="1411798207" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1280" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;generation&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;generation&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="1359782103" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000225" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1281" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;catalog&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;catalog&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="1171331950" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1282" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;recipe&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;recipe&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="1245714528" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000208" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1283" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;terrain&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;terrain&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="1681790451" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000264" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1284" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;constraints&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;constraints&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="754048438" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1285" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;duplicate-cell&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;duplicate-cell&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="211094986" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000309" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1286" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;duplicate-removal&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;duplicate-removal&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="834682721" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000322" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1287" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;ordinal&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;ordinal&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="1774539541" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000276" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1288" name="InvalidMetadataOrDeltaRejectsAtomically(&quot;unknown-cell&quot;)" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.InvalidMetadataOrDeltaRejectsAtomically(&quot;unknown-cell&quot;)" methodname="InvalidMetadataOrDeltaRejectsAtomically" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="1266177305" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1277" name="RemovalSurvivesCacheReleaseRecreationSerializationAndTerrainExpansion" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.RemovalSurvivesCacheReleaseRecreationSerializationAndTerrainExpansion" methodname="RemovalSurvivesCacheReleaseRecreationSerializationAndTerrainExpansion" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="1666035239" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.002040" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1290" name="SnapshotsAreDetachedSortedAndUnacceptedCandidatesCannotMutate" fullname="BooterBigArm.Tests.FixedTerrainPopulationStateTests.SnapshotsAreDetachedSortedAndUnacceptedCandidatesCannotMutate" methodname="SnapshotsAreDetachedSortedAndUnacceptedCandidatesCannotMutate" classname="BooterBigArm.Tests.FixedTerrainPopulationStateTests" runstate="Runnable" seed="988364391" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000936" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1292" name="FixedTerrainRenderWindowTests" fullname="BooterBigArm.Tests.FixedTerrainRenderWindowTests" classname="BooterBigArm.Tests.FixedTerrainRenderWindowTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.033175" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1295" name="CameraUnionImmediateArrivalsRetentionAndFailOpenAreExplicit" fullname="BooterBigArm.Tests.FixedTerrainRenderWindowTests.CameraUnionImmediateArrivalsRetentionAndFailOpenAreExplicit" methodname="CameraUnionImmediateArrivalsRetentionAndFailOpenAreExplicit" classname="BooterBigArm.Tests.FixedTerrainRenderWindowTests" runstate="Runnable" seed="1366376319" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.011865" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1293" name="DistantEditorPreviewCamerasDoNotUndoGameRenderingWindow" fullname="BooterBigArm.Tests.FixedTerrainRenderWindowTests.DistantEditorPreviewCamerasDoNotUndoGameRenderingWindow" methodname="DistantEditorPreviewCamerasDoNotUndoGameRenderingWindow" classname="BooterBigArm.Tests.FixedTerrainRenderWindowTests" runstate="Runnable" seed="313806934" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000434" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1297" name="ExplicitCameraPreparationIncludesRegisteredLightWithoutSunAssignment" fullname="BooterBigArm.Tests.FixedTerrainRenderWindowTests.ExplicitCameraPreparationIncludesRegisteredLightWithoutSunAssignment" methodname="ExplicitCameraPreparationIncludesRegisteredLightWithoutSunAssignment" classname="BooterBigArm.Tests.FixedTerrainRenderWindowTests" runstate="Runnable" seed="2017241033" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.012078" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1296" name="LowSunIncludesRemoteCastersAndHorizonFailsOpen" fullname="BooterBigArm.Tests.FixedTerrainRenderWindowTests.LowSunIncludesRemoteCastersAndHorizonFailsOpen" methodname="LowSunIncludesRemoteCastersAndHorizonFailsOpen" classname="BooterBigArm.Tests.FixedTerrainRenderWindowTests" runstate="Runnable" seed="458444196" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000994" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1294" name="WindowPreservesCollisionNeighboursDataAndOriginalFlags" fullname="BooterBigArm.Tests.FixedTerrainRenderWindowTests.WindowPreservesCollisionNeighboursDataAndOriginalFlags" methodname="WindowPreservesCollisionNeighboursDataAndOriginalFlags" classname="BooterBigArm.Tests.FixedTerrainRenderWindowTests" runstate="Runnable" seed="581083254" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.006460" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1298" name="GreaterWastelandCheckpointWriterTests" fullname="BooterBigArm.Tests.GreaterWastelandCheckpointWriterTests" classname="BooterBigArm.Tests.GreaterWastelandCheckpointWriterTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.030346" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1301" name="DetachedEncodingPreservesFileFormatBackupAndInterruptedWriteProtection" fullname="BooterBigArm.Tests.GreaterWastelandCheckpointWriterTests.DetachedEncodingPreservesFileFormatBackupAndInterruptedWriteProtection" methodname="DetachedEncodingPreservesFileFormatBackupAndInterruptedWriteProtection" classname="BooterBigArm.Tests.GreaterWastelandCheckpointWriterTests" runstate="Runnable" seed="1066488448" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.025474" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1300" name="WorkerFailureStopsPendingWritesAndReportsFailure" fullname="BooterBigArm.Tests.GreaterWastelandCheckpointWriterTests.WorkerFailureStopsPendingWritesAndReportsFailure" methodname="WorkerFailureStopsPendingWritesAndReportsFailure" classname="BooterBigArm.Tests.GreaterWastelandCheckpointWriterTests" runstate="Runnable" seed="1506688603" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.000813" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1299" name="WriterSerializesWritesCoalescesPendingAndAcknowledgesCapturedRevisions" fullname="BooterBigArm.Tests.GreaterWastelandCheckpointWriterTests.WriterSerializesWritesCoalescesPendingAndAcknowledgesCapturedRevisions" methodname="WriterSerializesWritesCoalescesPendingAndAcknowledgesCapturedRevisions" classname="BooterBigArm.Tests.GreaterWastelandCheckpointWriterTests" runstate="Runnable" seed="1581514876" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.001327" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1302" name="GreaterWastelandInventoryPersistenceTests" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.288648" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1311" name="AutomaticCheckpointAcknowledgesCapturedRevisionAfterLiveStateChanges" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.AutomaticCheckpointAcknowledgesCapturedRevisionAfterLiveStateChanges" methodname="AutomaticCheckpointAcknowledgesCapturedRevisionAfterLiveStateChanges" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="1375883298" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.104706" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1318" name="DeployedCampRestoresAndRemainsPackableByItsOwner" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.DeployedCampRestoresAndRemainsPackableByItsOwner" methodname="DeployedCampRestoresAndRemainsPackableByItsOwner" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="1212751005" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.021521" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1316" name="DustFilledDeviceReturnsToolAndDustToSeparateOwnersExactlyOnce" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.DustFilledDeviceReturnsToolAndDustToSeparateOwnersExactlyOnce" methodname="DustFilledDeviceReturnsToolAndDustToSeparateOwnersExactlyOnce" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="970057906" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.012094" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1310" name="FileRoundTripChecksIntegrityAndRetainsPreviousBackup" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.FileRoundTripChecksIntegrityAndRetainsPreviousBackup" methodname="FileRoundTripChecksIntegrityAndRetainsPreviousBackup" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="404314213" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.033363" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1309" name="InvalidCheckpointDoesNotApplyAnyParticipant" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.InvalidCheckpointDoesNotApplyAnyParticipant" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.047689" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1304" name="InvalidCheckpointDoesNotApplyAnyParticipant(&quot;world&quot;)" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.InvalidCheckpointDoesNotApplyAnyParticipant(&quot;world&quot;)" methodname="InvalidCheckpointDoesNotApplyAnyParticipant" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="1866274867" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.008270" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1305" name="InvalidCheckpointDoesNotApplyAnyParticipant(&quot;capacity&quot;)" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.InvalidCheckpointDoesNotApplyAnyParticipant(&quot;capacity&quot;)" methodname="InvalidCheckpointDoesNotApplyAnyParticipant" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="1364264210" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.008338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1306" name="InvalidCheckpointDoesNotApplyAnyParticipant(&quot;unknown-node&quot;)" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.InvalidCheckpointDoesNotApplyAnyParticipant(&quot;unknown-node&quot;)" methodname="InvalidCheckpointDoesNotApplyAnyParticipant" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="2360595" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.007744" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1307" name="InvalidCheckpointDoesNotApplyAnyParticipant(&quot;position&quot;)" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.InvalidCheckpointDoesNotApplyAnyParticipant(&quot;position&quot;)" methodname="InvalidCheckpointDoesNotApplyAnyParticipant" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="1151127715" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.008437" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1308" name="InvalidCheckpointDoesNotApplyAnyParticipant(&quot;algae&quot;)" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.InvalidCheckpointDoesNotApplyAnyParticipant(&quot;algae&quot;)" methodname="InvalidCheckpointDoesNotApplyAnyParticipant" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="1007544338" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.008320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1315" name="InventoryOwnersReconstructTheirOwnRetainedSnapshots" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.InventoryOwnersReconstructTheirOwnRetainedSnapshots" methodname="InventoryOwnersReconstructTheirOwnRetainedSnapshots" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="1435335896" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.011661" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1303" name="JointRestorePreservesCargoCacheDepletionAndSeparatedCompanionPosition" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.JointRestorePreservesCargoCacheDepletionAndSeparatedCompanionPosition" methodname="JointRestorePreservesCargoCacheDepletionAndSeparatedCompanionPosition" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="2020844843" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.009265" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1314" name="LegacyMissingPopulationFieldAndNewVersionOneRoundTripRemainCompatible" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.LegacyMissingPopulationFieldAndNewVersionOneRoundTripRemainCompatible" methodname="LegacyMissingPopulationFieldAndNewVersionOneRoundTripRemainCompatible" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="1608020382" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.010682" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1312" name="PopulationCheckpointRestoresMutationsAndInventoryTogether" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.PopulationCheckpointRestoresMutationsAndInventoryTogether" methodname="PopulationCheckpointRestoresMutationsAndInventoryTogether" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="93623182" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.010271" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1313" name="PopulationMetadataMismatchAndLegacyGraftingRejectBeforeAnyParticipantChanges" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.PopulationMetadataMismatchAndLegacyGraftingRejectBeforeAnyParticipantChanges" methodname="PopulationMetadataMismatchAndLegacyGraftingRejectBeforeAnyParticipantChanges" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="2016396856" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.009709" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1317" name="ResourceAndDeviceDeltasSurviveStateReconstructionTogether" fullname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests.ResourceAndDeviceDeltasSurviveStateReconstructionTogether" methodname="ResourceAndDeviceDeltasSurviveStateReconstructionTogether" classname="BooterBigArm.Tests.GreaterWastelandInventoryPersistenceTests" runstate="Runnable" seed="533773023" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.010145" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1856" name="TopDown3DRouteRetryTests" fullname="BooterBigArm.Tests.TopDown3DRouteRetryTests" classname="BooterBigArm.Tests.TopDown3DRouteRetryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.007447" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1858" name="AlreadyConsumedRouteDoesNotBuildTwiceInOneUpdate" fullname="BooterBigArm.Tests.TopDown3DRouteRetryTests.AlreadyConsumedRouteDoesNotBuildTwiceInOneUpdate" methodname="AlreadyConsumedRouteDoesNotBuildTwiceInOneUpdate" classname="BooterBigArm.Tests.TopDown3DRouteRetryTests" runstate="Runnable" seed="1167167080" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.003310" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1857" name="FailedRoutesRespectDeadlineEvenForMovingTargetsAndCallOverCanInvalidate" fullname="BooterBigArm.Tests.TopDown3DRouteRetryTests.FailedRoutesRespectDeadlineEvenForMovingTargetsAndCallOverCanInvalidate" methodname="FailedRoutesRespectDeadlineEvenForMovingTargetsAndCallOverCanInvalidate" classname="BooterBigArm.Tests.TopDown3DRouteRetryTests" runstate="Runnable" seed="1998877342" result="Passed" start-time="2026-10-12 08:00:31Z" end-time="2026-10-12 08:00:31Z" duration="0.001599" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,304 @@
+{
+  "source": "D:\\Arc & Dust\\Project",
+  "candidate": "D:\\BooterBigArmValidation\\PerformanceImplementation20261011-01",
+  "source_files": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs",
+      "sha256": "80a4ae89a673a2f48ec9703cde8d04832e6f4ad2ec6f6be1aff8f78666d374cd"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs.meta",
+      "sha256": "2dcde93ab98dda17ec2e2185b6f4979eeb231579989f959278fe3eef889bbbd2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPlanner.cs",
+      "sha256": "7dff003b98e0b46a8d285583e3bc08df287ea241df1df1e38d9fe4c384b1afa1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPlanner.cs.meta",
+      "sha256": "4f6a792cf3a204c44f77070b125f6dbee7f5744d1d55eea046c6deca7c75238f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs",
+      "sha256": "f8ce2b8a38bb7380e59d64ca825d38789a6b587bac6a707434a5d3d12559cf38"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs.meta",
+      "sha256": "d54d77bdbaac15ff023744e24b4be31275236bcaeefbbb55733b390825628c2e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs",
+      "sha256": "614366472e6d36ae5383d2233de32d4e73797717a97b0918d2492427df7dee08"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs.meta",
+      "sha256": "7e765641f787ac39f1a58e3704845804055ad1848a21cfb8b93e102b754aa044"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs",
+      "sha256": "0e1a10e62a02c6c5dcd37c4b016ea2ffe5733bc82167a6bb992af5381769a51e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs.meta",
+      "sha256": "7aa347310665511a36a6a77c08e4e073056a39c16f8b9ebaad7b9d8d687b6162"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs",
+      "sha256": "5ef2cbc1924b874a10b1e5c4158eaa11a6c1366bef0c1d5a08b280b138bc89f1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs.meta",
+      "sha256": "e365f03a959f1ad999404923f8b3e8300d312782842e1b7b158996ecd532da1c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs",
+      "sha256": "b76d3181b056e884b54e3e6cc056355483b8762ec670436168ee22c8375d53ab"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs.meta",
+      "sha256": "941c10e73d8fb3587637ec01e9dc21ba4cdc8958830e55fae8164a26f4c4d01b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandCheckpointWriter.cs",
+      "sha256": "9989e6b0fda96ac390536eaac1509bdc4d582abc1828cb394dba58fb8d34dfc1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandCheckpointWriter.cs.meta",
+      "sha256": "84f679f0fd656701dc9c4adf6b54921040e45d477241a4bc4ed141e15d93b4e9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs",
+      "sha256": "f98611bbe7979ab82ba89b60139b2847b05b4016bab704c3c2720f2c7f2ae1c7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs.meta",
+      "sha256": "c48b087ed4872b1ae961a700d15656884ca3aa6aef2b9e3ed64203c3df2922de"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs",
+      "sha256": "33900c973bc7430c3224790a257d52d85de4fd848f3fc24615577b11657e185b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs.meta",
+      "sha256": "5ea623ece8ba7cd2340919e05df9b612cf411521adeb752c1de69755ac271012"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs",
+      "sha256": "53dd269a70fa9154219a1e6b8fa6d37f9a99403af3e0aac142194530af84a179"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs.meta",
+      "sha256": "b554628c3ca8bdf09eb79e35c0273facd6a33af0612c3a41c3ca4aa7586decb9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainDressingTests.cs",
+      "sha256": "416dcd978c7f0ecd78b8f578251aca36b2f6e142e7d72a24412122506e5b14ef"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainDressingTests.cs.meta",
+      "sha256": "5083b24b1f84b0055930feaa869b58250885505ad2be76f9d1126ec57848d8e6"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationIdentityTests.cs",
+      "sha256": "5429f4a6c597b3bb6a8dcf60f42e2e07df9c78921667c1f599264f650ff7fad4"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationIdentityTests.cs.meta",
+      "sha256": "128307d147d5bb690ef5fa90a42c141f9c2773f58b515f5f17f96f887dca8c24"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationPlannerTests.cs",
+      "sha256": "f779fb3be60c46009a1bacfa8adece957099441a6b149c961a66e5c4070abf96"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationPlannerTests.cs.meta",
+      "sha256": "e692ca52539c93246e44f245d6669d7922cb43a9a3125219d0de55212865188b"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationPresentationTests.cs",
+      "sha256": "6597a29c6118555100fc7d1da142787f60d7556f4812fa0a465aa2ae3003335d"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationPresentationTests.cs.meta",
+      "sha256": "30679d09a942d32a6b8476aebae9088fd1166cb19a701540341751a21128f969"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationStateTests.cs",
+      "sha256": "4cadae09a8a004a1cc85af01b03de0b4ce4bd7ef074f4481e27f2d0ba38f9bc0"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationStateTests.cs.meta",
+      "sha256": "8efc9760610a5434875a4cac4b501d2bc78460b52a71f21fb0ccc4d3bc5d53ae"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainRenderWindowTests.cs",
+      "sha256": "42f1ec3ddf1e63d2dce989a1583b8a56885514fb4163c60408ea80f46e64ae31"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainRenderWindowTests.cs.meta",
+      "sha256": "4cce03315cd98cfc2d5217759e5e8287f81cf15001e999b6d38a79b491c48ae9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandCheckpointWriterTests.cs",
+      "sha256": "d568438b3684bbf6aad881e8fb96dcaab963df7c28cbf6a46ca8e346f893f2d9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandCheckpointWriterTests.cs.meta",
+      "sha256": "011fc5958d31105b500f65cdd1ecd3f3c5ee0d36f358efc4a2c42629c0eafd1d"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandInventoryPersistenceTests.cs",
+      "sha256": "07ffcfeccc46da6db215fce70df0425539c9cc68867e9d3524988da5a274ee97"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandInventoryPersistenceTests.cs.meta",
+      "sha256": "9480fc3dd0b97df04a9583e86375b07ebbac0e93e4db0a78694a9160c3d8b8fc"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DRouteRetryTests.cs",
+      "sha256": "7bed5ed0680a5b9bb43978fc803f4a281a135bc37e1c2736a934a401cd84ee3c"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DRouteRetryTests.cs.meta",
+      "sha256": "871ed50c713f348834a0436ef54b1ed18c0bdfb709e90c418f714023860cf3fe"
+    }
+  ],
+  "asset_and_configuration_files": [
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01.fbx",
+      "sha256": "dd1810d5d9cc77fbc5242f4009e3be90d8b980e72efaedd5a851cf3e748e845a"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01.fbx.meta",
+      "sha256": "55b86923e29c310335380cc013c880607c61b8fcca628fb51c4aa3da2542a542"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_BaseColor.png",
+      "sha256": "0b1f43d32341c4aa7d9a1350a916161eac6645e07ac44b271ef40aa7385d96c1"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_BaseColor.png.meta",
+      "sha256": "d9f104af3a100cb4294e5f21f0d7419deb8961d6bcde8b89e186000b45463da7"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Collision.asset",
+      "sha256": "b0db0d73065895e15a5771bfc938d41fda2a4c29bc3ad3a8c3e5ebd56c54d4d0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Collision.asset.meta",
+      "sha256": "942f281a4654f609b5aa8c51af74c5a6f97cd1fbd8ff587a846b433f22901e36"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD0.asset",
+      "sha256": "2e09098724ed076aba0097514409c158290c4b54cc4f22540d36748603327cf4"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD0.asset.meta",
+      "sha256": "0fe41d547c42ee03209469746fd8acf0447bf51bdfd1ef9b273b6ded40353ee0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD1.asset",
+      "sha256": "d8dd145d84399be35b6350bb2c4607c46997c62a29980f45c445053e1c512879"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD1.asset.meta",
+      "sha256": "7baf9406ed25babb61fecbc609261e589650b75265bbc7b1124b1486d0d92fb0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD2.asset",
+      "sha256": "54a8c3d4d4104dd187c9993bba8990a704a08d66d3e9f0dcc9ee4170ed7bdbdf"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD2.asset.meta",
+      "sha256": "15bb5aabaa08830c85124c1b4be20d9ac91a364b068616367b39f94a550a0bb5"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_MetallicSmoothness.png",
+      "sha256": "479ca0901e024de344b25c5a4f02c02edad447df51e5a6dd3e0e7ee741fc2bb0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_MetallicSmoothness.png.meta",
+      "sha256": "e1324322d38b2efc7e9108c549d074d7d551301679a8b07df69b9c28b8b3d5d8"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Normal.png",
+      "sha256": "2afbc5cfd66129eecc16ffdeedd20084feecb6d85eebbb043fd72adf906b8487"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Normal.png.meta",
+      "sha256": "afea3910b682f0df894bc59524d5bf5a458930e353f993e6c6f2d797313f1fcc"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Occlusion.png",
+      "sha256": "b48bede0d51e4572e8ccf05336e336bea4b7a649f8a8853496fe5f79ee8dc42f"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Occlusion.png.meta",
+      "sha256": "7d91c274226c2d58414f0e75b083cdf363db2e6bd3a55e1220e592e486e97692"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Roughness.png",
+      "sha256": "d439990f11ae0a1c578eed5521ae80cf49d59f430b155869474e1bb46d300a10"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Roughness.png.meta",
+      "sha256": "e4716cb1136cae3bd64f38e3fd94811dbf36c69fa65811fd6264536880e0831b"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/SculptedBasalt01.mat",
+      "sha256": "972ccd072918b7146180ee1a1c4dcb5097a1d84c1e4e75f929434fc3d78d3ab4"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/SculptedBasalt01.mat.meta",
+      "sha256": "3c3105962f2847d5408d473e127200494140039bf6deb671f7d70d26fc489324"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/SculptedBasalt01.prefab",
+      "sha256": "fed12cef88b7268c160ee49b4e52284d18eb6eb727c99a80fe08bd6180e0ed00"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/SculptedBasalt01.prefab.meta",
+      "sha256": "56fcaa3861c9af9219fa52ecf1c83f826bcd55e48c7bef6eb125876f47af98a6"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/SculptedRockFusionParticipant.cs",
+      "sha256": "446ec087a5f6a0df1312e23a8aff0e9d059bb8b99c252ef45e50b7051c1714f2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/SculptedRockFusionParticipant.cs.meta",
+      "sha256": "09ec91f59edba5bf6d71d8bb26106442abd901a15cc6c61365f748854b079a82"
+    },
+    {
+      "path": "Packages/manifest.json",
+      "sha256": "a9b4f332893effbb67f87b48508240992d76968b8b78f870f8f05f12a436f409"
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "sha256": "d2adab2cb95c215760c616ac81950f6eab23ae18aeed23d69b9c58fe63c8f473"
+    },
+    {
+      "path": "ProjectSettings/ProjectVersion.txt",
+      "sha256": "8468d7add4c1613c42224053cb9c889688ccf141875f44065a40e6d133bc3ea7"
+    }
+  ],
+  "date": "2026-10-12",
+  "editor": "6000.4.0f1",
+  "mode": "background batchmode/nographics focused EditMode",
+  "result": {
+    "total": 54,
+    "passed": 54,
+    "failed": 0,
+    "skipped": 0
+  },
+  "source_matches_candidate": true,
+  "xml_sha256": "9407c4b7dc975ef9a80b991c9f640cff840fc29bb0292fdcf19a0e7a8021f4ef",
+  "scope": "Bounded placement and pooled static-art integration; synthetic 16-tile native sector and accepted SculptedBasalt01 assets.",
+  "limits": [
+    "No saved production scene or native asset changes",
+    "No production seed/population binding, demand driver or gameplay resource integration",
+    "No Player FPS, graphics capture or appearance/traversal acceptance",
+    "Nine footprint probes are conservative sample checks, not exhaustive arbitrary-hole coverage",
+    "Static art only; native terrain queries remain main-thread work",
+    "1 MiB save limit remains; partitioned checkpoint integration pending"
+  ]
+}
