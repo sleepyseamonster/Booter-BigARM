@@ -1,0 +1,40 @@
+{
+  "mode": "synthetic_cpu_reference_study",
+  "scope": "1,024 metre square synthetic X/Z domain; no terrain samples, Unity objects, rendering, physics or production saves",
+  "identityCellMetres": 256,
+  "identityCellCount": 16,
+  "rawCandidateCount": 1024,
+  "acceptedRecords": 974,
+  "minimumSpacingMetres": 12.062108937228501,
+  "minimumCrossBorderSpacingMetres": 12.279237025848667,
+  "requiredSpacingMetres": 12,
+  "orderDigests": [
+    "d50b01243c9c903407e3adfbb4d7867c08a793c3d4c38d7ad3edeb38b80c5082",
+    "d50b01243c9c903407e3adfbb4d7867c08a793c3d4c38d7ad3edeb38b80c5082",
+    "d50b01243c9c903407e3adfbb4d7867c08a793c3d4c38d7ad3edeb38b80c5082"
+  ],
+  "generationTimesMs": [
+    22.15729997260496,
+    21.28599997377023,
+    22.32059999369085
+  ],
+  "occupiedRenderBatchesByMetres": {
+    "64": 252,
+    "128": 64,
+    "256": 16
+  },
+  "freshWorkPartitionDigests": {
+    "64": "d50b01243c9c903407e3adfbb4d7867c08a793c3d4c38d7ad3edeb38b80c5082",
+    "128": "d50b01243c9c903407e3adfbb4d7867c08a793c3d4c38d7ad3edeb38b80c5082",
+    "256": "d50b01243c9c903407e3adfbb4d7867c08a793c3d4c38d7ad3edeb38b80c5082"
+  },
+  "checks": {
+    "orderIndependent": true,
+    "uniqueOwnershipAndIds": true,
+    "crossBorderSpacing": true,
+    "protectedSiteExclusion": true,
+    "renderRepartitionPreservesIds": true,
+    "sparseDepletionSurvivesRegeneration": true
+  },
+  "limits": "Does not establish Unity performance, GPU/CPU bit parity, production density, terrain grounding, maximal Poisson packing, or save migration correctness."
+}

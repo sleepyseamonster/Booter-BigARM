@@ -1,0 +1,231 @@
+{
+  "date": "2026-10-11",
+  "timezone": "America/Phoenix",
+  "status": "Research recommendation, not production implementation",
+  "head": "133a54b9876a7a6962224d8606cbeb12a90773fc",
+  "editor": "6000.4.0f1",
+  "urp": "17.4.0",
+  "sceneHash": "442E8EA6B53C2A8581427540556C632D9889462ED0794755BB96FD79DEB57126",
+  "auditedSceneHash": "442E8EA6B53C2A8581427540556C632D9889462ED0794755BB96FD79DEB57126",
+  "terrainCount": 8448,
+  "areaSquareKm": 553.648128,
+  "constraints": "Fixed authored terrain remains resident; no terrain generation or streaming.",
+  "consolidationStudies": [
+    {
+      "tileMetres": 256,
+      "heightmapResolution": 257,
+      "terrainComponents": 8448,
+      "sampleCount": 557981952,
+      "metresPerHeightInterval": 1
+    },
+    {
+      "tileMetres": 512,
+      "heightmapResolution": 513,
+      "terrainComponents": 2112,
+      "sampleCount": 555812928,
+      "metresPerHeightInterval": 1
+    },
+    {
+      "tileMetres": 1024,
+      "heightmapResolution": 1025,
+      "terrainComponents": 528,
+      "sampleCount": 554730000,
+      "metresPerHeightInterval": 1
+    }
+  ],
+  "apiProof": {
+    "method": "Offline Roslyn compilation against installed Editor assembly references; no Unity launch or native API execution",
+    "supported": [
+      "Terrain.keepUnusedRenderingResources",
+      "Terrain.heightmapPixelError",
+      "Terrain.heightmapMaximumLOD",
+      "TerrainData.heightmapResolution",
+      "CullingGroup.SetBoundingDistances",
+      "Graphics.RenderMeshIndirect",
+      "GraphicsBuffer.IndirectDrawIndexedArgs.size",
+      "SystemInfo.supportsAsyncGPUReadback",
+      "AsyncGPUReadback",
+      "BatchRendererGroup",
+      "LODGroup"
+    ],
+    "unsupportedProbeDiagnostic": "CS1061",
+    "terrainModuleSHA256": "7493728E0AFB45F27BC83700274372552F587AFDD28CD26F5BD5C708495AACB1",
+    "compatibleProbeExitCode": 0,
+    "notAvailable": [
+      "Terrain.enableHeightmapLODFrustumCulling"
+    ]
+  },
+  "sources": [
+    {
+      "id": "terrain_settings",
+      "title": "Terrain settings",
+      "supports": "Drawing and instancing controls, geometry/detail settings, resolution tradeoffs.",
+      "url": "https://docs.unity3d.com/6000.0/Documentation/Manual/terrain-OtherSettings.html"
+    },
+    {
+      "id": "heightmap_resolution",
+      "title": "TerrainData heightmapResolution",
+      "supports": "Allowed 513 and 1025 grids; consolidation sizes are project-derived proposals.",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/ScriptReference/TerrainData-heightmapResolution.html"
+    },
+    {
+      "id": "culling_group",
+      "title": "Introduction to CullingGroup",
+      "supports": "Distance bands, sphere bounds, asynchronous camera culling and multiple-camera aggregation.",
+      "url": "https://docs.unity3d.com/6000.0/Documentation/Manual/CullingGroupAPI.html"
+    },
+    {
+      "id": "occlusion",
+      "title": "Occlusion culling",
+      "supports": "CPU and memory costs; enclosed-space suitability; open-wasteland priority is a project inference.",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/Manual/OcclusionCulling.html"
+    },
+    {
+      "id": "lod",
+      "title": "LODGroup",
+      "supports": "Screen-size-based renderer LOD selection.",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/ScriptReference/LODGroup.html"
+    },
+    {
+      "id": "gpu_compatibility",
+      "title": "GPU Resident Drawer compatibility",
+      "supports": "MeshRenderer and shader requirements; MaterialPropertyBlock restriction.",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/Manual/urp/make-object-compatible-gpu-rendering.html"
+    },
+    {
+      "id": "gpu_performance",
+      "title": "GPU Resident Drawer performance",
+      "supports": "Repeated meshes/shader variants and numerous draw calls; setup-dependent gains.",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/Manual/urp/gpu-resident-drawer-performance.html"
+    },
+    {
+      "id": "batching",
+      "title": "Introduction to batching meshes",
+      "supports": "Whole-mesh combining reduces individual culling; dynamic batching can increase CPU cost.",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/Manual/DrawCallBatching.html"
+    },
+    {
+      "id": "update_budgeting",
+      "title": "Advanced programming and code architecture",
+      "supports": "Update managers, event-driven work, time slicing, pooling and caching.",
+      "url": "https://unity.com/how-to/advanced-programming-and-code-architecture"
+    },
+    {
+      "id": "ui",
+      "title": "Unity UI optimization tips",
+      "supports": "Canvas update isolation and reducing unnecessary UI work.",
+      "url": "https://unity.com/how-to/unity-ui-optimization-tips"
+    },
+    {
+      "id": "texture_cpu_copy",
+      "title": "Texture isReadable",
+      "supports": "Readable textures retain an additional CPU-accessible copy.",
+      "url": "https://docs.unity3d.com/cn/6000.0/ScriptReference/Texture-isReadable.html"
+    },
+    {
+      "id": "mesh_cpu_copy",
+      "title": "Mesh isReadable",
+      "supports": "Readable mesh memory and legitimate CPU-use exceptions.",
+      "url": "https://docs.unity3d.com/cn/6000.0/ScriptReference/Mesh-isReadable.html"
+    },
+    {
+      "id": "mip_limits",
+      "title": "Mipmap streaming usage",
+      "supports": "Custom geometry and nonstandard/modified UV limitations; explicit mip requests.",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/Manual/TextureStreaming-use.html"
+    },
+    {
+      "id": "json_threads",
+      "title": "JsonUtility ToJson",
+      "supports": "Background-thread serialization and no concurrent mutation of the serialized object.",
+      "url": "https://docs.unity3d.com/6000.0/Documentation/ScriptReference/JsonUtility.ToJson.html"
+    },
+    {
+      "id": "broadphase",
+      "title": "Select a broad phase pruning algorithm",
+      "supports": "Large mostly-static scene pruning tradeoffs; profiling before changing algorithms.",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/Manual/physics-optimization-cpu-broad-phase.html"
+    },
+    {
+      "id": "player_profiling",
+      "title": "Collect performance data on a target platform",
+      "supports": "Development Player profiling on the intended target device.",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/Manual/profiling-target-device.html"
+    },
+    {
+      "id": "counter_based_random",
+      "supports": "Deterministic stateless counter/key functions; not an installed dependency or claim about the reference hash distribution.",
+      "title": "Random123",
+      "url": "https://github.com/DEShawResearch/random123"
+    },
+    {
+      "id": "poisson_reference",
+      "supports": "Minimum-distance sampling reference; independent chunk order/ownership is not established by this paper.",
+      "title": "Fast Poisson Disk Sampling in Arbitrary Dimensions",
+      "url": "https://www.cs.ubc.ca/~rbridson/docs/bridson-siggraph07-poissondisk.pdf"
+    },
+    {
+      "id": "indirect_rendering",
+      "supports": "GPU/CPU authored indirect commands, compute support and bounds applied to the draw entity.",
+      "title": "Graphics RenderMeshIndirect",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/ScriptReference/Graphics.RenderMeshIndirect.html"
+    },
+    {
+      "id": "async_readback",
+      "supports": "GPU readback with latency instead of synchronous resource stalls.",
+      "title": "AsyncGPUReadback",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/ScriptReference/Rendering.AsyncGPUReadback.html"
+    },
+    {
+      "id": "gpu_occlusion",
+      "supports": "Depth-based GPU culling with GPU Resident Drawer restrictions and conservative frame history.",
+      "title": "GPU occlusion culling in URP",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/Manual/urp/gpu-culling.html"
+    },
+    {
+      "id": "gpu_setup",
+      "supports": "Forward+/Deferred+, compute platform and object compatibility prerequisites.",
+      "title": "Enable the GPU Resident Drawer",
+      "url": "https://docs.unity3d.com/6000.4/Documentation/Manual/urp/gpu-resident-drawer.html"
+    },
+    {
+      "id": "geometry_clipmaps",
+      "supports": "Foundational nested-grid GPU terrain LOD concept; historical benchmarks do not predict Unity performance.",
+      "title": "Terrain Rendering Using GPU-Based Geometry Clipmaps",
+      "url": "https://developer.nvidia.com/gpugems/gpugems2/part-i-geometric-complexity/chapter-2-terrain-rendering-using-gpu-based-geometry"
+    }
+  ],
+  "authorContext": {
+    "terrainAlwaysResident": true,
+    "landscapePopulationProcedural": true,
+    "chunksRequired": true,
+    "scope": "Research direction; no whole-world population implementation was executed."
+  },
+  "proposedChunkLayers": {
+    "identityMetres": 256,
+    "presentationComparisonsMetres": [
+      64,
+      128
+    ],
+    "coarseSectorMetres": 1024,
+    "gameplayRegions": "Relevant actors independently of camera visibility",
+    "status": "Sizes proposed for controlled comparisons, not validated production settings."
+  },
+  "renderingCompatibility": {
+    "currentPath": "Forward",
+    "currentPathEnumValue": 0,
+    "gpuResidentDrawerEnabled": false,
+    "requiresStudy": "Forward+ or Deferred+ plus compatible shaders and object properties for GPU Resident Drawer",
+    "installedIndirectSignaturesCompile": true,
+    "runtimeDeviceSupportVerified": false
+  },
+  "referenceStudy": {
+    "script": "Tools/Diagnostics/chunk_population_reference_study.py",
+    "scriptSHA256": "5FAC3E13BB55723F86A7D430C1957B1AC5A78A285095ABA97515A195F8FB6BAA",
+    "result": "Docs/Evidence/Performance/chunk-population-reference-2026-10-11.json",
+    "resultSHA256": "906C88A80DA2899B649A0C8B83A8DF72BC131C504E7044BD66A5DF9E6BB5F011",
+    "scope": "Synthetic 1024 m square X/Z domain, no Unity/terrain/physics/GPU or production saves",
+    "checksPassed": 6
+  },
+  "lastInspectedHead": "034fde676d92db5e637b436095bfa3adc94cb032"
+}
