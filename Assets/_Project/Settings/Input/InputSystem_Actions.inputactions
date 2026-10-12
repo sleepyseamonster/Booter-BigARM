@@ -48,7 +48,16 @@
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap(duration=0.45)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenCargo",
+                    "type": "Button",
+                    "id": "724b91c4-4e36-4355-b674-fa29b3b3e52b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.45)",
                     "initialStateCheck": false
                 },
                 {
@@ -179,6 +188,28 @@
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "e76ee57e-9383-42d3-a289-fac15c3efbd6",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "OpenCargo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29ef9a96-fdb8-489e-a984-30ef79e955d2",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "OpenCargo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "",
                     "id": "978bfe49-cc26-4a3d-ab7b-7d7a29327403",

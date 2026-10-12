@@ -128,8 +128,13 @@ namespace BooterBigArm.TopDown3D
                 ? input.GetBindingDisplayName("Gameplay/Interact", "E")
                 : "E";
             label.text = target != null && target.IsAvailable
-                ? $"[{binding}] {target.Prompt}"
+                ? $"[Tap {binding}] {target.Prompt}"
                 : string.Empty;
+            if (actionController != null && actionController.CanOpenCargo)
+            {
+                var cargoBinding = input.GetBindingDisplayName("Gameplay/OpenCargo", "E");
+                label.text += (label.text.Length > 0 ? "\n" : string.Empty) + $"[Hold {cargoBinding}] Open Legger cargo";
+            }
             label.enabled = !string.IsNullOrEmpty(label.text);
         }
 

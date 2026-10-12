@@ -77,10 +77,8 @@ namespace BooterBigArm.TopDown3D
             for (var i = 0; i < count; i++)
             {
                 var collider = candidates[i];
-                var candidate = collider != null
-                    ? collider.GetComponentInParent<TopDown3DBigArmCargoAccess>() as ITopDown3DInteractable
-                    : null;
-                candidate ??= collider != null
+                // Cargo has its own hold command and must never steal a world interaction.
+                ITopDown3DInteractable candidate = collider != null
                     ? collider.GetComponentInParent<TopDown3DIronstoneNode>()
                     : null;
                 candidate ??= collider != null

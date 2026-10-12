@@ -7,6 +7,39 @@ namespace BooterBigArm.TopDown3D
     {
         private TopDown3DResourceCache cacheContext;
         private InputAction nextInventory, previousInventory, quickTransfer;
+        private readonly System.Collections.Generic.HashSet<InputControl> blockedInventoryControls = new();
+
+        private void ArmInventoryControls()
+        {
+            blockedInventoryControls.Clear();
+            foreach (var name in new[] { "UI/Submit", "UI/Click", "UI/QuickTransfer", "UI/NextInventory", "UI/PreviousInventory" })
+            {
+                var action = input?.InputActions?.FindAction(name, false);
+                if (action == null) continue;
+                foreach (var control in action.controls)
+                    if (control is UnityEngine.InputSystem.Controls.ButtonControl button && button.isPressed)
+                        blockedInventoryControls.Add(control);
+            }
+        }
+        private void ReleaseInventoryControls()
+        {
+            blockedInventoryControls.RemoveWhere(control => !control.device.added
+                || control is not UnityEngine.InputSystem.Controls.ButtonControl button || !button.isPressed);
+        }
+        private bool InventoryActivationBlocked
+        {
+            get
+            {
+                foreach (var name in new[] { "UI/Submit", "UI/Click" })
+                {
+                    var action = input?.InputActions?.FindAction(name, false);
+                    if (action == null) continue;
+                    foreach (var control in action.controls)
+                        if (blockedInventoryControls.Contains(control)) return true;
+                }
+                return false;
+            }
+        }
         private bool mutating;
         private bool rememberedCargoFocus;
         private long pendingRevision;
@@ -25,15 +58,21 @@ namespace BooterBigArm.TopDown3D
             if (nextInventory != null) nextInventory.performed += SwitchPanel;
             if (previousInventory != null) previousInventory.performed += SwitchPanel;
             if (quickTransfer != null) quickTransfer.performed += QuickTransfer;
+            InputSystem.onAfterUpdate += ReleaseInventoryControls;
         }
         private void UnbindCommands()
         {
+            InputSystem.onAfterUpdate -= ReleaseInventoryControls;
+            blockedInventoryControls.Clear();
             if (nextInventory != null) nextInventory.performed -= SwitchPanel;
             if (previousInventory != null) previousInventory.performed -= SwitchPanel;
             if (quickTransfer != null) quickTransfer.performed -= QuickTransfer;
             nextInventory = previousInventory = quickTransfer = null;
         }
-        private void SwitchPanel(InputAction.CallbackContext _) => SwitchPanel();
+        private void SwitchPanel(InputAction.CallbackContext context)
+        {
+            if (!blockedInventoryControls.Contains(context.control)) SwitchPanel();
+        }
         public void SwitchPanel()
         {
             if (!CommandsAllowed || cargo == null || eventSystem == null) return;
@@ -46,7 +85,10 @@ namespace BooterBigArm.TopDown3D
             }
             else eventSystem.SetSelectedGameObject(canvas.SlotViews[Mathf.Clamp(lastSelectedSlot, 0, LeftState.Capacity - 1)].gameObject);
         }
-        private void QuickTransfer(InputAction.CallbackContext _) => QuickTransfer();
+        private void QuickTransfer(InputAction.CallbackContext context)
+        {
+            if (!blockedInventoryControls.Contains(context.control)) QuickTransfer();
+        }
         public void QuickTransfer()
         {
             if (!CommandsAllowed || cargo == null) return;

@@ -38,6 +38,14 @@ namespace BooterBigArm.TopDown3D
         private void DisarmAlgae() { algaeRequests = 0; algaeAwaitNeutral = true; algaeOriginDpad = null; algaeAmbiguous = false; }
         private void CaptureAlgae(InputAction.CallbackContext context)
         {
+            CaptureCardinalRequest(context, context.action == drinkAlgae ? 1 : context.action == eatAlgae ? 2 : 4);
+        }
+        private void CaptureDeployCanister(InputAction.CallbackContext context)
+        {
+            CaptureCardinalRequest(context, 8);
+        }
+        private void CaptureCardinalRequest(InputAction.CallbackContext context, int request)
+        {
             if (algaeAwaitNeutral || inputUpdateMode != TopDown3DInputMode.Gameplay
                 || Mode != TopDown3DInputMode.Gameplay || Application.isPlaying && !Application.isFocused) return;
             if (context.control.parent is DpadControl dpad)
@@ -46,7 +54,7 @@ namespace BooterBigArm.TopDown3D
                 var value = dpad.ReadValue();
                 algaeAmbiguous |= Mathf.Abs(value.x) > .1f && Mathf.Abs(value.y) > .1f;
             }
-            algaeRequests |= context.action == drinkAlgae ? 1 : context.action == eatAlgae ? 2 : 4;
+            algaeRequests |= request;
         }
         private static bool PhysicalHeld(InputAction action)
         {
@@ -56,10 +64,13 @@ namespace BooterBigArm.TopDown3D
         }
         private void ResolveAlgaeInput(bool modalRequested)
         {
-            if (!HasAlgaeActions) return;
+            if (!HasAlgaeActions && deployCanisterAction == null) return;
             var requests = algaeRequests; algaeRequests = 0;
             var ambiguous = algaeAmbiguous; algaeAmbiguous = false;
-            var heldCount = (PhysicalHeld(drinkAlgae) ? 1 : 0) + (PhysicalHeld(eatAlgae) ? 1 : 0) + (PhysicalHeld(treatAlgae) ? 1 : 0);
+            // All four gameplay D-pad commands share arbitration and a release gate.
+            // Reject a diagonal before either dosing or starting/confirming placement.
+            var heldCount = (PhysicalHeld(drinkAlgae) ? 1 : 0) + (PhysicalHeld(eatAlgae) ? 1 : 0)
+                + (PhysicalHeld(treatAlgae) ? 1 : 0) + (PhysicalHeld(deployCanisterAction) ? 1 : 0);
             var dpadValue = algaeOriginDpad != null && algaeOriginDpad.device.added ? algaeOriginDpad.ReadValue() : Vector2.zero;
             if (heldCount == 0 && dpadValue.sqrMagnitude < .01f)
             { algaeAwaitNeutral = false; algaeOriginDpad = null; }
@@ -69,7 +80,8 @@ namespace BooterBigArm.TopDown3D
             if (ambiguous || modalRequested || inputUpdateMode != TopDown3DInputMode.Gameplay || Mode != TopDown3DInputMode.Gameplay
                 || heldCount > 1 || (requests & (requests - 1)) != 0
                 || Mathf.Abs(dpadValue.x) > .1f && Mathf.Abs(dpadValue.y) > .1f) return;
-            AlgaeUseRequested?.Invoke(requests == 1 ? TopDown3DAlgaeUse.Drink : requests == 2 ? TopDown3DAlgaeUse.Eat : TopDown3DAlgaeUse.Treat);
+            if (requests == 8) DeployCanisterRequested?.Invoke();
+            else AlgaeUseRequested?.Invoke(requests == 1 ? TopDown3DAlgaeUse.Drink : requests == 2 ? TopDown3DAlgaeUse.Eat : TopDown3DAlgaeUse.Treat);
         }
     }
 }

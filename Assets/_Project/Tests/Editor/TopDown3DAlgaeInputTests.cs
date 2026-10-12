@@ -18,6 +18,7 @@ namespace BooterBigArm.Tests
         private Gamepad pad;
         private Keyboard keyboard;
         private readonly List<TopDown3DAlgaeUse> requests=new();
+        private int deploymentRequests;
         [SetUp] public void Setup()
         {
             original=InputSystem.settings;manual=Object.Instantiate(original);
@@ -28,7 +29,8 @@ namespace BooterBigArm.Tests
             asset=Object.Instantiate(AssetDatabase.LoadAssetAtPath<InputActionAsset>("Assets/_Project/Settings/Input/InputSystem_Actions.inputactions"));
             player=new GameObject("Algae input test");player.SetActive(false);router=player.AddComponent<TopDown3DInputRouter>();
             router.Configure(asset);player.SetActive(true);router.Initialize();router.AlgaeUseRequested+=requests.Add;
-            requests.Clear();Send(new GamepadState());
+            router.DeployCanisterRequested+=()=>deploymentRequests++;
+            deploymentRequests=0;requests.Clear();Send(new GamepadState());
         }
         [TearDown] public void Cleanup()
         {
@@ -93,6 +95,43 @@ namespace BooterBigArm.Tests
             InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.DpadUp));
             InputSystem.QueueStateEvent(pad,new GamepadState());InputSystem.Update();
             Assert.That(requests,Is.EqualTo(new[]{TopDown3DAlgaeUse.Treat}));
+        }
+        [Test] public void DustDownRequiresNeutralBeforePlacementConfirmation()
+        {
+            Send(new GamepadState().WithButton(GamepadButton.DpadDown));
+            Send(new GamepadState().WithButton(GamepadButton.DpadDown));
+            Send(new GamepadState().WithButton(GamepadButton.DpadLeft));
+            Assert.That(deploymentRequests,Is.EqualTo(1));Assert.That(requests,Is.Empty);
+            Send(new GamepadState());Send(new GamepadState().WithButton(GamepadButton.DpadDown));
+            Assert.That(deploymentRequests,Is.EqualTo(2));
+        }
+        [Test] public void DownDiagonalsRejectDeploymentEvenWhenReleasedInSameUpdate()
+        {
+            foreach(var adjacent in new[]{GamepadButton.DpadLeft,GamepadButton.DpadRight})
+            {
+                InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.DpadDown).WithButton(adjacent));
+                InputSystem.QueueStateEvent(pad,new GamepadState());InputSystem.Update();
+            }
+            Assert.That(deploymentRequests,Is.Zero);Assert.That(requests,Is.Empty);
+            Send(new GamepadState().WithButton(GamepadButton.DpadDown));Assert.That(deploymentRequests,Is.EqualTo(1));
+        }
+        [Test] public void MenuAndHeldReturnCannotDeploy()
+        {
+            router.MenuToggleRequested+=router.EnterSystemMenuMode;
+            Send(new GamepadState().WithButton(GamepadButton.Start).WithButton(GamepadButton.DpadDown));
+            Assert.That(deploymentRequests,Is.Zero);
+            router.EnterGameplayMode();Send(new GamepadState().WithButton(GamepadButton.DpadDown));
+            Assert.That(deploymentRequests,Is.Zero);
+            Send(new GamepadState());Send(new GamepadState().WithButton(GamepadButton.DpadDown));
+            Assert.That(deploymentRequests,Is.EqualTo(1));
+        }
+        [Test] public void SimultaneousKeyboardDoseAndDeployRejectBoth()
+        {
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.G,Key.F5));InputSystem.Update();
+            Assert.That(deploymentRequests,Is.Zero);Assert.That(requests,Is.Empty);
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.Update();
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.G));InputSystem.Update();
+            Assert.That(deploymentRequests,Is.EqualTo(1));
         }
     }
 }

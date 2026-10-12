@@ -376,7 +376,8 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleInteract(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed)
+            if (context.phase == InputActionPhase.Performed && Mode == TopDown3DInputMode.Gameplay
+                && inputUpdateMode == TopDown3DInputMode.Gameplay)
             {
                 InteractRequested?.Invoke();
             }
@@ -384,8 +385,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleDeployCanister(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed)
-                DeployCanisterRequested?.Invoke();
+            CaptureDeployCanister(context);
         }
 
         private void HandlePickupCanister(InputAction.CallbackContext context)
@@ -444,6 +444,7 @@ namespace BooterBigArm.TopDown3D
             if (toggle) MenuToggleRequested?.Invoke();
             else if (back) UiCancelRequested?.Invoke();
             ResolveAlgaeInput(toggle || back);
+            ResolveCargoInput(toggle || back);
         }
 
         public void EnterSystemMenuMode() => SetMode(TopDown3DInputMode.SystemMenu);
@@ -499,7 +500,8 @@ namespace BooterBigArm.TopDown3D
                 ignoreMouseLookUntilFrame = Time.frameCount + 1;
                 awaitMoveNeutral = (previousMode == TopDown3DInputMode.Inventory || previousMode == TopDown3DInputMode.SystemMenu || previousMode == TopDown3DInputMode.CampActions
                     || previousMode == TopDown3DInputMode.CampBusy || previousMode == TopDown3DInputMode.CampPlacement)
-                    && Gamepad.current != null && Gamepad.current.leftStick.ReadValue().sqrMagnitude > 0.0484f;
+                    && ((Gamepad.current != null && Gamepad.current.leftStick.ReadValue().sqrMagnitude > 0.0484f)
+                        || KeyboardMoveHeld());
                 awaitLookNeutral = (previousMode == TopDown3DInputMode.Inventory || previousMode == TopDown3DInputMode.Radial || previousMode == TopDown3DInputMode.SystemMenu
                     || previousMode == TopDown3DInputMode.CampActions || previousMode == TopDown3DInputMode.CampBusy || previousMode == TopDown3DInputMode.CampPlacement)
                     && Gamepad.current != null && Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.0484f;
@@ -559,6 +561,14 @@ namespace BooterBigArm.TopDown3D
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+        }
+
+        private static bool KeyboardMoveHeld()
+        {
+            var keyboard = Keyboard.current;
+            return keyboard != null && (keyboard.wKey.isPressed || keyboard.aKey.isPressed
+                || keyboard.sKey.isPressed || keyboard.dKey.isPressed || keyboard.upArrowKey.isPressed
+                || keyboard.downArrowKey.isPressed || keyboard.leftArrowKey.isPressed || keyboard.rightArrowKey.isPressed);
         }
 
         private static void ReleaseCursor()

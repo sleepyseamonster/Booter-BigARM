@@ -33,6 +33,8 @@ namespace BooterBigArm.TopDown3D
         public bool IsGathering => gatherAction != null && gatherAction.IsActive
             || placingHarvester || pickupHarvesterId != null || IsAwaitingCargo;
         public bool IsPlacingHarvester => placementPreview != null;
+        public bool CanOpenCargo => input != null && input.Mode == TopDown3DInputMode.Gameplay
+            && !IsGathering && !IsPlacingHarvester && TopDown3DCargoAccess.CanAccess(bigArmCargo, transform);
         public string PlacementPrompt => placementPreview != null && input != null
             ? $"[{input.GetBindingDisplayName("Gameplay/DeployCanister", "G")}] place  "
                 + $"[{input.GetBindingDisplayName("Gameplay/PickupCanister", "C")}] cancel"
@@ -117,11 +119,6 @@ namespace BooterBigArm.TopDown3D
             if (target is TopDown3DResourceCache cache)
             {
                 CacheAccessRequested?.Invoke(cache);
-                return TopDown3DGatherActionResult.Completed;
-            }
-            if (target is TopDown3DBigArmCargoAccess)
-            {
-                CargoAccessRequested?.Invoke(((TopDown3DBigArmCargoAccess)target).Cargo);
                 return TopDown3DGatherActionResult.Completed;
             }
             if (target is TopDown3DIronstoneNode ironstone && ironstone.Definition.YieldedItem.IsResource)
@@ -268,7 +265,14 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleInteractRequested()
         {
+            if (input == null || input.Mode != TopDown3DInputMode.Gameplay || IsGathering) return;
+            interaction?.RefreshTarget();
             TryBeginCurrentTarget();
+        }
+
+        private void HandleCargoOpenRequested()
+        {
+            if (CanOpenCargo) CargoAccessRequested?.Invoke(bigArmCargo);
         }
 
         private void HandleDeployCanisterRequested()
@@ -503,6 +507,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             input.InteractRequested += HandleInteractRequested;
+            input.CargoOpenRequested += HandleCargoOpenRequested;
             input.ItemActionCancelRequested += CancelGather;
             input.DeployCanisterRequested += HandleDeployCanisterRequested;
             input.PickupCanisterRequested += HandlePickupCanisterRequested;
@@ -515,6 +520,7 @@ namespace BooterBigArm.TopDown3D
             if (subscribed && input != null)
             {
                 input.InteractRequested -= HandleInteractRequested;
+                input.CargoOpenRequested -= HandleCargoOpenRequested;
                 input.ItemActionCancelRequested -= CancelGather;
                 input.DeployCanisterRequested -= HandleDeployCanisterRequested;
                 input.PickupCanisterRequested -= HandlePickupCanisterRequested;

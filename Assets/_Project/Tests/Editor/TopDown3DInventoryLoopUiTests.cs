@@ -77,6 +77,86 @@ namespace BooterBigArm.Tests
             Assert.That(canvas.CargoSlotViews[0].Button.navigation.mode, Is.EqualTo(Navigation.Mode.Explicit));
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void TapInteractsButHoldOpensNearbyCargoWithoutTransfer(bool keyboardInput)
+        {
+            var device = keyboardInput ? (InputDevice)InputSystem.AddDevice<Keyboard>() : InputSystem.AddDevice<Gamepad>();
+            var controller = actor.AddComponent<TopDown3DPlayerActionController>();
+            try
+            {
+                controller.Configure(router, null, kit, null, null);
+                controller.ConfigureCargo(cargo);
+                ui.Configure(router, kit, controller, canvas, ui.EventSystem);
+                cargo.State.TryAdd(new TopDown3DItemAmount("tool.micro_dust_harvester", 1));
+                var taps = 0;
+                router.InteractRequested += () => taps++;
+                void Send(bool pressed)
+                {
+                    if (device is Keyboard keyboard) InputSystem.QueueStateEvent(keyboard,
+                        pressed ? new KeyboardState(Key.E) : new KeyboardState());
+                    else InputSystem.QueueStateEvent((Gamepad)device,
+                        pressed ? new GamepadState().WithButton(GamepadButton.West) : new GamepadState());
+                    InputSystem.Update();
+                }
+                Send(false); Send(true);
+                Assert.That(taps, Is.Zero);
+                Send(false);
+                Assert.That(taps, Is.EqualTo(1));
+                Assert.That(ui.IsOpen, Is.False);
+                Send(true);
+                System.Threading.Thread.Sleep(550);
+                InputSystem.Update();
+                Assert.That(ui.IsOpen, Is.True);
+                Assert.That(taps, Is.EqualTo(1));
+                Assert.That(ui.EventSystem.currentSelectedGameObject, Is.SameAs(canvas.CargoSlotViews[0].gameObject));
+                Assert.That(kit.State.OccupiedSlotCount, Is.Zero);
+                Assert.That(cargo.State.Slots[0].Quantity, Is.EqualTo(1));
+                Send(false);
+                Assert.That(taps, Is.EqualTo(1));
+                if (device is Gamepad)
+                {
+                    Send(true);
+                    Assert.That(kit.State.Slots[0].Quantity, Is.EqualTo(1), "A fresh West press may transfer after release.");
+                }
+            }
+            finally { InputSystem.RemoveDevice(device); Object.DestroyImmediate(controller); }
+        }
+
+        [TestCase(20f, false)]
+        [TestCase(1.5f, true)]
+        public void CargoHoldRejectsDistanceAndBlockedAccess(float distance, bool blocked)
+        {
+            var controller = actor.AddComponent<TopDown3DPlayerActionController>();
+            var blocker = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            try
+            {
+                controller.Configure(router, null, kit, null, null); controller.ConfigureCargo(cargo);
+                cargoObject.transform.position = Vector3.right * distance;
+                blocker.transform.position = new Vector3(.75f, .5f, 0f); blocker.SetActive(blocked);
+                Physics.SyncTransforms();
+                Assert.That(controller.CanOpenCargo, Is.False);
+            }
+            finally { Object.DestroyImmediate(blocker); Object.DestroyImmediate(controller); }
+        }
+
+        [Test]
+        public void HeldKeyboardNavigationMustReleaseBeforeGameplayMovementResumes()
+        {
+            var keyboard = InputSystem.AddDevice<Keyboard>();
+            try
+            {
+                ui.Open();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.W)); InputSystem.Update();
+                ui.Close(); InputSystem.Update();
+                Assert.That(router.MoveValue, Is.EqualTo(Vector2.zero));
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.W)); InputSystem.Update();
+                Assert.That(router.MoveValue.y, Is.GreaterThan(.9f));
+            }
+            finally { InputSystem.RemoveDevice(keyboard); }
+        }
+
         [Test] public void ExistingAuthoredGridsReconnectWithoutCreatingDuplicateSlots()
         {
             var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;

@@ -63,6 +63,10 @@ Unity's UI support docs cover `InputSystemUIInputModule` and the UI event-system
 
 ## Action Prompts
 
+- World interaction uses a short tap of West/E on release. Nearby Legger cargo uses a separate `Gameplay/OpenCargo` hold of 0.45 seconds on the same bindings. Tap and hold are mutually exclusive; cargo is excluded from ordinary interaction targeting and checks physical reach/line of sight independently. Busy actions and canister placement block cargo opening.
+- Inventory commands ignore controls held when opening or resuming until those controls release. Returning from inventory, system menus or camp requires neutral movement for both keyboard and gamepad.
+- All four gameplay D-pad commands (algae use and canister deployment) resolve together after input processing. Diagonals, simultaneous commands and modal transitions cannot dose or deploy; another command requires release.
+
 - The input router owns the current prompt device; gameplay and UI views must not hardcode keyboard or gamepad labels.
 - When a compatible gamepad is connected, prompts default to the gamepad binding. Meaningful keyboard or mouse input switches prompts to keyboard/mouse, and meaningful gamepad input switches them back.
 - Display text comes from the active action binding and connected device control, so Xbox, PlayStation, and generic gamepads can use their native button names and future binding overrides remain visible.

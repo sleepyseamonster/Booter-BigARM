@@ -74,6 +74,7 @@ namespace BooterBigArm.TopDown3D
             if (!suspended) return;
             suspended = false; canvas.SetSuspended(false);
             RefreshCargoAccess(); Refresh();
+            ArmInventoryControls();
             input.EnterInventoryMode();
             if (suspendedCargoFocus && lastCargoAccess && suspendedSlot < canvas.CargoSlotViews.Count)
                 eventSystem?.SetSelectedGameObject(canvas.CargoSlotViews[suspendedSlot].gameObject);
@@ -100,6 +101,7 @@ namespace BooterBigArm.TopDown3D
             selectedCargoSource = false;
             inspectingCargo = focusCargo || rememberedCargoFocus;
             if (focusCargo) RequestCargoApproach();
+            ArmInventoryControls();
             canvas.SetVisible(true);
             input.EnterInventoryMode();
             RefreshControlHints();
@@ -129,6 +131,7 @@ namespace BooterBigArm.TopDown3D
 
         internal void ActivateSlot(int slotIndex)
         {
+            if (InventoryActivationBlocked) return;
             if (!IsOpen || suspended || input.Mode != TopDown3DInputMode.Inventory || slotIndex < 0 || slotIndex >= LeftState.Capacity)
             {
                 return;
@@ -170,6 +173,7 @@ namespace BooterBigArm.TopDown3D
 
         internal void ActivateCargoSlot(int slotIndex)
         {
+            if (InventoryActivationBlocked) return;
             if (!IsOpen || suspended || input.Mode != TopDown3DInputMode.Inventory || cargo == null || slotIndex < 0 || slotIndex >= cargo.State.Capacity) return;
             if (selectedSource >= 0 && !selectedCargoSource)
             {
@@ -404,7 +408,8 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleCargoAccessRequested(TopDown3DBigArmCargo requestedCargo)
         {
-            if (requestedCargo == null || !requestedCargo.IsInAccessRange(inventory.transform.position)) return;
+            if (input == null || input.Mode != TopDown3DInputMode.Gameplay
+                || !TopDown3DCargoAccess.CanAccess(requestedCargo, inventory.transform)) return;
             cargo = requestedCargo;
             Open(true);
         }

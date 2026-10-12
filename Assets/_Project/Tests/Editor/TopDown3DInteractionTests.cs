@@ -39,14 +39,18 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void InputAsset_InteractIsAnImmediateKeyboardAndGamepadButton()
+        public void InputAsset_InteractionAndCargoHaveExclusiveTapAndHoldBindings()
         {
             var actions = AssetDatabase.LoadAssetAtPath<InputActionAsset>(InputPath);
             var interact = actions.FindAction("Gameplay/Interact", true);
 
-            Assert.That(string.IsNullOrEmpty(interact.interactions), Is.True);
+            Assert.That(interact.interactions, Is.EqualTo("Tap(duration=0.45)"));
             Assert.That(interact.bindings.Select(binding => binding.effectivePath),
                 Is.EquivalentTo(new[] { "<Gamepad>/buttonWest", "<Keyboard>/e" }));
+            var cargo = actions.FindAction("Gameplay/OpenCargo", true);
+            Assert.That(cargo.interactions, Is.EqualTo("Hold(duration=0.45)"));
+            Assert.That(cargo.bindings.Select(binding => binding.effectivePath),
+                Is.EquivalentTo(interact.bindings.Select(binding => binding.effectivePath)));
         }
 
         [Test]
@@ -204,6 +208,7 @@ namespace BooterBigArm.Tests
             var nodeObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
             var blocker = GameObject.CreatePrimitive(PrimitiveType.Cube);
             var stateObject = new GameObject("Resource State");
+            var cargoObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
             var shader = Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard");
             var active = new Material(shader);
             var depleted = new Material(shader);
@@ -211,6 +216,9 @@ namespace BooterBigArm.Tests
             try
             {
                 player.transform.position = Vector3.zero;
+                cargoObject.transform.position = new Vector3(1f, 0f, 0f);
+                cargoObject.AddComponent<TopDown3DBigArmCargo>();
+                cargoObject.AddComponent<TopDown3DBigArmCargoAccess>();
                 player.AddComponent<Rigidbody>().isKinematic = true;
                 player.AddComponent<CapsuleCollider>();
                 var motor = player.AddComponent<TopDown3DPlayerMotor>();
@@ -273,6 +281,7 @@ namespace BooterBigArm.Tests
                 Object.DestroyImmediate(blocker);
                 Object.DestroyImmediate(nodeObject);
                 Object.DestroyImmediate(player);
+                Object.DestroyImmediate(cargoObject);
             }
         }
 
