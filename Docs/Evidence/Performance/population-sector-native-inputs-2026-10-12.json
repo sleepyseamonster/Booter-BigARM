@@ -1,0 +1,667 @@
+{
+  "sourceScene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+  "sourceSceneSha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+  "scope": "One 4x4 authored native patch, original data and world poses; study constraints are not production POI migration.",
+  "row_start": 12,
+  "column_start": 0,
+  "tiles": [
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c00.asset",
+      "guid": "999bfb827415a4d2f9a5de7c19097dc1",
+      "sha256": "4a90a8cf6f8f4cb44e7b7e5aa5299214ef3e730af10a51a6640525f2ba10bd96",
+      "position": {
+        "x": -2048.0,
+        "y": -100.0,
+        "z": -1280.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c01.asset",
+      "guid": "2d035b52c30804cfcac7e8a71fa9bb91",
+      "sha256": "3ed97d19a82c33688e6b9414cc4e7b85c75e5f5931b0d61353b6cff64d5ae8ee",
+      "position": {
+        "x": -1792.0,
+        "y": -100.0,
+        "z": -1280.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c02.asset",
+      "guid": "f9d3b77a7348a4a96bf4a4fd86de5f9d",
+      "sha256": "a81796814fb954a5899c4b4915d2e1d2f54a49880d634d3f7587cf1777e0089f",
+      "position": {
+        "x": -1536.0,
+        "y": -100.0,
+        "z": -1280.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c03.asset",
+      "guid": "3e389696b24514154a05018d81442ae2",
+      "sha256": "68a44a8df60e72fd9663e2409ef6cbff4413381928b198064ac1ba679184b5c2",
+      "position": {
+        "x": -1280.0,
+        "y": -100.0,
+        "z": -1280.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c00.asset",
+      "guid": "2e7f61817ea2345c9bf1ccfcebec52a9",
+      "sha256": "82421aa53b3223dcd2112ad368db0069e01bd0ab036aab6a4cb6c822eb54a31b",
+      "position": {
+        "x": -2048.0,
+        "y": -100.0,
+        "z": -1536.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c01.asset",
+      "guid": "2c3e00ee8fe4f4b11a1572b25e8f24bc",
+      "sha256": "ff43f761a5720b9558e927db2fd69c94420908e1c2fcaf29774dfd393b097db3",
+      "position": {
+        "x": -1792.0,
+        "y": -100.0,
+        "z": -1536.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c02.asset",
+      "guid": "2a111607a33e3487aae1eb8834929275",
+      "sha256": "2744432272abd984658eea57c1c6c31cb23683661110a4d9305a020a3d186a2c",
+      "position": {
+        "x": -1536.0,
+        "y": -100.0,
+        "z": -1536.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c03.asset",
+      "guid": "8e7a29b4a2a2246378c5d19760d1f8a1",
+      "sha256": "2912101105c3eb51c70f0d795d96b533a3a3f7f86b1f31383234f84175aad57d",
+      "position": {
+        "x": -1280.0,
+        "y": -100.0,
+        "z": -1536.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c00.asset",
+      "guid": "60515153188334e6f9791bf15a3adb02",
+      "sha256": "62ef403f8676b990163b0c5c40b016542b00b70e71ceccb03da16104720fa2c2",
+      "position": {
+        "x": -2048.0,
+        "y": -100.0,
+        "z": -1792.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c01.asset",
+      "guid": "5a68d2243324442e0a38b0601359d5e4",
+      "sha256": "e06f8d2802f3535984430026c41692722b42b3a316651b5a78e969168dd0e45e",
+      "position": {
+        "x": -1792.0,
+        "y": -100.0,
+        "z": -1792.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c02.asset",
+      "guid": "2322bf770f2c64034aa5ee2e06063e16",
+      "sha256": "eedebd8931ae924a934f46c27ce9428a8bbdbeb981985a13d1e0a08de9057753",
+      "position": {
+        "x": -1536.0,
+        "y": -100.0,
+        "z": -1792.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c03.asset",
+      "guid": "02f62a31d65144890bf53521b0cbae17",
+      "sha256": "58f2b5aa4efcd4e81e143ae1705bd2c4cca3c127f0f4eed558b5f6c1dc58ea07",
+      "position": {
+        "x": -1280.0,
+        "y": -100.0,
+        "z": -1792.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c00.asset",
+      "guid": "265cfa3bfe11c4eac8a9418e9889e277",
+      "sha256": "93a15665f770f630d654e87a729d077dfc754a0dd1862db36fe522b5deb0cfb6",
+      "position": {
+        "x": -2048.0,
+        "y": -100.0,
+        "z": -2048.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c01.asset",
+      "guid": "2817f2e12c7a34f599e35ecc3f349eef",
+      "sha256": "8d2c14258be8045fcf9b9f0cf7a774db7d7ca033032700616be08ffd1cba2c5b",
+      "position": {
+        "x": -1792.0,
+        "y": -100.0,
+        "z": -2048.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c02.asset",
+      "guid": "11d17663254574131ade66a28edbcc67",
+      "sha256": "bd4935d0b4b7e77ca8c170a0f5e3285cbda9663f0a31d72a0ebddf023c00725a",
+      "position": {
+        "x": -1536.0,
+        "y": -100.0,
+        "z": -2048.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c03.asset",
+      "guid": "fefd95e84eab14c93905c0a013e042f7",
+      "sha256": "03888c0bb759091522cada5ae0c6cf51e3314d0739eb45efb018ed546d8e8b15",
+      "position": {
+        "x": -1280.0,
+        "y": -100.0,
+        "z": -2048.0
+      },
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    }
+  ],
+  "asset_files": [
+    {
+      "path": "Assets/_Project.meta",
+      "sha256": "ee76decd44ed97636c7ef4fcb3c6187f0ce3137a11a2dd81f4acdf1fdf8fe066"
+    },
+    {
+      "path": "Assets/_Project/Art.meta",
+      "sha256": "d4b9ae821f7c288c309cf244180f20117a00c5a604354a3ac7b05003cd98f29b"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment.meta",
+      "sha256": "68568c98c826454de96dd1cdb4d5cbb2562bbf000e5961110933030dff5868a7"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks.meta",
+      "sha256": "05fcf7bdefc6ff1ed8fcd407e62d40f0b95acc5acc35b7ad2fc510c67564c53b"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01.meta",
+      "sha256": "1d0c7dbc26b75af3916c68397e314b0adc36917b60688368b9c664ada138e8b4"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_BaseColor.png",
+      "sha256": "0b1f43d32341c4aa7d9a1350a916161eac6645e07ac44b271ef40aa7385d96c1"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_BaseColor.png.meta",
+      "sha256": "d9f104af3a100cb4294e5f21f0d7419deb8961d6bcde8b89e186000b45463da7"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Collision.asset",
+      "sha256": "b0db0d73065895e15a5771bfc938d41fda2a4c29bc3ad3a8c3e5ebd56c54d4d0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Collision.asset.meta",
+      "sha256": "942f281a4654f609b5aa8c51af74c5a6f97cd1fbd8ff587a846b433f22901e36"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD0.asset",
+      "sha256": "2e09098724ed076aba0097514409c158290c4b54cc4f22540d36748603327cf4"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD0.asset.meta",
+      "sha256": "0fe41d547c42ee03209469746fd8acf0447bf51bdfd1ef9b273b6ded40353ee0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD1.asset",
+      "sha256": "d8dd145d84399be35b6350bb2c4607c46997c62a29980f45c445053e1c512879"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD1.asset.meta",
+      "sha256": "7baf9406ed25babb61fecbc609261e589650b75265bbc7b1124b1486d0d92fb0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD2.asset",
+      "sha256": "54a8c3d4d4104dd187c9993bba8990a704a08d66d3e9f0dcc9ee4170ed7bdbdf"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD2.asset.meta",
+      "sha256": "15bb5aabaa08830c85124c1b4be20d9ac91a364b068616367b39f94a550a0bb5"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_MetallicSmoothness.png",
+      "sha256": "479ca0901e024de344b25c5a4f02c02edad447df51e5a6dd3e0e7ee741fc2bb0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_MetallicSmoothness.png.meta",
+      "sha256": "e1324322d38b2efc7e9108c549d074d7d551301679a8b07df69b9c28b8b3d5d8"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Normal.png",
+      "sha256": "2afbc5cfd66129eecc16ffdeedd20084feecb6d85eebbb043fd72adf906b8487"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Normal.png.meta",
+      "sha256": "afea3910b682f0df894bc59524d5bf5a458930e353f993e6c6f2d797313f1fcc"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Occlusion.png",
+      "sha256": "b48bede0d51e4572e8ccf05336e336bea4b7a649f8a8853496fe5f79ee8dc42f"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Occlusion.png.meta",
+      "sha256": "7d91c274226c2d58414f0e75b083cdf363db2e6bd3a55e1220e592e486e97692"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain.meta",
+      "sha256": "1a3740d6a05235ec9f6c96173287a4311feabffe6278f31919992dea9072fb9e"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices.meta",
+      "sha256": "f9c2c2e2ecce9f165650ec9bb91130dbc0acdb1d51dd059ecab68e01243152f5"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/BadwaterTerrainURP.mat",
+      "sha256": "f3aca1b0f85f6eeb52f461dfae6717ae24ce870042828191591bd1c8c93f9c3c"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/BadwaterTerrainURP.mat.meta",
+      "sha256": "73b84729dd07676706618ad48c8942a3a1597ae68d4e0007b097700976806a77"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/GeographicColor.png",
+      "sha256": "858a85f109ad446159d06c1ca60a7a99e19deda85c8dd5e54639e9859a3bfcc2"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/GeographicColor.png.meta",
+      "sha256": "4387d17c0cd291dfaca52ce7aa7395285781d85b98bd7b2561b7d6805dfc711b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData.meta",
+      "sha256": "d1fde2bca1341296206ead3258a95dc453fad3a06a4f8e059a6771c29c6e9205"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c00.asset",
+      "sha256": "4a90a8cf6f8f4cb44e7b7e5aa5299214ef3e730af10a51a6640525f2ba10bd96"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c00.asset.meta",
+      "sha256": "98323dd629ecb9721e48cc5276a515570e16206fb2b7803d8a60aca1ae9e15e7"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c01.asset",
+      "sha256": "3ed97d19a82c33688e6b9414cc4e7b85c75e5f5931b0d61353b6cff64d5ae8ee"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c01.asset.meta",
+      "sha256": "66603aea3158504b53fe9f4838b7ee3eebf130bed716ee63363f8b656f119560"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c02.asset",
+      "sha256": "a81796814fb954a5899c4b4915d2e1d2f54a49880d634d3f7587cf1777e0089f"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c02.asset.meta",
+      "sha256": "f972fdc31230be925450729e86aa1f5d96ac22817cb95ef2d9ab49808a730b48"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c03.asset",
+      "sha256": "68a44a8df60e72fd9663e2409ef6cbff4413381928b198064ac1ba679184b5c2"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c03.asset.meta",
+      "sha256": "f1de7dcaf1a8c3e90fa32acf6ab21f17b03a4bb296f213f9824a3f0e57711941"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c00.asset",
+      "sha256": "82421aa53b3223dcd2112ad368db0069e01bd0ab036aab6a4cb6c822eb54a31b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c00.asset.meta",
+      "sha256": "6cdfcb6014f4a7a8d4c68b907aebc44da92d30960f67481631401f78f071df72"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c01.asset",
+      "sha256": "ff43f761a5720b9558e927db2fd69c94420908e1c2fcaf29774dfd393b097db3"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c01.asset.meta",
+      "sha256": "06e6b50525d31c3cf6b0123b7dc56f9b2edbc1df80382d6d21c0ce2d4351fd8a"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c02.asset",
+      "sha256": "2744432272abd984658eea57c1c6c31cb23683661110a4d9305a020a3d186a2c"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c02.asset.meta",
+      "sha256": "9115bdcb7a515dda1ecb48de40c252cb8054677d6f8538b1c79b87e6f6691838"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c03.asset",
+      "sha256": "2912101105c3eb51c70f0d795d96b533a3a3f7f86b1f31383234f84175aad57d"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c03.asset.meta",
+      "sha256": "498146cd391d8882c2247c261a79ea9b51e20d9f2407e43e6d5f77b84cc7b6ca"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c00.asset",
+      "sha256": "62ef403f8676b990163b0c5c40b016542b00b70e71ceccb03da16104720fa2c2"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c00.asset.meta",
+      "sha256": "bc88d4c3f55c0298d0bd9a4d9a5c0917faeb698fbfc3ef826f610c33ff8d9275"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c01.asset",
+      "sha256": "e06f8d2802f3535984430026c41692722b42b3a316651b5a78e969168dd0e45e"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c01.asset.meta",
+      "sha256": "6a65fd797f0f3ab505c7725794eb708242caf43889588b639a6887c3665a7742"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c02.asset",
+      "sha256": "eedebd8931ae924a934f46c27ce9428a8bbdbeb981985a13d1e0a08de9057753"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c02.asset.meta",
+      "sha256": "5e03119f2b7a5a548a7ee8d10c752173761ac7ad3823607ee138914476fba0d5"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c03.asset",
+      "sha256": "58f2b5aa4efcd4e81e143ae1705bd2c4cca3c127f0f4eed558b5f6c1dc58ea07"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c03.asset.meta",
+      "sha256": "9e0871d9fd603ece629abb875ee39201ae2fe9296986ea5240ee264be50fd819"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c00.asset",
+      "sha256": "93a15665f770f630d654e87a729d077dfc754a0dd1862db36fe522b5deb0cfb6"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c00.asset.meta",
+      "sha256": "e31c38f227ccbdc7dcab8b68b9e435ca6408d715232598f1d4afdde58f0a0b3f"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c01.asset",
+      "sha256": "8d2c14258be8045fcf9b9f0cf7a774db7d7ca033032700616be08ffd1cba2c5b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c01.asset.meta",
+      "sha256": "f9cf81ce7bc239675be211c2c43d063382be46ba4e23a6a26504cba32defd8ed"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c02.asset",
+      "sha256": "bd4935d0b4b7e77ca8c170a0f5e3285cbda9663f0a31d72a0ebddf023c00725a"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c02.asset.meta",
+      "sha256": "5af7aa2485c35deb3b711ae542f6d9baa524772bcc112727d8008c2fbc86e653"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c03.asset",
+      "sha256": "03888c0bb759091522cada5ae0c6cf51e3314d0739eb45efb018ed546d8e8b15"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c03.asset.meta",
+      "sha256": "a8801d532322be16a4320f69010a7d7bcd8aee6b712a8be64b374864a3c2949a"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers.meta",
+      "sha256": "850ba8d8f61cc4b268e7b79e6ae7f4e617abff9b515c1f610f5d5a3bb72a1714"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c00.terrainlayer",
+      "sha256": "8155ee7323c39e6b6d09f23eb59f13312894b49662ca0513a011269f5f70d1e0"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c00.terrainlayer.meta",
+      "sha256": "58fe5228c08bffc200df5770d21d3a5a161022a7f744b8158d43621cc1a62098"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c01.terrainlayer",
+      "sha256": "6e2e70b7113f5c4f389898e6bdab7136d7fd61117b1fedb2c343f366ffedda78"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c01.terrainlayer.meta",
+      "sha256": "067acf5ede5ba70e1a41d9638ce4e331fbf15ca9f13fbc6d5e088c740b83e65d"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c02.terrainlayer",
+      "sha256": "c689b0d764be6486e38e8b5024ffda62fcb04c205f4861d8c7219145f862247d"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c02.terrainlayer.meta",
+      "sha256": "e3cf153a3987fdd58080ee830881acd0d23404c9e5023295c722200f10685743"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c03.terrainlayer",
+      "sha256": "9aa9021994b944c2ad4572a8b8df99e1bd99e902723b4237cefb9bc022ee461c"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c03.terrainlayer.meta",
+      "sha256": "54f94675d088a56fc4e8ca4c1a77fe3368de5c5ac15399255e7bb98ff9885215"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c00.terrainlayer",
+      "sha256": "fb0a48f1b4766270e455c605bd69169361c88d1cdae1c5a77c63e79785dbc371"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c00.terrainlayer.meta",
+      "sha256": "768b65615b89d47506d023bdfbec15f8e722f44ffef47ad140b7d99959c7db74"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c01.terrainlayer",
+      "sha256": "e8eb300d6954da252cdf16588a0053f986daef9525127c86a1d691281e0cac3c"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c01.terrainlayer.meta",
+      "sha256": "a60c9a0de7edf6c0cc1aa22b310005ee0e9efd742a4cf7e61669a5183516f2f8"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c02.terrainlayer",
+      "sha256": "f46d28cfd61ccfe6f30f32bd4ff923a4d2035aed082fd91e464e9a735e714a48"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c02.terrainlayer.meta",
+      "sha256": "333dbf6220330b923948396bac3082244423f0b26287fe94a554eacbc0ecc8f0"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c03.terrainlayer",
+      "sha256": "239007487d70f92a2f5a8170e4fe2014a54d5de732bc1f07e3ab9d3da036242a"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c03.terrainlayer.meta",
+      "sha256": "39809281e6290b5627c27e0f4519f0146ebb80bf55e7e08f3b356682efcd981a"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c00.terrainlayer",
+      "sha256": "a55b958f9c60fb20368e149d5c2c93ef0b645c4bbec2e1eb9b84b3152f85417d"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c00.terrainlayer.meta",
+      "sha256": "c2f99c1ff8d23ceaa02e2f4a970222bd71b01e9df82cbf9340af94fb61f9d724"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c01.terrainlayer",
+      "sha256": "660280cae62d2b08bd01d81d5f347b00160d02c53b39d4cdcb961a817e316c92"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c01.terrainlayer.meta",
+      "sha256": "c02a77eff14fc982b842d58fcf9b12929dd2dd04dab067336c162720b06ce3e2"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c02.terrainlayer",
+      "sha256": "ef61d82338320130a93ec8b83e7163ec6fd02c245934663f71e8e8d2efd127a6"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c02.terrainlayer.meta",
+      "sha256": "833c6ceb3052651fe29d3544b7e976753067493c1f80141e8633e106ae889371"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c03.terrainlayer",
+      "sha256": "a272474f4755dfb10deb9f49897de3e3a87ff14a3cb250c930b29573f647981f"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c03.terrainlayer.meta",
+      "sha256": "7eaa2cf74ac7f89d7ad4cd6a360c45feff858c770d71f50e7ae487a30568f56b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c00.terrainlayer",
+      "sha256": "68a571b3d971a991556aedaaf0bd46069868e4d5d711871739b6c7376791380b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c00.terrainlayer.meta",
+      "sha256": "4999ecc317fa9db01f727c718eff21aeb17ab9c1669b5ce3c6e9938b7d61b9d3"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c01.terrainlayer",
+      "sha256": "1d1a4f710c0de9c2380069d2d8811cd27ffa66e562d825cf0a7708e3ff65aabe"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c01.terrainlayer.meta",
+      "sha256": "dd91492165fb0d86a9068fdf0def3b7e4d4c97792933364e74f50b45907bf254"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c02.terrainlayer",
+      "sha256": "dccabc9aeb6c5dc0c98a3a7820c2a1105ca44e70c16eebf11406a700205fab5e"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c02.terrainlayer.meta",
+      "sha256": "70899c8d4c4409310b24af715b64131cd9e12567d30eb85cc02847f9b124dec7"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c03.terrainlayer",
+      "sha256": "5a0b74a4c2da5de4f05e1dda44190bd4540f97546581cd1dd8b4fdbdbd59f637"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c03.terrainlayer.meta",
+      "sha256": "105c24e51aaa8dd3e99d2fbd4df25d61ad2c14fe2751e712cf335fab293e46d2"
+    },
+    {
+      "path": "Assets/_Project/Materials.meta",
+      "sha256": "434e06016408556a8c3578d2fa555cdd17c57f1f0f7e2c5bcf4d76bdc838fa42"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D.meta",
+      "sha256": "af779c8b45fbe6d30d737bc6fe14580f936ee08865ce4420a107956fa121a865"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks.meta",
+      "sha256": "6c79c9455343a529d72272f594a79275c7cd62e2c7d5498a3ab1cf01d3cd65fd"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/SculptedBasalt01.mat",
+      "sha256": "972ccd072918b7146180ee1a1c4dcb5097a1d84c1e4e75f929434fc3d78d3ab4"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/SculptedBasalt01.mat.meta",
+      "sha256": "3c3105962f2847d5408d473e127200494140039bf6deb671f7d70d26fc489324"
+    },
+    {
+      "path": "Assets/_Project/Prefabs.meta",
+      "sha256": "57d674b1a9ae974c59c94147460fbb9a2c3684c4bc4214010a31bbc4d1982296"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D.meta",
+      "sha256": "b2373baa5f12cef353594b058c78b84b2cd5706f37933ce1c6fcdf0466cbd513"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment.meta",
+      "sha256": "93d726325caf8c1cdb341f36c46d6b7827fe8069496a968b325368f85d496620"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/SculptedBasalt01.prefab",
+      "sha256": "fed12cef88b7268c160ee49b4e52284d18eb6eb727c99a80fe08bd6180e0ed00"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/SculptedBasalt01.prefab.meta",
+      "sha256": "56fcaa3861c9af9219fa52ecf1c83f826bcd55e48c7bef6eb125876f47af98a6"
+    },
+    {
+      "path": "Assets/_Project/Scripts.meta",
+      "sha256": "89a12db5ed0cb2e9c0e0203099ca481f88845d12e6a539994d88f9c37bfba4a9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime.meta",
+      "sha256": "8d738f4651ab63e433cb8355876cad03db73601ef5f9a4a3b8fc5885840e5ef2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D.meta",
+      "sha256": "abb3538e418fec0386ca2b9bf46bd25aff3076a29b1c0ad7bac6634acd17f7dd"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/SculptedRockFusionParticipant.cs",
+      "sha256": "446ec087a5f6a0df1312e23a8aff0e9d059bb8b99c252ef45e50b7051c1714f2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/SculptedRockFusionParticipant.cs.meta",
+      "sha256": "09ec91f59edba5bf6d71d8bb26106442abd901a15cc6c61365f748854b079a82"
+    }
+  ]
+}

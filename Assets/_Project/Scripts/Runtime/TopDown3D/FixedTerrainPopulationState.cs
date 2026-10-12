@@ -47,6 +47,9 @@ namespace BooterBigArm.TopDown3D
         public string WorldId => header.worldId;
         public int CellCount => cells.Count;
         public int RemovedCount => removed.Count;
+        // Main-thread integration notifications; logical state is committed before listeners observe it.
+        internal event Action<Vector2Int, string, int> CandidateRemoved;
+        internal event Action SnapshotApplied;
         public bool MatchesRecipe(FixedTerrainPopulationIdentity identity, int candidateCount) => identity != null
             && identity.WorldId == header.worldId && identity.Seed == header.seed && identity.GenerationVersion == header.generationVersion
             && recipes.TryGetValue(identity.RecipeId, out var recipe) && recipe.version == identity.RecipeVersion && recipe.candidateCount == candidateCount;
@@ -111,12 +114,18 @@ namespace BooterBigArm.TopDown3D
         public bool TryRemove(Vector2Int cell, string recipeId, int ordinal)
         {
             var reference = new FixedTerrainPopulationCandidateAddress { x = cell.x, z = cell.y, recipeId = recipeId, ordinal = ordinal };
-            if (!ValidAddress(reference) || !accepted.TryGetValue(cell, out var keys)) return false;
+            if (!ValidAddress(reference)) return false;
+            if (!accepted.TryGetValue(cell, out var keys))
+            {
+                if (!cells.TryGetValue(cell, out var receipt)) return false;
+                keys = new HashSet<string>(receipt.acceptedCandidates.Select(v => StableId(cell, v.recipeId, v.ordinal)), StringComparer.Ordinal);
+                accepted[cell] = keys;
+            }
             var id = StableId(cell, recipeId, ordinal);
             if (!keys.Contains(id) || removed.ContainsKey(id)) return false;
             removed.Add(id, reference);
             if (!removalsByCell.TryGetValue(cell, out var cellRemovals)) removalsByCell.Add(cell, cellRemovals = new HashSet<string>(StringComparer.Ordinal));
-            cellRemovals.Add(id); Revision++; return true;
+            cellRemovals.Add(id); Revision++; CandidateRemoved?.Invoke(cell, recipeId, ordinal); return true;
         }
         public bool IsRemoved(Vector2Int cell, string recipeId, int ordinal) => removed.ContainsKey(StableId(cell, recipeId, ordinal));
 
@@ -139,7 +148,8 @@ namespace BooterBigArm.TopDown3D
                 if (!nextIndex.TryGetValue(cell, out var keys)) nextIndex.Add(cell, keys = new HashSet<string>(StringComparer.Ordinal));
                 keys.Add(pair.Key);
             }
-            cells = nextCells; removed = nextRemoved; removalsByCell = nextIndex; accepted.Clear(); Revision++; return true;
+            cells = nextCells; removed = nextRemoved; removalsByCell = nextIndex; accepted.Clear(); Revision++;
+            SnapshotApplied?.Invoke(); return true;
         }
 
         private bool TryBuild(FixedTerrainPopulationSnapshot snapshot,

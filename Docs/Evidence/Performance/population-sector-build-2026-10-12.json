@@ -1,0 +1,238 @@
+{
+  "sourceSceneSha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+  "scenePath": "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationSector20261012.unity",
+  "sceneSha256": "b7965dcbb261f180fdbf77524fa1d9d3e88c4bbb01bb71a819c57eac93efb23e",
+  "sceneGuid": "1a4a9e09521724f4389e47fe48453b93",
+  "scope": "Authored 4x4 patch and original native world poses; study-only seed/masks/demand markers. No production actors, save binding, density acceptance or Player FPS proof.",
+  "tiles": [
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c00.asset",
+      "guid": "999bfb827415a4d2f9a5de7c19097dc1",
+      "sha256": "4a90a8cf6f8f4cb44e7b7e5aa5299214ef3e730af10a51a6640525f2ba10bd96",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -2048.0,
+        "y": -100.0,
+        "z": -1280.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c01.asset",
+      "guid": "2d035b52c30804cfcac7e8a71fa9bb91",
+      "sha256": "3ed97d19a82c33688e6b9414cc4e7b85c75e5f5931b0d61353b6cff64d5ae8ee",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1792.0,
+        "y": -100.0,
+        "z": -1280.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c02.asset",
+      "guid": "f9d3b77a7348a4a96bf4a4fd86de5f9d",
+      "sha256": "a81796814fb954a5899c4b4915d2e1d2f54a49880d634d3f7587cf1777e0089f",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1536.0,
+        "y": -100.0,
+        "z": -1280.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c03.asset",
+      "guid": "3e389696b24514154a05018d81442ae2",
+      "sha256": "68a44a8df60e72fd9663e2409ef6cbff4413381928b198064ac1ba679184b5c2",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1280.0,
+        "y": -100.0,
+        "z": -1280.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c00.asset",
+      "guid": "2e7f61817ea2345c9bf1ccfcebec52a9",
+      "sha256": "82421aa53b3223dcd2112ad368db0069e01bd0ab036aab6a4cb6c822eb54a31b",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -2048.0,
+        "y": -100.0,
+        "z": -1536.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c01.asset",
+      "guid": "2c3e00ee8fe4f4b11a1572b25e8f24bc",
+      "sha256": "ff43f761a5720b9558e927db2fd69c94420908e1c2fcaf29774dfd393b097db3",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1792.0,
+        "y": -100.0,
+        "z": -1536.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c02.asset",
+      "guid": "2a111607a33e3487aae1eb8834929275",
+      "sha256": "2744432272abd984658eea57c1c6c31cb23683661110a4d9305a020a3d186a2c",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1536.0,
+        "y": -100.0,
+        "z": -1536.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c03.asset",
+      "guid": "8e7a29b4a2a2246378c5d19760d1f8a1",
+      "sha256": "2912101105c3eb51c70f0d795d96b533a3a3f7f86b1f31383234f84175aad57d",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1280.0,
+        "y": -100.0,
+        "z": -1536.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c00.asset",
+      "guid": "60515153188334e6f9791bf15a3adb02",
+      "sha256": "62ef403f8676b990163b0c5c40b016542b00b70e71ceccb03da16104720fa2c2",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -2048.0,
+        "y": -100.0,
+        "z": -1792.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c01.asset",
+      "guid": "5a68d2243324442e0a38b0601359d5e4",
+      "sha256": "e06f8d2802f3535984430026c41692722b42b3a316651b5a78e969168dd0e45e",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1792.0,
+        "y": -100.0,
+        "z": -1792.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c02.asset",
+      "guid": "2322bf770f2c64034aa5ee2e06063e16",
+      "sha256": "eedebd8931ae924a934f46c27ce9428a8bbdbeb981985a13d1e0a08de9057753",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1536.0,
+        "y": -100.0,
+        "z": -1792.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c03.asset",
+      "guid": "02f62a31d65144890bf53521b0cbae17",
+      "sha256": "58f2b5aa4efcd4e81e143ae1705bd2c4cca3c127f0f4eed558b5f6c1dc58ea07",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1280.0,
+        "y": -100.0,
+        "z": -1792.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c00.asset",
+      "guid": "265cfa3bfe11c4eac8a9418e9889e277",
+      "sha256": "93a15665f770f630d654e87a729d077dfc754a0dd1862db36fe522b5deb0cfb6",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -2048.0,
+        "y": -100.0,
+        "z": -2048.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c01.asset",
+      "guid": "2817f2e12c7a34f599e35ecc3f349eef",
+      "sha256": "8d2c14258be8045fcf9b9f0cf7a774db7d7ca033032700616be08ffd1cba2c5b",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1792.0,
+        "y": -100.0,
+        "z": -2048.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c02.asset",
+      "guid": "11d17663254574131ade66a28edbcc67",
+      "sha256": "bd4935d0b4b7e77ca8c170a0f5e3285cbda9663f0a31d72a0ebddf023c00725a",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1536.0,
+        "y": -100.0,
+        "z": -2048.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c03.asset",
+      "guid": "fefd95e84eab14c93905c0a013e042f7",
+      "sha256": "03888c0bb759091522cada5ae0c6cf51e3314d0739eb45efb018ed546d8e8b15",
+      "materialGuid": "039ddf39af7f24bf6b19ac231ca15086",
+      "position": {
+        "x": -1280.0,
+        "y": -100.0,
+        "z": -2048.0
+      },
+      "pixelError": 8.0,
+      "instanced": true,
+      "shadowCastingMode": 2
+    }
+  ],
+  "seed": 20261012,
+  "nativeTiles": 16,
+  "candidateDensity": 1.0,
+  "catalogRevision": "study.basalt:04ea4cd32ea792936d110b420d3b64e6",
+  "constraintRevision": "study.spawn32.corridor12:-1536:-1536"
+}

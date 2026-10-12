@@ -1,0 +1,240 @@
+{
+  "date": "2026-10-12",
+  "editor": "6000.4.0f1",
+  "candidate": "D:\\BooterBigArmValidation\\PerformanceImplementation20261011-01",
+  "mode": "background batchmode/nographics focused EditMode",
+  "result": {
+    "total": 59,
+    "passed": 59,
+    "failed": 0,
+    "skipped": 0
+  },
+  "source_matches_candidate": true,
+  "source_files": [
+    {
+      "path": "Assets/_Project/Scripts/Editor/Automation/FixedTerrainPopulationSectorBuilder.cs",
+      "sha256": "1d37e71dead52e090b40592608c1994dca42e130dcf66f9fad38e7f4bfa238cd"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Automation/FixedTerrainPopulationSectorBuilder.cs.meta",
+      "sha256": "8b4a2d3eadd15d3341dbc8e4e627b9f4e46780ee2ffe1f2f01946e8048d3110c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs",
+      "sha256": "80a4ae89a673a2f48ec9703cde8d04832e6f4ad2ec6f6be1aff8f78666d374cd"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs.meta",
+      "sha256": "2dcde93ab98dda17ec2e2185b6f4979eeb231579989f959278fe3eef889bbbd2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPlanner.cs",
+      "sha256": "7dff003b98e0b46a8d285583e3bc08df287ea241df1df1e38d9fe4c384b1afa1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPlanner.cs.meta",
+      "sha256": "4f6a792cf3a204c44f77070b125f6dbee7f5744d1d55eea046c6deca7c75238f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs",
+      "sha256": "5c761448baf88925a52a072db65b7a88a9a0655002281e31dbae8381e5a9902f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs.meta",
+      "sha256": "d54d77bdbaac15ff023744e24b4be31275236bcaeefbbb55733b390825628c2e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationScheduler.cs",
+      "sha256": "196e228281b118071f261cc844213a57ae6da8d918e6e8eed200b49c0ac0a40e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationScheduler.cs.meta",
+      "sha256": "2ddb42e80fdb7053c2e5f567a252e781b9dfbcc01557dc828a8b5fbc85aca238"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs",
+      "sha256": "090c24243d883eb11620a3af416eaad534434bb36075f5e19f20646aab7478a5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs.meta",
+      "sha256": "33ac5119de622ca4a6294e126ad9dc95d5ebaa6041b78ad771d3ca9869b2d8dc"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs",
+      "sha256": "d154b6fef2967d7d4a39bd2546750666a953b2c1d876286a2596a72d85bf5726"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs.meta",
+      "sha256": "7e765641f787ac39f1a58e3704845804055ad1848a21cfb8b93e102b754aa044"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs",
+      "sha256": "0e1a10e62a02c6c5dcd37c4b016ea2ffe5733bc82167a6bb992af5381769a51e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs.meta",
+      "sha256": "7aa347310665511a36a6a77c08e4e073056a39c16f8b9ebaad7b9d8d687b6162"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs",
+      "sha256": "5ef2cbc1924b874a10b1e5c4158eaa11a6c1366bef0c1d5a08b280b138bc89f1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs.meta",
+      "sha256": "e365f03a959f1ad999404923f8b3e8300d312782842e1b7b158996ecd532da1c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs",
+      "sha256": "b76d3181b056e884b54e3e6cc056355483b8762ec670436168ee22c8375d53ab"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs.meta",
+      "sha256": "941c10e73d8fb3587637ec01e9dc21ba4cdc8958830e55fae8164a26f4c4d01b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandCheckpointWriter.cs",
+      "sha256": "9989e6b0fda96ac390536eaac1509bdc4d582abc1828cb394dba58fb8d34dfc1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandCheckpointWriter.cs.meta",
+      "sha256": "84f679f0fd656701dc9c4adf6b54921040e45d477241a4bc4ed141e15d93b4e9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs",
+      "sha256": "f98611bbe7979ab82ba89b60139b2847b05b4016bab704c3c2720f2c7f2ae1c7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs.meta",
+      "sha256": "c48b087ed4872b1ae961a700d15656884ca3aa6aef2b9e3ed64203c3df2922de"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs",
+      "sha256": "33900c973bc7430c3224790a257d52d85de4fd848f3fc24615577b11657e185b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs.meta",
+      "sha256": "5ea623ece8ba7cd2340919e05df9b612cf411521adeb752c1de69755ac271012"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs",
+      "sha256": "53dd269a70fa9154219a1e6b8fa6d37f9a99403af3e0aac142194530af84a179"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs.meta",
+      "sha256": "b554628c3ca8bdf09eb79e35c0273facd6a33af0612c3a41c3ca4aa7586decb9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainDressingTests.cs",
+      "sha256": "416dcd978c7f0ecd78b8f578251aca36b2f6e142e7d72a24412122506e5b14ef"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainDressingTests.cs.meta",
+      "sha256": "5083b24b1f84b0055930feaa869b58250885505ad2be76f9d1126ec57848d8e6"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationIdentityTests.cs",
+      "sha256": "5429f4a6c597b3bb6a8dcf60f42e2e07df9c78921667c1f599264f650ff7fad4"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationIdentityTests.cs.meta",
+      "sha256": "128307d147d5bb690ef5fa90a42c141f9c2773f58b515f5f17f96f887dca8c24"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationPlannerTests.cs",
+      "sha256": "f779fb3be60c46009a1bacfa8adece957099441a6b149c961a66e5c4070abf96"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationPlannerTests.cs.meta",
+      "sha256": "e692ca52539c93246e44f245d6669d7922cb43a9a3125219d0de55212865188b"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationPresentationTests.cs",
+      "sha256": "6597a29c6118555100fc7d1da142787f60d7556f4812fa0a465aa2ae3003335d"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationPresentationTests.cs.meta",
+      "sha256": "30679d09a942d32a6b8476aebae9088fd1166cb19a701540341751a21128f969"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSchedulerTests.cs",
+      "sha256": "6ab51555cc25e9639224720203aa5888720e2b4c86ba1889d490444a262a9668"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSchedulerTests.cs.meta",
+      "sha256": "ac2a2c15509199555e066c4f8fb1fd22cba29877fb4d7f3bf9a940a3736a2561"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSectorStudyTests.cs",
+      "sha256": "c828310824d16c28b94894fc2d6f845ae66d1976094ef9be3a04e0d87af1986e"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSectorStudyTests.cs.meta",
+      "sha256": "ad5b6dc0fdce533b7eb49310eb6ec684105d921e9cfc859e3e614dbdbbd2ab98"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationStateTests.cs",
+      "sha256": "4cadae09a8a004a1cc85af01b03de0b4ce4bd7ef074f4481e27f2d0ba38f9bc0"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationStateTests.cs.meta",
+      "sha256": "8efc9760610a5434875a4cac4b501d2bc78460b52a71f21fb0ccc4d3bc5d53ae"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainRenderWindowTests.cs",
+      "sha256": "42f1ec3ddf1e63d2dce989a1583b8a56885514fb4163c60408ea80f46e64ae31"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainRenderWindowTests.cs.meta",
+      "sha256": "4cce03315cd98cfc2d5217759e5e8287f81cf15001e999b6d38a79b491c48ae9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandCheckpointWriterTests.cs",
+      "sha256": "d568438b3684bbf6aad881e8fb96dcaab963df7c28cbf6a46ca8e346f893f2d9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandCheckpointWriterTests.cs.meta",
+      "sha256": "011fc5958d31105b500f65cdd1ecd3f3c5ee0d36f358efc4a2c42629c0eafd1d"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandInventoryPersistenceTests.cs",
+      "sha256": "07ffcfeccc46da6db215fce70df0425539c9cc68867e9d3524988da5a274ee97"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandInventoryPersistenceTests.cs.meta",
+      "sha256": "9480fc3dd0b97df04a9583e86375b07ebbac0e93e4db0a78694a9160c3d8b8fc"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DRouteRetryTests.cs",
+      "sha256": "7bed5ed0680a5b9bb43978fc803f4a281a135bc37e1c2736a934a401cd84ee3c"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DRouteRetryTests.cs.meta",
+      "sha256": "871ed50c713f348834a0436ef54b1ed18c0bdfb709e90c418f714023860cf3fe"
+    }
+  ],
+  "native_inputs_receipt": "population-sector-native-inputs-2026-10-12.json",
+  "native_inputs_sha256": "c2adda5de36508fde9384eab9cf2240f1fa90ea1dd9ec6257c608fb8fb18b81c",
+  "scene_sha256": "b7965dcbb261f180fdbf77524fa1d9d3e88c4bbb01bb71a819c57eac93efb23e",
+  "production_scene_sha256_unchanged": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+  "xml_sha256": "64dabec685934e42de984199fb3ef4f034d8fe8f6bfa29568a9187f7a7d77271",
+  "realized_reference_counts": {
+    "active": 390,
+    "accepted": 390,
+    "cells": 16,
+    "enabledPropColliders": 223,
+    "boundedAdvanceCalls": 615
+  },
+  "count_scope": "Synchronous Editor diagnostic with 64 operations/1 ms per AdvanceStudy call; calls are not Player frames or FPS.",
+  "limits": [
+    "No production seed/state binding, scene population or save migration",
+    "No Player frame time, graphics capture or appearance/traversal acceptance",
+    "Study demand markers are not Booter/BigARM gameplay actors; real movement/prefetch remains a gate",
+    "One explicit area, at most 64 identity cells, one static-art recipe/backend",
+    "Study lighting/overview omit production atmosphere and camera effects",
+    "Nine footprint probes do not prove exhaustive arbitrary-hole coverage",
+    "Main-thread demand changes/release and indivisible prefab acquisition still require Player budgets",
+    "1 MiB checkpoint cap and partitioned consistency remain pending"
+  ],
+  "canonical_reference_validator": "BooterBigArm.Editor.FixedTerrainPopulationSectorBuilder.ValidateFromCli: passed directly and in focused saved-scene fixture",
+  "publication_normalization": "Whitespace-only normalization of task-owned scene and three new metadata files; GUIDs and YAML tokens unchanged. Canonical validator and both authored-sector fixtures rerun against final content."
+}

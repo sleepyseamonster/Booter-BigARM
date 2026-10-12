@@ -74,6 +74,8 @@ namespace BooterBigArm.TopDown3D
                 throw new ArgumentException("The presentation parent must have unit world scale so placement footprints remain valid.");
             this.prefab = prefab; this.parent = parent; this.state = state; this.recipeId = recipeId;
             capacity = maximumInstances; poolCapacity = maximumPooledInstances; pendingCapacity = maximumPendingCells;
+            state.CandidateRemoved += RemoveCandidate;
+            state.SnapshotApplied += ResetPresentation;
         }
 
         public bool Queue(Vector2Int cell, FixedTerrainPopulationPlanner.CellBuild build, bool collisionRelevant, bool visualRelevant = true)
@@ -92,6 +94,28 @@ namespace BooterBigArm.TopDown3D
         }
 
         public bool IsActive(Vector2Int cell) => active.ContainsKey(cell);
+        public bool IsPending(Vector2Int cell) => requests.ContainsKey(cell);
+        private void RemoveCandidate(Vector2Int cell, string removedRecipe, int ordinal)
+        {
+            if (removedRecipe != recipeId || disposed) return;
+            if (active.TryGetValue(cell, out var current)) RemoveFrom(current, ordinal);
+            if (requests.TryGetValue(cell, out var request))
+            {
+                int index = request.Prepared.FindIndex(v => v.Ordinal == ordinal);
+                if (index >= 0 && index < request.Activation) request.Activation--;
+                RemoveFrom(request.Prepared, ordinal);
+            }
+        }
+        private void RemoveFrom(List<Instance> items, int ordinal)
+        {
+            int index = items.FindIndex(v => v.Ordinal == ordinal);
+            if (index < 0) return;
+            var item = items[index]; items.RemoveAt(index); item.Object.SetActive(false); retiring.Enqueue(item);
+        }
+        private void ResetPresentation()
+        {
+            foreach (var cell in requests.Keys.Concat(active.Keys).Distinct().ToArray()) Release(cell);
+        }
         public void Release(Vector2Int cell)
         {
             if (requests.TryGetValue(cell, out var request))
@@ -136,7 +160,11 @@ namespace BooterBigArm.TopDown3D
             {
                 if (retiring.Count > 0) { Retire(retiring.Dequeue()); count++; continue; }
                 Request request = null;
-                foreach (var pair in requests) { request = pair.Value; break; }
+                foreach (var pair in requests)
+                {
+                    if (request == null || pair.Value.CollisionRelevant && !request.CollisionRelevant) request = pair.Value;
+                    if (request.CollisionRelevant) break;
+                }
                 if (request == null) break;
                 if (request.Next >= request.Plan.Length)
                 {
@@ -198,6 +226,8 @@ namespace BooterBigArm.TopDown3D
         public void Dispose()
         {
             if (disposed) return;
+            state.CandidateRemoved -= RemoveCandidate;
+            state.SnapshotApplied -= ResetPresentation;
             foreach (var pair in requests) foreach (var item in pair.Value.Prepared) Destroy(item.Object);
             foreach (var pair in active) foreach (var item in pair.Value) Destroy(item.Object);
             while (pool.Count > 0) Destroy(pool.Pop().Object);
