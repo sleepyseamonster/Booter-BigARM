@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-12",
+  "editor": "6000.4.0f1",
+  "candidate": "D:\\BooterBigArmValidation\\PerformanceImplementation20261011-01",
+  "mode": "background batchmode/nographics focused EditMode",
+  "result": {
+    "total": 46,
+    "passed": 46,
+    "failed": 0,
+    "skipped": 0
+  },
+  "source_matches_candidate": true,
+  "source_files": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs",
+      "sha256": "193cb0e08c34c43814d8b47dd984f8a65f58bf9482e4676f28a4434d3d298aee"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationStateTests.cs",
+      "sha256": "4cadae09a8a004a1cc85af01b03de0b4ce4bd7ef074f4481e27f2d0ba38f9bc0"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandInventoryPersistenceTests.cs",
+      "sha256": "07ffcfeccc46da6db215fce70df0425539c9cc68867e9d3524988da5a274ee97"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandCheckpointWriter.cs",
+      "sha256": "9989e6b0fda96ac390536eaac1509bdc4d582abc1828cb394dba58fb8d34dfc1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs",
+      "sha256": "f98611bbe7979ab82ba89b60139b2847b05b4016bab704c3c2720f2c7f2ae1c7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs",
+      "sha256": "33900c973bc7430c3224790a257d52d85de4fd848f3fc24615577b11657e185b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs.meta",
+      "sha256": "7e765641f787ac39f1a58e3704845804055ad1848a21cfb8b93e102b754aa044"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationStateTests.cs.meta",
+      "sha256": "8efc9760610a5434875a4cac4b501d2bc78460b52a71f21fb0ccc4d3bc5d53ae"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandInventoryPersistenceTests.cs.meta",
+      "sha256": "9480fc3dd0b97df04a9583e86375b07ebbac0e93e4db0a78694a9160c3d8b8fc"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandCheckpointWriter.cs.meta",
+      "sha256": "84f679f0fd656701dc9c4adf6b54921040e45d477241a4bc4ed141e15d93b4e9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs.meta",
+      "sha256": "c48b087ed4872b1ae961a700d15656884ca3aa6aef2b9e3ed64203c3df2922de"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs.meta",
+      "sha256": "5ea623ece8ba7cd2340919e05df9b612cf411521adeb752c1de69755ac271012"
+    }
+  ],
+  "xml_sha256": "5f2d641a4a9a2d82013dcf2eceb478231fe9a01ab3415996730086d6196d4c60",
+  "limits": [
+    "No production seed/state installed or save file rewritten",
+    "No Player FPS, dense sector or visual/gameplay acceptance",
+    "Native terrain/scenes excluded from small copy",
+    "1 MiB limit remains; partitioned checkpoints and generated resource definitions pending"
+  ]
+}

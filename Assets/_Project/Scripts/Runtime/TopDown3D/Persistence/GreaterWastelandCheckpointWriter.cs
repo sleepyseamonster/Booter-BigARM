@@ -10,8 +10,9 @@ namespace BooterBigArm.TopDown3D
         {
             public readonly string Text;
             public readonly long KitRevision, CargoRevision, CacheRevision;
-            public Checkpoint(string text, long kit, long cargo, long cache)
-            { Text = text ?? throw new ArgumentNullException(nameof(text)); KitRevision = kit; CargoRevision = cargo; CacheRevision = cache; }
+            public readonly long PopulationRevision;
+            public Checkpoint(string text, long kit, long cargo, long cache, long population = 0)
+            { Text = text ?? throw new ArgumentNullException(nameof(text)); KitRevision = kit; CargoRevision = cargo; CacheRevision = cache; PopulationRevision = population; }
         }
 
         private readonly string path;

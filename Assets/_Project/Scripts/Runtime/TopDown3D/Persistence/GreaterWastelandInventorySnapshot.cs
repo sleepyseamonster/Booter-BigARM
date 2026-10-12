@@ -22,10 +22,21 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DAlgaeCanisterSnapshot algae;
         public bool campDeployed;
         public TopDown3DCampRecord camp;
+        // JsonUtility materializes null inline classes on round-trip. A nullable string preserves legacy absence.
+        public string populationJson;
+
+        public bool TryReadPopulation(out FixedTerrainPopulationSnapshot population)
+        {
+            population = null;
+            if (string.IsNullOrEmpty(populationJson)) return true;
+            try { population = JsonUtility.FromJson<FixedTerrainPopulationSnapshot>(populationJson); return population != null; }
+            catch (ArgumentException) { return false; }
+        }
 
         public bool HasValidHeader(string expectedCache)
         {
-            return version == 1 && worldId == WorldIdentity && cacheId == expectedCache
+            return ((version == 1 && string.IsNullOrEmpty(populationJson)) || (version == 2 && !string.IsNullOrEmpty(populationJson)))
+                && worldId == WorldIdentity && cacheId == expectedCache
                 && Finite(booterPosition) && Finite(leggerPosition)
                 && ValidRotation(booterRotation) && ValidRotation(leggerRotation)
                 && kit != null && cargo != null && cache != null && resources != null && harvesters != null

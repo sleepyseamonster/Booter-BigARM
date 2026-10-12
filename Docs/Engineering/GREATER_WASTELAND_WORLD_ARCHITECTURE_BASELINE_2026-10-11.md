@@ -2,6 +2,8 @@
 
 Date: October 11, 2026. Audience: the author and implementation owners. Coordination: Gottspan; Unity integration: Babineaux; verified local commits: Gear Ball.
 
+Implementation update October 12: [the population-state checkpoint](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md#population-state-checkpoint-october-12) adds explicit reconstruction metadata, accepted-cell receipts, sparse removals and opt-in payload version 2 through the existing save owner, with 46 focused cases passing. The October 11 tables below retain their dated measurement and implementation scope. Dense population, production binding/migration and Player acceptance remain pending.
+
 Greater Wasteland should use fixed resident terrain, deterministic procedural population, actor-aware collision, bounded visual presentation and local versioned saves. World identity and saved changes must survive changes in rendering, processing partitions and population visibility. The strongest measured performance opportunity is reducing the number of Terrain components participating in rendering. Storage architecture matters for saving, reconstruction and future population scale, but does not address that terrain bottleneck by itself.
 
 This baseline consolidates the performance audit, chunk experiments, earlier game research and first implementation results. It guides the remaining architecture batches in the [implementation record](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md). User direction and root [AGENTS.md](../../AGENTS.md) govern scope; proposed sizes, budgets and optional backends remain subject to the proof gates below.

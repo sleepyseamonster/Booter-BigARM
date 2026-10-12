@@ -126,6 +126,10 @@ namespace BooterBigArm.Tests
                 detached = text; started.Set();
                 if (!release.Wait(2000)) throw new TimeoutException("Fixture checkpoint was not released.");
             });
+            var population = FixedTerrainPopulationStateTests.Create(); var populationCell = new Vector2Int(-1, 0);
+            population.RegisterBaseline(populationCell, FixedTerrainPopulationStateTests.Candidates(populationCell));
+            service.ConfigurePopulation(population);
+            var capturedPopulationRevision = population.Revision;
             Set(service, "writer", writer);
             var capturedRevision = cargo.State.Revision;
             try
@@ -134,6 +138,7 @@ namespace BooterBigArm.Tests
                 Assert.That(started.Wait(2000), Is.True);
                 Assert.That(service.WriteStatus, Is.EqualTo(GreaterWastelandInventorySaveService.CheckpointWriteStatus.Queued));
                 Assert.That(cargo.State.TryAdd(new TopDown3DItemAmount("resource.ironstone_ore", 1)).Succeeded, Is.True);
+                Assert.That(population.TryRemove(populationCell, "fixture.clutter", 2), Is.True);
                 release.Set();
                 var observe = typeof(GreaterWastelandInventorySaveService).GetMethod("ObserveWriter", BindingFlags.Instance | BindingFlags.NonPublic);
                 Assert.That(System.Threading.SpinWait.SpinUntil(() =>
@@ -143,11 +148,55 @@ namespace BooterBigArm.Tests
                 }, 2000), Is.True);
                 Assert.That(service.CompletedCargoRevision, Is.EqualTo(capturedRevision));
                 Assert.That(service.CompletedCargoRevision, Is.LessThan(cargo.State.Revision));
+                Assert.That(service.CompletedPopulationRevision, Is.EqualTo(capturedPopulationRevision));
+                Assert.That(service.CompletedPopulationRevision, Is.LessThan(population.Revision));
                 Assert.That(GreaterWastelandInventoryFile.TryDecode(detached, out var captured), Is.True);
                 Assert.That(captured.cargo.Slots[0].Quantity, Is.EqualTo(2));
+                Assert.That(captured.TryReadPopulation(out var capturedPopulation), Is.True);
+                Assert.That(capturedPopulation.removed.Count, Is.Zero);
                 Assert.That(cargo.State.Slots[0].Quantity, Is.EqualTo(3));
             }
             finally { release.Set(); writer.Drain(out _, out _); }
+        }
+        [Test] public void PopulationCheckpointRestoresMutationsAndInventoryTogether()
+        {
+            var population = FixedTerrainPopulationStateTests.Create(); var cell = new Vector2Int(-1, 0);
+            population.RegisterBaseline(cell, FixedTerrainPopulationStateTests.Candidates(cell));
+            population.TryRemove(cell, "fixture.clutter", 2); service.ConfigurePopulation(population);
+            var captured = Capture();
+            Assert.That(captured.version, Is.EqualTo(2));
+            Assert.That(GreaterWastelandInventoryFile.TryDecode(GreaterWastelandInventoryFile.Encode(captured), out var loaded), Is.True);
+            population.TryRemove(cell, "fixture.clutter", 3);
+            cargo.State.TryAdd(new TopDown3DItemAmount("resource.ironstone_ore", 1));
+            Assert.That(service.Restore(loaded), Is.True);
+            Assert.That(population.IsRemoved(cell, "fixture.clutter", 2), Is.True);
+            Assert.That(population.IsRemoved(cell, "fixture.clutter", 3), Is.False);
+            Assert.That(cargo.State.Slots[0].Quantity, Is.EqualTo(2));
+            Assert.That(population.RegisterBaseline(cell, FixedTerrainPopulationStateTests.Candidates(cell)), Is.True);
+        }
+        [Test] public void PopulationMetadataMismatchAndLegacyGraftingRejectBeforeAnyParticipantChanges()
+        {
+            var legacy = Capture(); var population = FixedTerrainPopulationStateTests.Create(); var cell = new Vector2Int(-1, 0);
+            population.RegisterBaseline(cell, FixedTerrainPopulationStateTests.Candidates(cell));
+            population.TryRemove(cell, "fixture.clutter", 2); service.ConfigurePopulation(population);
+            var checkpoint = Capture(); checkpoint.TryReadPopulation(out var changed); changed.seed++;
+            checkpoint.populationJson = JsonUtility.ToJson(changed);
+            var before = GreaterWastelandInventoryFile.Encode(Capture());
+            Assert.That(service.Restore(checkpoint), Is.False);
+            Assert.That(service.Restore(legacy), Is.False, "An old checkpoint contains no seed for this population.");
+            Assert.That(GreaterWastelandInventoryFile.Encode(Capture()), Is.EqualTo(before));
+        }
+        [Test] public void LegacyMissingPopulationFieldAndNewVersionOneRoundTripRemainCompatible()
+        {
+            var snapshot = Capture();
+            var legacy = JsonUtility.ToJson(snapshot).Replace(",\"populationJson\":\"\"", "");
+            StringAssert.DoesNotContain("populationJson", legacy);
+            var old = JsonUtility.FromJson<GreaterWastelandInventorySnapshot>(legacy);
+            Assert.That(old.HasValidHeader(cache.StableId), Is.True);
+            Assert.That(service.Restore(old), Is.True);
+            Assert.That(GreaterWastelandInventoryFile.TryDecode(GreaterWastelandInventoryFile.Encode(snapshot), out var restored), Is.True);
+            Assert.That(restored.TryReadPopulation(out var absent), Is.True); Assert.That(absent, Is.Null);
+            Assert.That(service.Restore(restored), Is.True);
         }
         [Test] public void InventoryOwnersReconstructTheirOwnRetainedSnapshots()
         {

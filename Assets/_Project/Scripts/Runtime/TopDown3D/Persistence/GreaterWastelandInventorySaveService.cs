@@ -25,13 +25,24 @@ namespace BooterBigArm.TopDown3D
         private long kitRevision, cargoRevision, cacheRevision;
         private long submittedKitRevision, submittedCargoRevision, submittedCacheRevision;
         private GreaterWastelandCheckpointWriter writer;
+        private FixedTerrainPopulationState population;
+        private long submittedPopulationRevision, completedPopulationRevision;
         public enum CheckpointWriteStatus { Idle, Queued, Completed, Failed }
         public CheckpointWriteStatus WriteStatus { get; private set; }
         public long CompletedKitRevision => kitRevision;
         public long CompletedCargoRevision => cargoRevision;
         public long CompletedCacheRevision => cacheRevision;
+        public long CompletedPopulationRevision => completedPopulationRevision;
         public bool RecoveryRequired => recoveryRequired;
         public string SavePath => Path.Combine(Application.persistentDataPath, "GreaterWasteland", "inventory-v1.json");
+
+        // Bind explicitly before startup. No seed inference or silent version-1 population migration.
+        public void ConfigurePopulation(FixedTerrainPopulationState state)
+        {
+            if (ready || writer != null || population != null || state == null || state.WorldId != GreaterWastelandInventorySnapshot.WorldIdentity)
+                throw new InvalidOperationException("Bind one compatible population state before checkpoint startup.");
+            population = state;
+        }
 
         private void Start()
         {
@@ -72,14 +83,15 @@ namespace BooterBigArm.TopDown3D
             var booterBody = kit.GetComponent<Rigidbody>(); var leggerBody = cargo.GetComponent<Rigidbody>();
             return new GreaterWastelandInventorySnapshot
             {
-                version = 1, worldId = GreaterWastelandInventorySnapshot.WorldIdentity, cacheId = cache.StableId,
+                version = population == null ? 1 : 2, worldId = GreaterWastelandInventorySnapshot.WorldIdentity, cacheId = cache.StableId,
                 booterPosition = motor.Position, booterRotation = booterBody != null ? booterBody.rotation : kit.transform.rotation,
                 leggerPosition = leggerBody != null ? leggerBody.position : cargo.transform.position,
                 leggerRotation = leggerBody != null ? leggerBody.rotation : cargo.transform.rotation,
                 kit = kit.CaptureSnapshot(), cargo = cargo.State.CaptureSnapshot(), cache = cache.State.CaptureSnapshot(),
                 resources = resources.CaptureSnapshot(), harvesters = harvesters.CaptureSnapshot(),
                 survival = vitals.CaptureSnapshot(), algae = algae.CaptureSnapshot(),
-                campDeployed = camp.Record != null, camp = camp.Record
+                campDeployed = camp.Record != null, camp = camp.Record,
+                populationJson = population == null ? null : JsonUtility.ToJson(population.CaptureSnapshot())
             };
         }
         private void LateUpdate()
@@ -87,7 +99,8 @@ namespace BooterBigArm.TopDown3D
             ObserveWriter();
             if (!SafeCheckpoint) return;
             if (Time.unscaledTime >= nextSave || submittedKitRevision != kit.State.Revision
-                || submittedCargoRevision != cargo.State.Revision || submittedCacheRevision != cache.State.Revision) QueueCheckpoint();
+                || submittedCargoRevision != cargo.State.Revision || submittedCacheRevision != cache.State.Revision
+                || submittedPopulationRevision != (population?.Revision ?? 0)) QueueCheckpoint();
         }
         private void QueueCheckpoint()
         {
@@ -95,7 +108,7 @@ namespace BooterBigArm.TopDown3D
             if (!Supported(snapshot.booterPosition) || !Supported(snapshot.leggerPosition)) return;
             // Encoding detaches every reference from mutable live state before handing work to another thread.
             var request = new GreaterWastelandCheckpointWriter.Checkpoint(GreaterWastelandInventoryFile.Encode(snapshot),
-                kit.State.Revision, cargo.State.Revision, cache.State.Revision);
+                kit.State.Revision, cargo.State.Revision, cache.State.Revision, population?.Revision ?? 0);
             if (writer == null || !writer.Queue(request)) return;
             RememberSubmittedRevisions(); nextSave = Time.unscaledTime + 30f;
             WriteStatus = CheckpointWriteStatus.Queued;
@@ -105,6 +118,7 @@ namespace BooterBigArm.TopDown3D
             if (writer == null || !writer.Poll(out var completed, out var error)) return;
             if (error != null) { RequireRecovery("Inventory checkpoint could not be written. Previous files are preserved; automatic saving is disabled."); return; }
             kitRevision = completed.KitRevision; cargoRevision = completed.CargoRevision; cacheRevision = completed.CacheRevision;
+            completedPopulationRevision = completed.PopulationRevision;
             WriteStatus = writer.Busy ? CheckpointWriteStatus.Queued : CheckpointWriteStatus.Completed;
         }
         private bool DrainWriter()
@@ -119,6 +133,7 @@ namespace BooterBigArm.TopDown3D
             if (completed != null)
             {
                 kitRevision = completed.KitRevision; cargoRevision = completed.CargoRevision; cacheRevision = completed.CacheRevision;
+                completedPopulationRevision = completed.PopulationRevision;
                 WriteStatus = CheckpointWriteStatus.Completed;
             }
             return true;
@@ -139,9 +154,9 @@ namespace BooterBigArm.TopDown3D
             { RequireRecovery("Inventory checkpoint could not be written. Previous files are preserved; automatic saving is disabled."); return false; }
         }
         private void RememberRevisions()
-        { kitRevision = kit.State.Revision; cargoRevision = cargo.State.Revision; cacheRevision = cache.State.Revision; }
+        { kitRevision = kit.State.Revision; cargoRevision = cargo.State.Revision; cacheRevision = cache.State.Revision; completedPopulationRevision = population?.Revision ?? 0; }
         private void RememberSubmittedRevisions()
-        { submittedKitRevision = kit.State.Revision; submittedCargoRevision = cargo.State.Revision; submittedCacheRevision = cache.State.Revision; }
+        { submittedKitRevision = kit.State.Revision; submittedCargoRevision = cargo.State.Revision; submittedCacheRevision = cache.State.Revision; submittedPopulationRevision = population?.Revision ?? 0; }
         private void RequireRecovery(string message)
         {
             recoveryRequired = true; WriteStatus = CheckpointWriteStatus.Failed; Debug.LogWarning(message, this);
@@ -150,7 +165,9 @@ namespace BooterBigArm.TopDown3D
 
         internal bool Restore(GreaterWastelandInventorySnapshot snapshot)
         {
-            if (snapshot == null || !snapshot.HasValidHeader(cache.StableId) || !resources.CanApplySnapshot(snapshot.resources)
+            if (snapshot == null || !snapshot.HasValidHeader(cache.StableId) || !snapshot.TryReadPopulation(out var savedPopulation)
+                || !resources.CanApplySnapshot(snapshot.resources)
+                || (population == null ? savedPopulation != null : !population.CanApplySnapshot(savedPopulation))
                 || !harvesters.CanApplySnapshot(snapshot.harvesters) || !camp.CanRestoreCamp(snapshot.camp, snapshot.campDeployed)
                 || !Supported(snapshot.booterPosition) || !Supported(snapshot.leggerPosition)
                 || !ValidVitals(snapshot.survival, vitals.Settings) || !ValidAlgae(snapshot.algae, algae.Settings)) return false;
@@ -185,7 +202,8 @@ namespace BooterBigArm.TopDown3D
         }
         private bool ApplyWorld(GreaterWastelandInventorySnapshot snapshot)
         {
-            if (!camp.RestoreCamp(snapshot.camp, snapshot.campDeployed)
+            if (!snapshot.TryReadPopulation(out var savedPopulation) || (population != null && !population.ApplySnapshot(savedPopulation))
+                || !camp.RestoreCamp(snapshot.camp, snapshot.campDeployed)
                 || !ApplyObserved(() => resources.ApplySnapshot(snapshot.resources), () => JsonUtility.ToJson(resources.CaptureSnapshot()) == JsonUtility.ToJson(snapshot.resources))
                 || !ApplyObserved(() => harvesters.ApplySnapshot(snapshot.harvesters), () => JsonUtility.ToJson(harvesters.CaptureSnapshot()) == JsonUtility.ToJson(snapshot.harvesters))
                 || !ApplyObserved(() => vitals.ApplySnapshot(snapshot.survival), () => JsonUtility.ToJson(vitals.CaptureSnapshot()) == JsonUtility.ToJson(snapshot.survival))
