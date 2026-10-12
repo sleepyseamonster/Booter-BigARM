@@ -175,6 +175,8 @@ The subsequent [actor binding](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md#o
 
 The [saved actor comparison](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md#saved-real-actor-comparison-scene--october-12) subsequently combines the accepted gameplay template, native sector and serialized preparation bindings in a separate reference scene. Eighty-seven focused cases pass, including grounded actor setup, publication waiting and offscreen readiness with preserved positions. Population Player timing, partition comparison and actual traversal/appearance acceptance remain open; no production save binding or population deployment follows from the scene alone.
 
+The subsequent [provisional population timing](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md#provisional-population-player-timing--october-12) takes 3.03 seconds to initial readiness and observes 9.63 ms maximum startup work. Visual release/restoration changes active instances 390 → 81 → 390 while resident native collision stays enabled; restored work reaches 2.05 ms despite a nominal 1 ms clock budget. This establishes that bounded operation count does not guarantee bounded wall time. The run had an OS firewall prompt and actor drift and needs a clean repeat; it does not establish interactive FPS or visual acceptance. The author has explicitly not checked gameplay visuals yet.
+
 Start with shared accepted meshes/materials and conventional LODs. Keep batches spatially bounded so they can be culled. Dense cosmetic clutter should not require a MonoBehaviour, collider and Update callback for every instance. Geometry is valuable for silhouettes and interaction; distant detail can use simpler representations derived from the same logical state.
 
 ## Local persistence design

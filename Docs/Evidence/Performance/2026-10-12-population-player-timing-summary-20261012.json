@@ -1,0 +1,115 @@
+{
+  "scope": "One manual offscreen reference run; actor motion, no injected input; not interactive FPS or traversal acceptance",
+  "initial_ready_seconds": 3.0268098000000005,
+  "startup_maximum_population_ms": 9.627999999999304,
+  "phases": [
+    {
+      "phase": 0,
+      "update": {
+        "samples": 4622,
+        "mean_ms": 2.1640556255010512,
+        "median_ms": 2.0840985234826803,
+        "p95_ms": 2.636699238792062,
+        "p99_ms": 3.7374007515609264,
+        "maximum_ms": 14.352898113429546
+      },
+      "population_work": {
+        "samples": 4622,
+        "mean_ms": 0.004220229337927506,
+        "median_ms": 0.0035999999994373866,
+        "p95_ms": 0.005200000000371574,
+        "p99_ms": 0.0400999999996543,
+        "maximum_ms": 0.05670000000179698
+      },
+      "manual_render": {
+        "samples": 4622,
+        "mean_ms": 1.4744324751190014,
+        "median_ms": 1.429899999999762,
+        "p95_ms": 1.7381999999983577,
+        "p99_ms": 2.0513000000015325,
+        "maximum_ms": 10.33440000000141
+      },
+      "active_minimum": 390,
+      "active_maximum": 390,
+      "pending_maximum": 0,
+      "nominal_1ms_overruns": 0,
+      "actor_wait_samples": 0
+    },
+    {
+      "phase": 1,
+      "update": {
+        "samples": 4276,
+        "mean_ms": 2.3385824827454247,
+        "median_ms": 2.1928995847702026,
+        "p95_ms": 3.1995961908251047,
+        "p99_ms": 4.698504693806171,
+        "maximum_ms": 11.305094696581364
+      },
+      "population_work": {
+        "samples": 4276,
+        "mean_ms": 0.00525813844719834,
+        "median_ms": 0.003999999997006398,
+        "p95_ms": 0.00640000000373675,
+        "p99_ms": 0.0323000000008733,
+        "maximum_ms": 1.09960000000342
+      },
+      "manual_render": {
+        "samples": 4276,
+        "mean_ms": 1.575565715622053,
+        "median_ms": 1.4879000000007636,
+        "p95_ms": 2.0664999999979727,
+        "p99_ms": 3.0181000000055747,
+        "maximum_ms": 9.488300000001004
+      },
+      "active_minimum": 81,
+      "active_maximum": 390,
+      "pending_maximum": 0,
+      "nominal_1ms_overruns": 1,
+      "actor_wait_samples": 0
+    },
+    {
+      "phase": 2,
+      "update": {
+        "samples": 4647,
+        "mean_ms": 2.1520901667731764,
+        "median_ms": 2.057901117950678,
+        "p95_ms": 2.7106008492410183,
+        "p99_ms": 4.021903499960899,
+        "maximum_ms": 7.358801085501909
+      },
+      "population_work": {
+        "samples": 4647,
+        "mean_ms": 0.030939939746076537,
+        "median_ms": 0.0037000000006059963,
+        "p95_ms": 0.1962999999989279,
+        "p99_ms": 0.4041999999984114,
+        "maximum_ms": 2.0503000000005045
+      },
+      "manual_render": {
+        "samples": 4647,
+        "mean_ms": 1.4220724553474982,
+        "median_ms": 1.3716999999999757,
+        "p95_ms": 1.7107999999979029,
+        "p99_ms": 2.21700000000169,
+        "maximum_ms": 6.048400000004506
+      },
+      "active_minimum": 81,
+      "active_maximum": 390,
+      "pending_maximum": 2,
+      "nominal_1ms_overruns": 26,
+      "actor_wait_samples": 0
+    }
+  ],
+  "actor_horizontal_displacement_m": {
+    "booter": 41.76728765829503,
+    "bigArm": 8.976776184413817
+  },
+  "maximum_synchronization_count": 26,
+  "limitations": [
+    "Nominal time budget can be exceeded by indivisible work units and demand updates",
+    "Physics synchronization runs in actor callbacks outside measured population work",
+    "Warmup excludes initial readiness from steady update statistics",
+    "Endpoint pixels do not establish population appearance along the whole run"
+  ],
+  "source_sha256": "b26045d5865415138305461c2d4298848e9fd45a973786ae1b6979d69565a1cc"
+}

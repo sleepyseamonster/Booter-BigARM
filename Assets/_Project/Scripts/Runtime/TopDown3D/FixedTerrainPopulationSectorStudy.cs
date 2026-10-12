@@ -127,10 +127,14 @@ namespace BooterBigArm.TopDown3D
         }
         private void Update()
         {
-            if (scheduler == null) return;
-            double now = Time.realtimeSinceStartupAsDouble;
+            AdvanceRuntime(Time.realtimeSinceStartupAsDouble);
+        }
+        /// <summary>Same demand cadence and work limits as the normal component loop; supports isolated timing without duplicate updates.</summary>
+        public int AdvanceRuntime(double now)
+        {
+            if (scheduler == null) return 0;
             if (now >= nextDemand) UpdateDemand(now);
-            scheduler.Advance(64, 1, now);
+            return scheduler.Advance(64, 1, now);
         }
         public int AdvanceStudy(int operations, double milliseconds, double time)
         {

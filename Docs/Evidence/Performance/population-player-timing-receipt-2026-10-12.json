@@ -1,0 +1,186 @@
+{
+  "date": "2026-10-12",
+  "scope": "Provisional one-run manual URP bounded population timings; OS firewall prompt occurred, no clean repeat or interactive FPS acceptance",
+  "sources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs",
+      "sha256": "14149899cbbcc8592fb4b185fa9d214de2188ee5b5ecb0cf5e86ef8cbd71d156"
+    },
+    {
+      "path": "Tools/Diagnostics/PopulationSectorPlayerAudit.cs",
+      "sha256": "34f74b8f68e546298aa1bf254344b90077299b29593e2a9770b40e1ed41c3729"
+    },
+    {
+      "path": "Tools/Diagnostics/IsolatedPopulationAuditBuild.cs",
+      "sha256": "e6f2022d851c5923c171a384994feb858138c64f7197363cdec3afd5310e4809"
+    },
+    {
+      "path": "Tools/Diagnostics/summarize_population_audit.py",
+      "sha256": "a26563a917b8cd7bc362798768be27f9988946dbecc10e8227db17deb0f295e7"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-player-timing-20261012.json",
+      "sha256": "b26045d5865415138305461c2d4298848e9fd45a973786ae1b6979d69565a1cc",
+      "candidate_original_sha256": "b26045d5865415138305461c2d4298848e9fd45a973786ae1b6979d69565a1cc"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-player-timing-summary-20261012.json",
+      "sha256": "5c6e1b70acebf468865501d4fae7a456cbcd5c873ede02813e4bb4ab9c63d122",
+      "candidate_original_sha256": "5c6e1b70acebf468865501d4fae7a456cbcd5c873ede02813e4bb4ab9c63d122"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-player-timing-20261012.png",
+      "sha256": "1d3a0e2b320684a9cd84f4531669271dd117784dc1aa3ca860b8d4582411e6f8",
+      "candidate_original_sha256": "1d3a0e2b320684a9cd84f4531669271dd117784dc1aa3ca860b8d4582411e6f8"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-player-timing-process-watch.json",
+      "sha256": "bfe242a987ba26cd2ce8bddfb80cdae929f0a4f460ecb2a1b425aa574fb8262b",
+      "candidate_original_sha256": "15aba63535f6e5af27a92bb4fc38f37c58df49c15df40071558acafdfe3c95dd"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-player-build-process-watch.json",
+      "sha256": "06b299f75f65e1df21da74045f4cd015253d05b3ab7ff210196de8aac6199f28",
+      "candidate_original_sha256": "07f28d432414d1e3dbf7243d55a89d5a0dab478e31e85a292f75c33700bb8cfe"
+    }
+  ],
+  "tests": {
+    "path": "Docs/Evidence/Performance/population-runtime-cadence-editmode-2026-10-12.xml",
+    "sha256": "b08f2fca5ca597ede48a853021fd977042bd925c33a7dc06dfe48aad9546111d",
+    "passed": 87,
+    "failed": 0,
+    "skipped": 0
+  },
+  "actor_scene_sha256": "e00ae60c3afa378b53a009cfd9720a257a302346188e2f086caa6d9456a753e6",
+  "runtime_assembly_sha256": "9228114bfc1a9868cd52e78f67ff437e0c8b5ec7f65f6539c8a63c61f8aae912",
+  "summary": {
+    "scope": "One manual offscreen reference run; actor motion, no injected input; not interactive FPS or traversal acceptance",
+    "initial_ready_seconds": 3.0268098000000005,
+    "startup_maximum_population_ms": 9.627999999999304,
+    "phases": [
+      {
+        "phase": 0,
+        "update": {
+          "samples": 4622,
+          "mean_ms": 2.1640556255010512,
+          "median_ms": 2.0840985234826803,
+          "p95_ms": 2.636699238792062,
+          "p99_ms": 3.7374007515609264,
+          "maximum_ms": 14.352898113429546
+        },
+        "population_work": {
+          "samples": 4622,
+          "mean_ms": 0.004220229337927506,
+          "median_ms": 0.0035999999994373866,
+          "p95_ms": 0.005200000000371574,
+          "p99_ms": 0.0400999999996543,
+          "maximum_ms": 0.05670000000179698
+        },
+        "manual_render": {
+          "samples": 4622,
+          "mean_ms": 1.4744324751190014,
+          "median_ms": 1.429899999999762,
+          "p95_ms": 1.7381999999983577,
+          "p99_ms": 2.0513000000015325,
+          "maximum_ms": 10.33440000000141
+        },
+        "active_minimum": 390,
+        "active_maximum": 390,
+        "pending_maximum": 0,
+        "nominal_1ms_overruns": 0,
+        "actor_wait_samples": 0
+      },
+      {
+        "phase": 1,
+        "update": {
+          "samples": 4276,
+          "mean_ms": 2.3385824827454247,
+          "median_ms": 2.1928995847702026,
+          "p95_ms": 3.1995961908251047,
+          "p99_ms": 4.698504693806171,
+          "maximum_ms": 11.305094696581364
+        },
+        "population_work": {
+          "samples": 4276,
+          "mean_ms": 0.00525813844719834,
+          "median_ms": 0.003999999997006398,
+          "p95_ms": 0.00640000000373675,
+          "p99_ms": 0.0323000000008733,
+          "maximum_ms": 1.09960000000342
+        },
+        "manual_render": {
+          "samples": 4276,
+          "mean_ms": 1.575565715622053,
+          "median_ms": 1.4879000000007636,
+          "p95_ms": 2.0664999999979727,
+          "p99_ms": 3.0181000000055747,
+          "maximum_ms": 9.488300000001004
+        },
+        "active_minimum": 81,
+        "active_maximum": 390,
+        "pending_maximum": 0,
+        "nominal_1ms_overruns": 1,
+        "actor_wait_samples": 0
+      },
+      {
+        "phase": 2,
+        "update": {
+          "samples": 4647,
+          "mean_ms": 2.1520901667731764,
+          "median_ms": 2.057901117950678,
+          "p95_ms": 2.7106008492410183,
+          "p99_ms": 4.021903499960899,
+          "maximum_ms": 7.358801085501909
+        },
+        "population_work": {
+          "samples": 4647,
+          "mean_ms": 0.030939939746076537,
+          "median_ms": 0.0037000000006059963,
+          "p95_ms": 0.1962999999989279,
+          "p99_ms": 0.4041999999984114,
+          "maximum_ms": 2.0503000000005045
+        },
+        "manual_render": {
+          "samples": 4647,
+          "mean_ms": 1.4220724553474982,
+          "median_ms": 1.3716999999999757,
+          "p95_ms": 1.7107999999979029,
+          "p99_ms": 2.21700000000169,
+          "maximum_ms": 6.048400000004506
+        },
+        "active_minimum": 81,
+        "active_maximum": 390,
+        "pending_maximum": 2,
+        "nominal_1ms_overruns": 26,
+        "actor_wait_samples": 0
+      }
+    ],
+    "actor_horizontal_displacement_m": {
+      "booter": 41.76728765829503,
+      "bigArm": 8.976776184413817
+    },
+    "maximum_synchronization_count": 26,
+    "limitations": [
+      "Nominal time budget can be exceeded by indivisible work units and demand updates",
+      "Physics synchronization runs in actor callbacks outside measured population work",
+      "Warmup excludes initial readiness from steady update statistics",
+      "Endpoint pixels do not establish population appearance along the whole run"
+    ]
+  },
+  "execution_boundary": [
+    "Actor reference only, no production save service, no injected input, actors moved during simulation",
+    "Study updater disabled and identical normal cadence driven once per diagnostic update",
+    "Camera demand absent for middle ten seconds, manual rendering continues from same camera",
+    "Development build triggered Windows Firewall prompt despite hidden launch; user may cancel; no firewall rules changed",
+    "Completed exit 0 and local output does not require inbound access; no additional Player launched this turn"
+  ],
+  "acceptance": "Author explicitly has not checked normal gameplay visuals; visual/traversal acceptance remains open",
+  "remaining": [
+    "Reduce or bound indivisible startup and restoration work; measure physics synchronization separately",
+    "Repeat without development networking/dialog interruption before performance acceptance",
+    "Compare presentation work partitions without changing identity",
+    "Actual actor traversal and production rollout/seed/save integration"
+  ]
+}
