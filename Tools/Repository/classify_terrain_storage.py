@@ -146,7 +146,8 @@ def main():
         owner = p.removesuffix('/Source/manifest.json')
         mid = len(manifests)
         manifests.append({'id': mid, 'path': p, 'family': m.get('family', ''), 'tile_count': m.get('tile_count'),
-                          'protected_count': len(m.get('protected_files', [])), 'bytes': index[p][1]})
+                          'protected_count': len(m.get('protected_files', [])), 'bytes': (ROOT / p).stat().st_size,
+                          'committed_blob_bytes': index[p][1]})
         for f in m.get('protected_files', []):
             protected_consumers[f['path']].add(mid)
             expected_hashes[f['path']].add(f['sha256'])
@@ -314,7 +315,7 @@ def main():
                      'uncompressed_sha256':hashlib.sha256(payload).hexdigest(),'rows':len(rows),'columns':fields,
                      'compressed_bytes':len(compressed),'uncompressed_bytes':len(payload)},
         'scope':'Active terrain assets, production/terrain-reference scenes, local terrain authoring sources, terrain docs/evidence and retained transfer inputs; excludes standalone historical projects and external backups.',
-        'classification_intent':'Proposed storage classes; currently tracked files remain ordinary Git. No imported asset is cleared for removal by this static audit.',
+        'classification_intent':'Proposed storage classes; inspect Git attributes to distinguish LFS pointers from ordinary Git blobs. No imported asset is cleared for removal by this static audit.',
         'rules':RULES,'classes':dict(class_stats),'archive_source_usage':dict(source_usage),
         'manifests':manifests,'code_consumers':code_consumers,'map_descriptors':map_descriptors,'map_payloads':sorted(map_payloads),
         'production':{'scene':SCENE,'scene_sha256':hashlib.sha256((ROOT/SCENE).read_bytes()).hexdigest(),

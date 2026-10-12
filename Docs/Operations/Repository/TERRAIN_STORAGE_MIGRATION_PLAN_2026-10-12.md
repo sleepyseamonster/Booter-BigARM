@@ -1,6 +1,6 @@
 # Terrain storage classification and migration plan
 
-October 12, 2026. Owner: Gottspan; Unity dependency and import gates belong to Babineaux, Git/LFS conversion and publication gates to Gear Ball. Status: classification and implementation plan. Terrain files, `.meta` files, storage configuration and local sources have not been changed.
+October 12, 2026. Owner: Gottspan; Unity dependency and import gates belong to Babineaux, Git/LFS conversion and publication gates to Gear Ball. TST-01 is complete and verified for local commit; see the [first LFS batch receipt](../../Evidence/Repository/TerrainLfsBatch20261012/README.md). Approved payloads retain their paths and bytes, while Git stores LFS pointers. Metadata and local-only sources remain intact. Later archive batches are still planned.
 
 Keep Greater Wasteland’s native terrain and rendering assets at their existing Unity paths. Select their binary payloads for LFS, preserve text assets and identities in ordinary Git, and archive retained captures through an explicit restoration contract. No imported terrain file is cleared for immediate removal: the existing validators deliberately require historical source folders. The plan separates a safe change of Git storage from a later change of which evidence a normal checkout must carry.
 
@@ -39,6 +39,8 @@ The binary and large-contract LFS selection totals about 3.043 GiB of logical wo
 Changing a sealed manifest’s Git representation is allowed only with unchanged materialized bytes. Its UTF-8 encoding, CRLF/LF representation and all content hashes stay intact. Do not pretty-print JSON, renormalize line endings, replace a manifest with an archive stub, or rewrite `predecessor_manifest_sha256` merely to make migration pass.
 
 Generate explicit approved `.gitattributes` entries using `filter=lfs diff=lfs merge=lfs -text`, with repository-relative paths correctly escaped for attribute syntax. Do not match `.meta` files. The `-text` setting is essential for byte-exact materialization of sealed JSON as well as binaries. Review the resulting exact match set with `git check-attr` before staging any conversion.
+
+For TST-01, bounded row/column patterns represent complete approved 16 × 16 filename grids. Their finite expansion was proven equal to the exact inventory, with literal entries for all other files. This preserves the approved path set while avoiding the substantial Git matching cost of 18,210 literal attribute lines.
 
 The selected LFS set narrows the earlier general advice to keep JSON in ordinary Git: these 28 large immutable contracts are explicit exceptions. Smaller structured documents retain ordinary Git diffs. A later compact current-world catalog can remove cumulative manifest growth from the everyday workflow without overwriting sealed historical records.
 
@@ -100,4 +102,4 @@ World origin, geographic identities, fixed native terrain constraints, player/co
 
 A normal clone must open the saved production terrain with all required native/rendering assets restored; current-world verification must retain its accepted geometric and identity guarantees. A separate archive-hydrated verification checkout must pass the unchanged historical source checks. Local-only sources must remain present and unpublished, with verified independent recovery copies. File, metadata and reference inventories must reconcile before any untracking or removal. Hands-on gameplay smoke testing stays user-owned.
 
-This classification and plan are ready for review. The first implementation batch is exact-path LFS conversion, followed by a local archive copy/restore pilot. Imported archive files remain in place until the engine dependency and restoration gates pass.
+The first LFS conversion batch passed byte-preservation, local-clone restoration, native terrain validation and 41 focused tests. No push occurred. The next planned batch is the local archive copy/restore pilot; imported archive files remain in place until the engine dependency and restoration gates pass.
