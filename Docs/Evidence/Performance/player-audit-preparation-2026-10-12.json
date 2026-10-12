@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-12",
+  "scope": "Player audit infrastructure preparation; no Player timing result yet",
+  "snapshot": {
+    "candidate": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01",
+    "head": "83bfca0bbaa59ce41982afee8af9f792f55d1fed",
+    "files": 157668,
+    "bytes": 15718649140,
+    "critical_source_hashes": [
+      {
+        "path": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+        "sha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+        "bytes": 30560270
+      },
+      {
+        "path": "Packages/manifest.json",
+        "sha256": "a9b4f332893effbb67f87b48508240992d76968b8b78f870f8f05f12a436f409",
+        "bytes": 2418
+      },
+      {
+        "path": "Packages/packages-lock.json",
+        "sha256": "d2adab2cb95c215760c616ac81950f6eab23ae18aeed23d69b9c58fe63c8f473",
+        "bytes": 16762
+      },
+      {
+        "path": "ProjectSettings/ProjectVersion.txt",
+        "sha256": "8468d7add4c1613c42224053cb9c889688ccf141875f44065a40e6d133bc3ea7",
+        "bytes": 83
+      }
+    ]
+  },
+  "compile": "Both C# diagnostic helpers compiled offline with pinned Unity 6000.4.0f1 reference assemblies; no compiler diagnostics.",
+  "watcher_completion_fixture": {
+    "pid": 25928,
+    "exit_code": 0,
+    "stopped_for_budget": null,
+    "observed_seconds": 9.375,
+    "peak_private_bytes": 815104,
+    "peak_working_bytes": 4386816,
+    "minimum_free_bytes": 31948718080,
+    "limits": {
+      "minimum_free_GiB": 12,
+      "maximum_owned_process_GiB": 24,
+      "deadline_seconds": 20
+    }
+  },
+  "watcher_deadline_fixture": {
+    "pid": 17772,
+    "exit_code": 3,
+    "stopped_for_budget": "owned process deadline exceeded",
+    "observed_seconds": 2.0160000000032596,
+    "peak_private_bytes": 806912,
+    "peak_working_bytes": 4382720,
+    "minimum_free_bytes": 32047095808,
+    "limits": {
+      "minimum_free_GiB": 12,
+      "maximum_owned_process_GiB": 24,
+      "deadline_seconds": 2
+    }
+  },
+  "limits": [
+    "Build/capture outcomes pending",
+    "Stationary automatic offscreen camera loop excludes display/overlay UI/save/moving actors",
+    "Diagnostic-only cursor guard and isolated save identity are candidate overlays; production unchanged"
+  ]
+}
