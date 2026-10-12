@@ -8,6 +8,8 @@ The existing item catalog, inventory state, cargo owner, input router and UI pro
 
 The author's October 11 direction is explicit: **Booter's limited backpack carries personal items and tools, never resources; all resources are carried by the Legger.** This supersedes the earlier plan's emergency resource overflow and Booter harvest fallback. The Legger remains finite and physically present; opening a menu, harvesting, recalling him or loading a snapshot must never teleport him or permit remote cargo mutation.
 
+Subsequent scope clarification: calculated load risk/reward is the longer-term aim, while the immediate priority is separate carrier inventories and Ironstone automatically entering Legger cargo. The [focused separation and mining audit](LEGGER_IRONSTONE_CARGO_AUDIT_2026-10-11.md) verifies that the two inventories already exist and narrows the next implementation. Breakdown and complex packing remain deferred; the broader batches below are not all prerequisites for the first exclusive Ironstone delivery slice.
+
 This audit proposes quick sorting and transfers as the first experience, with optional physical packing afterward. That is an iteration recommendation, not acceptance of a new packing mechanic. Eight backpack slots are a reasonable starting experiment because the current code default already uses eight; the final capacity and treatment of tool stacks remain tuning decisions. No spatial item shapes, Tetris, new art, item recipes, storage depots, or package changes are assumed.
 
 ## Verified current implementation
