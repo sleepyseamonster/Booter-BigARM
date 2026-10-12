@@ -1,5 +1,6 @@
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using BooterBigArm.Editor;
 using BooterBigArm.TopDown3D;
@@ -12,6 +13,60 @@ namespace BooterBigArm.Tests
 {
     public sealed class FixedTerrainPopulationSectorStudyTests
     {
+        [Test]
+        public void HeightCoverageIncludesInactiveOffsetMeshesAndUnknownArtFailsOpen()
+        {
+            var scene = EditorSceneManager.OpenScene(FixedTerrainPopulationSectorBuilder.ScenePath, OpenSceneMode.Additive);
+            var study = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<FixedTerrainPopulationSectorStudy>(true)).Single();
+            Material material = null;
+            try
+            {
+                var template = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(template, scene); template.SetActive(false);
+                material = new Material(Shader.Find("Universal Render Pipeline/Lit")); template.GetComponent<Renderer>().sharedMaterial = material;
+                var settings = new SerializedObject(study); settings.FindProperty("prefab").objectReferenceValue = template; settings.ApplyModifiedPropertiesWithoutUndo();
+                study.Initialize();
+                var landscape = (Bounds)typeof(FixedTerrainPopulationSectorStudy).GetField("landscape", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(study);
+                var camera = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Camera>()).Single();
+                camera.transform.SetPositionAndRotation(new Vector3(-1536, landscape.max.y + 100, -1536), Quaternion.Euler(90, 0, 0));
+                camera.aspect = 16f / 9; camera.farClipPlane = 8000;
+                Bounds Coverage() => (Bounds)typeof(FixedTerrainPopulationSectorStudy).GetMethod("CameraBounds", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(study, null);
+                var tight = Coverage(); study.FullFrustumVisualCoverage = true; var full = Coverage(); study.FullFrustumVisualCoverage = false;
+                Assert.That(tight.size.x, Is.LessThan(full.size.x / 2)); Assert.That(tight.size.z, Is.LessThan(full.size.z / 2));
+                study.Shutdown();
+                var child = GameObject.CreatePrimitive(PrimitiveType.Cube); child.transform.SetParent(template.transform, false);
+                child.transform.localPosition = new Vector3(300, 100, 0); child.transform.localScale = new Vector3(2, 200, 2);
+                child.GetComponent<Renderer>().sharedMaterial = material; child.SetActive(false);
+                study.Initialize(); var extended = Coverage();
+                Assert.That(extended.size.x, Is.GreaterThan(tight.size.x + 300), "Inactive/LOD geometry and horizontal root offsets must expand demand.");
+                study.Shutdown(); template.AddComponent<Animator>(); study.Initialize(); var unknown = Coverage();
+                Assert.That(unknown.min.x, Is.LessThanOrEqualTo(landscape.min.x)); Assert.That(unknown.max.x, Is.GreaterThanOrEqualTo(landscape.max.x));
+                var corners = new Vector3[8]; FixedTerrainCameraCoverage.FillFrustum(camera, camera.farClipPlane, Camera.MonoOrStereoscopicEye.Mono, corners);
+                var legacy = new Bounds(camera.transform.position, Vector3.zero);
+                foreach (var corner in corners) legacy.Encapsulate(corner);
+                legacy.Expand(new Vector3(128, 0, 128));
+                Assert.That(unknown.size.x, Is.GreaterThanOrEqualTo(legacy.size.x), "Unknown art keeps the original full-frustum fallback plus the whole study, without assuming a known mesh margin.");
+            }
+            finally { study.Shutdown(); EditorSceneManager.CloseScene(scene, true); if (material != null) UnityEngine.Object.DestroyImmediate(material); }
+        }
+
+        [Test]
+        public void HorizonShadowDemandKeepsEveryReferenceCellWhileTerrainStaysResident()
+        {
+            var scene = EditorSceneManager.OpenScene(FixedTerrainPopulationSectorBuilder.ScenePath, OpenSceneMode.Additive);
+            var study = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<FixedTerrainPopulationSectorStudy>(true)).Single();
+            try
+            {
+                var sun = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Light>()).Single();
+                sun.shadows = LightShadows.Soft; sun.transform.rotation = Quaternion.LookRotation(Vector3.forward);
+                study.Initialize(); Finish(study, Time.realtimeSinceStartupAsDouble + 1);
+                Assert.That(study.State.CellCount, Is.EqualTo(16), "Horizon casters must fail open to the complete bounded sector.");
+                Assert.That(study.FaultedCells, Is.Zero);
+                Assert.That(scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<TerrainCollider>()).Count(c => c.enabled), Is.EqualTo(16));
+            }
+            finally { study.Shutdown(); EditorSceneManager.CloseScene(scene, true); }
+        }
+
         [Test]
         public void SavedReferenceSectorRetainsAuthoredDataWorldPosesAndBuildExclusion()
         {

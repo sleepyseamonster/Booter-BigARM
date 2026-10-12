@@ -1,0 +1,65 @@
+{
+  "scope": "Diagnostic-only work timing; clocks add observer overhead; not production FPS",
+  "files": [
+    {
+      "source": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs",
+      "source_sha256": "b747614f73f2423590483be57513b442ee7af853e667870b8b1d001e4a1b0d80",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\FixedTerrainPopulationSectorStudy.cs",
+      "overlay_sha256": "42718e068f1ef49bdd30b847888b811b189393e529889907b86ba6c9384e1937"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationScheduler.cs",
+      "source_sha256": "4228d2ba9dd7eef86a20d57d56c67a9af0e7939d5005de7e4aef4715d0521e1a",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\FixedTerrainPopulationScheduler.cs",
+      "overlay_sha256": "e50c8ce5176da8e4f0ecb215273454da2956902baf58a86c7c02639b3ddc2339"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs",
+      "source_sha256": "92f37299e0536f821ab5dbeb861282fb6cf0ee12e27214370ce189d18d6e5735",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\FixedTerrainPopulationPresentation.cs",
+      "overlay_sha256": "298227bdc9d3afa7fd4e6ca23668372601e786b3a4def3e33267fdd6f4ebba3a"
+    },
+    {
+      "source": "Tools/Diagnostics/PopulationSectorPlayerAudit.cs",
+      "source_sha256": "70e5d0c0450d5c5b4858d6a71d60ee4d20137072e82e8abfc8fb53e7bcc8c84d",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\PopulationSectorPlayerAudit.cs",
+      "overlay_sha256": "8d3c62aefb2cd8e9bf96f79bba6da135aaa4d6487b7c4176f70a568f3b07288f"
+    },
+    {
+      "source": "Tools/Diagnostics/PopulationWorkTimings.cs",
+      "source_sha256": "b4f16430362e8c36f2a2ef6ed5f20210dc98c58b29259c3e0c867d2ba7d11226",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\PopulationWorkTimings.cs",
+      "overlay_sha256": "b4f16430362e8c36f2a2ef6ed5f20210dc98c58b29259c3e0c867d2ba7d11226"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs",
+      "source_sha256": "e775f1581f5b169b2c5e1cb0207d923e42290864579c66dbdbb1200a9b127642",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\FixedTerrainPopulationState.cs",
+      "overlay_sha256": "e775f1581f5b169b2c5e1cb0207d923e42290864579c66dbdbb1200a9b127642"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPlanner.cs",
+      "source_sha256": "da002f5e1135671b0167c61f3077cea3f7e375da262fef4a8dba4530455db8cd",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\FixedTerrainPopulationPlanner.cs",
+      "overlay_sha256": "da002f5e1135671b0167c61f3077cea3f7e375da262fef4a8dba4530455db8cd"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs",
+      "source_sha256": "db18d249a6478405dc20a37ceaac584015fb0252dfc57bc6b0700dc77603845a",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\FixedTerrainPopulationIdentity.cs",
+      "overlay_sha256": "db18d249a6478405dc20a37ceaac584015fb0252dfc57bc6b0700dc77603845a"
+    },
+    {
+      "source": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainCameraCoverage.cs",
+      "source_sha256": "c9867b9286d34332c27e2a3c2a9999d997c8cbdcf1d243457b8dae0932e738b3",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Runtime\\TopDown3D\\FixedTerrainCameraCoverage.cs",
+      "overlay_sha256": "c9867b9286d34332c27e2a3c2a9999d997c8cbdcf1d243457b8dae0932e738b3"
+    },
+    {
+      "source": "Tools/Diagnostics/IsolatedPopulationAuditBuild.cs",
+      "source_sha256": "1fa3bcff622ceedbc64deb985734f695d574b13a431fcd8803c05059823028f7",
+      "candidate_path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Assets\\_Project\\Scripts\\Editor\\IsolatedPopulationAuditBuild.cs",
+      "overlay_sha256": "439d9800d8291eca7a626fa1445e2ccc0cbf25acba604918161bb65ce7ce26ac"
+    }
+  ]
+}

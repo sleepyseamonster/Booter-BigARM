@@ -39,6 +39,23 @@ namespace BooterBigArm.TopDown3D
             if (found) bounds.Expand(new Vector3(1, 0, 1));
             return found;
         }
+        /// <summary>Conservative XZ projection of a caster's height interval onto visible receiver heights.
+        /// Unknown, upward or horizon lighting fails open; no whole-landscape height range is needed.</summary>
+        public static bool MayCastDirectionalShadow(Bounds caster, Bounds receivers, Vector3 travelDirection)
+        {
+            if (!Finite(caster.min) || !Finite(caster.max) || !Finite(receivers.min) || !Finite(receivers.max)
+                || !Finite(travelDirection) || travelDirection.y >= -.001f
+                || caster.size.x < 0 || caster.size.y < 0 || caster.size.z < 0
+                || receivers.size.x < 0 || receivers.size.y < 0 || receivers.size.z < 0) return true;
+            if (caster.max.y < receivers.min.y) return false;
+            float minimum = Mathf.Max(0, (caster.min.y - receivers.max.y) / -travelDirection.y);
+            float maximum = Mathf.Max(0, (caster.max.y - receivers.min.y) / -travelDirection.y);
+            var projected = new Bounds(caster.center + travelDirection * minimum, caster.size);
+            projected.Encapsulate(caster.min + travelDirection * maximum);
+            projected.Encapsulate(caster.max + travelDirection * maximum);
+            if (!Finite(projected.min) || !Finite(projected.max)) return true;
+            return FixedTerrainRenderWindow.IntersectsXZ(projected, receivers);
+        }
         private static void Intersect(Vector3 a, Vector3 b, float height, ref Bounds bounds, ref bool found)
         {
             float delta = b.y - a.y;

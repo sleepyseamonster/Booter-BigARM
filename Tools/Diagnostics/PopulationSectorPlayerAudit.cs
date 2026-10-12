@@ -22,6 +22,7 @@ public sealed class PopulationSectorPlayerAudit : MonoBehaviour
     {
         public string mode = "manual_urp_population_reference_diagnostic", error, gpu, scene, previewPath;
         public bool completed, nonuniformPixels;
+        public bool fullFrustumPopulationCoverage;
         public int nativeTerrains, enabledColliders, quality;
         public float cameraFar, renderScale, shadowDistance;
         public double readySeconds, startupMaximumPopulationMs;
@@ -71,6 +72,8 @@ public sealed class PopulationSectorPlayerAudit : MonoBehaviour
                 cameraFar = view.farClipPlane, renderScale = pipeline.renderScale, shadowDistance = pipeline.shadowDistance,
                 nativeTerrains = roots.SelectMany(r => r.GetComponentsInChildren<Terrain>(true)).Count(), booterStart = booter.transform.position, bigArmStart = bigArm.transform.position };
             QualitySettings.vSyncCount = 0; Application.targetFrameRate = -1; Application.runInBackground = true;
+            study.FullFrustumVisualCoverage = Array.IndexOf(args, "-populationFullFrustumCoverage") >= 0;
+            report.fullFrustumPopulationCoverage = study.FullFrustumVisualCoverage;
             study.enabled = false; study.Initialize(); // Own exactly one normal-cadence update, not two competing loops.
             begin = Time.realtimeSinceStartupAsDouble;
         }

@@ -9,6 +9,29 @@ namespace BooterBigArm.Tests
     public sealed class FixedTerrainCameraCoverageTests
     {
         [Test]
+        public void CellShadowProjectionIncludesUpstreamAndTallCastersWithoutGlobalHeightInflation()
+        {
+            var receivers = new Bounds(Vector3.zero, new Vector3(10, 2, 10));
+            var direction = new Vector3(1, -1, 0).normalized;
+            Assert.That(FixedTerrainCameraCoverage.MayCastDirectionalShadow(new Bounds(new Vector3(-50, 50, 0), Vector3.one * 10), receivers, direction), Is.True);
+            Assert.That(FixedTerrainCameraCoverage.MayCastDirectionalShadow(new Bounds(new Vector3(50, 50, 0), Vector3.one * 10), receivers, direction), Is.False);
+            Assert.That(FixedTerrainCameraCoverage.MayCastDirectionalShadow(new Bounds(new Vector3(-50, -50, 0), Vector3.one * 10), receivers, direction), Is.False);
+            Assert.That(FixedTerrainCameraCoverage.MayCastDirectionalShadow(new Bounds(new Vector3(-50, 0, 0), Vector3.one * 10), receivers, direction), Is.False);
+            Assert.That(FixedTerrainCameraCoverage.MayCastDirectionalShadow(new Bounds(new Vector3(-50, 25, 0), new Vector3(10, 60, 10)), receivers, direction), Is.True);
+            Assert.That(FixedTerrainCameraCoverage.MayCastDirectionalShadow(new Bounds(Vector3.one * 1000, Vector3.one), receivers, Vector3.right), Is.True);
+            Assert.That(FixedTerrainCameraCoverage.MayCastDirectionalShadow(new Bounds(Vector3.one * 1000, Vector3.one), receivers, Vector3.up), Is.True);
+            Assert.That(FixedTerrainCameraCoverage.MayCastDirectionalShadow(new Bounds(Vector3.zero, new Vector3(float.NaN, 1, 1)), receivers, direction), Is.True);
+            for (int i = 0; i <= 100; i++)
+            {
+                var caster = new Bounds(new Vector3(-50, 50, 0), Vector3.one * 10);
+                var point = caster.min + caster.size * (i / 100f);
+                var hit = point + direction * (point.y / -direction.y);
+                var target = new Bounds(hit, Vector3.one);
+                Assert.That(FixedTerrainCameraCoverage.MayCastDirectionalShadow(caster, target, direction), Is.True, "Every sampled ray must be retained.");
+            }
+        }
+
+        [Test]
         public void LongDownwardFrustumKeepsEveryGroundRayWithoutFarClipInflation()
         {
             var owner = new GameObject("Downward frustum fixture");

@@ -24,11 +24,14 @@ namespace BooterBigArm.TopDown3D
         private readonly List<FixedTerrainPopulationDemand> demands = new();
         private readonly Vector3[] corners = new Vector3[8];
         private readonly Dictionary<Vector2Int, string> revisions = new();
+        private readonly Dictionary<Vector2Int, Bounds> shadowCells = new();
         private FixedTerrainPopulationState state;
         private FixedTerrainPopulationScheduler scheduler;
         private FixedTerrainPopulationPresentation presentation;
         private Transform populationRoot;
         private Bounds landscape;
+        private bool clipVisualHeight;
+        private float visualRadius;
         private double nextDemand;
         private TopDown3DPlayerMotor boundBooter;
         private TopDown3DBigArmFollower boundBigArm;
@@ -36,6 +39,8 @@ namespace BooterBigArm.TopDown3D
         private readonly List<Bounds> actorRequests = new(64);
         private ulong synchronizedCollisionRevision;
         public int PhysicsSynchronizations { get; private set; }
+        /// <summary>Runtime-only comparison/rollback; never changes logical placement or actor collision demand.</summary>
+        public bool FullFrustumVisualCoverage { get; set; }
         public FixedTerrainPopulationState State => state;
         public int ActiveCount => presentation?.ActiveCount ?? 0;
         public int PendingBuilds => scheduler?.PendingBuilds ?? 0;
@@ -97,15 +102,21 @@ namespace BooterBigArm.TopDown3D
                 || actorDemandMarkers == null || actorDemandMarkers.Length > 8) throw new InvalidOperationException("Use an explicit 16-tile reference sector and versioned study inputs.");
             if (boundBooter == null && boundBigArm == null && (studyBooter != null || studyBigArm != null)) BindActors(studyBooter, studyBigArm);
             revisions.Clear();
+            shadowCells.Clear(); clipVisualHeight = TryStaticVisualRadius(prefab, out visualRadius);
             for (int i = 0; i < terrain.Length; i++)
             {
                 var tile = terrain[i];
                 if (tile == null || tile.terrainData == null || string.IsNullOrWhiteSpace(terrainRevisions[i])) throw new InvalidOperationException("Missing study native data/revision.");
                 var cell = FixedTerrainPopulationIdentity.CellAt(new Vector2(tile.transform.position.x, tile.transform.position.z));
                 if (!revisions.TryAdd(cell, terrainRevisions[i])) throw new InvalidOperationException("Duplicate study terrain ownership.");
-                var bounds = new Bounds(tile.transform.position + tile.terrainData.size * .5f, tile.terrainData.size);
+                var bounds = tile.terrainData.bounds;
+                bounds.center += tile.transform.position;
+                var casterBounds = bounds;
+                casterBounds.Expand(Vector3.one * (visualRadius * 2));
+                shadowCells.Add(cell, casterBounds);
                 if (i == 0) landscape = bounds; else landscape.Encapsulate(bounds);
             }
+            if (clipVisualHeight) landscape.Expand(new Vector3(0, visualRadius * 2, 0));
             var surface = new FixedTerrainSurfaceIndex(terrain, StudyWorldId);
             state ??= new FixedTerrainPopulationState(StudyWorldId, seed, 1, catalogRevision,
                 new[] { new FixedTerrainPopulationRecipeVersion { recipeId = RecipeId, version = 1, candidateCount = 64 } },
@@ -146,12 +157,12 @@ namespace BooterBigArm.TopDown3D
             demands.Clear();
             bool viewing = view != null && view.isActiveAndEnabled;
             var coverage = viewing ? CameraBounds() : default;
-            if (viewing && sun != null && sun.isActiveAndEnabled && sun.shadows != LightShadows.None)
-                coverage.Encapsulate(GreaterWastelandTerrainRendering.ShadowCasterBounds(coverage, landscape, sun.transform.forward));
+            bool shadows = viewing && sun != null && sun.isActiveAndEnabled && sun.shadows != LightShadows.None;
             foreach (var cell in revisions.Keys)
             {
                 var bounds = new Bounds(new Vector3((cell.x + .5f) * 256, 0, (cell.y + .5f) * 256), new Vector3(256, 0, 256));
                 bool visual = viewing && FixedTerrainRenderWindow.IntersectsXZ(coverage, bounds), collision = false;
+                if (!visual && shadows) visual = FixedTerrainCameraCoverage.MayCastDirectionalShadow(shadowCells[cell], coverage, sun.transform.forward);
                 float priority = visual ? -Vector2.Distance(new Vector2(view.transform.position.x, view.transform.position.z), new Vector2(bounds.center.x, bounds.center.z)) / 256 : 0;
                 foreach (var actor in actorDemandMarkers)
                 {
@@ -174,8 +185,47 @@ namespace BooterBigArm.TopDown3D
         {
             var bounds = new Bounds(view.transform.position, Vector3.zero);
             FixedTerrainCameraCoverage.FillFrustum(view, view.farClipPlane, Camera.MonoOrStereoscopicEye.Mono, corners);
-            foreach (var corner in corners) bounds.Encapsulate(corner);
-            bounds.Expand(new Vector3(128, 0, 128)); return bounds;
+            if (FullFrustumVisualCoverage || !clipVisualHeight || !FixedTerrainCameraCoverage.TryHeightBounds(corners, landscape.min.y, landscape.max.y, out bounds))
+            {
+                bounds = new Bounds(view.transform.position, Vector3.zero);
+                foreach (var corner in corners) bounds.Encapsulate(corner);
+                if (!clipVisualHeight) bounds.Encapsulate(landscape); // Unknown visual envelopes retain the entire bounded study.
+            }
+            // A visible mesh can extend into the frustum while its identity-cell root is outside it.
+            float padding = 128 + (clipVisualHeight ? visualRadius * 2 : 0);
+            bounds.Expand(new Vector3(padding, 0, padding)); return bounds;
+        }
+        private static bool TryStaticVisualRadius(GameObject template, out float radius)
+        {
+            radius = 0;
+            if (template.GetComponentsInChildren<Animator>(true).Length != 0 || template.GetComponentsInChildren<Animation>(true).Length != 0
+                || template.GetComponentsInChildren<Light>(true).Length != 0) return false;
+            var renderers = template.GetComponentsInChildren<Renderer>(true);
+            if (renderers.Length == 0) return false;
+            foreach (var renderer in renderers)
+            {
+                if (!(renderer is MeshRenderer)) return false;
+                foreach (var material in renderer.sharedMaterials)
+                {
+                    if (material == null || material.shader == null) return false;
+                    string shader = material.shader.name;
+                    if (shader != "Universal Render Pipeline/Lit" && shader != "Universal Render Pipeline/Simple Lit" && shader != "Universal Render Pipeline/Unlit") return false;
+                }
+                var local = renderer.localBounds;
+                for (int i = 0; i < 8; i++)
+                {
+                    var corner = new Vector3((i & 1) == 0 ? local.min.x : local.max.x,
+                        (i & 2) == 0 ? local.min.y : local.max.y, (i & 4) == 0 ? local.min.z : local.max.z);
+                    var point = template.transform.InverseTransformPoint(renderer.transform.TransformPoint(corner));
+                    float distance = Vector3.Scale(point, template.transform.localScale).magnitude;
+                    if (!float.IsFinite(distance)) return false;
+                    radius = Mathf.Max(radius, distance);
+                }
+            }
+            // Includes every LOD/inactive child, any placement yaw, the recipe's maximum
+            // 1.15 scale and a rounding margin. Unknown/dynamic art retains full coverage.
+            radius = radius * 1.15f + 1;
+            return float.IsFinite(radius) && radius > 0;
         }
         public string CapturePopulationJson() => state == null ? null : JsonUtility.ToJson(state.CaptureSnapshot());
         public bool RestorePopulationJson(string json)
