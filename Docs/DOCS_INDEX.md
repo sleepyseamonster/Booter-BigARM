@@ -142,6 +142,8 @@ These define current preferred approaches or sequencing.
   Starting waypoint camp exploration, discovered destinations, fast-travel options, Legger constraints, and a bounded implementation sequence.
 - [Starting Camp implementation evidence](./Evidence/Gameplay/STARTING_CAMP_IMPLEMENTATION_2026-10-11.md)
   Established recovery, independent portable kit ownership, Camps view, bounded physical return, 114 focused checks, and session-only limitations.
+- [Camp interaction audit and iteration](./Evidence/Gameplay/CAMP_INTERACTION_AUDIT_2026-10-11.md)
+  Nearby camp shortcuts, regroup without reopening menus, route guidance, clearer companion feedback, and 123 focused checks.
 - [URP_2D_STANDARD.md](Archive/Legacy2D/URP_2D_STANDARD.md) — legacy 2D maintenance only.
 - [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md)
 - [CODEX_EDITOR_STANDARD.md](./Operations/CODEX_EDITOR_STANDARD.md)

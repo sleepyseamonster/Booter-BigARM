@@ -46,6 +46,24 @@ namespace BooterBigArm.Tests
             try { Assert.That(definition.TryValidate(out _), Is.True); definition.travelSpeed = 5; Assert.That(definition.TryValidate(out _), Is.False); }
             finally { Object.DestroyImmediate(definition); }
         }
+        [Test] public void NearestRoutePointProvidesGuidanceWithoutGrantingTravel()
+        {
+            Assert.That(TopDown3DWaypointRoute.TryClosestPoint(new(4, 1, 12), route, out var point, out _, out var distance), Is.True);
+            Assert.That(point, Is.EqualTo(new Vector3(0, 0, 12))); Assert.That(distance, Is.EqualTo(4));
+            Assert.That(TopDown3DWaypointRoute.TryReturn(new(4, 1, 12), route, 1.5f, out _, out _), Is.False);
+        }
+        [Test] public void SmallFrameMovementsAccumulateIntoProgress()
+        {
+            var anchor = Vector3.zero; var progressWindows = 0;
+            for (var i = 1; i <= 500; i++)
+            {
+                var position = new Vector3(0, 0, i * .001f);
+                if (!TopDown3DWaypointCampController.HasMeaningfulProgress(anchor, position)) continue;
+                progressWindows++; anchor = position;
+            }
+            Assert.That(progressWindows, Is.GreaterThanOrEqualTo(4));
+            Assert.That(TopDown3DWaypointCampController.HasMeaningfulProgress(Vector3.zero, Vector3.up), Is.False);
+        }
     }
 
     public sealed class TopDown3DWaypointCampIntegrationTests
@@ -204,6 +222,47 @@ namespace BooterBigArm.Tests
             var view = (TopDown3DCampCanvas)typeof(TopDown3DWaypointCampController).GetField("view", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(waypoint);
             Object.DestroyImmediate(view.gameObject); Call(waypoint, "Update");
             Assert.That(waypoint.Traveling, Is.False); Assert.That(Time.timeScale, Is.EqualTo(1)); Assert.That(motor.IsActionConstrained, Is.False);
+        }
+        [TestCase(true)] [TestCase(false)]
+        public void CampShortcutUsesNearbyEstablishedSiteInsteadOfPlacement(bool keepKit)
+        {
+            if (!keepKit) inventory.State.TryRemove(TopDown3DCampSettings.ItemId, 1, () => true);
+            Place(new(4, 0, 1.2f)); Assert.That(recovery.CanCallUp, Is.True); Assert.That(recovery.CallUp(), Is.True);
+            Assert.That(recovery.Phase, Is.EqualTo(TopDown3DCampPhase.Actions)); Assert.That(recovery.RecoveryTarget, Is.SameAs(waypoint.Site));
+            Assert.That(recovery.Record, Is.Null); Assert.That(recovery.KitCarried, Is.EqualTo(keepKit));
+        }
+        [Test] public void CampShortcutCannotUseDistantEstablishedSiteWithoutKit()
+        {
+            inventory.State.TryRemove(TopDown3DCampSettings.ItemId, 1, () => true); Place(new(0, 0, 8));
+            Assert.That(recovery.CanCallUp, Is.False); Assert.That(recovery.RecoveryTarget, Is.Null);
+        }
+        [Test] public void RegroupKeepsPanelOpenAndDoesNotRestartConsumedCommand()
+        {
+            Place(new(0, 0, 8)); legger.transform.position = new Vector3(-20, .82f, 8); Physics.SyncTransforms();
+            Assert.That(waypoint.Open(), Is.True); Arm(); waypoint.RequestRegroup();
+            Assert.That(waypoint.IsOpen, Is.True); Assert.That(waypoint.RegroupRequested, Is.True); Assert.That(motor.IsActionConstrained, Is.True);
+            var pending = typeof(TopDown3DBigArmFollower).GetField("callRequested", BindingFlags.Instance | BindingFlags.NonPublic);
+            pending.SetValue(legger, false); Arm(); waypoint.RequestRegroup(); Assert.That((bool)pending.GetValue(legger), Is.False);
+        }
+        [Test] public void RegroupArrivalEnablesExplicitReturnWithoutAutomaticDeparture()
+        {
+            Place(new(0, 0, 8)); legger.transform.position = new Vector3(-20, .82f, 8); Physics.SyncTransforms();
+            Assert.That(waypoint.Open(), Is.True); Arm(); waypoint.RequestRegroup(); Regroup(); Call(waypoint, "Refresh");
+            Assert.That(waypoint.RegroupRequested, Is.False); Assert.That(waypoint.IsOpen, Is.True); Assert.That(waypoint.Traveling, Is.False);
+            Assert.That(waypoint.TryQuote(out _, out _, out _), Is.True); Arm(); waypoint.BeginReturn(); Assert.That(waypoint.Traveling, Is.True);
+        }
+        [Test] public void OffRouteFeedbackProvidesDirectionAndDistance()
+        {
+            Place(new(4, 0, 8)); Assert.That(waypoint.RouteGuidance(), Does.Contain("4 m W"));
+            Place(new(0, 6, 8)); Assert.That(waypoint.RouteGuidance(), Does.Contain("ground level"));
+        }
+        [Test] public void UnavailableAndBlockedLeggerHaveDistinctFeedback()
+        {
+            Place(new(0, 0, 8)); Regroup(); legger.enabled = false;
+            Assert.That(waypoint.TryQuote(out _, out _, out var reason), Is.False); Assert.That(reason, Does.Contain("unavailable"));
+            legger.enabled = true;
+            typeof(TopDown3DBigArmFollower).GetProperty("State").SetValue(legger, TopDown3DBigArmFollower.FollowState.WaitingForRoute);
+            Assert.That(waypoint.TryQuote(out _, out _, out reason), Is.False); Assert.That(reason, Does.Contain("shared route"));
         }
     }
 }

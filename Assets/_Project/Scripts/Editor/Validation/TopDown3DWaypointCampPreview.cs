@@ -42,6 +42,10 @@ namespace BooterBigArm.Editor
             view.Show("Starting Camp · known · 32 m straight-line · bearing 175°\n~19 world seconds at 4x · shared return\nFood -0.48 · Hydration -0.76 · Reserve -0.19\nShared return route ready · session progress is not saved", true);
             view.SetAvailability(true, true, true);
             Render(camera, "starting-camp-and-camps-panel.png"); view.ApplyTextScale(true); Render(camera, "camps-panel-large-text.png");
+            view.Show("Starting Camp · known · 32 m straight-line · bearing 175°\n~19 world seconds at 4x · shared return\nFood -0.48 · Hydration -0.76 · Reserve -0.19\nLegger approaching · choose Return when ready · session progress is not saved", true);
+            view.SetAvailability(false, true, true); Render(camera, "camps-regroup-large-text.png");
+            view.Show("Starting Camp · known · 35 m straight-line · bearing 175°\nReturn follows the short marked starting corridor\nMarked return route: 4 m W · session progress is not saved", true);
+            Render(camera, "camps-route-guidance-large-text.png");
             UnityEngine.Object.DestroyImmediate(ui);
             var system = new GameObject("Preview EventSystem").AddComponent<EventSystem>();
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(TopDown3DWaypointCampAuthoring.MenuPath);

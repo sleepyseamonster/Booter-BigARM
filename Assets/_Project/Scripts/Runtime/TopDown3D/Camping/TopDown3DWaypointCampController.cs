@@ -30,6 +30,7 @@ namespace BooterBigArm.TopDown3D
         private InputSystemUIInputModule module;
         private InputActionReference submit, click, cancel;
         private bool leased, armed;
+        public bool RegroupRequested { get; private set; }
         private Vector3 lastPosition;
         private float stallSeconds, journeySeconds;
         private float refreshAt;
@@ -114,13 +115,17 @@ namespace BooterBigArm.TopDown3D
             if (!TopDown3DWaypointRoute.TryReturn(motor.Position, Definition.returnRoute, Definition.corridorRadius, out path, out var distance))
             { reason = "Outside the starting return corridor"; return false; }
             if (distance < 2) { reason = "Already at the camp approach"; return false; }
-            reason = "Regroup with the Legger first";
-            if (legger == null || !legger.isActiveAndEnabled || cargo == null || !cargo.IsInAccessRange(motor.Position)
-                || legger.State == TopDown3DBigArmFollower.FollowState.WaitingForRoute || legger.State == TopDown3DBigArmFollower.FollowState.WaitingForTerrain) return false;
+            seconds = distance / Definition.walkingSpeed + 1;
+            reason = "Legger is unavailable";
+            if (legger == null || !legger.isActiveAndEnabled || cargo == null) return false;
+            reason = "Legger needs supported ground before travel";
+            if (legger.State == TopDown3DBigArmFollower.FollowState.WaitingForTerrain) return false;
+            reason = "Legger cannot reach this shared route · Back and move to reconnect";
+            if (legger.State == TopDown3DBigArmFollower.FollowState.WaitingForRoute) return false;
+            reason = "Regroup with the Legger first"; if (!cargo.IsInAccessRange(motor.Position)) return false;
             reason = "World speed is in use"; if (speed.HasRequest || !Mathf.Approximately(Time.timeScale, 1)) return false;
             var prior = motor.Position;
             foreach (var point in path) { if (!motor.CanWalkWaypointSegment(prior, point)) { reason = "Return route is blocked"; return false; } prior = point; }
-            seconds = distance / Definition.walkingSpeed + 1;
             var tuning = vitals.Settings;
             if (vitals.Hunger - seconds * tuning.HungerDepletionPerSecond <= tuning.MaximumHunger * Definition.resourceFloor
                 || vitals.Thirst - seconds * tuning.ThirstDepletionPerSecond <= tuning.MaximumThirst * Definition.resourceFloor
@@ -132,13 +137,34 @@ namespace BooterBigArm.TopDown3D
         private void Refresh()
         {
             var ready = TryQuote(out _, out var seconds, out var reason);
+            if (RegroupRequested)
+            {
+                if (cargo != null && cargo.IsInAccessRange(motor.Position)) RegroupRequested = false;
+                else if (legger == null || !legger.isActiveAndEnabled) { RegroupRequested = false; reason = "Legger is unavailable"; }
+                else if (legger.State == TopDown3DBigArmFollower.FollowState.WaitingForRoute)
+                    reason = "Legger cannot reach you · Back and move to a shared route";
+                else if (legger.State == TopDown3DBigArmFollower.FollowState.WaitingForTerrain)
+                    reason = "Legger is waiting for supported ground";
+                else reason = "Legger approaching · choose Return when ready";
+            }
+            if (!ready && reason == "Outside the starting return corridor") reason = RouteGuidance();
             var delta = Definition.position - motor.Position;
             var bearing = Mathf.Repeat(Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg, 360);
             var costs = vitals.Settings;
             var detail = seconds > 0 ? $"~{seconds:0.#} world seconds at {Definition.travelSpeed:0.#}x · shared return\nFood -{seconds * costs.HungerDepletionPerSecond:0.##} · Hydration -{seconds * costs.ThirstDepletionPerSecond:0.##} · Reserve -{seconds * costs.ReserveDepletionPerSecond:0.##}" : "Return follows the short marked starting corridor";
             view.ApplyTextScale(menu != null && menu.LargeText);
             view.Show($"{Definition.displayName} · known · {Vector3.ProjectOnPlane(delta, Vector3.up).magnitude:0} m straight-line · bearing {bearing:0}°\n{detail}\n{reason} · session progress is not saved", true, armed);
-            view.SetAvailability(ready, legger != null && legger.isActiveAndEnabled, true); view.Focus(eventSystem);
+            view.SetAvailability(ready, legger != null && legger.isActiveAndEnabled && cargo != null && !cargo.IsInAccessRange(motor.Position), true); view.Focus(eventSystem);
+        }
+
+        public string RouteGuidance()
+        {
+            if (!TopDown3DWaypointRoute.TryClosestPoint(motor.Position, Definition.returnRoute, out var point, out _, out var distance)) return "Return route is unavailable";
+            if (Mathf.Abs(motor.Position.y - point.y) > 2.5f) return "Reach the marked route on its ground level";
+            var direction = point - motor.Position;
+            var bearing = Mathf.Repeat(Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg, 360);
+            var compass = new[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
+            return $"Marked return route: {distance:0} m {compass[Mathf.RoundToInt(bearing / 45) % 8]}";
         }
 
         private bool Held()
@@ -159,15 +185,15 @@ namespace BooterBigArm.TopDown3D
             if (IsOpen)
             {
                 if (!armed && !Held()) { armed = true; module.submit = submit; module.leftClick = click; }
-                if (armed && input.CampCancel) { Close(); return; }
+                if (input.CampCancel) { Close(); return; }
                 if (Time.unscaledTime >= refreshAt) { refreshAt = Time.unscaledTime + .4f; Refresh(); }
             }
             if (!Traveling) return;
             if (Site == null || !motor.isActiveAndEnabled || !motor.IsActionConstrained)
             { Stop("Camp or movement authority is unavailable"); return; }
             journeySeconds += Time.deltaTime;
-            var moved = Vector3.ProjectOnPlane(motor.Position - lastPosition, Vector3.up).magnitude;
-            stallSeconds = moved < .005f ? stallSeconds + Time.deltaTime : 0; lastPosition = motor.Position;
+            stallSeconds += Time.deltaTime;
+            if (HasMeaningfulProgress(lastPosition, motor.Position)) { stallSeconds = 0; lastPosition = motor.Position; }
             if (input.CampCancel) Stop("Return canceled");
             else if (journeySeconds > 90 || stallSeconds > 3) Stop("Return movement is blocked");
             else if (legger == null || !legger.isActiveAndEnabled || legger.DistanceToBooter > 9
@@ -175,7 +201,7 @@ namespace BooterBigArm.TopDown3D
             else if (vitals.Hunger <= vitals.Settings.MaximumHunger * Definition.resourceFloor
                 || vitals.Thirst <= vitals.Settings.MaximumThirst * Definition.resourceFloor
                 || vitals.Reserve <= vitals.Settings.MaximumReserve * Definition.resourceFloor) Stop("Supplies getting low");
-            else view.Show($"Returning to {Definition.displayName} · {Definition.travelSpeed:0.#}x · Legger follows physically\n[{input.GetBindingDisplayName("Camp/Cancel", "Cancel")}] Cancel", false);
+            else view.Show($"Returning to {Definition.displayName} · {Definition.travelSpeed:0.#}x · {Vector3.ProjectOnPlane(motor.Position - Definition.returnRoute[0], Vector3.up).magnitude:0} m to approach\n[{input.GetBindingDisplayName("Camp/Cancel", "Cancel")}] Cancel · the Legger follows physically", false);
         }
 
         public void BeginReturn()
@@ -189,8 +215,15 @@ namespace BooterBigArm.TopDown3D
             input.EnterCampMode(TopDown3DInputMode.CampBusy);
         }
 
-        private void Regroup()
-        { if (!IsOpen || !armed || legger == null) return; Close(); legger.RequestCallOver(); actions?.ReportFeedback("Legger approaching · reopen Camps after arrival"); }
+        public void RequestRegroup()
+        {
+            if (!IsOpen || !armed || legger == null || cargo == null || cargo.IsInAccessRange(motor.Position)) return;
+            if (!RegroupRequested) { RegroupRequested = true; legger.RequestCallOver(); }
+            armed = false; module.submit = null; module.leftClick = null; Refresh();
+        }
+        private void Regroup() => RequestRegroup();
+        public static bool HasMeaningfulProgress(Vector3 previous, Vector3 current)
+            => Vector3.ProjectOnPlane(current - previous, Vector3.up).sqrMagnitude >= .01f;
         private void RestoreUi()
         { if (!leased) return; leased = false; if (module != null) { module.submit = submit; module.leftClick = click; module.cancel = cancel; } if (eventSystem != null) eventSystem.SetSelectedGameObject(null); }
         public void Close()

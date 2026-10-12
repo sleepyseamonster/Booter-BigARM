@@ -54,9 +54,21 @@ namespace BooterBigArm.TopDown3D
         public static bool TryReturn(Vector3 start, Vector3[] route, float radius, out Vector3[] path, out float distance)
         {
             path = null; distance = 0;
-            if (route == null || route.Length < 2 || !float.IsFinite(radius) || radius <= 0
-                || !float.IsFinite(start.x) || !float.IsFinite(start.y) || !float.IsFinite(start.z)) return false;
-            var nearest = float.PositiveInfinity; var segment = -1; var projection = start;
+            if (!float.IsFinite(radius) || radius <= 0
+                || !TryClosestPoint(start, route, out var projection, out var segment, out var lateralDistance)
+                || lateralDistance > radius || Mathf.Abs(start.y - projection.y) > 2.5f) return false;
+            var points = new System.Collections.Generic.List<Vector3>();
+            if (Vector3.ProjectOnPlane(start - projection, Vector3.up).magnitude > .15f) points.Add(projection);
+            for (var i = segment; i >= 0; i--) points.Add(route[i]);
+            var previous = start; foreach (var point in points) { distance += Vector3.Distance(previous, point); previous = point; }
+            path = points.ToArray(); return true;
+        }
+
+        public static bool TryClosestPoint(Vector3 start, Vector3[] route, out Vector3 projection, out int segment, out float lateralDistance)
+        {
+            projection = start; segment = -1; lateralDistance = 0;
+            if (route == null || route.Length < 2 || !float.IsFinite(start.x) || !float.IsFinite(start.y) || !float.IsFinite(start.z)) return false;
+            var nearest = float.PositiveInfinity;
             for (var i = 1; i < route.Length; i++)
             {
                 var a = route[i - 1]; var b = route[i]; var ab = Vector3.ProjectOnPlane(b - a, Vector3.up);
@@ -65,12 +77,7 @@ namespace BooterBigArm.TopDown3D
                 var p = Vector3.Lerp(a, b, t); var delta = Vector3.ProjectOnPlane(start - p, Vector3.up).sqrMagnitude;
                 if (delta >= nearest) continue; nearest = delta; segment = i - 1; projection = p;
             }
-            if (segment < 0 || nearest > radius * radius || Mathf.Abs(start.y - projection.y) > 2.5f) return false;
-            var points = new System.Collections.Generic.List<Vector3>();
-            if (Vector3.ProjectOnPlane(start - projection, Vector3.up).magnitude > .15f) points.Add(projection);
-            for (var i = segment; i >= 0; i--) points.Add(route[i]);
-            var previous = start; foreach (var point in points) { distance += Vector3.Distance(previous, point); previous = point; }
-            path = points.ToArray(); return true;
+            lateralDistance = Mathf.Sqrt(nearest); return segment >= 0;
         }
     }
 }

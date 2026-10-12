@@ -54,7 +54,19 @@ namespace BooterBigArm.TopDown3D
         public bool CanUseCamp => IsConfigured && input != null && input.HasCampActions && Phase == TopDown3DCampPhase.Idle
             && vitals.Health > 0 && motor.CanBeginCampAction && animation.HasCampAnimationSet && !action.IsGathering && !action.IsPlacingHarvester
             && vitals.Activity == TopDown3DSurvivalActivity.Ordinary;
-        public bool CanCallUp => CanUseCamp && (Camp != null || Record == null && KitCarried);
+        private TopDown3DCampView NearbyCamp
+        {
+            get
+            {
+                if (!IsConfigured || motor == null) return null;
+                var best = Camp != null && Vector3.Distance(motor.Position, Camp.InteractionPoint) <= settings.interactionRange ? Camp : null;
+                var site = GetComponent<TopDown3DWaypointCampController>()?.Site;
+                if (site != null && Vector3.Distance(motor.Position, site.InteractionPoint) <= settings.interactionRange
+                    && (best == null || Vector3.Distance(motor.Position, site.InteractionPoint) < Vector3.Distance(motor.Position, best.InteractionPoint))) best = site;
+                return best;
+            }
+        }
+        public bool CanCallUp => CanUseCamp && (NearbyCamp != null || Camp != null || Record == null && KitCarried);
 
         public void Configure(TopDown3DCampSettings config, TopDown3DInputRouter router, EventSystem system)
         {
@@ -84,6 +96,8 @@ namespace BooterBigArm.TopDown3D
         public bool CallUp()
         {
             if (!CanCallUp) { action?.ReportFeedback("Camp unavailable during this action, or no kit carried"); return false; }
+            var nearby = NearbyCamp;
+            if (nearby != null) return OpenActions(nearby);
             if (Camp != null)
             {
                 if (Vector3.Distance(motor.Position, Camp.InteractionPoint) <= settings.interactionRange) return OpenActions(Camp);

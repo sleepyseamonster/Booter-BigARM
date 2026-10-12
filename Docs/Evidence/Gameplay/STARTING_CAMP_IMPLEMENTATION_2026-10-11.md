@@ -2,6 +2,8 @@
 
 Implemented October 11, 2026 in the active Greater Wasteland lane. One established Starting Camp is installed from authored settings near Booter's existing spawn. It supports the existing Rest and Sleep actions without consuming or owning the portable shade kit. Crafting and item management remain confirmed future hub services; this slice adds neither service.
 
+The subsequent [interaction audit and iteration](./CAMP_INTERACTION_AUDIT_2026-10-11.md) adds nearby-camp shortcut access, keeps Camps open during regroup, provides route guidance, and hardens progress detection. It supersedes the original regroup/reopen flow described below.
+
 ## Using the prototype
 
 In Play Mode, the camp appears east of Booter's starting area at ground position `(-1842, -48.08643, -1498)`. Approach its shaded side and use the existing Interact binding to open Rest and Sleep. The established camp has no Pack up action. Portable deployment, rest, sleep, and local packing remain available independently.
