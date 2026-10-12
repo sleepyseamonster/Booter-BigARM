@@ -134,6 +134,34 @@ namespace BooterBigArm.Tests
             finally { study.Shutdown(); EditorSceneManager.CloseScene(scene, true); }
         }
 
+        [Test]
+        public void SavedRealActorSceneHasNativeGroundAndBootstrapsPreparationWithoutSaveServices()
+        {
+            var scene = EditorSceneManager.OpenScene(FixedTerrainPopulationSectorBuilder.ActorScenePath, OpenSceneMode.Additive);
+            var roots = scene.GetRootGameObjects();
+            var study = roots.SelectMany(r => r.GetComponentsInChildren<FixedTerrainPopulationSectorStudy>(true)).Single();
+            try
+            {
+                FixedTerrainPopulationSectorBuilder.ValidateActorScene(scene);
+                var booter = roots.SelectMany(r => r.GetComponentsInChildren<TopDown3DPlayerMotor>(true)).Single();
+                var bigArm = roots.SelectMany(r => r.GetComponentsInChildren<TopDown3DBigArmFollower>(true)).Single();
+                var booterPosition = booter.transform.position; var companionPosition = bigArm.transform.position;
+                study.Initialize();
+                Assert.That(booter.PopulationPreparation, Is.Not.Null); Assert.That(bigArm.PopulationPreparation, Is.Not.Null);
+                Assert.That(booter.PopulationPreparation(booter.PopulationPreparationBounds()), Is.False);
+                double time = Time.realtimeSinceStartupAsDouble + 1; Finish(study, time);
+                Assert.That(booter.PopulationPreparation(booter.PopulationPreparationBounds()), Is.True);
+                Assert.That(bigArm.PopulationPreparation(bigArm.PopulationPreparationBounds()), Is.True);
+                Assert.That(booter.transform.position, Is.EqualTo(booterPosition)); Assert.That(bigArm.transform.position, Is.EqualTo(companionPosition));
+                var camera = roots.SelectMany(r => r.GetComponentsInChildren<Camera>()).Single(); camera.enabled = false;
+                Finish(study, time + 3);
+                Assert.That(booter.PopulationPreparation(booter.PopulationPreparationBounds()), Is.True);
+                Assert.That(bigArm.PopulationPreparation(bigArm.PopulationPreparationBounds()), Is.True);
+                Assert.That(study.GetComponentsInChildren<MeshRenderer>().All(r => !r.enabled), Is.True);
+            }
+            finally { study.Shutdown(); EditorSceneManager.CloseScene(scene, true); }
+        }
+
         private static void Finish(FixedTerrainPopulationSectorStudy study, double time)
         {
             for (int i = 0; i < 10000; i++)

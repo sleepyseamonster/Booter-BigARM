@@ -173,6 +173,8 @@ The [collision activation barrier](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.
 
 The subsequent [actor binding](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md#opt-in-real-actor-preparation-binding--october-12) connects readiness before Booter's fixed movement modes/waypoint queries and BigARM's grounding/routes. Null delegates preserve production behavior. Reference-study bindings add footprint-aware demand and synchronize only changed collision; 86 focused EditMode cases pass. The saved actor comparison scene, population timing/partition study and hands-on traversal remain pending. These code and fixture results do not authorize whole-world population deployment.
 
+The [saved actor comparison](GREATER_WASTELAND_PERFORMANCE_IMPLEMENTATION.md#saved-real-actor-comparison-scene--october-12) subsequently combines the accepted gameplay template, native sector and serialized preparation bindings in a separate reference scene. Eighty-seven focused cases pass, including grounded actor setup, publication waiting and offscreen readiness with preserved positions. Population Player timing, partition comparison and actual traversal/appearance acceptance remain open; no production save binding or population deployment follows from the scene alone.
+
 Start with shared accepted meshes/materials and conventional LODs. Keep batches spatially bounded so they can be culled. Dense cosmetic clutter should not require a MonoBehaviour, collider and Update callback for every instance. Geometry is valuable for silhouettes and interaction; distant detail can use simpler representations derived from the same logical state.
 
 ## Local persistence design

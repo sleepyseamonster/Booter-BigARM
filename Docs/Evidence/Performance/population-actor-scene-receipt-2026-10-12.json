@@ -1,0 +1,1165 @@
+{
+  "date": "2026-10-12",
+  "scope": "Saved bounded real-actor reference scene and focused initialization proof; no Play Mode, gameplay smoke test or Player timing claim",
+  "sources": [
+    {
+      "path": "Assets/_Project/Scripts/Editor/Automation/FixedTerrainPopulationSectorBuilder.cs",
+      "sha256": "6a41b5bac7581c673dc79d3e5df89074728339e00594278fed1d91bfbcc383cc"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Automation/FixedTerrainPopulationSectorBuilder.cs.meta",
+      "sha256": "8b4a2d3eadd15d3341dbc8e4e627b9f4e46780ee2ffe1f2f01946e8048d3110c"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSectorStudyTests.cs",
+      "sha256": "bf977a076f59402fabc983f9b31f18b4af490e24d627e928f26fff737fae4b75"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationSectorStudyTests.cs.meta",
+      "sha256": "ad5b6dc0fdce533b7eb49310eb6ec684105d921e9cfc859e3e614dbdbbd2ab98"
+    },
+    {
+      "path": "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationActors20261012.unity",
+      "sha256": "c648d08405224591feb7ebfb6b516a33dd49d55d0bb23bb1dc511afa81659fa3"
+    },
+    {
+      "path": "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationActors20261012.unity.meta",
+      "sha256": "c6fd3da47f70fd005949ae71bc41ac4ab6b8d56a83a7060836346d5030411fff"
+    }
+  ],
+  "build_artifacts": [
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-actors-build-20261012.json",
+      "sha256": "d925ad524a67f1ef3afbce62189a7bda7415cc9b39614cce07f5b3d0c7d65835",
+      "candidate_original_sha256": "d925ad524a67f1ef3afbce62189a7bda7415cc9b39614cce07f5b3d0c7d65835"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-actors-build-verified-process-watch.json",
+      "sha256": "20e788ef4bb7182118542d107b816bac32df9ab529cae90c44862b6474620db9",
+      "candidate_original_sha256": "656717b3d399e35bc5556598285d8d54020d8034fc340fa5d3d4f5b9d950c910"
+    }
+  ],
+  "scene_guid": "2547674256f68ad4aa815743a6551397",
+  "tests": {
+    "path": "Docs/Evidence/Performance/population-actor-scene-editmode-2026-10-12.xml",
+    "sha256": "0006c432ac549629a3e12ef2b1e7e5422c4eaadcc3386501688fe2503f856c10",
+    "original_candidate_sha256": "93b87c11125d2f5b4cd9d9402dee756b816c6dd9d092f15184600408e60a04e2",
+    "passed": 87,
+    "failed": 0,
+    "skipped": 0
+  },
+  "source_scene_hashes_preserved": {
+    "template": "ac53ab6796e1a88a8af80178981814c0bdc241cfffe12fb7537675f833c33ada",
+    "native_reference": "b7965dcbb261f180fdbf77524fa1d9d3e88c4bbb01bb71a819c57eac93efb23e"
+  },
+  "native_tiles_unchanged": 16,
+  "dependencies": [
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c01.terrainlayer",
+      "candidate_sha256": "6e2e70b7113f5c4f389898e6bdab7136d7fd61117b1fedb2c343f366ffedda78",
+      "root_sha256": "6e2e70b7113f5c4f389898e6bdab7136d7fd61117b1fedb2c343f366ffedda78"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c01.terrainlayer.meta",
+      "candidate_sha256": "067acf5ede5ba70e1a41d9638ce4e331fbf15ca9f13fbc6d5e088c740b83e65d",
+      "root_sha256": "067acf5ede5ba70e1a41d9638ce4e331fbf15ca9f13fbc6d5e088c740b83e65d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DLocomotionClipProfile.cs",
+      "candidate_sha256": "6dbbf230a304b704cd6dce01c5bc6c7a8f9744c049e59cf74b45150f485e28f1",
+      "root_sha256": "6dbbf230a304b704cd6dce01c5bc6c7a8f9744c049e59cf74b45150f485e28f1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DLocomotionClipProfile.cs.meta",
+      "candidate_sha256": "479c99b7cdcfefa26e1c408dcd240e111e44324d6be61532ffb5ca945f9dbd7a",
+      "root_sha256": "479c99b7cdcfefa26e1c408dcd240e111e44324d6be61532ffb5ca945f9dbd7a"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX",
+      "candidate_sha256": "0832e93fc931b80c11e12d82dfa2c6b42f1b104ad8818b31613ac24d234dad89",
+      "root_sha256": "0832e93fc931b80c11e12d82dfa2c6b42f1b104ad8818b31613ac24d234dad89"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX.meta",
+      "candidate_sha256": "21533eba755a8def837ce4af2ea65fcbf1c6505e127ecad0ff867a9457b6225a",
+      "root_sha256": "21533eba755a8def837ce4af2ea65fcbf1c6505e127ecad0ff867a9457b6225a"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/SculptedBasalt01.prefab",
+      "candidate_sha256": "fed12cef88b7268c160ee49b4e52284d18eb6eb727c99a80fe08bd6180e0ed00",
+      "root_sha256": "fed12cef88b7268c160ee49b4e52284d18eb6eb727c99a80fe08bd6180e0ed00"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/SculptedBasalt01.prefab.meta",
+      "candidate_sha256": "56fcaa3861c9af9219fa52ecf1c83f826bcd55e48c7bef6eb125876f47af98a6",
+      "root_sha256": "56fcaa3861c9af9219fa52ecf1c83f826bcd55e48c7bef6eb125876f47af98a6"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c00.asset",
+      "candidate_sha256": "4a90a8cf6f8f4cb44e7b7e5aa5299214ef3e730af10a51a6640525f2ba10bd96",
+      "root_sha256": "4a90a8cf6f8f4cb44e7b7e5aa5299214ef3e730af10a51a6640525f2ba10bd96"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c00.asset.meta",
+      "candidate_sha256": "98323dd629ecb9721e48cc5276a515570e16206fb2b7803d8a60aca1ae9e15e7",
+      "root_sha256": "98323dd629ecb9721e48cc5276a515570e16206fb2b7803d8a60aca1ae9e15e7"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c02.terrainlayer",
+      "candidate_sha256": "f46d28cfd61ccfe6f30f32bd4ff923a4d2035aed082fd91e464e9a735e714a48",
+      "root_sha256": "f46d28cfd61ccfe6f30f32bd4ff923a4d2035aed082fd91e464e9a735e714a48"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c02.terrainlayer.meta",
+      "candidate_sha256": "333dbf6220330b923948396bac3082244423f0b26287fe94a554eacbc0ecc8f0",
+      "root_sha256": "333dbf6220330b923948396bac3082244423f0b26287fe94a554eacbc0ecc8f0"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs",
+      "candidate_sha256": "2818c48c87ef03efd5066d514c55da1d90e3b94a787bab2dfc958f5c96ed0819",
+      "root_sha256": "2818c48c87ef03efd5066d514c55da1d90e3b94a787bab2dfc958f5c96ed0819"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs.meta",
+      "candidate_sha256": "33ac5119de622ca4a6294e126ad9dc95d5ebaa6041b78ad771d3ca9869b2d8dc",
+      "root_sha256": "33ac5119de622ca4a6294e126ad9dc95d5ebaa6041b78ad771d3ca9869b2d8dc"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c00.asset",
+      "candidate_sha256": "93a15665f770f630d654e87a729d077dfc754a0dd1862db36fe522b5deb0cfb6",
+      "root_sha256": "93a15665f770f630d654e87a729d077dfc754a0dd1862db36fe522b5deb0cfb6"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c00.asset.meta",
+      "candidate_sha256": "e31c38f227ccbdc7dcab8b68b9e435ca6408d715232598f1d4afdde58f0a0b3f",
+      "root_sha256": "e31c38f227ccbdc7dcab8b68b9e435ca6408d715232598f1d4afdde58f0a0b3f"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c01.terrainlayer",
+      "candidate_sha256": "1d1a4f710c0de9c2380069d2d8811cd27ffa66e562d825cf0a7708e3ff65aabe",
+      "root_sha256": "1d1a4f710c0de9c2380069d2d8811cd27ffa66e562d825cf0a7708e3ff65aabe"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c01.terrainlayer.meta",
+      "candidate_sha256": "dd91492165fb0d86a9068fdf0def3b7e4d4c97792933364e74f50b45907bf254",
+      "root_sha256": "dd91492165fb0d86a9068fdf0def3b7e4d4c97792933364e74f50b45907bf254"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/Item_MicroDustHarvester.asset",
+      "candidate_sha256": "0823f1f03143a07f4e693e2fb55aa1258e5c2f30c6669c38608fa21285a34516",
+      "root_sha256": "0823f1f03143a07f4e693e2fb55aa1258e5c2f30c6669c38608fa21285a34516"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/Item_MicroDustHarvester.asset.meta",
+      "candidate_sha256": "00f16980965dbe9865c4cf255d0d39125abe62c81eb48ae83f9348216a04db43",
+      "root_sha256": "00f16980965dbe9865c4cf255d0d39125abe62c81eb48ae83f9348216a04db43"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM.FBX",
+      "candidate_sha256": "2a86c14532e41065c8fe515839b56bbb43e57d49cbff563d2f003f401de09b75",
+      "root_sha256": "2a86c14532e41065c8fe515839b56bbb43e57d49cbff563d2f003f401de09b75"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM.FBX.meta",
+      "candidate_sha256": "1817a6226997dabae7fc221f3fb7d8d967319f9195b31be819c20d710d43567f",
+      "root_sha256": "1817a6226997dabae7fc221f3fb7d8d967319f9195b31be819c20d710d43567f"
+    },
+    {
+      "path": "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions",
+      "candidate_sha256": "863e89154504593752fb81a3088743dbd0edc5e025f380d9bfc4b4290c31650a",
+      "root_sha256": "863e89154504593752fb81a3088743dbd0edc5e025f380d9bfc4b4290c31650a"
+    },
+    {
+      "path": "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions.meta",
+      "candidate_sha256": "e2df3de96691137dc24b37bd9009e7be17040f3e5cd6d5401b2cd9d8ae2c9c1d",
+      "root_sha256": "e2df3de96691137dc24b37bd9009e7be17040f3e5cd6d5401b2cd9d8ae2c9c1d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInteractionFeedbackHud.cs",
+      "candidate_sha256": "b2eb4bd2b1c569fc5c7c88e105dcd4b41d50f82a41e70625c0a446084ae1232f",
+      "root_sha256": "b2eb4bd2b1c569fc5c7c88e105dcd4b41d50f82a41e70625c0a446084ae1232f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInteractionFeedbackHud.cs.meta",
+      "candidate_sha256": "c8e059ac42cd75571fb3e027b9e8ff7b073186dc41416b79526dfe6185b296a3",
+      "root_sha256": "c8e059ac42cd75571fb3e027b9e8ff7b073186dc41416b79526dfe6185b296a3"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM_Mirror.FBX",
+      "candidate_sha256": "2a86c14532e41065c8fe515839b56bbb43e57d49cbff563d2f003f401de09b75",
+      "root_sha256": "2a86c14532e41065c8fe515839b56bbb43e57d49cbff563d2f003f401de09b75"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM_Mirror.FBX.meta",
+      "candidate_sha256": "bd35111d8914f6b7386a54c396e85bf9e95c8a0ae5c5d1eed71aaa93d86ce307",
+      "root_sha256": "bd35111d8914f6b7386a54c396e85bf9e95c8a0ae5c5d1eed71aaa93d86ce307"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs",
+      "candidate_sha256": "0747c8067a094eb26f00d3a9ad79f420fc563fe2136e0da421c195abad3b729e",
+      "root_sha256": "0747c8067a094eb26f00d3a9ad79f420fc563fe2136e0da421c195abad3b729e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs.meta",
+      "candidate_sha256": "b554628c3ca8bdf09eb79e35c0273facd6a33af0612c3a41c3ca4aa7586decb9",
+      "root_sha256": "b554628c3ca8bdf09eb79e35c0273facd6a33af0612c3a41c3ca4aa7586decb9"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c02.terrainlayer",
+      "candidate_sha256": "ef61d82338320130a93ec8b83e7163ec6fd02c245934663f71e8e8d2efd127a6",
+      "root_sha256": "ef61d82338320130a93ec8b83e7163ec6fd02c245934663f71e8e8d2efd127a6"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c02.terrainlayer.meta",
+      "candidate_sha256": "833c6ceb3052651fe29d3544b7e976753067493c1f80141e8633e106ae889371",
+      "root_sha256": "833c6ceb3052651fe29d3544b7e976753067493c1f80141e8633e106ae889371"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c00.terrainlayer",
+      "candidate_sha256": "8155ee7323c39e6b6d09f23eb59f13312894b49662ca0513a011269f5f70d1e0",
+      "root_sha256": "8155ee7323c39e6b6d09f23eb59f13312894b49662ca0513a011269f5f70d1e0"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c00.terrainlayer.meta",
+      "candidate_sha256": "58fe5228c08bffc200df5770d21d3a5a161022a7f744b8158d43621cc1a62098",
+      "root_sha256": "58fe5228c08bffc200df5770d21d3a5a161022a7f744b8158d43621cc1a62098"
+    },
+    {
+      "path": "Assets/_Project/Settings/Player/TopDown3DLocomotionClipProfile.asset",
+      "candidate_sha256": "f7d6d890dc7edfdb2739043c3e9d6561f2324fcf7d1817a72692faeb876e19aa",
+      "root_sha256": "f7d6d890dc7edfdb2739043c3e9d6561f2324fcf7d1817a72692faeb876e19aa"
+    },
+    {
+      "path": "Assets/_Project/Settings/Player/TopDown3DLocomotionClipProfile.asset.meta",
+      "candidate_sha256": "1ec7c8e15b417ae5b2f33064cd46b05d6b5e5c061a2254b9347b99b8e4b02945",
+      "root_sha256": "1ec7c8e15b417ae5b2f33064cd46b05d6b5e5c061a2254b9347b99b8e4b02945"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Collision.asset",
+      "candidate_sha256": "b0db0d73065895e15a5771bfc938d41fda2a4c29bc3ad3a8c3e5ebd56c54d4d0",
+      "root_sha256": "b0db0d73065895e15a5771bfc938d41fda2a4c29bc3ad3a8c3e5ebd56c54d4d0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Collision.asset.meta",
+      "candidate_sha256": "942f281a4654f609b5aa8c51af74c5a6f97cd1fbd8ff587a846b433f22901e36",
+      "root_sha256": "942f281a4654f609b5aa8c51af74c5a6f97cd1fbd8ff587a846b433f22901e36"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c03.terrainlayer",
+      "candidate_sha256": "9aa9021994b944c2ad4572a8b8df99e1bd99e902723b4237cefb9bc022ee461c",
+      "root_sha256": "9aa9021994b944c2ad4572a8b8df99e1bd99e902723b4237cefb9bc022ee461c"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c03.terrainlayer.meta",
+      "candidate_sha256": "54f94675d088a56fc4e8ca4c1a77fe3368de5c5ac15399255e7bb98ff9885215",
+      "root_sha256": "54f94675d088a56fc4e8ca4c1a77fe3368de5c5ac15399255e7bb98ff9885215"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c01.terrainlayer",
+      "candidate_sha256": "660280cae62d2b08bd01d81d5f347b00160d02c53b39d4cdcb961a817e316c92",
+      "root_sha256": "660280cae62d2b08bd01d81d5f347b00160d02c53b39d4cdcb961a817e316c92"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c01.terrainlayer.meta",
+      "candidate_sha256": "c02a77eff14fc982b842d58fcf9b12929dd2dd04dab067336c162720b06ce3e2",
+      "root_sha256": "c02a77eff14fc982b842d58fcf9b12929dd2dd04dab067336c162720b06ce3e2"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Greybox_Booter.mat",
+      "candidate_sha256": "2476fc402094126f4af68951a4be13c6c4525071faa831d125ab75d6b0ed51b3",
+      "root_sha256": "2476fc402094126f4af68951a4be13c6c4525071faa831d125ab75d6b0ed51b3"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Greybox_Booter.mat.meta",
+      "candidate_sha256": "5fb6dbde0cfb8ab828ff80cf64db01d6efe7360380fdfda1ef9ebabee4272e94",
+      "root_sha256": "5fb6dbde0cfb8ab828ff80cf64db01d6efe7360380fdfda1ef9ebabee4272e94"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargoAccess.cs",
+      "candidate_sha256": "f4ed7e59542f9e2921c43100b6364945a05cdde234b3d39e37f11599a8d15991",
+      "root_sha256": "f4ed7e59542f9e2921c43100b6364945a05cdde234b3d39e37f11599a8d15991"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargoAccess.cs.meta",
+      "candidate_sha256": "8941916c9b69044071813f2268570af2c59970b21343c09ff9612af9bf15d375",
+      "root_sha256": "8941916c9b69044071813f2268570af2c59970b21343c09ff9612af9bf15d375"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c00.asset",
+      "candidate_sha256": "62ef403f8676b990163b0c5c40b016542b00b70e71ceccb03da16104720fa2c2",
+      "root_sha256": "62ef403f8676b990163b0c5c40b016542b00b70e71ceccb03da16104720fa2c2"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c00.asset.meta",
+      "candidate_sha256": "bc88d4c3f55c0298d0bd9a4d9a5c0917faeb698fbfc3ef826f610c33ff8d9275",
+      "root_sha256": "bc88d4c3f55c0298d0bd9a4d9a5c0917faeb698fbfc3ef826f610c33ff8d9275"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_MetallicSmoothness.png",
+      "candidate_sha256": "479ca0901e024de344b25c5a4f02c02edad447df51e5a6dd3e0e7ee741fc2bb0",
+      "root_sha256": "479ca0901e024de344b25c5a4f02c02edad447df51e5a6dd3e0e7ee741fc2bb0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_MetallicSmoothness.png.meta",
+      "candidate_sha256": "e1324322d38b2efc7e9108c549d074d7d551301679a8b07df69b9c28b8b3d5d8",
+      "root_sha256": "e1324322d38b2efc7e9108c549d074d7d551301679a8b07df69b9c28b8b3d5d8"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/defaultmale_rig.fbx",
+      "candidate_sha256": "e10aea1d9e6455ae097457ed5a1e73b9376f2338466a164ad5dd7e02b98005a0",
+      "root_sha256": "e10aea1d9e6455ae097457ed5a1e73b9376f2338466a164ad5dd7e02b98005a0"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/defaultmale_rig.fbx.meta",
+      "candidate_sha256": "c925463575c13b95a66197246b502d7002ce15b860f0fa9488f514906ed16f5e",
+      "root_sha256": "c925463575c13b95a66197246b502d7002ce15b860f0fa9488f514906ed16f5e"
+    },
+    {
+      "path": "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationActors20261012.unity",
+      "candidate_sha256": "c648d08405224591feb7ebfb6b516a33dd49d55d0bb23bb1dc511afa81659fa3",
+      "root_sha256": "c648d08405224591feb7ebfb6b516a33dd49d55d0bb23bb1dc511afa81659fa3"
+    },
+    {
+      "path": "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationActors20261012.unity.meta",
+      "candidate_sha256": "c6fd3da47f70fd005949ae71bc41ac4ab6b8d56a83a7060836346d5030411fff",
+      "root_sha256": "c6fd3da47f70fd005949ae71bc41ac4ab6b8d56a83a7060836346d5030411fff"
+    },
+    {
+      "path": "Assets/_Project/Settings/Survival/Resources/TopDown3DSurvivalSettings.asset",
+      "candidate_sha256": "0386b509dd4b64561aa231c1b18d993fa6eeeb9cf83f2a4108ed1a26b91b161e",
+      "root_sha256": "0386b509dd4b64561aa231c1b18d993fa6eeeb9cf83f2a4108ed1a26b91b161e"
+    },
+    {
+      "path": "Assets/_Project/Settings/Survival/Resources/TopDown3DSurvivalSettings.asset.meta",
+      "candidate_sha256": "2692b3e388e930f57b6fb5be0746b85488bb6144c0ca5c264994bb658c960c44",
+      "root_sha256": "2692b3e388e930f57b6fb5be0746b85488bb6144c0ca5c264994bb658c960c44"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c03.asset",
+      "candidate_sha256": "68a44a8df60e72fd9663e2409ef6cbff4413381928b198064ac1ba679184b5c2",
+      "root_sha256": "68a44a8df60e72fd9663e2409ef6cbff4413381928b198064ac1ba679184b5c2"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c03.asset.meta",
+      "candidate_sha256": "f1de7dcaf1a8c3e90fa32acf6ab21f17b03a4bb296f213f9824a3f0e57711941",
+      "root_sha256": "f1de7dcaf1a8c3e90fa32acf6ab21f17b03a4bb296f213f9824a3f0e57711941"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD1.asset",
+      "candidate_sha256": "d8dd145d84399be35b6350bb2c4607c46997c62a29980f45c445053e1c512879",
+      "root_sha256": "d8dd145d84399be35b6350bb2c4607c46997c62a29980f45c445053e1c512879"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD1.asset.meta",
+      "candidate_sha256": "7baf9406ed25babb61fecbc609261e589650b75265bbc7b1124b1486d0d92fb0",
+      "root_sha256": "7baf9406ed25babb61fecbc609261e589650b75265bbc7b1124b1486d0d92fb0"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM_Mirror.FBX",
+      "candidate_sha256": "0d0685adae814d11ac45ee453af0d33ea11b6db25dfca7f287210fb3f5c05619",
+      "root_sha256": "0d0685adae814d11ac45ee453af0d33ea11b6db25dfca7f287210fb3f5c05619"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM_Mirror.FBX.meta",
+      "candidate_sha256": "28d85cb1efe2a2826a9f411ffef4323ec870fe92b01f693fd5cdff559c31a87c",
+      "root_sha256": "28d85cb1efe2a2826a9f411ffef4323ec870fe92b01f693fd5cdff559c31a87c"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD2.asset",
+      "candidate_sha256": "54a8c3d4d4104dd187c9993bba8990a704a08d66d3e9f0dcc9ee4170ed7bdbdf",
+      "root_sha256": "54a8c3d4d4104dd187c9993bba8990a704a08d66d3e9f0dcc9ee4170ed7bdbdf"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD2.asset.meta",
+      "candidate_sha256": "15bb5aabaa08830c85124c1b4be20d9ac91a364b068616367b39f94a550a0bb5",
+      "root_sha256": "15bb5aabaa08830c85124c1b4be20d9ac91a364b068616367b39f94a550a0bb5"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/GeographicColor.png",
+      "candidate_sha256": "858a85f109ad446159d06c1ca60a7a99e19deda85c8dd5e54639e9859a3bfcc2",
+      "root_sha256": "858a85f109ad446159d06c1ca60a7a99e19deda85c8dd5e54639e9859a3bfcc2"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/GeographicColor.png.meta",
+      "candidate_sha256": "4387d17c0cd291dfaca52ce7aa7395285781d85b98bd7b2561b7d6805dfc711b",
+      "root_sha256": "4387d17c0cd291dfaca52ce7aa7395285781d85b98bd7b2561b7d6805dfc711b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c00.terrainlayer",
+      "candidate_sha256": "a55b958f9c60fb20368e149d5c2c93ef0b645c4bbec2e1eb9b84b3152f85417d",
+      "root_sha256": "a55b958f9c60fb20368e149d5c2c93ef0b645c4bbec2e1eb9b84b3152f85417d"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c00.terrainlayer.meta",
+      "candidate_sha256": "c2f99c1ff8d23ceaa02e2f4a970222bd71b01e9df82cbf9340af94fb61f9d724",
+      "root_sha256": "c2f99c1ff8d23ceaa02e2f4a970222bd71b01e9df82cbf9340af94fb61f9d724"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargoVisuals.cs",
+      "candidate_sha256": "795aed7c3041a7634c0d46c3b6753120c4c5f24977f273a4367ecb5de420362d",
+      "root_sha256": "795aed7c3041a7634c0d46c3b6753120c4c5f24977f273a4367ecb5de420362d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargoVisuals.cs.meta",
+      "candidate_sha256": "08735507e00efda7fb58be252ae49cd00916fefa41277c6966beabd3f7dbd973",
+      "root_sha256": "08735507e00efda7fb58be252ae49cd00916fefa41277c6966beabd3f7dbd973"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DInteractionController.cs",
+      "candidate_sha256": "c05ac7f4ea8f775c02adf9abafd507e22ef07a28dcfadd3cc9c3ac2c57b6fae5",
+      "root_sha256": "c05ac7f4ea8f775c02adf9abafd507e22ef07a28dcfadd3cc9c3ac2c57b6fae5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DInteractionController.cs.meta",
+      "candidate_sha256": "6b8ec3f5d2fb9298a821a0fde2dfed7ae88e8e833c3edd6511ded6e1dfd659ff",
+      "root_sha256": "6b8ec3f5d2fb9298a821a0fde2dfed7ae88e8e833c3edd6511ded6e1dfd659ff"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BadwaterCameraRange.cs",
+      "candidate_sha256": "bef426a41de11b4bc0b59c222f857b61876fbdbf76324edd33d69d35f7803648",
+      "root_sha256": "bef426a41de11b4bc0b59c222f857b61876fbdbf76324edd33d69d35f7803648"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BadwaterCameraRange.cs.meta",
+      "candidate_sha256": "18d3fe39af8b95bfd2496709bf64042455cd000f930ea879420cb6414e286080",
+      "root_sha256": "18d3fe39af8b95bfd2496709bf64042455cd000f930ea879420cb6414e286080"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c03.asset",
+      "candidate_sha256": "2912101105c3eb51c70f0d795d96b533a3a3f7f86b1f31383234f84175aad57d",
+      "root_sha256": "2912101105c3eb51c70f0d795d96b533a3a3f7f86b1f31383234f84175aad57d"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c03.asset.meta",
+      "candidate_sha256": "498146cd391d8882c2247c261a79ea9b51e20d9f2407e43e6d5f77b84cc7b6ca",
+      "root_sha256": "498146cd391d8882c2247c261a79ea9b51e20d9f2407e43e6d5f77b84cc7b6ca"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_BaseColor.png",
+      "candidate_sha256": "0b1f43d32341c4aa7d9a1350a916161eac6645e07ac44b271ef40aa7385d96c1",
+      "root_sha256": "0b1f43d32341c4aa7d9a1350a916161eac6645e07ac44b271ef40aa7385d96c1"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_BaseColor.png.meta",
+      "candidate_sha256": "d9f104af3a100cb4294e5f21f0d7419deb8961d6bcde8b89e186000b45463da7",
+      "root_sha256": "d9f104af3a100cb4294e5f21f0d7419deb8961d6bcde8b89e186000b45463da7"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c03.terrainlayer",
+      "candidate_sha256": "5a0b74a4c2da5de4f05e1dda44190bd4540f97546581cd1dd8b4fdbdbd59f637",
+      "root_sha256": "5a0b74a4c2da5de4f05e1dda44190bd4540f97546581cd1dd8b4fdbdbd59f637"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c03.terrainlayer.meta",
+      "candidate_sha256": "105c24e51aaa8dd3e99d2fbd4df25d61ad2c14fe2751e712cf335fab293e46d2",
+      "root_sha256": "105c24e51aaa8dd3e99d2fbd4df25d61ad2c14fe2751e712cf335fab293e46d2"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Normal.png",
+      "candidate_sha256": "2afbc5cfd66129eecc16ffdeedd20084feecb6d85eebbb043fd72adf906b8487",
+      "root_sha256": "2afbc5cfd66129eecc16ffdeedd20084feecb6d85eebbb043fd72adf906b8487"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Normal.png.meta",
+      "candidate_sha256": "afea3910b682f0df894bc59524d5bf5a458930e353f993e6c6f2d797313f1fcc",
+      "root_sha256": "afea3910b682f0df894bc59524d5bf5a458930e353f993e6c6f2d797313f1fcc"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c01.asset",
+      "candidate_sha256": "ff43f761a5720b9558e927db2fd69c94420908e1c2fcaf29774dfd393b097db3",
+      "root_sha256": "ff43f761a5720b9558e927db2fd69c94420908e1c2fcaf29774dfd393b097db3"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c01.asset.meta",
+      "candidate_sha256": "06e6b50525d31c3cf6b0123b7dc56f9b2edbc1df80382d6d21c0ce2d4351fd8a",
+      "root_sha256": "06e6b50525d31c3cf6b0123b7dc56f9b2edbc1df80382d6d21c0ce2d4351fd8a"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DPlayerActionController.cs",
+      "candidate_sha256": "354dc588ec072f7987dfceb7e5312049e972c5be2aab31b9741d36919eac06cf",
+      "root_sha256": "354dc588ec072f7987dfceb7e5312049e972c5be2aab31b9741d36919eac06cf"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DPlayerActionController.cs.meta",
+      "candidate_sha256": "4cab0b7a0c97748d2343e8e45badd4ab89c92246a27fa3e4c764946e4d51bf14",
+      "root_sha256": "4cab0b7a0c97748d2343e8e45badd4ab89c92246a27fa3e4c764946e4d51bf14"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/IronstoneOre.png",
+      "candidate_sha256": "30c4a15a18318a421cf8a54b3005eb53fd890320353e4e169a6bd4664916cdc2",
+      "root_sha256": "30c4a15a18318a421cf8a54b3005eb53fd890320353e4e169a6bd4664916cdc2"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/IronstoneOre.png.meta",
+      "candidate_sha256": "8157ba787deb2b7b4dd327555cc729ec6b1b790586d747cfaa7a258f978e7907",
+      "root_sha256": "8157ba787deb2b7b4dd327555cc729ec6b1b790586d747cfaa7a258f978e7907"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/TopDown3DPackingSettings.asset",
+      "candidate_sha256": "06c8a704753289c4603778ac48b59961de61007fb7c65270a4e50a0172cd61ba",
+      "root_sha256": "06c8a704753289c4603778ac48b59961de61007fb7c65270a4e50a0172cd61ba"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/TopDown3DPackingSettings.asset.meta",
+      "candidate_sha256": "2b55a068ddaaea68725c8642a857396b530d8727235f2e33796b071087db1b45",
+      "root_sha256": "2b55a068ddaaea68725c8642a857396b530d8727235f2e33796b071087db1b45"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DSurvivalHud.cs",
+      "candidate_sha256": "5ce94265606dcc16624e9914abd9d1fe892100ef0eb135c97ffaae44cc429a9e",
+      "root_sha256": "5ce94265606dcc16624e9914abd9d1fe892100ef0eb135c97ffaae44cc429a9e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DSurvivalHud.cs.meta",
+      "candidate_sha256": "4481d9eeead6bbb425180776dda9a924a749330b68ed7e2900d46063fcfdf1ae",
+      "root_sha256": "4481d9eeead6bbb425180776dda9a924a749330b68ed7e2900d46063fcfdf1ae"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c01.terrainlayer",
+      "candidate_sha256": "e8eb300d6954da252cdf16588a0053f986daef9525127c86a1d691281e0cac3c",
+      "root_sha256": "e8eb300d6954da252cdf16588a0053f986daef9525127c86a1d691281e0cac3c"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c01.terrainlayer.meta",
+      "candidate_sha256": "a60c9a0de7edf6c0cc1aa22b310005ee0e9efd742a4cf7e61669a5183516f2f8",
+      "root_sha256": "a60c9a0de7edf6c0cc1aa22b310005ee0e9efd742a4cf7e61669a5183516f2f8"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c02.asset",
+      "candidate_sha256": "eedebd8931ae924a934f46c27ce9428a8bbdbeb981985a13d1e0a08de9057753",
+      "root_sha256": "eedebd8931ae924a934f46c27ce9428a8bbdbeb981985a13d1e0a08de9057753"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c02.asset.meta",
+      "candidate_sha256": "5e03119f2b7a5a548a7ee8d10c752173761ac7ad3823607ee138914476fba0d5",
+      "root_sha256": "5e03119f2b7a5a548a7ee8d10c752173761ac7ad3823607ee138914476fba0d5"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_FwdLeft_NoRM.FBX",
+      "candidate_sha256": "d61a0c3796d01c4c617450a3f638ff6b9823088e21c8addbe62f43e533b6f21b",
+      "root_sha256": "d61a0c3796d01c4c617450a3f638ff6b9823088e21c8addbe62f43e533b6f21b"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_FwdLeft_NoRM.FBX.meta",
+      "candidate_sha256": "5864f3da8d87caecd1c92211f7128237780464fd3f11b51323f86f08aec4e482",
+      "root_sha256": "5864f3da8d87caecd1c92211f7128237780464fd3f11b51323f86f08aec4e482"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/PerpetualTwilightSun.cs",
+      "candidate_sha256": "4011d0e284f901e642ff19a04ce087826db8439135fc8e7c1b7897c09a05be20",
+      "root_sha256": "4011d0e284f901e642ff19a04ce087826db8439135fc8e7c1b7897c09a05be20"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/PerpetualTwilightSun.cs.meta",
+      "candidate_sha256": "0b70b8ea74d9614a2f6c52569d9b64507ee7dfbf15d07bd7308fc5740f765412",
+      "root_sha256": "0b70b8ea74d9614a2f6c52569d9b64507ee7dfbf15d07bd7308fc5740f765412"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DFootstepDust.cs",
+      "candidate_sha256": "a6c540bd528be6a3642cf5e9ea784059ec5d27b1cc5dc99bff5c170d651f4ec0",
+      "root_sha256": "a6c540bd528be6a3642cf5e9ea784059ec5d27b1cc5dc99bff5c170d651f4ec0"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DFootstepDust.cs.meta",
+      "candidate_sha256": "55ab00b4c4d9437d67ab5be2ec1f24068d1d8118b7c7d2b7f016bdd8913c859c",
+      "root_sha256": "55ab00b4c4d9437d67ab5be2ec1f24068d1d8118b7c7d2b7f016bdd8913c859c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmState.cs",
+      "candidate_sha256": "ad5cac7ae3df6996cd353b8d07fde20e5f0866b2501406dd9417e853a1fbc6b0",
+      "root_sha256": "ad5cac7ae3df6996cd353b8d07fde20e5f0866b2501406dd9417e853a1fbc6b0"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmState.cs.meta",
+      "candidate_sha256": "bc1ee30dc372606ffd42e855dd46b2028e0dd91f0f615d37cef8bc75abf02880",
+      "root_sha256": "bc1ee30dc372606ffd42e855dd46b2028e0dd91f0f615d37cef8bc75abf02880"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX",
+      "candidate_sha256": "2b25346e9842037c20d4bc356e98c8a505a7881a701779d4942ab3eeaa50b487",
+      "root_sha256": "2b25346e9842037c20d4bc356e98c8a505a7881a701779d4942ab3eeaa50b487"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX.meta",
+      "candidate_sha256": "ef2551d48c1e238033ef01b76b2dc58b2315bc6fc09d15f49225fb3a3c97438a",
+      "root_sha256": "ef2551d48c1e238033ef01b76b2dc58b2315bc6fc09d15f49225fb3a3c97438a"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX",
+      "candidate_sha256": "2b25346e9842037c20d4bc356e98c8a505a7881a701779d4942ab3eeaa50b487",
+      "root_sha256": "2b25346e9842037c20d4bc356e98c8a505a7881a701779d4942ab3eeaa50b487"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX.meta",
+      "candidate_sha256": "ab8603837b517e9e30a0edd94539364029f5331fb4b9160a258d597a1aaaf1e2",
+      "root_sha256": "ab8603837b517e9e30a0edd94539364029f5331fb4b9160a258d597a1aaaf1e2"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c00.terrainlayer",
+      "candidate_sha256": "fb0a48f1b4766270e455c605bd69169361c88d1cdae1c5a77c63e79785dbc371",
+      "root_sha256": "fb0a48f1b4766270e455c605bd69169361c88d1cdae1c5a77c63e79785dbc371"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c00.terrainlayer.meta",
+      "candidate_sha256": "768b65615b89d47506d023bdfbec15f8e722f44ffef47ad140b7d99959c7db74",
+      "root_sha256": "768b65615b89d47506d023bdfbec15f8e722f44ffef47ad140b7d99959c7db74"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.cs",
+      "candidate_sha256": "98199dcc9b51fbf53fbf39ffc132daaecf3e48d86203e097312976b7db1fa761",
+      "root_sha256": "a0fc5733b689630b53adf5c9d26613b995dbf72826e8f554bd9effa50b70b069"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.cs.meta",
+      "candidate_sha256": "ac7cf8c58ca4a849a5ce81e49e689a7be3e144adc482d8e33f80841ef59a645a",
+      "root_sha256": "ac7cf8c58ca4a849a5ce81e49e689a7be3e144adc482d8e33f80841ef59a645a"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c02.asset",
+      "candidate_sha256": "2744432272abd984658eea57c1c6c31cb23683661110a4d9305a020a3d186a2c",
+      "root_sha256": "2744432272abd984658eea57c1c6c31cb23683661110a4d9305a020a3d186a2c"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c02.asset.meta",
+      "candidate_sha256": "9115bdcb7a515dda1ecb48de40c252cb8054677d6f8538b1c79b87e6f6691838",
+      "root_sha256": "9115bdcb7a515dda1ecb48de40c252cb8054677d6f8538b1c79b87e6f6691838"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c03.terrainlayer",
+      "candidate_sha256": "a272474f4755dfb10deb9f49897de3e3a87ff14a3cb250c930b29573f647981f",
+      "root_sha256": "a272474f4755dfb10deb9f49897de3e3a87ff14a3cb250c930b29573f647981f"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r14_c03.terrainlayer.meta",
+      "candidate_sha256": "7eaa2cf74ac7f89d7ad4cd6a360c45feff858c770d71f50e7ae487a30568f56b",
+      "root_sha256": "7eaa2cf74ac7f89d7ad4cd6a360c45feff858c770d71f50e7ae487a30568f56b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c02.asset",
+      "candidate_sha256": "a81796814fb954a5899c4b4915d2e1d2f54a49880d634d3f7587cf1777e0089f",
+      "root_sha256": "a81796814fb954a5899c4b4915d2e1d2f54a49880d634d3f7587cf1777e0089f"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c02.asset.meta",
+      "candidate_sha256": "f972fdc31230be925450729e86aa1f5d96ac22817cb95ef2d9ab49808a730b48",
+      "root_sha256": "f972fdc31230be925450729e86aa1f5d96ac22817cb95ef2d9ab49808a730b48"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DPlayerInventory.cs",
+      "candidate_sha256": "9eea28e2e86bae609ec474a8c1c9c267a428bcb7026ebb07d4ee66048a45f3c3",
+      "root_sha256": "9eea28e2e86bae609ec474a8c1c9c267a428bcb7026ebb07d4ee66048a45f3c3"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DPlayerInventory.cs.meta",
+      "candidate_sha256": "9fd8bcb2437b75780a3b0d6374c5e63ed77e1d6b0312484256aa8acb0a567e78",
+      "root_sha256": "9fd8bcb2437b75780a3b0d6374c5e63ed77e1d6b0312484256aa8acb0a567e78"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DPackingSettings.cs",
+      "candidate_sha256": "3a41baaad22df2bfd522ea9fbd8254e8a29c4eb6c59461e8b681a4fec3ccfbdc",
+      "root_sha256": "3a41baaad22df2bfd522ea9fbd8254e8a29c4eb6c59461e8b681a4fec3ccfbdc"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DPackingSettings.cs.meta",
+      "candidate_sha256": "b94cef7be78fc4f7d61a6613bac7f558666a2b91eea081b57b78586a8326c17e",
+      "root_sha256": "b94cef7be78fc4f7d61a6613bac7f558666a2b91eea081b57b78586a8326c17e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventoryUiController.cs",
+      "candidate_sha256": "16c3ee9befc650b236f2c149ecd2ae6383ad3a51181c66f8c572bea3256643ee",
+      "root_sha256": "16c3ee9befc650b236f2c149ecd2ae6383ad3a51181c66f8c572bea3256643ee"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventoryUiController.cs.meta",
+      "candidate_sha256": "0fe0382ca6e10d50f7b0a7a996f43882eb7e5e8db27553b61e8712e6a7aa31fc",
+      "root_sha256": "0fe0382ca6e10d50f7b0a7a996f43882eb7e5e8db27553b61e8712e6a7aa31fc"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/MicroDustHarvester.png",
+      "candidate_sha256": "41ad892316a74423fe9063b4ad07a6380aab5bbec2b3f57f8ec20b9c5bc0cc28",
+      "root_sha256": "41ad892316a74423fe9063b4ad07a6380aab5bbec2b3f57f8ec20b9c5bc0cc28"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/MicroDustHarvester.png.meta",
+      "candidate_sha256": "6d89a3afba92d13396e20db3ef3373576d4eb520c2a73548b734bace17550fd6",
+      "root_sha256": "6d89a3afba92d13396e20db3ef3373576d4eb520c2a73548b734bace17550fd6"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DActionDpadGraphic.cs",
+      "candidate_sha256": "176d437116dbe2ccbae4b49bec61af532443f352a524c65c384b86f315e47b94",
+      "root_sha256": "176d437116dbe2ccbae4b49bec61af532443f352a524c65c384b86f315e47b94"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DActionDpadGraphic.cs.meta",
+      "candidate_sha256": "40474a19d72829072fef9bb9d92d627d9e9dfb04e8fce80914ab0386db822d5d",
+      "root_sha256": "40474a19d72829072fef9bb9d92d627d9e9dfb04e8fce80914ab0386db822d5d"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD0.asset",
+      "candidate_sha256": "2e09098724ed076aba0097514409c158290c4b54cc4f22540d36748603327cf4",
+      "root_sha256": "2e09098724ed076aba0097514409c158290c4b54cc4f22540d36748603327cf4"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_LOD0.asset.meta",
+      "candidate_sha256": "0fe41d547c42ee03209469746fd8acf0447bf51bdfd1ef9b273b6ded40353ee0",
+      "root_sha256": "0fe41d547c42ee03209469746fd8acf0447bf51bdfd1ef9b273b6ded40353ee0"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGroundSurface.cs",
+      "candidate_sha256": "25de4c3329ff222a7a92e5661aa5feed7d0c6a62dd79d23072399a5b465a96fa",
+      "root_sha256": "25de4c3329ff222a7a92e5661aa5feed7d0c6a62dd79d23072399a5b465a96fa"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGroundSurface.cs.meta",
+      "candidate_sha256": "12e16a5b55d7a0fccbe0c3b31effd774c00b876f4dbbf7088cadc51590c2d12a",
+      "root_sha256": "12e16a5b55d7a0fccbe0c3b31effd774c00b876f4dbbf7088cadc51590c2d12a"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventorySlotView.cs",
+      "candidate_sha256": "d169c7adeb9076a0f6ed12df597d1eb8c3157c6c45184421ab5b4202672b8193",
+      "root_sha256": "d169c7adeb9076a0f6ed12df597d1eb8c3157c6c45184421ab5b4202672b8193"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventorySlotView.cs.meta",
+      "candidate_sha256": "143dc50bdc2270c22fbafc15ba6b9bb876a66a373e9aa5b3078a11fc79262295",
+      "root_sha256": "143dc50bdc2270c22fbafc15ba6b9bb876a66a373e9aa5b3078a11fc79262295"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DSurvivalSettings.cs",
+      "candidate_sha256": "24552c183d03bf9c898a21b45893bf86318ecc4a37e2afdab27c3cde93be061b",
+      "root_sha256": "24552c183d03bf9c898a21b45893bf86318ecc4a37e2afdab27c3cde93be061b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DSurvivalSettings.cs.meta",
+      "candidate_sha256": "cd70a8a71fd39773fe61ed6556cd6c259b5df26ce399ed3e58338adee6a1647f",
+      "root_sha256": "cd70a8a71fd39773fe61ed6556cd6c259b5df26ce399ed3e58338adee6a1647f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGameHudCanvas.cs",
+      "candidate_sha256": "b178164aa107eb3615ba1ca9fd94bd586ba6dc8582f62ae5fbf61d1a9248caea",
+      "root_sha256": "b178164aa107eb3615ba1ca9fd94bd586ba6dc8582f62ae5fbf61d1a9248caea"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGameHudCanvas.cs.meta",
+      "candidate_sha256": "e5d83a3ddb699cfccde5dda7fa4d826f9bedd87d3ff6d1f16364f7f0a19a5c99",
+      "root_sha256": "e5d83a3ddb699cfccde5dda7fa4d826f9bedd87d3ff6d1f16364f7f0a19a5c99"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs",
+      "candidate_sha256": "f4bc8844b987f2a257de553f7a682c8b6e556fb561bddd68960f77db960f02d2",
+      "root_sha256": "f4bc8844b987f2a257de553f7a682c8b6e556fb561bddd68960f77db960f02d2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs.meta",
+      "candidate_sha256": "125bb846f9a1e8de22b13aef35865640f3d968159853da727013c3ae7a7e9e52",
+      "root_sha256": "125bb846f9a1e8de22b13aef35865640f3d968159853da727013c3ae7a7e9e52"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX",
+      "candidate_sha256": "38039a18614857cbdd6cce42fc317ebc970c2d8829530cf97bc5b3ef6b714fab",
+      "root_sha256": "38039a18614857cbdd6cce42fc317ebc970c2d8829530cf97bc5b3ef6b714fab"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX.meta",
+      "candidate_sha256": "de14059a30686ae22dbee9eca7f0ea9236003b13c2e61e0155ec937b5e605076",
+      "root_sha256": "de14059a30686ae22dbee9eca7f0ea9236003b13c2e61e0155ec937b5e605076"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargo.cs",
+      "candidate_sha256": "d43ad6e690eb1bcea546c3882a24f449dfe81899844397945312d8678957d69d",
+      "root_sha256": "d43ad6e690eb1bcea546c3882a24f449dfe81899844397945312d8678957d69d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargo.cs.meta",
+      "candidate_sha256": "ef72789cf9e5113f713ecf79f6c86f6870835ccbbaa6cc359d516f0ef8e184a5",
+      "root_sha256": "ef72789cf9e5113f713ecf79f6c86f6870835ccbbaa6cc359d516f0ef8e184a5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventoryCanvas.cs",
+      "candidate_sha256": "a2627c26dc25182bf39721d606cc6748671009fbf6df29b639acf66ab602fb2c",
+      "root_sha256": "a2627c26dc25182bf39721d606cc6748671009fbf6df29b639acf66ab602fb2c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventoryCanvas.cs.meta",
+      "candidate_sha256": "cbdf6ad85bdb689664e4b9155a6bc96b3bfc06e8bb2384be4d6390f71d445175",
+      "root_sha256": "cbdf6ad85bdb689664e4b9155a6bc96b3bfc06e8bb2384be4d6390f71d445175"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DActionDpadHud.cs",
+      "candidate_sha256": "3f21513c58d7b5ab14dd5e516700497349bda4b5fb360d78010422a5172a7ff0",
+      "root_sha256": "3f21513c58d7b5ab14dd5e516700497349bda4b5fb360d78010422a5172a7ff0"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DActionDpadHud.cs.meta",
+      "candidate_sha256": "64c4db8f81afa0f0059dafc010bbe3d9ff77b96f0834acc2f741945c0ac030fe",
+      "root_sha256": "64c4db8f81afa0f0059dafc010bbe3d9ff77b96f0834acc2f741945c0ac030fe"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/AirborneDust.png",
+      "candidate_sha256": "c5048eeaefab8e848259cf17fefebe68a770c093cff04c21ae6d4d2d7a360b04",
+      "root_sha256": "c5048eeaefab8e848259cf17fefebe68a770c093cff04c21ae6d4d2d7a360b04"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/AirborneDust.png.meta",
+      "candidate_sha256": "b34cf7d922799b54f01c5d468766338fc8baaeea4b210b549be8124ca6d2c0b6",
+      "root_sha256": "b34cf7d922799b54f01c5d468766338fc8baaeea4b210b549be8124ca6d2c0b6"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/SculptedRockFusionParticipant.cs",
+      "candidate_sha256": "446ec087a5f6a0df1312e23a8aff0e9d059bb8b99c252ef45e50b7051c1714f2",
+      "root_sha256": "446ec087a5f6a0df1312e23a8aff0e9d059bb8b99c252ef45e50b7051c1714f2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/SculptedRockFusionParticipant.cs.meta",
+      "candidate_sha256": "09ec91f59edba5bf6d71d8bb26106442abd901a15cc6c61365f748854b079a82",
+      "root_sha256": "09ec91f59edba5bf6d71d8bb26106442abd901a15cc6c61365f748854b079a82"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/TopDown3DItemCatalog.asset",
+      "candidate_sha256": "193be51a41bb47c556917d0e4ec6e8e0a9e9a59267f88e8b968be0ee72fea712",
+      "root_sha256": "193be51a41bb47c556917d0e4ec6e8e0a9e9a59267f88e8b968be0ee72fea712"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/TopDown3DItemCatalog.asset.meta",
+      "candidate_sha256": "dc394f39600621f77fdf2fcb3fa4eeaa16b292ee6ba8072a8ff22fb120b1789f",
+      "root_sha256": "dc394f39600621f77fdf2fcb3fa4eeaa16b292ee6ba8072a8ff22fb120b1789f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Items/TopDown3DItemCatalog.cs",
+      "candidate_sha256": "ab3ce6da46a1b3c87a299a5b20a11699383d7a2b3cd50c50be95d4155c6635f1",
+      "root_sha256": "ab3ce6da46a1b3c87a299a5b20a11699383d7a2b3cd50c50be95d4155c6635f1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Items/TopDown3DItemCatalog.cs.meta",
+      "candidate_sha256": "23812a84c4881e782bc573203a3ae7d85222cbcc20993afcf0346acecbca5e4f",
+      "root_sha256": "23812a84c4881e782bc573203a3ae7d85222cbcc20993afcf0346acecbca5e4f"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Stand_Idle_01.FBX",
+      "candidate_sha256": "5ade95028f30cac478ded0b1857d91ece23d45a05661c4356dc3ff91c9aaa3e0",
+      "root_sha256": "5ade95028f30cac478ded0b1857d91ece23d45a05661c4356dc3ff91c9aaa3e0"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Stand_Idle_01.FBX.meta",
+      "candidate_sha256": "7ee8bee1d0d058ee64ca9c363672aae3e4191ea58ba41b9265c465e1ff0ebcd5",
+      "root_sha256": "7ee8bee1d0d058ee64ca9c363672aae3e4191ea58ba41b9265c465e1ff0ebcd5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustAtmosphere.cs",
+      "candidate_sha256": "63023df89d81f20bd305bc09dc084b6498780fdbb080e6b7948482ded2756e80",
+      "root_sha256": "63023df89d81f20bd305bc09dc084b6498780fdbb080e6b7948482ded2756e80"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustAtmosphere.cs.meta",
+      "candidate_sha256": "f710f657cf4e3101f728073cd78a7c56aa36f9037ed600582c8ad98746a2390b",
+      "root_sha256": "f710f657cf4e3101f728073cd78a7c56aa36f9037ed600582c8ad98746a2390b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c01.asset",
+      "candidate_sha256": "3ed97d19a82c33688e6b9414cc4e7b85c75e5f5931b0d61353b6cff64d5ae8ee",
+      "root_sha256": "3ed97d19a82c33688e6b9414cc4e7b85c75e5f5931b0d61353b6cff64d5ae8ee"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c01.asset.meta",
+      "candidate_sha256": "66603aea3158504b53fe9f4838b7ee3eebf130bed716ee63363f8b656f119560",
+      "root_sha256": "66603aea3158504b53fe9f4838b7ee3eebf130bed716ee63363f8b656f119560"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Items/TopDown3DItemDefinition.cs",
+      "candidate_sha256": "05d80787f7d276f23de36ac24bd939a4250b78fa0d3c9ca721429b0019b9235b",
+      "root_sha256": "05d80787f7d276f23de36ac24bd939a4250b78fa0d3c9ca721429b0019b9235b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Items/TopDown3DItemDefinition.cs.meta",
+      "candidate_sha256": "cab8026293ce94166fba9038968767899ee629c6855d1584948fa6914b31580d",
+      "root_sha256": "cab8026293ce94166fba9038968767899ee629c6855d1584948fa6914b31580d"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c03.terrainlayer",
+      "candidate_sha256": "239007487d70f92a2f5a8170e4fe2014a54d5de732bc1f07e3ab9d3da036242a",
+      "root_sha256": "239007487d70f92a2f5a8170e4fe2014a54d5de732bc1f07e3ab9d3da036242a"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r13_c03.terrainlayer.meta",
+      "candidate_sha256": "39809281e6290b5627c27e0f4519f0146ebb80bf55e7e08f3b356682efcd981a",
+      "root_sha256": "39809281e6290b5627c27e0f4519f0146ebb80bf55e7e08f3b356682efcd981a"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/SculptedBasalt01.mat",
+      "candidate_sha256": "972ccd072918b7146180ee1a1c4dcb5097a1d84c1e4e75f929434fc3d78d3ab4",
+      "root_sha256": "972ccd072918b7146180ee1a1c4dcb5097a1d84c1e4e75f929434fc3d78d3ab4"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/SculptedBasalt01.mat.meta",
+      "candidate_sha256": "3c3105962f2847d5408d473e127200494140039bf6deb671f7d70d26fc489324",
+      "root_sha256": "3c3105962f2847d5408d473e127200494140039bf6deb671f7d70d26fc489324"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RunForwardsJump_Frame01.fbx",
+      "candidate_sha256": "07d00a48a24c27a4e1ca7c6862002842750f97f74bd50eea98a14610a1d57a8b",
+      "root_sha256": "07d00a48a24c27a4e1ca7c6862002842750f97f74bd50eea98a14610a1d57a8b"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RunForwardsJump_Frame01.fbx.meta",
+      "candidate_sha256": "0793ca48bd77f7d0031fd46230d8792ecf6e6af2bd0be35441c5f039ce851e57",
+      "root_sha256": "0793ca48bd77f7d0031fd46230d8792ecf6e6af2bd0be35441c5f039ce851e57"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c03.asset",
+      "candidate_sha256": "58f2b5aa4efcd4e81e143ae1705bd2c4cca3c127f0f4eed558b5f6c1dc58ea07",
+      "root_sha256": "58f2b5aa4efcd4e81e143ae1705bd2c4cca3c127f0f4eed558b5f6c1dc58ea07"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c03.asset.meta",
+      "candidate_sha256": "9e0871d9fd603ece629abb875ee39201ae2fe9296986ea5240ee264be50fd819",
+      "root_sha256": "9e0871d9fd603ece629abb875ee39201ae2fe9296986ea5240ee264be50fd819"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c00.asset",
+      "candidate_sha256": "82421aa53b3223dcd2112ad368db0069e01bd0ab036aab6a4cb6c822eb54a31b",
+      "root_sha256": "82421aa53b3223dcd2112ad368db0069e01bd0ab036aab6a4cb6c822eb54a31b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c00.asset.meta",
+      "candidate_sha256": "6cdfcb6014f4a7a8d4c68b907aebc44da92d30960f67481631401f78f071df72",
+      "root_sha256": "6cdfcb6014f4a7a8d4c68b907aebc44da92d30960f67481631401f78f071df72"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@StrafeLeftRunForwards.fbx",
+      "candidate_sha256": "693e05893d05da84f4d76efeeaeafd5391c7dce9dddb8d57231ba427f97e1872",
+      "root_sha256": "693e05893d05da84f4d76efeeaeafd5391c7dce9dddb8d57231ba427f97e1872"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@StrafeLeftRunForwards.fbx.meta",
+      "candidate_sha256": "a824e6f517fc323c249825ba3f69085c32a88911ee70413794d2150e993dcebc",
+      "root_sha256": "a824e6f517fc323c249825ba3f69085c32a88911ee70413794d2150e993dcebc"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs",
+      "candidate_sha256": "aa42d853f9a6c6e5393a1894056d54625d39d422e7191cae24fda9d63d6e53a4",
+      "root_sha256": "aa42d853f9a6c6e5393a1894056d54625d39d422e7191cae24fda9d63d6e53a4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs.meta",
+      "candidate_sha256": "72a38b4ce1ef4274db7613ea63495e995243ca48979f780ca221e953fe58213c",
+      "root_sha256": "72a38b4ce1ef4274db7613ea63495e995243ca48979f780ca221e953fe58213c"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM.FBX",
+      "candidate_sha256": "0d0685adae814d11ac45ee453af0d33ea11b6db25dfca7f287210fb3f5c05619",
+      "root_sha256": "0d0685adae814d11ac45ee453af0d33ea11b6db25dfca7f287210fb3f5c05619"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM.FBX.meta",
+      "candidate_sha256": "dc169a3df3f2566539f90f1529bc5abb060ab374e225c4b38eff27e19b6fd5b1",
+      "root_sha256": "dc169a3df3f2566539f90f1529bc5abb060ab374e225c4b38eff27e19b6fd5b1"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Occlusion.png",
+      "candidate_sha256": "b48bede0d51e4572e8ccf05336e336bea4b7a649f8a8853496fe5f79ee8dc42f",
+      "root_sha256": "b48bede0d51e4572e8ccf05336e336bea4b7a649f8a8853496fe5f79ee8dc42f"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/SculptedBasalt01/SculptedBasalt01_Occlusion.png.meta",
+      "candidate_sha256": "7d91c274226c2d58414f0e75b083cdf363db2e6bd3a55e1220e592e486e97692",
+      "root_sha256": "7d91c274226c2d58414f0e75b083cdf363db2e6bd3a55e1220e592e486e97692"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/Item_AirborneDust.asset",
+      "candidate_sha256": "8f11092b25e962c440f290c2cfcf8fabc6395223af4d90d9737a4e1b8b760c2c",
+      "root_sha256": "8f11092b25e962c440f290c2cfcf8fabc6395223af4d90d9737a4e1b8b760c2c"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/Item_AirborneDust.asset.meta",
+      "candidate_sha256": "7cc2a89501c24a9f20411c56ac0ee8c82aa2b8a02f4ac0433c43d92e5190f9eb",
+      "root_sha256": "7cc2a89501c24a9f20411c56ac0ee8c82aa2b8a02f4ac0433c43d92e5190f9eb"
+    },
+    {
+      "path": "Assets/_Project/UI/Icons/Camp/PopupCamp.png",
+      "candidate_sha256": "1207d58eb4d07b76563d35d7229d3570380581e94e3fb23f7f132b11ebfd1d1d",
+      "root_sha256": "1207d58eb4d07b76563d35d7229d3570380581e94e3fb23f7f132b11ebfd1d1d"
+    },
+    {
+      "path": "Assets/_Project/UI/Icons/Camp/PopupCamp.png.meta",
+      "candidate_sha256": "6e6a143193d472d8e3e5c905051a6decd9151c83dd4cafde7145802e9db5ac0d",
+      "root_sha256": "6e6a143193d472d8e3e5c905051a6decd9151c83dd4cafde7145802e9db5ac0d"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c02.asset",
+      "candidate_sha256": "bd4935d0b4b7e77ca8c170a0f5e3285cbda9663f0a31d72a0ebddf023c00725a",
+      "root_sha256": "bd4935d0b4b7e77ca8c170a0f5e3285cbda9663f0a31d72a0ebddf023c00725a"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c02.asset.meta",
+      "candidate_sha256": "5af7aa2485c35deb3b711ae542f6d9baa524772bcc112727d8008c2fbc86e653",
+      "root_sha256": "5af7aa2485c35deb3b711ae542f6d9baa524772bcc112727d8008c2fbc86e653"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/BadwaterTerrainURP.mat",
+      "candidate_sha256": "f3aca1b0f85f6eeb52f461dfae6717ae24ce870042828191591bd1c8c93f9c3c",
+      "root_sha256": "f3aca1b0f85f6eeb52f461dfae6717ae24ce870042828191591bd1c8c93f9c3c"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/BadwaterTerrainURP.mat.meta",
+      "candidate_sha256": "73b84729dd07676706618ad48c8942a3a1597ae68d4e0007b097700976806a77",
+      "root_sha256": "73b84729dd07676706618ad48c8942a3a1597ae68d4e0007b097700976806a77"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/Booter_GatherIronstone.anim",
+      "candidate_sha256": "53859fb4b566d58744664a4994a22ef6baa1ae4e32f1f30d728c6ea24cf4c43b",
+      "root_sha256": "53859fb4b566d58744664a4994a22ef6baa1ae4e32f1f30d728c6ea24cf4c43b"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/Booter_GatherIronstone.anim.meta",
+      "candidate_sha256": "c1044d42aa25c0e25582d2c92a51d4588d0b7d4f45025e93dd729a3ac77e02a4",
+      "root_sha256": "c1044d42aa25c0e25582d2c92a51d4588d0b7d4f45025e93dd729a3ac77e02a4"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c03.asset",
+      "candidate_sha256": "03888c0bb759091522cada5ae0c6cf51e3314d0739eb45efb018ed546d8e8b15",
+      "root_sha256": "03888c0bb759091522cada5ae0c6cf51e3314d0739eb45efb018ed546d8e8b15"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c03.asset.meta",
+      "candidate_sha256": "a8801d532322be16a4320f69010a7d7bcd8aee6b712a8be64b374864a3c2949a",
+      "root_sha256": "a8801d532322be16a4320f69010a7d7bcd8aee6b712a8be64b374864a3c2949a"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/Item_IronstoneOre.asset",
+      "candidate_sha256": "6bf25faaa218d2727b9ce039b359e35ba957d57123f7c943371e7a213d6e79fe",
+      "root_sha256": "6bf25faaa218d2727b9ce039b359e35ba957d57123f7c943371e7a213d6e79fe"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/Item_IronstoneOre.asset.meta",
+      "candidate_sha256": "164d98e6fdd4c829a5712f9d1b2431d2497dd66a416cb2f09a29371ecff66467",
+      "root_sha256": "164d98e6fdd4c829a5712f9d1b2431d2497dd66a416cb2f09a29371ecff66467"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c00.terrainlayer",
+      "candidate_sha256": "68a571b3d971a991556aedaaf0bd46069868e4d5d711871739b6c7376791380b",
+      "root_sha256": "68a571b3d971a991556aedaaf0bd46069868e4d5d711871739b6c7376791380b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c00.terrainlayer.meta",
+      "candidate_sha256": "4999ecc317fa9db01f727c718eff21aeb17ab9c1669b5ce3c6e9938b7d61b9d3",
+      "root_sha256": "4999ecc317fa9db01f727c718eff21aeb17ab9c1669b5ce3c6e9938b7d61b9d3"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c02.terrainlayer",
+      "candidate_sha256": "dccabc9aeb6c5dc0c98a3a7820c2a1105ca44e70c16eebf11406a700205fab5e",
+      "root_sha256": "dccabc9aeb6c5dc0c98a3a7820c2a1105ca44e70c16eebf11406a700205fab5e"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r15_c02.terrainlayer.meta",
+      "candidate_sha256": "70899c8d4c4409310b24af715b64131cd9e12567d30eb85cc02847f9b124dec7",
+      "root_sha256": "70899c8d4c4409310b24af715b64131cd9e12567d30eb85cc02847f9b124dec7"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c01.asset",
+      "candidate_sha256": "8d2c14258be8045fcf9b9f0cf7a774db7d7ca033032700616be08ffd1cba2c5b",
+      "root_sha256": "8d2c14258be8045fcf9b9f0cf7a774db7d7ca033032700616be08ffd1cba2c5b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r15_c01.asset.meta",
+      "candidate_sha256": "f9cf81ce7bc239675be211c2c43d063382be46ba4e23a6a26504cba32defd8ed",
+      "root_sha256": "f9cf81ce7bc239675be211c2c43d063382be46ba4e23a6a26504cba32defd8ed"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c01.asset",
+      "candidate_sha256": "e06f8d2802f3535984430026c41692722b42b3a316651b5a78e969168dd0e45e",
+      "root_sha256": "e06f8d2802f3535984430026c41692722b42b3a316651b5a78e969168dd0e45e"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c01.asset.meta",
+      "candidate_sha256": "6a65fd797f0f3ab505c7725794eb708242caf43889588b639a6887c3665a7742",
+      "root_sha256": "6a65fd797f0f3ab505c7725794eb708242caf43889588b639a6887c3665a7742"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c02.terrainlayer",
+      "candidate_sha256": "c689b0d764be6486e38e8b5024ffda62fcb04c205f4861d8c7219145f862247d",
+      "root_sha256": "c689b0d764be6486e38e8b5024ffda62fcb04c205f4861d8c7219145f862247d"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainLayers/r12_c02.terrainlayer.meta",
+      "candidate_sha256": "e3cf153a3987fdd58080ee830881acd0d23404c9e5023295c722200f10685743",
+      "root_sha256": "e3cf153a3987fdd58080ee830881acd0d23404c9e5023295c722200f10685743"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/Item_PopupCamp.asset",
+      "candidate_sha256": "9e960992a579813142d2f2c0c7b294e2da79196892d024e8fd1aed00b698bce6",
+      "root_sha256": "9e960992a579813142d2f2c0c7b294e2da79196892d024e8fd1aed00b698bce6"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/Item_PopupCamp.asset.meta",
+      "candidate_sha256": "6bf7cb8b22bdca2d5d0c9deeaa960925c4c4fd7423d75fdfcc5e7b61261a3baa",
+      "root_sha256": "6bf7cb8b22bdca2d5d0c9deeaa960925c4c4fd7423d75fdfcc5e7b61261a3baa"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@StrafeRightRunForwards.fbx",
+      "candidate_sha256": "693e05893d05da84f4d76efeeaeafd5391c7dce9dddb8d57231ba427f97e1872",
+      "root_sha256": "693e05893d05da84f4d76efeeaeafd5391c7dce9dddb8d57231ba427f97e1872"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@StrafeRightRunForwards.fbx.meta",
+      "candidate_sha256": "a01c2cb46dc29cd883b34e4a19d1d1fe17d2779c6b04aa3c3bb0cda073bb2dea",
+      "root_sha256": "a01c2cb46dc29cd883b34e4a19d1d1fe17d2779c6b04aa3c3bb0cda073bb2dea"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_FwdRight_NoRM.FBX",
+      "candidate_sha256": "2c0cc5c34b6b49743d19ec49716ddebce6565690e995f76e5b089aa84cc47276",
+      "root_sha256": "2c0cc5c34b6b49743d19ec49716ddebce6565690e995f76e5b089aa84cc47276"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_FwdRight_NoRM.FBX.meta",
+      "candidate_sha256": "f51f2e5f0bdbd4917e71036ffa8ab47d4d3d75e977dc0ab816d61af73eb5cc7b",
+      "root_sha256": "f51f2e5f0bdbd4917e71036ffa8ab47d4d3d75e977dc0ab816d61af73eb5cc7b"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX",
+      "candidate_sha256": "17e73a6e4f05287e33bf753c1e9526949ac57a958549c0525e95468f9d21d721",
+      "root_sha256": "17e73a6e4f05287e33bf753c1e9526949ac57a958549c0525e95468f9d21d721"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX.meta",
+      "candidate_sha256": "0845593412268073f3f3c948dcdc484d676baf6e5f44eba9661fba725dacc0ac",
+      "root_sha256": "0845593412268073f3f3c948dcdc484d676baf6e5f44eba9661fba725dacc0ac"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Greybox_BigARM.mat",
+      "candidate_sha256": "56f82308963bcf4c6f7b1ed37eb79cec697cab41a8de69b95aea0014d65ec8f9",
+      "root_sha256": "56f82308963bcf4c6f7b1ed37eb79cec697cab41a8de69b95aea0014d65ec8f9"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Greybox_BigARM.mat.meta",
+      "candidate_sha256": "7cef9e5c6a7890d2e4f187fe0436f9bf23e09f68603e7614d68ed8937f03707a",
+      "root_sha256": "7cef9e5c6a7890d2e4f187fe0436f9bf23e09f68603e7614d68ed8937f03707a"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DSurvivalVitals.cs",
+      "candidate_sha256": "f3dab99512873528672d40cd70fd91be6c576d408871b3b9df99e8e3314d4e01",
+      "root_sha256": "f3dab99512873528672d40cd70fd91be6c576d408871b3b9df99e8e3314d4e01"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DSurvivalVitals.cs.meta",
+      "candidate_sha256": "cf3e5e2497ddc5fd7c41625d9fc72a5a7ca9bcac69cf0a5636345cdd3fa7039c",
+      "root_sha256": "cf3e5e2497ddc5fd7c41625d9fc72a5a7ca9bcac69cf0a5636345cdd3fa7039c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "candidate_sha256": "a8696ff97448f0a2c8e77ea1861491a643ecada96eb87a2fdb6217dbd1c8b353",
+      "root_sha256": "a8696ff97448f0a2c8e77ea1861491a643ecada96eb87a2fdb6217dbd1c8b353"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs.meta",
+      "candidate_sha256": "f2e6db0b44b4e20f075c9891724ff6041341fbda0c60281071a0dc2767a9faf5",
+      "root_sha256": "f2e6db0b44b4e20f075c9891724ff6041341fbda0c60281071a0dc2767a9faf5"
+    }
+  ],
+  "dependency_scope": "Candidate frozen dependencies recorded separately from current root; candidate-only batch cursor guard and unrelated dirty artist materials may differ. Scene-native/art GUID references are preserved.",
+  "remaining": [
+    "Population startup/activation and transition Player measurements",
+    "Identity-preserving work partition comparison",
+    "Author appearance/traversal acceptance",
+    "Production demand, seed/save binding and rollout"
+  ]
+}
