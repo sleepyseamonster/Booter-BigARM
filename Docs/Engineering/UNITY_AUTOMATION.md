@@ -171,6 +171,14 @@ Focused fixtures are `TopDown3DCampTests`, `TopDown3DCampInputTests`, `TopDown3D
 
 Focused fixtures are `GreaterWastelandIronstoneTests`, `TopDown3DInteractionTests`, `TopDown3DResourceNodeTests`, `TopDown3DInventoryTests`, `TopDown3DPackingTests`, `TopDown3DInventoryUiTests`, `TopDown3DPlayerLocomotionTests`, `TopDown3DSmartTraversalTests`, and `FixedTerrainDressingTests`. Run them in a task-owned isolated candidate: serialization/installer checks create and delete temporary test scenes. The [implementation receipt](../Evidence/Gameplay/GREATER_WASTELAND_IRONSTONE_IMPLEMENTATION_2026-10-11.md) records proof and the application-restart persistence boundary.
 
+## Starting Camp checks
+
+`BooterBigArm.Editor.TopDown3DWaypointCampValidator.ValidateLoadedProduction()` inspects the already loaded Greater Wasteland scene without opening another scene, installing objects, entering Play Mode, or saving. It checks the authored site, 72 bounded shared-route samples, arrival clearance, menu entry, and prohibited generated services. Call it through read-only CLI eval in the explicitly selected production checkout.
+
+`TopDown3DWaypointRouteTests` and `TopDown3DWaypointCampIntegrationTests` are focused EditMode fixtures. The integration fixture changes disposable/reference scenes and must run in an isolated candidate. Regress existing camp, sleep, menu, survival, inventory UI, locomotion, and traversal tests when their shared seams change. See the [implementation evidence](../Evidence/Gameplay/STARTING_CAMP_IMPLEMENTATION_2026-10-11.md).
+
+`TopDown3DWaypointCampAuthoring.AuthorFromCli` writes the waypoint definition and system-menu prefab; it never writes a scene and must not be described as validation. `TopDown3DWaypointCampPreview.CaptureFromCli` produces static layout/art PNGs only in a guarded isolated candidate, without Play Mode or gameplay simulation. Neither command focuses an app window.
+
 ## General notes
 
 - Keep build output outside `Assets/`.

@@ -151,6 +151,12 @@ namespace BooterBigArm.TopDown3D
             if (command == "DialogCancel") { Back(); return; }
             if (command == "DialogAccept") { var action = confirmed; confirmed = null; Show(dialogParent, dialogFocus); action?.Invoke(); return; }
             if (command == "Resume") { Close(); return; }
+            if (command == "Camps")
+            {
+                Close(); inventory.Close();
+                TopDown3DGameHudCanvas.FindInScene<TopDown3DWaypointCampController>(gameObject.scene)?.Open();
+                return;
+            }
             if (command == "RadialSetup") { directSetup = false; BeginSetup(); return; }
             if (command == "Settings") { settingsDraft = settings.Accepted.Clone(); Show("Settings", "TextSize"); return; }
             if (command == "Exit")

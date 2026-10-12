@@ -5,6 +5,20 @@ namespace BooterBigArm.TopDown3D
 {
     public sealed class TopDown3DWorldSpeedController : MonoBehaviour
     {
+        public static TopDown3DWorldSpeedController ForScene(UnityEngine.SceneManagement.Scene scene)
+        {
+            TopDown3DWorldSpeedController found = null;
+            foreach (var root in scene.GetRootGameObjects())
+            foreach (var candidate in root.GetComponentsInChildren<TopDown3DWorldSpeedController>(true))
+            {
+                if (found != null) throw new InvalidOperationException("Multiple world speed authorities");
+                found = candidate;
+            }
+            if (found != null) return found;
+            var owner = new GameObject("World Simulation");
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(owner, scene);
+            return owner.AddComponent<TopDown3DWorldSpeedController>();
+        }
         private object owner;
         private float baseline, requested;
         public bool HasRequest => owner != null;

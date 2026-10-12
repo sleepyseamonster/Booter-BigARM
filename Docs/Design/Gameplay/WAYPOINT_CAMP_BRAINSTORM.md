@@ -4,6 +4,8 @@ October 11, 2026. Design exploration and repository audit for the author. Establ
 
 The recommended system is a network of sparse expedition camps with portable equipment and fixed geographic anchors. Each camp gives an expedition a place to return to, prepare, and depart from. Start with one readable camp and a useful return loop before expanding the network.
 
+The [October 11 implementation receipt](../../Evidence/Gameplay/STARTING_CAMP_IMPLEMENTATION_2026-10-11.md) records the established starting site, separate portable recovery ownership, Camps view, and explicitly bounded physical return prototype. The exploration below remains the design background; wider travel, persistence, crafting, and item-management services remain later slices.
+
 ## Camp identity and purpose
 
 Separate two scales of camping. Booter's existing portable shade is a temporary rest stop that can be deployed and packed locally. An established waypoint camp is a known place on the map, with a permanent site identity and a validated arrival area. Deploying the portable shade anywhere should not automatically create a fast-travel destination.

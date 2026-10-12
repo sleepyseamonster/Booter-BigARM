@@ -14,6 +14,8 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DCampPhase Phase { get; private set; }
         public TopDown3DCampRecord Record { get; private set; }
         public TopDown3DCampView Camp { get; private set; }
+        private TopDown3DCampView recoveryTarget;
+        public TopDown3DCampView RecoveryTarget => recoveryTarget;
         public bool IsConfigured => settings != null;
         public TopDown3DCampSettings Settings => settings;
         private TopDown3DCampSettings settings;
@@ -49,9 +51,10 @@ namespace BooterBigArm.TopDown3D
                 return false;
             }
         }
-        public bool CanCallUp => IsConfigured && input != null && input.HasCampActions && Phase == TopDown3DCampPhase.Idle
+        public bool CanUseCamp => IsConfigured && input != null && input.HasCampActions && Phase == TopDown3DCampPhase.Idle
             && vitals.Health > 0 && motor.CanBeginCampAction && animation.HasCampAnimationSet && !action.IsGathering && !action.IsPlacingHarvester
-            && (Camp != null || Record == null && KitCarried);
+            && vitals.Activity == TopDown3DSurvivalActivity.Ordinary;
+        public bool CanCallUp => CanUseCamp && (Camp != null || Record == null && KitCarried);
 
         public void Configure(TopDown3DCampSettings config, TopDown3DInputRouter router, EventSystem system)
         {
@@ -61,7 +64,7 @@ namespace BooterBigArm.TopDown3D
             animation = GetComponent<TopDown3DPlayerAnimationDriver>(); vitals = GetComponent<TopDown3DSurvivalVitals>();
             action = GetComponent<TopDown3DPlayerActionController>();
             var root = new GameObject("Camp World"); SceneManager.MoveGameObjectToScene(root, gameObject.scene);
-            worldRoot = root.transform; speed = root.AddComponent<TopDown3DWorldSpeedController>();
+            worldRoot = root.transform; speed = TopDown3DWorldSpeedController.ForScene(gameObject.scene);
             var ui = new GameObject("Camp Canvas", typeof(RectTransform)); SceneManager.MoveGameObjectToScene(ui, gameObject.scene);
             canvas = ui.AddComponent<TopDown3DCampCanvas>(); canvas.Configure(() => BeginRecovery(true), () => BeginRecovery(false), BeginPack);
             module = system.GetComponent<InputSystemUIInputModule>();
@@ -128,7 +131,7 @@ namespace BooterBigArm.TopDown3D
             else if (Phase == TopDown3DCampPhase.Waking && elapsed >= settings.wakeDuration) FinishWake();
             else if (Phase == TopDown3DCampPhase.Sleeping || Phase == TopDown3DCampPhase.Resting)
             {
-                if (Camp == null || Vector3.ProjectOnPlane(motor.Position - Camp.transform.TransformPoint(settings.sleepOffset), Vector3.up).magnitude > 1)
+                if (recoveryTarget == null || Vector3.ProjectOnPlane(motor.Position - recoveryTarget.transform.TransformPoint(settings.sleepOffset), Vector3.up).magnitude > 1)
                 { Wake("Sleeping space changed"); return; }
                 canvas.Show($"{(pendingSleep ? "Sleeping" : "Resting")} {(pendingSleep ? settings.sleepSpeed : 1):0.#}x · Reserve {vitals.Reserve:0}\n"
                     + $"[{input.GetBindingDisplayName("Camp/Cancel", "Wake")}] Wake · the world remains active", false);
@@ -190,7 +193,9 @@ namespace BooterBigArm.TopDown3D
 
         public bool OpenActions(TopDown3DCampView target)
         {
-            if (!CanCallUp || target != Camp || Vector3.Distance(motor.Position, target.InteractionPoint) > settings.interactionRange) return false;
+            if (!CanUseCamp || target == null || target.Record == null || target.gameObject.scene != gameObject.scene
+                || (target.CanPack && target != Camp) || Vector3.Distance(motor.Position, target.InteractionPoint) > settings.interactionRange) return false;
+            recoveryTarget = target;
             if (!CanReachCamp()) { action.ReportFeedback("Camp is blocked from here"); return false; }
             if (!motor.TryBeginActionConstraint(this)) return false;
             LeaseUi(); Enter(TopDown3DCampPhase.Actions, TopDown3DInputMode.CampActions); ShowActions(); return true;
@@ -212,8 +217,10 @@ namespace BooterBigArm.TopDown3D
         {
             var sleep = TopDown3DSleepRules.Quote(vitals, settings, TopDown3DSurvivalActivity.Sleep);
             var rest = TopDown3DSleepRules.Quote(vitals, settings, TopDown3DSurvivalActivity.Rest);
-            var canPack = inventory.State.CanAdd(new TopDown3DItemAmount(TopDown3DCampSettings.ItemId, 1));
-            var notice = !canPack ? "Pack up unavailable: inventory full" : !sleep.CanStart
+            var packable = recoveryTarget != null && recoveryTarget.CanPack && recoveryTarget == Camp;
+            var canPack = packable && inventory.State.CanAdd(new TopDown3DItemAmount(TopDown3DCampSettings.ItemId, 1));
+            canvas.SetPackVisible(packable);
+            var notice = packable && !canPack ? "Pack up unavailable: inventory full" : !sleep.CanStart
                 ? "Supplies too low to sleep safely"
                 : $"Rest: up to +{rest.Gain:0.#} Reserve";
             if (armed) { module.submit = priorSubmit; module.leftClick = priorClick; }
@@ -226,11 +233,11 @@ namespace BooterBigArm.TopDown3D
 
         private void BeginRecovery(bool sleep)
         {
-            if (!armed || committing || Phase != TopDown3DCampPhase.Actions || Camp == null) return;
+            if (!armed || committing || Phase != TopDown3DCampPhase.Actions || recoveryTarget == null) return;
             var quote = TopDown3DSleepRules.Quote(vitals, settings, sleep ? TopDown3DSurvivalActivity.Sleep : TopDown3DSurvivalActivity.Rest);
             if (!quote.CanStart) return;
             pendingSleep = sleep; RestoreUi(); motor.EndActionConstraint(this);
-            var point = Camp.transform.TransformPoint(settings.sleepOffset);
+            var point = recoveryTarget.transform.TransformPoint(settings.sleepOffset);
             if (!TopDown3DCampPlacement.TryGround(point, out var grounded, out _)) { EndAction(); return; }
             var capsule = GetComponent<CapsuleCollider>(); point = grounded + Vector3.up * (capsule.height * .5f - capsule.center.y);
             Enter(TopDown3DCampPhase.Approaching, TopDown3DInputMode.CampBusy);
@@ -241,9 +248,9 @@ namespace BooterBigArm.TopDown3D
         private void ApproachFinished(bool success)
         {
             if (Phase != TopDown3DCampPhase.Approaching) return;
-            if (!success || !TopDown3DCampPlacement.Validate(Record.position, Record.rotation, settings, transform, Camp.transform, out _, out _))
+            if (!success || recoveryTarget == null || !TopDown3DCampPlacement.Validate(recoveryTarget.Record.position, recoveryTarget.Record.rotation, settings, transform, recoveryTarget.transform, out _, out _))
             { action.ReportFeedback("Sleeping space or approach is blocked"); EndAction(); return; }
-            motor.FacePlanarDirection(Camp.transform.forward);
+            motor.FacePlanarDirection(recoveryTarget.transform.forward);
             Enter(TopDown3DCampPhase.Reclining, TopDown3DInputMode.CampBusy);
             animation.SetCampPresentation(pendingSleep ? 0 : 1, settings.poseDuration, pendingSleep, false);
             canvas.Show(pendingSleep ? "Settling beneath the cloak…" : "Taking a breather…", false);
@@ -251,7 +258,7 @@ namespace BooterBigArm.TopDown3D
 
         private void StartRecovery()
         {
-            if (Camp == null || !TopDown3DCampPlacement.Validate(Record.position, Record.rotation, settings, transform, Camp.transform, out _, out _))
+            if (recoveryTarget == null || !TopDown3DCampPlacement.Validate(recoveryTarget.Record.position, recoveryTarget.Record.rotation, settings, transform, recoveryTarget.transform, out _, out _))
             { Wake("Camp space changed"); return; }
             var mode = pendingSleep ? TopDown3DSurvivalActivity.Sleep : TopDown3DSurvivalActivity.Rest;
             if (!TopDown3DSleepRules.Quote(vitals, settings, mode).CanStart) { Wake("Supplies getting low"); return; }
@@ -263,7 +270,8 @@ namespace BooterBigArm.TopDown3D
 
         private void BeginPack()
         {
-            if (!armed || committing || Phase != TopDown3DCampPhase.Actions || Camp == null) return;
+            if (!armed || committing || Phase != TopDown3DCampPhase.Actions || Camp == null
+                || recoveryTarget != Camp || !Camp.CanPack) return;
             if (!CanReachCamp()) { action.ReportFeedback("Camp is blocked from here"); return; }
             RestoreUi(); Enter(TopDown3DCampPhase.Packing, TopDown3DInputMode.CampBusy);
             animation.SetCampPresentation(2, settings.setupDuration, false, false); canvas.Show("Folding the shade…", false);
@@ -288,9 +296,10 @@ namespace BooterBigArm.TopDown3D
         public void NotifyDanger(string reason) => Wake(reason);
         private bool CanReachCamp()
         {
-            if (Camp == null) return false;
-            if (!Physics.Linecast(motor.Position + Vector3.up * .3f, Camp.InteractionPoint, out var hit, ~0, QueryTriggerInteraction.Ignore)) return true;
-            return hit.transform.IsChildOf(Camp.transform);
+            var target = recoveryTarget != null ? recoveryTarget : Camp;
+            if (target == null) return false;
+            if (!Physics.Linecast(motor.Position + Vector3.up * .3f, target.InteractionPoint, out var hit, ~0, QueryTriggerInteraction.Ignore)) return true;
+            return hit.transform.IsChildOf(target.transform);
         }
         public void InterruptForSystemMenu() => AbortLifecycle();
         private void OnDamage()
@@ -329,6 +338,7 @@ namespace BooterBigArm.TopDown3D
         private void EndAction(bool returnGameplay = true)
         {
             Phase = TopDown3DCampPhase.Idle; RestoreUi(); motor?.EndActionConstraint(this); canvas?.Hide();
+            recoveryTarget = null;
             animation?.SetCampPresentation(-1, 1, false, KitCarried);
             if (returnGameplay && input != null && input.IsCampMode) input.EnterGameplayMode();
         }

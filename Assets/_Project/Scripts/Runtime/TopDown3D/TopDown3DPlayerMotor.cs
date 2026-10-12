@@ -49,7 +49,7 @@ namespace BooterBigArm.TopDown3D
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
-    public sealed class TopDown3DPlayerMotor : MonoBehaviour
+    public sealed partial class TopDown3DPlayerMotor : MonoBehaviour
     {
         private const int GroundHitCapacity = 8;
         private const int TraversalHitCapacity = 12;
@@ -251,6 +251,7 @@ namespace BooterBigArm.TopDown3D
 
             actionConstraintOwner = null;
             campApproaching = false;
+            waypointTravelActive = false;
             SprintActive = false;
             PlanarAcceleration = Vector3.zero;
         }
@@ -290,6 +291,7 @@ namespace BooterBigArm.TopDown3D
             traversalCooldownRemaining = Mathf.Max(0f, traversalCooldownRemaining - Time.fixedDeltaTime);
             if (IsActionConstrained)
             {
+                if (waypointTravelActive) { AdvanceWaypointTravel(); return; }
                 if (campApproaching) { AdvanceCampApproach(); return; }
                 PlanarAcceleration = Vector3.zero;
                 SprintActive = false;
@@ -1295,6 +1297,8 @@ namespace BooterBigArm.TopDown3D
             EndClimb();
             actionConstraintOwner = null;
             PlanarAcceleration = Vector3.zero;
+            waypointTravelActive = false;
+            campApproaching = false;
             IsGrounded = false;
             stableGroundNormal = Vector3.up;
             hasStableGroundNormal = false;

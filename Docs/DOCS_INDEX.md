@@ -140,6 +140,8 @@ These define current preferred approaches or sequencing.
   Session-only camp and cloak integration, controls, 101 focused checks, live simulation capture, production validators, and acceptance limits.
 - [WAYPOINT_CAMP_BRAINSTORM.md](./Design/Gameplay/WAYPOINT_CAMP_BRAINSTORM.md)
   Starting waypoint camp exploration, discovered destinations, fast-travel options, Legger constraints, and a bounded implementation sequence.
+- [Starting Camp implementation evidence](./Evidence/Gameplay/STARTING_CAMP_IMPLEMENTATION_2026-10-11.md)
+  Established recovery, independent portable kit ownership, Camps view, bounded physical return, 114 focused checks, and session-only limitations.
 - [URP_2D_STANDARD.md](Archive/Legacy2D/URP_2D_STANDARD.md) — legacy 2D maintenance only.
 - [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md)
 - [CODEX_EDITOR_STANDARD.md](./Operations/CODEX_EDITOR_STANDARD.md)

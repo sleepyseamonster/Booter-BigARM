@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f8a6115bbf0191499d4370fb4db8c1a, type: 3}
+  m_Name: TopDown3DWaypointCampSettings
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DWaypointCampSettings
+  worldId: greater-wasteland.authored.v1
+  siteId: camp.starting
+  displayName: Starting Camp
+  position: {x: -1842, y: -48.08643, z: -1498}
+  returnRoute:
+  - {x: -1845, y: -48.30617, z: -1498}
+  - {x: -1845, y: -47.53708, z: -1490}
+  - {x: -1845, y: -46.9328, z: -1482}
+  - {x: -1845, y: -45.94396, z: -1474}
+  - {x: -1845, y: -45.39462, z: -1466}
+  corridorRadius: 1.5
+  travelSpeed: 4
+  resourceFloor: 0.1
+  walkingSpeed: 1.8

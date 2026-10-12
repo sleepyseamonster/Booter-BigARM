@@ -68,6 +68,9 @@ namespace BooterBigArm.TopDown3D
         }
         public void SetAvailability(bool canSleep, bool canRest, bool canPack)
         { sleep.interactable = canSleep; rest.interactable = canRest; pack.interactable = canPack; }
+        public void SetPackVisible(bool visible) => pack.gameObject.SetActive(visible);
+        public void SetLabels(string primary, string secondary, string back)
+        { sleep.GetComponentInChildren<Text>().text = primary; rest.GetComponentInChildren<Text>().text = secondary; pack.GetComponentInChildren<Text>().text = back; }
         public void Hide() { if (panel != null) panel.SetActive(false); }
         public void Summary(string text) { Show(text, false); summaryUntil = Time.unscaledTime + 4; }
         private void Update() { if (summaryUntil > 0 && Time.unscaledTime >= summaryUntil) { summaryUntil = 0; Hide(); } }

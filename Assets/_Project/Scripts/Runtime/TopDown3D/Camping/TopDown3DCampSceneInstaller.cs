@@ -13,7 +13,10 @@ namespace BooterBigArm.TopDown3D
             var settings = TopDown3DCampSettings.Load();
             if (!settings || !settings.TryValidate(out _) || inventory == null || !inventory.ItemCatalog.TryGetDefinition(TopDown3DCampSettings.ItemId, out _)) return null;
             var controller = inventory.GetComponent<TopDown3DCampController>() ?? inventory.gameObject.AddComponent<TopDown3DCampController>();
-            controller.Configure(settings, input, system); return controller;
+            controller.Configure(settings, input, system);
+            if (scene.path == TopDown3DWaypointCampSettings.ProductionScene)
+                TopDown3DWaypointCampController.TryInstall(scene, input, inventory, system, controller);
+            return controller;
         }
     }
 }
