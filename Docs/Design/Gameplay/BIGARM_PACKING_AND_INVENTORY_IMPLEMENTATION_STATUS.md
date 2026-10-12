@@ -2,6 +2,8 @@
 
 This status note records the first implementation slice for the approved packing plan.
 
+Historical snapshot: the [October 11 inventory audit](BOOTER_LEGGER_INVENTORY_AUDIT_2026-10-11.md) supersedes this note for current production facts and proof boundaries. Booter's saved production capacity is still 16 despite the eight-slot code default. The new author direction forbids resources in Booter's backpack and supersedes harvest overflow to Booter; these rules are audited requirements, not implemented by this documentation update.
+
 Implemented runtime seams:
 
 - Eight-slot Booter field-kit default and twelve fixed BigARM mounts.

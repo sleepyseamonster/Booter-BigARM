@@ -1,6 +1,8 @@
 # BigARM Packing And Inventory Implementation Plan
 
-Status: Implementation-ready; planning complete, implementation not started
+Status: Retained August planning baseline; next iteration routed to the October 11 inventory audit.
+
+Current routing — October 11, 2026: this is the retained August planning baseline, not current implementation status. The author now requires Booter's limited backpack to carry personal items/tools only and the Legger to carry all resources, superseding this plan's resource overflow and Booter harvest fallback. Use the [current inventory audit and iteration plan](BOOTER_LEGGER_INVENTORY_AUDIT_2026-10-11.md) for live findings and the next proposed implementation batches. Other defaults below remain historical proposals rather than proof of production behavior.
 
 Planning owner: Gottspan
 
