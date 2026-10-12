@@ -1,0 +1,43 @@
+{
+  "status": "fresh_live_transfer_guard_passed",
+  "scene_sha256": "2747f07f81eed430cc66e339bf6e287a903b8a2bd41ff5af549d13447bf4fc89",
+  "scenes": [
+    {
+      "name": "",
+      "path": "",
+      "isLoaded": true,
+      "isDirty": false,
+      "isActive": true,
+      "rootCount": 0
+    }
+  ],
+  "editor_state": {
+    "playing": false,
+    "compiling": false
+  },
+  "compiler_truth": {
+    "sampledUtc": "2026-10-12T18:52:36.9421443Z",
+    "ageMs": 24,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 1,
+    "consoleWarnings": 0,
+    "consoleLogs": 52,
+    "seeded": true,
+    "classified_transport_errors": [
+      {
+        "mode": 8405248,
+        "message": "Failed to handle /api/exec request: Main thread operation timed out after 5000ms\nUnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__119:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@62c08c808737/Runtime/Common/BasePipelineServer.cs:2257)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder:SetException (System.Exception)\nUnity.Pipeline.BasePipelineServer/<ExecuteGated>d__109:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@62c08c808737/Runtime/Common/BasePipelineServer.cs:1589)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder:SetException (System.Exception)\nUnity.Pipeline.BasePipelineServer/<>c__DisplayClass119_0/<<HandleExecRequest>b__0>d:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@62c08c808737/Runtime/Common/BasePipelineServer.cs:2218)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<object>:SetException (System.Exception)\nUnity.Pipeline.BasePipelineServer/<ExecuteCommandByName>d__137:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@62c08c808737/Runtime/Common/BasePipelineServer.cs:2664)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<object>:SetException (System.Exception)\nUnity.Pipeline.BasePipelineServer/<ExecuteCommand>d__138:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@62c08c808737/Runtime/Common/BasePipelineServer.cs:2703)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n"
+      }
+    ],
+    "console_cleared": false
+  },
+  "fingerprint": [
+    {
+      "path": "",
+      "dirty": false,
+      "roots": 0,
+      "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
