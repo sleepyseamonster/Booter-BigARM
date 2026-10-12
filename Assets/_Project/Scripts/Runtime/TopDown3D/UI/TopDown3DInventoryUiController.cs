@@ -313,7 +313,8 @@ namespace BooterBigArm.TopDown3D
             var cancel = input.GetBindingDisplayName("UI/Cancel", "Cancel");
             canvas.SetControlHints(
                 $"[{select}]: select / move  [{input.GetBindingDisplayName("UI/QuickTransfer", "R")}]: quick transfer  "
-                + $"[{input.GetBindingDisplayName("UI/PreviousInventory", "Q")}] / [{input.GetBindingDisplayName("UI/NextInventory", "E")}]: switch inventory\n"
+                + $"[{input.GetBindingDisplayName("UI/PreviousInventory", "Q")}]: {(cacheContext != null ? "cache" : "Booter")}  "
+                + $"[{input.GetBindingDisplayName("UI/NextInventory", "E")}]: Legger\n"
                 + $"[{cancel}]: cancel / back     [{toggle}]: close");
         }
 

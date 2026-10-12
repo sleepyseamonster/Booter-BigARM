@@ -16,6 +16,7 @@ namespace BooterBigArm.TopDown3D
 
         private Text label;
         private float feedbackRemaining;
+        private string feedbackMessage;
         private float promptRefreshRemaining;
         private bool subscribed;
 
@@ -37,10 +38,11 @@ namespace BooterBigArm.TopDown3D
 
         public void ShowFeedback(string message)
         {
+            if (this == null) { Unsubscribe(); return; }
             EnsureVisualTree();
             feedbackRemaining = FeedbackDuration;
-            label.text = message ?? string.Empty;
-            label.enabled = !string.IsNullOrWhiteSpace(label.text);
+            feedbackMessage = message ?? string.Empty;
+            RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
         }
 
         public static TopDown3DInteractionFeedbackHud TryInstallForScene(Scene scene)
@@ -89,52 +91,47 @@ namespace BooterBigArm.TopDown3D
         {
             Unsubscribe();
         }
+        private void OnDestroy() => Unsubscribe();
 
         private void Update()
         {
-            if (feedbackRemaining <= 0f)
-            {
-                promptRefreshRemaining -= Time.unscaledDeltaTime;
-                if (promptRefreshRemaining <= 0f)
-                {
-                    promptRefreshRemaining = 0.25f;
-                    RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
-                }
-                return;
-            }
-
             feedbackRemaining = Mathf.Max(0f, feedbackRemaining - Time.unscaledDeltaTime);
-            if (feedbackRemaining <= 0f)
+            promptRefreshRemaining -= Time.unscaledDeltaTime;
+            if (promptRefreshRemaining <= 0f)
             {
+                promptRefreshRemaining = input != null && input.IsCargoHoldActive ? 0.05f : 0.1f;
                 RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
             }
         }
 
         private void RefreshPrompt(ITopDown3DInteractable target)
         {
-            if (feedbackRemaining > 0f)
-            {
-                return;
-            }
-
+            // A manually configured edit-mode view can outlive native teardown callbacks.
+            if (this == null) { Unsubscribe(); return; }
             EnsureVisualTree();
+            if (input != null && input.Mode != TopDown3DInputMode.Gameplay)
+            {
+                label.text = string.Empty; label.enabled = false; return;
+            }
             if (actionController != null && actionController.IsPlacingHarvester)
             {
                 label.text = actionController.PlacementPrompt;
-                label.enabled = true;
-                return;
             }
-            var binding = input != null
-                ? input.GetBindingDisplayName("Gameplay/Interact", "E")
-                : "E";
-            label.text = target != null && target.IsAvailable
-                ? $"[Tap {binding}] {target.Prompt}"
-                : string.Empty;
-            if (actionController != null && actionController.CanOpenCargo)
+            else if (actionController != null && actionController.IsGathering)
+                label.text = actionController.BusyPrompt;
+            else
             {
-                var cargoBinding = input.GetBindingDisplayName("Gameplay/OpenCargo", "E");
-                label.text += (label.text.Length > 0 ? "\n" : string.Empty) + $"[Hold {cargoBinding}] Open Legger cargo";
+                var binding = input != null ? input.GetBindingDisplayName("Gameplay/Interact", "E") : "E";
+                label.text = target != null && target.IsAvailable ? $"[Tap {binding}] {target.Prompt}" : string.Empty;
+                if (actionController != null && actionController.CanOpenCargo)
+                {
+                    var cargoBinding = input.GetBindingDisplayName("Gameplay/OpenCargo", "E");
+                    var progress = input.IsCargoHoldActive ? $" · {Mathf.RoundToInt(input.CargoHoldProgress * 100f)}%" : string.Empty;
+                    label.text += (label.text.Length > 0 ? "\n" : string.Empty) + $"[Hold {cargoBinding}] Open Legger cargo{progress}";
+                }
             }
+            if (feedbackRemaining > 0f && !string.IsNullOrEmpty(feedbackMessage))
+                label.text = feedbackMessage + (label.text.Length > 0 ? "\n" + label.text : string.Empty);
             label.enabled = !string.IsNullOrEmpty(label.text);
         }
 
@@ -145,7 +142,7 @@ namespace BooterBigArm.TopDown3D
             rect.anchorMax = new Vector2(0.5f, 0f);
             rect.pivot = new Vector2(0.5f, 0f);
             rect.anchoredPosition = new Vector2(0f, 116f);
-            rect.sizeDelta = new Vector2(620f, 56f);
+            rect.sizeDelta = new Vector2(760f, 96f);
             if (label == null)
             {
                 label = GetComponent<Text>();
@@ -189,6 +186,7 @@ namespace BooterBigArm.TopDown3D
             if (input != null)
             {
                 input.PromptDeviceChanged += HandlePromptDeviceChanged;
+                input.ModeChanged += HandleModeChanged;
             }
 
             subscribed = true;
@@ -201,20 +199,21 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            if (interaction != null)
+            if (!ReferenceEquals(interaction, null))
             {
                 interaction.TargetChanged -= RefreshPrompt;
             }
 
-            if (actionController != null)
+            if (!ReferenceEquals(actionController, null))
             {
                 actionController.FeedbackRequested -= ShowFeedback;
                 actionController.PlacementChanged -= HandlePlacementChanged;
             }
 
-            if (input != null)
+            if (!ReferenceEquals(input, null))
             {
                 input.PromptDeviceChanged -= HandlePromptDeviceChanged;
+                input.ModeChanged -= HandleModeChanged;
             }
 
             subscribed = false;
@@ -224,6 +223,7 @@ namespace BooterBigArm.TopDown3D
         {
             RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
         }
+        private void HandleModeChanged(TopDown3DInputMode _) => RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
 
         private void HandlePlacementChanged()
         {

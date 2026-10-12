@@ -155,6 +155,7 @@ namespace BooterBigArm.TopDown3D
             sprintAction.performed += HandleSprint;
             sprintAction.canceled += HandleSprint;
             interactAction.performed += HandleInteract;
+            interactAction.started += HandleInteractionStarted;
             deployCanisterAction.performed += HandleDeployCanister;
             pickupCanisterAction.performed += HandlePickupCanister;
             recallAction.performed += HandleRecall;
@@ -218,6 +219,7 @@ namespace BooterBigArm.TopDown3D
             if (interactAction != null)
             {
                 interactAction.performed -= HandleInteract;
+                interactAction.started -= HandleInteractionStarted;
             }
 
             if (deployCanisterAction != null)
@@ -376,11 +378,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleInteract(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed && Mode == TopDown3DInputMode.Gameplay
-                && inputUpdateMode == TopDown3DInputMode.Gameplay)
-            {
-                InteractRequested?.Invoke();
-            }
+            if (context.phase == InputActionPhase.Performed && CanCaptureGameplayCommand) interactRequested = true;
         }
 
         private void HandleDeployCanister(InputAction.CallbackContext context)
@@ -390,8 +388,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandlePickupCanister(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed)
-                PickupCanisterRequested?.Invoke();
+            if (context.phase == InputActionPhase.Performed && CanCaptureGameplayCommand) pickupRequested = true;
         }
 
         private void HandleToggleInventory(InputAction.CallbackContext context)
@@ -443,8 +440,9 @@ namespace BooterBigArm.TopDown3D
             menuRequested = menuBackRequested = false;
             if (toggle) MenuToggleRequested?.Invoke();
             else if (back) UiCancelRequested?.Invoke();
-            ResolveAlgaeInput(toggle || back);
-            ResolveCargoInput(toggle || back);
+            var itemCommand = ResolveGameplayItemInput(toggle || back);
+            ResolveAlgaeInput(toggle || back || itemCommand);
+            ResolveCargoInput(toggle || back || itemCommand);
         }
 
         public void EnterSystemMenuMode() => SetMode(TopDown3DInputMode.SystemMenu);
@@ -582,6 +580,7 @@ namespace BooterBigArm.TopDown3D
 
         private void ClearGameplayIntent()
         {
+            interactRequested = pickupRequested = itemCancelRequested = cargoRequested = false;
             MoveValue = Vector2.zero;
             CameraLookValue = Vector2.zero;
             CameraLookAheadHeld = false;

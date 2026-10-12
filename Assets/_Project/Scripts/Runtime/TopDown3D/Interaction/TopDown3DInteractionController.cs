@@ -11,6 +11,8 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DPlayerMotor motor;
         [SerializeField, Min(0.5f)] private float scanRadius = 4f;
         [SerializeField, Range(-1f, 1f)] private float minimumFacingDot = -0.25f;
+        [SerializeField, Min(0f)] private float targetSwitchDistance = 0.2f;
+        [SerializeField, Range(0f, 2f)] private float targetSwitchFacing = 0.35f;
         [SerializeField] private LayerMask interactionMask = ~0;
         [SerializeField] private LayerMask lineOfSightMask = ~0;
 
@@ -26,7 +28,7 @@ namespace BooterBigArm.TopDown3D
 
         public void RefreshTarget()
         {
-            var next = FindBestTarget();
+            var next = FindBestTarget(false, true);
             if (ReferenceEquals(next, CurrentTarget))
             {
                 return;
@@ -36,9 +38,16 @@ namespace BooterBigArm.TopDown3D
             TargetChanged?.Invoke(CurrentTarget);
         }
 
+        // Dedicated pickup commands must not compete with ironstone, camp, or cache prompts.
+        public TopDown3DHarvesterView FindCanisterTarget()
+        {
+            return FindBestTarget(true, false) as TopDown3DHarvesterView;
+        }
+
         public bool CanReachTarget(ITopDown3DInteractable target)
         {
             if (motor == null || target == null || target.UnityObject == null || !target.IsAvailable
+                || (target.UnityObject is Behaviour behaviour && !behaviour.isActiveAndEnabled)
                 || Vector3.Distance(motor.Position, target.InteractionPoint) > target.InteractionRange)
                 return false;
             var component = target.UnityObject as Component;
@@ -51,7 +60,7 @@ namespace BooterBigArm.TopDown3D
             RefreshTarget();
         }
 
-        private ITopDown3DInteractable FindBestTarget()
+        private ITopDown3DInteractable FindBestTarget(bool canisterOnly, bool retainCurrent)
         {
             if (motor == null)
             {
@@ -74,19 +83,25 @@ namespace BooterBigArm.TopDown3D
             ITopDown3DInteractable best = null;
             var bestDistance = float.PositiveInfinity;
             var bestFacing = float.NegativeInfinity;
+            var currentDistance = float.PositiveInfinity;
+            var currentFacing = float.NegativeInfinity;
+            var currentIsValid = false;
             for (var i = 0; i < count; i++)
             {
                 var collider = candidates[i];
                 // Cargo has its own hold command and must never steal a world interaction.
-                ITopDown3DInteractable candidate = collider != null
-                    ? collider.GetComponentInParent<TopDown3DIronstoneNode>()
-                    : null;
-                candidate ??= collider != null
+                if (collider == null) continue;
+                ITopDown3DInteractable candidate = canisterOnly
                     ? collider.GetComponentInParent<TopDown3DHarvesterView>()
-                    : null;
-                candidate ??= collider != null ? collider.GetComponentInParent<TopDown3DCampView>() : null;
-                candidate ??= collider != null ? collider.GetComponentInParent<TopDown3DResourceCache>() : null;
-                if (candidate == null || !candidate.IsAvailable)
+                    : collider.GetComponentInParent<TopDown3DIronstoneNode>();
+                candidate ??= collider.GetComponentInParent<TopDown3DHarvesterView>();
+                if (!canisterOnly)
+                {
+                    candidate ??= collider.GetComponentInParent<TopDown3DCampView>();
+                    candidate ??= collider.GetComponentInParent<TopDown3DResourceCache>();
+                }
+                if (candidate == null || candidate.UnityObject == null || !candidate.IsAvailable
+                    || (candidate.UnityObject is Behaviour behaviour && !behaviour.isActiveAndEnabled))
                 {
                     continue;
                 }
@@ -103,6 +118,13 @@ namespace BooterBigArm.TopDown3D
                     continue;
                 }
 
+                if (retainCurrent && ReferenceEquals(candidate, CurrentTarget))
+                {
+                    currentIsValid = true;
+                    currentDistance = distance;
+                    currentFacing = facing;
+                }
+
                 if (best == null
                     || distance < bestDistance - 0.001f
                     || (Mathf.Abs(distance - bestDistance) <= 0.001f
@@ -114,6 +136,15 @@ namespace BooterBigArm.TopDown3D
                     bestDistance = distance;
                     bestFacing = facing;
                 }
+            }
+
+            // Revalidate through this scan before retaining: unavailable, blocked, behind,
+            // out-of-range, and unloaded targets must drop immediately.
+            if (currentIsValid && !ReferenceEquals(best, CurrentTarget)
+                && bestDistance > currentDistance - targetSwitchDistance
+                && bestFacing < currentFacing + targetSwitchFacing)
+            {
+                return CurrentTarget;
             }
 
             return best;

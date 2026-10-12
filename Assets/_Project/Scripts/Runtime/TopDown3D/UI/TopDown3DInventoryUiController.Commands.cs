@@ -8,11 +8,14 @@ namespace BooterBigArm.TopDown3D
         private TopDown3DResourceCache cacheContext;
         private InputAction nextInventory, previousInventory, quickTransfer;
         private readonly System.Collections.Generic.HashSet<InputControl> blockedInventoryControls = new();
+        private static readonly string[] InventoryCommandPaths =
+            { "UI/Submit", "UI/Click", "UI/QuickTransfer", "UI/NextInventory", "UI/PreviousInventory" };
+        private static readonly string[] InventoryActivationPaths = { "UI/Submit", "UI/Click" };
 
         private void ArmInventoryControls()
         {
             blockedInventoryControls.Clear();
-            foreach (var name in new[] { "UI/Submit", "UI/Click", "UI/QuickTransfer", "UI/NextInventory", "UI/PreviousInventory" })
+            foreach (var name in InventoryCommandPaths)
             {
                 var action = input?.InputActions?.FindAction(name, false);
                 if (action == null) continue;
@@ -23,6 +26,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void ReleaseInventoryControls()
         {
+            if (blockedInventoryControls.Count == 0) return;
             blockedInventoryControls.RemoveWhere(control => !control.device.added
                 || control is not UnityEngine.InputSystem.Controls.ButtonControl button || !button.isPressed);
         }
@@ -30,7 +34,7 @@ namespace BooterBigArm.TopDown3D
         {
             get
             {
-                foreach (var name in new[] { "UI/Submit", "UI/Click" })
+                foreach (var name in InventoryActivationPaths)
                 {
                     var action = input?.InputActions?.FindAction(name, false);
                     if (action == null) continue;
@@ -71,13 +75,15 @@ namespace BooterBigArm.TopDown3D
         }
         private void SwitchPanel(InputAction.CallbackContext context)
         {
-            if (!blockedInventoryControls.Contains(context.control)) SwitchPanel();
+            if (!blockedInventoryControls.Contains(context.control)) SelectPanel(context.action == nextInventory);
         }
-        public void SwitchPanel()
+        public void SwitchPanel() => SelectPanel(!inspectingCargo);
+        public void SelectPanel(bool selectCargo)
         {
             if (!CommandsAllowed || cargo == null || eventSystem == null) return;
             RememberSelection();
-            inspectingCargo = !inspectingCargo;
+            if (inspectingCargo == selectCargo) return;
+            inspectingCargo = selectCargo;
             if (inspectingCargo)
             {
                 RequestCargoApproach();

@@ -63,9 +63,12 @@ Unity's UI support docs cover `InputSystemUIInputModule` and the UI event-system
 
 ## Action Prompts
 
-- World interaction uses a short tap of West/E on release. Nearby Legger cargo uses a separate `Gameplay/OpenCargo` hold of 0.45 seconds on the same bindings. Tap and hold are mutually exclusive; cargo is excluded from ordinary interaction targeting and checks physical reach/line of sight independently. Busy actions and canister placement block cargo opening.
+- World interaction uses a short tap of West/E on release. Nearby Legger cargo uses a separate `Gameplay/OpenCargo` hold of 0.35 seconds on the same bindings. Tap and hold are mutually exclusive; cargo is excluded from ordinary interaction targeting and checks physical reach/line of sight independently. Busy actions and canister placement block cargo opening.
 - Inventory commands ignore controls held when opening or resuming until those controls release. Returning from inventory, system menus or camp requires neutral movement for both keyboard and gamepad.
 - All four gameplay D-pad commands (algae use and canister deployment) resolve together after input processing. Diagonals, simultaneous commands and modal transitions cannot dose or deploy; another command requires release.
+- Capture the world target at tap start and revalidate it on release. Never redirect a tap to another object. Resolve tap/pickup/cancel after the input update; cancellation takes priority over new world, cargo and D-pad commands. Dedicated canister pickup queries reachable canisters independently of the generic prompt.
+- Small target-distance/facing hysteresis may stabilize valid prompts; invalid, disabled, blocked, depleted or out-of-range targets must drop immediately. Left shoulder/Q selects the kit or local cache; right shoulder/E selects Legger cargo. Repeated pane selection is idempotent.
+- Show cargo hold progress and keep actionable prompts alongside transient feedback. Hide gameplay prompts immediately in modal UI. See the [remediation plan](../Design/Gameplay/INPUT_INTERACTION_REMEDIATION_PLAN.md) for iteration gates and current proof.
 
 - The input router owns the current prompt device; gameplay and UI views must not hardcode keyboard or gamepad labels.
 - When a compatible gamepad is connected, prompts default to the gamepad binding. Meaningful keyboard or mouse input switches prompts to keyboard/mouse, and meaningful gamepad input switches them back.

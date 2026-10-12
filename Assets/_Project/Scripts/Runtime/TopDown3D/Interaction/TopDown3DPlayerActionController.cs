@@ -27,6 +27,8 @@ namespace BooterBigArm.TopDown3D
         private float harvesterActionElapsed;
         private const float HarvesterActionDuration = 0.75f;
         private ITopDown3DInteractable pendingResource;
+        private ITopDown3DInteractable pressedTarget;
+        private bool hasPressedTarget;
         private float approachSeconds;
         public bool IsAwaitingCargo => pendingResource != null;
 
@@ -35,6 +37,10 @@ namespace BooterBigArm.TopDown3D
         public bool IsPlacingHarvester => placementPreview != null;
         public bool CanOpenCargo => input != null && input.Mode == TopDown3DInputMode.Gameplay
             && !IsGathering && !IsPlacingHarvester && TopDown3DCargoAccess.CanAccess(bigArmCargo, transform);
+        public string BusyPrompt => IsGathering && input != null
+            ? (IsAwaitingCargo ? "Waiting for Legger" : "Working")
+                + $"  [{input.GetBindingDisplayName("Gameplay/PickupCanister", "C")}] cancel"
+            : string.Empty;
         public string PlacementPrompt => placementPreview != null && input != null
             ? $"[{input.GetBindingDisplayName("Gameplay/DeployCanister", "G")}] place  "
                 + $"[{input.GetBindingDisplayName("Gameplay/PickupCanister", "C")}] cancel"
@@ -179,6 +185,7 @@ namespace BooterBigArm.TopDown3D
 
         public void CancelGather()
         {
+            pressedTarget = null; hasPressedTarget = false;
             pendingResource = null;
             CancelPlacementPreview();
             if (placingHarvester || pickupHarvesterId != null)
@@ -266,8 +273,21 @@ namespace BooterBigArm.TopDown3D
         private void HandleInteractRequested()
         {
             if (input == null || input.Mode != TopDown3DInputMode.Gameplay || IsGathering) return;
+            var target = pressedTarget;
+            var captured = hasPressedTarget;
+            pressedTarget = null; hasPressedTarget = false;
+            if (!captured) { interaction?.RefreshTarget(); TryBeginCurrentTarget(); return; }
+            if (target == null || interaction == null || !interaction.CanReachTarget(target)) return;
+            if (placementPreview != null) CancelPlacementPreview();
+            EnsureGatherAction();
+            if (gatherAction != null && motor != null && animationDriver != null) TryBeginTarget(target);
+        }
+
+        private void HandleInteractionPressStarted()
+        {
             interaction?.RefreshTarget();
-            TryBeginCurrentTarget();
+            pressedTarget = interaction?.CurrentTarget;
+            hasPressedTarget = true;
         }
 
         private void HandleCargoOpenRequested()
@@ -325,13 +345,15 @@ namespace BooterBigArm.TopDown3D
 
         private void HandlePickupCanisterRequested()
         {
+            if (input == null || input.Mode != TopDown3DInputMode.Gameplay) return;
             if (IsGathering) { CancelGather(); return; }
             if (placementPreview != null)
             {
                 CancelPlacementPreview();
                 return;
             }
-            if (interaction?.CurrentTarget is TopDown3DHarvesterView view)
+            var view = interaction?.FindCanisterTarget();
+            if (view != null)
                 TryBeginHarvesterPickup(view);
             else
                 FeedbackRequested?.Invoke("No dust canister in reach");
@@ -342,7 +364,8 @@ namespace BooterBigArm.TopDown3D
             if (view == null || harvesterState == null || inventory == null
                 || motor == null || animationDriver == null || IsGathering
                 || !view.IsAvailable
-                || Vector3.Distance(motor.Position, view.InteractionPoint) > view.InteractionRange)
+                || Vector3.Distance(motor.Position, view.InteractionPoint) > view.InteractionRange
+                || interaction == null || !interaction.CanReachTarget(view))
                 return TopDown3DGatherActionResult.Rejected;
             var toolSpace = inventory.State.CheckAdd(new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1));
             if (!toolSpace.Succeeded) { ReportFeedback(toolSpace.Message); return TopDown3DGatherActionResult.InventoryFull; }
@@ -507,6 +530,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             input.InteractRequested += HandleInteractRequested;
+            input.InteractionPressStarted += HandleInteractionPressStarted;
             input.CargoOpenRequested += HandleCargoOpenRequested;
             input.ItemActionCancelRequested += CancelGather;
             input.DeployCanisterRequested += HandleDeployCanisterRequested;
@@ -520,6 +544,7 @@ namespace BooterBigArm.TopDown3D
             if (subscribed && input != null)
             {
                 input.InteractRequested -= HandleInteractRequested;
+                input.InteractionPressStarted -= HandleInteractionPressStarted;
                 input.CargoOpenRequested -= HandleCargoOpenRequested;
                 input.ItemActionCancelRequested -= CancelGather;
                 input.DeployCanisterRequested -= HandleDeployCanisterRequested;
@@ -553,7 +578,11 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleInputModeChanged(TopDown3DInputMode mode)
         {
-            if (mode != TopDown3DInputMode.Gameplay) CancelGather();
+            if (mode != TopDown3DInputMode.Gameplay)
+            {
+                pressedTarget = null; hasPressedTarget = false;
+                CancelGather();
+            }
         }
     }
 }

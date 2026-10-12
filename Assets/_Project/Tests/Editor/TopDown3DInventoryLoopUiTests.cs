@@ -105,7 +105,12 @@ namespace BooterBigArm.Tests
                 Assert.That(taps, Is.EqualTo(1));
                 Assert.That(ui.IsOpen, Is.False);
                 Send(true);
-                System.Threading.Thread.Sleep(550);
+                System.Threading.Thread.Sleep(120);
+                InputSystem.Update();
+                Assert.That(router.IsCargoHoldActive, Is.True);
+                Assert.That(router.CargoHoldProgress, Is.InRange(.1f, .9f));
+                Assert.That(ui.IsOpen, Is.False);
+                System.Threading.Thread.Sleep(280);
                 InputSystem.Update();
                 Assert.That(ui.IsOpen, Is.True);
                 Assert.That(taps, Is.EqualTo(1));
@@ -155,6 +160,134 @@ namespace BooterBigArm.Tests
                 Assert.That(router.MoveValue.y, Is.GreaterThan(.9f));
             }
             finally { InputSystem.RemoveDevice(keyboard); }
+        }
+
+        [Test]
+        public void InventoryShouldersSelectPredictablePanelsWithoutTogglingBack()
+        {
+            var pad = InputSystem.AddDevice<Gamepad>();
+            try
+            {
+                ui.Open();
+                void Press(GamepadButton button)
+                {
+                    InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.Update();
+                    InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(button)); InputSystem.Update();
+                }
+                Press(GamepadButton.RightShoulder);
+                Assert.That(ui.EventSystem.currentSelectedGameObject, Is.SameAs(canvas.CargoSlotViews[0].gameObject));
+                Press(GamepadButton.RightShoulder);
+                Assert.That(ui.EventSystem.currentSelectedGameObject, Is.SameAs(canvas.CargoSlotViews[0].gameObject));
+                Press(GamepadButton.LeftShoulder);
+                Assert.That(ui.EventSystem.currentSelectedGameObject, Is.SameAs(canvas.SlotViews[0].gameObject));
+                Press(GamepadButton.LeftShoulder);
+                Assert.That(ui.EventSystem.currentSelectedGameObject, Is.SameAs(canvas.SlotViews[0].gameObject));
+            }
+            finally { InputSystem.RemoveDevice(pad); }
+        }
+
+        [Test]
+        public void CancelWinsAgainstTapAndDeploymentWithinTheSameInputUpdate()
+        {
+            var keyboard = InputSystem.AddDevice<Keyboard>();
+            try
+            {
+                var taps = 0; var cancels = 0; var deploys = 0;
+                router.InteractRequested += () => taps++;
+                router.ItemActionCancelRequested += () => cancels++;
+                router.DeployCanisterRequested += () => deploys++;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.E)); InputSystem.Update();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Backspace, Key.G)); InputSystem.Update();
+                Assert.That(taps, Is.Zero); Assert.That(deploys, Is.Zero); Assert.That(cancels, Is.EqualTo(1));
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.E)); InputSystem.Update();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update();
+                Assert.That(taps, Is.EqualTo(1), "A fresh gesture is accepted; cancellation is not buffered.");
+            }
+            finally { InputSystem.RemoveDevice(keyboard); }
+        }
+
+        [Test]
+        public void ModalBoundaryDiscardsTapAndPickupRequests()
+        {
+            var keyboard = InputSystem.AddDevice<Keyboard>();
+            try
+            {
+                var taps = 0; var pickups = 0;
+                router.InteractRequested += () => taps++;
+                router.PickupCanisterRequested += () => pickups++;
+                router.MenuToggleRequested += router.EnterSystemMenuMode;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.E)); InputSystem.Update();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.C, Key.Escape)); InputSystem.Update();
+                Assert.That(router.Mode, Is.EqualTo(TopDown3DInputMode.SystemMenu));
+                Assert.That(taps, Is.Zero); Assert.That(pickups, Is.Zero);
+                router.EnterGameplayMode();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update();
+                Assert.That(taps, Is.Zero); Assert.That(pickups, Is.Zero);
+            }
+            finally { InputSystem.RemoveDevice(keyboard); }
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void TapUsesPressedTargetAndNeverRedirectsToAnotherObject(bool originalLeavesRange)
+        {
+            var keyboard = InputSystem.AddDevice<Keyboard>();
+            var presentation = new GameObject("Inactive presentation"); presentation.SetActive(false);
+            var first = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            var second = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            var controller = actor.AddComponent<TopDown3DPlayerActionController>();
+            try
+            {
+                var motor = actor.AddComponent<TopDown3DPlayerMotor>();
+                actor.GetComponent<Rigidbody>().isKinematic = true;
+                var interaction = actor.AddComponent<TopDown3DInteractionController>(); interaction.Configure(motor);
+                var animation = presentation.AddComponent<TopDown3DPlayerAnimationDriver>();
+                controller.Configure(router, interaction, kit, motor, animation);
+                first.transform.localScale = second.transform.localScale = Vector3.one * .2f;
+                first.transform.position = new Vector3(-.35f, .8f, 1.2f);
+                second.transform.position = new Vector3(.35f, .8f, 1.7f);
+                var firstCache = first.AddComponent<TopDown3DResourceCache>(); firstCache.Configure(catalog, 8, "pressed-cache");
+                var secondCache = second.AddComponent<TopDown3DResourceCache>(); secondCache.Configure(catalog, 8, "other-cache");
+                TopDown3DResourceCache opened = null;
+                controller.CacheAccessRequested += cache => opened = cache;
+                Physics.SyncTransforms();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.E)); InputSystem.Update();
+                first.transform.position = new Vector3(-.35f, .8f, originalLeavesRange ? 8f : 1.7f);
+                second.transform.position = new Vector3(.35f, .8f, 1f);
+                Physics.SyncTransforms(); interaction.RefreshTarget();
+                Assert.That(interaction.CurrentTarget, Is.SameAs(secondCache));
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update();
+                Assert.That(opened, originalLeavesRange ? Is.Null : Is.SameAs(firstCache));
+            }
+            finally
+            {
+                InputSystem.RemoveDevice(keyboard);
+                Object.DestroyImmediate(controller); Object.DestroyImmediate(first); Object.DestroyImmediate(second);
+                Object.DestroyImmediate(presentation);
+            }
+        }
+
+        [Test]
+        public void FeedbackKeepsCargoPromptVisibleAndHidesImmediatelyInModalUi()
+        {
+            var controller = actor.AddComponent<TopDown3DPlayerActionController>();
+            var hudObject = new GameObject("Feedback test", typeof(RectTransform));
+            try
+            {
+                controller.Configure(router, null, kit, null, null); controller.ConfigureCargo(cargo);
+                var hud = hudObject.AddComponent<TopDown3DInteractionFeedbackHud>();
+                hud.Configure(null, controller, router);
+                hud.ShowFeedback("Deposit collected");
+                Assert.That(hud.DisplayedText, Does.Contain("Deposit collected"));
+                Assert.That(hud.DisplayedText, Does.Contain("Open Legger cargo"));
+                router.EnterInventoryMode();
+                Assert.That(hud.DisplayedText, Is.Empty);
+                router.EnterGameplayMode();
+                Assert.That(hud.DisplayedText, Does.Contain("Open Legger cargo"));
+            }
+            finally { Object.DestroyImmediate(hudObject); Object.DestroyImmediate(controller); }
         }
 
         [Test] public void ExistingAuthoredGridsReconnectWithoutCreatingDuplicateSlots()
