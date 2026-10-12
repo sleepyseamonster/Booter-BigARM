@@ -1,5 +1,15 @@
 # Gottspan Tools
 
+## `classify_terrain_storage.py`
+
+Produces a file-level terrain storage inventory, manifest/protected-folder consumer map, Unity GUID/YAML reference audit and proposed storage classes. It verifies the saved production scene's TerrainData path set against the accepted final fourth-row manifest. It never moves assets, configures LFS, launches Unity or publishes sources. The compressed TSV contains metadata only; source payloads remain local. Binary dependency proof and fresh payload SHA-256 inventories are separate migration gates.
+
+```powershell
+.venv\Scripts\python.exe Tools/Repository/classify_terrain_storage.py --output Logs/TerrainStorageReaudit
+```
+
+Read [the terrain storage migration plan](../../Docs/Operations/Repository/TERRAIN_STORAGE_MIGRATION_PLAN_2026-10-12.md) before treating any proposed archive class as removal authority.
+
 ## `repo-health.sh`
 
 Runs a read-only structural health check for:

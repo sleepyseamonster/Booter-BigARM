@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-12",
+  "target_project": "D:/Arc & Dust/Project",
+  "editor_version": "6000.4.0f1",
+  "editor_pid": 40504,
+  "pipeline_port": 7800,
+  "running_editor_discovery": "success; one reachable editor at the intended project",
+  "queries": [
+    {
+      "read_only_operation": "Application.dataPath, EditorApplication.isCompiling and AssetDatabase.GetDependencies of the saved production scene",
+      "result": "COMMAND_FAILED: main thread operation timed out after 5000ms",
+      "proof": "No dependency result was returned"
+    },
+    {
+      "read_only_operation": "Application.dataPath with positional command timeout of 30000ms",
+      "result": "COMMAND_FAILED: main thread operation timed out after 30000ms",
+      "proof": "No project-path result was returned"
+    }
+  ],
+  "asset_moves_cleared": false,
+  "scene_open_or_save_requested": false,
+  "focus_activation_requested": false,
+  "editor_launch_requested": false,
+  "remaining_gate": "Capture successful engine dependency closure before any imported asset relocation. Static YAML references are not binary-dependency proof."
+}

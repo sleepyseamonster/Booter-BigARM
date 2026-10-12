@@ -1,0 +1,1459 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-10-12T20:22:31.960680+00:00",
+  "head_start": "e0eefd78dc20eef4a554b1e06bf7276ec4e6759f",
+  "head_end": "e0eefd78dc20eef4a554b1e06bf7276ec4e6759f",
+  "inventory": {
+    "file": "terrain-files.tsv.gz",
+    "sha256": "346230a92c436b24ea6c10efa710672e1ff08c900c4af6ab3a5da0ea432d9106",
+    "uncompressed_sha256": "ed7b3684722cabaed3d60b2e6ba4bc7ff26178c24a5333c4ae365f517e85476c",
+    "rows": 219136,
+    "columns": [
+      "path",
+      "working_bytes",
+      "git_blob",
+      "committed_bytes",
+      "unity_guid",
+      "storage_class",
+      "role",
+      "gate",
+      "production_data",
+      "latest_native_reference",
+      "latest_new_source",
+      "manifest_ids",
+      "protected_manifest_ids",
+      "serialized_text_consumers"
+    ],
+    "compressed_bytes": 7556613,
+    "uncompressed_bytes": 96643162
+  },
+  "scope": "Active terrain assets, production/terrain-reference scenes, local terrain authoring sources, terrain docs/evidence and retained transfer inputs; excludes standalone historical projects and external backups.",
+  "classification_intent": "Proposed storage classes; currently tracked files remain ordinary Git. No imported asset is cleared for removal by this static audit.",
+  "rules": {
+    "GIT_RUNTIME_TEXT": "Keep native text assets and metadata in ordinary Git.",
+    "GIT_REFERENCE_SCENE": "Keep active dressing/performance reference scenes and metadata in ordinary Git.",
+    "LFS_RUNTIME_BINARY": "Keep at the identical Unity path; candidate for exact-path LFS conversion.",
+    "GIT_EDITOR_CONTRACT": "Keep source manifests and active editor map contracts in ordinary Git.",
+    "LFS_EDITOR_MAP": "Keep active editor map payloads accessible; candidate for exact-path LFS.",
+    "LFS_EDITOR_CONTRACT": "Keep large sealed manifests at the identical path; candidate for exact-path LFS.",
+    "ARCHIVE_GATED_SOURCE": "Archive candidate only after validator/rebuild restore contract passes.",
+    "ARCHIVE_GATED_SCENE": "Retained candidate scene; archive only with builder/test path compatibility.",
+    "GIT_EVIDENCE": "Keep canonical notes and small provenance/verification receipts in Git.",
+    "ARCHIVE_GATED_EVIDENCE": "Bulk evidence; archive after receipt links and consumers resolve.",
+    "LOCAL_ONLY": "Preserve locally; no Git, LFS or cloud publication.",
+    "REVIEW_KEEP": "Keep in current location until additional dependencies are resolved."
+  },
+  "classes": {
+    "GIT_RUNTIME_TEXT": {
+      "files": 37190,
+      "bytes": 103014151,
+      "tracked_files": 37190,
+      "tracked_bytes": 103014151
+    },
+    "LFS_RUNTIME_BINARY": {
+      "files": 18177,
+      "bytes": 2359101855,
+      "tracked_files": 18177,
+      "tracked_bytes": 2359101855
+    },
+    "ARCHIVE_GATED_SOURCE": {
+      "files": 105998,
+      "bytes": 11888658742,
+      "tracked_files": 105998,
+      "tracked_bytes": 11888658742
+    },
+    "GIT_EDITOR_CONTRACT": {
+      "files": 34,
+      "bytes": 11131789,
+      "tracked_files": 34,
+      "tracked_bytes": 11131789
+    },
+    "LFS_EDITOR_CONTRACT": {
+      "files": 28,
+      "bytes": 890760638,
+      "tracked_files": 28,
+      "tracked_bytes": 890760638
+    },
+    "GIT_REFERENCE_SCENE": {
+      "files": 6,
+      "bytes": 479125,
+      "tracked_files": 6,
+      "tracked_bytes": 479125
+    },
+    "ARCHIVE_GATED_SCENE": {
+      "files": 58,
+      "bytes": 563619475,
+      "tracked_files": 58,
+      "tracked_bytes": 563619475
+    },
+    "GIT_EVIDENCE": {
+      "files": 387,
+      "bytes": 4445322,
+      "tracked_files": 387,
+      "tracked_bytes": 4445322
+    },
+    "ARCHIVE_GATED_EVIDENCE": {
+      "files": 242,
+      "bytes": 318015051,
+      "tracked_files": 242,
+      "tracked_bytes": 318015051
+    },
+    "LFS_EDITOR_MAP": {
+      "files": 5,
+      "bytes": 17160412,
+      "tracked_files": 5,
+      "tracked_bytes": 17160412
+    },
+    "LOCAL_ONLY": {
+      "files": 57011,
+      "bytes": 48003238209,
+      "tracked_files": 0,
+      "tracked_bytes": 0
+    }
+  },
+  "archive_source_usage": {
+    "protected_or_historical": {
+      "files": 43271,
+      "bytes": 9368570867
+    },
+    "latest_direct": {
+      "files": 9728,
+      "bytes": 2510984704
+    }
+  },
+  "manifests": [
+    {
+      "id": 0,
+      "path": "Assets/_Project/Art/Terrain/FarWestPair2026-10-08/Source/manifest.json",
+      "family": "",
+      "tile_count": 2560,
+      "protected_count": 25707,
+      "bytes": 7748337
+    },
+    {
+      "id": 1,
+      "path": "Assets/_Project/Art/Terrain/NextWestPair2026-10-08/Source/manifest.json",
+      "family": "",
+      "tile_count": 2048,
+      "protected_count": 17489,
+      "bytes": 5583923
+    },
+    {
+      "id": 2,
+      "path": "Assets/_Project/Art/Terrain/NorthRidge2026-10-09/Source/manifest.json",
+      "family": "",
+      "tile_count": 3328,
+      "protected_count": 45215,
+      "bytes": 12411293
+    },
+    {
+      "id": 3,
+      "path": "Assets/_Project/Art/Terrain/NorthRow2E499920N4018488_2026-10-09/Source/manifest.json",
+      "family": "north_row2",
+      "tile_count": 4864,
+      "protected_count": 105244,
+      "bytes": 31754978
+    },
+    {
+      "id": 4,
+      "path": "Assets/_Project/Art/Terrain/NorthRow2E504016N4018488_2026-10-09/Source/manifest.json",
+      "family": "north_row2",
+      "tile_count": 5120,
+      "protected_count": 108849,
+      "bytes": 33067527
+    },
+    {
+      "id": 5,
+      "path": "Assets/_Project/Art/Terrain/NorthRow2E508112N4018488_2026-10-09/Source/manifest.json",
+      "family": "north_row2",
+      "tile_count": 5376,
+      "protected_count": 111940,
+      "bytes": 34258508
+    },
+    {
+      "id": 6,
+      "path": "Assets/_Project/Art/Terrain/NorthRow2E512208N4018488_2026-10-10/Source/manifest.json",
+      "family": "north_row2",
+      "tile_count": 5632,
+      "protected_count": 115031,
+      "bytes": 35449249
+    },
+    {
+      "id": 7,
+      "path": "Assets/_Project/Art/Terrain/NorthRow2E516304N4018488_2026-10-10/Source/manifest.json",
+      "family": "north_row2",
+      "tile_count": 5888,
+      "protected_count": 118122,
+      "bytes": 36639974
+    },
+    {
+      "id": 8,
+      "path": "Assets/_Project/Art/Terrain/NorthRow2E520400N4018488_2026-10-10/Source/manifest.json",
+      "family": "north_row2",
+      "tile_count": 6144,
+      "protected_count": 121213,
+      "bytes": 37830427
+    },
+    {
+      "id": 9,
+      "path": "Assets/_Project/Art/Terrain/NorthRow3E499920N4022584_2026-10-10/Source/manifest.json",
+      "family": "north_row3",
+      "tile_count": 6400,
+      "protected_count": 124304,
+      "bytes": 39021356
+    },
+    {
+      "id": 10,
+      "path": "Assets/_Project/Art/Terrain/NorthRow3E504016N4022584_2026-10-10/Source/manifest.json",
+      "family": "north_row3",
+      "tile_count": 6656,
+      "protected_count": 127395,
+      "bytes": 40212389
+    },
+    {
+      "id": 11,
+      "path": "Assets/_Project/Art/Terrain/NorthRow3E508112N4022584_2026-10-10/Source/manifest.json",
+      "family": "north_row3",
+      "tile_count": 6912,
+      "protected_count": 130486,
+      "bytes": 41403370
+    },
+    {
+      "id": 12,
+      "path": "Assets/_Project/Art/Terrain/NorthRow3E512208N4022584_2026-10-10/Source/manifest.json",
+      "family": "north_row3",
+      "tile_count": 7168,
+      "protected_count": 133577,
+      "bytes": 42594111
+    },
+    {
+      "id": 13,
+      "path": "Assets/_Project/Art/Terrain/NorthRow3E516304N4022584_2026-10-10/Source/manifest.json",
+      "family": "north_row3",
+      "tile_count": 7424,
+      "protected_count": 136668,
+      "bytes": 43784836
+    },
+    {
+      "id": 14,
+      "path": "Assets/_Project/Art/Terrain/NorthRow3E520400N4022584_2026-10-10/Source/manifest.json",
+      "family": "north_row3",
+      "tile_count": 7680,
+      "protected_count": 139759,
+      "bytes": 44975289
+    },
+    {
+      "id": 15,
+      "path": "Assets/_Project/Art/Terrain/NorthRow4E499920N4026680_2026-10-11/Source/manifest.json",
+      "family": "north_row4",
+      "tile_count": 7936,
+      "protected_count": 142850,
+      "bytes": 46166218
+    },
+    {
+      "id": 16,
+      "path": "Assets/_Project/Art/Terrain/NorthRow4E504016N4026680_2026-10-11/Source/manifest.json",
+      "family": "north_row4",
+      "tile_count": 8192,
+      "protected_count": 145941,
+      "bytes": 47357251
+    },
+    {
+      "id": 17,
+      "path": "Assets/_Project/Art/Terrain/NorthRow4E508112N4026680_2026-10-11/Source/manifest.json",
+      "family": "north_row4",
+      "tile_count": 8448,
+      "protected_count": 149032,
+      "bytes": 48548232
+    },
+    {
+      "id": 18,
+      "path": "Assets/_Project/Art/Terrain/NorthRow4E512208N4026680_2026-10-11/Source/manifest.json",
+      "family": "north_row4",
+      "tile_count": 8704,
+      "protected_count": 152123,
+      "bytes": 49738973
+    },
+    {
+      "id": 19,
+      "path": "Assets/_Project/Art/Terrain/NorthRow4E516304N4026680_2026-10-11/Source/manifest.json",
+      "family": "north_row4",
+      "tile_count": 8960,
+      "protected_count": 155214,
+      "bytes": 50929698
+    },
+    {
+      "id": 20,
+      "path": "Assets/_Project/Art/Terrain/NorthRow4E520400N4026680_2026-10-11/Source/manifest.json",
+      "family": "north_row4",
+      "tile_count": 9216,
+      "protected_count": 158305,
+      "bytes": 52120151
+    },
+    {
+      "id": 21,
+      "path": "Assets/_Project/Art/Terrain/NorthRowE5040162026-10-09/Source/manifest.json",
+      "family": "",
+      "tile_count": 3584,
+      "protected_count": 53938,
+      "bytes": 14455133
+    },
+    {
+      "id": 22,
+      "path": "Assets/_Project/Art/Terrain/NorthRowE5081122026-10-09/Source/manifest.json",
+      "family": "",
+      "tile_count": 3840,
+      "protected_count": 63175,
+      "bytes": 16657608
+    },
+    {
+      "id": 23,
+      "path": "Assets/_Project/Art/Terrain/NorthRowE5122082026-10-09/Source/manifest.json",
+      "family": "",
+      "tile_count": 4096,
+      "protected_count": 72924,
+      "bytes": 18968643
+    },
+    {
+      "id": 24,
+      "path": "Assets/_Project/Art/Terrain/NorthRowE5163042026-10-09/Source/manifest.json",
+      "family": "",
+      "tile_count": 4352,
+      "protected_count": 83185,
+      "bytes": 21388462
+    },
+    {
+      "id": 25,
+      "path": "Assets/_Project/Art/Terrain/NorthRowE5204002026-10-09/Source/manifest.json",
+      "family": "",
+      "tile_count": 4608,
+      "protected_count": 93958,
+      "bytes": 23916815
+    },
+    {
+      "id": 26,
+      "path": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/Source/manifest.json",
+      "family": "",
+      "tile_count": 1024,
+      "protected_count": 2066,
+      "bytes": 1670493
+    },
+    {
+      "id": 27,
+      "path": "Assets/_Project/Art/Terrain/WestPair2026-10-08/Source/manifest.json",
+      "family": "",
+      "tile_count": 1536,
+      "protected_count": 10290,
+      "bytes": 3653711
+    },
+    {
+      "id": 28,
+      "path": "Assets/_Project/Art/Terrain/WestRidgePair2026-10-08/Source/manifest.json",
+      "family": "",
+      "tile_count": 3072,
+      "protected_count": 34949,
+      "bytes": 10124176
+    }
+  ],
+  "code_consumers": [
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterFarWestPairSource.cs",
+      "git_blob": "1546a3e87e8a110e6b794ea8da32a57e0ade5185",
+      "working_sha256": "569c79f6fb2cd3e7483dac757906dd96cb728678fd000854ec5aecb9f9915d7b",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNextWestPairSource.cs",
+      "git_blob": "45a2756ae730acb125c0fd2aeee4767a4f38d25a",
+      "working_sha256": "cd143510c0f7fc940c493e3474b3ac15f6c3b4dd83704f3da311f8350e6d2725",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRidgeSource.cs",
+      "git_blob": "b8f318f050caa389b6db1fdf0bd19e9d80059333",
+      "working_sha256": "b7548916676c820ff0d36cf7c44c2c8d05b5af3d8f50f40437c02edca393382a",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRow2Builder.cs",
+      "git_blob": "3c5c9a787185b5dad737d2d057fabe28d091c81c",
+      "working_sha256": "89966eb54b304c12e5077a05fd3b0a37666f0f3950e45f30d862e65485bf7e5f",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRow2Source.cs",
+      "git_blob": "0f4fd018c857d700f041df3f2b55906ab398e691",
+      "working_sha256": "2ff4151a88d6424e642752cbe983b94fc5b781ff116f852087a5bb770381f3a8",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRow3Builder.cs",
+      "git_blob": "c4370939610f537f32e8d0031423c2e42360084e",
+      "working_sha256": "65d8196e4567f2d4d5437fb8c45122ae57beaaf8f2db8a48746ae5439f8d0524",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRow3Source.cs",
+      "git_blob": "e0ac37c4562bc7319260bb13638722b1d915166f",
+      "working_sha256": "83d13ac0f19617fe1ae4f9dac4cf41db8ba0f493f00215d4022f1ef617eaabd6",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRow4Builder.cs",
+      "git_blob": "3893f4b57b247633be16d0d3846be68ca4b2aff5",
+      "working_sha256": "3e94a54f79932c575b787818f7eebf5352a0eec5c39d25ed09b1a6afeb96e605",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRow4FileHash.cs",
+      "git_blob": "636725ddcb6977ea1f281449ee95174b86e89ea4",
+      "working_sha256": "0cc394296162c9902e10ae749e31011304f0d6b5de2b3fb707b9b577214c49ee",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRow4Source.cs",
+      "git_blob": "c0865c9d84026dd6d7f2c9ebd5fa39e4a11246f9",
+      "working_sha256": "ee2bcccc83a27adbc552e19ca9b053cf0e3eedf3e883b2d4402c4e47d75416f8",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRowBuilder.cs",
+      "git_blob": "a57de5424abfe069ea0f1d608f26897e381490c2",
+      "working_sha256": "6fc64b8e7d2df85195ac70b67f9ce73cf6e7c1daf0fbd10d4dd50234f37e235e",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterNorthRowSource.cs",
+      "git_blob": "d0deffe86649d7c67f4172e876a2f818f60e696c",
+      "working_sha256": "c76e09c494e69896dfadf6ec45960bfdc63b3e5b9e7d217c12ab3f224e32c791",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterPlayableSceneBuilder.cs",
+      "git_blob": "385316b4153e5bde7d0b719da6f6ccf928c31cb5",
+      "working_sha256": "d533932a4fb9a20893db98ed74a9f7de051c9ef82a7cd00d80d0c22ba52c4032",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterTerrainBaselineCapture.cs",
+      "git_blob": "237c5451704eeb425daaefb8fedec37f6a878780",
+      "working_sha256": "5165e52ae3ffa1793a3d1ef396f7272096ff4a6c03b24607577801382ab003d4",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterTerrainExpansionSource.cs",
+      "git_blob": "0e647b08a7f98868a60f7f4fed4ce77d7c53522f",
+      "working_sha256": "102061e7b684e92e29fd801764b0e1801d77a41c7f6af9c11dae6c4c03807096",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterTerrainSeamRepair.cs",
+      "git_blob": "e7493d61171efe6df3bf8dd4d99284fedbc3446f",
+      "working_sha256": "aa2f0f205e855d96717c087807aa03c2cc7c22f4d61f52e5bb08c41e0cdf6bc8",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterWestPairSource.cs",
+      "git_blob": "5dcd36e5a3598ceefced4a3c35d12947841e3e5d",
+      "working_sha256": "5cdb33ed2073d95a4c3feab6c1b33827bbdad54d05a11da583a00a1e243d395a",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/BadwaterWestRidgePairSource.cs",
+      "git_blob": "3247cefc47473fd2e1796e77eaaad4a255b4e037",
+      "working_sha256": "792035046d579451c0522e3aef77f36d534e81f58370c992a29c30bb0b95d56c",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/DeathValleyMapData.cs",
+      "git_blob": "545e84b90c7755431075ca9068c3e73f4813edda",
+      "working_sha256": "2e211c8227fc2a7798f65802f41424ba740ccb803dcddfef7cbca7ef83f4405c",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/NineAreaRockStudy.cs",
+      "git_blob": "d479c9666fd6ff796d1577aadd96b7b44485f40f",
+      "working_sha256": "d833373a5e67088c8c8e580b6d337b9ff9e725ff7d9ceedcb2ac6a9478bbe7fb",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/BadwaterNorthRow2Validator.cs",
+      "git_blob": "0ea14ce9611d1f04640ceddd81c935e642300139",
+      "working_sha256": "27ca745b78d76e305bf6cc68311ad10ff435d2b0c1df5847373fb1d978d1229c",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/BadwaterNorthRow3Validator.cs",
+      "git_blob": "93d09ab4280890f49520d6ac59ad09ac14309deb",
+      "working_sha256": "b498519c06c9d581239fd9d895a77074641a3ef68c4d837727834acb31f28c40",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/BadwaterNorthRow4Validator.cs",
+      "git_blob": "40defcbb7b4a536a3df05cf29182cfa99fdd0980",
+      "working_sha256": "435635229f942f365b4c5683512e0af52ab87e90fa1ef4ee77f3962f161f51f8",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/BadwaterNorthRowBaselineAudit.cs",
+      "git_blob": "9e925bdd3ac546f90b1ff10c833495a8e8a43400",
+      "working_sha256": "23d5492750751fe5da26b45f0783be131ea4cd8e5c3d177899d215b1b7321a5b",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/BadwaterNorthRowValidator.cs",
+      "git_blob": "252590aa92d21eb230491f4649230730f8541aac",
+      "working_sha256": "e9cb6b50073dd578e221e2d928493bd661f510ae9f4a95523b73383c16a379e5",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/BadwaterTerrainExpansionValidator.cs",
+      "git_blob": "9c007a183046fa0f00129674e0c6c8bf1aac6d5d",
+      "working_sha256": "ff5dbdef58493139dd25a64ac5b443de4b56f1529b3ed756876da9a6cac11227",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/BadwaterTerrainReadbackAudit.cs",
+      "git_blob": "dffa1c430cbb2be81aac607e154cab3aefded751",
+      "working_sha256": "8918c2486a7cfdb8cba295e8ce3b616567fa7e1a085a69c84a2ef90a4dca85ed",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/BadwaterNorthRow2Tests.cs",
+      "git_blob": "0cc7ceff1f1cf656d5a47755a8324ee02babcf78",
+      "working_sha256": "a325cdaaa06e5298d25c66f6b72e770858f902ce474c438b26187d285445b029",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/BadwaterNorthRow3Tests.cs",
+      "git_blob": "c20c90d5f8659a0290f38eeabfcfa4c7dcd35c61",
+      "working_sha256": "340468390dd3fed130567d21df5f62ac8409069f1b6fff603b2a67140eb3b6dd",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/BadwaterNorthRow4HashTests.cs",
+      "git_blob": "fdce4812c720971797b59e0bdb97f38a83217187",
+      "working_sha256": "1e3aca80f6c54d2a959a6557928841c8bc2da0cbadd08113e4aced227afa716d",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/BadwaterNorthRow4Tests.cs",
+      "git_blob": "15bb948f9721ce225439020237b31e0f234e759c",
+      "working_sha256": "3b80ed38e77eca0fb4ab142c1af4828eae6bcf245028179ba766897d1e06d4b7",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/BadwaterNorthRowTests.cs",
+      "git_blob": "bfa5bcead2ea230e68e275876d5b2d0f696d25e3",
+      "working_sha256": "73e3076abb76170f544bbcb69564af40210398d95c2ae46f8a30be3e051df832",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/BadwaterTerrainSeamTests.cs",
+      "git_blob": "fc4712219760efcb4484053dc983194410dbec08",
+      "working_sha256": "ec802d25c8ba7e22771c579561b35d7ea705c16496613ffa9172a97c068b1a19",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/BadwaterWestPairTests.cs",
+      "git_blob": "3530a13b7692c47e4ccaa893abc088f17b747160",
+      "working_sha256": "59b5571427064d918ebe496a02981fba26656c7769a0585b1235193003d28717",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/DeathValleyMapTests.cs",
+      "git_blob": "1988f24a53d9d831e729b420a6ecd1300823f488",
+      "working_sha256": "d3645b9e56418de8dd857c861a7e9fd1a64e829589703f27ed98ddf4c46855d5",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Diagnostics/write_population_sector_manifest.py",
+      "git_blob": "71e6ce4de27bcdbb4c779cae34ff2f7cdc50cc55",
+      "working_sha256": "e8d3ecb0fab0252901d2f4a5a31647690bfc14c14a9aeefa9e79b85216cf0515",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_expansion.py",
+      "git_blob": "bfcba96f1f795403cb23c3f9683099ac15a17a42",
+      "working_sha256": "10b3f1a8a448fdadca3e5c83f50f086d2ca7c9cde3edf89fd216afd9d437b4a4",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_far_west_pair.py",
+      "git_blob": "55c3046419e3d4a99bb4679723b0ecf7eae8091e",
+      "working_sha256": "d5276d11c8d367e94b12fb976b7764651e98e207b01db0010da67a76c0587dfc",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_next_west_pair.py",
+      "git_blob": "0c6b4336ca7d3e251f82a7cd660fa3103b1e5f5d",
+      "working_sha256": "e1977f8c16e3cde824069ef99a40675d2c62ba05e3accce33e9c458a6e3b60c3",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_north_ridge.py",
+      "git_blob": "863f9328dc50441656fdd13f8b7ba602608952fd",
+      "working_sha256": "c432d76e6fd4e1140dd33eb1a979c24de9ea523f18d4a9ad128c37ace35c2cf9",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_north_row.py",
+      "git_blob": "1ab7b3f61bf6c52ed7fd1d81d3d20f5e49b314a8",
+      "working_sha256": "5a74896edac40c5132a42ee16dad415ec06f5eea4e5d40241c366bf4ced7c1af",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_north_row2_survey.py",
+      "git_blob": "e97441ec625fa3b9424607d9d1f83de821c01763",
+      "working_sha256": "78e0475830d68e1cf8ce093bbb113604e866296058afa461be61abd94f19d012",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_north_row3_survey.py",
+      "git_blob": "e1598976cd17b83889b086475f241ebbfe2dc4de",
+      "working_sha256": "82e9b32c41b647868504ec03813fea28bdb5e2dbcd731073b3906da6a92964e3",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_north_row4_survey.py",
+      "git_blob": "f4e1d2e31203ef68918db70bce71f1f6669a69d5",
+      "working_sha256": "5d3d5f71bcac70eaa595377fe4e467562a1e8604ec2fcccf15f8d6cbb06507ad",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_west_pair.py",
+      "git_blob": "f1b144db7d5759b2610325f3a6afffe261f13f08",
+      "working_sha256": "342ca68ac54efb9ed1ea92405575065ab7a15b4671dc7032e4ac7d7bf8af7b97",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/acquire_west_ridge_pair.py",
+      "git_blob": "0c0e7a6658d12f9a4c21cf7d39784aa2743a14db",
+      "working_sha256": "92fe95e766d24efeb4d55e56a15c14c65685a93ed20adad6f1852b55d0636e16",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/audit_north_row2_metadata.py",
+      "git_blob": "f1f802ad87ce36de3827245846452e9be975763b",
+      "working_sha256": "c6b5360a5bdaed96f1330ed63fee253803b1b20bad959edbf789d4700c74bba9",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/audit_north_row2_sources.py",
+      "git_blob": "b529fe98486f61271c89bb20d789dd4e49ca0302",
+      "working_sha256": "14f87f228a61dfed02e78b8f9063f0fb87ec4da578f2a2b19a77c391ad2d0df7",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/audit_north_row3_metadata.py",
+      "git_blob": "f47490b75aac96e31aa9f0c6eefcf2ce7546f213",
+      "working_sha256": "65aae9c080f0632c18e4569461d1ef86fc1aef625f3fb2a0acc4e231dbd03069",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/audit_north_row3_sources.py",
+      "git_blob": "fc1283fa3f98983fd6655d4fcf75ad2c184120b5",
+      "working_sha256": "3706018029b5ac7979658f484db5e0996252a8a511d65c9e7e7ea6a2a0ae3623",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/audit_north_row4_completion.py",
+      "git_blob": "ca79ffeec7ff5a42bfe09eaa1079462bab4bbe0e",
+      "working_sha256": "dd135c1342e7237ec983cab3ba967ff9e73ea3e42c55939f079905b1926bfb19",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/audit_north_row4_metadata.py",
+      "git_blob": "592ba82e0dcbf0ecbe7c6b9a9e4c9e7dc4220af7",
+      "working_sha256": "abb4fa9b51349312a4d0d0f97188944c8c30841803faf924da33b28248ee4e36",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/audit_north_row4_sources.py",
+      "git_blob": "5ecd8ddbee07f2e01189db4279adcf77e8419bec",
+      "working_sha256": "d1ce4070414eb5912e6583c0f3ab0b967ff0d612312fa6a815c74c5d0617bb5a",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/author_north_row2_stage.py",
+      "git_blob": "8ff4cf8bdcd143e6026e99f528d93d7cb201529f",
+      "working_sha256": "960c71c10f9ff93d8be31ae1665212509258f217302598e33fd1a11ecca0a86a",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/author_north_row3_stage.py",
+      "git_blob": "0b773c5d04ad10891c50c72bc0ce0f16cb9b8ea8",
+      "working_sha256": "b8d1ccd49b19c837c8cfd4418e6468b2702b111166bc0ba3cf9e156c40a87630",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/author_north_row4_stage.py",
+      "git_blob": "1365f9c431df67e8178b1cdd1eb5674ea8d62658",
+      "working_sha256": "c997dd70bd31d30c2ef655294754fd23d6d44449dffa4e09dfd7a84fccba3c75",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/BadwaterUnitySceneBuilder.cs",
+      "git_blob": "b9edd603fa7c042896a97596977003eae5fdbb46",
+      "working_sha256": "d3bd3e58e55df32dd2f16cddcca8ab894c63fc36a071651a7c80084a73b7ae91",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_badwater_color_atlas.py",
+      "git_blob": "1d8abdc146eea7ebefbaa2c5d5fc2e134bf85de1",
+      "working_sha256": "955cf8f5ebb8b4ef9c42d7e90f0927fe8e3d6660c7ed9149befdb0df532aab0d",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_detail_study.py",
+      "git_blob": "421309867ef30d536c057d2d22b2887dec451e19",
+      "working_sha256": "646c428a41eae6f1e55deb5db7002d8781f5a85226db4bb1d24fc1511aaf0182",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_expansion_scene.py",
+      "git_blob": "6e9639a8c85a420b6ff90cd3ef722ea3e7137f6a",
+      "working_sha256": "5ea7a48219e46f69c88c7d4e10dc488bd416ca4144d609cde3e762fd499f9cea",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_explore_scene.py",
+      "git_blob": "31b5ade70b525a1e7b31a529805a3ff99a42610e",
+      "working_sha256": "d1cb2e0549df9d6adf3ddbb509799b21fd9f8c72776b80194218b8d8a44dc3f5",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_far_west_pair_scene.py",
+      "git_blob": "a8a9560c91b5fa90de29c889c75c1518bce9e5a9",
+      "working_sha256": "8a3d9422df4becf748084f80800aa140370c4c38c18a8044b49a35d6d9d6b74b",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_game_slice_scene.py",
+      "git_blob": "437c00b9d91260873cce4390b38ab625a2a38348",
+      "working_sha256": "d31dec82181408e1476926720630bf4b7949a71ff15fe99afc6232f50afd363c",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_next_west_pair_scene.py",
+      "git_blob": "761e95423081b04497b39e5222867110b3250a19",
+      "working_sha256": "a17e6836d5dca6e7669eb436232f75cc642244d602e69574167c0f78fe2f9737",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_north_ridge_scene.py",
+      "git_blob": "4e2f32f2e9f8d9a7f7dedf748f7d9b18ffebc645",
+      "working_sha256": "94a1b46187f4872f2b3d5553d0e5aff2ccf2a5813183e5b2ff0d81de3287b82f",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_north_row2_scene.py",
+      "git_blob": "7502db0e7e1af62a9d540a8fd86da9ecdbb372dc",
+      "working_sha256": "f7191c11746db291ac039b6d50d41c16008f0634a7711024d7329d4cda4dd1fe",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_north_row3_scene.py",
+      "git_blob": "bf8fff7b1a1e93331ccb793c2ae7f313b33294cd",
+      "working_sha256": "959a3800cdc513abce4415dc7f5d83c6492c275789a72059309be212efa26f50",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_north_row4_scene.py",
+      "git_blob": "1bcd0868d4dec113500f05c4570ffafd1d5b90ab",
+      "working_sha256": "2366cabcbbff3878ec8fdb8409b6d634f6740d90a8fec05c4d58c63d93ab7293",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_north_row_scene.py",
+      "git_blob": "7e87366950e3acc0d51dd13cab4571cf48e70c90",
+      "working_sha256": "c849a7edead49aba3b1c4bedea016304d22fe3f368ee5b5897e8f86e72aa41a7",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_region_study.py",
+      "git_blob": "cfbbb0674f2fded7daefcf78d764c7f0e1c6ee5b",
+      "working_sha256": "53877935ade33945488a1e6c41a195f8591a1ad9fc278e9ddf58d20d2c9337da",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_west_pair_scene.py",
+      "git_blob": "5650cae66f081214df9342e76dd45d522272106c",
+      "working_sha256": "f57227923d0070402f442157a4b8344540cdcdcf58f300f6880ad815f85d6f93",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/build_west_ridge_pair_scene.py",
+      "git_blob": "1b48b72b8b9cc0323801d9b0081414408ecb72a3",
+      "working_sha256": "936e349e9b166a7f7e9867f31eebb407dd11b31b70653c9c7bb874f0b546f3e2",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/capture_north_row2_predecessor.py",
+      "git_blob": "2757bbad55f7c82c78837cd1ac00a2d512d54258",
+      "working_sha256": "e779c2e62853d4829211d5c582ca058a4d71ee76f6dd7a9f19fe62aee1e72aa5",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/capture_north_row3_predecessor.py",
+      "git_blob": "cc62ec3dcb83f8f50031194151289e4dedaa122d",
+      "working_sha256": "ef2d1743ad31a743f6899aafded049a9088c4dee5e98c90f0ba99e19c7ca8f2a",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/capture_north_row4_predecessor.py",
+      "git_blob": "6a387669f091f55455eb688b8c4e63dda5fca1c8",
+      "working_sha256": "0396c9ce270d1cd7e3b88c3cd9af451997f0d85aff3d00e5929e15bd07a1ade4",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/check_north_row4_capacity.py",
+      "git_blob": "e053c25311aeeeff9e9d96c9c872cbb3b4f9530e",
+      "working_sha256": "8680d7df08ead330f04d9eab1ee09ce7d1dc0fe202a2ce66617e444df90779c2",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/closeout_north_row4_section.py",
+      "git_blob": "30b4bb28741482adeb38f3adcde3077ba6885766",
+      "working_sha256": "8002c7fde05a0be1c1f0adc3f0a3f6b926a4aa069a795318fbe53d07d771ef88",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/create_validation_snapshot.py",
+      "git_blob": "e5b6aa38bebb93bb9c6d37caf106a1e156b0cf73",
+      "working_sha256": "9df94796386422e46791073446bad26793010d05ccb5987b2beeb0a1d47dae39",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/expansion_proof_paths.py",
+      "git_blob": "ac3590dbc80aa24d7fcccb2568bf64ee90249a9c",
+      "working_sha256": "f61bbdf0dc9e76f7ea2084da9bff34a04faddf281210f28dfec6062648dd06f4",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_badwater_unity_source.py",
+      "git_blob": "ab6a0ede2ec79075ef1ac9cf6585cc3665db1a83",
+      "working_sha256": "5a70f4d3824e09634cfebed9ea4e5a23a506ff45948540c146da5e20383a155c",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_expansion_unity.py",
+      "git_blob": "bf89633a83f5b723556c7000afeff0084fbcb966",
+      "working_sha256": "9207aa24a5ce5f021983ee7bb0c7454aebfc2e4323b4c177f35509d7d8caf319",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_far_west_pair_unity.py",
+      "git_blob": "dc29f1628dea39179c9dd5574c610f39eb8d94a7",
+      "working_sha256": "594c2abd8ef9bcd17b5f3893baa4b1b4dfe22f40e8b0fd02d2de924145cd1d97",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_next_west_pair_unity.py",
+      "git_blob": "6bc1892e11be122cd22c6da3eaed3914c2c26bb6",
+      "working_sha256": "f1717b8fd7f6199b72c3315680773300e866cb77b4fe92d68eb3cad19c1b05c0",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_north_ridge_unity.py",
+      "git_blob": "0719a7c4438329197b30b523a3339bed96bd34d3",
+      "working_sha256": "e5bb76bd37838e6ccad472934b42a65a519d2b7805d7750dc1fc2cbb0930be3e",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_north_row2_unity.py",
+      "git_blob": "010c40a766c7da47bb11991ed635d3aadfc6d87d",
+      "working_sha256": "883cba7a3d8a03bf65c35d8db0c3c124dde34e7323cec48e4353ddd1810bd9ef",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_north_row3_unity.py",
+      "git_blob": "d7eac74d25755c0041a89a445211fdc12cc142ed",
+      "working_sha256": "8588a4187a4a080b63a32f5ab1eed6f24baa2b1b615813593f4182540c96233b",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_north_row4_unity.py",
+      "git_blob": "5e164854fdeec045cea8e59d2728e5fa96990f11",
+      "working_sha256": "7ae1b31c9a8fac832bd971145abfe1b8e4603daa7f8181fc44d98f0844b6f4a2",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_north_row_unity.py",
+      "git_blob": "0d1fa1442235a0fb80706162a9b68aa0200e83c8",
+      "working_sha256": "db4c7e7c4896be6febbc60ae3d2033ae1822f11cebda45de2a7b867a6e532f9f",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_west_pair_unity.py",
+      "git_blob": "c8baa72c5b9cae46fb23fa88609f6a3f4581c8ee",
+      "working_sha256": "df40ae154bcb4ec7db408646bd6312ed497bc342c1ea489b0c6129ab714c76f0",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/export_west_ridge_pair_unity.py",
+      "git_blob": "09c38d26a63283e03789cd52d19953dfa4094cf3",
+      "working_sha256": "e851ae6c1ef9656235ce713c4e77f77ea99503ca122c2ccd80f218e066daab06",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/fetch_landsat_reference.py",
+      "git_blob": "74c99e591c4becb31a2c85426929cec96750e7e0",
+      "working_sha256": "2bcdcd7f6c83e0210a92d137c2d5d013ee75fb088cff3ef3e122846cd82caab3",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/fetch_polyhaven_material.py",
+      "git_blob": "7355dd998ab1648a4febc6b133cc072fa94b7304",
+      "working_sha256": "34c8a2e695343927a7a367dc4879b7dc1e31edb8ba60203f0497c959f04a5d80",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/inspect_dem_catalog.py",
+      "git_blob": "661173942efd1b495054774c6bb239bda7407f58",
+      "working_sha256": "9fff220957fb5a8117ac5b57edd8fd18e26a17ee245884b2ac53c5ac3ba6fafd",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/make_imagery_composite.py",
+      "git_blob": "6fafeab437a0f8ac9f950d0ac19c624136ee035a",
+      "working_sha256": "218e65a1f34aac94a515927f83deb11211db7226ffec760256bf5390d7f6cacf",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/make_rock_maps.py",
+      "git_blob": "f9197d643902dcb8f1da35a391b799aaebc26009",
+      "working_sha256": "d68294e411285d31d80befff6d3d41072872ddcaeb122ead103baaff2c95b358",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/match_detail_color.py",
+      "git_blob": "a2d86a8f553422410c43f0a717fef78c20917dbb",
+      "working_sha256": "d131eebcddbb70266e97b6eef5d94d1f9a2bece5cf13c6616e5eb0437d060383",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/measure_detail.py",
+      "git_blob": "981285729341863a57fe77d7d4c0a61cdc1816cb",
+      "working_sha256": "f8904e4edadd8ea0ea21076e895905b52aadd6fd934bdb26da19feb0c4369fd9",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/north_row2_contract.py",
+      "git_blob": "faae40522939e56d8578c13112cc30cd4da50389",
+      "working_sha256": "1516424c2ab0c098ab596fcbeac7f9885ac079157267d73b2ec8ca5f012a42fb",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/north_row2_native_references.py",
+      "git_blob": "d31066e31d2e6820851fb0271c0b1b810da1ff22",
+      "working_sha256": "0352aac3787342070ecc53cabd9509fb0e9e173b5bbaefcd0ea7114c1dbbe341",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/north_row2_preparation_policy.py",
+      "git_blob": "1d7a5b269d75fcbd45e305174a569cd612465138",
+      "working_sha256": "a815806066eec25038170bef5a249cdf4d4b49b050cabd6ce2024a546e2f5c41",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/north_row3_contract.py",
+      "git_blob": "b7f661eacc1d15ada4d9a6aa9ceec064a7aa43e8",
+      "working_sha256": "f1b106bcfd22b50c2f2d192444ec1eef282e83fa70a1d16247cfd33780a734d9",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/north_row3_native_references.py",
+      "git_blob": "1e424797eca58afc1f5daaf693c0512f4572bba9",
+      "working_sha256": "9fe8c4bc2f6bda91b6b5e097f4d804591454293fb0edc1f54ba15330a8da6052",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/north_row4_contract.py",
+      "git_blob": "275413486f3e95a82909e361ada3aa8c5c55c20d",
+      "working_sha256": "c2ae8deab3c1312b32c0018c1ca67d921ab991a2feb3cbc4d0c0a72b1926393b",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/north_row4_native_references.py",
+      "git_blob": "7d048f7e748a7a25cb55100b8dc55f9945ec9ffa",
+      "working_sha256": "aabe001c6ee96fcc96361c252397b0d2784b5d9622fa243a36062d0017c8dde8",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/north_row4_transfer_guard.py",
+      "git_blob": "41585c9929134dc38728990dcc338389426eb10c",
+      "working_sha256": "0f120d1014240a3f4689092116ff477a41979ba22c739e64f40aff118e12c1c9",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/north_row_contract.py",
+      "git_blob": "1501323c267e756abd40185714e71328058aacc7",
+      "working_sha256": "f4e865f00f940e29143997926f33ad22ad7b5f8be3cd577454c22f0ef334d39e",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_corridor.py",
+      "git_blob": "dbdf141b3cdecdaf15d7eebcf163dc883ed16190",
+      "working_sha256": "a025b753cbe1a9bd79b11b5647dffb9c89faecb65d0e182c6c05dcba264ebee9",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_detail.py",
+      "git_blob": "60debecee0fd0d6117857a6ff8455cab348f443e",
+      "working_sha256": "43a9b232fec4e433011701f2c574e088ea6f84d85a023ff563d34bdc740a732f",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_expansion.py",
+      "git_blob": "d6780ec2b31e9b78f89027ae0dba9878acfc7f4c",
+      "working_sha256": "1e7c87fc8f0b6e67cbe7c8005901d2381dabe3ec8c050c0690c34133d8e31e48",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_expansion_color.py",
+      "git_blob": "b474c8d451b30c01d2efbf94dbc284b58bcbb974",
+      "working_sha256": "dd3d4d02e168d53a6fbba6514897144d04f13b953a6c742c0cd28ea3b3126ff7",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_far_west_pair.py",
+      "git_blob": "f288052ab3bc392b3e3c9eb58d8236320d958387",
+      "working_sha256": "1f360a22995c9385168450577d247b107b8b30365748d3017fe5fd2db7578d50",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_four_slices.py",
+      "git_blob": "8664e440d7bd3e65a24349d6a8af9042df0ceffb",
+      "working_sha256": "e52a4f066c3c743a37a4d5c756c791f5c3e38f0000f60c5920b511a30701f92f",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_game_slice.py",
+      "git_blob": "7cc441e851ae7888696703d5620d794238e58e1f",
+      "working_sha256": "c1f80ac76ecaa64a5c14e29dfe435e9cac26386b2430859a292cd69765600d67",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_next_west_pair.py",
+      "git_blob": "cbac07bcecb43b0757392f32a32f8a083a1355cf",
+      "working_sha256": "ca1832bc041a5f977b3cc4ff4ab89d0b27ab63801efa8efab78db5e439c9b5bb",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_north_ridge.py",
+      "git_blob": "e19e8fa2866c4fe9242e36c2325edd95448c23c7",
+      "working_sha256": "6e8c41f776fffb66ab32eaf6f54ea6f55112fad8dfa78e8feced5b5055cd599d",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_north_row.py",
+      "git_blob": "15d546a13b4373ea183c5cf1d7e5a65f45a055eb",
+      "working_sha256": "0c686be369c1a0787bb7f132e92a50a2ed3e25b5a76da38c7148c6d6a6fbb432",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_north_row2.py",
+      "git_blob": "a60b5b66174065e1c1bd2c5de9a4ac155266c458",
+      "working_sha256": "ab7d620bcac710baed0e5977dd1ba8aea67080468ae4df90f09292eba8b693e6",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_north_row3.py",
+      "git_blob": "1fc4489e2436438e5772561713ab48c26ad65beb",
+      "working_sha256": "fafb50ba5eb45113fc6700e3ca9d95a07d70738898fd9701e1dbf5ac3754e980",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_north_row4.py",
+      "git_blob": "435a50558e551b2b2cce193a58f86ecf7c703202",
+      "working_sha256": "d836d2ae36757d220317e307ccbd5d4ef30543cabafc8f6eefc6706fb7960418",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_north_row4_section.py",
+      "git_blob": "8653cf82e59492d559f26e003753111ee91e8ac0",
+      "working_sha256": "75558350ed3607b1dac66616b0afc09b196eff01e591987ba21c87439dc9421a",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_region.py",
+      "git_blob": "f9a4cc6da3ac0d2455b8c4ada62a2b51dd8bbe0a",
+      "working_sha256": "c3092e955e504d2e1613e106cd02ae1806225c5bb2a5d0c9808ee06f5dd25df2",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_west_pair.py",
+      "git_blob": "ebed978d9097ff93cce2a1da7e507028fc1413f9",
+      "working_sha256": "44852970e2e9976d9cd59748088f675e2795dfe3beba9ee28e49bd73dd306505",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/prepare_west_ridge_pair.py",
+      "git_blob": "22f20f8cb8639b26bb3d237350f53317a8ca4ba0",
+      "working_sha256": "3af1609396dd8a38bcbba065624e0a55bec30a95a184a20d809326793e028fba",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/preserve_expansion_scene.py",
+      "git_blob": "15a43ac94a423e8b3da9e7489fa7c5b1e5a072ca",
+      "working_sha256": "2eab40521568e194325fc8f6c03200bd4c6d7a95e10408da0cef01636c642660",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/preserve_north_row2_scene.py",
+      "git_blob": "ecc19fbf7832d267efd8f559b82cf4f85263aa90",
+      "working_sha256": "6439d079ccdbcc645e007912d13d12342754719fe9d98d82df2b10fbee42558e",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/preserve_north_row4_scene.py",
+      "git_blob": "92cef1a2bfe6b35a81c3705b4674ba1edf198c7d",
+      "working_sha256": "f787e7d1f1d82981d6a8a15895de296eefda2fbf8e9ef69bd7e36ce9fc30f673",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/rasterize_geology.py",
+      "git_blob": "bbeae5c064b4781f0aae884dfd029127488fd19e",
+      "working_sha256": "0ab1e6eb26a4cdf6715276a2ddfe3e6471062e8cf5312a347f489e1e8143d123",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/rebuild_expanded_viewer.py",
+      "git_blob": "3e8ed5342439ac5ed35c211b8f90ac20d02afa1a",
+      "working_sha256": "45e0a533399135cfc6fbead87fc841e33ebe99634974508832d1820de72a4e17",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/rebuild_game_slice.py",
+      "git_blob": "9ec9689d7cb2caa1f6d401c39d9e11f6d1c84787",
+      "working_sha256": "48368d8766d1577a02e01fbffd0c3a5387cf1305fb5da68e978ec886782ecf89",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/reconcile_expansion_protection.py",
+      "git_blob": "f83419cf3f0abf2315b2ce8949a96c01e13887bb",
+      "working_sha256": "ef49de8772042181075db0b4c962c6b175be697c9b1330715d280092de2bff8c",
+      "directory_hash_contract": true
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/reconcile_north_row4_camp.py",
+      "git_blob": "5734535373bc1eb61ff81850800e7774fa07cf1e",
+      "working_sha256": "c5b113ab01a35fb69dd1c309354725c5ba1355eb566b332701367f1cf78185d5",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/render_explore_previews.py",
+      "git_blob": "b0766ff6de1d7273f8c3b71eb730f6ca29a36dd7",
+      "working_sha256": "6d1c797fe93b4e3de16469e02a5868a5d8469943b8b0c3aaf88a43ccb3d8a5a2",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/render_four_slices_preview.py",
+      "git_blob": "87f7e49cfb1b7f23c95624f8953ac115fed11575",
+      "working_sha256": "b459c39e69b95f9471d96cdcfd9f023bf9d23262f7ac4f4752d3d2efb629e527",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/render_game_slice_previews.py",
+      "git_blob": "88e8d91515b32017988fddbe7d362be37f2c07e7",
+      "working_sha256": "1870cfc74c992af84a596ee538fc40444acdce88a85c31763d86e4edc9a48498",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/repair_north_row4_serialization.py",
+      "git_blob": "20eb955e926c7e4390e6a891291221cdbbadbff8",
+      "working_sha256": "814e9f79073d5c7cee5915595baa5ae4aa8d4268ccacbc94a25d59230d134062",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/reverify_north_row4_canonical.py",
+      "git_blob": "0e727a3c85911121f3cc01509ee726ba61d18341",
+      "working_sha256": "ac682fdd86849c3e7184077fd37d170e289319998d68196cf154befd575ceea1",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/run_expansion_blender.py",
+      "git_blob": "3f55792fda30ed39111cc4617ee92fb1e0ed6db2",
+      "working_sha256": "883800f6faa470590af4aa51e978c59973157428c4158d12027bb4cccf5a7883",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/run_north_row2_blender.py",
+      "git_blob": "6b9abd0005a964adfa56caec33ac91816c400068",
+      "working_sha256": "7c722fc74a3bb6ed3545cd90fe2e9a7cccde1df98ab3bbe2a78b29a5a56e12dc",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/run_north_row3_blender.py",
+      "git_blob": "da6214caa6f4590110a87659b37530cd151b6454",
+      "working_sha256": "82d9586957f91bf34dac838ef899342d6d2d918f3eda1d699bbcd632e7bbc78a",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/run_north_row4_blender.py",
+      "git_blob": "f5d1cc3ba43c8ed1bfc042a7742b4bd56f868e0c",
+      "working_sha256": "4a501f9a7bce1bd9fb62f00d646577adb71a06e25f16129cceb174a354afa4b8",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/run_north_row4_pipeline.py",
+      "git_blob": "460174bda847d83bb3848dd0ee520b61b175a2c2",
+      "working_sha256": "25f69d8dc407ece939bc4a4ec3de10a5426a037515d227cc2336af50045c5e08",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/seal_north_row4_authoring.py",
+      "git_blob": "dd63bd95a52fee8179f2f64ae431666e3ae83090",
+      "working_sha256": "5ca2a95f65800b5fa636be5b212e60a12fc9e0dc12575fc3bc62f91bda2d0807",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/seed_north_row4_export.py",
+      "git_blob": "36bd0e5b569fcef599687c1ff3b1e0f0bd337b37",
+      "working_sha256": "5d81459f3edb396f37109d90177730676edc1ab340db436af432f402cb770c0a",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/stage_north_row4_section.py",
+      "git_blob": "b2ec53d3255d582f51ee8c844ba55baebf6df1b4",
+      "working_sha256": "80d6ede6c50f592222cf40a38a78acf32a7c7cc7d53de83c6cf83d7c29ff7636",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/test_north_row2_coverage.py",
+      "git_blob": "ff5ee0b66f313086fcf319a8b2fb1d75b2491684",
+      "working_sha256": "d08a1e2b9ca648a982bc9c1863692ed48e1c678ee88a59f28625470749b5708c",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/test_north_row2_predecessor.py",
+      "git_blob": "64d9bb536721b5b79154b9621de0ed6fa65b7b8a",
+      "working_sha256": "c15089b1c09dd46280e73ebe72fca00c026c27c625456b531477c1c924f92fb9",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/test_north_row3_contract.py",
+      "git_blob": "4e8d127e940a765a960718aa470d1b49a74ef3ee",
+      "working_sha256": "896e7581ae589c1c8ae1c432deb5031e980eae8dfd05bd24a3b115dd2052083d",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/test_north_row3_coverage.py",
+      "git_blob": "c8b41709abf569219fba85a1aa51bed5f737f13b",
+      "working_sha256": "ded1c51e37e0d4689baeb29dfc03549e661036797b476c820062b1fdcccb8b44",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/test_north_row3_predecessor.py",
+      "git_blob": "db9f2ee4506b41ac6d4cb44902d5f1b5dc4c0c86",
+      "working_sha256": "5ac2ec4e8438ecbb8c71508399bc5da6fa341cc79e40996c6f796cfaa8dff313",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/test_north_row4_contract.py",
+      "git_blob": "f99a109305a17b0bb410fda44dd3b7267e9a3241",
+      "working_sha256": "7cae9a99d2d441bd7c50099b505d5fe5bd400d10ee65a0e9075a9def2f7e3f21",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/test_north_row4_predecessor.py",
+      "git_blob": "74bf8c5106abcc9bdec091b4f5b2c0a52b57f93c",
+      "working_sha256": "3b77e7af78c46a36c07b94eaa6ec1df157a9452e3e431ba328c69ce594d652a0",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/test_north_row4_scene_preservation.py",
+      "git_blob": "20080051f1ca58e140440b27c5c4755ea09b08e8",
+      "working_sha256": "f6391a1f9b9fe92938c1c89dca095c16f6a5dd1ff37083b6c49d5b76f3bfa6ff",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/transfer_north_row4_section.py",
+      "git_blob": "ec12141709cbda05ac97734dcbcd777bcac081d0",
+      "working_sha256": "1bac83458d2134444dcf4cdcfbd508ac02ab95f5c95fa744f767b56cde412595",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/verify_expansion_baseline.py",
+      "git_blob": "919ff3749604836ef64a75502155e6697a29bc5b",
+      "working_sha256": "d055fd815edcc2014e2fdace731edcf35fa4e4f4fbe9b181d9184436fc34b484",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/verify_four_slices.py",
+      "git_blob": "f903cca11ffd22cbee3bb72c854dcb042125bcbf",
+      "working_sha256": "8a701dd72e384d4a43723db35ac43bc01c2d2dc1576acf1c44221c31a632b2fb",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/verify_game_slice.py",
+      "git_blob": "4cd8a1bbedb65043db02f5e17de993246f5abdcd",
+      "working_sha256": "4d0bcad5a60ce7cb69e41240fb2666f15618cca49afb3f78220eb9ddcf63101e",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/verify_game_slice_scene.py",
+      "git_blob": "1e77eeedb3721583e3d5e4207dab2ffe7e7b91a4",
+      "working_sha256": "2bbf38b34d3ec89da291bb0d14782523c45f3a9b79f6de530f5c840159f9ad28",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/verify_pipeline.py",
+      "git_blob": "092cd0bbf71e1b2c87d3c72fcfb631eacb9e9fc7",
+      "working_sha256": "3c2d636008db38fca70f8d4be444e0c81b2dcdcfa6bcb82a7b930d273090b109",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/write_north_row4_source_readme.py",
+      "git_blob": "41b7652998720764295f1d078840db836fed2b43",
+      "working_sha256": "c96e17d96292d8a7a9a46d864e4d704f231278d7568d084e7eaf23ff48613671",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/editor_queries/current_console_errors.cs",
+      "git_blob": "64da1e1ebd2a71734c269fc45150913b84d1ceeb",
+      "working_sha256": "c23176e27125098219aa4bdd07116383e2d97a09213d7ca7dc8dade604392446",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/editor_queries/current_scene_fingerprint.cs",
+      "git_blob": "a5696a7859bc5236f948cdfdbf3023526eea8363",
+      "working_sha256": "87904811b0f38dd2a42fe2c57b456ccd962976ecd15f141c46312a7633c6435b",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/editor_queries/dirty_terrain_assets.cs",
+      "git_blob": "d6379472476c81bb09e8dabf26bb078156e0331c",
+      "working_sha256": "492049df93629f0eea0e9adab93b524f3370583a564322be4709a18a986869bf",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/tests/test_north_row2_acquisition.py",
+      "git_blob": "3cc65a47bbf6495824e3bfda28dfe40e259ef45c",
+      "working_sha256": "f3130c2c46273bfcb2939953e81fa26bcef677293fdc773393308164ea171d38",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/tests/test_north_row2_contract.py",
+      "git_blob": "4f9c38f8d1bd29cd7851903bc1225b4dac329286",
+      "working_sha256": "df233120e1d18f416d891e3716afe79c2ccbe3e074d0efff51b4c5e0a74d8b85",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/tests/test_north_row2_native_references.py",
+      "git_blob": "9ffe02d74a0e71c301c7d88022ed3c3257a15718",
+      "working_sha256": "08098bd2a0f99994713db89222066c25943832d11e060eb5fffa33ce19fab839",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/tests/test_north_row2_preparation_policy.py",
+      "git_blob": "9ded096e218f957a393e9a686e149cf68746c54f",
+      "working_sha256": "9d7c09e11bd70869e9bbb3bf66ffc03cb538c0f556e670d379d261081f1e296e",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/tests/test_north_row3_acquisition.py",
+      "git_blob": "e0aea7ace701a352331b875592d8526c0f00dd3c",
+      "working_sha256": "c2d6fe2c9f3e86b516249acb4a13e2eb3cc274f221f353576dfc0bdb932b643d",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/tests/test_north_row3_native_references.py",
+      "git_blob": "015a89ff94b4ef986e2370b2b6d2dbc29ad9f6d2",
+      "working_sha256": "8fb9a4edff39592dc102964e5cc3b5a2d45d889f4b5d6925445b7f60284d118b",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/tests/test_north_row4_acquisition.py",
+      "git_blob": "e9f4eb79cf9149bf0f7cfd1dfe2873ee0d07c88c",
+      "working_sha256": "f87fbc3b0893e35dd10a33147384e0101002680bc15c430c381eaa89cc2e4cdf",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/tests/test_north_row4_native_references.py",
+      "git_blob": "30ed2443a01747caa3ceb0552a98f0b4b5cac476",
+      "working_sha256": "6c75a91b4cbadf4e440ec8330952a04018202736bf627e9eba864bc71aef51de",
+      "directory_hash_contract": false
+    },
+    {
+      "path": "Tools/Art/Blender/death_valley/tests/test_north_row_contract.py",
+      "git_blob": "535dda1e5ccfdd3ac0c88cb1a1ea27eb23aa6bbc",
+      "working_sha256": "8d38e2abd199b491a4f06fdcd447139d395cd18e3ec7da2dccd96271b725e03d",
+      "directory_hash_contract": false
+    }
+  ],
+  "map_descriptors": [
+    "Docs/DeathValley/coverage_catalog.json",
+    "Docs/DeathValley/visualizer_data/developer_map.json"
+  ],
+  "map_payloads": [
+    "Docs/DeathValley/visualizer_data/blender_recovered/blender_overview.f32",
+    "Docs/DeathValley/visualizer_data/blender_recovered/canyon.png",
+    "Docs/DeathValley/visualizer_data/blender_recovered/corridor.png",
+    "Docs/DeathValley/visualizer_data/blender_recovered/expanded_region.png",
+    "Docs/DeathValley/visualizer_data/blender_recovered/pilot.png"
+  ],
+  "production": {
+    "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+    "scene_sha256": "bc0b465de9a1b75b82a20d99c25fa4f10f00377a18f9564f9e8b0516a4c8f93e",
+    "manifest": "Assets/_Project/Art/Terrain/NorthRow4E520400N4026680_2026-10-11/Source/manifest.json",
+    "manifest_sha256": "9568e30edb234cb4737187c42bb53a335e6729d545a99a3134cab249cc0365ff",
+    "terrain_data_count": 9216,
+    "manifest_data_set_matches_scene": true,
+    "latest_retained_native_sources": 8960,
+    "latest_new_source_files": 768,
+    "latest_new_native_snapshots": 256,
+    "terrain_data_formats": {
+      "binary": 9216
+    },
+    "reference_scenes": [
+      "Assets/_Project/Scenes/Reference/FixedTerrainDressingStudy.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow2E499920N4018488_2026-10-09Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow2E504016N4018488_2026-10-09Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow2E508112N4018488_2026-10-09Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow2E512208N4018488_2026-10-10Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow2E516304N4018488_2026-10-10Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow2E520400N4018488_2026-10-10Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow3E499920N4022584_2026-10-10Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow3E504016N4022584_2026-10-10Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow3E508112N4022584_2026-10-10Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow3E512208N4022584_2026-10-10Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow3E516304N4022584_2026-10-10Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow3E520400N4022584_2026-10-10Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow4E499920N4026680_2026-10-11Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow4E504016N4026680_2026-10-11Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow4E508112N4026680_2026-10-11Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow4E512208N4026680_2026-10-11Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow4E516304N4026680_2026-10-11Candidate.unity",
+      "Assets/_Project/Scenes/Reference/NorthRow4E520400N4026680_2026-10-11Candidate.unity",
+      "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationActors20261012.unity",
+      "Assets/_Project/Scenes/Reference/Performance/GreaterWastelandPopulationSector20261012.unity",
+      "Assets/_Project/Scenes/Reference/TerrainExpansionCandidate.unity",
+      "Assets/_Project/Scenes/Reference/TerrainFarWestPairCandidate.unity",
+      "Assets/_Project/Scenes/Reference/TerrainNextWestPairCandidate.unity",
+      "Assets/_Project/Scenes/Reference/TerrainNorthRidgeCandidate.unity",
+      "Assets/_Project/Scenes/Reference/TerrainNorthRowE504016Candidate.unity",
+      "Assets/_Project/Scenes/Reference/TerrainNorthRowE508112Candidate.unity",
+      "Assets/_Project/Scenes/Reference/TerrainNorthRowE512208Candidate.unity",
+      "Assets/_Project/Scenes/Reference/TerrainNorthRowE516304Candidate.unity",
+      "Assets/_Project/Scenes/Reference/TerrainNorthRowE520400Candidate.unity",
+      "Assets/_Project/Scenes/Reference/TerrainWestPairCandidate.unity",
+      "Assets/_Project/Scenes/Reference/TerrainWestRidgePairCandidate.unity"
+    ]
+  },
+  "duplicate_guids": [],
+  "disk_errors": [],
+  "missing_manifest_references": [],
+  "unparsed_binary_asset_count": 9229,
+  "declared_sha256_locations": "Existing sealed source manifests and their protected_files entries; not duplicated in the inventory.",
+  "text_scanned_count": 9795,
+  "limitations": [
+    "GUID scan covers YAML serialized text; binary external-reference graph is not parsed.",
+    "TerrainData/layers/render textures conservatively kept; fresh Unity dependency proof is a migration gate.",
+    "Declared SHA256 values come from sealed manifests, not a fresh full payload rehash.",
+    "Whole-owner protection means ARCHIVE_GATED files are not safe to remove now.",
+    "Git blob IDs describe committed bytes; local-only files have no fresh content hashes.",
+    "This is a non-atomic disk inventory; start/end HEAD and errors are recorded."
+  ]
+}
