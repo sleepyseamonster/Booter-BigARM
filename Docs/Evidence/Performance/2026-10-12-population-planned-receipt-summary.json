@@ -1,0 +1,357 @@
+{
+  "capture": {
+    "scope": "One manual offscreen reference run; actor motion, no injected input; not interactive FPS or traversal acceptance",
+    "initial_ready_seconds": 1.5150562,
+    "startup_maximum_population_ms": 7.7603999999995565,
+    "phases": [
+      {
+        "phase": 0,
+        "update": {
+          "samples": 6869,
+          "mean_ms": 1.4567740878899966,
+          "median_ms": 1.3531958684325218,
+          "p95_ms": 1.9820011220872402,
+          "p99_ms": 3.0560020823031664,
+          "maximum_ms": 15.738599002361298
+        },
+        "population_work": {
+          "samples": 6869,
+          "mean_ms": 0.0034668947445052087,
+          "median_ms": 0.0028999999983625457,
+          "p95_ms": 0.004500000002849447,
+          "p99_ms": 0.00830000000107134,
+          "maximum_ms": 0.3995999999997224
+        },
+        "manual_render": {
+          "samples": 6869,
+          "mean_ms": 0.9976208472849015,
+          "median_ms": 0.9336999999991491,
+          "p95_ms": 1.2877000000024452,
+          "p99_ms": 1.811399999997576,
+          "maximum_ms": 14.726599999999479
+        },
+        "active_minimum": 182,
+        "active_maximum": 182,
+        "pending_maximum": 0,
+        "nominal_1ms_overruns": 0,
+        "actor_wait_samples": 0
+      },
+      {
+        "phase": 1,
+        "update": {
+          "samples": 5796,
+          "mean_ms": 1.7245131989822415,
+          "median_ms": 1.5764030395075679,
+          "p95_ms": 2.516900422051549,
+          "p99_ms": 4.324801731854677,
+          "maximum_ms": 15.774603933095932
+        },
+        "population_work": {
+          "samples": 5796,
+          "mean_ms": 0.004230590062088116,
+          "median_ms": 0.003499999998268777,
+          "p95_ms": 0.0054000000027087935,
+          "p99_ms": 0.0266000000017641,
+          "maximum_ms": 0.939299999998866
+        },
+        "manual_render": {
+          "samples": 5796,
+          "mean_ms": 1.166783661145621,
+          "median_ms": 1.0593000000014285,
+          "p95_ms": 1.636399999998872,
+          "p99_ms": 3.124100000000851,
+          "maximum_ms": 15.132000000001256
+        },
+        "active_minimum": 81,
+        "active_maximum": 182,
+        "pending_maximum": 0,
+        "nominal_1ms_overruns": 0,
+        "actor_wait_samples": 0
+      },
+      {
+        "phase": 2,
+        "update": {
+          "samples": 7040,
+          "mean_ms": 1.4204676277916983,
+          "median_ms": 1.3323979219421744,
+          "p95_ms": 1.8663974478840828,
+          "p99_ms": 2.5931973941624165,
+          "maximum_ms": 14.706001617014408
+        },
+        "population_work": {
+          "samples": 7040,
+          "mean_ms": 0.008004190340878252,
+          "median_ms": 0.0029999999995311555,
+          "p95_ms": 0.004699999998081239,
+          "p99_ms": 0.21410000000088303,
+          "maximum_ms": 1.0360999999967646
+        },
+        "manual_render": {
+          "samples": 7040,
+          "mean_ms": 0.9525415482954517,
+          "median_ms": 0.9005000000001928,
+          "p95_ms": 1.1979000000010842,
+          "p99_ms": 1.477600000001189,
+          "maximum_ms": 14.085000000001457
+        },
+        "active_minimum": 81,
+        "active_maximum": 182,
+        "pending_maximum": 2,
+        "nominal_1ms_overruns": 2,
+        "actor_wait_samples": 0
+      }
+    ],
+    "actor_horizontal_displacement_m": {
+      "booter": 40.58109423658757,
+      "bigArm": 8.986123428218775
+    },
+    "maximum_synchronization_count": 13,
+    "limitations": [
+      "Nominal time budget can be exceeded by indivisible work units and demand updates",
+      "Physics synchronization runs in actor callbacks outside measured population work",
+      "Warmup excludes initial readiness from steady update statistics",
+      "Endpoint pixels do not establish population appearance along the whole run"
+    ]
+  },
+  "work_phases": [
+    {
+      "phase": 0,
+      "name": "startup_and_settle",
+      "units": [
+        {
+          "unit": "PlannerStep",
+          "phase": 0,
+          "count": 13386,
+          "totalMs": 44.74560000000259,
+          "maximumMs": 7.6935,
+          "maximumAtSeconds": 1.0715439
+        },
+        {
+          "unit": "BaselineCommit",
+          "phase": 0,
+          "count": 12,
+          "totalMs": 7.2135,
+          "maximumMs": 5.8101,
+          "maximumAtSeconds": 1.1304128
+        },
+        {
+          "unit": "Queue",
+          "phase": 0,
+          "count": 12,
+          "totalMs": 1.3741999999999996,
+          "maximumMs": 1.3193,
+          "maximumAtSeconds": 1.1362241
+        },
+        {
+          "unit": "PlannerBegin",
+          "phase": 0,
+          "count": 12,
+          "totalMs": 0.9260999999999999,
+          "maximumMs": 0.897,
+          "maximumAtSeconds": 0.0372755
+        },
+        {
+          "unit": "Acquire",
+          "phase": 0,
+          "count": 182,
+          "totalMs": 6.692499999999994,
+          "maximumMs": 0.8948,
+          "maximumAtSeconds": 1.1398607
+        },
+        {
+          "unit": "Initialize",
+          "phase": 0,
+          "count": 1,
+          "totalMs": 0.5928,
+          "maximumMs": 0.5928,
+          "maximumAtSeconds": 0.0021945
+        },
+        {
+          "unit": "Activation",
+          "phase": 0,
+          "count": 182,
+          "totalMs": 1.267700000000001,
+          "maximumMs": 0.2901,
+          "maximumAtSeconds": 1.1491918
+        },
+        {
+          "unit": "Demand",
+          "phase": 0,
+          "count": 13,
+          "totalMs": 0.5569000000000001,
+          "maximumMs": 0.052,
+          "maximumAtSeconds": 1.0714865
+        },
+        {
+          "unit": "PhysicsSync",
+          "phase": 0,
+          "count": 6,
+          "totalMs": 0.0241,
+          "maximumMs": 0.0138,
+          "maximumAtSeconds": 1.2654711
+        }
+      ]
+    },
+    {
+      "phase": 1,
+      "name": "normal",
+      "units": [
+        {
+          "unit": "Release",
+          "phase": 1,
+          "count": 1,
+          "totalMs": 0.3879,
+          "maximumMs": 0.3879,
+          "maximumAtSeconds": 3.8751279
+        },
+        {
+          "unit": "Demand",
+          "phase": 1,
+          "count": 49,
+          "totalMs": 2.099,
+          "maximumMs": 0.0688,
+          "maximumAtSeconds": 12.9131357
+        },
+        {
+          "unit": "PhysicsSync",
+          "phase": 1,
+          "count": 1,
+          "totalMs": 0.0021,
+          "maximumMs": 0.0021,
+          "maximumAtSeconds": 3.8851853
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "camera_absent",
+      "units": [
+        {
+          "unit": "Release",
+          "phase": 2,
+          "count": 7,
+          "totalMs": 0.6391999999999999,
+          "maximumMs": 0.5351,
+          "maximumAtSeconds": 15.323146
+        },
+        {
+          "unit": "Demand",
+          "phase": 2,
+          "count": 50,
+          "totalMs": 1.6916999999999995,
+          "maximumMs": 0.2928,
+          "maximumAtSeconds": 13.5264331
+        },
+        {
+          "unit": "Retire",
+          "phase": 2,
+          "count": 101,
+          "totalMs": 0.23120000000000007,
+          "maximumMs": 0.1996,
+          "maximumAtSeconds": 15.3237942
+        },
+        {
+          "unit": "PhysicsSync",
+          "phase": 2,
+          "count": 1,
+          "totalMs": 0.0025,
+          "maximumMs": 0.0025,
+          "maximumAtSeconds": 15.3258137
+        }
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "restored",
+      "units": [
+        {
+          "unit": "PlannerStep",
+          "phase": 3,
+          "count": 7794,
+          "totalMs": 19.29479999999881,
+          "maximumMs": 0.8657,
+          "maximumAtSeconds": 23.6975243
+        },
+        {
+          "unit": "BaselineCommit",
+          "phase": 3,
+          "count": 7,
+          "totalMs": 0.6136999999999999,
+          "maximumMs": 0.3283,
+          "maximumAtSeconds": 23.6103939
+        },
+        {
+          "unit": "Demand",
+          "phase": 3,
+          "count": 50,
+          "totalMs": 2.2484000000000006,
+          "maximumMs": 0.1834,
+          "maximumAtSeconds": 23.5739279
+        },
+        {
+          "unit": "Release",
+          "phase": 3,
+          "count": 4,
+          "totalMs": 0.10529999999999999,
+          "maximumMs": 0.1027,
+          "maximumAtSeconds": 27.181256
+        },
+        {
+          "unit": "Activation",
+          "phase": 3,
+          "count": 101,
+          "totalMs": 0.5486999999999999,
+          "maximumMs": 0.0293,
+          "maximumAtSeconds": 23.6560973
+        },
+        {
+          "unit": "Queue",
+          "phase": 3,
+          "count": 7,
+          "totalMs": 0.0261,
+          "maximumMs": 0.0082,
+          "maximumAtSeconds": 23.6107224
+        },
+        {
+          "unit": "Acquire",
+          "phase": 3,
+          "count": 101,
+          "totalMs": 0.01739999999999996,
+          "maximumMs": 0.0079,
+          "maximumAtSeconds": 23.6107382
+        },
+        {
+          "unit": "PlannerBegin",
+          "phase": 3,
+          "count": 7,
+          "totalMs": 0.0199,
+          "maximumMs": 0.0055,
+          "maximumAtSeconds": 23.5741137
+        },
+        {
+          "unit": "PhysicsSync",
+          "phase": 3,
+          "count": 5,
+          "totalMs": 0.0095,
+          "maximumMs": 0.0023,
+          "maximumAtSeconds": 27.1852675
+        },
+        {
+          "unit": "Retire",
+          "phase": 3,
+          "count": 56,
+          "totalMs": 0.0098,
+          "maximumMs": 0.0011,
+          "maximumAtSeconds": 27.181361
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Scope clocks include OS preemption, cold initialization and observer overhead",
+    "Nested scopes are inclusive; do not sum to derive a frame time",
+    "Fixed-step synchronization uses the most recently set update phase",
+    "One run identifies measured work units, not a controlled optimization speedup"
+  ],
+  "source_sha256": "e6d31300d8da298980df6ea77af1c349f6ba04cfbd41dbd8dbd86936a95f9154"
+}

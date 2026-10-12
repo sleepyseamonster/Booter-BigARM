@@ -129,9 +129,7 @@ namespace BooterBigArm.TopDown3D
             public bool TryCommitBaseline(FixedTerrainPopulationState state)
             {
                 if (!Complete || Cancelled || !MatchesState(state)) return false;
-                var addresses = new List<FixedTerrainPopulationCandidateAddress>(placements.Count);
-                foreach (var placement in placements) addresses.Add(placement.Address(owner.identity.RecipeId));
-                return state.RegisterBaseline(cell, addresses);
+                return state.RegisterPlannedBaseline(this);
             }
 
             /// <summary>Each operation is one candidate lookup, one neighbour, one mask or one surface query.</summary>

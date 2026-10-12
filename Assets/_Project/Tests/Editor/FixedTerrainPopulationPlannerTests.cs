@@ -11,6 +11,32 @@ namespace BooterBigArm.Tests
 {
     public sealed class FixedTerrainPopulationPlannerTests
     {
+        [Test]
+        public void PlannedReceiptMatchesPublicRegistrationWithFewerAllocationEvents()
+        {
+            var cell = Vector2Int.zero; var job = Finish(Planner(Flat).Begin(cell), 97);
+            var addresses = job.Placements.Select(p => p.Address(job.RecipeId)).ToArray();
+            var external = FixedTerrainPopulationStateTests.Create(); var planned = FixedTerrainPopulationStateTests.Create();
+            Assert.That(external.RegisterBaseline(cell, addresses), Is.True);
+            Assert.That(job.TryCommitBaseline(planned), Is.True);
+            Assert.That(JsonUtility.ToJson(planned.CaptureSnapshot()), Is.EqualTo(JsonUtility.ToJson(external.CaptureSnapshot())));
+            Action publicCommit = () => external.RegisterBaseline(cell, addresses);
+            Action plannedCommit = () => job.TryCommitBaseline(planned);
+            publicCommit(); plannedCommit();
+            Assert.That(FixedTerrainPopulationIdentityTests.MeasureAllocationCount(() => GC.KeepAlive(new byte[4096])), Is.GreaterThan(0));
+            long publicEvents = FixedTerrainPopulationIdentityTests.MeasureAllocationCount(publicCommit);
+            long plannedEvents = FixedTerrainPopulationIdentityTests.MeasureAllocationCount(plannedCommit);
+            TestContext.WriteLine($"RECEIPT_ALLOCATION_EVENTS placements={job.Placements.Count} public={publicEvents} planned={plannedEvents}");
+            Assert.That(plannedEvents, Is.LessThan(publicEvents - job.Placements.Count * 5));
+            Assert.That(planned.Revision, Is.EqualTo(external.Revision));
+            var address = addresses[0]; Assert.That(planned.TryRemove(cell, address.recipeId, address.ordinal), Is.True);
+            planned.ReleaseBaselineCache(cell); Assert.That(job.TryCommitBaseline(planned), Is.True);
+            Assert.That(planned.IsRemoved(cell, address.recipeId, address.ordinal), Is.True);
+            var recreated = FixedTerrainPopulationStateTests.Create(); Assert.That(recreated.ApplySnapshot(planned.CaptureSnapshot()), Is.True);
+            Assert.That(recreated.IsRemoved(cell, address.recipeId, address.ordinal), Is.True);
+            job.Cancel(); Assert.That(job.TryCommitBaseline(planned), Is.False);
+        }
+
         [TestCase(12f, -6, -6)]
         [TestCase(32f, -1, 0)]
         [TestCase(32.01f, 0, -1)]

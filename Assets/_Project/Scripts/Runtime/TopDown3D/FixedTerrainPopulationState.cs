@@ -104,6 +104,32 @@ namespace BooterBigArm.TopDown3D
                 if (!keys.Add(StableId(cell, candidate.recipeId, candidate.ordinal))) return false;
                 addresses.Add(Copy(candidate));
             }
+            return CommitBaseline(cell, terrain, constraints, keys, addresses);
+        }
+
+        // Only a complete immutable planner result can supply precomputed identities.
+        // Public address registration and untrusted snapshot restoration still hash independently.
+        internal bool RegisterPlannedBaseline(FixedTerrainPopulationPlanner.CellBuild build)
+        {
+            if (build == null || !build.Complete || build.Cancelled || !build.MatchesState(this)) return false;
+            var cell = build.Cell;
+            var terrain = terrainRevision(cell); var constraints = constraintRevision(cell);
+            if (string.IsNullOrWhiteSpace(terrain) || string.IsNullOrWhiteSpace(constraints)) return false;
+            var keys = new HashSet<string>(StringComparer.Ordinal);
+            var addresses = new List<FixedTerrainPopulationCandidateAddress>(build.Placements.Count);
+            foreach (var placement in build.Placements)
+            {
+                var address = placement.Address(build.RecipeId);
+                if (placement.Cell != cell || !ValidAddress(address) || string.IsNullOrEmpty(placement.StableId)
+                    || !keys.Add(placement.StableId)) return false;
+                addresses.Add(address);
+            }
+            return CommitBaseline(cell, terrain, constraints, keys, addresses);
+        }
+
+        private bool CommitBaseline(Vector2Int cell, string terrain, string constraints,
+            HashSet<string> keys, List<FixedTerrainPopulationCandidateAddress> addresses)
+        {
             var record = new FixedTerrainPopulationCellRecord { x = cell.x, z = cell.y,
                 terrainRevision = terrain, constraintRevision = constraints, acceptedDigest = Digest(keys),
                 acceptedCandidates = addresses.OrderBy(v => v.recipeId, StringComparer.Ordinal).ThenBy(v => v.ordinal).ToList() };
