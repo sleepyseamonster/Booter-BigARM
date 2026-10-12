@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-12",
+  "scope": "Non-development local-clock diagnostic packaging; replacement Player not launched",
+  "preceding_timing_commit": "500c437b9",
+  "source": {
+    "path": "Tools/Diagnostics/IsolatedPopulationAuditBuild.cs",
+    "sha256": "1fa3bcff622ceedbc64deb985734f695d574b13a431fcd8803c05059823028f7"
+  },
+  "candidate": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01",
+  "build_options": "None",
+  "frame_timing_stats": false,
+  "process": {
+    "pid": 6840,
+    "exit_code": 0,
+    "stopped_for_budget": null,
+    "observed_seconds": 60.76600000000326,
+    "peak_private_bytes": 2502049792,
+    "peak_working_bytes": 2553991168,
+    "minimum_free_bytes": 28713181184,
+    "limits": {
+      "minimum_free_GiB": 12,
+      "maximum_owned_process_GiB": 24,
+      "deadline_seconds": 900
+    }
+  },
+  "build_log_sha256": "45971c5d36db8e3e622d9c0fc55f7022faefe1f6e395c8662616307c9e7ce3be",
+  "local_boot_config": "gfx-enable-gfx-jobs=1\ngfx-threading-mode=6\nwait-for-native-debugger=0\nhdr-display-enabled=0\ngc-max-time-slice=3\nenable-directstorage=False\nbuild-guid=9beb21c9ba9c449f972a5685f2ba36ab\n",
+  "previous_development_boot_config": "player-connection-mode=Listen\nplayer-connection-guid=2296283630\nplayer-connection-debug=0\nplayer-connection-project-name=PopulationSectorAudit20261012\nplayer-connection-ip=192.168.1.179\ngfx-enable-gfx-jobs=1\ngfx-threading-mode=6\nwait-for-native-debugger=0\nhdr-display-enabled=0\ngc-max-time-slice=3\nenable-directstorage=False\nbuild-guid=8382ea55a3d14f78803fb1b3f92a202c\n",
+  "binary_sha256": "97845574417b7fc4db70bfbaa4d3f941eab8628df2bcc9424dba328d3a6549c3",
+  "local_boot_config_sha256": "c674228ab33693374c7dff6370b402f635ec52befd35ef60e643bcab3fb866c9",
+  "remaining": [
+    "Replacement runtime measurement and networking observation",
+    "Population startup/restoration work profiling and subdivision",
+    "Author visual/traversal acceptance and production population/save integration"
+  ],
+  "boundary": "No replacement Player launch, firewall rule change, production setting edit, input injection or gameplay smoke test."
+}
