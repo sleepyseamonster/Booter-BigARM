@@ -1,0 +1,1127 @@
+{
+  "date": "2026-10-12",
+  "status": "reconciled_implementation_acceptance_pending",
+  "editor_compile": {
+    "success": true,
+    "command": "command console_status",
+    "data": {
+      "command": "console_status",
+      "parameters": {},
+      "result": {
+        "entries": [],
+        "cursor": 2885,
+        "session": "37480113e03b407da2db124add968480",
+        "returned": 0,
+        "dropped": false,
+        "reset": false,
+        "counts": {
+          "error": 10,
+          "warn": 1983,
+          "log": 7
+        },
+        "groundTruth": {
+          "sampledUtc": "2026-10-12T18:03:13.1113305Z",
+          "ageMs": 81,
+          "compilationFailed": false,
+          "compiling": false,
+          "consoleErrors": 0,
+          "consoleWarnings": 1,
+          "consoleLogs": 0,
+          "seeded": true
+        }
+      },
+      "target": {
+        "host": "127.0.0.1",
+        "port": 7800,
+        "projectPath": "D:\\Arc & Dust\\Project"
+      }
+    },
+    "errors": [],
+    "warnings": []
+  },
+  "editor_state": {
+    "success": true,
+    "command": "command eval",
+    "data": {
+      "command": "eval",
+      "parameters": {
+        "code": "return new { compiling = UnityEditor.EditorApplication.isCompiling, updating = UnityEditor.EditorApplication.isUpdating, playing = UnityEditor.EditorApplication.isPlaying, scenePath = UnityEngine.SceneManagement.SceneManager.GetActiveScene().path, sceneDirty = UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty, plannerMicrostepsPresent = typeof(BooterBigArm.TopDown3D.FixedTerrainPopulationPlanner.CellBuild).GetProperty(\"IdentityHashes\") != null, plannedReceiptPresent = typeof(BooterBigArm.TopDown3D.FixedTerrainPopulationState).GetMethod(\"RegisterPlannedBaseline\", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic) != null };"
+      },
+      "result": {
+        "output": null,
+        "diagnostics": [],
+        "success": true,
+        "result": {
+          "compiling": false,
+          "updating": false,
+          "playing": false,
+          "scenePath": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+          "sceneDirty": false,
+          "plannerMicrostepsPresent": true,
+          "plannedReceiptPresent": true
+        }
+      },
+      "target": {
+        "host": "127.0.0.1",
+        "port": 7800,
+        "projectPath": "D:\\Arc & Dust\\Project"
+      }
+    },
+    "errors": [],
+    "warnings": []
+  },
+  "repair": "Requested CompilationPipeline.RequestScriptCompilation in clean nonplaying production Editor after read-only reflection found stale loaded assembly. After completion current types are present with zero current console errors/warnings. No scene open/save/focus or asset refresh requested. Historical console buffers were not cleared.",
+  "tested_runtime_sources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AssemblyInfo.cs",
+      "sha256": "47dd37ca7750193f1cbd9bac8a5e511c4aa5f621cf82f1d36cf814c8e314fd83",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BadwaterCameraRange.cs",
+      "sha256": "bef426a41de11b4bc0b59c222f857b61876fbdbf76324edd33d69d35f7803648",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BadwaterTerrainConnectivity.cs",
+      "sha256": "110bfa21f6e31fdfb746f044022223db3b5bddc413536c3fb6a76d05fd00585b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainCameraCoverage.cs",
+      "sha256": "c9867b9286d34332c27e2a3c2a9999d997c8cbdcf1d243457b8dae0932e738b3",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs",
+      "sha256": "db18d249a6478405dc20a37ceaac584015fb0252dfc57bc6b0700dc77603845a",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPlanner.cs",
+      "sha256": "8341c7f7ec542cbaa96a3211b7c7c51de3c75c9ce32bd20b2a93dd4884ae0d1f",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs",
+      "sha256": "92f37299e0536f821ab5dbeb861282fb6cf0ee12e27214370ce189d18d6e5735",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationScheduler.cs",
+      "sha256": "4228d2ba9dd7eef86a20d57d56c67a9af0e7939d5005de7e4aef4715d0521e1a",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs",
+      "sha256": "b747614f73f2423590483be57513b442ee7af853e667870b8b1d001e4a1b0d80",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs",
+      "sha256": "92ffc66573775dcda5b718e726e7c5c541a0e6586297015f29bda20032282eeb",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs",
+      "sha256": "af7a591f9d811d377cb71df73b6a02ada565824b209431c4f726168b185d411c",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRockContactField.cs",
+      "sha256": "91c8fb9a064b926c4d3c31890144c7494019a5f180176187f1e11a099144a175",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs",
+      "sha256": "5ef2cbc1924b874a10b1e5c4158eaa11a6c1366bef0c1d5a08b280b138bc89f1",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs",
+      "sha256": "4bb736c6b1ea92261b075e55c9523d5faebd19f35d2e4a5d502010e09624393d",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GroundTextureSticker.cs",
+      "sha256": "fb928dffb578d8348f55dc1839a9d7b3a6bce193430873d760059a0473b4bd8f",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/PerpetualTwilightSun.cs",
+      "sha256": "4011d0e284f901e642ff19a04ce087826db8439135fc8e7c1b7897c09a05be20",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/SculptedRockFusionParticipant.cs",
+      "sha256": "446ec087a5f6a0df1312e23a8aff0e9d059bb8b99c252ef45e50b7051c1714f2",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/SmoothRockCube.cs",
+      "sha256": "e9164de71d50547fa7e2b18bc208b3053342aae39c532d270d98154fccacefab",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DActionDpadGraphic.cs",
+      "sha256": "176d437116dbe2ccbae4b49bec61af532443f352a524c65c384b86f315e47b94",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DActionDpadHud.cs",
+      "sha256": "3f21513c58d7b5ab14dd5e516700497349bda4b5fb360d78010422a5172a7ff0",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DAuthoredFormationAsset.cs",
+      "sha256": "0c191b36089e8687bee588aa9ec7077666255e0beb84befcf86441ffead712ce",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DAuthoredFormationCatalog.cs",
+      "sha256": "5cb59d41b101a2c2a7671658ec41995a2b489e2108f2969aa424eb1f982b022d",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DAuthoredFormationPlacement.cs",
+      "sha256": "2799b12a8272dd7ffe5518e042422acce8f0a89e539970ce4439f46a5f5e97cd",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DAuthoredFormationVariation.cs",
+      "sha256": "01673c83734bc720f5ab173262a37c3e070f8229b627d870d59efb2dfc3ee898",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBaseRockAuthoring.cs",
+      "sha256": "9cccbdb40dd26b91441b5584d0fab9476d897449abd74ca6338d0c7c9a2e01ca",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs",
+      "sha256": "0747c8067a094eb26f00d3a9ad79f420fc563fe2136e0da421c195abad3b729e",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.Persistence.cs",
+      "sha256": "c5da0cd9c98d8148b63c462d179382e330357e9dd226dc1429aa467048091581",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs",
+      "sha256": "aa42d853f9a6c6e5393a1894056d54625d39d422e7191cae24fda9d63d6e53a4",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DChunkMeshBuilder.cs",
+      "sha256": "062763208f6fc325427e3eaa53c5ca7298f5e4595e8e04d107e1e9efb57a11cb",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceDecorator.cs",
+      "sha256": "1dcae1540b8238f9a34ec7fb24f466e9a50efe3fad388fdfa8f7fb673097cfc0",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCliffFaceMeshBuilder.cs",
+      "sha256": "2448d668ad5a4faf9b5db448145ac726f738cff843f2c23df9074f4497b94182",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DClimbSurfaceMath.cs",
+      "sha256": "63d513d1f664253134850811cbe01509c5a8846933af9c170c6849d888f829aa",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDebugOverlay.cs",
+      "sha256": "5bc9e05cc8446f428debdbf6d4141b2379a252bf1db67cd22da5d17561ce3bf1",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustAtmosphere.cs",
+      "sha256": "63023df89d81f20bd305bc09dc084b6498780fdbb080e6b7948482ded2756e80",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustDepositionDecorator.cs",
+      "sha256": "e44a055de17356a48a08a361a2ebaa9f5b3751b4cb657cd134a4d92d3a897f9c",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustDepositionPlanner.cs",
+      "sha256": "bcd0c1ebe35e92a6948166f75db463d4400e26d771e2d786d92b77d4dc3cd5a5",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustZone.cs",
+      "sha256": "8b871e5ae097b95813d04b865e3e877ae564d4f831585405031aa89dc0a47c3b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DFarLandscape.cs",
+      "sha256": "4f58a53ae86b1979d17fc627e4352f27507390ced3263058f7d762b063eb9e2b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DFootstepDust.cs",
+      "sha256": "a6c540bd528be6a3642cf5e9ea784059ec5d27b1cc5dc99bff5c170d651f4ec0",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DFormationTerrainShader.cs",
+      "sha256": "86f1b3241bffd28a25b4a56a769ece627f99eff57d11ab543cd6ae9933901143",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGameHudCanvas.cs",
+      "sha256": "b178164aa107eb3615ba1ca9fd94bd586ba6dc8582f62ae5fbf61d1a9248caea",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGeneratedChunk.cs",
+      "sha256": "c6d7ba7bebc45c11fdb0851e043275a502fd2d28f335ccc3847d317bc6b916f2",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGeologicalRockAdapter.cs",
+      "sha256": "90b69903cafbe7b150a0aede5f52147bedb2c65de9136fd4910166d9c126c9f3",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGeologyProfile.cs",
+      "sha256": "7bcf02d4f9cbce23da4bdbd031344f8832d746cb9adf9bc59ba5f5642224b4f3",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DGroundSurface.cs",
+      "sha256": "25de4c3329ff222a7a92e5661aa5feed7d0c6a62dd79d23072399a5b465a96fa",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.Algae.cs",
+      "sha256": "789fd52991e4e9055415f5a6ad435741b82dbba81e833cae2579a0ab90d72f58",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.cs",
+      "sha256": "a0fc5733b689630b53adf5c9d26613b995dbf72826e8f554bd9effa50b70b069",
+      "candidate_only_batch_cursor_guard": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.Inventory.cs",
+      "sha256": "8238c4e5d81af5b94272eca2e1ba1d7f1ce072d699441f92c0dd6bdfe0c9411c",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DLandscapeAuthoringSandbox.cs",
+      "sha256": "90525cb46ba246bc33ec9be3a6d0b3eac4c6aaa3612a7fcd5a82867dc1cca961",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DLandscapeGroundStamp.cs",
+      "sha256": "cd4ba1f42e99ce6cecd409ca442751e125d326422c7d60b84f79bb073fb6420f",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DLocalGridPathfinder.cs",
+      "sha256": "5e0baf4acd8f68b2d43ecc67186bc6d34dde371394976d245f21400975c2a3b0",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DLocomotionClipProfile.cs",
+      "sha256": "6dbbf230a304b704cd6dce01c5bc6c7a8f9744c049e59cf74b45150f485e28f1",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DMovementBasis.cs",
+      "sha256": "b4b98354ed5923dd1d14a8f54295ed44a1ae8a3acda7a7923e87b2c2bd871d6f",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DNaturalObjectCatalog.cs",
+      "sha256": "074816c2687b865f8b1b04bc6a7aea50466b797a18f6047fdc91e908177f1901",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DNaturalObjectDecorator.cs",
+      "sha256": "6d242bc196a7c1fa87f0069db5e3fc69dc00dc18d851b658de7fd6e19c33b087",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DNaturalObjectPlanner.cs",
+      "sha256": "e4e7b6abe9d43750920adff0bce48e3c12ce98de0f91088c4dd79ad4310c3a62",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs",
+      "sha256": "f4bc8844b987f2a257de553f7a682c8b6e556fb561bddd68960f77db960f02d2",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "a8696ff97448f0a2c8e77ea1861491a643ecada96eb87a2fdb6217dbd1c8b353",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.Waypoint.cs",
+      "sha256": "8d3eb194945d31026ae81a49857647db3919259682848ceb832892f0fd9fcb01",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlaytestPerformanceProfile.cs",
+      "sha256": "464ceb689c5505c81f75465dcdd278b216bb891234693c2f2ae95eb14ab04dce",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DProceduralWorld.cs",
+      "sha256": "175f1129bdcfc6d45a2c9daeb6322e0712c548e9b2a0a7841f9da62c1e435894",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DRockFormationAuthoring.cs",
+      "sha256": "9516a9651029281a43e02beaff7047f59bea9a7b42da43d63946cdebe7173f52",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DRockFormationGenerationService.cs",
+      "sha256": "99b0452676bb0b8fed35b42623a8d5c50618090e8f30af94affde6ce36acc582",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DRockFormationPlanner.cs",
+      "sha256": "9bac77d33a88d98b1af2a5f7938b8d04c2cc2a96325dde81d3b5de2eba2a35ae",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DRockGroundContact.cs",
+      "sha256": "5556a540939e8f4d1427337247172e780120810c968813c29428350726301ede",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DRockLandmarkAuthoring.cs",
+      "sha256": "2f40f81a6c9024440a53c11858378ab4108c5561901c6c501e4f46fadc288ee2",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DRockVolumeNode.cs",
+      "sha256": "4c00ae3e6e9106ed018791172b4bdc978c7f2bd30c3ed5a4d8e0251c29139deb",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DRockVolumeOverlap.cs",
+      "sha256": "15cd7fdb3d5edd083f3ec52f8aef2b8a2508349d693aec62757d27d7342be7be",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DRockWorkbenchAuthoring.cs",
+      "sha256": "ee0679661462c465a8b4990e219b5c5f37e39874b9fab49d40fff2a6e645b968",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DRockWorkbenchFormationAuthoring.cs",
+      "sha256": "709e50c590ccf87550e7f34aa5e4d978c3c74e67a7596626e106d7d2a4564e8b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DTraversalObstacle.cs",
+      "sha256": "d4264f980ef709720c883b11c3b4e179a3b12878082781efaa4332c69b393600",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DWorldGenerator.cs",
+      "sha256": "60ba68cceade18b59feb69a2db611b5979429e56de226184aa348c70abfbe287",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DWorldSettings.cs",
+      "sha256": "25fee1099345a1c3d1bd98451a32229b6339a7eb0427d76953d4733cc13d8924",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DWorldSurfaceSample.cs",
+      "sha256": "06ef125504d1e2cd2077ecf819845e68a34531bf19860bb606ac2a892a7b1e46",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargo.cs",
+      "sha256": "d43ad6e690eb1bcea546c3882a24f449dfe81899844397945312d8678957d69d",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargoAccess.cs",
+      "sha256": "f4ed7e59542f9e2921c43100b6364945a05cdde234b3d39e37f11599a8d15991",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargoSnapshot.cs",
+      "sha256": "8314687d2d932f1ad50f6d264af402e50adae8da177442670446d05419486abd",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargoVisuals.cs",
+      "sha256": "795aed7c3041a7634c0d46c3b6753120c4c5f24977f273a4367ecb5de420362d",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCompanionSnapshot.cs",
+      "sha256": "99097335e2a9f0ef765d3d9f3223453ff094cc39e26a730502d0f46816787ab4",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmLoadProfile.cs",
+      "sha256": "c56726cac8a31427801d148bb5dad171a08f27914ef8631dec89fd458bc57aae",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmState.cs",
+      "sha256": "ad5cac7ae3df6996cd353b8d07fde20e5f0866b2501406dd9417e853a1fbc6b0",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DCargoAutoPacker.cs",
+      "sha256": "4b13a0f0e8daa3a9580791378b2dfa25d091206f42a8312052ca727d731d9bea",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DPackingSettings.cs",
+      "sha256": "3a41baaad22df2bfd522ea9fbd8254e8a29c4eb6c59461e8b681a4fec3ccfbdc",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampController.cs",
+      "sha256": "25a2f2ce5de3b39ea4bdf4041b8707c54d94a666664809ffab2222073e10aa65",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampController.Persistence.cs",
+      "sha256": "f12849f9feb7d6a01f17b50e176ee15a2ccb795bebdd779cead0403f814fb77b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampPlacement.cs",
+      "sha256": "d02f910818577c45b14eeb988a7cb3f38ba39064189187f6223e5550ffa0e434",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampSceneInstaller.cs",
+      "sha256": "a8f73c6f100547432048c2e5de5f579b30b97522b049e772a1f7f3397c83a653",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampSettings.cs",
+      "sha256": "7f6e62cc74bfaf7137c3b4e7c5e70163b44e9d2818728577e305b0f9b2f0362b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampState.cs",
+      "sha256": "c60eb8595937b19386784dff8422d8abb0b4f198e054b876a50f9294a6742064",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampView.cs",
+      "sha256": "6037bdcc714e19a249b01bf106f61cbbb9765d22db10412adf7805b993bd91d0",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DWaypointCampController.cs",
+      "sha256": "b05c3ef2e0836bde015f46179cfe2809c3cec8382d470f3bcfa7c0f7d6eaccb9",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DWaypointCampSettings.cs",
+      "sha256": "1da2bcf001582c2f0d340cd2cd84f05430e8c0e4b8366b2e3189319235ed42ab",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/ITopDown3DInteractable.cs",
+      "sha256": "3200674ac448759ec43677b84d5e21bc1749681f83085908820a1559290ba64d",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DGatherActionState.cs",
+      "sha256": "07820c7e592382e16d7f8f3b32f49c679a10acba96f0de356cf32f0ed8b27619",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DInteractionController.cs",
+      "sha256": "c05ac7f4ea8f775c02adf9abafd507e22ef07a28dcfadd3cc9c3ac2c57b6fae5",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DPlayerActionController.cs",
+      "sha256": "354dc588ec072f7987dfceb7e5312049e972c5be2aab31b9741d36919eac06cf",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DCargoAccess.cs",
+      "sha256": "1dadaba5fa852aa980df317f54dbaedfa069f8e4ddf1ddcfdcbadbe48c6ed60b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryPolicy.cs",
+      "sha256": "047a73e0873e9e561a4aaafa867804ff487fa113dffd27135559c2d424753a71",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventorySlot.cs",
+      "sha256": "37c1fa8291aa711e545bf54f806886b32dc55dcfc89acf705d1485b91750d75c",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventorySnapshot.cs",
+      "sha256": "c4b91363b694333d15dc14caa2322f33032f2d42cb661028d9337ad458ffe649",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryState.cs",
+      "sha256": "2c83bbddcd5c180ec6c657968d37266e7af89224e4d37d3e0428724e67261388",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryState.Transactions.cs",
+      "sha256": "f608bfe7ff053b1f6bd0cc8243214dc0dab181e245eae0a82b3e811b00936b4e",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryTransferService.Commands.cs",
+      "sha256": "6758eecbafc219eeb193576cf6f550b55ff796e96f02df7404b837be51d687fa",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryTransferService.cs",
+      "sha256": "5a63c0f6bf82ed481c4041985cc5b6b8f15bbad076efc328c3e7b61b81edd359",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DItemDestinationService.cs",
+      "sha256": "b057814e7beab03e5c032ecbd4a29ded894161fef9e5a3ac47c0e292b13d237d",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DPlayerInventory.cs",
+      "sha256": "9eea28e2e86bae609ec474a8c1c9c267a428bcb7026ebb07d4ee66048a45f3c3",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DResourceCache.cs",
+      "sha256": "1efd7d31c965818fbc7d4db9c477f8ccc2469119e9fb0688132018ab4ba91ad0",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Items/TopDown3DItemAmount.cs",
+      "sha256": "be5e0a6ce588770e2ff9e1c3c2cd8e96f2d58ec1b305dbcda0b6cd7658641f62",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Items/TopDown3DItemCatalog.cs",
+      "sha256": "ab3ce6da46a1b3c87a299a5b20a11699383d7a2b3cd50c50be95d4155c6635f1",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Items/TopDown3DItemDefinition.cs",
+      "sha256": "05d80787f7d276f23de36ac24bd939a4250b78fa0d3c9ca721429b0019b9235b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandCheckpointWriter.cs",
+      "sha256": "9989e6b0fda96ac390536eaac1509bdc4d582abc1828cb394dba58fb8d34dfc1",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs",
+      "sha256": "f98611bbe7979ab82ba89b60139b2847b05b4016bab704c3c2720f2c7f2ae1c7",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs",
+      "sha256": "33900c973bc7430c3224790a257d52d85de4fd848f3fc24615577b11657e185b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/TopDown3DGameStateSaveService.cs",
+      "sha256": "4dd9860e517ce37934387cac3e63c6bc147ea5150f927846549bb8ba81bbff68",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/TopDown3DGameStateSnapshot.cs",
+      "sha256": "ee28f1f7b1c17d3d25d70b535db4294e6128de32784a17f31dc660231bf5ff93",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAnamorphicStreakFeature.cs",
+      "sha256": "cc2edbdca8f87af4815e886d643756059d14dc3b70a820fed0ae56649b9ab033",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DDustOptics.cs",
+      "sha256": "46d1c4a7d1c958e9ae35b87352bbfebb9f58480adbe12867e93e3cc6ef124c54",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DRoundLensFlareFeature.cs",
+      "sha256": "33d76e5b3614692c4e2573770366756453dc673eeb538118520647d9ed878c45",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSceneRenderingOverride.cs",
+      "sha256": "19efb6c2bd5aed35bf749efd8f4d00149d648c3c411439b5bb97c15551e40519",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunBloomFeature.cs",
+      "sha256": "d7610bc1f541960b33d11ce8f553980ea020aea87fcd92b2efc30c509daaa5c2",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DTiltShiftFeature.cs",
+      "sha256": "977588ee03bc55b398717a7d0031dd4c6c8460731ee27787e144f5bab9d2edbd",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DVolumetricDustFeature.cs",
+      "sha256": "d717546dededa13312e42f7867f5a69ae5190e39bd75f76e6b8d17abb63e6d25",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/GreaterWastelandIronstoneInstaller.cs",
+      "sha256": "35cd782bad88547f8678585c05fa711e6d88313b9969f4a51a0e0ae9d93b73df",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/TopDown3DAuthoredIronstoneNode.cs",
+      "sha256": "7ba2a9b7844952fb6995b0c74dbf87a1653d81e3d27a6f2eb1be5bfcd31e7fd9",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/TopDown3DHarvesterSettings.cs",
+      "sha256": "47d89a4e7bc67be2649efc97f04197515ae6d248ff98f51a91dee795cc9002ca",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/TopDown3DHarvesterView.cs",
+      "sha256": "021c4f75b38ae2c2c1cbdc1861794394ff2ac667161f096b05d1b9ac8f61690b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/TopDown3DIronstoneNode.cs",
+      "sha256": "72e029a456d278cd05ee04b06ab6d8ffdc2c3ca86271c449bd59742bcfbcbfe9",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/TopDown3DPlacedHarvesterState.cs",
+      "sha256": "434c4d1bc25d41ebcad41cb42c254f99b91a563ba7fcbff2d242015353d75012",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/TopDown3DResourceCatalog.cs",
+      "sha256": "1cd63661c8f281a7b41114bfe02c88f434894d56c464df6a988b2403d50eab30",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/TopDown3DResourceDefinition.cs",
+      "sha256": "437b60463a041b453df17bea55a650240e453cf457190207a44480b1c588cb5d",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/TopDown3DResourceNodeDecorator.cs",
+      "sha256": "4e405ea7778680a8c92bb4a341c0a8dd94963a81d72dc3d1207eea2941553e0a",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/TopDown3DResourceNodePlanner.cs",
+      "sha256": "2211030b66ef7c8ef4555ea7c2657212651f3984793545d0235789a83ef4322c",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/TopDown3DResourceWorldState.cs",
+      "sha256": "7e8a59fb576ab88e8de822f792639085902200cff5028e48b7c89aa7bf1942ec",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Simulation/TopDown3DWorldSpeedController.cs",
+      "sha256": "a13e0f6580b64f8619eff40b460f2a838aea94a129a97819a5d1b382d22e2ac0",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DAlgaeCanisterHud.cs",
+      "sha256": "c2767635094a9213e156c64b4e93501040961f0d7bc74d9ab937a20407ae3a43",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DAlgaeCanisterSettings.cs",
+      "sha256": "a624a675a8df182368831402b596c5ffa66f3a3dfe79c3fb54edc46140d3e55a",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DAlgaeCanisterState.cs",
+      "sha256": "30bfe3ba8311082bdb1c90270da4b82c080ee9ac9fef2c32245d1f70e03a88bb",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DAlgaeConsumptionController.cs",
+      "sha256": "0a8db0daf8026bef0fd230292d1eb37784869f35b097734f2c2ba2311a466495",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DSurvivalHud.cs",
+      "sha256": "5ce94265606dcc16624e9914abd9d1fe892100ef0eb135c97ffaae44cc429a9e",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DSurvivalSettings.cs",
+      "sha256": "24552c183d03bf9c898a21b45893bf86318ecc4a37e2afdab27c3cde93be061b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DSurvivalVitals.cs",
+      "sha256": "f3dab99512873528672d40cd70fd91be6c576d408871b3b9df99e8e3314d4e01",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DCampCanvas.cs",
+      "sha256": "972c559b4d8f190890f444b51acb82f682b5c47331d4e167f615dd5417d1a8ec",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInteractionFeedbackHud.cs",
+      "sha256": "b2eb4bd2b1c569fc5c7c88e105dcd4b41d50f82a41e70625c0a446084ae1232f",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventoryCanvas.cs",
+      "sha256": "a2627c26dc25182bf39721d606cc6748671009fbf6df29b639acf66ab602fb2c",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventorySlotView.cs",
+      "sha256": "d169c7adeb9076a0f6ed12df597d1eb8c3157c6c45184421ab5b4202672b8193",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventoryUiController.Commands.cs",
+      "sha256": "b77ae2861f530a7b26bfe9c4d4fdce4c564ba6bac44319218bedcf5857c221cc",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventoryUiController.cs",
+      "sha256": "16c3ee9befc650b236f2c149ecd2ae6383ad3a51181c66f8c572bea3256643ee",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventoryUiSceneInstaller.cs",
+      "sha256": "bdff81b14c79a8cdff5b31a6e2cc0a71683bd4000135b17688aca209f0b751ca",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuController.cs",
+      "sha256": "18f39c19f51029f97605e559f2d760270167a28a3c60314ed8279725c9150d87",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuFocus.cs",
+      "sha256": "1770c0ffa8d269e8a1d9f6842f5e024803a19ace18bc8c8570b4d41486b50337",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuSceneInstaller.cs",
+      "sha256": "f543f834122065d247b70611dd3acf27fb7426521766dc6620079bca279ba670",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuSettingsService.cs",
+      "sha256": "43a289895fb7be628a1d816cfc6504c5a4fba6eb29b6a7b6c7f4e5da99ba9aea",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuView.cs",
+      "sha256": "bdbe4b821a19a1d8c92a3a3c9bb206238f63339b9fe7d9f3c32016760442263f",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DRadialCanvas.cs",
+      "sha256": "d1560ffa4cab14d9bf1c2c9ac9479b66fd2aca75c9dfda3efe25df7faada294b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DRadialMenuController.cs",
+      "sha256": "478013abf11819e4d4377637b3728ea9f1158bf6059b268fee3c93ef49e50f70",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DRadialRingGraphic.cs",
+      "sha256": "4b323fa8b63dc94eb8c87eb9d56e4a1c1657a75c10ff07cec943455405413710",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DRadialSceneInstaller.cs",
+      "sha256": "6aa608f255d1af2a4f3d001700de401547597f17d4f1036b059af4372b648f68",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DRadialState.cs",
+      "sha256": "35e277c9a2eeb06d9c0f0e4df1a2fc128b7827820556aae2dd565e73ea6e8443",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Canyons/CanyonGraphContracts.cs",
+      "sha256": "633e9126d7018742b22ccf75350ae708a3426cdd26fb4e35dd6afcafd619f6a5",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Canyons/CanyonGraphValidator.cs",
+      "sha256": "325e766a4a22bbef8bd01ff1f69401f4dabeb1a14ca968cdbc7f553b24ffa574",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Canyons/CanyonMacroRouteGraph.cs",
+      "sha256": "c64a5052bd6613cc920a1cda6bbc1f0ed4e0e3191d266e77bf13bf181b34d255",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Canyons/CanyonSystemCellIndex.cs",
+      "sha256": "64bc5b3ce132f8d231f45518994116f5e3eaafff0808e20cb2e5e61498cfc168",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Canyons/CanyonSystemPlan.cs",
+      "sha256": "b4627cef5de6b83309adfa8c89b303e256c4b054c5ea94fd187c5ed920fdfdce",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Canyons/CanyonSystemPlanner.cs",
+      "sha256": "312841ff77c8d6f5fd8c7c9179cc7c9a5d13e9019ffadaa3e4a35a623fc90f03",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Coordinates/AbsoluteWorldPosition.cs",
+      "sha256": "d13e3da448bc938b36dd6666829174c6790760032849685ba226fa9309b9e136",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Coordinates/IWorldCoordinateModel.cs",
+      "sha256": "1d570a4ab2843dc44f7376f76ab5a287e6593b296030033fc86b1a5150b97457",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Coordinates/LocalOriginFrame.cs",
+      "sha256": "821af9e790993282f8763ada5d5c1393986c24c4043bbcf9eed6f7bab4c3a5c4",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Coordinates/NonCanonTechnicalCoordinateModel.cs",
+      "sha256": "480677939e1e6401932e61257e447e9034c1e20a4002b44794eb67436961e747",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Coordinates/WorldCoordinateAddress.cs",
+      "sha256": "c95e4bcf70fe525045525534eec090fd82f5ef39233ba4308aebdc8339f86c6f",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Coordinates/WorldCoordinateContext.cs",
+      "sha256": "8c808ab35af237188ea557dd8e3fc807d9c7620e9aea2941776a852618c31bd9",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Coordinates/WorldCoordinateContextSampler.cs",
+      "sha256": "7eca3a3f6d9cc9a75dc4b0265335710bf5bf499145ba7e25b88e43eedf07cc4d",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Geology/GeologicProvinceCatalog.cs",
+      "sha256": "2414a9d7aaec3e0ba0c256970bd3ad323330e6b741d5b4988f702b42dab3fa39",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Geology/GeologicProvinceDefinition.cs",
+      "sha256": "50817776d26235c5a44ea57bf28968e6a8003ee8fb4998257b86086831a6c7d2",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Geology/NonCanonProofInfluenceProfile.cs",
+      "sha256": "7fdfe5156d2fb33e94f1a1da31e77f1e0bb770ef376f104fb1eb268f5a1de712",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Geology/StrataFamilyCatalog.cs",
+      "sha256": "27677621f73f0894e26bc3d569601be73536d4a7b7a332de98ed35241a9acd5f",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Geology/StrataFamilyDefinition.cs",
+      "sha256": "4945de0c2770fe2383dc6185b2b69b4b295f9063dc5df1fef36921fc5abce460",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Geology/WorldLandscapeParameters.cs",
+      "sha256": "adcaf657884c48265d9218825a9965988f9e5b335c5291a1afee5db0b87a773b",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Geology/WorldRockFormationPlanner.cs",
+      "sha256": "b5d61f29cc78472a5ab7baa77fd203fbd99d6ce2677fb9187838e0480a6b422a",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/History/IWorldHistoryPlanProvider.cs",
+      "sha256": "1b456148abbffbc2200b438f7ac8cad293108cadc1eebf7d4c293d84eb40d739",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/History/WorldHistoryPlan.cs",
+      "sha256": "213a89e2cba04b13f18fea05ea91d3beca53913347ba92a637326d11e8fbd15f",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Identity/WorldFeatureId.cs",
+      "sha256": "87c7a76d849d697ae8bc5b6f46aa38d4affa9eee2212d93db9976938dba2594d",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Identity/WorldIdentity.cs",
+      "sha256": "21ff39d3e4325919bd425ffeef1672b7fcc588faf68c7406197bce181bcd6c34",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Identity/WorldSeedNamespace.cs",
+      "sha256": "ee405a6dcdffd3c959c741a5afa75f1d16e5a443f50e0fb6f6685c3c3bd99003",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Identity/WorldStableHash.cs",
+      "sha256": "bc9a2b4494f8e1685face40b4bac32960b3ee2deedc4a730b84ce082470790b8",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Identity/WorldVersionManifest.cs",
+      "sha256": "56da339e35463c2df992bcc3885fc1656ce8abef36f858174cdf1c7eb461dcd0",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Landforms/HybridTerrainPlan.cs",
+      "sha256": "c042a14829fb1e59d16b2dee297614f99e28b52df1fc79df37b8257debd38169",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Landforms/WorldCliffDebrisPlanner.cs",
+      "sha256": "961d271a36c4a78b6cabd420ddd5d8cf8ad6f3fee5a396267a334a9d88838f50",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Landforms/WorldCliffFacePlanner.cs",
+      "sha256": "89419e346b8940672ad24dc89670a4756f1bd00df8b7b030dd4294ecc1101251",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Landforms/WorldCliffSectionStudy.cs",
+      "sha256": "ae16bf9518ec6a57a4b3a067a7571eaa96507fed0f7ec3379bb514963e70c9ae",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Materials/WorldSurfaceMaterialService.cs",
+      "sha256": "51270363a0eafe81c38fc39203364ffac6bbcceb6e32c99e13bf051a818f385a",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Persistence/SavedPlaceRecord.cs",
+      "sha256": "e566bb707efc03ea04b5e2edb6ba9eac623faf6a3b397cf45e6392ed62fceb07",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Persistence/SavedPlaceRecordCodec.cs",
+      "sha256": "4891c837d14f3208bb67429fca5f80492066cb3c39437169bb37d45cf2e86b89",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Persistence/WorldPersistenceManifest.cs",
+      "sha256": "0597058a1fab6bcaa7bcaffdf271273a8110d41f76714008833dfb3cd4ed7dd7",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Planning/WorldPlanContracts.cs",
+      "sha256": "c297531dc1e2047190734f7579c174bb9d3aa5b4bead2987cd7c52fe465ffccb",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Planning/WorldPlanKey.cs",
+      "sha256": "76a766bb871d3ae62f63cc7f2fcb1d31be03f419712ff5ef4f8398511fc8feac",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Query/DormantHybridWorldQueryService.cs",
+      "sha256": "cd68a10ddb63066fe069125f8fe96cd01797f77578a49cd56f4065fa8a780026",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Query/UnboundedHybridWorldQueryService.cs",
+      "sha256": "80b7d4e9fb7ab239f65ac49531848f805b8ab33f6d96404b1aac23e19f326779",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Query/WorldQueryContracts.cs",
+      "sha256": "d0c7b5b7be10221cd75d9a1e1cd5db190f97509ffbeb90317fdec323d3a53b2a",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Representation/WorldRepresentationBufferPool.cs",
+      "sha256": "aee3c8fdb2536cc3eb8c7456603acfc80bfcb7b5247aa39a018420a3798f2085",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Representation/WorldRepresentationCache.cs",
+      "sha256": "c0116db8a0784a8511db5b4dbf99a121c311e4fa88855189b51f839865127b51",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Representation/WorldRepresentationCompiler.cs",
+      "sha256": "e4fd8ecaab1c24e6abd70e25a8ab8569a35a82317df1105d6e35b42107489088",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Representation/WorldRepresentationContracts.cs",
+      "sha256": "ede4eee4b6f9834e0b367ada748776092e5386ee4c83b3dd680fd2e3a7f7f201",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Representation/WorldTerrainMaterialPackingAdapter.cs",
+      "sha256": "d5e6b7b8e820553382ac89f05a4a5edc5063e3827b36c45fa4aadb448e27b249",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Runtime/WorldCreatorProductionProfile.cs",
+      "sha256": "166d8c66990034c993744b85447b575cdcb671a33ebfbdc1b43f81456a733cdd",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Runtime/WorldCreatorProductionRuntime.cs",
+      "sha256": "26b0910806bcac53996587d083b5fe1beb6523250eba6d39dd6029dba05f5d83",
+      "candidate_only_batch_cursor_guard": false
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/WorldCreator/Streaming/WorldRepresentationScheduler.cs",
+      "sha256": "b6b7bda7f89dfd252c5bc83bf3050508988b240eddb4c5edcfa705c20e8c82b8",
+      "candidate_only_batch_cursor_guard": false
+    }
+  ],
+  "runtime_sources_compared": 206,
+  "tests": {
+    "passed": 103,
+    "failed": 0,
+    "skipped": 0,
+    "source": "Docs/Evidence/Performance/population-microsteps-editmode-2026-10-12.xml",
+    "reuse": "Existing tests reused after source/metadata reconciliation; no repeated test or Player run."
+  },
+  "production": {
+    "scene_sha256": "2747f07f81eed430cc66e339bf6e287a903b8a2bd41ff5af549d13447bf4fc89",
+    "terrains": 8960,
+    "colliders": 8960,
+    "owner_receipt_matches": true,
+    "scope": "Scene inventory/hash reconciliation with existing owner evidence, not new native-data or presented-gameplay proof."
+  },
+  "boundary": "One retained candidate cursor guard avoids batch cursor capture; it is absent from production. Other 205 runtime files match tested candidate bytes/text and all paired metadata match. Dirty artist materials/Fused art not modified/staged.",
+  "remaining": [
+    "Author visual/gameplay/save-resume/reference-population acceptance",
+    "Author disposition of future production-population/save deployment and optional work-partition experiments",
+    "Presented-gameplay performance remains unproven; no interactive FPS acceptance inferred"
+  ]
+}
