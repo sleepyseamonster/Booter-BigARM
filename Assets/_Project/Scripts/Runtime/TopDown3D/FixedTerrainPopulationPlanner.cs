@@ -104,10 +104,18 @@ namespace BooterBigArm.TopDown3D
             private Candidate current;
             private Surface center;
             private float lowest, highest;
+            private bool generatingCandidate;
+            private long pendingX, pendingZ;
+            private Vector2Int pendingCell;
+            private int pendingSlot, pendingStream;
+            private double jitterX, jitterZ, pendingPriority;
+            private string placementId;
+            private float placementYaw, placementScale;
             public bool Complete => ordinal >= FixedTerrainPopulationIdentity.CandidatesPerCell;
             public bool Cancelled { get; private set; }
             public int Operations { get; private set; }
             public int SurfaceQueries { get; private set; }
+            public int IdentityHashes { get; private set; }
             public int CachedCandidates => cache.Count;
             public Vector2Int Cell => cell;
             public string RecipeId => owner.identity.RecipeId;
@@ -132,7 +140,7 @@ namespace BooterBigArm.TopDown3D
                 return state.RegisterPlannedBaseline(this);
             }
 
-            /// <summary>Each operation is one candidate lookup, one neighbour, one mask or one surface query.</summary>
+            /// <summary>Each operation performs at most one identity hash, neighbour/mask check, surface query or placement publication.</summary>
             public int Advance(int maximumOperations, double milliseconds)
             {
                 if (maximumOperations < 1 || double.IsNaN(milliseconds) || double.IsInfinity(milliseconds) || milliseconds <= 0)
@@ -145,19 +153,21 @@ namespace BooterBigArm.TopDown3D
 
             private void Step()
             {
+                if (generatingCandidate) { GenerateCandidateStep(); return; }
                 if (phase == 0)
                 {
                     gx = (long)cell.x * Grid + ordinal % Grid; gz = (long)cell.y * Grid + ordinal / Grid;
-                    current = GetCandidate(gx, gz);
+                    if (!TryGetCandidate(gx, gz, out current)) return;
                     if (!current.Eligible) { Next(); return; }
                     neighbour = 0; phase = 1; return;
                 }
                 if (phase == 1)
                 {
                     if (neighbour >= side * side) { mask = 0; phase = 2; return; }
-                    long x = gx + neighbour % side - halo, z = gz + neighbour / side - halo; neighbour++;
-                    if (x == gx && z == gz) return;
-                    var other = GetCandidate(x, z);
+                    long x = gx + neighbour % side - halo, z = gz + neighbour / side - halo;
+                    if (x == gx && z == gz) { neighbour++; return; }
+                    if (!TryGetCandidate(x, z, out var other)) return;
+                    neighbour++;
                     if (other.Eligible && (other.Position - current.Position).sqrMagnitude < owner.spacing * owner.spacing
                         && (other.Priority < current.Priority || other.Priority == current.Priority && (x < gx || x == gx && z < gz))) Next();
                     return;
@@ -167,6 +177,15 @@ namespace BooterBigArm.TopDown3D
                     if (mask < owner.exclusions.Length)
                     { if (owner.exclusions[mask++].Intersects(current.Position, owner.footprintRadius)) Next(); return; }
                     probe = 0; phase = 3; return;
+                }
+                if (phase == 4) { IdentityHashes++; placementId = owner.identity.CandidateId(cell, ordinal); phase = 5; return; }
+                if (phase == 5) { placementYaw = (float)Sample(cell, ordinal, 4) * 360; phase = 6; return; }
+                if (phase == 6) { placementScale = .85f + (float)Sample(cell, ordinal, 6) * .3f; phase = 7; return; }
+                if (phase == 7)
+                {
+                    placements.Add(new FixedTerrainPopulationPlacement(cell, ordinal, placementId,
+                        center.Position, center.Normal.normalized, placementYaw, placementScale));
+                    Next(); return;
                 }
                 Vector2 point = current.Position;
                 if (probe > 0)
@@ -181,10 +200,7 @@ namespace BooterBigArm.TopDown3D
                 if (highest - lowest > owner.relief) { Next(); return; }
                 probe++;
                 if (probe < 9) return;
-                placements.Add(new FixedTerrainPopulationPlacement(cell, ordinal, owner.identity.CandidateId(cell, ordinal),
-                    center.Position, center.Normal.normalized, (float)owner.identity.Sample01(cell, ordinal, 4) * 360,
-                    .85f + (float)owner.identity.Sample01(cell, ordinal, 6) * .3f));
-                Next();
+                phase = 4;
             }
             private bool ValidSurface(Vector2 point, Surface sample)
             {
@@ -193,18 +209,34 @@ namespace BooterBigArm.TopDown3D
                     && float.IsFinite(n.z) && n.sqrMagnitude > .000001f && n.y > 0
                     && (new Vector2(p.x, p.z) - point).sqrMagnitude < .0001f && Vector3.Angle(n, Vector3.up) <= owner.slope;
             }
-            private Candidate GetCandidate(long x, long z)
+            private bool TryGetCandidate(long x, long z, out Candidate value)
             {
-                if (cache.TryGetValue((x, z), out var value)) return value;
+                if (cache.TryGetValue((x, z), out value)) return true;
                 long cx = FloorDiv(x), cz = FloorDiv(z);
-                var coordinate = new Vector2Int(checked((int)cx), checked((int)cz));
-                int slot = (int)(z - cz * Grid) * Grid + (int)(x - cx * Grid);
-                value = new Candidate(owner.identity.CandidatePosition(coordinate, slot), owner.identity.Sample01(coordinate, slot, 3),
-                    owner.identity.Sample01(coordinate, slot, 5) < owner.density);
-                cache.Add((x, z), value); return value;
+                pendingCell = new Vector2Int(checked((int)cx), checked((int)cz));
+                pendingSlot = (int)(z - cz * Grid) * Grid + (int)(x - cx * Grid);
+                pendingX = x; pendingZ = z; pendingStream = 0; generatingCandidate = true;
+                return false;
+            }
+            private double Sample(Vector2Int coordinate, int slot, int stream)
+            { IdentityHashes++; return owner.identity.Sample01(coordinate, slot, stream); }
+            private void GenerateCandidateStep()
+            {
+                if (pendingStream == 0) jitterX = Sample(pendingCell, pendingSlot, 1);
+                else if (pendingStream == 1) jitterZ = Sample(pendingCell, pendingSlot, 2);
+                else if (pendingStream == 2) pendingPriority = Sample(pendingCell, pendingSlot, 3);
+                else
+                {
+                    bool eligible = Sample(pendingCell, pendingSlot, 5) < owner.density;
+                    double x = (double)pendingCell.x * FixedTerrainPopulationIdentity.CellSize + (pendingSlot % Grid + .1 + .8 * jitterX) * SlotSize;
+                    double z = (double)pendingCell.y * FixedTerrainPopulationIdentity.CellSize + (pendingSlot / Grid + .1 + .8 * jitterZ) * SlotSize;
+                    cache.Add((pendingX, pendingZ), new Candidate(new Vector2((float)x, (float)z), pendingPriority, eligible));
+                    generatingCandidate = false;
+                }
+                pendingStream++;
             }
             private static long FloorDiv(long value) => value >= 0 ? value / Grid : (value + 1) / Grid - 1;
-            private void Next() { ordinal++; phase = 0; }
+            private void Next() { ordinal++; phase = 0; placementId = null; }
         }
     }
 }

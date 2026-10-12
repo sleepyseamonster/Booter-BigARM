@@ -1,0 +1,441 @@
+{
+  "date": "2026-10-12",
+  "scope": "One identity hash per planner operation; split final probes, ID, variation and placement publication",
+  "sources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPlanner.cs",
+      "sha256": "8341c7f7ec542cbaa96a3211b7c7c51de3c75c9ce32bd20b2a93dd4884ae0d1f"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationPlannerTests.cs",
+      "sha256": "c283b7f718ff57438dbbf77e9a5bc51a2fb3847705befd8a0b854e6a9813bcb0"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-microsteps.json.gz",
+      "sha256": "070f10ebac6dc76c52a57fc2346fdd98ffc73c648432c3d87c09a7e353fc1d81",
+      "candidate_original_sha256": "24164b595c31c803f32f75542c84443e2436d4987f74bd0a68b842689731a151",
+      "compression": "gzip"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-microsteps-summary.json",
+      "sha256": "e19bbc00c48add50a4f021a881761ffc46c5c47829fa304aaad8d04f5e8a5215",
+      "candidate_original_sha256": "e19bbc00c48add50a4f021a881761ffc46c5c47829fa304aaad8d04f5e8a5215",
+      "compression": null
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-microsteps.png",
+      "sha256": "fb51e28b595b6cc614638cc4e03a934826dd4985e1e690b3a341b2ab3b34057f",
+      "candidate_original_sha256": "fb51e28b595b6cc614638cc4e03a934826dd4985e1e690b3a341b2ab3b34057f",
+      "compression": null
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-microsteps-overlay.json",
+      "sha256": "62bbe57bf4fecec9ee1335464d1f68efce6bec22f5d07ff11c04b0d3d5409083",
+      "candidate_original_sha256": "62bbe57bf4fecec9ee1335464d1f68efce6bec22f5d07ff11c04b0d3d5409083",
+      "compression": null
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-microsteps-build-watch.json",
+      "sha256": "08610639a639c6ca8d03740f59c39c59f98868d3f7a6500d3b86d0ed053ec3ae",
+      "candidate_original_sha256": "5362453ceab4b1eb0b9c644259ea8557f2c0fb62b7c643ac1fb0afcf93bb7a9d",
+      "compression": null
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-microsteps-process-watch.json",
+      "sha256": "235f5c3d6c1cab3094f41fc207fd3a2d4881b93209baf612307db1d7ea403891",
+      "candidate_original_sha256": "1d7f92df03cf0986b53c1cd0a34493286dd64a1fb9aabd3efa3c99a644c7766b",
+      "compression": null
+    },
+    {
+      "path": "Docs/Evidence/Performance/population-microsteps-editmode-2026-10-12.xml",
+      "sha256": "f1dd0055b95a8a65c19516b181af7649599d007a86c9f18e0bf4ed5ee6792ff9",
+      "candidate_original_sha256": "fb5c596adbc10722429854e7714a68bab590b67b9c90d8d3dc8490d705b30992",
+      "compression": null
+    }
+  ],
+  "tests": {
+    "passed": 103,
+    "failed": 0,
+    "skipped": 0,
+    "new_proof": "Every single-operation advance performs zero/one hash; after nine footprint probes, three independent hash steps precede placement publication. Reference placement/ID/variation and state/integration gates pass."
+  },
+  "operation_contract": "Candidate lookup queues four resumable stream hashes; accepted placement separately hashes ID, yaw and scale before publication. Position arithmetic and streams remain bit-compatible. Partial jobs stay private and uncommitted. Scheduler retains64-operation/1ms limit; each work unit remains indivisible.",
+  "summary": {
+    "capture": {
+      "scope": "One manual offscreen reference run; actor motion, no injected input; not interactive FPS or traversal acceptance",
+      "initial_ready_seconds": 1.6272206000000002,
+      "startup_maximum_population_ms": 7.113900000000228,
+      "phases": [
+        {
+          "phase": 0,
+          "update": {
+            "samples": 7568,
+            "mean_ms": 1.3216088927313037,
+            "median_ms": 1.2533022090792656,
+            "p95_ms": 1.6940050991252065,
+            "p99_ms": 2.0956986118108034,
+            "maximum_ms": 5.377699621021748
+          },
+          "population_work": {
+            "samples": 7568,
+            "mean_ms": 0.003216199788578717,
+            "median_ms": 0.00269999999957804,
+            "p95_ms": 0.003900000001166859,
+            "p99_ms": 0.006499999997799932,
+            "maximum_ms": 0.411200000000278
+          },
+          "manual_render": {
+            "samples": 7568,
+            "mean_ms": 0.9169116807611026,
+            "median_ms": 0.881800000001931,
+            "p95_ms": 1.1264999999998082,
+            "p99_ms": 1.3083999999992102,
+            "maximum_ms": 2.087599999999412
+          },
+          "active_minimum": 182,
+          "active_maximum": 182,
+          "pending_maximum": 0,
+          "nominal_1ms_overruns": 0,
+          "actor_wait_samples": 0
+        },
+        {
+          "phase": 1,
+          "update": {
+            "samples": 7743,
+            "mean_ms": 1.2913790275291643,
+            "median_ms": 1.2229946441948414,
+            "p95_ms": 1.6586026176810265,
+            "p99_ms": 2.239299938082695,
+            "maximum_ms": 5.7555981911718845
+          },
+          "population_work": {
+            "samples": 7743,
+            "mean_ms": 0.0031206767402951877,
+            "median_ms": 0.002600000001962144,
+            "p95_ms": 0.003899999999390502,
+            "p99_ms": 0.006700000000137152,
+            "maximum_ms": 0.7845000000017421
+          },
+          "manual_render": {
+            "samples": 7743,
+            "mean_ms": 0.8930692109001694,
+            "median_ms": 0.85550000000012,
+            "p95_ms": 1.1027000000005671,
+            "p99_ms": 1.4310000000001821,
+            "maximum_ms": 3.4897000000029266
+          },
+          "active_minimum": 81,
+          "active_maximum": 182,
+          "pending_maximum": 0,
+          "nominal_1ms_overruns": 0,
+          "actor_wait_samples": 0
+        },
+        {
+          "phase": 2,
+          "update": {
+            "samples": 7983,
+            "mean_ms": 1.2526446708277257,
+            "median_ms": 1.1912981281057,
+            "p95_ms": 1.5688987914472818,
+            "p99_ms": 1.9806050695478916,
+            "maximum_ms": 4.536997061222792
+          },
+          "population_work": {
+            "samples": 7983,
+            "mean_ms": 0.007964249029188308,
+            "median_ms": 0.00269999999957804,
+            "p95_ms": 0.004199999999343618,
+            "p99_ms": 0.19409999999808747,
+            "maximum_ms": 1.9597000000004527
+          },
+          "manual_render": {
+            "samples": 7983,
+            "mean_ms": 0.8470451083552416,
+            "median_ms": 0.8166000000002782,
+            "p95_ms": 1.0279999999980305,
+            "p99_ms": 1.190299999997535,
+            "maximum_ms": 1.949199999998541
+          },
+          "active_minimum": 81,
+          "active_maximum": 182,
+          "pending_maximum": 2,
+          "nominal_1ms_overruns": 1,
+          "actor_wait_samples": 0
+        }
+      ],
+      "actor_horizontal_displacement_m": {
+        "booter": 40.74488584867253,
+        "bigArm": 8.986225755220788
+      },
+      "maximum_synchronization_count": 11,
+      "limitations": [
+        "Nominal time budget can be exceeded by indivisible work units and demand updates",
+        "Physics synchronization runs in actor callbacks outside measured population work",
+        "Warmup excludes initial readiness from steady update statistics",
+        "Endpoint pixels do not establish population appearance along the whole run"
+      ]
+    },
+    "work_phases": [
+      {
+        "phase": 0,
+        "name": "startup_and_settle",
+        "units": [
+          {
+            "unit": "BaselineCommit",
+            "phase": 0,
+            "count": 12,
+            "totalMs": 6.9979,
+            "maximumMs": 5.617,
+            "maximumAtSeconds": 1.1324875
+          },
+          {
+            "unit": "PlannerStep",
+            "phase": 0,
+            "count": 20114,
+            "totalMs": 45.7318000000025,
+            "maximumMs": 4.4701,
+            "maximumAtSeconds": 1.0662409
+          },
+          {
+            "unit": "Queue",
+            "phase": 0,
+            "count": 12,
+            "totalMs": 1.3368,
+            "maximumMs": 1.2813,
+            "maximumAtSeconds": 1.1381054
+          },
+          {
+            "unit": "Acquire",
+            "phase": 0,
+            "count": 182,
+            "totalMs": 6.1280000000000046,
+            "maximumMs": 0.8362,
+            "maximumAtSeconds": 1.1420494
+          },
+          {
+            "unit": "PlannerBegin",
+            "phase": 0,
+            "count": 12,
+            "totalMs": 0.8473999999999998,
+            "maximumMs": 0.8171,
+            "maximumAtSeconds": 0.0358895
+          },
+          {
+            "unit": "Initialize",
+            "phase": 0,
+            "count": 1,
+            "totalMs": 0.4724,
+            "maximumMs": 0.4724,
+            "maximumAtSeconds": 0.0021229
+          },
+          {
+            "unit": "Activation",
+            "phase": 0,
+            "count": 182,
+            "totalMs": 1.1860000000000004,
+            "maximumMs": 0.2624,
+            "maximumAtSeconds": 1.1495549
+          },
+          {
+            "unit": "Demand",
+            "phase": 0,
+            "count": 13,
+            "totalMs": 0.5310999999999999,
+            "maximumMs": 0.0529,
+            "maximumAtSeconds": 1.0613892
+          },
+          {
+            "unit": "PhysicsSync",
+            "phase": 0,
+            "count": 4,
+            "totalMs": 0.019599999999999996,
+            "maximumMs": 0.0141,
+            "maximumAtSeconds": 1.2955264
+          }
+        ]
+      },
+      {
+        "phase": 1,
+        "name": "normal",
+        "units": [
+          {
+            "unit": "Release",
+            "phase": 1,
+            "count": 1,
+            "totalMs": 0.4006,
+            "maximumMs": 0.4006,
+            "maximumAtSeconds": 3.8637461
+          },
+          {
+            "unit": "Demand",
+            "phase": 1,
+            "count": 50,
+            "totalMs": 2.0807,
+            "maximumMs": 0.0709,
+            "maximumAtSeconds": 5.0751065
+          },
+          {
+            "unit": "PhysicsSync",
+            "phase": 1,
+            "count": 1,
+            "totalMs": 0.0017,
+            "maximumMs": 0.0017,
+            "maximumAtSeconds": 3.87534
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "name": "camera_absent",
+        "units": [
+          {
+            "unit": "Release",
+            "phase": 2,
+            "count": 7,
+            "totalMs": 0.5012,
+            "maximumMs": 0.4311,
+            "maximumAtSeconds": 15.500024
+          },
+          {
+            "unit": "Retire",
+            "phase": 2,
+            "count": 101,
+            "totalMs": 0.22380000000000005,
+            "maximumMs": 0.19,
+            "maximumAtSeconds": 15.5005327
+          },
+          {
+            "unit": "Demand",
+            "phase": 2,
+            "count": 50,
+            "totalMs": 1.4341000000000006,
+            "maximumMs": 0.1681,
+            "maximumAtSeconds": 13.6991838
+          },
+          {
+            "unit": "PhysicsSync",
+            "phase": 2,
+            "count": 1,
+            "totalMs": 0.0017,
+            "maximumMs": 0.0017,
+            "maximumAtSeconds": 15.5151596
+          }
+        ]
+      },
+      {
+        "phase": 3,
+        "name": "restored",
+        "units": [
+          {
+            "unit": "PlannerStep",
+            "phase": 3,
+            "count": 11698,
+            "totalMs": 21.348499999998356,
+            "maximumMs": 1.8363,
+            "maximumAtSeconds": 24.0104057
+          },
+          {
+            "unit": "BaselineCommit",
+            "phase": 3,
+            "count": 7,
+            "totalMs": 0.6569,
+            "maximumMs": 0.2604,
+            "maximumAtSeconds": 23.7809531
+          },
+          {
+            "unit": "Demand",
+            "phase": 3,
+            "count": 50,
+            "totalMs": 2.1390000000000002,
+            "maximumMs": 0.1746,
+            "maximumAtSeconds": 23.7327815
+          },
+          {
+            "unit": "Release",
+            "phase": 3,
+            "count": 4,
+            "totalMs": 0.08310000000000001,
+            "maximumMs": 0.0813,
+            "maximumAtSeconds": 27.138225
+          },
+          {
+            "unit": "Activation",
+            "phase": 3,
+            "count": 101,
+            "totalMs": 0.48130000000000017,
+            "maximumMs": 0.0147,
+            "maximumAtSeconds": 23.8736312
+          },
+          {
+            "unit": "Queue",
+            "phase": 3,
+            "count": 7,
+            "totalMs": 0.0327,
+            "maximumMs": 0.0111,
+            "maximumAtSeconds": 23.8317233
+          },
+          {
+            "unit": "Acquire",
+            "phase": 3,
+            "count": 101,
+            "totalMs": 0.01619999999999996,
+            "maximumMs": 0.0079,
+            "maximumAtSeconds": 23.7812254
+          },
+          {
+            "unit": "PlannerBegin",
+            "phase": 3,
+            "count": 7,
+            "totalMs": 0.0208,
+            "maximumMs": 0.0039,
+            "maximumAtSeconds": 23.7329583
+          },
+          {
+            "unit": "PhysicsSync",
+            "phase": 3,
+            "count": 5,
+            "totalMs": 0.0087,
+            "maximumMs": 0.0018,
+            "maximumAtSeconds": 23.8553054
+          },
+          {
+            "unit": "Retire",
+            "phase": 3,
+            "count": 56,
+            "totalMs": 0.008799999999999994,
+            "maximumMs": 0.0008,
+            "maximumAtSeconds": 27.1383081
+          }
+        ]
+      }
+    ],
+    "limits": [
+      "Scope clocks include OS preemption, cold initialization and observer overhead",
+      "Nested scopes are inclusive; do not sum to derive a frame time",
+      "Fixed-step synchronization uses the most recently set update phase",
+      "One run identifies measured work units, not a controlled optimization speedup"
+    ],
+    "source_sha256": "24164b595c31c803f32f75542c84443e2436d4987f74bd0a68b842689731a151"
+  },
+  "runtime_assembly_sha256": "4502b061e6dcc5da301bfef7c673c94ace44087d292381b5bbf741b6d42c3e15",
+  "comparison": {
+    "baseline_receipt": "Docs/Evidence/Performance/population-planned-receipt-implementation-2026-10-12.json",
+    "startup_planner_max_ms_before": 7.6935,
+    "startup_planner_max_ms_after": 4.4701,
+    "initial_ready_seconds_before": 1.5150562,
+    "initial_ready_seconds_after": 1.6272206,
+    "startup_planner_operations_before": 13386,
+    "startup_planner_operations_after": 20114,
+    "startup_planner_total_ms_before": 44.7456,
+    "startup_planner_total_ms_after": 45.7318
+  },
+  "test_contract_update": "Old <2000 total-operation assertion became incompatible with deliberately finer operations (2082/2016 observed). Retain <=100 cached candidates and add actual hash bound <=592 for12m precise-lattice cases; preserve reference search comparisons and budget cap.",
+  "invariants": "IDs/positions/yaw/scale, masks, sparse state, save schemas, native residency, actor collision publication and graphics quality unchanged. No production scene edits or gameplay smoke tests.",
+  "limits": "One instrumented comparison, not pure CPU or interactive FPS. Startup overall7.114ms, baseline unit5.617ms; restored planner outlier1.836ms remains. Finer operations do not guarantee an indivisible hash/query or OS scheduling fits1ms.",
+  "remaining": [
+    "Spatial work-partition comparison and remaining production integration",
+    "Author visual/traversal acceptance"
+  ]
+}

@@ -12,6 +12,37 @@ namespace BooterBigArm.Tests
     public sealed class FixedTerrainPopulationPlannerTests
     {
         [Test]
+        public void SingleOperationHashesAtMostOnceAndCanPauseBeforePlacementPublication()
+        {
+            var identity = Identity(); var cell = Vector2Int.zero;
+            var planner = new FixedTerrainPopulationPlanner(identity, Flat, null, 1, .3f, 38, 1, 1);
+            var job = planner.Begin(cell);
+            int iterations = 0;
+            while (job.SurfaceQueries < 9)
+            {
+                int hashes = job.IdentityHashes;
+                Assert.That(job.Advance(1, 100), Is.EqualTo(1));
+                Assert.That(job.IdentityHashes - hashes, Is.InRange(0, 1));
+                if (++iterations > 10000) Assert.Fail("Unbounded microsteps.");
+            }
+            Assert.That(job.Placements, Is.Empty, "Completing footprint probes cannot also hash/publish placement.");
+            for (int i = 0; i < 3; i++)
+            {
+                int hashes = job.IdentityHashes; job.Advance(1, 100);
+                Assert.That(job.IdentityHashes - hashes, Is.EqualTo(1)); Assert.That(job.Placements, Is.Empty);
+            }
+            job.Advance(1, 100); Assert.That(job.Placements.Count, Is.EqualTo(1));
+            Assert.That(job.Placements[0].StableId, Is.EqualTo(identity.CandidateId(cell, 0)));
+            while (!job.Complete)
+            {
+                int hashes = job.IdentityHashes; job.Advance(1, 100);
+                Assert.That(job.IdentityHashes - hashes, Is.InRange(0, 1));
+                if (++iterations > 10000) Assert.Fail("Unbounded completion.");
+            }
+            Assert.That(job.Placements.Count, Is.EqualTo(64));
+        }
+
+        [Test]
         public void PlannedReceiptMatchesPublicRegistrationWithFewerAllocationEvents()
         {
             var cell = Vector2Int.zero; var job = Finish(Planner(Flat).Begin(cell), 97);
@@ -86,7 +117,8 @@ namespace BooterBigArm.Tests
             if (spacing == 12 && Math.Abs(x) <= 4095 && Math.Abs(z) <= 4095)
             {
                 Assert.That(job.CachedCandidates, Is.LessThanOrEqualTo(100));
-                Assert.That(job.Operations, Is.LessThan(2000), "Redundant neighbour work must actually decrease.");
+                Assert.That(job.IdentityHashes, Is.LessThanOrEqualTo(4 * 100 + 3 * 64),
+                    "Reduced neighbour search must still bound actual hash work; finer budget operations are counted separately.");
             }
         }
 
