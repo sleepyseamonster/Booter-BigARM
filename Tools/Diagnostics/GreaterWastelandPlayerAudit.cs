@@ -32,6 +32,7 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
         public Vector3 cameraStart, cameraEnd;
         public Marker[] markers;
         public bool cameraSweep;
+        public bool explicitTerrainPreparation;
         public TransitionFrame[] transitionFrames;
     }
     private readonly List<double> times = new();
@@ -93,7 +94,7 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
             report.residentTerrains = terrain.Length;
             if (report.cameraSweep) sweepSurface = new FixedTerrainSurfaceIndex(terrain, "audit.frozen.native");
             view = Camera.main;
-            terrainRendering = FindAnyObjectByType<GreaterWastelandTerrainRendering>();
+            terrainRendering = FindTerrainRendering(view.gameObject.scene);
             var pipeline = (QualitySettings.renderPipeline ?? GraphicsSettings.defaultRenderPipeline) as UniversalRenderPipelineAsset;
             if (pipeline == null) throw new InvalidOperationException("Expected pinned URP pipeline.");
             report.renderScale = pipeline.renderScale; report.shadowDistance = pipeline.shadowDistance; report.cameraFar = view.farClipPlane;
@@ -129,8 +130,13 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
             {
                 if (report.cameraSweep && samplingStart > 0 && !discardBoundaryFrame) MoveSweepCamera();
                 double requestStart = Time.realtimeSinceStartupAsDouble;
-                if (terrainRendering == null) terrainRendering = FindAnyObjectByType<GreaterWastelandTerrainRendering>();
-                terrainRendering?.PrepareCamera(view);
+                if (!report.allTerrainRendering)
+                {
+                    if (terrainRendering == null) terrainRendering = FindTerrainRendering(view.gameObject.scene);
+                    if (terrainRendering == null || terrainRendering.ResidentTerrainCount != terrain.Length)
+                        throw new InvalidOperationException("The transient terrain renderer must be resolved before explicit culling.");
+                    terrainRendering.PrepareCamera(view); report.explicitTerrainPreparation = true;
+                }
                 RenderPipeline.SubmitRenderRequest(view, new UniversalRenderPipeline.SingleCameraRequest { destination = target });
                 // SingleCameraRequest may bypass normal camera callbacks. Successful submission records diagnostic requests, not automatic rendered frames.
                 lastRenderedFrame = Time.frameCount - 1; renderEvents++;
@@ -153,6 +159,7 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
         if (discardBoundaryFrame)
         {
             discardBoundaryFrame = false; samplingStart = now; report.startupSeconds = now;
+            lastSubmission.elapsed = 0;
             report.cameraStart = view.transform.position; report.cameraFar = view.farClipPlane; renderEvents = 0; return;
         }
         if (lastRenderedFrame != Time.frameCount - 1) { Finish("A sampled Player frame lacked the real camera render callback."); return; }
@@ -166,6 +173,16 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
             if (timing[0].gpuFrameTime > 0) { report.meanGpuMs += timing[0].gpuFrameTime; report.validGpuTimings++; }
         }
         if (now - samplingStart >= 30) { report.sampleSeconds = now - samplingStart; Finish(null); }
+    }
+    // Unity's general object lookup excludes DontSave objects. The installed renderer is a transient scene root.
+    public static GreaterWastelandTerrainRendering FindTerrainRendering(Scene scene)
+    {
+        foreach (var root in scene.GetRootGameObjects())
+        {
+            var controller = root.GetComponent<GreaterWastelandTerrainRendering>();
+            if (controller != null && controller.isActiveAndEnabled) return controller;
+        }
+        return null;
     }
     private void MoveSweepCamera()
     {

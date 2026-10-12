@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-12",
+  "scope": "Transient controller lookup correction; compilation/fixture proof and rejected trace, corrected Player capture pending",
+  "sources": [
+    {
+      "path": "Tools/Diagnostics/GreaterWastelandPlayerAudit.cs",
+      "sha256": "9fe99a474c0933e82f6fa768212900e451ea7584ef43b4c66fd9ec6b86ce5069"
+    },
+    {
+      "path": "Tools/Diagnostics/IsolatedPlayerAuditLookupFixture.cs",
+      "sha256": "28b8d7fe98a1e17de2eef70d7df5a1598f139c0cbdf87d75823442dad111851a"
+    },
+    {
+      "path": "Tools/Diagnostics/summarize_camera_transitions.py",
+      "sha256": "b6c670f8ec68d6d06a805f3f944a0d8dcf5cb0185ac2d224aa1bd6b89ba04aae"
+    }
+  ],
+  "lookup_fixture": {
+    "candidate": "D:\\BooterBigArmValidation\\PerformanceImplementation20261011-01",
+    "log": "D:\\BooterBigArmValidation\\PerformanceImplementation20261011-01\\Logs\\player-audit-lookup-fixture-verified-20261012.log",
+    "sha256": "ac671bdbc4dfd59da008917cded931cdc45135903a81a1574ffe4eb89af25a94",
+    "result": "Normal lookup before DontSave succeeds; DontSave lookup excluded; scene-root lookup resolves; disabled/destroyed owners rejected; terminal exit 0"
+  },
+  "analysis_fixture": "Known statistics/full route pass; missing explicit terrain preparation rejected, including retained first sweep",
+  "historical_reports": [
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-sweep.json",
+      "sha256": "a760e965831d343ab0d05190fefe81279aee4ac428c27ca6d49184cdb27d7adc",
+      "candidate_original_sha256": "a760e965831d343ab0d05190fefe81279aee4ac428c27ca6d49184cdb27d7adc"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-stationary.json",
+      "sha256": "a967b5563afd26b7150464cb111986d38448416600a5d39362fc036a2838ce59",
+      "candidate_original_sha256": "a967b5563afd26b7150464cb111986d38448416600a5d39362fc036a2838ce59"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-sweep-process-watch.json",
+      "sha256": "cfada7c3339f15a8e5b64fdc0c501b6718bf76e224d02ffa4b3ca364a5bb1048",
+      "candidate_original_sha256": "b671265ff845cb98985c183f9078123a16acb8b35eb1522aef0e97bb8caf1ffc"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-stationary-process-watch.json",
+      "sha256": "776e3e70feeb7da4045babb57fc7ea81797e99c441028c2aa271a686b191d1c4",
+      "candidate_original_sha256": "03b9768ade34c1bd71f30fa972e7eb2be0bdca03ff8826c3ad6b2c66de0d505a"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-audit-build-transitions-process-watch.json",
+      "sha256": "9a1e866317012ef713291c131c389350c0702110d2a30879452a1aba5a521be1",
+      "candidate_original_sha256": "e712a3df3f47915d70315f23567f4f9480caa10e0b7c7eecadaf9658c42825f3"
+    }
+  ],
+  "rejection": "First sweep had no explicit controller preparation and all per-frame render counts fell back to 8704; counts and immediate-arrival proof are rejected, not rewritten",
+  "earlier_stationary_evidence_scope": "Final actual enabled-terrain/collider counts and manual timings remain diagnostic; earlier reports do not prove explicit PrepareCamera invocation",
+  "corrected_build": {
+    "pid": 14392,
+    "receipt": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Logs\\player-audit-build-transitions-resolved-process.json",
+    "status": "Live at proof capture; not successful Player-build evidence"
+  },
+  "remaining": [
+    "Corrected Player build and paired sweep/stationary captures",
+    "Accepted dynamic renderer count/crossing analysis",
+    "Actor traversal, visual acceptance and interactive FPS"
+  ]
+}

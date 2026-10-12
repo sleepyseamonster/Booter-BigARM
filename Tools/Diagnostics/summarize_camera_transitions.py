@@ -20,6 +20,7 @@ def summarize(report):
     if (report.get("mode") != "standalone_player_manual_urp_offscreen_diagnostic"
             or not report.get("cameraSweep") or not report.get("completed") or report.get("error")
             or not report.get("nonuniformPixels") or not report.get("savesDisabled")
+            or not report.get("allTerrainRendering") and not report.get("explicitTerrainPreparation")
             or report.get("enabledColliders") != report.get("residentTerrains")):
         raise ValueError("An accepted manual sweep with resident collision is required.")
     frames = report.get("transitionFrames", [])
