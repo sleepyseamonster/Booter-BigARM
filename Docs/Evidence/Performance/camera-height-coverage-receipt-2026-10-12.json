@@ -1,0 +1,168 @@
+{
+  "date": "2026-10-12",
+  "scope": "Height-clipped terrain camera coverage; focused EditMode tests and standalone manual URP diagnostics, not interactive FPS acceptance",
+  "sources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainCameraCoverage.cs",
+      "sha256": "acca6361ef9d0140186dfa659bf1042c0377730cf945c3ec470db6ff6c546c2b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainCameraCoverage.cs.meta",
+      "sha256": "90db73ee6a6603c2045572b173bbac3ebac4d3b471d6fe4c141a224e5370ea80"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs",
+      "sha256": "af7a591f9d811d377cb71df73b6a02ada565824b209431c4f726168b185d411c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs.meta",
+      "sha256": "7aa347310665511a36a6a77c08e4e073056a39c16f8b9ebaad7b9d8d687b6162"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs",
+      "sha256": "4bb736c6b1ea92261b075e55c9523d5faebd19f35d2e4a5d502010e09624393d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs.meta",
+      "sha256": "941c10e73d8fb3587637ec01e9dc21ba4cdc8958830e55fae8164a26f4c4d01b"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainCameraCoverageTests.cs",
+      "sha256": "20b374ebbe71a49cba3f30712f4e1ad3a1c57c24163afe2d2896fe8b74461e58"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainCameraCoverageTests.cs.meta",
+      "sha256": "ef6b6a871c326eda2e823baddee1e381a0852e770c8f0c8d9bf2d8e256d61a58"
+    },
+    {
+      "path": "Tools/Diagnostics/create_performance_validation_copy.py",
+      "sha256": "36c6c9784a64a22d3731bd16f2609d02133c26452881dc7d1dcf4a4c577e98e9"
+    }
+  ],
+  "source_copy_equality": {
+    "editmode_candidate": "D:\\BooterBigArmValidation\\PerformanceImplementation20261011-01",
+    "player_runtime_candidate": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01"
+  },
+  "tests": {
+    "path": "Docs/Evidence/Performance/camera-height-coverage-editmode-2026-10-12.xml",
+    "sha256": "46723bf50d8893a30fad37e0465a01374e88b6c239175260e84e58aa1636c294",
+    "passed": 63,
+    "failed": 0,
+    "skipped": 0,
+    "original_candidate_sha256": "b909d0e00b164d505939ae74451418b5104183c8605bb16d30d2ec5413170c57"
+  },
+  "production_scene_sha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+  "diagnostic_source_sha256": "31760a8b1e73efbccb6b1ac608c2f4f4bfac4b23247e5bd0162416416debb912",
+  "player_runtime_assembly_sha256": "08d2547a7a2a4b366248e90df098f6081d946035dc5728e4a34b2b7324a0afff",
+  "reports": [
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-height-window.json",
+      "sha256": "ba8e9ad1f05a9186da7707909dfb31a675c8fabc43b210156d311bcfaa915588",
+      "original_candidate_sha256": "ba8e9ad1f05a9186da7707909dfb31a675c8fabc43b210156d311bcfaa915588"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-height-window.png",
+      "sha256": "bcae581af116438144ab3e0ce4eb5676e9c44496fdc606c1f2be8e8672bdf6e5",
+      "original_candidate_sha256": "bcae581af116438144ab3e0ce4eb5676e9c44496fdc606c1f2be8e8672bdf6e5"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-height-window-process-watch.json",
+      "sha256": "8c8c92729b65120124011db8c8f01e6112789180efd540258e49d293d8109c28",
+      "original_candidate_sha256": "8dd15d0cee31d75edd057fc39315477fd65351eff2ff0a9f6707bc7857793cf1"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-height-baseline.json",
+      "sha256": "f77aa3c95a7090c49ba0545956813bf24db08ed616f690fbad59278d936fd822",
+      "original_candidate_sha256": "f77aa3c95a7090c49ba0545956813bf24db08ed616f690fbad59278d936fd822"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-height-baseline.png",
+      "sha256": "94fec352144ee18b913eaae46cff0f68e410cfac76c6139d874bcf2ac4175d7d",
+      "original_candidate_sha256": "94fec352144ee18b913eaae46cff0f68e410cfac76c6139d874bcf2ac4175d7d"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-height-baseline-process-watch.json",
+      "sha256": "722ee62bb4e596b45950a6a8cb633142de2066033820934c96c8bc808b316fff",
+      "original_candidate_sha256": "adc2664edc7a632c8b1f5b6a647ac85891c64d13470981bf97af2ee2500dd195"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-audit-build-height-coverage-process-watch.json",
+      "sha256": "84c1554ffa16e594289db8ac8ef6cf335d247ae3ba38d1a38c95694c96286cf7",
+      "original_candidate_sha256": "e0e2338de5f5ff9804e54d0d64c36c8df4de86c25f8bc569209d3b0ca245dd8e"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-height-baseline-repeat.json",
+      "sha256": "debd5516d2de2cedf22f48248c1938b11c33e7d552335d6cbd384d6a865585ee",
+      "original_candidate_sha256": "debd5516d2de2cedf22f48248c1938b11c33e7d552335d6cbd384d6a865585ee"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-height-baseline-repeat.png",
+      "sha256": "975ee56c9bc1d0694f8c9e4014c061a010e70dc1e50db44460734ad4c5a63ef1",
+      "original_candidate_sha256": "975ee56c9bc1d0694f8c9e4014c061a010e70dc1e50db44460734ad4c5a63ef1"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-height-baseline-repeat-process-watch.json",
+      "sha256": "3877e4c8760605a66ec63845e1ec3c1f4ca189ec20b9f19ae22ffac606d5fb79",
+      "original_candidate_sha256": "d8e839f98e7d9e3633f505cf27060e6791ea79ab4e72530e51ecc5884eee99ad"
+    }
+  ],
+  "summaries": [
+    {
+      "mode": "standalone_player_manual_urp_offscreen_diagnostic",
+      "allTerrainRendering": false,
+      "enabledTerrains": 32,
+      "enabledColliders": 8704,
+      "samples": 6701,
+      "meanMs": 4.47705648373187,
+      "medianMs": 4.397200886160135,
+      "p95Ms": 5.00650517642498,
+      "p99Ms": 6.191503722220659,
+      "maximumMs": 17.551593482494354,
+      "cameraFar": 8000.0,
+      "quality": 5,
+      "renderScale": 1.0,
+      "shadowDistance": 60.0
+    },
+    {
+      "mode": "standalone_player_manual_urp_offscreen_diagnostic",
+      "allTerrainRendering": true,
+      "enabledTerrains": 8704,
+      "enabledColliders": 8704,
+      "samples": 132,
+      "meanMs": 229.0818953152859,
+      "medianMs": 227.20709443092346,
+      "p95Ms": 268.32178235054016,
+      "p99Ms": 290.818989276886,
+      "maximumMs": 298.31498861312866,
+      "cameraFar": 8000.0,
+      "quality": 5,
+      "renderScale": 1.0,
+      "shadowDistance": 60.0
+    },
+    {
+      "mode": "standalone_player_manual_urp_offscreen_diagnostic",
+      "allTerrainRendering": true,
+      "enabledTerrains": 8704,
+      "enabledColliders": 8704,
+      "samples": 162,
+      "meanMs": 186.09512422555758,
+      "medianMs": 180.09020388126373,
+      "p95Ms": 216.00230038166046,
+      "p99Ms": 228.93859446048737,
+      "maximumMs": 233.75940322875977,
+      "cameraFar": 8000.0,
+      "quality": 5,
+      "renderScale": 1.0,
+      "shadowDistance": 60.0
+    }
+  ],
+  "limitations": [
+    "Manual offscreen rendering; interactive FPS and GPU timings unavailable",
+    "Separate simulations have slightly different camera/actor poses; previews are not pixel parity",
+    "Native data and all terrain collision remain resident; no crash-resolution claim",
+    "Dense population, transitions, real gameplay and author acceptance remain open",
+    "First matched baseline was observed during a read-only metadata scan; retain it and compare the subsequent quiet repeat"
+  ],
+  "new_asset_guids_not_present_in_tracked_metadata": true,
+  "archival_text_format": "LF-normalized UTF-8; original candidate byte hashes retained separately; JSON samples unchanged"
+}

@@ -1,0 +1,360 @@
+{
+    "mode": "standalone_player_manual_urp_offscreen_diagnostic",
+    "error": "",
+    "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+    "gpu": "NVIDIA GeForce RTX 3060 Ti",
+    "graphicsApi": "Direct3D11",
+    "unity": "6000.4.0f1",
+    "persistentPath": "C:/Users/kbkno/AppData/LocalLow/BooterBigArmDiagnostics/GreaterWastelandAudit20261012",
+    "previewPath": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Logs\\player-height-baseline.png",
+    "previewSha256": "94fec352144ee18b913eaae46cff0f68e410cfac76c6139d874bcf2ac4175d7d",
+    "nonuniformPixels": true,
+    "completed": true,
+    "rendered": true,
+    "allTerrainRendering": true,
+    "savesDisabled": true,
+    "width": 1920,
+    "height": 1080,
+    "residentTerrains": 8704,
+    "enabledTerrains": 8704,
+    "enabledColliders": 8704,
+    "samples": 132,
+    "renderedFrames": 0,
+    "quality": 5,
+    "manualRequests": 132,
+    "frameTimesMs": [
+        298.31498861312869,
+        271.1454927921295,
+        217.05429255962373,
+        220.53709626197816,
+        227.20709443092347,
+        197.77390360832215,
+        232.1311980485916,
+        263.6770009994507,
+        274.61791038513186,
+        260.78689098358157,
+        228.8573980331421,
+        232.55789279937745,
+        264.293909072876,
+        225.1054048538208,
+        221.7365950345993,
+        196.104496717453,
+        201.25369727611543,
+        229.98429834842683,
+        247.94399738311768,
+        226.63749754428864,
+        216.45350754261018,
+        198.07739555835725,
+        233.18059742450715,
+        263.2144093513489,
+        215.43879806995393,
+        225.7387936115265,
+        213.4978026151657,
+        195.0376033782959,
+        230.91410100460053,
+        268.32178235054018,
+        229.5794039964676,
+        215.24649858474732,
+        194.6628987789154,
+        203.2545953989029,
+        239.76869881153108,
+        254.49258089065553,
+        240.36599695682527,
+        220.3706055879593,
+        201.6548067331314,
+        232.80289769172669,
+        273.8338112831116,
+        241.1963939666748,
+        260.20869612693789,
+        232.59009420871736,
+        215.3622955083847,
+        249.93309378623963,
+        245.6205040216446,
+        229.51610386371613,
+        220.42740881443025,
+        201.73309743404389,
+        207.68119394779206,
+        265.5492126941681,
+        234.76390540599824,
+        219.36510503292085,
+        219.2544937133789,
+        194.36649978160859,
+        234.2219054698944,
+        259.96971130371096,
+        206.00780844688416,
+        232.05339908599854,
+        201.93569362163545,
+        195.9495097398758,
+        230.93320429325105,
+        256.5445899963379,
+        222.82150387763978,
+        213.35919201374055,
+        197.93599843978883,
+        206.91810548305512,
+        237.77110874652863,
+        252.62591242790223,
+        238.30899596214295,
+        213.0706012248993,
+        195.29879093170167,
+        221.5580940246582,
+        269.36689019203188,
+        210.84700524806977,
+        233.73280465602876,
+        213.72199058532716,
+        197.9295015335083,
+        227.34729945659638,
+        260.83481311798098,
+        226.1648029088974,
+        217.0863002538681,
+        203.41329276561738,
+        201.7636001110077,
+        228.42709720134736,
+        261.49630546569827,
+        233.5149049758911,
+        217.98229217529298,
+        196.0732936859131,
+        225.54199397563935,
+        257.4596107006073,
+        213.9240950345993,
+        236.89010739326478,
+        201.21920108795167,
+        198.36780428886414,
+        228.93869876861573,
+        260.7792019844055,
+        246.13089859485627,
+        214.2484039068222,
+        199.10229742527009,
+        203.92300188541413,
+        220.3838974237442,
+        253.80340218544007,
+        235.13370752334596,
+        223.81439805030824,
+        215.419203042984,
+        246.88521027565003,
+        259.66718792915347,
+        226.09160840511323,
+        243.4924989938736,
+        237.78150975704194,
+        215.92649817466737,
+        236.87130212783814,
+        256.57859444618227,
+        233.7028980255127,
+        208.67779850959779,
+        194.50810551643373,
+        212.9947990179062,
+        290.818989276886,
+        222.13320434093476,
+        240.27730524539948,
+        211.39389276504518,
+        197.96159863471986,
+        232.71919786930085,
+        251.72829627990724,
+        222.08400070667268,
+        253.09109687805177,
+        235.07679998874665,
+        255.13890385627748,
+        246.4597076177597,
+        213.4861946105957
+    ],
+    "startupSeconds": 67.11551070459184,
+    "sampleSeconds": 30.168074399999996,
+    "meanMs": 229.0818953152859,
+    "medianMs": 227.20709443092347,
+    "p95Ms": 268.32178235054018,
+    "p99Ms": 290.818989276886,
+    "maximumMs": 298.31498861312869,
+    "meanCpuMs": 447.36817692307718,
+    "meanGpuMs": 0.0,
+    "validCpuTimings": 130,
+    "validGpuTimings": 0,
+    "renderScale": 1.0,
+    "shadowDistance": 60.0,
+    "cameraFar": 8000.0,
+    "cameraStart": {
+        "x": -1858.329345703125,
+        "y": -26.754928588867189,
+        "z": -1510.31005859375
+    },
+    "cameraEnd": {
+        "x": -1859.2618408203125,
+        "y": -27.088943481445314,
+        "z": -1512.3018798828125
+    },
+    "markers": [
+        {
+            "name": "BehaviourUpdate",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 226283949.24242426
+        },
+        {
+            "name": "Main Thread",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 229071353.78787879
+        },
+        {
+            "name": "Physics.Simulate",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 1089727.2727272728
+        },
+        {
+            "name": "TerrainManager.CullAllTerrains",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 149477400.75757576
+        },
+        {
+            "name": "Terrain.Trees.OnWillRender",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 2799613.6363636364
+        },
+        {
+            "name": "Terrain.Trees.Render",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 2372309.090909091
+        },
+        {
+            "name": "Terrain.Details.Render",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 1840981.8181818182
+        },
+        {
+            "name": "Terrain.Trees.RayTracingCulling",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Terrain.Heightmap.RayTracingCullingStep3",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Terrain.Heightmap.RayTracingCullingStep2",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Terrain.Heightmap.RayTracingCullingStep1",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Terrain.Heightmap.RenderStep3",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 22064991.666666669
+        },
+        {
+            "name": "Terrain.Heightmap.RenderStep2",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 6114954.545454546
+        },
+        {
+            "name": "Terrain.Heightmap.RenderStep1",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 3097196.212121212
+        },
+        {
+            "name": "Terrain.UpdateSplatMaterials",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 9287081.818181819
+        },
+        {
+            "name": "Terrain.UpdateSplatProperties",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 12937591.666666666
+        },
+        {
+            "name": "Terrain.FlushDirty",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 1370043.1818181819
+        },
+        {
+            "name": "Terrain.UpdateTreeBillboardTexture",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "TerrainData.AwakeFromLoad",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Terrain.UpdateCompressedHolesTexture",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Terrain.UpdateHolesTexture",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Terrain.ReadbackHeightmap",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Terrain.UpdateHeightmapTexture",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Terrain.RecomputeInvalidPatches",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Terrain.UpdateTreeBillboardTexture2",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Physics.TerrainCollider.CreateTreeCollidersFromPrototypeJob",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Physics.TerrainCollider.CreateTrees",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "Physics.TerrainCollider.ForceRebuildCollisions",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "NavMesh.ExtractTerrainMesh",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "GC Allocated In Frame",
+            "unit": "Bytes",
+            "meanRaw": 374641.8787878788
+        },
+        {
+            "name": "Triangles Count",
+            "unit": "Count",
+            "meanRaw": 133028.9393939394
+        },
+        {
+            "name": "SetPass Calls Count",
+            "unit": "Count",
+            "meanRaw": 59.0
+        },
+        {
+            "name": "ComputeTerrainMeshJob",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "ComputeTerrainMeshJob (Burst)",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        },
+        {
+            "name": "ComputeTerrainMeshJob (Cleanup)",
+            "unit": "TimeNanoseconds",
+            "meanRaw": 0.0
+        }
+    ]
+}

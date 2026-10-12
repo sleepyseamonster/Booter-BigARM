@@ -23,6 +23,7 @@ namespace BooterBigArm.TopDown3D
         private bool initialized;
         private bool disposed;
         public Bounds LandscapeBounds { get; private set; }
+        public bool CanClipCameraHeight { get; private set; } = true;
         public int Count => tiles.Count;
         public int EnabledCount => active.Count;
 
@@ -33,6 +34,8 @@ namespace BooterBigArm.TopDown3D
             foreach (var terrain in sources)
             {
                 if (terrain == null || terrain.terrainData == null) continue;
+                // Native trees/details can extend beyond the heightfield encoding range. Keep untrimmed coverage for that backend.
+                if (terrain.terrainData.treeInstanceCount > 0 || terrain.terrainData.detailPrototypes.Length > 0) CanClipCameraHeight = false;
                 if (!seen.Add(terrain)) throw new ArgumentException("Duplicate terrain ownership.", nameof(sources));
                 var transform = terrain.transform;
                 var size = terrain.terrainData.size;

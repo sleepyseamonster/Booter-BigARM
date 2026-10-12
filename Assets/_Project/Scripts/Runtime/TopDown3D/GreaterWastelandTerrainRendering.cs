@@ -15,7 +15,7 @@ namespace BooterBigArm.TopDown3D
         public const string AllTerrainArgument = "-greaterWastelandAllTerrainRendering";
         private readonly List<Bounds> coverage = new();
         private readonly List<Light> shadowLights = new();
-        private readonly Vector3[] corners = new Vector3[4];
+        private readonly Vector3[] frustum = new Vector3[8];
         private Camera[] cameras = Array.Empty<Camera>();
         private FixedTerrainRenderWindow window;
         public int ResidentTerrainCount => window?.Count ?? 0;
@@ -121,10 +121,10 @@ namespace BooterBigArm.TopDown3D
 
         private void AddCorners(Camera camera, float distance, Camera.MonoOrStereoscopicEye eye, ref Bounds bounds)
         {
-            camera.CalculateFrustumCorners(new Rect(0, 0, 1, 1), camera.nearClipPlane, eye, corners);
-            for (int i = 0; i < 4; i++) bounds.Encapsulate(camera.transform.TransformPoint(corners[i]));
-            camera.CalculateFrustumCorners(new Rect(0, 0, 1, 1), Mathf.Max(distance, camera.nearClipPlane), eye, corners);
-            for (int i = 0; i < 4; i++) bounds.Encapsulate(camera.transform.TransformPoint(corners[i]));
+            FixedTerrainCameraCoverage.FillFrustum(camera, distance, eye, frustum);
+            if (window.CanClipCameraHeight && FixedTerrainCameraCoverage.TryHeightBounds(frustum, window.LandscapeBounds.min.y,
+                window.LandscapeBounds.max.y, out var clipped)) bounds.Encapsulate(clipped);
+            else for (int i = 0; i < frustum.Length; i++) bounds.Encapsulate(frustum[i]); // Invalid/no-intersection or native vegetation fails open.
         }
 
         public static Bounds ShadowCasterBounds(Bounds receivers, Bounds landscape, Vector3 lightTravelDirection)
