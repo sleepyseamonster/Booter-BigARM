@@ -138,6 +138,8 @@ These define current preferred approaches or sequencing.
   The dependency-ordered mesh, camp placement, controller, recovery, and live sleep prototype plan, with validation gates and a separate persistence milestone.
 - [Camp sleep implementation evidence](./Evidence/Gameplay/CAMP_SLEEP_IMPLEMENTATION_2026-10-10.md)
   Session-only camp and cloak integration, controls, 101 focused checks, live simulation capture, production validators, and acceptance limits.
+- [WAYPOINT_CAMP_BRAINSTORM.md](./Design/Gameplay/WAYPOINT_CAMP_BRAINSTORM.md)
+  Starting waypoint camp exploration, discovered destinations, fast-travel options, Legger constraints, and a bounded implementation sequence.
 - [URP_2D_STANDARD.md](Archive/Legacy2D/URP_2D_STANDARD.md) — legacy 2D maintenance only.
 - [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md)
 - [CODEX_EDITOR_STANDARD.md](./Operations/CODEX_EDITOR_STANDARD.md)
