@@ -1,0 +1,845 @@
+{
+  "schema_version": 1,
+  "status": "committed_camp_overlay_freshly_validated",
+  "step": 5,
+  "source_commit": "a0b69a25a3f9dc96a40983983545a7e883ac83cd",
+  "captured_predecessor_scene_sha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+  "committed_transfer_predecessor_scene_sha256": "566df56f5d804a054654eb7371460891ceff824e02e8cfc3670a5982deb379e8",
+  "original_isolated_scene_sha256": "1cf9a59181177c0f8108d68a28b5c030d4d6d503f9e34a1cebe01475bae18f1d",
+  "production_scene_sha256": "2747f07f81eed430cc66e339bf6e287a903b8a2bd41ff5af549d13447bf4fc89",
+  "manifest_sha256": "5550faec7eb6bab62e5fc5984694b6774850af4cbc81f78abb9dcd4502e5daea",
+  "changed_committed_original_documents": [
+    "9223372036854775807"
+  ],
+  "added_committed_documents": [
+    "522726688"
+  ],
+  "dependencies": [
+    {
+      "path": "Assets/_Project/Tests/Editor/Camp1AuthoredRockTests.cs",
+      "sha256": "e97096808a632e52ecffe19f7863216df695b28b1514a9dc3f4c2d28b85aaead"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/Camp1AuthoredRockTests.cs.meta",
+      "sha256": "eb5d0c54dad432299473ea8a683893fa9e60fe7f3abdf4eddadda078922db983"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/Camp1AuthoredRockAuthoring.cs",
+      "sha256": "e19baec00bfab8b0ca35e16a21747bc1da9586c56591e8ad761ae5e34d73a3fb"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/Camp1AuthoredRockAuthoring.cs.meta",
+      "sha256": "1e75e2e736f03244e857b66f3e1f95579f882eadd83b92db8a2f56a4eb804429"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp1AuthoredRocks.prefab",
+      "sha256": "ec3d62f612b00a69bffab8796694ae89664575bc67387d911d228462bdac123d"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp1AuthoredRocks.prefab.meta",
+      "sha256": "02b74ab94d63cccc9335ac9c03c5e9c756193e01667391f0b09e2ebe2b364179"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock03.prefab",
+      "sha256": "53523f92026d64edf038e794c9c39eb55caa17a0cc46822e3b4d386ee38fd8ad"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock03.prefab.meta",
+      "sha256": "295696d6a7da9f6a4fc8f03ee2d9ef5fac98628e1ae7001bf41589a13dc8ba2d"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_LOD2.asset",
+      "sha256": "012f0a270e447765ab4b85ef881212f5999185a81ce11a915049b4c6b78d3b3f"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_LOD2.asset.meta",
+      "sha256": "fb040c729d8bff85d82e3b03dad297592d6b04be69e17b4f9fdf25b246adbacf"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_Collision.asset",
+      "sha256": "8b56ac8cd9d32a38b4a6c9ebf501d43023e739832d5a87616beac6591da97747"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_Collision.asset.meta",
+      "sha256": "56d537b2fbcfb89bacf0f313814e48819b423d6106fd04a94b98135bebbe6ccc"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_LOD0.asset",
+      "sha256": "296e1a9efff868208ca26a6e6686934ad9e4bf72ea526202d29bddd459b9ad87"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_LOD0.asset.meta",
+      "sha256": "f3e5b4e6d528396153f23129934046f0a6a5f3457ac1345ae9251e7575da633d"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_LOD1.asset",
+      "sha256": "f6a08ec5ff71bf097f5f1570be227e8b2b910b7ee2a972588bfa7354cec2d312"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_LOD1.asset.meta",
+      "sha256": "c197087c48a48353ae27c1bc808bff5803f47128e5a6f64d088b6433af894ade"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock03.mat",
+      "sha256": "d681b05941e435bc324a4de00cfa12d69dc037d7716f65b6b9ee4d67196020d2"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock03.mat.meta",
+      "sha256": "08746eb6685399662a11ddcd40e1860119d7e2d74bbcaeb52915d834715a9836"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_BaseColor.png",
+      "sha256": "ed5030bad9fe09aa94f80225391d5486ce1722de014b11e33a4bf4ce2033638f"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_BaseColor.png.meta",
+      "sha256": "bb0b182c1ca42e6fbdd923fcd901b245e96acf51c7cf9169985e86033222f419"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_Occlusion.png",
+      "sha256": "f9fafc8b91015354a75fc8b8a88ec340422243cd5f5f9268d16ce9d542994abf"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_Occlusion.png.meta",
+      "sha256": "6867ebc53b98ef749ea20ca2082d8e0c39608baa89e0ea448fbf5088d8dec5f1"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_Normal.png",
+      "sha256": "142fcabea7bb3eee7666db3175812c8b0b944bca6c99e167e3dcee4cc01e3159"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_Normal.png.meta",
+      "sha256": "817754408dd0ef7bd314d4d5830214d4c8e49b0d60bd6bfd9b4da0803794aad8"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_MetallicSmoothness.png",
+      "sha256": "2967f2fd09f6eb3995de6aaf76b1e39243dbcdd12d0223fa9af76ccbdcb1a834"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock03/ArtistVolcanicRock03_MetallicSmoothness.png.meta",
+      "sha256": "2d72db840cea32c306128220f7ea1180d6621a523de158be6ae6e1bfc160f055"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock07.prefab",
+      "sha256": "69455b881f0ff4d83d3d60e141880d4482e889529fbfe6a48bab5ad52a2963d5"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock07.prefab.meta",
+      "sha256": "2559afc7a45ef0a397f39655c2abc0a16b767c5054ba406e8e9526b131c1449c"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_Collision.asset",
+      "sha256": "9f860425ab3a0b696a8e8ce1ec70772558afd2c0f2d09d526639818c43091b37"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_Collision.asset.meta",
+      "sha256": "b6a0e53a68937d43bf2df5b68e246fd4a88e78e253f91775c33696024e33e48c"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_LOD1.asset",
+      "sha256": "bb7a4356124017df27eb36108be60df0353eebbe8f5d879629ba874c96a4c15a"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_LOD1.asset.meta",
+      "sha256": "f853fef441b5da2a1170205a8eb96aa6e5661b11f0c24d1ed76711b74d47efc3"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_LOD0.asset",
+      "sha256": "dcbef2232c709f3299c4356c9b13040c36361d61ee95cd5512db327bb2e10fbe"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_LOD0.asset.meta",
+      "sha256": "41ba84ae462c3c291af27951910d7e60f0c64c1a56b3462bb618abf6f253a65e"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_LOD2.asset",
+      "sha256": "574a50ceadd9752bad656244aba88a10ad3890b182374fd239573cced347c12a"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_LOD2.asset.meta",
+      "sha256": "8d7f67574be7952bb76fb6cbfd1f620d861a0c9e84c059ec0115c202f00bbb93"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock07.mat",
+      "sha256": "778d79fede768fe53e9e4d4aac27cbb244599fc8417040d84a2506457a149349"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock07.mat.meta",
+      "sha256": "e168dc32c85e443c3665d2e37286197e0a87131ba1688236a404559f3faef257"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_BaseColor.png",
+      "sha256": "5b3c79a3abe5f59ed0be398e61af50325602bf0336b433c527f7f73325ef32bb"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_BaseColor.png.meta",
+      "sha256": "26fdd50aada0db7244943c2b4c6c0b70065740c8d42d12ad23ba1b84fe21d0d3"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_Occlusion.png",
+      "sha256": "7c694d77b0a01a61e5a4fbcefbb5490be67edcd62a90acc8356375de556f8ce1"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_Occlusion.png.meta",
+      "sha256": "a05dcd3522bedd67ef5172a473f7e392b0fd5da01e4ac5c6521c4b64e2efb1bc"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_MetallicSmoothness.png",
+      "sha256": "3090abaa5e439f8c6c663245b71256d3d6dab768703464742d205922d6d5fc00"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_MetallicSmoothness.png.meta",
+      "sha256": "0de53f2f5158b3c7b4a9eca59d7aadad36036122fcdf602aa36db1af1e03d389"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_Normal.png",
+      "sha256": "ad1241018689c63eda154bb6e5631a417812a477db57abd461cc85c3d681ccaf"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock07/ArtistVolcanicRock07_Normal.png.meta",
+      "sha256": "542c5ad0a9717a0c655192eec6c1fd009686b57b00b44c734229b7a62531609e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCampRockArrangement.cs",
+      "sha256": "6bf98cb9bfa6ba8d54d33873a281f5fd8ed106978f51b6e833ba9e33e65ac613"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCampRockArrangement.cs.meta",
+      "sha256": "32b60cf2c91b39961769d3da366a8aaad14dd591b92ab0c3cb5d0e985c146934"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock06.prefab",
+      "sha256": "faf016b911582507b5e84e2b7e77aee4c7f8f89776e9ccecdc1e34e5068bff96"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock06.prefab.meta",
+      "sha256": "77e1feb6b8f18cbdeea2089506034556a060a8482f0892cd5d17fa75b7fca476"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_LOD2.asset",
+      "sha256": "10195c504e7ede76aae468979d5b287039a620a5b59183ea330cf039d395c063"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_LOD2.asset.meta",
+      "sha256": "51685ab048da4a550f1ca85e7b4f62742330c2cb9841e52ccedbbf54346a7db6"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_LOD0.asset",
+      "sha256": "3335b306cdecee946695e0cf447cfa53c2896428f389a3cc486dd18662ed530f"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_LOD0.asset.meta",
+      "sha256": "0879a6d97022c3317576cab9ebf7a8c53ffa1176a7a50c357571d3ed9d5ecda6"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_LOD1.asset",
+      "sha256": "63dd398ac111741bc07c7b8338cce1f0a008150567e36fc206488d96da99de08"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_LOD1.asset.meta",
+      "sha256": "5ccaa7a0a0c8471043faa264074304a0fa7d324fdfcad52f2e8ce4d5669ab09a"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_Collision.asset",
+      "sha256": "90680f8c333ffe0db758de25af6ed9fbb403358c06b2b3d27e5e3c0abcbe5a25"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_Collision.asset.meta",
+      "sha256": "5d5b107ea818dec271064bb55274e90fd84e154ad108f4e909ec6f99ef47540c"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock06.mat",
+      "sha256": "db4da2b9aff9961e80cbb33617e381d6d9f9c73103e226a0a03c5458a5992a59"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock06.mat.meta",
+      "sha256": "767ee32eadfbe535441c9b7fcae24d2b17b0285682a9168d1d00d8edab4fcdca"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_Occlusion.png",
+      "sha256": "8e77e32933566ff1aec4994834aaeb1a88630f8536e544f3bf99a5d2b6a9a132"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_Occlusion.png.meta",
+      "sha256": "e41d092649af81ca270e20b626aeda94063f9f0310f2b3196232842b3eac2349"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_MetallicSmoothness.png",
+      "sha256": "834e00190a096e55a4c11febd230c8541c1a8767c93af8c822847d67192b6baf"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_MetallicSmoothness.png.meta",
+      "sha256": "79ce967a48fdc55aad1285bb77e45f4980f9a9538b3c2b17b7738537ab75455f"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_BaseColor.png",
+      "sha256": "2c5ec634e38227d2ae97fed07d1cd44d83c775065a0ed3877800b1ac77c38520"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_BaseColor.png.meta",
+      "sha256": "4b0b19b04f909e9b384b42db036510615da6e44a1a98c829670ae5ce3c9798ad"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_Normal.png",
+      "sha256": "2d85db61c78bbf29338b8c0d1fd56d5e5eca32541d70be2aec06a12b6f4f65c4"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock06/ArtistVolcanicRock06_Normal.png.meta",
+      "sha256": "4f01d2eb130b44f5a3f5a4ea25675cc03d0f149fd9b502a4451d9b2e723d4407"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistFlatVolcanicRock02.prefab",
+      "sha256": "09ae863e69f5db1987404693a2ed73e85063436e773c03dbb02a8df8e6583b50"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistFlatVolcanicRock02.prefab.meta",
+      "sha256": "f6d84a07e78239dd88d9cbacdba56f74b9d6b239dcbd810e24ef77445eb99ab5"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_LOD0.asset",
+      "sha256": "c55ab1c1b73960e6ce112483c8e07704ffe5ea3a6affae4c8217ba44caf024b9"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_LOD0.asset.meta",
+      "sha256": "93d9ac262a5903a79c9dbf3c7cef4d4172edbfffdee2ad9dc0769a8bcbcda43d"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_LOD2.asset",
+      "sha256": "f3dba9a1e589e831b532d750fc895a6b17984e629163d2e097060d4e8432dfa3"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_LOD2.asset.meta",
+      "sha256": "34af587688d302ff7ab61141c73ffc15d6b066fb39889787698c80e103cdf053"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_LOD1.asset",
+      "sha256": "1dd3bd744be86e76e5e2c89958a114e53c09ea44872944c650f8e52a9e758c94"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_LOD1.asset.meta",
+      "sha256": "4b0d6fce45da361493ea14efc08ceb51740a2c1d451db4639185af12f06e4c19"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistFlatVolcanicRock02.mat",
+      "sha256": "a5349d8b0e41bf0af14996176569c19ff8478563387d3e6e310f926c56f1a3ca"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistFlatVolcanicRock02.mat.meta",
+      "sha256": "46c4e5f2ee926dc35f988d8beea5a74c638e23d530ffbea92015d56a907e50e4"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_Normal.png",
+      "sha256": "3bc62e97d6212d18d108dbaa3809e0bd30b33fcb5cf031c603260a1bc2b74d16"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_Normal.png.meta",
+      "sha256": "f08916d91af426eefd771a1ec538571c732476d31af10567df053f29204cfacd"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_BaseColor.png",
+      "sha256": "ad3d29bbcef24d6a0c9f7d188165a9cef2f6f47d3e0f30f25fc5610ca405198b"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_BaseColor.png.meta",
+      "sha256": "6ab17cbd031c80431d3fbd07ca4348ed15f18de9a4e6898b89747d3a1e85e65b"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_Occlusion.png",
+      "sha256": "c9e0dde5557292ae944deaa9275c20ed9bfcea3c31826a3836c5866db87060d8"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_Occlusion.png.meta",
+      "sha256": "4e2a6882c787f81d85529b8a7a0bed910103ac335707f9f12ef4ea6415151152"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_MetallicSmoothness.png",
+      "sha256": "d88b896a53ea077d1655434d83f08fad751e1b9e4de8cb6071d6304951730842"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_MetallicSmoothness.png.meta",
+      "sha256": "009ce1a4ddcf15c1cf7b140e660d2dc83ef5f04c55d48cd091b054118d5e1b07"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_Collision.asset",
+      "sha256": "27f0d19c3b789f6946167951a4f5e4d0a1a655dceddf9a854f3607c483ab6800"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistFlatVolcanicRock02/ArtistFlatVolcanicRock02_Collision.asset.meta",
+      "sha256": "9f71574bea58d0a1fd498b3090b1ff7ac0006ddf63d2ab59c41b4a543281e624"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock01.prefab",
+      "sha256": "cde189aee565bfd30023c6b4e327ea5c02bff10a67b7939a553c83b71e4a3037"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock01.prefab.meta",
+      "sha256": "dc01414cd2bc3ec92166f4611474ea39fc860325a09417564b33ba8c9ddd2970"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_Collision.asset",
+      "sha256": "1b1ad122a9e5b9975eac3f48ad715135d9577f4dfb38f95243c799fee1931e89"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_Collision.asset.meta",
+      "sha256": "0aa8d9c61d5686b242fe53fb27bf4b4ad3246205d6e8165a7f58a4aa35cfa421"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_LOD0.asset",
+      "sha256": "cdb974e6a62fae969847f5273e18b4638e244a5d96fbc9a0bdface60d687a7a7"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_LOD0.asset.meta",
+      "sha256": "0ef7f9d5f3c02d734d920fae0373498200ee45996ca8995e1328b4e7972e28fc"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock01.mat",
+      "sha256": "b5ea4fa1ba174bba449ab4ede8f157d7fd91743f7d73db30f24909562c8261c9"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock01.mat.meta",
+      "sha256": "9ca05c377aca71f23f0d40c89c129a974d8fc9386a089107c4261e4901c55841"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_Occlusion.png",
+      "sha256": "991f90a8a0107dbd2bbbee2c75cd79cf2665dbac8d661c01af27e9fde77d9b33"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_Occlusion.png.meta",
+      "sha256": "79265c9738079bcaf4b5c34e5de1a46e728e9da07c4c78bcf9e5f726da3f22e3"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_BaseColor.png",
+      "sha256": "d5e78d086f859560ab1f05b3ac35a72cf583b546146b5f169681ad8a5d0e1a6f"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_BaseColor.png.meta",
+      "sha256": "be1439e3171da5ec68f8d07ef7cb37663a3de8a4ec2cc7be7f1c0ea53caf7fb3"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_Normal.png",
+      "sha256": "70e95421ff6c556c3cf77a8e3151a0a22b50b9fecca2f941930f453fa2146d63"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_Normal.png.meta",
+      "sha256": "ec679ba378f5a02fc92c8700e97792532e40173100c8710d26869df9af69ef72"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_MetallicSmoothness.png",
+      "sha256": "00668fa478f16273a74992548ed0494790fd101ba870350e7ad01868afde9604"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_MetallicSmoothness.png.meta",
+      "sha256": "6058449a89a8243f183db8876039aad7b4a04ac5bffaddacccb6a0cbca66c461"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_LOD1.asset",
+      "sha256": "acda213a5e2b64aa58e809020cb0cac80c011aa0233d98ed4d61f7440355f805"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_LOD1.asset.meta",
+      "sha256": "9873d635aaa46d9e9391851eb6f09bb1e2868b8b77c9087dec4d994ec4d09d7a"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_LOD2.asset",
+      "sha256": "537c153adb36cc3d79cff9a2188ea4e60e5b8b285c1453492af9389b910c7e27"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock01/ArtistVolcanicRock01_LOD2.asset.meta",
+      "sha256": "dae4caa21fd1428e40e26d2ed352e99510dd2678a8e23a87e856ff3ef9772eaf"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock05.prefab",
+      "sha256": "a6e317cbf7a5cfd4aea69f41544236c77c9615f86f0552766af65a3a85d46b31"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock05.prefab.meta",
+      "sha256": "81dd379662b613f4f72d92b2ccfe163b6c1f854138fcda76aa93dcd5de4b2918"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_LOD0.asset",
+      "sha256": "7732a1ae87808825ac384887044aa6a9875f1862810bf4d35afb9398e69e0bb8"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_LOD0.asset.meta",
+      "sha256": "27e21a4c3d27e040e2f69ce02e7cbd34256426677a5111b21195fac45c55ce1e"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_LOD1.asset",
+      "sha256": "a24a3f82770663f45f6be3cc412527954d5f5e0c072f1f8175c0a0875174ba3a"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_LOD1.asset.meta",
+      "sha256": "8f9aea9a03db3ad364c5b7d2609d8a17af1ea3a1e59746c65d06a44c69b50616"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_Collision.asset",
+      "sha256": "2b59493820d5755c659d92da79fae30234b9aa264d34b5426c38ffee892d5b6c"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_Collision.asset.meta",
+      "sha256": "290c4788550b4b3d9dcdefcd896e1f93354ec083e94de3bbf676fb31520362d3"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock05.mat",
+      "sha256": "d512696a57a53daecaab795d726c835055ea0c9b49875f40b4b604f0ee823da9"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock05.mat.meta",
+      "sha256": "4d2b8eb772296416ebc9c1e2fcc3b976eeb2b166a2a65d917c6fd22ba5dc97dd"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_Normal.png",
+      "sha256": "330e9586366764162b39e49f1ec6695b5a3f0e287786bbf931d0b7e601e8b6b6"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_Normal.png.meta",
+      "sha256": "d06a2b18bc32212829afe4283ef33169d33f104701433e111e8daf0f43fe741e"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_Occlusion.png",
+      "sha256": "384e1ca9b281a4c8a71b68510d313660ad66805576cecd73498021b9fb500e6d"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_Occlusion.png.meta",
+      "sha256": "1c08f397e6bae972f2d02314e04759bfcd390ca3a6e5ccf9921e80b44d1ef8cb"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_MetallicSmoothness.png",
+      "sha256": "0198c45b8817b49354208ffc82690064abcb61771cb79ded96c8a633042c52d8"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_MetallicSmoothness.png.meta",
+      "sha256": "0a01c6f41afc0e9a676c4293c36f4cbd61200561198a580b40c423a593a63255"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_BaseColor.png",
+      "sha256": "771458435bf6d3d22373b521e550a7c4e2be7c0087796a9a4827b7a34a11b217"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_BaseColor.png.meta",
+      "sha256": "fadd0daf2028f4ba4b99984a6e29f43cabbe63599e85276dbee0d1e3902801ee"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_LOD2.asset",
+      "sha256": "2da9d52a22f50199b3929b399e3024178e6d25ea43c8364bd9d5b431621f5231"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock05/ArtistVolcanicRock05_LOD2.asset.meta",
+      "sha256": "8c80ca22f506d00d32cdf0adcd41d67c567b17d8a2065b3fc329336bd37037e3"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock04.prefab",
+      "sha256": "8a645e470166e9e19fe78c52f034d5facb4a90929b12809806fa5687624c1f91"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/ArtistVolcanicRock04.prefab.meta",
+      "sha256": "9e72276a349fcb5b7586dd5f8068e47173438e7cfa3b8ff14b9ecb6d50f727e3"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_LOD0.asset",
+      "sha256": "667cb52017cff932e839214722b1c68d2b86928b27ab7e7501b8e00d0be7f71e"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_LOD0.asset.meta",
+      "sha256": "215133968a1491b1c01b12dd2928fed167c2fa69701ac41334fc5f4e7e93f933"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_LOD2.asset",
+      "sha256": "e9b3bfed1eeda3e297862f593ff9d55c97d00c07a5db5d7ab07564497db83d89"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_LOD2.asset.meta",
+      "sha256": "71fe49e2cd669150eb62a204c672c58ea2a29bc00e64f2415dcaaf139a0fb656"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock04.mat",
+      "sha256": "8f91fcc8c03d00bab67bf5790f66a6a368c74ff7d0ee5ed628fccee0344e16b7"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Rocks/ArtistVolcanicRock04.mat.meta",
+      "sha256": "f3aec544f74e95bf240faf6da68d7ba655f0ccdd7df9b99c2107d1dd32479b07"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_MetallicSmoothness.png",
+      "sha256": "5cc28fa727243430c5efb5d446640f6f6bf30f5017df82150df9c8429004a50f"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_MetallicSmoothness.png.meta",
+      "sha256": "875895a5cc695ed391070f5833720bde26a8b34f36f89afd77315b08271f40ed"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_Occlusion.png",
+      "sha256": "56fffbdfa479d7981febb03150c6bc682b8b8d18583d9c318faaf903dadae53e"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_Occlusion.png.meta",
+      "sha256": "2034006827608e9727301ea5d4b2b06599fe78b77d6cb20721d6b29bb56df058"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_BaseColor.png",
+      "sha256": "a0d465b30e6feaf20a83c2179c8ada35fcaafc9dcf8262a93ba0c38850d29f81"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_BaseColor.png.meta",
+      "sha256": "37fc9ec68f301fee028632ccc39e4714d906125139c8c745fb96fa0b0c7243ce"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_Normal.png",
+      "sha256": "cf15f403a8952292d9bf7be204e916bdf803c6347a901486215f1a90b9f69be0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_Normal.png.meta",
+      "sha256": "a7e94fe5a59ffc63d08bafd875c756f7768bfd4d654d90a6a0716db64b0664fe"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_Collision.asset",
+      "sha256": "cc237be568360ef8bda1f43d001ad2f664a9315ec16d41ea55fb7fc006b3760f"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_Collision.asset.meta",
+      "sha256": "7a795cf1adbed587353310b459bdda77a973e9c6803f707655e6bb0a97727636"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_LOD1.asset",
+      "sha256": "a8d99825ac5907ffd7d308ed55a6af6aeb9adbb29612e95a7a61573de95bb8ee"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/ArtistVolcanicRock04/ArtistVolcanicRock04_LOD1.asset.meta",
+      "sha256": "f6c5170d30c0043b942328fb4c69d0e7fc85baf5af834408dfe104989635b212"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs",
+      "sha256": "33900c973bc7430c3224790a257d52d85de4fd848f3fc24615577b11657e185b",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs.meta",
+      "sha256": "5ea623ece8ba7cd2340919e05df9b612cf411521adeb752c1de69755ac271012",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs",
+      "sha256": "d154b6fef2967d7d4a39bd2546750666a953b2c1d876286a2596a72d85bf5726",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs.meta",
+      "sha256": "7e765641f787ac39f1a58e3704845804055ad1848a21cfb8b93e102b754aa044",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs",
+      "sha256": "80a4ae89a673a2f48ec9703cde8d04832e6f4ad2ec6f6be1aff8f78666d374cd",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs.meta",
+      "sha256": "2dcde93ab98dda17ec2e2185b6f4979eeb231579989f959278fe3eef889bbbd2",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/GreaterWastelandInventoryAuthoring.cs",
+      "sha256": "d7348df35baaba70f3a4bfb47fb2268befb226e6a461f691d136491ee99c7525",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/GreaterWastelandInventoryAuthoring.cs.meta",
+      "sha256": "d23f7079f7575eb0316e618f873f0f4be6da6660b0fb6fe6144eafc67fb791af",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DResourceCache.cs",
+      "sha256": "1efd7d31c965818fbc7d4db9c477f8ccc2469119e9fb0688132018ab4ba91ad0",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DResourceCache.cs.meta",
+      "sha256": "381c1c3379e10b5fef1df55e18ebe5fbe187ef6211eeaa07f6769a9ba147c0a8",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Resources/GreaterWastelandResourceCache.prefab",
+      "sha256": "a8fcec6c70e28aa2a1d3c224a26b1c31a9144439f5d9af794e64077cea96e8b3",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Resources/GreaterWastelandResourceCache.prefab.meta",
+      "sha256": "b32f47aacc8c9fae635f7e123e8275971f459e64f55356a602f3d5261c7f9d1e",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryState.cs",
+      "sha256": "2c83bbddcd5c180ec6c657968d37266e7af89224e4d37d3e0428724e67261388",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryState.cs.meta",
+      "sha256": "ac1e4f946f74da90a88d9b41d04d2a2c4cba56902e885c71bd2fc9040fc4730b",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryState.Transactions.cs",
+      "sha256": "f608bfe7ff053b1f6bd0cc8243214dc0dab181e245eae0a82b3e811b00936b4e",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryState.Transactions.cs.meta",
+      "sha256": "40e0159ee08fef0f38567b07d2bb8ec8b4a54e251c43ac2685892fed74571267",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DCargoAccess.cs",
+      "sha256": "1dadaba5fa852aa980df317f54dbaedfa069f8e4ddf1ddcfdcbadbe48c6ed60b",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DCargoAccess.cs.meta",
+      "sha256": "1c7b83fd5a1956109c08575736891894780646311c5d00658fd8169ca06b4f63",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryPolicy.cs",
+      "sha256": "047a73e0873e9e561a4aaafa867804ff487fa113dffd27135559c2d424753a71",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryPolicy.cs.meta",
+      "sha256": "12c030fb00f7f5c79ed2b9d4088155c6186e7be329e63a844f507ead48a304b8",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Items/TopDown3DItemDefinition.cs",
+      "sha256": "05d80787f7d276f23de36ac24bd939a4250b78fa0d3c9ca721429b0019b9235b",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Items/TopDown3DItemDefinition.cs.meta",
+      "sha256": "cab8026293ce94166fba9038968767899ee629c6855d1584948fa6914b31580d",
+      "reason": "explicit_committed_CSharp_or_literal_asset_dependency"
+    }
+  ],
+  "package_dependencies": [
+    {
+      "guid": "d0353a89b1f911e48b9e16bdc9f2e058",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Editor/AssetVersion.cs.meta",
+      "sha256": "e7ec88783b56ae3a5adbe60d3ab71fd3b6fe269932af20218d4cc00eb3879868"
+    },
+    {
+      "guid": "933532a4fcc9baf4fa0491de14d08ed7",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Shaders/Lit.shader.meta",
+      "sha256": "f0db005307ffe5480c40a402ca5bfb0b3726259031a86e255e49626228ceb008"
+    },
+    {
+      "guid": "d0353a89b1f911e48b9e16bdc9f2e058",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Editor/AssetVersion.cs.meta",
+      "sha256": "e7ec88783b56ae3a5adbe60d3ab71fd3b6fe269932af20218d4cc00eb3879868"
+    },
+    {
+      "guid": "933532a4fcc9baf4fa0491de14d08ed7",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Shaders/Lit.shader.meta",
+      "sha256": "f0db005307ffe5480c40a402ca5bfb0b3726259031a86e255e49626228ceb008"
+    },
+    {
+      "guid": "d0353a89b1f911e48b9e16bdc9f2e058",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Editor/AssetVersion.cs.meta",
+      "sha256": "e7ec88783b56ae3a5adbe60d3ab71fd3b6fe269932af20218d4cc00eb3879868"
+    },
+    {
+      "guid": "933532a4fcc9baf4fa0491de14d08ed7",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Shaders/Lit.shader.meta",
+      "sha256": "f0db005307ffe5480c40a402ca5bfb0b3726259031a86e255e49626228ceb008"
+    },
+    {
+      "guid": "d0353a89b1f911e48b9e16bdc9f2e058",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Editor/AssetVersion.cs.meta",
+      "sha256": "e7ec88783b56ae3a5adbe60d3ab71fd3b6fe269932af20218d4cc00eb3879868"
+    },
+    {
+      "guid": "933532a4fcc9baf4fa0491de14d08ed7",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Shaders/Lit.shader.meta",
+      "sha256": "f0db005307ffe5480c40a402ca5bfb0b3726259031a86e255e49626228ceb008"
+    },
+    {
+      "guid": "d0353a89b1f911e48b9e16bdc9f2e058",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Editor/AssetVersion.cs.meta",
+      "sha256": "e7ec88783b56ae3a5adbe60d3ab71fd3b6fe269932af20218d4cc00eb3879868"
+    },
+    {
+      "guid": "933532a4fcc9baf4fa0491de14d08ed7",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Shaders/Lit.shader.meta",
+      "sha256": "f0db005307ffe5480c40a402ca5bfb0b3726259031a86e255e49626228ceb008"
+    },
+    {
+      "guid": "d0353a89b1f911e48b9e16bdc9f2e058",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Editor/AssetVersion.cs.meta",
+      "sha256": "e7ec88783b56ae3a5adbe60d3ab71fd3b6fe269932af20218d4cc00eb3879868"
+    },
+    {
+      "guid": "933532a4fcc9baf4fa0491de14d08ed7",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Shaders/Lit.shader.meta",
+      "sha256": "f0db005307ffe5480c40a402ca5bfb0b3726259031a86e255e49626228ceb008"
+    },
+    {
+      "guid": "d0353a89b1f911e48b9e16bdc9f2e058",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Editor/AssetVersion.cs.meta",
+      "sha256": "e7ec88783b56ae3a5adbe60d3ab71fd3b6fe269932af20218d4cc00eb3879868"
+    },
+    {
+      "guid": "933532a4fcc9baf4fa0491de14d08ed7",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Shaders/Lit.shader.meta",
+      "sha256": "f0db005307ffe5480c40a402ca5bfb0b3726259031a86e255e49626228ceb008"
+    }
+  ],
+  "source_lineage_unchanged": true,
+  "fresh_production_readback_sha256": "17dc29c5ee364092c990bc408fb27e7d22e2db6acc15824674c315036bf338bd",
+  "fresh_logs": [
+    {
+      "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Logs\\step5-playable02.log",
+      "sha256": "c029fac2829463096b19e6b77bbcb5d23c9d2eea0091c03e5f8ce89de57bcc6c",
+      "exit_code": 0
+    }
+  ],
+  "production_proof_version": "03",
+  "playable_proof_version": "02",
+  "test_proof_version": "reconciliation01",
+  "focused_tests": {
+    "passed": 34,
+    "failed": 0,
+    "xml_path": "Docs/Evidence/DeathValley/NORTH_ROW4_STEP05_COMMITTED_SCENE_RECONCILIATION_2026-10-12.xml",
+    "sha256": "1f5aab519eaae67a2630e62ea16925c94502a20b4a089d1069c40ffd5a652b56"
+  },
+  "preserved_native_proof_metadata_sha256": "0e41c47ba25c0c5842b9d613335f8905db8445ed5fbd53d76922f00c1476eb1c",
+  "dependency_import_history": [
+    {
+      "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Logs\\step5-production-check02.log",
+      "sha256": "bd9ed5d89fcd3c37e84bf7f0359ab229da412ceca6459ea541354c05d8a8d570",
+      "exit_code": 1
+    },
+    {
+      "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Logs\\step5-importreconciliation01.log",
+      "sha256": "7a2e28c5ba7391eea2af1387a3fc6866778a2d992f659e1025ae77c395fb56bf",
+      "exit_code": 1
+    },
+    {
+      "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Logs\\step5-importreconciliation02.log",
+      "sha256": "8eb42ffd02e797e2485fcb4bf068f1be6cc6d2e81c5285b20b41ca90dbc11f48",
+      "exit_code": 1
+    },
+    {
+      "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Logs\\step5-importreconciliation03.log",
+      "sha256": "582c1e43756f11e5e42dac9c7a548c1d051e04114262838458414b814ccae209",
+      "exit_code": 1
+    },
+    {
+      "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Logs\\step5-importreconciliation04.log",
+      "sha256": "d748db3bf35b210ed5fba8e4795d7eae2ccbf84c1e37200a15ba45ceb55ed9b9",
+      "exit_code": 0
+    },
+    {
+      "local_log": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Logs\\step5-importreconciliation05.log",
+      "sha256": "ff6fc0d81aad5c68e4f564f53ee34e29f5e9aceb99654aa4f452097b9f3bde2e",
+      "exit_code": 0
+    }
+  ],
+  "proof_metadata_recovery": "The unaccepted draft JSON was initially absent during failed compilation. Its original JSON and exact metadata bytes were restored from the retained backup before successful import; the corrected workflow retains both through compilation and refreshes JSON only after fresh native readback."
+}

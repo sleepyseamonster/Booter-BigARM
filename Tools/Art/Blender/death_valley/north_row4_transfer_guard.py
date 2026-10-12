@@ -22,7 +22,21 @@ def command(name,*args):
 
 def saved_guard(step,date):
     c=contract(step,date);bm=json.loads((c['data']/'Baseline01/baseline.json').read_text(encoding='utf-8'))
-    if sha256(ROOT/bm['scene'])!=bm['scene_sha256'] or sha256(ROOT/bm['predecessor_manifest'])!=bm['predecessor_manifest_sha256']:
+    actual=sha256(ROOT/bm['scene'])
+    if actual!=bm['scene_sha256']:
+        if step!=5 or date!='2026-10-11':raise ValueError('Saved committed predecessor changed before transfer')
+        receipt=ROOT/'Docs/Evidence/DeathValley/NORTH_ROW4_STEP05_COMMITTED_SCENE_RECONCILIATION_2026-10-12.json'
+        if not receipt.is_file():raise ValueError('Exact committed camp change awaits fresh reconciliation proof; preserve root')
+        r=json.loads(receipt.read_text(encoding='utf-8'))
+        if r['status']!='committed_camp_overlay_freshly_validated' or r['step']!=5 or r['captured_predecessor_scene_sha256']!=bm['scene_sha256'] or r['committed_transfer_predecessor_scene_sha256']!=actual:
+            raise ValueError('Exact validated committed camp reconciliation required')
+        committed=subprocess.check_output(['git','show',r['source_commit']+':'+bm['scene']],cwd=ROOT)
+        if committed!=(ROOT/bm['scene']).read_bytes():raise ValueError('Root differs from specifically reconciled commit')
+        subprocess.run(['git','merge-base','--is-ancestor',r['source_commit'],'HEAD'],cwd=ROOT,check=True)
+        for f in r['dependencies']:
+            if sha256(c['data']/'Reconciliation01/Dependencies'/f['path'])!=f['sha256']:raise ValueError('Frozen committed validation dependency changed')
+        bm=dict(bm,captured_predecessor_scene_sha256=bm['scene_sha256'],scene_sha256=actual,reconciliation_receipt_sha256=sha256(receipt))
+    if sha256(ROOT/bm['predecessor_manifest'])!=bm['predecessor_manifest_sha256']:
         raise ValueError('Saved committed predecessor or native manifest changed before transfer')
     subprocess.run(['git','diff','--quiet','HEAD','--',bm['scene']],cwd=ROOT,check=True)
     return bm

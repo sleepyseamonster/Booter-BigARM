@@ -3,7 +3,7 @@ import argparse,json,os,subprocess,time
 from pathlib import Path
 from north_row4_contract import ROOT,contract
 
-def run(stage,step,date,isolation,version,graphics=False,test_filter=None):
+def run(stage,step,date,isolation,version,graphics=False,test_filter=None,seal_native_proof=True):
     c=contract(step,date);isolation=isolation.resolve()
     if isolation==ROOT or not (isolation/'ProjectSettings/ProjectVersion.txt').is_file() or (isolation/'.git').exists():
         raise ValueError('A distinct physical validation project is required')
@@ -30,7 +30,7 @@ def run(stage,step,date,isolation,version,graphics=False,test_filter=None):
             report=isolation/'Logs'/f'step{step}-{stage.replace("-check","-readback")}{suffix}.json'
             if report.exists():raise ValueError('Fresh native readback path required')
             args+=['-terrainExpansionReport',str(report)]
-            if stage=='production-check':args+=['-terrainExpansionScene','Assets/_Project/Scenes/Production/GreaterWasteland.unity','-northRow4SealProof','true']
+            if stage=='production-check':args+=['-terrainExpansionScene','Assets/_Project/Scenes/Production/GreaterWasteland.unity','-northRow4SealProof','true' if seal_native_proof else 'false']
     env=dict(os.environ,TEMP='D:/BooterBigArmTools/Temp',TMP='D:/BooterBigArmTools/Temp')
     start=time.monotonic()
     result=subprocess.run(args,env=env,creationflags=subprocess.CREATE_NO_WINDOW)
@@ -42,5 +42,5 @@ if __name__=='__main__':
     p.add_argument('--stage',choices=['import','candidate','candidate-check','integrate','production-check','tests','current-catalog-tests','contract-tests','playable','map'],required=True)
     p.add_argument('--step',type=int,required=True);p.add_argument('--date',required=True)
     p.add_argument('--isolation',type=Path,required=True);p.add_argument('--proof-version',default='01')
-    p.add_argument('--test-filter');a=p.parse_args()
-    run(a.stage,a.step,a.date,a.isolation,a.proof_version,a.stage=='map',a.test_filter)
+    p.add_argument('--test-filter');p.add_argument('--no-seal-native-proof',action='store_true');a=p.parse_args()
+    run(a.stage,a.step,a.date,a.isolation,a.proof_version,a.stage=='map',a.test_filter,not a.no_seal_native_proof)

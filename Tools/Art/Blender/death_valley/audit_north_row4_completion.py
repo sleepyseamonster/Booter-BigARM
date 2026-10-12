@@ -20,6 +20,20 @@ assert cat['source_audit']['shared_edges_checked']==18240 and cat['source_audit'
 sections=[];sources=0;source_bytes=0;previous='19c3633ffd884f11b72cd9f6daae13526315ad252f93da49b5191d99ab87c566'
 from north_row4_coverage import newest
 commits=[]
+camp_receipt=root/'Docs/Evidence/DeathValley/NORTH_ROW4_STEP05_COMMITTED_SCENE_RECONCILIATION_2026-10-12.json'
+camp=json.loads(camp_receipt.read_text(encoding='utf-8')) if camp_receipt.exists() else None
+if camp:
+ assert camp['schema_version']==1 and camp['status']=='committed_camp_overlay_freshly_validated' and camp['step']==5
+ assert camp['changed_committed_original_documents']==['9223372036854775807'] and camp['added_committed_documents']==['522726688']
+ committed_scene=subprocess.check_output(['git','show',camp['source_commit']+':Assets/_Project/Scenes/Production/GreaterWasteland.unity'],cwd=root)
+ import hashlib
+ assert hashlib.sha256(committed_scene).hexdigest()==camp['committed_transfer_predecessor_scene_sha256']
+ _,committed_docs=split_documents(committed_scene.decode('utf-8'))
+ for f in camp['dependencies']:assert sha256(contract(5,'2026-10-11')['data']/'Reconciliation01/Dependencies'/f['path'])==f['sha256']
+ for log in camp['fresh_logs']:assert log['exit_code']==0 and sha256(Path(log['local_log']))==log['sha256']
+ assert camp['focused_tests']['passed']==34 and camp['focused_tests']['failed']==0
+ assert sha256(root/camp['focused_tests']['xml_path'])==camp['focused_tests']['sha256']
+ xt=ET.parse(root/camp['focused_tests']['xml_path']).getroot();assert xt.attrib['result']=='Passed' and xt.attrib['passed']=='34' and xt.attrib['failed']=='0'
 recovery = json.loads(args.canonical_log_recovery.read_text(encoding='utf-8')) if args.canonical_log_recovery else None
 if recovery:
  assert recovery['schema_version']==1 and recovery['status']=='exact_accepted_snapshots_canonically_reverified'
@@ -62,6 +76,10 @@ for step in range(1,7):
  for proof in a['blender_proofs']:
   subprocess.run(['git','check-ignore','--quiet',str(Path(proof['blend_file']).relative_to(root))],cwd=root,check=True)
  r=json.loads((ev/'scene_preservation_receipt.json').read_text(encoding='utf-8'));assert r['predecessor_scene_sha256']==previous and r['production_scene_sha256']==close['production_scene_sha256']
+ if step==5 and camp:
+  assert r['committed_scene_reconciliation_sha256']==sha256(camp_receipt)
+  assert r['committed_transfer_predecessor_scene_sha256']==camp['committed_transfer_predecessor_scene_sha256']
+  assert previous==camp['captured_predecessor_scene_sha256'] and close['production_scene_sha256']==camp['production_scene_sha256'] and close['manifest_sha256']==camp['manifest_sha256']
  assert r['changed_original_documents']==['1259644692'] and r['new_scene_documents']==1314 and r['scene_guid_preserved']
  report=json.loads((ev/f'step{step}-production-readback.json').read_text(encoding='utf-8'))
  assert report['scene_sha256']==close['production_scene_sha256'] and report['manifest_sha256']==close['manifest_sha256']
@@ -125,7 +143,13 @@ assert join_count==18240
 before=root/'SourceData/Terrain/DeathValley/NorthRow4E499920N4026680_2026-10-11/Baseline01/production_before.unity'
 _,old=split_documents(before.read_text(encoding='utf-8'));_,new=split_documents(scene.read_text(encoding='utf-8'))
 changed_original=[k for k in old if old[k]!=new[k]]
-assert not set(old)-set(new) and changed_original==['1259644692'] and len(set(new)-set(old))==7884
+assert not set(old)-set(new)
+if camp:
+ assert set(changed_original)=={'1259644692','9223372036854775807'} and len(set(new)-set(old))==7885
+ assert new['522726688']==committed_docs['522726688']
+ assert new['9223372036854775807']==old['9223372036854775807']+'  - {fileID: 522726688}\n'
+else:
+ assert changed_original==['1259644692'] and len(set(new)-set(old))==7884
 pattern=r'(?m)^  m_Children:\n(?:  - \{fileID: \d+\}\n)*'
 old_children=re.findall(r'fileID: (\d+)',re.search(pattern,old['1259644692'])[0]);new_children=re.findall(r'fileID: (\d+)',re.search(pattern,new['1259644692'])[0])
 assert new_children[:len(old_children)]==old_children and len(new_children)==len(old_children)+6
@@ -171,6 +195,11 @@ out['unchanged_package_editor_pins']=pins
 out['acceptance_commits']=commits
 out['original_protected_files_verified']=len(inventory)-1
 out['changed_original_scene_documents']=changed_original
+out['retained_original_scene_documents']=len(old)-len(changed_original)
+out['new_scene_documents']=len(set(new)-set(old))
+if camp:
+ out['committed_camp_reconciliation_sha256']=sha256(camp_receipt)
+ out['preserved_concurrent_scene_commit']=camp['source_commit']
 if recovery:
  out['canonical_log_recovery_sha256']=sha256(args.canonical_log_recovery)
  out['missing_original_logs_freshly_reverified_steps']=recovered_logs

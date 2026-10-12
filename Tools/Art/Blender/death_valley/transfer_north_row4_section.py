@@ -79,6 +79,10 @@ def transfer(step,date,isolation,test_proof_version='01',candidate_proof_version
     (ev/'root_transfer_guard.json').write_bytes((json.dumps(guard,indent=2)+'\n').encode('utf-8'))
     (ev/'unrelated_editor_state_preservation.json').write_bytes((json.dumps(preservation,indent=2)+'\n').encode('utf-8'))
     receipt={'schema_version':1,'family':'north_row4','step':step,'status':'verified_native_saved_scene_transfer','retained_terrains':c['retained_count'],'new_terrains':256,'total_terrains':c['total'],'changed_original_documents':['1259644692'],'unchanged_original_documents':len(old)-1,'new_scene_documents':1314,'new_sectors':16,'predecessor_scene_sha256':bm['scene_sha256'],'production_scene_sha256':report['scene_sha256'],'manifest_sha256':report['manifest_sha256'],'scene_guid_preserved':True,'native_proof_metadata_sha256':sha256(Path(str(proof)+'.meta')),'canonical_validator_log_sha256':sha256(playable),'test_proof_version':test_proof_version,'candidate_proof_version':candidate_proof_version,'root_editor_mode':preservation['mode'],'root_import_limit':'Native proof imported in isolation, paired metadata copied byte-exact; no fresh root GUI import claim when offline.'}
+    if 'reconciliation_receipt_sha256' in bm:
+        receipt['committed_transfer_predecessor_scene_sha256']=bm['scene_sha256']
+        receipt['predecessor_scene_sha256']=bm['captured_predecessor_scene_sha256']
+        receipt['committed_scene_reconciliation_sha256']=bm['reconciliation_receipt_sha256']
     receipt['playable_proof_version']=playable_proof_version
     receipt['production_proof_version']=production_proof_version
     (ev/'scene_preservation_receipt.json').write_bytes((json.dumps(receipt,indent=2)+'\n').encode('utf-8'))
