@@ -12,7 +12,8 @@ base=root/'SourceArt/Blender/Studies/BooterGroundSetup/LimestoneRock01'
 proof=root/'Logs/LimestoneRock01'
 delivery=json.loads((base/'delivery.json').read_text())
 assert Path(bpy.data.filepath).resolve()==Path(delivery['output']).resolve()
-assert hashlib.sha256((base.parent/'BooterGroundSetup.blend').read_bytes()).hexdigest()==delivery['source_sha256']
+artist_source=Path(delivery.get('artist_source_path',str(base.parent/'BooterGroundSetup.blend')))
+assert hashlib.sha256(artist_source.read_bytes()).hexdigest()==delivery['source_sha256']
 for name,digest in delivery['texture_sources'].items():
     assert hashlib.sha256((root/'Assets/_Project/Art/Environment/Rocks/Workbench/Layered'/name).read_bytes()).hexdigest()==digest
 report={'blender':bpy.app.version_string,'source_and_workbench_textures_unchanged':True,'meshes':{},'maps':{}}

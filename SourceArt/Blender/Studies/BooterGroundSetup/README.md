@@ -18,4 +18,4 @@ Fresh Windows proof used Blender 5.2.2 LTS and Unity 6000.4.0f1. The saved file 
 
 This authoring-only setup does not participate in deterministic world identity, terrain streaming, generated-object identity, world placement constraints or persisted gameplay deltas. Unity assets, metadata and gameplay are untouched. The `.blend` and retained previous save remain local-only under the repository source-publication policy; only the small tools and this note belong in Git.
 
-The author's rock sculpt was saved on October 12, 2026. Its separately optimized limestone version, export and texture set are documented in [LimestoneRock01](LimestoneRock01/README.md). The saved artist source remains intact.
+The author's rock sculpt was saved on October 12, 2026. The optimized limestone rock is now in this same `BooterGroundSetup.blend`, following the author's correction. Its export and texture set are documented in [LimestoneRock01](LimestoneRock01/README.md). The original sculpt remains hidden in the scene, and the untouched artist save is retained locally as `BooterGroundSetup_ArtistSource_2026-10-12.blend`.
