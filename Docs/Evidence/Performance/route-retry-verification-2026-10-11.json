@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var tests = new BooterBigArm.Tests.TopDown3DRouteRetryTests(); tests.FailedRoutesRespectDeadlineEvenForMovingTargetsAndCallOverCanInvalidate(); tests.AlreadyConsumedRouteDoesNotBuildTwiceInOneUpdate(); var grid = new BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests(); grid.RoutesAroundBlockedGroundWithoutCuttingCorner(); grid.RejectsUnloadedBarrierAndUnreachableSteepStep(); return \"PASS: two route retry checks and two existing pathfinding checks; no Play Mode or actor relocation.\";"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "PASS: two route retry checks and two existing pathfinding checks; no Play Mode or actor relocation."
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

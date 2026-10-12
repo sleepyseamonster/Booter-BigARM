@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var t = new BooterBigArm.Tests.FixedTerrainPopulationIdentityTests(); t.CandidateIdentityAndPositionsSurviveReverseOrderAndContextReconstruction(); t.NegativeBordersIndependentStreamsAndRecipeVersionsAreExplicit(); t.VersionOneEncodingMatchesIndependentReferenceVector(); return \"PASS: three deterministic population identity checks, including independent Python reference vector; no population installed.\";"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "PASS: three deterministic population identity checks, including independent Python reference vector; no population installed."
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

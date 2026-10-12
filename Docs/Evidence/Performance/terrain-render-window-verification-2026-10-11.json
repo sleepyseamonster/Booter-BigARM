@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var tests = new BooterBigArm.Tests.FixedTerrainRenderWindowTests(); tests.WindowPreservesCollisionNeighboursDataAndOriginalFlags(); tests.CameraUnionImmediateArrivalsRetentionAndFailOpenAreExplicit(); tests.LowSunIncludesRemoteCastersAndHorizonFailsOpen(); var terrain = new BooterBigArm.Tests.FixedTerrainDressingTests(); terrain.NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles(); terrain.HolesAndColliderDataMismatchFailClosed(); return \"PASS: five focused EditMode methods on imported implementation; no gameplay or production scene reload.\";"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "PASS: five focused EditMode methods on imported implementation; no gameplay or production scene reload."
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

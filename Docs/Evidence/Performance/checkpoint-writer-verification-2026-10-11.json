@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var tests = new BooterBigArm.Tests.GreaterWastelandCheckpointWriterTests(); tests.WriterSerializesWritesCoalescesPendingAndAcknowledgesCapturedRevisions(); tests.WorkerFailureStopsPendingWritesAndReportsFailure(); tests.DetachedEncodingPreservesFileFormatBackupAndInterruptedWriteProtection(); return \"PASS: three ordered writer/immutable capture/failure/durable file checks; synthetic paths only.\";"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "PASS: three ordered writer/immutable capture/failure/durable file checks; synthetic paths only."
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

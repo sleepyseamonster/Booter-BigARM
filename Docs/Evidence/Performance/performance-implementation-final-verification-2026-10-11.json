@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var window = new BooterBigArm.Tests.FixedTerrainRenderWindowTests(); window.WindowPreservesCollisionNeighboursDataAndOriginalFlags(); window.CameraUnionImmediateArrivalsRetentionAndFailOpenAreExplicit(); window.LowSunIncludesRemoteCastersAndHorizonFailsOpen(); var terrain = new BooterBigArm.Tests.FixedTerrainDressingTests(); terrain.NativeCollisionQueriesRespectNegativeCellsSeamsOuterEdgesAndDisabledTiles(); terrain.HolesAndColliderDataMismatchFailClosed(); var route = new BooterBigArm.Tests.TopDown3DRouteRetryTests(); route.FailedRoutesRespectDeadlineEvenForMovingTargetsAndCallOverCanInvalidate(); route.AlreadyConsumedRouteDoesNotBuildTwiceInOneUpdate(); var grid = new BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests(); grid.RoutesAroundBlockedGroundWithoutCuttingCorner(); grid.RejectsUnloadedBarrierAndUnreachableSteepStep(); var writer = new BooterBigArm.Tests.GreaterWastelandCheckpointWriterTests(); writer.WriterSerializesWritesCoalescesPendingAndAcknowledgesCapturedRevisions(); writer.WorkerFailureStopsPendingWritesAndReportsFailure(); writer.DetachedEncodingPreservesFileFormatBackupAndInterruptedWriteProtection(); var identity = new BooterBigArm.Tests.FixedTerrainPopulationIdentityTests(); identity.CandidateIdentityAndPositionsSurviveReverseOrderAndContextReconstruction(); identity.NegativeBordersIndependentStreamsAndRecipeVersionsAreExplicit(); identity.VersionOneEncodingMatchesIndependentReferenceVector(); return \"PASS: final imported implementation, 15 focused methods; renderer frame exit budget and extreme bounds included. No gameplay or production save/scene access.\";"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "PASS: final imported implementation, 15 focused methods; renderer frame exit budget and extreme bounds included. No gameplay or production save/scene access."
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

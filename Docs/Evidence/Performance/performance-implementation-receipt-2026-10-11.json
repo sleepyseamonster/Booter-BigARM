@@ -1,0 +1,142 @@
+{
+  "date_local": "2026-10-11",
+  "head_at_closeout": "eeb84a51e3f61f5a2a0ff2f83bd7120f0ae84abd",
+  "candidate": "D:\\BooterBigArmValidation\\PerformanceImplementation20261011-01",
+  "editor": "6000.4.0f1",
+  "mode": "batchmode -nographics, focused EditMode",
+  "result": {
+    "total": 29,
+    "passed": 29,
+    "failed": 0,
+    "skipped": 0
+  },
+  "source_matches_candidate": true,
+  "source_files": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs",
+      "sha256": "5ef2cbc1924b874a10b1e5c4158eaa11a6c1366bef0c1d5a08b280b138bc89f1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs",
+      "sha256": "0e1a10e62a02c6c5dcd37c4b016ea2ffe5733bc82167a6bb992af5381769a51e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs",
+      "sha256": "b76d3181b056e884b54e3e6cc056355483b8762ec670436168ee22c8375d53ab"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs",
+      "sha256": "80a4ae89a673a2f48ec9703cde8d04832e6f4ad2ec6f6be1aff8f78666d374cd"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs",
+      "sha256": "53dd269a70fa9154219a1e6b8fa6d37f9a99403af3e0aac142194530af84a179"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs",
+      "sha256": "318e9d9acfe68ea35d1c17b53799a73cba3bba4a34549362b4a1dfd7b2612c81"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs",
+      "sha256": "68c9104a84bd73559b1da3b97b56e49a08b1cfd5bdd5f12e27eb6f26caddb690"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandCheckpointWriter.cs",
+      "sha256": "4b7c72c47eafeb069d1fea44ff2ae84a941956c36149ff89ab312f879997866b"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainDressingTests.cs",
+      "sha256": "416dcd978c7f0ecd78b8f578251aca36b2f6e142e7d72a24412122506e5b14ef"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainRenderWindowTests.cs",
+      "sha256": "42f1ec3ddf1e63d2dce989a1583b8a56885514fb4163c60408ea80f46e64ae31"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationIdentityTests.cs",
+      "sha256": "5429f4a6c597b3bb6a8dcf60f42e2e07df9c78921667c1f599264f650ff7fad4"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DRouteRetryTests.cs",
+      "sha256": "7bed5ed0680a5b9bb43978fc803f4a281a135bc37e1c2736a934a401cd84ee3c"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandCheckpointWriterTests.cs",
+      "sha256": "d568438b3684bbf6aad881e8fb96dcaab963df7c28cbf6a46ca8e346f893f2d9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandInventoryPersistenceTests.cs",
+      "sha256": "56fae5e18a2e8be0399708f029246e4b753a3892a20d8d5682f53dcceb67ced8"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs.meta",
+      "sha256": "e365f03a959f1ad999404923f8b3e8300d312782842e1b7b158996ecd532da1c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs.meta",
+      "sha256": "7aa347310665511a36a6a77c08e4e073056a39c16f8b9ebaad7b9d8d687b6162"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs.meta",
+      "sha256": "941c10e73d8fb3587637ec01e9dc21ba4cdc8958830e55fae8164a26f4c4d01b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs.meta",
+      "sha256": "2dcde93ab98dda17ec2e2185b6f4979eeb231579989f959278fe3eef889bbbd2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs.meta",
+      "sha256": "b554628c3ca8bdf09eb79e35c0273facd6a33af0612c3a41c3ca4aa7586decb9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs.meta",
+      "sha256": "c48b087ed4872b1ae961a700d15656884ca3aa6aef2b9e3ed64203c3df2922de"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs.meta",
+      "sha256": "5ea623ece8ba7cd2340919e05df9b612cf411521adeb752c1de69755ac271012"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandCheckpointWriter.cs.meta",
+      "sha256": "84f679f0fd656701dc9c4adf6b54921040e45d477241a4bc4ed141e15d93b4e9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainDressingTests.cs.meta",
+      "sha256": "5083b24b1f84b0055930feaa869b58250885505ad2be76f9d1126ec57848d8e6"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainRenderWindowTests.cs.meta",
+      "sha256": "4cce03315cd98cfc2d5217759e5e8287f81cf15001e999b6d38a79b491c48ae9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationIdentityTests.cs.meta",
+      "sha256": "128307d147d5bb690ef5fa90a42c141f9c2773f58b515f5f17f96f887dca8c24"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DRouteRetryTests.cs.meta",
+      "sha256": "871ed50c713f348834a0436ef54b1ed18c0bdfb709e90c418f714023860cf3fe"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandCheckpointWriterTests.cs.meta",
+      "sha256": "011fc5958d31105b500f65cdd1ecd3f3c5ee0d36f358efc4a2c42629c0eafd1d"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandInventoryPersistenceTests.cs.meta",
+      "sha256": "9480fc3dd0b97df04a9583e86375b07ebbac0e93e4db0a78694a9160c3d8b8fc"
+    }
+  ],
+  "xml": "performance-implementation-editmode-2026-10-11.xml",
+  "xml_sha256": "9144e46f109dc4fe36117457782df67367433cbc38a676f125c3b65b180f0e00",
+  "proof_limits": [
+    "Native terrain and scenes excluded from small test copy",
+    "No Player render/FPS/visual acceptance or gameplay smoke test",
+    "Runtime lifecycle teardown invoked explicitly in EditMode fixture",
+    "Identity only: no production population or save migration installed"
+  ],
+  "retained_attempts": [
+    "Live additive fixture setup refused untitled unsaved scene; no scene was saved/replaced",
+    "Revision 2: 27/28 passed; teardown fixture incorrectly expected automatic runtime callback in EditMode; corrected fixture keeps restoration assertion"
+  ],
+  "resource_observation": "Cold small-copy process observed at 2.69 GiB working set; this is a sample, not a measured peak.",
+  "xml_normalization": "UTF-8/LF; test result content unchanged"
+}
