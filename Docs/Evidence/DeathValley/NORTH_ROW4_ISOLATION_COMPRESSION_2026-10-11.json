@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "isolated_NTFS_asset_compression_byte_identity_verified",
+  "isolation": "C:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_01",
+  "scope": "C:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_01\\Assets",
+  "files": 154302,
+  "logical_bytes": 15395405127,
+  "baseline_path": "Logs/NorthRow4Readiness20261011/compression-assets-before.json",
+  "baseline_sha256": "ac25c5f4c54bebbb762935c3e80d5365e09f8a640d8e088eaca261129b2320c2",
+  "compact_log_sha256": "d30d2a7c6129c808a876cb2be5779e2cfa0698a17a9fb7a00a72f1e73ac10005",
+  "all_logical_sha256_size_and_mtime_unchanged": true,
+  "C_free_bytes": 12824072192,
+  "D_free_bytes": 10454724608,
+  "limits": "Task-owned physical validation Assets only; no files deleted, no packages or content changed, no production/editor/system setting changes."
+}
