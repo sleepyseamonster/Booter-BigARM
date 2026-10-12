@@ -1,0 +1,899 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7698761812452577719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4669229076198970712}
+  - component: {fileID: 8988375804604161954}
+  m_Layer: 0
+  m_Name: GreaterWastelandIronstone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4669229076198970712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698761812452577719}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3668595432548639430}
+  - {fileID: 3653015517725792634}
+  - {fileID: 7561498472403073149}
+  - {fileID: 2840208659196470300}
+  - {fileID: 8727204937043523984}
+  - {fileID: 7691782526123599811}
+  - {fileID: 2308762624471577615}
+  - {fileID: 3269560616814852833}
+  - {fileID: 5111374119394775368}
+  - {fileID: 3142569015103723398}
+  - {fileID: 7562410904110136793}
+  - {fileID: 8884714613587488238}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8988375804604161954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698761812452577719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a5aa2195ea43d4aa1f0ff4c235edad, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DResourceWorldState
+  resourceGenerationVersion: 1
+--- !u!1001 &469779458297737081
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1809
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -44.211113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1473
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.9848078
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.17364818
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:09
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &5111374119394775368 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 469779458297737081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2919481066530293324
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1834
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -47.946693
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1505
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7372773
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6755902
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &7561498472403073149 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 2919481066530293324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2925324240959587304
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -47.72695
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1530
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8433916
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.53729945
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &7562410904110136793 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 2925324240959587304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3086497604647606770
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1871
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -49.155262
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1484
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96004987
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.2798289
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &7691782526123599811 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 3086497604647606770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4140638629535516577
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1826
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -46.353577
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1486
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.08715574
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9961947
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &8727204937043523984 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 4140638629535516577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4262404836686861279
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1899
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -54.53889
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1533
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8064444
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5913099
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &8884714613587488238 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 4262404836686861279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6945004845785516606
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1816
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -47.891758
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1516
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6087616
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7933532
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:07
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &2308762624471577615 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 6945004845785516606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7422408247352416813
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1863
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -50.253963
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1506
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.8968728
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.44228858
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &2840208659196470300 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 7422408247352416813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7779800805469727159
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1890
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -49.539806
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1469
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.19509022
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9807853
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &3142569015103723398 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 7779800805469727159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7868934572638012624
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1883
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -52.671104
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1518
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.51877314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8549119
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:08
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &3269560616814852833 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 7868934572638012624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8251362355885415671
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1840
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -47.781887
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1493
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &3668595432548639430 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 8251362355885415671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8275887690599311179
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4669229076198970712}
+    m_Modifications:
+    - target: {fileID: 3373422511031867279, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_Name
+      value: Ironstone 02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1856
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -48.496044
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1491
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.36243805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.93200785
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: stableId
+      value: greater-wasteland:ironstone:v1:authored:02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976012174903995636, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+      propertyPath: worldState
+      value:
+      objectReference: {fileID: 8988375804604161954}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+--- !u!4 &3653015517725792634 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4642017436273098289, guid: 734cdca9701fa0d4d91ce3860a021f0a, type: 3}
+  m_PrefabInstance: {fileID: 8275887690599311179}
+  m_PrefabAsset: {fileID: 0}

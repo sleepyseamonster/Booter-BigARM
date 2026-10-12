@@ -36,6 +36,16 @@ namespace BooterBigArm.TopDown3D
             TargetChanged?.Invoke(CurrentTarget);
         }
 
+        public bool CanReachTarget(ITopDown3DInteractable target)
+        {
+            if (motor == null || target == null || target.UnityObject == null || !target.IsAvailable
+                || Vector3.Distance(motor.Position, target.InteractionPoint) > target.InteractionRange)
+                return false;
+            var component = target.UnityObject as Component;
+            return component != null && HasLineOfSight(target,
+                component.GetComponentInChildren<Collider>(), motor.Position);
+        }
+
         private void Update()
         {
             RefreshTarget();
@@ -56,12 +66,17 @@ namespace BooterBigArm.TopDown3D
                 hits,
                 interactionMask,
                 QueryTriggerInteraction.Collide);
+            // A saturated NonAlloc buffer is incomplete and cannot select a deterministic nearest target.
+            var candidates = count == hits.Length
+                ? Physics.OverlapSphere(actorPosition, scanRadius, interactionMask, QueryTriggerInteraction.Collide)
+                : hits;
+            if (candidates != hits) count = candidates.Length;
             ITopDown3DInteractable best = null;
             var bestDistance = float.PositiveInfinity;
             var bestFacing = float.NegativeInfinity;
             for (var i = 0; i < count; i++)
             {
-                var collider = hits[i];
+                var collider = candidates[i];
                 var candidate = collider != null
                     ? collider.GetComponentInParent<TopDown3DBigArmCargoAccess>() as ITopDown3DInteractable
                     : null;

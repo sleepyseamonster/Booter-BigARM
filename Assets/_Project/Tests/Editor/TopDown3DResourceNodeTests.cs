@@ -205,7 +205,8 @@ namespace BooterBigArm.Tests
             Assert.That(firstNode.TryConsume(out var remaining), Is.True);
             Assert.That(remaining, Is.Zero);
             Assert.That(firstNode.IsDepleted, Is.True);
-            Assert.That(firstNode.GetComponent<Collider>().enabled, Is.False);
+            Assert.That(firstNode.GetComponent<Collider>().enabled, Is.True,
+                "The depleted outcrop must retain its physical obstacle.");
             Object.DestroyImmediate(firstChunkObject);
 
             var secondChunkObject = new GameObject("Reloaded Resource Chunk");
@@ -217,7 +218,7 @@ namespace BooterBigArm.Tests
                 .Single(node => node.StableId == placements[0].StableId);
 
             Assert.That(reloaded.IsDepleted, Is.True);
-            Assert.That(reloaded.GetComponent<Collider>().enabled, Is.False);
+            Assert.That(reloaded.GetComponent<Collider>().enabled, Is.True);
             Assert.That(reloaded.TryConsume(out remaining), Is.False);
             Assert.That(reloaded.GetComponentInChildren<MeshRenderer>().sharedMaterial,
                 Is.SameAs(definition.DepletedMaterial));

@@ -2,6 +2,13 @@
 
 This directory holds Babineaux-owned, agent-local helpers and the inventory for Unity-facing automation created through Babineaux.
 
+## Greater Wasteland ironstone authoring
+
+- **Owner:** `Assets/_Project/Scripts/Editor/TopDown3D/GreaterWastelandIronstoneAuthoring.cs`.
+- **Authoring:** `BuildForLoadedScene()` derives twelve supported placements from clean, saved Greater Wasteland and creates reusable node/area prefabs through a temporary additive scene. It never saves production or writes native terrain; an existing area is validated without overwrite.
+- **Validation:** `ValidateLoadedScene()` inspects the area prefab against loaded native terrain, identity/state ownership, colliders, LODs and player wiring. Use the existing background CLI session without activating Unity.
+- **Proof:** Focused fixtures and the persistence/appearance boundaries are recorded in [the implementation receipt](../../../Evidence/Gameplay/GREATER_WASTELAND_IRONSTONE_IMPLEMENTATION_2026-10-11.md).
+
 ## Placement Rules
 
 - Put read-only repository inspection helpers, report generators, and agent workflow utilities in this directory.

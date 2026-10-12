@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
@@ -17,6 +18,7 @@ namespace BooterBigArm.TopDown3D
     {
         private readonly TopDown3DInventoryState inventory;
         private readonly TopDown3DItemDestinationService destinations;
+        private readonly Func<ITopDown3DInteractable, bool> canReachTarget;
         private ITopDown3DInteractable target;
         private TopDown3DInventoryState destinationInventory;
         private float elapsed;
@@ -27,14 +29,17 @@ namespace BooterBigArm.TopDown3D
             inventory = inventoryState;
         }
 
-        public TopDown3DGatherActionState(TopDown3DItemDestinationService destinationService)
+        public TopDown3DGatherActionState(TopDown3DItemDestinationService destinationService,
+            Func<ITopDown3DInteractable, bool> reachability = null)
         {
             destinations = destinationService;
             inventory = null;
+            canReachTarget = reachability;
         }
 
         public bool IsActive => target != null;
         public ITopDown3DInteractable Target => target;
+        public bool LastCompletionWasBigArm { get; private set; }
 
         public TopDown3DGatherActionResult TryBegin(
             ITopDown3DInteractable candidate,
@@ -54,6 +59,7 @@ namespace BooterBigArm.TopDown3D
             target = candidate;
             elapsed = 0f;
             committed = false;
+            LastCompletionWasBigArm = false;
             return TopDown3DGatherActionResult.Started;
         }
 
@@ -76,6 +82,11 @@ namespace BooterBigArm.TopDown3D
                 return TopDown3DGatherActionResult.Running;
             }
 
+            // Cargo may have moved or filled during the animation. Resolve the destination at commit.
+            var destination = destinations != null
+                ? destinations.Choose(target.Reward.ItemId, target.Reward.Quantity)
+                : new TopDown3DItemDestination(inventory, false);
+            destinationInventory = destination.Inventory;
             if (destinationInventory == null || !destinationInventory.CanAdd(target.Reward))
             {
                 Reset();
@@ -101,6 +112,7 @@ namespace BooterBigArm.TopDown3D
                     : TopDown3DGatherActionResult.CommitFailed;
             }
 
+            LastCompletionWasBigArm = destination.IsBigArm;
             Reset();
             return TopDown3DGatherActionResult.Completed;
         }
@@ -116,7 +128,7 @@ namespace BooterBigArm.TopDown3D
             return TopDown3DGatherActionResult.Cancelled;
         }
 
-        private static bool IsValidTarget(ITopDown3DInteractable candidate, Vector3 actorPosition)
+        private bool IsValidTarget(ITopDown3DInteractable candidate, Vector3 actorPosition)
         {
             return candidate != null
                 && candidate.UnityObject != null
@@ -124,7 +136,8 @@ namespace BooterBigArm.TopDown3D
                 && candidate.ActionDuration > 0f
                 && candidate.InteractionRange > 0f
                 && Vector3.Distance(actorPosition, candidate.InteractionPoint)
-                    <= candidate.InteractionRange;
+                    <= candidate.InteractionRange
+                && (canReachTarget == null || canReachTarget(candidate));
         }
 
         private void Reset()

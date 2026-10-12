@@ -163,6 +163,14 @@ Focused fixtures are `TopDown3DCampTests`, `TopDown3DCampInputTests`, `TopDown3D
 
 `BooterBigArm.Editor.TopDown3DCampCapture.CaptureAssetsFromCli` renders art views in an isolated candidate. `TopDown3DCampPerformanceCapture.RunFromCli` performs a bounded virtual-input performance replay there, using 10-second warmup and 30-second measurement windows at 1x and 4x. It never focuses a real window and must not be run in the user's open checkout. Do not issue diagnostic eval commands during measurement; they can stall the Editor and contaminate results. This is automated simulation/performance evidence, not hands-on gameplay smoke testing. See [the implementation receipt](../Evidence/Gameplay/CAMP_SLEEP_IMPLEMENTATION_2026-10-10.md).
 
+## Greater Wasteland ironstone authoring and validation
+
+`BooterBigArm.Editor.GreaterWastelandIronstoneAuthoring.BuildForLoadedScene()` creates the bounded resource-area prefab from the saved production scene's native collision surface. It requires Greater Wasteland already loaded in clean Edit Mode and refuses to overwrite an existing area prefab. It creates prefab assets through a temporary additive authoring scene, then closes that scene; it never saves production or writes TerrainData. The menu is **Booter & BigARM / Greater Wasteland Ironstone / Install Bounded Harvest Area**. New authoring versions require explicit placement/identity handling rather than regeneration of accepted IDs.
+
+`GreaterWastelandIronstoneAuthoring.ValidateLoadedScene()` validates the prefab's twelve IDs, one state owner, definition links, persistent colliders, LODs, native grounding and existing player wiring. It also rejects generated terrain/save services in production. Invoke through the existing background CLI session. The runtime `GreaterWastelandIronstoneInstaller` installs the Resources prefab once when the production scene loads; the saved terrain scene has no added resource hierarchy.
+
+Focused fixtures are `GreaterWastelandIronstoneTests`, `TopDown3DInteractionTests`, `TopDown3DResourceNodeTests`, `TopDown3DInventoryTests`, `TopDown3DPackingTests`, `TopDown3DInventoryUiTests`, `TopDown3DPlayerLocomotionTests`, `TopDown3DSmartTraversalTests`, and `FixedTerrainDressingTests`. Run them in a task-owned isolated candidate: serialization/installer checks create and delete temporary test scenes. The [implementation receipt](../Evidence/Gameplay/GREATER_WASTELAND_IRONSTONE_IMPLEMENTATION_2026-10-11.md) records proof and the application-restart persistence boundary.
+
 ## General notes
 
 - Keep build output outside `Assets/`.

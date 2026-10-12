@@ -15,7 +15,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DProceduralWorld proceduralWorld;
 
         private TopDown3DGatherActionState gatherAction;
-        private TopDown3DBigArmCargo bigArmCargo;
+        [SerializeField] private TopDown3DBigArmCargo bigArmCargo;
         private bool subscribed;
         private GameObject placementPreview;
         private Material placementPreviewMaterial;
@@ -173,7 +173,8 @@ namespace BooterBigArm.TopDown3D
                     return;
                 case TopDown3DGatherActionResult.Completed:
                     EndPresentation();
-                    FeedbackRequested?.Invoke($"+{reward.Quantity} {ResolveRewardName(reward.ItemId)}");
+                    FeedbackRequested?.Invoke($"+{reward.Quantity} {ResolveRewardName(reward.ItemId)}"
+                        + (gatherAction.LastCompletionWasBigArm ? " -> Legger" : " -> Booter"));
                     return;
                 case TopDown3DGatherActionResult.InventoryFull:
                     EndPresentation();
@@ -383,12 +384,15 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
+            if (bigArmCargo == null || bigArmCargo.gameObject.scene != gameObject.scene)
+                bigArmCargo = TopDown3DGameHudCanvas.FindInScene<TopDown3DBigArmCargo>(gameObject.scene);
             var destinations = new TopDown3DItemDestinationService(
                 inventory.State,
                 bigArmCargo != null ? bigArmCargo.State : null,
-                () => bigArmCargo != null
+                () => bigArmCargo != null && bigArmCargo.isActiveAndEnabled
                     && bigArmCargo.IsInAccessRange(motor != null ? motor.Position : transform.position));
-            gatherAction = new TopDown3DGatherActionState(destinations);
+            gatherAction = new TopDown3DGatherActionState(destinations,
+                target => interaction != null && interaction.CanReachTarget(target));
         }
 
         private void EndPresentation()

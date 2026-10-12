@@ -23,7 +23,8 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DItemAmount Reward => definition != null
             ? new TopDown3DItemAmount(definition.YieldedItem.ItemId, definition.YieldQuantity)
             : default;
-        public bool IsAvailable => !IsDepleted && isActiveAndEnabled;
+        public bool IsAvailable => definition != null && worldState != null
+            && !string.IsNullOrWhiteSpace(StableId) && !IsDepleted && isActiveAndEnabled;
         public bool IsDepleted => definition != null
             && (worldState == null
                 || worldState.GetRemainingUses(StableId, definition.MaximumUses) <= 0);
@@ -35,9 +36,15 @@ namespace BooterBigArm.TopDown3D
             Renderer[] authoredRenderers,
             Collider authoredInteractionCollider)
         {
+            if (authoredDefinition == null || state == null || authoredInteractionCollider == null
+                || !state.TryRegisterNode(authoredPlacement.StableId, this))
+                throw new System.ArgumentException("Ironstone requires valid configuration and a unique stable ID.");
             if (worldState != null)
             {
                 worldState.Changed -= HandleWorldStateChanged;
+                worldState.Restored -= RefreshPresentation;
+                if (worldState != state || StableId != authoredPlacement.StableId)
+                    worldState.UnregisterNode(StableId, this);
             }
 
             placement = authoredPlacement;
@@ -48,6 +55,7 @@ namespace BooterBigArm.TopDown3D
             if (worldState != null)
             {
                 worldState.Changed += HandleWorldStateChanged;
+                worldState.Restored += RefreshPresentation;
             }
 
             RefreshPresentation();
@@ -96,10 +104,7 @@ namespace BooterBigArm.TopDown3D
                 }
             }
 
-            if (interactionCollider != null)
-            {
-                interactionCollider.enabled = !depleted;
-            }
+            // The outcrop remains an obstacle after depletion. Availability controls targeting.
         }
 
         private void OnDestroy()
@@ -107,6 +112,8 @@ namespace BooterBigArm.TopDown3D
             if (worldState != null)
             {
                 worldState.Changed -= HandleWorldStateChanged;
+                worldState.Restored -= RefreshPresentation;
+                worldState.UnregisterNode(StableId, this);
             }
         }
     }

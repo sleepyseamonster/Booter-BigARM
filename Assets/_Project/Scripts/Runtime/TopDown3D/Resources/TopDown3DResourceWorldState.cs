@@ -59,9 +59,27 @@ namespace BooterBigArm.TopDown3D
 
         [SerializeField, Min(1)] private int resourceGenerationVersion = 1;
         private readonly Dictionary<string, int> deltas = new Dictionary<string, int>(StringComparer.Ordinal);
+        private readonly Dictionary<string, TopDown3DIronstoneNode> nodes =
+            new Dictionary<string, TopDown3DIronstoneNode>(StringComparer.Ordinal);
 
         public int ResourceGenerationVersion => resourceGenerationVersion;
         public event Action<string, int> Changed;
+        public event Action Restored;
+
+        internal bool TryRegisterNode(string stableId, TopDown3DIronstoneNode node)
+        {
+            if (string.IsNullOrWhiteSpace(stableId) || node == null) return false;
+            if (nodes.TryGetValue(stableId, out var existing) && existing != null && existing != node)
+                return false;
+            nodes[stableId] = node;
+            return true;
+        }
+
+        internal void UnregisterNode(string stableId, TopDown3DIronstoneNode node)
+        {
+            if (stableId != null && nodes.TryGetValue(stableId, out var existing) && existing == node)
+                nodes.Remove(stableId);
+        }
 
         public void Configure(int generationVersion)
         {
@@ -118,6 +136,7 @@ namespace BooterBigArm.TopDown3D
                 deltas.Add(pair.Key, pair.Value);
             }
 
+            Restored?.Invoke();
             return true;
         }
 

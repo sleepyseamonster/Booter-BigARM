@@ -33,7 +33,7 @@ namespace BooterBigArm.TopDown3D
                 throw new ArgumentException(error ?? "Packing settings are required.", nameof(settings));
             }
             itemCatalog = catalog; packingSettings = settings;
-            state = new TopDown3DInventoryState(catalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, settings.HardMass));
+            SetState(new TopDown3DInventoryState(catalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, settings.HardMass)));
             Recalculate();
         }
 
@@ -44,7 +44,6 @@ namespace BooterBigArm.TopDown3D
         {
             if (!TopDown3DCargoAutoPacker.TryPack(State, packingSettings, out var snapshot)) return false;
             var result = State.ApplySnapshot(snapshot);
-            if (result.Succeeded) { Recalculate(); Changed?.Invoke(); }
             return result.Succeeded;
         }
 
@@ -55,7 +54,6 @@ namespace BooterBigArm.TopDown3D
             if (snapshot == null || snapshot.Version != 1 || snapshot.LoadframeVersion != 1 || snapshot.Inventory == null)
                 return new TopDown3DInventoryResult(TopDown3DInventoryResultCode.InvalidSnapshot, "Invalid BigARM cargo snapshot.");
             var result = State.ApplySnapshot(snapshot.Inventory);
-            if (result.Succeeded) { Recalculate(); Changed?.Invoke(); }
             return result;
         }
 
@@ -65,9 +63,27 @@ namespace BooterBigArm.TopDown3D
         {
             if (state != null) return state;
             if (itemCatalog == null || packingSettings == null) throw new InvalidOperationException("BigARM cargo requires an item catalog and packing settings.");
-            state = new TopDown3DInventoryState(itemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, packingSettings.HardMass));
+            SetState(new TopDown3DInventoryState(itemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, packingSettings.HardMass)));
             Recalculate();
             return state;
+        }
+
+        private void SetState(TopDown3DInventoryState next)
+        {
+            if (state != null) state.Changed -= HandleInventoryChanged;
+            state = next;
+            state.Changed += HandleInventoryChanged;
+        }
+
+        private void HandleInventoryChanged()
+        {
+            Recalculate();
+            Changed?.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            if (state != null) state.Changed -= HandleInventoryChanged;
         }
 
         private void Recalculate()
