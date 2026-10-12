@@ -5,11 +5,12 @@ from north_row4_contract import ROOT,contract,sha256
 from north_row4_transfer_guard import command,live_guard,offline_lock,root_processes,saved_guard
 from preserve_expansion_scene import split_documents
 
-def transfer(step,date,isolation,test_proof_version='01',candidate_proof_version='01',playable_proof_version='01'):
+def transfer(step,date,isolation,test_proof_version='01',candidate_proof_version='01',playable_proof_version='01',production_proof_version='01'):
     c=contract(step,date);isolation=isolation.resolve()
     if isolation==ROOT or (isolation/'.git').exists():raise ValueError('Physical isolation required')
     bm=saved_guard(step,date);scene=bm['scene']
-    report_path=isolation/'Logs'/f'step{step}-production-readback.json'
+    production_suffix='' if production_proof_version=='01' else production_proof_version
+    report_path=isolation/'Logs'/f'step{step}-production-readback{production_suffix}.json'
     report=json.loads(report_path.read_text(encoding='utf-8'))
     expected={'status':'validated_full_grid_and_collider_samples','family':'north_row4','row_step':step,'terrains':c['total'],'retained':c['retained_count'],'edges':c['edges'],'outer_edges':384,'collider_samples':c['collider_samples'],'sectors':(30+step)*16}
     if any(report.get(k)!=v for k,v in expected.items()):raise ValueError('Independent native production report differs')
@@ -73,17 +74,18 @@ def transfer(step,date,isolation,test_proof_version='01',candidate_proof_version
             preservation={'mode':'live','before':fingerprint,'after':after,'identical':True}
     ev.mkdir(parents=True)
     shutil.copy2(isolation/'Logs'/f'step{step}-candidate-readback{candidate_suffix}.json',ev/f'step{step}-candidate-readback.json')
-    shutil.copy2(isolation/'Logs'/f'step{step}-production-readback.json',ev/f'step{step}-production-readback.json')
+    shutil.copy2(report_path,ev/f'step{step}-production-readback.json')
     shutil.copy2(xml,ev/f'step{step}-tests.xml')
     (ev/'root_transfer_guard.json').write_bytes((json.dumps(guard,indent=2)+'\n').encode('utf-8'))
     (ev/'unrelated_editor_state_preservation.json').write_bytes((json.dumps(preservation,indent=2)+'\n').encode('utf-8'))
     receipt={'schema_version':1,'family':'north_row4','step':step,'status':'verified_native_saved_scene_transfer','retained_terrains':c['retained_count'],'new_terrains':256,'total_terrains':c['total'],'changed_original_documents':['1259644692'],'unchanged_original_documents':len(old)-1,'new_scene_documents':1314,'new_sectors':16,'predecessor_scene_sha256':bm['scene_sha256'],'production_scene_sha256':report['scene_sha256'],'manifest_sha256':report['manifest_sha256'],'scene_guid_preserved':True,'native_proof_metadata_sha256':sha256(Path(str(proof)+'.meta')),'canonical_validator_log_sha256':sha256(playable),'test_proof_version':test_proof_version,'candidate_proof_version':candidate_proof_version,'root_editor_mode':preservation['mode'],'root_import_limit':'Native proof imported in isolation, paired metadata copied byte-exact; no fresh root GUI import claim when offline.'}
     receipt['playable_proof_version']=playable_proof_version
+    receipt['production_proof_version']=production_proof_version
     (ev/'scene_preservation_receipt.json').write_bytes((json.dumps(receipt,indent=2)+'\n').encode('utf-8'))
     print(json.dumps(receipt,indent=2))
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--step',type=int,required=True);p.add_argument('--date',required=True);p.add_argument('--isolation',type=Path,required=True)
     p.add_argument('--test-proof-version',default='01');p.add_argument('--candidate-proof-version',default='01')
-    p.add_argument('--playable-proof-version',default='01')
-    a=p.parse_args();transfer(a.step,a.date,a.isolation,a.test_proof_version,a.candidate_proof_version,a.playable_proof_version)
+    p.add_argument('--playable-proof-version',default='01');p.add_argument('--production-proof-version',default='01')
+    a=p.parse_args();transfer(a.step,a.date,a.isolation,a.test_proof_version,a.candidate_proof_version,a.playable_proof_version,a.production_proof_version)
