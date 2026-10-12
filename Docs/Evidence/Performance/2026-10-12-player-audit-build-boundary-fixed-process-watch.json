@@ -1,0 +1,14 @@
+{
+  "pid": 38524,
+  "exit_code": 0,
+  "stopped_for_budget": null,
+  "observed_seconds": 1039.1719999999623,
+  "peak_private_bytes": 13531693056,
+  "peak_working_bytes": 13246521344,
+  "minimum_free_bytes": 17436127232,
+  "limits": {
+    "minimum_free_GiB": 12,
+    "maximum_owned_process_GiB": 24,
+    "deadline_seconds": 1800
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-12",
+  "scope": "Boundary-fixed standalone Player manual URP diagnostic, not interactive FPS acceptance",
+  "candidate": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01",
+  "diagnostic_script_sha256": "31760a8b1e73efbccb6b1ac608c2f4f4bfac4b23247e5bd0162416416debb912",
+  "reports": [
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-clean-baseline.json",
+      "sha256": "0a3faeb04001c5f57a9016e4828fa00809cf79937f4253928ab4f4050d45bebb"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-clean-window.json",
+      "sha256": "cb31efe4802f4239614084263224561171231937278c629f194232e55c4a16fa"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-clean-window-retry.json",
+      "sha256": "c3f7959522ba0f2b1509204055246e7bc43199d7a3a4e09a05b711a35ef123b5"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-clean-baseline-repeat.json",
+      "sha256": "f8e9a3e378e9d9c1f105c76a9075bba9d768c1256c59247af05bce48b8344781"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-audit-build-boundary-fixed-process-watch.json",
+      "sha256": "75bac4f269cc5ce3a6b723c597c7e738e008edaad2fcfe926a2ced16a3ee4b76"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-clean-baseline-process-watch.json",
+      "sha256": "488fdb9d4e058c928ba4ddcf3839854738ed150cffe12fecff26d9ed1d1ee925"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-clean-window-process-watch.json",
+      "sha256": "4549e031340e5eb2af21e2c3f3798e837e7c3e4e81c3ed6f3d56bf70d5ecdb5e"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-clean-window-retry-process-watch.json",
+      "sha256": "66c5fcd746c6838cd34c025781c574c89b47be77a0c0b467baa97e284943471a"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-clean-baseline-repeat-process-watch.json",
+      "sha256": "9d2e0a2488b5e67e8784ea2f0883f31a8303fd5254560816902ad581a88fb28a"
+    }
+  ],
+  "summaries": [
+    {
+      "allTerrainRendering": true,
+      "enabledTerrains": 8704,
+      "enabledColliders": 8704,
+      "samples": 178,
+      "meanMs": 169.53817210840376,
+      "medianMs": 168.60710084438324,
+      "p95Ms": 175.87000131607056,
+      "p99Ms": 194.3800002336502,
+      "maximumMs": 203.3853977918625
+    },
+    {
+      "allTerrainRendering": false,
+      "enabledTerrains": 1247,
+      "enabledColliders": 8704,
+      "samples": 1348,
+      "meanMs": 22.268554549498443,
+      "medianMs": 21.134700626134872,
+      "p95Ms": 28.983099386096,
+      "p99Ms": 41.04210436344147,
+      "maximumMs": 61.08200177550316
+    },
+    {
+      "allTerrainRendering": true,
+      "enabledTerrains": 8704,
+      "enabledColliders": 8704,
+      "samples": 175,
+      "meanMs": 172.30583548545837,
+      "medianMs": 170.9318906068802,
+      "p95Ms": 179.74770069122314,
+      "p99Ms": 202.8333991765976,
+      "maximumMs": 247.4627047777176
+    }
+  ],
+  "limits": [
+    "GPU timings unavailable",
+    "No display/overlay UI/save/input/movement/population acceptance",
+    "Camera and actor poses differ slightly between independent process simulations",
+    "The initial fixed-window run exceeded shader warmup deadline and was rejected; retained separately"
+  ],
+  "runtime_player_assembly_sha256": "4834e9c6d77518e035a1abc1500ea7f4c7e3007d7fb0e98078bd4e2d498863f6"
+}

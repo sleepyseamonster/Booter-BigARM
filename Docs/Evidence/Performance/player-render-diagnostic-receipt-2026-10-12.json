@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-12",
+  "scope": "Standalone Player manual URP offscreen diagnostics, not interactive FPS acceptance",
+  "source_head": "83bfca0bbaa59ce41982afee8af9f792f55d1fed",
+  "candidate": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01",
+  "source_files": [
+    {
+      "path": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+      "sha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+      "bytes": 30560270
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs",
+      "sha256": "b76d3181b056e884b54e3e6cc056355483b8762ec670436168ee22c8375d53ab",
+      "bytes": 9146
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs",
+      "sha256": "0e1a10e62a02c6c5dcd37c4b016ea2ffe5733bc82167a6bb992af5381769a51e",
+      "bytes": 7842
+    },
+    {
+      "path": "Packages/manifest.json",
+      "sha256": "a9b4f332893effbb67f87b48508240992d76968b8b78f870f8f05f12a436f409",
+      "bytes": 2418
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "sha256": "d2adab2cb95c215760c616ac81950f6eab23ae18aeed23d69b9c58fe63c8f473",
+      "bytes": 16762
+    },
+    {
+      "path": "ProjectSettings/ProjectVersion.txt",
+      "sha256": "8468d7add4c1613c42224053cb9c889688ccf141875f44065a40e6d133bc3ea7",
+      "bytes": 83
+    },
+    {
+      "path": "Assets/_Project/Settings/Rendering/URP/UniversalRP.asset",
+      "sha256": "f2d2bf45c5b2a855b7971cbd17cfcf5bbe12da5d8f1ed6af199a9d194b31ec56",
+      "bytes": 4589
+    },
+    {
+      "path": "Assets/_Project/Settings/Rendering/URP/Renderer3D.asset",
+      "sha256": "5631a1877831185cbf061a94996d7207b8018c60b1947dbdc734b8e552c17c17",
+      "bytes": 7099
+    }
+  ],
+  "diagnostic_script_sha256": "0abad8ab070b7f4522d96cf2a989c96c0807f8da102d10ac8232e17b9811c5e3",
+  "reports": [
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-baseline.json",
+      "sha256": "2589307af9783ceb81fa132606197d5c06184dd8ffaac4bba9477055fba247ad"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-manual-baseline.json",
+      "sha256": "eb4d5a3da2cea9a99e6befe30227c30b7fd06f2de2d49e2d6262c22447bb2e6b"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-manual-window.json",
+      "sha256": "9b9a99615a51f10e05bd4d0a68c4a73c96e19612c04277faf2e8593ef884e395"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-manual-baseline-repeat.json",
+      "sha256": "c486a6ee9a080debcd9c63e0f4ce491f0f56ca9ef8c086e41f5479dc0bcdd0ff"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-audit-build-process-watch.json",
+      "sha256": "ba430a16397c50b770af359ffc40c5f777b3dccd6d3972e23902f865519a226a"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-baseline-process-watch.json",
+      "sha256": "6e604d065e9b31963b161ec7b47bebc9846475924fb34e59719dfade5b6bd88f"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-audit-build-manual-process-watch.json",
+      "sha256": "d507f6f31b0e4ceba6c6e6fee404f55d50725769adb1788f1ca6ab7bf2f56b04"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-audit-build-manual-retry-process-watch.json",
+      "sha256": "186c773eac95b460b7c0c39860d4f9139b1d100ebf8c577c2931c5b879c4c449"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-manual-baseline-process-watch.json",
+      "sha256": "d9c8d2932927ee0848a0f68d4d33034e49be1883b976c8a35c85ed2af9885f7a"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-manual-window-process-watch.json",
+      "sha256": "b965aa364ca925ea67551ba892736f4e5b28896d73bb93ccda0a9f9088976088"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-manual-baseline-repeat-process-watch.json",
+      "sha256": "780f680dfd1ccbbf3f1f88159334e85a2a552d2d73f8d5b2bb259852a59e2177"
+    }
+  ],
+  "limits": [
+    "Automatic batchmode camera loop rejected: no render callbacks",
+    "Baseline means/maxima contain a settle-boundary warmup outlier; use repeated medians provisionally",
+    "GPU timing returned zero/unavailable",
+    "No display/overlay UI/save/actor-input/camera-motion/dense procedural population acceptance",
+    "Approximate camera poses differ slightly between process captures; not pixel-equivalence proof",
+    "All terrain/collision remains resident; source scene and rendering settings unchanged"
+  ]
+}

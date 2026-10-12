@@ -96,3 +96,37 @@ The first draft selected a steep patch and accepted no placements. The filters c
 Reproduction: `Tools/Diagnostics/write_population_sector_manifest.py` reads the saved production YAML and selected native files without opening the full scene. It writes only a new JSON under `Logs`. `FixedTerrainPopulationSectorBuilder.BuildFromCli` creates a fresh scene only inside a background `D:/BooterBigArmValidation/` project; its draft-rebuild entry point requires the prior exact scene receipt. Its non-mutating `ValidateFromCli` checks the saved reference's native assets, poses, renderer/collider flags, material/revision bindings, script/save ownership and build exclusion while restoring the active scene. It passed directly and through the strengthened focused fixture. The older prototype validator targets the inactive generated-world reference, so it cannot substitute for this native-sector validation. The validation-copy helper includes only this reference scene and its frozen native dependencies, continuing to exclude the full production landscape and other scenes.
 
 Remaining gates: matched production Player rendering/memory measurements, 64/128 m presentation comparison, real Booter/BigARM entry and boundary preparation, author visual/traversal acceptance, production seed/recipe/constraint binding and explicit save migration, generated resource definitions, depletion/placed state and partitioned checkpoint consistency. The goal remains active. No package, renderer setting, production scene, source terrain or unpublished fused art changed.
+
+## Standalone rendering diagnostic October 12
+
+The current 8,704-terrain source snapshot built successfully as an isolated Windows Development Player through the canonical build validators. Diagnostic company/product identity and a candidate-only batch cursor guard isolate user saves and foreground interaction. The production checkpoint component is disabled before startup only in the audit run; no movement/input is injected. Full-content graphics quality remains unchanged, with identical uncapped timing controls in both conditions.
+
+Batchmode did not execute automatic camera rendering, so the harness rejected that run with zero accepted samples. The explicit manual URP fallback then produced verified nonuniform 1080p previews and completed three sequential Player diagnostics: all-terrain baseline, runtime window, and all-terrain repeat. The [source/report receipt](../Evidence/Performance/player-render-diagnostic-receipt-2026-10-12.json) binds their raw reports, source/renderer hashes and resource-watch outcomes.
+
+| Manual Player diagnostic | Enabled terrain renderers | Resident/enabled terrain colliders | Median update ms | P95 ms | Samples |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| All terrain | 8,704 | 8,704 | 169.82 | 175.36 | 176 |
+| Runtime rendering window | 1,247 | 8,704 | 18.16 | 19.69 | 1,637 |
+| All terrain repeated | 8,704 | 8,704 | 169.75 | 176.10 | 176 |
+
+The repeated baseline median agrees within 0.1%; the window reduces diagnostic median update cost by about 89.3%, or 9.35 times. These are standalone **manual offscreen update** costs, not interactive/presented FPS. GPU frame timings are unavailable. Baseline means/maxima and averaged CPU markers include a settle-boundary outlier (17.9 s initially, 11.7 s on repeat), so they are not accepted steady-state statistics. Fix the first-sample boundary and retain raw samples before using those aggregates. Camera/actor poses differ slightly between separate simulations; previews are not pixel-parity or appearance acceptance. The baseline and window previews were inspected and show the expected world/actors without an obvious missing foreground patch.
+
+The saved Player camera uses an 8,000 m far clip, compared with the earlier audit's inspected 500 m camera. Broad frustum X/Z bounds retain 1,247 renderers even though the elevated camera looks into nearby ground. Investigate conservative clipping of that frustum against resident terrain height bounds before considering quality reduction; distant hills, multiple cameras and shadow casters must remain covered. The current window result still exceeds the provisional 16.7 ms target in this diagnostic.
+
+All task-owned build/Player processes stayed within the 24 GiB process/12 GiB available-RAM limits. The first build peaked around 13.2 GiB private memory; the largest Player run reached about 15.8 GiB. One manual-mode rebuild was stopped at its 15-minute deadline; a verified terminal-state retry under the original 30-minute limit succeeded. No crash was recorded. This establishes bounded execution for these runs, not a general crash fix or a reduction in native-data memory residency.
+
+Next: correct the sampling boundary, measure conservative height-clipped camera coverage, and obtain clean repeated diagnostics. Interactive Player timing, moving/blocked actors, startup/camera transitions, dense population, display/UI/save costs and author visual/traversal acceptance remain open. No production scene, renderer setting, native data or existing save changed; the goal remains active.
+
+### Corrected sampling boundary
+
+The final harness discards the completed warmup-boundary frame before resetting its sample clock, retains raw frame times, and separates successful manual requests from automatic rendered-frame counts. The [corrected receipt](../Evidence/Performance/player-clean-render-receipt-2026-10-12.json) binds the tested diagnostic source, Player runtime assembly and raw report hashes. Recomputed means, percentiles and maxima match the retained samples; all accepted targets contain verified nonuniform pixels.
+
+| Corrected manual Player diagnostic | Mean ms | Median ms | P95 ms | P99 ms | Maximum ms | Samples |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| All terrain | 169.54 | 168.61 | 175.87 | 194.38 | 203.39 | 178 |
+| Runtime window | 22.27 | 21.13 | 28.98 | 41.04 | 61.08 | 1,348 |
+| All terrain repeated | 172.31 | 170.93 | 179.75 | 202.83 | 247.46 | 175 |
+
+The corrected window result reduces mean diagnostic update cost by roughly 87%, or 7.6–7.7 times. `TerrainManager.CullAllTerrains` averages 111.77–113.81 ms in the two baselines and 10.49 ms with the window. These are inclusive CPU marker means, not separate costs to add to total frame time. This latest comparison supersedes the earlier 18.16 ms window median for planning budgets; run-to-run variation and P99 spikes still matter. All 8,704 colliders remain enabled and 1,247 terrain renderers remain active. GPU timings and interactive FPS remain unproven.
+
+One cold corrected-window run exceeded the 120-second render warmup deadline, produced no samples and was rejected. An identical retry after its verified exit passed. All source scenes/settings remain unchanged. Next is conservative frustum clipping against terrain height bounds, with tests for downward views, distant visible hills, multiple cameras and shadows; do not shorten the authored camera far clip to manufacture a gain. Real actor motion, population partition comparison and author acceptance remain required.

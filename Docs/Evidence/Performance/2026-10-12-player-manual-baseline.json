@@ -1,0 +1,225 @@
+{
+  "mode": "standalone_player_manual_urp_offscreen_diagnostic",
+  "error": "",
+  "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "graphicsApi": "Direct3D11",
+  "unity": "6000.4.0f1",
+  "persistentPath": "C:/Users/kbkno/AppData/LocalLow/BooterBigArmDiagnostics/GreaterWastelandAudit20261012",
+  "previewPath": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Logs\\player-manual-baseline.png",
+  "previewSha256": "3ca2ec1d233ff5a9128b1c6e86d1d726fdf1d2fedb16472318a51173cb015bdb",
+  "nonuniformPixels": true,
+  "completed": true,
+  "rendered": true,
+  "allTerrainRendering": true,
+  "savesDisabled": true,
+  "width": 1920,
+  "height": 1080,
+  "residentTerrains": 8704,
+  "enabledTerrains": 8704,
+  "enabledColliders": 8704,
+  "samples": 176,
+  "renderedFrames": 352,
+  "quality": 5,
+  "startupSeconds": 51.687140804591834,
+  "sampleSeconds": 30.024118000000016,
+  "meanMs": 271.223674189638,
+  "medianMs": 169.8158085346222,
+  "p95Ms": 175.36060512065887,
+  "p99Ms": 221.23049199581146,
+  "maximumMs": 17909.109115600586,
+  "meanCpuMs": 273.01284855491355,
+  "meanGpuMs": 0.0,
+  "validCpuTimings": 173,
+  "validGpuTimings": 0,
+  "renderScale": 1.0,
+  "shadowDistance": 60.0,
+  "cameraFar": 8000.0,
+  "cameraStart": {
+    "x": -1858.329345703125,
+    "y": -26.754928588867188,
+    "z": -1510.31005859375
+  },
+  "cameraEnd": {
+    "x": -1859.2430419921875,
+    "y": -27.086875915527344,
+    "z": -1512.2830810546875
+  },
+  "markers": [
+    {
+      "name": "BehaviourUpdate",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 268700713.6363636
+    },
+    {
+      "name": "Main Thread",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 271216280.6818182
+    },
+    {
+      "name": "Physics.Simulate",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 911451.7045454546
+    },
+    {
+      "name": "TerrainManager.CullAllTerrains",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 205170377.8409091
+    },
+    {
+      "name": "Terrain.Trees.OnWillRender",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 1805263.6363636365
+    },
+    {
+      "name": "Terrain.Trees.Render",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 1868507.3863636365
+    },
+    {
+      "name": "Terrain.Details.Render",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 1467047.1590909092
+    },
+    {
+      "name": "Terrain.Trees.RayTracingCulling",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RayTracingCullingStep3",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RayTracingCullingStep2",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RayTracingCullingStep1",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RenderStep3",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 14941957.954545455
+    },
+    {
+      "name": "Terrain.Heightmap.RenderStep2",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 3089669.3181818184
+    },
+    {
+      "name": "Terrain.Heightmap.RenderStep1",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 2564093.1818181816
+    },
+    {
+      "name": "Terrain.UpdateSplatMaterials",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 75022711.93181819
+    },
+    {
+      "name": "Terrain.UpdateSplatProperties",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 28626006.818181816
+    },
+    {
+      "name": "Terrain.FlushDirty",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 997811.9318181818
+    },
+    {
+      "name": "Terrain.UpdateTreeBillboardTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "TerrainData.AwakeFromLoad",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateCompressedHolesTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateHolesTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.ReadbackHeightmap",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateHeightmapTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.RecomputeInvalidPatches",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateTreeBillboardTexture2",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Physics.TerrainCollider.CreateTreeCollidersFromPrototypeJob",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Physics.TerrainCollider.CreateTrees",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Physics.TerrainCollider.ForceRebuildCollisions",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "NavMesh.ExtractTerrainMesh",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "unit": "Bytes",
+      "meanRaw": 1362169.2386363635
+    },
+    {
+      "name": "Triangles Count",
+      "unit": "Count",
+      "meanRaw": 134615.0
+    },
+    {
+      "name": "SetPass Calls Count",
+      "unit": "Count",
+      "meanRaw": 850.2954545454545
+    },
+    {
+      "name": "ComputeTerrainMeshJob",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "ComputeTerrainMeshJob (Burst)",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "ComputeTerrainMeshJob (Cleanup)",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    }
+  ]
+}

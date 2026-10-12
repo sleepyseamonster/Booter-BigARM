@@ -1,0 +1,403 @@
+{
+  "mode": "standalone_player_manual_urp_offscreen_diagnostic",
+  "error": "",
+  "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "graphicsApi": "Direct3D11",
+  "unity": "6000.4.0f1",
+  "persistentPath": "C:/Users/kbkno/AppData/LocalLow/BooterBigArmDiagnostics/GreaterWastelandAudit20261012",
+  "previewPath": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Logs\\player-clean-baseline-repeat.png",
+  "previewSha256": "66e43e7282ffa29a65dc8d34285e8ce62998252e95ec20ae54ee10b42e48aac9",
+  "nonuniformPixels": true,
+  "completed": true,
+  "rendered": true,
+  "allTerrainRendering": true,
+  "savesDisabled": true,
+  "width": 1920,
+  "height": 1080,
+  "residentTerrains": 8704,
+  "enabledTerrains": 8704,
+  "enabledColliders": 8704,
+  "samples": 175,
+  "renderedFrames": 0,
+  "quality": 5,
+  "manualRequests": 175,
+  "frameTimesMs": [
+    202.8333991765976,
+    178.9710968732834,
+    177.8641939163208,
+    179.640993475914,
+    174.46230351924896,
+    175.14170706272125,
+    181.4422905445099,
+    174.3870973587036,
+    174.86970126628876,
+    174.3410974740982,
+    179.44219708442688,
+    174.28310215473175,
+    179.8665076494217,
+    173.14429581165314,
+    175.64339935779572,
+    175.15960335731506,
+    175.45899748802185,
+    176.71999335289001,
+    176.79569125175476,
+    173.10109734535217,
+    175.96110701560974,
+    175.22910237312317,
+    175.15110969543457,
+    179.74770069122314,
+    171.89019918441772,
+    171.09160125255585,
+    173.2695996761322,
+    177.68409848213196,
+    178.57199907302856,
+    178.17780375480652,
+    176.34598910808563,
+    173.2781082391739,
+    175.42389035224915,
+    172.75269329547882,
+    170.3585982322693,
+    170.70169746875763,
+    180.10099232196808,
+    169.2384034395218,
+    171.5002954006195,
+    171.54920101165771,
+    172.68259823322296,
+    174.79880154132843,
+    174.51609671115875,
+    172.92310297489166,
+    171.4663952589035,
+    173.75080287456512,
+    176.96599662303925,
+    175.3745973110199,
+    171.51279747486115,
+    169.35689747333527,
+    168.7919944524765,
+    174.8599112033844,
+    172.9310005903244,
+    175.2496063709259,
+    169.930100440979,
+    170.68339884281158,
+    172.51130938529968,
+    174.2461919784546,
+    173.36490750312805,
+    171.58710956573486,
+    171.17369174957275,
+    167.0597940683365,
+    168.57990622520447,
+    174.56398904323578,
+    167.97800362110138,
+    172.28369414806366,
+    172.7685034275055,
+    171.2576001882553,
+    171.15339636802673,
+    173.8595962524414,
+    169.35090720653534,
+    170.66720128059387,
+    175.59249699115753,
+    169.28720474243164,
+    170.64139246940613,
+    172.0978021621704,
+    170.51689326763153,
+    170.38530111312866,
+    175.44060945510864,
+    170.56189477443695,
+    173.38620126247406,
+    175.32670497894287,
+    169.48410868644714,
+    170.69469392299652,
+    193.89300048351288,
+    172.7083921432495,
+    170.33760249614716,
+    173.58800768852234,
+    172.89969325065613,
+    167.18900203704834,
+    183.4702044725418,
+    168.27279329299927,
+    170.10310292243958,
+    182.98040330410004,
+    171.45180702209473,
+    172.14329540729523,
+    170.30490934848785,
+    169.92129385471344,
+    170.34129798412323,
+    171.04679346084595,
+    247.4627047777176,
+    172.0466911792755,
+    169.8203980922699,
+    167.07469522953033,
+    169.29559409618378,
+    169.69120502471924,
+    174.8012900352478,
+    169.84909772872925,
+    168.79379749298096,
+    169.08299922943115,
+    164.8446023464203,
+    171.90389335155487,
+    171.73349857330322,
+    168.4650033712387,
+    170.51169276237488,
+    170.41200399398804,
+    167.37499833106995,
+    170.58610916137695,
+    167.4163043498993,
+    166.15119576454163,
+    170.6407070159912,
+    166.74970090389252,
+    168.1944876909256,
+    170.2592968940735,
+    170.55650055408478,
+    167.70949959754944,
+    168.92939805984497,
+    169.2407876253128,
+    166.70210659503937,
+    170.239195227623,
+    167.740598320961,
+    165.76659679412842,
+    170.9318906068802,
+    168.859601020813,
+    167.68920421600342,
+    170.454204082489,
+    170.8965003490448,
+    167.74499416351318,
+    174.21530187129974,
+    166.40689969062805,
+    169.58990693092346,
+    168.90080273151398,
+    167.6608920097351,
+    166.67740046977997,
+    174.47049915790558,
+    167.46899485588074,
+    167.31080412864685,
+    170.69360613822937,
+    167.06770658493042,
+    167.37069189548492,
+    173.3383983373642,
+    168.10360550880432,
+    168.8838005065918,
+    167.26799309253693,
+    164.9951934814453,
+    166.48830473423004,
+    170.88530957698822,
+    171.555295586586,
+    167.60839521884918,
+    167.21689701080322,
+    171.00070416927338,
+    167.87749528884888,
+    168.57489943504333,
+    170.77279090881348,
+    166.97821021080017,
+    170.0834035873413,
+    172.86740243434906,
+    166.65460169315338,
+    169.7804033756256,
+    170.17459869384766,
+    166.79160296916962,
+    167.48380661010742,
+    171.22569680213928,
+    167.05849766731262,
+    171.5375930070877
+  ],
+  "startupSeconds": 36.92278420232426,
+  "sampleSeconds": 30.122483600000017,
+  "meanMs": 172.30583548545837,
+  "medianMs": 170.9318906068802,
+  "p95Ms": 179.74770069122314,
+  "p99Ms": 202.8333991765976,
+  "maximumMs": 247.4627047777176,
+  "meanCpuMs": 244.8223832369941,
+  "meanGpuMs": 0.0,
+  "validCpuTimings": 173,
+  "validGpuTimings": 0,
+  "renderScale": 1.0,
+  "shadowDistance": 60.0,
+  "cameraFar": 8000.0,
+  "cameraStart": {
+    "x": -1858.329345703125,
+    "y": -26.754928588867188,
+    "z": -1510.31005859375
+  },
+  "cameraEnd": {
+    "x": -1859.259033203125,
+    "y": -27.088623046875,
+    "z": -1512.2989501953125
+  },
+  "markers": [
+    {
+      "name": "BehaviourUpdate",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 170224906.85714287
+    },
+    {
+      "name": "Main Thread",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 172299154.85714287
+    },
+    {
+      "name": "Physics.Simulate",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 850574.2857142857
+    },
+    {
+      "name": "TerrainManager.CullAllTerrains",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 113809699.42857143
+    },
+    {
+      "name": "Terrain.Trees.OnWillRender",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 1825457.7142857143
+    },
+    {
+      "name": "Terrain.Trees.Render",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 1881041.7142857143
+    },
+    {
+      "name": "Terrain.Details.Render",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 1600362.857142857
+    },
+    {
+      "name": "Terrain.Trees.RayTracingCulling",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RayTracingCullingStep3",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RayTracingCullingStep2",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RayTracingCullingStep1",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RenderStep3",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 14804138.857142856
+    },
+    {
+      "name": "Terrain.Heightmap.RenderStep2",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 3046982.8571428573
+    },
+    {
+      "name": "Terrain.Heightmap.RenderStep1",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 2719665.714285714
+    },
+    {
+      "name": "Terrain.UpdateSplatMaterials",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 7348548.0
+    },
+    {
+      "name": "Terrain.UpdateSplatProperties",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 10655469.142857144
+    },
+    {
+      "name": "Terrain.FlushDirty",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 1060086.2857142857
+    },
+    {
+      "name": "Terrain.UpdateTreeBillboardTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "TerrainData.AwakeFromLoad",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateCompressedHolesTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateHolesTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.ReadbackHeightmap",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateHeightmapTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.RecomputeInvalidPatches",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateTreeBillboardTexture2",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Physics.TerrainCollider.CreateTreeCollidersFromPrototypeJob",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Physics.TerrainCollider.CreateTrees",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Physics.TerrainCollider.ForceRebuildCollisions",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "NavMesh.ExtractTerrainMesh",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "unit": "Bytes",
+      "meanRaw": 347521.40571428573
+    },
+    {
+      "name": "Triangles Count",
+      "unit": "Count",
+      "meanRaw": 133023.25714285715
+    },
+    {
+      "name": "SetPass Calls Count",
+      "unit": "Count",
+      "meanRaw": 59.0
+    },
+    {
+      "name": "ComputeTerrainMeshJob",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "ComputeTerrainMeshJob (Burst)",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "ComputeTerrainMeshJob (Cleanup)",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    }
+  ]
+}

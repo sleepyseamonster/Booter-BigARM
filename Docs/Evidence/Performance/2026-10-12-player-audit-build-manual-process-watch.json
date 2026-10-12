@@ -1,0 +1,14 @@
+{
+  "pid": 27476,
+  "exit_code": 3,
+  "stopped_for_budget": "owned process deadline exceeded",
+  "observed_seconds": 901.6720000000205,
+  "peak_private_bytes": 13290819584,
+  "peak_working_bytes": 12344758272,
+  "minimum_free_bytes": 20349652992,
+  "limits": {
+    "minimum_free_GiB": 12,
+    "maximum_owned_process_GiB": 24,
+    "deadline_seconds": 900
+  }
+}

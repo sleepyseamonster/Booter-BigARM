@@ -1,0 +1,227 @@
+{
+  "mode": "standalone_player_manual_urp_offscreen_diagnostic",
+  "error": "Audit deadline exceeded.",
+  "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "graphicsApi": "Direct3D11",
+  "unity": "6000.4.0f1",
+  "persistentPath": "C:/Users/kbkno/AppData/LocalLow/BooterBigArmDiagnostics/GreaterWastelandAudit20261012",
+  "previewPath": "",
+  "previewSha256": "",
+  "nonuniformPixels": false,
+  "completed": false,
+  "rendered": true,
+  "allTerrainRendering": false,
+  "savesDisabled": true,
+  "width": 1920,
+  "height": 1080,
+  "residentTerrains": 8704,
+  "enabledTerrains": 1247,
+  "enabledColliders": 8704,
+  "samples": 0,
+  "renderedFrames": 0,
+  "quality": 5,
+  "manualRequests": 93,
+  "frameTimesMs": [],
+  "startupSeconds": 0.0,
+  "sampleSeconds": 0.0,
+  "meanMs": 0.0,
+  "medianMs": 0.0,
+  "p95Ms": 0.0,
+  "p99Ms": 0.0,
+  "maximumMs": 0.0,
+  "meanCpuMs": 0.0,
+  "meanGpuMs": 0.0,
+  "validCpuTimings": 0,
+  "validGpuTimings": 0,
+  "renderScale": 1.0,
+  "shadowDistance": 60.0,
+  "cameraFar": 8000.0,
+  "cameraStart": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "cameraEnd": {
+    "x": -1858.329345703125,
+    "y": -26.892147064208984,
+    "z": -1510.4952392578125
+  },
+  "markers": [
+    {
+      "name": "BehaviourUpdate",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Main Thread",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Physics.Simulate",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "TerrainManager.CullAllTerrains",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Trees.OnWillRender",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Trees.Render",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Details.Render",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Trees.RayTracingCulling",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RayTracingCullingStep3",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RayTracingCullingStep2",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RayTracingCullingStep1",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RenderStep3",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RenderStep2",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.Heightmap.RenderStep1",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateSplatMaterials",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateSplatProperties",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.FlushDirty",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateTreeBillboardTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "TerrainData.AwakeFromLoad",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateCompressedHolesTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateHolesTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.ReadbackHeightmap",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateHeightmapTexture",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.RecomputeInvalidPatches",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Terrain.UpdateTreeBillboardTexture2",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Physics.TerrainCollider.CreateTreeCollidersFromPrototypeJob",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Physics.TerrainCollider.CreateTrees",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Physics.TerrainCollider.ForceRebuildCollisions",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "NavMesh.ExtractTerrainMesh",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "unit": "Bytes",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "Triangles Count",
+      "unit": "Count",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "SetPass Calls Count",
+      "unit": "Count",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "ComputeTerrainMeshJob",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "ComputeTerrainMeshJob (Burst)",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    },
+    {
+      "name": "ComputeTerrainMeshJob (Cleanup)",
+      "unit": "TimeNanoseconds",
+      "meanRaw": 0.0
+    }
+  ]
+}

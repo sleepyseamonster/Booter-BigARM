@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using BooterBigArm.TopDown3D;
 using Unity.Profiling;
 using Unity.Profiling.LowLevel.Unsafe;
@@ -17,8 +18,12 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
     [Serializable] public sealed class Report
     {
         public string mode, error, scene, gpu, graphicsApi, unity, persistentPath;
+        public string previewPath, previewSha256;
+        public bool nonuniformPixels;
         public bool completed, rendered, allTerrainRendering, savesDisabled;
         public int width, height, residentTerrains, enabledTerrains, enabledColliders, samples, renderedFrames, quality;
+        public int manualRequests;
+        public double[] frameTimesMs;
         public double startupSeconds, sampleSeconds, meanMs, medianMs, p95Ms, p99Ms, maximumMs, meanCpuMs, meanGpuMs;
         public int validCpuTimings, validGpuTimings;
         public float renderScale, shadowDistance, cameraFar;
@@ -38,6 +43,9 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
     private double begin, samplingStart;
     private int lastRenderedFrame = -1, renderEvents;
     private bool finished;
+    private bool manualRender;
+    private GreaterWastelandTerrainRendering terrainRendering;
+    private bool discardBoundaryFrame;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void Install()
@@ -64,6 +72,8 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
                 gpu = SystemInfo.graphicsDeviceName, graphicsApi = SystemInfo.graphicsDeviceType.ToString(), unity = Application.unityVersion,
                 width = 1920, height = 1080, quality = QualitySettings.GetQualityLevel(), persistentPath = Application.persistentDataPath,
                 allTerrainRendering = Array.IndexOf(Environment.GetCommandLineArgs(), GreaterWastelandTerrainRendering.AllTerrainArgument) >= 0 };
+            manualRender = Array.IndexOf(Environment.GetCommandLineArgs(), "-auditManualRender") >= 0;
+            if (manualRender) report.mode = "standalone_player_manual_urp_offscreen_diagnostic";
             // Prevent checkpoint restore/autosaves from changing comparison poses or touching any user's save.
             foreach (var root in SceneManager.GetActiveScene().GetRootGameObjects())
                 foreach (var save in root.GetComponentsInChildren<GreaterWastelandInventorySaveService>(true)) save.enabled = false;
@@ -71,6 +81,7 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
             terrain = SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Terrain>(true)).ToArray();
             report.residentTerrains = terrain.Length;
             view = Camera.main;
+            terrainRendering = FindAnyObjectByType<GreaterWastelandTerrainRendering>();
             var pipeline = (QualitySettings.renderPipeline ?? GraphicsSettings.defaultRenderPipeline) as UniversalRenderPipelineAsset;
             if (pipeline == null) throw new InvalidOperationException("Expected pinned URP pipeline.");
             report.renderScale = pipeline.renderScale; report.shadowDistance = pipeline.shadowDistance; report.cameraFar = view.farClipPlane;
@@ -95,18 +106,36 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
         catch (Exception e) { Finish(e.ToString()); }
     }
     private void Rendered(ScriptableRenderContext context, Camera camera)
-    { if (camera == view) { lastRenderedFrame = Time.frameCount; renderEvents++; } }
+    { if (camera == view && !manualRender) { lastRenderedFrame = Time.frameCount; renderEvents++; } }
     private void Update()
     {
         if (finished) return;
+        if (manualRender)
+        {
+            try
+            {
+                if (terrainRendering == null) terrainRendering = FindAnyObjectByType<GreaterWastelandTerrainRendering>();
+                terrainRendering?.PrepareCamera(view);
+                RenderPipeline.SubmitRenderRequest(view, new UniversalRenderPipeline.SingleCameraRequest { destination = target });
+                // SingleCameraRequest may bypass normal camera callbacks. Successful submission records diagnostic requests, not automatic rendered frames.
+                lastRenderedFrame = Time.frameCount - 1; renderEvents++;
+            }
+            catch (Exception e) { Finish("Manual URP request failed: " + e); return; }
+        }
         double now = Time.realtimeSinceStartupAsDouble;
         if (now - begin > 120) { Finish("Audit deadline exceeded."); return; }
         if (samplingStart == 0)
         {
             if (now - begin < 10) return;
             if (renderEvents == 0) { Finish("Automatic Player camera rendering did not occur; no valid rendered-frame evidence."); return; }
-            samplingStart = now; report.startupSeconds = now; report.cameraStart = view.transform.position; renderEvents = 0;
+            samplingStart = now; discardBoundaryFrame = true; renderEvents = 0;
             return;
+        }
+        // Delta time and recorder values belong to the completed previous frame. Discard the warmup-boundary frame before starting the sample clock.
+        if (discardBoundaryFrame)
+        {
+            discardBoundaryFrame = false; samplingStart = now; report.startupSeconds = now;
+            report.cameraStart = view.transform.position; report.cameraFar = view.farClipPlane; renderEvents = 0; return;
         }
         if (lastRenderedFrame != Time.frameCount - 1) { Finish("A sampled Player frame lacked the real camera render callback."); return; }
         times.Add(Time.unscaledDeltaTime * 1000d);
@@ -124,8 +153,10 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
         if (finished) return; finished = true;
         RenderPipelineManager.endCameraRendering -= Rendered;
         if (report == null) report = new Report();
-        report.error = error; report.completed = error == null; report.rendered = renderEvents > 0; report.renderedFrames = renderEvents;
+        report.error = error; report.completed = error == null; report.rendered = renderEvents > 0;
+        report.renderedFrames = manualRender ? 0 : renderEvents; report.manualRequests = manualRender ? renderEvents : 0;
         report.samples = times.Count;
+        report.frameTimesMs = times.ToArray();
         if (times.Count > 0)
         {
             times.Sort(); report.meanMs = times.Average(); report.medianMs = Percentile(.5); report.p95Ms = Percentile(.95);
@@ -133,6 +164,23 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
             for (int i = 0; i < markers.Count; i++) markers[i].meanRaw = sums[i] / times.Count;
         }
         report.markers = markers.ToArray();
+        if (error == null && manualRender && target != null)
+        {
+            var prior = RenderTexture.active;
+            var image = new Texture2D(target.width, target.height, TextureFormat.RGB24, false);
+            try
+            {
+                RenderTexture.active = target; image.ReadPixels(new Rect(0, 0, target.width, target.height), 0, 0, false);
+                var bytes = image.GetRawTextureData<byte>().ToArray();
+                for (int i = 3; i < bytes.Length; i += 3 * 509)
+                    if (bytes[i] != bytes[0] || bytes[i + 1] != bytes[1] || bytes[i + 2] != bytes[2]) { report.nonuniformPixels = true; break; }
+                if (!report.nonuniformPixels) { report.error = "Render target remained uniform; reject manual rendering evidence."; report.completed = false; }
+                report.previewPath = Path.ChangeExtension(output, ".png"); var png = image.EncodeToPNG(); File.WriteAllBytes(report.previewPath, png);
+                using var hash = SHA256.Create(); report.previewSha256 = string.Concat(hash.ComputeHash(png).Select(v => v.ToString("x2")));
+            }
+            catch (Exception e) { report.error = "Diagnostic pixel verification failed: " + e; report.completed = false; }
+            finally { RenderTexture.active = prior; Destroy(image); }
+        }
         if (report.validCpuTimings > 0) report.meanCpuMs /= report.validCpuTimings;
         if (report.validGpuTimings > 0) report.meanGpuMs /= report.validGpuTimings;
         if (terrain != null)
@@ -140,13 +188,13 @@ public sealed class GreaterWastelandPlayerAudit : MonoBehaviour
             report.enabledTerrains = terrain.Count(t => t != null && t.enabled);
             report.enabledColliders = terrain.Count(t => t != null && t.GetComponent<TerrainCollider>()?.enabled == true);
         }
-        if (view != null) { report.cameraEnd = view.transform.position; view.targetTexture = null; }
+        if (view != null) { report.cameraEnd = view.transform.position; report.cameraFar = view.farClipPlane; view.targetTexture = null; }
         foreach (var recorder in recorders) recorder.Dispose();
         if (target != null) { target.Release(); Destroy(target); }
         if (!string.IsNullOrWhiteSpace(output) && Path.GetFullPath(output).StartsWith("D:\\BooterBigArmValidation\\PerformancePlayer", StringComparison.OrdinalIgnoreCase))
         { Directory.CreateDirectory(Path.GetDirectoryName(output)); File.WriteAllText(output, JsonUtility.ToJson(report, true)); }
-        Debug.Log("[Player audit] " + (error ?? "Completed rendered-frame capture."));
-        Application.Quit(error == null ? 0 : 1);
+        Debug.Log("[Player audit] " + (report.error ?? "Completed rendered-frame capture."));
+        Application.Quit(report.completed ? 0 : 1);
     }
     private double Percentile(double fraction) => times[Math.Min(times.Count - 1, (int)Math.Ceiling(times.Count * fraction) - 1)];
     private static string Argument(string name)
