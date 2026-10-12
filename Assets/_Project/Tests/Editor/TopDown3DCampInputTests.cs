@@ -4,11 +4,44 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace BooterBigArm.Tests
 {
     public sealed class TopDown3DCampInputTests
     {
+        [Test]
+        public void CampFocusSkipsUnavailableChoicesAndPreservesNavigation()
+        {
+            var root = new GameObject("Camp focus fixture", typeof(RectTransform));
+            var events = new GameObject("Camp events fixture");
+            try
+            {
+                var system = events.AddComponent<EventSystem>();
+                var canvas = root.AddComponent<TopDown3DCampCanvas>(); canvas.Configure(() => { }, () => { }, () => { });
+                canvas.Show("Camp", true, false); canvas.SetAvailability(false, false, true); canvas.Focus(system);
+                Assert.That(system.currentSelectedGameObject, Is.Null, "Held confirmation must not arm selection.");
+                canvas.Show("Camp", true); canvas.Focus(system);
+                Assert.That(system.currentSelectedGameObject.name, Is.EqualTo("Pack up"));
+                canvas.SetAvailability(false, true, true);
+                var pack = system.currentSelectedGameObject.GetComponent<Button>();
+                var move = new AxisEventData(system) { moveDir = MoveDirection.Left, moveVector = Vector2.left };
+                pack.OnMove(move);
+                Assert.That(system.currentSelectedGameObject.name, Is.EqualTo("Rest"));
+                canvas.Focus(system);
+                Assert.That(system.currentSelectedGameObject.name, Is.EqualTo("Rest"), "Refresh must preserve a usable selection.");
+                canvas.SetAvailability(false, false, true); canvas.Focus(system);
+                Assert.That(system.currentSelectedGameObject.name, Is.EqualTo("Pack up"));
+                system.SetSelectedGameObject(null); canvas.Focus(system);
+                Assert.That(system.currentSelectedGameObject.name, Is.EqualTo("Pack up"));
+                canvas.SetAvailability(false, false, false); canvas.Focus(system);
+                Assert.That(system.currentSelectedGameObject, Is.Null);
+                canvas.SetAvailability(true, true, true); canvas.Focus(system);
+                Assert.That(system.currentSelectedGameObject.name, Is.EqualTo("Sleep until ready"));
+            }
+            finally { Object.DestroyImmediate(root); Object.DestroyImmediate(events); }
+        }
         [TestCase(TopDown3DInputMode.CampPlacement)]
         [TestCase(TopDown3DInputMode.CampActions)]
         [TestCase(TopDown3DInputMode.CampBusy)]

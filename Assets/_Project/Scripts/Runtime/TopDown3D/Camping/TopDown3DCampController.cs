@@ -193,7 +193,7 @@ namespace BooterBigArm.TopDown3D
             if (!CanCallUp || target != Camp || Vector3.Distance(motor.Position, target.InteractionPoint) > settings.interactionRange) return false;
             if (!CanReachCamp()) { action.ReportFeedback("Camp is blocked from here"); return false; }
             if (!motor.TryBeginActionConstraint(this)) return false;
-            LeaseUi(); Enter(TopDown3DCampPhase.Actions, TopDown3DInputMode.CampActions); ShowActions(); canvas.Focus(eventSystem); return true;
+            LeaseUi(); Enter(TopDown3DCampPhase.Actions, TopDown3DInputMode.CampActions); ShowActions(); return true;
         }
 
         private void LeaseUi()
@@ -221,6 +221,7 @@ namespace BooterBigArm.TopDown3D
                 + $"Food {sleep.Food:0.#} / Water {sleep.Water:0.#} / Oxygen {sleep.Oxygen:0.#}\n"
                 + $"{notice} · [{input.GetBindingDisplayName("Camp/Cancel", "Back")}] Back", true, armed);
             canvas.SetAvailability(sleep.IsUseful, rest.IsUseful, canPack);
+            canvas.Focus(eventSystem);
         }
 
         private void BeginRecovery(bool sleep)

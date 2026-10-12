@@ -56,7 +56,16 @@ namespace BooterBigArm.TopDown3D
             group.interactable = actions && ready; group.blocksRaycasts = actions && ready;
         }
         public void Focus(EventSystem system)
-        { if (system != null) system.SetSelectedGameObject(sleep.gameObject); }
+        {
+            if (system == null || !panel.activeInHierarchy || !choices.activeInHierarchy || !group.interactable) return;
+            var selected = system.currentSelectedGameObject;
+            if (selected == sleep.gameObject && sleep.IsInteractable()
+                || selected == rest.gameObject && rest.IsInteractable()
+                || selected == pack.gameObject && pack.IsInteractable()) return;
+            var available = sleep.IsInteractable() ? sleep : rest.IsInteractable() ? rest : pack.IsInteractable() ? pack : null;
+            if (available != null) { system.SetSelectedGameObject(available.gameObject); return; }
+            if (selected != null && selected.transform.IsChildOf(choices.transform)) system.SetSelectedGameObject(null);
+        }
         public void SetAvailability(bool canSleep, bool canRest, bool canPack)
         { sleep.interactable = canSleep; rest.interactable = canRest; pack.interactable = canPack; }
         public void Hide() { if (panel != null) panel.SetActive(false); }

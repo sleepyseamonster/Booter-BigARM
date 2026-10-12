@@ -41,6 +41,12 @@ The reference scene is `Assets/_Project/Scenes/Reference/CampSleepStudy.unity`, 
 
 ## Verification and limits
 
+### Camp option navigation repair — October 11, 2026
+
+The playtest exposed missing selection when Sleep until ready was unavailable. The panel previously focused that disabled button on opening, before the fresh-confirmation guard armed the choices. Focus now resolves after arming and availability updates, chooses the first interactable camp action, preserves a valid current selection, and restores selection if it is lost or its action becomes unavailable. At high Reserve, sleep and rest remain unavailable under the existing recovery rules; Pack up remains selectable when inventory permits.
+
+Fresh Unity 6000.4.0f1 compilation and **12/12 focused EditMode tests** passed in the isolated `D:\BooterBigArmValidation\CampSleep20261010-01` candidate on October 11. The run covered `TopDown3DCampInputTests` (including disabled choices, horizontal navigation, retained/lost focus, and confirmation guarding) and `TopDown3DCampIntegrationTests`. Local diagnostics are `Logs/camp-navigation-fix.log` and `Logs/camp-navigation-fix.xml` in that candidate. The user's live Editor was not stopped or focused. Hands-on acceptance requires recompilation and a new Play session; no scene, input binding, recovery balance, world identity, or persistence contract changed.
+
 The final focused EditMode run passed **101/101 tests**, with zero failures or skips; see [executed results](./CAMP_SLEEP_IMPLEMENTATION_2026-10-10_tests.xml). Fixtures cover kit transactions, rejected/revalidated placement, input ownership, interval splitting, tiny-frame rate preservation, health signals, speed cleanup, actual deploy/pack/wake lifecycle, repeated installation, focus loss, and cloak bone binding. Existing affected survival, radial, menu, inventory UI, harvester, locomotion, and traversal fixtures passed in the same run. `TopDown3DCampProductionValidator.ValidateAllFromCli` completed the existing radial/menu checks and new camp wiring check with process return code 0; no scenes were saved.
 
 The uninterrupted live capture passed its declared budget:
