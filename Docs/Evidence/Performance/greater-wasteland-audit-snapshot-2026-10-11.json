@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-11",
+  "timezone": "America/Phoenix",
+  "candidate": "D:\\BooterBigArmValidation\\PerformanceAudit20261011-01",
+  "head": "83b4d26dd273ffe4f6123c3014aa59fd6bd8f755",
+  "sceneHash": "442E8EA6B53C2A8581427540556C632D9889462ED0794755BB96FD79DEB57126",
+  "hardware": {
+    "cpu": "Intel Core i7-9700K",
+    "gpu": "NVIDIA GeForce RTX 3060 Ti",
+    "systemMemoryMB": 65468
+  },
+  "terrain": {
+    "pixelError": 8,
+    "tileWidthMetres": 256,
+    "heightSampleCount": 557981952,
+    "shadowCasting": "TwoSided",
+    "tiles": 8448,
+    "instanced": true,
+    "colliders": 8448,
+    "heightmapResolution": 257,
+    "footprintSquareKm": 553.648128
+  },
+  "files": [
+    {
+      "path": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+      "sourceHash": "442E8EA6B53C2A8581427540556C632D9889462ED0794755BB96FD79DEB57126",
+      "candidateHash": "442E8EA6B53C2A8581427540556C632D9889462ED0794755BB96FD79DEB57126"
+    },
+    {
+      "path": "Packages/manifest.json",
+      "sourceHash": "A9B4F332893EFFBB67F87B48508240992D76968B8B78F870F8F05F12A436F409",
+      "candidateHash": "A9B4F332893EFFBB67F87B48508240992D76968B8B78F870F8F05F12A436F409"
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "sourceHash": "D2ADAB2CB95C215760C616AC81950F6EAB23AE18AEED23D69B9C58FE63C8F473",
+      "candidateHash": "D2ADAB2CB95C215760C616AC81950F6EAB23AE18AEED23D69B9C58FE63C8F473"
+    },
+    {
+      "path": "ProjectSettings/ProjectVersion.txt",
+      "sourceHash": "8468D7ADD4C1613C42224053CB9C889688CCF141875F44065A40E6D133BC3EA7",
+      "candidateHash": "8468D7ADD4C1613C42224053CB9C889688CCF141875F44065A40E6D133BC3EA7"
+    },
+    {
+      "path": "ProjectSettings/QualitySettings.asset",
+      "sourceHash": "7EC339D3E5E2B8CC73548E69256F6151782BB68A4AFB64F865FD94704DBF0DE3",
+      "candidateHash": "7EC339D3E5E2B8CC73548E69256F6151782BB68A4AFB64F865FD94704DBF0DE3"
+    },
+    {
+      "path": "Assets/_Project/Settings/Rendering/URP/UniversalRP.asset",
+      "sourceHash": "F2D2BF45C5B2A855B7971CBD17CFCF5BBE12DA5D8F1ED6AF199A9D194B31EC56",
+      "candidateHash": "F2D2BF45C5B2A855B7971CBD17CFCF5BBE12DA5D8F1ED6AF199A9D194B31EC56"
+    },
+    {
+      "path": "Assets/_Project/Settings/Rendering/URP/Renderer3D.asset",
+      "sourceHash": "5631A1877831185CBF061A94996D7207B8018C60B1947DBDC734B8E552C17C17",
+      "candidateHash": "5631A1877831185CBF061A94996D7207B8018C60B1947DBDC734B8E552C17C17"
+    }
+  ],
+  "measuredToolSHA256": "591DF517B63B4B0B2667D89AA8267ABF042EB224E4117AAFBDFA6C84B11AB5A8",
+  "notes": "Frozen working-tree candidate, including then-current unrelated gameplay edits. Later source inspection includes newer inventory persistence work; those newer changes were not in the rendered capture. Final tool adds isolated-project and duplicate-run guards plus zero-sample rejection; its final source was compiled offline without launching Unity."
+}

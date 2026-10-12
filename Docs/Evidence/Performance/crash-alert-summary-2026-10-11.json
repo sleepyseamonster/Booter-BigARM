@@ -1,0 +1,36 @@
+{
+  "events": [
+    {
+      "localTime": "2026-10-11T19:59:45.0614859-07:00",
+      "timezone": "America/Phoenix",
+      "application": "Unity.ILPP.Trigger.exe",
+      "exception": "0xc0000409"
+    },
+    {
+      "localTime": "2026-10-11T19:57:40.7741267-07:00",
+      "timezone": "America/Phoenix",
+      "application": "dwm.exe",
+      "exception": "0xc00001ad"
+    },
+    {
+      "localTime": "2026-10-11T19:50:18.4633918-07:00",
+      "timezone": "America/Phoenix",
+      "application": "Unity.ILPP.Trigger.exe",
+      "exception": "0xc0000409"
+    },
+    {
+      "localTime": "2026-10-11T17:28:45.5262433-07:00",
+      "timezone": "America/Phoenix",
+      "application": "Unity.ILPP.Trigger.exe",
+      "exception": "0xc0000409"
+    },
+    {
+      "localTime": "2026-10-11T11:51:05.5831015-07:00",
+      "timezone": "America/Phoenix",
+      "application": "Unity.ILPP.Trigger.exe",
+      "exception": "0xc0000409"
+    }
+  ],
+  "desktopExceptionMeaning": "STATUS_FATAL_MEMORY_EXHAUSTION, decoded locally with certutil.exe -error 0xc00001ad",
+  "scope": "Crash alert retained briefly for audit operating limits. These events do not identify a terrain, VRAM, driver, or application-specific root cause."
+}

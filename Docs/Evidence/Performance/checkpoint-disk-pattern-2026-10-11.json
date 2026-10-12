@@ -1,0 +1,11 @@
+{
+  "mode": "synthetic_flush_replace",
+  "bytes": 65536,
+  "warmupOperations": 5,
+  "samples": 35,
+  "averageMs": 8.186034285714287,
+  "p95Ms": 9.0203,
+  "maximumMs": 9.3571,
+  "directory": "C:\\Users\\kbkno\\AppData\\Local\\Temp\\GreaterWastelandDiskAudit-a92b7ee4556b41489943a847ab55ba06",
+  "notes": "Task-owned synthetic file under LocalAppData Temp; measures flush and atomic replacement only, excluding Unity snapshot capture, serialization, checksum, and actual save workload."
+}

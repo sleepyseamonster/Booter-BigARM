@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-11",
+  "timezone": "America/Phoenix",
+  "head": "2401275224bbbf08d2e181f7ced043c51425dc60",
+  "scope": "Live source inspection after the frozen render capture; hashes identify the inspected revisions, not executed runtime proof.",
+  "files": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs",
+      "sha256": "FD521E7C9CC812E4D90E2943A741C236D844CA20DF44496D4D697388AB0C5D24"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs",
+      "sha256": "852961065576A269F54433D044F9BB8C27B7DF626DF887DFFE18758D3D8FC9C1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustAtmosphere.cs",
+      "sha256": "63023DF89D81F20BD305BC09DC084B6498780FDBB080E6B7948482DED2756E80"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DCargoAccess.cs",
+      "sha256": "1DADABA5FA852AA980DF317F54DBAEDFA069F8E4DDF1DDCFDCBADBE48C6ED60B"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventoryUiController.cs",
+      "sha256": "16C3EE9BEFC650B236F2C149ECD2AE6383AD3A51181C66F8C572BEA3256643EE"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BigArm/TopDown3DBigArmCargoVisuals.cs",
+      "sha256": "795AED7C3041A7634C0D46C3B6753120C4C5F24977F273A4367ECB5DE420362D"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs",
+      "sha256": "CA3B2C7F4C48F4B0B907E967724173D70D1C5C4E655A03E50A2FD0B789127688"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySnapshot.cs",
+      "sha256": "CC972F0BC2EAEF488E2DEC8EF969A213BA23B2E1EB30D3E040818D13A2477316"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DAlgaeCanisterHud.cs",
+      "sha256": "C2767635094A9213E156C64B4E93501040961F0D7BC74D9AB937A20407AE3A43"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Survival/TopDown3DSurvivalHud.cs",
+      "sha256": "5CE94265606DCC16624E9914ABD9D1FE892100EF0EB135C97FFAAE44CC429A9E"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs",
+      "sha256": "F4BC8844B987F2A257DE553F7A682C8B6E556FB561BDDD68960F77DB960F02D2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs",
+      "sha256": "AA42D853F9A6C6E5393A1894056D54625D39D422E7191CAE24FDA9D63D6E53A4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "FC9586A14632EC1D6698BB3E0F4E9BDB24270110926731DFD2A28E16F8F39B9F"
+    }
+  ]
+}
