@@ -37,10 +37,21 @@ namespace BooterBigArm.TopDown3D
 
         public string CandidateId(Vector2Int cell, int ordinal)
         {
-            var bytes = Digest(cell, ordinal, 0);
-            var id = new StringBuilder("gw-pop-v1-", 74);
-            foreach (var value in bytes) id.Append(value.ToString("x2", System.Globalization.CultureInfo.InvariantCulture));
-            return id.ToString();
+            return EncodeHex(Digest(cell, ordinal, 0), "gw-pop-v1-");
+        }
+
+        // Same lowercase v1 encoding, without one formatting string per digest byte.
+        internal static string EncodeHex(byte[] bytes, string prefix = "")
+        {
+            const string digits = "0123456789abcdef";
+            var chars = new char[prefix.Length + bytes.Length * 2];
+            prefix.CopyTo(0, chars, 0, prefix.Length);
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                chars[prefix.Length + i * 2] = digits[bytes[i] >> 4];
+                chars[prefix.Length + i * 2 + 1] = digits[bytes[i] & 15];
+            }
+            return new string(chars);
         }
 
         /// <summary>Bounded study lattice only. Recipes can use other positions with the same ordinal identity protocol.</summary>

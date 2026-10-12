@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-12",
+  "scope": "Compatible lowercase hex formatting with fewer allocation events; corrected allocation observer",
+  "sources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs",
+      "sha256": "db18d249a6478405dc20a37ceaac584015fb0252dfc57bc6b0700dc77603845a"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs",
+      "sha256": "e775f1581f5b169b2c5e1cb0207d923e42290864579c66dbdbb1200a9b127642"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationIdentityTests.cs",
+      "sha256": "9503ce9f89b4a25845a6b8294705a71471b56a25c3c07a19fdb81524f49f05ad"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationStateTests.cs",
+      "sha256": "97c51b8be975c53bbedea2deb544f78e489a2e474187251a42076a49b6bdaf02"
+    },
+    {
+      "path": "Tools/Diagnostics/instrument_population_work.py",
+      "sha256": "706bdfad3787b4480a49bf899643959593e2a3c96e27e0dfd24046809b75e813"
+    }
+  ],
+  "tests": {
+    "path": "Docs/Evidence/Performance/population-hex-allocation-editmode-2026-10-12.xml",
+    "sha256": "eb700c226e98270f9210bbd51f94a324c303941ee61256ba73e0d3640d8bf079",
+    "passed": 98,
+    "failed": 0,
+    "skipped": 0
+  },
+  "rejected_observer": {
+    "path": "Docs/Evidence/Performance/population-allocation-counter-rejection-editmode-2026-10-12.xml",
+    "sha256": "14f3b619e9a7f7302dcf7b8caddecc53a6daa8b6acba2b6979c3b5c3ed755218",
+    "problem": "GC.GetAllocatedBytesForCurrentThread returned zero in both known-allocating implementations, so the byte comparison failed and previous zero-byte proof was uninformative."
+  },
+  "observer": "Unity ProfilerRecorder GC.Alloc, current thread only, SumAllSamplesInFrame; Stop before reading sample.Count; counts allocation events, not bytes or marker durations. Positive control measured one event; fully warm query delegate before measurement.",
+  "allocation_events": {
+    "original_100_ids": 4400,
+    "optimized_100_ids": 1100,
+    "reduction_percent": 75,
+    "warm_1000_untouched_cell_queries": 0
+  },
+  "compatibility": "128 original-formatter comparisons including negative cells and ordinals beyond 64; independent v1 reference vector, saved acceptance/removal restoration and all focused integration gates pass. Hash bytes, sorted receipt input, versions, prefix and lowercase hex unchanged.",
+  "prior_receipt_before_correction_sha256": "419d73f709c9dbb5eba86c38b00f41f2e356fa308c701a76b67e1081ad8f9008",
+  "prior_receipt_after_correction_sha256": "959afa2f54f4dc0c9d38c226a48bf1b04220fe24d49742b10adb9d158e101aa0",
+  "limits": "No post-change Player capture or frame-time speedup claim; counts apply to warm bounded EditMode calls. Cold initialization may still exceed a clock budget.",
+  "remaining": [
+    "Bound startup work and compare chunk/presentation partitions",
+    "Production seed/save population integration",
+    "Author visual/traversal acceptance"
+  ]
+}

@@ -414,5 +414,6 @@
     "Bound baseline registration/avoid duplicate queue registration",
     "Measure post-fix work and restoration after further code changes",
     "Production integration and author acceptance"
-  ]
+  ],
+  "allocation_proof_status": "Initial CLR byte-counter assertion is uninformative: it returned zero for known allocations. Withdraw that byte-measurement claim; superseded by positive-control Unity GC.Alloc event evidence in population-hex-allocation-receipt-2026-10-12.json. Correctness and wall-clock artifacts remain unchanged."
 }

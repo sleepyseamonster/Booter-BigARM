@@ -214,8 +214,8 @@ namespace BooterBigArm.TopDown3D
         private static string Digest(HashSet<string> keys)
         {
             using var sha = SHA256.Create();
-            return string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(string.Join("\n", keys.OrderBy(v => v, StringComparer.Ordinal))))
-                .Select(v => v.ToString("x2", System.Globalization.CultureInfo.InvariantCulture)));
+            return FixedTerrainPopulationIdentity.EncodeHex(sha.ComputeHash(
+                Encoding.UTF8.GetBytes(string.Join("\n", keys.OrderBy(v => v, StringComparer.Ordinal)))));
         }
         private static bool ValidDigest(string value) => value != null && value.Length == 64 && value.All(c => c >= '0' && c <= '9' || c >= 'a' && c <= 'f');
     }

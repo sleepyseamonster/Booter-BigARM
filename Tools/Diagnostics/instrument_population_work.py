@@ -57,7 +57,7 @@ def main():
         target = candidate / (runtime + 'PopulationSectorPlayerAudit.cs' if relative.startswith('Tools/') else relative)
         output.append((target, source, relative))
     output.append((candidate / (runtime + 'PopulationWorkTimings.cs'), (root / 'Tools/Diagnostics/PopulationWorkTimings.cs').read_text(), 'Tools/Diagnostics/PopulationWorkTimings.cs'))
-    for name in ('FixedTerrainPopulationState.cs', 'FixedTerrainPopulationPlanner.cs'):
+    for name in ('FixedTerrainPopulationState.cs', 'FixedTerrainPopulationPlanner.cs', 'FixedTerrainPopulationIdentity.cs'):
         output.append((candidate / (runtime + name), (root / (runtime + name)).read_text(), runtime + name))
     output.append((candidate / 'Assets/_Project/Scripts/Editor/IsolatedPopulationAuditBuild.cs',
                    (root / 'Tools/Diagnostics/IsolatedPopulationAuditBuild.cs').read_text().replace('BuildsPopulationLocal/', 'BuildsPopulation' + args.label + '/'),

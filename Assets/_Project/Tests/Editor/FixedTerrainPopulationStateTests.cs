@@ -21,9 +21,11 @@ namespace BooterBigArm.Tests
             Assert.Throws<ArgumentException>(() => state.IsRemoved(clean, "fixture.clutter", -1));
             Assert.Throws<ArgumentException>(() => state.IsRemoved(clean, "fixture.clutter", 64));
             for (int i = 0; i < 10; i++) state.IsRemoved(clean, "fixture.clutter", i);
-            long before = GC.GetAllocatedBytesForCurrentThread(); bool found = false;
-            for (int i = 0; i < 1000; i++) found |= state.IsRemoved(clean, "fixture.clutter", i % 64);
-            long allocated = GC.GetAllocatedBytesForCurrentThread() - before;
+            Assert.That(FixedTerrainPopulationIdentityTests.MeasureAllocationCount(() => GC.KeepAlive(new byte[4096])), Is.GreaterThan(0));
+            bool found = false;
+            Action query = () => { for (int i = 0; i < 1000; i++) found |= state.IsRemoved(clean, "fixture.clutter", i % 64); };
+            query();
+            long allocated = FixedTerrainPopulationIdentityTests.MeasureAllocationCount(query);
             Assert.That(found, Is.False); Assert.That(allocated, Is.Zero);
             Assert.That(state.ApplySnapshot(empty), Is.True);
             Assert.That(state.IsRemoved(dirty, "fixture.clutter", 2), Is.False);

@@ -1,13 +1,64 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using BooterBigArm.TopDown3D;
 using NUnit.Framework;
+using Unity.Profiling;
 using UnityEngine;
 
 namespace BooterBigArm.Tests
 {
     public sealed class FixedTerrainPopulationIdentityTests
     {
+        [Test]
+        public void VersionOneHexEncodingMatchesOriginalAndReducesAllocation()
+        {
+            var identity = Context(); byte[] prefix;
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new BinaryWriter(stream, Encoding.UTF8, true))
+                {
+                    writer.Write("greater-wasteland.population-key.v1"); writer.Write(identity.WorldId); writer.Write(identity.Seed);
+                    writer.Write(identity.GenerationVersion); writer.Write(identity.RecipeId); writer.Write(identity.RecipeVersion);
+                }
+                prefix = stream.ToArray();
+            }
+            string Original(Vector2Int cell, int ordinal)
+            {
+                var input = new byte[prefix.Length + 16]; Buffer.BlockCopy(prefix, 0, input, 0, prefix.Length);
+                var tail = input.AsSpan(prefix.Length);
+                System.Buffers.Binary.BinaryPrimitives.WriteInt32LittleEndian(tail, cell.x);
+                System.Buffers.Binary.BinaryPrimitives.WriteInt32LittleEndian(tail.Slice(4), cell.y);
+                System.Buffers.Binary.BinaryPrimitives.WriteInt32LittleEndian(tail.Slice(8), ordinal);
+                System.Buffers.Binary.BinaryPrimitives.WriteInt32LittleEndian(tail.Slice(12), 0);
+                using var sha = SHA256.Create(); var bytes = sha.ComputeHash(input);
+                var text = new StringBuilder("gw-pop-v1-", 74);
+                foreach (var value in bytes) text.Append(value.ToString("x2", System.Globalization.CultureInfo.InvariantCulture));
+                return text.ToString();
+            }
+            var cell = new Vector2Int(-7, 11);
+            for (int i = 0; i < 128; i++) Assert.That(identity.CandidateId(cell, i), Is.EqualTo(Original(cell, i)));
+            Assert.That(MeasureAllocationCount(() => GC.KeepAlive(new byte[4096])), Is.GreaterThan(0), "Allocation observer must detect a positive control.");
+            long optimized = MeasureAllocationCount(() => { for (int i = 0; i < 100; i++) identity.CandidateId(cell, i); });
+            long original = MeasureAllocationCount(() => { for (int i = 0; i < 100; i++) Original(cell, i); });
+            TestContext.WriteLine($"HEX_ALLOCATION_EVENTS_100_IDS original={original} optimized={optimized}");
+            Assert.That(optimized, Is.LessThan(original - 16 * 100), "Remove the per-byte formatting allocations, including ordinals beyond the study slots.");
+        }
+
+        internal static long MeasureAllocationCount(Action action)
+        {
+            using var recorder = new ProfilerRecorder(ProfilerCategory.Memory, "GC.Alloc", 1,
+                ProfilerRecorderOptions.CollectOnlyOnCurrentThread | ProfilerRecorderOptions.SumAllSamplesInFrame);
+            Assert.That(recorder.Valid, Is.True, "A supported Unity allocation marker is required.");
+            recorder.Start(); action(); recorder.Stop();
+            // GC.Alloc is a marker: Count is the number of allocation events, not byte size.
+            var sample = recorder.Count == 0 ? default : recorder.GetSample(recorder.Count - 1);
+            TestContext.WriteLine($"GC_ALLOC_OBSERVER count={sample.Count} value={sample.Value}");
+            return (long)sample.Count;
+        }
+
         [Test]
         public void CandidateIdentityAndPositionsSurviveReverseOrderAndContextReconstruction()
         {
