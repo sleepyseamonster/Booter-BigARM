@@ -1,0 +1,470 @@
+{
+  "date": "2026-10-12",
+  "scope": "Corrected manual URP camera transitions with explicit preparation; not interactive FPS, actor movement or full-route visual acceptance",
+  "candidate": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01",
+  "sources": [
+    {
+      "path": "Tools/Diagnostics/GreaterWastelandPlayerAudit.cs",
+      "sha256": "9fe99a474c0933e82f6fa768212900e451ea7584ef43b4c66fd9ec6b86ce5069"
+    },
+    {
+      "path": "Tools/Diagnostics/summarize_camera_transitions.py",
+      "sha256": "b6c670f8ec68d6d06a805f3f944a0d8dcf5cb0185ac2d224aa1bd6b89ba04aae"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs",
+      "sha256": "5ef2cbc1924b874a10b1e5c4158eaa11a6c1366bef0c1d5a08b280b138bc89f1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainSurfaceIndex.cs.meta",
+      "sha256": "e365f03a959f1ad999404923f8b3e8300d312782842e1b7b158996ecd532da1c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs",
+      "sha256": "af7a591f9d811d377cb71df73b6a02ada565824b209431c4f726168b185d411c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainRenderWindow.cs.meta",
+      "sha256": "7aa347310665511a36a6a77c08e4e073056a39c16f8b9ebaad7b9d8d687b6162"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainCameraCoverage.cs",
+      "sha256": "acca6361ef9d0140186dfa659bf1042c0377730cf945c3ec470db6ff6c546c2b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainCameraCoverage.cs.meta",
+      "sha256": "90db73ee6a6603c2045572b173bbac3ebac4d3b471d6fe4c141a224e5370ea80"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs",
+      "sha256": "4bb736c6b1ea92261b075e55c9523d5faebd19f35d2e4a5d502010e09624393d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs.meta",
+      "sha256": "941c10e73d8fb3587637ec01e9dc21ba4cdc8958830e55fae8164a26f4c4d01b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs",
+      "sha256": "80a4ae89a673a2f48ec9703cde8d04832e6f4ad2ec6f6be1aff8f78666d374cd"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationIdentity.cs.meta",
+      "sha256": "2dcde93ab98dda17ec2e2185b6f4979eeb231579989f959278fe3eef889bbbd2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs",
+      "sha256": "d154b6fef2967d7d4a39bd2546750666a953b2c1d876286a2596a72d85bf5726"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationState.cs.meta",
+      "sha256": "7e765641f787ac39f1a58e3704845804055ad1848a21cfb8b93e102b754aa044"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPlanner.cs",
+      "sha256": "7dff003b98e0b46a8d285583e3bc08df287ea241df1df1e38d9fe4c384b1afa1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPlanner.cs.meta",
+      "sha256": "4f6a792cf3a204c44f77070b125f6dbee7f5744d1d55eea046c6deca7c75238f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs",
+      "sha256": "33452f9d8c203cddefb09b4f92ec9fe0ea4fe7be0da3814cb07a4529d314eaf7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPresentation.cs.meta",
+      "sha256": "d54d77bdbaac15ff023744e24b4be31275236bcaeefbbb55733b390825628c2e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationScheduler.cs",
+      "sha256": "a5c8b73e675d00eebb760644f25a1d95f343ac127f19eb11fc111548199c0885"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationScheduler.cs.meta",
+      "sha256": "2ddb42e80fdb7053c2e5f567a252e781b9dfbcc01557dc828a8b5fbc85aca238"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs",
+      "sha256": "1beb37cf0c07832eb3f38e6d209818f86921d515d0cf18de4d87597855d14fca"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationSectorStudy.cs.meta",
+      "sha256": "33ac5119de622ca4a6294e126ad9dc95d5ebaa6041b78ad771d3ca9869b2d8dc"
+    }
+  ],
+  "production_scene_sha256": "72247dceed98927d714c8f96166277812d36d1a820a2b968c2dc7460122c4a63",
+  "player_runtime_assembly_sha256": "e414088990df6ffd8f74f8a81b4f7f1a3512727c2a3b62a1223179b04701a185",
+  "reports": [
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-resolved-sweep.json",
+      "sha256": "a1884910250ef3045eb5f06f390b50bd7d4c68ee48dad45f2f14a365f5afdfb0",
+      "candidate_original_sha256": "a1884910250ef3045eb5f06f390b50bd7d4c68ee48dad45f2f14a365f5afdfb0"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-resolved-sweep.png",
+      "sha256": "d14c563c73351ddae7769c06d2414c92a904f99b128cd975860150f74b5dbfce",
+      "candidate_original_sha256": "d14c563c73351ddae7769c06d2414c92a904f99b128cd975860150f74b5dbfce"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-resolved-sweep-process-watch.json",
+      "sha256": "1804ff41dc9db88f8100170f931ed3266bd3a62cd1305d73e460bb9fd6015fe8",
+      "candidate_original_sha256": "4eedd74888ad4f67563883cc7521557074599ede95aa6ca61ef280d561f2a128"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-resolved-stationary.json",
+      "sha256": "3f2ecd6ae8ef89bdd07e6e758457a6573484861336685c3ba5792ce6bf2567d3",
+      "candidate_original_sha256": "3f2ecd6ae8ef89bdd07e6e758457a6573484861336685c3ba5792ce6bf2567d3"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-resolved-stationary.png",
+      "sha256": "90c4db84f87f3e9104b44a41398d5e49b19bce13938b9df1f013db59338f0012",
+      "candidate_original_sha256": "90c4db84f87f3e9104b44a41398d5e49b19bce13938b9df1f013db59338f0012"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-resolved-stationary-process-watch.json",
+      "sha256": "ddcfd7d7affb110f842837293624bf2a5163a77b17e420dce0c72992306476cb",
+      "candidate_original_sha256": "28259281b937ea04b3aa0f5a892587709451ced00791c10d23e5caabda2e8539"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-transition-resolved-sweep-summary.json",
+      "sha256": "7bec9bf6320433ec6ff74a6d89aea43e7ca787f27e111975fb4bd3da95b471ae",
+      "candidate_original_sha256": "7bec9bf6320433ec6ff74a6d89aea43e7ca787f27e111975fb4bd3da95b471ae"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-player-audit-build-transitions-resolved-process-watch.json",
+      "sha256": "efe9b746dd1c49cba2684c59ea9bfeddf860227c4e120e01df16c2606b4514dd",
+      "candidate_original_sha256": "872a8b85484275156fd690e3fd0c6d01c2856bf024c4c3443786dbb22c82779d"
+    }
+  ],
+  "summaries": [
+    {
+      "samples": 13225,
+      "meanMs": 2.268445369319212,
+      "medianMs": 2.208397025242448,
+      "p95Ms": 2.938903169706464,
+      "p99Ms": 3.982000984251499,
+      "maximumMs": 19.067000597715378,
+      "enabledTerrains": 44,
+      "enabledColliders": 8704,
+      "explicitTerrainPreparation": true,
+      "cameraFar": 8000.0,
+      "quality": 5,
+      "renderScale": 1.0,
+      "shadowDistance": 60.0
+    },
+    {
+      "samples": 13955,
+      "meanMs": 2.149791122820937,
+      "medianMs": 2.073603915050626,
+      "p95Ms": 2.6192956138402224,
+      "p99Ms": 3.105796407908201,
+      "maximumMs": 7.31259910389781,
+      "enabledTerrains": 32,
+      "enabledColliders": 8704,
+      "explicitTerrainPreparation": true,
+      "cameraFar": 8000.0,
+      "quality": 5,
+      "renderScale": 1.0,
+      "shadowDistance": 60.0
+    }
+  ],
+  "transition_summary": {
+    "scope": "Manual offscreen camera sweep; not interactive FPS or actor traversal acceptance",
+    "all_updates": {
+      "samples": 13225,
+      "mean_ms": 2.268445369319212,
+      "median_ms": 2.208397025242448,
+      "p95_ms": 2.938903169706464,
+      "p99_ms": 3.982000984251499,
+      "maximum_ms": 19.067000597715378
+    },
+    "within_250ms_of_native_cell_crossing": {
+      "samples": 3531,
+      "mean_ms": 2.2658708564216004,
+      "median_ms": 2.216801280155778,
+      "p95_ms": 2.9228953644633293,
+      "p99_ms": 3.6900013219565153,
+      "maximum_ms": 11.251905933022499
+    },
+    "away_from_native_cell_crossing": {
+      "samples": 9694,
+      "mean_ms": 2.2693831251518373,
+      "median_ms": 2.205796539783478,
+      "p95_ms": 2.9455001931637526,
+      "p99_ms": 4.214597400277853,
+      "maximum_ms": 19.067000597715378
+    },
+    "manual_request_cpu": {
+      "samples": 13225,
+      "mean_ms": 1.7095169678638806,
+      "median_ms": 1.6611999999867066,
+      "p95_ms": 2.212999999997578,
+      "p99_ms": 2.6399999999995316,
+      "maximum_ms": 13.623899999998912
+    },
+    "minimum_terrain_renderers": 32,
+    "maximum_terrain_renderers": 121,
+    "renderer_count_changes": 60,
+    "tile_crossings": [
+      {
+        "sample": 244,
+        "elapsed": 0.4860945000000001,
+        "from": [
+          -8,
+          -6
+        ],
+        "to": [
+          -7,
+          -6
+        ]
+      },
+      {
+        "sample": 1327,
+        "elapsed": 2.3630011999999994,
+        "from": [
+          -7,
+          -6
+        ],
+        "to": [
+          -6,
+          -6
+        ]
+      },
+      {
+        "sample": 2265,
+        "elapsed": 4.237706800000005,
+        "from": [
+          -6,
+          -6
+        ],
+        "to": [
+          -5,
+          -6
+        ]
+      },
+      {
+        "sample": 3137,
+        "elapsed": 6.113144300000002,
+        "from": [
+          -5,
+          -6
+        ],
+        "to": [
+          -4,
+          -6
+        ]
+      },
+      {
+        "sample": 4431,
+        "elapsed": 9.1922426,
+        "from": [
+          -4,
+          -6
+        ],
+        "to": [
+          -4,
+          -5
+        ]
+      },
+      {
+        "sample": 5152,
+        "elapsed": 11.068986899999999,
+        "from": [
+          -4,
+          -5
+        ],
+        "to": [
+          -4,
+          -4
+        ]
+      },
+      {
+        "sample": 5866,
+        "elapsed": 12.943052800000004,
+        "from": [
+          -4,
+          -4
+        ],
+        "to": [
+          -4,
+          -3
+        ]
+      },
+      {
+        "sample": 6549,
+        "elapsed": 14.819937199999998,
+        "from": [
+          -4,
+          -3
+        ],
+        "to": [
+          -4,
+          -2
+        ]
+      },
+      {
+        "sample": 7127,
+        "elapsed": 16.390112000000002,
+        "from": [
+          -4,
+          -2
+        ],
+        "to": [
+          -5,
+          -2
+        ]
+      },
+      {
+        "sample": 7861,
+        "elapsed": 18.2649964,
+        "from": [
+          -5,
+          -2
+        ],
+        "to": [
+          -6,
+          -2
+        ]
+      },
+      {
+        "sample": 8595,
+        "elapsed": 20.140103100000005,
+        "from": [
+          -6,
+          -2
+        ],
+        "to": [
+          -7,
+          -2
+        ]
+      },
+      {
+        "sample": 9378,
+        "elapsed": 22.0146869,
+        "from": [
+          -7,
+          -2
+        ],
+        "to": [
+          -8,
+          -2
+        ]
+      },
+      {
+        "sample": 9681,
+        "elapsed": 22.6838166,
+        "from": [
+          -8,
+          -2
+        ],
+        "to": [
+          -8,
+          -3
+        ]
+      },
+      {
+        "sample": 10569,
+        "elapsed": 24.559277500000007,
+        "from": [
+          -8,
+          -3
+        ],
+        "to": [
+          -8,
+          -4
+        ]
+      },
+      {
+        "sample": 11449,
+        "elapsed": 26.434172000000004,
+        "from": [
+          -8,
+          -4
+        ],
+        "to": [
+          -8,
+          -5
+        ]
+      },
+      {
+        "sample": 12385,
+        "elapsed": 28.308753600000003,
+        "from": [
+          -8,
+          -5
+        ],
+        "to": [
+          -8,
+          -6
+        ]
+      }
+    ],
+    "sector_crossings": [
+      {
+        "sample": 3137,
+        "elapsed": 6.113144300000002,
+        "from": [
+          -2,
+          -2
+        ],
+        "to": [
+          -1,
+          -2
+        ]
+      },
+      {
+        "sample": 5152,
+        "elapsed": 11.068986899999999,
+        "from": [
+          -1,
+          -2
+        ],
+        "to": [
+          -1,
+          -1
+        ]
+      },
+      {
+        "sample": 7127,
+        "elapsed": 16.390112000000002,
+        "from": [
+          -1,
+          -1
+        ],
+        "to": [
+          -2,
+          -1
+        ]
+      },
+      {
+        "sample": 11449,
+        "elapsed": 26.434172000000004,
+        "from": [
+          -2,
+          -1
+        ],
+        "to": [
+          -2,
+          -2
+        ]
+      }
+    ],
+    "camera_horizontal_spans_m": [
+      1024.0,
+      1024.0
+    ],
+    "route_closure_m": 0.472412109375,
+    "resident_colliders": 8704,
+    "gpu_timing_available": false,
+    "source_sha256": "a1884910250ef3045eb5f06f390b50bd7d4c68ee48dad45f2f14a365f5afdfb0"
+  },
+  "preview_inspection": "Final sweep and stationary PNGs inspected: expected terrain/actors/shadows; no obvious foreground gap. These are endpoint previews, not full-route appearance proof.",
+  "limitations": [
+    "Manual offscreen loop, no display/overlay UI timing, saves disabled, unavailable GPU timing",
+    "Camera stress path is four kilometres in thirty seconds; actors receive no injected motion",
+    "One sweep and one control; not repeated transition acceptance across the whole landscape",
+    "Earlier unresolved-controller traces rejected; lower current means partly remove diagnostic lookup overhead",
+    "Source terrain/collision stay resident; native memory and crash resolution remain open",
+    "Author visual/traversal acceptance and actual actor population integration remain pending"
+  ]
+}

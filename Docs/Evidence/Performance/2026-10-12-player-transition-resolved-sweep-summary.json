@@ -1,0 +1,290 @@
+{
+  "scope": "Manual offscreen camera sweep; not interactive FPS or actor traversal acceptance",
+  "all_updates": {
+    "samples": 13225,
+    "mean_ms": 2.268445369319212,
+    "median_ms": 2.208397025242448,
+    "p95_ms": 2.938903169706464,
+    "p99_ms": 3.982000984251499,
+    "maximum_ms": 19.067000597715378
+  },
+  "within_250ms_of_native_cell_crossing": {
+    "samples": 3531,
+    "mean_ms": 2.2658708564216004,
+    "median_ms": 2.216801280155778,
+    "p95_ms": 2.9228953644633293,
+    "p99_ms": 3.6900013219565153,
+    "maximum_ms": 11.251905933022499
+  },
+  "away_from_native_cell_crossing": {
+    "samples": 9694,
+    "mean_ms": 2.2693831251518373,
+    "median_ms": 2.205796539783478,
+    "p95_ms": 2.9455001931637526,
+    "p99_ms": 4.214597400277853,
+    "maximum_ms": 19.067000597715378
+  },
+  "manual_request_cpu": {
+    "samples": 13225,
+    "mean_ms": 1.7095169678638806,
+    "median_ms": 1.6611999999867066,
+    "p95_ms": 2.212999999997578,
+    "p99_ms": 2.6399999999995316,
+    "maximum_ms": 13.623899999998912
+  },
+  "minimum_terrain_renderers": 32,
+  "maximum_terrain_renderers": 121,
+  "renderer_count_changes": 60,
+  "tile_crossings": [
+    {
+      "sample": 244,
+      "elapsed": 0.4860945000000001,
+      "from": [
+        -8,
+        -6
+      ],
+      "to": [
+        -7,
+        -6
+      ]
+    },
+    {
+      "sample": 1327,
+      "elapsed": 2.3630011999999994,
+      "from": [
+        -7,
+        -6
+      ],
+      "to": [
+        -6,
+        -6
+      ]
+    },
+    {
+      "sample": 2265,
+      "elapsed": 4.237706800000005,
+      "from": [
+        -6,
+        -6
+      ],
+      "to": [
+        -5,
+        -6
+      ]
+    },
+    {
+      "sample": 3137,
+      "elapsed": 6.113144300000002,
+      "from": [
+        -5,
+        -6
+      ],
+      "to": [
+        -4,
+        -6
+      ]
+    },
+    {
+      "sample": 4431,
+      "elapsed": 9.1922426,
+      "from": [
+        -4,
+        -6
+      ],
+      "to": [
+        -4,
+        -5
+      ]
+    },
+    {
+      "sample": 5152,
+      "elapsed": 11.068986899999999,
+      "from": [
+        -4,
+        -5
+      ],
+      "to": [
+        -4,
+        -4
+      ]
+    },
+    {
+      "sample": 5866,
+      "elapsed": 12.943052800000004,
+      "from": [
+        -4,
+        -4
+      ],
+      "to": [
+        -4,
+        -3
+      ]
+    },
+    {
+      "sample": 6549,
+      "elapsed": 14.819937199999998,
+      "from": [
+        -4,
+        -3
+      ],
+      "to": [
+        -4,
+        -2
+      ]
+    },
+    {
+      "sample": 7127,
+      "elapsed": 16.390112000000002,
+      "from": [
+        -4,
+        -2
+      ],
+      "to": [
+        -5,
+        -2
+      ]
+    },
+    {
+      "sample": 7861,
+      "elapsed": 18.2649964,
+      "from": [
+        -5,
+        -2
+      ],
+      "to": [
+        -6,
+        -2
+      ]
+    },
+    {
+      "sample": 8595,
+      "elapsed": 20.140103100000005,
+      "from": [
+        -6,
+        -2
+      ],
+      "to": [
+        -7,
+        -2
+      ]
+    },
+    {
+      "sample": 9378,
+      "elapsed": 22.0146869,
+      "from": [
+        -7,
+        -2
+      ],
+      "to": [
+        -8,
+        -2
+      ]
+    },
+    {
+      "sample": 9681,
+      "elapsed": 22.6838166,
+      "from": [
+        -8,
+        -2
+      ],
+      "to": [
+        -8,
+        -3
+      ]
+    },
+    {
+      "sample": 10569,
+      "elapsed": 24.559277500000007,
+      "from": [
+        -8,
+        -3
+      ],
+      "to": [
+        -8,
+        -4
+      ]
+    },
+    {
+      "sample": 11449,
+      "elapsed": 26.434172000000004,
+      "from": [
+        -8,
+        -4
+      ],
+      "to": [
+        -8,
+        -5
+      ]
+    },
+    {
+      "sample": 12385,
+      "elapsed": 28.308753600000003,
+      "from": [
+        -8,
+        -5
+      ],
+      "to": [
+        -8,
+        -6
+      ]
+    }
+  ],
+  "sector_crossings": [
+    {
+      "sample": 3137,
+      "elapsed": 6.113144300000002,
+      "from": [
+        -2,
+        -2
+      ],
+      "to": [
+        -1,
+        -2
+      ]
+    },
+    {
+      "sample": 5152,
+      "elapsed": 11.068986899999999,
+      "from": [
+        -1,
+        -2
+      ],
+      "to": [
+        -1,
+        -1
+      ]
+    },
+    {
+      "sample": 7127,
+      "elapsed": 16.390112000000002,
+      "from": [
+        -1,
+        -1
+      ],
+      "to": [
+        -2,
+        -1
+      ]
+    },
+    {
+      "sample": 11449,
+      "elapsed": 26.434172000000004,
+      "from": [
+        -2,
+        -1
+      ],
+      "to": [
+        -2,
+        -2
+      ]
+    }
+  ],
+  "camera_horizontal_spans_m": [
+    1024.0,
+    1024.0
+  ],
+  "route_closure_m": 0.472412109375,
+  "resident_colliders": 8704,
+  "gpu_timing_available": false,
+  "source_sha256": "a1884910250ef3045eb5f06f390b50bd7d4c68ee48dad45f2f14a365f5afdfb0"
+}
