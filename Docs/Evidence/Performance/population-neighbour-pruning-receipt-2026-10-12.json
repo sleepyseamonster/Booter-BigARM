@@ -1,0 +1,185 @@
+{
+  "date": "2026-10-12",
+  "scope": "Reduce redundant placement neighbour search; preserve placement/identity; no measured frame-time gain established",
+  "sources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainPopulationPlanner.cs",
+      "sha256": "da002f5e1135671b0167c61f3077cea3f7e375da262fef4a8dba4530455db8cd",
+      "meta_sha256": "4f6a792cf3a204c44f77070b125f6dbee7f5744d1d55eea046c6deca7c75238f"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainPopulationPlannerTests.cs",
+      "sha256": "d256973ef6e8084e615f2bdb1a7af3b9e7e5fe3a64f28a744d8151a272ad2033",
+      "meta_sha256": "e692ca52539c93246e44f245d6669d7922cb43a9a3125219d0de55212865188b"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-pruned-timing.json.gz",
+      "sha256": "65d4cf8bbf5f629497ed501fed71c7320876137f1d8ba1244e39785ef790019e",
+      "candidate_original_sha256": "225052555f3bb998cc4ed128527e1e3ea3b4750b6f1121dcc8b51844bf2f90ea",
+      "compression": "gzip"
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-pruned-timing-summary.json",
+      "sha256": "7494f636f7b849282413b0b22667c961b07018e5595176a5c0c5c3170114e702",
+      "candidate_original_sha256": "7494f636f7b849282413b0b22667c961b07018e5595176a5c0c5c3170114e702",
+      "compression": null
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-pruned-timing.png",
+      "sha256": "3b2c1b7ba69f920710e791494f9daeabb2f5e87125350ddc48830e8453101f1a",
+      "candidate_original_sha256": "3b2c1b7ba69f920710e791494f9daeabb2f5e87125350ddc48830e8453101f1a",
+      "compression": null
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-pruned-build-watch.json",
+      "sha256": "b05f3c8b7e800301335ca42327b5a99946cf9a41e687da525b7497767cb4d6f6",
+      "candidate_original_sha256": "c8f25c8647333233cd593c832c97714728f216a863a354748d07e6152a9ea71d",
+      "compression": null
+    },
+    {
+      "path": "Docs/Evidence/Performance/2026-10-12-population-pruned-process-watch.json",
+      "sha256": "9a9dbbf4ab24a26f6dbac6e383942e8d8185fb825537b6c3c418decc89662e5d",
+      "candidate_original_sha256": "0b81af25d613ac7a190529f9480f000f238fd06755d6ccd5d2161d810926bc40",
+      "compression": null
+    },
+    {
+      "path": "Docs/Evidence/Performance/population-neighbour-pruning-editmode-2026-10-12.xml",
+      "sha256": "4a1e54c3ad5a57b29ba1eb1cdbba672fe660b6fc241b8eac3bafd2ee6ee03aac",
+      "candidate_original_sha256": "484fe64a6962e2ff4979dcd1eb2a53ecce17e355635db99b9dc80a3f49a69447",
+      "compression": null
+    }
+  ],
+  "tests": {
+    "passed": 94,
+    "failed": 0,
+    "skipped": 0,
+    "comparison": "Seven original-wide-search cases plus existing identity/state/planner/presentation/scheduler/terrain/actor/persistence gates"
+  },
+  "lattice_proof": "Jitter occupies [.1,.9] slot; outside ceil(spacing/32) ring, minimum separation exceeds spacing by at least 6.4m. Float rounding within bounded cells is far smaller. Original extra ring retained outside |cell coordinate| <=4095.",
+  "work_reduction": "12m study spacing checks 9 neighbours instead of 25; within-cell candidate cache <=100 and tested operations <2000. No claim of 64% total CPU or FPS reduction.",
+  "summary": {
+    "scope": "One manual offscreen reference run; actor motion, no injected input; not interactive FPS or traversal acceptance",
+    "initial_ready_seconds": 1.9909632999999989,
+    "startup_maximum_population_ms": 13.047399999999598,
+    "phases": [
+      {
+        "phase": 0,
+        "update": {
+          "samples": 6159,
+          "mean_ms": 1.623958678797243,
+          "median_ms": 1.5535005368292332,
+          "p95_ms": 2.0262966863811016,
+          "p99_ms": 2.6212017983198166,
+          "maximum_ms": 14.233602210879326
+        },
+        "population_work": {
+          "samples": 6159,
+          "mean_ms": 0.003731693456754007,
+          "median_ms": 0.003200000000092018,
+          "p95_ms": 0.004400000001680837,
+          "p99_ms": 0.0190999999993835,
+          "maximum_ms": 0.09790000000009513
+        },
+        "manual_render": {
+          "samples": 6159,
+          "mean_ms": 1.1005992368891047,
+          "median_ms": 1.065600000000444,
+          "p95_ms": 1.3295000000006496,
+          "p99_ms": 1.5923999999998273,
+          "maximum_ms": 6.978100000001319
+        },
+        "active_minimum": 390,
+        "active_maximum": 390,
+        "pending_maximum": 0,
+        "nominal_1ms_overruns": 0,
+        "actor_wait_samples": 0
+      },
+      {
+        "phase": 1,
+        "update": {
+          "samples": 6300,
+          "mean_ms": 1.5872557300312946,
+          "median_ms": 1.5150014078244567,
+          "p95_ms": 2.0315051078796387,
+          "p99_ms": 2.6378047186881304,
+          "maximum_ms": 10.618098080158234
+        },
+        "population_work": {
+          "samples": 6300,
+          "mean_ms": 0.0038940158730120236,
+          "median_ms": 0.0031999999947629476,
+          "p95_ms": 0.0043999999981281235,
+          "p99_ms": 0.018499999995924554,
+          "maximum_ms": 1.0672999999954413
+        },
+        "manual_render": {
+          "samples": 6300,
+          "mean_ms": 1.0733836507937065,
+          "median_ms": 1.03250000000088,
+          "p95_ms": 1.3132000000055655,
+          "p99_ms": 1.5803999999945972,
+          "maximum_ms": 8.957399999999893
+        },
+        "active_minimum": 81,
+        "active_maximum": 390,
+        "pending_maximum": 0,
+        "nominal_1ms_overruns": 1,
+        "actor_wait_samples": 0
+      },
+      {
+        "phase": 2,
+        "update": {
+          "samples": 5737,
+          "mean_ms": 1.7434122374549792,
+          "median_ms": 1.6391014214605093,
+          "p95_ms": 2.373299328610301,
+          "p99_ms": 3.551098285242915,
+          "maximum_ms": 21.099701523780823
+        },
+        "population_work": {
+          "samples": 5737,
+          "mean_ms": 0.019274952065533892,
+          "median_ms": 0.003499999998268777,
+          "p95_ms": 0.038199999998767,
+          "p99_ms": 0.2957999999964045,
+          "maximum_ms": 3.839200000001597
+        },
+        "manual_render": {
+          "samples": 5737,
+          "mean_ms": 1.1439748126198463,
+          "median_ms": 1.0783000000031961,
+          "p95_ms": 1.477999999998758,
+          "p99_ms": 1.9935999999987075,
+          "maximum_ms": 20.404300000002706
+        },
+        "active_minimum": 81,
+        "active_maximum": 390,
+        "pending_maximum": 2,
+        "nominal_1ms_overruns": 21,
+        "actor_wait_samples": 0
+      }
+    ],
+    "actor_horizontal_displacement_m": {
+      "booter": 40.966230907145324,
+      "bigArm": 8.978053953438705
+    },
+    "maximum_synchronization_count": 22,
+    "limitations": [
+      "Nominal time budget can be exceeded by indivisible work units and demand updates",
+      "Physics synchronization runs in actor callbacks outside measured population work",
+      "Warmup excludes initial readiness from steady update statistics",
+      "Endpoint pixels do not establish population appearance along the whole run"
+    ],
+    "source_sha256": "225052555f3bb998cc4ed128527e1e3ea3b4750b6f1121dcc8b51844bf2f90ea"
+  },
+  "baseline_receipt": "Docs/Evidence/Performance/population-local-clock-timing-receipt-2026-10-12.json",
+  "build_overlay": "Only diagnostic candidate wrapper output path changed from BuildsPopulationLocal to BuildsPopulationPruned; source is otherwise equal to Tools/Diagnostics/IsolatedPopulationAuditBuild.cs",
+  "build_overlay_sha256": "f5c5031911977f74a654dba3c81354da8c1b9d6aacbeefe133a67aef34f25f9b",
+  "runtime_assembly_sha256": "1754e338bf8f8b4ea2be6bb4311017f6e97eb717e38be84766a2e8ea556319b2",
+  "capture_log_sha256": "e35fcfd6fe21c735f09c2f7ae6ee2e8a8cea67d921985da0ae27135f38b44195",
+  "outcome": "Readiness 1.99s vs 2.03s is similar; startup peak 13.05ms vs 9.21ms and worse update timings. Different process/system scheduling not controlled, no speedup or regression cause established. Work count reduced but spike unresolved.",
+  "acceptance": "No production population deployment, saved-world schema change, terrain write/streaming, input injection, actor teleport or author visual/traversal acceptance.",
+  "next_action": "Instrument individual planning/acquisition/publication and physics synchronization units, then fix measured expensive work."
+}

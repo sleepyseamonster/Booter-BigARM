@@ -11,6 +11,59 @@ namespace BooterBigArm.Tests
 {
     public sealed class FixedTerrainPopulationPlannerTests
     {
+        [TestCase(12f, -6, -6)]
+        [TestCase(32f, -1, 0)]
+        [TestCase(32.01f, 0, -1)]
+        [TestCase(64f, 3, 4)]
+        [TestCase(128f, -4, 3)]
+        [TestCase(12f, 4095, -4095)]
+        [TestCase(12f, 4096, -4096)]
+        public void ReducedNeighbourSearchMatchesOriginalWiderSearch(float spacing, int x, int z)
+        {
+            var identity = Identity(); var cell = new Vector2Int(x, z);
+            var planner = new FixedTerrainPopulationPlanner(identity, Flat, null, spacing, .3f, 38, 1, 1);
+            var job = Finish(planner.Begin(cell), 1);
+            var expected = new List<int>();
+            var candidates = new Dictionary<(long, long), (Vector2 point, double priority)>();
+            (Vector2 point, double priority) Candidate(long gx, long gz)
+            {
+                if (candidates.TryGetValue((gx, gz), out var cached)) return cached;
+                long cx = (long)Math.Floor(gx / 8d), cz = (long)Math.Floor(gz / 8d);
+                int ordinal = (int)(gz - cz * 8) * 8 + (int)(gx - cx * 8);
+                var address = new Vector2Int((int)cx, (int)cz);
+                var value = (identity.CandidatePosition(address, ordinal), identity.Sample01(address, ordinal, 3));
+                candidates.Add((gx, gz), value); return value;
+            }
+            int originalHalo = Mathf.CeilToInt(spacing / 32) + 1;
+            for (int ordinal = 0; ordinal < 64; ordinal++)
+            {
+                long gx = (long)x * 8 + ordinal % 8, gz = (long)z * 8 + ordinal / 8;
+                var current = Candidate(gx, gz); bool accepted = true;
+                for (long nz = gz - originalHalo; nz <= gz + originalHalo; nz++)
+                    for (long nx = gx - originalHalo; nx <= gx + originalHalo; nx++)
+                    {
+                        if (nx == gx && nz == gz) continue;
+                        var other = Candidate(nx, nz);
+                        if ((other.point - current.point).sqrMagnitude < spacing * spacing
+                            && (other.priority < current.priority || other.priority == current.priority && (nx < gx || nx == gx && nz < gz))) accepted = false;
+                    }
+                if (accepted) expected.Add(ordinal);
+            }
+            Assert.That(job.Placements.Select(p => p.Ordinal), Is.EqualTo(expected));
+            foreach (var placement in job.Placements)
+            {
+                Assert.That(placement.StableId, Is.EqualTo(identity.CandidateId(cell, placement.Ordinal)));
+                Assert.That(new Vector2(placement.Position.x, placement.Position.z), Is.EqualTo(identity.CandidatePosition(cell, placement.Ordinal)));
+                Assert.That(placement.Yaw, Is.EqualTo((float)identity.Sample01(cell, placement.Ordinal, 4) * 360));
+                Assert.That(placement.Scale, Is.EqualTo(.85f + (float)identity.Sample01(cell, placement.Ordinal, 6) * .3f));
+            }
+            if (spacing == 12 && Math.Abs(x) <= 4095 && Math.Abs(z) <= 4095)
+            {
+                Assert.That(job.CachedCandidates, Is.LessThanOrEqualTo(100));
+                Assert.That(job.Operations, Is.LessThan(2000), "Redundant neighbour work must actually decrease.");
+            }
+        }
+
         [Test]
         public void OrderWorkBudgetsProtectedRoutesAndCrossCellSpacingAgree()
         {

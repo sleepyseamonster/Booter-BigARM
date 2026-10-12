@@ -116,7 +116,12 @@ namespace BooterBigArm.TopDown3D
             {
                 this.owner = owner; this.cell = cell;
                 view = placements.AsReadOnly();
-                halo = Mathf.CeilToInt(owner.spacing / SlotSize) + 1; side = halo * 2 + 1;
+                // Jitter stays within [.1,.9] of a slot. Beyond ceil(spacing/slot), even the
+                // nearest possible competitor is at least spacing + .2 slots away.
+                // Keep the former extra ring outside +/-1,048,576 m, where float rounding
+                // can erode that margin. No random stream or candidate address changes.
+                bool preciseLattice = Math.Abs((long)cell.x) <= 4095 && Math.Abs((long)cell.y) <= 4095;
+                halo = Mathf.CeilToInt(owner.spacing / SlotSize) + (preciseLattice ? 0 : 1); side = halo * 2 + 1;
             }
             public void Cancel() { Cancelled = true; cache.Clear(); placements.Clear(); }
             internal bool MatchesState(FixedTerrainPopulationState state) => state != null
