@@ -1,0 +1,82 @@
+{
+  "status": "candidate_verified_not_adopted",
+  "source_head": "cc9d70417231858be6050b95957aa48eb0c7d3cb",
+  "production_assets_modified": false,
+  "repair": {
+    "source_path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab",
+    "original_sha256": "e8af186c2151e8dfaf03138c1465a62bf54df3d4313cb751e94a28ea867fe594",
+    "candidate_sha256": "2fffc66947d918f89edd44e78239664171130a6815ab6003830dc3be70eff7c3",
+    "old_script_guid": "0e50320d49327094f9aaf000cfb07799",
+    "intended_script_guid": "6209eff4b58d40142830d68f3faacb87",
+    "production_modified": false
+  },
+  "mesh_and_tests": {
+    "vertices": 4645,
+    "welded_positions": 2675,
+    "triangles": 5346,
+    "edges": 8019,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "degenerate_triangles": 0,
+    "loose_positions": 0,
+    "connected_components": 1,
+    "signed_volume": 7.517611504676834,
+    "absolute_volume": 7.517611504676834,
+    "reported_volume": 7.517611505439709,
+    "volume_error": 7.628750964272513e-10,
+    "tests": {
+      "id": "2",
+      "testcasecount": "7",
+      "result": "Passed",
+      "total": "7",
+      "passed": "7",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-10-13 01:38:14Z",
+      "end-time": "2026-10-13 01:38:27Z",
+      "duration": "13.4400422"
+    },
+    "production_modified": false
+  },
+  "original_files": [
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused.meta",
+      "bytes": 172,
+      "sha256": "a0abe0e881208acbddebf4154e733c00cde61d81ebd3d8757fc3edbda5b48018"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.asset",
+      "bytes": 514001,
+      "sha256": "b617207c01d51d29f7e6c76aef47cfb9f5454c4feb732a2c212ff4e47d6c99a2"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.asset.meta",
+      "bytes": 188,
+      "sha256": "07546cc936b65f87e9f65339b2fa8bdd454248930c47fb1f54fb45a9eca933c2"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.fusion.json",
+      "bytes": 254,
+      "sha256": "40b9919ca75c83d143b1615243a506680951da489f79c572180582d935bb0f44"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.fusion.json.meta",
+      "bytes": 158,
+      "sha256": "a5535ed743d4a056430a943571f010565ca148d08cde9dd3c35e4dc48d1b62f2"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab",
+      "bytes": 3890,
+      "sha256": "e8af186c2151e8dfaf03138c1465a62bf54df3d4313cb751e94a28ea867fe594"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab.meta",
+      "bytes": 154,
+      "sha256": "7479abec34aadcbfc491e9d70f71dddfdad45ba508679ac46dd66efa602d887e"
+    }
+  ]
+}
