@@ -1,0 +1,511 @@
+{
+  "passed": 101,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "TopDown3DAlgaeCanisterTests.PassiveGrowthRecoversFromEmptyAndClampsAtCapacity()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.GrowthUsesElapsedSimulationTimeAndRejectsInvalidIntervals()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.OrdinarySurvivalIsSustainableWithModestSurplus()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.GrowthDoesNotReenterTransactionsAndZeroRateCanDisableIt()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.DoseChangesOnlyTargetAndChargesUsefulGain(Drink,Thirst,20,5)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.DoseChangesOnlyTargetAndChargesUsefulGain(Eat,Hunger,20,5)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.DoseChangesOnlyTargetAndChargesUsefulGain(Treat,Health,10,10)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.PartialDosesDoNotWasteOrOverdraw()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.FullDeadAndSubVisibleTargetsSpendNothing()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.NotificationsSeeBothCommittedValuesAndRejectReentrantUse()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.ClockReconcilesOnceAndDosePreservesFractionalDepletion()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.SnapshotsValidateAndReinstallationDoesNotRefill()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.InvalidSettingsRejectWithoutStateMutation()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.RepeatedPartialDosesConserveContentsAtNonstandardCapacities()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeCanisterTests.UnrepresentableCostCannotCreateFreeRestoration()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.CardinalsUseOnceAndRequireNeutral()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.DiagonalsAndSimultaneousKeysDoNotConsume()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.MenuWinsSameUpdateAndHeldReturnCannotConsume()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.CampOwnsDpadAndReboundButtonWorksWithoutDpad()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.FocusLossRequiresReleaseAndDustDownDoesNotConsume()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.DeviceRemovalDoesNotReadDetachedDpad()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.RapidReleasedDiagonalStillRejectsAndFreshTapRearms()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.DustDownRequiresNeutralBeforePlacementConfirmation()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.DownDiagonalsRejectDeploymentEvenWhenReleasedInSameUpdate()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.MenuAndHeldReturnCannotDeploy()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeInputTests.SimultaneousKeyboardDoseAndDeployRejectBoth()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeControllerTests.SharedCooldownUsesUnscaledTimeAndFailuresDoNotSpend()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeControllerTests.ModesAndConstraintsBlockUseWithoutStartingCooldown()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeControllerTests.DustPreviewBlocksConsumption()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeControllerTests.InstallationAndHudRebuildKeepOneReserveAndNoExtraCanvas()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeControllerTests.ModalTransitionAfterQueuedInputCancelsDose()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeControllerTests.SurvivalIconGeometryFacesCanvas()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeControllerTests.UnavailableActionsHaveTextReasons()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DAlgaeControllerTests.RestoreClearsUseFeedbackWithoutRefilling()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSurvivalTests.SettingsAsset_ProvidesAuthoredReserveTuning()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSurvivalTests.Advance_DepletesLongTermNeedsWithoutChangingHealthOrOxygen()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSurvivalTests.Reserve_ExertionDrainsFasterWithoutBlockingActions()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSurvivalTests.Reserve_DoesNotRecoverDuringExtendedIdleTime()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSurvivalTests.ReserveExertion_ClimbingAndVaultingCountWhileSprintIsHeld()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSurvivalTests.Advance_ClampsDepletionAndIgnoresInvalidElapsedTime()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSurvivalTests.Snapshot_RoundTripsReserveAndExistingVitals()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSurvivalTests.LegacySnapshot_StartsReserveFull()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSurvivalTests.HudLayout_UsesSafeAreaAwareTopLeftCanvasPosition()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DCampInputTests.CampFocusSkipsUnavailableChoicesAndPreservesNavigation()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DCampInputTests.CampModesKeepSystemAvailableAndBlockGameplayInventoryAndEscapeMenu(CampPlacement)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DCampInputTests.CampModesKeepSystemAvailableAndBlockGameplayInventoryAndEscapeMenu(CampActions)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DCampInputTests.CampModesKeepSystemAvailableAndBlockGameplayInventoryAndEscapeMenu(CampBusy)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DCampInputTests.AppendOnlyCampCommandPreservesOldPreferenceMeanings()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.DefaultSleepQuoteMatchesActualRecoveryAndCosts()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.EquivalentElapsedTimeIsIndependentOfStepSize()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.TinyFrameIntervalsStillConsumeSuppliesAndPreserveRates()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.LowSuppliesLimitSleepWithoutCrossingReservedWakeFloor(20)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.LowSuppliesLimitSleepWithoutCrossingReservedWakeFloor(80)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.LowSuppliesLimitSleepWithoutCrossingReservedWakeFloor(100)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.UnsafeActionRemainsUnavailableRegardlessOfReserve()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.RestContinuesAtCapUntilDurationCompletes()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.FullReserveActivityStillConsumesSuppliesAndDoesNotLowerReserve(Sleep,80)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.FullReserveActivityStillConsumesSuppliesAndDoesNotLowerReserve(Sleep,100)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.FullReserveActivityStillConsumesSuppliesAndDoesNotLowerReserve(Rest,40)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.FullReserveActivityStillConsumesSuppliesAndDoesNotLowerReserve(Rest,100)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.TimestampedSleepAndWakeSplitAnIntervalExactlyOnce()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.HealthLossIsSynchronousButRestoreDoesNotCountAsDamage()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.EvenSmallRepresentableHealthLossEmitsWakeSignal()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DSleepTests.SpeedRequestRestoresBaselineAndDoesNotOverwriteExternalChange()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.SeamEdges_HaveConstantPerpendicularGapAtBothRadii(-45)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.SeamEdges_HaveConstantPerpendicularGapAtBothRadii(45)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.SeamEdges_HaveConstantPerpendicularGapAtBothRadii(135)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.SeamEdges_HaveConstantPerpendicularGapAtBothRadii(225)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.RingMesh_HasNoCenterTrianglesAndFacesCanvas()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.CanvasRebuild_SubmitsOpaqueRingMesh_WithoutSelectionPrompt()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.DirectionalSelection_ClearsCenterAndResistsBoundaryJitter()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.Preferences_RejectCorruptionAndCloneWithoutSharingAssignments()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.ModalTransition_PreservesHeldSystemOpenerAndBlocksInventoryShortcut()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.AuthoredPlacement_ConsumesOnlyOnCommitAndRestoresIdentity()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.CallOver_TargetsCloseArrivalWithoutRelocatingCompanion()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DRadialTests.MenuSession_CancelWins_StickReleaseWithHeldBumperOpensInventoryOnce()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.Start_OpensOnceAndDoesNotChangeSimulationTime()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.Escape_OpensOnceThenBacksOutWithoutDoubleTransition()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.Inventory_IsSuspendedAndSystemToggleCannotCloseIt()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.Start_WinsOverWheelStickReleaseWithoutCommand()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.Setup_DirtyBackProtectsPreferencesAndExplicitDiscardReturnsRoot()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.SetupApply_PersistsExistingSchemaAndReturnsToInvokingInventory()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.Exit_RequiresExplicitConfirmAndCannotBeAcceptedByStart()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.DeletingEarlierPage_RetainsDefaultByStableIdentity()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.DisabledInput_ClosesCoveredMenuWithoutReenablingGameplay()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ViewDistance_InitializesAcceptedStateAndAppliesOnlyAfterSaving()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(False)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(True)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ViewDistance_FailedApplyKeepsCameraAndRetainsDraft()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum(Unknown)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.Settings_UnknownVersionIsPreservedAndFailedWritesRetainAcceptedState()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ControlsHoldApplyPersistsAndBackProtectsUnappliedDraft()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ControlsListenFiltersDeviceAndDefersRuntimeMutationUntilApply()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ControlsListenRejectsConflictAndBackCancelsWithoutLeavingPanel()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ControlsDeviceDisconnectCancelsListeningAndPreservesTheDraft()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.InventoryOpenerCannotRebindToAUiTransferButton()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ControlsFailedSaveKeepsDraftAndRuntimeBindingsUnchanged()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ControlsResetRequiresConfirmationAndApplyBeforeReplacingSavedPreferences()",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(False)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TopDown3DMenuTests.ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(True)",
+      "passed": true,
+      "error": null
+    }
+  ]
+}

@@ -11,7 +11,7 @@ namespace BooterBigArm.TopDown3D
         public float capacity;
     }
 
-    [DisallowMultipleComponent]
+    [DisallowMultipleComponent, DefaultExecutionOrder(550)]
     public sealed class TopDown3DAlgaeCanisterState : MonoBehaviour
     {
         [SerializeField] private TopDown3DAlgaeCanisterSettings settings;
@@ -22,6 +22,20 @@ namespace BooterBigArm.TopDown3D
         public double Remaining => remaining;
         public event Action Changed;
         public event Action Restored;
+
+        private void Update() => Advance(Time.deltaTime);
+
+        /// <summary>Grow on the survival simulation timeline, including accelerated sleep; no offline catch-up.</summary>
+        public void Advance(double elapsedSeconds)
+        {
+            if (transactionActive || !initialized || settings == null || !settings.IsValid
+                || !double.IsFinite(elapsedSeconds) || elapsedSeconds <= 0) return;
+            var next = Math.Min(settings.capacity, remaining + (double)settings.replenishmentPerSecond * elapsedSeconds);
+            if (next <= remaining) return;
+            transactionActive = true;
+            try { remaining = next; Changed?.Invoke(); }
+            finally { transactionActive = false; }
+        }
 
         public void Configure(TopDown3DAlgaeCanisterSettings config)
         {

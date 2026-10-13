@@ -17,6 +17,8 @@ namespace BooterBigArm.TopDown3D
         private readonly string[] prompts = new string[3], lastReasons = new string[3];
         private Image fill;
         private double displayedFill, lastRemaining = -1;
+        private float lastCapacity = -1;
+        private bool lastTraceFill;
         private float feedbackUntil, pulseUntil, nextPrompts;
         private TopDown3DDpadDirection pulseDirection;
         private bool subscribed;
@@ -86,7 +88,9 @@ namespace BooterBigArm.TopDown3D
                 : Mathf.Lerp((float)gaugeFrom,(float)controller.State.Remaining,Mathf.Clamp01((Time.unscaledTime-gaugeStarted)/.25f));
             if(gaugeStarted>=0 && Time.unscaledTime-gaugeStarted>=.25f) gaugeStarted=-1;
             fill.rectTransform.sizeDelta=new Vector2(34,109*(float)(displayedFill/controller.State.Settings.capacity));
-            if (controller.State.Remaining != lastRemaining) RefreshContents();
+            var shown = System.Math.Round(controller.State.Remaining, 1);
+            var trace = controller.State.Remaining > 0 && shown == 0;
+            if (shown != lastRemaining || trace != lastTraceFill || controller.State.Settings.capacity != lastCapacity) RefreshContents();
             RefreshAvailability();
             if(Time.unscaledTime>=nextPrompts){RefreshPrompts();nextPrompts=Time.unscaledTime+.5f;}
             if(Time.unscaledTime>=feedbackUntil) feedback.text=string.Empty;
@@ -95,8 +99,9 @@ namespace BooterBigArm.TopDown3D
         }
         private void RefreshContents()
         {
-            lastRemaining=controller.State.Remaining;
-            contents.text=$"ALGAE {lastRemaining:0.#} / {controller.State.Settings.capacity:0.#}";
+            lastRemaining=System.Math.Round(controller.State.Remaining,1);lastCapacity=controller.State.Settings.capacity;
+            lastTraceFill=controller.State.Remaining>0 && lastRemaining==0;
+            contents.text=lastTraceFill ? $"ALGAE <0.1 / {lastCapacity:0.#}" : $"ALGAE {lastRemaining:0.#} / {lastCapacity:0.#}";
         }
         public void RefreshPrompts()
         {

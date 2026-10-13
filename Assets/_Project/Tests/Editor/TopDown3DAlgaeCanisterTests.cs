@@ -21,6 +21,48 @@ namespace BooterBigArm.Tests
             state=player.AddComponent<TopDown3DAlgaeCanisterState>(); state.Configure(algaeSettings);
         }
         [TearDown] public void Cleanup(){UnityEngine.Object.DestroyImmediate(player);UnityEngine.Object.DestroyImmediate(algaeSettings);UnityEngine.Object.DestroyImmediate(survivalSettings);}
+        [Test] public void PassiveGrowthRecoversFromEmptyAndClampsAtCapacity()
+        {
+            state.ApplySnapshot(new(){remaining=0,capacity=100});state.Advance(60);
+            Assert.That(state.Remaining,Is.EqualTo(1.2).Within(1e-7));
+            state.Advance(10000);Assert.That(state.Remaining,Is.EqualTo(100));
+            var changes=0;state.Changed+=()=>changes++;state.Advance(60);Assert.That(changes,Is.Zero);
+        }
+        [Test] public void GrowthUsesElapsedSimulationTimeAndRejectsInvalidIntervals()
+        {
+            state.ApplySnapshot(new(){remaining=0,capacity=100});
+            state.Advance(0);state.Advance(-1);state.Advance(double.NaN);state.Advance(double.PositiveInfinity);
+            Assert.That(state.Remaining,Is.Zero);
+            for(var i=0;i<3600;i++)state.Advance(1d/60);
+            var ordinary=state.Remaining;state.ApplySnapshot(new(){remaining=0,capacity=100});state.Advance(240);
+            Assert.That(state.Remaining,Is.EqualTo(ordinary*4).Within(1e-9));
+            state.ApplySnapshot(new(){remaining=7,capacity=100});state.Configure(algaeSettings);
+            Assert.That(state.Remaining,Is.EqualTo(7),"Restore and configuration cannot invent offline growth");
+        }
+        [Test] public void OrdinarySurvivalIsSustainableWithModestSurplus()
+        {
+            var demand=survivalSettings.HungerDepletionPerSecond*algaeSettings.eatCostPerPoint
+                +survivalSettings.ThirstDepletionPerSecond*algaeSettings.drinkCostPerPoint;
+            Assert.That(algaeSettings.replenishmentPerSecond/demand,Is.InRange(1.1f,1.3f));
+            state.ApplySnapshot(new(){remaining=50,capacity=100});
+            for(var i=0;i<60;i++)
+            {
+                vitals.Advance(60);state.Advance(60);
+                Assert.That(state.TryConsume(vitals,TopDown3DAlgaeUse.Drink,out _,out _),Is.True);
+                Assert.That(state.TryConsume(vitals,TopDown3DAlgaeUse.Eat,out _,out _),Is.True);
+            }
+            Assert.That(state.Remaining,Is.EqualTo(63.5).Within(.001));
+            Assert.That(vitals.Thirst,Is.EqualTo(100));Assert.That(vitals.Hunger,Is.EqualTo(100));
+        }
+        [Test] public void GrowthDoesNotReenterTransactionsAndZeroRateCanDisableIt()
+        {
+            state.ApplySnapshot(new(){remaining=50,capacity=100});
+            var changes=0;state.Changed+=()=>{changes++;state.Advance(60);};
+            state.Advance(60);Assert.That(state.Remaining,Is.EqualTo(51.2).Within(1e-7));Assert.That(changes,Is.EqualTo(1));
+            algaeSettings.replenishmentPerSecond=0;state.Advance(60);Assert.That(changes,Is.EqualTo(1));
+            algaeSettings.replenishmentPerSecond=float.NaN;Assert.That(algaeSettings.IsValid,Is.False);
+            algaeSettings.replenishmentPerSecond=-1;Assert.That(algaeSettings.IsValid,Is.False);
+        }
         [TestCase(TopDown3DAlgaeUse.Drink,TopDown3DSurvivalVital.Thirst,20,5)]
         [TestCase(TopDown3DAlgaeUse.Eat,TopDown3DSurvivalVital.Hunger,20,5)]
         [TestCase(TopDown3DAlgaeUse.Treat,TopDown3DSurvivalVital.Health,10,10)]
