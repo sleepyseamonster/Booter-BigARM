@@ -1,0 +1,241 @@
+{
+  "scene": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\BooterGroundSetup\\BooterGroundSetup.blend",
+  "backup": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\BooterGroundSetup\\BooterGroundSetup_BeforeWallTexture_2026-10-12.blend",
+  "before_scene_sha256": "4a5c79c061fbf8083fbdc45ae9634269d6b179ec98d69063f2cc8409a2231f6e",
+  "after_scene_sha256": "da0ce2970570ea823b38c7261f876c81ca8472e6a97e3d44cca199da431d7594",
+  "previous_saved_active": "LimestoneRock01_LOD0.003",
+  "wall_object": "Cube",
+  "identification": "Only eight-vertex, six-face cuboid in the saved scene; proportions match the owner-described wall.",
+  "material": "LimestoneCutBrick - repeating wall",
+  "image": "LimestoneCutBrick_Albedo_Repeat",
+  "texture_sha256": "bcf6290828889fe2fc71bad0742de7e99a855fa159885036a5b23010d4dc2a02",
+  "uv_layer": "Limestone Wall - metre mapping",
+  "wall_dimensions_metres": [
+    7.109941005706787,
+    0.6676148176193237,
+    1.7504931688308716
+  ],
+  "wall_transform": [
+    [
+      3.5549705028533936,
+      0.0,
+      0.0,
+      -24.463659286499023
+    ],
+    [
+      0.0,
+      0.33380740880966187,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.8752465844154358,
+      0.8344422578811646
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "vertical_tile_metres": 1.143,
+  "horizontal_tile_metres": 1.1110794033323015,
+  "whole_perimeter_tile_count": 14,
+  "brick_width_inches": 8.748656719151981,
+  "brick_height_inches": 4.5,
+  "cap_brick_footprint_inches": [
+    8.748656719151981,
+    8.748656719151981
+  ],
+  "geometry_unchanged": true,
+  "object_signatures": {
+    "Ground - resize with Dimensions X and Y": "b7aa739314c48fc09eb0e9635393b259f501f414e698ced0a925c95934f4ab39",
+    "Icosphere": "bb97a2fb0500b404d019c15756c87bff51771e4a645affa50ba4b7f174055093",
+    "Cube": "283611b3478eb79f2f1e2c1a44ced56573833cd8669776f8e90fecb08e205518",
+    "ArtistVolcanicRock06_LOD0": "2cf31541244c6397046d18856c3df606640d9a0c807a39de5ce417789c699be3",
+    "LimestoneRock01_LOD0.001": "8397e5c50e09602de52b526a5f4da8e04c2bba2f0250f3dbb36f9c7016f93364",
+    "LimestoneRock01_LOD0.002": "38ccfa2e54d71e3e44d9359633785540ebfcc930f50d2e5e15e25b307eaa86be",
+    "LimestoneRock01_LOD0.003": "67ad57fe3ab58b222b9bc4372a8ec9fcbebbf80adaa1e462e91d0c46a09a3f15",
+    "Booter - move character here": "c3df998d54a41c7068ba9044558a1370898ff7b5ff3ed7fc039cf55bf14e0bf3",
+    "Booter_Body": "b1a24378b8b459182b9a27cbbcf48b34b6e4d2494d3f19f1c939601e84e1f589",
+    "Booter_ShoulderYoke": "78a0fe9d31b68fd49efc1b7ee04e4518f2e926024e76ae42cc9f22be9d5ed924",
+    "Booter_SplitHemCloak": "d774341cfeccf85cbaae6076044ddeb6641891b7812d03f601f69684c688542c",
+    "Booter_BooterFramedBackpack(Clone)": "10a86fbc5ed7e5c2f5ad14c993a6f9a5b485e11c1a8b944780803b8847019725",
+    "Preview Camera": "db10087856cbc7e78bc9dd07db6079f621673430c4e9b4fc33eea17fe323e294",
+    "Key": "ffaa8bd1a3d30aae519f9e514dfe1d122215f30ca10fb0652b4046d32f64aeaf",
+    "Fill": "92b5592f96edffac14f75dc9ac88e01f0cc2fc1acba828993b80ac96c479fa3c",
+    "Rim": "e59e916713254f4ac6b9877cea84268ec92115592883407ab766d756812860e3",
+    "LimestoneRock01_LOD0": "e4ef7ffdc67e4bdb80fada565507ffeffe6d1795686f0f648b34b069b5e9707e",
+    "LimestoneRock01_LOD1": "b0e6f3ac772f957974a7d2858817b8961b86a207b1ab8680533d2bff95f5a2e0",
+    "LimestoneRock01_LOD2": "9ebc1858223122577cf8a01d2b4d66df63de46aaebccc8d4e649d59bd5a044e7",
+    "LimestoneRock01_Collision": "b8c00bb8fefbcb156080170a887bffbbe6418c81a725ad553c8e985979d328fa"
+  },
+  "faces": [
+    {
+      "face": 0,
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "cap": false,
+      "uv": [
+        [
+          14.0,
+          0.0
+        ],
+        [
+          14.0,
+          1.5314900875091553
+        ],
+        [
+          13.399129867553711,
+          1.5314900875091553
+        ],
+        [
+          13.399129867553711,
+          0.0
+        ]
+      ]
+    },
+    {
+      "face": 1,
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "cap": false,
+      "uv": [
+        [
+          13.399129867553711,
+          0.0
+        ],
+        [
+          13.399129867553711,
+          1.5314900875091553
+        ],
+        [
+          7.0,
+          1.5314900875091553
+        ],
+        [
+          7.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "face": 2,
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "cap": false,
+      "uv": [
+        [
+          7.0,
+          0.0
+        ],
+        [
+          7.0,
+          1.5314900875091553
+        ],
+        [
+          6.399129390716553,
+          1.5314900875091553
+        ],
+        [
+          6.399129390716553,
+          0.0
+        ]
+      ]
+    },
+    {
+      "face": 3,
+      "normal": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "cap": false,
+      "uv": [
+        [
+          6.399129390716553,
+          0.0
+        ],
+        [
+          6.399129390716553,
+          1.5314900875091553
+        ],
+        [
+          0.0,
+          1.5314900875091553
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "face": 4,
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "cap": true,
+      "uv": [
+        [
+          0.0,
+          0.30043524503707886
+        ],
+        [
+          6.399129390716553,
+          0.30043524503707886
+        ],
+        [
+          6.399129390716553,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "face": 5,
+      "normal": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "cap": true,
+      "uv": [
+        [
+          6.399129390716553,
+          0.30043524503707886
+        ],
+        [
+          0.0,
+          0.30043524503707886
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          6.399129390716553,
+          0.0
+        ]
+      ]
+    }
+  ],
+  "scene_count": 1
+}

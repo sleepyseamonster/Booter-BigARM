@@ -21,3 +21,5 @@ This authoring-only setup does not participate in deterministic world identity, 
 The author's rock sculpt was saved on October 12, 2026. The optimized limestone rock is now in this same `BooterGroundSetup.blend`, following the author's correction. Its export and texture set are documented in [LimestoneRock01](LimestoneRock01/README.md). The original sculpt remains hidden in the scene, and the untouched artist save is retained locally as `BooterGroundSetup_ArtistSource_2026-10-12.blend`.
 
 The current rock material is the approved [white limestone with fine grit and a smooth worn surface](LimestoneRock01/ApprovedWhiteV2/README.md). Its source image, six packed maps and matching export are retained together, and the scene still uses the same optimized rock geometry.
+
+The author-created wall `Cube` now uses the [repeating white limestone cut-brick texture](../LimestoneBrickWall/README.md). Its UVs account for the existing scale, use approximately 8.75-inch brick widths, continue around the vertical corners and give square footprints on the caps. The wall's geometry and transforms are retained, and `Cube` is selected in the saved original scene.
