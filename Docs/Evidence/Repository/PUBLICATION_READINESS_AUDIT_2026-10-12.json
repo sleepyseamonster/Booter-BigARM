@@ -1,0 +1,1469 @@
+{
+  "date": "2026-10-12",
+  "captured_utc": "2026-10-13T00:33:03.499217+00:00",
+  "head_start": "94b3bdaffd46ea5d99bbe9b80a53cd88665c8933",
+  "head_end": "94b3bdaffd46ea5d99bbe9b80a53cd88665c8933",
+  "cached_origin_main": "2c522e4ed50d692aa6ce6e581cf56e3ee4406d8a",
+  "unpublished_commits": [
+    {
+      "sha": "c23ceab8813ec28ecdf73f017e2c6ca7804d1e8f",
+      "author_date": "2026-10-09T17:39:48-07:00",
+      "subject": "Add manual ground texture stickers and native terrain paint tools"
+    },
+    {
+      "sha": "e94aeb0ed74171a5f915959cf1747a2ab0e9fb6e",
+      "author_date": "2026-10-09T18:37:30-07:00",
+      "subject": "Audit six-section northern row sources and verify first Blender section"
+    },
+    {
+      "sha": "3bcbf938c5c7fa8fa9294a36ed391e2d3ff2bac4",
+      "author_date": "2026-10-09T20:08:19-07:00",
+      "subject": "Set up nine flat rock workbench areas and painting panels"
+    },
+    {
+      "sha": "264e44e51198e336eb550d79c894d8d6c1f9b2ed",
+      "author_date": "2026-10-09T20:26:15-07:00",
+      "subject": "Prepare Unity-scale Blender rock sculpt starter and local launch workflow"
+    },
+    {
+      "sha": "e4a02723b14a68953ed32d62f97ad8b0087a72f3",
+      "author_date": "2026-10-09T20:32:26-07:00",
+      "subject": "Set Booter sculpt reference cube to tan"
+    },
+    {
+      "sha": "d577fae5b6d6f69e2f5a2d8f510edc9d5a5c8fcb",
+      "author_date": "2026-10-09T21:10:10-07:00",
+      "subject": "Integrate first section of six-section northern row with native proof"
+    },
+    {
+      "sha": "32838f730f641be13f1e2d1ade5a8986980d2cfd",
+      "author_date": "2026-10-09T21:32:46-07:00",
+      "subject": "Verify second northern section Blender authoring and accepted baselines"
+    },
+    {
+      "sha": "695e89b7c6160fd6c7d8b69ca94a33141a953eaa",
+      "author_date": "2026-10-09T22:28:03-07:00",
+      "subject": "Integrate second northern section with preserved native terrain proof"
+    },
+    {
+      "sha": "ce8d9ed59a32af68fe5442642b09c5c3501a44c2",
+      "author_date": "2026-10-09T22:56:27-07:00",
+      "subject": "Verify third northern section Blender source and five-view proof"
+    },
+    {
+      "sha": "0f1c3ffcfac829310ad1d1df57324b5b22f2c64c",
+      "author_date": "2026-10-10T00:00:25-07:00",
+      "subject": "Integrate third northern section with complete native closeout"
+    },
+    {
+      "sha": "acb4928383f1e6cd397992047897c4a90c7e3308",
+      "author_date": "2026-10-10T00:37:27-07:00",
+      "subject": "Verify fourth northern section native Blender authoring"
+    },
+    {
+      "sha": "29f99bb9bf108e8c836c7343e1d9978dd0d51b9c",
+      "author_date": "2026-10-10T02:12:47-07:00",
+      "subject": "Integrate fourth northern section with verified production closeout"
+    },
+    {
+      "sha": "46d34d45f45022f180e9e25e1d188d194bd5fe16",
+      "author_date": "2026-10-10T02:49:51-07:00",
+      "subject": "Verify fifth northern section native Blender authoring"
+    },
+    {
+      "sha": "e49addb21ed32806b628d6c252c2fd9b91fe66a6",
+      "author_date": "2026-10-10T04:18:53-07:00",
+      "subject": "Integrate fifth northern section with verified production closeout"
+    },
+    {
+      "sha": "3fa88d32a4ef9d0c4cf1e8354462a611ef1753ee",
+      "author_date": "2026-10-10T05:05:23-07:00",
+      "subject": "Verify final northern section Blender source and complete footprint"
+    },
+    {
+      "sha": "b88ec328c014ce71e92c5ac6c30c22f3b6421b09",
+      "author_date": "2026-10-10T05:53:40-07:00",
+      "subject": "Document six northern-row Blender source handoffs without publishing binaries"
+    },
+    {
+      "sha": "3917fbfb3bc23765d6892cc3ebd00a1f76407a73",
+      "author_date": "2026-10-10T07:10:22-07:00",
+      "subject": "Complete six-section northern row with full native and preservation proof"
+    },
+    {
+      "sha": "87ae3a10db7977d22e0755bcd539a2c6b1dd4908",
+      "author_date": "2026-10-10T10:07:22-07:00",
+      "subject": "Establish third northern row sources and western Blender authoring"
+    },
+    {
+      "sha": "1d7278b7915ae85c782a62968ac1c780ef6c9124",
+      "author_date": "2026-10-10T10:37:23-07:00",
+      "subject": "Add third-row native Unity construction and validation"
+    },
+    {
+      "sha": "162f7874c08f1e7948de39616fceff57158adc3b",
+      "author_date": "2026-10-10T11:12:47-07:00",
+      "subject": "Accept western section of third northern terrain row"
+    },
+    {
+      "sha": "d524dfc64fd12cf1157674be20c7e559503224d3",
+      "author_date": "2026-10-10T11:42:03-07:00",
+      "subject": "Seal second section third-row Blender authoring"
+    },
+    {
+      "sha": "f76bcc7d59da4f59ff768895f5355f5253b2c6af",
+      "author_date": "2026-10-10T12:13:41-07:00",
+      "subject": "Sample local study ground patch and match world lighting"
+    },
+    {
+      "sha": "88147c1379102bc31b5351e89ed5329350e0db45",
+      "author_date": "2026-10-10T12:55:06-07:00",
+      "subject": "Accept second section of third northern terrain row"
+    },
+    {
+      "sha": "b11987c4f8379f1b368ce47a7dbcb72ff64233a3",
+      "author_date": "2026-10-10T13:40:37-07:00",
+      "subject": "Seal third section northern-row Blender authoring"
+    },
+    {
+      "sha": "548f916bcad078e41799136e24102baee3000cf6",
+      "author_date": "2026-10-10T14:07:53-07:00",
+      "subject": "Prepare artist sculpt as optimized volcanic basalt rock"
+    },
+    {
+      "sha": "694378600d890c3074ced3bb934f9ccff3bce9a2",
+      "author_date": "2026-10-10T14:12:35-07:00",
+      "subject": "Place sculpted basalt in centre study area"
+    },
+    {
+      "sha": "d5bf294dd57fa275244528231a6996cf56994ae3",
+      "author_date": "2026-10-10T14:40:26-07:00",
+      "subject": "Accept third section of third northern terrain row"
+    },
+    {
+      "sha": "fb2e76c81116b62bbec57f10f0dfed326da5fc49",
+      "author_date": "2026-10-10T15:07:05-07:00",
+      "subject": "Seal fourth section northern-row Blender authoring"
+    },
+    {
+      "sha": "e91c489a4914e4f7e5df184a4a74fe7375c45be3",
+      "author_date": "2026-10-10T15:29:26-07:00",
+      "subject": "Add exact sculpted rock fusion authoring tool"
+    },
+    {
+      "sha": "c75441ca1465996e20c0e2ef4b54270d5bb047da",
+      "author_date": "2026-10-10T15:55:07-07:00",
+      "subject": "Prepare second sculpted basalt rock with textures and Unity LOD prefab"
+    },
+    {
+      "sha": "baf0a4a4d4b6cd5d87a5071090450cfe7d225142",
+      "author_date": "2026-10-10T16:20:22-07:00",
+      "subject": "Accept fourth section of third northern terrain row"
+    },
+    {
+      "sha": "a239d940f0894ca5d8e1a201d786fa1da81df16e",
+      "author_date": "2026-10-10T16:40:27-07:00",
+      "subject": "Enable editable live fusion on sculpted rock prefabs"
+    },
+    {
+      "sha": "a3011d5bfa3fff67567e44a41d359219c80eec8a",
+      "author_date": "2026-10-10T16:47:19-07:00",
+      "subject": "Disable tilt shift only in the rock study scene"
+    },
+    {
+      "sha": "f6f52384822d200ce2b5c5ee8f5ca42864dc81e5",
+      "author_date": "2026-10-10T16:59:39-07:00",
+      "subject": "Seal fifth section northern-row Blender authoring"
+    },
+    {
+      "sha": "c468d2aef1976daff5a2d180c54a6563f37f2960",
+      "author_date": "2026-10-10T17:10:07-07:00",
+      "subject": "Default sculpted rock fusion to explicit button action"
+    },
+    {
+      "sha": "ee7b18d918f85ab6bcdd96782d53e7ea8eca2953",
+      "author_date": "2026-10-10T17:52:15-07:00",
+      "subject": "Add persistent terrain sculpt controls panel for the study"
+    },
+    {
+      "sha": "173a49959c5328b238485f0b9421e74970b065df",
+      "author_date": "2026-10-10T18:24:01-07:00",
+      "subject": "Research minimal automatic cube rock fusion"
+    },
+    {
+      "sha": "f751eae26fa101c891a0644e4f2459c5a73235c0",
+      "author_date": "2026-10-10T18:29:28-07:00",
+      "subject": "Plan minimal cube rock editing and verification"
+    },
+    {
+      "sha": "09775dc965173d644fcc66a06f0b2d94cddca8f3",
+      "author_date": "2026-10-10T18:33:28-07:00",
+      "subject": "Audit and tighten minimal cube rock plan gates"
+    },
+    {
+      "sha": "84ac1c9626aa8a247aa64e5ef8523487af6977f5",
+      "author_date": "2026-10-10T19:05:08-07:00",
+      "subject": "Accept fifth section of third northern terrain row"
+    },
+    {
+      "sha": "013ea971d13834e59245cd4b960c0b737c1c723a",
+      "author_date": "2026-10-10T19:10:51-07:00",
+      "subject": "Add minimal automatic smooth cube rock authoring"
+    },
+    {
+      "sha": "f06f4eba405d6b6a985da62d1712a8a4237122cf",
+      "author_date": "2026-10-10T19:51:42-07:00",
+      "subject": "Seal sixth section northern-row Blender authoring"
+    },
+    {
+      "sha": "efbcf7aead1246427fdfcc329671e7653faa1695",
+      "author_date": "2026-10-10T20:07:09-07:00",
+      "subject": "Document camp cloak and accelerated sleep prototype proposal"
+    },
+    {
+      "sha": "d0a038448974290b10fe29b145cdf63cfc05e29d",
+      "author_date": "2026-10-10T20:08:48-07:00",
+      "subject": "Use volcanic basalt maps for smooth cube rocks"
+    },
+    {
+      "sha": "d61f89f0582f05dcc9b8eaa9bdb9fe5c383e83bd",
+      "author_date": "2026-10-10T20:09:07-07:00",
+      "subject": "Refine sleep prototype pacing comfort and recovery choices"
+    },
+    {
+      "sha": "6fcd692f2768dea227074a3232c5e39edbdd8015",
+      "author_date": "2026-10-10T20:11:40-07:00",
+      "subject": "Expand camp mesh interaction and gamepad brainstorming"
+    },
+    {
+      "sha": "112699068c3c17dc147d9c90e14e78d2be249a59",
+      "author_date": "2026-10-10T20:15:41-07:00",
+      "subject": "Plan camp cloak and live sleep prototype implementation"
+    },
+    {
+      "sha": "4e8ebbe9d5c5b131decea2a861dd96577d34681f",
+      "author_date": "2026-10-10T20:19:11-07:00",
+      "subject": "Audit camp plan transition transactions and simulation proof"
+    },
+    {
+      "sha": "2bcc643657e89db817e7c5bba8f2dd0bbeae3bd3",
+      "author_date": "2026-10-10T20:26:44-07:00",
+      "subject": "Smooth cube rock joins without terrace bands"
+    },
+    {
+      "sha": "c8ede5b42e7e1226b5ddf00535c5e3704f065618",
+      "author_date": "2026-10-10T21:02:05-07:00",
+      "subject": "Prepare artist volcanic rock with baked textures and validated LODs"
+    },
+    {
+      "sha": "ad358bb1834382cb594a3f4b9e4cedffafd652e8",
+      "author_date": "2026-10-10T21:24:57-07:00",
+      "subject": "Preserve single-terrain rock study baseline"
+    },
+    {
+      "sha": "14827bc20afaac159426dab9291d045d55153bd8",
+      "author_date": "2026-10-10T21:49:52-07:00",
+      "subject": "Complete and texture artist flat volcanic rock with measured LODs"
+    },
+    {
+      "sha": "ec6462237eea1b140838a0bdcd40cad1511536a7",
+      "author_date": "2026-10-10T22:27:58-07:00",
+      "subject": "Prepare third artist volcanic rock with clean topology and baked textures"
+    },
+    {
+      "sha": "46c0bae74474a2179a8292b7157eadf5c4237286",
+      "author_date": "2026-10-10T22:40:40-07:00",
+      "subject": "Add session camp cloak and accelerated live sleep prototype"
+    },
+    {
+      "sha": "c3786697419fd9b5c6a9637f98306c4e7cd8c6f6",
+      "author_date": "2026-10-10T23:34:50-07:00",
+      "subject": "Accept sixth section and complete third northern terrain row"
+    },
+    {
+      "sha": "91282123015330e6441973c1960f0ca873292a12",
+      "author_date": "2026-10-10T23:50:41-07:00",
+      "subject": "Seal third northern row completion audit and handoff"
+    },
+    {
+      "sha": "00d9f407743b9ca3308957d19375c9644f6e7251",
+      "author_date": "2026-10-11T00:12:28-07:00",
+      "subject": "Document northern terrain process and new-agent continuation"
+    },
+    {
+      "sha": "43a22463bb44eb25547635cf000e32f9dab0d48a",
+      "author_date": "2026-10-11T11:34:12-07:00",
+      "subject": "Audit fourth northern row readiness and execution gates"
+    },
+    {
+      "sha": "3ffabe54b1e28f46bada223eb2d1142b2b833ca1",
+      "author_date": "2026-10-11T11:55:20-07:00",
+      "subject": "Add fourth northern row tooling and verified measured source contract"
+    },
+    {
+      "sha": "ff8792903119b2b6fd36b6fa271670376cb6fe72",
+      "author_date": "2026-10-11T12:15:31-07:00",
+      "subject": "Seal first fourth-row section authoring and reusable acceptance helpers"
+    },
+    {
+      "sha": "008ef88eb57f1724083b4c508e777f02cc2109a7",
+      "author_date": "2026-10-11T12:25:32-07:00",
+      "subject": "Tighten fourth-row authoring ownership and export progress evidence"
+    },
+    {
+      "sha": "489e335bf0e4125aff9598327ff7655447f4e2e2",
+      "author_date": "2026-10-11T12:33:14-07:00",
+      "subject": "Recognize normalized Windows paths in terrain Editor exclusion guards"
+    },
+    {
+      "sha": "34ea715b430873f6eaecf78a20171cb8920b45d9",
+      "author_date": "2026-10-11T12:59:16-07:00",
+      "subject": "Accelerate fourth-row streamed SHA-256 with verified Windows provider"
+    },
+    {
+      "sha": "3513ed7b68abcba48cb0cb2a9ff89b2c03398e59",
+      "author_date": "2026-10-11T13:14:44-07:00",
+      "subject": "Route shared terrain validation through the fourth-row contract"
+    },
+    {
+      "sha": "df7e11320e8174198af26291d4a40579cade9f74",
+      "author_date": "2026-10-11T13:24:24-07:00",
+      "subject": "Accept first section of fourth northern terrain row"
+    },
+    {
+      "sha": "c843f8c397eb21ab706d0191e6260e3474793c74",
+      "author_date": "2026-10-11T13:51:20-07:00",
+      "subject": "Seal second fourth-row section native Blender authoring"
+    },
+    {
+      "sha": "47afb801fcc3428ef8e3aa69db508df5a8d872ad",
+      "author_date": "2026-10-11T15:10:52-07:00",
+      "subject": "Trim fourth sculpt to authored ground contact and prepare volcanic asset"
+    },
+    {
+      "sha": "1d28fa42e7838d10e771a63daea595ae25076345",
+      "author_date": "2026-10-11T16:19:59-07:00",
+      "subject": "Accept second section of fourth northern terrain row"
+    },
+    {
+      "sha": "24963055c4f8292e81bf2f8e883c9e619cd14575",
+      "author_date": "2026-10-11T16:31:12-07:00",
+      "subject": "Add ground-cut textured volcanic rock 05 with validated LODs"
+    },
+    {
+      "sha": "4418c06e469436028d52fba4e89f55eb865bd9dc",
+      "author_date": "2026-10-11T16:40:28-07:00",
+      "subject": "Add full fourth-row completion audit"
+    },
+    {
+      "sha": "27adaf18c494e336e1e4d3759e4da9916f8e65bb",
+      "author_date": "2026-10-11T16:49:35-07:00",
+      "subject": "Seal third fourth-row section native Blender authoring"
+    },
+    {
+      "sha": "1b7e2877dd6938bb8b128cf343f890a893863dfc",
+      "author_date": "2026-10-11T17:24:49-07:00",
+      "subject": "Fix camp menu focus when recovery options are unavailable"
+    },
+    {
+      "sha": "4bd8f1c7900dbdff2bb035edf8c3beaea19a37d0",
+      "author_date": "2026-10-11T17:32:27-07:00",
+      "subject": "Allow camp sleep and rest at any Reserve level"
+    },
+    {
+      "sha": "2d6fbc8f70991132c9b45844aa505ccb30cf3e34",
+      "author_date": "2026-10-11T17:33:09-07:00",
+      "subject": "Fit Booter with a rigid framed backpack over the cloak"
+    },
+    {
+      "sha": "efccb41748e37df2e22334965efd2b43a4ee2eca",
+      "author_date": "2026-10-11T17:37:20-07:00",
+      "subject": "Plan shared algae canister controls and survival HUD integration"
+    },
+    {
+      "sha": "e5ccebb8d08a1c1f6968212d005519efbb9fa5a0",
+      "author_date": "2026-10-11T17:58:28-07:00",
+      "subject": "Audit ironstone harvesting migration to Greater Wasteland"
+    },
+    {
+      "sha": "94473619027e86551b8ee715d7f380f267932534",
+      "author_date": "2026-10-11T18:03:36-07:00",
+      "subject": "Explore starting waypoint camp and return travel system"
+    },
+    {
+      "sha": "9ba22af113e8fcec7ccf34ee782a5b9f3a17bf94",
+      "author_date": "2026-10-11T18:09:00-07:00",
+      "subject": "Research waypoint travel and camp hub design"
+    },
+    {
+      "sha": "4322d027e11ad72bd1a7eba39f14a20fa04ebb5f",
+      "author_date": "2026-10-11T18:26:46-07:00",
+      "subject": "Add bounded Ironstone harvesting to Greater Wasteland"
+    },
+    {
+      "sha": "5f59ccbfdab1d64e32cf23fd05386a2229da9acc",
+      "author_date": "2026-10-11T18:27:12-07:00",
+      "subject": "Add shared algae canister doses and lower-left survival controls"
+    },
+    {
+      "sha": "6ff388e9693ed96df5b08d8521aa24f5ab8d6e9a",
+      "author_date": "2026-10-11T18:27:36-07:00",
+      "subject": "Normalize Ironstone prefab metadata whitespace"
+    },
+    {
+      "sha": "fa791d4194c65ba2a0934ae1796177506381e5a2",
+      "author_date": "2026-10-11T18:47:20-07:00",
+      "subject": "Audit resource-only Legger cargo and gamepad inventory iteration"
+    },
+    {
+      "sha": "5350055de789a964c703db63220d5cac32d9c3f9",
+      "author_date": "2026-10-11T18:51:35-07:00",
+      "subject": "Select fresh fourth-row production proof versions"
+    },
+    {
+      "sha": "c17d3f28ef4d1603af81183351108481a20fc713",
+      "author_date": "2026-10-11T18:56:40-07:00",
+      "subject": "Clarify separate inventories and exclusive Ironstone cargo scope"
+    },
+    {
+      "sha": "24a336623e25913e5415674a15dc6ec7cf422a0f",
+      "author_date": "2026-10-11T18:57:49-07:00",
+      "subject": "Record lossless validation asset compression and reserve recovery"
+    },
+    {
+      "sha": "154f2ff75e051a7cc911cdff12f04399d1a6ccae",
+      "author_date": "2026-10-11T19:21:17-07:00",
+      "subject": "Add Starting Camp and bounded physical return travel"
+    },
+    {
+      "sha": "83b4d26dd273ffe4f6123c3014aa59fd6bd8f755",
+      "author_date": "2026-10-11T19:31:01-07:00",
+      "subject": "Accept third section of fourth northern terrain row"
+    },
+    {
+      "sha": "500375eec20ce1c32fdb4b658926fa8191517c35",
+      "author_date": "2026-10-11T20:00:59-07:00",
+      "subject": "Bound fourth-row Python hash buffer allocation"
+    },
+    {
+      "sha": "4c06fb9fe3987b47474a63487c48d713ed5ba81c",
+      "author_date": "2026-10-11T20:16:08-07:00",
+      "subject": "Make camp shortcuts and return preparation more intuitive"
+    },
+    {
+      "sha": "2401275224bbbf08d2e181f7ced043c51425dc60",
+      "author_date": "2026-10-11T20:18:29-07:00",
+      "subject": "Separate resource cargo and add quick controller inventory management"
+    },
+    {
+      "sha": "07bbb1c0a13a13f2e1facef6605a9b98f16baf03",
+      "author_date": "2026-10-11T20:44:07-07:00",
+      "subject": "Persist authored inventory checkpoints and add a bounded hauling study"
+    },
+    {
+      "sha": "a61685543218ca2f151fde17724a02963a684d92",
+      "author_date": "2026-10-11T20:46:53-07:00",
+      "subject": "Add full sculpt volcanic rock 06 with textured game LODs"
+    },
+    {
+      "sha": "75755324147e0e90cea87a543eac28d83ee6deb9",
+      "author_date": "2026-10-11T20:47:14-07:00",
+      "subject": "Normalize volcanic rock 06 delivery evidence line endings"
+    },
+    {
+      "sha": "1c0791766916ea975780281e028878d5ee29ad29",
+      "author_date": "2026-10-11T20:47:21-07:00",
+      "subject": "Audit Greater Wasteland terrain and runtime performance"
+    },
+    {
+      "sha": "65091dc5c7542339d8579fc0076516f99c8493ee",
+      "author_date": "2026-10-11T20:55:20-07:00",
+      "subject": "Restore fourth-row validation owner and account shared disk growth"
+    },
+    {
+      "sha": "a56234c960b249584147dd39e8754f8033e4c23b",
+      "author_date": "2026-10-11T20:59:54-07:00",
+      "subject": "Seal fourth fourth-row section native Blender authoring"
+    },
+    {
+      "sha": "133a54b9876a7a6962224d8606cbeb12a90773fc",
+      "author_date": "2026-10-11T21:00:53-07:00",
+      "subject": "Add ground-cut volcanic rock 07 with textured game LODs"
+    },
+    {
+      "sha": "034fde676d92db5e637b436095bfa3adc94cb032",
+      "author_date": "2026-10-11T21:14:59-07:00",
+      "subject": "Audit the Blender asset library and bounded authored rock placement"
+    },
+    {
+      "sha": "774714638e962ef3510f4dbacc435123c540655b",
+      "author_date": "2026-10-11T21:50:06-07:00",
+      "subject": "Research chunked procedural population and rendering techniques"
+    },
+    {
+      "sha": "5bbf32a8903277e499b0087acb1968580cc0355d",
+      "author_date": "2026-10-11T22:38:47-07:00",
+      "subject": "Accept fourth northern terrain section with sealed validation"
+    },
+    {
+      "sha": "f4f40188586e877cca49987ea909756f8d5097a1",
+      "author_date": "2026-10-11T23:05:04-07:00",
+      "subject": "Seal fifth northern section Blender authoring"
+    },
+    {
+      "sha": "eeb84a51e3f61f5a2a0ff2f83bd7120f0ae84abd",
+      "author_date": "2026-10-11T23:14:16-07:00",
+      "subject": "Guard known isolated terrain scene serialization repair"
+    },
+    {
+      "sha": "99904bf9d47b7c6ee0302dad9ad439311d7c031d",
+      "author_date": "2026-10-11T23:32:21-07:00",
+      "subject": "Reverify accepted terrain snapshots after local log loss"
+    },
+    {
+      "sha": "96331321faf133164ce9f5961b562c5d9a6a5ec6",
+      "author_date": "2026-10-11T23:33:48-07:00",
+      "subject": "Keep serialization repair receipt outside fresh transfer owner"
+    },
+    {
+      "sha": "39a5330b8dfa2d5c63d683115aa2878c3f455b70",
+      "author_date": "2026-10-11T23:37:16-07:00",
+      "subject": "Bound Greater Wasteland terrain rendering independently of collision"
+    },
+    {
+      "sha": "9f7a7d0683ca89eaafa78a1c839740e7d92eb4dc",
+      "author_date": "2026-10-11T23:38:18-07:00",
+      "subject": "Bound companion route retries and move automatic checkpoint writes off frame thread"
+    },
+    {
+      "sha": "ee0b2f6908c1d60af6f8fcc3628f48ee1059ea81",
+      "author_date": "2026-10-11T23:40:39-07:00",
+      "subject": "Establish deterministic population identity and record verified performance implementation"
+    },
+    {
+      "sha": "7a6545f6e1a36f9069a502d4fa5760324c442134",
+      "author_date": "2026-10-11T23:46:35-07:00",
+      "subject": "Reconcile prior game research with current chunk and storage plan"
+    },
+    {
+      "sha": "6dda1a0a376cca0e00ce0d0b7fc9914178de2b20",
+      "author_date": "2026-10-11T23:56:53-07:00",
+      "subject": "Document Greater Wasteland world architecture baseline"
+    },
+    {
+      "sha": "d6326e9c5c7e90f863eebbd22c221dea9ac85896",
+      "author_date": "2026-10-12T00:22:11-07:00",
+      "subject": "Persist versioned population cell receipts and sparse removals with existing checkpoints"
+    },
+    {
+      "sha": "4dd3fbcbb9b4105f08f8c0d7a756484a64826305",
+      "author_date": "2026-10-12T00:51:22-07:00",
+      "subject": "Reconcile world architecture baseline with verified population state"
+    },
+    {
+      "sha": "e2cb7a17c7a29b374056d3cc1601786ccd76cf6b",
+      "author_date": "2026-10-12T01:02:44-07:00",
+      "subject": "Integrate bounded native population planning and pooled static presentation"
+    },
+    {
+      "sha": "83bfca0bbaa59ce41982afee8af9f792f55d1fed",
+      "author_date": "2026-10-12T02:05:26-07:00",
+      "subject": "Connect bounded actor demand and persistent population in an authored reference sector"
+    },
+    {
+      "sha": "5cfd98dae32b7f11f24e86c301f61dff9eaae84d",
+      "author_date": "2026-10-12T02:58:33-07:00",
+      "subject": "Prepare guarded standalone Player terrain performance capture"
+    },
+    {
+      "sha": "039906ea29de664757cc8c847b0cf90c95f64f6f",
+      "author_date": "2026-10-12T05:36:34-07:00",
+      "subject": "Verify standalone offscreen terrain window gains with corrected frame sampling"
+    },
+    {
+      "sha": "112b76f486cd4a6c7404e89d11080fa146afbd2d",
+      "author_date": "2026-10-12T06:29:24-07:00",
+      "subject": "Clip terrain render coverage to fixed landscape heights with verified diagnostics"
+    },
+    {
+      "sha": "f8972e4d290825dc85e9d33af9233f333726bfa0",
+      "author_date": "2026-10-12T06:29:37-07:00",
+      "subject": "Reconcile world architecture baseline with current terrain performance evidence"
+    },
+    {
+      "sha": "e84491f84204e3840a85b8cacd3aa87668710914",
+      "author_date": "2026-10-12T06:40:08-07:00",
+      "subject": "Expose conservative population collision readiness for actor preparation"
+    },
+    {
+      "sha": "72498bd0d63ac9171b1ddb1cd9a31a0a5d6cc9e0",
+      "author_date": "2026-10-12T06:51:02-07:00",
+      "subject": "Add guarded camera-sector sweep diagnostics and trace analysis"
+    },
+    {
+      "sha": "1f6fab0fc2177a14b12c98ea8f9b17bff5d44aa2",
+      "author_date": "2026-10-12T07:18:05-07:00",
+      "subject": "Resolve transient terrain owner before diagnostic culling and reject fallback traces"
+    },
+    {
+      "sha": "5415fda1dda6a282d5388e7e75d8b8140f35beb2",
+      "author_date": "2026-10-12T07:35:24-07:00",
+      "subject": "Verify corrected terrain camera transitions and reconcile architecture baseline"
+    },
+    {
+      "sha": "8528f9b0d57cedc6b22c10170441a4e85319c93c",
+      "author_date": "2026-10-12T08:04:55-07:00",
+      "subject": "Bind optional population readiness before actor movement and route queries"
+    },
+    {
+      "sha": "a0b69a25a3f9dc96a40983983545a7e883ac83cd",
+      "author_date": "2026-10-12T08:28:04-07:00",
+      "subject": "Place seven completed authored rocks around Camp 1"
+    },
+    {
+      "sha": "0dacf9e75ed9e36cb27ffaa05c9ed664f11289b0",
+      "author_date": "2026-10-12T08:29:09-07:00",
+      "subject": "Add verified native population reference scene with real actor bindings"
+    },
+    {
+      "sha": "7a109295dfd627d9c33eb4e7e6d5adab3ac15721",
+      "author_date": "2026-10-12T08:32:30-07:00",
+      "subject": "Normalize new actor scene serialization and bind revalidated evidence"
+    },
+    {
+      "sha": "500c437b9367219b7cabd90fe297e02725ed7dee",
+      "author_date": "2026-10-12T09:00:46-07:00",
+      "subject": "Record provisional population Player timings and shared runtime cadence"
+    },
+    {
+      "sha": "efc311155b866c614938cae75f5a85421313c6c1",
+      "author_date": "2026-10-12T09:03:30-07:00",
+      "subject": "Build population timing diagnostic without development networking"
+    },
+    {
+      "sha": "c01a40476ea2adcec8cdb92175f537f95b7f6088",
+      "author_date": "2026-10-12T09:06:09-07:00",
+      "subject": "Bind non-development population timing and prioritize remaining work spike"
+    },
+    {
+      "sha": "712d1b0544d72d855c0f6a9002bdc92ea7f097a7",
+      "author_date": "2026-10-12T09:13:11-07:00",
+      "subject": "Reduce deterministic population neighbour search without changing placements"
+    },
+    {
+      "sha": "8bebe2927b09a9001b56fda586e06c099240bb04",
+      "author_date": "2026-10-12T09:22:23-07:00",
+      "subject": "Measure population work units and avoid untouched-cell removal hashing"
+    },
+    {
+      "sha": "0aa266b5be3333acca1ffcd170d4f88d67ea6cc9",
+      "author_date": "2026-10-12T09:29:59-07:00",
+      "subject": "Reuse scheduler baseline registration and verify lower population queue cost"
+    },
+    {
+      "sha": "99c3383dab3893a6e490dbb50405d6b4eff2b07d",
+      "author_date": "2026-10-12T09:35:09-07:00",
+      "subject": "Fuse two-sphere rock 08 with ground cap and textured game LODs"
+    },
+    {
+      "sha": "dae395e3dd2e0a57b9def462c6f21c61562aed54",
+      "author_date": "2026-10-12T09:43:48-07:00",
+      "subject": "Reduce population hex allocations and calibrate Unity allocation evidence"
+    },
+    {
+      "sha": "fe72f932a8be9a9d6bafcb0f587ef818488684ba",
+      "author_date": "2026-10-12T09:44:38-07:00",
+      "subject": "Preserve committed scene addition during verified terrain integration"
+    },
+    {
+      "sha": "ef3b194b2de76a10db0aa87987c2ad0faebcd272",
+      "author_date": "2026-10-12T09:54:25-07:00",
+      "subject": "Classify retained bridge timeout without clearing console"
+    },
+    {
+      "sha": "fc5a70261f5631fae71b2b168de0fd4cc0256114",
+      "author_date": "2026-10-12T10:24:04-07:00",
+      "subject": "Accept fifth northern terrain section with sealed validation"
+    },
+    {
+      "sha": "d470a498005a362f637ce58649fc1c26033e60cd",
+      "author_date": "2026-10-12T10:25:37-07:00",
+      "subject": "Restore terrain routing documentation line endings"
+    },
+    {
+      "sha": "ed914b8d6554f5a5009ff736cc8b52c5f6a4403c",
+      "author_date": "2026-10-12T10:28:46-07:00",
+      "subject": "Bound population visual and shadow demand while retaining actor collision"
+    },
+    {
+      "sha": "16b04c770f561ea2e6978e49cb9a0db91b46b329",
+      "author_date": "2026-10-12T10:39:33-07:00",
+      "subject": "Reuse immutable planned identities when registering population receipts"
+    },
+    {
+      "sha": "8c92ee782bfaabbb8c28438c5bc326edff0fb6b9",
+      "author_date": "2026-10-12T10:43:39-07:00",
+      "subject": "Add ground-cut volcanic rock 09 with textured game LODs"
+    },
+    {
+      "sha": "4e66cb0f20e14045acb2d62ae6366e60fa8af353",
+      "author_date": "2026-10-12T10:49:04-07:00",
+      "subject": "Split population planning into single-hash budgeted operations"
+    },
+    {
+      "sha": "31fe9ac0ac5c525e6a71d27d200247064de121af",
+      "author_date": "2026-10-12T10:56:02-07:00",
+      "subject": "Seal final northern section Blender authoring"
+    },
+    {
+      "sha": "c3d3f771a6ec3d2431758cf20106f81625dadb3a",
+      "author_date": "2026-10-12T10:57:26-07:00",
+      "subject": "Rebaseline performance lane around finite closeout and acceptance gates"
+    },
+    {
+      "sha": "4a9dcaf8e755ec199fcf466e7e9b7942323a0ac1",
+      "author_date": "2026-10-12T11:03:15-07:00",
+      "subject": "Reconcile performance closeout evidence and current Editor compilation"
+    },
+    {
+      "sha": "cc5329e9449755f14d6ca397a8dee06f4540d1db",
+      "author_date": "2026-10-12T11:06:03-07:00",
+      "subject": "Audit large-file storage and recommend archive strategy"
+    },
+    {
+      "sha": "4e28cfb9e495860a7d8721f62c65d9ff5d6c4c79",
+      "author_date": "2026-10-12T12:19:58-07:00",
+      "subject": "Accept final northern terrain section with sealed validation"
+    },
+    {
+      "sha": "b6760cef915d3b6fe114e1ceffbc8a42852b0efe",
+      "author_date": "2026-10-12T12:22:26-07:00",
+      "subject": "Separate Legger cargo hold from world interactions"
+    },
+    {
+      "sha": "55853f7a306535785c79c401aaa31761107dd183",
+      "author_date": "2026-10-12T12:33:53-07:00",
+      "subject": "Smooth interaction targeting and input command transitions"
+    },
+    {
+      "sha": "e0eefd78dc20eef4a554b1e06bf7276ec4e6759f",
+      "author_date": "2026-10-12T12:37:14-07:00",
+      "subject": "Seal completed fourth northern terrain row audit"
+    },
+    {
+      "sha": "c7312463b23b279b3f67fa3e0c4cc257d05f04e1",
+      "author_date": "2026-10-12T13:26:42-07:00",
+      "subject": "Classify terrain storage and plan reference-safe migration"
+    },
+    {
+      "sha": "91875cae28683de375976ac85d71f03fc042bdfd",
+      "author_date": "2026-10-12T13:41:47-07:00",
+      "subject": "Add safe controls rebinding and cargo hold preferences"
+    },
+    {
+      "sha": "abe1525bef951b41f36dac836800ca9e022374b8",
+      "author_date": "2026-10-12T13:48:46-07:00",
+      "subject": "Add local Booter ground authoring setup"
+    },
+    {
+      "sha": "3c68489c1041a7763abe798522b1e1d41cd6e446",
+      "author_date": "2026-10-12T16:31:08-07:00",
+      "subject": "Prepare optimized sculpted rock with limestone PBR textures"
+    },
+    {
+      "sha": "5986d62294514de86f99f1a61dad88e7a3f62976",
+      "author_date": "2026-10-12T16:36:37-07:00",
+      "subject": "Put optimized limestone rock in the original Blender scene"
+    },
+    {
+      "sha": "e5d31052b5fe354c8b0674258a20c76dbf4beee3",
+      "author_date": "2026-10-12T16:55:37-07:00",
+      "subject": "Migrate approved terrain payloads to Git LFS"
+    },
+    {
+      "sha": "24870699171cdb58c3522d40ab5a0a7a8323c7d1",
+      "author_date": "2026-10-12T17:00:26-07:00",
+      "subject": "Apply approved gritty white limestone texture set in the original scene"
+    },
+    {
+      "sha": "94b3bdaffd46ea5d99bbe9b80a53cd88665c8933",
+      "author_date": "2026-10-12T17:10:56-07:00",
+      "subject": "Add isolated input and interaction CPU profiling tools"
+    }
+  ],
+  "unpublished_excluded_path_log": "",
+  "new_reachable_blobs": {
+    "files": 76366,
+    "bytes": 6242483023,
+    "largest_12": [
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow4E520400N4026680_2026-10-11/Source/manifest.json",
+        "bytes": 52120151
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow4E516304N4026680_2026-10-11/Source/manifest.json",
+        "bytes": 50929698
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow4E512208N4026680_2026-10-11/Source/manifest.json",
+        "bytes": 49738973
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow4E508112N4026680_2026-10-11/Source/manifest.json",
+        "bytes": 48548232
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow4E504016N4026680_2026-10-11/Source/manifest.json",
+        "bytes": 47357251
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow4E499920N4026680_2026-10-11/Source/manifest.json",
+        "bytes": 46166218
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow3E520400N4022584_2026-10-10/Source/manifest.json",
+        "bytes": 44975289
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow3E516304N4022584_2026-10-10/Source/manifest.json",
+        "bytes": 43784836
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow3E512208N4022584_2026-10-10/Source/manifest.json",
+        "bytes": 42594111
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow3E508112N4022584_2026-10-10/Source/manifest.json",
+        "bytes": 41403370
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow3E504016N4022584_2026-10-10/Source/manifest.json",
+        "bytes": 40212389
+      },
+      {
+        "path": "Assets/_Project/Art/Terrain/NorthRow3E499920N4022584_2026-10-10/Source/manifest.json",
+        "bytes": 39021356
+      }
+    ]
+  },
+  "new_reachable_blobs_over_50_MiB": [],
+  "new_reachable_blobs_over_100_MiB": [],
+  "current_committed_blob_bytes": {
+    "files": 167728,
+    "bytes": 14084985202,
+    "largest_12": [
+      {
+        "path": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+        "bytes": 32350913
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow4E520400N4026680_2026-10-11Candidate.unity",
+        "bytes": 32314499
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow4E516304N4026680_2026-10-11Candidate.unity",
+        "bytes": 31418304
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow4E512208N4026680_2026-10-11Candidate.unity",
+        "bytes": 30523927
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow4E508112N4026680_2026-10-11Candidate.unity",
+        "bytes": 29629371
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow4E504016N4026680_2026-10-11Candidate.unity",
+        "bytes": 28735055
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow4E499920N4026680_2026-10-11Candidate.unity",
+        "bytes": 27840132
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow3E520400N4022584_2026-10-10Candidate.unity",
+        "bytes": 26945598
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow3E516304N4022584_2026-10-10Candidate.unity",
+        "bytes": 26051667
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow3E512208N4022584_2026-10-10Candidate.unity",
+        "bytes": 25157233
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow3E508112N4022584_2026-10-10Candidate.unity",
+        "bytes": 24263067
+      },
+      {
+        "path": "Assets/_Project/Scenes/Reference/NorthRow3E504016N4022584_2026-10-10Candidate.unity",
+        "bytes": 23368870
+      }
+    ]
+  },
+  "current_tracked_excluded_paths": [],
+  "new_lfs_pointer_count": 18210,
+  "new_lfs_unique_payload_bytes": 3267022905,
+  "new_lfs_unique_payload_count": 18210,
+  "new_lfs_excluded_paths": [],
+  "new_lfs_missing_local_objects": [],
+  "new_lfs_wrong_size_local_objects": [],
+  "lfs_cache": {
+    "files": 18924,
+    "bytes": 21105743721,
+    "largest_12": [
+      {
+        "path": ".git/lfs/objects/de/2a/de2ae37b9b148cf8d38cd9f4b81c1da7c58dec4b4f0b7a7507794edd40619328",
+        "bytes": 522329037
+      },
+      {
+        "path": ".git/lfs/objects/87/3d/873dd8e147abef01e97fe50bc9c1ea424852ef090d125a17c8b86954978234e2",
+        "bytes": 488130180
+      },
+      {
+        "path": ".git/lfs/objects/8d/f0/8df0661ebec0044603686b6516da2c1edb993d39324b317fb32ca7bf789c78b6",
+        "bytes": 469934386
+      },
+      {
+        "path": ".git/lfs/objects/c2/9f/c29fe0f7422fb4433edc75b2dcb76769a3079b901eb98bb15798f7830891ee20",
+        "bytes": 460383412
+      },
+      {
+        "path": ".git/lfs/objects/61/a1/61a1b442eac84619261a9588015f354ae366d1f781caaf9e06e9dc2df620af0d",
+        "bytes": 428746383
+      },
+      {
+        "path": ".git/lfs/objects/6a/46/6a4637d8f137d0be0da78e96e5d1a1daf3d079275f45fb67dd42205bb425b19b",
+        "bytes": 381695073
+      },
+      {
+        "path": ".git/lfs/objects/6c/d9/6cd9c83b4bf412f6dbaaaf3d65d27720abd5860c09652724a308ca89d370f3cc",
+        "bytes": 361184628
+      },
+      {
+        "path": ".git/lfs/objects/18/55/18559d2f307746a9d50c1cb44b25f1aa5aa74a07e062eff3a3425593cbd03595",
+        "bytes": 344801287
+      },
+      {
+        "path": ".git/lfs/objects/33/c2/33c2222dcdb70d7f3dfa9dbd4e3d5330d9d39532f9796c6d20126a943a17c301",
+        "bytes": 326989658
+      },
+      {
+        "path": ".git/lfs/objects/aa/01/aa01d03d1ddfbb4bcdc7b884279bb46068c68cbe4c3f266b083e7f7bdf86fbe5",
+        "bytes": 306474104
+      },
+      {
+        "path": ".git/lfs/objects/15/0f/150f76e335dbbc7976e313310c005bdd2588abb4ef314267e93aacd084549a5f",
+        "bytes": 289870681
+      },
+      {
+        "path": ".git/lfs/objects/63/9e/639e7945a601bc75f5d5dbe260590dfba36523bbd2d656dcbf59240daef8f852",
+        "bytes": 273688842
+      }
+    ]
+  },
+  "local_only_sources": {
+    "files": 53508,
+    "bytes": 50302355876,
+    "largest_12": [
+      {
+        "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E520400N4026680_2026-10-11/combined01.blend",
+        "bytes": 660028809
+      },
+      {
+        "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E516304N4026680_2026-10-11/combined01.blend",
+        "bytes": 641002167
+      },
+      {
+        "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E512208N4026680_2026-10-11/combined01.blend",
+        "bytes": 621944391
+      },
+      {
+        "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E508112N4026680_2026-10-11/combined01.blend",
+        "bytes": 604672366
+      },
+      {
+        "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E504016N4026680_2026-10-11/combined01.blend",
+        "bytes": 588770832
+      },
+      {
+        "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E499920N4026680_2026-10-11/combined01.blend",
+        "bytes": 570899112
+      },
+      {
+        "path": "SourceArt/Blender/Studies/DeathValley/NorthRow3E520400N4022584_2026-10-10/combined01.blend",
+        "bytes": 550825313
+      },
+      {
+        "path": "SourceArt/Blender/Studies/DeathValley/NorthRow3E516304N4022584_2026-10-10/combined01.blend",
+        "bytes": 532064738
+      },
+      {
+        "path": "SourceData/Terrain/DeathValley/NorthRowE5204002026-10-09/Prepared01/combined_blender_proof.npz",
+        "bytes": 522329037
+      },
+      {
+        "path": "SourceArt/Blender/Studies/DeathValley/NorthRow3E512208N4022584_2026-10-10/combined01.blend",
+        "bytes": 511837221
+      },
+      {
+        "path": "SourceArt/Blender/Studies/DeathValley/NorthRow3E508112N4022584_2026-10-10/combined01.blend",
+        "bytes": 496003469
+      },
+      {
+        "path": "SourceData/Terrain/DeathValley/NorthRowE5163042026-10-09/Prepared01/combined_blender_proof.npz",
+        "bytes": 488130180
+      }
+    ]
+  },
+  "dirty_files": [
+    {
+      "status": " M",
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackCanvas.mat",
+      "bytes": 3840,
+      "sha256": "f80fbdb40efeb98da82f9e28c378aecb37d3cedd5f509567bfb2310210f2139a"
+    },
+    {
+      "status": " M",
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackFrame.mat",
+      "bytes": 3840,
+      "sha256": "8915f7d962a72d8717ddb86424d6daadaffc070abd10e92154ff2bc89a6f098f"
+    },
+    {
+      "status": " M",
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackWebbing.mat",
+      "bytes": 3843,
+      "sha256": "1c63e68219d5d59e7a9487e53a89e0efa2a42e422004772817e204875c26e0d8"
+    },
+    {
+      "status": " M",
+      "path": "Assets/_Project/Materials/TopDown3D/Greybox_BigARM.mat",
+      "bytes": 3832,
+      "sha256": "56f82308963bcf4c6f7b1ed37eb79cec697cab41a8de69b95aea0014d65ec8f9"
+    },
+    {
+      "status": " M",
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DInteractionController.cs",
+      "bytes": 7892,
+      "sha256": "459fe5a4ea9f7a57be37f5394ddd6a00886b57729cb34aed5c34011a0eb12eb9"
+    },
+    {
+      "status": " M",
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DPlayerActionController.cs",
+      "bytes": 26788,
+      "sha256": "6188a7fcbf63a3f4496d351435ddabd2ddf3e0cb8b5c9459392fe712ca5f08e3"
+    },
+    {
+      "status": " M",
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DCargoAccess.cs",
+      "bytes": 1732,
+      "sha256": "326d9a560ffef536dc9ec0ea390fdcc7dbac99f2f213bd6a037673ec5b6242fc"
+    },
+    {
+      "status": " M",
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInteractionFeedbackHud.cs",
+      "bytes": 10631,
+      "sha256": "89a7ae223808821f17a809acfcdab35f498fa0868d0956935777882d2e9f51e4"
+    },
+    {
+      "status": " M",
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventorySlotView.cs",
+      "bytes": 4871,
+      "sha256": "4a434f2387805b75fe2267587b14ae04fe44a609178abb014c58532534929b9d"
+    },
+    {
+      "status": " M",
+      "path": "Assets/_Project/Tests/Editor/TopDown3DInteractionTests.cs",
+      "bytes": 26281,
+      "sha256": "c9a29b0595df9cba933fc1ef2cf402f0f2d66bdc611fc366c90140e1119f2fc3"
+    },
+    {
+      "status": " M",
+      "path": "Assets/_Project/Tests/Editor/TopDown3DInventoryUiTests.cs",
+      "bytes": 15410,
+      "sha256": "50da93abea7e37ff420f450906fc1e54bfbb2192f380f163d751f6d1308ed96b"
+    },
+    {
+      "status": " M",
+      "path": "Docs/Design/Gameplay/INPUT_INTERACTION_REMEDIATION_PLAN.md",
+      "bytes": 6948,
+      "sha256": "388cad36965f2e16860a2cbbd9089d2b050e0723ec29b517054d6d104442be72"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused.meta",
+      "bytes": 172,
+      "sha256": "a0abe0e881208acbddebf4154e733c00cde61d81ebd3d8757fc3edbda5b48018"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.asset",
+      "bytes": 514001,
+      "sha256": "b617207c01d51d29f7e6c76aef47cfb9f5454c4feb732a2c212ff4e47d6c99a2"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.asset.meta",
+      "bytes": 188,
+      "sha256": "07546cc936b65f87e9f65339b2fa8bdd454248930c47fb1f54fb45a9eca933c2"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.fusion.json",
+      "bytes": 254,
+      "sha256": "40b9919ca75c83d143b1615243a506680951da489f79c572180582d935bb0f44"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.fusion.json.meta",
+      "bytes": 158,
+      "sha256": "a5535ed743d4a056430a943571f010565ca148d08cde9dd3c35e4dc48d1b62f2"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab",
+      "bytes": 3890,
+      "sha256": "e8af186c2151e8dfaf03138c1465a62bf54df3d4313cb751e94a28ea867fe594"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab.meta",
+      "bytes": 154,
+      "sha256": "7479abec34aadcbfc491e9d70f71dddfdad45ba508679ac46dd66efa602d887e"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Tests/Editor/TopDown3DInteractionFeedbackHudTests.cs",
+      "bytes": 11623,
+      "sha256": "5b5ccd32b367b26a75a9fbb4528a4986b8a213a6db5561065914439929cfaf16"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Tests/Editor/TopDown3DInteractionFeedbackHudTests.cs.meta",
+      "bytes": 60,
+      "sha256": "3bd274cffe72ddda9251985aef64af36fa89b189f31774bd62c15f6054026ab3"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Tests/Editor/TopDown3DInteractionQueryTests.cs",
+      "bytes": 13439,
+      "sha256": "5d56f1789d0acfcd0da9a6f5a43cba0bc73d2d4705185fffa468f39282cf6749"
+    },
+    {
+      "status": "??",
+      "path": "Assets/_Project/Tests/Editor/TopDown3DInteractionQueryTests.cs.meta",
+      "bytes": 60,
+      "sha256": "4e3c844f3ea07057e4bd3186e46d29aeede203e87ca4ae1a5b352f1b198ea2d1"
+    },
+    {
+      "status": "??",
+      "path": "Docs/Evidence/Performance/INPUT_INTERACTION_PROFILE_2026-10-12.md",
+      "bytes": 7427,
+      "sha256": "28132eac7a0a46db327e27c2d9a4f5b6ca587a484b0272d9e20b97b604d93cc0"
+    }
+  ],
+  "fusion_files": [
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.asset",
+      "bytes": 514001,
+      "sha256": "b617207c01d51d29f7e6c76aef47cfb9f5454c4feb732a2c212ff4e47d6c99a2"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.asset.meta",
+      "bytes": 188,
+      "sha256": "07546cc936b65f87e9f65339b2fa8bdd454248930c47fb1f54fb45a9eca933c2"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.fusion.json",
+      "bytes": 254,
+      "sha256": "40b9919ca75c83d143b1615243a506680951da489f79c572180582d935bb0f44"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.fusion.json.meta",
+      "bytes": 158,
+      "sha256": "a5535ed743d4a056430a943571f010565ca148d08cde9dd3c35e4dc48d1b62f2"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab",
+      "bytes": 3890,
+      "sha256": "e8af186c2151e8dfaf03138c1465a62bf54df3d4313cb751e94a28ea867fe594"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab.meta",
+      "bytes": 154,
+      "sha256": "7479abec34aadcbfc491e9d70f71dddfdad45ba508679ac46dd66efa602d887e"
+    }
+  ],
+  "fusion_saved_yaml_references": [],
+  "lfs_migration_native_and_test_proof": {
+    "commit": "e5d31052b5fe354c8b0674258a20c76dbf4beee3",
+    "native_report": {
+      "schema_version": 2,
+      "row_step": 6,
+      "terrains": 9216,
+      "retained": 8960,
+      "new_terrains": 256,
+      "edges": 18240,
+      "outer_edges": 384,
+      "collider_samples": 230400,
+      "sectors": 576,
+      "family": "north_row4",
+      "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+      "scene_sha256": "bc0b465de9a1b75b82a20d99c25fa4f10f00377a18f9564f9e8b0516a4c8f93e",
+      "manifest_sha256": "9568e30edb234cb4737187c42bb53a335e6729d545a99a3134cab249cc0365ff",
+      "status": "validated_full_grid_and_collider_samples",
+      "max_new_readback_error_m": 0.027492642402648926,
+      "max_collider_error_m": 6.103515625e-05
+    },
+    "focused_tests": {
+      "id": "2",
+      "testcasecount": "41",
+      "result": "Passed",
+      "total": "41",
+      "passed": "41",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-10-12 23:51:17Z",
+      "end-time": "2026-10-12 23:51:50Z",
+      "duration": "32.8733938"
+    }
+  },
+  "limitations": [
+    "The remote SHA is read separately; origin/main here is cached.",
+    "Shallow history limits historical totals outside the unpublished range.",
+    "LFS object sizes checked here; complete payload SHA-256 proof is the existing migration receipt.",
+    "Local-only source totals are logical file sizes, not independent backup proof.",
+    "Saved fusion references cover YAML only; unsaved scene and binary dependency state remains unverified.",
+    "Dirty files and HEAD may change during active owner work."
+  ],
+  "live_remote_main": "2c522e4ed50d692aa6ce6e581cf56e3ee4406d8a",
+  "remote_main_matches_cached": true,
+  "lfs_dry_run": {
+    "exit_code": 0,
+    "objects": 18210,
+    "excluded_source_paths": 0,
+    "log_sha256": "88480afa175b607923b189ef08ca63b8c1940c3ebd91cbe511a8d15ff9d1d5d3",
+    "log": "Logs/publication-lfs-dry-run.txt",
+    "upload_performed": false
+  },
+  "ordinary_git_pack_estimate": {
+    "head": "94b3bdaffd46ea5d99bbe9b80a53cd88665c8933",
+    "base": "2c522e4ed50d692aa6ce6e581cf56e3ee4406d8a",
+    "bytes": 1900619050,
+    "GiB": 1.770089427009225,
+    "over_2_GiB": false,
+    "stream_sha256": "d93a8e8f130afe681fc4032d350598f27a1a8ad1c45bf32c6c224d24dc748107",
+    "seconds": 41.09399999998277,
+    "network_transfer": false,
+    "pack_saved": false,
+    "limitation": "Local thin-pack estimate excludes only cached remote main ancestry; actual push negotiation and packing can differ."
+  },
+  "github_access": {
+    "credential_available": true,
+    "repository_write_access": true,
+    "account_plan": null,
+    "lfs_current_usage_verified": false,
+    "repository_admin_access": true,
+    "repository_private": false,
+    "default_branch": "main",
+    "owner_type": "User",
+    "authenticated_login": "sleepyseamonster"
+  },
+  "retained_C_source_backup_coverage": {
+    "retained_C_root": "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity",
+    "same_path_and_size_only": {
+      "files": 649,
+      "bytes": 3328842196,
+      "largest_8": [
+        {
+          "path": "SourceData/Terrain/DeathValley/MacSnapshot2026-10-07/raw/USGS_1M_11_x48y405_CA_FEMAR9Southeast_D24.tif",
+          "bytes": 361184628
+        },
+        {
+          "path": "SourceData/Terrain/DeathValley/WestNorthNorthwest2026-10-07/Prepared03/combined_blender_proof.npz",
+          "bytes": 179625941
+        },
+        {
+          "path": "SourceArt/Blender/Studies/BrokenWorldBadlandsStudy.blend",
+          "bytes": 145141738
+        },
+        {
+          "path": "SourceArt/Blender/Studies/BrokenWorldBadlandsStudy_PreviousSave_2026-10-06.blend",
+          "bytes": 145141198
+        },
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/BadwaterFourSlicesCandidate_MacFourSlicesV1.blend",
+          "bytes": 144104693
+        },
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/DeathValleyExploreExpanded.blend",
+          "bytes": 89160187
+        },
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/DeathValleyExploreExpanded_PreviousSave_2026-10-07.blend",
+          "bytes": 89158911
+        },
+        {
+          "path": "SourceData/Terrain/DeathValley/MacSnapshot2026-10-07/raw/USGS_MF2381_geology_nobase.zip",
+          "bytes": 82329488
+        }
+      ]
+    },
+    "missing_current_paths": {
+      "files": 52846,
+      "bytes": 46304588055,
+      "largest_8": [
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E520400N4026680_2026-10-11/combined01.blend",
+          "bytes": 660028809
+        },
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E516304N4026680_2026-10-11/combined01.blend",
+          "bytes": 641002167
+        },
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E512208N4026680_2026-10-11/combined01.blend",
+          "bytes": 621944391
+        },
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E508112N4026680_2026-10-11/combined01.blend",
+          "bytes": 604672366
+        },
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E504016N4026680_2026-10-11/combined01.blend",
+          "bytes": 588770832
+        },
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/NorthRow4E499920N4026680_2026-10-11/combined01.blend",
+          "bytes": 570899112
+        },
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/NorthRow3E520400N4022584_2026-10-10/combined01.blend",
+          "bytes": 550825313
+        },
+        {
+          "path": "SourceArt/Blender/Studies/DeathValley/NorthRow3E516304N4022584_2026-10-10/combined01.blend",
+          "bytes": 532064738
+        }
+      ]
+    },
+    "different_size_current_paths": {
+      "files": 0,
+      "bytes": 0,
+      "largest_8": []
+    },
+    "hashes_verified": false,
+    "scope": "Current SourceData/Terrain files and Blender sources/backups beneath SourceArt/Blender/Studies; excludes other transfers and sources outside these roots."
+  },
+  "git_connectivity_check_passed": true,
+  "dirty_art_local_snapshot": {
+    "path": "D:\\Arc & Dust\\Project\\Logs\\PublicationReadiness20261012\\PreservedDirtyArt",
+    "files": [
+      {
+        "path": "Assets/_Project/Materials/TopDown3D/Camp/PackCanvas.mat",
+        "sha256": "f80fbdb40efeb98da82f9e28c378aecb37d3cedd5f509567bfb2310210f2139a",
+        "bytes": 3840
+      },
+      {
+        "path": "Assets/_Project/Materials/TopDown3D/Camp/PackFrame.mat",
+        "sha256": "8915f7d962a72d8717ddb86424d6daadaffc070abd10e92154ff2bc89a6f098f",
+        "bytes": 3840
+      },
+      {
+        "path": "Assets/_Project/Materials/TopDown3D/Camp/PackWebbing.mat",
+        "sha256": "1c63e68219d5d59e7a9487e53a89e0efa2a42e422004772817e204875c26e0d8",
+        "bytes": 3843
+      },
+      {
+        "path": "Assets/_Project/Materials/TopDown3D/Greybox_BigARM.mat",
+        "sha256": "56f82308963bcf4c6f7b1ed37eb79cec697cab41a8de69b95aea0014d65ec8f9",
+        "bytes": 3832
+      },
+      {
+        "path": "Assets/_Project/Art/Environment/Rocks/Fused.meta",
+        "sha256": "a0abe0e881208acbddebf4154e733c00cde61d81ebd3d8757fc3edbda5b48018",
+        "bytes": 172
+      },
+      {
+        "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.asset",
+        "sha256": "b617207c01d51d29f7e6c76aef47cfb9f5454c4feb732a2c212ff4e47d6c99a2",
+        "bytes": 514001
+      },
+      {
+        "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.asset.meta",
+        "sha256": "07546cc936b65f87e9f65339b2fa8bdd454248930c47fb1f54fb45a9eca933c2",
+        "bytes": 188
+      },
+      {
+        "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.fusion.json",
+        "sha256": "40b9919ca75c83d143b1615243a506680951da489f79c572180582d935bb0f44",
+        "bytes": 254
+      },
+      {
+        "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.fusion.json.meta",
+        "sha256": "a5535ed743d4a056430a943571f010565ca148d08cde9dd3c35e4dc48d1b62f2",
+        "bytes": 158
+      },
+      {
+        "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab",
+        "sha256": "e8af186c2151e8dfaf03138c1465a62bf54df3d4313cb751e94a28ea867fe594",
+        "bytes": 3890
+      },
+      {
+        "path": "Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab.meta",
+        "sha256": "7479abec34aadcbfc491e9d70f71dddfdad45ba508679ac46dd66efa602d887e",
+        "bytes": 154
+      }
+    ],
+    "same_drive_copy_not_independent_backup": true,
+    "originals_modified_or_removed": false
+  },
+  "closeout_head": "ead8c891233ab26dc501dd753434d971cb0d53e2",
+  "closeout_unpublished_count": 158,
+  "closeout_status": [
+    " M Assets/_Project/Materials/TopDown3D/Camp/PackCanvas.mat",
+    " M Assets/_Project/Materials/TopDown3D/Camp/PackFrame.mat",
+    " M Assets/_Project/Materials/TopDown3D/Camp/PackWebbing.mat",
+    " M Assets/_Project/Materials/TopDown3D/Greybox_BigARM.mat",
+    " M Docs/DOCS_INDEX.md",
+    "?? Assets/_Project/Art/Environment/Rocks/Fused.meta",
+    "?? Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.asset",
+    "?? Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.asset.meta",
+    "?? Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.fusion.json",
+    "?? Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.fusion.json.meta",
+    "?? Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab",
+    "?? Assets/_Project/Art/Environment/Rocks/Fused/RockFusion_A7196D3D8461480E.prefab.meta",
+    "?? Docs/Evidence/Repository/PUBLICATION_READINESS_AUDIT_2026-10-12.json",
+    "?? Docs/Operations/Repository/PUBLICATION_READINESS_REASSESSMENT_2026-10-12.md",
+    "?? SourceArt/Blender/Studies/LimestoneBrickWall/LimestoneCutBrick_Albedo_Repeat.png",
+    "?? SourceArt/Blender/Studies/LimestoneBrickWall/LimestoneCutBrick_RepeatPreview_3x3.png",
+    "?? SourceArt/Blender/Studies/LimestoneBrickWall/Source/LimestoneCutBrick_Generated.png",
+    "?? SourceArt/Blender/Studies/LimestoneBrickWall/verification.json",
+    "?? Tools/Art/Blender/finish_limestone_wall_tile.py",
+    ""
+  ],
+  "input_owner_closeout_commit": "ead8c891233ab26dc501dd753434d971cb0d53e2",
+  "github_billing_check": {
+    "usage_verified": false,
+    "period": "2026-10",
+    "endpoint": "GET /users/sleepyseamonster/settings/billing/usage",
+    "lfs_items": [],
+    "http_status": 404
+  },
+  "input_owner_committed_proof": {
+    "commit": "ead8c891233ab26dc501dd753434d971cb0d53e2",
+    "tests": {
+      "passed": 173,
+      "failed": 0,
+      "skipped": 0,
+      "path": "C:\\BooterBigArmValidation\\InputInteraction20261012-01\\Logs\\input-performance-complete-tests.xml",
+      "sha256": "73295d880ad2f91a69e870bf0da547719f6e9905f1a0b5cce696adf1ed514f69"
+    },
+    "evidence": "Docs/Evidence/Performance/input-interaction-profile-2026-10-12.json"
+  }
+}

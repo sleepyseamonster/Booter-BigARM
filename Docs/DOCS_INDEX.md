@@ -39,6 +39,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Agent Operations
 
+- [Publication and storage readiness reassessment](./Operations/Repository/PUBLICATION_READINESS_REASSESSMENT_2026-10-12.md)
+  Live remote and LFS dry-run checks, pack-size estimate, local backup coverage, dirty ownership and ordered publication gates.
+
 - [Terrain storage classification and migration plan](./Operations/Repository/TERRAIN_STORAGE_MIGRATION_PLAN_2026-10-12.md)
   Exact terrain file inventory, required Git/LFS assets, conditional local archive scope, Unity reference protection and phased restore gates.
 
