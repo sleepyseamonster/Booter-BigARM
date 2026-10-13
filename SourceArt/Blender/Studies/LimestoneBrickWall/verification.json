@@ -1,0 +1,42 @@
+{
+  "source_image": "C:\\Users\\kbkno\\.codex\\generated_images\\01a131da-f9f9-78a3-84fd-8d7b9c89e540\\exec-f5518e16-d229-4a8f-9a71-aec62a1422a9.png",
+  "source_sha256": "20b70237fe5df8eeb28af5575978058d75fa511a499fa6aed7dc60fb65b37925",
+  "final_file": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\LimestoneBrickWall\\LimestoneCutBrick_Albedo_Repeat.png",
+  "final_sha256": "bcf6290828889fe2fc71bad0742de7e99a855fa159885036a5b23010d4dc2a02",
+  "generated_size": [
+    1254,
+    1254
+  ],
+  "output_size": [
+    2048,
+    2048
+  ],
+  "joint_centres_bottom_up_pixels": [
+    9.0,
+    1243.0
+  ],
+  "crop_fraction_y": [
+    0.007575757575757576,
+    0.9916267942583732
+  ],
+  "border_harmonization_pixels": 8,
+  "max_opposite_edge_difference_linear_rgb": [
+    0.0,
+    0.0
+  ],
+  "finite": true,
+  "wrap_mode": "Repeat",
+  "brick_pitches_horizontal": 5,
+  "courses_vertical": 10,
+  "stagger": "half-brick running bond",
+  "nominal_brick_width_inches": 9,
+  "nominal_brick_height_inches": 4.5,
+  "nominal_brick_depth_inches": 9,
+  "physical_tile_width_metres": 1.143,
+  "physical_tile_height_metres": 1.143,
+  "native_generated_detail": "1254-pixel AI source resampled through a material bake; not a measured stone scan",
+  "method": "Generated masonry retained; crop through top/bottom mortar centres removes the doubled border joint. An 8-pixel material blend harmonizes both wrap borders; shared outermost texels eliminate bake sampling jitter. Interior retained.",
+  "scene_or_project_saved": false,
+  "decoded_png_opposite_edges_equal": true,
+  "repeat_preview": "LimestoneCutBrick_RepeatPreview_3x3.png"
+}
