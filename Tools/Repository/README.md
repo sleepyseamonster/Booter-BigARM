@@ -1,5 +1,13 @@
 # Gottspan Tools
 
+## `verify_publication_candidate.py`
+
+Read-only gate for the complete unpublished candidate range: checks remote-tracking ancestry, excluded Blender/terrain-source path touches, ordinary Git blob limits, and exact SHA-256/size of each required local LFS object. Writes an object allowlist receipt; never uploads, changes attributes or prunes caches. Live remote, account allowance, pack estimation, LFS dry-run reconciliation and Unity proof remain separate gates.
+
+```powershell
+.venv\Scripts\python.exe Tools/Repository/verify_publication_candidate.py --output Logs/PublicationImplementation20261012/candidate.json
+```
+
 ## `classify_terrain_storage.py`
 
 Produces a file-level terrain storage inventory, manifest/protected-folder consumer map, Unity GUID/YAML reference audit and proposed storage classes. It verifies the saved production scene's TerrainData path set against the accepted final fourth-row manifest. It never moves assets, configures LFS, launches Unity or publishes sources. The compressed TSV contains metadata only; source payloads remain local. Binary dependency proof and fresh payload SHA-256 inventories are separate migration gates.
