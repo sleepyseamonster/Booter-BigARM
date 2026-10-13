@@ -90,6 +90,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [Camp Loop animation playground implementation plan](./Design/Gameplay/CAMP_LOOP_ANIMATION_PLAYGROUND_IMPLEMENTATION_PLAN_2026-10-13.md)
+  Three linked execution plans for the exact asset transfer/private restoration, player and Playables integration, and twelve interactive station areas; batch dependencies, input/contact/save gates and hands-on acceptance.
+
 - [Camp Loop animation playground audit](./Design/Gameplay/CAMP_LOOP_ANIMATION_PLAYGROUND_AUDIT_2026-10-13.md)
   Complete Mixamo download inventory, rig and live-scene findings, unarmed/gap classifications, controller and interaction systems, station props, reset/persistence boundaries and proposed implementation gates. Inventory and proposal only; no Unity import or implementation.
 

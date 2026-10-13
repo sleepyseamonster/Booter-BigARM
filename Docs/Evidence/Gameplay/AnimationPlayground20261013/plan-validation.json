@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-13",
+  "scope": "Implementation planning, source-to-destination mapping and documentation verification only",
+  "result": "PASS",
+  "repository_head_at_planning": "f4b73f1b8dac286a6955edae3a393416171d425d",
+  "mapping": {
+    "canonical_destinations": 72,
+    "dated_source_copies": 73,
+    "source_aliases_hashed_including_character_handoff": 74,
+    "unarmed_candidates": 68,
+    "restricted_motion_sources": 3,
+    "asset_map_rows": 72,
+    "unique_ids_and_destinations": true,
+    "source_hashes_and_sizes_match_inventory": true,
+    "planned_destinations_unoccupied": true,
+    "import_completion_avatar_ids_and_effect_markers_pending": true,
+    "weapon_pose_excluded_from_unarmed_preview": true
+  },
+  "documentation": {
+    "relative_links_checked": 18,
+    "station_areas": 12,
+    "proposed_new_source_bindings_checked_free": 5,
+    "binding_validation_limit": "Source asset only; active overrides, reserved controls and device behavior are implementation preflight gates"
+  },
+  "read_only_editor_observation": {
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": false,
+    "playing": false,
+    "version": "6000.4.0f1",
+    "unity_lock_present": true
+  },
+  "read_only_repository_visibility_observation": {
+    "endpoint": "https://api.github.com/repos/sleepyseamonster/Booter-BigARM",
+    "visibility": "public",
+    "private": false
+  },
+  "refined_implementation_constraints": [
+    "C is already canister pickup and camp rotation; F6 is occupied",
+    "Locomotion profile and phase mapper require two contacts per foot",
+    "Existing save service captures health and actor position on a safe 30-second timer and on quit",
+    "Existing Camp Loop validation requires exactly twelve Ironstone nodes and one resource cache"
+  ],
+  "checks": [
+    "Parse planned manifest and compare all 73 inventory source paths, 72 hashes and 74 local aliases",
+    "Verify source SHA-256/file size, canonical ID/path uniqueness, pending fields and metadata pairing",
+    "Verify 72 asset table rows, twelve station IDs, current source binding conflicts and local document routes",
+    "Review source ownership, optional production behavior, physical-action coverage, missing clips, reset and checkpoint containment",
+    "git diff --check and staged candidate whitespace/path checks"
+  ],
+  "limits": [
+    "No FBX copy into Assets, Unity import, scene or gameplay implementation",
+    "No Unity compile/test run, Play Mode, gameplay smoke test, performance capture or player build",
+    "Plans do not establish Humanoid validity, grip/contact quality, control feel or gameplay readiness",
+    "No push, private asset upload, account visibility change or package change"
+  ]
+}

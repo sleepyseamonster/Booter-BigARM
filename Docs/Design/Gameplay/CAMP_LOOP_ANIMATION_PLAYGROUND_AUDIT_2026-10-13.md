@@ -4,6 +4,8 @@ Date: 2026-10-13. Status: **audit and proposal only**. Owner: Gottspan coordinat
 
 ## Result and immediate decisions
 
+For implementation, follow the [three-part playground plan](./CAMP_LOOP_ANIMATION_PLAYGROUND_IMPLEMENTATION_PLAN_2026-10-13.md). Its fresh input, contact-cycle, public-storage and checkpoint findings refine the provisional choices below; the inventory and audit evidence remain unchanged.
+
 The collection contains **73 FBX copies, 72 unique files: one character T-pose and 71 motion candidates**. The mining swing is duplicated across two download folders. There are **68 distinct unarmed candidates for playground evaluation**, plus three restricted references: the downward axe swing requiring mining adaptation, a sprint that retains forward travel, and a crouched death with a weapon-style pose. “Candidate” means downloaded and structurally inspected; it does not mean Unity import, contact quality or gameplay readiness has passed.
 
 All files have the same 33-bone hierarchy. All 71 unique motion files change pose at sampled times; the T-pose is correctly static. Animation exports are FBX for Unity, 30 fps, without skin and without keyframe reduction; the base character includes skin. Defaults and authored travel are retained in the original-action exports. The recommended four locomotion exports and the two cover sneak loops were exported in place. Hip samples support those six start/end closures, but do not prove the absence of travel at every frame.
