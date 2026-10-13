@@ -163,6 +163,8 @@ These define current preferred approaches or sequencing.
   Nearby camp shortcuts, regroup without reopening menus, route guidance, clearer companion feedback, and 123 focused checks.
 - [Camp compass audit and proposal](./Design/Gameplay/CAMP_COMPASS_BRAINSTORM.md)
   Facing-relative algae HUD ring, darkward/lightward directions, local camp origin, layout gaps, and a bounded future implementation slice.
+- [Simple camp compass implementation](./Evidence/Gameplay/CAMP_COMPASS_IMPLEMENTATION_2026-10-12.md)
+  Facing compass and arrival indicator around algae controls, coordinated layout, focused tests, and static UI proof boundaries.
 - [URP_2D_STANDARD.md](Archive/Legacy2D/URP_2D_STANDARD.md) — legacy 2D maintenance only.
 - [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md)
 - [CODEX_EDITOR_STANDARD.md](./Operations/CODEX_EDITOR_STANDARD.md)

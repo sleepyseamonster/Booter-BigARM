@@ -31,12 +31,13 @@ namespace BooterBigArm.TopDown3D
             Unsubscribe(); controller = owner; dpad = pad;
             survivalHud = TopDown3DGameHudCanvas.FindInScene<TopDown3DSurvivalHud>(gameObject.scene);
             if (DetailsRect == null) Build();
+            RefreshLayout();
             dpad.Graphic.SetSurvivalIcons(true);
             displayedFill = controller.State.Remaining; RefreshContents(); RefreshPrompts(); Subscribe();
         }
         private void Build()
         {
-            DetailsRect = Rect("Algae canister", transform, new Vector2(dpad.Size+16,0), new Vector2(235,196));
+            DetailsRect = Rect("Algae canister", transform, new Vector2(dpad.DetailsLeft,0), new Vector2(235,196));
             var backdrop=Rect("Backdrop",DetailsRect,new Vector2(-10,-10),new Vector2(255,216)).gameObject.AddComponent<Image>();
             backdrop.color=new Color(.027f,.034f,.033f,.85f);backdrop.raycastTarget=false;
             contents = Label("Contents",DetailsRect,new Vector2(0,172),new Vector2(235,24),18);
@@ -51,8 +52,18 @@ namespace BooterBigArm.TopDown3D
             labels[1]=Label("Eat",DetailsRect,new Vector2(54,76),new Vector2(181,29),16);
             labels[2]=Label("Treat",DetailsRect,new Vector2(54,140),new Vector2(181,29),16);
             feedback=Label("Outcome",DetailsRect,Vector2.zero,new Vector2(235,32),14);
-            dustLabel=Label("Dust control",transform,new Vector2(0,-23),new Vector2(dpad.Size,20),13);
+            dustLabel=Label("Dust control",transform,new Vector2(0,dpad.DustBottom),new Vector2(dpad.Size,20),13);
             dustLabel.alignment=TextAnchor.MiddleCenter;
+        }
+        private void RefreshLayout()
+        {
+            if (dpad == null) return;
+            if (DetailsRect != null) DetailsRect.anchoredPosition = new Vector2(dpad.DetailsLeft, 0);
+            if (dustLabel != null)
+            {
+                dustLabel.rectTransform.anchoredPosition = new Vector2(0, dpad.DustBottom);
+                dustLabel.rectTransform.sizeDelta = new Vector2(dpad.Size, 20);
+            }
         }
         private static RectTransform Rect(string name, Transform parent, Vector2 position, Vector2 size)
         {
@@ -134,16 +145,18 @@ namespace BooterBigArm.TopDown3D
         private void Subscribe()
         {
             if(subscribed||controller==null)return;
+            dpad.LayoutChanged+=RefreshLayout;
             controller.Consumed+=Consumed;controller.Rejected+=Rejected;
             controller.State.Restored+=ResetPresentation;controller.Vitals.ResetPerformed+=ResetPresentation;subscribed=true;
         }
         private void Unsubscribe()
         {
             if(!subscribed||controller==null)return;
+            if(dpad!=null)dpad.LayoutChanged-=RefreshLayout;
             controller.Consumed-=Consumed;controller.Rejected-=Rejected;
             controller.State.Restored-=ResetPresentation;controller.Vitals.ResetPerformed-=ResetPresentation;subscribed=false;
         }
-        private void OnEnable()=>Subscribe();
+        private void OnEnable(){RefreshLayout();Subscribe();}
         private void OnDisable(){Unsubscribe();if(dpad!=null)dpad.SetDirectionPressed(pulseDirection,false);}
         public static TopDown3DAlgaeCanisterHud TryInstallForScene(Scene scene,TopDown3DAlgaeConsumptionController controller)
         {

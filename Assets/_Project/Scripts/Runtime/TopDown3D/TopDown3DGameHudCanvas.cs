@@ -150,6 +150,7 @@ namespace BooterBigArm.TopDown3D
             TopDown3DSurvivalHud.TryInstallForScene(scene);
             var algae = TopDown3DAlgaeConsumptionController.TryInstallForScene(scene);
             if (algae != null) TopDown3DAlgaeCanisterHud.TryInstallForScene(scene, algae);
+            TopDown3DCompassHud.TryInstallForScene(scene);
             TopDown3DInteractionFeedbackHud.TryInstallForScene(scene);
         }
     }

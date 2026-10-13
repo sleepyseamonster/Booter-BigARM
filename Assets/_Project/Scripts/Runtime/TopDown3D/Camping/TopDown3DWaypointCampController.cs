@@ -68,6 +68,7 @@ namespace BooterBigArm.TopDown3D
             vitals.HealthReduced += Damage; vitals.ResetPerformed += Reset;
             speed.Invalidated += SpeedLost; input.ModeChanged += ModeChanged; InputSystem.onDeviceChange += DeviceChanged;
             EnsureSite();
+            TopDown3DCompassHud.TryInstallForScene(gameObject.scene)?.Bind(motor, this);
         }
 
         private void EnsureSite()

@@ -2,6 +2,8 @@
 
 2026-10-12. Exploration only; this document does not install a Unity feature. The user confirmed that **Booter's facing direction** drives the compass. Camera yaw does not drive it.
 
+The author subsequently approved implementation. See the [implementation receipt](../../Evidence/Gameplay/CAMP_COMPASS_IMPLEMENTATION_2026-10-12.md) for the resulting simple UI, verified contracts, and acceptance limits. The proposed dimensions below remain design history; the receipt records final first-pass values.
+
 ## Proposed behavior
 
 Wrap the lower-left algae consumption control cluster in a compass ring. Keep the consumption prompts, canister, quantities, and feedback upright. The compass has three separate cues:

@@ -39,10 +39,22 @@ namespace BooterBigArm.TopDown3D
         private Rect lastSafeArea;
         private Vector2Int lastScreenSize;
         private float lastCanvasScale;
+        private bool compassLayout;
 
         public TopDown3DActionDpadGraphic Graphic => dpadGraphic;
         public float Size => size;
         public float SafeAreaMargin => safeAreaMargin;
+        public bool CompassLayout => compassLayout;
+        public float DetailsLeft => compassLayout ? TopDown3DCompassLayout.DetailsLeft(size) : size + 16f;
+        public float DustBottom => compassLayout ? TopDown3DCompassLayout.DustBottom(size) : -23f;
+        public event System.Action LayoutChanged;
+
+        public void SetCompassLayout(bool enabled)
+        {
+            if (compassLayout == enabled) return;
+            compassLayout = enabled;
+            RefreshSafeArea(force: true);
+        }
 
         [ContextMenu("Rebuild D-Pad Visuals")]
         public void Initialize()
@@ -222,7 +234,8 @@ namespace BooterBigArm.TopDown3D
             rectTransform.anchoredPosition = GetBottomLeftAnchoredPosition(
                 safeArea,
                 canvasScale,
-                safeAreaMargin);
+                safeAreaMargin) + (compassLayout ? TopDown3DCompassLayout.ExtraInset(size) : Vector2.zero);
+            LayoutChanged?.Invoke();
         }
 
         private void AttachToGameHud(TopDown3DGameHudCanvas owner)
