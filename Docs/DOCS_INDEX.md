@@ -39,6 +39,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Agent Operations
 
+- [Audit of the publication closeout plan](./Operations/Repository/PUBLICATION_CLOSEOUT_PLAN_AUDIT_2026-10-12.md)
+  Proposed corrections to publication dependencies, consistent recovery, asset validation, remote restore capacity and guarded rollback.
+
 - [Project publication and storage closeout plan](./Operations/Repository/PUBLICATION_CLOSEOUT_PLAN_2026-10-12.md)
   Executable batches for independent local recovery, dirty asset decisions, verified commits, Git/LFS publication and remote restoration.
 
