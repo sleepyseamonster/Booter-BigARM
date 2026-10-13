@@ -66,7 +66,7 @@ Refresh the ordinary Git thin-pack estimate. The earlier 1.770 GiB measurement i
 
 After each transfer, verify the remote SHA before claiming publication. If LFS upload succeeds but the Git ref update fails, record that partial external state and refresh ancestry; do not prune objects or upload a different candidate blindly. Remote LFS deletion and billing changes are separate operations.
 
-For PUB-10, use a fresh clone without production-object alternates and materialize the required LFS payloads from the published remote. Compare required asset and `.meta` hashes with the sealed candidate. Run the relevant non-mutating Unity validator in an isolated background project; never open or focus the production editor for this check. Keep package/editor pins fixed.
+For PUB-10, use a fresh clone without production-object alternates and materialize the required LFS payloads from the published remote. Compare required asset and `.meta` hashes with the sealed candidate. Reuse engine proof under the equality conditions below; run new relevant non-mutating Unity validation in an isolated background project only for changed or unresolved contracts. Never open or focus the production editor for this check. Keep package/editor pins fixed.
 
 Allocate restore space and download allowance before upload. Budget Git data, checkout, LFS cache, any required import artifacts and a 3 GiB reserve. Verify the exact remote SHA and payload/meta equality first. Reuse candidate-bound Unity proof when those bytes, relevant dependencies and editor/package pins match; only unresolved or changed contracts require new focused checks. Material gates select `BadwaterPlayableSceneBuilder.ValidateFromCli` and focused authored-camp structural tests. Fused gates select imported mesh/prefab/collider/material/UV/GUID checks and `SculptedRockFusionTests`; the macOS plugin validator is insufficient for this Windows asset.
 
@@ -82,6 +82,6 @@ World identities, geographic keys, authored terrain constraints and runtime save
 
 ## Decisions and final completion
 
-The author must select the independent backup destination, resolve any genuinely ambiguous material/Fused acceptance decision, and confirm any account-budget change if required. The earlier instruction establishes the direction toward publication; this planning turn adds no push or cleanup action. Do not ask again for routine already-authorized inspection and verification.
+The author must select the independent backup destination, resolve any genuinely ambiguous material/Fused acceptance decision, and confirm any account-budget change if required. The current implementation instruction authorizes executing this plan within its verified scope and gates; it does not authorize account changes or destructive cleanup. Do not ask again for routine already-authorized inspection and verification.
 
 The job is complete when current local-only sources have verified independent recovery, all owned batches are settled and committed, required Git/LFS data restore from the published revision, local and remote `main` match the sealed SHA, and the index/worktree are clean. Ignored local sources remain intact. Report exact commits, validation results, backup receipts, remote readback and any author-owned acceptance still outside the completed technical scope.

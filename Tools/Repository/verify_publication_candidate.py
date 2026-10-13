@@ -86,7 +86,7 @@ def main():
               'errors': errors, 'passed': not errors,
               'boundary': 'Cached base, unpublished reachable blobs and local cache only; live remote, billing, dry-run reconciliation, pack size and Unity proof remain separate gates.'}
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
+    output.write_bytes((json.dumps(report, indent=2)+'\n').encode('utf-8'))
     print(json.dumps({k: report[k] for k in ('candidate', 'base', 'unpublished_commits', 'lfs_unique_count', 'lfs_unique_bytes', 'errors', 'passed')}))
     return 0 if report['passed'] else 1
 
