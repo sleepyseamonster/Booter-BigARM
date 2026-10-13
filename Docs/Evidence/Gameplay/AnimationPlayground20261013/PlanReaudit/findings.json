@@ -1,0 +1,182 @@
+{
+  "date": "2026-10-13",
+  "audited_head": "9f891713136ef8336ddf2b0aab676a1ac897de7e",
+  "findings": [
+    {
+      "id": "PA01",
+      "priority": "P1",
+      "finding_and_evidence": "`TopDown3DInteractionController.FindBestTarget` explicitly searches Ironstone, harvester, camp and cache components. An interface-only chair/ladder will not appear.",
+      "plan_correction": "One target descriptor/query path, registration/deduplication and target-owned collider checks in FND2.",
+      "resolution_stage": "FND2",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA02",
+      "priority": "P1",
+      "finding_and_evidence": "`TopDown3DPlayerActionController.TryBeginTarget` dispatches the special types, then enters the reward-oriented gather state.",
+      "plan_correction": "Explicit station-action dispatch before legacy gathering; no fake reward/consume adapters.",
+      "resolution_stage": "FND2",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA03",
+      "priority": "P1",
+      "finding_and_evidence": "Motor `IsActionConstrained` returns early, zeros planar velocity and publishes a zero-motion snapshot.",
+      "plan_correction": "Owned motion modes must advance inside the motor and publish actual motion/posture to presentation.",
+      "resolution_stage": "FND4",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA04",
+      "priority": "P1",
+      "finding_and_evidence": "Cargo/camp gates use legacy `IsGathering`/placement flags; waiting for Legger can be busy without a motor constraint.",
+      "plan_correction": "Shared activity projection covers legacy work and new actions; retain the motor lease as motion authority.",
+      "resolution_stage": "FND2",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA05",
+      "priority": "P1",
+      "finding_and_evidence": "Controls preferences whitelist active actions and check conflicts only against that list plus Move/CameraLookAhead. Menu configuration defaults to the global preference directory.",
+      "plan_correction": "Lab commands enter the coactive conflict policy; inject a distinct controls directory and use an owned runtime asset instance.",
+      "resolution_stage": "FND3",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA06",
+      "priority": "P1",
+      "finding_and_evidence": "Menu/camp/inventory already own input modes, EventSystem references and release gating.",
+      "plan_correction": "Host the action palette in the existing menu owner; one modal owner, no parallel UI input stack.",
+      "resolution_stage": "FND3",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA07",
+      "priority": "P1",
+      "finding_and_evidence": "Legacy gait timing/foot contacts continue inside the animation driver; a new mixer branch alone does not switch contact authority.",
+      "plan_correction": "Explicit pose/clock/contact routing; one physical effect ledger, no inactive-gait footsteps.",
+      "resolution_stage": "FND4",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA08",
+      "priority": "P1",
+      "finding_and_evidence": "`Test-LocalWorkspace.ps1` and `repo-health.sh` reject orphan `.meta` files. Previously planned public FBX metadata would orphan on a clone without private payloads.",
+      "plan_correction": "Keep restricted payload and paired metadata together privately; track folder scaffolding, GUID/import receipts and recipes publicly. Hydration preserves GUIDs.",
+      "resolution_stage": "DEP1",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA09",
+      "priority": "P1",
+      "finding_and_evidence": "Read-only FBX import found 30 finger bones in the original 74-bone rig and the 102-bone re-export, versus eight index-chain bones in the Mixamo rig.",
+      "plan_correction": "Compare source and target rigs before contact authoring. Separate source/target Avatars for differing hierarchies; fuller bones still need authored grip poses.",
+      "resolution_stage": "ART1",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA10",
+      "priority": "P1",
+      "finding_and_evidence": "Phase mapping explicitly orders R0 → L0 → R1 → L1. The profiler is bound to the canonical model/profile and its measurement helper is private.",
+      "plan_correction": "Add a parameterized calibrated preview fixture and validate cross-foot cyclic order, units and source phase normalization, not only two contacts per foot.",
+      "resolution_stage": "ART2",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA11",
+      "priority": "P1",
+      "finding_and_evidence": "Motor nominal non-sprint speed is 4.2; keyboard movement is full magnitude. Existing art has no upright backward locomotion or standing turn-in-place set.",
+      "plan_correction": "Add a lab walk modifier and motion-role gaps. Facing-independent movement must not silently play forward clips while backpedalling.",
+      "resolution_stage": "PHY1",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA12",
+      "priority": "P1",
+      "finding_and_evidence": "Pickup/throw sources exist, but carry/hold/place sequences and persistent held-object presentation are not defined.",
+      "plan_correction": "Require a qualified stationary hold plus safe drop; enable walking with held props only after carry poses/locomotion qualify.",
+      "resolution_stage": "PHY2",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA13",
+      "priority": "P1",
+      "finding_and_evidence": "No corpse collider, airborne fatal exit or posture-compatible get-up/death policy is implemented.",
+      "plan_correction": "Define collision/gravity and damage policy by posture, terminal hold, clearance-tested recovery and reset. No initial ragdoll requirement.",
+      "resolution_stage": "PHY5",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA14",
+      "priority": "P1",
+      "finding_and_evidence": "The save service captures survival and actor transforms on a safe 30-second timer and quit; menu controls save separately.",
+      "plan_correction": "Apply scene session policy before restore/writer startup; independently isolate lab controls. Test autosave/manual/disable/quit and file byte preservation.",
+      "resolution_stage": "FND1",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA15",
+      "priority": "P1",
+      "finding_and_evidence": "Broader Downloads scan found two byte-distinct sprint export attempts omitted from the folder-only map.",
+      "plan_correction": "Account for all aliases and preserve the two versions outside Unity imports. Their sampled frame poses match the retained sprint reference.",
+      "resolution_stage": "DEP1",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA16",
+      "priority": "P1",
+      "finding_and_evidence": "Chair/ground/sleep loops do not form complete enter/exit sets; existing camp clips are separate configured assets with their own placement/equipment lifecycle.",
+      "plan_correction": "Assign per-role acquisition/adaptation and family exit gates. Do not drive a bedroll by two competing camp/action owners.",
+      "resolution_stage": "PHY4",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA17",
+      "priority": "P1",
+      "finding_and_evidence": "Existing scene tests open/clear scenes and install runtime UI; the profiler creates a preview scene.",
+      "plan_correction": "Separate read-only loaded-scene checks from disposable fixture tests. Hydrated validation copies need approved ownership and capacity.",
+      "resolution_stage": "ACC1",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA18",
+      "priority": "P1",
+      "finding_and_evidence": "Sprint auto-vault/steep-climb, capsule support and gravity already live in the motor.",
+      "plan_correction": "Define arbitration with crouch/slide/ladder/cover; probe shapes and support must use current posture.",
+      "resolution_stage": "FND4",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA19",
+      "priority": "P1",
+      "finding_and_evidence": "Markers can cross on long frames, loops, pause, cancel and preview seek; “exactly once” was stated without a full clock/commit contract.",
+      "plan_correction": "Pure marker/transaction ledger, action epochs, bounded cycle effects and FixedUpdate commits before family implementation.",
+      "resolution_stage": "FND4",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA20",
+      "priority": "P1",
+      "finding_and_evidence": "Mounting and wall/crowd alternatives were deferred “if still wanted,” although they came from the author’s requested animation list.",
+      "plan_correction": "Keep them as requested gap closure, distinct from optional polish. Define an initial candidate milestone and a later complete requested milestone.",
+      "resolution_stage": "EXT1",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA21",
+      "priority": "P2",
+      "finding_and_evidence": "Existing algae drink/eat/treat and companion/item interactions have little or no dedicated player animation presentation.",
+      "plan_correction": "Record unarmed use-item, carry and environment-inspection roles in a prioritized backlog; preserve existing transaction ownership.",
+      "resolution_stage": "EXT1",
+      "runtime_implemented": false
+    },
+    {
+      "id": "PA22",
+      "priority": "P1",
+      "finding_and_evidence": "Previous batch 2 required animation/contact qualification before the generic fixture, action contracts and scene safety existed.",
+      "plan_correction": "Reorder into independent foundation gates, minimal rig qualification, bulk import/profile qualification, then player/station families.",
+      "resolution_stage": "PRE0",
+      "runtime_implemented": false
+    }
+  ]
+}

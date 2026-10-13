@@ -1,0 +1,901 @@
+{
+  "date": "2026-10-13",
+  "audited_head": "9f891713136ef8336ddf2b0aab676a1ac897de7e",
+  "scope": "Dated Mixamo folders, loose motion exports and two accepted-character aliases; original rig alternatives and mesh-only input are separate",
+  "source_root": "Windows Downloads",
+  "copies": 148,
+  "unique_byte_payloads": 74,
+  "dated_folder_copies": 73,
+  "loose_motion_exports": 73,
+  "standalone_character_aliases": 2,
+  "records": [
+    {
+      "path": "MixamoLocomotion20261013/Breathing Idle.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 607248,
+      "sha256": "99f9088d8e88608cb1f2df859d88ad0109ddae80a2f8831d8861d5ad030a8ce6"
+    },
+    {
+      "path": "MixamoLocomotion20261013/Character T-Pose.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 2251184,
+      "sha256": "df84725e3654fc8221e110404c3fc921daabec368d4f29f70fb9a7a97dc20ef4"
+    },
+    {
+      "path": "MixamoLocomotion20261013/Sprint - forward travel alternative.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 177824,
+      "sha256": "a09071f70bdb8887f94ce90a49998a6966b13ab13b3f898aa94fd8fb79e40d99"
+    },
+    {
+      "path": "MixamoLocomotion20261013/Standard Run.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 191280,
+      "sha256": "06ce6184815280b47e7726aa263dbc491788e4677ac9368ac6cca1bf27d9a734"
+    },
+    {
+      "path": "MixamoLocomotion20261013/Standard Walk.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 217952,
+      "sha256": "76d67f23891d0cba86be6385d435e6e8769314f6cc7df4a0ab021a5768f79814"
+    },
+    {
+      "path": "MixamoLocomotion20261013/Two Cycle Sprint.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 211808,
+      "sha256": "9f0f7650f92962b82fa25f767b84f3ed32e375dde8c0c8bdd85898b3f8fa9e52"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Crouch - enter.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 387696,
+      "sha256": "034ef9847cf890836644a5ccd34b46eb0df7fe44c6ccfe72b5a7a3432a5d2baf"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Crouch - exit.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 287504,
+      "sha256": "4c3053d5cd997114747772f79e8df5b833af42d84827b3095ff96d8d340d0397"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Crouch - idle.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 228800,
+      "sha256": "90d5a2ff23f639ed32743efd36c051599cdb6f8d41906bab897990003fe84f65"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Crouch walk - backward.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 222064,
+      "sha256": "b2f9ff0ec39f794bcac7c076fa9a41ae0ac02d2dbf6a9a53fd9bcb995f358b2e"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Crouch walk - forward.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 215904,
+      "sha256": "9d67675c52fceb552dd493a8cd3f93bfb1752cafaadbda3c38b1400f84d90aeb"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Crouch walk - left.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 218032,
+      "sha256": "338ad99ca412d50cd2dc8f5421ccaa68ca20334198a08f12691ef3030d60f2fd"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Crouch walk - right.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 224112,
+      "sha256": "0636fbdca9eeed58814c00babf8e951ec5ce2677716a88d1635c129f67ee06eb"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Death - falling backward.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 297776,
+      "sha256": "af48a8c77122829ace96a18062ed3d492d32f01f9623e2f34a90d59f4febf8f4"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Death - falling forward.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 295824,
+      "sha256": "af3552f7751616a3be873862544ffcf86b03057318482786ef73d3ef7823eba2"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Death - standing backward.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 369808,
+      "sha256": "4bcf5b95bdf255112b036a92c228ef2bde0432b194284b126f8ec3a5b49f491d"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Fall - airborne idle.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 187712,
+      "sha256": "31f22b4c16cc723cfb284141247b5074e6376822f11c377df367697b58f5d53a"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Fall - landing.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 207200,
+      "sha256": "7d697f79133f798eb83f303070b7983ac07cd4fd691a68a109c905bba5a2f9b9"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Fall - roll landing.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 272864,
+      "sha256": "cca1253efe8a04a38b3fe7b0d7dc109e29baa703112c4e228030484bb8ce7b37"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Hit - body.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 244640,
+      "sha256": "3fa42b5c837657743ac1d2be5eb94c3cd98c09d1fde42593f2f9299147ecae3e"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Hit large - back.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 248736,
+      "sha256": "e38d45ce2da53ec80d7c24558c6ae82a3ab803e8219937735a84eea4211554c2"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Hit large - front.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 230272,
+      "sha256": "0699b804a44f9f4f91c952d54d3f6c3e0e627ed34e9a4d1340864e806ebcd1cc"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Hit large - left.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 242576,
+      "sha256": "8a36e89574955864f6dd796cb5ae4acbf503d1b55652c390a56e77f2f2f6cc79"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Hit large - right.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 246688,
+      "sha256": "c636b06a2176225ce9d3a2111d29065f47245f3b1e1d0e03149b44323c9868ea"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Hit small - back.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 224112,
+      "sha256": "43a0327babfe541a4aee711c99ac44971e0f74b66ecad6fc0cf2c82926b5a445"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Hit small - front.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 218720,
+      "sha256": "f2019c33192b3a83e7ab30d41c90989353393d593fd60304e9563dc9d089148d"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Hit small - left.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 218720,
+      "sha256": "eddf448288b0814817e882c85149febf2e53c6e44390e5f2bdf597c0894e0918"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Hit small - right.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 205536,
+      "sha256": "e9925c2843ad32bad81b20a0cc0472ea72dccd4db641fe60ccbff61bdeeb2045"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Jump - running.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 201536,
+      "sha256": "6993cb9cc44d017fd75d1edb6814d34f9b5ca059d8c0f5448da9e270a5f4392e"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Jump - standing.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 291824,
+      "sha256": "3605b12a8024b214a2db6c86d301c3b5ad05bff500d93445d0e2ddbf4fb1ede7"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Jump - unarmed.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 289776,
+      "sha256": "854db1b3db23f109a9df33e0d838cf4143637696d21e868e821bce84a88429ad"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Kick - front snap.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 234272,
+      "sha256": "e3fe51ae90af770ccac85a3ac89113d871a814375da63a31b8a0847d780a0cb9"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Kick - MMA low.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 238480,
+      "sha256": "3d2f8da10378a407299cc5b03a46033f2b91b4b0c748430028f8f00b3eaccff4"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Kick - side.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 256304,
+      "sha256": "7091a0c808a5e750b2c325d95e98d4c88da8047197b0c7c657ef7ec55935338f"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Kick - thrust.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 263136,
+      "sha256": "a37fe3ca7bd169c5c5ceb8f536ce3906faa5dac42e7d6f4d7945403d68c5e69f"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Ladder - climb.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 191680,
+      "sha256": "238e36087a8c0b3f754e9965dc50d58efd936a5be81e1d049682d32fdfa79922"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Ladder - one step.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 230736,
+      "sha256": "90458be5bf0e252c22579c4fb9e03788cfb6740fcd70c2d49669f9978dbccdd9"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Ladder - start.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 268144,
+      "sha256": "c0d05f478076ee0dbd12e95f18f0a058013cf10c0a821b7ae36bb5aeab628898"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Ladder - top exit.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 383744,
+      "sha256": "2a0df7401f1099610039dc5cedec422d773341b79b6492e723bcd673a079a5b5"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Ladder - two steps.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 306336,
+      "sha256": "fd57e66ece0554293cfcf74abf57603cd22a2b4023a0f8e2ba72a9b1c2defd88"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Mining reference - downward tool swing.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 280208,
+      "sha256": "849423196165ede1e42ad9e402b76232ee0e8142b318ffbd7daf47fc70bb4b1f"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Punch - cross.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 256304,
+      "sha256": "054f8d20f6486934cbc88a70e04c0313f7beee4fbca6f3172ae75a41766860de"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Punch - hook.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 265472,
+      "sha256": "c24db1e020055b3c6f7b63712be6bd23f9a1ddff6a2f3a0c87ea4ef75421f39b"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Punch - jab.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 201936,
+      "sha256": "6079eb74349e3854f3cf2c85b664271cdc5bf891a613da3666f1a19f1f1f397d"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Reference only - crouched death weapon pose.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 294560,
+      "sha256": "2a6e16dd367dd4f919934ffa70ecdb48b3fcaa9c922b5d7d12ccaec507b3c541"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Running slide.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 237216,
+      "sha256": "2c849d828aad87f6b716e95281a8b1dfa8b292a5082920b2ee55a5d47bd748b7"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Strafe run - left.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 187184,
+      "sha256": "d0ebacb98080968155ef8712770764dfd77be0196a77634238e28974aafe06af"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Strafe run - right.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 187184,
+      "sha256": "f2324abd74ab2440c9f6bc4dbe53c96f5ea4f27946c9844fc21536e432448947"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Strafe walk - left.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 226928,
+      "sha256": "957e963aaa528bde8ce8f8cb89b4ce4857fadba693be4a707f4a654198463c65"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Strafe walk - right.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 226928,
+      "sha256": "5198884d344292a0650afcb00dd13d46963ff84048b230cb0a1389a04beca1d6"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Throw - alternate.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 408320,
+      "sha256": "414f890f63209bf2f9a601557f6d9c5419a9fc3e1a4924fbcf3bc34c9be6b450"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Throw - pickup and throw.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 385872,
+      "sha256": "247703d55173e0617b23090c91db0d9ba6baf584cbe5fda7c31b701bcdb83ddf"
+    },
+    {
+      "path": "MixamoOriginalActions20261013/Throw - standard.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 281568,
+      "sha256": "e1b7f72323527b0425c5f9549acc38d0e4167fa14fbe53aab00da55669f90a44"
+    },
+    {
+      "path": "MixamoRest20261013/Sleeping Idle - Sleeping Deeply.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 472224,
+      "sha256": "fb348c038f93937914bd835fc1d9a11336531ed21047edcc5e7489eeffdf46e2"
+    },
+    {
+      "path": "MixamoUnarmedCover20261013/Cover Idle.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 293056,
+      "sha256": "8529de116cd7b93033bf55a791b0170b0fc643b0164b2d1e741bffc2c1eaa136"
+    },
+    {
+      "path": "MixamoUnarmedCover20261013/Left Cover Sneak.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 211008,
+      "sha256": "506b4124b1bba13b24ada0cff03551a5e6252e0604e15154344a9b97d84ef8cd"
+    },
+    {
+      "path": "MixamoUnarmedCover20261013/Right Cover Sneak.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 211008,
+      "sha256": "32c577a590f16f57c979e91f1db3658c02dc6bb61f034d78c5b4f0f6525168a9"
+    },
+    {
+      "path": "MixamoUnarmedCover20261013/Stand To Cover.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 221376,
+      "sha256": "2c46a95f102b99a063e1dac472fda41a0fe5ea2aa1c477f0865faf9a36d59033"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Button press.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 331216,
+      "sha256": "e307c8719363c117b0faf33dff3090d34819815b0be36e9c0103838fbb94fd61"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Dodge - backward.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 304544,
+      "sha256": "37140647db20ce2c8042cc0e11fe94ccb385247078e75299f9707d3a6092f36c"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Dodge - right.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 225088,
+      "sha256": "230356258ca5d231cc9f0263e654a0ed2bb7233053e261adefe7b6bad589f7f9"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Duck from standing.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 237216,
+      "sha256": "f41b40def2b44697f92edc29110fcf46dbabac21daed847924b3fcffa70de7b5"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Get up - back.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 545936,
+      "sha256": "e72bdf1109ad6e2e9a5106e681a8ee3725997fa2d03338134a8574fd9b13632e"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Get up - stomach.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 539360,
+      "sha256": "364661559b9b344e2fa8be37c45148b1fa492019d86dbae2454d34fe1199d3d1"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Mining reference - downward tool swing.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 280208,
+      "sha256": "849423196165ede1e42ad9e402b76232ee0e8142b318ffbd7daf47fc70bb4b1f"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Pickup - one hand.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 346368,
+      "sha256": "d864539798595cc242faef5e4fe56fced90a3f8b42d7b0a55e969fcfdd73f736"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Pickup and examine.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 493264,
+      "sha256": "2f9482b994ca8af8e7b9706a946932939c8b82a8c7efd0bd08d7dbf273b39c09"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Push - cycle.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 293024,
+      "sha256": "da0240bb73dce3dd975ac2dab243e9004524de114a47678996981afa07049735"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Push - start.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 369712,
+      "sha256": "ef740a93c86c3f34400b7b7717d2efe5bce5a505311035349f72444c0d4912b7"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Push - stop.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 300576,
+      "sha256": "6bfeb9598e294389eae5049261e80f3a5011cf2eb7ee044bd8bccb2174b25928"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Sit down - chair.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 363648,
+      "sha256": "583286fd1821e85ed32ba126eaccfa46ef0874fe68b98a3c3b4e2126c0d77165"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Sitting idle - chair.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 322352,
+      "sha256": "35bc286dd70953e8ddbed8796baed89a38f19e0039ba8a5396b06e1ef5dfd5fa"
+    },
+    {
+      "path": "MixamoUnarmedInteractions20261013/Sitting idle - ground.fbx",
+      "kind": "dated-folder-copy",
+      "bytes": 562192,
+      "sha256": "cc4b616b2cf15aec5da943d6bfdad6299125cf6a26c406a5631d15f591bf6d40"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Breathing Idle.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 607248,
+      "sha256": "99f9088d8e88608cb1f2df859d88ad0109ddae80a2f8831d8861d5ad030a8ce6"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Button Pushing.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 331216,
+      "sha256": "e307c8719363c117b0faf33dff3090d34819815b0be36e9c0103838fbb94fd61"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Climbing (1).fbx",
+      "kind": "loose-motion-export",
+      "bytes": 306336,
+      "sha256": "fd57e66ece0554293cfcf74abf57603cd22a2b4023a0f8e2ba72a9b1c2defd88"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Climbing Ladder.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 191680,
+      "sha256": "238e36087a8c0b3f754e9965dc50d58efd936a5be81e1d049682d32fdfa79922"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Climbing To Top.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 383744,
+      "sha256": "2a0df7401f1099610039dc5cedec422d773341b79b6492e723bcd673a079a5b5"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Climbing.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 230736,
+      "sha256": "90458be5bf0e252c22579c4fb9e03788cfb6740fcd70c2d49669f9978dbccdd9"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Cover Idle.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 293056,
+      "sha256": "8529de116cd7b93033bf55a791b0170b0fc643b0164b2d1e741bffc2c1eaa136"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Cross Punch.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 256304,
+      "sha256": "054f8d20f6486934cbc88a70e04c0313f7beee4fbca6f3172ae75a41766860de"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Crouch Death.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 294560,
+      "sha256": "2a6e16dd367dd4f919934ffa70ecdb48b3fcaa9c922b5d7d12ccaec507b3c541"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Crouch Idle.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 228800,
+      "sha256": "90d5a2ff23f639ed32743efd36c051599cdb6f8d41906bab897990003fe84f65"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Crouch To Stand.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 287504,
+      "sha256": "4c3053d5cd997114747772f79e8df5b833af42d84827b3095ff96d8d340d0397"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Crouch Walk Back.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 222064,
+      "sha256": "b2f9ff0ec39f794bcac7c076fa9a41ae0ac02d2dbf6a9a53fd9bcb995f358b2e"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Crouch Walk Forward.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 215904,
+      "sha256": "9d67675c52fceb552dd493a8cd3f93bfb1752cafaadbda3c38b1400f84d90aeb"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Crouch Walk Left.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 218032,
+      "sha256": "338ad99ca412d50cd2dc8f5421ccaa68ca20334198a08f12691ef3030d60f2fd"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Crouch Walk Right.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 224112,
+      "sha256": "0636fbdca9eeed58814c00babf8e951ec5ce2677716a88d1635c129f67ee06eb"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Crouching.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 387696,
+      "sha256": "034ef9847cf890836644a5ccd34b46eb0df7fe44c6ccfe72b5a7a3432a5d2baf"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Dodging Back.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 304544,
+      "sha256": "37140647db20ce2c8042cc0e11fe94ccb385247078e75299f9707d3a6092f36c"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Dodging Right.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 225088,
+      "sha256": "230356258ca5d231cc9f0263e654a0ed2bb7233053e261adefe7b6bad589f7f9"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Ducking.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 237216,
+      "sha256": "f41b40def2b44697f92edc29110fcf46dbabac21daed847924b3fcffa70de7b5"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Falling Back Death.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 297776,
+      "sha256": "af48a8c77122829ace96a18062ed3d492d32f01f9623e2f34a90d59f4febf8f4"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Falling Forward Death.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 295824,
+      "sha256": "af3552f7751616a3be873862544ffcf86b03057318482786ef73d3ef7823eba2"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Falling Idle.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 187712,
+      "sha256": "31f22b4c16cc723cfb284141247b5074e6376822f11c377df367697b58f5d53a"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Falling To Landing.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 207200,
+      "sha256": "7d697f79133f798eb83f303070b7983ac07cd4fd691a68a109c905bba5a2f9b9"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Falling To Roll.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 272864,
+      "sha256": "cca1253efe8a04a38b3fe7b0d7dc109e29baa703112c4e228030484bb8ce7b37"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Getting Up (1).fbx",
+      "kind": "loose-motion-export",
+      "bytes": 539360,
+      "sha256": "364661559b9b344e2fa8be37c45148b1fa492019d86dbae2454d34fe1199d3d1"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Getting Up.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 545936,
+      "sha256": "e72bdf1109ad6e2e9a5106e681a8ee3725997fa2d03338134a8574fd9b13632e"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Hit Reaction.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 244640,
+      "sha256": "3fa42b5c837657743ac1d2be5eb94c3cd98c09d1fde42593f2f9299147ecae3e"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Hook Punch.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 265472,
+      "sha256": "c24db1e020055b3c6f7b63712be6bd23f9a1ddff6a2f3a0c87ea4ef75421f39b"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Kicking (1).fbx",
+      "kind": "loose-motion-export",
+      "bytes": 263136,
+      "sha256": "a37fe3ca7bd169c5c5ceb8f536ce3906faa5dac42e7d6f4d7945403d68c5e69f"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Kicking.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 234272,
+      "sha256": "e3fe51ae90af770ccac85a3ac89113d871a814375da63a31b8a0847d780a0cb9"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Left Cover Sneak.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 211008,
+      "sha256": "506b4124b1bba13b24ada0cff03551a5e6252e0604e15154344a9b97d84ef8cd"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Left Strafe.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 187184,
+      "sha256": "d0ebacb98080968155ef8712770764dfd77be0196a77634238e28974aafe06af"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Lifting.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 493264,
+      "sha256": "2f9482b994ca8af8e7b9706a946932939c8b82a8c7efd0bd08d7dbf273b39c09"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Mma Kick.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 238480,
+      "sha256": "3d2f8da10378a407299cc5b03a46033f2b91b4b0c748430028f8f00b3eaccff4"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Picking Up Object.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 346368,
+      "sha256": "d864539798595cc242faef5e4fe56fced90a3f8b42d7b0a55e969fcfdd73f736"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Punching.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 201936,
+      "sha256": "6079eb74349e3854f3cf2c85b664271cdc5bf891a613da3666f1a19f1f1f397d"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Push Start.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 369712,
+      "sha256": "ef740a93c86c3f34400b7b7717d2efe5bce5a505311035349f72444c0d4912b7"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Push Stop.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 300576,
+      "sha256": "6bfeb9598e294389eae5049261e80f3a5011cf2eb7ee044bd8bccb2174b25928"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Pushing.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 293024,
+      "sha256": "da0240bb73dce3dd975ac2dab243e9004524de114a47678996981afa07049735"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Right Cover Sneak.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 211008,
+      "sha256": "32c577a590f16f57c979e91f1db3658c02dc6bb61f034d78c5b4f0f6525168a9"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Right Strafe.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 187184,
+      "sha256": "f2324abd74ab2440c9f6bc4dbe53c96f5ea4f27946c9844fc21536e432448947"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Running Jump.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 201536,
+      "sha256": "6993cb9cc44d017fd75d1edb6814d34f9b5ca059d8c0f5448da9e270a5f4392e"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Running Slide.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 237216,
+      "sha256": "2c849d828aad87f6b716e95281a8b1dfa8b292a5082920b2ee55a5d47bd748b7"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Side Kick.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 256304,
+      "sha256": "7091a0c808a5e750b2c325d95e98d4c88da8047197b0c7c657ef7ec55935338f"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Sitting Idle (1).fbx",
+      "kind": "loose-motion-export",
+      "bytes": 562192,
+      "sha256": "cc4b616b2cf15aec5da943d6bfdad6299125cf6a26c406a5631d15f591bf6d40"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Sitting Idle.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 322352,
+      "sha256": "35bc286dd70953e8ddbed8796baed89a38f19e0039ba8a5396b06e1ef5dfd5fa"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Sitting.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 363648,
+      "sha256": "583286fd1821e85ed32ba126eaccfa46ef0874fe68b98a3c3b4e2126c0d77165"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Sleeping Idle.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 472224,
+      "sha256": "fb348c038f93937914bd835fc1d9a11336531ed21047edcc5e7489eeffdf46e2"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Sprint (1).fbx",
+      "kind": "loose-motion-export",
+      "bytes": 177824,
+      "sha256": "8a68157e86343d343bf36cae8df6faba2ccfd9aa575f26f6e0d8370bc0c9fc8c"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Sprint (2).fbx",
+      "kind": "loose-motion-export",
+      "bytes": 177824,
+      "sha256": "a09071f70bdb8887f94ce90a49998a6966b13ab13b3f898aa94fd8fb79e40d99"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Sprint.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 177824,
+      "sha256": "752360bbcb37e4a17668d40b5bd3098372b8e78ba1827319e1396e43f18a0368"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Stand To Cover.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 221376,
+      "sha256": "2c46a95f102b99a063e1dac472fda41a0fe5ea2aa1c477f0865faf9a36d59033"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standard Run.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 191280,
+      "sha256": "06ce6184815280b47e7726aa263dbc491788e4677ac9368ac6cca1bf27d9a734"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standard Walk.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 217952,
+      "sha256": "76d67f23891d0cba86be6385d435e6e8769314f6cc7df4a0ab021a5768f79814"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing Jump.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 291824,
+      "sha256": "3605b12a8024b214a2db6c86d301c3b5ad05bff500d93445d0e2ddbf4fb1ede7"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing Melee Attack Downward.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 280208,
+      "sha256": "849423196165ede1e42ad9e402b76232ee0e8142b318ffbd7daf47fc70bb4b1f"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing React Death Backward.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 369808,
+      "sha256": "4bcf5b95bdf255112b036a92c228ef2bde0432b194284b126f8ec3a5b49f491d"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing React Large From Back.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 248736,
+      "sha256": "e38d45ce2da53ec80d7c24558c6ae82a3ab803e8219937735a84eea4211554c2"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing React Large From Front.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 230272,
+      "sha256": "0699b804a44f9f4f91c952d54d3f6c3e0e627ed34e9a4d1340864e806ebcd1cc"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing React Large From Left.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 242576,
+      "sha256": "8a36e89574955864f6dd796cb5ae4acbf503d1b55652c390a56e77f2f2f6cc79"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing React Large From Right.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 246688,
+      "sha256": "c636b06a2176225ce9d3a2111d29065f47245f3b1e1d0e03149b44323c9868ea"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing React Small From Back.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 224112,
+      "sha256": "43a0327babfe541a4aee711c99ac44971e0f74b66ecad6fc0cf2c82926b5a445"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing React Small From Front.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 218720,
+      "sha256": "f2019c33192b3a83e7ab30d41c90989353393d593fd60304e9563dc9d089148d"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing React Small From Left.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 218720,
+      "sha256": "eddf448288b0814817e882c85149febf2e53c6e44390e5f2bdf597c0894e0918"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Standing React Small From Right.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 205536,
+      "sha256": "e9925c2843ad32bad81b20a0cc0472ea72dccd4db641fe60ccbff61bdeeb2045"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Start Climbing Ladder.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 268144,
+      "sha256": "c0d05f478076ee0dbd12e95f18f0a058013cf10c0a821b7ae36bb5aeab628898"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Throw Object.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 385872,
+      "sha256": "247703d55173e0617b23090c91db0d9ba6baf584cbe5fda7c31b701bcdb83ddf"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Throw.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 281568,
+      "sha256": "e1b7f72323527b0425c5f9549acc38d0e4167fa14fbe53aab00da55669f90a44"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Throwing.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 408320,
+      "sha256": "414f890f63209bf2f9a601557f6d9c5419a9fc3e1a4924fbcf3bc34c9be6b450"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Two Cycle Sprint.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 211808,
+      "sha256": "9f0f7650f92962b82fa25f767b84f3ed32e375dde8c0c8bdd85898b3f8fa9e52"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Unarmed Jump.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 289776,
+      "sha256": "854db1b3db23f109a9df33e0d838cf4143637696d21e868e821bce84a88429ad"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Walk Strafe Left.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 226928,
+      "sha256": "957e963aaa528bde8ce8f8cb89b4ce4857fadba693be4a707f4a654198463c65"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged@Walk Strafe Right.fbx",
+      "kind": "loose-motion-export",
+      "bytes": 226928,
+      "sha256": "5198884d344292a0650afcb00dd13d46963ff84048b230cb0a1389a04beca1d6"
+    },
+    {
+      "path": "male_basemesh_mixamo_rigged.fbx",
+      "kind": "standalone-character-alias",
+      "bytes": 2251184,
+      "sha256": "df84725e3654fc8221e110404c3fc921daabec368d4f29f70fb9a7a97dc20ef4"
+    },
+    {
+      "path": "male_basemesh_mixamo_unrigged (1).fbx",
+      "kind": "standalone-character-alias",
+      "bytes": 2251184,
+      "sha256": "df84725e3654fc8221e110404c3fc921daabec368d4f29f70fb9a7a97dc20ef4"
+    }
+  ]
+}

@@ -1,143 +1,138 @@
 # Camp Loop animation asset import plan
 
-Date: 2026-10-13. Part one of the [implementation plan](./CAMP_LOOP_ANIMATION_PLAYGROUND_IMPLEMENTATION_PLAN_2026-10-13.md). Bring all downloaded sources into the local Unity project with stable identity, reproducible import settings and preserved originals. The [planned manifest](./AnimationPlayground20261013/asset-import-plan.json) is the exact copy map; no copy or import has been executed by this planning task.
+Date: 2026-10-13. Revision 2 of the [master plan](./CAMP_LOOP_ANIMATION_PLAYGROUND_IMPLEMENTATION_PLAN_2026-10-13.md), corrected by the [reaudit](./CAMP_LOOP_ANIMATION_PLAN_AUDIT_2026-10-13.md). The [schema 2 map](./AnimationPlayground20261013/asset-import-plan.json) is the exact planned transfer. No asset import or source export occurs in this audit.
 
-## Canonical files and storage
+## Complete collection and destinations
 
-The five Downloads folders contain 73 FBX copies. Copy 72 unique FBXs to canonical paths: one skin-bearing character, 68 unarmed motion candidates and three restricted motion references. Both mining copies map to one destination. The standalone `male_basemesh_mixamo_rigged.fbx` is another alias of the Character T-Pose bytes; it does not create a second Avatar. Preserve every download and earlier Blender/FBX source.
+Account for 73 dated-folder copies, 73 loose motion exports and two standalone character aliases: 148 copies and 74 distinct byte payloads. The original folder inventory covered 72 unique FBXs. Two newly accounted payloads are earlier sprint attempts whose sampled poses match the retained forward-travel sprint. Preserve them as source versions, not duplicate gameplay entries.
 
-Use PascalCase names without spaces. Character: `Assets/_Project/Art/Characters/AnimationPlayground/MaleBaseMeshMixamo.fbx`. Motions: `Assets/_Project/Art/Animations/Mixamo/`, grouped into Locomotion, Traversal, Combat and Interactions. References have their own `Reference/` family folders. Proposed settings live under `Assets/_Project/Settings/AnimationPlayground/`; character/station prefabs under `Assets/_Project/Prefabs/AnimationPlayground/`.
+Keep the existing 72 planned Unity destinations: one Mixamo source character, 68 unarmed motion candidates and three restricted references. Character source: `Assets/_Project/Art/Characters/AnimationPlayground/MaleBaseMeshMixamo.fbx`. Motion sources: `Assets/_Project/Art/Animations/Mixamo/` grouped by family, with restricted sources in Reference. Preserve two export versions under local `SourceArt/Animation/Mixamo/Reference/`. Original 74/102-bone rigs and the mesh-only input remain separately recorded source alternatives; they do not inflate the motion count.
 
-The current GitHub repository is public, as verified through its [repository metadata endpoint](https://api.github.com/repos/sleepyseamonster/Booter-BigARM). Adobe permits game use, while its Content Files terms restrict stand-alone distribution. The storage plan treats raw and derived Mixamo clips as private project dependencies. [Mixamo FAQ](https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html), [Adobe terms section 3.6](https://www.adobe.com/legal/terms.html#use-of-services-and-software).
+Use PascalCase filenames. Preserve all Downloads and old Blender/FBX sources. Matching byte aliases map to one asset; byte-distinct source versions are retained. Do not deduplicate existing Unity assets by file hash or overwrite a populated destination.
 
-During implementation, add narrow repository ignore rules **before** importing: this new character FBX; all FBX payloads under the new Mixamo folder; any derived `.anim`, `.blend`, source archive or `.unitypackage` under its private payload boundary. Do not ignore `.meta`, catalog/profile `.asset`, prefabs, code or transfer manifests. No blanket FBX/LFS rule or existing-source untracking is needed. Keep all Blender sources local according to the existing [source policy](../../Operations/LOCAL_ONLY_SOURCE_POLICY.md).
+## Private payload and metadata pairing
 
-Stage and commit metadata, references, restoration tools and project-authored stations normally. Never embed animation keyframes in a public prefab, scene, ScriptableObject, generated C# or unrestricted archive to bypass the payload boundary. A license receipt could later clear the character separately; it does not clear Mixamo motions. Making GitHub private or selecting a cloud sharing service would be a separate account decision, not this plan's default.
+The current repository is public. Adobe's Content Files terms restrict stand-alone distribution, so raw/derived Mixamo payloads remain private dependencies. [Adobe terms section 3.6](https://www.adobe.com/legal/terms.html?internal_browser=true).
 
-Create a hash-verified private working set outside public Git storage, proposed at `D:\BooterBigArmPrivateAssets\Mixamo\2026-10-13\`. Preserve Downloads on C: as a second original source location. The manifest and a restoration helper let this machine or an authorized project teammate hydrate the exact Assets paths from a supplied private directory. This plan authorizes no external upload or sharing action. A fresh public clone can continue using production; the playground explicitly reports missing private dependencies until hydrated rather than pretending its animations are present.
+The previous plan's public `.fbx.meta` approach is superseded: both repo health checks reject those files when their FBXs are absent. **Keep each restricted FBX/derived clip and its paired metadata together in a private bundle**, including importer settings, GUID and clip subasset IDs. Track public folder `.meta` plus `.gitkeep` scaffolding, transfer/recipe/GUID receipts, code and project-authored geometry/materials. Both the local hydrated workspace and a public clone must pass ordinary asset/metadata pairing checks; do not weaken those checks globally.
 
-## Transfer and metadata procedure
+Future scoped ignore rules cover the new private payload files and their paired `.meta`, private binding assets and source versions; they do not hide folder metadata, public recipe/configuration assets or unrelated art. Existing Blender/local source rules remain unchanged. The proposed private working set is `D:\BooterBigArmPrivateAssets\Mixamo\2026-10-13\`; Downloads on C: preserves originals. No external upload, repository visibility change, purchase or LFS change is assumed.
 
-1. Refresh all source hashes/sizes against the audited inventory, inspect destination existence and free capacity, and record the current editor/scene and task-owned asset baseline. Stop if source bytes changed or a proposed path is owned by unrelated work.
-2. Validate the private-payload ignore boundary and verify no restricted payload is already tracked. Generate the planned transfer list before any copy. The helper takes explicit source root and dry-run/apply options; a dry run does not call AssetDatabase refresh or write files.
-3. Copy rather than remove the original. For a missing destination, use a temporary sibling then verify hash before finalizing the destination. If an existing file has the expected hash, reuse it. If the hash differs, fail and report both versions; never overwrite it silently.
-4. Import the base first through the existing editor connection. Let Unity generate its `.meta` once, validate the Avatar and record the actual GUID/subasset identity. Import dependent motion files only after that source Avatar is valid.
-5. On the first successful handoff record every destination hash, `.meta` hash/GUID, Source Avatar reference, clip local file ID, import policy and source aliases in `Docs/Evidence/Gameplay/AnimationPlayground20261013/asset-transfer-receipt.json`. Include newly created folder metadata and authored prefab/profile/material reference units in the receipt. Future hydration restores bytes beside the already tracked metadata; it never regenerates the GUIDs.
-6. Validate all new GUIDs for uniqueness and each catalog/profile/scene reference against its intended file and subasset. Do not deduplicate any existing Unity asset by byte hash.
-7. Audit staged paths and the full unpublished range before publication. Raw/private payloads remain unstaged even if someone used force-add. An ignored file can still be tracked; check tracked paths, not only ignore output. A public push is a separately authorized operation.
+Public catalogs/profiles are recipes with stable source IDs and calibrated parameters. A **private binding set** resolves imported clips, source/target Avatar/model and the actual locomotion profile. The public visual host is project-authored and does not contain a missing nested FBX prefab. Missing private binding data disables new lab actions with an explicit dependency result. Do not put bindings under Resources or another automatic production inclusion path. Hydrated candidates qualify the lab; unhydrated public-core validation must remain coherent and must report the lab as unavailable rather than silently substitute assets.
 
-Future tooling belongs in `Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundAssetImporter.cs` and `AnimationPlaygroundAssetValidator.cs`, in `BooterBigArm.Editor`; the private hydration helper belongs in `Tools/Art/Animations/Restore-MixamoAssets.ps1`. These names describe planned files. The restoration helper must restore files and use existing metadata without scraping Mixamo or assuming a search title regenerates identical bytes.
+## DEP1 transfer and restoration contract
 
-## Character acceptance gate
+1. Verify all source aliases/hashes/sizes against the expanded receipt. Check destination ownership, free capacity, editor lock and task baseline before copying.
+2. Stage sources in the private working set before bulk Unity import. Validate dry-run paths and ignore boundaries; never let raw/private files enter staged or unpublished public history through force-add or an archive.
+3. Copy with temporary-file/hash verification. Reuse an equal destination; fail on a differing file and retain both source versions. Do not remove Downloads.
+4. For first import, generate each new `.meta` once. Capture actual GUID, metadata hash, imported clip IDs, importer state, recipe/source hash and rig mapping in a transfer receipt. Capture folder and authored asset reference units too.
+5. For restoration, copy **payload and sealed metadata before importing/opening its references**. Never replace an existing different GUID or regenerate the metadata to make hydration appear successful. Import source Avatar before animation dependents through the existing background-safe editor.
+6. Validate GUID uniqueness, subasset references and private binding recipe version. Keep failed families disabled and preserve recoverable bytes/settings.
+7. Validate a public-core clone and an authorized hydrated candidate separately. Public health has no orphan metadata; hydrated reimport preserves source GUIDs and bindings. Publication inspects the full unpublished range, not just the final tree.
 
-Import as Humanoid / Create From This Model. Check the required and optional bone mapping, T-pose, weights and axes; a valid automatic mapping is only the first gate. Animation-only FBXs have matching hierarchies and should use Humanoid / Copy From Other Avatar with this base. [Unity 6.4 Humanoid import](https://docs.unity3d.com/6000.4/Documentation/Manual/ConfiguringtheAvatar.html).
+Planned tooling: `Tools/Art/Animations/Restore-MixamoAssets.ps1`, `Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundAssetImporter.cs` and `AnimationPlaygroundAssetValidator.cs`. Keep import/mutation, dry run and validation separate. No scraping/downloading is required by restoration.
 
-Measure against a one-metre gauge and the existing Booter collider. Fix importer/visual scale intentionally, then record physical height, visual offset, foot plane, head/hand positions and capsule fit. Do not apply the existing 1.4 visual scale or infer a new Scale Factor from Blender's 20–23 unit dimensions. Test idle, crouch, ladder, chair, sleep, throw and death on the actual imported skin.
+## ART1 source and target rig qualification
 
-The base has approximately 63,134 triangles and no material slots. Author a neutral URP material and a visual prefab; confirm renderer bounds and material assignment. One player is enough for the first lab; use simple static crowd dummies instead of many copies of this mesh. Add reduction/LOD only if measured cost requires it.
+The accepted Mixamo source has 33 bones and only index-finger chains. The original `male_basemesh_rigged.fbx` has 74 bones with 30 finger bones; its 102-bone re-export also has full finger-chain names. Mixamo rejecting those uploads does not prove Unity will reject them. Qualify the 74-bone original first as a fuller target candidate, with the 102-bone version as another source to inspect. Material slots are empty; author a neutral material.
 
-The accepted 33-bone rig has index-finger chains only. Treat hand grip as a required visible check. If the lab needs fuller fingers, prepare a compatible fuller rig or a verified Humanoid retarget handoff first, preserve the original character/Avatar as a separate version, and update the mapping deliberately. Do not add fake finger bones and call it solved.
+Create and validate the Mixamo **source Avatar**. Matching 33-bone animation files use Copy From Other Avatar with that source. A different target rig uses its **own** mapped Humanoid Avatar and retargets qualified source clips through Humanoid animation; do not copy a 33-bone definition onto a 74/102-bone hierarchy. [Unity Humanoid import](https://docs.unity3d.com/6000.4/Documentation/Manual/ConfiguringtheAvatar.html).
 
-## Per clip import and runtime metadata
+Choose and record the target rig/quality tier before station offsets are authored. Validate T-pose, axes, units, weights, shoulder/knee/hand/foot deformation, renderer bounds, material, feet plane and capsule against a one-metre gauge. The measured character profile determines scale/offset, not Blender's raw dimensions or the previous 1.4 visual scale. Fuller bones alone do not create finger motion missing from the Mixamo sources: qualify authored grip poses/hand presentation in the same pose owner. A limited-rig prototype can support body preview, but its grip limitation remains an explicit family gate.
 
-Preserve authored source keyframes in the imported FBX. Disable Unity animation compression for the initial measurement/import baseline; exported keyframe reduction being off does not guarantee Unity's default compression is off. A separate clip definition records reviewed trim, looping, root-transform settings, playback rate, markers, contact anchors, motion owner and readiness. Metadata values begin unreviewed; a guessed release or hit time cannot enable an effect.
+The 72 canonical collection destinations do not include additional target-rig experiments. The map records two optional private qualification destinations under `Art/Characters/AnimationPlayground/Qualification/`: `MaleBaseMeshOriginalRig.fbx` and `MaleBaseMeshBlenderRig.fbx`. Import only the candidates being tested, with their paired metadata and receipt; this adds at most two qualification FBXs, not motion candidates. The Mixamo target option reuses the canonical source model. Record the selected target binding and source/target mapping before bulk qualification; preserve rejected experiment bytes privately.
 
-| Family | Import and integration rule |
-| --- | --- |
-| Idle, walk/run/sprint, crouch/strafe travel, cover sneak, ladder cycle, falling idle, push cycle, sitting/sleep idle | Loop only after seam/pose review. Preserve facing and measured foot/hand phases. Locomotion displacement belongs to the Rigidbody; constrained travel belongs to the action motor. |
-| Enter/exit, throw, jump/land/roll, strikes, reactions, get-up, button, pickup and push start/stop | One-shot; choose reviewed active range, contact/release windows and completion pose. Separate takeoff/airborne/landing roles if a source contains a full jump. |
-| Death | One-shot with terminal pose held until reset or an explicitly compatible recovery. Do not loop or auto-return to idle. |
-| Mining reference | Imported for adaptation and measurement; unavailable as mining until an unarmed/tool-use result passes grip/impact/return checks. |
-| Forward-travel sprint reference | Keep as a source comparison; preferred sprint is Two Cycle Sprint. Normalize or consume its travel before any active use. |
-| Crouched death weapon pose | Keep source/accounting metadata; exclude clip playback from the unarmed playground catalog and active build references. |
+Use a parameterized preview fixture with the **actual calibrated visual**, accepting model/profile/clip explicitly. The current profiler hardcodes canonical paths and its measurement helper is private; extend it or add a scoped fixture before using it as lab proof. Never modify canonical profile contacts through its menu command accidentally.
 
-The existing driver disables `applyRootMotion`. Keep that default. Inspect Root Transform Rotation, Position Y and XZ for each family. **Bake Into Pose changes where motion is stored; it does not automatically erase retained travel.** Compare sampled actor/visual motion and either discard extracted root motion under the motor, normalize a derived clip, or consume it through a collision-tested action path. Avoid double vertical motion on jumps and rotating the visual incorrectly on strafes. [Unity root motion](https://docs.unity3d.com/6000.4/Documentation/Manual/RootMotion.html).
+## ART2 clip, root and gait policy
 
-The current profile and phase mapper assume two ordered contacts per foot. Measure Standard Walk/Run and the chosen directional loops. If a source supplies only one contact per foot, Blender prepares a separate two-cycle animation-only FBX under `Mixamo/Derived/`, preserving hierarchy and recording the source hash and repeat recipe. Validate its seam and measure actual contacts; never fabricate a second contact in the profile. Keep the current profile/phase contract unchanged for this slice. Two Cycle Sprint already provides a candidate two-cycle source. Existing licensed start/stop/pivot/directional profile roles may be retargeted and recalibrated in the new lab profile; all twelve roles must pass before player locomotion cutover.
+Keep raw source bytes intact and Unity animation compression Off for baseline measurement. Record trim, loop intent, source/target Avatar roles, root/facing policy, playback bounds, contact/marker windows and readiness per role. Names and three sampled poses do not establish continuous loop/contact quality.
 
-Each catalog entry carries a stable ID, source file/hash, imported clip reference, readiness, action family/variant, loop and trim, blend times, required posture/target/prop, motion policy, timing markers, cancel/recovery policy and reviewed contact data. Metadata for each restricted reference is visible, but a missing or excluded source never silently maps to another action. Preview can evaluate an accepted body clip before physical markers pass; physical execution remains unavailable until its own gates pass.
+The existing mapper requires **R0 → L0 → R1 → L1 cyclic order**, as well as two ordered contacts per foot. Measure the calibrated target, normalize phase origin and prepare a separate two-cycle/phase-rotated derivative when needed. Record source hashes and exact recipe; retain original curves/metadata and verify seams/stride/cadence after import. Never manufacture a contact to fill a profile. Reuse and recalibrate the existing eight transition/directional roles where compatible, alongside the four new preferred loops. All twelve legacy profile roles must pass before cutover.
 
-## Acceptance and rollback
+Motor/action paths own physical displacement. Root motion stays disabled by default. Per-clip import extracts/discards source trajectory or a reviewed derivative normalizes it; Bake Into Pose alone does not erase travel. Test actor and visual drift across full clips, including strafes and airborne phases. Do not feed Animator delta motion and independent Rigidbody motion simultaneously. [Unity root-transform controls](https://docs.unity3d.com/6000.4/Documentation/Manual/RootMotion.html).
 
-Pass only when the manifest accounts for all 73 folder copies with 72 unique canonical destinations, the separate character alias matches, every imported clip uses the intended Avatar, GUID/subasset references resolve, and the private working set restores a fresh authorized validation checkout with identical bytes and metadata. Verify metadata stability on reimport. Run import/compile and focused importer/catalog tests; hands-on deformation and contacts are author review.
+Loops require seam/phase qualification. One-shots require enter/contact/release/exit ranges; jump clips may supply separate takeoff/airborne/landing roles. Death holds a reviewed terminal pose. Mining remains an adaptation source; forward sprint remains a comparison source; the weapon-style crouched death is excluded from unarmed playback. Preserve its source privately without binding it into the active catalog.
 
-On failure, retain source and destination versions, report the affected family, and prevent its catalog entry from enabling. Restore only task-owned metadata/settings from the sealed baseline. Downloads, existing `.meta` files, private backups and unrelated assets remain preserved.
+Readiness is SourceRecorded → ImportQualified → PreviewQualified → PhysicalQualified → AuthorAccepted. Recipes contain IDs, prerequisites, contact/motion ownership and missing-role reasons; private bindings contain real clip/model references. Physical effects require approved marker values and complete recovery sequences. New/derived assets are appended with provenance; they do not reuse a different clip's GUID.
 
-## Exact proposed source map
+## Planned source map
 
-The following map is generated from the audited hashes. `Aliases` is the number of folder copies represented by a canonical file; the character's separate handoff alias is additionally recorded in JSON. All destinations are planned and all physical actions start disabled until validation.
+Aliases include dated folders and loose downloads; the character additionally has two standalone copies. Existing canonical paths/IDs remain stable. The two retained versions follow the main map and have no Unity metadata destination. All operations remain planned.
 
-| Source file | Destination below Assets/_Project/Art | Aliases | Readiness |
+| Source file | Planned destination | Copies | Kind |
 | --- | --- | ---: | --- |
-| Death - falling backward.fbx | Animations/Mixamo/Combat/Death/DeathFallingBackward.fbx | 1 | candidate |
-| Death - falling forward.fbx | Animations/Mixamo/Combat/Death/DeathFallingForward.fbx | 1 | candidate |
-| Death - standing backward.fbx | Animations/Mixamo/Combat/Death/DeathStandingBackward.fbx | 1 | candidate |
-| Hit - body.fbx | Animations/Mixamo/Combat/Hurt/HitBody.fbx | 1 | candidate |
-| Hit large - back.fbx | Animations/Mixamo/Combat/Hurt/HitLargeBack.fbx | 1 | candidate |
-| Hit large - front.fbx | Animations/Mixamo/Combat/Hurt/HitLargeFront.fbx | 1 | candidate |
-| Hit large - left.fbx | Animations/Mixamo/Combat/Hurt/HitLargeLeft.fbx | 1 | candidate |
-| Hit large - right.fbx | Animations/Mixamo/Combat/Hurt/HitLargeRight.fbx | 1 | candidate |
-| Hit small - back.fbx | Animations/Mixamo/Combat/Hurt/HitSmallBack.fbx | 1 | candidate |
-| Hit small - front.fbx | Animations/Mixamo/Combat/Hurt/HitSmallFront.fbx | 1 | candidate |
-| Hit small - left.fbx | Animations/Mixamo/Combat/Hurt/HitSmallLeft.fbx | 1 | candidate |
-| Hit small - right.fbx | Animations/Mixamo/Combat/Hurt/HitSmallRight.fbx | 1 | candidate |
-| Kick - front snap.fbx | Animations/Mixamo/Combat/Kick/KickFrontSnap.fbx | 1 | candidate |
-| Kick - MMA low.fbx | Animations/Mixamo/Combat/Kick/KickMmaLow.fbx | 1 | candidate |
-| Kick - side.fbx | Animations/Mixamo/Combat/Kick/KickSide.fbx | 1 | candidate |
-| Kick - thrust.fbx | Animations/Mixamo/Combat/Kick/KickThrust.fbx | 1 | candidate |
-| Punch - cross.fbx | Animations/Mixamo/Combat/Punch/PunchCross.fbx | 1 | candidate |
-| Punch - hook.fbx | Animations/Mixamo/Combat/Punch/PunchHook.fbx | 1 | candidate |
-| Punch - jab.fbx | Animations/Mixamo/Combat/Punch/PunchJab.fbx | 1 | candidate |
-| Button press.fbx | Animations/Mixamo/Interactions/Button/ButtonPress.fbx | 1 | candidate |
-| Pickup and examine.fbx | Animations/Mixamo/Interactions/Pickup/PickupAndExamine.fbx | 1 | candidate |
-| Pickup - one hand.fbx | Animations/Mixamo/Interactions/Pickup/PickupOneHand.fbx | 1 | candidate |
-| Push - cycle.fbx | Animations/Mixamo/Interactions/Push/PushCycle.fbx | 1 | candidate |
-| Push - start.fbx | Animations/Mixamo/Interactions/Push/PushStart.fbx | 1 | candidate |
-| Push - stop.fbx | Animations/Mixamo/Interactions/Push/PushStop.fbx | 1 | candidate |
-| Sit down - chair.fbx | Animations/Mixamo/Interactions/Sit/SitDownChair.fbx | 1 | candidate |
-| Sitting idle - chair.fbx | Animations/Mixamo/Interactions/Sit/SittingIdleChair.fbx | 1 | candidate |
-| Sitting idle - ground.fbx | Animations/Mixamo/Interactions/Sit/SittingIdleGround.fbx | 1 | candidate |
-| Sleeping Idle - Sleeping Deeply.fbx | Animations/Mixamo/Interactions/Sleep/SleepingIdleSleepingDeeply.fbx | 1 | candidate |
-| Throw - alternate.fbx | Animations/Mixamo/Interactions/Throw/ThrowAlternate.fbx | 1 | candidate |
-| Throw - pickup and throw.fbx | Animations/Mixamo/Interactions/Throw/ThrowPickupAndThrow.fbx | 1 | candidate |
-| Throw - standard.fbx | Animations/Mixamo/Interactions/Throw/ThrowStandard.fbx | 1 | candidate |
-| Breathing Idle.fbx | Animations/Mixamo/Locomotion/BreathingIdle.fbx | 1 | candidate |
-| Crouch - enter.fbx | Animations/Mixamo/Locomotion/Crouch/CrouchEnter.fbx | 1 | candidate |
-| Crouch - exit.fbx | Animations/Mixamo/Locomotion/Crouch/CrouchExit.fbx | 1 | candidate |
-| Crouch - idle.fbx | Animations/Mixamo/Locomotion/Crouch/CrouchIdle.fbx | 1 | candidate |
-| Crouch walk - backward.fbx | Animations/Mixamo/Locomotion/Crouch/CrouchWalkBackward.fbx | 1 | candidate |
-| Crouch walk - forward.fbx | Animations/Mixamo/Locomotion/Crouch/CrouchWalkForward.fbx | 1 | candidate |
-| Crouch walk - left.fbx | Animations/Mixamo/Locomotion/Crouch/CrouchWalkLeft.fbx | 1 | candidate |
-| Crouch walk - right.fbx | Animations/Mixamo/Locomotion/Crouch/CrouchWalkRight.fbx | 1 | candidate |
-| Standard Run.fbx | Animations/Mixamo/Locomotion/StandardRun.fbx | 1 | candidate |
-| Standard Walk.fbx | Animations/Mixamo/Locomotion/StandardWalk.fbx | 1 | candidate |
-| Strafe run - left.fbx | Animations/Mixamo/Locomotion/Strafe/StrafeRunLeft.fbx | 1 | candidate |
-| Strafe run - right.fbx | Animations/Mixamo/Locomotion/Strafe/StrafeRunRight.fbx | 1 | candidate |
-| Strafe walk - left.fbx | Animations/Mixamo/Locomotion/Strafe/StrafeWalkLeft.fbx | 1 | candidate |
-| Strafe walk - right.fbx | Animations/Mixamo/Locomotion/Strafe/StrafeWalkRight.fbx | 1 | candidate |
-| Two Cycle Sprint.fbx | Animations/Mixamo/Locomotion/TwoCycleSprint.fbx | 1 | candidate |
-| Reference only - crouched death weapon pose.fbx | Animations/Mixamo/Reference/Death/ReferenceOnlyCrouchedDeathWeaponPose.fbx | 1 | reference |
-| Sprint - forward travel alternative.fbx | Animations/Mixamo/Reference/Locomotion/SprintForwardTravelAlternative.fbx | 1 | reference |
-| Mining reference - downward tool swing.fbx | Animations/Mixamo/Reference/Mining/MiningReferenceDownwardToolSwing.fbx | 2 | reference |
-| Cover Idle.fbx | Animations/Mixamo/Traversal/Cover/CoverIdle.fbx | 1 | candidate |
-| Left Cover Sneak.fbx | Animations/Mixamo/Traversal/Cover/LeftCoverSneak.fbx | 1 | candidate |
-| Right Cover Sneak.fbx | Animations/Mixamo/Traversal/Cover/RightCoverSneak.fbx | 1 | candidate |
-| Stand To Cover.fbx | Animations/Mixamo/Traversal/Cover/StandToCover.fbx | 1 | candidate |
-| Dodge - backward.fbx | Animations/Mixamo/Traversal/Evade/DodgeBackward.fbx | 1 | candidate |
-| Dodge - right.fbx | Animations/Mixamo/Traversal/Evade/DodgeRight.fbx | 1 | candidate |
-| Duck from standing.fbx | Animations/Mixamo/Traversal/Evade/DuckFromStanding.fbx | 1 | candidate |
-| Fall - airborne idle.fbx | Animations/Mixamo/Traversal/Fall/FallAirborneIdle.fbx | 1 | candidate |
-| Fall - landing.fbx | Animations/Mixamo/Traversal/Fall/FallLanding.fbx | 1 | candidate |
-| Fall - roll landing.fbx | Animations/Mixamo/Traversal/Fall/FallRollLanding.fbx | 1 | candidate |
-| Jump - running.fbx | Animations/Mixamo/Traversal/Jump/JumpRunning.fbx | 1 | candidate |
-| Jump - standing.fbx | Animations/Mixamo/Traversal/Jump/JumpStanding.fbx | 1 | candidate |
-| Jump - unarmed.fbx | Animations/Mixamo/Traversal/Jump/JumpUnarmed.fbx | 1 | candidate |
-| Ladder - climb.fbx | Animations/Mixamo/Traversal/Ladder/LadderClimb.fbx | 1 | candidate |
-| Ladder - one step.fbx | Animations/Mixamo/Traversal/Ladder/LadderOneStep.fbx | 1 | candidate |
-| Ladder - start.fbx | Animations/Mixamo/Traversal/Ladder/LadderStart.fbx | 1 | candidate |
-| Ladder - top exit.fbx | Animations/Mixamo/Traversal/Ladder/LadderTopExit.fbx | 1 | candidate |
-| Ladder - two steps.fbx | Animations/Mixamo/Traversal/Ladder/LadderTwoSteps.fbx | 1 | candidate |
-| Get up - back.fbx | Animations/Mixamo/Traversal/Recovery/GetUpBack.fbx | 1 | candidate |
-| Get up - stomach.fbx | Animations/Mixamo/Traversal/Recovery/GetUpStomach.fbx | 1 | candidate |
-| Running slide.fbx | Animations/Mixamo/Traversal/Slide/RunningSlide.fbx | 1 | candidate |
-| Character T-Pose.fbx | Characters/AnimationPlayground/MaleBaseMeshMixamo.fbx | 1 | character |
+| Death - falling backward.fbx | Art/Animations/Mixamo/Combat/Death/DeathFallingBackward.fbx | 2 | candidate |
+| Death - falling forward.fbx | Art/Animations/Mixamo/Combat/Death/DeathFallingForward.fbx | 2 | candidate |
+| Death - standing backward.fbx | Art/Animations/Mixamo/Combat/Death/DeathStandingBackward.fbx | 2 | candidate |
+| Hit - body.fbx | Art/Animations/Mixamo/Combat/Hurt/HitBody.fbx | 2 | candidate |
+| Hit large - back.fbx | Art/Animations/Mixamo/Combat/Hurt/HitLargeBack.fbx | 2 | candidate |
+| Hit large - front.fbx | Art/Animations/Mixamo/Combat/Hurt/HitLargeFront.fbx | 2 | candidate |
+| Hit large - left.fbx | Art/Animations/Mixamo/Combat/Hurt/HitLargeLeft.fbx | 2 | candidate |
+| Hit large - right.fbx | Art/Animations/Mixamo/Combat/Hurt/HitLargeRight.fbx | 2 | candidate |
+| Hit small - back.fbx | Art/Animations/Mixamo/Combat/Hurt/HitSmallBack.fbx | 2 | candidate |
+| Hit small - front.fbx | Art/Animations/Mixamo/Combat/Hurt/HitSmallFront.fbx | 2 | candidate |
+| Hit small - left.fbx | Art/Animations/Mixamo/Combat/Hurt/HitSmallLeft.fbx | 2 | candidate |
+| Hit small - right.fbx | Art/Animations/Mixamo/Combat/Hurt/HitSmallRight.fbx | 2 | candidate |
+| Kick - front snap.fbx | Art/Animations/Mixamo/Combat/Kick/KickFrontSnap.fbx | 2 | candidate |
+| Kick - MMA low.fbx | Art/Animations/Mixamo/Combat/Kick/KickMmaLow.fbx | 2 | candidate |
+| Kick - side.fbx | Art/Animations/Mixamo/Combat/Kick/KickSide.fbx | 2 | candidate |
+| Kick - thrust.fbx | Art/Animations/Mixamo/Combat/Kick/KickThrust.fbx | 2 | candidate |
+| Punch - cross.fbx | Art/Animations/Mixamo/Combat/Punch/PunchCross.fbx | 2 | candidate |
+| Punch - hook.fbx | Art/Animations/Mixamo/Combat/Punch/PunchHook.fbx | 2 | candidate |
+| Punch - jab.fbx | Art/Animations/Mixamo/Combat/Punch/PunchJab.fbx | 2 | candidate |
+| Button press.fbx | Art/Animations/Mixamo/Interactions/Button/ButtonPress.fbx | 2 | candidate |
+| Pickup and examine.fbx | Art/Animations/Mixamo/Interactions/Pickup/PickupAndExamine.fbx | 2 | candidate |
+| Pickup - one hand.fbx | Art/Animations/Mixamo/Interactions/Pickup/PickupOneHand.fbx | 2 | candidate |
+| Push - cycle.fbx | Art/Animations/Mixamo/Interactions/Push/PushCycle.fbx | 2 | candidate |
+| Push - start.fbx | Art/Animations/Mixamo/Interactions/Push/PushStart.fbx | 2 | candidate |
+| Push - stop.fbx | Art/Animations/Mixamo/Interactions/Push/PushStop.fbx | 2 | candidate |
+| Sit down - chair.fbx | Art/Animations/Mixamo/Interactions/Sit/SitDownChair.fbx | 2 | candidate |
+| Sitting idle - chair.fbx | Art/Animations/Mixamo/Interactions/Sit/SittingIdleChair.fbx | 2 | candidate |
+| Sitting idle - ground.fbx | Art/Animations/Mixamo/Interactions/Sit/SittingIdleGround.fbx | 2 | candidate |
+| Sleeping Idle - Sleeping Deeply.fbx | Art/Animations/Mixamo/Interactions/Sleep/SleepingIdleSleepingDeeply.fbx | 2 | candidate |
+| Throw - alternate.fbx | Art/Animations/Mixamo/Interactions/Throw/ThrowAlternate.fbx | 2 | candidate |
+| Throw - pickup and throw.fbx | Art/Animations/Mixamo/Interactions/Throw/ThrowPickupAndThrow.fbx | 2 | candidate |
+| Throw - standard.fbx | Art/Animations/Mixamo/Interactions/Throw/ThrowStandard.fbx | 2 | candidate |
+| Breathing Idle.fbx | Art/Animations/Mixamo/Locomotion/BreathingIdle.fbx | 2 | candidate |
+| Crouch - enter.fbx | Art/Animations/Mixamo/Locomotion/Crouch/CrouchEnter.fbx | 2 | candidate |
+| Crouch - exit.fbx | Art/Animations/Mixamo/Locomotion/Crouch/CrouchExit.fbx | 2 | candidate |
+| Crouch - idle.fbx | Art/Animations/Mixamo/Locomotion/Crouch/CrouchIdle.fbx | 2 | candidate |
+| Crouch walk - backward.fbx | Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkBackward.fbx | 2 | candidate |
+| Crouch walk - forward.fbx | Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkForward.fbx | 2 | candidate |
+| Crouch walk - left.fbx | Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkLeft.fbx | 2 | candidate |
+| Crouch walk - right.fbx | Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkRight.fbx | 2 | candidate |
+| Standard Run.fbx | Art/Animations/Mixamo/Locomotion/StandardRun.fbx | 2 | candidate |
+| Standard Walk.fbx | Art/Animations/Mixamo/Locomotion/StandardWalk.fbx | 2 | candidate |
+| Strafe run - left.fbx | Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunLeft.fbx | 2 | candidate |
+| Strafe run - right.fbx | Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunRight.fbx | 2 | candidate |
+| Strafe walk - left.fbx | Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkLeft.fbx | 2 | candidate |
+| Strafe walk - right.fbx | Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkRight.fbx | 2 | candidate |
+| Two Cycle Sprint.fbx | Art/Animations/Mixamo/Locomotion/TwoCycleSprint.fbx | 2 | candidate |
+| Reference only - crouched death weapon pose.fbx | Art/Animations/Mixamo/Reference/Death/ReferenceOnlyCrouchedDeathWeaponPose.fbx | 2 | reference |
+| Sprint - forward travel alternative.fbx | Art/Animations/Mixamo/Reference/Locomotion/SprintForwardTravelAlternative.fbx | 2 | reference |
+| Mining reference - downward tool swing.fbx | Art/Animations/Mixamo/Reference/Mining/MiningReferenceDownwardToolSwing.fbx | 3 | reference |
+| Cover Idle.fbx | Art/Animations/Mixamo/Traversal/Cover/CoverIdle.fbx | 2 | candidate |
+| Left Cover Sneak.fbx | Art/Animations/Mixamo/Traversal/Cover/LeftCoverSneak.fbx | 2 | candidate |
+| Right Cover Sneak.fbx | Art/Animations/Mixamo/Traversal/Cover/RightCoverSneak.fbx | 2 | candidate |
+| Stand To Cover.fbx | Art/Animations/Mixamo/Traversal/Cover/StandToCover.fbx | 2 | candidate |
+| Dodge - backward.fbx | Art/Animations/Mixamo/Traversal/Evade/DodgeBackward.fbx | 2 | candidate |
+| Dodge - right.fbx | Art/Animations/Mixamo/Traversal/Evade/DodgeRight.fbx | 2 | candidate |
+| Duck from standing.fbx | Art/Animations/Mixamo/Traversal/Evade/DuckFromStanding.fbx | 2 | candidate |
+| Fall - airborne idle.fbx | Art/Animations/Mixamo/Traversal/Fall/FallAirborneIdle.fbx | 2 | candidate |
+| Fall - landing.fbx | Art/Animations/Mixamo/Traversal/Fall/FallLanding.fbx | 2 | candidate |
+| Fall - roll landing.fbx | Art/Animations/Mixamo/Traversal/Fall/FallRollLanding.fbx | 2 | candidate |
+| Jump - running.fbx | Art/Animations/Mixamo/Traversal/Jump/JumpRunning.fbx | 2 | candidate |
+| Jump - standing.fbx | Art/Animations/Mixamo/Traversal/Jump/JumpStanding.fbx | 2 | candidate |
+| Jump - unarmed.fbx | Art/Animations/Mixamo/Traversal/Jump/JumpUnarmed.fbx | 2 | candidate |
+| Ladder - climb.fbx | Art/Animations/Mixamo/Traversal/Ladder/LadderClimb.fbx | 2 | candidate |
+| Ladder - one step.fbx | Art/Animations/Mixamo/Traversal/Ladder/LadderOneStep.fbx | 2 | candidate |
+| Ladder - start.fbx | Art/Animations/Mixamo/Traversal/Ladder/LadderStart.fbx | 2 | candidate |
+| Ladder - top exit.fbx | Art/Animations/Mixamo/Traversal/Ladder/LadderTopExit.fbx | 2 | candidate |
+| Ladder - two steps.fbx | Art/Animations/Mixamo/Traversal/Ladder/LadderTwoSteps.fbx | 2 | candidate |
+| Get up - back.fbx | Art/Animations/Mixamo/Traversal/Recovery/GetUpBack.fbx | 2 | candidate |
+| Get up - stomach.fbx | Art/Animations/Mixamo/Traversal/Recovery/GetUpStomach.fbx | 2 | candidate |
+| Running slide.fbx | Art/Animations/Mixamo/Traversal/Slide/RunningSlide.fbx | 2 | candidate |
+| Character T-Pose.fbx | Art/Characters/AnimationPlayground/MaleBaseMeshMixamo.fbx | 3 | character |
+| male_basemesh_mixamo_unrigged@Sprint (1).fbx | SourceArt/Mixamo/Reference/SprintExportAttempt01.fbx | 1 | retained-version |
+| male_basemesh_mixamo_unrigged@Sprint.fbx | SourceArt/Mixamo/Reference/SprintExportAttempt02.fbx | 1 | retained-version |

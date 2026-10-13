@@ -1,109 +1,77 @@
 # Camp Loop player and animation integration plan
 
-Date: 2026-10-13. Part two of the [implementation plan](./CAMP_LOOP_ANIMATION_PLAYGROUND_IMPLEMENTATION_PLAN_2026-10-13.md). Integrate the new character and all accepted animation variants into the existing Booter actor, with movement and interaction systems that make the poses behave correctly in the game.
+Date: 2026-10-13. Revision 2 of the [master plan](./CAMP_LOOP_ANIMATION_PLAYGROUND_IMPLEMENTATION_PLAN_2026-10-13.md). Apply the [prerequisites](./CAMP_LOOP_ANIMATION_FOUNDATIONS_PLAN_2026-10-13.md) and [motion backlog](./CAMP_LOOP_ANIMATION_MOTION_BACKLOG_2026-10-13.md) before enabling dependent families.
 
-## Player and animation ownership
+## Actor and data ownership
 
-Keep the existing Camp Loop Testing Booter root and its Rigidbody, capsule, inventory, vitals, interaction/action controller and footstep component. Assign a new character visual prefab and a lab locomotion/profile set on that actor. Keep the existing input router, camera, EventSystem and companion. Do not create a second controllable character or second health value.
+Keep the existing Booter root, Rigidbody/capsule, vitals/inventory, interaction/action components, footstep effects and camera/input/companion. Add optional lab configuration; production/null configuration keeps current behavior and serialized assets. Do not create a second actor, health value, physics writer or Animator output.
 
-Extend `TopDown3DPlayerAnimationDriver` through optional character/capability/catalog configuration. With no lab configuration, retain the current visual constants, 21-slot locomotion/camp/gather graph and public caller behavior. With it, the same driver creates the new visual and remains the only output to its Animator. The new visual/profile defaults apply only in Camp Loop Testing; production serialized assets are not repointed.
+Public recipes carry source/action IDs, calibrated parameters, readiness and required roles. A private binding set carries the resolved source/target model/Avatar, imported clips and actual locomotion profile. A project-authored visual host contains no missing nested FBX prefab. Initialize through explicit readiness: dependencies, services, visual and graph. Subscribe/read visual-ready safely regardless of component order; missing bindings make new actions unavailable rather than substitute another model. Destroy/unsubscribe only owned resources on failure, disable or reload.
 
-Recommended graph: keep the existing 21-slot mixer as the normal locomotion/camp branch; add a small directional/posture branch for crouch/strafe blend sets and a two-port action branch for crossfading the current and next one-shot/loop. A final mixer, inside the same PlayableGraph, chooses the appropriate branch. Create/connect clip playables at action or posture changes, not on every frame. Only selected blend clips evaluate; 68 candidates do not mean 68 active playables. Do not attach a competing Animator Controller or Timeline output.
+Runtime additions stay under `Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/`, in `BooterBigArm.TopDown3D.Runtime` and its namespace. Editor tools remain in `BooterBigArm.Editor`; tests in `BooterBigArm.Editor.Tests`. Shared seams to inspect/extend: motor/animation driver; interaction/action controller; input router partials; control preferences and menu/controller/installer; checkpoint service; camp; footstep presentation. Preserve callers and serialized signatures, with compatible optional configuration/overloads.
 
-The driver exposes visual-ready and action presentation handles so hand sockets/anchors can bind after its `Awake` visual instantiation. Initialization must work whether the coordinator subscribes before or after the visual becomes ready. Use explicit component references, not repeated scene searches. On disable/unload, unsubscribe, release ownership and destroy graph resources through the existing driver lifecycle.
+Planned contracts: scene session/configuration, target descriptor/view, activity projection, capability/presentation recipes, private binding set, action coordinator and pure clock/marker ledger, motor-owned intent/snapshot, prop handler, lab damage receiver and reset participant. These extend current owners; they are not parallel global services.
 
-## Planned code and serialized assets
+## Target, activity and input foundation
 
-All new runtime files are under `Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/`, in `BooterBigArm.TopDown3D.Runtime`, namespace `BooterBigArm.TopDown3D`. Editor helpers remain in `BooterBigArm.Editor`; tests in the existing `BooterBigArm.Editor.Tests` assembly.
+The current selector discovers four concrete target types. Add station discovery through one target view/descriptor, with stable ID, object/reference, epoch, action kind, collider ownership, range/point and availability. Preserve existing tie-break/hysteresis and dedicated canister/cargo behavior. Capture the target at press, revalidate the same target at release/effect, and never retarget a completed tap. Compound colliders deduplicate by target identity and reset invalidates captured epochs.
 
-| Planned type or existing seam | Contract |
+Dispatch station actions explicitly before the old reward gather path. Do not make a chair/button implement a fake zero reward or consume result. A shared activity view includes gather, placement, waiting for Legger, camp and new actions; availability, cargo, inventory, algae and canister commands all consult it. The motor's owner lease remains the lock. Interruption asks the owner to release safely; no lease stealing.
+
+Use an owned runtime instance of the lab input asset, preserving shipped binding IDs and generating stable IDs for new actions. The control-preference policy must include all coactive fixed/new actions in conflict checks, not only its current editable whitelist. Inject the lab controls directory separately from normal menu settings. Read compatible production overrides without modifying their file; report new-control collisions and provide lab rebinding before enabling conflicting direct commands. Prompts use effective bindings. [Input System bindings](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.19/manual/ActionBindings.html).
+
+Host the palette as a panel of the existing menu owner. Keep one EventSystem/module/modal lifecycle, release gating and focus/device transitions. Selecting a variant closes into a neutral state; a fresh gameplay press executes it. Preview/seek occurs only in a no-effect preview mode, not by replaying markers in the physical action.
+
+| Lab intent | Proposed controls | Required policy |
+| --- | --- | --- |
+| Move / camera / sprint | Existing sticks and right shoulder; WASD/mouse/Shift | Preserve current feel outside lab capabilities. |
+| Slow walk | Low analog magnitude; keyboard Left Alt | Current keyboard target is 4.2, so explicitly select the qualified walk speed instead of assuming keyboard walking already exists. |
+| Jump | South / Space | Bind existing dormant action through the router; takeoff edge requires release before repeat. |
+| Crouch / slide | Left-stick press / V | Crouch toggle normally; sprint plus adequate speed requests slide. C remains occupied. |
+| Context interaction | West/E tap | Preserve target capture/revalidation and mutually exclusive cargo hold. |
+| Selected applicable strike/throw/dodge | Right trigger / existing Attack | Button press semantics and analog threshold; one request per press, no modal leakage. |
+| Palette | Select / F9 | Menu-owned panel; current source paths are free, active overrides/reserved-device paths still require FND3 validation. |
+| Cancel owned action | East while cancellable lab action owns control; Backspace | Resolve cancel before pickup/dose/interaction. Idle East retains canister pickup. Unsafe traversal uses safe exit policy. |
+
+No gameplay component reads buttons directly. New modes must disarm/rearm jump/attack/crouch/modifier commands just as current item commands do. Menus, inventory, radial, camp and device changes cannot forward held confirm/attack or stale target intent into gameplay. Lab preferences cannot write production `controls-v1.json`.
+
+Interpret routed Move intent by the owned mode: cover projects onto the wall tangent, push onto the reviewed crate axis, and ladder ascent uses the vertical input axis with stationary hold at zero. Approach uses normal movement until alignment owns the actor. Descent is unavailable until qualified. Context entry, safe cancel/exit and menu preview remain distinct intents; an axis change never silently selects another target.
+
+## Action clock and physical authority
+
+Requests identify action/variant, posture, captured target/epoch and held prop. Availability checks required motion roles and contact/marker readiness before atomic target/motor reservation. Lifecycle: approach → align → enter → active/contact → exit/recovery → complete, with timeout/failure policy per phase.
+
+One scaled simulation clock advances physical state; presentation reads it. FixedUpdate owns motor movement and queued effect commits; preview has a separate no-effect clock. Ledger keys include action instance/epoch, marker and cycle. Handle skipped/multi-cycle intervals, quotas, cancellation before/after commit, reset and pause. Commit once and retain a committed effect during recovery; a stale effect never survives an epoch change.
+
+Advance constrained motion inside the motor's current early-return branch, which otherwise zeros velocity. Publish actual mode/posture/support, velocity/displacement, facing and phase. Use posture-aware capsule probes with feet anchored, takeoff support hysteresis, real landing contact and safe gravity restoration. Suppress automatic vault/steep-climb while conflicting modes own the actor. Source trajectories are measured/normalized or extracted and discarded; Rigidbody/action paths move the actor. Never add Animator delta movement on top.
+
+## One pose and contact graph
+
+Retain the existing 21-slot graph as the normal locomotion/camp/gather branch. Add optional posture/directional and current/next timed-action branches under the same driver/output. Instantiate/connect clips on mode/action changes, not every frame. Only active blend sets evaluate. A fuller target rig has its own qualified Avatar; matched source animations retain the source Avatar used at import.
+
+Switch clock/contact routing with pose ownership. Inactive legacy gait must not advance effects or emit footsteps while crouch/carry/action branches are active. Locomotion uses qualified cyclic contact maps; physical one-shots use approved contact windows. Keep root motion/foot IK baseline disabled; measured anchors and authored poses qualify contact first. Hand poses, if needed, belong to the same graph/presentation owner, not a competing bone writer.
+
+The legacy gait mapper requires R0-L0-R1-L1 ordering, two contacts per foot and compatible cadence. A calibrated source/target fixture qualifies the twelve roles and any two-cycle/phase-origin derivative. New directional facing mode requires backward locomotion and standing turn roles; until then expose only supported lateral tests and state the restricted capability. Do not animate backward movement with a forward run.
+
+## Physical family contracts
+
+| Family | Required behavior and closure |
 | --- | --- |
-| `TopDown3DCharacterPresentationProfile` | Visual prefab, calibrated scale/offset, feet plane, hand/head sockets and collider fit. New lab asset; missing optional profile preserves the old visual path. |
-| `TopDown3DActionClipCatalog` and clip entry data | Stable action/variant IDs, reviewed clip metadata and readiness from the import plan. No raw curves embedded in public data. |
-| `TopDown3DPlayerCapabilityProfile` | Lab-only allowed actions, posture/speed/clearance parameters and motion policies; null means current behavior. |
-| `TopDown3DPlayerActionCoordinator` and pure action state/marker ledger | Availability, reservation, phase, priority, exactly-once effects and interruption; explicit adapters into existing camp/gather ownership. |
-| `TopDown3DPlayerActionMotor` | Requests movement modes through `TopDown3DPlayerMotor`; never writes a parallel player Transform/Rigidbody authority. |
-| `ITopDown3DActionTarget` and station target components | Non-resource actions, stable target identity, anchors, reservation and availability; preserve `ITopDown3DInteractable` and Ironstone consumption contract. |
-| `TopDown3DPlayerPropHandler` | One held prop, socket alignment, release, physics ownership and restoration; separate from inventory rewards until an explicit transfer commits. |
-| `TopDown3DPlayerCombatActions` and `TopDown3DLabDamageReceiver` | Strike windows, directional/severity requests and reaction/death selection, using existing survival vitals as health authority. |
-| `TopDown3DAnimationPlaygroundController` and view | Action palette, station context, diagnostics and reset; subscribes to the existing input/camera/UI owners. |
-| `TopDown3DAnimationPlaygroundSession` and existing `GreaterWastelandInventorySaveService` | Explicit session-only checkpoint policy for this configured scene, resolved before restore/writer creation; autosave/manual/quit cannot persist lab damage or actor position. No marker preserves current behavior. |
-| `TopDown3DLabMiningTarget` and session reward ledger | Separate lab target/state, not a thirteenth production Ironstone component. Reward feedback is ephemeral and cannot enter the normal persisted inventory sink. |
-| Existing driver, motor, input router, interaction/action controller | Add bounded optional interfaces/configuration; retain current production and camp/gather paths. Inspect all callers and serialized consumers before changing a signature. |
+| Locomotion/strafe | Calibrated speed/phase/starts/stops/pivots, explicit keyboard walk and supported facing/travel combinations. |
+| Crouch/duck/slide/dodge | Capsule height/centre and ceiling tests; timed duck versus sustained posture; speed/surface gates, sweeps, obstruction and crouched blocked-exit recovery. Split running-slide entry/active/recovery roles deliberately. |
+| Jump/fall/land/roll | Physical takeoff/airborne/contact drives segmented source poses; no timer landing/doubled arc. Roll/hard landing owns reviewed recovery and damage policy. |
+| Cover/wall | Reserve wall plane/tangent/segment, clamp ends, probe corners/exit and pair crouched cover with an accepted exit. Standing wall-hug is a requested role gap. |
+| Ladder/step | Qualified rung/contact axis, entry/top anchors and clearance; gravity treatment/restoration inside motor. Use step clips on appropriate obstacles, not as proof of ladder descent. Return ramp closes ascent testing. |
+| Pickup/hold/drop/throw | Reserve/attach once, persistent held-object state with qualified hold pose, safe cancellation/drop, release trajectory and self-collision restoration. Moving carry is disabled until its own pose/locomotion set qualifies. Place-down is a distinct role, not an instant drop presented as animation. |
+| Button/push | Exactly-once switch contact; crate/actor movement and obstruction ownership, start/loop/stop, hand anchors and reset. |
+| Seat/ground/sleep | Complete enter/idle/exit/abort roles and clearance. Existing camp remains owner of actual sleep/rest/recovery and equipment; a station adapter cannot independently drive a second camp pose/clock. |
+| Mining | Adapt tool grip/swing/impact/return. Use a distinct lab target/component and session reward ledger, preserving twelve original Ironstone nodes and the real cargo/economy path. |
+| Strike/hurt/death/get-up | Reviewed windows, one hit per target/strike, one vitals authority, direction/severity, posture-specific reactions, gravity/collision and terminal hold. Recovery requires matching floor posture and full rise clearance. |
 
-Settings: `Assets/_Project/Settings/AnimationPlayground/BooterCharacter.asset`, `BooterLocomotion.asset`, `PlayerCapabilities.asset`, `ActionCatalog.asset` and `AnimationPlaygroundActions.inputactions`. Visual prefab: `Assets/_Project/Prefabs/AnimationPlayground/Player/MaleBaseMeshVisual.prefab`. The old profile's twelve roles are all required; reuse/retarget and recalibrate the existing eight transition/directional roles alongside the new four preferred idle/walk/run/sprint choices. Source preparation resolves the two-contacts-per-foot contract before this profile is assigned.
+Use passive targets and intentional damage controls initially. Standing damage sequences qualify first; crouched, airborne, seated and ladder cases have explicit policies/gates. Nonfatal unsupported visual reactions cannot freeze or corrupt physics. Fatal airborne/traversal exits release ownership and continue safe descent. Terminal death uses a low corpse collision profile and holds pose; no initial ragdoll. Crouched death needs a new unarmed variant because the downloaded source is excluded. Health changes are not rolled back merely because a reaction clip is unavailable.
 
-## Action lifecycle and arbitration
+## Reset, safety and acceptance
 
-An action request contains the selected action/variant ID, target ID/reference, held-prop identity, input intent and current posture. Return either an action instance or a specific availability reason. Reserve the target and motor lease atomically; if either fails, release everything acquired by this request.
+Resolve session-only checkpoint policy before restore/writer startup; honor timer/manual/disable/quit and isolate controls separately. Reset invalidates epochs/queued effects, releases owned motion/props, restores registered station state and lab vitals, checks an actor return/rise position, then rearms input. No global Rigidbody deletion, inventory farming or companion teleport. Missing clear return/support reports a blocked operation and stays safe.
 
-Phases are **approach → align → enter → active/contact → exit/recovery → complete**. Each has a timeout or completion condition. Pure state logic decides phase and interruption; scene components supply probes, target anchors and effects. Keep animation time and action phase on one playback clock. The motor applies collision-tested movement in FixedUpdate; animation presents that state. Paused/seekable preview uses a separate clock and cannot execute effects or speed up survival/camping time.
-
-Use the existing `TryBeginActionConstraint(owner)` / `EndActionConstraint(owner)` as the exclusive ownership boundary. Extend its motion mode deliberately: it currently preserves vertical velocity, so acquiring the constraint alone does not implement a ladder, seat attachment or jump. Only the owning action can request constrained velocity/path, posture, facing or gravity treatment. Revalidate when an anchor moves, a target disappears or an exit becomes blocked.
-
-| Priority or interruption | Rule |
-| --- | --- |
-| Death | Stop further effects, end reservations, suspend normal gameplay commands, enter reviewed terminal pose. Only lab reset or explicitly compatible recovery can leave it. |
-| Damage | Existing vitals/camp damage behavior stays authoritative. Small hits may preserve a committed interaction; large hits abort when safe. Traversal falls/exits follow their physical recovery rather than snapping to idle. |
-| Camp, gathering, canister placement or another owned action | New requests are rejected while another owner holds the motor; the lab does not steal its lease. Existing flows may use adapters, not a second independent busy flag. |
-| Inventory, menu, pause, focus loss or device disconnect | Consume input at the router. Station-specific policy pauses or safely exits the action; no held confirmation press is replayed into gameplay on return. |
-| Target removal, scene unload, reset or actor disable | Release reservations/props/graph subscriptions exactly once, restore motor/posture/gravity state, cancel queued uncommitted effects. |
-
-Each effect has an `(action instance, marker, cycle)` identity. Pickup, release, button activation, hit and mining reward each commit once. Before the marker, cancellation releases the reservation. After a committed marker, preserve that effect and run recovery. Mining/push loops can have deliberate per-cycle behavior; loop evaluation alone never awards another item. Process skipped markers across a long frame correctly and never re-fire effects when a presentation clip is sought backwards.
-
-## Movement and posture behavior
-
-| Behavior | Physical implementation and failure behavior |
-| --- | --- |
-| Idle/walk/run/sprint | Preserve camera-relative motor control and momentum. Tune nominal clip speed against measured visual displacement/contact phases; retain start/stop/pivot behavior. Reject a profile that requires unreasonable playback speeds. |
-| Strafe | Lab capability decouples facing from travel. Use walk/run left/right clips while facing the selected camera/target direction; do not substitute existing turning gait for strafing. Fall back to the normal forward motor mode only after a declared mode exit. |
-| Crouch and duck | Change capsule height/centre with feet anchored and restore only after a ceiling/side clearance test. Blend forward/back/left/right crouch loops from planar intent. A duck is a timed action with recovery, not necessarily the sustained crouch state. |
-| Jump/fall/landing | Activate the dormant Jump action only for the lab capability. Physical takeoff/velocity/gravity drive airborne state; source jump clips provide reviewed takeoff/airborne/landing segments. A landing occurs on valid contact, not on a clip timer. Prevent repeated held-button jumps. |
-| Slide/dodge/roll | Entry speed/posture and collision sweeps control travel. Slide exits to crouch if standing is blocked. Dodge ends in a checked stable position; missing forward/left variants are not silently fabricated. Roll landing owns a recovery interval. |
-| Cover | Reserve a wall plane/tangent and valid segment. Align enter, blend idle/sneak, clamp along the wall, probe ends/corners and exit on valid clearance. The present clips implement crouched cover; standing wall-hug remains a gap. |
-| Ladder | Reserve bottom/top anchors, fit rung spacing and cycle height, enter from an allowed position and drive vertical progress through the motor's explicit ladder mode. Restore its normal gravity/movement path on safe exit or abort. Block a top exit with insufficient space. Descent is unavailable until reviewed. |
-
-Root motion stays disabled by default and source trajectories remain measurable. The import policy and action motor decide whether to discard extracted travel, normalize it or consume it through collision checks. Never apply both clip travel and motor displacement to the actor. Do not toggle global foot IK merely to hide contact errors; initial contact is calibrated through anchors, poses and measured offsets. Any later IK feature must be scoped and verified separately.
-
-## Prop and interaction behavior
-
-Pickup has a reachable target, a reservation, grip alignment, an attach marker and an inventory/held-object decision. Examine rotates the held prop around a reviewed socket. Throw detaches once at the release marker, computes launch position/velocity, ignores actor self-collision initially and restores collision after separation. Stop double Rigidbody simulation while held and clean up a lost prop without inventing a new item.
-
-Button pressing commits one switch change at hand contact. Push start/loop/stop constrains the actor and crate together along a checked lane; obstruction stops both. Seats and bedrolls provide enter, contact, idle and exit anchors. Sleeping Idle is a loop inside the existing camp/rest lifecycle; missing lie-down/wake/stand-up transitions need adaptation before full execution is accepted.
-
-Mining uses a blunt tool-use prop and a resettable lab resource target. Adapt the axe-style source to the intended grip and impact plane, then commit the lab strike/reward through shared action/transaction rules. The lab target is not another `TopDown3DAuthoredIronstoneNode`, `TopDown3DIronstoneNode` or production resource cache: existing scene validation requires exactly twelve Ironstone nodes and one cache. Send lab rewards to a session ledger, not the ordinary inventory reward sink. Production gathering retains its existing controller and reward path; reset cannot farm persistent inventory.
-
-Punch/kick use reviewed hit windows and reach probes, with one hit per target per strike. Damage requests include source direction/severity; vitals changes once and the animation reacts. A passive training dummy and deliberate lab damage controls are enough; enemy AI, weapons and combat balance are outside this slice. Death/get-up pairings must match compatible final floor posture and clearance. Health restoration is a lab reset operation, not another persistent survival system.
-
-## Proposed lab controls
-
-Clone the action asset for the lab, preserve established action semantics/binding IDs, and add explicit stable IDs for new lab actions. Extend the existing router with commands gated by the lab capability; no gameplay component reads buttons directly. The clone uses lab preferences or defaults and cannot write production `controls-v1.json`.
-
-These proposed additions were checked against the current source bindings: V, F9, left-stick press, right trigger and Select have no current source binding. Batch 0 must also inspect active overrides and coactive map/reserved-control rules. C, F6, D-pad and left shoulder are occupied.
-
-| Intent | Gamepad | Keyboard/mouse | Routing |
-| --- | --- | --- | --- |
-| Move / camera / sprint | Existing sticks / right shoulder | Existing WASD / mouse / Shift | Preserve current router and camera behavior. |
-| Jump | South | Space | Existing dormant action, now handled only when lab capability allows. |
-| Crouch or slide | Left-stick press | V | Toggle crouch normally; sprinting with adequate speed requests slide instead. |
-| Context interaction | West tap | E tap | Existing target-at-press/revalidate-at-release logic; hold remains Legger cargo. |
-| Selected punch/kick/throw/dodge | Right trigger | Left click / existing Attack | Execute the currently selected applicable action; exclude effects while palette/UI is open. |
-| Open action palette | Select | F9 | A lab modal consumes gameplay input; includes variants, context reason, preview and reset. |
-| Cancel active lab action | East, only while a cancellable lab action owns control | Backspace / existing CancelItemAction | Cancellation resolves before canister pickup; idle East retains existing pickup behavior. Unsafe ladder aborts follow a safe exit policy. |
-| Palette navigation/confirm/back | Existing UI navigation / South / East | Existing UI keys / Enter / Escape | Held inputs are ignored across map transfer until released. |
-
-Preserve inventory, radial, algae, canister, camp and device-switch prompts. Derive labels from the router/action bindings. Pressing West near a station never activates both cargo and the station. Settings rebinding must not import lab-only controls into production or reserve a control whose other coactive action is still live.
-
-## Reset and diagnostics
-
-One reset service restores action/motor/capsule state, temporary health, held/thrown props, crate/switch/target state and the actor's validated return pose. It clears ledgers and input edges and destroys session effects. It does not teleport Legger. Use explicit registered participants and authored snapshots rather than scanning and deleting every Rigidbody in the scene.
-
-Checkpoint isolation must be explicit: `GreaterWastelandInventorySaveService` captures survival and actor transforms on its 30-second timer and on quit. Resolve a scene-owned session-only policy before its Start restores a checkpoint or creates a writer. In the configured playground it performs neither checkpoint restore nor write; the UI explains that saves are disabled for the lab. Autosave, explicit Save, disable and application quit all honor the same policy, with no late queued write. A scene without the marker retains the existing save/load path. Reject this marker in GreaterWasteland, test byte-identical pre-existing checkpoint files across lab use, and keep production controls preferences independent from lab bindings.
-
-Show selected clip and action phase, posture, motion owner, current target/availability, prop ownership and marker/hit status. Let the author pause/seek preview, compare variants and choose a close camera view through the camera owner. In physical mode, state remains observable but animation seek cannot bypass physics or replay an effect.
-
-## Acceptance and failure containment
-
-Add focused fixtures for catalog gating, lifecycle/markers, motor modes, input conflicts, props, damage and reset. Regress current `TopDown3DPlayerLocomotionTests`, `TopDown3DSmartTraversalTests`, `TopDown3DInteractionTests`, resource/inventory tests, relevant modal/controls tests, survival/camp tests and checkpoint tests when their seams change. Verify null lab configuration preserves the existing driver/motor path. Test long frames, repeated inputs, ceiling blockage, lost targets, interruption before/after commit, blocked exits, scene disable/reload and repeated reset.
-
-The author checks deformation, grip, foot sliding, responsiveness, transitions, collision and readable cover behavior in the furnished scene. Do not call clip selection or an EditMode test proof of those qualities. A failing family remains visibly disabled with its exact reason while accepted families remain usable; no silent animation substitute counts as completion.
+Qualification covers target capture/dispatch/busy state, coactive bindings and modal handoff, clocks/markers, shape/support/movement modes, selected contact stream, held props, damage/posture/corpse/recovery, complete family exits, bootstrap/reset/unload and byte-identical saved files. Regress touched existing interaction, controls/menu, locomotion/traversal, camp/survival/checkpoint and scene fixtures in the appropriate isolated candidate. The author accepts deformation, grip, slip, responsiveness and transition quality. Recipes never set PhysicalQualified solely because a clip imported or previewed.

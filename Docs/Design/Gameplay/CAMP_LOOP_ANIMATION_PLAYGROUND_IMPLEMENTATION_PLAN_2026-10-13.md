@@ -1,92 +1,79 @@
 # Camp Loop animation playground implementation plan
 
-Date: 2026-10-13. Status: planning complete; implementation pending. Target: `Assets/_Project/Scenes/Reference/CampLoopTesting.unity` in the root Unity project. The author requested three plans: bring the downloads into the project correctly, integrate the character and animation behavior into the player, and furnish the scene with interactions for hands-on playtesting.
+Date: 2026-10-13. Revision 2, following the [plan audit](./CAMP_LOOP_ANIMATION_PLAN_AUDIT_2026-10-13.md). Target: `Assets/_Project/Scenes/Reference/CampLoopTesting.unity`. Status: audit and plan rewrite complete; implementation pending. This revision replaces the earlier batch order and storage/input/contact assumptions.
 
-The finished playground will let the author walk up to an object, use the normal player controls, perform an appropriate animation with real collision and contact behavior, change variants, and reset the experiment. A clip viewer supports diagnosis; it does not count as implementing the physical actions. The production Greater Wasteland scene remains a separate promotion decision.
+Build a playground where the author controls the existing Booter actor, interacts with real objects, compares accepted animation variants, and resets experiments. Source download, Unity import, preview, physical integration and hands-on acceptance are separate readiness levels. A functioning clip viewer does not establish a functioning ladder, throw or mining action.
 
-## The three plans
+## Plans and source boundaries
 
-| Plan | Concrete deliverable |
+| Plan | Responsibility |
 | --- | --- |
-| [Asset import and storage](./CAMP_LOOP_ANIMATION_ASSET_IMPORT_PLAN_2026-10-13.md) | A complete source-to-destination map for 72 unique FBXs, preserved hashes and GUIDs, a validated character Avatar, individual clip import policies, and reproducible private asset restoration |
-| [Player and animation integration](./CAMP_LOOP_ANIMATION_PLAYER_INTEGRATION_PLAN_2026-10-13.md) | The existing Booter actor with the new visual, one animation graph, catalog-driven actions, physical movement modes, props, damage/recovery, and controller/keyboard input |
-| [Scene and interaction stations](./CAMP_LOOP_ANIMATION_PLAYGROUND_SCENE_PLAN_2026-10-13.md) | Twelve authored station areas with cover walls, ladders, obstacles, movable/throwable items, mining, training targets, seats and rest props, plus reset and visible feedback |
+| [Prerequisites](./CAMP_LOOP_ANIMATION_FOUNDATIONS_PLAN_2026-10-13.md) | Dependency restoration, session safety, targeting/activity, input/modal policy, action clocks/transactions, owned motor/presentation/reset and qualification fixture |
+| [Asset import](./CAMP_LOOP_ANIMATION_ASSET_IMPORT_PLAN_2026-10-13.md) | Exact transfer/alias map, private payload/metadata pairing, source/target rig qualification, individual clip policy and reproducible bindings |
+| [Player integration](./CAMP_LOOP_ANIMATION_PLAYER_INTEGRATION_PLAN_2026-10-13.md) | New visual on the existing actor, one pose/motion authority, action families, controls, props and damage/recovery |
+| [Scene playground](./CAMP_LOOP_ANIMATION_PLAYGROUND_SCENE_PLAN_2026-10-13.md) | Twelve authored station areas, cover visibility, anchors/colliders, reset, layout and author acceptance |
+| [Motion backlog](./CAMP_LOOP_ANIMATION_MOTION_BACKLOG_2026-10-13.md) | Missing roles, existing substitutes to qualify, acquisition/adaptation priorities and requested gap closure |
 
-The [source audit](./CAMP_LOOP_ANIMATION_PLAYGROUND_AUDIT_2026-10-13.md) and its [inventory](../../Evidence/Gameplay/AnimationPlayground20261013/animation-inventory.json) control the downloaded collection. The [planned import manifest](./AnimationPlayground20261013/asset-import-plan.json) accounts for every source copy and classifies readiness without claiming a completed import.
+The original [folder inventory](../../Evidence/Gameplay/AnimationPlayground20261013/animation-inventory.json) remains historical evidence. The [expanded source receipt](../../Evidence/Gameplay/AnimationPlayground20261013/PlanReaudit/expanded-source-inventory.json) accounts for 148 collection copies and 74 byte-distinct payloads. Keep 72 Unity FBX destinations: one source character, 68 unarmed candidates and three restricted imported references. The additional two payloads are redundant sprint export versions retained outside Assets, not new gameplay clips. The [schema 2 transfer plan](./AnimationPlayground20261013/asset-import-plan.json) records both sets and original rig alternatives separately.
 
-## Current boundary and decisions
+ART1 may add at most two private target-rig qualification FBXs from the original exports, with separately recorded destinations and paired metadata. They are outside the 72-file motion-collection map; the accepted Mixamo target option reuses the canonical source character. Choosing a target cannot silently change these counts or replace the source Avatar.
 
-Planning started at `f4b73f1b8dac286a6955edae3a393416171d425d`, main tracking origin/main. The unrelated Fused rock files remain untracked and outside this work. The existing Unity 6000.4.0f1 editor owns the checkout; Camp Loop Testing was confirmed clean and outside Play Mode. Preserve the user's foreground application and use its existing background CLI connection. An implementation preflight must refresh this state.
+## What must precede station construction
 
-The collection contains 73 folder copies, 72 unique FBXs, one character and 71 motions. Sixty-eight motions are unarmed evaluation candidates; the mining adaptation source, forward-travel sprint and weapon-pose crouched death are restricted references. Importing all sources does not enable all actions. Mounting, standing wall sidestep, crowd-specific motion and several exit/recovery transitions still require suitable clips or deliberate adaptation.
+The repo already has movement, input/UI, gathering, inventory, camp, vitals and fixed terrain. Extend those owners. The missing prerequisites are generic station discovery/dispatch; consistent busy/availability policy; lab command/rebinding/menu integration; simulation/preview clocks and effect ledger; owned motor/posture snapshots; reset/bootstrap readiness; and private asset plus calibrated Avatar/contact qualification. Build and test these seams with existing/synthetic fixture data before adding all interaction props.
 
-Two live findings refine the audit's early proposals. Keyboard C is already canister pickup and camp rotation, so the player plan uses V for crouch. The locomotion phase mapper requires two contacts per foot; single-cycle sources must be prepared and measured to satisfy that contract. Neither issue is solved by assigning an FBX to a field.
+Preserve main tracking origin/main. Planning began at `9f891713136ef8336ddf2b0aab676a1ac897de7e`; unrelated Fused rock files remain excluded. Unity 6000.4.0f1 owns the checkout and was observed in clean Edit Mode. Refresh this state at implementation start, preserve foreground applications and never start batchmode against the open project.
 
-The GitHub API reported the current repository as public on October 13. The asset plan therefore imports raw Mixamo files into the **local repository working tree**, preserves them in private recovery storage, and tracks their metadata and restoration manifest rather than exposing their payloads through public Git history. It does not change account visibility or purchase storage. This is a storage choice, not a reason to defer local Unity integration. See the asset plan for the governing sources and exact guard.
+Gottspan coordinates and integrates. Babineaux owns Unity wiring/validation. Blender owns rig/source normalization, contacts and motion adaptation. Gear Ball owns exact local commit manifests and separately authorized publication. The author owns appearance/feel and creative acceptance. This plan starts no agents, imports or account actions.
 
-## Ownership and architecture
+## Recommended architecture
 
-Gottspan owns sequencing, scope and integration. Babineaux owns background-safe Unity imports, wiring and validation. Blender owns source normalization, two-cycle preparation and mining/contact adaptation when required. Gear Ball owns exact local commit manifests and any separately authorized publication. The author owns animation appearance, control feel and creative decisions such as mounting content. These are responsibilities; this plan starts no delegates or separate chats.
+Keep one Booter root, Rigidbody, capsule, vitals/inventory owner, input router, camera/EventSystem and Animator output. Extend the existing Playables driver with optional lab configuration; absent configuration retains legacy behavior and assets. The motor remains the physical writer. Station/action components submit requests through its owned mode, not a competing Transform or velocity update.
 
-Three approaches were considered:
+A generic target descriptor feeds the existing selector and capture/revalidation flow. Dispatch non-resource actions explicitly; preserve legacy gather/cargo/canister/camp handling. A shared activity projection reads these owners rather than introducing another lock registry. The action palette belongs to the existing menu/modal owner. Public recipes describe source IDs and policies; private binding assets resolve imported clips/models after hydration.
 
-| Approach | Fit and cost |
-| --- | --- |
-| Extend the existing Playables driver with optional catalog playback and movement capabilities | Preserves the actor, camp/gather contracts and single pose owner. Adds bounded seams and focused regressions; chosen. |
-| Replace the existing animation driver with an Animator Controller and blend trees | Viable as a full animation migration, but requires migrating locomotion phase/contact logic, camp and gather callers together. Broader serialization and production risk than this lab requires. |
-| Build an independent preview character with Timeline/clip selection | Useful for contact inspection and marker authoring, but a standalone preview actor would not exercise the actual player, physical interactions or existing input ownership. Keep preview as a mode of the same lab actor instead. |
+An Animator Controller migration remains viable but would require moving existing contact/camp/gather logic together and has greater scope. An independent Timeline preview actor would not test the real controller. Retain one driver and a preview mode on the actual lab actor. No new motion-matching, crowd AI, network, vehicle or ragdoll framework is prerequisite to this scope.
 
-The chosen path keeps one Booter root, one Rigidbody, one capsule, one vitals owner, one input router and one Animator output. New capabilities are enabled by lab configuration assigned only in Camp Loop Testing. Shared code keeps its existing path when that configuration is absent. Reusable station prefabs carry authored IDs and anchors; they do not become another world generator or save service.
+## Dependency order
 
-## Execution order and gates
-
-Each row is a coherent implementation batch. The detailed plans name the files, data contracts, station objects and acceptance checks. Stop a failing batch before wiring dependent actions; independently completed families may remain usable.
-
-| Batch | Owner and dependency | Work and exit gate |
+| Stage | Dependency and work | Exit gate |
 | --- | --- | --- |
-| 0 | Gottspan and Babineaux | Refresh branch/dirty ownership, editor lock/scene state, source hashes and capacity. Capture task-owned baseline bytes/GUIDs and shared references. No batchmode against the open checkout; no mutation of unrelated assets. |
-| 1 | Gear Ball and Babineaux; after 0 | Install the narrowly scoped private-payload guard and restoration contract before copying. Copy 72 canonical FBXs, preserve Downloads, verify hashes, generate metadata once, and produce a transfer receipt. No raw Mixamo payload enters the staged/publication range. |
-| 2 | Blender and Babineaux; after 1 | Verify Avatar, units, material, deformation and representative contacts. Prepare locomotion cycles when needed, measure all twelve profile roles and author action metadata. Unsupported or unreviewed clips remain disabled. |
-| 3 | Babineaux; after 2 | Add the optional animation catalog branch, action lifecycle, motor ownership, lab input instance, session-only checkpoint policy, diagnostics and reset. Wire the existing Booter visual/profile once. Null lab configuration preserves current production behavior. |
-| 4 | Babineaux; after 3 | Create the hub, calibration lane and lab station prefabs/root. Place on validated pads without editing TerrainData. All twelve IDs, bounds, colliders and the return route validate. |
-| 5 | Babineaux; after 4 | Locomotion/strafe, crouch/duck, jump/fall/landing and slide. Gates: profile contacts, overhead clearance, physical state transitions, collisions and recovery. |
-| 6 | Babineaux; after 5 | Pickup/examine/throw, button and push. Gates: target reservation, attachment, release/hit markers, exactly-once effects, interruption and reset. |
-| 7 | Babineaux; after 5 | Cover and ladder. Gates: wall/rung alignment, visibility feedback, limits, entry/exit clearance and safe abort. Missing standing-wall/descent clips stay unavailable. |
-| 8 | Babineaux and Blender; after 6 | Seat/ground rest/sleep and adapted mining. Gates: contact and exit transitions, existing camp lifecycle, no duplicate reward or checkpoint write. |
-| 9 | Babineaux; after 6 | Punch/kick, directional hurt, death and get-up. Gates: one hit per strike/target, one health authority, interruption priority, terminal pose and recoverable lab reset. |
-| 10 | Gottspan and Babineaux; after 5–9 | Complete catalog/station coverage and focused regressions; measure the bounded scene budget and reset/scene lifecycle. Produce a user playtest checklist and implementation receipt. Gameplay feel/visual acceptance remains with the author. |
-| 11 | Author direction and relevant asset owner | Acquire/author mounting, crowd-specific or missing transitions if still wanted. These cannot be presented as implemented while only a fixture or substitute exists. Production promotion and publication remain separate. |
+| PRE0 | Refresh authority, branch/dirty ownership, editor/lock, scene, source hashes, destination ownership and capacity | Task baseline is stable; foreground and unrelated files protected. |
+| DEP1 | After PRE0: private source/metadata restoration contract, scoped guards, public folder scaffolding and dry-run mapping | All 148 aliases/74 payloads accounted for; no public raw files or orphan metadata; original bytes preserved. |
+| FND1 | After DEP1: scene bootstrap, private binding readiness, checkpoint policy and injected lab controls directory | No world restore/write in configured lab, including quit; missing assets are explicit; production/null configuration unchanged. |
+| FND2 | After FND1: target descriptor/query/dispatch and activity availability | Legacy targets and primitive test stations select correctly; press target cannot redirect; no fake gather reward or stolen lease. |
+| FND3 | After FND2: router commands, owned input instance, coactive rebinding and menu-hosted palette | New commands and overrides validate; tap/hold, modal release and device/focus behavior preserved; no production preference overwrite. |
+| FND4 | After FND2–3: clock/marker/transaction rules, motor modes/snapshots, pose/contact routing and reset contract | Pure/primitive fixtures prove ownership, posture/support, pause/cancel/epoch effects and cleanup without requiring all source clips. |
+| ART1 | After DEP1/FND1: minimal source/target rig and calibrated fixture | Choose documented rig/quality tier; scale, material, Avatar, weights and representative grip/contact pass. Other foundation rules may use existing fixture art. |
+| ART2 | After ART1/FND4: bulk canonical import, private binding set, calibrated contacts/markers and complete profile | Twelve locomotion roles pass; cyclic R-L-R-L order and root/facing policy measured; private metadata and IDs restore exactly. |
+| INT1 | After ART2: existing Booter visual/profile cutover and optional graph branches | One output/motor/contact authority; private readiness and legacy/camp callers verified; preview causes no effects. |
+| LAB1 | After INT1: hub and twelve station shells/layout | Owned bounded pads, IDs, routes/clearance and validator pass without TerrainData or production edits. |
+| PHY1 | After LAB1: locomotion/strafe, crouch/duck, jump/fall/land, slide/dodge | Keyboard walk access; unsupported backpedal gated; takeoff/landing and posture-aware collision/recovery pass. |
+| PHY2 | After PHY1 and family clips: pickup/hold/drop/throw, button and push | Qualified hold/release; no unqualified moving carry; exactly-once effects, obstruction and reset. |
+| PHY3 | After PHY1 and family clips: cover/wall and ladder | Wall/rung/end/top clearance and visibility pass; ascent has physical return route; no reversed-ascent descent claim. |
+| PHY4 | After PHY2 and complete sequences: chair/ground/sleep and adapted mining | Enter/idle/exit, camp ownership/equipment and grip/impact qualified; session reward sink preserves original node counts/economy. |
+| PHY5 | After PHY1–2 and qualified posture sets: strikes, hurt/death/get-up | Direction/severity, collision/gravity, terminal hold, recovery clearance and reset pass; missing posture variants remain explicit. |
+| EXT1 | After relevant families: requested mounting and standing-wall/crowd alternative, plus remaining requested transitions | Licensed/custom suitable motion and target sequence pass; a static seat fixture is the initial mounting scope, not a vehicle simulation. |
+| ACC1 | After implemented families: coverage, focused regressions, hydration/reload/reset and author checklist | Candidate and full-requested milestones reported separately; no missing role silently called complete. |
 
-Batches 6, 7 and 8 are dependency ordering, not authorization for concurrent edits to shared player files. Commit verified task-owned units locally after their relevant gates. A local commit does not authorize a push, branch/worktree operation, package change or account action.
+These dependencies do not authorize concurrent edits to coupled player files. Commit only verified task-owned batches. Push, worktree/branch operations, package changes, purchases or account visibility changes require their own authority.
 
-## World and persistence contract
+## Motion and completion gates
 
-Camp Loop Testing uses its existing authored world identity and separate checkpoint namespace. Its nine fixed terrain tiles remain resident, so terrain generation and terrain/chunk streaming are not applicable. Scene unload, disable and reload still tear down action ownership, graph resources and prop reservations. Station IDs are authored and stable; temporary props use a session allocator. No station identity depends on child order or random GUID generation at runtime.
+Prioritize backward locomotion/standing turns for full facing-independent movement; a qualified hold and safe release before pickup completion; complete chair/ground/bed transitions; and posture-compatible reactions/death. New downloads are not automatically required for starts/stops/pivots, jump phases, cover exit or get-up: existing assets may be retargeted, segmented or adapted after qualification. The backlog records the method and exact gate.
 
-Keep authored camp, terrain, rocks, resources and Legger access accounted for. Lab switches, props, damage and station rewards are session-only, resettable state. The existing save service snapshots health and actor position every 30 seconds when safe, so separate station state alone cannot prevent test damage from being saved. Batch 3 adds an explicit session-only policy for the configured Camp Loop playground, applied before checkpoint restore/writer creation and honored by autosave, manual save and quit. Existing CampLoopTesting and production files remain intact. Without the lab marker, existing checkpoint behavior remains unchanged. If persistent lab state is later requested, design its version/migration separately. Legger reset or recovery never teleports him to Booter.
+Milestone A is a candidate playground with accepted source families, preview and physical behavior, while explicit gaps stay unavailable. Milestone B fulfills the complete requested playground, including actual mining adaptation, rest/seat transitions, a mount/dismount test and the requested wall/crowd motion alternative. Do not relabel requested gaps as optional polish. Lean/peek, use-item presentation, carry variants and extra idles can follow as separately recorded enhancements.
 
-## Validation and recovery
+## World, storage and reset contract
 
-| Risk | Containment and affected gate |
-| --- | --- |
-| Incorrect scale, Avatar or limited grip | Character/contact gate in batch 2; do not propagate bad offsets into all station prefabs. |
-| Single-cycle loops incompatible with contact mapping | Measured two-cycle preparation before batch 5; no invented contact phases. |
-| Action movement overwritten by the motor's constrained early return | Extend the owned mode inside the existing motor path in batch 3; a separate component cannot bypass it by writing the Rigidbody afterwards. |
-| Private payload missing or exposed to public Git | Hydration/preflight and staged/unpublished-range guard in batch 1; production remains independent of the lab's private dependencies. |
-| Test health/position saved automatically | Session policy resolved before checkpoint startup in batch 3; autosave/manual/quit regression checks. |
-| Extra lab resource breaks twelve-node preservation or farms rewards | Distinct lab target/component and session reward sink; keep existing resource tests and identities intact. |
-| Missing entry/exit or incompatible death/get-up pairing | Adapt/review the complete sequence; keep that physical variant disabled until its family gate passes. |
+Use CampLoopTesting's authored identity. Nine native tiles remain resident; terrain generation/streaming are not applicable. Authored station IDs and session prop epochs survive layout edits and prevent stale target requests; scene disable/unload/reload releases leases/listeners/graph state. Preserve camp, resources, rocks and companion paths. Legger never teleports as part of reset.
 
-Incomplete sets have explicit closure work. Batch 8 reuses verified compatible camp transitions where possible and authors/adapts chair stand-up, ground sit/stand and lie-down/wake transitions where needed. Batch 7 provides a physical return ramp from the ladder platform while descent remains unavailable. Cover exits through reviewed crouched movement and the accepted crouch-to-stand transition after clearance passes. Batch 11 can author a mount/dismount pair for a static mechanical seat fixture, standing wall-hug motion and a crowd-navigation motion set; these are lab experiments, not horse/vehicle canon or automatic asset purchases. Keep left/forward dodge and unarmed crouched death on the same named gap list. Mirroring or reversing a source counts only after contact, balance and transition review.
+New station state, rewards, damage and actor resets are session-only. Configure the checkpoint service before Start so existing CampLoopTesting and GreaterWasteland files are neither restored into the lab nor written by it. Controls preferences have their own lab directory; ordinary settings are not redirected accidentally. Private FBXs, their paired metadata and bound clip/model assets stay together privately. Public recipes, GUID/import receipts and folder scaffolding support restoration without breaking metadata pairing. No new public payload/LFS or account policy is assumed.
 
-Asset gates prove file integrity, mapping, importer configuration, GUID continuity and representative deformation. Current Unity import/compile and focused EditMode tests prove integration contracts. The scene validator must inspect the loaded scene without opening, saving or installing content. Tests that open scenes run in an approved task-owned isolated validation copy, never by discarding the author's unsaved scene. Do not use the existing destructive scene builder as a playground installer.
+Reset invalidates action/target epochs first, clears pending effects, releases ownership, restores registered props/targets and actor posture/gravity/vitals, selects a collision-clear return, then rearms inputs after release. Avoid reset rewards, arbitrary scene-body deletion, hidden movement fallbacks and unresolved queued writes.
 
-Regression selection follows the changed seam: locomotion/smart traversal; interaction/resource/inventory; input/modal/rebinding; survival/camp/checkpoints; and the existing CampLoopTesting scene tests. Add focused tests for new behavioral contracts. No gameplay smoke tests are part of automated closeout. Performance evidence must use an explicit approved scenario; a player build is required only for a separately requested build outcome.
+## Verification and readiness
 
-Recover a failing batch from its recorded task-owned bytes and metadata, preserving GUIDs. Disable the lab capability/root to contain an incomplete family; do not silently fall back to an unrelated animation while claiming it works. Preserve Downloads, private recovery files and unrelated edits. Do not reset or clean the whole checkout.
+Verify every stage against its named contract: file/GUID restoration; bootstrap/save/preferences; target/busy/input/modal; clock/transactions; motor/posture/support; Avatar/profile/contact; graph/private bindings; scene layout; each physical family; and coverage/reset/reload. Existing tests that open scenes run in an approved isolated hydrated candidate. Loaded-scene validation must not open/save/install content. Gameplay smoke tests and visual/feel acceptance remain author-owned. Performance captures use a named authorized scenario; builds/publication are separate outcomes.
 
-## Completion condition
-
-The [planning verification receipt](../../Evidence/Gameplay/AnimationPlayground20261013/plan-validation.json) records source/hash coverage, map uniqueness, document routes, station coverage and the fresh input/save/storage findings. It establishes the plan's consistency, not completed Unity integration.
-
-Implementation is complete when every source has a verified destination or alias; every accepted motion is reachable through its intended player/station behavior and preview; each unresolved clip is visibly unavailable with a named gap; station/reset/lifecycle and focused regression gates pass; and the author has a clear hands-on acceptance checklist. The plan is ready to execute in these bounded batches when implementation is requested. This planning task changes documentation and the planned mapping only.
+The [reaudit receipt](../../Evidence/Gameplay/AnimationPlayground20261013/PlanReaudit/verification.json) establishes source and plan consistency. It does not establish Unity import or gameplay. The package is ready for bounded prerequisite implementation when requested; full interaction completion remains conditional on rig/contact qualification and the named motion gaps. This audit rewrites documentation only.

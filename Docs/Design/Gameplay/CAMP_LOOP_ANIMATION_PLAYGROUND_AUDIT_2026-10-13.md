@@ -4,7 +4,7 @@ Date: 2026-10-13. Status: **audit and proposal only**. Owner: Gottspan coordinat
 
 ## Result and immediate decisions
 
-For implementation, follow the [three-part playground plan](./CAMP_LOOP_ANIMATION_PLAYGROUND_IMPLEMENTATION_PLAN_2026-10-13.md). Its fresh input, contact-cycle, public-storage and checkpoint findings refine the provisional choices below; the inventory and audit evidence remain unchanged.
+For implementation, follow the [revised playground plan](./CAMP_LOOP_ANIMATION_PLAYGROUND_IMPLEMENTATION_PLAN_2026-10-13.md) and [plan reaudit](./CAMP_LOOP_ANIMATION_PLAN_AUDIT_2026-10-13.md). They refine input, contact-cycle, private metadata, checkpoint and prerequisite choices and account for loose Downloads aliases/two sprint versions. The folder-only inventory and original evidence below remain historical and unchanged.
 
 The collection contains **73 FBX copies, 72 unique files: one character T-pose and 71 motion candidates**. The mining swing is duplicated across two download folders. There are **68 distinct unarmed candidates for playground evaluation**, plus three restricted references: the downward axe swing requiring mining adaptation, a sprint that retains forward travel, and a crouched death with a weapon-style pose. “Candidate” means downloaded and structurally inspected; it does not mean Unity import, contact quality or gameplay readiness has passed.
 

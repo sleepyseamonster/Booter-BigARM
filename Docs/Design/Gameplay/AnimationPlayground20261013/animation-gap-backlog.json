@@ -1,0 +1,504 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "status": "audit-and-proposal-only",
+  "roles": [
+    {
+      "id": "MR01",
+      "priority": "P1",
+      "role": "Upright backward walk",
+      "scope": "complete-behavior-gap",
+      "source_or_method": "Acquire/author an unarmed loop; absent from the inspected active character collection",
+      "gate": "PHY1 full facing-independent movement",
+      "stages": [
+        "PHY1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR02",
+      "priority": "P1",
+      "role": "Upright backward run",
+      "scope": "complete-behavior-gap",
+      "source_or_method": "Acquire/author; do not reverse forward running as the default",
+      "gate": "PHY1 full facing-independent movement",
+      "stages": [
+        "PHY1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR03",
+      "priority": "P1",
+      "role": "Standing turn-in-place left/right",
+      "scope": "complete-behavior-gap",
+      "source_or_method": "Acquire/author; moving pivots do not cover idle foot rotation",
+      "gate": "PHY1 stationary facing changes",
+      "stages": [
+        "PHY1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR04",
+      "priority": "P0",
+      "role": "Starts/stops/pivots and directional roles",
+      "scope": "family-prerequisite",
+      "source_or_method": "Retarget/recalibrate the existing eight profile roles before seeking replacements",
+      "gate": "ART2 twelve-role profile",
+      "stages": [
+        "ART2"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR05",
+      "priority": "P0",
+      "role": "Gait contact/cycle origin",
+      "scope": "family-prerequisite",
+      "source_or_method": "Measure and derive two-cycle/phase-rotated sources if needed; R-L-R-L order, no invented contacts",
+      "gate": "ART2 profile/contact",
+      "stages": [
+        "ART2"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR06",
+      "priority": "P0",
+      "role": "Hold object idle",
+      "scope": "family-prerequisite",
+      "source_or_method": "Derive/author a compatible held pose from the reviewed pickup/examine context",
+      "gate": "PHY2 pickup completion",
+      "stages": [
+        "PHY2"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR07",
+      "priority": "P1",
+      "role": "Carry walk/turn and grip",
+      "scope": "complete-behavior-gap",
+      "source_or_method": "Acquire/author; holding through ordinary arm-swing locomotion is not a carry set",
+      "gate": "PHY2 moving carry",
+      "stages": [
+        "PHY2"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR08",
+      "priority": "P1",
+      "role": "Place object down",
+      "scope": "complete-behavior-gap",
+      "source_or_method": "Adapt/author a contact/release sequence; safe instant drop remains a safety command, not this animation",
+      "gate": "PHY2 place behavior",
+      "stages": [
+        "PHY2"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR09",
+      "priority": "P0",
+      "role": "Chair stand-up",
+      "scope": "family-prerequisite",
+      "source_or_method": "Acquire/author compatible with downloaded sit/idle",
+      "gate": "PHY4 complete chair cycle",
+      "stages": [
+        "PHY4"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR10",
+      "priority": "P0",
+      "role": "Ground sit-down and stand-up",
+      "scope": "family-prerequisite",
+      "source_or_method": "Adapt/author; floor idle and back/stomach get-up do not automatically match",
+      "gate": "PHY4 complete ground rest",
+      "stages": [
+        "PHY4"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR11",
+      "priority": "P0",
+      "role": "Lie down, wake/rise and bed contact",
+      "scope": "family-prerequisite",
+      "source_or_method": "Qualify existing camp transitions or author for side-sleep source; preserve camp/equipment ownership",
+      "gate": "PHY4 complete sleep cycle",
+      "stages": [
+        "PHY4"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR12",
+      "priority": "P0",
+      "role": "Cover exit",
+      "scope": "family-prerequisite",
+      "source_or_method": "Compose/review crouch backward movement and crouch-to-stand after clearance; acquire/author if contact fails",
+      "gate": "PHY3 complete cover cycle",
+      "stages": [
+        "PHY3"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR13",
+      "priority": "P1",
+      "role": "Ladder descent and bottom exit",
+      "scope": "complete-behavior-gap",
+      "source_or_method": "Acquire/author dedicated sequence; ascent station uses a return ramp meanwhile",
+      "gate": "PHY3 bidirectional ladder",
+      "stages": [
+        "PHY3"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR14",
+      "priority": "P0",
+      "role": "Takeoff, airborne and touchdown roles",
+      "scope": "family-prerequisite",
+      "source_or_method": "Segment current standing/running/unarmed jumps and existing fall/land sources against real physics",
+      "gate": "PHY1 complete jump",
+      "stages": [
+        "PHY1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR15",
+      "priority": "P1",
+      "role": "Hard/roll landing recovery",
+      "scope": "complete-behavior-gap",
+      "source_or_method": "Review Falling To Roll/Landing and get-up compatibility; derive/author missing recovery",
+      "gate": "PHY1 landing variants",
+      "stages": [
+        "PHY1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR16",
+      "priority": "P0",
+      "role": "Ladder abort/recovery",
+      "scope": "family-prerequisite",
+      "source_or_method": "Behavior and anchor/pose review first; fall/landing or bottom exit may supply roles",
+      "gate": "PHY3 safe interruptions",
+      "stages": [
+        "PHY3"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR17",
+      "priority": "P0",
+      "role": "Unarmed crouched death",
+      "scope": "family-prerequisite",
+      "source_or_method": "Acquire/author; current Crouch Death reference has weapon-style posture and stays excluded",
+      "gate": "PHY5 crouched fatal state",
+      "stages": [
+        "PHY5"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR18",
+      "priority": "P1",
+      "role": "Crouched hurt",
+      "scope": "complete-behavior-gap",
+      "source_or_method": "Qualify a posture-preserving masked reaction or author; standing full-body hit is not automatically suitable",
+      "gate": "PHY5 crouched reactions",
+      "stages": [
+        "PHY5"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR19",
+      "priority": "P0",
+      "role": "Airborne/traversal damage exit",
+      "scope": "family-prerequisite",
+      "source_or_method": "Define gravity/motion-safe policy using fall/landing where suitable; qualify extra poses if needed",
+      "gate": "PHY5 fatal/large-hit transitions",
+      "stages": [
+        "PHY5"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR20",
+      "priority": "P1",
+      "role": "Seated/sleeping interruption or fatal pose",
+      "scope": "complete-behavior-gap",
+      "source_or_method": "Qualify exit/current-pose terminal treatment or author, with collision/health policy",
+      "gate": "PHY4/PHY5 posture coverage",
+      "stages": [
+        "PHY4",
+        "PHY5"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR21",
+      "priority": "P0",
+      "role": "Knockdown/death to back/stomach get-up",
+      "scope": "family-prerequisite",
+      "source_or_method": "Pair exact final floor posture with existing get-up; author a bridge/knockdown if needed",
+      "gate": "PHY5 recovery compatibility",
+      "stages": [
+        "PHY5"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR22",
+      "priority": "P0",
+      "role": "Mining grip, repeated swing/impact/return",
+      "scope": "family-prerequisite",
+      "source_or_method": "Adapt the one-handed downward reference to a blunt mining tool or author true mining; no finished mining claim from the source name",
+      "gate": "PHY4 mining",
+      "stages": [
+        "PHY4"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR23",
+      "priority": "P1",
+      "role": "Mount and dismount",
+      "scope": "requested-gap",
+      "source_or_method": "Requested: acquire/author for a static mechanical saddle/seat fixture; no moving vehicle system needed initially",
+      "gate": "EXT1 requested mounting",
+      "stages": [
+        "EXT1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR24",
+      "priority": "P1",
+      "role": "Standing wall-hug or crowd-squeeze alternative",
+      "scope": "requested-gap",
+      "source_or_method": "Requested: qualify one suitable complete alternative; crouched cover and standard walk alone do not fulfill it",
+      "gate": "EXT1 requested corridor motion",
+      "stages": [
+        "EXT1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR25",
+      "priority": "P2",
+      "role": "Unarmed lean/peek left/right",
+      "scope": "optional-enhancement",
+      "source_or_method": "Extends measured cover/visibility experiments after basic cover works.",
+      "gate": "Extends measured cover/visibility experiments after basic cover works.",
+      "stages": [
+        "EXT1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR26",
+      "priority": "P2",
+      "role": "Unarmed block/parry",
+      "scope": "optional-enhancement",
+      "source_or_method": "Adds defensive comparison after strike/hit ownership and timing pass.",
+      "gate": "Adds defensive comparison after strike/hit ownership and timing pass.",
+      "stages": [
+        "EXT1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR27",
+      "priority": "P2",
+      "role": "Drink algae, eat and self-treatment",
+      "scope": "optional-enhancement",
+      "source_or_method": "Existing gameplay commands could gain cosmetic presentation. Existing item/vitals transaction stays authoritative; animation does not dose again or change timing silently.",
+      "gate": "Existing gameplay commands could gain cosmetic presentation. Existing item/vitals transaction stays authoritative; animation does not dose again or change timing silently.",
+      "stages": [
+        "EXT1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR28",
+      "priority": "P2",
+      "role": "Look around/environment inspection and relaxed idle variants",
+      "scope": "optional-enhancement",
+      "source_or_method": "Tests grounded idle variety and attention without requiring NPC/quest systems.",
+      "gate": "Tests grounded idle variety and attention without requiring NPC/quest systems.",
+      "stages": [
+        "EXT1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR29",
+      "priority": "P2",
+      "role": "Heavy lift/carry",
+      "scope": "optional-enhancement",
+      "source_or_method": "Existing Lifting can be evaluated; heavier carry needs its own posture/motion set.",
+      "gate": "Existing Lifting can be evaluated; heavier carry needs its own posture/motion set.",
+      "stages": [
+        "EXT1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR30",
+      "priority": "P1",
+      "role": "Crouch/cover travel starts/stops/turns",
+      "scope": "complete-behavior-gap",
+      "source_or_method": "Compose/review current loops/enter/exit; derive/author if blends visibly pop",
+      "gate": "PHY1/PHY3 transition quality",
+      "stages": [
+        "PHY1",
+        "PHY3"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR31",
+      "priority": "P2",
+      "role": "Stumble/trip/nonfatal knockdown",
+      "scope": "optional-enhancement",
+      "source_or_method": "Useful for collision/damage recovery variety after safe physical recovery exists.",
+      "gate": "Useful for collision/damage recovery variety after safe physical recovery exists.",
+      "stages": [
+        "EXT1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR32",
+      "priority": "P2",
+      "role": "Left/forward dodge",
+      "scope": "optional-enhancement",
+      "source_or_method": "Mirror the right source only if symmetry/contact/path review passes; forward dodge needs a suitable source.",
+      "gate": "Mirror the right source only if symmetry/contact/path review passes; forward dodge needs a suitable source.",
+      "stages": [
+        "EXT1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    },
+    {
+      "id": "MR33",
+      "priority": "P0",
+      "role": "Prop and ladder hand grips",
+      "scope": "family-prerequisite",
+      "source_or_method": "Fuller target rig plus authored poses if required; absent fingers cannot be added by IK alone",
+      "gate": "ART1 and hand-contact families",
+      "stages": [
+        "ART1"
+      ],
+      "completed": false,
+      "catalog_availability_verified": false,
+      "qualified_clip_ids": [],
+      "note": "Role requirement; not a claim of a currently available Mixamo title. No acquisition/authoring performed in this audit."
+    }
+  ]
+}

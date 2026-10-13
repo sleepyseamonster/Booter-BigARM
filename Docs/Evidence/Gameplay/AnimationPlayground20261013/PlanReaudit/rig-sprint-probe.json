@@ -1,0 +1,806 @@
+{
+  "date": "2026-10-13",
+  "method": "Background Blender 5.2.2 FBX import in separate factory scene; no source export",
+  "pose_precision": "All integer keyframe-span frames, sorted bone pose matrices rounded to six decimal places; not byte/curve/Unity equivalence",
+  "records": [
+    {
+      "file": "male_basemesh_rigged.fbx",
+      "bytes": 2266332,
+      "sha256": "1563823a3d90a8024cccde2ce195215a42747aee127f2190725a709a3fad9536",
+      "rig_count": 1,
+      "bone_count": 74,
+      "mesh_count": 1,
+      "vertices": 31739,
+      "triangles": 63134,
+      "material_slots": 0,
+      "finger_bone_names": [
+        "DEF-thumb.01.R",
+        "DEF-thumb.02.R",
+        "DEF-thumb.03.R",
+        "DEF-f_index.01.R",
+        "DEF-f_index.02.R",
+        "DEF-f_index.03.R",
+        "DEF-f_middle.01.R",
+        "DEF-f_middle.02.R",
+        "DEF-f_middle.03.R",
+        "DEF-f_ring.01.R",
+        "DEF-f_ring.02.R",
+        "DEF-f_ring.03.R",
+        "DEF-f_pinky.01.R",
+        "DEF-f_pinky.02.R",
+        "DEF-f_pinky.03.R",
+        "DEF-thumb.01.L",
+        "DEF-thumb.02.L",
+        "DEF-thumb.03.L",
+        "DEF-f_index.01.L",
+        "DEF-f_index.02.L",
+        "DEF-f_index.03.L",
+        "DEF-f_middle.01.L",
+        "DEF-f_middle.02.L",
+        "DEF-f_middle.03.L",
+        "DEF-f_ring.01.L",
+        "DEF-f_ring.02.L",
+        "DEF-f_ring.03.L",
+        "DEF-f_pinky.01.L",
+        "DEF-f_pinky.02.L",
+        "DEF-f_pinky.03.L"
+      ],
+      "mesh_vertex_group_names": [
+        "DEF-breast.L",
+        "DEF-breast.R",
+        "DEF-f_index.01.L",
+        "DEF-f_index.01.R",
+        "DEF-f_index.02.L",
+        "DEF-f_index.02.R",
+        "DEF-f_index.03.L",
+        "DEF-f_index.03.R",
+        "DEF-f_middle.01.L",
+        "DEF-f_middle.01.R",
+        "DEF-f_middle.02.L",
+        "DEF-f_middle.02.R",
+        "DEF-f_middle.03.L",
+        "DEF-f_middle.03.R",
+        "DEF-f_pinky.01.L",
+        "DEF-f_pinky.01.R",
+        "DEF-f_pinky.02.L",
+        "DEF-f_pinky.02.R",
+        "DEF-f_pinky.03.L",
+        "DEF-f_pinky.03.R",
+        "DEF-f_ring.01.L",
+        "DEF-f_ring.01.R",
+        "DEF-f_ring.02.L",
+        "DEF-f_ring.02.R",
+        "DEF-f_ring.03.L",
+        "DEF-f_ring.03.R",
+        "DEF-foot.L",
+        "DEF-foot.R",
+        "DEF-forearm.L",
+        "DEF-forearm.L.001",
+        "DEF-forearm.R",
+        "DEF-forearm.R.001",
+        "DEF-hand.L",
+        "DEF-hand.R",
+        "DEF-palm.01.L",
+        "DEF-palm.01.R",
+        "DEF-palm.02.L",
+        "DEF-palm.02.R",
+        "DEF-palm.03.L",
+        "DEF-palm.03.R",
+        "DEF-palm.04.L",
+        "DEF-palm.04.R",
+        "DEF-shin.L",
+        "DEF-shin.L.001",
+        "DEF-shin.R",
+        "DEF-shin.R.001",
+        "DEF-shoulder.L",
+        "DEF-shoulder.R",
+        "DEF-spine",
+        "DEF-spine.001",
+        "DEF-spine.002",
+        "DEF-spine.003",
+        "DEF-spine.004",
+        "DEF-spine.005",
+        "DEF-spine.006",
+        "DEF-thigh.L",
+        "DEF-thigh.L.001",
+        "DEF-thigh.R",
+        "DEF-thigh.R.001",
+        "DEF-thumb.01.L",
+        "DEF-thumb.01.R",
+        "DEF-thumb.02.L",
+        "DEF-thumb.02.R",
+        "DEF-thumb.03.L",
+        "DEF-thumb.03.R",
+        "DEF-toe.L",
+        "DEF-toe.R",
+        "DEF-upper_arm.L",
+        "DEF-upper_arm.L.001",
+        "DEF-upper_arm.R",
+        "DEF-upper_arm.R.001",
+        "ORG-breast.L",
+        "ORG-breast.R"
+      ],
+      "actions": []
+    },
+    {
+      "file": "male_basemesh_from_blender_rigged.fbx",
+      "bytes": 6999404,
+      "sha256": "211be186439087232f783a64f1ccc398aab055355bfbfe95517cd1b26fbd6745",
+      "rig_count": 1,
+      "bone_count": 102,
+      "mesh_count": 51,
+      "vertices": 31608,
+      "triangles": 62872,
+      "material_slots": 0,
+      "finger_bone_names": [
+        "DEF-f_index.01.L",
+        "DEF-f_index.02.L",
+        "DEF-f_index.03.L",
+        "DEF-thumb.01.L",
+        "DEF-thumb.02.L",
+        "DEF-thumb.03.L",
+        "DEF-f_middle.01.L",
+        "DEF-f_middle.02.L",
+        "DEF-f_middle.03.L",
+        "DEF-f_ring.01.L",
+        "DEF-f_ring.02.L",
+        "DEF-f_ring.03.L",
+        "DEF-f_pinky.01.L",
+        "DEF-f_pinky.02.L",
+        "DEF-f_pinky.03.L",
+        "DEF-f_index.01.R",
+        "DEF-f_index.02.R",
+        "DEF-f_index.03.R",
+        "DEF-thumb.01.R",
+        "DEF-thumb.02.R",
+        "DEF-thumb.03.R",
+        "DEF-f_middle.01.R",
+        "DEF-f_middle.02.R",
+        "DEF-f_middle.03.R",
+        "DEF-f_ring.01.R",
+        "DEF-f_ring.02.R",
+        "DEF-f_ring.03.R",
+        "DEF-f_pinky.01.R",
+        "DEF-f_pinky.02.R",
+        "DEF-f_pinky.03.R"
+      ],
+      "mesh_vertex_group_names": [
+        "DEF-breast.L",
+        "DEF-breast.R",
+        "DEF-f_index.01.L",
+        "DEF-f_index.01.R",
+        "DEF-f_index.02.L",
+        "DEF-f_index.02.R",
+        "DEF-f_index.03.L",
+        "DEF-f_index.03.R",
+        "DEF-f_middle.01.L",
+        "DEF-f_middle.01.R",
+        "DEF-f_middle.02.L",
+        "DEF-f_middle.02.R",
+        "DEF-f_middle.03.L",
+        "DEF-f_middle.03.R",
+        "DEF-f_pinky.01.L",
+        "DEF-f_pinky.01.R",
+        "DEF-f_pinky.02.L",
+        "DEF-f_pinky.02.R",
+        "DEF-f_pinky.03.L",
+        "DEF-f_pinky.03.R",
+        "DEF-f_ring.01.L",
+        "DEF-f_ring.01.R",
+        "DEF-f_ring.02.L",
+        "DEF-f_ring.02.R",
+        "DEF-f_ring.03.L",
+        "DEF-f_ring.03.R",
+        "DEF-foot.L",
+        "DEF-foot.R",
+        "DEF-forearm.L",
+        "DEF-forearm.L.001",
+        "DEF-forearm.R",
+        "DEF-forearm.R.001",
+        "DEF-hand.L",
+        "DEF-hand.R",
+        "DEF-palm.01.L",
+        "DEF-palm.01.R",
+        "DEF-palm.02.L",
+        "DEF-palm.02.R",
+        "DEF-palm.03.L",
+        "DEF-palm.03.R",
+        "DEF-palm.04.L",
+        "DEF-palm.04.R",
+        "DEF-pelvis.L",
+        "DEF-pelvis.R",
+        "DEF-shin.L",
+        "DEF-shin.L.001",
+        "DEF-shin.R",
+        "DEF-shin.R.001",
+        "DEF-shoulder.L",
+        "DEF-shoulder.R",
+        "DEF-spine",
+        "DEF-spine.001",
+        "DEF-spine.002",
+        "DEF-spine.003",
+        "DEF-spine.004",
+        "DEF-spine.005",
+        "DEF-spine.006",
+        "DEF-thigh.L",
+        "DEF-thigh.L.001",
+        "DEF-thigh.R",
+        "DEF-thigh.R.001",
+        "DEF-thumb.01.L",
+        "DEF-thumb.01.R",
+        "DEF-thumb.02.L",
+        "DEF-thumb.02.R",
+        "DEF-thumb.03.L",
+        "DEF-thumb.03.R",
+        "DEF-toe.L",
+        "DEF-toe.R",
+        "DEF-upper_arm.L",
+        "DEF-upper_arm.L.001",
+        "DEF-upper_arm.R",
+        "DEF-upper_arm.R.001"
+      ],
+      "actions": []
+    },
+    {
+      "file": "male_basemesh_mixamo_rigged.fbx",
+      "bytes": 2251184,
+      "sha256": "df84725e3654fc8221e110404c3fc921daabec368d4f29f70fb9a7a97dc20ef4",
+      "rig_count": 1,
+      "bone_count": 33,
+      "mesh_count": 1,
+      "vertices": 31739,
+      "triangles": 63134,
+      "material_slots": 0,
+      "finger_bone_names": [
+        "mixamorig:LeftHandIndex1",
+        "mixamorig:LeftHandIndex2",
+        "mixamorig:LeftHandIndex3",
+        "mixamorig:LeftHandIndex4",
+        "mixamorig:RightHandIndex1",
+        "mixamorig:RightHandIndex2",
+        "mixamorig:RightHandIndex3",
+        "mixamorig:RightHandIndex4"
+      ],
+      "mesh_vertex_group_names": [
+        "mixamorig:Head",
+        "mixamorig:Hips",
+        "mixamorig:LeftArm",
+        "mixamorig:LeftFoot",
+        "mixamorig:LeftForeArm",
+        "mixamorig:LeftHand",
+        "mixamorig:LeftHandIndex1",
+        "mixamorig:LeftHandIndex2",
+        "mixamorig:LeftHandIndex3",
+        "mixamorig:LeftLeg",
+        "mixamorig:LeftShoulder",
+        "mixamorig:LeftToeBase",
+        "mixamorig:LeftUpLeg",
+        "mixamorig:Neck",
+        "mixamorig:RightArm",
+        "mixamorig:RightFoot",
+        "mixamorig:RightForeArm",
+        "mixamorig:RightHand",
+        "mixamorig:RightHandIndex1",
+        "mixamorig:RightHandIndex2",
+        "mixamorig:RightHandIndex3",
+        "mixamorig:RightLeg",
+        "mixamorig:RightShoulder",
+        "mixamorig:RightToeBase",
+        "mixamorig:RightUpLeg",
+        "mixamorig:Spine",
+        "mixamorig:Spine1",
+        "mixamorig:Spine2"
+      ],
+      "actions": [
+        {
+          "start": 1.0,
+          "end": 2.0
+        }
+      ]
+    },
+    {
+      "file": "male_basemesh_mixamo_unrigged@Sprint.fbx",
+      "bytes": 177824,
+      "sha256": "752360bbcb37e4a17668d40b5bd3098372b8e78ba1827319e1396e43f18a0368",
+      "rig_count": 1,
+      "bone_count": 33,
+      "mesh_count": 0,
+      "vertices": 0,
+      "triangles": 0,
+      "material_slots": 0,
+      "finger_bone_names": [
+        "mixamorig:LeftHandIndex1",
+        "mixamorig:LeftHandIndex2",
+        "mixamorig:LeftHandIndex3",
+        "mixamorig:LeftHandIndex4",
+        "mixamorig:RightHandIndex1",
+        "mixamorig:RightHandIndex2",
+        "mixamorig:RightHandIndex3",
+        "mixamorig:RightHandIndex4"
+      ],
+      "mesh_vertex_group_names": [],
+      "actions": [
+        {
+          "start": 1.0,
+          "end": 17.0
+        }
+      ],
+      "pose_sequence_sha256_rounded_6": "c0ddce553867afa8929a4f8351741acf810da235bb84b32794ad880f9f97ce6b",
+      "hip_start_end_delta_rig_local_units": [
+        -3.814697265625E-06,
+        6.103515625E-05,
+        3668.5339031219482
+      ],
+      "skeleton_signature": [
+        [
+          "mixamorig:Head",
+          "mixamorig:Neck"
+        ],
+        [
+          "mixamorig:HeadTop_End",
+          "mixamorig:Head"
+        ],
+        [
+          "mixamorig:Hips",
+          null
+        ],
+        [
+          "mixamorig:LeftArm",
+          "mixamorig:LeftShoulder"
+        ],
+        [
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftLeg"
+        ],
+        [
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftArm"
+        ],
+        [
+          "mixamorig:LeftHand",
+          "mixamorig:LeftForeArm"
+        ],
+        [
+          "mixamorig:LeftHandIndex1",
+          "mixamorig:LeftHand"
+        ],
+        [
+          "mixamorig:LeftHandIndex2",
+          "mixamorig:LeftHandIndex1"
+        ],
+        [
+          "mixamorig:LeftHandIndex3",
+          "mixamorig:LeftHandIndex2"
+        ],
+        [
+          "mixamorig:LeftHandIndex4",
+          "mixamorig:LeftHandIndex3"
+        ],
+        [
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftUpLeg"
+        ],
+        [
+          "mixamorig:LeftShoulder",
+          "mixamorig:Spine2"
+        ],
+        [
+          "mixamorig:LeftToeBase",
+          "mixamorig:LeftFoot"
+        ],
+        [
+          "mixamorig:LeftToe_End",
+          "mixamorig:LeftToeBase"
+        ],
+        [
+          "mixamorig:LeftUpLeg",
+          "mixamorig:Hips"
+        ],
+        [
+          "mixamorig:Neck",
+          "mixamorig:Spine2"
+        ],
+        [
+          "mixamorig:RightArm",
+          "mixamorig:RightShoulder"
+        ],
+        [
+          "mixamorig:RightFoot",
+          "mixamorig:RightLeg"
+        ],
+        [
+          "mixamorig:RightForeArm",
+          "mixamorig:RightArm"
+        ],
+        [
+          "mixamorig:RightHand",
+          "mixamorig:RightForeArm"
+        ],
+        [
+          "mixamorig:RightHandIndex1",
+          "mixamorig:RightHand"
+        ],
+        [
+          "mixamorig:RightHandIndex2",
+          "mixamorig:RightHandIndex1"
+        ],
+        [
+          "mixamorig:RightHandIndex3",
+          "mixamorig:RightHandIndex2"
+        ],
+        [
+          "mixamorig:RightHandIndex4",
+          "mixamorig:RightHandIndex3"
+        ],
+        [
+          "mixamorig:RightLeg",
+          "mixamorig:RightUpLeg"
+        ],
+        [
+          "mixamorig:RightShoulder",
+          "mixamorig:Spine2"
+        ],
+        [
+          "mixamorig:RightToeBase",
+          "mixamorig:RightFoot"
+        ],
+        [
+          "mixamorig:RightToe_End",
+          "mixamorig:RightToeBase"
+        ],
+        [
+          "mixamorig:RightUpLeg",
+          "mixamorig:Hips"
+        ],
+        [
+          "mixamorig:Spine",
+          "mixamorig:Hips"
+        ],
+        [
+          "mixamorig:Spine1",
+          "mixamorig:Spine"
+        ],
+        [
+          "mixamorig:Spine2",
+          "mixamorig:Spine1"
+        ]
+      ]
+    },
+    {
+      "file": "male_basemesh_mixamo_unrigged@Sprint (1).fbx",
+      "bytes": 177824,
+      "sha256": "8a68157e86343d343bf36cae8df6faba2ccfd9aa575f26f6e0d8370bc0c9fc8c",
+      "rig_count": 1,
+      "bone_count": 33,
+      "mesh_count": 0,
+      "vertices": 0,
+      "triangles": 0,
+      "material_slots": 0,
+      "finger_bone_names": [
+        "mixamorig:LeftHandIndex1",
+        "mixamorig:LeftHandIndex2",
+        "mixamorig:LeftHandIndex3",
+        "mixamorig:LeftHandIndex4",
+        "mixamorig:RightHandIndex1",
+        "mixamorig:RightHandIndex2",
+        "mixamorig:RightHandIndex3",
+        "mixamorig:RightHandIndex4"
+      ],
+      "mesh_vertex_group_names": [],
+      "actions": [
+        {
+          "start": 1.0,
+          "end": 17.0
+        }
+      ],
+      "pose_sequence_sha256_rounded_6": "c0ddce553867afa8929a4f8351741acf810da235bb84b32794ad880f9f97ce6b",
+      "hip_start_end_delta_rig_local_units": [
+        -3.814697265625E-06,
+        6.103515625E-05,
+        3668.5339031219482
+      ],
+      "skeleton_signature": [
+        [
+          "mixamorig:Head",
+          "mixamorig:Neck"
+        ],
+        [
+          "mixamorig:HeadTop_End",
+          "mixamorig:Head"
+        ],
+        [
+          "mixamorig:Hips",
+          null
+        ],
+        [
+          "mixamorig:LeftArm",
+          "mixamorig:LeftShoulder"
+        ],
+        [
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftLeg"
+        ],
+        [
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftArm"
+        ],
+        [
+          "mixamorig:LeftHand",
+          "mixamorig:LeftForeArm"
+        ],
+        [
+          "mixamorig:LeftHandIndex1",
+          "mixamorig:LeftHand"
+        ],
+        [
+          "mixamorig:LeftHandIndex2",
+          "mixamorig:LeftHandIndex1"
+        ],
+        [
+          "mixamorig:LeftHandIndex3",
+          "mixamorig:LeftHandIndex2"
+        ],
+        [
+          "mixamorig:LeftHandIndex4",
+          "mixamorig:LeftHandIndex3"
+        ],
+        [
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftUpLeg"
+        ],
+        [
+          "mixamorig:LeftShoulder",
+          "mixamorig:Spine2"
+        ],
+        [
+          "mixamorig:LeftToeBase",
+          "mixamorig:LeftFoot"
+        ],
+        [
+          "mixamorig:LeftToe_End",
+          "mixamorig:LeftToeBase"
+        ],
+        [
+          "mixamorig:LeftUpLeg",
+          "mixamorig:Hips"
+        ],
+        [
+          "mixamorig:Neck",
+          "mixamorig:Spine2"
+        ],
+        [
+          "mixamorig:RightArm",
+          "mixamorig:RightShoulder"
+        ],
+        [
+          "mixamorig:RightFoot",
+          "mixamorig:RightLeg"
+        ],
+        [
+          "mixamorig:RightForeArm",
+          "mixamorig:RightArm"
+        ],
+        [
+          "mixamorig:RightHand",
+          "mixamorig:RightForeArm"
+        ],
+        [
+          "mixamorig:RightHandIndex1",
+          "mixamorig:RightHand"
+        ],
+        [
+          "mixamorig:RightHandIndex2",
+          "mixamorig:RightHandIndex1"
+        ],
+        [
+          "mixamorig:RightHandIndex3",
+          "mixamorig:RightHandIndex2"
+        ],
+        [
+          "mixamorig:RightHandIndex4",
+          "mixamorig:RightHandIndex3"
+        ],
+        [
+          "mixamorig:RightLeg",
+          "mixamorig:RightUpLeg"
+        ],
+        [
+          "mixamorig:RightShoulder",
+          "mixamorig:Spine2"
+        ],
+        [
+          "mixamorig:RightToeBase",
+          "mixamorig:RightFoot"
+        ],
+        [
+          "mixamorig:RightToe_End",
+          "mixamorig:RightToeBase"
+        ],
+        [
+          "mixamorig:RightUpLeg",
+          "mixamorig:Hips"
+        ],
+        [
+          "mixamorig:Spine",
+          "mixamorig:Hips"
+        ],
+        [
+          "mixamorig:Spine1",
+          "mixamorig:Spine"
+        ],
+        [
+          "mixamorig:Spine2",
+          "mixamorig:Spine1"
+        ]
+      ]
+    },
+    {
+      "file": "Sprint - forward travel alternative.fbx",
+      "bytes": 177824,
+      "sha256": "a09071f70bdb8887f94ce90a49998a6966b13ab13b3f898aa94fd8fb79e40d99",
+      "rig_count": 1,
+      "bone_count": 33,
+      "mesh_count": 0,
+      "vertices": 0,
+      "triangles": 0,
+      "material_slots": 0,
+      "finger_bone_names": [
+        "mixamorig:LeftHandIndex1",
+        "mixamorig:LeftHandIndex2",
+        "mixamorig:LeftHandIndex3",
+        "mixamorig:LeftHandIndex4",
+        "mixamorig:RightHandIndex1",
+        "mixamorig:RightHandIndex2",
+        "mixamorig:RightHandIndex3",
+        "mixamorig:RightHandIndex4"
+      ],
+      "mesh_vertex_group_names": [],
+      "actions": [
+        {
+          "start": 1.0,
+          "end": 17.0
+        }
+      ],
+      "pose_sequence_sha256_rounded_6": "c0ddce553867afa8929a4f8351741acf810da235bb84b32794ad880f9f97ce6b",
+      "hip_start_end_delta_rig_local_units": [
+        -3.814697265625E-06,
+        6.103515625E-05,
+        3668.5339031219482
+      ],
+      "skeleton_signature": [
+        [
+          "mixamorig:Head",
+          "mixamorig:Neck"
+        ],
+        [
+          "mixamorig:HeadTop_End",
+          "mixamorig:Head"
+        ],
+        [
+          "mixamorig:Hips",
+          null
+        ],
+        [
+          "mixamorig:LeftArm",
+          "mixamorig:LeftShoulder"
+        ],
+        [
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftLeg"
+        ],
+        [
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftArm"
+        ],
+        [
+          "mixamorig:LeftHand",
+          "mixamorig:LeftForeArm"
+        ],
+        [
+          "mixamorig:LeftHandIndex1",
+          "mixamorig:LeftHand"
+        ],
+        [
+          "mixamorig:LeftHandIndex2",
+          "mixamorig:LeftHandIndex1"
+        ],
+        [
+          "mixamorig:LeftHandIndex3",
+          "mixamorig:LeftHandIndex2"
+        ],
+        [
+          "mixamorig:LeftHandIndex4",
+          "mixamorig:LeftHandIndex3"
+        ],
+        [
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftUpLeg"
+        ],
+        [
+          "mixamorig:LeftShoulder",
+          "mixamorig:Spine2"
+        ],
+        [
+          "mixamorig:LeftToeBase",
+          "mixamorig:LeftFoot"
+        ],
+        [
+          "mixamorig:LeftToe_End",
+          "mixamorig:LeftToeBase"
+        ],
+        [
+          "mixamorig:LeftUpLeg",
+          "mixamorig:Hips"
+        ],
+        [
+          "mixamorig:Neck",
+          "mixamorig:Spine2"
+        ],
+        [
+          "mixamorig:RightArm",
+          "mixamorig:RightShoulder"
+        ],
+        [
+          "mixamorig:RightFoot",
+          "mixamorig:RightLeg"
+        ],
+        [
+          "mixamorig:RightForeArm",
+          "mixamorig:RightArm"
+        ],
+        [
+          "mixamorig:RightHand",
+          "mixamorig:RightForeArm"
+        ],
+        [
+          "mixamorig:RightHandIndex1",
+          "mixamorig:RightHand"
+        ],
+        [
+          "mixamorig:RightHandIndex2",
+          "mixamorig:RightHandIndex1"
+        ],
+        [
+          "mixamorig:RightHandIndex3",
+          "mixamorig:RightHandIndex2"
+        ],
+        [
+          "mixamorig:RightHandIndex4",
+          "mixamorig:RightHandIndex3"
+        ],
+        [
+          "mixamorig:RightLeg",
+          "mixamorig:RightUpLeg"
+        ],
+        [
+          "mixamorig:RightShoulder",
+          "mixamorig:Spine2"
+        ],
+        [
+          "mixamorig:RightToeBase",
+          "mixamorig:RightFoot"
+        ],
+        [
+          "mixamorig:RightToe_End",
+          "mixamorig:RightToeBase"
+        ],
+        [
+          "mixamorig:RightUpLeg",
+          "mixamorig:Hips"
+        ],
+        [
+          "mixamorig:Spine",
+          "mixamorig:Hips"
+        ],
+        [
+          "mixamorig:Spine1",
+          "mixamorig:Spine"
+        ],
+        [
+          "mixamorig:Spine2",
+          "mixamorig:Spine1"
+        ]
+      ]
+    }
+  ]
+}

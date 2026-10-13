@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-13",
+  "audited_head": "9f891713136ef8336ddf2b0aab676a1ac897de7e",
+  "scope": "audit-and-documentation-only",
+  "status": "static-audit-checks-passed",
+  "counts": {
+    "source_aliases_hashed": 148,
+    "byte_payloads": 74,
+    "stable_unity_destinations": 72,
+    "retained_versions": 2,
+    "candidates": 68,
+    "restricted_references": 3,
+    "rig_candidates_hashed": 3,
+    "optional_additional_target_qualification_destinations": 2,
+    "motion_roles": 33,
+    "findings": 22,
+    "stages": 17,
+    "station_areas": 12,
+    "local_links_checked": 41
+  },
+  "checks": [
+    "Expanded alias coverage and current source size/SHA256",
+    "Canonical IDs/destination/metadata-path/source hashes preserved from audited baseline",
+    "Destination ownership and current absence",
+    "Private payload/metadata pairing and public scaffolding policy",
+    "Source/target rig candidates remain unselected/unqualified",
+    "Distinct sprint hashes with matching rounded frame signatures",
+    "Motion-role/finding stages and readiness remain pending",
+    "Requested mounting and wall/crowd scope retained",
+    "Master stages and station/table counts",
+    "Local documentation links",
+    "Historical receipts unchanged",
+    "No tracked product changes"
+  ],
+  "shipped_binding_check": {
+    "asset": "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions",
+    "proposed_paths": [
+      "<Keyboard>/leftAlt",
+      "<Keyboard>/v",
+      "<Keyboard>/f9",
+      "<Gamepad>/rightTrigger",
+      "<Gamepad>/leftStickPress",
+      "<Gamepad>/select"
+    ],
+    "unoccupied_shipped_paths": [
+      "<Keyboard>/leftAlt",
+      "<Keyboard>/v",
+      "<Keyboard>/f9",
+      "<Gamepad>/rightTrigger",
+      "<Gamepad>/leftStickPress",
+      "<Gamepad>/select"
+    ],
+    "effective_user_overrides_qualified": false,
+    "note": "Existing Attack action is reused with a new rightTrigger binding. Six proposed paths are absent from shipped bindings. FND3 must validate all effective coactive override paths."
+  },
+  "cyclic_order_counterexample": {
+    "left_contacts": [
+      0.1,
+      0.6
+    ],
+    "right_contacts": [
+      0.45,
+      0.95
+    ],
+    "traversal_order": "R0-L0-R1-L1-R0",
+    "source_cycles_traversed": 3,
+    "proof": "Per-foot count/order alone does not establish valid cyclic order"
+  },
+  "live_editor_observation": {
+    "date": "2026-10-13",
+    "query": "read-only Unity CLI eval",
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": false,
+    "playing": false,
+    "version": "6000.4.0f1",
+    "product_changes_performed": false
+  },
+  "proof_limits": [
+    "No Unity asset import or Humanoid/deformation/contact qualification",
+    "No runtime, scene, package or project-setting implementation",
+    "No Play Mode or gameplay smoke tests",
+    "No build or publication",
+    "Rounded Blender per-frame pose equivalence is not continuous Unity root-motion equivalence",
+    "Additional roles are proposed requirements, not verified Mixamo availability",
+    "Unrelated Fused art remains outside ownership"
+  ],
+  "index_routes_checked": 2,
+  "evidence_probe_syntax": {
+    "result": "PASS",
+    "tool": "Blender 5.2.2 LTS background factory-startup --disable-autoexec",
+    "method": "ast.parse saved rig-sprint-probe.py",
+    "source_exported": false
+  },
+  "final_read_only_editor_check": "CLI eval confirmed same CampLoopTesting scene, dirty=false, playing=false, Unity 6000.4.0f1"
+}

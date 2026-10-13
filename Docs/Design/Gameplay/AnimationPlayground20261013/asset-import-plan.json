@@ -1,20 +1,26 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "status": "planned-not-executed",
   "date": "2026-10-13",
-  "repository_head_at_planning": "f4b73f1b8dac286a6955edae3a393416171d425d",
+  "repository_head_at_planning": "9f891713136ef8336ddf2b0aab676a1ac897de7e",
   "source_inventory": "Docs/Evidence/Gameplay/AnimationPlayground20261013/animation-inventory.json",
   "sources_relative_to": "Windows Downloads directory; supplied explicitly to transfer/restore tooling",
   "counts": {
+    "collection_copies": 148,
+    "unique_byte_payloads": 74,
     "dated_folder_copies": 73,
-    "canonical_fbx_files": 72,
-    "base_characters": 1,
-    "motion_sources": 71,
+    "loose_motion_exports": 73,
+    "standalone_character_aliases": 2,
+    "canonical_unity_fbx_files": 72,
+    "source_characters": 1,
+    "canonical_motion_sources": 71,
     "unarmed_candidates": 68,
-    "restricted_motion_references": 3,
-    "extra_character_handoff_aliases": 1
+    "restricted_imported_references": 3,
+    "retained_source_versions": 2,
+    "source_aliases_for_unity_files": 146,
+    "optional_additional_target_qualification_destinations": 2
   },
-  "storage_policy": "All canonical payloads enter the local Unity working tree; private raw/derived payloads never enter public Git history; metadata and authored integration data are tracked.",
+  "storage_policy": "Restricted Unity payloads AND paired metadata stay privately bundled; public folder metadata/gitkeep, GUID/import receipts and recipes. Restore paired files together. Two redundant versions retained privately outside Assets.",
   "assets": [
     {
       "asset_id": "death.death.falling.backward",
@@ -25,6 +31,10 @@
         {
           "path": "MixamoOriginalActions20261013/Death - falling backward.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Falling Back Death.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -47,7 +57,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.6,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -57,11 +67,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "death.death.falling.forward",
@@ -72,6 +83,10 @@
         {
           "path": "MixamoOriginalActions20261013/Death - falling forward.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Falling Forward Death.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -94,7 +109,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.566666666666667,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -104,11 +119,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "death.death.standing.backward",
@@ -119,6 +135,10 @@
         {
           "path": "MixamoOriginalActions20261013/Death - standing backward.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing React Death Backward.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -141,7 +161,7 @@
       "source_fps": 30,
       "source_duration_seconds": 3.6333333333333333,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -151,11 +171,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "hurt.hit.body",
@@ -166,6 +187,10 @@
         {
           "path": "MixamoOriginalActions20261013/Hit - body.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Hit Reaction.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -188,7 +213,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.6,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -198,11 +223,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "hurt.hit.large.back",
@@ -213,6 +239,10 @@
         {
           "path": "MixamoOriginalActions20261013/Hit large - back.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing React Large From Back.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -235,7 +265,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.6666666666666667,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -245,11 +275,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "hurt.hit.large.front",
@@ -260,6 +291,10 @@
         {
           "path": "MixamoOriginalActions20261013/Hit large - front.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing React Large From Front.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -282,7 +317,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.3666666666666667,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -292,11 +327,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "hurt.hit.large.left",
@@ -307,6 +343,10 @@
         {
           "path": "MixamoOriginalActions20261013/Hit large - left.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing React Large From Left.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -329,7 +369,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.5666666666666667,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -339,11 +379,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "hurt.hit.large.right",
@@ -354,6 +395,10 @@
         {
           "path": "MixamoOriginalActions20261013/Hit large - right.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing React Large From Right.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -376,7 +421,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.6333333333333333,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -386,11 +431,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "hurt.hit.small.back",
@@ -401,6 +447,10 @@
         {
           "path": "MixamoOriginalActions20261013/Hit small - back.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing React Small From Back.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -423,7 +473,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.2666666666666666,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -433,11 +483,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "hurt.hit.small.front",
@@ -448,6 +499,10 @@
         {
           "path": "MixamoOriginalActions20261013/Hit small - front.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing React Small From Front.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -470,7 +525,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.2,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -480,11 +535,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "hurt.hit.small.left",
@@ -495,6 +551,10 @@
         {
           "path": "MixamoOriginalActions20261013/Hit small - left.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing React Small From Left.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -517,7 +577,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.2,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -527,11 +587,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "hurt.hit.small.right",
@@ -542,6 +603,10 @@
         {
           "path": "MixamoOriginalActions20261013/Hit small - right.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing React Small From Right.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -564,7 +629,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.0,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -574,11 +639,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "kick.kick.front.snap",
@@ -589,6 +655,10 @@
         {
           "path": "MixamoOriginalActions20261013/Kick - front snap.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Kicking.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -611,7 +681,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.6,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -621,11 +691,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "kick.kick.mma.low",
@@ -636,6 +707,10 @@
         {
           "path": "MixamoOriginalActions20261013/Kick - MMA low.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Mma Kick.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -658,7 +733,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.5,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -668,11 +743,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "kick.kick.side",
@@ -683,6 +759,10 @@
         {
           "path": "MixamoOriginalActions20261013/Kick - side.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Side Kick.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -705,7 +785,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.0,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -715,11 +795,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "kick.kick.thrust",
@@ -730,6 +811,10 @@
         {
           "path": "MixamoOriginalActions20261013/Kick - thrust.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Kicking (1).fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -752,7 +837,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.1666666666666665,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -762,11 +847,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "punch.punch.cross",
@@ -777,6 +863,10 @@
         {
           "path": "MixamoOriginalActions20261013/Punch - cross.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Cross Punch.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -799,7 +889,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.0,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -809,11 +899,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "punch.punch.hook",
@@ -824,6 +915,10 @@
         {
           "path": "MixamoOriginalActions20261013/Punch - hook.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Hook Punch.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -846,7 +941,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.1666666666666665,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -856,11 +951,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "punch.punch.jab",
@@ -871,6 +967,10 @@
         {
           "path": "MixamoOriginalActions20261013/Punch - jab.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Punching.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -893,7 +993,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.0333333333333334,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -903,11 +1003,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "button.button.press",
@@ -918,6 +1019,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Button press.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Button Pushing.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -940,7 +1045,7 @@
       "source_fps": 30,
       "source_duration_seconds": 3.2333333333333334,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -950,11 +1055,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP05",
-      "integration_batch": 6,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY2",
+      "source_alias_count": 2
     },
     {
       "asset_id": "pickup.pickup.and.examine",
@@ -965,6 +1071,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Pickup and examine.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Lifting.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -987,7 +1097,7 @@
       "source_fps": 30,
       "source_duration_seconds": 7.2,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -997,11 +1107,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP05",
-      "integration_batch": 6,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY2",
+      "source_alias_count": 2
     },
     {
       "asset_id": "pickup.pickup.one.hand",
@@ -1012,6 +1123,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Pickup - one hand.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Picking Up Object.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1034,7 +1149,7 @@
       "source_fps": 30,
       "source_duration_seconds": 3.433333333333333,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1044,11 +1159,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP05",
-      "integration_batch": 6,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY2",
+      "source_alias_count": 2
     },
     {
       "asset_id": "push.push.cycle",
@@ -1059,6 +1175,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Push - cycle.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Pushing.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1081,7 +1201,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.6666666666666665,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1091,11 +1211,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP06",
-      "integration_batch": 6,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY2",
+      "source_alias_count": 2
     },
     {
       "asset_id": "push.push.start",
@@ -1106,6 +1227,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Push - start.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Push Start.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1128,7 +1253,7 @@
       "source_fps": 30,
       "source_duration_seconds": 4.733333333333333,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1138,11 +1263,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP06",
-      "integration_batch": 6,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY2",
+      "source_alias_count": 2
     },
     {
       "asset_id": "push.push.stop",
@@ -1153,6 +1279,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Push - stop.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Push Stop.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1175,7 +1305,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.6,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1185,11 +1315,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP06",
-      "integration_batch": 6,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY2",
+      "source_alias_count": 2
     },
     {
       "asset_id": "sit.sit.down.chair",
@@ -1200,6 +1331,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Sit down - chair.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Sitting.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1222,7 +1357,7 @@
       "source_fps": 30,
       "source_duration_seconds": 4.433333333333334,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1232,11 +1367,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP11",
-      "integration_batch": 8,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY4",
+      "source_alias_count": 2
     },
     {
       "asset_id": "sit.sitting.idle.chair",
@@ -1247,6 +1383,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Sitting idle - chair.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Sitting Idle.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1269,7 +1409,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.966666666666667,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1279,11 +1419,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP11",
-      "integration_batch": 8,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY4",
+      "source_alias_count": 2
     },
     {
       "asset_id": "sit.sitting.idle.ground",
@@ -1294,6 +1435,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Sitting idle - ground.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Sitting Idle (1).fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1316,7 +1461,7 @@
       "source_fps": 30,
       "source_duration_seconds": 10.866666666666667,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1326,11 +1471,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP11",
-      "integration_batch": 8,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY4",
+      "source_alias_count": 2
     },
     {
       "asset_id": "sleep.sleeping.idle.sleeping.deeply",
@@ -1341,6 +1487,10 @@
         {
           "path": "MixamoRest20261013/Sleeping Idle - Sleeping Deeply.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Sleeping Idle.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1363,7 +1513,7 @@
       "source_fps": 30,
       "source_duration_seconds": 6.866666666666666,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1373,11 +1523,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP11",
-      "integration_batch": 8,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY4",
+      "source_alias_count": 2
     },
     {
       "asset_id": "throw.throw.alternate",
@@ -1388,6 +1539,10 @@
         {
           "path": "MixamoOriginalActions20261013/Throw - alternate.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Throwing.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1410,7 +1565,7 @@
       "source_fps": 30,
       "source_duration_seconds": 5.566666666666666,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1420,11 +1575,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP05",
-      "integration_batch": 6,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY2",
+      "source_alias_count": 2
     },
     {
       "asset_id": "throw.throw.pickup.and.throw",
@@ -1435,6 +1591,10 @@
         {
           "path": "MixamoOriginalActions20261013/Throw - pickup and throw.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Throw Object.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1457,7 +1617,7 @@
       "source_fps": 30,
       "source_duration_seconds": 4.866666666666666,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1467,11 +1627,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP05",
-      "integration_batch": 6,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY2",
+      "source_alias_count": 2
     },
     {
       "asset_id": "throw.throw.standard",
@@ -1482,6 +1643,10 @@
         {
           "path": "MixamoOriginalActions20261013/Throw - standard.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Throw.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1504,7 +1669,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.2,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -1514,11 +1679,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP05",
-      "integration_batch": 6,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY2",
+      "source_alias_count": 2
     },
     {
       "asset_id": "locomotion.breathing.idle",
@@ -1529,6 +1695,10 @@
         {
           "path": "MixamoLocomotion20261013/Breathing Idle.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Breathing Idle.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1551,7 +1721,7 @@
       "source_fps": 30,
       "source_duration_seconds": 9.933333333333334,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -1561,11 +1731,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP02",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "crouch.crouch.enter",
@@ -1576,6 +1747,10 @@
         {
           "path": "MixamoOriginalActions20261013/Crouch - enter.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Crouching.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1598,7 +1773,7 @@
       "source_fps": 30,
       "source_duration_seconds": 4.066666666666666,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -1608,11 +1783,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP03",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "crouch.crouch.exit",
@@ -1623,6 +1799,10 @@
         {
           "path": "MixamoOriginalActions20261013/Crouch - exit.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Crouch To Stand.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1645,7 +1825,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.566666666666667,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -1655,11 +1835,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP03",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "crouch.crouch.idle",
@@ -1670,6 +1851,10 @@
         {
           "path": "MixamoOriginalActions20261013/Crouch - idle.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Crouch Idle.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1692,7 +1877,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.3666666666666667,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -1702,11 +1887,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP03",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "crouch.crouch.walk.backward",
@@ -1717,6 +1903,10 @@
         {
           "path": "MixamoOriginalActions20261013/Crouch walk - backward.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Crouch Walk Back.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1739,7 +1929,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.2333333333333334,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -1749,11 +1939,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP03",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "crouch.crouch.walk.forward",
@@ -1764,6 +1955,10 @@
         {
           "path": "MixamoOriginalActions20261013/Crouch walk - forward.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Crouch Walk Forward.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1786,7 +1981,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.1333333333333333,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -1796,11 +1991,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP03",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "crouch.crouch.walk.left",
@@ -1811,6 +2007,10 @@
         {
           "path": "MixamoOriginalActions20261013/Crouch walk - left.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Crouch Walk Left.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1833,7 +2033,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.1666666666666667,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -1843,11 +2043,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP03",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "crouch.crouch.walk.right",
@@ -1858,6 +2059,10 @@
         {
           "path": "MixamoOriginalActions20261013/Crouch walk - right.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Crouch Walk Right.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1880,7 +2085,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.2666666666666666,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -1890,11 +2095,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP03",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "locomotion.standard.run",
@@ -1905,6 +2111,10 @@
         {
           "path": "MixamoLocomotion20261013/Standard Run.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standard Run.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1927,7 +2137,7 @@
       "source_fps": 30,
       "source_duration_seconds": 0.7333333333333333,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -1937,11 +2147,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP02",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "locomotion.standard.walk",
@@ -1952,6 +2163,10 @@
         {
           "path": "MixamoLocomotion20261013/Standard Walk.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standard Walk.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -1974,7 +2189,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.1666666666666667,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -1984,11 +2199,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP02",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "strafe.strafe.run.left",
@@ -1999,6 +2215,10 @@
         {
           "path": "MixamoOriginalActions20261013/Strafe run - left.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Left Strafe.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2021,7 +2241,7 @@
       "source_fps": 30,
       "source_duration_seconds": 0.6666666666666666,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2031,11 +2251,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP02",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "strafe.strafe.run.right",
@@ -2046,6 +2267,10 @@
         {
           "path": "MixamoOriginalActions20261013/Strafe run - right.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Right Strafe.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2068,7 +2293,7 @@
       "source_fps": 30,
       "source_duration_seconds": 0.6666666666666666,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2078,11 +2303,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP02",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "strafe.strafe.walk.left",
@@ -2093,6 +2319,10 @@
         {
           "path": "MixamoOriginalActions20261013/Strafe walk - left.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Walk Strafe Left.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2115,7 +2345,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.4666666666666666,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2125,11 +2355,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP02",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "strafe.strafe.walk.right",
@@ -2140,6 +2371,10 @@
         {
           "path": "MixamoOriginalActions20261013/Strafe walk - right.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Walk Strafe Right.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2162,7 +2397,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.4666666666666666,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2172,11 +2407,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP02",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "locomotion.two.cycle.sprint",
@@ -2187,6 +2423,10 @@
         {
           "path": "MixamoLocomotion20261013/Two Cycle Sprint.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Two Cycle Sprint.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2209,7 +2449,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.0666666666666667,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2219,11 +2459,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP02",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "death.reference.only.crouched.death.weapon.pose",
@@ -2234,6 +2475,10 @@
         {
           "path": "MixamoOriginalActions20261013/Reference only - crouched death weapon pose.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Crouch Death.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2256,7 +2501,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.3666666666666667,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "none-until-accepted",
       "physical_effect_markers": null,
@@ -2266,11 +2511,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": false,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "locomotion.sprint.forward.travel.alternative",
@@ -2281,6 +2527,10 @@
         {
           "path": "MixamoLocomotion20261013/Sprint - forward travel alternative.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Sprint (2).fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2303,7 +2553,7 @@
       "source_fps": 30,
       "source_duration_seconds": 0.5333333333333333,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "none-until-accepted",
       "physical_effect_markers": null,
@@ -2313,11 +2563,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP02",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "mining.mining.reference.downward.tool.swing",
@@ -2332,6 +2583,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Mining reference - downward tool swing.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing Melee Attack Downward.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 2,
@@ -2354,7 +2609,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.2666666666666666,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "none-until-accepted",
       "physical_effect_markers": null,
@@ -2364,11 +2619,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP07",
-      "integration_batch": 8,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY4",
+      "source_alias_count": 3
     },
     {
       "asset_id": "cover.cover.idle",
@@ -2379,6 +2635,10 @@
         {
           "path": "MixamoUnarmedCover20261013/Cover Idle.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Cover Idle.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2401,7 +2661,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.566666666666667,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -2411,11 +2671,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP08",
-      "integration_batch": 7,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY3",
+      "source_alias_count": 2
     },
     {
       "asset_id": "cover.left.cover.sneak",
@@ -2426,6 +2687,10 @@
         {
           "path": "MixamoUnarmedCover20261013/Left Cover Sneak.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Left Cover Sneak.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2448,7 +2713,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.1333333333333333,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -2458,11 +2723,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP08",
-      "integration_batch": 7,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY3",
+      "source_alias_count": 2
     },
     {
       "asset_id": "cover.right.cover.sneak",
@@ -2473,6 +2739,10 @@
         {
           "path": "MixamoUnarmedCover20261013/Right Cover Sneak.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Right Cover Sneak.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2495,7 +2765,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.1333333333333333,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -2505,11 +2775,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP08",
-      "integration_batch": 7,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY3",
+      "source_alias_count": 2
     },
     {
       "asset_id": "cover.stand.to.cover",
@@ -2520,6 +2791,10 @@
         {
           "path": "MixamoUnarmedCover20261013/Stand To Cover.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Stand To Cover.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2542,7 +2817,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.2666666666666666,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -2552,11 +2827,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP08",
-      "integration_batch": 7,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY3",
+      "source_alias_count": 2
     },
     {
       "asset_id": "evade.dodge.backward",
@@ -2567,6 +2843,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Dodge - backward.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Dodging Back.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2589,7 +2869,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.6666666666666665,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2599,11 +2879,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "evade.dodge.right",
@@ -2614,6 +2895,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Dodge - right.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Dodging Right.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2636,7 +2921,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.4333333333333333,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2646,11 +2931,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "evade.duck.from.standing",
@@ -2661,6 +2947,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Duck from standing.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Ducking.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2683,7 +2973,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.5333333333333334,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2693,11 +2983,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "fall.fall.airborne.idle",
@@ -2708,6 +2999,10 @@
         {
           "path": "MixamoOriginalActions20261013/Fall - airborne idle.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Falling Idle.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2730,7 +3025,7 @@
       "source_fps": 30,
       "source_duration_seconds": 0.7,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2740,11 +3035,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP04",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "fall.fall.landing",
@@ -2755,6 +3051,10 @@
         {
           "path": "MixamoOriginalActions20261013/Fall - landing.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Falling To Landing.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2777,7 +3077,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.0666666666666667,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2787,11 +3087,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP04",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "fall.fall.roll.landing",
@@ -2802,6 +3103,10 @@
         {
           "path": "MixamoOriginalActions20261013/Fall - roll landing.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Falling To Roll.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2824,7 +3129,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.1333333333333333,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2834,11 +3139,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP04",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "jump.jump.running",
@@ -2849,6 +3155,10 @@
         {
           "path": "MixamoOriginalActions20261013/Jump - running.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Running Jump.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2871,7 +3181,7 @@
       "source_fps": 30,
       "source_duration_seconds": 0.9,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2881,11 +3191,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP04",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "jump.jump.standing",
@@ -2896,6 +3207,10 @@
         {
           "path": "MixamoOriginalActions20261013/Jump - standing.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Standing Jump.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2918,7 +3233,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.3666666666666667,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2928,11 +3243,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP04",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "jump.jump.unarmed",
@@ -2943,6 +3259,10 @@
         {
           "path": "MixamoOriginalActions20261013/Jump - unarmed.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Unarmed Jump.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -2965,7 +3285,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.3333333333333335,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -2975,11 +3295,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP04",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "climb.ladder.climb",
@@ -2990,6 +3311,10 @@
         {
           "path": "MixamoOriginalActions20261013/Ladder - climb.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Climbing Ladder.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -3012,7 +3337,7 @@
       "source_fps": 30,
       "source_duration_seconds": 0.7666666666666667,
       "loop_candidate": true,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -3022,11 +3347,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP10",
-      "integration_batch": 7,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY3",
+      "source_alias_count": 2
     },
     {
       "asset_id": "climb.ladder.one.step",
@@ -3037,6 +3363,10 @@
         {
           "path": "MixamoOriginalActions20261013/Ladder - one step.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Climbing.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -3059,7 +3389,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.5666666666666667,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -3069,11 +3399,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP10",
-      "integration_batch": 7,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY3",
+      "source_alias_count": 2
     },
     {
       "asset_id": "climb.ladder.start",
@@ -3084,6 +3415,10 @@
         {
           "path": "MixamoOriginalActions20261013/Ladder - start.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Start Climbing Ladder.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -3106,7 +3441,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.033333333333333,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -3116,11 +3451,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP10",
-      "integration_batch": 7,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY3",
+      "source_alias_count": 2
     },
     {
       "asset_id": "climb.ladder.top.exit",
@@ -3131,6 +3467,10 @@
         {
           "path": "MixamoOriginalActions20261013/Ladder - top exit.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Climbing To Top.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -3153,7 +3493,7 @@
       "source_fps": 30,
       "source_duration_seconds": 4.0,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -3163,11 +3503,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP10",
-      "integration_batch": 7,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY3",
+      "source_alias_count": 2
     },
     {
       "asset_id": "climb.ladder.two.steps",
@@ -3178,6 +3519,10 @@
         {
           "path": "MixamoOriginalActions20261013/Ladder - two steps.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Climbing (1).fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -3200,7 +3545,7 @@
       "source_fps": 30,
       "source_duration_seconds": 2.966666666666667,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -3210,11 +3555,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP10",
-      "integration_batch": 7,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY3",
+      "source_alias_count": 2
     },
     {
       "asset_id": "recovery.get.up.back",
@@ -3225,6 +3571,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Get up - back.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Getting Up.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -3247,7 +3597,7 @@
       "source_fps": 30,
       "source_duration_seconds": 8.333333333333334,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -3257,11 +3607,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "recovery.get.up.stomach",
@@ -3272,6 +3623,10 @@
         {
           "path": "MixamoUnarmedInteractions20261013/Get up - stomach.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Getting Up (1).fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -3294,7 +3649,7 @@
       "source_fps": 30,
       "source_duration_seconds": 8.6,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "ActionCoordinatorThroughMotorOrStationAnchor",
       "physical_effect_markers": null,
@@ -3304,11 +3659,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP12",
-      "integration_batch": 9,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY5",
+      "source_alias_count": 2
     },
     {
       "asset_id": "slide.running.slide",
@@ -3319,6 +3675,10 @@
         {
           "path": "MixamoOriginalActions20261013/Running slide.fbx",
           "kind": "dated-folder-copy"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged@Running Slide.fbx",
+          "kind": "loose-motion-export"
         }
       ],
       "dated_folder_copies": 1,
@@ -3341,7 +3701,7 @@
       "source_fps": 30,
       "source_duration_seconds": 1.5333333333333334,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "RigidbodyMotorWithReviewedPosePolicy",
       "physical_effect_markers": null,
@@ -3351,11 +3711,12 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP03",
-      "integration_batch": 5,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "PHY1",
+      "source_alias_count": 2
     },
     {
       "asset_id": "character.male.base.mixamo",
@@ -3369,7 +3730,11 @@
         },
         {
           "path": "male_basemesh_mixamo_rigged.fbx",
-          "kind": "external-character-handoff-alias"
+          "kind": "standalone-character-alias"
+        },
+        {
+          "path": "male_basemesh_mixamo_unrigged (1).fbx",
+          "kind": "standalone-character-alias"
         }
       ],
       "dated_folder_copies": 1,
@@ -3392,7 +3757,7 @@
       "source_fps": 30,
       "source_duration_seconds": 0.03333333333333333,
       "loop_candidate": false,
-      "loop_acceptance": "needs-seam-contact-and-phase-review",
+      "loop_acceptance": "seam and pose continuity; gait roles additionally require calibrated cyclic R0-L0-R1-L1 contact order/cadence",
       "root_policy": "measure-per-clip; source-travel-retained; applyRootMotion-disabled-by-default",
       "actor_motion_owner": "none-until-accepted",
       "physical_effect_markers": null,
@@ -3402,11 +3767,148 @@
       "physical_action_enabled": false,
       "preview_after_import_validation": true,
       "primary_station": "AP01",
-      "integration_batch": 2,
       "payload_storage": "local-private-dependency; excluded-from-public-Git",
-      "metadata_storage": "tracked-Git; preserve-GUID-after-first-import",
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt; folder metadata remains tracked",
       "operation": "copy-and-verify; preserve-originals",
-      "completed": false
+      "completed": false,
+      "integration_stage": "ART1",
+      "source_alias_count": 3
+    },
+    {
+      "asset_id": "source.sprint.export.attempt.01",
+      "category": "Locomotion",
+      "kind": "retained-version",
+      "mixamo_source_title": "Sprint export attempt",
+      "sources": [
+        {
+          "path": "male_basemesh_mixamo_unrigged@Sprint (1).fbx",
+          "kind": "loose-motion-export"
+        }
+      ],
+      "source_alias_count": 1,
+      "dated_folder_copies": 0,
+      "source_sha256": "8a68157e86343d343bf36cae8df6faba2ccfd9aa575f26f6e0d8370bc0c9fc8c",
+      "source_bytes": 177824,
+      "destination": "SourceArt/Animation/Mixamo/Reference/SprintExportAttempt01.fbx",
+      "metadata_destination": null,
+      "expected_bone_count": 33,
+      "planned_rig_type": "NotImported",
+      "planned_avatar_definition": "NotImported",
+      "source_avatar_guid": null,
+      "imported_clip_local_file_ids": [],
+      "readiness": "retained-redundant-export-version",
+      "eligible_unarmed_candidate": false,
+      "physical_action_enabled": false,
+      "preview_after_import_validation": false,
+      "integration_stage": "DEP1",
+      "primary_station": null,
+      "payload_storage": "local-private-source-history; excluded-from-public-Git",
+      "metadata_storage": "none outside Unity Assets",
+      "operation": "copy-and-verify; preserve-originals",
+      "completed": false,
+      "sampled_pose_equivalent_to": "locomotion.sprint.forward.travel.alternative",
+      "pose_sequence_sha256_rounded_6": "c0ddce553867afa8929a4f8351741acf810da235bb84b32794ad880f9f97ce6b",
+      "restriction_note": "Distinct file bytes; same rounded per-frame poses and forward travel as canonical sprint reference. Preserve source version without duplicate Unity/catalog entry."
+    },
+    {
+      "asset_id": "source.sprint.export.attempt.02",
+      "category": "Locomotion",
+      "kind": "retained-version",
+      "mixamo_source_title": "Sprint export attempt",
+      "sources": [
+        {
+          "path": "male_basemesh_mixamo_unrigged@Sprint.fbx",
+          "kind": "loose-motion-export"
+        }
+      ],
+      "source_alias_count": 1,
+      "dated_folder_copies": 0,
+      "source_sha256": "752360bbcb37e4a17668d40b5bd3098372b8e78ba1827319e1396e43f18a0368",
+      "source_bytes": 177824,
+      "destination": "SourceArt/Animation/Mixamo/Reference/SprintExportAttempt02.fbx",
+      "metadata_destination": null,
+      "expected_bone_count": 33,
+      "planned_rig_type": "NotImported",
+      "planned_avatar_definition": "NotImported",
+      "source_avatar_guid": null,
+      "imported_clip_local_file_ids": [],
+      "readiness": "retained-redundant-export-version",
+      "eligible_unarmed_candidate": false,
+      "physical_action_enabled": false,
+      "preview_after_import_validation": false,
+      "integration_stage": "DEP1",
+      "primary_station": null,
+      "payload_storage": "local-private-source-history; excluded-from-public-Git",
+      "metadata_storage": "none outside Unity Assets",
+      "operation": "copy-and-verify; preserve-originals",
+      "completed": false,
+      "sampled_pose_equivalent_to": "locomotion.sprint.forward.travel.alternative",
+      "pose_sequence_sha256_rounded_6": "c0ddce553867afa8929a4f8351741acf810da235bb84b32794ad880f9f97ce6b",
+      "restriction_note": "Distinct file bytes; same rounded per-frame poses and forward travel as canonical sprint reference. Preserve source version without duplicate Unity/catalog entry."
     }
-  ]
+  ],
+  "readiness_levels": [
+    "SourceRecorded",
+    "ImportQualified",
+    "PreviewQualified",
+    "PhysicalQualified",
+    "AuthorAccepted"
+  ],
+  "private_binding_policy": "Public source/capability recipes; private resolved clips/models/profile/binding set. No Resources inclusion or missing nested model prefab.",
+  "target_rig_candidates": [
+    {
+      "source_file": "male_basemesh_rigged.fbx",
+      "source_sha256": "1563823a3d90a8024cccde2ce195215a42747aee127f2190725a709a3fad9536",
+      "bone_count": 74,
+      "finger_bone_count": 30,
+      "material_slots": 0,
+      "target_avatar_policy": "Create and qualify separate target Avatar for a differing hierarchy; source animations keep the matched Mixamo source Avatar",
+      "unity_qualified": false,
+      "selected_target": false,
+      "planned_qualification_destination": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx",
+      "metadata_destination": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx.meta",
+      "reuses_canonical_source_destination": false,
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt",
+      "target_avatar_guid": null
+    },
+    {
+      "source_file": "male_basemesh_from_blender_rigged.fbx",
+      "source_sha256": "211be186439087232f783a64f1ccc398aab055355bfbfe95517cd1b26fbd6745",
+      "bone_count": 102,
+      "finger_bone_count": 30,
+      "material_slots": 0,
+      "target_avatar_policy": "Create and qualify separate target Avatar for a differing hierarchy; source animations keep the matched Mixamo source Avatar",
+      "unity_qualified": false,
+      "selected_target": false,
+      "planned_qualification_destination": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshBlenderRig.fbx",
+      "metadata_destination": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshBlenderRig.fbx.meta",
+      "reuses_canonical_source_destination": false,
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt",
+      "target_avatar_guid": null
+    },
+    {
+      "source_file": "male_basemesh_mixamo_rigged.fbx",
+      "source_sha256": "df84725e3654fc8221e110404c3fc921daabec368d4f29f70fb9a7a97dc20ef4",
+      "bone_count": 33,
+      "finger_bone_count": 8,
+      "material_slots": 0,
+      "target_avatar_policy": "Create and qualify separate target Avatar for a differing hierarchy; source animations keep the matched Mixamo source Avatar",
+      "unity_qualified": false,
+      "selected_target": false,
+      "planned_qualification_destination": "Assets/_Project/Art/Characters/AnimationPlayground/MaleBaseMeshMixamo.fbx",
+      "metadata_destination": "Assets/_Project/Art/Characters/AnimationPlayground/MaleBaseMeshMixamo.fbx.meta",
+      "reuses_canonical_source_destination": true,
+      "metadata_storage": "private-paired-metadata; public GUID/import receipt",
+      "target_avatar_guid": null
+    }
+  ],
+  "expanded_source_inventory": "Docs/Evidence/Gameplay/AnimationPlayground20261013/PlanReaudit/expanded-source-inventory.json",
+  "unity_metadata_pair_policy": {
+    "restricted_payload": "private",
+    "paired_file_metadata": "private",
+    "public_guid_and_import_receipts": "tracked",
+    "folder_metadata": "tracked",
+    "folder_placeholder": ".gitkeep",
+    "generic_health_checks": "preserved"
+  }
 }
