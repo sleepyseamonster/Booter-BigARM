@@ -24,7 +24,7 @@ def main():
     initial_head = git('rev-parse', 'HEAD')
     subprocess.run(['git', 'merge-base', '--is-ancestor', base, candidate], check=True)
     excluded = git('log', '--format=%H %s', '--name-status', base+'..'+candidate, '--',
-                   'SourceData/Terrain/', ':(glob)**/*.blend', ':(glob)**/*.blend[0-9]*').decode()
+                   ':(icase)SourceData/Terrain/', ':(icase,glob)**/*.blend', ':(icase,glob)**/*.blend[0-9]*').decode()
     objects = git('rev-list', '--objects', base+'..'+candidate)
     rows = git('cat-file', '--batch-check=%(objectname) %(objecttype) %(objectsize) %(rest)', data=objects)
     blobs = []
@@ -45,9 +45,12 @@ def main():
         position = end+1+size+1
         if not payload.startswith(b'version https://git-lfs.github.com/spec/v1\n'):
             continue
-        # Literal historical pointer receipts are not uploaded by the LFS hook.
+        # Exempt a literal historical receipt only when the sealed candidate
+        # does not classify it as LFS. A filename alone is not an upload gate.
         if path.endswith('.lfs-pointer.txt'):
-            continue
+            attr = git('check-attr', '--source='+candidate, '-z', 'filter', '--', path).split(b'\0')
+            if len(attr) < 3 or attr[2] != b'lfs':
+                continue
         match = re.fullmatch(rb'version https://git-lfs.github.com/spec/v1\noid sha256:([0-9a-f]{64})\nsize ([0-9]+)\n', payload)
         if not match:
             errors.append('Noncanonical LFS pointer: '+path)
