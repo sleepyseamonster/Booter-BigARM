@@ -161,6 +161,8 @@ These define current preferred approaches or sequencing.
   Established recovery, independent portable kit ownership, Camps view, bounded physical return, 114 focused checks, and session-only limitations.
 - [Camp interaction audit and iteration](./Evidence/Gameplay/CAMP_INTERACTION_AUDIT_2026-10-11.md)
   Nearby camp shortcuts, regroup without reopening menus, route guidance, clearer companion feedback, and 123 focused checks.
+- [Camp compass audit and proposal](./Design/Gameplay/CAMP_COMPASS_BRAINSTORM.md)
+  Facing-relative algae HUD ring, darkward/lightward directions, local camp origin, layout gaps, and a bounded future implementation slice.
 - [URP_2D_STANDARD.md](Archive/Legacy2D/URP_2D_STANDARD.md) — legacy 2D maintenance only.
 - [UNITY_AUTOMATION.md](./Engineering/UNITY_AUTOMATION.md)
 - [CODEX_EDITOR_STANDARD.md](./Operations/CODEX_EDITOR_STANDARD.md)
