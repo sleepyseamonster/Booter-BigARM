@@ -39,3 +39,11 @@ Unity 6000.4.0f1 ran in hidden background batchmode against this checkout with n
 Ignored diagnostics: `Logs/camp-loop-complete.log`, `Logs/camp-loop-tests.log`, `Logs/camp-loop-tests.xml`, and `Logs/camp-loop-structure.json`. An initial extraction validator inspected uninitialized runtime node IDs in Edit Mode; completion corrected the validator to inspect the serialized authored ironstone identities and saved linked prefab instances. Final import, validation and all tests passed.
 
 Hands-on visual, controller-feel, camp-loop acceptance, disk-checkpoint round trips and Player-build performance are not claimed by these structural/EditMode checks. Open CampLoopTesting and use the existing controls for the author-owned playtest.
+
+## Visibility adjustment — October 13, 2026
+
+The author reported camp rocks and ironstone disappearing too close to the player. Their final LOD threshold was 0.015 (1.5% screen height); this could hide small landmarks well inside the camera's view range. The seven shared authored camp-rock prefabs and `IronstoneNode.prefab` now retain their existing inexpensive third LOD down to a zero screen-height threshold. Camera/frustum clipping still applies. Higher-detail transitions, mesh/material references, colliders, placement IDs, terrain and gameplay state are unchanged. This shared-prefab adjustment also applies to Greater Wasteland. No procedural generation, streaming or persistence identity is changed.
+
+The running author's graphics preference was Low (500 m). It was changed through the existing settings service to High (2,000 m), saved in the local menu-settings profile, and applied to the current camera. This local preference is not a repository/project-setting change.
+
+All eight changed prefabs imported through the existing background CLI connection. The existing `Camp1AuthoredRockTests.AuthoredPrefabUsesSevenDistinctReadyFamiliesAndFixedIdentities` check passed directly without invoking scene-changing TestRunner operations. Readback verified all nineteen live camp rock/ironstone groups retain three populated LODs with the final threshold zero, and the current camera reports High / 2,000 m. The ongoing Play Mode session was preserved; no scene was saved, no app was focused, and no gameplay smoke test was run. Visual acceptance remains with the author.
